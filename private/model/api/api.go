@@ -24,7 +24,7 @@ type API struct {
 	Operations    map[string]*Operation
 	Shapes        map[string]*Shape
 	Waiters       []Waiter
-	Documentation string
+	Documentation string `json:"-"`
 	Examples      Examples
 	SmokeTests    SmokeTestSuite
 

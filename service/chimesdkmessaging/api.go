@@ -5246,7 +5246,7 @@ func (s *CreateChannelOutput) SetChannelArn(v string) *CreateChannelOutput {
 }
 
 type DeleteChannelBanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel from which the AppInstanceUser was banned.
 	//
@@ -5329,7 +5329,7 @@ func (s *DeleteChannelBanInput) SetMemberArn(v string) *DeleteChannelBanInput {
 }
 
 type DeleteChannelBanOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5351,7 +5351,7 @@ func (s DeleteChannelBanOutput) GoString() string {
 }
 
 type DeleteChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel being deleted.
 	//
@@ -5417,7 +5417,7 @@ func (s *DeleteChannelInput) SetChimeBearer(v string) *DeleteChannelInput {
 }
 
 type DeleteChannelMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel from which you want to remove the user.
 	//
@@ -5500,7 +5500,7 @@ func (s *DeleteChannelMembershipInput) SetMemberArn(v string) *DeleteChannelMemb
 }
 
 type DeleteChannelMembershipOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5522,7 +5522,7 @@ func (s DeleteChannelMembershipOutput) GoString() string {
 }
 
 type DeleteChannelMessageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -5605,7 +5605,7 @@ func (s *DeleteChannelMessageInput) SetMessageId(v string) *DeleteChannelMessage
 }
 
 type DeleteChannelMessageOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5627,7 +5627,7 @@ func (s DeleteChannelMessageOutput) GoString() string {
 }
 
 type DeleteChannelModeratorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -5710,7 +5710,7 @@ func (s *DeleteChannelModeratorInput) SetChimeBearer(v string) *DeleteChannelMod
 }
 
 type DeleteChannelModeratorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5732,7 +5732,7 @@ func (s DeleteChannelModeratorOutput) GoString() string {
 }
 
 type DeleteChannelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5754,7 +5754,7 @@ func (s DeleteChannelOutput) GoString() string {
 }
 
 type DescribeChannelBanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel from which the user is banned.
 	//
@@ -5868,7 +5868,7 @@ func (s *DescribeChannelBanOutput) SetChannelBan(v *ChannelBan) *DescribeChannel
 }
 
 type DescribeChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -5934,7 +5934,7 @@ func (s *DescribeChannelInput) SetChimeBearer(v string) *DescribeChannelInput {
 }
 
 type DescribeChannelMembershipForAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the user in a channel.
 	//
@@ -6048,7 +6048,7 @@ func (s *DescribeChannelMembershipForAppInstanceUserOutput) SetChannelMembership
 }
 
 type DescribeChannelMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -6162,7 +6162,7 @@ func (s *DescribeChannelMembershipOutput) SetChannelMembership(v *ChannelMembers
 }
 
 type DescribeChannelModeratedByAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstanceUser in the moderated channel.
 	//
@@ -6276,7 +6276,7 @@ func (s *DescribeChannelModeratedByAppInstanceUserOutput) SetChannel(v *ChannelM
 }
 
 type DescribeChannelModeratorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -6487,7 +6487,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetChannelMessageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -6601,7 +6601,7 @@ func (s *GetChannelMessageOutput) SetChannelMessage(v *ChannelMessage) *GetChann
 }
 
 type GetMessagingSessionEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6699,7 +6699,7 @@ func (s *Identity) SetName(v string) *Identity {
 }
 
 type ListChannelBansInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -6843,7 +6843,7 @@ func (s *ListChannelBansOutput) SetNextToken(v string) *ListChannelBansOutput {
 }
 
 type ListChannelMembershipsForAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstanceUsers
 	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string"`
@@ -6974,7 +6974,7 @@ func (s *ListChannelMembershipsForAppInstanceUserOutput) SetNextToken(v string) 
 }
 
 type ListChannelMembershipsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of channel memberships that you want returned.
 	//
@@ -7132,7 +7132,7 @@ func (s *ListChannelMembershipsOutput) SetNextToken(v string) *ListChannelMember
 }
 
 type ListChannelMessagesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -7304,7 +7304,7 @@ func (s *ListChannelMessagesOutput) SetNextToken(v string) *ListChannelMessagesO
 }
 
 type ListChannelModeratorsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -7450,7 +7450,7 @@ func (s *ListChannelModeratorsOutput) SetNextToken(v string) *ListChannelModerat
 }
 
 type ListChannelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -7551,7 +7551,7 @@ func (s *ListChannelsInput) SetPrivacy(v string) *ListChannelsInput {
 }
 
 type ListChannelsModeratedByAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the user in the moderated channel.
 	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string"`
@@ -7826,7 +7826,7 @@ func (s *NotFoundException) RequestID() string {
 }
 
 type RedactChannelMessageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel containing the messages that you want to redact.
 	//
@@ -8832,7 +8832,7 @@ func (s *UpdateChannelOutput) SetChannelArn(v string) *UpdateChannelOutput {
 }
 
 type UpdateChannelReadMarkerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//

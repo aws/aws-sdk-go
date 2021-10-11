@@ -12086,7 +12086,7 @@ func (s *AssociateApprovedOriginInput) SetOrigin(v string) *AssociateApprovedOri
 }
 
 type AssociateApprovedOriginOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12181,7 +12181,7 @@ func (s *AssociateBotInput) SetLexV2Bot(v *LexV2Bot) *AssociateBotInput {
 }
 
 type AssociateBotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12386,7 +12386,7 @@ func (s *AssociateLambdaFunctionInput) SetInstanceId(v string) *AssociateLambdaF
 }
 
 type AssociateLambdaFunctionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12472,7 +12472,7 @@ func (s *AssociateLexBotInput) SetLexBot(v *LexBot) *AssociateLexBotInput {
 }
 
 type AssociateLexBotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12578,7 +12578,7 @@ func (s *AssociateQueueQuickConnectsInput) SetQuickConnectIds(v []*string) *Asso
 }
 
 type AssociateQueueQuickConnectsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12694,7 +12694,7 @@ func (s *AssociateRoutingProfileQueuesInput) SetRoutingProfileId(v string) *Asso
 }
 
 type AssociateRoutingProfileQueuesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15197,7 +15197,7 @@ func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult 
 }
 
 type DeleteHoursOfOperationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the hours of operation.
 	//
@@ -15264,7 +15264,7 @@ func (s *DeleteHoursOfOperationInput) SetInstanceId(v string) *DeleteHoursOfOper
 }
 
 type DeleteHoursOfOperationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15286,7 +15286,7 @@ func (s DeleteHoursOfOperationOutput) GoString() string {
 }
 
 type DeleteInstanceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15336,7 +15336,7 @@ func (s *DeleteInstanceInput) SetInstanceId(v string) *DeleteInstanceInput {
 }
 
 type DeleteInstanceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15358,7 +15358,7 @@ func (s DeleteInstanceOutput) GoString() string {
 }
 
 type DeleteIntegrationAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15425,7 +15425,7 @@ func (s *DeleteIntegrationAssociationInput) SetIntegrationAssociationId(v string
 }
 
 type DeleteIntegrationAssociationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15447,7 +15447,7 @@ func (s DeleteIntegrationAssociationOutput) GoString() string {
 }
 
 type DeleteQuickConnectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15514,7 +15514,7 @@ func (s *DeleteQuickConnectInput) SetQuickConnectId(v string) *DeleteQuickConnec
 }
 
 type DeleteQuickConnectOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15536,7 +15536,7 @@ func (s DeleteQuickConnectOutput) GoString() string {
 }
 
 type DeleteUseCaseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15620,7 +15620,7 @@ func (s *DeleteUseCaseInput) SetUseCaseId(v string) *DeleteUseCaseInput {
 }
 
 type DeleteUseCaseOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15642,7 +15642,7 @@ func (s DeleteUseCaseOutput) GoString() string {
 }
 
 type DeleteUserHierarchyGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the hierarchy group.
 	//
@@ -15709,7 +15709,7 @@ func (s *DeleteUserHierarchyGroupInput) SetInstanceId(v string) *DeleteUserHiera
 }
 
 type DeleteUserHierarchyGroupOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15731,7 +15731,7 @@ func (s DeleteUserHierarchyGroupOutput) GoString() string {
 }
 
 type DeleteUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -15798,7 +15798,7 @@ func (s *DeleteUserInput) SetUserId(v string) *DeleteUserInput {
 }
 
 type DeleteUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15820,7 +15820,7 @@ func (s DeleteUserOutput) GoString() string {
 }
 
 type DescribeAgentStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the agent status.
 	//
@@ -15918,7 +15918,7 @@ func (s *DescribeAgentStatusOutput) SetAgentStatus(v *AgentStatus) *DescribeAgen
 }
 
 type DescribeContactFlowInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the contact flow.
 	//
@@ -16015,7 +16015,7 @@ func (s *DescribeContactFlowOutput) SetContactFlow(v *ContactFlow) *DescribeCont
 }
 
 type DescribeHoursOfOperationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the hours of operation.
 	//
@@ -16113,7 +16113,7 @@ func (s *DescribeHoursOfOperationOutput) SetHoursOfOperation(v *HoursOfOperation
 }
 
 type DescribeInstanceAttributeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of attribute.
 	//
@@ -16211,7 +16211,7 @@ func (s *DescribeInstanceAttributeOutput) SetAttribute(v *Attribute) *DescribeIn
 }
 
 type DescribeInstanceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -16292,7 +16292,7 @@ func (s *DescribeInstanceOutput) SetInstance(v *Instance) *DescribeInstanceOutpu
 }
 
 type DescribeInstanceStorageConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The existing association identifier that uniquely identifies the resource
 	// type and storage config for the given instance ID.
@@ -16405,7 +16405,7 @@ func (s *DescribeInstanceStorageConfigOutput) SetStorageConfig(v *InstanceStorag
 }
 
 type DescribeQueueInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -16503,7 +16503,7 @@ func (s *DescribeQueueOutput) SetQueue(v *Queue) *DescribeQueueOutput {
 }
 
 type DescribeQuickConnectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -16601,7 +16601,7 @@ func (s *DescribeQuickConnectOutput) SetQuickConnect(v *QuickConnect) *DescribeQ
 }
 
 type DescribeRoutingProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -16699,7 +16699,7 @@ func (s *DescribeRoutingProfileOutput) SetRoutingProfile(v *RoutingProfile) *Des
 }
 
 type DescribeUserHierarchyGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the hierarchy group.
 	//
@@ -16797,7 +16797,7 @@ func (s *DescribeUserHierarchyGroupOutput) SetHierarchyGroup(v *HierarchyGroup) 
 }
 
 type DescribeUserHierarchyStructureInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -16878,7 +16878,7 @@ func (s *DescribeUserHierarchyStructureOutput) SetHierarchyStructure(v *Hierarch
 }
 
 type DescribeUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -17082,7 +17082,7 @@ func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 }
 
 type DisassociateApprovedOriginInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -17146,7 +17146,7 @@ func (s *DisassociateApprovedOriginInput) SetOrigin(v string) *DisassociateAppro
 }
 
 type DisassociateApprovedOriginOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17241,7 +17241,7 @@ func (s *DisassociateBotInput) SetLexV2Bot(v *LexV2Bot) *DisassociateBotInput {
 }
 
 type DisassociateBotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17263,7 +17263,7 @@ func (s DisassociateBotOutput) GoString() string {
 }
 
 type DisassociateInstanceStorageConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The existing association identifier that uniquely identifies the resource
 	// type and storage config for the given instance ID.
@@ -17345,7 +17345,7 @@ func (s *DisassociateInstanceStorageConfigInput) SetResourceType(v string) *Disa
 }
 
 type DisassociateInstanceStorageConfigOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17367,7 +17367,7 @@ func (s DisassociateInstanceStorageConfigOutput) GoString() string {
 }
 
 type DisassociateLambdaFunctionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the Lambda function being disassociated.
 	//
@@ -17434,7 +17434,7 @@ func (s *DisassociateLambdaFunctionInput) SetInstanceId(v string) *DisassociateL
 }
 
 type DisassociateLambdaFunctionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17456,7 +17456,7 @@ func (s DisassociateLambdaFunctionOutput) GoString() string {
 }
 
 type DisassociateLexBotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon Lex bot. Maximum character limit of 50.
 	//
@@ -17534,7 +17534,7 @@ func (s *DisassociateLexBotInput) SetLexRegion(v string) *DisassociateLexBotInpu
 }
 
 type DisassociateLexBotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17640,7 +17640,7 @@ func (s *DisassociateQueueQuickConnectsInput) SetQuickConnectIds(v []*string) *D
 }
 
 type DisassociateQueueQuickConnectsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17753,7 +17753,7 @@ func (s *DisassociateRoutingProfileQueuesInput) SetRoutingProfileId(v string) *D
 }
 
 type DisassociateRoutingProfileQueuesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17775,7 +17775,7 @@ func (s DisassociateRoutingProfileQueuesOutput) GoString() string {
 }
 
 type DisassociateSecurityKeyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The existing association identifier that uniquely identifies the resource
 	// type and storage config for the given instance ID.
@@ -17843,7 +17843,7 @@ func (s *DisassociateSecurityKeyInput) SetInstanceId(v string) *DisassociateSecu
 }
 
 type DisassociateSecurityKeyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -18050,7 +18050,7 @@ func (s *Filters) SetQueues(v []*string) *Filters {
 }
 
 type GetContactAttributesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the initial contact.
 	//
@@ -18417,7 +18417,7 @@ func (s *GetCurrentMetricDataOutput) SetNextToken(v string) *GetCurrentMetricDat
 }
 
 type GetFederationTokenInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -20849,7 +20849,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListAgentStatusesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Available agent status types.
 	AgentStatusTypes []*string `location:"querystring" locationName:"AgentStatusTypes" type:"list"`
@@ -20970,7 +20970,7 @@ func (s *ListAgentStatusesOutput) SetNextToken(v string) *ListAgentStatusesOutpu
 }
 
 type ListApprovedOriginsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21082,7 +21082,7 @@ func (s *ListApprovedOriginsOutput) SetOrigins(v []*string) *ListApprovedOrigins
 }
 
 type ListBotsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21209,7 +21209,7 @@ func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
 }
 
 type ListContactFlowsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of contact flow.
 	ContactFlowTypes []*string `location:"querystring" locationName:"contactFlowTypes" type:"list"`
@@ -21330,7 +21330,7 @@ func (s *ListContactFlowsOutput) SetNextToken(v string) *ListContactFlowsOutput 
 }
 
 type ListHoursOfOperationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21442,7 +21442,7 @@ func (s *ListHoursOfOperationsOutput) SetNextToken(v string) *ListHoursOfOperati
 }
 
 type ListInstanceAttributesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21554,7 +21554,7 @@ func (s *ListInstanceAttributesOutput) SetNextToken(v string) *ListInstanceAttri
 }
 
 type ListInstanceStorageConfigsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21680,7 +21680,7 @@ func (s *ListInstanceStorageConfigsOutput) SetStorageConfigs(v []*InstanceStorag
 }
 
 type ListInstancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -21774,7 +21774,7 @@ func (s *ListInstancesOutput) SetNextToken(v string) *ListInstancesOutput {
 }
 
 type ListIntegrationAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -21894,7 +21894,7 @@ func (s *ListIntegrationAssociationsOutput) SetNextToken(v string) *ListIntegrat
 }
 
 type ListLambdaFunctionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -22006,7 +22006,7 @@ func (s *ListLambdaFunctionsOutput) SetNextToken(v string) *ListLambdaFunctionsO
 }
 
 type ListLexBotsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -22119,7 +22119,7 @@ func (s *ListLexBotsOutput) SetNextToken(v string) *ListLexBotsOutput {
 }
 
 type ListPhoneNumbersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -22249,7 +22249,7 @@ func (s *ListPhoneNumbersOutput) SetPhoneNumberSummaryList(v []*PhoneNumberSumma
 }
 
 type ListPromptsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance.
 	//
@@ -22360,7 +22360,7 @@ func (s *ListPromptsOutput) SetPromptSummaryList(v []*PromptSummary) *ListPrompt
 }
 
 type ListQueueQuickConnectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -22489,7 +22489,7 @@ func (s *ListQueueQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConn
 }
 
 type ListQueuesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -22610,7 +22610,7 @@ func (s *ListQueuesOutput) SetQueueSummaryList(v []*QueueSummary) *ListQueuesOut
 }
 
 type ListQuickConnectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -22733,7 +22733,7 @@ func (s *ListQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConnectSu
 }
 
 type ListRoutingProfileQueuesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -22862,7 +22862,7 @@ func (s *ListRoutingProfileQueuesOutput) SetRoutingProfileQueueConfigSummaryList
 }
 
 type ListRoutingProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -22974,7 +22974,7 @@ func (s *ListRoutingProfilesOutput) SetRoutingProfileSummaryList(v []*RoutingPro
 }
 
 type ListSecurityKeysInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -23086,7 +23086,7 @@ func (s *ListSecurityKeysOutput) SetSecurityKeys(v []*SecurityKey) *ListSecurity
 }
 
 type ListSecurityProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -23198,7 +23198,7 @@ func (s *ListSecurityProfilesOutput) SetSecurityProfileSummaryList(v []*Security
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -23280,7 +23280,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 // Provides summary information about the use cases for the specified integration
 // association.
 type ListUseCasesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -23409,7 +23409,7 @@ func (s *ListUseCasesOutput) SetUseCaseSummaryList(v []*UseCase) *ListUseCasesOu
 }
 
 type ListUserHierarchyGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -23521,7 +23521,7 @@ func (s *ListUserHierarchyGroupsOutput) SetUserHierarchyGroupSummaryList(v []*Hi
 }
 
 type ListUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -24921,7 +24921,7 @@ func (s *ResumeContactRecordingInput) SetInstanceId(v string) *ResumeContactReco
 }
 
 type ResumeContactRecordingOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -25857,7 +25857,7 @@ func (s *StartContactRecordingInput) SetVoiceRecordingConfiguration(v *VoiceReco
 }
 
 type StartContactRecordingOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -26322,7 +26322,7 @@ func (s *StopContactInput) SetInstanceId(v string) *StopContactInput {
 }
 
 type StopContactOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -26429,7 +26429,7 @@ func (s *StopContactRecordingInput) SetInstanceId(v string) *StopContactRecordin
 }
 
 type StopContactRecordingOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -26536,7 +26536,7 @@ func (s *SuspendContactRecordingInput) SetInstanceId(v string) *SuspendContactRe
 }
 
 type SuspendContactRecordingOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -26625,7 +26625,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -26752,7 +26752,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -26818,7 +26818,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -26958,7 +26958,7 @@ func (s *UpdateAgentStatusInput) SetState(v string) *UpdateAgentStatusInput {
 }
 
 type UpdateAgentStatusOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27066,7 +27066,7 @@ func (s *UpdateContactAttributesInput) SetInstanceId(v string) *UpdateContactAtt
 }
 
 type UpdateContactAttributesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27170,7 +27170,7 @@ func (s *UpdateContactFlowContentInput) SetInstanceId(v string) *UpdateContactFl
 }
 
 type UpdateContactFlowContentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27279,7 +27279,7 @@ func (s *UpdateContactFlowNameInput) SetName(v string) *UpdateContactFlowNameInp
 }
 
 type UpdateContactFlowNameOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27417,7 +27417,7 @@ func (s *UpdateHoursOfOperationInput) SetTimeZone(v string) *UpdateHoursOfOperat
 }
 
 type UpdateHoursOfOperationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27526,7 +27526,7 @@ func (s *UpdateInstanceAttributeInput) SetValue(v string) *UpdateInstanceAttribu
 }
 
 type UpdateInstanceAttributeOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27649,7 +27649,7 @@ func (s *UpdateInstanceStorageConfigInput) SetStorageConfig(v *InstanceStorageCo
 }
 
 type UpdateInstanceStorageConfigOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27752,7 +27752,7 @@ func (s *UpdateQueueHoursOfOperationInput) SetQueueId(v string) *UpdateQueueHour
 }
 
 type UpdateQueueHoursOfOperationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27851,7 +27851,7 @@ func (s *UpdateQueueMaxContactsInput) SetQueueId(v string) *UpdateQueueMaxContac
 }
 
 type UpdateQueueMaxContactsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27964,7 +27964,7 @@ func (s *UpdateQueueNameInput) SetQueueId(v string) *UpdateQueueNameInput {
 }
 
 type UpdateQueueNameOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28072,7 +28072,7 @@ func (s *UpdateQueueOutboundCallerConfigInput) SetQueueId(v string) *UpdateQueue
 }
 
 type UpdateQueueOutboundCallerConfigOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28175,7 +28175,7 @@ func (s *UpdateQueueStatusInput) SetStatus(v string) *UpdateQueueStatusInput {
 }
 
 type UpdateQueueStatusOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28283,7 +28283,7 @@ func (s *UpdateQuickConnectConfigInput) SetQuickConnectId(v string) *UpdateQuick
 }
 
 type UpdateQuickConnectConfigOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28393,7 +28393,7 @@ func (s *UpdateQuickConnectNameInput) SetQuickConnectId(v string) *UpdateQuickCo
 }
 
 type UpdateQuickConnectNameOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28506,7 +28506,7 @@ func (s *UpdateRoutingProfileConcurrencyInput) SetRoutingProfileId(v string) *Up
 }
 
 type UpdateRoutingProfileConcurrencyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28609,7 +28609,7 @@ func (s *UpdateRoutingProfileDefaultOutboundQueueInput) SetRoutingProfileId(v st
 }
 
 type UpdateRoutingProfileDefaultOutboundQueueOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28722,7 +28722,7 @@ func (s *UpdateRoutingProfileNameInput) SetRoutingProfileId(v string) *UpdateRou
 }
 
 type UpdateRoutingProfileNameOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28839,7 +28839,7 @@ func (s *UpdateRoutingProfileQueuesInput) SetRoutingProfileId(v string) *UpdateR
 }
 
 type UpdateRoutingProfileQueuesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28942,7 +28942,7 @@ func (s *UpdateUserHierarchyGroupNameInput) SetName(v string) *UpdateUserHierarc
 }
 
 type UpdateUserHierarchyGroupNameOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29040,7 +29040,7 @@ func (s *UpdateUserHierarchyInput) SetUserId(v string) *UpdateUserHierarchyInput
 }
 
 type UpdateUserHierarchyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29131,7 +29131,7 @@ func (s *UpdateUserHierarchyStructureInput) SetInstanceId(v string) *UpdateUserH
 }
 
 type UpdateUserHierarchyStructureOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29239,7 +29239,7 @@ func (s *UpdateUserIdentityInfoInput) SetUserId(v string) *UpdateUserIdentityInf
 }
 
 type UpdateUserIdentityInfoOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29347,7 +29347,7 @@ func (s *UpdateUserPhoneConfigInput) SetUserId(v string) *UpdateUserPhoneConfigI
 }
 
 type UpdateUserPhoneConfigOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29450,7 +29450,7 @@ func (s *UpdateUserRoutingProfileInput) SetUserId(v string) *UpdateUserRoutingPr
 }
 
 type UpdateUserRoutingProfileOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29556,7 +29556,7 @@ func (s *UpdateUserSecurityProfilesInput) SetUserId(v string) *UpdateUserSecurit
 }
 
 type UpdateUserSecurityProfilesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

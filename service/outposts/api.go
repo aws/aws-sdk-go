@@ -1518,7 +1518,7 @@ func (s *CreateOutpostOutput) SetOutpost(v *Outpost) *CreateOutpostOutput {
 }
 
 type DeleteOutpostInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Outpost.
 	//
@@ -1567,7 +1567,7 @@ func (s *DeleteOutpostInput) SetOutpostId(v string) *DeleteOutpostInput {
 }
 
 type DeleteOutpostOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1589,7 +1589,7 @@ func (s DeleteOutpostOutput) GoString() string {
 }
 
 type DeleteSiteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the site.
 	//
@@ -1638,7 +1638,7 @@ func (s *DeleteSiteInput) SetSiteId(v string) *DeleteSiteInput {
 }
 
 type DeleteSiteOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1660,7 +1660,7 @@ func (s DeleteSiteOutput) GoString() string {
 }
 
 type GetOutpostInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Outpost.
 	//
@@ -1709,7 +1709,7 @@ func (s *GetOutpostInput) SetOutpostId(v string) *GetOutpostInput {
 }
 
 type GetOutpostInstanceTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum page size.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
@@ -2083,7 +2083,7 @@ func (s *LineItemRequest) SetQuantity(v int64) *LineItemRequest {
 }
 
 type ListOutpostsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A filter for the Availibility Zone (us-east-1a) of the Outpost.
 	//
@@ -2227,7 +2227,7 @@ func (s *ListOutpostsOutput) SetOutposts(v []*Outpost) *ListOutpostsOutput {
 }
 
 type ListSitesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum page size.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
@@ -2323,7 +2323,7 @@ func (s *ListSitesOutput) SetSites(v []*Site) *ListSitesOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -2882,7 +2882,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2904,7 +2904,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -2970,7 +2970,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

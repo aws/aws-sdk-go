@@ -954,7 +954,7 @@ func (s *CreateEnvironmentOutput) SetEnvironmentUrl(v string) *CreateEnvironment
 }
 
 type DeleteEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the FinSpace environment.
 	//
@@ -1003,7 +1003,7 @@ func (s *DeleteEnvironmentInput) SetEnvironmentId(v string) *DeleteEnvironmentIn
 }
 
 type DeleteEnvironmentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1265,7 +1265,7 @@ func (s *FederationParameters) SetSamlMetadataURL(v string) *FederationParameter
 }
 
 type GetEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the FinSpace environment.
 	//
@@ -1538,7 +1538,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListEnvironmentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -1634,7 +1634,7 @@ func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput 
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name of the resource.
 	//
@@ -1910,7 +1910,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1996,7 +1996,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A FinSpace resource from which you want to remove a tag or tags. The value
 	// for this parameter is an Amazon Resource Name (ARN).
@@ -2063,7 +2063,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

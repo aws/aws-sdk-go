@@ -3188,7 +3188,7 @@ func (s *CreateSafetyRuleOutput) SetGatingRule(v *GatingRule) *CreateSafetyRuleO
 }
 
 type DeleteClusterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"ClusterArn" type:"string" required:"true"`
@@ -3236,7 +3236,7 @@ func (s *DeleteClusterInput) SetClusterArn(v string) *DeleteClusterInput {
 
 // A successful DeleteCluster request returns no response.
 type DeleteClusterOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3258,7 +3258,7 @@ func (s DeleteClusterOutput) GoString() string {
 }
 
 type DeleteControlPanelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ControlPanelArn is a required field
 	ControlPanelArn *string `location:"uri" locationName:"ControlPanelArn" type:"string" required:"true"`
@@ -3306,7 +3306,7 @@ func (s *DeleteControlPanelInput) SetControlPanelArn(v string) *DeleteControlPan
 
 // A successful DeleteControlPanel request returns no response.
 type DeleteControlPanelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3328,7 +3328,7 @@ func (s DeleteControlPanelOutput) GoString() string {
 }
 
 type DeleteRoutingControlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RoutingControlArn is a required field
 	RoutingControlArn *string `location:"uri" locationName:"RoutingControlArn" type:"string" required:"true"`
@@ -3376,7 +3376,7 @@ func (s *DeleteRoutingControlInput) SetRoutingControlArn(v string) *DeleteRoutin
 
 // A successful DeleteRoutingControl request returns no response.
 type DeleteRoutingControlOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3398,7 +3398,7 @@ func (s DeleteRoutingControlOutput) GoString() string {
 }
 
 type DeleteSafetyRuleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SafetyRuleArn is a required field
 	SafetyRuleArn *string `location:"uri" locationName:"SafetyRuleArn" type:"string" required:"true"`
@@ -3447,7 +3447,7 @@ func (s *DeleteSafetyRuleInput) SetSafetyRuleArn(v string) *DeleteSafetyRuleInpu
 // There is an empty response when you delete a safety rule.
 // />
 type DeleteSafetyRuleOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3469,7 +3469,7 @@ func (s DeleteSafetyRuleOutput) GoString() string {
 }
 
 type DescribeClusterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"ClusterArn" type:"string" required:"true"`
@@ -3548,7 +3548,7 @@ func (s *DescribeClusterOutput) SetCluster(v *Cluster) *DescribeClusterOutput {
 }
 
 type DescribeControlPanelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ControlPanelArn is a required field
 	ControlPanelArn *string `location:"uri" locationName:"ControlPanelArn" type:"string" required:"true"`
@@ -3627,7 +3627,7 @@ func (s *DescribeControlPanelOutput) SetControlPanel(v *ControlPanel) *DescribeC
 }
 
 type DescribeRoutingControlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RoutingControlArn is a required field
 	RoutingControlArn *string `location:"uri" locationName:"RoutingControlArn" type:"string" required:"true"`
@@ -3706,7 +3706,7 @@ func (s *DescribeRoutingControlOutput) SetRoutingControl(v *RoutingControl) *Des
 }
 
 type DescribeSafetyRuleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SafetyRuleArn is a required field
 	SafetyRuleArn *string `location:"uri" locationName:"SafetyRuleArn" type:"string" required:"true"`
@@ -4074,7 +4074,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListAssociatedRoute53HealthChecksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
@@ -4181,7 +4181,7 @@ func (s *ListAssociatedRoute53HealthChecksOutput) SetNextToken(v string) *ListAs
 }
 
 type ListClustersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
@@ -4273,7 +4273,7 @@ func (s *ListClustersOutput) SetNextToken(v string) *ListClustersOutput {
 }
 
 type ListControlPanelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClusterArn *string `location:"querystring" locationName:"ClusterArn" type:"string"`
 
@@ -4373,7 +4373,7 @@ func (s *ListControlPanelsOutput) SetNextToken(v string) *ListControlPanelsOutpu
 }
 
 type ListRoutingControlsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ControlPanelArn is a required field
 	ControlPanelArn *string `location:"uri" locationName:"ControlPanelArn" type:"string" required:"true"`
@@ -4480,7 +4480,7 @@ func (s *ListRoutingControlsOutput) SetRoutingControls(v []*RoutingControl) *Lis
 }
 
 type ListSafetyRulesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ControlPanelArn is a required field
 	ControlPanelArn *string `location:"uri" locationName:"ControlPanelArn" type:"string" required:"true"`

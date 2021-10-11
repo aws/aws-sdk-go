@@ -1026,7 +1026,7 @@ func (s *ConflictException) RequestID() string {
 }
 
 type DeleteSessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias in use for the bot that contains the session data.
 	//
@@ -1457,7 +1457,7 @@ func (s *GenericAttachment) SetTitle(v string) *GenericAttachment {
 }
 
 type GetSessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias in use for the bot that contains the session data.
 	//

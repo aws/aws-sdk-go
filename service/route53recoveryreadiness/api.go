@@ -4179,7 +4179,7 @@ func (s *DNSTargetResource) SetTargetResource(v *TargetResource) *DNSTargetResou
 }
 
 type DeleteCellInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CellName is a required field
 	CellName *string `location:"uri" locationName:"cellName" type:"string" required:"true"`
@@ -4226,7 +4226,7 @@ func (s *DeleteCellInput) SetCellName(v string) *DeleteCellInput {
 }
 
 type DeleteCellOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4248,7 +4248,7 @@ func (s DeleteCellOutput) GoString() string {
 }
 
 type DeleteCrossAccountAuthorizationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CrossAccountAuthorization is a required field
 	CrossAccountAuthorization *string `location:"uri" locationName:"crossAccountAuthorization" type:"string" required:"true"`
@@ -4295,7 +4295,7 @@ func (s *DeleteCrossAccountAuthorizationInput) SetCrossAccountAuthorization(v st
 }
 
 type DeleteCrossAccountAuthorizationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4317,7 +4317,7 @@ func (s DeleteCrossAccountAuthorizationOutput) GoString() string {
 }
 
 type DeleteReadinessCheckInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ReadinessCheckName is a required field
 	ReadinessCheckName *string `location:"uri" locationName:"readinessCheckName" type:"string" required:"true"`
@@ -4364,7 +4364,7 @@ func (s *DeleteReadinessCheckInput) SetReadinessCheckName(v string) *DeleteReadi
 }
 
 type DeleteReadinessCheckOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4386,7 +4386,7 @@ func (s DeleteReadinessCheckOutput) GoString() string {
 }
 
 type DeleteRecoveryGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RecoveryGroupName is a required field
 	RecoveryGroupName *string `location:"uri" locationName:"recoveryGroupName" type:"string" required:"true"`
@@ -4433,7 +4433,7 @@ func (s *DeleteRecoveryGroupInput) SetRecoveryGroupName(v string) *DeleteRecover
 }
 
 type DeleteRecoveryGroupOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4455,7 +4455,7 @@ func (s DeleteRecoveryGroupOutput) GoString() string {
 }
 
 type DeleteResourceSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceSetName is a required field
 	ResourceSetName *string `location:"uri" locationName:"resourceSetName" type:"string" required:"true"`
@@ -4502,7 +4502,7 @@ func (s *DeleteResourceSetInput) SetResourceSetName(v string) *DeleteResourceSet
 }
 
 type DeleteResourceSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4524,7 +4524,7 @@ func (s DeleteResourceSetOutput) GoString() string {
 }
 
 type GetArchitectureRecommendationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -4638,7 +4638,7 @@ func (s *GetArchitectureRecommendationsOutput) SetRecommendations(v []*Recommend
 }
 
 type GetCellInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CellName is a required field
 	CellName *string `location:"uri" locationName:"cellName" type:"string" required:"true"`
@@ -4748,7 +4748,7 @@ func (s *GetCellOutput) SetTags(v map[string]*string) *GetCellOutput {
 }
 
 type GetCellReadinessSummaryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CellName is a required field
 	CellName *string `location:"uri" locationName:"cellName" type:"string" required:"true"`
@@ -4861,7 +4861,7 @@ func (s *GetCellReadinessSummaryOutput) SetReadinessChecks(v []*ReadinessCheckSu
 }
 
 type GetReadinessCheckInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ReadinessCheckName is a required field
 	ReadinessCheckName *string `location:"uri" locationName:"readinessCheckName" type:"string" required:"true"`
@@ -4963,7 +4963,7 @@ func (s *GetReadinessCheckOutput) SetTags(v map[string]*string) *GetReadinessChe
 }
 
 type GetReadinessCheckResourceStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -5091,7 +5091,7 @@ func (s *GetReadinessCheckResourceStatusOutput) SetRules(v []*RuleResult) *GetRe
 }
 
 type GetReadinessCheckStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -5212,7 +5212,7 @@ func (s *GetReadinessCheckStatusOutput) SetResources(v []*ResourceResult) *GetRe
 }
 
 type GetRecoveryGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RecoveryGroupName is a required field
 	RecoveryGroupName *string `location:"uri" locationName:"recoveryGroupName" type:"string" required:"true"`
@@ -5314,7 +5314,7 @@ func (s *GetRecoveryGroupOutput) SetTags(v map[string]*string) *GetRecoveryGroup
 }
 
 type GetRecoveryGroupReadinessSummaryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -5427,7 +5427,7 @@ func (s *GetRecoveryGroupReadinessSummaryOutput) SetReadinessChecks(v []*Readine
 }
 
 type GetResourceSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceSetName is a required field
 	ResourceSetName *string `location:"uri" locationName:"resourceSetName" type:"string" required:"true"`
@@ -5600,7 +5600,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListCellsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -5689,7 +5689,7 @@ func (s *ListCellsOutput) SetNextToken(v string) *ListCellsOutput {
 }
 
 type ListCrossAccountAuthorizationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -5778,7 +5778,7 @@ func (s *ListCrossAccountAuthorizationsOutput) SetNextToken(v string) *ListCross
 }
 
 type ListReadinessChecksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -5867,7 +5867,7 @@ func (s *ListReadinessChecksOutput) SetReadinessChecks(v []*ReadinessCheckOutput
 }
 
 type ListRecoveryGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -5956,7 +5956,7 @@ func (s *ListRecoveryGroupsOutput) SetRecoveryGroups(v []*RecoveryGroupOutput_) 
 }
 
 type ListResourceSetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6045,7 +6045,7 @@ func (s *ListResourceSetsOutput) SetResourceSets(v []*ResourceSetOutput_) *ListR
 }
 
 type ListRulesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6198,7 +6198,7 @@ func (s *ListRulesOutput_) SetRuleId(v string) *ListRulesOutput_ {
 }
 
 type ListTagsForResourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -6979,7 +6979,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7105,7 +7105,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -7164,7 +7164,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

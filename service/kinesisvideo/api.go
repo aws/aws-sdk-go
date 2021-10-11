@@ -2768,7 +2768,7 @@ func (s *DeleteSignalingChannelInput) SetCurrentVersion(v string) *DeleteSignali
 }
 
 type DeleteSignalingChannelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2856,7 +2856,7 @@ func (s *DeleteStreamInput) SetStreamARN(v string) *DeleteStreamInput {
 }
 
 type DeleteStreamOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4593,7 +4593,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4690,7 +4690,7 @@ func (s *TagStreamInput) SetTags(v map[string]*string) *TagStreamInput {
 }
 
 type TagStreamOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4844,7 +4844,7 @@ func (s *UntagResourceInput) SetTagKeyList(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4940,7 +4940,7 @@ func (s *UntagStreamInput) SetTagKeyList(v []*string) *UntagStreamInput {
 }
 
 type UntagStreamOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5069,7 +5069,7 @@ func (s *UpdateDataRetentionInput) SetStreamName(v string) *UpdateDataRetentionI
 }
 
 type UpdateDataRetentionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5173,7 +5173,7 @@ func (s *UpdateSignalingChannelInput) SetSingleMasterConfiguration(v *SingleMast
 }
 
 type UpdateSignalingChannelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5303,7 +5303,7 @@ func (s *UpdateStreamInput) SetStreamName(v string) *UpdateStreamInput {
 }
 
 type UpdateStreamOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

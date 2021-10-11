@@ -2874,7 +2874,7 @@ func (s *DashPackage) SetSegmentTemplateFormat(v string) *DashPackage {
 }
 
 type DeleteAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -2921,7 +2921,7 @@ func (s *DeleteAssetInput) SetId(v string) *DeleteAssetInput {
 }
 
 type DeleteAssetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2943,7 +2943,7 @@ func (s DeleteAssetOutput) GoString() string {
 }
 
 type DeletePackagingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -2990,7 +2990,7 @@ func (s *DeletePackagingConfigurationInput) SetId(v string) *DeletePackagingConf
 }
 
 type DeletePackagingConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3012,7 +3012,7 @@ func (s DeletePackagingConfigurationOutput) GoString() string {
 }
 
 type DeletePackagingGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -3059,7 +3059,7 @@ func (s *DeletePackagingGroupInput) SetId(v string) *DeletePackagingGroupInput {
 }
 
 type DeletePackagingGroupOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3081,7 +3081,7 @@ func (s DeletePackagingGroupOutput) GoString() string {
 }
 
 type DescribeAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -3223,7 +3223,7 @@ func (s *DescribeAssetOutput) SetTags(v map[string]*string) *DescribeAssetOutput
 }
 
 type DescribePackagingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -3361,7 +3361,7 @@ func (s *DescribePackagingConfigurationOutput) SetTags(v map[string]*string) *De
 }
 
 type DescribePackagingGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -3931,7 +3931,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListAssetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -4028,7 +4028,7 @@ func (s *ListAssetsOutput) SetNextToken(v string) *ListAssetsOutput {
 }
 
 type ListPackagingConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -4125,7 +4125,7 @@ func (s *ListPackagingConfigurationsOutput) SetPackagingConfigurations(v []*Pack
 }
 
 type ListPackagingGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -4214,7 +4214,7 @@ func (s *ListPackagingGroupsOutput) SetPackagingGroups(v []*PackagingGroup) *Lis
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -4939,7 +4939,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5087,7 +5087,7 @@ func (s *UnprocessableEntityException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -5146,7 +5146,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

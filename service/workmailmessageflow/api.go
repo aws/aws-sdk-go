@@ -203,7 +203,7 @@ func (c *WorkMailMessageFlow) PutRawMessageContentWithContext(ctx aws.Context, i
 }
 
 type GetRawMessageContentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the email message to retrieve.
 	//
@@ -556,7 +556,7 @@ func (s *PutRawMessageContentInput) SetMessageId(v string) *PutRawMessageContent
 }
 
 type PutRawMessageContentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

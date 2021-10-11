@@ -32,7 +32,7 @@ type XMLInfo struct {
 type ShapeRef struct {
 	API           *API   `json:"-"`
 	Shape         *Shape `json:"-"`
-	Documentation string
+	Documentation string `json:"-"`
 	ShapeName     string `json:"shape"`
 	Location      string
 	LocationName  string
@@ -76,7 +76,7 @@ type ShapeRef struct {
 type Shape struct {
 	API              *API `json:"-"`
 	ShapeName        string
-	Documentation    string
+	Documentation    string               `json:"-"`
 	MemberRefs       map[string]*ShapeRef `json:"members"`
 	MemberRef        ShapeRef             `json:"member"` // List ref
 	KeyRef           ShapeRef             `json:"key"`    // map key ref
@@ -535,6 +535,9 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 		if name := ref.Shape.PayloadRefName(); len(name) > 0 {
 			tags = append(tags, ShapeTag{"payload", name})
 		}
+		if !ref.Shape.HasPayloadMembers() && ref.API.Metadata.Protocol == "rest-json" {
+			tags = append(tags, ShapeTag{"nopayload", "true"})
+		}
 	}
 
 	if ref.XMLNamespace.Prefix != "" {
@@ -562,6 +565,18 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	}
 
 	return fmt.Sprintf("`%s`", tags)
+}
+
+// HasPayloadMembers returns if the shape has any members that will be
+// serialized to the payload of a API message.
+func (s *Shape) HasPayloadMembers() bool {
+	for _, ref := range s.MemberRefs {
+		if ref.Location == "" && ref.Shape.Location == "" {
+			return true
+		}
+	}
+
+	return false
 }
 
 // Docstring returns the godocs formated documentation

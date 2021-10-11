@@ -1582,7 +1582,7 @@ func (s *AssociateDeviceWithPlacementInput) SetProjectName(v string) *AssociateD
 }
 
 type AssociateDeviceWithPlacementOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1680,7 +1680,7 @@ func (s *CreatePlacementInput) SetProjectName(v string) *CreatePlacementInput {
 }
 
 type CreatePlacementOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1786,7 +1786,7 @@ func (s *CreateProjectInput) SetTags(v map[string]*string) *CreateProjectInput {
 }
 
 type CreateProjectOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1808,7 +1808,7 @@ func (s CreateProjectOutput) GoString() string {
 }
 
 type DeletePlacementInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the empty placement to delete.
 	//
@@ -1874,7 +1874,7 @@ func (s *DeletePlacementInput) SetProjectName(v string) *DeletePlacementInput {
 }
 
 type DeletePlacementOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1896,7 +1896,7 @@ func (s DeletePlacementOutput) GoString() string {
 }
 
 type DeleteProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the empty project to delete.
 	//
@@ -1945,7 +1945,7 @@ func (s *DeleteProjectInput) SetProjectName(v string) *DeleteProjectInput {
 }
 
 type DeleteProjectOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1967,7 +1967,7 @@ func (s DeleteProjectOutput) GoString() string {
 }
 
 type DescribePlacementInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the placement within a project.
 	//
@@ -2066,7 +2066,7 @@ func (s *DescribePlacementOutput) SetPlacement(v *PlacementDescription) *Describ
 }
 
 type DescribeProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the project to be described.
 	//
@@ -2190,7 +2190,7 @@ func (s *DeviceTemplate) SetDeviceType(v string) *DeviceTemplate {
 }
 
 type DisassociateDeviceFromPlacementInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The device ID that should be removed from the placement.
 	//
@@ -2273,7 +2273,7 @@ func (s *DisassociateDeviceFromPlacementInput) SetProjectName(v string) *Disasso
 }
 
 type DisassociateDeviceFromPlacementOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2295,7 +2295,7 @@ func (s DisassociateDeviceFromPlacementOutput) GoString() string {
 }
 
 type GetDevicesInPlacementInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the placement to get the devices from.
 	//
@@ -2524,7 +2524,7 @@ func (s *InvalidRequestException) RequestID() string {
 }
 
 type ListPlacementsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per request. If not set, a default
 	// value of 100 is used.
@@ -2641,7 +2641,7 @@ func (s *ListPlacementsOutput) SetPlacements(v []*PlacementSummary) *ListPlaceme
 }
 
 type ListProjectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per request. If not set, a default
 	// value of 100 is used.
@@ -2741,7 +2741,7 @@ func (s *ListProjectsOutput) SetProjects(v []*ProjectSummary) *ListProjectsOutpu
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource whose tags you want to list.
 	//
@@ -3381,7 +3381,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3468,7 +3468,7 @@ func (s *TooManyRequestsException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource whose tag you want to remove.
 	//
@@ -3534,7 +3534,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3632,7 +3632,7 @@ func (s *UpdatePlacementInput) SetProjectName(v string) *UpdatePlacementInput {
 }
 
 type UpdatePlacementOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3724,7 +3724,7 @@ func (s *UpdateProjectInput) SetProjectName(v string) *UpdateProjectInput {
 }
 
 type UpdateProjectOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

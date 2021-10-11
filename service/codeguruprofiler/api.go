@@ -3435,7 +3435,7 @@ func (s *CreateProfilingGroupOutput) SetProfilingGroup(v *ProfilingGroupDescript
 
 // The structure representing the deleteProfilingGroupRequest.
 type DeleteProfilingGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the profiling group to delete.
 	//
@@ -3485,7 +3485,7 @@ func (s *DeleteProfilingGroupInput) SetProfilingGroupName(v string) *DeleteProfi
 
 // The structure representing the deleteProfilingGroupResponse.
 type DeleteProfilingGroupOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3508,7 +3508,7 @@ func (s DeleteProfilingGroupOutput) GoString() string {
 
 // The structure representing the describeProfilingGroupRequest.
 type DescribeProfilingGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the profiling group to get information about.
 	//
@@ -3793,7 +3793,7 @@ func (s *FrameMetricDatum) SetValues(v []*float64) *FrameMetricDatum {
 
 // The structure representing the GetFindingsReportAccountSummaryRequest.
 type GetFindingsReportAccountSummaryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A Boolean value indicating whether to only return reports from daily profiles.
 	// If set to True, only analysis data from daily profiles is returned. If set
@@ -3921,7 +3921,7 @@ func (s *GetFindingsReportAccountSummaryOutput) SetReportSummaries(v []*Findings
 
 // The structure representing the GetNotificationConfigurationRequest.
 type GetNotificationConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the profiling group we want to get the notification configuration
 	// for.
@@ -4006,7 +4006,7 @@ func (s *GetNotificationConfigurationOutput) SetNotificationConfiguration(v *Not
 
 // The structure representing the getPolicyRequest.
 type GetPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the profiling group.
 	//
@@ -4101,7 +4101,7 @@ func (s *GetPolicyOutput) SetRevisionId(v string) *GetPolicyOutput {
 
 // The structure representing the getProfileRequest.
 type GetProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The format of the returned profiling data. The format maps to the Accept
 	// and Content-Type headers of the HTTP request. You can specify one of the
@@ -4282,7 +4282,7 @@ func (s *GetProfileOutput) SetProfile(v []byte) *GetProfileOutput {
 
 // The structure representing the GetRecommendationsRequest.
 type GetRecommendationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The start time of the profile to get analysis data about. You must specify
 	// startTime and endTime. This is specified using the ISO 8601 format. For example,
@@ -4544,7 +4544,7 @@ func (s *InternalServerException) RequestID() string {
 
 // The structure representing the ListFindingsReportsRequest.
 type ListFindingsReportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A Boolean value indicating whether to only return reports from daily profiles.
 	// If set to True, only analysis data from daily profiles is returned. If set
@@ -4720,7 +4720,7 @@ func (s *ListFindingsReportsOutput) SetNextToken(v string) *ListFindingsReportsO
 
 // The structure representing the listProfileTimesRequest.
 type ListProfileTimesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The end time of the time range from which to list the profiles.
 	//
@@ -4911,7 +4911,7 @@ func (s *ListProfileTimesOutput) SetProfileTimes(v []*ProfileTime) *ListProfileT
 
 // The structure representing the listProfilingGroupsRequest.
 type ListProfilingGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A Boolean value indicating whether to include a description. If true, then
 	// a list of ProfilingGroupDescription (https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html)
@@ -5050,7 +5050,7 @@ func (s *ListProfilingGroupsOutput) SetProfilingGroups(v []*ProfilingGroupDescri
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that contains the tags to
 	// return.
@@ -5471,7 +5471,7 @@ func (s *PostAgentProfileInput) SetProfilingGroupName(v string) *PostAgentProfil
 
 // The structure representing the postAgentProfileResponse.
 type PostAgentProfileOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5934,7 +5934,7 @@ func (s *Recommendation) SetTopMatches(v []*Match) *Recommendation {
 
 // The structure representing the RemoveNotificationChannelRequest.
 type RemoveNotificationChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the channel that we want to stop receiving notifications.
 	//
@@ -6033,7 +6033,7 @@ func (s *RemoveNotificationChannelOutput) SetNotificationConfiguration(v *Notifi
 }
 
 type RemovePermissionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies an action group that contains the permissions to remove from a
 	// profiling group's resource-based policy. One action group is supported, agentPermissions,
@@ -6386,7 +6386,7 @@ func (s *SubmitFeedbackInput) SetType(v string) *SubmitFeedbackInput {
 
 // The structure representing the SubmitFeedbackResponse.
 type SubmitFeedbackOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6471,7 +6471,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6594,7 +6594,7 @@ func (s *TimestampStructure) SetValue(v time.Time) *TimestampStructure {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that contains the tags to
 	// remove.
@@ -6659,7 +6659,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

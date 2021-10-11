@@ -844,7 +844,7 @@ func (s *DescribeAcceleratorOfferingsOutput) SetAcceleratorTypeOfferings(v []*Ac
 }
 
 type DescribeAcceleratorTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1291,7 +1291,7 @@ func (s *KeyValuePair) SetValue(v int64) *KeyValuePair {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the Elastic Inference Accelerator to list the tags for.
 	//
@@ -1533,7 +1533,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1555,7 +1555,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the Elastic Inference Accelerator to untag.
 	//
@@ -1621,7 +1621,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

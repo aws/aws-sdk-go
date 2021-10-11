@@ -2771,7 +2771,7 @@ func (s *AntennaUplinkConfig) SetTransmitDisabled(v bool) *AntennaUplinkConfig {
 }
 
 type CancelContactInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// UUID of a contact.
 	//
@@ -3954,7 +3954,7 @@ func (s *DecodeConfig) SetUnvalidatedJSON(v string) *DecodeConfig {
 }
 
 type DeleteConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// UUID of a Config.
 	//
@@ -4069,7 +4069,7 @@ func (s *DeleteConfigOutput) SetConfigType(v string) *DeleteConfigOutput {
 }
 
 type DeleteDataflowEndpointGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// UUID of a dataflow endpoint group.
 	//
@@ -4149,7 +4149,7 @@ func (s *DeleteDataflowEndpointGroupOutput) SetDataflowEndpointGroupId(v string)
 }
 
 type DeleteMissionProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// UUID of a mission profile.
 	//
@@ -4345,7 +4345,7 @@ func (s *DependencyException) RequestID() string {
 }
 
 type DescribeContactInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// UUID of a contact.
 	//
@@ -4902,7 +4902,7 @@ func (s *FrequencyBandwidth) SetValue(v float64) *FrequencyBandwidth {
 }
 
 type GetConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// UUID of a Config.
 	//
@@ -5052,7 +5052,7 @@ func (s *GetConfigOutput) SetTags(v map[string]*string) *GetConfigOutput {
 }
 
 type GetDataflowEndpointGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// UUID of a dataflow endpoint group.
 	//
@@ -5288,7 +5288,7 @@ func (s *GetMinuteUsageOutput) SetUpcomingMinutesScheduled(v int64) *GetMinuteUs
 }
 
 type GetMissionProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// UUID of a mission profile.
 	//
@@ -5454,7 +5454,7 @@ func (s *GetMissionProfileOutput) SetTrackingConfigArn(v string) *GetMissionProf
 }
 
 type GetSatelliteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// UUID of a satellite.
 	//
@@ -5627,7 +5627,7 @@ func (s *InvalidParameterException) RequestID() string {
 }
 
 type ListConfigsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of Configs returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -5870,7 +5870,7 @@ func (s *ListContactsOutput) SetNextToken(v string) *ListContactsOutput {
 }
 
 type ListDataflowEndpointGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of dataflow endpoint groups returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -5952,7 +5952,7 @@ func (s *ListDataflowEndpointGroupsOutput) SetNextToken(v string) *ListDataflowE
 }
 
 type ListGroundStationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of ground stations returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -6043,7 +6043,7 @@ func (s *ListGroundStationsOutput) SetNextToken(v string) *ListGroundStationsOut
 }
 
 type ListMissionProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of mission profiles returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -6125,7 +6125,7 @@ func (s *ListMissionProfilesOutput) SetNextToken(v string) *ListMissionProfilesO
 }
 
 type ListSatellitesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of satellites returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -6207,7 +6207,7 @@ func (s *ListSatellitesOutput) SetSatellites(v []*SatelliteListItem) *ListSatell
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ARN of a resource.
 	//
@@ -7141,7 +7141,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7211,7 +7211,7 @@ func (s *TrackingConfig) SetAutotrack(v string) *TrackingConfig {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ARN of a resource.
 	//
@@ -7274,7 +7274,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

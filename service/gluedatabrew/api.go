@@ -6165,7 +6165,7 @@ func (s *DatetimeOptions) SetTimezoneOffset(v string) *DatetimeOptions {
 }
 
 type DeleteDatasetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the dataset to be deleted.
 	//
@@ -6247,7 +6247,7 @@ func (s *DeleteDatasetOutput) SetName(v string) *DeleteDatasetOutput {
 }
 
 type DeleteJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the job to be deleted.
 	//
@@ -6329,7 +6329,7 @@ func (s *DeleteJobOutput) SetName(v string) *DeleteJobOutput {
 }
 
 type DeleteProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the project to be deleted.
 	//
@@ -6411,7 +6411,7 @@ func (s *DeleteProjectOutput) SetName(v string) *DeleteProjectOutput {
 }
 
 type DeleteRecipeVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the recipe.
 	//
@@ -6522,7 +6522,7 @@ func (s *DeleteRecipeVersionOutput) SetRecipeVersion(v string) *DeleteRecipeVers
 }
 
 type DeleteScheduleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the schedule to be deleted.
 	//
@@ -6604,7 +6604,7 @@ func (s *DeleteScheduleOutput) SetName(v string) *DeleteScheduleOutput {
 }
 
 type DescribeDatasetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the dataset to be described.
 	//
@@ -6790,7 +6790,7 @@ func (s *DescribeDatasetOutput) SetTags(v map[string]*string) *DescribeDatasetOu
 }
 
 type DescribeJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the job to be described.
 	//
@@ -7089,7 +7089,7 @@ func (s *DescribeJobOutput) SetType(v string) *DescribeJobOutput {
 }
 
 type DescribeJobRunInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the job being processed during this run.
 	//
@@ -7350,7 +7350,7 @@ func (s *DescribeJobRunOutput) SetState(v string) *DescribeJobRunOutput {
 }
 
 type DescribeProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the project to be described.
 	//
@@ -7557,7 +7557,7 @@ func (s *DescribeProjectOutput) SetTags(v map[string]*string) *DescribeProjectOu
 }
 
 type DescribeRecipeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the recipe to be described.
 	//
@@ -7761,7 +7761,7 @@ func (s *DescribeRecipeOutput) SetTags(v map[string]*string) *DescribeRecipeOutp
 }
 
 type DescribeScheduleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the schedule to be described.
 	//
@@ -8859,7 +8859,7 @@ func (s *JsonOptions) SetMultiLine(v bool) *JsonOptions {
 }
 
 type ListDatasetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -8958,7 +8958,7 @@ func (s *ListDatasetsOutput) SetNextToken(v string) *ListDatasetsOutput {
 }
 
 type ListJobRunsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -9074,7 +9074,7 @@ func (s *ListJobRunsOutput) SetNextToken(v string) *ListJobRunsOutput {
 }
 
 type ListJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a dataset. Using this parameter indicates to return only those
 	// jobs that act on the specified dataset.
@@ -9201,7 +9201,7 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 }
 
 type ListProjectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -9300,7 +9300,7 @@ func (s *ListProjectsOutput) SetProjects(v []*Project) *ListProjectsOutput {
 }
 
 type ListRecipeVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -9416,7 +9416,7 @@ func (s *ListRecipeVersionsOutput) SetRecipes(v []*Recipe) *ListRecipeVersionsOu
 }
 
 type ListRecipesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in this request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -9531,7 +9531,7 @@ func (s *ListRecipesOutput) SetRecipes(v []*Recipe) *ListRecipesOutput {
 }
 
 type ListSchedulesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the job that these schedules apply to.
 	JobName *string `location:"querystring" locationName:"jobName" min:"1" type:"string"`
@@ -9642,7 +9642,7 @@ func (s *ListSchedulesOutput) SetSchedules(v []*Schedule) *ListSchedulesOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the DataBrew
 	// resource.
@@ -11293,7 +11293,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 }
 
 type StartJobRunInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the job to be run.
 	//
@@ -11609,7 +11609,7 @@ func (s *StatisticsConfiguration) SetOverrides(v []*StatisticOverride) *Statisti
 }
 
 type StopJobRunInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the job to be stopped.
 	//
@@ -11776,7 +11776,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11798,7 +11798,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A DataBrew resource from which you want to remove a tag or tags. The value
 	// for this parameter is an Amazon Resource Name (ARN).
@@ -11865,7 +11865,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

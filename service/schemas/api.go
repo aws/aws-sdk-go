@@ -3614,7 +3614,7 @@ func (s *CreateSchemaOutput) SetVersionCreatedDate(v time.Time) *CreateSchemaOut
 }
 
 type DeleteDiscovererInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DiscovererId is a required field
 	DiscovererId *string `location:"uri" locationName:"discovererId" type:"string" required:"true"`
@@ -3661,7 +3661,7 @@ func (s *DeleteDiscovererInput) SetDiscovererId(v string) *DeleteDiscovererInput
 }
 
 type DeleteDiscovererOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3683,7 +3683,7 @@ func (s DeleteDiscovererOutput) GoString() string {
 }
 
 type DeleteRegistryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -3730,7 +3730,7 @@ func (s *DeleteRegistryInput) SetRegistryName(v string) *DeleteRegistryInput {
 }
 
 type DeleteRegistryOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3752,7 +3752,7 @@ func (s DeleteRegistryOutput) GoString() string {
 }
 
 type DeleteResourcePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	RegistryName *string `location:"querystring" locationName:"registryName" type:"string"`
 }
@@ -3782,7 +3782,7 @@ func (s *DeleteResourcePolicyInput) SetRegistryName(v string) *DeleteResourcePol
 }
 
 type DeleteResourcePolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3804,7 +3804,7 @@ func (s DeleteResourcePolicyOutput) GoString() string {
 }
 
 type DeleteSchemaInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -3866,7 +3866,7 @@ func (s *DeleteSchemaInput) SetSchemaName(v string) *DeleteSchemaInput {
 }
 
 type DeleteSchemaOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3888,7 +3888,7 @@ func (s DeleteSchemaOutput) GoString() string {
 }
 
 type DeleteSchemaVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -3965,7 +3965,7 @@ func (s *DeleteSchemaVersionInput) SetSchemaVersion(v string) *DeleteSchemaVersi
 }
 
 type DeleteSchemaVersionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3987,7 +3987,7 @@ func (s DeleteSchemaVersionOutput) GoString() string {
 }
 
 type DescribeCodeBindingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Language is a required field
 	Language *string `location:"uri" locationName:"language" type:"string" required:"true"`
@@ -4126,7 +4126,7 @@ func (s *DescribeCodeBindingOutput) SetStatus(v string) *DescribeCodeBindingOutp
 }
 
 type DescribeDiscovererInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DiscovererId is a required field
 	DiscovererId *string `location:"uri" locationName:"discovererId" type:"string" required:"true"`
@@ -4252,7 +4252,7 @@ func (s *DescribeDiscovererOutput) SetTags(v map[string]*string) *DescribeDiscov
 }
 
 type DescribeRegistryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -4354,7 +4354,7 @@ func (s *DescribeRegistryOutput) SetTags(v map[string]*string) *DescribeRegistry
 }
 
 type DescribeSchemaInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -4596,7 +4596,7 @@ func (s *DiscovererSummary) SetTags(v map[string]*string) *DiscovererSummary {
 }
 
 type ExportSchemaInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RegistryName is a required field
 	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
@@ -4805,7 +4805,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetCodeBindingSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Language is a required field
 	Language *string `location:"uri" locationName:"language" type:"string" required:"true"`
@@ -5009,7 +5009,7 @@ func (s *GetDiscoveredSchemaOutput) SetContent(v string) *GetDiscoveredSchemaOut
 }
 
 type GetResourcePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	RegistryName *string `location:"querystring" locationName:"registryName" type:"string"`
 }
@@ -5207,7 +5207,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListDiscoverersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	DiscovererIdPrefix *string `location:"querystring" locationName:"discovererIdPrefix" type:"string"`
 
@@ -5299,7 +5299,7 @@ func (s *ListDiscoverersOutput) SetNextToken(v string) *ListDiscoverersOutput {
 }
 
 type ListRegistriesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
 
@@ -5391,7 +5391,7 @@ func (s *ListRegistriesOutput) SetRegistries(v []*RegistrySummary) *ListRegistri
 }
 
 type ListSchemaVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
 
@@ -5507,7 +5507,7 @@ func (s *ListSchemaVersionsOutput) SetSchemaVersions(v []*SchemaVersionSummary) 
 }
 
 type ListSchemasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	Limit *int64 `location:"querystring" locationName:"limit" type:"integer"`
 
@@ -5616,7 +5616,7 @@ func (s *ListSchemasOutput) SetSchemas(v []*SchemaSummary) *ListSchemasOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -5824,7 +5824,7 @@ func (s *PreconditionFailedException) RequestID() string {
 }
 
 type PutCodeBindingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Language is a required field
 	Language *string `location:"uri" locationName:"language" type:"string" required:"true"`
@@ -6341,7 +6341,7 @@ func (s *SearchSchemaVersionSummary) SetType(v string) *SearchSchemaVersionSumma
 }
 
 type SearchSchemasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Keywords is a required field
 	Keywords *string `location:"querystring" locationName:"keywords" type:"string" required:"true"`
@@ -6519,7 +6519,7 @@ func (s *ServiceUnavailableException) RequestID() string {
 }
 
 type StartDiscovererInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DiscovererId is a required field
 	DiscovererId *string `location:"uri" locationName:"discovererId" type:"string" required:"true"`
@@ -6604,7 +6604,7 @@ func (s *StartDiscovererOutput) SetState(v string) *StartDiscovererOutput {
 }
 
 type StopDiscovererInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DiscovererId is a required field
 	DiscovererId *string `location:"uri" locationName:"discovererId" type:"string" required:"true"`
@@ -6750,7 +6750,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6902,7 +6902,7 @@ func (s *UnauthorizedException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -6961,7 +6961,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

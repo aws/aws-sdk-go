@@ -4268,7 +4268,7 @@ func (s *CreateTagsInput) SetTags(v []*Tag) *CreateTagsInput {
 }
 
 type CreateTagsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4383,7 +4383,7 @@ func (s *CreationInfo) SetPermissions(v string) *CreationInfo {
 }
 
 type DeleteAccessPointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the access point that you want to delete.
 	//
@@ -4432,7 +4432,7 @@ func (s *DeleteAccessPointInput) SetAccessPointId(v string) *DeleteAccessPointIn
 }
 
 type DeleteAccessPointOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4454,7 +4454,7 @@ func (s DeleteAccessPointOutput) GoString() string {
 }
 
 type DeleteFileSystemInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the file system you want to delete.
 	//
@@ -4503,7 +4503,7 @@ func (s *DeleteFileSystemInput) SetFileSystemId(v string) *DeleteFileSystemInput
 }
 
 type DeleteFileSystemOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4525,7 +4525,7 @@ func (s DeleteFileSystemOutput) GoString() string {
 }
 
 type DeleteFileSystemPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies the EFS file system for which to delete the FileSystemPolicy.
 	//
@@ -4574,7 +4574,7 @@ func (s *DeleteFileSystemPolicyInput) SetFileSystemId(v string) *DeleteFileSyste
 }
 
 type DeleteFileSystemPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4596,7 +4596,7 @@ func (s DeleteFileSystemPolicyOutput) GoString() string {
 }
 
 type DeleteMountTargetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the mount target to delete (String).
 	//
@@ -4645,7 +4645,7 @@ func (s *DeleteMountTargetInput) SetMountTargetId(v string) *DeleteMountTargetIn
 }
 
 type DeleteMountTargetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4733,7 +4733,7 @@ func (s *DeleteTagsInput) SetTagKeys(v []*string) *DeleteTagsInput {
 }
 
 type DeleteTagsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4823,7 +4823,7 @@ func (s *DependencyTimeout) RequestID() string {
 }
 
 type DescribeAccessPointsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) Specifies an EFS access point to describe in the response; mutually
 	// exclusive with FileSystemId.
@@ -5047,7 +5047,7 @@ func (s *DescribeAccountPreferencesOutput) SetResourceIdPreference(v *ResourceId
 }
 
 type DescribeBackupPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies which EFS file system to retrieve the BackupPolicy for.
 	//
@@ -5128,7 +5128,7 @@ func (s *DescribeBackupPolicyOutput) SetBackupPolicy(v *BackupPolicy) *DescribeB
 }
 
 type DescribeFileSystemPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies which EFS file system to retrieve the FileSystemPolicy for.
 	//
@@ -5217,7 +5217,7 @@ func (s *DescribeFileSystemPolicyOutput) SetPolicy(v string) *DescribeFileSystem
 }
 
 type DescribeFileSystemsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) Restricts the list to the file system with this creation token
 	// (String). You specify a creation token when you create an Amazon EFS file
@@ -5350,7 +5350,7 @@ func (s *DescribeFileSystemsOutput) SetNextMarker(v string) *DescribeFileSystems
 }
 
 type DescribeLifecycleConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the file system whose LifecycleConfiguration object you want to
 	// retrieve (String).
@@ -5432,7 +5432,7 @@ func (s *DescribeLifecycleConfigurationOutput) SetLifecyclePolicies(v []*Lifecyc
 }
 
 type DescribeMountTargetSecurityGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the mount target whose security groups you want to retrieve.
 	//
@@ -5514,7 +5514,7 @@ func (s *DescribeMountTargetSecurityGroupsOutput) SetSecurityGroups(v []*string)
 }
 
 type DescribeMountTargetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) The ID of the access point whose mount targets that you want to
 	// list. It must be included in your request if a FileSystemId or MountTargetId
@@ -5664,7 +5664,7 @@ func (s *DescribeMountTargetsOutput) SetNextMarker(v string) *DescribeMountTarge
 }
 
 type DescribeTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the file system whose tag set you want to retrieve.
 	//
@@ -6812,7 +6812,7 @@ func (s *LifecyclePolicy) SetTransitionToPrimaryStorageClass(v string) *Lifecycl
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) Specifies the maximum number of tag objects to return in the response.
 	// The default value is 100.
@@ -6987,7 +6987,7 @@ func (s *ModifyMountTargetSecurityGroupsInput) SetSecurityGroups(v []*string) *M
 }
 
 type ModifyMountTargetSecurityGroupsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8418,7 +8418,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8644,7 +8644,7 @@ func (s *UnsupportedAvailabilityZone) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies the EFS resource that you want to remove tags from.
 	//
@@ -8711,7 +8711,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

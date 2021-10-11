@@ -560,7 +560,7 @@ func (c *RESTJSONService) OtherOperationWithContext(ctx aws.Context, input *Othe
 }
 
 type EmptyEvent struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -749,7 +749,7 @@ func (e *EmptyEventStreamUnknownEvent) UnmarshalEvent(
 }
 
 type EmptyStreamInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1594,7 +1594,7 @@ func (s *NestedShape) SetStrVal(v string) *NestedShape {
 }
 
 type OtherOperationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1616,7 +1616,7 @@ func (s OtherOperationInput) GoString() string {
 }
 
 type OtherOperationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

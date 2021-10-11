@@ -850,7 +850,7 @@ func (s *ConflictException) RequestID() string {
 
 // The input for the DeleteThingShadow operation.
 type DeleteThingShadowInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the shadow.
 	ShadowName *string `location:"querystring" locationName:"name" min:"1" type:"string"`
@@ -946,7 +946,7 @@ func (s *DeleteThingShadowOutput) SetPayload(v []byte) *DeleteThingShadowOutput 
 
 // The input for the GetRetainedMessage operation.
 type GetRetainedMessageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The topic name of the retained message to retrieve.
 	//
@@ -1057,7 +1057,7 @@ func (s *GetRetainedMessageOutput) SetTopic(v string) *GetRetainedMessageOutput 
 
 // The input for the GetThingShadow operation.
 type GetThingShadowInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the shadow.
 	ShadowName *string `location:"querystring" locationName:"name" min:"1" type:"string"`
@@ -1280,7 +1280,7 @@ func (s *InvalidRequestException) RequestID() string {
 }
 
 type ListNamedShadowsForThingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The token to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
@@ -1400,7 +1400,7 @@ func (s *ListNamedShadowsForThingOutput) SetTimestamp(v int64) *ListNamedShadows
 }
 
 type ListRetainedMessagesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -1649,7 +1649,7 @@ func (s *PublishInput) SetTopic(v string) *PublishInput {
 }
 
 type PublishOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

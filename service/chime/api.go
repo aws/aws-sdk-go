@@ -21496,7 +21496,7 @@ func (s *AssociatePhoneNumberWithUserInput) SetUserId(v string) *AssociatePhoneN
 }
 
 type AssociatePhoneNumberWithUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -21796,7 +21796,7 @@ func (s *AssociateSigninDelegateGroupsWithAccountInput) SetSigninDelegateGroups(
 }
 
 type AssociateSigninDelegateGroupsWithAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27588,7 +27588,7 @@ func (s *DNISEmergencyCallingConfiguration) SetTestPhoneNumber(v string) *DNISEm
 }
 
 type DeleteAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -27637,7 +27637,7 @@ func (s *DeleteAccountInput) SetAccountId(v string) *DeleteAccountInput {
 }
 
 type DeleteAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27659,7 +27659,7 @@ func (s DeleteAccountOutput) GoString() string {
 }
 
 type DeleteAppInstanceAdminInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance's administrator.
 	//
@@ -27725,7 +27725,7 @@ func (s *DeleteAppInstanceAdminInput) SetAppInstanceArn(v string) *DeleteAppInst
 }
 
 type DeleteAppInstanceAdminOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27747,7 +27747,7 @@ func (s DeleteAppInstanceAdminOutput) GoString() string {
 }
 
 type DeleteAppInstanceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -27796,7 +27796,7 @@ func (s *DeleteAppInstanceInput) SetAppInstanceArn(v string) *DeleteAppInstanceI
 }
 
 type DeleteAppInstanceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27818,7 +27818,7 @@ func (s DeleteAppInstanceOutput) GoString() string {
 }
 
 type DeleteAppInstanceStreamingConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the streaming configurations being deleted.
 	//
@@ -27867,7 +27867,7 @@ func (s *DeleteAppInstanceStreamingConfigurationsInput) SetAppInstanceArn(v stri
 }
 
 type DeleteAppInstanceStreamingConfigurationsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27889,7 +27889,7 @@ func (s DeleteAppInstanceStreamingConfigurationsOutput) GoString() string {
 }
 
 type DeleteAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the user request being deleted.
 	//
@@ -27938,7 +27938,7 @@ func (s *DeleteAppInstanceUserInput) SetAppInstanceUserArn(v string) *DeleteAppI
 }
 
 type DeleteAppInstanceUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -27960,7 +27960,7 @@ func (s DeleteAppInstanceUserOutput) GoString() string {
 }
 
 type DeleteAttendeeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime SDK attendee ID.
 	//
@@ -28026,7 +28026,7 @@ func (s *DeleteAttendeeInput) SetMeetingId(v string) *DeleteAttendeeInput {
 }
 
 type DeleteAttendeeOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28048,7 +28048,7 @@ func (s DeleteAttendeeOutput) GoString() string {
 }
 
 type DeleteChannelBanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel from which the AppInstanceUser was banned.
 	//
@@ -28126,7 +28126,7 @@ func (s *DeleteChannelBanInput) SetMemberArn(v string) *DeleteChannelBanInput {
 }
 
 type DeleteChannelBanOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28148,7 +28148,7 @@ func (s DeleteChannelBanOutput) GoString() string {
 }
 
 type DeleteChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel being deleted.
 	//
@@ -28209,7 +28209,7 @@ func (s *DeleteChannelInput) SetChimeBearer(v string) *DeleteChannelInput {
 }
 
 type DeleteChannelMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel from which you want to remove the user.
 	//
@@ -28287,7 +28287,7 @@ func (s *DeleteChannelMembershipInput) SetMemberArn(v string) *DeleteChannelMemb
 }
 
 type DeleteChannelMembershipOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28309,7 +28309,7 @@ func (s DeleteChannelMembershipOutput) GoString() string {
 }
 
 type DeleteChannelMessageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -28387,7 +28387,7 @@ func (s *DeleteChannelMessageInput) SetMessageId(v string) *DeleteChannelMessage
 }
 
 type DeleteChannelMessageOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28409,7 +28409,7 @@ func (s DeleteChannelMessageOutput) GoString() string {
 }
 
 type DeleteChannelModeratorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -28487,7 +28487,7 @@ func (s *DeleteChannelModeratorInput) SetChimeBearer(v string) *DeleteChannelMod
 }
 
 type DeleteChannelModeratorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28509,7 +28509,7 @@ func (s DeleteChannelModeratorOutput) GoString() string {
 }
 
 type DeleteChannelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28531,7 +28531,7 @@ func (s DeleteChannelOutput) GoString() string {
 }
 
 type DeleteEventsConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -28597,7 +28597,7 @@ func (s *DeleteEventsConfigurationInput) SetBotId(v string) *DeleteEventsConfigu
 }
 
 type DeleteEventsConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28619,7 +28619,7 @@ func (s DeleteEventsConfigurationOutput) GoString() string {
 }
 
 type DeleteMediaCapturePipelineInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the media capture pipeline being deleted.
 	//
@@ -28668,7 +28668,7 @@ func (s *DeleteMediaCapturePipelineInput) SetMediaPipelineId(v string) *DeleteMe
 }
 
 type DeleteMediaCapturePipelineOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28690,7 +28690,7 @@ func (s DeleteMediaCapturePipelineOutput) GoString() string {
 }
 
 type DeleteMeetingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime SDK meeting ID.
 	//
@@ -28739,7 +28739,7 @@ func (s *DeleteMeetingInput) SetMeetingId(v string) *DeleteMeetingInput {
 }
 
 type DeleteMeetingOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28761,7 +28761,7 @@ func (s DeleteMeetingOutput) GoString() string {
 }
 
 type DeletePhoneNumberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The phone number ID.
 	//
@@ -28810,7 +28810,7 @@ func (s *DeletePhoneNumberInput) SetPhoneNumberId(v string) *DeletePhoneNumberIn
 }
 
 type DeletePhoneNumberOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28832,7 +28832,7 @@ func (s DeletePhoneNumberOutput) GoString() string {
 }
 
 type DeleteProxySessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The proxy session ID.
 	//
@@ -28898,7 +28898,7 @@ func (s *DeleteProxySessionInput) SetVoiceConnectorId(v string) *DeleteProxySess
 }
 
 type DeleteProxySessionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -28920,7 +28920,7 @@ func (s DeleteProxySessionOutput) GoString() string {
 }
 
 type DeleteRoomInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -28986,7 +28986,7 @@ func (s *DeleteRoomInput) SetRoomId(v string) *DeleteRoomInput {
 }
 
 type DeleteRoomMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -29069,7 +29069,7 @@ func (s *DeleteRoomMembershipInput) SetRoomId(v string) *DeleteRoomMembershipInp
 }
 
 type DeleteRoomMembershipOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29091,7 +29091,7 @@ func (s DeleteRoomMembershipOutput) GoString() string {
 }
 
 type DeleteRoomOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29113,7 +29113,7 @@ func (s DeleteRoomOutput) GoString() string {
 }
 
 type DeleteSipMediaApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The SIP media application ID.
 	//
@@ -29162,7 +29162,7 @@ func (s *DeleteSipMediaApplicationInput) SetSipMediaApplicationId(v string) *Del
 }
 
 type DeleteSipMediaApplicationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29184,7 +29184,7 @@ func (s DeleteSipMediaApplicationOutput) GoString() string {
 }
 
 type DeleteSipRuleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The SIP rule ID.
 	//
@@ -29233,7 +29233,7 @@ func (s *DeleteSipRuleInput) SetSipRuleId(v string) *DeleteSipRuleInput {
 }
 
 type DeleteSipRuleOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29255,7 +29255,7 @@ func (s DeleteSipRuleOutput) GoString() string {
 }
 
 type DeleteVoiceConnectorEmergencyCallingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -29304,7 +29304,7 @@ func (s *DeleteVoiceConnectorEmergencyCallingConfigurationInput) SetVoiceConnect
 }
 
 type DeleteVoiceConnectorEmergencyCallingConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29326,7 +29326,7 @@ func (s DeleteVoiceConnectorEmergencyCallingConfigurationOutput) GoString() stri
 }
 
 type DeleteVoiceConnectorGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector group ID.
 	//
@@ -29375,7 +29375,7 @@ func (s *DeleteVoiceConnectorGroupInput) SetVoiceConnectorGroupId(v string) *Del
 }
 
 type DeleteVoiceConnectorGroupOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29397,7 +29397,7 @@ func (s DeleteVoiceConnectorGroupOutput) GoString() string {
 }
 
 type DeleteVoiceConnectorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -29446,7 +29446,7 @@ func (s *DeleteVoiceConnectorInput) SetVoiceConnectorId(v string) *DeleteVoiceCo
 }
 
 type DeleteVoiceConnectorOriginationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -29495,7 +29495,7 @@ func (s *DeleteVoiceConnectorOriginationInput) SetVoiceConnectorId(v string) *De
 }
 
 type DeleteVoiceConnectorOriginationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29517,7 +29517,7 @@ func (s DeleteVoiceConnectorOriginationOutput) GoString() string {
 }
 
 type DeleteVoiceConnectorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29539,7 +29539,7 @@ func (s DeleteVoiceConnectorOutput) GoString() string {
 }
 
 type DeleteVoiceConnectorProxyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -29588,7 +29588,7 @@ func (s *DeleteVoiceConnectorProxyInput) SetVoiceConnectorId(v string) *DeleteVo
 }
 
 type DeleteVoiceConnectorProxyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29610,7 +29610,7 @@ func (s DeleteVoiceConnectorProxyOutput) GoString() string {
 }
 
 type DeleteVoiceConnectorStreamingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -29659,7 +29659,7 @@ func (s *DeleteVoiceConnectorStreamingConfigurationInput) SetVoiceConnectorId(v 
 }
 
 type DeleteVoiceConnectorStreamingConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29745,7 +29745,7 @@ func (s *DeleteVoiceConnectorTerminationCredentialsInput) SetVoiceConnectorId(v 
 }
 
 type DeleteVoiceConnectorTerminationCredentialsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29767,7 +29767,7 @@ func (s DeleteVoiceConnectorTerminationCredentialsOutput) GoString() string {
 }
 
 type DeleteVoiceConnectorTerminationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -29816,7 +29816,7 @@ func (s *DeleteVoiceConnectorTerminationInput) SetVoiceConnectorId(v string) *De
 }
 
 type DeleteVoiceConnectorTerminationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -29838,7 +29838,7 @@ func (s DeleteVoiceConnectorTerminationOutput) GoString() string {
 }
 
 type DescribeAppInstanceAdminInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstanceAdmin.
 	//
@@ -29936,7 +29936,7 @@ func (s *DescribeAppInstanceAdminOutput) SetAppInstanceAdmin(v *AppInstanceAdmin
 }
 
 type DescribeAppInstanceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -30017,7 +30017,7 @@ func (s *DescribeAppInstanceOutput) SetAppInstance(v *AppInstance) *DescribeAppI
 }
 
 type DescribeAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstanceUser.
 	//
@@ -30097,7 +30097,7 @@ func (s *DescribeAppInstanceUserOutput) SetAppInstanceUser(v *AppInstanceUser) *
 }
 
 type DescribeChannelBanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel from which the user is banned.
 	//
@@ -30206,7 +30206,7 @@ func (s *DescribeChannelBanOutput) SetChannelBan(v *ChannelBan) *DescribeChannel
 }
 
 type DescribeChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -30267,7 +30267,7 @@ func (s *DescribeChannelInput) SetChimeBearer(v string) *DescribeChannelInput {
 }
 
 type DescribeChannelMembershipForAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the user in a channel.
 	//
@@ -30376,7 +30376,7 @@ func (s *DescribeChannelMembershipForAppInstanceUserOutput) SetChannelMembership
 }
 
 type DescribeChannelMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -30485,7 +30485,7 @@ func (s *DescribeChannelMembershipOutput) SetChannelMembership(v *ChannelMembers
 }
 
 type DescribeChannelModeratedByAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstanceUser in the moderated channel.
 	//
@@ -30594,7 +30594,7 @@ func (s *DescribeChannelModeratedByAppInstanceUserOutput) SetChannel(v *ChannelM
 }
 
 type DescribeChannelModeratorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -30734,7 +30734,7 @@ func (s *DescribeChannelOutput) SetChannel(v *Channel) *DescribeChannelOutput {
 }
 
 type DisassociatePhoneNumberFromUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -30800,7 +30800,7 @@ func (s *DisassociatePhoneNumberFromUserInput) SetUserId(v string) *Disassociate
 }
 
 type DisassociatePhoneNumberFromUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -31080,7 +31080,7 @@ func (s *DisassociateSigninDelegateGroupsFromAccountInput) SetGroupNames(v []*st
 }
 
 type DisassociateSigninDelegateGroupsFromAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -31520,7 +31520,7 @@ func (s *GeoMatchParams) SetCountry(v string) *GeoMatchParams {
 }
 
 type GetAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -31600,7 +31600,7 @@ func (s *GetAccountOutput) SetAccount(v *Account) *GetAccountOutput {
 }
 
 type GetAccountSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -31680,7 +31680,7 @@ func (s *GetAccountSettingsOutput) SetAccountSettings(v *AccountSettings) *GetAc
 }
 
 type GetAppInstanceRetentionSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -31770,7 +31770,7 @@ func (s *GetAppInstanceRetentionSettingsOutput) SetInitiateDeletionTimestamp(v t
 }
 
 type GetAppInstanceStreamingConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -31850,7 +31850,7 @@ func (s *GetAppInstanceStreamingConfigurationsOutput) SetAppInstanceStreamingCon
 }
 
 type GetAttendeeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime SDK attendee ID.
 	//
@@ -31947,7 +31947,7 @@ func (s *GetAttendeeOutput) SetAttendee(v *Attendee) *GetAttendeeOutput {
 }
 
 type GetBotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -32044,7 +32044,7 @@ func (s *GetBotOutput) SetBot(v *Bot) *GetBotOutput {
 }
 
 type GetChannelMessageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -32153,7 +32153,7 @@ func (s *GetChannelMessageOutput) SetChannelMessage(v *ChannelMessage) *GetChann
 }
 
 type GetEventsConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -32250,7 +32250,7 @@ func (s *GetEventsConfigurationOutput) SetEventsConfiguration(v *EventsConfigura
 }
 
 type GetGlobalSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -32312,7 +32312,7 @@ func (s *GetGlobalSettingsOutput) SetVoiceConnector(v *VoiceConnectorSettings) *
 }
 
 type GetMediaCapturePipelineInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the pipeline that you want to get.
 	//
@@ -32392,7 +32392,7 @@ func (s *GetMediaCapturePipelineOutput) SetMediaCapturePipeline(v *MediaCaptureP
 }
 
 type GetMeetingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime SDK meeting ID.
 	//
@@ -32472,7 +32472,7 @@ func (s *GetMeetingOutput) SetMeeting(v *Meeting) *GetMeetingOutput {
 }
 
 type GetMessagingSessionEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -32525,7 +32525,7 @@ func (s *GetMessagingSessionEndpointOutput) SetEndpoint(v *MessagingSessionEndpo
 }
 
 type GetPhoneNumberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The phone number ID.
 	//
@@ -32574,7 +32574,7 @@ func (s *GetPhoneNumberInput) SetPhoneNumberId(v string) *GetPhoneNumberInput {
 }
 
 type GetPhoneNumberOrderInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the phone number order.
 	//
@@ -32685,7 +32685,7 @@ func (s *GetPhoneNumberOutput) SetPhoneNumber(v *PhoneNumber) *GetPhoneNumberOut
 }
 
 type GetPhoneNumberSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -32751,7 +32751,7 @@ func (s *GetPhoneNumberSettingsOutput) SetCallingNameUpdatedTimestamp(v time.Tim
 }
 
 type GetProxySessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The proxy session ID.
 	//
@@ -32848,7 +32848,7 @@ func (s *GetProxySessionOutput) SetProxySession(v *ProxySession) *GetProxySessio
 }
 
 type GetRetentionSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -32938,7 +32938,7 @@ func (s *GetRetentionSettingsOutput) SetRetentionSettings(v *RetentionSettings) 
 }
 
 type GetRoomInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -33035,7 +33035,7 @@ func (s *GetRoomOutput) SetRoom(v *Room) *GetRoomOutput {
 }
 
 type GetSipMediaApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The SIP media application ID.
 	//
@@ -33084,7 +33084,7 @@ func (s *GetSipMediaApplicationInput) SetSipMediaApplicationId(v string) *GetSip
 }
 
 type GetSipMediaApplicationLoggingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The SIP media application ID.
 	//
@@ -33195,7 +33195,7 @@ func (s *GetSipMediaApplicationOutput) SetSipMediaApplication(v *SipMediaApplica
 }
 
 type GetSipRuleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The SIP rule ID.
 	//
@@ -33275,7 +33275,7 @@ func (s *GetSipRuleOutput) SetSipRule(v *SipRule) *GetSipRuleOutput {
 }
 
 type GetUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -33372,7 +33372,7 @@ func (s *GetUserOutput) SetUser(v *User) *GetUserOutput {
 }
 
 type GetUserSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -33469,7 +33469,7 @@ func (s *GetUserSettingsOutput) SetUserSettings(v *UserSettings) *GetUserSetting
 }
 
 type GetVoiceConnectorEmergencyCallingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -33549,7 +33549,7 @@ func (s *GetVoiceConnectorEmergencyCallingConfigurationOutput) SetEmergencyCalli
 }
 
 type GetVoiceConnectorGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector group ID.
 	//
@@ -33629,7 +33629,7 @@ func (s *GetVoiceConnectorGroupOutput) SetVoiceConnectorGroup(v *VoiceConnectorG
 }
 
 type GetVoiceConnectorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -33678,7 +33678,7 @@ func (s *GetVoiceConnectorInput) SetVoiceConnectorId(v string) *GetVoiceConnecto
 }
 
 type GetVoiceConnectorLoggingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -33758,7 +33758,7 @@ func (s *GetVoiceConnectorLoggingConfigurationOutput) SetLoggingConfiguration(v 
 }
 
 type GetVoiceConnectorOriginationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -33869,7 +33869,7 @@ func (s *GetVoiceConnectorOutput) SetVoiceConnector(v *VoiceConnector) *GetVoice
 }
 
 type GetVoiceConnectorProxyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime voice connector ID.
 	//
@@ -33949,7 +33949,7 @@ func (s *GetVoiceConnectorProxyOutput) SetProxy(v *Proxy) *GetVoiceConnectorProx
 }
 
 type GetVoiceConnectorStreamingConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -34029,7 +34029,7 @@ func (s *GetVoiceConnectorStreamingConfigurationOutput) SetStreamingConfiguratio
 }
 
 type GetVoiceConnectorTerminationHealthInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -34109,7 +34109,7 @@ func (s *GetVoiceConnectorTerminationHealthOutput) SetTerminationHealth(v *Termi
 }
 
 type GetVoiceConnectorTerminationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -34401,7 +34401,7 @@ func (s *InviteUsersOutput) SetInvites(v []*Invite) *InviteUsersOutput {
 }
 
 type ListAccountsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call. Defaults to 100.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -34519,7 +34519,7 @@ func (s *ListAccountsOutput) SetNextToken(v string) *ListAccountsOutput {
 }
 
 type ListAppInstanceAdminsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -34648,7 +34648,7 @@ func (s *ListAppInstanceAdminsOutput) SetNextToken(v string) *ListAppInstanceAdm
 }
 
 type ListAppInstanceUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -34775,7 +34775,7 @@ func (s *ListAppInstanceUsersOutput) SetNextToken(v string) *ListAppInstanceUser
 }
 
 type ListAppInstancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of AppInstances that you want to return.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -34878,7 +34878,7 @@ func (s *ListAppInstancesOutput) SetNextToken(v string) *ListAppInstancesOutput 
 }
 
 type ListAttendeeTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime SDK attendee ID.
 	//
@@ -34975,7 +34975,7 @@ func (s *ListAttendeeTagsOutput) SetTags(v []*Tag) *ListAttendeeTagsOutput {
 }
 
 type ListAttendeesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -35085,7 +35085,7 @@ func (s *ListAttendeesOutput) SetNextToken(v string) *ListAttendeesOutput {
 }
 
 type ListBotsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -35196,7 +35196,7 @@ func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
 }
 
 type ListChannelBansInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -35335,7 +35335,7 @@ func (s *ListChannelBansOutput) SetNextToken(v string) *ListChannelBansOutput {
 }
 
 type ListChannelMembershipsForAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstanceUsers
 	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string"`
@@ -35461,7 +35461,7 @@ func (s *ListChannelMembershipsForAppInstanceUserOutput) SetNextToken(v string) 
 }
 
 type ListChannelMembershipsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of channel memberships that you want returned.
 	//
@@ -35614,7 +35614,7 @@ func (s *ListChannelMembershipsOutput) SetNextToken(v string) *ListChannelMember
 }
 
 type ListChannelMessagesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -35781,7 +35781,7 @@ func (s *ListChannelMessagesOutput) SetNextToken(v string) *ListChannelMessagesO
 }
 
 type ListChannelModeratorsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -35922,7 +35922,7 @@ func (s *ListChannelModeratorsOutput) SetNextToken(v string) *ListChannelModerat
 }
 
 type ListChannelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -36018,7 +36018,7 @@ func (s *ListChannelsInput) SetPrivacy(v string) *ListChannelsInput {
 }
 
 type ListChannelsModeratedByAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the user in the moderated channel.
 	AppInstanceUserArn *string `location:"querystring" locationName:"app-instance-user-arn" min:"5" type:"string"`
@@ -36190,7 +36190,7 @@ func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 }
 
 type ListMediaCapturePipelinesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call. Valid Range: 1
 	// - 99.
@@ -36284,7 +36284,7 @@ func (s *ListMediaCapturePipelinesOutput) SetNextToken(v string) *ListMediaCaptu
 }
 
 type ListMeetingTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime SDK meeting ID.
 	//
@@ -36364,7 +36364,7 @@ func (s *ListMeetingTagsOutput) SetTags(v []*Tag) *ListMeetingTagsOutput {
 }
 
 type ListMeetingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -36457,7 +36457,7 @@ func (s *ListMeetingsOutput) SetNextToken(v string) *ListMeetingsOutput {
 }
 
 type ListPhoneNumberOrdersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -36550,7 +36550,7 @@ func (s *ListPhoneNumberOrdersOutput) SetPhoneNumberOrders(v []*PhoneNumberOrder
 }
 
 type ListPhoneNumbersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The filter to use to limit the number of results.
 	FilterName *string `location:"querystring" locationName:"filter-name" type:"string" enum:"PhoneNumberAssociationName"`
@@ -36679,7 +36679,7 @@ func (s *ListPhoneNumbersOutput) SetPhoneNumbers(v []*PhoneNumber) *ListPhoneNum
 }
 
 type ListProxySessionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -36798,7 +36798,7 @@ func (s *ListProxySessionsOutput) SetProxySessions(v []*ProxySession) *ListProxy
 }
 
 type ListRoomMembershipsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -36925,7 +36925,7 @@ func (s *ListRoomMembershipsOutput) SetRoomMemberships(v []*RoomMembership) *Lis
 }
 
 type ListRoomsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -37044,7 +37044,7 @@ func (s *ListRoomsOutput) SetRooms(v []*Room) *ListRoomsOutput {
 }
 
 type ListSipMediaApplicationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call. Defaults to 100.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -37137,7 +37137,7 @@ func (s *ListSipMediaApplicationsOutput) SetSipMediaApplications(v []*SipMediaAp
 }
 
 type ListSipRulesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call. Defaults to 100.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -37239,7 +37239,7 @@ func (s *ListSipRulesOutput) SetSipRules(v []*SipRule) *ListSipRulesOutput {
 }
 
 type ListSupportedPhoneNumberCountriesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The phone number product type.
 	//
@@ -37316,7 +37316,7 @@ func (s *ListSupportedPhoneNumberCountriesOutput) SetPhoneNumberCountries(v []*P
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The resource ARN.
 	//
@@ -37400,7 +37400,7 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 }
 
 type ListUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -37532,7 +37532,7 @@ func (s *ListUsersOutput) SetUsers(v []*User) *ListUsersOutput {
 }
 
 type ListVoiceConnectorGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -37625,7 +37625,7 @@ func (s *ListVoiceConnectorGroupsOutput) SetVoiceConnectorGroups(v []*VoiceConne
 }
 
 type ListVoiceConnectorTerminationCredentialsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime Voice Connector ID.
 	//
@@ -37705,7 +37705,7 @@ func (s *ListVoiceConnectorTerminationCredentialsOutput) SetUsernames(v []*strin
 }
 
 type ListVoiceConnectorsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -37832,7 +37832,7 @@ func (s *LoggingConfiguration) SetEnableSIPLogs(v bool) *LoggingConfiguration {
 }
 
 type LogoutUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -37898,7 +37898,7 @@ func (s *LogoutUserInput) SetUserId(v string) *LogoutUserInput {
 }
 
 type LogoutUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -40560,7 +40560,7 @@ func (s *PutVoiceConnectorTerminationCredentialsInput) SetVoiceConnectorId(v str
 }
 
 type PutVoiceConnectorTerminationCredentialsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -40681,7 +40681,7 @@ func (s *PutVoiceConnectorTerminationOutput) SetTermination(v *Termination) *Put
 }
 
 type RedactChannelMessageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel containing the messages that you want to redact.
 	//
@@ -40799,7 +40799,7 @@ func (s *RedactChannelMessageOutput) SetMessageId(v string) *RedactChannelMessag
 }
 
 type RedactConversationMessageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -40882,7 +40882,7 @@ func (s *RedactConversationMessageInput) SetMessageId(v string) *RedactConversat
 }
 
 type RedactConversationMessageOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -40904,7 +40904,7 @@ func (s RedactConversationMessageOutput) GoString() string {
 }
 
 type RedactRoomMessageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -40987,7 +40987,7 @@ func (s *RedactRoomMessageInput) SetRoomId(v string) *RedactRoomMessageInput {
 }
 
 type RedactRoomMessageOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -41009,7 +41009,7 @@ func (s RedactRoomMessageOutput) GoString() string {
 }
 
 type RegenerateSecurityTokenInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -41107,7 +41107,7 @@ func (s *RegenerateSecurityTokenOutput) SetBot(v *Bot) *RegenerateSecurityTokenO
 }
 
 type ResetPersonalPINInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Chime account ID.
 	//
@@ -41270,7 +41270,7 @@ func (s *ResourceLimitExceededException) RequestID() string {
 }
 
 type RestorePhoneNumberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The phone number.
 	//
@@ -41608,7 +41608,7 @@ func (s *RoomRetentionSettings) SetRetentionDays(v int64) *RoomRetentionSettings
 }
 
 type SearchAvailablePhoneNumbersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The area code used to filter results. Only applies to the US.
 	AreaCode *string `location:"querystring" locationName:"area-code" type:"string"`
@@ -42629,7 +42629,7 @@ func (s *StartMeetingTranscriptionInput) SetTranscriptionConfiguration(v *Transc
 }
 
 type StartMeetingTranscriptionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -42651,7 +42651,7 @@ func (s StartMeetingTranscriptionOutput) GoString() string {
 }
 
 type StopMeetingTranscriptionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the meeting for which you stop transcription.
 	//
@@ -42700,7 +42700,7 @@ func (s *StopMeetingTranscriptionInput) SetMeetingId(v string) *StopMeetingTrans
 }
 
 type StopMeetingTranscriptionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -43017,7 +43017,7 @@ func (s *TagAttendeeInput) SetTags(v []*Tag) *TagAttendeeInput {
 }
 
 type TagAttendeeOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -43115,7 +43115,7 @@ func (s *TagMeetingInput) SetTags(v []*Tag) *TagMeetingInput {
 }
 
 type TagMeetingOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -43217,7 +43217,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -43788,7 +43788,7 @@ func (s *UntagAttendeeInput) SetTagKeys(v []*string) *UntagAttendeeInput {
 }
 
 type UntagAttendeeOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -43876,7 +43876,7 @@ func (s *UntagMeetingInput) SetTagKeys(v []*string) *UntagMeetingInput {
 }
 
 type UntagMeetingOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -43968,7 +43968,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -44154,7 +44154,7 @@ func (s *UpdateAccountSettingsInput) SetAccountSettings(v *AccountSettings) *Upd
 }
 
 type UpdateAccountSettingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -44794,7 +44794,7 @@ func (s *UpdateChannelOutput) SetChannelArn(v string) *UpdateChannelOutput {
 }
 
 type UpdateChannelReadMarkerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the channel.
 	//
@@ -44926,7 +44926,7 @@ func (s *UpdateGlobalSettingsInput) SetVoiceConnector(v *VoiceConnectorSettings)
 }
 
 type UpdateGlobalSettingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -45170,7 +45170,7 @@ func (s *UpdatePhoneNumberSettingsInput) SetCallingName(v string) *UpdatePhoneNu
 }
 
 type UpdatePhoneNumberSettingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -46176,7 +46176,7 @@ func (s *UpdateUserSettingsInput) SetUserSettings(v *UserSettings) *UpdateUserSe
 }
 
 type UpdateUserSettingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

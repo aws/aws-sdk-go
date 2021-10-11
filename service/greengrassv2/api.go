@@ -3090,7 +3090,7 @@ func (s *BatchDisassociateClientDeviceFromCoreDeviceOutput) SetErrorEntries(v []
 }
 
 type CancelDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the deployment.
 	//
@@ -4314,7 +4314,7 @@ func (s *CreateDeploymentOutput) SetIotJobId(v string) *CreateDeploymentOutput {
 }
 
 type DeleteComponentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the component version.
@@ -4364,7 +4364,7 @@ func (s *DeleteComponentInput) SetArn(v string) *DeleteComponentInput {
 }
 
 type DeleteComponentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4386,7 +4386,7 @@ func (s DeleteComponentOutput) GoString() string {
 }
 
 type DeleteCoreDeviceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the core device. This is also the name of the IoT thing.
 	//
@@ -4435,7 +4435,7 @@ func (s *DeleteCoreDeviceInput) SetCoreDeviceThingName(v string) *DeleteCoreDevi
 }
 
 type DeleteCoreDeviceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4782,7 +4782,7 @@ func (s *DeploymentPolicies) SetFailureHandlingPolicy(v string) *DeploymentPolic
 }
 
 type DescribeComponentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the component version.
@@ -5172,7 +5172,7 @@ func (s *EffectiveDeployment) SetTargetArn(v string) *EffectiveDeployment {
 }
 
 type GetComponentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the component version.
@@ -5287,7 +5287,7 @@ func (s *GetComponentOutput) SetTags(v map[string]*string) *GetComponentOutput {
 }
 
 type GetComponentVersionArtifactInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the component version. Specify the ARN of a public component version.
@@ -5393,7 +5393,7 @@ func (s *GetComponentVersionArtifactOutput) SetPreSignedUrl(v string) *GetCompon
 }
 
 type GetCoreDeviceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the core device. This is also the name of the IoT thing.
 	//
@@ -5540,7 +5540,7 @@ func (s *GetCoreDeviceOutput) SetTags(v map[string]*string) *GetCoreDeviceOutput
 }
 
 type GetDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the deployment.
 	//
@@ -6969,7 +6969,7 @@ func (s *LambdaVolumeMount) SetSourcePath(v string) *LambdaVolumeMount {
 }
 
 type ListClientDevicesAssociatedWithCoreDeviceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the core device. This is also the name of the IoT thing.
 	//
@@ -7081,7 +7081,7 @@ func (s *ListClientDevicesAssociatedWithCoreDeviceOutput) SetNextToken(v string)
 }
 
 type ListComponentVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the component version.
@@ -7193,7 +7193,7 @@ func (s *ListComponentVersionsOutput) SetNextToken(v string) *ListComponentVersi
 }
 
 type ListComponentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to be returned per paginated request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -7298,7 +7298,7 @@ func (s *ListComponentsOutput) SetNextToken(v string) *ListComponentsOutput {
 }
 
 type ListCoreDevicesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to be returned per paginated request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -7420,7 +7420,7 @@ func (s *ListCoreDevicesOutput) SetNextToken(v string) *ListCoreDevicesOutput {
 }
 
 type ListDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The filter for the list of deployments. Choose one of the following options:
 	//
@@ -7539,7 +7539,7 @@ func (s *ListDeploymentsOutput) SetNextToken(v string) *ListDeploymentsOutput {
 }
 
 type ListEffectiveDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the core device. This is also the name of the IoT thing.
 	//
@@ -7650,7 +7650,7 @@ func (s *ListEffectiveDeploymentsOutput) SetNextToken(v string) *ListEffectiveDe
 }
 
 type ListInstalledComponentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the core device. This is also the name of the IoT thing.
 	//
@@ -7761,7 +7761,7 @@ func (s *ListInstalledComponentsOutput) SetNextToken(v string) *ListInstalledCom
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the resource.
@@ -8355,7 +8355,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8452,7 +8452,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the resource to untag.
@@ -8519,7 +8519,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

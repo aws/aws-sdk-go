@@ -17875,7 +17875,7 @@ func (s *DefaultPushNotificationTemplate) SetUrl(v string) *DefaultPushNotificat
 }
 
 type DeleteAdmChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -17956,7 +17956,7 @@ func (s *DeleteAdmChannelOutput) SetADMChannelResponse(v *ADMChannelResponse) *D
 }
 
 type DeleteApnsChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18037,7 +18037,7 @@ func (s *DeleteApnsChannelOutput) SetAPNSChannelResponse(v *APNSChannelResponse)
 }
 
 type DeleteApnsSandboxChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18118,7 +18118,7 @@ func (s *DeleteApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSa
 }
 
 type DeleteApnsVoipChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18199,7 +18199,7 @@ func (s *DeleteApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChan
 }
 
 type DeleteApnsVoipSandboxChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18280,7 +18280,7 @@ func (s *DeleteApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v
 }
 
 type DeleteAppInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18360,7 +18360,7 @@ func (s *DeleteAppOutput) SetApplicationResponse(v *ApplicationResponse) *Delete
 }
 
 type DeleteBaiduChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18441,7 +18441,7 @@ func (s *DeleteBaiduChannelOutput) SetBaiduChannelResponse(v *BaiduChannelRespon
 }
 
 type DeleteCampaignInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18537,7 +18537,7 @@ func (s *DeleteCampaignOutput) SetCampaignResponse(v *CampaignResponse) *DeleteC
 }
 
 type DeleteEmailChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18618,7 +18618,7 @@ func (s *DeleteEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelRespon
 }
 
 type DeleteEmailTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -18706,7 +18706,7 @@ func (s *DeleteEmailTemplateOutput) SetMessageBody(v *MessageBody) *DeleteEmailT
 }
 
 type DeleteEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18801,7 +18801,7 @@ func (s *DeleteEndpointOutput) SetEndpointResponse(v *EndpointResponse) *DeleteE
 }
 
 type DeleteEventStreamInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18882,7 +18882,7 @@ func (s *DeleteEventStreamOutput) SetEventStream(v *EventStream) *DeleteEventStr
 }
 
 type DeleteGcmChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -18965,7 +18965,7 @@ func (s *DeleteGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *D
 }
 
 type DeleteInAppTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -19053,7 +19053,7 @@ func (s *DeleteInAppTemplateOutput) SetMessageBody(v *MessageBody) *DeleteInAppT
 }
 
 type DeleteJourneyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -19149,7 +19149,7 @@ func (s *DeleteJourneyOutput) SetJourneyResponse(v *JourneyResponse) *DeleteJour
 }
 
 type DeletePushTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -19237,7 +19237,7 @@ func (s *DeletePushTemplateOutput) SetMessageBody(v *MessageBody) *DeletePushTem
 }
 
 type DeleteRecommenderConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RecommenderId is a required field
 	RecommenderId *string `location:"uri" locationName:"recommender-id" type:"string" required:"true"`
@@ -19318,7 +19318,7 @@ func (s *DeleteRecommenderConfigurationOutput) SetRecommenderConfigurationRespon
 }
 
 type DeleteSegmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -19414,7 +19414,7 @@ func (s *DeleteSegmentOutput) SetSegmentResponse(v *SegmentResponse) *DeleteSegm
 }
 
 type DeleteSmsChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -19495,7 +19495,7 @@ func (s *DeleteSmsChannelOutput) SetSMSChannelResponse(v *SMSChannelResponse) *D
 }
 
 type DeleteSmsTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -19583,7 +19583,7 @@ func (s *DeleteSmsTemplateOutput) SetMessageBody(v *MessageBody) *DeleteSmsTempl
 }
 
 type DeleteUserEndpointsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -19679,7 +19679,7 @@ func (s *DeleteUserEndpointsOutput) SetEndpointsResponse(v *EndpointsResponse) *
 }
 
 type DeleteVoiceChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -19760,7 +19760,7 @@ func (s *DeleteVoiceChannelOutput) SetVoiceChannelResponse(v *VoiceChannelRespon
 }
 
 type DeleteVoiceTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -23396,7 +23396,7 @@ func (s *GPSPointDimension) SetRangeInKilometers(v float64) *GPSPointDimension {
 }
 
 type GetAdmChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -23477,7 +23477,7 @@ func (s *GetAdmChannelOutput) SetADMChannelResponse(v *ADMChannelResponse) *GetA
 }
 
 type GetApnsChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -23558,7 +23558,7 @@ func (s *GetApnsChannelOutput) SetAPNSChannelResponse(v *APNSChannelResponse) *G
 }
 
 type GetApnsSandboxChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -23639,7 +23639,7 @@ func (s *GetApnsSandboxChannelOutput) SetAPNSSandboxChannelResponse(v *APNSSandb
 }
 
 type GetApnsVoipChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -23720,7 +23720,7 @@ func (s *GetApnsVoipChannelOutput) SetAPNSVoipChannelResponse(v *APNSVoipChannel
 }
 
 type GetApnsVoipSandboxChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -23801,7 +23801,7 @@ func (s *GetApnsVoipSandboxChannelOutput) SetAPNSVoipSandboxChannelResponse(v *A
 }
 
 type GetAppInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -23881,7 +23881,7 @@ func (s *GetAppOutput) SetApplicationResponse(v *ApplicationResponse) *GetAppOut
 }
 
 type GetApplicationDateRangeKpiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24009,7 +24009,7 @@ func (s *GetApplicationDateRangeKpiOutput) SetApplicationDateRangeKpiResponse(v 
 }
 
 type GetApplicationSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24090,7 +24090,7 @@ func (s *GetApplicationSettingsOutput) SetApplicationSettingsResource(v *Applica
 }
 
 type GetAppsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	PageSize *string `location:"querystring" locationName:"page-size" type:"string"`
 
@@ -24161,7 +24161,7 @@ func (s *GetAppsOutput) SetApplicationsResponse(v *ApplicationsResponse) *GetApp
 }
 
 type GetBaiduChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24242,7 +24242,7 @@ func (s *GetBaiduChannelOutput) SetBaiduChannelResponse(v *BaiduChannelResponse)
 }
 
 type GetCampaignActivitiesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24353,7 +24353,7 @@ func (s *GetCampaignActivitiesOutput) SetActivitiesResponse(v *ActivitiesRespons
 }
 
 type GetCampaignDateRangeKpiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24496,7 +24496,7 @@ func (s *GetCampaignDateRangeKpiOutput) SetCampaignDateRangeKpiResponse(v *Campa
 }
 
 type GetCampaignInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24592,7 +24592,7 @@ func (s *GetCampaignOutput) SetCampaignResponse(v *CampaignResponse) *GetCampaig
 }
 
 type GetCampaignVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24703,7 +24703,7 @@ func (s *GetCampaignVersionOutput) SetCampaignResponse(v *CampaignResponse) *Get
 }
 
 type GetCampaignVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24815,7 +24815,7 @@ func (s *GetCampaignVersionsOutput) SetCampaignsResponse(v *CampaignsResponse) *
 }
 
 type GetCampaignsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24912,7 +24912,7 @@ func (s *GetCampaignsOutput) SetCampaignsResponse(v *CampaignsResponse) *GetCamp
 }
 
 type GetChannelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -24993,7 +24993,7 @@ func (s *GetChannelsOutput) SetChannelsResponse(v *ChannelsResponse) *GetChannel
 }
 
 type GetEmailChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -25074,7 +25074,7 @@ func (s *GetEmailChannelOutput) SetEmailChannelResponse(v *EmailChannelResponse)
 }
 
 type GetEmailTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -25163,7 +25163,7 @@ func (s *GetEmailTemplateOutput) SetEmailTemplateResponse(v *EmailTemplateRespon
 }
 
 type GetEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -25258,7 +25258,7 @@ func (s *GetEndpointOutput) SetEndpointResponse(v *EndpointResponse) *GetEndpoin
 }
 
 type GetEventStreamInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -25339,7 +25339,7 @@ func (s *GetEventStreamOutput) SetEventStream(v *EventStream) *GetEventStreamOut
 }
 
 type GetExportJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -25437,7 +25437,7 @@ func (s *GetExportJobOutput) SetExportJobResponse(v *ExportJobResponse) *GetExpo
 }
 
 type GetExportJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -25535,7 +25535,7 @@ func (s *GetExportJobsOutput) SetExportJobsResponse(v *ExportJobsResponse) *GetE
 }
 
 type GetGcmChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -25618,7 +25618,7 @@ func (s *GetGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *GetG
 }
 
 type GetImportJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -25716,7 +25716,7 @@ func (s *GetImportJobOutput) SetImportJobResponse(v *ImportJobResponse) *GetImpo
 }
 
 type GetImportJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -25814,7 +25814,7 @@ func (s *GetImportJobsOutput) SetImportJobsResponse(v *ImportJobsResponse) *GetI
 }
 
 type GetInAppMessagesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -25909,7 +25909,7 @@ func (s *GetInAppMessagesOutput) SetInAppMessagesResponse(v *InAppMessagesRespon
 }
 
 type GetInAppTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -25997,7 +25997,7 @@ func (s *GetInAppTemplateOutput) SetInAppTemplateResponse(v *InAppTemplateRespon
 }
 
 type GetJourneyDateRangeKpiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -26140,7 +26140,7 @@ func (s *GetJourneyDateRangeKpiOutput) SetJourneyDateRangeKpiResponse(v *Journey
 }
 
 type GetJourneyExecutionActivityMetricsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -26268,7 +26268,7 @@ func (s *GetJourneyExecutionActivityMetricsOutput) SetJourneyExecutionActivityMe
 }
 
 type GetJourneyExecutionMetricsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -26380,7 +26380,7 @@ func (s *GetJourneyExecutionMetricsOutput) SetJourneyExecutionMetricsResponse(v 
 }
 
 type GetJourneyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -26476,7 +26476,7 @@ func (s *GetJourneyOutput) SetJourneyResponse(v *JourneyResponse) *GetJourneyOut
 }
 
 type GetPushTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -26565,7 +26565,7 @@ func (s *GetPushTemplateOutput) SetPushNotificationTemplateResponse(v *PushNotif
 }
 
 type GetRecommenderConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// RecommenderId is a required field
 	RecommenderId *string `location:"uri" locationName:"recommender-id" type:"string" required:"true"`
@@ -26646,7 +26646,7 @@ func (s *GetRecommenderConfigurationOutput) SetRecommenderConfigurationResponse(
 }
 
 type GetRecommenderConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	PageSize *string `location:"querystring" locationName:"page-size" type:"string"`
 
@@ -26718,7 +26718,7 @@ func (s *GetRecommenderConfigurationsOutput) SetListRecommenderConfigurationsRes
 }
 
 type GetSegmentExportJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -26831,7 +26831,7 @@ func (s *GetSegmentExportJobsOutput) SetExportJobsResponse(v *ExportJobsResponse
 }
 
 type GetSegmentImportJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -26944,7 +26944,7 @@ func (s *GetSegmentImportJobsOutput) SetImportJobsResponse(v *ImportJobsResponse
 }
 
 type GetSegmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -27040,7 +27040,7 @@ func (s *GetSegmentOutput) SetSegmentResponse(v *SegmentResponse) *GetSegmentOut
 }
 
 type GetSegmentVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -27151,7 +27151,7 @@ func (s *GetSegmentVersionOutput) SetSegmentResponse(v *SegmentResponse) *GetSeg
 }
 
 type GetSegmentVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -27262,7 +27262,7 @@ func (s *GetSegmentVersionsOutput) SetSegmentsResponse(v *SegmentsResponse) *Get
 }
 
 type GetSegmentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -27358,7 +27358,7 @@ func (s *GetSegmentsOutput) SetSegmentsResponse(v *SegmentsResponse) *GetSegment
 }
 
 type GetSmsChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -27439,7 +27439,7 @@ func (s *GetSmsChannelOutput) SetSMSChannelResponse(v *SMSChannelResponse) *GetS
 }
 
 type GetSmsTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -27528,7 +27528,7 @@ func (s *GetSmsTemplateOutput) SetSMSTemplateResponse(v *SMSTemplateResponse) *G
 }
 
 type GetUserEndpointsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -27624,7 +27624,7 @@ func (s *GetUserEndpointsOutput) SetEndpointsResponse(v *EndpointsResponse) *Get
 }
 
 type GetVoiceChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -27705,7 +27705,7 @@ func (s *GetVoiceChannelOutput) SetVoiceChannelResponse(v *VoiceChannelResponse)
 }
 
 type GetVoiceTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
@@ -30194,7 +30194,7 @@ func (s *JourneysResponse) SetNextToken(v string) *JourneysResponse {
 }
 
 type ListJourneysInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
@@ -30337,7 +30337,7 @@ func (s *ListRecommenderConfigurationsResponse) SetNextToken(v string) *ListReco
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -30418,7 +30418,7 @@ func (s *ListTagsForResourceOutput) SetTagsModel(v *TagsModel) *ListTagsForResou
 }
 
 type ListTemplateVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
@@ -30529,7 +30529,7 @@ func (s *ListTemplateVersionsOutput) SetTemplateVersionsResponse(v *TemplateVers
 }
 
 type ListTemplatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
@@ -35784,7 +35784,7 @@ func (s *TagResourceInput) SetTagsModel(v *TagsModel) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -36581,7 +36581,7 @@ func (s *TreatmentResource) SetTreatmentName(v string) *TreatmentResource {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -36640,7 +36640,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

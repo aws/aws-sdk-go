@@ -3400,7 +3400,7 @@ func (s *AssociateDomainInput) SetFleetArn(v string) *AssociateDomainInput {
 }
 
 type AssociateDomainOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3795,7 +3795,7 @@ func (s *DeleteFleetInput) SetFleetArn(v string) *DeleteFleetInput {
 }
 
 type DeleteFleetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4842,7 +4842,7 @@ func (s *DisassociateDomainInput) SetFleetArn(v string) *DisassociateDomainInput
 }
 
 type DisassociateDomainOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4930,7 +4930,7 @@ func (s *DisassociateWebsiteAuthorizationProviderInput) SetFleetArn(v string) *D
 }
 
 type DisassociateWebsiteAuthorizationProviderOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5018,7 +5018,7 @@ func (s *DisassociateWebsiteCertificateAuthorityInput) SetWebsiteCaId(v string) 
 }
 
 type DisassociateWebsiteCertificateAuthorityOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5656,7 +5656,7 @@ func (s *ListFleetsOutput) SetNextToken(v string) *ListFleetsOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -6160,7 +6160,7 @@ func (s *RestoreDomainAccessInput) SetFleetArn(v string) *RestoreDomainAccessInp
 }
 
 type RestoreDomainAccessOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6248,7 +6248,7 @@ func (s *RevokeDomainAccessInput) SetFleetArn(v string) *RevokeDomainAccessInput
 }
 
 type RevokeDomainAccessOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6336,7 +6336,7 @@ func (s *SignOutUserInput) SetUsername(v string) *SignOutUserInput {
 }
 
 type SignOutUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6424,7 +6424,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6574,7 +6574,7 @@ func (s *UnauthorizedException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the fleet.
 	//
@@ -6640,7 +6640,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6720,7 +6720,7 @@ func (s *UpdateAuditStreamConfigurationInput) SetFleetArn(v string) *UpdateAudit
 }
 
 type UpdateAuditStreamConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6833,7 +6833,7 @@ func (s *UpdateCompanyNetworkConfigurationInput) SetVpcId(v string) *UpdateCompa
 }
 
 type UpdateCompanyNetworkConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6917,7 +6917,7 @@ func (s *UpdateDevicePolicyConfigurationInput) SetFleetArn(v string) *UpdateDevi
 }
 
 type UpdateDevicePolicyConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7014,7 +7014,7 @@ func (s *UpdateDomainMetadataInput) SetFleetArn(v string) *UpdateDomainMetadataI
 }
 
 type UpdateDomainMetadataOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7104,7 +7104,7 @@ func (s *UpdateFleetMetadataInput) SetOptimizeForEndUserLocation(v bool) *Update
 }
 
 type UpdateFleetMetadataOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7202,7 +7202,7 @@ func (s *UpdateIdentityProviderConfigurationInput) SetIdentityProviderType(v str
 }
 
 type UpdateIdentityProviderConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

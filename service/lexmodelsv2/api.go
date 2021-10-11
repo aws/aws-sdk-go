@@ -7928,7 +7928,7 @@ func (s *BotVersionSummary) SetDescription(v string) *BotVersionSummary {
 }
 
 type BuildBotLocaleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot to build. The identifier is returned in the response
 	// from the operation.
@@ -11146,7 +11146,7 @@ func (s *CreateSlotTypeOutput) SetValueSelectionSetting(v *SlotValueSelectionSet
 }
 
 type CreateUploadUrlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11329,7 +11329,7 @@ func (s *DataPrivacy) SetChildDirected(v bool) *DataPrivacy {
 }
 
 type DeleteBotAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the bot alias to delete.
 	//
@@ -11456,7 +11456,7 @@ func (s *DeleteBotAliasOutput) SetBotId(v string) *DeleteBotAliasOutput {
 }
 
 type DeleteBotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot to delete.
 	//
@@ -11515,7 +11515,7 @@ func (s *DeleteBotInput) SetSkipResourceInUseCheck(v bool) *DeleteBotInput {
 }
 
 type DeleteBotLocaleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the bot that contains the locale.
 	//
@@ -11701,7 +11701,7 @@ func (s *DeleteBotOutput) SetBotStatus(v string) *DeleteBotOutput {
 }
 
 type DeleteBotVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot that contains the version.
 	//
@@ -11828,7 +11828,7 @@ func (s *DeleteBotVersionOutput) SetBotVersion(v string) *DeleteBotVersionOutput
 }
 
 type DeleteExportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the export to delete.
 	//
@@ -11919,7 +11919,7 @@ func (s *DeleteExportOutput) SetExportStatus(v string) *DeleteExportOutput {
 }
 
 type DeleteImportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the import to delete.
 	//
@@ -12010,7 +12010,7 @@ func (s *DeleteImportOutput) SetImportStatus(v string) *DeleteImportOutput {
 }
 
 type DeleteIntentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot associated with the intent.
 	//
@@ -12112,7 +12112,7 @@ func (s *DeleteIntentInput) SetLocaleId(v string) *DeleteIntentInput {
 }
 
 type DeleteIntentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12134,7 +12134,7 @@ func (s DeleteIntentOutput) GoString() string {
 }
 
 type DeleteResourcePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the revision to edit. If this ID doesn't match the current
 	// revision number, Amazon Lex returns an exception
@@ -12243,7 +12243,7 @@ func (s *DeleteResourcePolicyOutput) SetRevisionId(v string) *DeleteResourcePoli
 }
 
 type DeleteResourcePolicyStatementInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the revision of the policy to delete the statement from.
 	// If this revision ID doesn't match the current revision ID, Amazon Lex throws
@@ -12371,7 +12371,7 @@ func (s *DeleteResourcePolicyStatementOutput) SetRevisionId(v string) *DeleteRes
 }
 
 type DeleteSlotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot associated with the slot to delete.
 	//
@@ -12490,7 +12490,7 @@ func (s *DeleteSlotInput) SetSlotId(v string) *DeleteSlotInput {
 }
 
 type DeleteSlotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12512,7 +12512,7 @@ func (s DeleteSlotOutput) GoString() string {
 }
 
 type DeleteSlotTypeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot associated with the slot type.
 	//
@@ -12626,7 +12626,7 @@ func (s *DeleteSlotTypeInput) SetSlotTypeId(v string) *DeleteSlotTypeInput {
 }
 
 type DeleteSlotTypeOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12648,7 +12648,7 @@ func (s DeleteSlotTypeOutput) GoString() string {
 }
 
 type DeleteUtterancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the bot that contains the utterances.
 	//
@@ -12721,7 +12721,7 @@ func (s *DeleteUtterancesInput) SetSessionId(v string) *DeleteUtterancesInput {
 }
 
 type DeleteUtterancesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12743,7 +12743,7 @@ func (s DeleteUtterancesOutput) GoString() string {
 }
 
 type DescribeBotAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot alias to describe.
 	//
@@ -12943,7 +12943,7 @@ func (s *DescribeBotAliasOutput) SetSentimentAnalysisSettings(v *SentimentAnalys
 }
 
 type DescribeBotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the bot to describe.
 	//
@@ -12992,7 +12992,7 @@ func (s *DescribeBotInput) SetBotId(v string) *DescribeBotInput {
 }
 
 type DescribeBotLocaleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot associated with the locale.
 	//
@@ -13345,7 +13345,7 @@ func (s *DescribeBotOutput) SetRoleArn(v string) *DescribeBotOutput {
 }
 
 type DescribeBotVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot containing the version to return metadata for.
 	//
@@ -13527,7 +13527,7 @@ func (s *DescribeBotVersionOutput) SetRoleArn(v string) *DescribeBotVersionOutpu
 }
 
 type DescribeExportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the export to describe.
 	//
@@ -13673,7 +13673,7 @@ func (s *DescribeExportOutput) SetResourceSpecification(v *ExportResourceSpecifi
 }
 
 type DescribeImportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the import to describe.
 	//
@@ -13830,7 +13830,7 @@ func (s *DescribeImportOutput) SetResourceSpecification(v *ImportResourceSpecifi
 }
 
 type DescribeIntentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot associated with the intent.
 	//
@@ -14119,7 +14119,7 @@ func (s *DescribeIntentOutput) SetSlotPriorities(v []*SlotPriority) *DescribeInt
 }
 
 type DescribeResourcePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
 	// policy is attached to.
@@ -14224,7 +14224,7 @@ func (s *DescribeResourcePolicyOutput) SetRevisionId(v string) *DescribeResource
 }
 
 type DescribeSlotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot associated with the slot.
 	//
@@ -14486,7 +14486,7 @@ func (s *DescribeSlotOutput) SetValueElicitationSetting(v *SlotValueElicitationS
 }
 
 type DescribeSlotTypeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot associated with the slot type.
 	//
@@ -18714,7 +18714,7 @@ func (s *ListSlotsOutput) SetSlotSummaries(v []*SlotSummary) *ListSlotsOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource to get a list of tags for.
 	//
@@ -21317,7 +21317,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -21526,7 +21526,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource to remove the tags from.
 	//
@@ -21590,7 +21590,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

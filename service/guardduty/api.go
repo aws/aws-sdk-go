@@ -5509,7 +5509,7 @@ func (s *AcceptInvitationInput) SetMasterId(v string) *AcceptInvitationInput {
 }
 
 type AcceptInvitationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5906,7 +5906,7 @@ func (s *ArchiveFindingsInput) SetFindingIds(v []*string) *ArchiveFindingsInput 
 }
 
 type ArchiveFindingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7358,7 +7358,7 @@ func (s *CreateSampleFindingsInput) SetFindingTypes(v []*string) *CreateSampleFi
 }
 
 type CreateSampleFindingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7830,7 +7830,7 @@ func (s *DefaultServerSideEncryption) SetKmsMasterKeyArn(v string) *DefaultServe
 }
 
 type DeleteDetectorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that you want to delete.
 	//
@@ -7879,7 +7879,7 @@ func (s *DeleteDetectorInput) SetDetectorId(v string) *DeleteDetectorInput {
 }
 
 type DeleteDetectorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7901,7 +7901,7 @@ func (s DeleteDetectorOutput) GoString() string {
 }
 
 type DeleteFilterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that the filter is associated with.
 	//
@@ -7967,7 +7967,7 @@ func (s *DeleteFilterInput) SetFilterName(v string) *DeleteFilterInput {
 }
 
 type DeleteFilterOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7989,7 +7989,7 @@ func (s DeleteFilterOutput) GoString() string {
 }
 
 type DeleteIPSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector associated with the IPSet.
 	//
@@ -8055,7 +8055,7 @@ func (s *DeleteIPSetInput) SetIpSetId(v string) *DeleteIPSetInput {
 }
 
 type DeleteIPSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8261,7 +8261,7 @@ func (s *DeleteMembersOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *D
 }
 
 type DeletePublishingDestinationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the publishing destination to delete.
 	//
@@ -8328,7 +8328,7 @@ func (s *DeletePublishingDestinationInput) SetDetectorId(v string) *DeletePublis
 }
 
 type DeletePublishingDestinationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8350,7 +8350,7 @@ func (s DeletePublishingDestinationOutput) GoString() string {
 }
 
 type DeleteThreatIntelSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that the threatIntelSet is associated with.
 	//
@@ -8416,7 +8416,7 @@ func (s *DeleteThreatIntelSetInput) SetThreatIntelSetId(v string) *DeleteThreatI
 }
 
 type DeleteThreatIntelSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8438,7 +8438,7 @@ func (s DeleteThreatIntelSetOutput) GoString() string {
 }
 
 type DescribeOrganizationConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the detector to retrieve information about the delegated administrator
 	// from.
@@ -8543,7 +8543,7 @@ func (s *DescribeOrganizationConfigurationOutput) SetMemberAccountLimitReached(v
 }
 
 type DescribePublishingDestinationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the publishing destination to retrieve.
 	//
@@ -8837,7 +8837,7 @@ func (s *DisableOrganizationAdminAccountInput) SetAdminAccountId(v string) *Disa
 }
 
 type DisableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8859,7 +8859,7 @@ func (s DisableOrganizationAdminAccountOutput) GoString() string {
 }
 
 type DisassociateFromMasterAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector of the GuardDuty member account.
 	//
@@ -8908,7 +8908,7 @@ func (s *DisassociateFromMasterAccountInput) SetDetectorId(v string) *Disassocia
 }
 
 type DisassociateFromMasterAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9143,7 +9143,7 @@ func (s *EnableOrganizationAdminAccountInput) SetAdminAccountId(v string) *Enabl
 }
 
 type EnableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9517,7 +9517,7 @@ func (s *GeoLocation) SetLon(v float64) *GeoLocation {
 }
 
 type GetDetectorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that you want to get.
 	//
@@ -9655,7 +9655,7 @@ func (s *GetDetectorOutput) SetUpdatedAt(v string) *GetDetectorOutput {
 }
 
 type GetFilterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that the filter is associated with.
 	//
@@ -10017,7 +10017,7 @@ func (s *GetFindingsStatisticsOutput) SetFindingStatistics(v *FindingStatistics)
 }
 
 type GetIPSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that the IPSet is associated with.
 	//
@@ -10158,7 +10158,7 @@ func (s *GetIPSetOutput) SetTags(v map[string]*string) *GetIPSetOutput {
 }
 
 type GetInvitationsCountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10211,7 +10211,7 @@ func (s *GetInvitationsCountOutput) SetInvitationsCount(v int64) *GetInvitations
 }
 
 type GetMasterAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector of the GuardDuty member account.
 	//
@@ -10516,7 +10516,7 @@ func (s *GetMembersOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *GetM
 }
 
 type GetThreatIntelSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that the threatIntelSet is associated with.
 	//
@@ -11249,7 +11249,7 @@ func (s *InviteMembersOutput) SetUnprocessedAccounts(v []*UnprocessedAccount) *I
 }
 
 type ListDetectorsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// You can use this parameter to indicate the maximum number of items that you
 	// want in the response. The default value is 50. The maximum value is 50.
@@ -11349,7 +11349,7 @@ func (s *ListDetectorsOutput) SetNextToken(v string) *ListDetectorsOutput {
 }
 
 type ListFiltersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that the filter is associated with.
 	//
@@ -11703,7 +11703,7 @@ func (s *ListFindingsOutput) SetNextToken(v string) *ListFindingsOutput {
 }
 
 type ListIPSetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that the IPSet is associated with.
 	//
@@ -11820,7 +11820,7 @@ func (s *ListIPSetsOutput) SetNextToken(v string) *ListIPSetsOutput {
 }
 
 type ListInvitationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// You can use this parameter to indicate the maximum number of items that you
 	// want in the response. The default value is 50. The maximum value is 50.
@@ -11918,7 +11918,7 @@ func (s *ListInvitationsOutput) SetNextToken(v string) *ListInvitationsOutput {
 }
 
 type ListMembersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector the member is associated with.
 	//
@@ -12043,7 +12043,7 @@ func (s *ListMembersOutput) SetNextToken(v string) *ListMembersOutput {
 }
 
 type ListOrganizationAdminAccountsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -12140,7 +12140,7 @@ func (s *ListOrganizationAdminAccountsOutput) SetNextToken(v string) *ListOrgani
 }
 
 type ListPublishingDestinationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the detector to retrieve publishing destinations for.
 	//
@@ -12259,7 +12259,7 @@ func (s *ListPublishingDestinationsOutput) SetNextToken(v string) *ListPublishin
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) for the given GuardDuty resource.
 	//
@@ -12339,7 +12339,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 }
 
 type ListThreatIntelSetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of the detector that the threatIntelSet is associated with.
 	//
@@ -14304,7 +14304,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14473,7 +14473,7 @@ func (s *UnarchiveFindingsInput) SetFindingIds(v []*string) *UnarchiveFindingsIn
 }
 
 type UnarchiveFindingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14540,7 +14540,7 @@ func (s *UnprocessedAccount) SetResult(v string) *UnprocessedAccount {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) for the resource to remove tags from.
 	//
@@ -14606,7 +14606,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14710,7 +14710,7 @@ func (s *UpdateDetectorInput) SetFindingPublishingFrequency(v string) *UpdateDet
 }
 
 type UpdateDetectorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14962,7 +14962,7 @@ func (s *UpdateFindingsFeedbackInput) SetFindingIds(v []*string) *UpdateFindings
 }
 
 type UpdateFindingsFeedbackOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15084,7 +15084,7 @@ func (s *UpdateIPSetInput) SetName(v string) *UpdateIPSetInput {
 }
 
 type UpdateIPSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15297,7 +15297,7 @@ func (s *UpdateOrganizationConfigurationInput) SetDetectorId(v string) *UpdateOr
 }
 
 type UpdateOrganizationConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15395,7 +15395,7 @@ func (s *UpdatePublishingDestinationInput) SetDetectorId(v string) *UpdatePublis
 }
 
 type UpdatePublishingDestinationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15518,7 +15518,7 @@ func (s *UpdateThreatIntelSetInput) SetThreatIntelSetId(v string) *UpdateThreatI
 }
 
 type UpdateThreatIntelSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

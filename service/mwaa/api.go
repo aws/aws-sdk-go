@@ -1092,7 +1092,7 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 type CreateCliTokenInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Create a CLI token request for a MWAA environment.
 	//
@@ -1555,7 +1555,7 @@ func (s *CreateEnvironmentOutput) SetArn(v string) *CreateEnvironmentOutput {
 }
 
 type CreateWebLoginTokenInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Create an Airflow Web UI login token request for a MWAA environment.
 	//
@@ -1649,7 +1649,7 @@ func (s *CreateWebLoginTokenOutput) SetWebToken(v string) *CreateWebLoginTokenOu
 }
 
 type DeleteEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon MWAA environment. For example, MyMWAAEnvironment.
 	//
@@ -1698,7 +1698,7 @@ func (s *DeleteEnvironmentInput) SetName(v string) *DeleteEnvironmentInput {
 }
 
 type DeleteEnvironmentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2087,7 +2087,7 @@ func (s *Environment) SetWeeklyMaintenanceWindowStart(v string) *Environment {
 }
 
 type GetEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon MWAA environment. For example, MyMWAAEnvironment.
 	//
@@ -2283,7 +2283,7 @@ func (s *LastUpdate) SetStatus(v string) *LastUpdate {
 }
 
 type ListEnvironmentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to retrieve per page. For example, 5 environments
 	// per page.
@@ -2379,7 +2379,7 @@ func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput 
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example,
 	// arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment.
@@ -3006,7 +3006,7 @@ func (s *PublishMetricsInput) SetMetricData(v []*MetricDatum) *PublishMetricsInp
 }
 
 type PublishMetricsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3219,7 +3219,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3241,7 +3241,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example,
 	// arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment.
@@ -3305,7 +3305,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

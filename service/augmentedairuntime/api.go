@@ -609,7 +609,7 @@ func (s *ConflictException) RequestID() string {
 }
 
 type DeleteHumanLoopInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the human loop that you want to delete.
 	//
@@ -658,7 +658,7 @@ func (s *DeleteHumanLoopInput) SetHumanLoopName(v string) *DeleteHumanLoopInput 
 }
 
 type DeleteHumanLoopOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -680,7 +680,7 @@ func (s DeleteHumanLoopOutput) GoString() string {
 }
 
 type DescribeHumanLoopInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the human loop that you want information about.
 	//
@@ -1108,7 +1108,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListHumanLoopsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) The timestamp of the date when you want the human loops to begin
 	// in ISO 8601 format. For example, 2020-02-24.
@@ -1563,7 +1563,7 @@ func (s *StopHumanLoopInput) SetHumanLoopName(v string) *StopHumanLoopInput {
 }
 
 type StopHumanLoopOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

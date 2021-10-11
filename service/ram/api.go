@@ -3518,7 +3518,7 @@ func (s *CreateResourceShareOutput) SetResourceShare(v *ResourceShare) *CreateRe
 }
 
 type DeleteResourceShareInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request.
@@ -3842,7 +3842,7 @@ func (s *DisassociateResourceSharePermissionOutput) SetReturnValue(v bool) *Disa
 }
 
 type EnableSharingWithAwsOrganizationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5957,7 +5957,7 @@ func (s *Principal) SetResourceShareArn(v string) *Principal {
 }
 
 type PromoteResourceShareCreatedFromPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource share to promote.
 	//
@@ -7617,7 +7617,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7763,7 +7763,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

@@ -4495,7 +4495,7 @@ func (s *CreateInputOutput) SetInputConfiguration(v *InputConfiguration) *Create
 }
 
 type DeleteAlarmModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -4544,7 +4544,7 @@ func (s *DeleteAlarmModelInput) SetAlarmModelName(v string) *DeleteAlarmModelInp
 }
 
 type DeleteAlarmModelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4566,7 +4566,7 @@ func (s DeleteAlarmModelOutput) GoString() string {
 }
 
 type DeleteDetectorModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model to be deleted.
 	//
@@ -4615,7 +4615,7 @@ func (s *DeleteDetectorModelInput) SetDetectorModelName(v string) *DeleteDetecto
 }
 
 type DeleteDetectorModelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4637,7 +4637,7 @@ func (s DeleteDetectorModelOutput) GoString() string {
 }
 
 type DeleteInputInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the input to delete.
 	//
@@ -4686,7 +4686,7 @@ func (s *DeleteInputInput) SetInputName(v string) *DeleteInputInput {
 }
 
 type DeleteInputOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4708,7 +4708,7 @@ func (s DeleteInputOutput) GoString() string {
 }
 
 type DescribeAlarmModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -4943,7 +4943,7 @@ func (s *DescribeAlarmModelOutput) SetStatusMessage(v string) *DescribeAlarmMode
 }
 
 type DescribeDetectorModelAnalysisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis result that you want to retrieve.
 	//
@@ -5032,7 +5032,7 @@ func (s *DescribeDetectorModelAnalysisOutput) SetStatus(v string) *DescribeDetec
 }
 
 type DescribeDetectorModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model.
 	//
@@ -5124,7 +5124,7 @@ func (s *DescribeDetectorModelOutput) SetDetectorModel(v *DetectorModel) *Descri
 }
 
 type DescribeInputInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the input.
 	//
@@ -5204,7 +5204,7 @@ func (s *DescribeInputOutput) SetInput(v *Input) *DescribeInputOutput {
 }
 
 type DescribeLoggingOptionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6357,7 +6357,7 @@ func (s *FirehoseAction) SetSeparator(v string) *FirehoseAction {
 }
 
 type GetDetectorModelAnalysisResultsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis result that you want to retrieve.
 	//
@@ -7442,7 +7442,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListAlarmModelVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -7553,7 +7553,7 @@ func (s *ListAlarmModelVersionsOutput) SetNextToken(v string) *ListAlarmModelVer
 }
 
 type ListAlarmModelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -7647,7 +7647,7 @@ func (s *ListAlarmModelsOutput) SetNextToken(v string) *ListAlarmModelsOutput {
 }
 
 type ListDetectorModelVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model whose versions are returned.
 	//
@@ -7758,7 +7758,7 @@ func (s *ListDetectorModelVersionsOutput) SetNextToken(v string) *ListDetectorMo
 }
 
 type ListDetectorModelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -7965,7 +7965,7 @@ func (s *ListInputRoutingsOutput) SetRoutedResources(v []*RoutedResource) *ListI
 }
 
 type ListInputsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -8059,7 +8059,7 @@ func (s *ListInputsOutput) SetNextToken(v string) *ListInputsOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource.
 	//
@@ -8690,7 +8690,7 @@ func (s *PutLoggingOptionsInput) SetLoggingOptions(v *LoggingOptions) *PutLoggin
 }
 
 type PutLoggingOptionsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9941,7 +9941,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10192,7 +10192,7 @@ func (s *UnsupportedOperationException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource.
 	//
@@ -10255,7 +10255,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

@@ -5328,7 +5328,7 @@ func (s *CustomerGatewayAssociation) SetState(v string) *CustomerGatewayAssociat
 }
 
 type DeleteConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the connection.
 	//
@@ -5425,7 +5425,7 @@ func (s *DeleteConnectionOutput) SetConnection(v *Connection) *DeleteConnectionO
 }
 
 type DeleteDeviceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the device.
 	//
@@ -5522,7 +5522,7 @@ func (s *DeleteDeviceOutput) SetDevice(v *Device) *DeleteDeviceOutput {
 }
 
 type DeleteGlobalNetworkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the global network.
 	//
@@ -5602,7 +5602,7 @@ func (s *DeleteGlobalNetworkOutput) SetGlobalNetwork(v *GlobalNetwork) *DeleteGl
 }
 
 type DeleteLinkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the global network.
 	//
@@ -5699,7 +5699,7 @@ func (s *DeleteLinkOutput) SetLink(v *Link) *DeleteLinkOutput {
 }
 
 type DeleteSiteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the global network.
 	//
@@ -5796,7 +5796,7 @@ func (s *DeleteSiteOutput) SetSite(v *Site) *DeleteSiteOutput {
 }
 
 type DeregisterTransitGatewayInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the global network.
 	//
@@ -5893,7 +5893,7 @@ func (s *DeregisterTransitGatewayOutput) SetTransitGatewayRegistration(v *Transi
 }
 
 type DescribeGlobalNetworksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The IDs of one or more global networks. The maximum is 10.
 	GlobalNetworkIds []*string `location:"querystring" locationName:"globalNetworkIds" type:"list"`
@@ -6148,7 +6148,7 @@ func (s *Device) SetVendor(v string) *Device {
 }
 
 type DisassociateCustomerGatewayInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the customer gateway. For more information,
 	// see Resources Defined by Amazon EC2 (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies).
@@ -6246,7 +6246,7 @@ func (s *DisassociateCustomerGatewayOutput) SetCustomerGatewayAssociation(v *Cus
 }
 
 type DisassociateLinkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the device.
 	//
@@ -6354,7 +6354,7 @@ func (s *DisassociateLinkOutput) SetLinkAssociation(v *LinkAssociation) *Disasso
 }
 
 type DisassociateTransitGatewayConnectPeerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the global network.
 	//
@@ -6451,7 +6451,7 @@ func (s *DisassociateTransitGatewayConnectPeerOutput) SetTransitGatewayConnectPe
 }
 
 type GetConnectionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// One or more connection IDs.
 	ConnectionIds []*string `location:"querystring" locationName:"connectionIds" type:"list"`
@@ -6579,7 +6579,7 @@ func (s *GetConnectionsOutput) SetNextToken(v string) *GetConnectionsOutput {
 }
 
 type GetCustomerGatewayAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// One or more customer gateway Amazon Resource Names (ARNs). For more information,
 	// see Resources Defined by Amazon EC2 (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies).
@@ -6700,7 +6700,7 @@ func (s *GetCustomerGatewayAssociationsOutput) SetNextToken(v string) *GetCustom
 }
 
 type GetDevicesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// One or more device IDs. The maximum is 10.
 	DeviceIds []*string `location:"querystring" locationName:"deviceIds" type:"list"`
@@ -6828,7 +6828,7 @@ func (s *GetDevicesOutput) SetNextToken(v string) *GetDevicesOutput {
 }
 
 type GetLinkAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the device.
 	DeviceId *string `location:"querystring" locationName:"deviceId" type:"string"`
@@ -6956,7 +6956,7 @@ func (s *GetLinkAssociationsOutput) SetNextToken(v string) *GetLinkAssociationsO
 }
 
 type GetLinksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the global network.
 	//
@@ -7102,7 +7102,7 @@ func (s *GetLinksOutput) SetNextToken(v string) *GetLinksOutput {
 }
 
 type GetSitesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the global network.
 	//
@@ -7221,7 +7221,7 @@ func (s *GetSitesOutput) SetSites(v []*Site) *GetSitesOutput {
 }
 
 type GetTransitGatewayConnectPeerAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the global network.
 	//
@@ -7340,7 +7340,7 @@ func (s *GetTransitGatewayConnectPeerAssociationsOutput) SetTransitGatewayConnec
 }
 
 type GetTransitGatewayRegistrationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the global network.
 	//
@@ -7785,7 +7785,7 @@ func (s *LinkAssociation) SetLinkId(v string) *LinkAssociation {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -8372,7 +8372,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8620,7 +8620,7 @@ func (s *TransitGatewayRegistrationStateReason) SetMessage(v string) *TransitGat
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -8683,7 +8683,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

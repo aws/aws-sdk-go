@@ -3303,7 +3303,7 @@ func (s *DashPackage) SetUtcTimingUri(v string) *DashPackage {
 }
 
 type DeleteChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -3350,7 +3350,7 @@ func (s *DeleteChannelInput) SetId(v string) *DeleteChannelInput {
 }
 
 type DeleteChannelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3372,7 +3372,7 @@ func (s DeleteChannelOutput) GoString() string {
 }
 
 type DeleteOriginEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -3419,7 +3419,7 @@ func (s *DeleteOriginEndpointInput) SetId(v string) *DeleteOriginEndpointInput {
 }
 
 type DeleteOriginEndpointOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3441,7 +3441,7 @@ func (s DeleteOriginEndpointOutput) GoString() string {
 }
 
 type DescribeChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -3570,7 +3570,7 @@ func (s *DescribeChannelOutput) SetTags(v map[string]*string) *DescribeChannelOu
 }
 
 type DescribeHarvestJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -3713,7 +3713,7 @@ func (s *DescribeHarvestJobOutput) SetStatus(v string) *DescribeHarvestJobOutput
 }
 
 type DescribeOriginEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -4892,7 +4892,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListChannelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -4981,7 +4981,7 @@ func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 }
 
 type ListHarvestJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	IncludeChannelId *string `location:"querystring" locationName:"includeChannelId" type:"string"`
 
@@ -5086,7 +5086,7 @@ func (s *ListHarvestJobsOutput) SetNextToken(v string) *ListHarvestJobsOutput {
 }
 
 type ListOriginEndpointsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ChannelId *string `location:"querystring" locationName:"channelId" type:"string"`
 
@@ -5183,7 +5183,7 @@ func (s *ListOriginEndpointsOutput) SetOriginEndpoints(v []*OriginEndpoint) *Lis
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -5624,7 +5624,7 @@ func (s *OriginEndpoint) SetWhitelist(v []*string) *OriginEndpoint {
 
 // Deprecated: RotateChannelCredentialsInput has been deprecated
 type RotateChannelCredentialsInput struct {
-	_ struct{} `deprecated:"true" type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -5754,7 +5754,7 @@ func (s *RotateChannelCredentialsOutput) SetTags(v map[string]*string) *RotateCh
 }
 
 type RotateIngestEndpointCredentialsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -6270,7 +6270,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6418,7 +6418,7 @@ func (s *UnprocessableEntityException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -6477,7 +6477,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

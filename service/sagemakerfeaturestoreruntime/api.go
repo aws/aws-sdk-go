@@ -769,7 +769,7 @@ func (s *BatchGetRecordResultDetail) SetRecordIdentifierValueAsString(v string) 
 }
 
 type DeleteRecordInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Timestamp indicating when the deletion event occurred. EventTime can be used
 	// to query data at a certain point in time.
@@ -848,7 +848,7 @@ func (s *DeleteRecordInput) SetRecordIdentifierValueAsString(v string) *DeleteRe
 }
 
 type DeleteRecordOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -936,7 +936,7 @@ func (s *FeatureValue) SetValueAsString(v string) *FeatureValue {
 }
 
 type GetRecordInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the feature group in which you want to put the records.
 	//
@@ -1192,7 +1192,7 @@ func (s *PutRecordInput) SetRecord(v []*FeatureValue) *PutRecordInput {
 }
 
 type PutRecordOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

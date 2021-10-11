@@ -9363,7 +9363,7 @@ func (s *CreateFunctionDefinitionVersionOutput) SetVersion(v string) *CreateFunc
 }
 
 type CreateGroupCertificateAuthorityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	AmznClientToken *string `location:"header" locationName:"X-Amzn-Client-Token" type:"string"`
 
@@ -10857,7 +10857,7 @@ func (s *DefinitionInformation) SetTags(v map[string]*string) *DefinitionInforma
 }
 
 type DeleteConnectorDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectorDefinitionId is a required field
 	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
@@ -10904,7 +10904,7 @@ func (s *DeleteConnectorDefinitionInput) SetConnectorDefinitionId(v string) *Del
 }
 
 type DeleteConnectorDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10926,7 +10926,7 @@ func (s DeleteConnectorDefinitionOutput) GoString() string {
 }
 
 type DeleteCoreDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CoreDefinitionId is a required field
 	CoreDefinitionId *string `location:"uri" locationName:"CoreDefinitionId" type:"string" required:"true"`
@@ -10973,7 +10973,7 @@ func (s *DeleteCoreDefinitionInput) SetCoreDefinitionId(v string) *DeleteCoreDef
 }
 
 type DeleteCoreDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10995,7 +10995,7 @@ func (s DeleteCoreDefinitionOutput) GoString() string {
 }
 
 type DeleteDeviceDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceDefinitionId is a required field
 	DeviceDefinitionId *string `location:"uri" locationName:"DeviceDefinitionId" type:"string" required:"true"`
@@ -11042,7 +11042,7 @@ func (s *DeleteDeviceDefinitionInput) SetDeviceDefinitionId(v string) *DeleteDev
 }
 
 type DeleteDeviceDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11064,7 +11064,7 @@ func (s DeleteDeviceDefinitionOutput) GoString() string {
 }
 
 type DeleteFunctionDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FunctionDefinitionId is a required field
 	FunctionDefinitionId *string `location:"uri" locationName:"FunctionDefinitionId" type:"string" required:"true"`
@@ -11111,7 +11111,7 @@ func (s *DeleteFunctionDefinitionInput) SetFunctionDefinitionId(v string) *Delet
 }
 
 type DeleteFunctionDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11133,7 +11133,7 @@ func (s DeleteFunctionDefinitionOutput) GoString() string {
 }
 
 type DeleteGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -11180,7 +11180,7 @@ func (s *DeleteGroupInput) SetGroupId(v string) *DeleteGroupInput {
 }
 
 type DeleteGroupOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11202,7 +11202,7 @@ func (s DeleteGroupOutput) GoString() string {
 }
 
 type DeleteLoggerDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LoggerDefinitionId is a required field
 	LoggerDefinitionId *string `location:"uri" locationName:"LoggerDefinitionId" type:"string" required:"true"`
@@ -11249,7 +11249,7 @@ func (s *DeleteLoggerDefinitionInput) SetLoggerDefinitionId(v string) *DeleteLog
 }
 
 type DeleteLoggerDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11271,7 +11271,7 @@ func (s DeleteLoggerDefinitionOutput) GoString() string {
 }
 
 type DeleteResourceDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceDefinitionId is a required field
 	ResourceDefinitionId *string `location:"uri" locationName:"ResourceDefinitionId" type:"string" required:"true"`
@@ -11318,7 +11318,7 @@ func (s *DeleteResourceDefinitionInput) SetResourceDefinitionId(v string) *Delet
 }
 
 type DeleteResourceDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11340,7 +11340,7 @@ func (s DeleteResourceDefinitionOutput) GoString() string {
 }
 
 type DeleteSubscriptionDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SubscriptionDefinitionId is a required field
 	SubscriptionDefinitionId *string `location:"uri" locationName:"SubscriptionDefinitionId" type:"string" required:"true"`
@@ -11387,7 +11387,7 @@ func (s *DeleteSubscriptionDefinitionInput) SetSubscriptionDefinitionId(v string
 }
 
 type DeleteSubscriptionDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11616,7 +11616,7 @@ func (s *DeviceDefinitionVersion) SetDevices(v []*Device) *DeviceDefinitionVersi
 }
 
 type DisassociateRoleFromGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -11695,7 +11695,7 @@ func (s *DisassociateRoleFromGroupOutput) SetDisassociatedAt(v string) *Disassoc
 }
 
 type DisassociateServiceRoleFromAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12294,7 +12294,7 @@ func (s *FunctionRunAsConfig) SetUid(v int64) *FunctionRunAsConfig {
 }
 
 type GetAssociatedRoleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -12381,7 +12381,7 @@ func (s *GetAssociatedRoleOutput) SetRoleArn(v string) *GetAssociatedRoleOutput 
 }
 
 type GetBulkDeploymentStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BulkDeploymentId is a required field
 	BulkDeploymentId *string `location:"uri" locationName:"BulkDeploymentId" type:"string" required:"true"`
@@ -12505,7 +12505,7 @@ func (s *GetBulkDeploymentStatusOutput) SetTags(v map[string]*string) *GetBulkDe
 }
 
 type GetConnectivityInfoInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"ThingName" type:"string" required:"true"`
@@ -12593,7 +12593,7 @@ func (s *GetConnectivityInfoOutput) SetMessage(v string) *GetConnectivityInfoOut
 }
 
 type GetConnectorDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectorDefinitionId is a required field
 	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
@@ -12727,7 +12727,7 @@ func (s *GetConnectorDefinitionOutput) SetTags(v map[string]*string) *GetConnect
 }
 
 type GetConnectorDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectorDefinitionId is a required field
 	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
@@ -12876,7 +12876,7 @@ func (s *GetConnectorDefinitionVersionOutput) SetVersion(v string) *GetConnector
 }
 
 type GetCoreDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CoreDefinitionId is a required field
 	CoreDefinitionId *string `location:"uri" locationName:"CoreDefinitionId" type:"string" required:"true"`
@@ -13010,7 +13010,7 @@ func (s *GetCoreDefinitionOutput) SetTags(v map[string]*string) *GetCoreDefiniti
 }
 
 type GetCoreDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CoreDefinitionId is a required field
 	CoreDefinitionId *string `location:"uri" locationName:"CoreDefinitionId" type:"string" required:"true"`
@@ -13150,7 +13150,7 @@ func (s *GetCoreDefinitionVersionOutput) SetVersion(v string) *GetCoreDefinition
 }
 
 type GetDeploymentStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeploymentId is a required field
 	DeploymentId *string `location:"uri" locationName:"DeploymentId" type:"string" required:"true"`
@@ -13282,7 +13282,7 @@ func (s *GetDeploymentStatusOutput) SetUpdatedAt(v string) *GetDeploymentStatusO
 }
 
 type GetDeviceDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceDefinitionId is a required field
 	DeviceDefinitionId *string `location:"uri" locationName:"DeviceDefinitionId" type:"string" required:"true"`
@@ -13416,7 +13416,7 @@ func (s *GetDeviceDefinitionOutput) SetTags(v map[string]*string) *GetDeviceDefi
 }
 
 type GetDeviceDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceDefinitionId is a required field
 	DeviceDefinitionId *string `location:"uri" locationName:"DeviceDefinitionId" type:"string" required:"true"`
@@ -13564,7 +13564,7 @@ func (s *GetDeviceDefinitionVersionOutput) SetVersion(v string) *GetDeviceDefini
 }
 
 type GetFunctionDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FunctionDefinitionId is a required field
 	FunctionDefinitionId *string `location:"uri" locationName:"FunctionDefinitionId" type:"string" required:"true"`
@@ -13698,7 +13698,7 @@ func (s *GetFunctionDefinitionOutput) SetTags(v map[string]*string) *GetFunction
 }
 
 type GetFunctionDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FunctionDefinitionId is a required field
 	FunctionDefinitionId *string `location:"uri" locationName:"FunctionDefinitionId" type:"string" required:"true"`
@@ -13847,7 +13847,7 @@ func (s *GetFunctionDefinitionVersionOutput) SetVersion(v string) *GetFunctionDe
 }
 
 type GetGroupCertificateAuthorityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CertificateAuthorityId is a required field
 	CertificateAuthorityId *string `location:"uri" locationName:"CertificateAuthorityId" type:"string" required:"true"`
@@ -13959,7 +13959,7 @@ func (s *GetGroupCertificateAuthorityOutput) SetPemEncodedCertificate(v string) 
 }
 
 type GetGroupCertificateConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -14052,7 +14052,7 @@ func (s *GetGroupCertificateConfigurationOutput) SetGroupId(v string) *GetGroupC
 }
 
 type GetGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -14186,7 +14186,7 @@ func (s *GetGroupOutput) SetTags(v map[string]*string) *GetGroupOutput {
 }
 
 type GetGroupVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -14316,7 +14316,7 @@ func (s *GetGroupVersionOutput) SetVersion(v string) *GetGroupVersionOutput {
 }
 
 type GetLoggerDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LoggerDefinitionId is a required field
 	LoggerDefinitionId *string `location:"uri" locationName:"LoggerDefinitionId" type:"string" required:"true"`
@@ -14450,7 +14450,7 @@ func (s *GetLoggerDefinitionOutput) SetTags(v map[string]*string) *GetLoggerDefi
 }
 
 type GetLoggerDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LoggerDefinitionId is a required field
 	LoggerDefinitionId *string `location:"uri" locationName:"LoggerDefinitionId" type:"string" required:"true"`
@@ -14589,7 +14589,7 @@ func (s *GetLoggerDefinitionVersionOutput) SetVersion(v string) *GetLoggerDefini
 }
 
 type GetResourceDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceDefinitionId is a required field
 	ResourceDefinitionId *string `location:"uri" locationName:"ResourceDefinitionId" type:"string" required:"true"`
@@ -14723,7 +14723,7 @@ func (s *GetResourceDefinitionOutput) SetTags(v map[string]*string) *GetResource
 }
 
 type GetResourceDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceDefinitionId is a required field
 	ResourceDefinitionId *string `location:"uri" locationName:"ResourceDefinitionId" type:"string" required:"true"`
@@ -14854,7 +14854,7 @@ func (s *GetResourceDefinitionVersionOutput) SetVersion(v string) *GetResourceDe
 }
 
 type GetServiceRoleForAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14916,7 +14916,7 @@ func (s *GetServiceRoleForAccountOutput) SetRoleArn(v string) *GetServiceRoleFor
 }
 
 type GetSubscriptionDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SubscriptionDefinitionId is a required field
 	SubscriptionDefinitionId *string `location:"uri" locationName:"SubscriptionDefinitionId" type:"string" required:"true"`
@@ -15050,7 +15050,7 @@ func (s *GetSubscriptionDefinitionOutput) SetTags(v map[string]*string) *GetSubs
 }
 
 type GetSubscriptionDefinitionVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 
@@ -15199,7 +15199,7 @@ func (s *GetSubscriptionDefinitionVersionOutput) SetVersion(v string) *GetSubscr
 }
 
 type GetThingRuntimeConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ThingName is a required field
 	ThingName *string `location:"uri" locationName:"ThingName" type:"string" required:"true"`
@@ -15602,7 +15602,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListBulkDeploymentDetailedReportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BulkDeploymentId is a required field
 	BulkDeploymentId *string `location:"uri" locationName:"BulkDeploymentId" type:"string" required:"true"`
@@ -15706,7 +15706,7 @@ func (s *ListBulkDeploymentDetailedReportsOutput) SetNextToken(v string) *ListBu
 }
 
 type ListBulkDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -15785,7 +15785,7 @@ func (s *ListBulkDeploymentsOutput) SetNextToken(v string) *ListBulkDeploymentsO
 }
 
 type ListConnectorDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectorDefinitionId is a required field
 	ConnectorDefinitionId *string `location:"uri" locationName:"ConnectorDefinitionId" type:"string" required:"true"`
@@ -15886,7 +15886,7 @@ func (s *ListConnectorDefinitionVersionsOutput) SetVersions(v []*VersionInformat
 }
 
 type ListConnectorDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -15962,7 +15962,7 @@ func (s *ListConnectorDefinitionsOutput) SetNextToken(v string) *ListConnectorDe
 }
 
 type ListCoreDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// CoreDefinitionId is a required field
 	CoreDefinitionId *string `location:"uri" locationName:"CoreDefinitionId" type:"string" required:"true"`
@@ -16063,7 +16063,7 @@ func (s *ListCoreDefinitionVersionsOutput) SetVersions(v []*VersionInformation) 
 }
 
 type ListCoreDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -16139,7 +16139,7 @@ func (s *ListCoreDefinitionsOutput) SetNextToken(v string) *ListCoreDefinitionsO
 }
 
 type ListDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -16243,7 +16243,7 @@ func (s *ListDeploymentsOutput) SetNextToken(v string) *ListDeploymentsOutput {
 }
 
 type ListDeviceDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceDefinitionId is a required field
 	DeviceDefinitionId *string `location:"uri" locationName:"DeviceDefinitionId" type:"string" required:"true"`
@@ -16344,7 +16344,7 @@ func (s *ListDeviceDefinitionVersionsOutput) SetVersions(v []*VersionInformation
 }
 
 type ListDeviceDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -16420,7 +16420,7 @@ func (s *ListDeviceDefinitionsOutput) SetNextToken(v string) *ListDeviceDefiniti
 }
 
 type ListFunctionDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FunctionDefinitionId is a required field
 	FunctionDefinitionId *string `location:"uri" locationName:"FunctionDefinitionId" type:"string" required:"true"`
@@ -16521,7 +16521,7 @@ func (s *ListFunctionDefinitionVersionsOutput) SetVersions(v []*VersionInformati
 }
 
 type ListFunctionDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -16597,7 +16597,7 @@ func (s *ListFunctionDefinitionsOutput) SetNextToken(v string) *ListFunctionDefi
 }
 
 type ListGroupCertificateAuthoritiesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -16675,7 +16675,7 @@ func (s *ListGroupCertificateAuthoritiesOutput) SetGroupCertificateAuthorities(v
 }
 
 type ListGroupVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// GroupId is a required field
 	GroupId *string `location:"uri" locationName:"GroupId" type:"string" required:"true"`
@@ -16776,7 +16776,7 @@ func (s *ListGroupVersionsOutput) SetVersions(v []*VersionInformation) *ListGrou
 }
 
 type ListGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -16855,7 +16855,7 @@ func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
 }
 
 type ListLoggerDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LoggerDefinitionId is a required field
 	LoggerDefinitionId *string `location:"uri" locationName:"LoggerDefinitionId" type:"string" required:"true"`
@@ -16956,7 +16956,7 @@ func (s *ListLoggerDefinitionVersionsOutput) SetVersions(v []*VersionInformation
 }
 
 type ListLoggerDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -17032,7 +17032,7 @@ func (s *ListLoggerDefinitionsOutput) SetNextToken(v string) *ListLoggerDefiniti
 }
 
 type ListResourceDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -17133,7 +17133,7 @@ func (s *ListResourceDefinitionVersionsOutput) SetVersions(v []*VersionInformati
 }
 
 type ListResourceDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -17209,7 +17209,7 @@ func (s *ListResourceDefinitionsOutput) SetNextToken(v string) *ListResourceDefi
 }
 
 type ListSubscriptionDefinitionVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -17310,7 +17310,7 @@ func (s *ListSubscriptionDefinitionVersionsOutput) SetVersions(v []*VersionInfor
 }
 
 type ListSubscriptionDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"MaxResults" type:"string"`
 
@@ -17386,7 +17386,7 @@ func (s *ListSubscriptionDefinitionsOutput) SetNextToken(v string) *ListSubscrip
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -18503,7 +18503,7 @@ func (s *StartBulkDeploymentOutput) SetBulkDeploymentId(v string) *StartBulkDepl
 }
 
 type StopBulkDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BulkDeploymentId is a required field
 	BulkDeploymentId *string `location:"uri" locationName:"BulkDeploymentId" type:"string" required:"true"`
@@ -18550,7 +18550,7 @@ func (s *StopBulkDeploymentInput) SetBulkDeploymentId(v string) *StopBulkDeploym
 }
 
 type StopBulkDeploymentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -18773,7 +18773,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -18886,7 +18886,7 @@ func (s *TelemetryConfigurationUpdate) SetTelemetry(v string) *TelemetryConfigur
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -18945,7 +18945,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19119,7 +19119,7 @@ func (s *UpdateConnectorDefinitionInput) SetName(v string) *UpdateConnectorDefin
 }
 
 type UpdateConnectorDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19196,7 +19196,7 @@ func (s *UpdateCoreDefinitionInput) SetName(v string) *UpdateCoreDefinitionInput
 }
 
 type UpdateCoreDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19273,7 +19273,7 @@ func (s *UpdateDeviceDefinitionInput) SetName(v string) *UpdateDeviceDefinitionI
 }
 
 type UpdateDeviceDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19350,7 +19350,7 @@ func (s *UpdateFunctionDefinitionInput) SetName(v string) *UpdateFunctionDefinit
 }
 
 type UpdateFunctionDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19529,7 +19529,7 @@ func (s *UpdateGroupInput) SetName(v string) *UpdateGroupInput {
 }
 
 type UpdateGroupOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19606,7 +19606,7 @@ func (s *UpdateLoggerDefinitionInput) SetName(v string) *UpdateLoggerDefinitionI
 }
 
 type UpdateLoggerDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19683,7 +19683,7 @@ func (s *UpdateResourceDefinitionInput) SetResourceDefinitionId(v string) *Updat
 }
 
 type UpdateResourceDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19760,7 +19760,7 @@ func (s *UpdateSubscriptionDefinitionInput) SetSubscriptionDefinitionId(v string
 }
 
 type UpdateSubscriptionDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19843,7 +19843,7 @@ func (s *UpdateThingRuntimeConfigurationInput) SetThingName(v string) *UpdateThi
 }
 
 type UpdateThingRuntimeConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

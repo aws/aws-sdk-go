@@ -3913,7 +3913,7 @@ func (s *CreateProfileOutput) SetProfileId(v string) *CreateProfileOutput {
 }
 
 type DeleteDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of the domain.
 	//
@@ -4410,7 +4410,7 @@ func (s *DeleteProfileObjectOutput) SetMessage(v string) *DeleteProfileObjectOut
 }
 
 type DeleteProfileObjectTypeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of the domain.
 	//
@@ -4955,7 +4955,7 @@ func (s *FlowDefinition) SetTriggerConfig(v *TriggerConfig) *FlowDefinition {
 }
 
 type GetDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of the domain.
 	//
@@ -5272,7 +5272,7 @@ func (s *GetIntegrationOutput) SetUri(v string) *GetIntegrationOutput {
 }
 
 type GetMatchesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of the domain.
 	//
@@ -5404,7 +5404,7 @@ func (s *GetMatchesOutput) SetPotentialMatches(v int64) *GetMatchesOutput {
 }
 
 type GetProfileObjectTypeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of the domain.
 	//
@@ -5601,7 +5601,7 @@ func (s *GetProfileObjectTypeOutput) SetTemplateId(v string) *GetProfileObjectTy
 }
 
 type GetProfileObjectTypeTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique identifier for the object template.
 	//
@@ -6007,7 +6007,7 @@ func (s *ListDomainItem) SetTags(v map[string]*string) *ListDomainItem {
 }
 
 type ListDomainsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of objects returned per page.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -6190,7 +6190,7 @@ func (s *ListIntegrationItem) SetUri(v string) *ListIntegrationItem {
 }
 
 type ListIntegrationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of the domain.
 	//
@@ -6425,7 +6425,7 @@ func (s *ListProfileObjectTypeTemplateItem) SetTemplateId(v string) *ListProfile
 }
 
 type ListProfileObjectTypeTemplatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of objects returned per page.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -6521,7 +6521,7 @@ func (s *ListProfileObjectTypeTemplatesOutput) SetNextToken(v string) *ListProfi
 }
 
 type ListProfileObjectTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of the domain.
 	//
@@ -6844,7 +6844,7 @@ func (s *ListProfileObjectsOutput) SetNextToken(v string) *ListProfileObjectsOut
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource for which you want to view tags.
 	//
@@ -8984,7 +8984,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9273,7 +9273,7 @@ func (s *TriggerProperties) SetScheduled(v *ScheduledTriggerProperties) *Trigger
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource from which you are removing tags.
 	//
@@ -9339,7 +9339,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

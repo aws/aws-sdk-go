@@ -178,7 +178,7 @@ func (c *OutputService1ProtocolTest) OutputService1TestCaseOperation1WithContext
 }
 
 type OutputService1TestShapeOutputService1TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService1TestShapeOutputService1TestCaseOperation1Output struct {
@@ -444,7 +444,7 @@ func (s *OutputService2TestShapeBlobContainer) SetFoo(v []byte) *OutputService2T
 }
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService2TestShapeOutputService2TestCaseOperation1Output struct {
@@ -600,7 +600,7 @@ func (c *OutputService3ProtocolTest) OutputService3TestCaseOperation1WithContext
 }
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService3TestShapeOutputService3TestCaseOperation1Output struct {
@@ -815,7 +815,7 @@ func (c *OutputService4ProtocolTest) OutputService4TestCaseOperation1WithContext
 }
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService4TestShapeOutputService4TestCaseOperation1Output struct {
@@ -962,7 +962,7 @@ func (c *OutputService5ProtocolTest) OutputService5TestCaseOperation1WithContext
 }
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService5TestShapeOutputService5TestCaseOperation1Output struct {
@@ -1121,7 +1121,7 @@ func (c *OutputService6ProtocolTest) OutputService6TestCaseOperation1WithContext
 }
 
 type OutputService6TestShapeOutputService6TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService6TestShapeOutputService6TestCaseOperation1Output struct {
@@ -1268,7 +1268,7 @@ func (c *OutputService7ProtocolTest) OutputService7TestCaseOperation1WithContext
 }
 
 type OutputService7TestShapeOutputService7TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService7TestShapeOutputService7TestCaseOperation1Output struct {
@@ -1415,7 +1415,7 @@ func (c *OutputService8ProtocolTest) OutputService8TestCaseOperation1WithContext
 }
 
 type OutputService8TestShapeOutputService8TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService8TestShapeOutputService8TestCaseOperation1Output struct {
@@ -1563,11 +1563,11 @@ func (c *OutputService9ProtocolTest) OutputService9TestCaseOperation1WithContext
 }
 
 type OutputService9TestShapeOutputService9TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService9TestShapeOutputService9TestCaseOperation1Output struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // OutputService10ProtocolTest provides the API operation methods for making requests to
@@ -1702,11 +1702,11 @@ func (c *OutputService10ProtocolTest) OutputService10TestCaseOperation1WithConte
 }
 
 type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService10TestShapeOutputService10TestCaseOperation1Output struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// By default unmarshaled keys are written as a map keys in following canonicalized format:
 	// the first letter and any letter following a hyphen will be capitalized, and the rest as lowercase.
@@ -1875,7 +1875,7 @@ func (s *OutputService11TestShapeBodyStructure) SetFoo(v string) *OutputService1
 }
 
 type OutputService11TestShapeOutputService11TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService11TestShapeOutputService11TestCaseOperation1Output struct {
@@ -2030,7 +2030,7 @@ func (c *OutputService12ProtocolTest) OutputService12TestCaseOperation1WithConte
 }
 
 type OutputService12TestShapeOutputService12TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService12TestShapeOutputService12TestCaseOperation1Output struct {
@@ -2245,7 +2245,7 @@ func (c *OutputService13ProtocolTest) OutputService13TestCaseOperation2WithConte
 }
 
 type OutputService13TestShapeOutputService13TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService13TestShapeOutputService13TestCaseOperation1Output struct {
@@ -2277,7 +2277,7 @@ func (s *OutputService13TestShapeOutputService13TestCaseOperation1Output) SetHea
 }
 
 type OutputService13TestShapeOutputService13TestCaseOperation2Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService13TestShapeOutputService13TestCaseOperation2Output struct {
@@ -2511,7 +2511,7 @@ func (c *OutputService14ProtocolTest) OutputService14TestCaseOperation2WithConte
 }
 
 type OutputService14TestShapeOutputService14TestCaseOperation1Input struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 type OutputService14TestShapeOutputService14TestCaseOperation1Output struct {
@@ -2571,7 +2571,7 @@ func (s *OutputService14TestShapeOutputService14TestCaseOperation2Input) SetList
 }
 
 type OutputService14TestShapeOutputService14TestCaseOperation2Output struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 const (

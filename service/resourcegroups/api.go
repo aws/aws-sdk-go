@@ -2541,7 +2541,7 @@ func (s *GetGroupQueryOutput) SetGroupQuery(v *GroupQuery) *GetGroupQueryOutput 
 }
 
 type GetTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource group whose tags you want to retrieve.
 	//
@@ -3865,7 +3865,7 @@ func (s *PutGroupConfigurationInput) SetGroup(v string) *PutGroupConfigurationIn
 }
 
 type PutGroupConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

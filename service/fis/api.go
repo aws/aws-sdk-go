@@ -2056,7 +2056,7 @@ func (s *CreateExperimentTemplateTargetInput) SetSelectionMode(v string) *Create
 }
 
 type DeleteExperimentTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the experiment template.
 	//
@@ -3087,7 +3087,7 @@ func (s *ExperimentTemplateTargetInputFilter) SetValues(v []*string) *Experiment
 }
 
 type GetActionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the action.
 	//
@@ -3167,7 +3167,7 @@ func (s *GetActionOutput) SetAction(v *Action) *GetActionOutput {
 }
 
 type GetExperimentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the experiment.
 	//
@@ -3247,7 +3247,7 @@ func (s *GetExperimentOutput) SetExperiment(v *Experiment) *GetExperimentOutput 
 }
 
 type GetExperimentTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the experiment template.
 	//
@@ -3327,7 +3327,7 @@ func (s *GetExperimentTemplateOutput) SetExperimentTemplate(v *ExperimentTemplat
 }
 
 type ListActionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
@@ -3425,7 +3425,7 @@ func (s *ListActionsOutput) SetNextToken(v string) *ListActionsOutput {
 }
 
 type ListExperimentTemplatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
@@ -3523,7 +3523,7 @@ func (s *ListExperimentTemplatesOutput) SetNextToken(v string) *ListExperimentTe
 }
 
 type ListExperimentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return with a single call. To retrieve the
 	// remaining results, make another call with the returned nextToken value.
@@ -3621,7 +3621,7 @@ func (s *ListExperimentsOutput) SetNextToken(v string) *ListExperimentsOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -3928,7 +3928,7 @@ func (s *StartExperimentOutput) SetExperiment(v *Experiment) *StartExperimentOut
 }
 
 type StopExperimentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the experiment.
 	//
@@ -4071,7 +4071,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4093,7 +4093,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -4151,7 +4151,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

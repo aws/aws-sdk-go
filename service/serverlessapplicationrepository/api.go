@@ -2727,7 +2727,7 @@ func (s *CreateCloudFormationTemplateOutput) SetTemplateUrl(v string) *CreateClo
 }
 
 type DeleteApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -2774,7 +2774,7 @@ func (s *DeleteApplicationInput) SetApplicationId(v string) *DeleteApplicationIn
 }
 
 type DeleteApplicationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2864,7 +2864,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -3046,7 +3046,7 @@ func (s *GetApplicationOutput) SetVersion(v *Version) *GetApplicationOutput {
 }
 
 type GetApplicationPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -3123,7 +3123,7 @@ func (s *GetApplicationPolicyOutput) SetStatements(v []*ApplicationPolicyStateme
 }
 
 type GetCloudFormationTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -3333,7 +3333,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListApplicationDependenciesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -3445,7 +3445,7 @@ func (s *ListApplicationDependenciesOutput) SetNextToken(v string) *ListApplicat
 }
 
 type ListApplicationVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"applicationId" type:"string" required:"true"`
@@ -3549,7 +3549,7 @@ func (s *ListApplicationVersionsOutput) SetVersions(v []*VersionSummary) *ListAp
 }
 
 type ListApplicationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxItems *int64 `location:"querystring" locationName:"maxItems" min:"1" type:"integer"`
 
@@ -4389,7 +4389,7 @@ func (s *UnshareApplicationInput) SetOrganizationId(v string) *UnshareApplicatio
 }
 
 type UnshareApplicationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

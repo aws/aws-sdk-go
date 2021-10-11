@@ -8079,7 +8079,7 @@ func (s *DeadLetterConfig) SetTargetArn(v string) *DeadLetterConfig {
 }
 
 type DeleteAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -8156,7 +8156,7 @@ func (s *DeleteAliasInput) SetName(v string) *DeleteAliasInput {
 }
 
 type DeleteAliasOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8178,7 +8178,7 @@ func (s DeleteAliasOutput) GoString() string {
 }
 
 type DeleteCodeSigningConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The The Amazon Resource Name (ARN) of the code signing configuration.
 	//
@@ -8227,7 +8227,7 @@ func (s *DeleteCodeSigningConfigInput) SetCodeSigningConfigArn(v string) *Delete
 }
 
 type DeleteCodeSigningConfigOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8249,7 +8249,7 @@ func (s DeleteCodeSigningConfigOutput) GoString() string {
 }
 
 type DeleteEventSourceMappingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the event source mapping.
 	//
@@ -8298,7 +8298,7 @@ func (s *DeleteEventSourceMappingInput) SetUUID(v string) *DeleteEventSourceMapp
 }
 
 type DeleteFunctionCodeSigningConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -8358,7 +8358,7 @@ func (s *DeleteFunctionCodeSigningConfigInput) SetFunctionName(v string) *Delete
 }
 
 type DeleteFunctionCodeSigningConfigOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8380,7 +8380,7 @@ func (s DeleteFunctionCodeSigningConfigOutput) GoString() string {
 }
 
 type DeleteFunctionConcurrencyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -8440,7 +8440,7 @@ func (s *DeleteFunctionConcurrencyInput) SetFunctionName(v string) *DeleteFuncti
 }
 
 type DeleteFunctionConcurrencyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8462,7 +8462,7 @@ func (s DeleteFunctionConcurrencyOutput) GoString() string {
 }
 
 type DeleteFunctionEventInvokeConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function, version, or alias.
 	//
@@ -8535,7 +8535,7 @@ func (s *DeleteFunctionEventInvokeConfigInput) SetQualifier(v string) *DeleteFun
 }
 
 type DeleteFunctionEventInvokeConfigOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8557,7 +8557,7 @@ func (s DeleteFunctionEventInvokeConfigOutput) GoString() string {
 }
 
 type DeleteFunctionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function or version.
 	//
@@ -8631,7 +8631,7 @@ func (s *DeleteFunctionInput) SetQualifier(v string) *DeleteFunctionInput {
 }
 
 type DeleteFunctionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8653,7 +8653,7 @@ func (s DeleteFunctionOutput) GoString() string {
 }
 
 type DeleteLayerVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or Amazon Resource Name (ARN) of the layer.
 	//
@@ -8716,7 +8716,7 @@ func (s *DeleteLayerVersionInput) SetVersionNumber(v int64) *DeleteLayerVersionI
 }
 
 type DeleteLayerVersionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8738,7 +8738,7 @@ func (s DeleteLayerVersionOutput) GoString() string {
 }
 
 type DeleteProvisionedConcurrencyConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -8815,7 +8815,7 @@ func (s *DeleteProvisionedConcurrencyConfigInput) SetQualifier(v string) *Delete
 }
 
 type DeleteProvisionedConcurrencyConfigOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10417,7 +10417,7 @@ func (s *FunctionEventInvokeConfig) SetMaximumRetryAttempts(v int64) *FunctionEv
 }
 
 type GetAccountSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10479,7 +10479,7 @@ func (s *GetAccountSettingsOutput) SetAccountUsage(v *AccountUsage) *GetAccountS
 }
 
 type GetAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -10556,7 +10556,7 @@ func (s *GetAliasInput) SetName(v string) *GetAliasInput {
 }
 
 type GetCodeSigningConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The The Amazon Resource Name (ARN) of the code signing configuration.
 	//
@@ -10638,7 +10638,7 @@ func (s *GetCodeSigningConfigOutput) SetCodeSigningConfig(v *CodeSigningConfig) 
 }
 
 type GetEventSourceMappingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the event source mapping.
 	//
@@ -10687,7 +10687,7 @@ func (s *GetEventSourceMappingInput) SetUUID(v string) *GetEventSourceMappingInp
 }
 
 type GetFunctionCodeSigningConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -10802,7 +10802,7 @@ func (s *GetFunctionCodeSigningConfigOutput) SetFunctionName(v string) *GetFunct
 }
 
 type GetFunctionConcurrencyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -10893,7 +10893,7 @@ func (s *GetFunctionConcurrencyOutput) SetReservedConcurrentExecutions(v int64) 
 }
 
 type GetFunctionConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function, version, or alias.
 	//
@@ -10967,7 +10967,7 @@ func (s *GetFunctionConfigurationInput) SetQualifier(v string) *GetFunctionConfi
 }
 
 type GetFunctionEventInvokeConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function, version, or alias.
 	//
@@ -11117,7 +11117,7 @@ func (s *GetFunctionEventInvokeConfigOutput) SetMaximumRetryAttempts(v int64) *G
 }
 
 type GetFunctionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function, version, or alias.
 	//
@@ -11249,7 +11249,7 @@ func (s *GetFunctionOutput) SetTags(v map[string]*string) *GetFunctionOutput {
 }
 
 type GetLayerVersionByArnInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the layer version.
 	//
@@ -11402,7 +11402,7 @@ func (s *GetLayerVersionByArnOutput) SetVersion(v int64) *GetLayerVersionByArnOu
 }
 
 type GetLayerVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or Amazon Resource Name (ARN) of the layer.
 	//
@@ -11569,7 +11569,7 @@ func (s *GetLayerVersionOutput) SetVersion(v int64) *GetLayerVersionOutput {
 }
 
 type GetLayerVersionPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or Amazon Resource Name (ARN) of the layer.
 	//
@@ -11672,7 +11672,7 @@ func (s *GetLayerVersionPolicyOutput) SetRevisionId(v string) *GetLayerVersionPo
 }
 
 type GetPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function, version, or alias.
 	//
@@ -11785,7 +11785,7 @@ func (s *GetPolicyOutput) SetRevisionId(v string) *GetPolicyOutput {
 }
 
 type GetProvisionedConcurrencyConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -12625,7 +12625,7 @@ func (s *InvokeAsyncInput) SetInvokeArgs(v io.ReadSeeker) *InvokeAsyncInput {
 //
 // Deprecated: InvokeAsyncOutput has been deprecated
 type InvokeAsyncOutput struct {
-	_ struct{} `deprecated:"true" type:"structure"`
+	_ struct{} `deprecated:"true" type:"structure" nopayload:"true"`
 
 	// The status code.
 	Status *int64 `location:"statusCode" type:"integer"`
@@ -13475,7 +13475,7 @@ func (s *LayersListItem) SetLayerName(v string) *LayersListItem {
 }
 
 type ListAliasesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -13609,7 +13609,7 @@ func (s *ListAliasesOutput) SetNextMarker(v string) *ListAliasesOutput {
 }
 
 type ListCodeSigningConfigsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specify the pagination token that's returned by a previous request to retrieve
 	// the next page of results.
@@ -13703,7 +13703,7 @@ func (s *ListCodeSigningConfigsOutput) SetNextMarker(v string) *ListCodeSigningC
 }
 
 type ListEventSourceMappingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the event source.
 	//
@@ -13841,7 +13841,7 @@ func (s *ListEventSourceMappingsOutput) SetNextMarker(v string) *ListEventSource
 }
 
 type ListFunctionEventInvokeConfigsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -13963,7 +13963,7 @@ func (s *ListFunctionEventInvokeConfigsOutput) SetNextMarker(v string) *ListFunc
 }
 
 type ListFunctionsByCodeSigningConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The The Amazon Resource Name (ARN) of the code signing configuration.
 	//
@@ -14074,7 +14074,7 @@ func (s *ListFunctionsByCodeSigningConfigOutput) SetNextMarker(v string) *ListFu
 }
 
 type ListFunctionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set to ALL to include entries for all published versions of each function.
 	FunctionVersion *string `location:"querystring" locationName:"FunctionVersion" type:"string" enum:"FunctionVersion"`
@@ -14192,7 +14192,7 @@ func (s *ListFunctionsOutput) SetNextMarker(v string) *ListFunctionsOutput {
 }
 
 type ListLayerVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The compatible instruction set architecture (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
 	CompatibleArchitecture *string `location:"querystring" locationName:"CompatibleArchitecture" type:"string" enum:"Architecture"`
@@ -14320,7 +14320,7 @@ func (s *ListLayerVersionsOutput) SetNextMarker(v string) *ListLayerVersionsOutp
 }
 
 type ListLayersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The compatible instruction set architecture (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
 	CompatibleArchitecture *string `location:"querystring" locationName:"CompatibleArchitecture" type:"string" enum:"Architecture"`
@@ -14431,7 +14431,7 @@ func (s *ListLayersOutput) SetNextMarker(v string) *ListLayersOutput {
 }
 
 type ListProvisionedConcurrencyConfigsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -14553,7 +14553,7 @@ func (s *ListProvisionedConcurrencyConfigsOutput) SetProvisionedConcurrencyConfi
 }
 
 type ListTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The function's Amazon Resource Name (ARN). Note: Lambda does not support
 	// adding tags to aliases or versions.
@@ -14634,7 +14634,7 @@ func (s *ListTagsOutput) SetTags(v map[string]*string) *ListTagsOutput {
 }
 
 type ListVersionsByFunctionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function.
 	//
@@ -16019,7 +16019,7 @@ func (s *PutProvisionedConcurrencyConfigOutput) SetStatusReason(v string) *PutPr
 }
 
 type RemoveLayerVersionPermissionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or Amazon Resource Name (ARN) of the layer.
 	//
@@ -16109,7 +16109,7 @@ func (s *RemoveLayerVersionPermissionInput) SetVersionNumber(v int64) *RemoveLay
 }
 
 type RemoveLayerVersionPermissionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -16131,7 +16131,7 @@ func (s RemoveLayerVersionPermissionOutput) GoString() string {
 }
 
 type RemovePermissionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Lambda function, version, or alias.
 	//
@@ -16233,7 +16233,7 @@ func (s *RemovePermissionInput) SetStatementId(v string) *RemovePermissionInput 
 }
 
 type RemovePermissionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -16913,7 +16913,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17138,7 +17138,7 @@ func (s *UnsupportedMediaTypeException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The function's Amazon Resource Name (ARN).
 	//
@@ -17201,7 +17201,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

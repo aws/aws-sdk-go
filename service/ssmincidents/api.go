@@ -3944,7 +3944,7 @@ func (s *DeleteIncidentRecordInput) SetArn(v string) *DeleteIncidentRecordInput 
 }
 
 type DeleteIncidentRecordOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4014,7 +4014,7 @@ func (s *DeleteRegionAction) SetRegionName(v string) *DeleteRegionAction {
 }
 
 type DeleteReplicationSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the replication set you're deleting.
 	//
@@ -4060,7 +4060,7 @@ func (s *DeleteReplicationSetInput) SetArn(v string) *DeleteReplicationSetInput 
 }
 
 type DeleteReplicationSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4143,7 +4143,7 @@ func (s *DeleteResourcePolicyInput) SetResourceArn(v string) *DeleteResourcePoli
 }
 
 type DeleteResourcePolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4211,7 +4211,7 @@ func (s *DeleteResponsePlanInput) SetArn(v string) *DeleteResponsePlanInput {
 }
 
 type DeleteResponsePlanOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4293,7 +4293,7 @@ func (s *DeleteTimelineEventInput) SetIncidentRecordArn(v string) *DeleteTimelin
 }
 
 type DeleteTimelineEventOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4316,7 +4316,7 @@ func (s DeleteTimelineEventOutput) GoString() string {
 
 // Used to remove the chat channel from an incident record or response plan.
 type EmptyChatChannel struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4478,7 +4478,7 @@ func (s *Filter) SetKey(v string) *Filter {
 }
 
 type GetIncidentRecordInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the incident record.
 	//
@@ -4557,7 +4557,7 @@ func (s *GetIncidentRecordOutput) SetIncidentRecord(v *IncidentRecord) *GetIncid
 }
 
 type GetReplicationSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the replication set you want to retrieve.
 	//
@@ -4746,7 +4746,7 @@ func (s *GetResourcePoliciesOutput) SetResourcePolicies(v []*ResourcePolicy) *Ge
 }
 
 type GetResponsePlanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the response plan.
 	//
@@ -4884,7 +4884,7 @@ func (s *GetResponsePlanOutput) SetName(v string) *GetResponsePlanOutput {
 }
 
 type GetTimelineEventInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the event. You can get an event's ID when you create it or by using
 	// ListTimelineEvents.
@@ -6018,7 +6018,7 @@ func (s *ListResponsePlansOutput) SetResponsePlanSummaries(v []*ResponsePlanSumm
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the response plan.
 	//
@@ -7290,7 +7290,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7559,7 +7559,7 @@ func (s *TriggerDetails) SetTriggerArn(v string) *TriggerDetails {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the response plan you're removing a tag
 	// from.
@@ -7626,7 +7626,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7717,7 +7717,7 @@ func (s *UpdateDeletionProtectionInput) SetDeletionProtected(v bool) *UpdateDele
 }
 
 type UpdateDeletionProtectionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7874,7 +7874,7 @@ func (s *UpdateIncidentRecordInput) SetTitle(v string) *UpdateIncidentRecordInpu
 }
 
 type UpdateIncidentRecordOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7971,7 +7971,7 @@ func (s *UpdateRelatedItemsInput) SetRelatedItemsUpdate(v *RelatedItemsUpdate) *
 }
 
 type UpdateRelatedItemsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8136,7 +8136,7 @@ func (s *UpdateReplicationSetInput) SetClientToken(v string) *UpdateReplicationS
 }
 
 type UpdateReplicationSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8329,7 +8329,7 @@ func (s *UpdateResponsePlanInput) SetIncidentTemplateTitle(v string) *UpdateResp
 }
 
 type UpdateResponsePlanOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8448,7 +8448,7 @@ func (s *UpdateTimelineEventInput) SetIncidentRecordArn(v string) *UpdateTimelin
 }
 
 type UpdateTimelineEventOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

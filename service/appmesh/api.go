@@ -6204,7 +6204,7 @@ func (s *CreateVirtualServiceOutput) SetVirtualService(v *VirtualServiceData) *C
 }
 
 type DeleteGatewayRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the gateway route to delete.
 	//
@@ -6335,7 +6335,7 @@ func (s *DeleteGatewayRouteOutput) SetGatewayRoute(v *GatewayRouteData) *DeleteG
 }
 
 type DeleteMeshInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete.
 	//
@@ -6417,7 +6417,7 @@ func (s *DeleteMeshOutput) SetMesh(v *MeshData) *DeleteMeshOutput {
 }
 
 type DeleteRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the route in.
 	//
@@ -6548,7 +6548,7 @@ func (s *DeleteRouteOutput) SetRoute(v *RouteData) *DeleteRouteOutput {
 }
 
 type DeleteVirtualGatewayInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the virtual gateway from.
 	//
@@ -6663,7 +6663,7 @@ func (s *DeleteVirtualGatewayOutput) SetVirtualGateway(v *VirtualGatewayData) *D
 
 // Deletes a virtual node input.
 type DeleteVirtualNodeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the virtual node in.
 	//
@@ -6777,7 +6777,7 @@ func (s *DeleteVirtualNodeOutput) SetVirtualNode(v *VirtualNodeData) *DeleteVirt
 }
 
 type DeleteVirtualRouterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the virtual router in.
 	//
@@ -6891,7 +6891,7 @@ func (s *DeleteVirtualRouterOutput) SetVirtualRouter(v *VirtualRouterData) *Dele
 }
 
 type DeleteVirtualServiceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to delete the virtual service in.
 	//
@@ -7005,7 +7005,7 @@ func (s *DeleteVirtualServiceOutput) SetVirtualService(v *VirtualServiceData) *D
 }
 
 type DescribeGatewayRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the gateway route to describe.
 	//
@@ -7136,7 +7136,7 @@ func (s *DescribeGatewayRouteOutput) SetGatewayRoute(v *GatewayRouteData) *Descr
 }
 
 type DescribeMeshInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh to describe.
 	//
@@ -7233,7 +7233,7 @@ func (s *DescribeMeshOutput) SetMesh(v *MeshData) *DescribeMeshOutput {
 }
 
 type DescribeRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the route resides in.
 	//
@@ -7364,7 +7364,7 @@ func (s *DescribeRouteOutput) SetRoute(v *RouteData) *DescribeRouteOutput {
 }
 
 type DescribeVirtualGatewayInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the gateway route resides in.
 	//
@@ -7478,7 +7478,7 @@ func (s *DescribeVirtualGatewayOutput) SetVirtualGateway(v *VirtualGatewayData) 
 }
 
 type DescribeVirtualNodeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the virtual node resides in.
 	//
@@ -7592,7 +7592,7 @@ func (s *DescribeVirtualNodeOutput) SetVirtualNode(v *VirtualNodeData) *Describe
 }
 
 type DescribeVirtualRouterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the virtual router resides in.
 	//
@@ -7706,7 +7706,7 @@ func (s *DescribeVirtualRouterOutput) SetVirtualRouter(v *VirtualRouterData) *De
 }
 
 type DescribeVirtualServiceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the service mesh that the virtual service resides in.
 	//
@@ -11085,7 +11085,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListGatewayRoutesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListGatewayRoutes in paginated
 	// output. When you use this parameter, ListGatewayRoutes returns only limit
@@ -11242,7 +11242,7 @@ func (s *ListGatewayRoutesOutput) SetNextToken(v string) *ListGatewayRoutesOutpu
 }
 
 type ListMeshesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListMeshes in paginated output.
 	// When you use this parameter, ListMeshes returns only limit results in a single
@@ -11352,7 +11352,7 @@ func (s *ListMeshesOutput) SetNextToken(v string) *ListMeshesOutput {
 }
 
 type ListRoutesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListRoutes in paginated output.
 	// When you use this parameter, ListRoutes returns only limit results in a single
@@ -11508,7 +11508,7 @@ func (s *ListRoutesOutput) SetRoutes(v []*RouteRef) *ListRoutesOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of tag results returned by ListTagsForResource in paginated
 	// output. When this parameter is used, ListTagsForResource returns only limit
@@ -11630,7 +11630,7 @@ func (s *ListTagsForResourceOutput) SetTags(v []*TagRef) *ListTagsForResourceOut
 }
 
 type ListVirtualGatewaysInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListVirtualGateways in paginated
 	// output. When you use this parameter, ListVirtualGateways returns only limit
@@ -11769,7 +11769,7 @@ func (s *ListVirtualGatewaysOutput) SetVirtualGateways(v []*VirtualGatewayRef) *
 }
 
 type ListVirtualNodesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListVirtualNodes in paginated output.
 	// When you use this parameter, ListVirtualNodes returns only limit results
@@ -11908,7 +11908,7 @@ func (s *ListVirtualNodesOutput) SetVirtualNodes(v []*VirtualNodeRef) *ListVirtu
 }
 
 type ListVirtualRoutersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListVirtualRouters in paginated
 	// output. When you use this parameter, ListVirtualRouters returns only limit
@@ -12047,7 +12047,7 @@ func (s *ListVirtualRoutersOutput) SetVirtualRouters(v []*VirtualRouterRef) *Lis
 }
 
 type ListVirtualServicesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results returned by ListVirtualServices in paginated
 	// output. When you use this parameter, ListVirtualServices returns only limit
@@ -14339,7 +14339,7 @@ func (s *TagResourceInput) SetTags(v []*TagRef) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15010,7 +15010,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

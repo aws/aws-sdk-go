@@ -3845,7 +3845,7 @@ func (s *AssetSummary) SetSize(v int64) *AssetSummary {
 }
 
 type AssociateExternalConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository.
 	//
@@ -4593,7 +4593,7 @@ func (s *CreateRepositoryOutput) SetRepository(v *RepositoryDescription) *Create
 }
 
 type DeleteDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain to delete.
 	//
@@ -4686,7 +4686,7 @@ func (s *DeleteDomainOutput) SetDomain(v *DomainDescription) *DeleteDomainOutput
 }
 
 type DeleteDomainPermissionsPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain associated with the resource policy to be deleted.
 	//
@@ -5015,7 +5015,7 @@ func (s *DeletePackageVersionsOutput) SetSuccessfulVersions(v map[string]*Succes
 }
 
 type DeleteRepositoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository to delete.
 	//
@@ -5125,7 +5125,7 @@ func (s *DeleteRepositoryOutput) SetRepository(v *RepositoryDescription) *Delete
 }
 
 type DeleteRepositoryPermissionsPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository associated with the resource
 	// policy to be deleted.
@@ -5251,7 +5251,7 @@ func (s *DeleteRepositoryPermissionsPolicyOutput) SetPolicy(v *ResourcePolicy) *
 }
 
 type DescribeDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A string that specifies the name of the requested domain.
 	//
@@ -5345,7 +5345,7 @@ func (s *DescribeDomainOutput) SetDomain(v *DomainDescription) *DescribeDomainOu
 }
 
 type DescribePackageVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository that contains the package
 	// version.
@@ -5534,7 +5534,7 @@ func (s *DescribePackageVersionOutput) SetPackageVersion(v *PackageVersionDescri
 }
 
 type DescribeRepositoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository to describe.
 	//
@@ -5644,7 +5644,7 @@ func (s *DescribeRepositoryOutput) SetRepository(v *RepositoryDescription) *Desc
 }
 
 type DisassociateExternalConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository from which to remove
 	// the external repository.
@@ -6197,7 +6197,7 @@ func (s *DomainSummary) SetStatus(v string) *DomainSummary {
 }
 
 type GetAuthorizationTokenInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that is in scope for the generated authorization token.
 	//
@@ -6311,7 +6311,7 @@ func (s *GetAuthorizationTokenOutput) SetExpiration(v time.Time) *GetAuthorizati
 }
 
 type GetDomainPermissionsPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain to which the resource policy is attached.
 	//
@@ -6404,7 +6404,7 @@ func (s *GetDomainPermissionsPolicyOutput) SetPolicy(v *ResourcePolicy) *GetDoma
 }
 
 type GetPackageVersionAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the requested asset.
 	//
@@ -6646,7 +6646,7 @@ func (s *GetPackageVersionAssetOutput) SetPackageVersionRevision(v string) *GetP
 }
 
 type GetPackageVersionReadmeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository that contains the package
 	// version with the requested readme file.
@@ -6892,7 +6892,7 @@ func (s *GetPackageVersionReadmeOutput) SetVersionRevision(v string) *GetPackage
 }
 
 type GetRepositoryEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository.
 	//
@@ -7023,7 +7023,7 @@ func (s *GetRepositoryEndpointOutput) SetRepositoryEndpoint(v string) *GetReposi
 }
 
 type GetRepositoryPermissionsPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain containing the repository whose associated resource
 	// policy is to be retrieved.
@@ -7339,7 +7339,7 @@ func (s *ListDomainsOutput) SetNextToken(v string) *ListDomainsOutput {
 }
 
 type ListPackageVersionAssetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository associated with the package
 	// version assets.
@@ -7615,7 +7615,7 @@ func (s *ListPackageVersionAssetsOutput) SetVersionRevision(v string) *ListPacka
 }
 
 type ListPackageVersionDependenciesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository that contains the requested
 	// package version dependencies.
@@ -7886,7 +7886,7 @@ func (s *ListPackageVersionDependenciesOutput) SetVersionRevision(v string) *Lis
 }
 
 type ListPackageVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository that contains the returned
 	// package versions.
@@ -8175,7 +8175,7 @@ func (s *ListPackageVersionsOutput) SetVersions(v []*PackageVersionSummary) *Lis
 }
 
 type ListPackagesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain that contains the repository that contains the requested
 	// list of packages.
@@ -8370,7 +8370,7 @@ func (s *ListPackagesOutput) SetPackages(v []*PackageSummary) *ListPackagesOutpu
 }
 
 type ListRepositoriesInDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Filter the list of repositories to only include those that are managed by
 	// the AWS account ID.
@@ -8523,7 +8523,7 @@ func (s *ListRepositoriesInDomainOutput) SetRepositories(v []*RepositorySummary)
 }
 
 type ListRepositoriesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
@@ -8634,7 +8634,7 @@ func (s *ListRepositoriesOutput) SetRepositories(v []*RepositorySummary) *ListRe
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource to get tags for.
 	//
@@ -10028,7 +10028,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10181,7 +10181,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

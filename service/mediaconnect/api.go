@@ -4538,7 +4538,7 @@ func (s *CreateFlowOutput) SetFlow(v *Flow) *CreateFlowOutput {
 }
 
 type DeleteFlowInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
@@ -4626,7 +4626,7 @@ func (s *DeleteFlowOutput) SetStatus(v string) *DeleteFlowOutput {
 }
 
 type DescribeFlowInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
@@ -4714,7 +4714,7 @@ func (s *DescribeFlowOutput) SetMessages(v *Messages) *DescribeFlowOutput {
 }
 
 type DescribeOfferingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// OfferingArn is a required field
 	OfferingArn *string `location:"uri" locationName:"offeringArn" type:"string" required:"true"`
@@ -4794,7 +4794,7 @@ func (s *DescribeOfferingOutput) SetOffering(v *Offering) *DescribeOfferingOutpu
 }
 
 type DescribeReservationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ReservationArn is a required field
 	ReservationArn *string `location:"uri" locationName:"reservationArn" type:"string" required:"true"`
@@ -6401,7 +6401,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 type ListEntitlementsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6499,7 +6499,7 @@ func (s *ListEntitlementsOutput) SetNextToken(v string) *ListEntitlementsOutput 
 }
 
 type ListFlowsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6596,7 +6596,7 @@ func (s *ListFlowsOutput) SetNextToken(v string) *ListFlowsOutput {
 }
 
 type ListOfferingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6697,7 +6697,7 @@ func (s *ListOfferingsOutput) SetOfferings(v []*Offering) *ListOfferingsOutput {
 }
 
 type ListReservationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6798,7 +6798,7 @@ func (s *ListReservationsOutput) SetReservations(v []*Reservation) *ListReservat
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -8013,7 +8013,7 @@ func (s *PurchaseOfferingOutput) SetReservation(v *Reservation) *PurchaseOfferin
 }
 
 type RemoveFlowMediaStreamInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
@@ -8116,7 +8116,7 @@ func (s *RemoveFlowMediaStreamOutput) SetMediaStreamName(v string) *RemoveFlowMe
 }
 
 type RemoveFlowOutputInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
@@ -8220,7 +8220,7 @@ func (s *RemoveFlowOutputOutput) SetOutputArn(v string) *RemoveFlowOutputOutput 
 }
 
 type RemoveFlowSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
@@ -8324,7 +8324,7 @@ func (s *RemoveFlowSourceOutput) SetSourceArn(v string) *RemoveFlowSourceOutput 
 }
 
 type RemoveFlowVpcInterfaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
@@ -8663,7 +8663,7 @@ func (s *ResourceSpecification) SetResourceType(v string) *ResourceSpecification
 }
 
 type RevokeFlowEntitlementInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// EntitlementArn is a required field
 	EntitlementArn *string `location:"uri" locationName:"entitlementArn" type:"string" required:"true"`
@@ -9194,7 +9194,7 @@ func (s *SourcePriority) SetPrimarySource(v string) *SourcePriority {
 }
 
 type StartFlowInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
@@ -9282,7 +9282,7 @@ func (s *StartFlowOutput) SetStatus(v string) *StartFlowOutput {
 }
 
 type StopFlowInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// FlowArn is a required field
 	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
@@ -9434,7 +9434,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9636,7 +9636,7 @@ func (s *Transport) SetStreamId(v string) *Transport {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -9695,7 +9695,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

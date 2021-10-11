@@ -6076,7 +6076,7 @@ func (s *DataSource) SetType(v string) *DataSource {
 
 // Represents the input of a DeleteApiCache operation.
 type DeleteApiCacheInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -6126,7 +6126,7 @@ func (s *DeleteApiCacheInput) SetApiId(v string) *DeleteApiCacheInput {
 
 // Represents the output of a DeleteApiCache operation.
 type DeleteApiCacheOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6148,7 +6148,7 @@ func (s DeleteApiCacheOutput) GoString() string {
 }
 
 type DeleteApiKeyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -6214,7 +6214,7 @@ func (s *DeleteApiKeyInput) SetId(v string) *DeleteApiKeyInput {
 }
 
 type DeleteApiKeyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6236,7 +6236,7 @@ func (s DeleteApiKeyOutput) GoString() string {
 }
 
 type DeleteDataSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -6302,7 +6302,7 @@ func (s *DeleteDataSourceInput) SetName(v string) *DeleteDataSourceInput {
 }
 
 type DeleteDataSourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6324,7 +6324,7 @@ func (s DeleteDataSourceOutput) GoString() string {
 }
 
 type DeleteFunctionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The GraphQL API ID.
 	//
@@ -6390,7 +6390,7 @@ func (s *DeleteFunctionInput) SetFunctionId(v string) *DeleteFunctionInput {
 }
 
 type DeleteFunctionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6412,7 +6412,7 @@ func (s DeleteFunctionOutput) GoString() string {
 }
 
 type DeleteGraphqlApiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -6461,7 +6461,7 @@ func (s *DeleteGraphqlApiInput) SetApiId(v string) *DeleteGraphqlApiInput {
 }
 
 type DeleteGraphqlApiOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6483,7 +6483,7 @@ func (s DeleteGraphqlApiOutput) GoString() string {
 }
 
 type DeleteResolverInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -6566,7 +6566,7 @@ func (s *DeleteResolverInput) SetTypeName(v string) *DeleteResolverInput {
 }
 
 type DeleteResolverOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6588,7 +6588,7 @@ func (s DeleteResolverOutput) GoString() string {
 }
 
 type DeleteTypeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -6654,7 +6654,7 @@ func (s *DeleteTypeInput) SetTypeName(v string) *DeleteTypeInput {
 }
 
 type DeleteTypeOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6881,7 +6881,7 @@ func (s *ElasticsearchDataSourceConfig) SetEndpoint(v string) *ElasticsearchData
 
 // Represents the input of a FlushApiCache operation.
 type FlushApiCacheInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -6931,7 +6931,7 @@ func (s *FlushApiCacheInput) SetApiId(v string) *FlushApiCacheInput {
 
 // Represents the output of a FlushApiCache operation.
 type FlushApiCacheOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7064,7 +7064,7 @@ func (s *FunctionConfiguration) SetSyncConfig(v *SyncConfig) *FunctionConfigurat
 
 // Represents the input of a GetApiCache operation.
 type GetApiCacheInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -7145,7 +7145,7 @@ func (s *GetApiCacheOutput) SetApiCache(v *ApiCache) *GetApiCacheOutput {
 }
 
 type GetDataSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -7242,7 +7242,7 @@ func (s *GetDataSourceOutput) SetDataSource(v *DataSource) *GetDataSourceOutput 
 }
 
 type GetFunctionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The GraphQL API ID.
 	//
@@ -7339,7 +7339,7 @@ func (s *GetFunctionOutput) SetFunctionConfiguration(v *FunctionConfiguration) *
 }
 
 type GetGraphqlApiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID for the GraphQL API.
 	//
@@ -7419,7 +7419,7 @@ func (s *GetGraphqlApiOutput) SetGraphqlApi(v *GraphqlApi) *GetGraphqlApiOutput 
 }
 
 type GetIntrospectionSchemaInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -7524,7 +7524,7 @@ func (s *GetIntrospectionSchemaOutput) SetSchema(v []byte) *GetIntrospectionSche
 }
 
 type GetResolverInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -7638,7 +7638,7 @@ func (s *GetResolverOutput) SetResolver(v *Resolver) *GetResolverOutput {
 }
 
 type GetSchemaCreationStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -7728,7 +7728,7 @@ func (s *GetSchemaCreationStatusOutput) SetStatus(v string) *GetSchemaCreationSt
 }
 
 type GetTypeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -8388,7 +8388,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListApiKeysInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -8500,7 +8500,7 @@ func (s *ListApiKeysOutput) SetNextToken(v string) *ListApiKeysOutput {
 }
 
 type ListDataSourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -8612,7 +8612,7 @@ func (s *ListDataSourcesOutput) SetNextToken(v string) *ListDataSourcesOutput {
 }
 
 type ListFunctionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The GraphQL API ID.
 	//
@@ -8724,7 +8724,7 @@ func (s *ListFunctionsOutput) SetNextToken(v string) *ListFunctionsOutput {
 }
 
 type ListGraphqlApisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results you want the request to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -8819,7 +8819,7 @@ func (s *ListGraphqlApisOutput) SetNextToken(v string) *ListGraphqlApisOutput {
 }
 
 type ListResolversByFunctionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -8947,7 +8947,7 @@ func (s *ListResolversByFunctionOutput) SetResolvers(v []*Resolver) *ListResolve
 }
 
 type ListResolversInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -9076,7 +9076,7 @@ func (s *ListResolversOutput) SetResolvers(v []*Resolver) *ListResolversOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The GraphqlApi ARN.
 	//
@@ -9156,7 +9156,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 }
 
 type ListTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The API ID.
 	//
@@ -10060,7 +10060,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10214,7 +10214,7 @@ func (s *UnauthorizedException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The GraphqlApi ARN.
 	//
@@ -10280,7 +10280,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

@@ -4958,7 +4958,7 @@ func (s *CreateSessionOutput) SetSession(v *SessionData) *CreateSessionOutput {
 }
 
 type DeleteAssistantAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the assistant association. Can be either the ID or the
 	// ARN. URLs cannot contain the ARN.
@@ -5026,7 +5026,7 @@ func (s *DeleteAssistantAssociationInput) SetAssistantId(v string) *DeleteAssist
 }
 
 type DeleteAssistantAssociationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5048,7 +5048,7 @@ func (s DeleteAssistantAssociationOutput) GoString() string {
 }
 
 type DeleteAssistantInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Wisdom assistant. Can be either the ID or the ARN.
 	// URLs cannot contain the ARN.
@@ -5098,7 +5098,7 @@ func (s *DeleteAssistantInput) SetAssistantId(v string) *DeleteAssistantInput {
 }
 
 type DeleteAssistantOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5120,7 +5120,7 @@ func (s DeleteAssistantOutput) GoString() string {
 }
 
 type DeleteContentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the content. Can be either the ID or the ARN. URLs cannot
 	// contain the ARN.
@@ -5188,7 +5188,7 @@ func (s *DeleteContentInput) SetKnowledgeBaseId(v string) *DeleteContentInput {
 }
 
 type DeleteContentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5210,7 +5210,7 @@ func (s DeleteContentOutput) GoString() string {
 }
 
 type DeleteKnowledgeBaseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The knowledge base to delete content from. Can be either the ID or the ARN.
 	// URLs cannot contain the ARN.
@@ -5260,7 +5260,7 @@ func (s *DeleteKnowledgeBaseInput) SetKnowledgeBaseId(v string) *DeleteKnowledge
 }
 
 type DeleteKnowledgeBaseOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5457,7 +5457,7 @@ func (s *Filter) SetValue(v string) *Filter {
 }
 
 type GetAssistantAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the assistant association. Can be either the ID or the
 	// ARN. URLs cannot contain the ARN.
@@ -5556,7 +5556,7 @@ func (s *GetAssistantAssociationOutput) SetAssistantAssociation(v *AssistantAsso
 }
 
 type GetAssistantInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Wisdom assistant. Can be either the ID or the ARN.
 	// URLs cannot contain the ARN.
@@ -5637,7 +5637,7 @@ func (s *GetAssistantOutput) SetAssistant(v *AssistantData) *GetAssistantOutput 
 }
 
 type GetContentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the content. Can be either the ID or the ARN. URLs cannot
 	// contain the ARN.
@@ -5736,7 +5736,7 @@ func (s *GetContentOutput) SetContent(v *ContentData) *GetContentOutput {
 }
 
 type GetContentSummaryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the content. Can be either the ID or the ARN. URLs cannot
 	// contain the ARN.
@@ -5835,7 +5835,7 @@ func (s *GetContentSummaryOutput) SetContentSummary(v *ContentSummary) *GetConte
 }
 
 type GetKnowledgeBaseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The the identifier of the knowledge base. Can be either the ID or the ARN.
 	// URLs cannot contain the ARN.
@@ -5916,7 +5916,7 @@ func (s *GetKnowledgeBaseOutput) SetKnowledgeBase(v *KnowledgeBaseData) *GetKnow
 }
 
 type GetRecommendationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Wisdom assistant. Can be either the ID or the ARN.
 	// URLs cannot contain the ARN.
@@ -6041,7 +6041,7 @@ func (s *GetRecommendationsOutput) SetRecommendations(v []*RecommendationData) *
 }
 
 type GetSessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Wisdom assistant. Can be either the ID or the ARN.
 	// URLs cannot contain the ARN.
@@ -6480,7 +6480,7 @@ func (s *KnowledgeBaseSummary) SetTags(v map[string]*string) *KnowledgeBaseSumma
 }
 
 type ListAssistantAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the Wisdom assistant. Can be either the ID or the ARN.
 	// URLs cannot contain the ARN.
@@ -6597,7 +6597,7 @@ func (s *ListAssistantAssociationsOutput) SetNextToken(v string) *ListAssistantA
 }
 
 type ListAssistantsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -6696,7 +6696,7 @@ func (s *ListAssistantsOutput) SetNextToken(v string) *ListAssistantsOutput {
 }
 
 type ListContentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The the identifier of the knowledge base. Can be either the ID or the ARN.
 	// URLs cannot contain the ARN.
@@ -6813,7 +6813,7 @@ func (s *ListContentsOutput) SetNextToken(v string) *ListContentsOutput {
 }
 
 type ListKnowledgeBasesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -6912,7 +6912,7 @@ func (s *ListKnowledgeBasesOutput) SetNextToken(v string) *ListKnowledgeBasesOut
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -7418,7 +7418,7 @@ func (s *RecommendationData) SetRelevanceScore(v float64) *RecommendationData {
 }
 
 type RemoveKnowledgeBaseTemplateUriInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The the identifier of the knowledge base. Can be either the ID or the ARN.
 	// URLs cannot contain the ARN.
@@ -7468,7 +7468,7 @@ func (s *RemoveKnowledgeBaseTemplateUriInput) SetKnowledgeBaseId(v string) *Remo
 }
 
 type RemoveKnowledgeBaseTemplateUriOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8496,7 +8496,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8586,7 +8586,7 @@ func (s *TooManyTagsException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -8652,7 +8652,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

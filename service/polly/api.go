@@ -976,7 +976,7 @@ func (c *Polly) SynthesizeSpeechWithContext(ctx aws.Context, input *SynthesizeSp
 }
 
 type DeleteLexiconInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the lexicon to delete. Must be an existing lexicon in the region.
 	//
@@ -1025,7 +1025,7 @@ func (s *DeleteLexiconInput) SetName(v string) *DeleteLexiconInput {
 }
 
 type DeleteLexiconOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1047,7 +1047,7 @@ func (s DeleteLexiconOutput) GoString() string {
 }
 
 type DescribeVoicesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies the engine (standard or neural) used by Amazon Polly when processing
 	// input text for speech synthesis.
@@ -1220,7 +1220,7 @@ func (s *EngineNotSupportedException) RequestID() string {
 }
 
 type GetLexiconInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Name of the lexicon.
 	//
@@ -1311,7 +1311,7 @@ func (s *GetLexiconOutput) SetLexiconAttributes(v *LexiconAttributes) *GetLexico
 }
 
 type GetSpeechSynthesisTaskInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Polly generated identifier for a speech synthesis task.
 	//
@@ -2277,7 +2277,7 @@ func (s *LexiconSizeExceededException) RequestID() string {
 }
 
 type ListLexiconsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An opaque pagination token returned from previous ListLexicons operation.
 	// If present, indicates where to continue the list of lexicons.
@@ -2350,7 +2350,7 @@ func (s *ListLexiconsOutput) SetNextToken(v string) *ListLexiconsOutput {
 }
 
 type ListSpeechSynthesisTasksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of speech synthesis tasks returned in a List operation.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
@@ -2718,7 +2718,7 @@ func (s *PutLexiconInput) SetName(v string) *PutLexiconInput {
 }
 
 type PutLexiconOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

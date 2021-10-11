@@ -2750,7 +2750,7 @@ func (s *CreateAppInstanceUserOutput) SetAppInstanceUserArn(v string) *CreateApp
 }
 
 type DeleteAppInstanceAdminInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance's administrator.
 	//
@@ -2816,7 +2816,7 @@ func (s *DeleteAppInstanceAdminInput) SetAppInstanceArn(v string) *DeleteAppInst
 }
 
 type DeleteAppInstanceAdminOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2838,7 +2838,7 @@ func (s DeleteAppInstanceAdminOutput) GoString() string {
 }
 
 type DeleteAppInstanceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -2887,7 +2887,7 @@ func (s *DeleteAppInstanceInput) SetAppInstanceArn(v string) *DeleteAppInstanceI
 }
 
 type DeleteAppInstanceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2909,7 +2909,7 @@ func (s DeleteAppInstanceOutput) GoString() string {
 }
 
 type DeleteAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the user request being deleted.
 	//
@@ -2958,7 +2958,7 @@ func (s *DeleteAppInstanceUserInput) SetAppInstanceUserArn(v string) *DeleteAppI
 }
 
 type DeleteAppInstanceUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2980,7 +2980,7 @@ func (s DeleteAppInstanceUserOutput) GoString() string {
 }
 
 type DescribeAppInstanceAdminInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstanceAdmin.
 	//
@@ -3078,7 +3078,7 @@ func (s *DescribeAppInstanceAdminOutput) SetAppInstanceAdmin(v *AppInstanceAdmin
 }
 
 type DescribeAppInstanceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -3159,7 +3159,7 @@ func (s *DescribeAppInstanceOutput) SetAppInstance(v *AppInstance) *DescribeAppI
 }
 
 type DescribeAppInstanceUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstanceUser.
 	//
@@ -3305,7 +3305,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetAppInstanceRetentionSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -3440,7 +3440,7 @@ func (s *Identity) SetName(v string) *Identity {
 }
 
 type ListAppInstanceAdminsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -3569,7 +3569,7 @@ func (s *ListAppInstanceAdminsOutput) SetNextToken(v string) *ListAppInstanceAdm
 }
 
 type ListAppInstanceUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the AppInstance.
 	//
@@ -3696,7 +3696,7 @@ func (s *ListAppInstanceUsersOutput) SetNextToken(v string) *ListAppInstanceUser
 }
 
 type ListAppInstancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of AppInstances that you want to return.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`

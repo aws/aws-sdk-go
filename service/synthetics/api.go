@@ -2869,7 +2869,7 @@ func (s *CreateCanaryOutput) SetCanary(v *Canary) *CreateCanaryOutput {
 }
 
 type DeleteCanaryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the canary that you want to delete. To find the names of your
 	// canaries, use DescribeCanaries (https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DescribeCanaries.html).
@@ -2919,7 +2919,7 @@ func (s *DeleteCanaryInput) SetName(v string) *DeleteCanaryInput {
 }
 
 type DeleteCanaryOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3248,7 +3248,7 @@ func (s *DescribeRuntimeVersionsOutput) SetRuntimeVersions(v []*RuntimeVersion) 
 }
 
 type GetCanaryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the canary that you want details for.
 	//
@@ -3512,7 +3512,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the canary that you want to view tags for.
 	//
@@ -3782,7 +3782,7 @@ func (s *S3EncryptionConfig) SetKmsKeyArn(v string) *S3EncryptionConfig {
 }
 
 type StartCanaryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the canary that you want to run. To find canary names, use DescribeCanaries
 	// (https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DescribeCanaries.html).
@@ -3832,7 +3832,7 @@ func (s *StartCanaryInput) SetName(v string) *StartCanaryInput {
 }
 
 type StartCanaryOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3854,7 +3854,7 @@ func (s StartCanaryOutput) GoString() string {
 }
 
 type StopCanaryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the canary that you want to stop. To find the names of your canaries,
 	// use DescribeCanaries (https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_DescribeCanaries.html).
@@ -3904,7 +3904,7 @@ func (s *StopCanaryInput) SetName(v string) *StopCanaryInput {
 }
 
 type StopCanaryOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3994,7 +3994,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4016,7 +4016,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the canary that you're removing tags from.
 	//
@@ -4084,7 +4084,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4332,7 +4332,7 @@ func (s *UpdateCanaryInput) SetVpcConfig(v *VpcConfigInput) *UpdateCanaryInput {
 }
 
 type UpdateCanaryOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

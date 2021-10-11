@@ -5541,7 +5541,7 @@ func (s *AssociateTrackerConsumerInput) SetTrackerName(v string) *AssociateTrack
 }
 
 type AssociateTrackerConsumerOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8376,7 +8376,7 @@ func (s *DataSourceConfiguration) SetIntendedUse(v string) *DataSourceConfigurat
 }
 
 type DeleteGeofenceCollectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the geofence collection to be deleted.
 	//
@@ -8425,7 +8425,7 @@ func (s *DeleteGeofenceCollectionInput) SetCollectionName(v string) *DeleteGeofe
 }
 
 type DeleteGeofenceCollectionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8447,7 +8447,7 @@ func (s DeleteGeofenceCollectionOutput) GoString() string {
 }
 
 type DeleteMapInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the map resource to be deleted.
 	//
@@ -8496,7 +8496,7 @@ func (s *DeleteMapInput) SetMapName(v string) *DeleteMapInput {
 }
 
 type DeleteMapOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8518,7 +8518,7 @@ func (s DeleteMapOutput) GoString() string {
 }
 
 type DeletePlaceIndexInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the place index resource to be deleted.
 	//
@@ -8567,7 +8567,7 @@ func (s *DeletePlaceIndexInput) SetIndexName(v string) *DeletePlaceIndexInput {
 }
 
 type DeletePlaceIndexOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8589,7 +8589,7 @@ func (s DeletePlaceIndexOutput) GoString() string {
 }
 
 type DeleteRouteCalculatorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the route calculator resource to be deleted.
 	//
@@ -8638,7 +8638,7 @@ func (s *DeleteRouteCalculatorInput) SetCalculatorName(v string) *DeleteRouteCal
 }
 
 type DeleteRouteCalculatorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8660,7 +8660,7 @@ func (s DeleteRouteCalculatorOutput) GoString() string {
 }
 
 type DeleteTrackerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the tracker resource to be deleted.
 	//
@@ -8709,7 +8709,7 @@ func (s *DeleteTrackerInput) SetTrackerName(v string) *DeleteTrackerInput {
 }
 
 type DeleteTrackerOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8731,7 +8731,7 @@ func (s DeleteTrackerOutput) GoString() string {
 }
 
 type DescribeGeofenceCollectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the geofence collection.
 	//
@@ -8904,7 +8904,7 @@ func (s *DescribeGeofenceCollectionOutput) SetUpdateTime(v time.Time) *DescribeG
 }
 
 type DescribeMapInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the map resource.
 	//
@@ -9081,7 +9081,7 @@ func (s *DescribeMapOutput) SetUpdateTime(v time.Time) *DescribeMapOutput {
 }
 
 type DescribePlaceIndexInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the place index resource.
 	//
@@ -9264,7 +9264,7 @@ func (s *DescribePlaceIndexOutput) SetUpdateTime(v time.Time) *DescribePlaceInde
 }
 
 type DescribeRouteCalculatorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the route calculator resource.
 	//
@@ -9441,7 +9441,7 @@ func (s *DescribeRouteCalculatorOutput) SetUpdateTime(v time.Time) *DescribeRout
 }
 
 type DescribeTrackerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the tracker resource.
 	//
@@ -9782,7 +9782,7 @@ func (s *DevicePositionUpdate) SetSampleTime(v time.Time) *DevicePositionUpdate 
 }
 
 type DisassociateTrackerConsumerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) for the geofence collection to be disassociated
 	// from the tracker resource. Used when you need to specify a resource across
@@ -9852,7 +9852,7 @@ func (s *DisassociateTrackerConsumerInput) SetTrackerName(v string) *Disassociat
 }
 
 type DisassociateTrackerConsumerOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10085,7 +10085,7 @@ func (s *GetDevicePositionHistoryOutput) SetNextToken(v string) *GetDevicePositi
 }
 
 type GetDevicePositionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The device whose position you want to retrieve.
 	//
@@ -10222,7 +10222,7 @@ func (s *GetDevicePositionOutput) SetSampleTime(v time.Time) *GetDevicePositionO
 }
 
 type GetGeofenceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The geofence collection storing the target geofence.
 	//
@@ -10378,7 +10378,7 @@ func (s *GetGeofenceOutput) SetUpdateTime(v time.Time) *GetGeofenceOutput {
 }
 
 type GetMapGlyphsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A comma-separated list of fonts to load glyphs from in order of preference.
 	// For example, Noto Sans Regular, Arial Unicode.
@@ -10525,7 +10525,7 @@ func (s *GetMapGlyphsOutput) SetContentType(v string) *GetMapGlyphsOutput {
 }
 
 type GetMapSpritesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the sprite ﬁle. Use the following ﬁle names for the sprite
 	// sheet:
@@ -10643,7 +10643,7 @@ func (s *GetMapSpritesOutput) SetContentType(v string) *GetMapSpritesOutput {
 }
 
 type GetMapStyleDescriptorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The map resource to retrieve the style descriptor from.
 	//
@@ -10732,7 +10732,7 @@ func (s *GetMapStyleDescriptorOutput) SetContentType(v string) *GetMapStyleDescr
 }
 
 type GetMapTileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The map resource to retrieve the map tiles from.
 	//
@@ -12296,7 +12296,7 @@ func (s *ListRouteCalculatorsResponseEntry) SetUpdateTime(v time.Time) *ListRout
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve.
 	//
@@ -13979,7 +13979,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14181,7 +14181,7 @@ func (s *TruckWeight) SetUnit(v string) *TruckWeight {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource from which you want to remove
 	// tags.
@@ -14250,7 +14250,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

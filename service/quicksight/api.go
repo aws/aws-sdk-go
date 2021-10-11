@@ -13742,7 +13742,7 @@ func (s *CalculatedColumn) SetExpression(v string) *CalculatedColumn {
 }
 
 type CancelIngestionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -15965,7 +15965,7 @@ func (s *CreateFolderInput) SetTags(v []*Tag) *CreateFolderInput {
 }
 
 type CreateFolderMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS Account ID.
 	//
@@ -16271,7 +16271,7 @@ func (s *CreateGroupInput) SetNamespace(v string) *CreateGroupInput {
 }
 
 type CreateGroupMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the group is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -16695,7 +16695,7 @@ func (s *CreateIAMPolicyAssignmentOutput) SetStatus(v int64) *CreateIAMPolicyAss
 }
 
 type CreateIngestionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -19899,7 +19899,7 @@ func (s *DecimalParameter) SetValues(v []*float64) *DecimalParameter {
 }
 
 type DeleteAccountCustomizationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that you want to delete Amazon
 	// QuickSight customizations from in this Amazon Web Services Region;.
@@ -19998,7 +19998,7 @@ func (s *DeleteAccountCustomizationOutput) SetStatus(v int64) *DeleteAccountCust
 }
 
 type DeleteAnalysisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis that you're deleting.
 	//
@@ -20156,7 +20156,7 @@ func (s *DeleteAnalysisOutput) SetStatus(v int64) *DeleteAnalysisOutput {
 }
 
 type DeleteDashboardInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're deleting.
@@ -20294,7 +20294,7 @@ func (s *DeleteDashboardOutput) SetStatus(v int64) *DeleteDashboardOutput {
 }
 
 type DeleteDataSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -20420,7 +20420,7 @@ func (s *DeleteDataSetOutput) SetStatus(v int64) *DeleteDataSetOutput {
 }
 
 type DeleteDataSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -20546,7 +20546,7 @@ func (s *DeleteDataSourceOutput) SetStatus(v int64) *DeleteDataSourceOutput {
 }
 
 type DeleteFolderInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS Account ID for the folder.
 	//
@@ -20612,7 +20612,7 @@ func (s *DeleteFolderInput) SetFolderId(v string) *DeleteFolderInput {
 }
 
 type DeleteFolderMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS Account ID.
 	//
@@ -20811,7 +20811,7 @@ func (s *DeleteFolderOutput) SetStatus(v int64) *DeleteFolderOutput {
 }
 
 type DeleteGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the group is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -20896,7 +20896,7 @@ func (s *DeleteGroupInput) SetNamespace(v string) *DeleteGroupInput {
 }
 
 type DeleteGroupMembershipInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the group is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -21078,7 +21078,7 @@ func (s *DeleteGroupOutput) SetStatus(v int64) *DeleteGroupOutput {
 }
 
 type DeleteIAMPolicyAssignmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the assignment.
 	//
@@ -21211,7 +21211,7 @@ func (s *DeleteIAMPolicyAssignmentOutput) SetStatus(v int64) *DeleteIAMPolicyAss
 }
 
 type DeleteNamespaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that you want to delete the Amazon
 	// QuickSight namespace from.
@@ -21318,7 +21318,7 @@ func (s *DeleteNamespaceOutput) SetStatus(v int64) *DeleteNamespaceOutput {
 }
 
 type DeleteTemplateAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name for the template alias. To delete a specific alias, you delete the
 	// version that the alias points to. You can specify the alias name, or specify
@@ -21471,7 +21471,7 @@ func (s *DeleteTemplateAliasOutput) SetTemplateId(v string) *DeleteTemplateAlias
 }
 
 type DeleteTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the template that
 	// you're deleting.
@@ -21609,7 +21609,7 @@ func (s *DeleteTemplateOutput) SetTemplateId(v string) *DeleteTemplateOutput {
 }
 
 type DeleteThemeAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name for the theme alias to delete.
 	//
@@ -21760,7 +21760,7 @@ func (s *DeleteThemeAliasOutput) SetThemeId(v string) *DeleteThemeAliasOutput {
 }
 
 type DeleteThemeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the theme that you're
 	// deleting.
@@ -21900,7 +21900,7 @@ func (s *DeleteThemeOutput) SetThemeId(v string) *DeleteThemeOutput {
 }
 
 type DeleteUserByPrincipalIdInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the user is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -22025,7 +22025,7 @@ func (s *DeleteUserByPrincipalIdOutput) SetStatus(v int64) *DeleteUserByPrincipa
 }
 
 type DeleteUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the user is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -22150,7 +22150,7 @@ func (s *DeleteUserOutput) SetStatus(v int64) *DeleteUserOutput {
 }
 
 type DescribeAccountCustomizationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that you want to describe Amazon
 	// QuickSight customizations for.
@@ -22301,7 +22301,7 @@ func (s *DescribeAccountCustomizationOutput) SetStatus(v int64) *DescribeAccount
 }
 
 type DescribeAccountSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that contains the settings that
 	// you want to list.
@@ -22408,7 +22408,7 @@ func (s *DescribeAccountSettingsOutput) SetStatus(v int64) *DescribeAccountSetti
 }
 
 type DescribeAnalysisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis that you're describing. The ID is part of the URL
 	// of the analysis.
@@ -22526,7 +22526,7 @@ func (s *DescribeAnalysisOutput) SetStatus(v int64) *DescribeAnalysisOutput {
 }
 
 type DescribeAnalysisPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis whose permissions you're describing. The ID is part
 	// of the analysis URL.
@@ -22663,7 +22663,7 @@ func (s *DescribeAnalysisPermissionsOutput) SetStatus(v int64) *DescribeAnalysis
 }
 
 type DescribeDashboardInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias name.
 	AliasName *string `location:"querystring" locationName:"alias-name" min:"1" type:"string"`
@@ -22804,7 +22804,7 @@ func (s *DescribeDashboardOutput) SetStatus(v int64) *DescribeDashboardOutput {
 }
 
 type DescribeDashboardPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're describing permissions for.
@@ -22938,7 +22938,7 @@ func (s *DescribeDashboardPermissionsOutput) SetStatus(v int64) *DescribeDashboa
 }
 
 type DescribeDataSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -23054,7 +23054,7 @@ func (s *DescribeDataSetOutput) SetStatus(v int64) *DescribeDataSetOutput {
 }
 
 type DescribeDataSetPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -23189,7 +23189,7 @@ func (s *DescribeDataSetPermissionsOutput) SetStatus(v int64) *DescribeDataSetPe
 }
 
 type DescribeDataSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -23305,7 +23305,7 @@ func (s *DescribeDataSourceOutput) SetStatus(v int64) *DescribeDataSourceOutput 
 }
 
 type DescribeDataSourcePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -23440,7 +23440,7 @@ func (s *DescribeDataSourcePermissionsOutput) SetStatus(v int64) *DescribeDataSo
 }
 
 type DescribeFolderInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS account ID.
 	//
@@ -23555,7 +23555,7 @@ func (s *DescribeFolderOutput) SetStatus(v int64) *DescribeFolderOutput {
 }
 
 type DescribeFolderPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS Account ID.
 	//
@@ -23688,7 +23688,7 @@ func (s *DescribeFolderPermissionsOutput) SetStatus(v int64) *DescribeFolderPerm
 }
 
 type DescribeFolderResolvedPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS account ID.
 	//
@@ -23821,7 +23821,7 @@ func (s *DescribeFolderResolvedPermissionsOutput) SetStatus(v int64) *DescribeFo
 }
 
 type DescribeGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the group is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -23955,7 +23955,7 @@ func (s *DescribeGroupOutput) SetStatus(v int64) *DescribeGroupOutput {
 }
 
 type DescribeIAMPolicyAssignmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the assignment, also called a rule.
 	//
@@ -24088,7 +24088,7 @@ func (s *DescribeIAMPolicyAssignmentOutput) SetStatus(v int64) *DescribeIAMPolic
 }
 
 type DescribeIngestionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -24220,7 +24220,7 @@ func (s *DescribeIngestionOutput) SetStatus(v int64) *DescribeIngestionOutput {
 }
 
 type DescribeNamespaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that contains the Amazon QuickSight
 	// namespace that you want to describe.
@@ -24341,7 +24341,7 @@ func (s *DescribeNamespaceOutput) SetStatus(v int64) *DescribeNamespaceOutput {
 }
 
 type DescribeTemplateAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the template alias that you want to describe. If you name a specific
 	// alias, you describe the version that the alias points to. You can specify
@@ -24477,7 +24477,7 @@ func (s *DescribeTemplateAliasOutput) SetTemplateAlias(v *TemplateAlias) *Descri
 }
 
 type DescribeTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias of the template that you want to describe. If you name a specific
 	// alias, you describe the version that the alias points to. You can specify
@@ -24621,7 +24621,7 @@ func (s *DescribeTemplateOutput) SetTemplate(v *Template) *DescribeTemplateOutpu
 }
 
 type DescribeTemplatePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the template that
 	// you're describing.
@@ -24755,7 +24755,7 @@ func (s *DescribeTemplatePermissionsOutput) SetTemplateId(v string) *DescribeTem
 }
 
 type DescribeThemeAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the theme alias that you want to describe.
 	//
@@ -24888,7 +24888,7 @@ func (s *DescribeThemeAliasOutput) SetThemeAlias(v *ThemeAlias) *DescribeThemeAl
 }
 
 type DescribeThemeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias of the theme that you want to describe. If you name a specific
 	// alias, you describe the version that the alias points to. You can specify
@@ -25032,7 +25032,7 @@ func (s *DescribeThemeOutput) SetTheme(v *Theme) *DescribeThemeOutput {
 }
 
 type DescribeThemePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the theme that you're
 	// describing.
@@ -25166,7 +25166,7 @@ func (s *DescribeThemePermissionsOutput) SetThemeId(v string) *DescribeThemePerm
 }
 
 type DescribeUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the user is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -26229,7 +26229,7 @@ func (s *GeoSpatialColumnGroup) SetName(v string) *GeoSpatialColumnGroup {
 }
 
 type GetDashboardEmbedUrlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A list of one or more dashboard IDs that you want to add to a session that
 	// includes anonymous users. The IdentityType parameter must be set to ANONYMOUS
@@ -26464,7 +26464,7 @@ func (s *GetDashboardEmbedUrlOutput) SetStatus(v int64) *GetDashboardEmbedUrlOut
 }
 
 type GetSessionEmbedUrlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account associated with your Amazon QuickSight
 	// subscription.
@@ -27677,7 +27677,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListAnalysesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the analyses.
 	//
@@ -27805,7 +27805,7 @@ func (s *ListAnalysesOutput) SetStatus(v int64) *ListAnalysesOutput {
 }
 
 type ListDashboardVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're listing versions for.
@@ -27951,7 +27951,7 @@ func (s *ListDashboardVersionsOutput) SetStatus(v int64) *ListDashboardVersionsO
 }
 
 type ListDashboardsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the dashboards that
 	// you're listing.
@@ -28081,7 +28081,7 @@ func (s *ListDashboardsOutput) SetStatus(v int64) *ListDashboardsOutput {
 }
 
 type ListDataSetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -28209,7 +28209,7 @@ func (s *ListDataSetsOutput) SetStatus(v int64) *ListDataSetsOutput {
 }
 
 type ListDataSourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -28337,7 +28337,7 @@ func (s *ListDataSourcesOutput) SetStatus(v int64) *ListDataSourcesOutput {
 }
 
 type ListFolderMembersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS account ID.
 	//
@@ -28483,7 +28483,7 @@ func (s *ListFolderMembersOutput) SetStatus(v int64) *ListFolderMembersOutput {
 }
 
 type ListFoldersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS account ID.
 	//
@@ -28612,7 +28612,7 @@ func (s *ListFoldersOutput) SetStatus(v int64) *ListFoldersOutput {
 }
 
 type ListGroupMembershipsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the group is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -28776,7 +28776,7 @@ func (s *ListGroupMembershipsOutput) SetStatus(v int64) *ListGroupMembershipsOut
 }
 
 type ListGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the group is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -28923,7 +28923,7 @@ func (s *ListGroupsOutput) SetStatus(v int64) *ListGroupsOutput {
 }
 
 type ListIAMPolicyAssignmentsForUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the assignments.
 	//
@@ -29239,7 +29239,7 @@ func (s *ListIAMPolicyAssignmentsOutput) SetStatus(v int64) *ListIAMPolicyAssign
 }
 
 type ListIngestionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -29384,7 +29384,7 @@ func (s *ListIngestionsOutput) SetStatus(v int64) *ListIngestionsOutput {
 }
 
 type ListNamespacesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that contains the Amazon QuickSight
 	// namespaces that you want to list.
@@ -29515,7 +29515,7 @@ func (s *ListNamespacesOutput) SetStatus(v int64) *ListNamespacesOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want a list of tags
 	// for.
@@ -29615,7 +29615,7 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 }
 
 type ListTemplateAliasesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the template aliases
 	// that you're listing.
@@ -29761,7 +29761,7 @@ func (s *ListTemplateAliasesOutput) SetTemplateAliasList(v []*TemplateAlias) *Li
 }
 
 type ListTemplateVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the templates that
 	// you're listing.
@@ -29907,7 +29907,7 @@ func (s *ListTemplateVersionsOutput) SetTemplateVersionSummaryList(v []*Template
 }
 
 type ListTemplatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the templates that
 	// you're listing.
@@ -30036,7 +30036,7 @@ func (s *ListTemplatesOutput) SetTemplateSummaryList(v []*TemplateSummary) *List
 }
 
 type ListThemeAliasesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the theme aliases
 	// that you're listing.
@@ -30182,7 +30182,7 @@ func (s *ListThemeAliasesOutput) SetThemeAliasList(v []*ThemeAlias) *ListThemeAl
 }
 
 type ListThemeVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the themes that you're
 	// listing.
@@ -30328,7 +30328,7 @@ func (s *ListThemeVersionsOutput) SetThemeVersionSummaryList(v []*ThemeVersionSu
 }
 
 type ListThemesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the themes that you're
 	// listing.
@@ -30472,7 +30472,7 @@ func (s *ListThemesOutput) SetThemeSummaryList(v []*ThemeSummary) *ListThemesOut
 }
 
 type ListUserGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Web Services account ID that the user is in. Currently, you use
 	// the ID for the Amazon Web Services account that contains your Amazon QuickSight
@@ -30636,7 +30636,7 @@ func (s *ListUserGroupsOutput) SetStatus(v int64) *ListUserGroupsOutput {
 }
 
 type ListUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that the user is in. Currently,
 	// you use the ID for the Amazon Web Services account that contains your Amazon
@@ -33146,7 +33146,7 @@ func (s *ResourceUnavailableException) RequestID() string {
 }
 
 type RestoreAnalysisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the analysis that you're restoring.
 	//
@@ -36960,7 +36960,7 @@ func (s *UntagColumnOperation) SetTagNames(v []*string) *UntagColumnOperation {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want to untag.
 	//
@@ -38137,7 +38137,7 @@ func (s *UpdateDashboardPermissionsOutput) SetStatus(v int64) *UpdateDashboardPe
 }
 
 type UpdateDashboardPublishedVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the Amazon Web Services account that contains the dashboard that
 	// you're updating.

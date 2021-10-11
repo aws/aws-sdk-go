@@ -6519,7 +6519,7 @@ func (s *AcceptInvitationInput) SetMasterAccount(v string) *AcceptInvitationInpu
 }
 
 type AcceptInvitationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9041,7 +9041,7 @@ func (s *CreateSampleFindingsInput) SetFindingTypes(v []*string) *CreateSampleFi
 }
 
 type CreateSampleFindingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9389,7 +9389,7 @@ func (s *CustomDetection) SetOccurrences(v *Occurrences) *CustomDetection {
 // Specifies that a classification job runs once a day, every day. This is an
 // empty object.
 type DailySchedule struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9540,7 +9540,7 @@ func (s *DefaultDetection) SetType(v string) *DefaultDetection {
 }
 
 type DeleteCustomDataIdentifierInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -9587,7 +9587,7 @@ func (s *DeleteCustomDataIdentifierInput) SetId(v string) *DeleteCustomDataIdent
 }
 
 type DeleteCustomDataIdentifierOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9609,7 +9609,7 @@ func (s DeleteCustomDataIdentifierOutput) GoString() string {
 }
 
 type DeleteFindingsFilterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -9656,7 +9656,7 @@ func (s *DeleteFindingsFilterInput) SetId(v string) *DeleteFindingsFilterInput {
 }
 
 type DeleteFindingsFilterOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9756,7 +9756,7 @@ func (s *DeleteInvitationsOutput) SetUnprocessedAccounts(v []*UnprocessedAccount
 }
 
 type DeleteMemberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -9803,7 +9803,7 @@ func (s *DeleteMemberInput) SetId(v string) *DeleteMemberInput {
 }
 
 type DeleteMemberOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9926,7 +9926,7 @@ func (s *DescribeBucketsOutput) SetNextToken(v string) *DescribeBucketsOutput {
 }
 
 type DescribeClassificationJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
@@ -10183,7 +10183,7 @@ func (s *DescribeClassificationJobOutput) SetUserPausedDetails(v *UserPausedDeta
 }
 
 type DescribeOrganizationConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10245,7 +10245,7 @@ func (s *DescribeOrganizationConfigurationOutput) SetMaxAccountLimitReached(v bo
 }
 
 type DisableMacieInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10267,7 +10267,7 @@ func (s DisableMacieInput) GoString() string {
 }
 
 type DisableMacieOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10289,7 +10289,7 @@ func (s DisableMacieOutput) GoString() string {
 }
 
 type DisableOrganizationAdminAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AdminAccountId is a required field
 	AdminAccountId *string `location:"querystring" locationName:"adminAccountId" type:"string" required:"true"`
@@ -10333,7 +10333,7 @@ func (s *DisableOrganizationAdminAccountInput) SetAdminAccountId(v string) *Disa
 }
 
 type DisableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10355,7 +10355,7 @@ func (s DisableOrganizationAdminAccountOutput) GoString() string {
 }
 
 type DisassociateFromAdministratorAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10377,7 +10377,7 @@ func (s DisassociateFromAdministratorAccountInput) GoString() string {
 }
 
 type DisassociateFromAdministratorAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10399,7 +10399,7 @@ func (s DisassociateFromAdministratorAccountOutput) GoString() string {
 }
 
 type DisassociateFromMasterAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10421,7 +10421,7 @@ func (s DisassociateFromMasterAccountInput) GoString() string {
 }
 
 type DisassociateFromMasterAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10443,7 +10443,7 @@ func (s DisassociateFromMasterAccountOutput) GoString() string {
 }
 
 type DisassociateMemberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -10490,7 +10490,7 @@ func (s *DisassociateMemberInput) SetId(v string) *DisassociateMemberInput {
 }
 
 type DisassociateMemberOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10598,7 +10598,7 @@ func (s *EnableMacieInput) SetStatus(v string) *EnableMacieInput {
 }
 
 type EnableMacieOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10676,7 +10676,7 @@ func (s *EnableOrganizationAdminAccountInput) SetClientToken(v string) *EnableOr
 }
 
 type EnableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11188,7 +11188,7 @@ func (s *FindingsFilterListItem) SetTags(v map[string]*string) *FindingsFilterLi
 }
 
 type GetAdministratorAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11429,7 +11429,7 @@ func (s *GetBucketStatisticsOutput) SetUnclassifiableObjectSizeInBytes(v *Object
 }
 
 type GetClassificationExportConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11486,7 +11486,7 @@ func (s *GetClassificationExportConfigurationOutput) SetConfiguration(v *Classif
 }
 
 type GetCustomDataIdentifierInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -11754,7 +11754,7 @@ func (s *GetFindingStatisticsOutput) SetCountsByGroup(v []*GroupCount) *GetFindi
 }
 
 type GetFindingsFilterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -11982,7 +11982,7 @@ func (s *GetFindingsOutput) SetFindings(v []*Finding) *GetFindingsOutput {
 }
 
 type GetFindingsPublicationConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12041,7 +12041,7 @@ func (s *GetFindingsPublicationConfigurationOutput) SetSecurityHubConfiguration(
 }
 
 type GetInvitationsCountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12095,7 +12095,7 @@ func (s *GetInvitationsCountOutput) SetInvitationsCount(v int64) *GetInvitations
 }
 
 type GetMacieSessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12187,7 +12187,7 @@ func (s *GetMacieSessionOutput) SetUpdatedAt(v time.Time) *GetMacieSessionOutput
 }
 
 type GetMasterAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12244,7 +12244,7 @@ func (s *GetMasterAccountOutput) SetMaster(v *Invitation) *GetMasterAccountOutpu
 }
 
 type GetMemberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Id is a required field
 	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
@@ -12511,7 +12511,7 @@ func (s *GetUsageStatisticsOutput) SetTimeRange(v string) *GetUsageStatisticsOut
 }
 
 type GetUsageTotalsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	TimeRange *string `location:"querystring" locationName:"timeRange" type:"string"`
 }
@@ -13590,7 +13590,7 @@ func (s *ListCustomDataIdentifiersOutput) SetNextToken(v string) *ListCustomData
 }
 
 type ListFindingsFiltersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -13778,7 +13778,7 @@ func (s *ListFindingsOutput) SetNextToken(v string) *ListFindingsOutput {
 }
 
 type ListInvitationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -14073,7 +14073,7 @@ func (s *ListManagedDataIdentifiersOutput) SetNextToken(v string) *ListManagedDa
 }
 
 type ListMembersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -14172,7 +14172,7 @@ func (s *ListMembersOutput) SetNextToken(v string) *ListMembersOutput {
 }
 
 type ListOrganizationAdminAccountsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -14263,7 +14263,7 @@ func (s *ListOrganizationAdminAccountsOutput) SetNextToken(v string) *ListOrgani
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -15144,7 +15144,7 @@ func (s *PutFindingsPublicationConfigurationInput) SetSecurityHubConfiguration(v
 }
 
 type PutFindingsPublicationConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17151,7 +17151,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 
 // The request succeeded. The specified tags were added to the resource.
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17498,7 +17498,7 @@ func (s *UnprocessedAccount) SetErrorMessage(v string) *UnprocessedAccount {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -17558,7 +17558,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 
 // The request succeeded. The specified tags were removed from the resource.
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17645,7 +17645,7 @@ func (s *UpdateClassificationJobInput) SetJobStatus(v string) *UpdateClassificat
 }
 
 type UpdateClassificationJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17853,7 +17853,7 @@ func (s *UpdateMacieSessionInput) SetStatus(v string) *UpdateMacieSessionInput {
 }
 
 type UpdateMacieSessionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17937,7 +17937,7 @@ func (s *UpdateMemberSessionInput) SetStatus(v string) *UpdateMemberSessionInput
 }
 
 type UpdateMemberSessionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -18005,7 +18005,7 @@ func (s *UpdateOrganizationConfigurationInput) SetAutoEnable(v bool) *UpdateOrga
 }
 
 type UpdateOrganizationConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

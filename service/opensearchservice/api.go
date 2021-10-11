@@ -4458,7 +4458,7 @@ func (s *AWSDomainInformation) SetRegion(v string) *AWSDomainInformation {
 
 // Container for the parameters to the AcceptInboundConnection operation.
 type AcceptInboundConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the inbound connection you want to accept.
 	//
@@ -4729,7 +4729,7 @@ func (s *AddTagsInput) SetTagList(v []*Tag) *AddTagsInput {
 }
 
 type AddTagsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5030,7 +5030,7 @@ func (s *AdvancedSecurityOptionsStatus) SetStatus(v *OptionStatus) *AdvancedSecu
 
 // Container for the request parameters to the AssociatePackage operation.
 type AssociatePackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain to associate the package with.
 	//
@@ -6772,7 +6772,7 @@ func (s *CreatePackageOutput) SetPackageDetails(v *PackageDetails) *CreatePackag
 // Container for the parameters to the DeleteDomain operation. Specifies the
 // name of the domain you want to delete.
 type DeleteDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain you want to permanently delete.
 	//
@@ -6856,7 +6856,7 @@ func (s *DeleteDomainOutput) SetDomainStatus(v *DomainStatus) *DeleteDomainOutpu
 
 // Container for the parameters to the DeleteInboundConnection operation.
 type DeleteInboundConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the inbound connection to permanently delete.
 	//
@@ -6939,7 +6939,7 @@ func (s *DeleteInboundConnectionOutput) SetConnection(v *InboundConnection) *Del
 
 // Container for the parameters to the DeleteOutboundConnection operation.
 type DeleteOutboundConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the outbound connection you want to permanently delete.
 	//
@@ -7022,7 +7022,7 @@ func (s *DeleteOutboundConnectionOutput) SetConnection(v *OutboundConnection) *D
 
 // Container for the request parameters to the DeletePackage operation.
 type DeletePackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The internal ID of the package you want to delete. Use DescribePackages to
 	// find this value.
@@ -7221,7 +7221,7 @@ func (s *DescribeDomainAutoTunesOutput) SetNextToken(v string) *DescribeDomainAu
 // Container for the parameters to the DescribeDomainConfig operation. Specifies
 // the domain name for which you want configuration information.
 type DescribeDomainConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The domain you want to get information about.
 	//
@@ -7307,7 +7307,7 @@ func (s *DescribeDomainConfigOutput) SetDomainConfig(v *DomainConfig) *DescribeD
 
 // Container for the parameters to the DescribeDomain operation.
 type DescribeDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain for which you want information.
 	//
@@ -7600,7 +7600,7 @@ func (s *DescribeInboundConnectionsOutput) SetNextToken(v string) *DescribeInbou
 
 // Container for the parameters to the DescribeInstanceTypeLimits operation.
 type DescribeInstanceTypeLimitsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain you want to modify. Only include this value if you're
 	// querying OpenSearch Limits for an existing domain.
@@ -7977,7 +7977,7 @@ func (s *DescribePackagesOutput) SetPackageDetailsList(v []*PackageDetails) *Des
 
 // Container for parameters to DescribeReservedInstanceOfferings
 type DescribeReservedInstanceOfferingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set this value to limit the number of results returned. If not specified,
 	// defaults to 100.
@@ -8083,7 +8083,7 @@ func (s *DescribeReservedInstanceOfferingsOutput) SetReservedInstanceOfferings(v
 
 // Container for parameters to DescribeReservedInstances
 type DescribeReservedInstancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set this value to limit the number of results returned. If not specified,
 	// defaults to 100.
@@ -8255,7 +8255,7 @@ func (s *DisabledOperationException) RequestID() string {
 
 // Container for the request parameters to the DissociatePackage operation.
 type DissociatePackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain to associate the package with.
 	//
@@ -9453,7 +9453,7 @@ func (s *Filter) SetValues(v []*string) *Filter {
 
 // Container for the request parameters to GetCompatibleVersions operation.
 type GetCompatibleVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an domain. Domain names are unique across the domains owned by
 	// an account within an AWS region. Domain names start with a letter or number
@@ -9533,7 +9533,7 @@ func (s *GetCompatibleVersionsOutput) SetCompatibleVersions(v []*CompatibleVersi
 
 // Container for the request parameters to the GetPackageVersionHistory operation.
 type GetPackageVersionHistoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Limits results to a maximum number of package versions.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -9650,7 +9650,7 @@ func (s *GetPackageVersionHistoryOutput) SetPackageVersionHistoryList(v []*Packa
 
 // Container for the request parameters to the GetUpgradeHistory operation.
 type GetUpgradeHistoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an domain. Domain names are unique across the domains owned by
 	// an account within an AWS region. Domain names start with a letter or number
@@ -9766,7 +9766,7 @@ func (s *GetUpgradeHistoryOutput) SetUpgradeHistories(v []*UpgradeHistory) *GetU
 
 // Container for the request parameters to the GetUpgradeStatus operation.
 type GetUpgradeStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an domain. Domain names are unique across the domains owned by
 	// an account within an AWS region. Domain names start with a letter or number
@@ -10467,7 +10467,7 @@ func (s *Limits) SetStorageTypes(v []*StorageType) *Limits {
 
 // Container for the parameters to the ListDomainNames operation.
 type ListDomainNamesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional parameter to filter the output by domain engine type. Acceptable
 	// values are 'Elasticsearch' and 'OpenSearch'.
@@ -10533,7 +10533,7 @@ func (s *ListDomainNamesOutput) SetDomainNames(v []*DomainInfo) *ListDomainNames
 
 // Container for the request parameters to the ListDomainsForPackage operation.
 type ListDomainsForPackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Limits the results to a maximum number of domains.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -10641,7 +10641,7 @@ func (s *ListDomainsForPackageOutput) SetNextToken(v string) *ListDomainsForPack
 }
 
 type ListInstanceTypeDetailsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an domain. Domain names are unique across the domains owned by
 	// an account within an AWS region. Domain names start with a letter or number
@@ -10764,7 +10764,7 @@ func (s *ListInstanceTypeDetailsOutput) SetNextToken(v string) *ListInstanceType
 
 // Container for the request parameters to the ListPackagesForDomain operation.
 type ListPackagesForDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain for which you want to list associated packages.
 	//
@@ -10875,7 +10875,7 @@ func (s *ListPackagesForDomainOutput) SetNextToken(v string) *ListPackagesForDom
 // Container for the parameters to the ListTags operation. Specify the ARN of
 // the domain that the tags you want to view are attached to.
 type ListTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specify the ARN of the domain that the tags you want to view are attached
 	// to.
@@ -10963,7 +10963,7 @@ func (s *ListTagsOutput) SetTagList(v []*Tag) *ListTagsOutput {
 // Use NextToken in response to retrieve more results. If the received response
 // does not contain a NextToken, there are no more results to retrieve.
 type ListVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set this value to limit the number of results returned. Value must be greater
 	// than 10 or it won't be honored.
@@ -11888,7 +11888,7 @@ func (s *RecurringCharge) SetRecurringChargeFrequency(v string) *RecurringCharge
 
 // Container for the parameters to the RejectInboundConnection operation.
 type RejectInboundConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the inbound connection to reject.
 	//
@@ -12035,7 +12035,7 @@ func (s *RemoveTagsInput) SetTagKeys(v []*string) *RemoveTagsInput {
 }
 
 type RemoveTagsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

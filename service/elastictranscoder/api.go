@@ -2398,7 +2398,7 @@ func (s *AudioParameters) SetSampleRate(v string) *AudioParameters {
 
 // The CancelJobRequest structure.
 type CancelJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the job that you want to cancel.
 	//
@@ -2452,7 +2452,7 @@ func (s *CancelJobInput) SetId(v string) *CancelJobInput {
 // The response body contains a JSON object. If the job is successfully canceled,
 // the value of Success is true.
 type CancelJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3865,7 +3865,7 @@ func (s *CreatePresetOutput) SetWarning(v string) *CreatePresetOutput {
 
 // The DeletePipelineRequest structure.
 type DeletePipelineInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the pipeline that you want to delete.
 	//
@@ -3915,7 +3915,7 @@ func (s *DeletePipelineInput) SetId(v string) *DeletePipelineInput {
 
 // The DeletePipelineResponse structure.
 type DeletePipelineOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3938,7 +3938,7 @@ func (s DeletePipelineOutput) GoString() string {
 
 // The DeletePresetRequest structure.
 type DeletePresetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the preset for which you want to get detailed information.
 	//
@@ -3988,7 +3988,7 @@ func (s *DeletePresetInput) SetId(v string) *DeletePresetInput {
 
 // The DeletePresetResponse structure.
 type DeletePresetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5459,7 +5459,7 @@ func (s *LimitExceededException) RequestID() string {
 
 // The ListJobsByPipelineRequest structure.
 type ListJobsByPipelineInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// To list jobs in chronological order by the date and time that they were submitted,
 	// enter true. To list jobs in reverse chronological order, enter false.
@@ -5572,7 +5572,7 @@ func (s *ListJobsByPipelineOutput) SetNextPageToken(v string) *ListJobsByPipelin
 
 // The ListJobsByStatusRequest structure.
 type ListJobsByStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// To list jobs in chronological order by the date and time that they were submitted,
 	// enter true. To list jobs in reverse chronological order, enter false.
@@ -5687,7 +5687,7 @@ func (s *ListJobsByStatusOutput) SetNextPageToken(v string) *ListJobsByStatusOut
 
 // The ListPipelineRequest structure.
 type ListPipelinesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// To list pipelines in chronological order by the date and time that they were
 	// created, enter true. To list pipelines in reverse chronological order, enter
@@ -5774,7 +5774,7 @@ func (s *ListPipelinesOutput) SetPipelines(v []*Pipeline) *ListPipelinesOutput {
 
 // The ListPresetsRequest structure.
 type ListPresetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// To list presets in chronological order by the date and time that they were
 	// created, enter true. To list presets in reverse chronological order, enter
@@ -6950,7 +6950,7 @@ func (s *PresetWatermark) SetVerticalOffset(v string) *PresetWatermark {
 
 // The ReadJobRequest structure.
 type ReadJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the job for which you want to get detailed information.
 	//
@@ -7032,7 +7032,7 @@ func (s *ReadJobOutput) SetJob(v *Job) *ReadJobOutput {
 
 // The ReadPipelineRequest structure.
 type ReadPipelineInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the pipeline to read.
 	//
@@ -7128,7 +7128,7 @@ func (s *ReadPipelineOutput) SetWarnings(v []*Warning) *ReadPipelineOutput {
 
 // The ReadPresetRequest structure.
 type ReadPresetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the preset for which you want to get detailed information.
 	//

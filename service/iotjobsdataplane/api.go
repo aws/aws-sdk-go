@@ -459,7 +459,7 @@ func (s *CertificateValidationException) RequestID() string {
 }
 
 type DescribeJobExecutionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional. A number that identifies a particular job execution on a particular
 	// device. If not specified, the latest job execution is returned.
@@ -576,7 +576,7 @@ func (s *DescribeJobExecutionOutput) SetExecution(v *JobExecution) *DescribeJobE
 }
 
 type GetPendingJobExecutionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the thing that is executing the job.
 	//

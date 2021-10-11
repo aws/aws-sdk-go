@@ -681,7 +681,7 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 type DeleteReportDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Required. ID of the report to delete.
 	//
@@ -761,7 +761,7 @@ func (s *DeleteReportDefinitionOutput) SetReportId(v string) *DeleteReportDefini
 }
 
 type GetReportDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ID of the report to retrieve.
 	//
@@ -1057,7 +1057,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListReportDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`

@@ -6631,7 +6631,7 @@ func (s *AssociateAssessmentReportEvidenceFolderInput) SetEvidenceFolderId(v str
 }
 
 type AssociateAssessmentReportEvidenceFolderOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9028,7 +9028,7 @@ func (s *DelegationMetadata) SetStatus(v string) *DelegationMetadata {
 }
 
 type DeleteAssessmentFrameworkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified framework.
 	//
@@ -9077,7 +9077,7 @@ func (s *DeleteAssessmentFrameworkInput) SetFrameworkId(v string) *DeleteAssessm
 }
 
 type DeleteAssessmentFrameworkOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9099,7 +9099,7 @@ func (s DeleteAssessmentFrameworkOutput) GoString() string {
 }
 
 type DeleteAssessmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -9148,7 +9148,7 @@ func (s *DeleteAssessmentInput) SetAssessmentId(v string) *DeleteAssessmentInput
 }
 
 type DeleteAssessmentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9170,7 +9170,7 @@ func (s DeleteAssessmentOutput) GoString() string {
 }
 
 type DeleteAssessmentReportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -9236,7 +9236,7 @@ func (s *DeleteAssessmentReportInput) SetAssessmentReportId(v string) *DeleteAss
 }
 
 type DeleteAssessmentReportOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9258,7 +9258,7 @@ func (s DeleteAssessmentReportOutput) GoString() string {
 }
 
 type DeleteControlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified control.
 	//
@@ -9307,7 +9307,7 @@ func (s *DeleteControlInput) SetControlId(v string) *DeleteControlInput {
 }
 
 type DeleteControlOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9329,7 +9329,7 @@ func (s DeleteControlOutput) GoString() string {
 }
 
 type DeregisterAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9426,7 +9426,7 @@ func (s *DeregisterOrganizationAdminAccountInput) SetAdminAccountId(v string) *D
 }
 
 type DeregisterOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9514,7 +9514,7 @@ func (s *DisassociateAssessmentReportEvidenceFolderInput) SetEvidenceFolderId(v 
 }
 
 type DisassociateAssessmentReportEvidenceFolderOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9911,7 +9911,7 @@ func (s *FrameworkMetadata) SetName(v string) *FrameworkMetadata {
 }
 
 type GetAccountStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9964,7 +9964,7 @@ func (s *GetAccountStatusOutput) SetStatus(v string) *GetAccountStatusOutput {
 }
 
 type GetAssessmentFrameworkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified framework.
 	//
@@ -10044,7 +10044,7 @@ func (s *GetAssessmentFrameworkOutput) SetFramework(v *Framework) *GetAssessment
 }
 
 type GetAssessmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -10135,7 +10135,7 @@ func (s *GetAssessmentOutput) SetUserRole(v *Role) *GetAssessmentOutput {
 }
 
 type GetAssessmentReportUrlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -10233,7 +10233,7 @@ func (s *GetAssessmentReportUrlOutput) SetPreSignedUrl(v *URL) *GetAssessmentRep
 }
 
 type GetChangeLogsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -10370,7 +10370,7 @@ func (s *GetChangeLogsOutput) SetNextToken(v string) *GetChangeLogsOutput {
 }
 
 type GetControlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified control.
 	//
@@ -10450,7 +10450,7 @@ func (s *GetControlOutput) SetControl(v *Control) *GetControlOutput {
 }
 
 type GetDelegationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Represents the maximum number of results per page, or per API request call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -10546,7 +10546,7 @@ func (s *GetDelegationsOutput) SetNextToken(v string) *GetDelegationsOutput {
 }
 
 type GetEvidenceByEvidenceFolderInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -10693,7 +10693,7 @@ func (s *GetEvidenceByEvidenceFolderOutput) SetNextToken(v string) *GetEvidenceB
 }
 
 type GetEvidenceFolderInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -10807,7 +10807,7 @@ func (s *GetEvidenceFolderOutput) SetEvidenceFolder(v *AssessmentEvidenceFolder)
 }
 
 type GetEvidenceFoldersByAssessmentControlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -10955,7 +10955,7 @@ func (s *GetEvidenceFoldersByAssessmentControlOutput) SetNextToken(v string) *Ge
 }
 
 type GetEvidenceFoldersByAssessmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -11069,7 +11069,7 @@ func (s *GetEvidenceFoldersByAssessmentOutput) SetNextToken(v string) *GetEviden
 }
 
 type GetEvidenceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier for the specified assessment.
 	//
@@ -11200,7 +11200,7 @@ func (s *GetEvidenceOutput) SetEvidence(v *Evidence) *GetEvidenceOutput {
 }
 
 type GetOrganizationAdminAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11262,7 +11262,7 @@ func (s *GetOrganizationAdminAccountOutput) SetOrganizationId(v string) *GetOrga
 }
 
 type GetServicesInScopeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11315,7 +11315,7 @@ func (s *GetServicesInScopeOutput) SetServiceMetadata(v []*ServiceMetadata) *Get
 }
 
 type GetSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The list of SettingAttribute enum values.
 	//
@@ -11460,7 +11460,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListAssessmentFrameworksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of framework, such as standard or custom.
 	//
@@ -11570,7 +11570,7 @@ func (s *ListAssessmentFrameworksOutput) SetNextToken(v string) *ListAssessmentF
 }
 
 type ListAssessmentReportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Represents the maximum number of results per page, or per API request call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -11666,7 +11666,7 @@ func (s *ListAssessmentReportsOutput) SetNextToken(v string) *ListAssessmentRepo
 }
 
 type ListAssessmentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Represents the maximum number of results per page, or per API request call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -11762,7 +11762,7 @@ func (s *ListAssessmentsOutput) SetNextToken(v string) *ListAssessmentsOutput {
 }
 
 type ListControlsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of control, such as standard or custom.
 	//
@@ -11872,7 +11872,7 @@ func (s *ListControlsOutput) SetNextToken(v string) *ListControlsOutput {
 }
 
 type ListKeywordsForDataSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Represents the maximum number of results per page, or per API request call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -11982,7 +11982,7 @@ func (s *ListKeywordsForDataSourceOutput) SetNextToken(v string) *ListKeywordsFo
 }
 
 type ListNotificationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Represents the maximum number of results per page, or per API request call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -12078,7 +12078,7 @@ func (s *ListNotificationsOutput) SetNotifications(v []*Notification) *ListNotif
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the specified resource.
 	//
@@ -12971,7 +12971,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -13035,7 +13035,7 @@ func (s *URL) SetLink(v string) *URL {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the specified resource.
 	//
@@ -13101,7 +13101,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
