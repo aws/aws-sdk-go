@@ -573,6 +573,100 @@ func (c *MediaLive) CancelInputDeviceTransferWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opClaimDevice = "ClaimDevice"
+
+// ClaimDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the ClaimDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ClaimDevice for more information on using the ClaimDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ClaimDeviceRequest method.
+//    req, resp := client.ClaimDeviceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ClaimDevice
+func (c *MediaLive) ClaimDeviceRequest(input *ClaimDeviceInput) (req *request.Request, output *ClaimDeviceOutput) {
+	op := &request.Operation{
+		Name:       opClaimDevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/claimDevice",
+	}
+
+	if input == nil {
+		input = &ClaimDeviceInput{}
+	}
+
+	output = &ClaimDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ClaimDevice API operation for AWS Elemental MediaLive.
+//
+// Send a request to claim an AWS Elemental device that you have purchased from
+// a third-party vendor. After the request succeeds, you will own the device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation ClaimDevice for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * BadGatewayException
+//
+//   * NotFoundException
+//
+//   * GatewayTimeoutException
+//
+//   * TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ClaimDevice
+func (c *MediaLive) ClaimDevice(input *ClaimDeviceInput) (*ClaimDeviceOutput, error) {
+	req, out := c.ClaimDeviceRequest(input)
+	return out, req.Send()
+}
+
+// ClaimDeviceWithContext is the same as ClaimDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ClaimDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ClaimDeviceWithContext(ctx aws.Context, input *ClaimDeviceInput, opts ...request.Option) (*ClaimDeviceOutput, error) {
+	req, out := c.ClaimDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateChannel = "CreateChannel"
 
 // CreateChannelRequest generates a "aws/request.Request" representing the
@@ -6513,6 +6607,10 @@ type AudioDescription struct {
 	// broadcasterMixedAd.
 	AudioTypeControl *string `locationName:"audioTypeControl" type:"string" enum:"AudioDescriptionAudioTypeControl"`
 
+	// Settings to configure one or more solutions that insert audio watermarks
+	// in the audio encode
+	AudioWatermarkingSettings *AudioWatermarkSettings `locationName:"audioWatermarkingSettings" type:"structure"`
+
 	// Audio codec settings.
 	CodecSettings *AudioCodecSettings `locationName:"codecSettings" type:"structure"`
 
@@ -6573,6 +6671,11 @@ func (s *AudioDescription) Validate() error {
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
+	if s.AudioWatermarkingSettings != nil {
+		if err := s.AudioWatermarkingSettings.Validate(); err != nil {
+			invalidParams.AddNested("AudioWatermarkingSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CodecSettings != nil {
 		if err := s.CodecSettings.Validate(); err != nil {
 			invalidParams.AddNested("CodecSettings", err.(request.ErrInvalidParams))
@@ -6611,6 +6714,12 @@ func (s *AudioDescription) SetAudioType(v string) *AudioDescription {
 // SetAudioTypeControl sets the AudioTypeControl field's value.
 func (s *AudioDescription) SetAudioTypeControl(v string) *AudioDescription {
 	s.AudioTypeControl = &v
+	return s
+}
+
+// SetAudioWatermarkingSettings sets the AudioWatermarkingSettings field's value.
+func (s *AudioDescription) SetAudioWatermarkingSettings(v *AudioWatermarkSettings) *AudioDescription {
+	s.AudioWatermarkingSettings = v
 	return s
 }
 
@@ -7288,6 +7397,53 @@ func (s *AudioTrackSelection) Validate() error {
 // SetTracks sets the Tracks field's value.
 func (s *AudioTrackSelection) SetTracks(v []*AudioTrack) *AudioTrackSelection {
 	s.Tracks = v
+	return s
+}
+
+// Audio Watermark Settings
+type AudioWatermarkSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Settings to configure Nielsen Watermarks in the audio encode
+	NielsenWatermarksSettings *NielsenWatermarksSettings `locationName:"nielsenWatermarksSettings" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioWatermarkSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioWatermarkSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AudioWatermarkSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AudioWatermarkSettings"}
+	if s.NielsenWatermarksSettings != nil {
+		if err := s.NielsenWatermarksSettings.Validate(); err != nil {
+			invalidParams.AddNested("NielsenWatermarksSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNielsenWatermarksSettings sets the NielsenWatermarksSettings field's value.
+func (s *AudioWatermarkSettings) SetNielsenWatermarksSettings(v *NielsenWatermarksSettings) *AudioWatermarkSettings {
+	s.NielsenWatermarksSettings = v
 	return s
 }
 
@@ -9669,7 +9825,7 @@ type ChannelSummary struct {
 	// A collection of key-value pairs.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// Settings for VPC output
+	// Settings for any VPC outputs.
 	Vpc *VpcOutputSettingsDescription `locationName:"vpc" type:"structure"`
 }
 
@@ -9779,6 +9935,61 @@ func (s *ChannelSummary) SetTags(v map[string]*string) *ChannelSummary {
 func (s *ChannelSummary) SetVpc(v *VpcOutputSettingsDescription) *ChannelSummary {
 	s.Vpc = v
 	return s
+}
+
+// Request to claim an AWS Elemental device that you have purchased from a third-party
+// vendor.
+type ClaimDeviceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The id of the device you want to claim.
+	Id *string `locationName:"id" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimDeviceInput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ClaimDeviceInput) SetId(v string) *ClaimDeviceInput {
+	s.Id = &v
+	return s
+}
+
+type ClaimDeviceOutput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClaimDeviceOutput) GoString() string {
+	return s.String()
 }
 
 // Passthrough applies no color space conversion to the output
@@ -10090,6 +10301,7 @@ type CreateInputInput struct {
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The different types of inputs that AWS Elemental MediaLive supports.
 	Type *string `locationName:"type" type:"string" enum:"InputType"`
 
 	// Settings for a private VPC Input.When this property is specified, the input
@@ -12275,8 +12487,8 @@ type DescribeInputOutput struct {
 
 	// There are two types of input sources, static and dynamic. If an input source
 	// is dynamic you canchange the source url of the input dynamically using an
-	// input switch action. However, the only input typeto support a dynamic url
-	// at this time is MP4_FILE. By default all input sources are static.
+	// input switch action. Currently, two input typessupport a dynamic url at this
+	// time, MP4_FILE and TS_FILE. By default all input sources are static.
 	InputSourceType *string `locationName:"inputSourceType" type:"string" enum:"InputSourceType"`
 
 	MediaConnectFlows []*MediaConnectFlow `locationName:"mediaConnectFlows" type:"list"`
@@ -12293,6 +12505,7 @@ type DescribeInputOutput struct {
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The different types of inputs that AWS Elemental MediaLive supports.
 	Type *string `locationName:"type" type:"string" enum:"InputType"`
 }
 
@@ -17803,7 +18016,7 @@ type Input struct {
 
 	// Certain pull input sources can be dynamic, meaning that they can have their
 	// URL's dynamically changesduring input switch actions. Presently, this functionality
-	// only works with MP4_FILE inputs.
+	// only works with MP4_FILE and TS_FILE inputs.
 	InputSourceType *string `locationName:"inputSourceType" type:"string" enum:"InputSourceType"`
 
 	// A list of MediaConnect Flows for this input.
@@ -17827,6 +18040,7 @@ type Input struct {
 	// A collection of key-value pairs.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The different types of inputs that AWS Elemental MediaLive supports.
 	Type *string `locationName:"type" type:"string" enum:"InputType"`
 }
 
@@ -23665,6 +23879,88 @@ func (s *NetworkInputSettings) SetServerValidation(v string) *NetworkInputSettin
 	return s
 }
 
+// Nielsen CBET
+type NielsenCBET struct {
+	_ struct{} `type:"structure"`
+
+	// Enter the CBET check digits to use in the watermark.
+	//
+	// CbetCheckDigitString is a required field
+	CbetCheckDigitString *string `locationName:"cbetCheckDigitString" min:"2" type:"string" required:"true"`
+
+	// Determines the method of CBET insertion mode when prior encoding is detected
+	// on the same layer.
+	//
+	// CbetStepaside is a required field
+	CbetStepaside *string `locationName:"cbetStepaside" type:"string" required:"true" enum:"NielsenWatermarksCbetStepaside"`
+
+	// Enter the CBET Source ID (CSID) to use in the watermark
+	//
+	// Csid is a required field
+	Csid *string `locationName:"csid" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NielsenCBET) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NielsenCBET) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NielsenCBET) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NielsenCBET"}
+	if s.CbetCheckDigitString == nil {
+		invalidParams.Add(request.NewErrParamRequired("CbetCheckDigitString"))
+	}
+	if s.CbetCheckDigitString != nil && len(*s.CbetCheckDigitString) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("CbetCheckDigitString", 2))
+	}
+	if s.CbetStepaside == nil {
+		invalidParams.Add(request.NewErrParamRequired("CbetStepaside"))
+	}
+	if s.Csid == nil {
+		invalidParams.Add(request.NewErrParamRequired("Csid"))
+	}
+	if s.Csid != nil && len(*s.Csid) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Csid", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCbetCheckDigitString sets the CbetCheckDigitString field's value.
+func (s *NielsenCBET) SetCbetCheckDigitString(v string) *NielsenCBET {
+	s.CbetCheckDigitString = &v
+	return s
+}
+
+// SetCbetStepaside sets the CbetStepaside field's value.
+func (s *NielsenCBET) SetCbetStepaside(v string) *NielsenCBET {
+	s.CbetStepaside = &v
+	return s
+}
+
+// SetCsid sets the Csid field's value.
+func (s *NielsenCBET) SetCsid(v string) *NielsenCBET {
+	s.Csid = &v
+	return s
+}
+
 // Nielsen Configuration
 type NielsenConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -23703,6 +23999,143 @@ func (s *NielsenConfiguration) SetDistributorId(v string) *NielsenConfiguration 
 // SetNielsenPcmToId3Tagging sets the NielsenPcmToId3Tagging field's value.
 func (s *NielsenConfiguration) SetNielsenPcmToId3Tagging(v string) *NielsenConfiguration {
 	s.NielsenPcmToId3Tagging = &v
+	return s
+}
+
+// Nielsen Naes Ii Nw
+type NielsenNaesIiNw struct {
+	_ struct{} `type:"structure"`
+
+	// Enter the check digit string for the watermark
+	//
+	// CheckDigitString is a required field
+	CheckDigitString *string `locationName:"checkDigitString" min:"2" type:"string" required:"true"`
+
+	// Enter the Nielsen Source ID (SID) to include in the watermark
+	//
+	// Sid is a required field
+	Sid *float64 `locationName:"sid" type:"double" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NielsenNaesIiNw) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NielsenNaesIiNw) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NielsenNaesIiNw) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NielsenNaesIiNw"}
+	if s.CheckDigitString == nil {
+		invalidParams.Add(request.NewErrParamRequired("CheckDigitString"))
+	}
+	if s.CheckDigitString != nil && len(*s.CheckDigitString) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("CheckDigitString", 2))
+	}
+	if s.Sid == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sid"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCheckDigitString sets the CheckDigitString field's value.
+func (s *NielsenNaesIiNw) SetCheckDigitString(v string) *NielsenNaesIiNw {
+	s.CheckDigitString = &v
+	return s
+}
+
+// SetSid sets the Sid field's value.
+func (s *NielsenNaesIiNw) SetSid(v float64) *NielsenNaesIiNw {
+	s.Sid = &v
+	return s
+}
+
+// Nielsen Watermarks Settings
+type NielsenWatermarksSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Complete these fields only if you want to insert watermarks of type Nielsen
+	// CBET
+	NielsenCbetSettings *NielsenCBET `locationName:"nielsenCbetSettings" type:"structure"`
+
+	// Choose the distribution types that you want to assign to the watermarks:-
+	// PROGRAM_CONTENT- FINAL_DISTRIBUTOR
+	NielsenDistributionType *string `locationName:"nielsenDistributionType" type:"string" enum:"NielsenWatermarksDistributionTypes"`
+
+	// Complete these fields only if you want to insert watermarks of type Nielsen
+	// NAES II (N2) and Nielsen NAES VI (NW).
+	NielsenNaesIiNwSettings *NielsenNaesIiNw `locationName:"nielsenNaesIiNwSettings" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NielsenWatermarksSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NielsenWatermarksSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NielsenWatermarksSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NielsenWatermarksSettings"}
+	if s.NielsenCbetSettings != nil {
+		if err := s.NielsenCbetSettings.Validate(); err != nil {
+			invalidParams.AddNested("NielsenCbetSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NielsenNaesIiNwSettings != nil {
+		if err := s.NielsenNaesIiNwSettings.Validate(); err != nil {
+			invalidParams.AddNested("NielsenNaesIiNwSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNielsenCbetSettings sets the NielsenCbetSettings field's value.
+func (s *NielsenWatermarksSettings) SetNielsenCbetSettings(v *NielsenCBET) *NielsenWatermarksSettings {
+	s.NielsenCbetSettings = v
+	return s
+}
+
+// SetNielsenDistributionType sets the NielsenDistributionType field's value.
+func (s *NielsenWatermarksSettings) SetNielsenDistributionType(v string) *NielsenWatermarksSettings {
+	s.NielsenDistributionType = &v
+	return s
+}
+
+// SetNielsenNaesIiNwSettings sets the NielsenNaesIiNwSettings field's value.
+func (s *NielsenWatermarksSettings) SetNielsenNaesIiNwSettings(v *NielsenNaesIiNw) *NielsenWatermarksSettings {
+	s.NielsenNaesIiNwSettings = v
 	return s
 }
 
@@ -33578,8 +34011,8 @@ func InputSourceEndBehavior_Values() []string {
 
 // There are two types of input sources, static and dynamic. If an input source
 // is dynamic you canchange the source url of the input dynamically using an
-// input switch action. However, the only input typeto support a dynamic url
-// at this time is MP4_FILE. By default all input sources are static.
+// input switch action. Currently, two input typessupport a dynamic url at this
+// time, MP4_FILE and TS_FILE. By default all input sources are static.
 const (
 	// InputSourceTypeStatic is a InputSourceType enum value
 	InputSourceTypeStatic = "STATIC"
@@ -33647,6 +34080,7 @@ func InputTimecodeSource_Values() []string {
 	}
 }
 
+// The different types of inputs that AWS Elemental MediaLive supports.
 const (
 	// InputTypeUdpPush is a InputType enum value
 	InputTypeUdpPush = "UDP_PUSH"
@@ -33674,6 +34108,9 @@ const (
 
 	// InputTypeAwsCdi is a InputType enum value
 	InputTypeAwsCdi = "AWS_CDI"
+
+	// InputTypeTsFile is a InputType enum value
+	InputTypeTsFile = "TS_FILE"
 )
 
 // InputType_Values returns all elements of the InputType enum
@@ -33688,6 +34125,7 @@ func InputType_Values() []string {
 		InputTypeMediaconnect,
 		InputTypeInputDevice,
 		InputTypeAwsCdi,
+		InputTypeTsFile,
 	}
 }
 
@@ -34421,6 +34859,40 @@ func NielsenPcmToId3TaggingState_Values() []string {
 	return []string{
 		NielsenPcmToId3TaggingStateDisabled,
 		NielsenPcmToId3TaggingStateEnabled,
+	}
+}
+
+// Nielsen Watermarks Cbet Stepaside
+const (
+	// NielsenWatermarksCbetStepasideDisabled is a NielsenWatermarksCbetStepaside enum value
+	NielsenWatermarksCbetStepasideDisabled = "DISABLED"
+
+	// NielsenWatermarksCbetStepasideEnabled is a NielsenWatermarksCbetStepaside enum value
+	NielsenWatermarksCbetStepasideEnabled = "ENABLED"
+)
+
+// NielsenWatermarksCbetStepaside_Values returns all elements of the NielsenWatermarksCbetStepaside enum
+func NielsenWatermarksCbetStepaside_Values() []string {
+	return []string{
+		NielsenWatermarksCbetStepasideDisabled,
+		NielsenWatermarksCbetStepasideEnabled,
+	}
+}
+
+// Nielsen Watermarks Distribution Types
+const (
+	// NielsenWatermarksDistributionTypesFinalDistributor is a NielsenWatermarksDistributionTypes enum value
+	NielsenWatermarksDistributionTypesFinalDistributor = "FINAL_DISTRIBUTOR"
+
+	// NielsenWatermarksDistributionTypesProgramContent is a NielsenWatermarksDistributionTypes enum value
+	NielsenWatermarksDistributionTypesProgramContent = "PROGRAM_CONTENT"
+)
+
+// NielsenWatermarksDistributionTypes_Values returns all elements of the NielsenWatermarksDistributionTypes enum
+func NielsenWatermarksDistributionTypes_Values() []string {
+	return []string{
+		NielsenWatermarksDistributionTypesFinalDistributor,
+		NielsenWatermarksDistributionTypesProgramContent,
 	}
 }
 

@@ -969,7 +969,8 @@
         "UnhealthyThresholdCount":{"shape":"HealthCheckThresholdCount"},
         "Matcher":{"shape":"Matcher"},
         "TargetType":{"shape":"TargetTypeEnum"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "IpAddressType":{"shape":"TargetGroupIpAddressTypeEnum"}
       }
     },
     "CreateTargetGroupOutput":{
@@ -2133,7 +2134,8 @@
         "Matcher":{"shape":"Matcher"},
         "LoadBalancerArns":{"shape":"LoadBalancerArns"},
         "TargetType":{"shape":"TargetTypeEnum"},
-        "ProtocolVersion":{"shape":"ProtocolVersion"}
+        "ProtocolVersion":{"shape":"ProtocolVersion"},
+        "IpAddressType":{"shape":"TargetGroupIpAddressTypeEnum"}
       }
     },
     "TargetGroupArn":{"type":"string"},
@@ -2168,6 +2170,13 @@
     "TargetGroupAttributes":{
       "type":"list",
       "member":{"shape":"TargetGroupAttribute"}
+    },
+    "TargetGroupIpAddressTypeEnum":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "ipv6"
+      ]
     },
     "TargetGroupList":{
       "type":"list",

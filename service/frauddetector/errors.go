@@ -19,18 +19,7 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// An exception indicating there was a conflict during a delete operation. The
-	// following delete operations can cause a conflict exception:
-	//
-	//    * DeleteDetector: A conflict exception will occur if the detector has
-	//    associated Rules or DetectorVersions. You can only delete a detector if
-	//    it has no Rules or DetectorVersions.
-	//
-	//    * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-	//    status is ACTIVE.
-	//
-	//    * DeleteRule: A conflict exception will occur if the RuleVersion is in
-	//    use by an associated ACTIVE or INACTIVE DetectorVersion.
+	// An exception indicating there was a conflict during a delete operation.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
@@ -42,9 +31,7 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// An exception indicating the specified resource was not found. This can occur
-	// if you submit a request, such as CreateBatchPredictionJob, but the detector
-	// name or version does not exist.
+	// An exception indicating the specified resource was not found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeResourceUnavailableException for service response error code

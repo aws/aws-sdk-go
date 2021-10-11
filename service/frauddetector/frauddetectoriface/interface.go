@@ -68,9 +68,17 @@ type FraudDetectorAPI interface {
 	BatchGetVariableWithContext(aws.Context, *frauddetector.BatchGetVariableInput, ...request.Option) (*frauddetector.BatchGetVariableOutput, error)
 	BatchGetVariableRequest(*frauddetector.BatchGetVariableInput) (*request.Request, *frauddetector.BatchGetVariableOutput)
 
+	CancelBatchImportJob(*frauddetector.CancelBatchImportJobInput) (*frauddetector.CancelBatchImportJobOutput, error)
+	CancelBatchImportJobWithContext(aws.Context, *frauddetector.CancelBatchImportJobInput, ...request.Option) (*frauddetector.CancelBatchImportJobOutput, error)
+	CancelBatchImportJobRequest(*frauddetector.CancelBatchImportJobInput) (*request.Request, *frauddetector.CancelBatchImportJobOutput)
+
 	CancelBatchPredictionJob(*frauddetector.CancelBatchPredictionJobInput) (*frauddetector.CancelBatchPredictionJobOutput, error)
 	CancelBatchPredictionJobWithContext(aws.Context, *frauddetector.CancelBatchPredictionJobInput, ...request.Option) (*frauddetector.CancelBatchPredictionJobOutput, error)
 	CancelBatchPredictionJobRequest(*frauddetector.CancelBatchPredictionJobInput) (*request.Request, *frauddetector.CancelBatchPredictionJobOutput)
+
+	CreateBatchImportJob(*frauddetector.CreateBatchImportJobInput) (*frauddetector.CreateBatchImportJobOutput, error)
+	CreateBatchImportJobWithContext(aws.Context, *frauddetector.CreateBatchImportJobInput, ...request.Option) (*frauddetector.CreateBatchImportJobOutput, error)
+	CreateBatchImportJobRequest(*frauddetector.CreateBatchImportJobInput) (*request.Request, *frauddetector.CreateBatchImportJobOutput)
 
 	CreateBatchPredictionJob(*frauddetector.CreateBatchPredictionJobInput) (*frauddetector.CreateBatchPredictionJobOutput, error)
 	CreateBatchPredictionJobWithContext(aws.Context, *frauddetector.CreateBatchPredictionJobInput, ...request.Option) (*frauddetector.CreateBatchPredictionJobOutput, error)
@@ -96,6 +104,10 @@ type FraudDetectorAPI interface {
 	CreateVariableWithContext(aws.Context, *frauddetector.CreateVariableInput, ...request.Option) (*frauddetector.CreateVariableOutput, error)
 	CreateVariableRequest(*frauddetector.CreateVariableInput) (*request.Request, *frauddetector.CreateVariableOutput)
 
+	DeleteBatchImportJob(*frauddetector.DeleteBatchImportJobInput) (*frauddetector.DeleteBatchImportJobOutput, error)
+	DeleteBatchImportJobWithContext(aws.Context, *frauddetector.DeleteBatchImportJobInput, ...request.Option) (*frauddetector.DeleteBatchImportJobOutput, error)
+	DeleteBatchImportJobRequest(*frauddetector.DeleteBatchImportJobInput) (*request.Request, *frauddetector.DeleteBatchImportJobOutput)
+
 	DeleteBatchPredictionJob(*frauddetector.DeleteBatchPredictionJobInput) (*frauddetector.DeleteBatchPredictionJobOutput, error)
 	DeleteBatchPredictionJobWithContext(aws.Context, *frauddetector.DeleteBatchPredictionJobInput, ...request.Option) (*frauddetector.DeleteBatchPredictionJobOutput, error)
 	DeleteBatchPredictionJobRequest(*frauddetector.DeleteBatchPredictionJobInput) (*request.Request, *frauddetector.DeleteBatchPredictionJobOutput)
@@ -119,6 +131,10 @@ type FraudDetectorAPI interface {
 	DeleteEventType(*frauddetector.DeleteEventTypeInput) (*frauddetector.DeleteEventTypeOutput, error)
 	DeleteEventTypeWithContext(aws.Context, *frauddetector.DeleteEventTypeInput, ...request.Option) (*frauddetector.DeleteEventTypeOutput, error)
 	DeleteEventTypeRequest(*frauddetector.DeleteEventTypeInput) (*request.Request, *frauddetector.DeleteEventTypeOutput)
+
+	DeleteEventsByEventType(*frauddetector.DeleteEventsByEventTypeInput) (*frauddetector.DeleteEventsByEventTypeOutput, error)
+	DeleteEventsByEventTypeWithContext(aws.Context, *frauddetector.DeleteEventsByEventTypeInput, ...request.Option) (*frauddetector.DeleteEventsByEventTypeOutput, error)
+	DeleteEventsByEventTypeRequest(*frauddetector.DeleteEventsByEventTypeInput) (*request.Request, *frauddetector.DeleteEventsByEventTypeOutput)
 
 	DeleteExternalModel(*frauddetector.DeleteExternalModelInput) (*frauddetector.DeleteExternalModelOutput, error)
 	DeleteExternalModelWithContext(aws.Context, *frauddetector.DeleteExternalModelInput, ...request.Option) (*frauddetector.DeleteExternalModelOutput, error)
@@ -159,12 +175,23 @@ type FraudDetectorAPI interface {
 	DescribeModelVersionsPages(*frauddetector.DescribeModelVersionsInput, func(*frauddetector.DescribeModelVersionsOutput, bool) bool) error
 	DescribeModelVersionsPagesWithContext(aws.Context, *frauddetector.DescribeModelVersionsInput, func(*frauddetector.DescribeModelVersionsOutput, bool) bool, ...request.Option) error
 
+	GetBatchImportJobs(*frauddetector.GetBatchImportJobsInput) (*frauddetector.GetBatchImportJobsOutput, error)
+	GetBatchImportJobsWithContext(aws.Context, *frauddetector.GetBatchImportJobsInput, ...request.Option) (*frauddetector.GetBatchImportJobsOutput, error)
+	GetBatchImportJobsRequest(*frauddetector.GetBatchImportJobsInput) (*request.Request, *frauddetector.GetBatchImportJobsOutput)
+
+	GetBatchImportJobsPages(*frauddetector.GetBatchImportJobsInput, func(*frauddetector.GetBatchImportJobsOutput, bool) bool) error
+	GetBatchImportJobsPagesWithContext(aws.Context, *frauddetector.GetBatchImportJobsInput, func(*frauddetector.GetBatchImportJobsOutput, bool) bool, ...request.Option) error
+
 	GetBatchPredictionJobs(*frauddetector.GetBatchPredictionJobsInput) (*frauddetector.GetBatchPredictionJobsOutput, error)
 	GetBatchPredictionJobsWithContext(aws.Context, *frauddetector.GetBatchPredictionJobsInput, ...request.Option) (*frauddetector.GetBatchPredictionJobsOutput, error)
 	GetBatchPredictionJobsRequest(*frauddetector.GetBatchPredictionJobsInput) (*request.Request, *frauddetector.GetBatchPredictionJobsOutput)
 
 	GetBatchPredictionJobsPages(*frauddetector.GetBatchPredictionJobsInput, func(*frauddetector.GetBatchPredictionJobsOutput, bool) bool) error
 	GetBatchPredictionJobsPagesWithContext(aws.Context, *frauddetector.GetBatchPredictionJobsInput, func(*frauddetector.GetBatchPredictionJobsOutput, bool) bool, ...request.Option) error
+
+	GetDeleteEventsByEventTypeStatus(*frauddetector.GetDeleteEventsByEventTypeStatusInput) (*frauddetector.GetDeleteEventsByEventTypeStatusOutput, error)
+	GetDeleteEventsByEventTypeStatusWithContext(aws.Context, *frauddetector.GetDeleteEventsByEventTypeStatusInput, ...request.Option) (*frauddetector.GetDeleteEventsByEventTypeStatusOutput, error)
+	GetDeleteEventsByEventTypeStatusRequest(*frauddetector.GetDeleteEventsByEventTypeStatusInput) (*request.Request, *frauddetector.GetDeleteEventsByEventTypeStatusOutput)
 
 	GetDetectorVersion(*frauddetector.GetDetectorVersionInput) (*frauddetector.GetDetectorVersionOutput, error)
 	GetDetectorVersionWithContext(aws.Context, *frauddetector.GetDetectorVersionInput, ...request.Option) (*frauddetector.GetDetectorVersionOutput, error)
@@ -183,6 +210,10 @@ type FraudDetectorAPI interface {
 
 	GetEntityTypesPages(*frauddetector.GetEntityTypesInput, func(*frauddetector.GetEntityTypesOutput, bool) bool) error
 	GetEntityTypesPagesWithContext(aws.Context, *frauddetector.GetEntityTypesInput, func(*frauddetector.GetEntityTypesOutput, bool) bool, ...request.Option) error
+
+	GetEvent(*frauddetector.GetEventInput) (*frauddetector.GetEventOutput, error)
+	GetEventWithContext(aws.Context, *frauddetector.GetEventInput, ...request.Option) (*frauddetector.GetEventOutput, error)
+	GetEventRequest(*frauddetector.GetEventInput) (*request.Request, *frauddetector.GetEventOutput)
 
 	GetEventPrediction(*frauddetector.GetEventPredictionInput) (*frauddetector.GetEventPredictionOutput, error)
 	GetEventPredictionWithContext(aws.Context, *frauddetector.GetEventPredictionInput, ...request.Option) (*frauddetector.GetEventPredictionOutput, error)
@@ -280,6 +311,10 @@ type FraudDetectorAPI interface {
 	PutOutcomeWithContext(aws.Context, *frauddetector.PutOutcomeInput, ...request.Option) (*frauddetector.PutOutcomeOutput, error)
 	PutOutcomeRequest(*frauddetector.PutOutcomeInput) (*request.Request, *frauddetector.PutOutcomeOutput)
 
+	SendEvent(*frauddetector.SendEventInput) (*frauddetector.SendEventOutput, error)
+	SendEventWithContext(aws.Context, *frauddetector.SendEventInput, ...request.Option) (*frauddetector.SendEventOutput, error)
+	SendEventRequest(*frauddetector.SendEventInput) (*request.Request, *frauddetector.SendEventOutput)
+
 	TagResource(*frauddetector.TagResourceInput) (*frauddetector.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *frauddetector.TagResourceInput, ...request.Option) (*frauddetector.TagResourceOutput, error)
 	TagResourceRequest(*frauddetector.TagResourceInput) (*request.Request, *frauddetector.TagResourceOutput)
@@ -299,6 +334,10 @@ type FraudDetectorAPI interface {
 	UpdateDetectorVersionStatus(*frauddetector.UpdateDetectorVersionStatusInput) (*frauddetector.UpdateDetectorVersionStatusOutput, error)
 	UpdateDetectorVersionStatusWithContext(aws.Context, *frauddetector.UpdateDetectorVersionStatusInput, ...request.Option) (*frauddetector.UpdateDetectorVersionStatusOutput, error)
 	UpdateDetectorVersionStatusRequest(*frauddetector.UpdateDetectorVersionStatusInput) (*request.Request, *frauddetector.UpdateDetectorVersionStatusOutput)
+
+	UpdateEventLabel(*frauddetector.UpdateEventLabelInput) (*frauddetector.UpdateEventLabelOutput, error)
+	UpdateEventLabelWithContext(aws.Context, *frauddetector.UpdateEventLabelInput, ...request.Option) (*frauddetector.UpdateEventLabelOutput, error)
+	UpdateEventLabelRequest(*frauddetector.UpdateEventLabelInput) (*request.Request, *frauddetector.UpdateEventLabelOutput)
 
 	UpdateModel(*frauddetector.UpdateModelInput) (*frauddetector.UpdateModelOutput, error)
 	UpdateModelWithContext(aws.Context, *frauddetector.UpdateModelInput, ...request.Option) (*frauddetector.UpdateModelOutput, error)

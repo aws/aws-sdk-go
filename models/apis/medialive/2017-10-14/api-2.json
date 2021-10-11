@@ -258,6 +258,46 @@
         }
       ]
     },
+    "ClaimDevice": {
+      "name": "ClaimDevice",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/claimDevice",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ClaimDeviceRequest"
+      },
+      "output": {
+        "shape": "ClaimDeviceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "CreateChannel": {
       "name": "CreateChannel",
       "http": {
@@ -2485,6 +2525,10 @@
           "shape": "AudioDescriptionAudioTypeControl",
           "locationName": "audioTypeControl"
         },
+        "AudioWatermarkingSettings": {
+          "shape": "AudioWatermarkSettings",
+          "locationName": "audioWatermarkingSettings"
+        },
         "CodecSettings": {
           "shape": "AudioCodecSettings",
           "locationName": "codecSettings"
@@ -2733,6 +2777,15 @@
         "UNDEFINED",
         "VISUAL_IMPAIRED_COMMENTARY"
       ]
+    },
+    "AudioWatermarkSettings": {
+      "type": "structure",
+      "members": {
+        "NielsenWatermarksSettings": {
+          "shape": "NielsenWatermarksSettings",
+          "locationName": "nielsenWatermarksSettings"
+        }
+      }
     },
     "AuthenticationScheme": {
       "type": "string",
@@ -3708,6 +3761,20 @@
           "shape": "VpcOutputSettingsDescription",
           "locationName": "vpc"
         }
+      }
+    },
+    "ClaimDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        }
+      }
+    },
+    "ClaimDeviceResponse": {
+      "type": "structure",
+      "members": {
       }
     },
     "ColorSpacePassthroughSettings": {
@@ -8191,7 +8258,8 @@
         "MP4_FILE",
         "MEDIACONNECT",
         "INPUT_DEVICE",
-        "AWS_CDI"
+        "AWS_CDI",
+        "TS_FILE"
       ]
     },
     "InputVpcRequest": {
@@ -9992,6 +10060,28 @@
         }
       }
     },
+    "NielsenCBET": {
+      "type": "structure",
+      "members": {
+        "CbetCheckDigitString": {
+          "shape": "__stringMin2Max2",
+          "locationName": "cbetCheckDigitString"
+        },
+        "CbetStepaside": {
+          "shape": "NielsenWatermarksCbetStepaside",
+          "locationName": "cbetStepaside"
+        },
+        "Csid": {
+          "shape": "__stringMin1Max7",
+          "locationName": "csid"
+        }
+      },
+      "required": [
+        "CbetCheckDigitString",
+        "CbetStepaside",
+        "Csid"
+      ]
+    },
     "NielsenConfiguration": {
       "type": "structure",
       "members": {
@@ -10005,12 +10095,60 @@
         }
       }
     },
+    "NielsenNaesIiNw": {
+      "type": "structure",
+      "members": {
+        "CheckDigitString": {
+          "shape": "__stringMin2Max2",
+          "locationName": "checkDigitString"
+        },
+        "Sid": {
+          "shape": "__doubleMin1Max65535",
+          "locationName": "sid"
+        }
+      },
+      "required": [
+        "CheckDigitString",
+        "Sid"
+      ]
+    },
     "NielsenPcmToId3TaggingState": {
       "type": "string",
       "enum": [
         "DISABLED",
         "ENABLED"
       ]
+    },
+    "NielsenWatermarksCbetStepaside": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "NielsenWatermarksDistributionTypes": {
+      "type": "string",
+      "enum": [
+        "FINAL_DISTRIBUTOR",
+        "PROGRAM_CONTENT"
+      ]
+    },
+    "NielsenWatermarksSettings": {
+      "type": "structure",
+      "members": {
+        "NielsenCbetSettings": {
+          "shape": "NielsenCBET",
+          "locationName": "nielsenCbetSettings"
+        },
+        "NielsenDistributionType": {
+          "shape": "NielsenWatermarksDistributionTypes",
+          "locationName": "nielsenDistributionType"
+        },
+        "NielsenNaesIiNwSettings": {
+          "shape": "NielsenNaesIiNw",
+          "locationName": "nielsenNaesIiNwSettings"
+        }
+      }
     },
     "NotFoundException": {
       "type": "structure",
@@ -12725,6 +12863,9 @@
     "__doubleMin1": {
       "type": "double"
     },
+    "__doubleMin1Max65535": {
+      "type": "double"
+    },
     "__doubleMinNegative59Max0": {
       "type": "double"
     },
@@ -13325,6 +13466,16 @@
       "type": "string",
       "min": 1,
       "max": 35
+    },
+    "__stringMin1Max7": {
+      "type": "string",
+      "min": 1,
+      "max": 7
+    },
+    "__stringMin2Max2": {
+      "type": "string",
+      "min": 2,
+      "max": 2
     },
     "__stringMin32Max32": {
       "type": "string",

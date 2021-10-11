@@ -8514,7 +8514,7 @@ func (s DeleteJobTemplateOutput) GoString() string {
 
 // Send a request to permanently delete a policy that you created.
 type DeletePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8537,7 +8537,7 @@ func (s DeletePolicyInput) GoString() string {
 
 // Successful DELETE policy requests will return an OK message.
 type DeletePolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11104,7 +11104,7 @@ func (s *GetJobTemplateOutput) SetJobTemplate(v *JobTemplate) *GetJobTemplateOut
 
 // Send a request to retrieve the JSON for your policy.
 type GetPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

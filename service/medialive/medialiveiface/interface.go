@@ -84,6 +84,10 @@ type MediaLiveAPI interface {
 	CancelInputDeviceTransferWithContext(aws.Context, *medialive.CancelInputDeviceTransferInput, ...request.Option) (*medialive.CancelInputDeviceTransferOutput, error)
 	CancelInputDeviceTransferRequest(*medialive.CancelInputDeviceTransferInput) (*request.Request, *medialive.CancelInputDeviceTransferOutput)
 
+	ClaimDevice(*medialive.ClaimDeviceInput) (*medialive.ClaimDeviceOutput, error)
+	ClaimDeviceWithContext(aws.Context, *medialive.ClaimDeviceInput, ...request.Option) (*medialive.ClaimDeviceOutput, error)
+	ClaimDeviceRequest(*medialive.ClaimDeviceInput) (*request.Request, *medialive.ClaimDeviceOutput)
+
 	CreateChannel(*medialive.CreateChannelInput) (*medialive.CreateChannelOutput, error)
 	CreateChannelWithContext(aws.Context, *medialive.CreateChannelInput, ...request.Option) (*medialive.CreateChannelOutput, error)
 	CreateChannelRequest(*medialive.CreateChannelInput) (*request.Request, *medialive.CreateChannelOutput)

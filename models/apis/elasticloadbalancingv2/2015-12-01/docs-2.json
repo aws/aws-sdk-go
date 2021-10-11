@@ -702,7 +702,7 @@
     "HttpCode": {
       "base": null,
       "refs": {
-        "Matcher$HttpCode": "<p>For Application Load Balancers, you can specify values between 200 and 499, and the default value is 200. You can specify multiple values (for example, \"200,202\") or a range of values (for example, \"200-299\").</p> <p>For Network Load Balancers and Gateway Load Balancers, this must be \"200–399\".</p>"
+        "Matcher$HttpCode": "<p>For Application Load Balancers, you can specify values between 200 and 499, and the default value is 200. You can specify multiple values (for example, \"200,202\") or a range of values (for example, \"200-299\").</p> <p>For Network Load Balancers and Gateway Load Balancers, this must be \"200–399\".</p> <p>Note that when using shorthand syntax, some values such as commas need to be escaped.</p>"
       }
     },
     "HttpHeaderConditionConfig": {
@@ -990,7 +990,7 @@
       }
     },
     "Matcher": {
-      "base": "<p>The codes to use when checking for a successful response from a target. If the protocol version is gRPC, these are gRPC codes. Otherwise, these are HTTP codes.</p>",
+      "base": "<p>The codes to use when checking for a successful response from a target. If the protocol version is gRPC, these are gRPC codes. Otherwise, these are HTTP codes. </p>",
       "refs": {
         "CreateTargetGroupInput$Matcher": "<p>[HTTP/HTTPS health checks] The HTTP or gRPC codes to use when checking for a successful response from a target.</p>",
         "ModifyTargetGroupInput$Matcher": "<p>[HTTP/HTTPS health checks] The HTTP or gRPC codes to use when checking for a successful response from a target.</p> <p>With Network Load Balancers, you can't modify this setting.</p>",
@@ -1597,6 +1597,13 @@
         "DescribeTargetGroupAttributesOutput$Attributes": "<p>Information about the target group attributes</p>",
         "ModifyTargetGroupAttributesInput$Attributes": "<p>The attributes.</p>",
         "ModifyTargetGroupAttributesOutput$Attributes": "<p>Information about the attributes.</p>"
+      }
+    },
+    "TargetGroupIpAddressTypeEnum": {
+      "base": null,
+      "refs": {
+        "CreateTargetGroupInput$IpAddressType": "<p>The type of IP address used for this target group. The possible values are <code>ipv4</code> and <code>ipv6</code>. This is an optional parameter. If not specified, the IP address type defaults to <code>ipv4</code>.</p>",
+        "TargetGroup$IpAddressType": "<p>The type of IP address used for this target group. The possible values are <code>ipv4</code> and <code>ipv6</code>. This is an optional parameter. If not specified, the IP address type defaults to <code>ipv4</code>.</p>"
       }
     },
     "TargetGroupList": {
