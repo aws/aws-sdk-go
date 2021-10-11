@@ -192,6 +192,100 @@ func (c *FraudDetector) BatchGetVariableWithContext(ctx aws.Context, input *Batc
 	return out, req.Send()
 }
 
+const opCancelBatchImportJob = "CancelBatchImportJob"
+
+// CancelBatchImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the CancelBatchImportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelBatchImportJob for more information on using the CancelBatchImportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelBatchImportJobRequest method.
+//    req, resp := client.CancelBatchImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CancelBatchImportJob
+func (c *FraudDetector) CancelBatchImportJobRequest(input *CancelBatchImportJobInput) (req *request.Request, output *CancelBatchImportJobOutput) {
+	op := &request.Operation{
+		Name:       opCancelBatchImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelBatchImportJobInput{}
+	}
+
+	output = &CancelBatchImportJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelBatchImportJob API operation for Amazon Fraud Detector.
+//
+// Cancels an in-progress batch import job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation CancelBatchImportJob for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CancelBatchImportJob
+func (c *FraudDetector) CancelBatchImportJob(input *CancelBatchImportJobInput) (*CancelBatchImportJobOutput, error) {
+	req, out := c.CancelBatchImportJobRequest(input)
+	return out, req.Send()
+}
+
+// CancelBatchImportJobWithContext is the same as CancelBatchImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelBatchImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) CancelBatchImportJobWithContext(ctx aws.Context, input *CancelBatchImportJobInput, opts ...request.Option) (*CancelBatchImportJobOutput, error) {
+	req, out := c.CancelBatchImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelBatchPredictionJob = "CancelBatchPredictionJob"
 
 // CancelBatchPredictionJobRequest generates a "aws/request.Request" representing the
@@ -251,9 +345,7 @@ func (c *FraudDetector) CancelBatchPredictionJobRequest(input *CancelBatchPredic
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -283,6 +375,100 @@ func (c *FraudDetector) CancelBatchPredictionJob(input *CancelBatchPredictionJob
 // for more information on using Contexts.
 func (c *FraudDetector) CancelBatchPredictionJobWithContext(ctx aws.Context, input *CancelBatchPredictionJobInput, opts ...request.Option) (*CancelBatchPredictionJobOutput, error) {
 	req, out := c.CancelBatchPredictionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateBatchImportJob = "CreateBatchImportJob"
+
+// CreateBatchImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBatchImportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBatchImportJob for more information on using the CreateBatchImportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateBatchImportJobRequest method.
+//    req, resp := client.CreateBatchImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchImportJob
+func (c *FraudDetector) CreateBatchImportJobRequest(input *CreateBatchImportJobInput) (req *request.Request, output *CreateBatchImportJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateBatchImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateBatchImportJobInput{}
+	}
+
+	output = &CreateBatchImportJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateBatchImportJob API operation for Amazon Fraud Detector.
+//
+// Creates a batch import job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation CreateBatchImportJob for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchImportJob
+func (c *FraudDetector) CreateBatchImportJob(input *CreateBatchImportJobInput) (*CreateBatchImportJobOutput, error) {
+	req, out := c.CreateBatchImportJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateBatchImportJobWithContext is the same as CreateBatchImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBatchImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) CreateBatchImportJobWithContext(ctx aws.Context, input *CreateBatchImportJobInput, opts ...request.Option) (*CreateBatchImportJobOutput, error) {
+	req, out := c.CreateBatchImportJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -358,9 +544,7 @@ func (c *FraudDetector) CreateBatchPredictionJobRequest(input *CreateBatchPredic
 //   a role that is not in your account.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchPredictionJob
 func (c *FraudDetector) CreateBatchPredictionJob(input *CreateBatchPredictionJobInput) (*CreateBatchPredictionJobOutput, error) {
@@ -442,9 +626,7 @@ func (c *FraudDetector) CreateDetectorVersionRequest(input *CreateDetectorVersio
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -628,9 +810,7 @@ func (c *FraudDetector) CreateModelVersionRequest(input *CreateModelVersionInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -846,6 +1026,97 @@ func (c *FraudDetector) CreateVariableWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opDeleteBatchImportJob = "DeleteBatchImportJob"
+
+// DeleteBatchImportJobRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBatchImportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBatchImportJob for more information on using the DeleteBatchImportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteBatchImportJobRequest method.
+//    req, resp := client.DeleteBatchImportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteBatchImportJob
+func (c *FraudDetector) DeleteBatchImportJobRequest(input *DeleteBatchImportJobInput) (req *request.Request, output *DeleteBatchImportJobOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBatchImportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteBatchImportJobInput{}
+	}
+
+	output = &DeleteBatchImportJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteBatchImportJob API operation for Amazon Fraud Detector.
+//
+// Deletes data that was batch imported to Amazon Fraud Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteBatchImportJob for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteBatchImportJob
+func (c *FraudDetector) DeleteBatchImportJob(input *DeleteBatchImportJobInput) (*DeleteBatchImportJobOutput, error) {
+	req, out := c.DeleteBatchImportJobRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBatchImportJobWithContext is the same as DeleteBatchImportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBatchImportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteBatchImportJobWithContext(ctx aws.Context, input *DeleteBatchImportJobInput, opts ...request.Option) (*DeleteBatchImportJobOutput, error) {
+	req, out := c.DeleteBatchImportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteBatchPredictionJob = "DeleteBatchPredictionJob"
 
 // DeleteBatchPredictionJobRequest generates a "aws/request.Request" representing the
@@ -903,11 +1174,6 @@ func (c *FraudDetector) DeleteBatchPredictionJobRequest(input *DeleteBatchPredic
 // Returned Error Types:
 //   * ValidationException
 //   An exception indicating a specified value is not allowed.
-//
-//   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -1002,18 +1268,7 @@ func (c *FraudDetector) DeleteDetectorRequest(input *DeleteDetectorInput) (req *
 //
 // Returned Error Types:
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * ValidationException
 //   An exception indicating a specified value is not allowed.
@@ -1114,9 +1369,7 @@ func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersio
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -1125,18 +1378,7 @@ func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersio
 //   An exception indicating a throttling error.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -1229,18 +1471,7 @@ func (c *FraudDetector) DeleteEntityTypeRequest(input *DeleteEntityTypeInput) (r
 //   An exception indicating a specified value is not allowed.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -1418,8 +1649,8 @@ func (c *FraudDetector) DeleteEventTypeRequest(input *DeleteEventTypeInput) (req
 //
 // You cannot delete an event type that is used in a detector or a model.
 //
-// When you delete an entity type, Amazon Fraud Detector permanently deletes
-// that entity type and the data is no longer stored in Amazon Fraud Detector.
+// When you delete an event type, Amazon Fraud Detector permanently deletes
+// that event type and the data is no longer stored in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1430,18 +1661,7 @@ func (c *FraudDetector) DeleteEventTypeRequest(input *DeleteEventTypeInput) (req
 //
 // Returned Error Types:
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * ValidationException
 //   An exception indicating a specified value is not allowed.
@@ -1474,6 +1694,102 @@ func (c *FraudDetector) DeleteEventType(input *DeleteEventTypeInput) (*DeleteEve
 // for more information on using Contexts.
 func (c *FraudDetector) DeleteEventTypeWithContext(ctx aws.Context, input *DeleteEventTypeInput, opts ...request.Option) (*DeleteEventTypeOutput, error) {
 	req, out := c.DeleteEventTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEventsByEventType = "DeleteEventsByEventType"
+
+// DeleteEventsByEventTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventsByEventType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEventsByEventType for more information on using the DeleteEventsByEventType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEventsByEventTypeRequest method.
+//    req, resp := client.DeleteEventsByEventTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEventsByEventType
+func (c *FraudDetector) DeleteEventsByEventTypeRequest(input *DeleteEventsByEventTypeInput) (req *request.Request, output *DeleteEventsByEventTypeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEventsByEventType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEventsByEventTypeInput{}
+	}
+
+	output = &DeleteEventsByEventTypeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteEventsByEventType API operation for Amazon Fraud Detector.
+//
+// Deletes all events of a particular event type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteEventsByEventType for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation.
+//
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEventsByEventType
+func (c *FraudDetector) DeleteEventsByEventType(input *DeleteEventsByEventTypeInput) (*DeleteEventsByEventTypeOutput, error) {
+	req, out := c.DeleteEventsByEventTypeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEventsByEventTypeWithContext is the same as DeleteEventsByEventType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEventsByEventType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteEventsByEventTypeWithContext(ctx aws.Context, input *DeleteEventsByEventTypeInput, opts ...request.Option) (*DeleteEventsByEventTypeOutput, error) {
+	req, out := c.DeleteEventsByEventTypeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1542,18 +1858,7 @@ func (c *FraudDetector) DeleteExternalModelRequest(input *DeleteExternalModelInp
 //   An exception indicating a specified value is not allowed.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -1656,18 +1961,7 @@ func (c *FraudDetector) DeleteLabelRequest(input *DeleteLabelInput) (req *reques
 //   An exception indicating a specified value is not allowed.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
@@ -1759,18 +2053,7 @@ func (c *FraudDetector) DeleteModelRequest(input *DeleteModelInput) (req *reques
 //
 // Returned Error Types:
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * ValidationException
 //   An exception indicating a specified value is not allowed.
@@ -1884,18 +2167,7 @@ func (c *FraudDetector) DeleteModelVersionRequest(input *DeleteModelVersionInput
 //   An exception indicating a throttling error.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteModelVersion
 func (c *FraudDetector) DeleteModelVersion(input *DeleteModelVersionInput) (*DeleteModelVersionOutput, error) {
@@ -1989,18 +2261,7 @@ func (c *FraudDetector) DeleteOutcomeRequest(input *DeleteOutcomeInput) (req *re
 //   An exception indicating a throttling error.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -2089,18 +2350,7 @@ func (c *FraudDetector) DeleteRuleRequest(input *DeleteRuleInput) (req *request.
 //
 // Returned Error Types:
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * ValidationException
 //   An exception indicating a specified value is not allowed.
@@ -2207,18 +2457,7 @@ func (c *FraudDetector) DeleteVariableRequest(input *DeleteVariableInput) (req *
 //   An exception indicating a specified value is not allowed.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -2311,9 +2550,7 @@ func (c *FraudDetector) DescribeDetectorRequest(input *DescribeDetectorInput) (r
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -2414,9 +2651,7 @@ func (c *FraudDetector) DescribeModelVersionsRequest(input *DescribeModelVersion
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -2503,6 +2738,162 @@ func (c *FraudDetector) DescribeModelVersionsPagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opGetBatchImportJobs = "GetBatchImportJobs"
+
+// GetBatchImportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the GetBatchImportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBatchImportJobs for more information on using the GetBatchImportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBatchImportJobsRequest method.
+//    req, resp := client.GetBatchImportJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetBatchImportJobs
+func (c *FraudDetector) GetBatchImportJobsRequest(input *GetBatchImportJobsInput) (req *request.Request, output *GetBatchImportJobsOutput) {
+	op := &request.Operation{
+		Name:       opGetBatchImportJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetBatchImportJobsInput{}
+	}
+
+	output = &GetBatchImportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBatchImportJobs API operation for Amazon Fraud Detector.
+//
+// Gets all batch import jobs or a specific job of the specified ID. This is
+// a paginated API. If you provide a null maxResults, this action retrieves
+// a maximum of 50 records per page. If you provide a maxResults, the value
+// must be between 1 and 50. To get the next page results, provide the pagination
+// token from the GetBatchImportJobsResponse as part of your request. A null
+// pagination token fetches the records from the beginning.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation GetBatchImportJobs for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetBatchImportJobs
+func (c *FraudDetector) GetBatchImportJobs(input *GetBatchImportJobsInput) (*GetBatchImportJobsOutput, error) {
+	req, out := c.GetBatchImportJobsRequest(input)
+	return out, req.Send()
+}
+
+// GetBatchImportJobsWithContext is the same as GetBatchImportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBatchImportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetBatchImportJobsWithContext(ctx aws.Context, input *GetBatchImportJobsInput, opts ...request.Option) (*GetBatchImportJobsOutput, error) {
+	req, out := c.GetBatchImportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetBatchImportJobsPages iterates over the pages of a GetBatchImportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetBatchImportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetBatchImportJobs operation.
+//    pageNum := 0
+//    err := client.GetBatchImportJobsPages(params,
+//        func(page *frauddetector.GetBatchImportJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FraudDetector) GetBatchImportJobsPages(input *GetBatchImportJobsInput, fn func(*GetBatchImportJobsOutput, bool) bool) error {
+	return c.GetBatchImportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetBatchImportJobsPagesWithContext same as GetBatchImportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetBatchImportJobsPagesWithContext(ctx aws.Context, input *GetBatchImportJobsInput, fn func(*GetBatchImportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetBatchImportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetBatchImportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetBatchImportJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetBatchPredictionJobs = "GetBatchPredictionJobs"
 
 // GetBatchPredictionJobsRequest generates a "aws/request.Request" representing the
@@ -2572,9 +2963,7 @@ func (c *FraudDetector) GetBatchPredictionJobsRequest(input *GetBatchPredictionJ
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -2661,6 +3050,99 @@ func (c *FraudDetector) GetBatchPredictionJobsPagesWithContext(ctx aws.Context, 
 	return p.Err()
 }
 
+const opGetDeleteEventsByEventTypeStatus = "GetDeleteEventsByEventTypeStatus"
+
+// GetDeleteEventsByEventTypeStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetDeleteEventsByEventTypeStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDeleteEventsByEventTypeStatus for more information on using the GetDeleteEventsByEventTypeStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDeleteEventsByEventTypeStatusRequest method.
+//    req, resp := client.GetDeleteEventsByEventTypeStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDeleteEventsByEventTypeStatus
+func (c *FraudDetector) GetDeleteEventsByEventTypeStatusRequest(input *GetDeleteEventsByEventTypeStatusInput) (req *request.Request, output *GetDeleteEventsByEventTypeStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetDeleteEventsByEventTypeStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetDeleteEventsByEventTypeStatusInput{}
+	}
+
+	output = &GetDeleteEventsByEventTypeStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDeleteEventsByEventTypeStatus API operation for Amazon Fraud Detector.
+//
+// Retrieves the status of a DeleteEventsByEventType action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation GetDeleteEventsByEventTypeStatus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetDeleteEventsByEventTypeStatus
+func (c *FraudDetector) GetDeleteEventsByEventTypeStatus(input *GetDeleteEventsByEventTypeStatusInput) (*GetDeleteEventsByEventTypeStatusOutput, error) {
+	req, out := c.GetDeleteEventsByEventTypeStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetDeleteEventsByEventTypeStatusWithContext is the same as GetDeleteEventsByEventTypeStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDeleteEventsByEventTypeStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetDeleteEventsByEventTypeStatusWithContext(ctx aws.Context, input *GetDeleteEventsByEventTypeStatusInput, opts ...request.Option) (*GetDeleteEventsByEventTypeStatusOutput, error) {
+	req, out := c.GetDeleteEventsByEventTypeStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetDetectorVersion = "GetDetectorVersion"
 
 // GetDetectorVersionRequest generates a "aws/request.Request" representing the
@@ -2719,9 +3201,7 @@ func (c *FraudDetector) GetDetectorVersionRequest(input *GetDetectorVersionInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -2825,9 +3305,7 @@ func (c *FraudDetector) GetDetectorsRequest(input *GetDetectorsInput) (req *requ
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -2983,9 +3461,7 @@ func (c *FraudDetector) GetEntityTypesRequest(input *GetEntityTypesInput) (req *
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -3072,6 +3548,100 @@ func (c *FraudDetector) GetEntityTypesPagesWithContext(ctx aws.Context, input *G
 	return p.Err()
 }
 
+const opGetEvent = "GetEvent"
+
+// GetEventRequest generates a "aws/request.Request" representing the
+// client's request for the GetEvent operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEvent for more information on using the GetEvent
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetEventRequest method.
+//    req, resp := client.GetEventRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEvent
+func (c *FraudDetector) GetEventRequest(input *GetEventInput) (req *request.Request, output *GetEventOutput) {
+	op := &request.Operation{
+		Name:       opGetEvent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetEventInput{}
+	}
+
+	output = &GetEventOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEvent API operation for Amazon Fraud Detector.
+//
+// Retrieves details of events stored with Amazon Fraud Detector. This action
+// does not retrieve prediction results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation GetEvent for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEvent
+func (c *FraudDetector) GetEvent(input *GetEventInput) (*GetEventOutput, error) {
+	req, out := c.GetEventRequest(input)
+	return out, req.Send()
+}
+
+// GetEventWithContext is the same as GetEvent with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEvent for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetEventWithContext(ctx aws.Context, input *GetEventInput, opts ...request.Option) (*GetEventOutput, error) {
+	req, out := c.GetEventRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetEventPrediction = "GetEventPrediction"
 
 // GetEventPredictionRequest generates a "aws/request.Request" representing the
@@ -3131,9 +3701,7 @@ func (c *FraudDetector) GetEventPredictionRequest(input *GetEventPredictionInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -3147,18 +3715,7 @@ func (c *FraudDetector) GetEventPredictionRequest(input *GetEventPredictionInput
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 //   * ResourceUnavailableException
 //   An exception indicating that the attached customer-owned (external) model
@@ -3255,9 +3812,7 @@ func (c *FraudDetector) GetEventTypesRequest(input *GetEventTypesInput) (req *re
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -3413,9 +3968,7 @@ func (c *FraudDetector) GetExternalModelsRequest(input *GetExternalModelsInput) 
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -3546,9 +4099,8 @@ func (c *FraudDetector) GetKMSEncryptionKeyRequest(input *GetKMSEncryptionKeyInp
 
 // GetKMSEncryptionKey API operation for Amazon Fraud Detector.
 //
-// Gets the encryption key if a Key Management Service (KMS) customer master
-// key (CMK) has been specified to be used to encrypt content in Amazon Fraud
-// Detector.
+// Gets the encryption key if a KMS key has been specified to be used to encrypt
+// content in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3559,9 +4111,7 @@ func (c *FraudDetector) GetKMSEncryptionKeyRequest(input *GetKMSEncryptionKeyInp
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -3665,9 +4215,7 @@ func (c *FraudDetector) GetLabelsRequest(input *GetLabelsInput) (req *request.Re
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -3812,9 +4360,7 @@ func (c *FraudDetector) GetModelVersionRequest(input *GetModelVersionInput) (req
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -3923,9 +4469,7 @@ func (c *FraudDetector) GetModelsRequest(input *GetModelsInput) (req *request.Re
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -4081,9 +4625,7 @@ func (c *FraudDetector) GetOutcomesRequest(input *GetOutcomesInput) (req *reques
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -4242,9 +4784,7 @@ func (c *FraudDetector) GetRulesRequest(input *GetRulesInput) (req *request.Requ
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -4400,9 +4940,7 @@ func (c *FraudDetector) GetVariablesRequest(input *GetVariablesInput) (req *requ
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -4556,9 +5094,7 @@ func (c *FraudDetector) ListTagsForResourceRequest(input *ListTagsForResourceInp
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
@@ -4712,18 +5248,7 @@ func (c *FraudDetector) PutDetectorRequest(input *PutDetectorInput) (req *reques
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutDetector
 func (c *FraudDetector) PutDetector(input *PutDetectorInput) (*PutDetectorOutput, error) {
@@ -4820,18 +5345,7 @@ func (c *FraudDetector) PutEntityTypeRequest(input *PutEntityTypeInput) (req *re
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEntityType
 func (c *FraudDetector) PutEntityType(input *PutEntityTypeInput) (*PutEntityTypeOutput, error) {
@@ -4931,18 +5445,7 @@ func (c *FraudDetector) PutEventTypeRequest(input *PutEventTypeInput) (req *requ
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEventType
 func (c *FraudDetector) PutEventType(input *PutEventTypeInput) (*PutEventTypeOutput, error) {
@@ -5038,18 +5541,7 @@ func (c *FraudDetector) PutExternalModelRequest(input *PutExternalModelInput) (r
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutExternalModel
 func (c *FraudDetector) PutExternalModel(input *PutExternalModelInput) (*PutExternalModelOutput, error) {
@@ -5118,8 +5610,7 @@ func (c *FraudDetector) PutKMSEncryptionKeyRequest(input *PutKMSEncryptionKeyInp
 
 // PutKMSEncryptionKey API operation for Amazon Fraud Detector.
 //
-// Specifies the Key Management Service (KMS) customer master key (CMK) to be
-// used to encrypt content in Amazon Fraud Detector.
+// Specifies the KMS key to be used to encrypt content in Amazon Fraud Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5133,9 +5624,7 @@ func (c *FraudDetector) PutKMSEncryptionKeyRequest(input *PutKMSEncryptionKeyInp
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -5149,18 +5638,7 @@ func (c *FraudDetector) PutKMSEncryptionKeyRequest(input *PutKMSEncryptionKeyInp
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutKMSEncryptionKey
 func (c *FraudDetector) PutKMSEncryptionKey(input *PutKMSEncryptionKeyInput) (*PutKMSEncryptionKeyOutput, error) {
@@ -5256,18 +5734,7 @@ func (c *FraudDetector) PutLabelRequest(input *PutLabelInput) (req *request.Requ
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutLabel
 func (c *FraudDetector) PutLabel(input *PutLabelInput) (*PutLabelOutput, error) {
@@ -5361,18 +5828,7 @@ func (c *FraudDetector) PutOutcomeRequest(input *PutOutcomeInput) (req *request.
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutOutcome
 func (c *FraudDetector) PutOutcome(input *PutOutcomeInput) (*PutOutcomeOutput, error) {
@@ -5391,6 +5847,105 @@ func (c *FraudDetector) PutOutcome(input *PutOutcomeInput) (*PutOutcomeOutput, e
 // for more information on using Contexts.
 func (c *FraudDetector) PutOutcomeWithContext(ctx aws.Context, input *PutOutcomeInput, opts ...request.Option) (*PutOutcomeOutput, error) {
 	req, out := c.PutOutcomeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSendEvent = "SendEvent"
+
+// SendEventRequest generates a "aws/request.Request" representing the
+// client's request for the SendEvent operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendEvent for more information on using the SendEvent
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SendEventRequest method.
+//    req, resp := client.SendEventRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/SendEvent
+func (c *FraudDetector) SendEventRequest(input *SendEventInput) (req *request.Request, output *SendEventOutput) {
+	op := &request.Operation{
+		Name:       opSendEvent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SendEventInput{}
+	}
+
+	output = &SendEventOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// SendEvent API operation for Amazon Fraud Detector.
+//
+// Stores events in Amazon Fraud Detector without generating fraud predictions
+// for those events. For example, you can use SendEvent to upload a historical
+// dataset, which you can then later use to train a model.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation SendEvent for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/SendEvent
+func (c *FraudDetector) SendEvent(input *SendEventInput) (*SendEventOutput, error) {
+	req, out := c.SendEventRequest(input)
+	return out, req.Send()
+}
+
+// SendEventWithContext is the same as SendEvent with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendEvent for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) SendEventWithContext(ctx aws.Context, input *SendEventInput, opts ...request.Option) (*SendEventOutput, error) {
+	req, out := c.SendEventRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5455,9 +6010,7 @@ func (c *FraudDetector) TagResourceRequest(input *TagResourceInput) (req *reques
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
@@ -5548,9 +6101,7 @@ func (c *FraudDetector) UntagResourceRequest(input *UntagResourceInput) (req *re
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * ThrottlingException
 //   An exception indicating a throttling error.
@@ -5643,9 +6194,7 @@ func (c *FraudDetector) UpdateDetectorVersionRequest(input *UpdateDetectorVersio
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -5659,18 +6208,7 @@ func (c *FraudDetector) UpdateDetectorVersionRequest(input *UpdateDetectorVersio
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersion
 func (c *FraudDetector) UpdateDetectorVersion(input *UpdateDetectorVersionInput) (*UpdateDetectorVersionOutput, error) {
@@ -5765,18 +6303,7 @@ func (c *FraudDetector) UpdateDetectorVersionMetadataRequest(input *UpdateDetect
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionMetadata
 func (c *FraudDetector) UpdateDetectorVersionMetadata(input *UpdateDetectorVersionMetadataInput) (*UpdateDetectorVersionMetadataOutput, error) {
@@ -5861,9 +6388,7 @@ func (c *FraudDetector) UpdateDetectorVersionStatusRequest(input *UpdateDetector
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -5877,18 +6402,7 @@ func (c *FraudDetector) UpdateDetectorVersionStatusRequest(input *UpdateDetector
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionStatus
 func (c *FraudDetector) UpdateDetectorVersionStatus(input *UpdateDetectorVersionStatusInput) (*UpdateDetectorVersionStatusOutput, error) {
@@ -5907,6 +6421,103 @@ func (c *FraudDetector) UpdateDetectorVersionStatus(input *UpdateDetectorVersion
 // for more information on using Contexts.
 func (c *FraudDetector) UpdateDetectorVersionStatusWithContext(ctx aws.Context, input *UpdateDetectorVersionStatusInput, opts ...request.Option) (*UpdateDetectorVersionStatusOutput, error) {
 	req, out := c.UpdateDetectorVersionStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateEventLabel = "UpdateEventLabel"
+
+// UpdateEventLabelRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEventLabel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEventLabel for more information on using the UpdateEventLabel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateEventLabelRequest method.
+//    req, resp := client.UpdateEventLabelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateEventLabel
+func (c *FraudDetector) UpdateEventLabelRequest(input *UpdateEventLabelInput) (req *request.Request, output *UpdateEventLabelOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEventLabel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateEventLabelInput{}
+	}
+
+	output = &UpdateEventLabelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateEventLabel API operation for Amazon Fraud Detector.
+//
+// Updates the specified event with a new label.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation UpdateEventLabel for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateEventLabel
+func (c *FraudDetector) UpdateEventLabel(input *UpdateEventLabelInput) (*UpdateEventLabelOutput, error) {
+	req, out := c.UpdateEventLabelRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEventLabelWithContext is the same as UpdateEventLabel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEventLabel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) UpdateEventLabelWithContext(ctx aws.Context, input *UpdateEventLabelInput, opts ...request.Option) (*UpdateEventLabelOutput, error) {
+	req, out := c.UpdateEventLabelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5957,7 +6568,7 @@ func (c *FraudDetector) UpdateModelRequest(input *UpdateModelInput) (req *reques
 
 // UpdateModel API operation for Amazon Fraud Detector.
 //
-// Updates a model. You can update the description attribute using this action.
+// Updates model description.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5971,9 +6582,7 @@ func (c *FraudDetector) UpdateModelRequest(input *UpdateModelInput) (req *reques
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -5987,18 +6596,7 @@ func (c *FraudDetector) UpdateModelRequest(input *UpdateModelInput) (req *reques
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModel
 func (c *FraudDetector) UpdateModel(input *UpdateModelInput) (*UpdateModelOutput, error) {
@@ -6084,9 +6682,7 @@ func (c *FraudDetector) UpdateModelVersionRequest(input *UpdateModelVersionInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -6100,18 +6696,7 @@ func (c *FraudDetector) UpdateModelVersionRequest(input *UpdateModelVersionInput
 //   An exception indicating an internal server error.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersion
 func (c *FraudDetector) UpdateModelVersion(input *UpdateModelVersionInput) (*UpdateModelVersionOutput, error) {
@@ -6186,7 +6771,7 @@ func (c *FraudDetector) UpdateModelVersionStatusRequest(input *UpdateModelVersio
 //
 // Change the TRAINING_COMPLETE status to ACTIVE.
 //
-// Change ACTIVEto INACTIVE.
+// Change ACTIVE to INACTIVE.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6200,9 +6785,7 @@ func (c *FraudDetector) UpdateModelVersionStatusRequest(input *UpdateModelVersio
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -6216,18 +6799,7 @@ func (c *FraudDetector) UpdateModelVersionStatusRequest(input *UpdateModelVersio
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersionStatus
 func (c *FraudDetector) UpdateModelVersionStatus(input *UpdateModelVersionStatusInput) (*UpdateModelVersionStatusOutput, error) {
@@ -6310,9 +6882,7 @@ func (c *FraudDetector) UpdateRuleMetadataRequest(input *UpdateRuleMetadataInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -6326,18 +6896,7 @@ func (c *FraudDetector) UpdateRuleMetadataRequest(input *UpdateRuleMetadataInput
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleMetadata
 func (c *FraudDetector) UpdateRuleMetadata(input *UpdateRuleMetadataInput) (*UpdateRuleMetadataOutput, error) {
@@ -6420,9 +6979,7 @@ func (c *FraudDetector) UpdateRuleVersionRequest(input *UpdateRuleVersionInput) 
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -6436,18 +6993,7 @@ func (c *FraudDetector) UpdateRuleVersionRequest(input *UpdateRuleVersionInput) 
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleVersion
 func (c *FraudDetector) UpdateRuleVersion(input *UpdateRuleVersionInput) (*UpdateRuleVersionOutput, error) {
@@ -6530,9 +7076,7 @@ func (c *FraudDetector) UpdateVariableRequest(input *UpdateVariableInput) (req *
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found. This can occur
-//   if you submit a request, such as CreateBatchPredictionJob, but the detector
-//   name or version does not exist.
+//   An exception indicating the specified resource was not found.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -6546,18 +7090,7 @@ func (c *FraudDetector) UpdateVariableRequest(input *UpdateVariableInput) (req *
 //   a role that is not in your account.
 //
 //   * ConflictException
-//   An exception indicating there was a conflict during a delete operation. The
-//   following delete operations can cause a conflict exception:
-//
-//      * DeleteDetector: A conflict exception will occur if the detector has
-//      associated Rules or DetectorVersions. You can only delete a detector if
-//      it has no Rules or DetectorVersions.
-//
-//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//      status is ACTIVE.
-//
-//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//   An exception indicating there was a conflict during a delete operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateVariable
 func (c *FraudDetector) UpdateVariable(input *UpdateVariableInput) (*UpdateVariableOutput, error) {
@@ -6935,6 +7468,146 @@ func (s *BatchGetVariableOutput) SetVariables(v []*Variable) *BatchGetVariableOu
 	return s
 }
 
+// The batch import job details.
+type BatchImport struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the batch import job.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// Timestamp of when batch import job completed.
+	CompletionTime *string `locationName:"completionTime" min:"11" type:"string"`
+
+	// The name of the event type.
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
+
+	// The number of records that failed to import.
+	FailedRecordsCount *int64 `locationName:"failedRecordsCount" type:"integer"`
+
+	// The reason batch import job failed.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The ARN of the IAM role to use for this job request.
+	IamRoleArn *string `locationName:"iamRoleArn" min:"1" type:"string"`
+
+	// The Amazon S3 location of your data file for batch import.
+	InputPath *string `locationName:"inputPath" min:"1" type:"string"`
+
+	// The ID of the batch import job.
+	JobId *string `locationName:"jobId" min:"1" type:"string"`
+
+	// The Amazon S3 location of your output file.
+	OutputPath *string `locationName:"outputPath" min:"1" type:"string"`
+
+	// The number of records processed by batch import job.
+	ProcessedRecordsCount *int64 `locationName:"processedRecordsCount" type:"integer"`
+
+	// Timestamp of when the batch import job started.
+	StartTime *string `locationName:"startTime" min:"11" type:"string"`
+
+	// The status of the batch import job.
+	Status *string `locationName:"status" type:"string" enum:"AsyncJobStatus"`
+
+	// The total number of records in the batch import job.
+	TotalRecordsCount *int64 `locationName:"totalRecordsCount" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchImport) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchImport) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *BatchImport) SetArn(v string) *BatchImport {
+	s.Arn = &v
+	return s
+}
+
+// SetCompletionTime sets the CompletionTime field's value.
+func (s *BatchImport) SetCompletionTime(v string) *BatchImport {
+	s.CompletionTime = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *BatchImport) SetEventTypeName(v string) *BatchImport {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetFailedRecordsCount sets the FailedRecordsCount field's value.
+func (s *BatchImport) SetFailedRecordsCount(v int64) *BatchImport {
+	s.FailedRecordsCount = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *BatchImport) SetFailureReason(v string) *BatchImport {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIamRoleArn sets the IamRoleArn field's value.
+func (s *BatchImport) SetIamRoleArn(v string) *BatchImport {
+	s.IamRoleArn = &v
+	return s
+}
+
+// SetInputPath sets the InputPath field's value.
+func (s *BatchImport) SetInputPath(v string) *BatchImport {
+	s.InputPath = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *BatchImport) SetJobId(v string) *BatchImport {
+	s.JobId = &v
+	return s
+}
+
+// SetOutputPath sets the OutputPath field's value.
+func (s *BatchImport) SetOutputPath(v string) *BatchImport {
+	s.OutputPath = &v
+	return s
+}
+
+// SetProcessedRecordsCount sets the ProcessedRecordsCount field's value.
+func (s *BatchImport) SetProcessedRecordsCount(v int64) *BatchImport {
+	s.ProcessedRecordsCount = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *BatchImport) SetStartTime(v string) *BatchImport {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchImport) SetStatus(v string) *BatchImport {
+	s.Status = &v
+	return s
+}
+
+// SetTotalRecordsCount sets the TotalRecordsCount field's value.
+func (s *BatchImport) SetTotalRecordsCount(v int64) *BatchImport {
+	s.TotalRecordsCount = &v
+	return s
+}
+
 // The batch prediction details.
 type BatchPrediction struct {
 	_ struct{} `type:"structure"`
@@ -6942,7 +7615,7 @@ type BatchPrediction struct {
 	// The ARN of batch prediction job.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
-	// Timestamp of when the batch prediction job comleted.
+	// Timestamp of when the batch prediction job completed.
 	CompletionTime *string `locationName:"completionTime" min:"11" type:"string"`
 
 	// The name of the detector.
@@ -7094,6 +7767,80 @@ func (s *BatchPrediction) SetTotalRecordsCount(v int64) *BatchPrediction {
 	return s
 }
 
+type CancelBatchImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of an in-progress batch import job to cancel.
+	//
+	// Amazon Fraud Detector will throw an error if the batch import job is in FAILED,
+	// CANCELED, or COMPLETED state.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelBatchImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelBatchImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelBatchImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelBatchImportJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CancelBatchImportJobInput) SetJobId(v string) *CancelBatchImportJobInput {
+	s.JobId = &v
+	return s
+}
+
+type CancelBatchImportJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelBatchImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelBatchImportJobOutput) GoString() string {
+	return s.String()
+}
+
 type CancelBatchPredictionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7165,18 +7912,7 @@ func (s CancelBatchPredictionJobOutput) GoString() string {
 	return s.String()
 }
 
-// An exception indicating there was a conflict during a delete operation. The
-// following delete operations can cause a conflict exception:
-//
-//    * DeleteDetector: A conflict exception will occur if the detector has
-//    associated Rules or DetectorVersions. You can only delete a detector if
-//    it has no Rules or DetectorVersions.
-//
-//    * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
-//    status is ACTIVE.
-//
-//    * DeleteRule: A conflict exception will occur if the RuleVersion is in
-//    use by an associated ACTIVE or INACTIVE DetectorVersion.
+// An exception indicating there was a conflict during a delete operation.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7238,6 +7974,167 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type CreateBatchImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the event type.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
+
+	// The ARN of the IAM role created for Amazon S3 bucket that holds your data
+	// file. The IAM role must have read and write permissions to both input and
+	// output S3 buckets.
+	//
+	// IamRoleArn is a required field
+	IamRoleArn *string `locationName:"iamRoleArn" min:"1" type:"string" required:"true"`
+
+	// The URI that points to the Amazon S3 location of your data file.
+	//
+	// InputPath is a required field
+	InputPath *string `locationName:"inputPath" min:"1" type:"string" required:"true"`
+
+	// The ID of the batch import job. The ID cannot be of a past job, unless the
+	// job exists in CREATE_FAILED state.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
+
+	// The URI that points to the Amazon S3 location for storing your results.
+	//
+	// OutputPath is a required field
+	OutputPath *string `locationName:"outputPath" min:"1" type:"string" required:"true"`
+
+	// A collection of key-value pairs associated with this request.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBatchImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBatchImportJobInput"}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
+	if s.IamRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IamRoleArn"))
+	}
+	if s.IamRoleArn != nil && len(*s.IamRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IamRoleArn", 1))
+	}
+	if s.InputPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputPath"))
+	}
+	if s.InputPath != nil && len(*s.InputPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputPath", 1))
+	}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.OutputPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputPath"))
+	}
+	if s.OutputPath != nil && len(*s.OutputPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputPath", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *CreateBatchImportJobInput) SetEventTypeName(v string) *CreateBatchImportJobInput {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetIamRoleArn sets the IamRoleArn field's value.
+func (s *CreateBatchImportJobInput) SetIamRoleArn(v string) *CreateBatchImportJobInput {
+	s.IamRoleArn = &v
+	return s
+}
+
+// SetInputPath sets the InputPath field's value.
+func (s *CreateBatchImportJobInput) SetInputPath(v string) *CreateBatchImportJobInput {
+	s.InputPath = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CreateBatchImportJobInput) SetJobId(v string) *CreateBatchImportJobInput {
+	s.JobId = &v
+	return s
+}
+
+// SetOutputPath sets the OutputPath field's value.
+func (s *CreateBatchImportJobInput) SetOutputPath(v string) *CreateBatchImportJobInput {
+	s.OutputPath = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateBatchImportJobInput) SetTags(v []*Tag) *CreateBatchImportJobInput {
+	s.Tags = v
+	return s
+}
+
+type CreateBatchImportJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchImportJobOutput) GoString() string {
+	return s.String()
 }
 
 type CreateBatchPredictionJobInput struct {
@@ -7762,9 +8659,13 @@ func (s CreateModelOutput) GoString() string {
 type CreateModelVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Details for the external events data used for model version training. Required
+	// Details of the external events data used for model version training. Required
 	// if trainingDataSource is EXTERNAL_EVENTS.
 	ExternalEventsDetail *ExternalEventsDetail `locationName:"externalEventsDetail" type:"structure"`
+
+	// Details of the ingested events data used for model version training. Required
+	// if trainingDataSource is INGESTED_EVENTS.
+	IngestedEventsDetail *IngestedEventsDetail `locationName:"ingestedEventsDetail" type:"structure"`
 
 	// The model ID.
 	//
@@ -7831,6 +8732,11 @@ func (s *CreateModelVersionInput) Validate() error {
 			invalidParams.AddNested("ExternalEventsDetail", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.IngestedEventsDetail != nil {
+		if err := s.IngestedEventsDetail.Validate(); err != nil {
+			invalidParams.AddNested("IngestedEventsDetail", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -7856,6 +8762,12 @@ func (s *CreateModelVersionInput) Validate() error {
 // SetExternalEventsDetail sets the ExternalEventsDetail field's value.
 func (s *CreateModelVersionInput) SetExternalEventsDetail(v *ExternalEventsDetail) *CreateModelVersionInput {
 	s.ExternalEventsDetail = v
+	return s
+}
+
+// SetIngestedEventsDetail sets the IngestedEventsDetail field's value.
+func (s *CreateModelVersionInput) SetIngestedEventsDetail(v *IngestedEventsDetail) *CreateModelVersionInput {
+	s.IngestedEventsDetail = v
 	return s
 }
 
@@ -7899,7 +8811,7 @@ type CreateModelVersionOutput struct {
 	ModelType *string `locationName:"modelType" type:"string" enum:"ModelTypeEnum"`
 
 	// The model version number of the model version created.
-	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"1" type:"string"`
+	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string"`
 
 	// The model version status.
 	Status *string `locationName:"status" type:"string"`
@@ -8323,6 +9235,77 @@ func (s *DataValidationMetrics) SetFileLevelMessages(v []*FileValidationMessage)
 	return s
 }
 
+type DeleteBatchImportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the batch import job to delete.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBatchImportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBatchImportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBatchImportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBatchImportJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DeleteBatchImportJobInput) SetJobId(v string) *DeleteBatchImportJobInput {
+	s.JobId = &v
+	return s
+}
+
+type DeleteBatchImportJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBatchImportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBatchImportJobOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteBatchPredictionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8627,6 +9610,9 @@ func (s DeleteEntityTypeOutput) GoString() string {
 type DeleteEventInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether or not to delete any predictions associated with the event.
+	DeleteAuditHistory *bool `locationName:"deleteAuditHistory" type:"boolean"`
+
 	// The ID of the event to delete.
 	//
 	// EventId is a required field
@@ -8676,6 +9662,12 @@ func (s *DeleteEventInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeleteAuditHistory sets the DeleteAuditHistory field's value.
+func (s *DeleteEventInput) SetDeleteAuditHistory(v bool) *DeleteEventInput {
+	s.DeleteAuditHistory = &v
+	return s
 }
 
 // SetEventId sets the EventId field's value.
@@ -8781,6 +9773,95 @@ func (s DeleteEventTypeOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteEventTypeOutput) GoString() string {
 	return s.String()
+}
+
+type DeleteEventsByEventTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the event type.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventsByEventTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventsByEventTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEventsByEventTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEventsByEventTypeInput"}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *DeleteEventsByEventTypeInput) SetEventTypeName(v string) *DeleteEventsByEventTypeInput {
+	s.EventTypeName = &v
+	return s
+}
+
+type DeleteEventsByEventTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Name of event type for which to delete the events.
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
+
+	// The status of the delete request.
+	EventsDeletionStatus *string `locationName:"eventsDeletionStatus" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventsByEventTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventsByEventTypeOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *DeleteEventsByEventTypeOutput) SetEventTypeName(v string) *DeleteEventsByEventTypeOutput {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetEventsDeletionStatus sets the EventsDeletionStatus field's value.
+func (s *DeleteEventsByEventTypeOutput) SetEventsDeletionStatus(v string) *DeleteEventsByEventTypeOutput {
+	s.EventsDeletionStatus = &v
+	return s
 }
 
 type DeleteExternalModelInput struct {
@@ -9847,6 +10928,96 @@ func (s *EntityType) SetName(v string) *EntityType {
 	return s
 }
 
+// The event details.
+type Event struct {
+	_ struct{} `type:"structure"`
+
+	// The label associated with the event.
+	CurrentLabel *string `locationName:"currentLabel" type:"string"`
+
+	// The event entities.
+	Entities []*Entity `locationName:"entities" type:"list"`
+
+	// The event ID.
+	EventId *string `locationName:"eventId" type:"string"`
+
+	// The timestamp that defines when the event under evaluation occurred. The
+	// timestamp must be specified using ISO 8601 standard in UTC.
+	EventTimestamp *string `locationName:"eventTimestamp" type:"string"`
+
+	// The event type.
+	EventTypeName *string `locationName:"eventTypeName" type:"string"`
+
+	// Names of the event type's variables you defined in Amazon Fraud Detector
+	// to represent data elements and their corresponding values for the event you
+	// are sending for evaluation.
+	EventVariables map[string]*string `locationName:"eventVariables" type:"map"`
+
+	// The timestamp associated with the label to update. The timestamp must be
+	// specified using ISO 8601 standard in UTC.
+	LabelTimestamp *string `locationName:"labelTimestamp" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Event) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Event) GoString() string {
+	return s.String()
+}
+
+// SetCurrentLabel sets the CurrentLabel field's value.
+func (s *Event) SetCurrentLabel(v string) *Event {
+	s.CurrentLabel = &v
+	return s
+}
+
+// SetEntities sets the Entities field's value.
+func (s *Event) SetEntities(v []*Entity) *Event {
+	s.Entities = v
+	return s
+}
+
+// SetEventId sets the EventId field's value.
+func (s *Event) SetEventId(v string) *Event {
+	s.EventId = &v
+	return s
+}
+
+// SetEventTimestamp sets the EventTimestamp field's value.
+func (s *Event) SetEventTimestamp(v string) *Event {
+	s.EventTimestamp = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *Event) SetEventTypeName(v string) *Event {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetEventVariables sets the EventVariables field's value.
+func (s *Event) SetEventVariables(v map[string]*string) *Event {
+	s.EventVariables = v
+	return s
+}
+
+// SetLabelTimestamp sets the LabelTimestamp field's value.
+func (s *Event) SetLabelTimestamp(v string) *Event {
+	s.LabelTimestamp = &v
+	return s
+}
+
 // The event type details.
 type EventType struct {
 	_ struct{} `type:"structure" sensitive:"true"`
@@ -9863,8 +11034,17 @@ type EventType struct {
 	// The event type entity types.
 	EntityTypes []*string `locationName:"entityTypes" min:"1" type:"list"`
 
+	// If Enabled, Amazon Fraud Detector stores event data when you generate a prediction
+	// and uses that data to update calculated variables in near real-time. Amazon
+	// Fraud Detector uses this data, known as INGESTED_EVENTS, to train your model
+	// and improve fraud predictions.
+	EventIngestion *string `locationName:"eventIngestion" type:"string" enum:"EventIngestion"`
+
 	// The event type event variables.
 	EventVariables []*string `locationName:"eventVariables" type:"list"`
+
+	// Data about the stored events.
+	IngestedEventStatistics *IngestedEventStatistics `locationName:"ingestedEventStatistics" type:"structure"`
 
 	// The event type labels.
 	Labels []*string `locationName:"labels" type:"list"`
@@ -9918,9 +11098,21 @@ func (s *EventType) SetEntityTypes(v []*string) *EventType {
 	return s
 }
 
+// SetEventIngestion sets the EventIngestion field's value.
+func (s *EventType) SetEventIngestion(v string) *EventType {
+	s.EventIngestion = &v
+	return s
+}
+
 // SetEventVariables sets the EventVariables field's value.
 func (s *EventType) SetEventVariables(v []*string) *EventType {
 	s.EventVariables = v
+	return s
+}
+
+// SetIngestedEventStatistics sets the IngestedEventStatistics field's value.
+func (s *EventType) SetIngestedEventStatistics(v *IngestedEventStatistics) *EventType {
+	s.IngestedEventStatistics = v
 	return s
 }
 
@@ -10314,6 +11506,111 @@ func (s *FileValidationMessage) SetType(v string) *FileValidationMessage {
 	return s
 }
 
+type GetBatchImportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the batch import job to get.
+	JobId *string `locationName:"jobId" min:"1" type:"string"`
+
+	// The maximum number of objects to return for request.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The next token from the previous request.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBatchImportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBatchImportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBatchImportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBatchImportJobsInput"}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetBatchImportJobsInput) SetJobId(v string) *GetBatchImportJobsInput {
+	s.JobId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetBatchImportJobsInput) SetMaxResults(v int64) *GetBatchImportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBatchImportJobsInput) SetNextToken(v string) *GetBatchImportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetBatchImportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array containing the details of each batch import job.
+	BatchImports []*BatchImport `locationName:"batchImports" type:"list"`
+
+	// The next token for the subsequent resquest.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBatchImportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetBatchImportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchImports sets the BatchImports field's value.
+func (s *GetBatchImportJobsOutput) SetBatchImports(v []*BatchImport) *GetBatchImportJobsOutput {
+	s.BatchImports = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBatchImportJobsOutput) SetNextToken(v string) *GetBatchImportJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetBatchPredictionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10416,6 +11713,95 @@ func (s *GetBatchPredictionJobsOutput) SetBatchPredictions(v []*BatchPrediction)
 // SetNextToken sets the NextToken field's value.
 func (s *GetBatchPredictionJobsOutput) SetNextToken(v string) *GetBatchPredictionJobsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type GetDeleteEventsByEventTypeStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// Name of event type for which to get the deletion status.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDeleteEventsByEventTypeStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDeleteEventsByEventTypeStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDeleteEventsByEventTypeStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDeleteEventsByEventTypeStatusInput"}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *GetDeleteEventsByEventTypeStatusInput) SetEventTypeName(v string) *GetDeleteEventsByEventTypeStatusInput {
+	s.EventTypeName = &v
+	return s
+}
+
+type GetDeleteEventsByEventTypeStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The event type name.
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
+
+	// The deletion status.
+	EventsDeletionStatus *string `locationName:"eventsDeletionStatus" type:"string" enum:"AsyncJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDeleteEventsByEventTypeStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDeleteEventsByEventTypeStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *GetDeleteEventsByEventTypeStatusOutput) SetEventTypeName(v string) *GetDeleteEventsByEventTypeStatusOutput {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetEventsDeletionStatus sets the EventsDeletionStatus field's value.
+func (s *GetDeleteEventsByEventTypeStatusOutput) SetEventsDeletionStatus(v string) *GetDeleteEventsByEventTypeStatusOutput {
+	s.EventsDeletionStatus = &v
 	return s
 }
 
@@ -10824,6 +12210,97 @@ func (s *GetEntityTypesOutput) SetNextToken(v string) *GetEntityTypesOutput {
 	return s
 }
 
+type GetEventInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the event to retrieve.
+	//
+	// EventId is a required field
+	EventId *string `locationName:"eventId" type:"string" required:"true"`
+
+	// The event type of the event to retrieve.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventInput"}
+	if s.EventId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventId"))
+	}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventId sets the EventId field's value.
+func (s *GetEventInput) SetEventId(v string) *GetEventInput {
+	s.EventId = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *GetEventInput) SetEventTypeName(v string) *GetEventInput {
+	s.EventTypeName = &v
+	return s
+}
+
+type GetEventOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the event.
+	Event *Event `locationName:"event" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventOutput) GoString() string {
+	return s.String()
+}
+
+// SetEvent sets the Event field's value.
+func (s *GetEventOutput) SetEvent(v *Event) *GetEventOutput {
+	s.Event = v
+	return s
+}
+
 type GetEventPredictionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10847,7 +12324,8 @@ type GetEventPredictionInput struct {
 	// EventId is a required field
 	EventId *string `locationName:"eventId" type:"string" required:"true"`
 
-	// Timestamp that defines when the event under evaluation occurred.
+	// Timestamp that defines when the event under evaluation occurred. The timestamp
+	// must be specified using ISO 8601 standard in UTC.
 	//
 	// EventTimestamp is a required field
 	EventTimestamp *string `locationName:"eventTimestamp" min:"10" type:"string" required:"true"`
@@ -10861,12 +12339,9 @@ type GetEventPredictionInput struct {
 	// to represent data elements and their corresponding values for the event you
 	// are sending for evaluation.
 	//
-	//    * You must provide at least one eventVariable
+	// You must provide at least one eventVariable
 	//
-	//    * If detectorVersion is associated with a modelVersion, you must provide
-	//    at least one associated eventVariable
-	//
-	// To ensure highest possible fraud prediction and to simplify your data preparation,
+	// To ensure most accurate fraud prediction and to simplify your data preparation,
 	// Amazon Fraud Detector will replace all missing variables or values as follows:
 	//
 	// For Amazon Fraud Detector trained models:
@@ -10876,7 +12351,7 @@ type GetEventPredictionInput struct {
 	// name in the eventVariables map) with calculated default mean/medians for
 	// numeric variables and with special values for categorical variables.
 	//
-	// For External models ( for example, imported SageMaker):
+	// For imported SageMaker models:
 	//
 	// If a null value is provided explicitly for a variable, the model and rules
 	// will use “null” as the value. If a variable is not provided (no variable
@@ -11521,8 +12996,13 @@ type GetModelVersionOutput struct {
 	// The model version ARN.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
-	// The event details.
+	// The details of the external events data used for training the model version.
+	// This will be populated if the trainingDataSource is EXTERNAL_EVENTS
 	ExternalEventsDetail *ExternalEventsDetail `locationName:"externalEventsDetail" type:"structure"`
+
+	// The details of the ingested events data used for training the model version.
+	// This will be populated if the trainingDataSource is INGESTED_EVENTS.
+	IngestedEventsDetail *IngestedEventsDetail `locationName:"ingestedEventsDetail" type:"structure"`
 
 	// The model ID.
 	ModelId *string `locationName:"modelId" min:"1" type:"string"`
@@ -11590,6 +13070,12 @@ func (s *GetModelVersionOutput) SetArn(v string) *GetModelVersionOutput {
 // SetExternalEventsDetail sets the ExternalEventsDetail field's value.
 func (s *GetModelVersionOutput) SetExternalEventsDetail(v *ExternalEventsDetail) *GetModelVersionOutput {
 	s.ExternalEventsDetail = v
+	return s
+}
+
+// SetIngestedEventsDetail sets the IngestedEventsDetail field's value.
+func (s *GetModelVersionOutput) SetIngestedEventsDetail(v *IngestedEventsDetail) *GetModelVersionOutput {
+	s.IngestedEventsDetail = v
 	return s
 }
 
@@ -12084,6 +13570,193 @@ func (s *GetVariablesOutput) SetVariables(v []*Variable) *GetVariablesOutput {
 	return s
 }
 
+// Data about the stored events.
+type IngestedEventStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The total size of the stored events.
+	EventDataSizeInBytes *int64 `locationName:"eventDataSizeInBytes" type:"long"`
+
+	// Timestamp of when the stored event was last updated.
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
+
+	// The oldest stored event.
+	LeastRecentEvent *string `locationName:"leastRecentEvent" min:"11" type:"string"`
+
+	// The newest stored event.
+	MostRecentEvent *string `locationName:"mostRecentEvent" min:"11" type:"string"`
+
+	// The number of stored events.
+	NumberOfEvents *int64 `locationName:"numberOfEvents" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestedEventStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestedEventStatistics) GoString() string {
+	return s.String()
+}
+
+// SetEventDataSizeInBytes sets the EventDataSizeInBytes field's value.
+func (s *IngestedEventStatistics) SetEventDataSizeInBytes(v int64) *IngestedEventStatistics {
+	s.EventDataSizeInBytes = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *IngestedEventStatistics) SetLastUpdatedTime(v string) *IngestedEventStatistics {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetLeastRecentEvent sets the LeastRecentEvent field's value.
+func (s *IngestedEventStatistics) SetLeastRecentEvent(v string) *IngestedEventStatistics {
+	s.LeastRecentEvent = &v
+	return s
+}
+
+// SetMostRecentEvent sets the MostRecentEvent field's value.
+func (s *IngestedEventStatistics) SetMostRecentEvent(v string) *IngestedEventStatistics {
+	s.MostRecentEvent = &v
+	return s
+}
+
+// SetNumberOfEvents sets the NumberOfEvents field's value.
+func (s *IngestedEventStatistics) SetNumberOfEvents(v int64) *IngestedEventStatistics {
+	s.NumberOfEvents = &v
+	return s
+}
+
+// The details of the ingested event.
+type IngestedEventsDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The start and stop time of the ingested events.
+	//
+	// IngestedEventsTimeWindow is a required field
+	IngestedEventsTimeWindow *IngestedEventsTimeWindow `locationName:"ingestedEventsTimeWindow" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestedEventsDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestedEventsDetail) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IngestedEventsDetail) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IngestedEventsDetail"}
+	if s.IngestedEventsTimeWindow == nil {
+		invalidParams.Add(request.NewErrParamRequired("IngestedEventsTimeWindow"))
+	}
+	if s.IngestedEventsTimeWindow != nil {
+		if err := s.IngestedEventsTimeWindow.Validate(); err != nil {
+			invalidParams.AddNested("IngestedEventsTimeWindow", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIngestedEventsTimeWindow sets the IngestedEventsTimeWindow field's value.
+func (s *IngestedEventsDetail) SetIngestedEventsTimeWindow(v *IngestedEventsTimeWindow) *IngestedEventsDetail {
+	s.IngestedEventsTimeWindow = v
+	return s
+}
+
+// The start and stop time of the ingested events.
+type IngestedEventsTimeWindow struct {
+	_ struct{} `type:"structure"`
+
+	// Timestamp of the final ingested event.
+	//
+	// EndTime is a required field
+	EndTime *string `locationName:"endTime" min:"11" type:"string" required:"true"`
+
+	// Timestamp of the first ingensted event.
+	//
+	// StartTime is a required field
+	StartTime *string `locationName:"startTime" min:"11" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestedEventsTimeWindow) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestedEventsTimeWindow) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IngestedEventsTimeWindow) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IngestedEventsTimeWindow"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.EndTime != nil && len(*s.EndTime) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("EndTime", 11))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.StartTime != nil && len(*s.StartTime) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("StartTime", 11))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *IngestedEventsTimeWindow) SetEndTime(v string) *IngestedEventsTimeWindow {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *IngestedEventsTimeWindow) SetStartTime(v string) *IngestedEventsTimeWindow {
+	s.StartTime = &v
+	return s
+}
+
 // An exception indicating an internal server error.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
@@ -12262,6 +13935,9 @@ type LabelSchema struct {
 	//
 	// LabelMapper is a required field
 	LabelMapper map[string][]*string `locationName:"labelMapper" type:"map" required:"true"`
+
+	// The action to take for unlabeled events.
+	UnlabeledEventsTreatment *string `locationName:"unlabeledEventsTreatment" type:"string" enum:"UnlabeledEventsTreatment"`
 }
 
 // String returns the string representation.
@@ -12298,6 +13974,12 @@ func (s *LabelSchema) Validate() error {
 // SetLabelMapper sets the LabelMapper field's value.
 func (s *LabelSchema) SetLabelMapper(v map[string][]*string) *LabelSchema {
 	s.LabelMapper = v
+	return s
+}
+
+// SetUnlabeledEventsTreatment sets the UnlabeledEventsTreatment field's value.
+func (s *LabelSchema) SetUnlabeledEventsTreatment(v string) *LabelSchema {
+	s.UnlabeledEventsTreatment = &v
 	return s
 }
 
@@ -12682,7 +14364,7 @@ type ModelInputConfiguration struct {
 	// Template for constructing the CSV input-data sent to SageMaker. At event-evaluation,
 	// the placeholders for variable-names in the template will be replaced with
 	// the variable values before being sent to SageMaker.
-	CsvInputTemplate *string `locationName:"csvInputTemplate" type:"string"`
+	CsvInputTemplate *string `locationName:"csvInputTemplate" min:"1" type:"string"`
 
 	// The event type name.
 	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
@@ -12694,7 +14376,7 @@ type ModelInputConfiguration struct {
 	// Template for constructing the JSON input-data sent to SageMaker. At event-evaluation,
 	// the placeholders for variable names in the template will be replaced with
 	// the variable values before being sent to SageMaker.
-	JsonInputTemplate *string `locationName:"jsonInputTemplate" type:"string"`
+	JsonInputTemplate *string `locationName:"jsonInputTemplate" min:"1" type:"string"`
 
 	// The event variables.
 	//
@@ -12723,8 +14405,14 @@ func (s ModelInputConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelInputConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelInputConfiguration"}
+	if s.CsvInputTemplate != nil && len(*s.CsvInputTemplate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CsvInputTemplate", 1))
+	}
 	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
+	if s.JsonInputTemplate != nil && len(*s.JsonInputTemplate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JsonInputTemplate", 1))
 	}
 	if s.UseEventVariables == nil {
 		invalidParams.Add(request.NewErrParamRequired("UseEventVariables"))
@@ -12894,7 +14582,7 @@ type ModelVersion struct {
 	// The model version number.
 	//
 	// ModelVersionNumber is a required field
-	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"1" type:"string" required:"true"`
+	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -12933,8 +14621,8 @@ func (s *ModelVersion) Validate() error {
 	if s.ModelVersionNumber == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelVersionNumber"))
 	}
-	if s.ModelVersionNumber != nil && len(*s.ModelVersionNumber) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("ModelVersionNumber", 1))
+	if s.ModelVersionNumber != nil && len(*s.ModelVersionNumber) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelVersionNumber", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -12977,8 +14665,13 @@ type ModelVersionDetail struct {
 	// The timestamp when the model was created.
 	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
-	// The event details.
+	// The external events data details. This will be populated if the trainingDataSource
+	// for the model version is specified as EXTERNAL_EVENTS.
 	ExternalEventsDetail *ExternalEventsDetail `locationName:"externalEventsDetail" type:"structure"`
+
+	// The ingested events data details. This will be populated if the trainingDataSource
+	// for the model version is specified as INGESTED_EVENTS.
+	IngestedEventsDetail *IngestedEventsDetail `locationName:"ingestedEventsDetail" type:"structure"`
 
 	// The timestamp when the model was last updated.
 	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
@@ -13038,6 +14731,12 @@ func (s *ModelVersionDetail) SetCreatedTime(v string) *ModelVersionDetail {
 // SetExternalEventsDetail sets the ExternalEventsDetail field's value.
 func (s *ModelVersionDetail) SetExternalEventsDetail(v *ExternalEventsDetail) *ModelVersionDetail {
 	s.ExternalEventsDetail = v
+	return s
+}
+
+// SetIngestedEventsDetail sets the IngestedEventsDetail field's value.
+func (s *ModelVersionDetail) SetIngestedEventsDetail(v *IngestedEventsDetail) *ModelVersionDetail {
+	s.IngestedEventsDetail = v
 	return s
 }
 
@@ -13390,6 +15089,9 @@ type PutEventTypeInput struct {
 	// EntityTypes is a required field
 	EntityTypes []*string `locationName:"entityTypes" min:"1" type:"list" required:"true"`
 
+	// Specifies if ingenstion is enabled or disabled.
+	EventIngestion *string `locationName:"eventIngestion" type:"string" enum:"EventIngestion"`
+
 	// The event type variables.
 	//
 	// EventVariables is a required field
@@ -13475,6 +15177,12 @@ func (s *PutEventTypeInput) SetDescription(v string) *PutEventTypeInput {
 // SetEntityTypes sets the EntityTypes field's value.
 func (s *PutEventTypeInput) SetEntityTypes(v []*string) *PutEventTypeInput {
 	s.EntityTypes = v
+	return s
+}
+
+// SetEventIngestion sets the EventIngestion field's value.
+func (s *PutEventTypeInput) SetEventIngestion(v string) *PutEventTypeInput {
+	s.EventIngestion = &v
 	return s
 }
 
@@ -13968,9 +15676,7 @@ func (s PutOutcomeOutput) GoString() string {
 	return s.String()
 }
 
-// An exception indicating the specified resource was not found. This can occur
-// if you submit a request, such as CreateBatchPredictionJob, but the detector
-// name or version does not exist.
+// An exception indicating the specified resource was not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -14339,6 +16045,179 @@ func (s *RuleResult) SetOutcomes(v []*string) *RuleResult {
 func (s *RuleResult) SetRuleId(v string) *RuleResult {
 	s.RuleId = &v
 	return s
+}
+
+type SendEventInput struct {
+	_ struct{} `type:"structure"`
+
+	// The label to associate with the event. Required if specifying labelTimestamp.
+	AssignedLabel *string `locationName:"assignedLabel" min:"1" type:"string"`
+
+	// An array of entities.
+	//
+	// Entities is a required field
+	Entities []*Entity `locationName:"entities" type:"list" required:"true"`
+
+	// The event ID to upload.
+	//
+	// EventId is a required field
+	EventId *string `locationName:"eventId" min:"1" type:"string" required:"true"`
+
+	// The timestamp that defines when the event under evaluation occurred. The
+	// timestamp must be specified using ISO 8601 standard in UTC.
+	//
+	// EventTimestamp is a required field
+	EventTimestamp *string `locationName:"eventTimestamp" min:"10" type:"string" required:"true"`
+
+	// The event type name of the event.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
+
+	// Names of the event type's variables you defined in Amazon Fraud Detector
+	// to represent data elements and their corresponding values for the event you
+	// are sending for evaluation.
+	//
+	// EventVariables is a required field
+	EventVariables map[string]*string `locationName:"eventVariables" min:"1" type:"map" required:"true"`
+
+	// The timestamp associated with the label. Required if specifying assignedLabel.
+	LabelTimestamp *string `locationName:"labelTimestamp" min:"10" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendEventInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendEventInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendEventInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendEventInput"}
+	if s.AssignedLabel != nil && len(*s.AssignedLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssignedLabel", 1))
+	}
+	if s.Entities == nil {
+		invalidParams.Add(request.NewErrParamRequired("Entities"))
+	}
+	if s.EventId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventId"))
+	}
+	if s.EventId != nil && len(*s.EventId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventId", 1))
+	}
+	if s.EventTimestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTimestamp"))
+	}
+	if s.EventTimestamp != nil && len(*s.EventTimestamp) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTimestamp", 10))
+	}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
+	if s.EventVariables == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventVariables"))
+	}
+	if s.EventVariables != nil && len(s.EventVariables) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventVariables", 1))
+	}
+	if s.LabelTimestamp != nil && len(*s.LabelTimestamp) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelTimestamp", 10))
+	}
+	if s.Entities != nil {
+		for i, v := range s.Entities {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entities", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssignedLabel sets the AssignedLabel field's value.
+func (s *SendEventInput) SetAssignedLabel(v string) *SendEventInput {
+	s.AssignedLabel = &v
+	return s
+}
+
+// SetEntities sets the Entities field's value.
+func (s *SendEventInput) SetEntities(v []*Entity) *SendEventInput {
+	s.Entities = v
+	return s
+}
+
+// SetEventId sets the EventId field's value.
+func (s *SendEventInput) SetEventId(v string) *SendEventInput {
+	s.EventId = &v
+	return s
+}
+
+// SetEventTimestamp sets the EventTimestamp field's value.
+func (s *SendEventInput) SetEventTimestamp(v string) *SendEventInput {
+	s.EventTimestamp = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *SendEventInput) SetEventTypeName(v string) *SendEventInput {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetEventVariables sets the EventVariables field's value.
+func (s *SendEventInput) SetEventVariables(v map[string]*string) *SendEventInput {
+	s.EventVariables = v
+	return s
+}
+
+// SetLabelTimestamp sets the LabelTimestamp field's value.
+func (s *SendEventInput) SetLabelTimestamp(v string) *SendEventInput {
+	s.LabelTimestamp = &v
+	return s
+}
+
+type SendEventOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendEventOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendEventOutput) GoString() string {
+	return s.String()
 }
 
 // A key and value pair.
@@ -15192,6 +17071,129 @@ func (s UpdateDetectorVersionStatusOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateEventLabelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new label to assign to the event.
+	//
+	// AssignedLabel is a required field
+	AssignedLabel *string `locationName:"assignedLabel" min:"1" type:"string" required:"true"`
+
+	// The ID of the event associated with the label to update.
+	//
+	// EventId is a required field
+	EventId *string `locationName:"eventId" min:"1" type:"string" required:"true"`
+
+	// The event type of the event associated with the label to update.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
+
+	// The timestamp associated with the label. The timestamp must be specified
+	// using ISO 8601 standard in UTC.
+	//
+	// LabelTimestamp is a required field
+	LabelTimestamp *string `locationName:"labelTimestamp" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventLabelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventLabelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEventLabelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEventLabelInput"}
+	if s.AssignedLabel == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssignedLabel"))
+	}
+	if s.AssignedLabel != nil && len(*s.AssignedLabel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssignedLabel", 1))
+	}
+	if s.EventId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventId"))
+	}
+	if s.EventId != nil && len(*s.EventId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventId", 1))
+	}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
+	if s.LabelTimestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelTimestamp"))
+	}
+	if s.LabelTimestamp != nil && len(*s.LabelTimestamp) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelTimestamp", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssignedLabel sets the AssignedLabel field's value.
+func (s *UpdateEventLabelInput) SetAssignedLabel(v string) *UpdateEventLabelInput {
+	s.AssignedLabel = &v
+	return s
+}
+
+// SetEventId sets the EventId field's value.
+func (s *UpdateEventLabelInput) SetEventId(v string) *UpdateEventLabelInput {
+	s.EventId = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *UpdateEventLabelInput) SetEventTypeName(v string) *UpdateEventLabelInput {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetLabelTimestamp sets the LabelTimestamp field's value.
+func (s *UpdateEventLabelInput) SetLabelTimestamp(v string) *UpdateEventLabelInput {
+	s.LabelTimestamp = &v
+	return s
+}
+
+type UpdateEventLabelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventLabelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventLabelOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateModelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15292,8 +17294,13 @@ func (s UpdateModelOutput) GoString() string {
 type UpdateModelVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The event details.
+	// The details of the external events data used for training the model version.
+	// Required if trainingDataSource is EXTERNAL_EVENTS.
 	ExternalEventsDetail *ExternalEventsDetail `locationName:"externalEventsDetail" type:"structure"`
+
+	// The details of the ingested event used for training the model version. Required
+	// if your trainingDataSource is INGESTED_EVENTS.
+	IngestedEventsDetail *IngestedEventsDetail `locationName:"ingestedEventsDetail" type:"structure"`
 
 	// The major version number.
 	//
@@ -15355,6 +17362,11 @@ func (s *UpdateModelVersionInput) Validate() error {
 			invalidParams.AddNested("ExternalEventsDetail", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.IngestedEventsDetail != nil {
+		if err := s.IngestedEventsDetail.Validate(); err != nil {
+			invalidParams.AddNested("IngestedEventsDetail", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -15375,6 +17387,12 @@ func (s *UpdateModelVersionInput) Validate() error {
 // SetExternalEventsDetail sets the ExternalEventsDetail field's value.
 func (s *UpdateModelVersionInput) SetExternalEventsDetail(v *ExternalEventsDetail) *UpdateModelVersionInput {
 	s.ExternalEventsDetail = v
+	return s
+}
+
+// SetIngestedEventsDetail sets the IngestedEventsDetail field's value.
+func (s *UpdateModelVersionInput) SetIngestedEventsDetail(v *IngestedEventsDetail) *UpdateModelVersionInput {
+	s.IngestedEventsDetail = v
 	return s
 }
 
@@ -16316,6 +18334,22 @@ func DetectorVersionStatus_Values() []string {
 }
 
 const (
+	// EventIngestionEnabled is a EventIngestion enum value
+	EventIngestionEnabled = "ENABLED"
+
+	// EventIngestionDisabled is a EventIngestion enum value
+	EventIngestionDisabled = "DISABLED"
+)
+
+// EventIngestion_Values returns all elements of the EventIngestion enum
+func EventIngestion_Values() []string {
+	return []string{
+		EventIngestionEnabled,
+		EventIngestionDisabled,
+	}
+}
+
+const (
 	// LanguageDetectorpl is a Language enum value
 	LanguageDetectorpl = "DETECTORPL"
 )
@@ -16390,12 +18424,16 @@ func ModelSource_Values() []string {
 const (
 	// ModelTypeEnumOnlineFraudInsights is a ModelTypeEnum enum value
 	ModelTypeEnumOnlineFraudInsights = "ONLINE_FRAUD_INSIGHTS"
+
+	// ModelTypeEnumTransactionFraudInsights is a ModelTypeEnum enum value
+	ModelTypeEnumTransactionFraudInsights = "TRANSACTION_FRAUD_INSIGHTS"
 )
 
 // ModelTypeEnum_Values returns all elements of the ModelTypeEnum enum
 func ModelTypeEnum_Values() []string {
 	return []string{
 		ModelTypeEnumOnlineFraudInsights,
+		ModelTypeEnumTransactionFraudInsights,
 	}
 }
 
@@ -16438,11 +18476,35 @@ func RuleExecutionMode_Values() []string {
 const (
 	// TrainingDataSourceEnumExternalEvents is a TrainingDataSourceEnum enum value
 	TrainingDataSourceEnumExternalEvents = "EXTERNAL_EVENTS"
+
+	// TrainingDataSourceEnumIngestedEvents is a TrainingDataSourceEnum enum value
+	TrainingDataSourceEnumIngestedEvents = "INGESTED_EVENTS"
 )
 
 // TrainingDataSourceEnum_Values returns all elements of the TrainingDataSourceEnum enum
 func TrainingDataSourceEnum_Values() []string {
 	return []string{
 		TrainingDataSourceEnumExternalEvents,
+		TrainingDataSourceEnumIngestedEvents,
+	}
+}
+
+const (
+	// UnlabeledEventsTreatmentIgnore is a UnlabeledEventsTreatment enum value
+	UnlabeledEventsTreatmentIgnore = "IGNORE"
+
+	// UnlabeledEventsTreatmentFraud is a UnlabeledEventsTreatment enum value
+	UnlabeledEventsTreatmentFraud = "FRAUD"
+
+	// UnlabeledEventsTreatmentLegit is a UnlabeledEventsTreatment enum value
+	UnlabeledEventsTreatmentLegit = "LEGIT"
+)
+
+// UnlabeledEventsTreatment_Values returns all elements of the UnlabeledEventsTreatment enum
+func UnlabeledEventsTreatment_Values() []string {
+	return []string{
+		UnlabeledEventsTreatmentIgnore,
+		UnlabeledEventsTreatmentFraud,
+		UnlabeledEventsTreatmentLegit,
 	}
 }

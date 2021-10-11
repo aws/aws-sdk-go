@@ -42,6 +42,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CancelBatchImportJob":{
+      "name":"CancelBatchImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelBatchImportJobRequest"},
+      "output":{"shape":"CancelBatchImportJobResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CancelBatchPredictionJob":{
       "name":"CancelBatchPredictionJob",
       "http":{
@@ -50,6 +66,22 @@
       },
       "input":{"shape":"CancelBatchPredictionJobRequest"},
       "output":{"shape":"CancelBatchPredictionJobResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "CreateBatchImportJob":{
+      "name":"CreateBatchImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateBatchImportJobRequest"},
+      "output":{"shape":"CreateBatchImportJobResult"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -151,6 +183,21 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "DeleteBatchImportJob":{
+      "name":"DeleteBatchImportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteBatchImportJobRequest"},
+      "output":{"shape":"DeleteBatchImportJobResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DeleteBatchPredictionJob":{
       "name":"DeleteBatchPredictionJob",
       "http":{
@@ -161,7 +208,6 @@
       "output":{"shape":"DeleteBatchPredictionJobResult"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
@@ -242,6 +288,23 @@
       "errors":[
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteEventsByEventType":{
+      "name":"DeleteEventsByEventType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteEventsByEventTypeRequest"},
+      "output":{"shape":"DeleteEventsByEventTypeResult"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
@@ -390,6 +453,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "GetBatchImportJobs":{
+      "name":"GetBatchImportJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBatchImportJobsRequest"},
+      "output":{"shape":"GetBatchImportJobsResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetBatchPredictionJobs":{
       "name":"GetBatchPredictionJobs",
       "http":{
@@ -398,6 +477,22 @@
       },
       "input":{"shape":"GetBatchPredictionJobsRequest"},
       "output":{"shape":"GetBatchPredictionJobsResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetDeleteEventsByEventTypeStatus":{
+      "name":"GetDeleteEventsByEventTypeStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDeleteEventsByEventTypeStatusRequest"},
+      "output":{"shape":"GetDeleteEventsByEventTypeStatusResult"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -446,6 +541,22 @@
       },
       "input":{"shape":"GetEntityTypesRequest"},
       "output":{"shape":"GetEntityTypesResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetEvent":{
+      "name":"GetEvent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEventRequest"},
+      "output":{"shape":"GetEventResult"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -742,6 +853,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "SendEvent":{
+      "name":"SendEvent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SendEventRequest"},
+      "output":{"shape":"SendEventResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -813,6 +941,23 @@
       },
       "input":{"shape":"UpdateDetectorVersionStatusRequest"},
       "output":{"shape":"UpdateDetectorVersionStatusResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "UpdateEventLabel":{
+      "name":"UpdateEventLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateEventLabelRequest"},
+      "output":{"shape":"UpdateEventLabelResult"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -997,6 +1142,28 @@
         "errors":{"shape":"BatchGetVariableErrorList"}
       }
     },
+    "BatchImport":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"identifier"},
+        "status":{"shape":"AsyncJobStatus"},
+        "failureReason":{"shape":"string"},
+        "startTime":{"shape":"time"},
+        "completionTime":{"shape":"time"},
+        "inputPath":{"shape":"s3BucketLocation"},
+        "outputPath":{"shape":"s3BucketLocation"},
+        "eventTypeName":{"shape":"identifier"},
+        "iamRoleArn":{"shape":"iamRoleArn"},
+        "arn":{"shape":"fraudDetectorArn"},
+        "processedRecordsCount":{"shape":"Integer"},
+        "failedRecordsCount":{"shape":"Integer"},
+        "totalRecordsCount":{"shape":"Integer"}
+      }
+    },
+    "BatchImportList":{
+      "type":"list",
+      "member":{"shape":"BatchImport"}
+    },
     "BatchPrediction":{
       "type":"structure",
       "members":{
@@ -1021,6 +1188,18 @@
       "type":"list",
       "member":{"shape":"BatchPrediction"}
     },
+    "CancelBatchImportJobRequest":{
+      "type":"structure",
+      "required":["jobId"],
+      "members":{
+        "jobId":{"shape":"identifier"}
+      }
+    },
+    "CancelBatchImportJobResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CancelBatchPredictionJobRequest":{
       "type":"structure",
       "required":["jobId"],
@@ -1040,6 +1219,29 @@
         "message":{"shape":"string"}
       },
       "exception":true
+    },
+    "CreateBatchImportJobRequest":{
+      "type":"structure",
+      "required":[
+        "jobId",
+        "inputPath",
+        "outputPath",
+        "eventTypeName",
+        "iamRoleArn"
+      ],
+      "members":{
+        "jobId":{"shape":"identifier"},
+        "inputPath":{"shape":"s3BucketLocation"},
+        "outputPath":{"shape":"s3BucketLocation"},
+        "eventTypeName":{"shape":"identifier"},
+        "iamRoleArn":{"shape":"iamRoleArn"},
+        "tags":{"shape":"tagList"}
+      }
+    },
+    "CreateBatchImportJobResult":{
+      "type":"structure",
+      "members":{
+      }
     },
     "CreateBatchPredictionJobRequest":{
       "type":"structure",
@@ -1087,7 +1289,7 @@
       "type":"structure",
       "members":{
         "detectorId":{"shape":"identifier"},
-        "detectorVersionId":{"shape":"nonEmptyString"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"},
         "status":{"shape":"DetectorVersionStatus"}
       }
     },
@@ -1125,6 +1327,7 @@
         "trainingDataSource":{"shape":"TrainingDataSourceEnum"},
         "trainingDataSchema":{"shape":"TrainingDataSchema"},
         "externalEventsDetail":{"shape":"ExternalEventsDetail"},
+        "ingestedEventsDetail":{"shape":"IngestedEventsDetail"},
         "tags":{"shape":"tagList"}
       }
     },
@@ -1133,7 +1336,7 @@
       "members":{
         "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
-        "modelVersionNumber":{"shape":"nonEmptyString"},
+        "modelVersionNumber":{"shape":"floatVersionString"},
         "status":{"shape":"string"}
       }
     },
@@ -1214,6 +1417,19 @@
         "fieldLevelMessages":{"shape":"fieldValidationMessageList"}
       }
     },
+    "DeleteAuditHistory":{"type":"boolean"},
+    "DeleteBatchImportJobRequest":{
+      "type":"structure",
+      "required":["jobId"],
+      "members":{
+        "jobId":{"shape":"identifier"}
+      }
+    },
+    "DeleteBatchImportJobResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteBatchPredictionJobRequest":{
       "type":"structure",
       "required":["jobId"],
@@ -1274,7 +1490,8 @@
       ],
       "members":{
         "eventId":{"shape":"identifier"},
-        "eventTypeName":{"shape":"identifier"}
+        "eventTypeName":{"shape":"identifier"},
+        "deleteAuditHistory":{"shape":"DeleteAuditHistory"}
       }
     },
     "DeleteEventResult":{
@@ -1292,6 +1509,20 @@
     "DeleteEventTypeResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteEventsByEventTypeRequest":{
+      "type":"structure",
+      "required":["eventTypeName"],
+      "members":{
+        "eventTypeName":{"shape":"identifier"}
+      }
+    },
+    "DeleteEventsByEventTypeResult":{
+      "type":"structure",
+      "members":{
+        "eventTypeName":{"shape":"identifier"},
+        "eventsDeletionStatus":{"shape":"string"}
       }
     },
     "DeleteExternalModelRequest":{
@@ -1455,7 +1686,7 @@
     "DetectorVersionSummary":{
       "type":"structure",
       "members":{
-        "detectorVersionId":{"shape":"nonEmptyString"},
+        "detectorVersionId":{"shape":"wholeNumberVersionString"},
         "status":{"shape":"DetectorVersionStatus"},
         "description":{"shape":"description"},
         "lastUpdatedTime":{"shape":"time"}
@@ -1479,7 +1710,7 @@
       ],
       "members":{
         "entityType":{"shape":"string"},
-        "entityId":{"shape":"identifier"}
+        "entityId":{"shape":"entityRestrictedString"}
       },
       "sensitive":true
     },
@@ -1493,6 +1724,30 @@
         "arn":{"shape":"fraudDetectorArn"}
       }
     },
+    "Event":{
+      "type":"structure",
+      "members":{
+        "eventId":{"shape":"string"},
+        "eventTypeName":{"shape":"string"},
+        "eventTimestamp":{"shape":"string"},
+        "eventVariables":{"shape":"EventAttributeMap"},
+        "currentLabel":{"shape":"string"},
+        "labelTimestamp":{"shape":"string"},
+        "entities":{"shape":"listOfEntities"}
+      }
+    },
+    "EventAttributeMap":{
+      "type":"map",
+      "key":{"shape":"attributeKey"},
+      "value":{"shape":"attributeValue"}
+    },
+    "EventIngestion":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "EventType":{
       "type":"structure",
       "members":{
@@ -1501,6 +1756,8 @@
         "eventVariables":{"shape":"ListOfStrings"},
         "labels":{"shape":"ListOfStrings"},
         "entityTypes":{"shape":"NonEmptyListOfStrings"},
+        "eventIngestion":{"shape":"EventIngestion"},
+        "ingestedEventStatistics":{"shape":"IngestedEventStatistics"},
         "lastUpdatedTime":{"shape":"time"},
         "createdTime":{"shape":"time"},
         "arn":{"shape":"fraudDetectorArn"}
@@ -1540,7 +1797,7 @@
     },
     "ExternalModelEndpointDataBlobMap":{
       "type":"map",
-      "key":{"shape":"string"},
+      "key":{"shape":"sageMakerEndpointIdentifier"},
       "value":{"shape":"ModelEndpointDataBlob"},
       "sensitive":true
     },
@@ -1591,6 +1848,21 @@
         "type":{"shape":"string"}
       }
     },
+    "GetBatchImportJobsRequest":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"identifier"},
+        "maxResults":{"shape":"batchImportsMaxPageSize"},
+        "nextToken":{"shape":"string"}
+      }
+    },
+    "GetBatchImportJobsResult":{
+      "type":"structure",
+      "members":{
+        "batchImports":{"shape":"BatchImportList"},
+        "nextToken":{"shape":"string"}
+      }
+    },
     "GetBatchPredictionJobsRequest":{
       "type":"structure",
       "members":{
@@ -1604,6 +1876,20 @@
       "members":{
         "batchPredictions":{"shape":"BatchPredictionList"},
         "nextToken":{"shape":"string"}
+      }
+    },
+    "GetDeleteEventsByEventTypeStatusRequest":{
+      "type":"structure",
+      "required":["eventTypeName"],
+      "members":{
+        "eventTypeName":{"shape":"identifier"}
+      }
+    },
+    "GetDeleteEventsByEventTypeStatusResult":{
+      "type":"structure",
+      "members":{
+        "eventTypeName":{"shape":"identifier"},
+        "eventsDeletionStatus":{"shape":"AsyncJobStatus"}
       }
     },
     "GetDetectorVersionRequest":{
@@ -1692,6 +1978,23 @@
         "externalModelOutputs":{"shape":"ListOfExternalModelOutputs"}
       }
     },
+    "GetEventRequest":{
+      "type":"structure",
+      "required":[
+        "eventId",
+        "eventTypeName"
+      ],
+      "members":{
+        "eventId":{"shape":"string"},
+        "eventTypeName":{"shape":"string"}
+      }
+    },
+    "GetEventResult":{
+      "type":"structure",
+      "members":{
+        "event":{"shape":"Event"}
+      }
+    },
     "GetEventTypesRequest":{
       "type":"structure",
       "members":{
@@ -1765,6 +2068,7 @@
         "trainingDataSource":{"shape":"TrainingDataSourceEnum"},
         "trainingDataSchema":{"shape":"TrainingDataSchema"},
         "externalEventsDetail":{"shape":"ExternalEventsDetail"},
+        "ingestedEventsDetail":{"shape":"IngestedEventsDetail"},
         "status":{"shape":"string"},
         "arn":{"shape":"fraudDetectorArn"}
       }
@@ -1833,6 +2137,34 @@
         "nextToken":{"shape":"string"}
       }
     },
+    "IngestedEventStatistics":{
+      "type":"structure",
+      "members":{
+        "numberOfEvents":{"shape":"Long"},
+        "eventDataSizeInBytes":{"shape":"Long"},
+        "leastRecentEvent":{"shape":"time"},
+        "mostRecentEvent":{"shape":"time"},
+        "lastUpdatedTime":{"shape":"time"}
+      }
+    },
+    "IngestedEventsDetail":{
+      "type":"structure",
+      "required":["ingestedEventsTimeWindow"],
+      "members":{
+        "ingestedEventsTimeWindow":{"shape":"IngestedEventsTimeWindow"}
+      }
+    },
+    "IngestedEventsTimeWindow":{
+      "type":"structure",
+      "required":[
+        "startTime",
+        "endTime"
+      ],
+      "members":{
+        "startTime":{"shape":"time"},
+        "endTime":{"shape":"time"}
+      }
+    },
     "Integer":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
@@ -1874,7 +2206,8 @@
       "type":"structure",
       "required":["labelMapper"],
       "members":{
-        "labelMapper":{"shape":"labelMapper"}
+        "labelMapper":{"shape":"labelMapper"},
+        "unlabeledEventsTreatment":{"shape":"UnlabeledEventsTreatment"}
       }
     },
     "Language":{
@@ -1934,6 +2267,7 @@
         "variableImportance":{"shape":"float"}
       }
     },
+    "Long":{"type":"long"},
     "MetricDataPoint":{
       "type":"structure",
       "members":{
@@ -1976,8 +2310,8 @@
         "eventTypeName":{"shape":"identifier"},
         "format":{"shape":"ModelInputDataFormat"},
         "useEventVariables":{"shape":"UseEventVariables"},
-        "jsonInputTemplate":{"shape":"string"},
-        "csvInputTemplate":{"shape":"string"}
+        "jsonInputTemplate":{"shape":"modelInputTemplate"},
+        "csvInputTemplate":{"shape":"modelInputTemplate"}
       }
     },
     "ModelInputDataFormat":{
@@ -2021,7 +2355,10 @@
     },
     "ModelTypeEnum":{
       "type":"string",
-      "enum":["ONLINE_FRAUD_INSIGHTS"]
+      "enum":[
+        "ONLINE_FRAUD_INSIGHTS",
+        "TRANSACTION_FRAUD_INSIGHTS"
+      ]
     },
     "ModelVersion":{
       "type":"structure",
@@ -2033,7 +2370,7 @@
       "members":{
         "modelId":{"shape":"modelIdentifier"},
         "modelType":{"shape":"ModelTypeEnum"},
-        "modelVersionNumber":{"shape":"nonEmptyString"},
+        "modelVersionNumber":{"shape":"floatVersionString"},
         "arn":{"shape":"fraudDetectorArn"}
       }
     },
@@ -2047,6 +2384,7 @@
         "trainingDataSource":{"shape":"TrainingDataSourceEnum"},
         "trainingDataSchema":{"shape":"TrainingDataSchema"},
         "externalEventsDetail":{"shape":"ExternalEventsDetail"},
+        "ingestedEventsDetail":{"shape":"IngestedEventsDetail"},
         "trainingResult":{"shape":"TrainingResult"},
         "lastUpdatedTime":{"shape":"time"},
         "createdTime":{"shape":"time"},
@@ -2137,6 +2475,7 @@
         "eventVariables":{"shape":"NonEmptyListOfStrings"},
         "labels":{"shape":"ListOfStrings"},
         "entityTypes":{"shape":"NonEmptyListOfStrings"},
+        "eventIngestion":{"shape":"EventIngestion"},
         "tags":{"shape":"tagList"}
       }
     },
@@ -2281,6 +2620,30 @@
       "max":100,
       "min":50
     },
+    "SendEventRequest":{
+      "type":"structure",
+      "required":[
+        "eventId",
+        "eventTypeName",
+        "eventTimestamp",
+        "eventVariables",
+        "entities"
+      ],
+      "members":{
+        "eventId":{"shape":"identifier"},
+        "eventTypeName":{"shape":"identifier"},
+        "eventTimestamp":{"shape":"utcTimestampISO8601"},
+        "eventVariables":{"shape":"EventVariableMap"},
+        "assignedLabel":{"shape":"identifier"},
+        "labelTimestamp":{"shape":"utcTimestampISO8601"},
+        "entities":{"shape":"listOfEntities"}
+      }
+    },
+    "SendEventResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -2335,7 +2698,10 @@
     },
     "TrainingDataSourceEnum":{
       "type":"string",
-      "enum":["EXTERNAL_EVENTS"]
+      "enum":[
+        "EXTERNAL_EVENTS",
+        "INGESTED_EVENTS"
+      ]
     },
     "TrainingMetrics":{
       "type":"structure",
@@ -2351,6 +2717,14 @@
         "trainingMetrics":{"shape":"TrainingMetrics"},
         "variableImportanceMetrics":{"shape":"VariableImportanceMetrics"}
       }
+    },
+    "UnlabeledEventsTreatment":{
+      "type":"string",
+      "enum":[
+        "IGNORE",
+        "FRAUD",
+        "LEGIT"
+      ]
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -2427,6 +2801,26 @@
       "members":{
       }
     },
+    "UpdateEventLabelRequest":{
+      "type":"structure",
+      "required":[
+        "eventId",
+        "eventTypeName",
+        "assignedLabel",
+        "labelTimestamp"
+      ],
+      "members":{
+        "eventId":{"shape":"identifier"},
+        "eventTypeName":{"shape":"identifier"},
+        "assignedLabel":{"shape":"identifier"},
+        "labelTimestamp":{"shape":"utcTimestampISO8601"}
+      }
+    },
+    "UpdateEventLabelResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateModelRequest":{
       "type":"structure",
       "required":[
@@ -2456,6 +2850,7 @@
         "modelType":{"shape":"ModelTypeEnum"},
         "majorVersionNumber":{"shape":"wholeNumberVersionString"},
         "externalEventsDetail":{"shape":"ExternalEventsDetail"},
+        "ingestedEventsDetail":{"shape":"IngestedEventsDetail"},
         "tags":{"shape":"tagList"}
       }
     },
@@ -2598,6 +2993,23 @@
       "max":100,
       "min":50
     },
+    "attributeKey":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "attributeValue":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "sensitive":true
+    },
+    "batchImportsMaxPageSize":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
+    },
     "batchPredictionsMaxPageSize":{
       "type":"integer",
       "box":true,
@@ -2614,6 +3026,12 @@
       "type":"string",
       "max":128,
       "min":1
+    },
+    "entityRestrictedString":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[0-9A-Za-z_.@+-]+$"
     },
     "entityTypeList":{
       "type":"list",
@@ -2698,6 +3116,11 @@
       "min":1,
       "pattern":"^[0-9a-z_]+$"
     },
+    "modelInputTemplate":{
+      "type":"string",
+      "max":2000,
+      "min":1
+    },
     "modelList":{
       "type":"list",
       "member":{"shape":"Model"}
@@ -2710,10 +3133,6 @@
       "type":"integer",
       "box":true,
       "max":10,
-      "min":1
-    },
-    "nonEmptyString":{
-      "type":"string",
       "min":1
     },
     "ruleExpression":{

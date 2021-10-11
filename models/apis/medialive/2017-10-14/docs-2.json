@@ -8,6 +8,7 @@
     "BatchStop": "Stops running resources",
     "BatchUpdateSchedule": "Update a channel schedule",
     "CancelInputDeviceTransfer": "Cancel an input device transfer that you have requested.",
+    "ClaimDevice": "Send a request to claim an AWS Elemental device that you have purchased from a third-party vendor. After the request succeeds, you will own the device.",
     "CreateChannel": "Creates a new channel",
     "CreateInput": "Create an input",
     "CreateInputSecurityGroup": "Creates a Input Security Group",
@@ -337,6 +338,12 @@
         "AudioDescription$AudioType": "Applies only if audioTypeControl is useConfigured. The values for audioType are defined in ISO-IEC 13818-1."
       }
     },
+    "AudioWatermarkSettings": {
+      "base": "Audio Watermark Settings",
+      "refs": {
+        "AudioDescription$AudioWatermarkingSettings": "Settings to configure one or more solutions that insert audio watermarks in the audio encode"
+      }
+    },
     "AuthenticationScheme": {
       "base": "Authentication Scheme",
       "refs": {
@@ -609,6 +616,11 @@
       "base": null,
       "refs": {
         "__listOfChannelSummary$member": null
+      }
+    },
+    "ClaimDeviceRequest": {
+      "base": "Request to claim an AWS Elemental device that you have purchased from a third-party vendor.",
+      "refs": {
       }
     },
     "ColorSpacePassthroughSettings": {
@@ -1899,9 +1911,9 @@
       }
     },
     "InputSourceType": {
-      "base": "There are two types of input sources, static and dynamic. If an input source is dynamic you can\nchange the source url of the input dynamically using an input switch action. However, the only input type\nto support a dynamic url at this time is MP4_FILE. By default all input sources are static.\n",
+      "base": "There are two types of input sources, static and dynamic. If an input source is dynamic you can\nchange the source url of the input dynamically using an input switch action. Currently, two input types\nsupport a dynamic url at this time, MP4_FILE and TS_FILE. By default all input sources are static.\n",
       "refs": {
-        "Input$InputSourceType": "Certain pull input sources can be dynamic, meaning that they can have their URL's dynamically changes\nduring input switch actions. Presently, this functionality only works with MP4_FILE inputs.\n"
+        "Input$InputSourceType": "Certain pull input sources can be dynamic, meaning that they can have their URL's dynamically changes\nduring input switch actions. Presently, this functionality only works with MP4_FILE and TS_FILE inputs.\n"
       }
     },
     "InputSpecification": {
@@ -1932,7 +1944,7 @@
       }
     },
     "InputType": {
-      "base": null,
+      "base": "The different types of inputs that AWS Elemental MediaLive supports.",
       "refs": {
         "CreateInput$Type": null,
         "Input$Type": null
@@ -2475,16 +2487,46 @@
         "InputSettings$NetworkInputSettings": "Input settings."
       }
     },
+    "NielsenCBET": {
+      "base": "Nielsen CBET",
+      "refs": {
+        "NielsenWatermarksSettings$NielsenCbetSettings": "Complete these fields only if you want to insert watermarks of type Nielsen CBET"
+      }
+    },
     "NielsenConfiguration": {
       "base": "Nielsen Configuration",
       "refs": {
         "EncoderSettings$NielsenConfiguration": "Nielsen configuration settings."
       }
     },
+    "NielsenNaesIiNw": {
+      "base": "Nielsen Naes Ii Nw",
+      "refs": {
+        "NielsenWatermarksSettings$NielsenNaesIiNwSettings": "Complete these fields only if you want to insert watermarks of type Nielsen NAES II (N2) and Nielsen NAES VI (NW)."
+      }
+    },
     "NielsenPcmToId3TaggingState": {
       "base": "State of Nielsen PCM to ID3 tagging",
       "refs": {
         "NielsenConfiguration$NielsenPcmToId3Tagging": "Enables Nielsen PCM to ID3 tagging"
+      }
+    },
+    "NielsenWatermarksCbetStepaside": {
+      "base": "Nielsen Watermarks Cbet Stepaside",
+      "refs": {
+        "NielsenCBET$CbetStepaside": "Determines the method of CBET insertion mode when prior encoding is detected on the same layer."
+      }
+    },
+    "NielsenWatermarksDistributionTypes": {
+      "base": "Nielsen Watermarks Distribution Types",
+      "refs": {
+        "NielsenWatermarksSettings$NielsenDistributionType": "Choose the distribution types that you want to assign to the watermarks:\n- PROGRAM_CONTENT\n- FINAL_DISTRIBUTOR"
+      }
+    },
+    "NielsenWatermarksSettings": {
+      "base": "Nielsen Watermarks Settings",
+      "refs": {
+        "AudioWatermarkSettings$NielsenWatermarksSettings": "Settings to configure Nielsen Watermarks in the audio encode"
       }
     },
     "NotFoundException": {
@@ -3300,14 +3342,14 @@
     "VpcOutputSettings": {
       "base": "The properties for a private VPC Output\nWhen this property is specified, the output egress addresses will be created in a user specified VPC\n",
       "refs": {
-        "CreateChannel$Vpc": "Settings for VPC output"
+        "CreateChannel$Vpc": "Settings for the VPC outputs"
       }
     },
     "VpcOutputSettingsDescription": {
       "base": "The properties for a private VPC Output\n",
       "refs": {
         "Channel$Vpc": "Settings for VPC output",
-        "ChannelSummary$Vpc": "Settings for VPC output"
+        "ChannelSummary$Vpc": "Settings for any VPC outputs."
       }
     },
     "WavCodingMode": {
@@ -3391,6 +3433,12 @@
       "base": null,
       "refs": {
         "M2tsSettings$SegmentationTime": "The length in seconds of each segment. Required unless markers is set to _none_."
+      }
+    },
+    "__doubleMin1Max65535": {
+      "base": null,
+      "refs": {
+        "NielsenNaesIiNw$Sid": "Enter the Nielsen Source ID (SID) to include in the watermark"
       }
     },
     "__doubleMinNegative59Max0": {
@@ -4264,6 +4312,7 @@
         "ChannelSummary$Id": "The unique id of the channel.",
         "ChannelSummary$Name": "The name of the channel. (user-mutable)",
         "ChannelSummary$RoleArn": "The Amazon Resource Name (ARN) of the role assumed when running the Channel.",
+        "ClaimDeviceRequest$Id": "The id of the device you want to claim.",
         "CreateChannel$Name": "Name of channel.",
         "CreateChannel$RequestId": "Unique request ID to be specified. This is needed to prevent retries from\ncreating multiple resources.\n",
         "CreateChannel$Reserved": "Deprecated field that's only usable by whitelisted customers.",
@@ -4504,6 +4553,19 @@
       "base": null,
       "refs": {
         "AudioDescription$LanguageCode": "RFC 5646 language code representing the language of the audio output track. Only used if languageControlMode is useConfigured, or there is no ISO 639 language code specified in the input."
+      }
+    },
+    "__stringMin1Max7": {
+      "base": null,
+      "refs": {
+        "NielsenCBET$Csid": "Enter the CBET Source ID (CSID) to use in the watermark"
+      }
+    },
+    "__stringMin2Max2": {
+      "base": null,
+      "refs": {
+        "NielsenCBET$CbetCheckDigitString": "Enter the CBET check digits to use in the watermark.",
+        "NielsenNaesIiNw$CheckDigitString": "Enter the check digit string for the watermark"
       }
     },
     "__stringMin32Max32": {

@@ -4,19 +4,23 @@
   "operations": {
     "BatchCreateVariable": "<p>Creates a batch of variables.</p>",
     "BatchGetVariable": "<p>Gets a batch of variables.</p>",
+    "CancelBatchImportJob": "<p> Cancels an in-progress batch import job.</p>",
     "CancelBatchPredictionJob": "<p>Cancels the specified batch prediction job.</p>",
+    "CreateBatchImportJob": "<p>Creates a batch import job. </p>",
     "CreateBatchPredictionJob": "<p>Creates a batch prediction job.</p>",
     "CreateDetectorVersion": "<p>Creates a detector version. The detector version starts in a <code>DRAFT</code> status.</p>",
     "CreateModel": "<p>Creates a model using the specified model type.</p>",
     "CreateModelVersion": "<p>Creates a version of the model using the specified model type and model id. </p>",
     "CreateRule": "<p>Creates a rule for use with the specified detector. </p>",
     "CreateVariable": "<p>Creates a variable.</p>",
+    "DeleteBatchImportJob": "<p>Deletes data that was batch imported to Amazon Fraud Detector. </p>",
     "DeleteBatchPredictionJob": "<p>Deletes a batch prediction job.</p>",
     "DeleteDetector": "<p>Deletes the detector. Before deleting a detector, you must first delete all detector versions and rule versions associated with the detector.</p> <p>When you delete a detector, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DeleteDetectorVersion": "<p>Deletes the detector version. You cannot delete detector versions that are in <code>ACTIVE</code> status.</p> <p>When you delete a detector version, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DeleteEntityType": "<p>Deletes an entity type.</p> <p>You cannot delete an entity type that is included in an event type.</p> <p>When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DeleteEvent": "<p>Deletes the specified event.</p> <p>When you delete an event, Amazon Fraud Detector permanently deletes that event and the event data is no longer stored in Amazon Fraud Detector.</p>",
-    "DeleteEventType": "<p>Deletes an event type.</p> <p>You cannot delete an event type that is used in a detector or a model.</p> <p>When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteEventType": "<p>Deletes an event type.</p> <p>You cannot delete an event type that is used in a detector or a model.</p> <p>When you delete an event type, Amazon Fraud Detector permanently deletes that event type and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteEventsByEventType": "<p>Deletes all events of a particular event type.</p>",
     "DeleteExternalModel": "<p>Removes a SageMaker model from Amazon Fraud Detector.</p> <p>You can remove an Amazon SageMaker model if it is not associated with a detector version. Removing a SageMaker model disconnects it from Amazon Fraud Detector, but the model remains available in SageMaker.</p>",
     "DeleteLabel": "<p>Deletes a label.</p> <p>You cannot delete labels that are included in an event type in Amazon Fraud Detector.</p> <p>You cannot delete a label assigned to an event ID. You must first delete the relevant event ID.</p> <p>When you delete a label, Amazon Fraud Detector permanently deletes that label and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DeleteModel": "<p>Deletes a model.</p> <p>You can delete models and model versions in Amazon Fraud Detector, provided that they are not associated with a detector version.</p> <p> When you delete a model, Amazon Fraud Detector permanently deletes that model and the data is no longer stored in Amazon Fraud Detector.</p>",
@@ -26,14 +30,17 @@
     "DeleteVariable": "<p>Deletes a variable.</p> <p>You can't delete variables that are included in an event type in Amazon Fraud Detector.</p> <p>Amazon Fraud Detector automatically deletes model output variables and SageMaker model output variables when you delete the model. You can't delete these variables manually.</p> <p>When you delete a variable, Amazon Fraud Detector permanently deletes that variable and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DescribeDetector": "<p>Gets all versions for a specified detector.</p>",
     "DescribeModelVersions": "<p>Gets all of the model versions for the specified model type or for the specified model type and model ID. You can also get details for a single, specified model version. </p>",
+    "GetBatchImportJobs": "<p>Gets all batch import jobs or a specific job of the specified ID. This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 50 records per page. If you provide a <code>maxResults</code>, the value must be between 1 and 50. To get the next page results, provide the pagination token from the <code>GetBatchImportJobsResponse</code> as part of your request. A null pagination token fetches the records from the beginning.</p>",
     "GetBatchPredictionJobs": "<p>Gets all batch prediction jobs or a specific job if you specify a job ID. This is a paginated API. If you provide a null maxResults, this action retrieves a maximum of 50 records per page. If you provide a maxResults, the value must be between 1 and 50. To get the next page results, provide the pagination token from the GetBatchPredictionJobsResponse as part of your request. A null pagination token fetches the records from the beginning.</p>",
+    "GetDeleteEventsByEventTypeStatus": "<p>Retrieves the status of a <code>DeleteEventsByEventType</code> action.</p>",
     "GetDetectorVersion": "<p>Gets a particular detector version. </p>",
     "GetDetectors": "<p>Gets all detectors or a single detector if a <code>detectorId</code> is specified. This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 5 and 10. To get the next page results, provide the pagination token from the <code>GetDetectorsResponse</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
     "GetEntityTypes": "<p>Gets all entity types or a specific entity type if a name is specified. This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 5 and 10. To get the next page results, provide the pagination token from the <code>GetEntityTypesResponse</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
+    "GetEvent": "<p>Retrieves details of events stored with Amazon Fraud Detector. This action does not retrieve prediction results.</p>",
     "GetEventPrediction": "<p>Evaluates an event against a detector version. If a version ID is not provided, the detector’s (<code>ACTIVE</code>) version is used.</p>",
     "GetEventTypes": "<p>Gets all event types or a specific event type if name is provided. This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 5 and 10. To get the next page results, provide the pagination token from the <code>GetEventTypesResponse</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
     "GetExternalModels": "<p>Gets the details for one or more Amazon SageMaker models that have been imported into the service. This is a paginated API. If you provide a null <code>maxResults</code>, this actions retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 5 and 10. To get the next page results, provide the pagination token from the <code>GetExternalModelsResult</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
-    "GetKMSEncryptionKey": "<p>Gets the encryption key if a Key Management Service (KMS) customer master key (CMK) has been specified to be used to encrypt content in Amazon Fraud Detector.</p>",
+    "GetKMSEncryptionKey": "<p>Gets the encryption key if a KMS key has been specified to be used to encrypt content in Amazon Fraud Detector.</p>",
     "GetLabels": "<p>Gets all labels or a specific label if name is provided. This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 50 records per page. If you provide a <code>maxResults</code>, the value must be between 10 and 50. To get the next page results, provide the pagination token from the <code>GetGetLabelsResponse</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
     "GetModelVersion": "<p>Gets the details of the specified model version.</p>",
     "GetModels": "<p>Gets one or more models. Gets all models for the Amazon Web Services account if no model type and no model id provided. Gets all models for the Amazon Web Services account and model type, if the model type is specified but model id is not provided. Gets a specific model if (model type, model id) tuple is specified. </p> <p>This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 1 and 10. To get the next page results, provide the pagination token from the response as part of your request. A null pagination token fetches the records from the beginning.</p>",
@@ -45,17 +52,19 @@
     "PutEntityType": "<p>Creates or updates an entity type. An entity represents who is performing the event. As part of a fraud prediction, you pass the entity ID to indicate the specific entity who performed the event. An entity type classifies the entity. Example classifications include customer, merchant, or account.</p>",
     "PutEventType": "<p>Creates or updates an event type. An event is a business activity that is evaluated for fraud risk. With Amazon Fraud Detector, you generate fraud predictions for events. An event type defines the structure for an event sent to Amazon Fraud Detector. This includes the variables sent as part of the event, the entity performing the event (such as a customer), and the labels that classify the event. Example event types include online payment transactions, account registrations, and authentications.</p>",
     "PutExternalModel": "<p>Creates or updates an Amazon SageMaker model endpoint. You can also use this action to update the configuration of the model endpoint, including the IAM role and/or the mapped variables. </p>",
-    "PutKMSEncryptionKey": "<p>Specifies the Key Management Service (KMS) customer master key (CMK) to be used to encrypt content in Amazon Fraud Detector.</p>",
+    "PutKMSEncryptionKey": "<p>Specifies the KMS key to be used to encrypt content in Amazon Fraud Detector.</p>",
     "PutLabel": "<p>Creates or updates label. A label classifies an event as fraudulent or legitimate. Labels are associated with event types and used to train supervised machine learning models in Amazon Fraud Detector. </p>",
     "PutOutcome": "<p>Creates or updates an outcome. </p>",
+    "SendEvent": "<p>Stores events in Amazon Fraud Detector without generating fraud predictions for those events. For example, you can use <code>SendEvent</code> to upload a historical dataset, which you can then later use to train a model.</p>",
     "TagResource": "<p>Assigns tags to a resource.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateDetectorVersion": "<p> Updates a detector version. The detector version attributes that you can update include models, external model endpoints, rules, rule execution mode, and description. You can only update a <code>DRAFT</code> detector version.</p>",
     "UpdateDetectorVersionMetadata": "<p>Updates the detector version's description. You can update the metadata for any detector version (<code>DRAFT, ACTIVE,</code> or <code>INACTIVE</code>). </p>",
     "UpdateDetectorVersionStatus": "<p>Updates the detector version’s status. You can perform the following promotions or demotions using <code>UpdateDetectorVersionStatus</code>: <code>DRAFT</code> to <code>ACTIVE</code>, <code>ACTIVE</code> to <code>INACTIVE</code>, and <code>INACTIVE</code> to <code>ACTIVE</code>.</p>",
-    "UpdateModel": "<p>Updates a model. You can update the description attribute using this action.</p>",
+    "UpdateEventLabel": "<p>Updates the specified event with a new label.</p>",
+    "UpdateModel": "<p>Updates model description.</p>",
     "UpdateModelVersion": "<p>Updates a model version. Updating a model version retrains an existing model version using updated training data and produces a new minor version of the model. You can update the training data set location and data access role attributes using this action. This action creates and trains a new minor version of the model, for example version 1.01, 1.02, 1.03.</p>",
-    "UpdateModelVersionStatus": "<p>Updates the status of a model version.</p> <p>You can perform the following status updates:</p> <ol> <li> <p>Change the <code>TRAINING_COMPLETE</code> status to <code>ACTIVE</code>.</p> </li> <li> <p>Change <code>ACTIVE</code>to <code>INACTIVE</code>.</p> </li> </ol>",
+    "UpdateModelVersionStatus": "<p>Updates the status of a model version.</p> <p>You can perform the following status updates:</p> <ol> <li> <p>Change the <code>TRAINING_COMPLETE</code> status to <code>ACTIVE</code>.</p> </li> <li> <p>Change <code>ACTIVE</code> to <code>INACTIVE</code>.</p> </li> </ol>",
     "UpdateRuleMetadata": "<p>Updates a rule's metadata. The description attribute can be updated.</p>",
     "UpdateRuleVersion": "<p>Updates a rule version resulting in a new rule version. Updates a rule version resulting in a new rule version (version 1, 2, 3 ...). </p>",
     "UpdateVariable": "<p>Updates a variable.</p>"
@@ -69,7 +78,9 @@
     "AsyncJobStatus": {
       "base": null,
       "refs": {
-        "BatchPrediction$status": "<p>The batch prediction status.</p>"
+        "BatchImport$status": "<p>The status of the batch import job.</p>",
+        "BatchPrediction$status": "<p>The batch prediction status.</p>",
+        "GetDeleteEventsByEventTypeStatusResult$eventsDeletionStatus": "<p>The deletion status.</p>"
       }
     },
     "BatchCreateVariableError": {
@@ -116,6 +127,18 @@
       "refs": {
       }
     },
+    "BatchImport": {
+      "base": "<p>The batch import job details.</p>",
+      "refs": {
+        "BatchImportList$member": null
+      }
+    },
+    "BatchImportList": {
+      "base": null,
+      "refs": {
+        "GetBatchImportJobsResult$batchImports": "<p>An array containing the details of each batch import job.</p>"
+      }
+    },
     "BatchPrediction": {
       "base": "<p>The batch prediction details.</p>",
       "refs": {
@@ -126,6 +149,16 @@
       "base": null,
       "refs": {
         "GetBatchPredictionJobsResult$batchPredictions": "<p>An array containing the details of each batch prediction job.</p>"
+      }
+    },
+    "CancelBatchImportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelBatchImportJobResult": {
+      "base": null,
+      "refs": {
       }
     },
     "CancelBatchPredictionJobRequest": {
@@ -139,7 +172,17 @@
       }
     },
     "ConflictException": {
-      "base": "<p>An exception indicating there was a conflict during a delete operation. The following delete operations can cause a conflict exception:</p> <ul> <li> <p>DeleteDetector: A conflict exception will occur if the detector has associated <code>Rules</code> or <code>DetectorVersions</code>. You can only delete a detector if it has no <code>Rules</code> or <code>DetectorVersions</code>.</p> </li> <li> <p>DeleteDetectorVersion: A conflict exception will occur if the <code>DetectorVersion</code> status is <code>ACTIVE</code>.</p> </li> <li> <p>DeleteRule: A conflict exception will occur if the <code>RuleVersion</code> is in use by an associated <code>ACTIVE</code> or <code>INACTIVE DetectorVersion</code>.</p> </li> </ul>",
+      "base": "<p>An exception indicating there was a conflict during a delete operation.</p>",
+      "refs": {
+      }
+    },
+    "CreateBatchImportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateBatchImportJobResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -229,6 +272,22 @@
         "TrainingResult$dataValidationMetrics": "<p>The validation metrics.</p>"
       }
     },
+    "DeleteAuditHistory": {
+      "base": null,
+      "refs": {
+        "DeleteEventRequest$deleteAuditHistory": "<p>Specifies whether or not to delete any predictions associated with the event.</p>"
+      }
+    },
+    "DeleteBatchImportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteBatchImportJobResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteBatchPredictionJobRequest": {
       "base": null,
       "refs": {
@@ -285,6 +344,16 @@
       }
     },
     "DeleteEventTypeResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEventsByEventTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEventsByEventTypeResult": {
       "base": null,
       "refs": {
       }
@@ -436,6 +505,25 @@
         "entityTypeList$member": null
       }
     },
+    "Event": {
+      "base": "<p>The event details.</p>",
+      "refs": {
+        "GetEventResult$event": "<p>The details of the event.</p>"
+      }
+    },
+    "EventAttributeMap": {
+      "base": null,
+      "refs": {
+        "Event$eventVariables": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p>"
+      }
+    },
+    "EventIngestion": {
+      "base": null,
+      "refs": {
+        "EventType$eventIngestion": "<p>If <code>Enabled</code>, Amazon Fraud Detector stores event data when you generate a prediction and uses that data to update calculated variables in near real-time. Amazon Fraud Detector uses this data, known as <code>INGESTED_EVENTS</code>, to train your model and improve fraud predictions.</p>",
+        "PutEventTypeRequest$eventIngestion": "<p>Specifies if ingenstion is enabled or disabled.</p>"
+      }
+    },
     "EventType": {
       "base": "<p>The event type details.</p>",
       "refs": {
@@ -445,16 +533,17 @@
     "EventVariableMap": {
       "base": null,
       "refs": {
-        "GetEventPredictionRequest$eventVariables": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p> <important> <ul> <li> <p>You must provide at least one eventVariable</p> </li> <li> <p>If detectorVersion is associated with a modelVersion, you must provide at least one associated eventVariable</p> </li> </ul> </important> <p>To ensure highest possible fraud prediction and to simplify your data preparation, Amazon Fraud Detector will replace all missing variables or values as follows:</p> <p> <b>For Amazon Fraud Detector trained models:</b> </p> <p>If a null value is provided explicitly for a variable or if a variable is missing, model will replace the null value or the missing variable (no variable name in the eventVariables map) with calculated default mean/medians for numeric variables and with special values for categorical variables.</p> <p> <b>For External models ( for example, imported SageMaker):</b> </p> <p>If a null value is provided explicitly for a variable, the model and rules will use “null” as the value. If a variable is not provided (no variable name in the eventVariables map), model and rules will use the default value that is provided for the variable. </p>"
+        "GetEventPredictionRequest$eventVariables": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p> <important> <p>You must provide at least one eventVariable</p> </important> <p>To ensure most accurate fraud prediction and to simplify your data preparation, Amazon Fraud Detector will replace all missing variables or values as follows:</p> <p> <b>For Amazon Fraud Detector trained models:</b> </p> <p>If a null value is provided explicitly for a variable or if a variable is missing, model will replace the null value or the missing variable (no variable name in the eventVariables map) with calculated default mean/medians for numeric variables and with special values for categorical variables.</p> <p> <b>For imported SageMaker models:</b> </p> <p>If a null value is provided explicitly for a variable, the model and rules will use “null” as the value. If a variable is not provided (no variable name in the eventVariables map), model and rules will use the default value that is provided for the variable. </p>",
+        "SendEventRequest$eventVariables": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p>"
       }
     },
     "ExternalEventsDetail": {
       "base": "<p>Details for the external events data used for model version training.</p>",
       "refs": {
-        "CreateModelVersionRequest$externalEventsDetail": "<p>Details for the external events data used for model version training. Required if <code>trainingDataSource</code> is <code>EXTERNAL_EVENTS</code>.</p>",
-        "GetModelVersionResult$externalEventsDetail": "<p>The event details.</p>",
-        "ModelVersionDetail$externalEventsDetail": "<p>The event details.</p>",
-        "UpdateModelVersionRequest$externalEventsDetail": "<p>The event details.</p>"
+        "CreateModelVersionRequest$externalEventsDetail": "<p>Details of the external events data used for model version training. Required if <code>trainingDataSource</code> is <code>EXTERNAL_EVENTS</code>.</p>",
+        "GetModelVersionResult$externalEventsDetail": "<p>The details of the external events data used for training the model version. This will be populated if the <code>trainingDataSource</code> is <code>EXTERNAL_EVENTS</code> </p>",
+        "ModelVersionDetail$externalEventsDetail": "<p>The external events data details. This will be populated if the <code>trainingDataSource</code> for the model version is specified as <code>EXTERNAL_EVENTS</code>.</p>",
+        "UpdateModelVersionRequest$externalEventsDetail": "<p>The details of the external events data used for training the model version. Required if <code>trainingDataSource</code> is <code>EXTERNAL_EVENTS</code>.</p>"
       }
     },
     "ExternalModel": {
@@ -511,12 +600,32 @@
         "fileValidationMessageList$member": null
       }
     },
+    "GetBatchImportJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBatchImportJobsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetBatchPredictionJobsRequest": {
       "base": null,
       "refs": {
       }
     },
     "GetBatchPredictionJobsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDeleteEventsByEventTypeStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetDeleteEventsByEventTypeStatusResult": {
       "base": null,
       "refs": {
       }
@@ -557,6 +666,16 @@
       }
     },
     "GetEventPredictionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEventResult": {
       "base": null,
       "refs": {
       }
@@ -646,9 +765,33 @@
       "refs": {
       }
     },
+    "IngestedEventStatistics": {
+      "base": "<p>Data about the stored events.</p>",
+      "refs": {
+        "EventType$ingestedEventStatistics": "<p>Data about the stored events.</p>"
+      }
+    },
+    "IngestedEventsDetail": {
+      "base": "<p>The details of the ingested event.</p>",
+      "refs": {
+        "CreateModelVersionRequest$ingestedEventsDetail": "<p>Details of the ingested events data used for model version training. Required if <code>trainingDataSource</code> is <code>INGESTED_EVENTS</code>.</p>",
+        "GetModelVersionResult$ingestedEventsDetail": "<p>The details of the ingested events data used for training the model version. This will be populated if the <code>trainingDataSource</code> is <code>INGESTED_EVENTS</code>.</p>",
+        "ModelVersionDetail$ingestedEventsDetail": "<p>The ingested events data details. This will be populated if the <code>trainingDataSource</code> for the model version is specified as <code>INGESTED_EVENTS</code>.</p>",
+        "UpdateModelVersionRequest$ingestedEventsDetail": "<p>The details of the ingested event used for training the model version. Required if your <code>trainingDataSource</code> is <code>INGESTED_EVENTS</code>.</p>"
+      }
+    },
+    "IngestedEventsTimeWindow": {
+      "base": "<p>The start and stop time of the ingested events.</p>",
+      "refs": {
+        "IngestedEventsDetail$ingestedEventsTimeWindow": "<p>The start and stop time of the ingested events.</p>"
+      }
+    },
     "Integer": {
       "base": null,
       "refs": {
+        "BatchImport$processedRecordsCount": "<p>The number of records processed by batch import job.</p>",
+        "BatchImport$failedRecordsCount": "<p>The number of records that failed to import. </p>",
+        "BatchImport$totalRecordsCount": "<p>The total number of records in the batch import job.</p>",
         "BatchPrediction$processedRecordsCount": "<p>The number of records processed by the batch prediction job.</p>",
         "BatchPrediction$totalRecordsCount": "<p>The total number of records in the batch prediction job.</p>"
       }
@@ -756,6 +899,13 @@
       "base": "<p>The log odds metric details.</p>",
       "refs": {
         "ListOfLogOddsMetrics$member": null
+      }
+    },
+    "Long": {
+      "base": null,
+      "refs": {
+        "IngestedEventStatistics$numberOfEvents": "<p>The number of stored events.</p>",
+        "IngestedEventStatistics$eventDataSizeInBytes": "<p>The total size of the stored events.</p>"
       }
     },
     "MetricDataPoint": {
@@ -976,12 +1126,12 @@
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>An exception indicating the specified resource was not found. This can occur if you submit a request, such as <code>CreateBatchPredictionJob</code>, but the detector name or version does not exist.</p>",
+      "base": "<p>An exception indicating the specified resource was not found.</p>",
       "refs": {
       }
     },
     "ResourceUnavailableException": {
-      "base": "<p> An exception indicating that the attached customer-owned (external) model threw an exception when Amazon Fraud Detector invoked the model. </p>",
+      "base": "<p>An exception indicating that the attached customer-owned (external) model threw an exception when Amazon Fraud Detector invoked the model.</p>",
       "refs": {
       }
     },
@@ -1034,6 +1184,16 @@
       "base": null,
       "refs": {
         "GetRulesRequest$maxResults": "<p>The maximum number of rules to return for the request.</p>"
+      }
+    },
+    "SendEventRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendEventResult": {
+      "base": null,
+      "refs": {
       }
     },
     "Tag": {
@@ -1091,6 +1251,12 @@
         "ModelVersionDetail$trainingResult": "<p>The training results.</p>"
       }
     },
+    "UnlabeledEventsTreatment": {
+      "base": null,
+      "refs": {
+        "LabelSchema$unlabeledEventsTreatment": "<p>The action to take for unlabeled events.</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -1127,6 +1293,16 @@
       }
     },
     "UpdateDetectorVersionStatusResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEventLabelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateEventLabelResult": {
       "base": null,
       "refs": {
       }
@@ -1239,6 +1415,24 @@
         "GetVariablesRequest$maxResults": "<p>The max size per page determined for the get variable request. </p>"
       }
     },
+    "attributeKey": {
+      "base": null,
+      "refs": {
+        "EventAttributeMap$key": null
+      }
+    },
+    "attributeValue": {
+      "base": null,
+      "refs": {
+        "EventAttributeMap$value": null
+      }
+    },
+    "batchImportsMaxPageSize": {
+      "base": null,
+      "refs": {
+        "GetBatchImportJobsRequest$maxResults": "<p>The maximum number of objects to return for request.</p>"
+      }
+    },
     "batchPredictionsMaxPageSize": {
       "base": null,
       "refs": {
@@ -1282,6 +1476,12 @@
         "UpdateModelRequest$description": "<p>The new model description.</p>",
         "UpdateRuleMetadataRequest$description": "<p>The rule description.</p>",
         "UpdateRuleVersionRequest$description": "<p>The description.</p>"
+      }
+    },
+    "entityRestrictedString": {
+      "base": null,
+      "refs": {
+        "Entity$entityId": "<p>The entity ID. If you do not know the <code>entityId</code>, you can pass <code>unknown</code>, which is areserved string literal.</p>"
       }
     },
     "entityTypeList": {
@@ -1336,10 +1536,12 @@
       "base": null,
       "refs": {
         "BatchPrediction$detectorVersion": "<p>The detector version. </p>",
+        "CreateModelVersionResult$modelVersionNumber": "<p>The model version number of the model version created.</p>",
         "DeleteModelVersionRequest$modelVersionNumber": "<p>The model version number of the model version to delete.</p>",
         "DescribeModelVersionsRequest$modelVersionNumber": "<p>The model version number.</p>",
         "GetModelVersionRequest$modelVersionNumber": "<p>The model version number.</p>",
         "GetModelVersionResult$modelVersionNumber": "<p>The model version number.</p>",
+        "ModelVersion$modelVersionNumber": "<p>The model version number.</p>",
         "ModelVersionDetail$modelVersionNumber": "<p>The model version number.</p>",
         "UpdateModelVersionResult$modelVersionNumber": "<p>The model version number of the model version updated.</p>",
         "UpdateModelVersionStatusRequest$modelVersionNumber": "<p>The model version number.</p>"
@@ -1348,6 +1550,7 @@
     "fraudDetectorArn": {
       "base": null,
       "refs": {
+        "BatchImport$arn": "<p>The ARN of the batch import job.</p>",
         "BatchPrediction$arn": "<p>The ARN of batch prediction job.</p>",
         "DescribeDetectorResult$arn": "<p>The detector ARN.</p>",
         "Detector$arn": "<p>The detector ARN.</p>",
@@ -1371,7 +1574,9 @@
     "iamRoleArn": {
       "base": null,
       "refs": {
+        "BatchImport$iamRoleArn": "<p>The ARN of the IAM role to use for this job request.</p>",
         "BatchPrediction$iamRoleArn": "<p>The ARN of the IAM role to use for this job request.</p>",
+        "CreateBatchImportJobRequest$iamRoleArn": "<p>The ARN of the IAM role created for Amazon S3 bucket that holds your data file. The IAM role must have read and write permissions to both input and output S3 buckets.</p>",
         "CreateBatchPredictionJobRequest$iamRoleArn": "<p>The ARN of the IAM role to use for this job request.</p>",
         "ExternalEventsDetail$dataAccessRoleArn": "<p>The ARN of the role that provides Amazon Fraud Detector access to the data location.</p>"
       }
@@ -1379,10 +1584,15 @@
     "identifier": {
       "base": null,
       "refs": {
+        "BatchImport$jobId": "<p>The ID of the batch import job. </p>",
+        "BatchImport$eventTypeName": "<p>The name of the event type.</p>",
         "BatchPrediction$jobId": "<p>The job ID for the batch prediction.</p>",
         "BatchPrediction$eventTypeName": "<p>The name of the event type.</p>",
         "BatchPrediction$detectorName": "<p>The name of the detector.</p>",
+        "CancelBatchImportJobRequest$jobId": "<p> The ID of an in-progress batch import job to cancel. </p> <p>Amazon Fraud Detector will throw an error if the batch import job is in <code>FAILED</code>, <code>CANCELED</code>, or <code>COMPLETED</code> state.</p>",
         "CancelBatchPredictionJobRequest$jobId": "<p>The ID of the batch prediction job to cancel.</p>",
+        "CreateBatchImportJobRequest$jobId": "<p>The ID of the batch import job. The ID cannot be of a past job, unless the job exists in <code>CREATE_FAILED</code> state.</p>",
+        "CreateBatchImportJobRequest$eventTypeName": "<p>The name of the event type.</p>",
         "CreateBatchPredictionJobRequest$jobId": "<p>The ID of the batch prediction job.</p>",
         "CreateBatchPredictionJobRequest$eventTypeName": "<p>The name of the event type.</p>",
         "CreateBatchPredictionJobRequest$detectorName": "<p>The name of the detector.</p>",
@@ -1390,6 +1600,7 @@
         "CreateDetectorVersionResult$detectorId": "<p>The ID for the created version's parent detector.</p>",
         "CreateRuleRequest$ruleId": "<p>The rule ID.</p>",
         "CreateRuleRequest$detectorId": "<p>The detector ID for the rule's parent detector.</p>",
+        "DeleteBatchImportJobRequest$jobId": "<p>The ID of the batch import job to delete. </p>",
         "DeleteBatchPredictionJobRequest$jobId": "<p>The ID of the batch prediction job to delete.</p>",
         "DeleteDetectorRequest$detectorId": "<p>The ID of the detector to delete.</p>",
         "DeleteDetectorVersionRequest$detectorId": "<p>The ID of the parent detector for the detector version to delete.</p>",
@@ -1397,14 +1608,18 @@
         "DeleteEventRequest$eventId": "<p>The ID of the event to delete.</p>",
         "DeleteEventRequest$eventTypeName": "<p>The name of the event type.</p>",
         "DeleteEventTypeRequest$name": "<p>The name of the event type to delete.</p>",
+        "DeleteEventsByEventTypeRequest$eventTypeName": "<p>The name of the event type.</p>",
+        "DeleteEventsByEventTypeResult$eventTypeName": "<p>Name of event type for which to delete the events.</p>",
         "DeleteLabelRequest$name": "<p>The name of the label to delete.</p>",
         "DeleteOutcomeRequest$name": "<p>The name of the outcome to delete.</p>",
         "DescribeDetectorRequest$detectorId": "<p>The detector ID.</p>",
         "DescribeDetectorResult$detectorId": "<p>The detector ID.</p>",
         "Detector$detectorId": "<p>The detector ID.</p>",
         "Detector$eventTypeName": "<p>The name of the event type.</p>",
-        "Entity$entityId": "<p>The entity ID. If you do not know the <code>entityId</code>, you can pass <code>unknown</code>, which is areserved string literal.</p>",
+        "GetBatchImportJobsRequest$jobId": "<p>The ID of the batch import job to get.</p>",
         "GetBatchPredictionJobsRequest$jobId": "<p>The batch prediction job for which to get the details.</p>",
+        "GetDeleteEventsByEventTypeStatusRequest$eventTypeName": "<p>Name of event type for which to get the deletion status.</p>",
+        "GetDeleteEventsByEventTypeStatusResult$eventTypeName": "<p>The event type name.</p>",
         "GetDetectorVersionRequest$detectorId": "<p>The detector ID.</p>",
         "GetDetectorVersionResult$detectorId": "<p>The detector ID.</p>",
         "GetDetectorsRequest$detectorId": "<p>The detector ID.</p>",
@@ -1426,9 +1641,15 @@
         "Rule$ruleId": "<p>The rule ID.</p>",
         "RuleDetail$ruleId": "<p>The rule ID.</p>",
         "RuleDetail$detectorId": "<p>The detector for which the rule is associated.</p>",
+        "SendEventRequest$eventId": "<p>The event ID to upload.</p>",
+        "SendEventRequest$eventTypeName": "<p>The event type name of the event.</p>",
+        "SendEventRequest$assignedLabel": "<p>The label to associate with the event. Required if specifying <code>labelTimestamp</code>.</p>",
         "UpdateDetectorVersionMetadataRequest$detectorId": "<p>The detector ID.</p>",
         "UpdateDetectorVersionRequest$detectorId": "<p>The parent detector ID for the detector version you want to update.</p>",
-        "UpdateDetectorVersionStatusRequest$detectorId": "<p>The detector ID. </p>"
+        "UpdateDetectorVersionStatusRequest$detectorId": "<p>The detector ID. </p>",
+        "UpdateEventLabelRequest$eventId": "<p>The ID of the event associated with the label to update.</p>",
+        "UpdateEventLabelRequest$eventTypeName": "<p>The event type of the event associated with the label to update.</p>",
+        "UpdateEventLabelRequest$assignedLabel": "<p>The new label to assign to the event.</p>"
       }
     },
     "integer": {
@@ -1459,7 +1680,9 @@
     "listOfEntities": {
       "base": null,
       "refs": {
-        "GetEventPredictionRequest$entities": "<p>The entity type (associated with the detector's event type) and specific entity ID representing who performed the event. If an entity id is not available, use \"UNKNOWN.\"</p>"
+        "Event$entities": "<p>The event entities.</p>",
+        "GetEventPredictionRequest$entities": "<p>The entity type (associated with the detector's event type) and specific entity ID representing who performed the event. If an entity id is not available, use \"UNKNOWN.\"</p>",
+        "SendEventRequest$entities": "<p>An array of entities.</p>"
       }
     },
     "metricDataPointsList": {
@@ -1489,6 +1712,13 @@
         "UpdateModelVersionStatusRequest$modelId": "<p>The model ID of the model version to update.</p>"
       }
     },
+    "modelInputTemplate": {
+      "base": null,
+      "refs": {
+        "ModelInputConfiguration$jsonInputTemplate": "<p> Template for constructing the JSON input-data sent to SageMaker. At event-evaluation, the placeholders for variable names in the template will be replaced with the variable values before being sent to SageMaker. </p>",
+        "ModelInputConfiguration$csvInputTemplate": "<p> Template for constructing the CSV input-data sent to SageMaker. At event-evaluation, the placeholders for variable-names in the template will be replaced with the variable values before being sent to SageMaker. </p>"
+      }
+    },
     "modelList": {
       "base": null,
       "refs": {
@@ -1508,15 +1738,6 @@
         "GetModelsRequest$maxResults": "<p>The maximum number of objects to return for the request. </p>"
       }
     },
-    "nonEmptyString": {
-      "base": null,
-      "refs": {
-        "CreateDetectorVersionResult$detectorVersionId": "<p>The ID for the created detector. </p>",
-        "CreateModelVersionResult$modelVersionNumber": "<p>The model version number of the model version created.</p>",
-        "DetectorVersionSummary$detectorVersionId": "<p>The detector version ID. </p>",
-        "ModelVersion$modelVersionNumber": "<p>The model version number.</p>"
-      }
-    },
     "ruleExpression": {
       "base": null,
       "refs": {
@@ -1528,8 +1749,12 @@
     "s3BucketLocation": {
       "base": null,
       "refs": {
+        "BatchImport$inputPath": "<p>The Amazon S3 location of your data file for batch import.</p>",
+        "BatchImport$outputPath": "<p>The Amazon S3 location of your output file.</p>",
         "BatchPrediction$inputPath": "<p>The Amazon S3 location of your training file.</p>",
         "BatchPrediction$outputPath": "<p>The Amazon S3 location of your output file.</p>",
+        "CreateBatchImportJobRequest$inputPath": "<p>The URI that points to the Amazon S3 location of your data file.</p>",
+        "CreateBatchImportJobRequest$outputPath": "<p>The URI that points to the Amazon S3 location for storing your results. </p>",
         "CreateBatchPredictionJobRequest$inputPath": "<p>The Amazon S3 location of your training file.</p>",
         "CreateBatchPredictionJobRequest$outputPath": "<p>The Amazon S3 location of your output file.</p>",
         "ExternalEventsDetail$dataLocation": "<p>The Amazon S3 bucket location for the data.</p>"
@@ -1539,6 +1764,7 @@
       "base": null,
       "refs": {
         "DeleteExternalModelRequest$modelEndpoint": "<p>The endpoint of the Amazon Sagemaker model to delete.</p>",
+        "ExternalModelEndpointDataBlobMap$key": null,
         "PutExternalModelRequest$modelEndpoint": "<p>The model endpoints name.</p>"
       }
     },
@@ -1550,6 +1776,7 @@
         "BatchCreateVariableError$message": "<p>The error message.</p>",
         "BatchGetVariableError$name": "<p>The error name. </p>",
         "BatchGetVariableError$message": "<p>The error message.</p>",
+        "BatchImport$failureReason": "<p>The reason batch import job failed.</p>",
         "BatchPrediction$failureReason": "<p>The reason a batch prediction job failed.</p>",
         "ConflictException$message": null,
         "CreateModelRequest$eventTypeName": "<p>The name of the event type.</p>",
@@ -1560,6 +1787,7 @@
         "CreateVariableRequest$variableType": "<p>The variable type. For more information see <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types\">Variable types</a>. </p> <p>Valid Values: <code>AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 | BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS | FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1 | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT</code> </p>",
         "CsvIndexToVariableMap$key": null,
         "CsvIndexToVariableMap$value": null,
+        "DeleteEventsByEventTypeResult$eventsDeletionStatus": "<p>The status of the delete request.</p>",
         "DeleteVariableRequest$name": "<p>The name of the variable to delete.</p>",
         "DescribeDetectorRequest$nextToken": "<p>The next token from the previous response.</p>",
         "DescribeDetectorResult$nextToken": "<p>The next token to be used for subsequent requests.</p>",
@@ -1567,10 +1795,14 @@
         "DescribeModelVersionsResult$nextToken": "<p>The next token.</p>",
         "Entity$entityType": "<p>The entity type.</p>",
         "EntityType$name": "<p>The entity type name.</p>",
+        "Event$eventId": "<p>The event ID.</p>",
+        "Event$eventTypeName": "<p>The event type.</p>",
+        "Event$eventTimestamp": "<p>The timestamp that defines when the event under evaluation occurred. The timestamp must be specified using ISO 8601 standard in UTC.</p>",
+        "Event$currentLabel": "<p>The label associated with the event.</p>",
+        "Event$labelTimestamp": "<p>The timestamp associated with the label to update. The timestamp must be specified using ISO 8601 standard in UTC.</p>",
         "EventType$name": "<p>The event type name.</p>",
         "ExternalModel$modelEndpoint": "<p>The Amazon SageMaker model endpoints.</p>",
         "ExternalModel$invokeModelEndpointRoleArn": "<p>The role used to invoke the model. </p>",
-        "ExternalModelEndpointDataBlobMap$key": null,
         "ExternalModelPredictionMap$key": null,
         "ExternalModelPredictionMap$value": null,
         "ExternalModelSummary$modelEndpoint": "<p>The endpoint of the Amazon SageMaker model.</p>",
@@ -1582,6 +1814,8 @@
         "FileValidationMessage$title": "<p>The message title.</p>",
         "FileValidationMessage$content": "<p>The message content.</p>",
         "FileValidationMessage$type": "<p>The message type.</p>",
+        "GetBatchImportJobsRequest$nextToken": "<p>The next token from the previous request.</p>",
+        "GetBatchImportJobsResult$nextToken": "<p>The next token for the subsequent resquest.</p>",
         "GetBatchPredictionJobsRequest$nextToken": "<p>The next token from the previous request.</p>",
         "GetBatchPredictionJobsResult$nextToken": "<p>The next token for the subsequent request.</p>",
         "GetDetectorsRequest$nextToken": "<p>The next token for the subsequent request.</p>",
@@ -1591,6 +1825,8 @@
         "GetEventPredictionRequest$detectorId": "<p>The detector ID.</p>",
         "GetEventPredictionRequest$eventId": "<p>The unique ID used to identify the event.</p>",
         "GetEventPredictionRequest$eventTypeName": "<p>The event type associated with the detector specified for the prediction.</p>",
+        "GetEventRequest$eventId": "<p>The ID of the event to retrieve.</p>",
+        "GetEventRequest$eventTypeName": "<p>The event type of the event to retrieve.</p>",
         "GetEventTypesRequest$nextToken": "<p>The next token for the subsequent request.</p>",
         "GetEventTypesResult$nextToken": "<p>The next page token.</p>",
         "GetExternalModelsRequest$modelEndpoint": "<p>The Amazon SageMaker model endpoint.</p>",
@@ -1618,8 +1854,6 @@
         "LogOddsMetric$variableName": "<p>The name of the variable.</p>",
         "LogOddsMetric$variableType": "<p>The type of variable.</p>",
         "Model$eventTypeName": "<p>The name of the event type.</p>",
-        "ModelInputConfiguration$jsonInputTemplate": "<p> Template for constructing the JSON input-data sent to SageMaker. At event-evaluation, the placeholders for variable names in the template will be replaced with the variable values before being sent to SageMaker. </p>",
-        "ModelInputConfiguration$csvInputTemplate": "<p> Template for constructing the CSV input-data sent to SageMaker. At event-evaluation, the placeholders for variable-names in the template will be replaced with the variable values before being sent to SageMaker. </p>",
         "ModelPredictionMap$key": null,
         "ModelVersionDetail$status": "<p>The status of the model version.</p>",
         "NameList$member": null,
@@ -1665,6 +1899,7 @@
       "base": null,
       "refs": {
         "BatchCreateVariableRequest$tags": "<p>A collection of key and value pairs.</p>",
+        "CreateBatchImportJobRequest$tags": "<p>A collection of key-value pairs associated with this request. </p>",
         "CreateBatchPredictionJobRequest$tags": "<p>A collection of key and value pairs.</p>",
         "CreateDetectorVersionRequest$tags": "<p>A collection of key and value pairs.</p>",
         "CreateModelRequest$tags": "<p>A collection of key and value pairs.</p>",
@@ -1692,8 +1927,10 @@
     "time": {
       "base": null,
       "refs": {
+        "BatchImport$startTime": "<p>Timestamp of when the batch import job started.</p>",
+        "BatchImport$completionTime": "<p>Timestamp of when batch import job completed.</p>",
         "BatchPrediction$startTime": "<p>Timestamp of when the batch prediction job started.</p>",
-        "BatchPrediction$completionTime": "<p>Timestamp of when the batch prediction job comleted.</p>",
+        "BatchPrediction$completionTime": "<p>Timestamp of when the batch prediction job completed.</p>",
         "BatchPrediction$lastHeartbeatTime": "<p>Timestamp of most recent heartbeat indicating the batch prediction job was making progress.</p>",
         "Detector$lastUpdatedTime": "<p>Timestamp of when the detector was last updated.</p>",
         "Detector$createdTime": "<p>Timestamp of when the detector was created.</p>",
@@ -1706,6 +1943,11 @@
         "ExternalModel$createdTime": "<p>Timestamp of when the model was last created.</p>",
         "GetDetectorVersionResult$lastUpdatedTime": "<p>The timestamp when the detector version was last updated. </p>",
         "GetDetectorVersionResult$createdTime": "<p>The timestamp when the detector version was created. </p>",
+        "IngestedEventStatistics$leastRecentEvent": "<p>The oldest stored event.</p>",
+        "IngestedEventStatistics$mostRecentEvent": "<p>The newest stored event.</p>",
+        "IngestedEventStatistics$lastUpdatedTime": "<p>Timestamp of when the stored event was last updated. </p>",
+        "IngestedEventsTimeWindow$startTime": "<p>Timestamp of the first ingensted event.</p>",
+        "IngestedEventsTimeWindow$endTime": "<p>Timestamp of the final ingested event.</p>",
         "Label$lastUpdatedTime": "<p>Timestamp of when the label was last updated.</p>",
         "Label$createdTime": "<p>Timestamp of when the event type was created.</p>",
         "Model$createdTime": "<p>Timestamp of when the model was created.</p>",
@@ -1723,7 +1965,10 @@
     "utcTimestampISO8601": {
       "base": null,
       "refs": {
-        "GetEventPredictionRequest$eventTimestamp": "<p>Timestamp that defines when the event under evaluation occurred.</p>"
+        "GetEventPredictionRequest$eventTimestamp": "<p>Timestamp that defines when the event under evaluation occurred. The timestamp must be specified using ISO 8601 standard in UTC.</p>",
+        "SendEventRequest$eventTimestamp": "<p>The timestamp that defines when the event under evaluation occurred. The timestamp must be specified using ISO 8601 standard in UTC.</p>",
+        "SendEventRequest$labelTimestamp": "<p>The timestamp associated with the label. Required if specifying <code>assignedLabel</code>.</p>",
+        "UpdateEventLabelRequest$labelTimestamp": "<p>The timestamp associated with the label. The timestamp must be specified using ISO 8601 standard in UTC. </p>"
       }
     },
     "variableName": {
@@ -1742,7 +1987,9 @@
       "base": null,
       "refs": {
         "CreateBatchPredictionJobRequest$detectorVersion": "<p>The detector version.</p>",
+        "CreateDetectorVersionResult$detectorVersionId": "<p>The ID for the created detector. </p>",
         "DeleteDetectorVersionRequest$detectorVersionId": "<p>The ID of the detector version to delete.</p>",
+        "DetectorVersionSummary$detectorVersionId": "<p>The detector version ID. </p>",
         "GetDetectorVersionRequest$detectorVersionId": "<p>The detector version ID.</p>",
         "GetDetectorVersionResult$detectorVersionId": "<p>The detector version ID.</p>",
         "GetEventPredictionRequest$detectorVersionId": "<p>The detector version ID.</p>",

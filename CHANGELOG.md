@@ -1,3 +1,18 @@
+Release v1.41.0 (2021-10-11)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service documentation
+  * Documentation update for Amazon EC2.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/frauddetector`: Updates service API, documentation, and paginators
+* `service/medialive`: Updates service API and documentation
+  * This release adds support for Transport Stream files as an input type to MediaLive encoders.
+
+### SDK Features
+* Update SDK's serialization of REST-JSON API input and Content-Type
+  * Updates the SDK's serialization of REST-JSON based API input parameters into HTTP request message payload, and Content-Type are set correctly. API operations with input structure members that are modeled to be serialized to the request payload will always have at least an empty JSON object serialized. Even if all members targeting the payload are nil. Also fixes REST-JSON serialization so that Content-Type is not sent if the input parameter has no members target the request payload.
+
 Release v1.40.59 (2021-10-08)
 ===
 

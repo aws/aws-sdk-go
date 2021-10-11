@@ -4853,6 +4853,11 @@ type CreateTargetGroupInput struct {
 	// GENEVE, the default is 3. If the target type is lambda, the default is 5.
 	HealthyThresholdCount *int64 `min:"2" type:"integer"`
 
+	// The type of IP address used for this target group. The possible values are
+	// ipv4 and ipv6. This is an optional parameter. If not specified, the IP address
+	// type defaults to ipv4.
+	IpAddressType *string `type:"string" enum:"TargetGroupIpAddressTypeEnum"`
+
 	// [HTTP/HTTPS health checks] The HTTP or gRPC codes to use when checking for
 	// a successful response from a target.
 	Matcher *Matcher `type:"structure"`
@@ -5018,6 +5023,12 @@ func (s *CreateTargetGroupInput) SetHealthCheckTimeoutSeconds(v int64) *CreateTa
 // SetHealthyThresholdCount sets the HealthyThresholdCount field's value.
 func (s *CreateTargetGroupInput) SetHealthyThresholdCount(v int64) *CreateTargetGroupInput {
 	s.HealthyThresholdCount = &v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *CreateTargetGroupInput) SetIpAddressType(v string) *CreateTargetGroupInput {
+	s.IpAddressType = &v
 	return s
 }
 
@@ -7372,6 +7383,9 @@ type Matcher struct {
 	// "200,202") or a range of values (for example, "200-299").
 	//
 	// For Network Load Balancers and Gateway Load Balancers, this must be "200–399".
+	//
+	// Note that when using shorthand syntax, some values such as commas need to
+	// be escaped.
 	HttpCode *string `type:"string"`
 }
 
@@ -9625,6 +9639,11 @@ type TargetGroup struct {
 	// an unhealthy target healthy.
 	HealthyThresholdCount *int64 `min:"2" type:"integer"`
 
+	// The type of IP address used for this target group. The possible values are
+	// ipv4 and ipv6. This is an optional parameter. If not specified, the IP address
+	// type defaults to ipv4.
+	IpAddressType *string `type:"string" enum:"TargetGroupIpAddressTypeEnum"`
+
 	// The Amazon Resource Names (ARN) of the load balancers that route traffic
 	// to this target group.
 	LoadBalancerArns []*string `type:"list"`
@@ -9722,6 +9741,12 @@ func (s *TargetGroup) SetHealthCheckTimeoutSeconds(v int64) *TargetGroup {
 // SetHealthyThresholdCount sets the HealthyThresholdCount field's value.
 func (s *TargetGroup) SetHealthyThresholdCount(v int64) *TargetGroup {
 	s.HealthyThresholdCount = &v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *TargetGroup) SetIpAddressType(v string) *TargetGroup {
+	s.IpAddressType = &v
 	return s
 }
 
@@ -10333,6 +10358,22 @@ func RedirectActionStatusCodeEnum_Values() []string {
 	return []string{
 		RedirectActionStatusCodeEnumHttp301,
 		RedirectActionStatusCodeEnumHttp302,
+	}
+}
+
+const (
+	// TargetGroupIpAddressTypeEnumIpv4 is a TargetGroupIpAddressTypeEnum enum value
+	TargetGroupIpAddressTypeEnumIpv4 = "ipv4"
+
+	// TargetGroupIpAddressTypeEnumIpv6 is a TargetGroupIpAddressTypeEnum enum value
+	TargetGroupIpAddressTypeEnumIpv6 = "ipv6"
+)
+
+// TargetGroupIpAddressTypeEnum_Values returns all elements of the TargetGroupIpAddressTypeEnum enum
+func TargetGroupIpAddressTypeEnum_Values() []string {
+	return []string{
+		TargetGroupIpAddressTypeEnumIpv4,
+		TargetGroupIpAddressTypeEnumIpv6,
 	}
 }
 
