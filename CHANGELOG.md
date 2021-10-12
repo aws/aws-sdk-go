@@ -1,3 +1,15 @@
+Release v1.41.1 (2021-10-12)
+===
+
+### Service Client Updates
+* `service/cloudsearch`: Updates service API
+  * Adds an additional validation exception for Amazon CloudSearch configuration APIs for better error handling.
+* `service/ec2`: Updates service API and documentation
+  * EncryptionSupport for InstanceStorageInfo added to DescribeInstanceTypes API
+* `service/ecs`: Updates service documentation
+  * Documentation only update to address tickets.
+* `service/mediatailor`: Updates service API, documentation, and paginators
+
 Release v1.41.0 (2021-10-11)
 ===
 
