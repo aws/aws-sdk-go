@@ -253,6 +253,8 @@ func (d *Decoder) decodeBool(b *bool, v reflect.Value) error {
 	switch v.Kind() {
 	case reflect.Bool, reflect.Interface:
 		v.Set(reflect.ValueOf(*b).Convert(v.Type()))
+	case reflect.String:
+		v.Set(reflect.ValueOf(strconv.FormatBool(*b)))
 	default:
 		return &UnmarshalTypeError{Value: "bool", Type: v.Type()}
 	}

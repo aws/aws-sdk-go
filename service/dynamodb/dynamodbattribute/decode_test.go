@@ -98,6 +98,11 @@ func TestUnmarshal(t *testing.T) {
 			expected: bool(true),
 		},
 		{
+			in:       &dynamodb.AttributeValue{BOOL: aws.Bool(true)},
+			actual:   new(string),
+			expected: "true",
+		},
+		{
 			in: &dynamodb.AttributeValue{L: []*dynamodb.AttributeValue{
 				{S: aws.String("abc")}, {S: aws.String("123")},
 			}},
