@@ -161,6 +161,80 @@ func (c *MediaTailor) CreateChannelWithContext(ctx aws.Context, input *CreateCha
 	return out, req.Send()
 }
 
+const opCreatePrefetchSchedule = "CreatePrefetchSchedule"
+
+// CreatePrefetchScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePrefetchSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePrefetchSchedule for more information on using the CreatePrefetchSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreatePrefetchScheduleRequest method.
+//    req, resp := client.CreatePrefetchScheduleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreatePrefetchSchedule
+func (c *MediaTailor) CreatePrefetchScheduleRequest(input *CreatePrefetchScheduleInput) (req *request.Request, output *CreatePrefetchScheduleOutput) {
+	op := &request.Operation{
+		Name:       opCreatePrefetchSchedule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
+	}
+
+	if input == nil {
+		input = &CreatePrefetchScheduleInput{}
+	}
+
+	output = &CreatePrefetchScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreatePrefetchSchedule API operation for AWS MediaTailor.
+//
+// Creates a new prefetch schedule for the specified playback configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation CreatePrefetchSchedule for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/CreatePrefetchSchedule
+func (c *MediaTailor) CreatePrefetchSchedule(input *CreatePrefetchScheduleInput) (*CreatePrefetchScheduleOutput, error) {
+	req, out := c.CreatePrefetchScheduleRequest(input)
+	return out, req.Send()
+}
+
+// CreatePrefetchScheduleWithContext is the same as CreatePrefetchSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePrefetchSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) CreatePrefetchScheduleWithContext(ctx aws.Context, input *CreatePrefetchScheduleInput, opts ...request.Option) (*CreatePrefetchScheduleOutput, error) {
+	req, out := c.CreatePrefetchScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateProgram = "CreateProgram"
 
 // CreateProgramRequest generates a "aws/request.Request" representing the
@@ -603,6 +677,83 @@ func (c *MediaTailor) DeletePlaybackConfiguration(input *DeletePlaybackConfigura
 // for more information on using Contexts.
 func (c *MediaTailor) DeletePlaybackConfigurationWithContext(ctx aws.Context, input *DeletePlaybackConfigurationInput, opts ...request.Option) (*DeletePlaybackConfigurationOutput, error) {
 	req, out := c.DeletePlaybackConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeletePrefetchSchedule = "DeletePrefetchSchedule"
+
+// DeletePrefetchScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePrefetchSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePrefetchSchedule for more information on using the DeletePrefetchSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeletePrefetchScheduleRequest method.
+//    req, resp := client.DeletePrefetchScheduleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeletePrefetchSchedule
+func (c *MediaTailor) DeletePrefetchScheduleRequest(input *DeletePrefetchScheduleInput) (req *request.Request, output *DeletePrefetchScheduleOutput) {
+	op := &request.Operation{
+		Name:       opDeletePrefetchSchedule,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
+	}
+
+	if input == nil {
+		input = &DeletePrefetchScheduleInput{}
+	}
+
+	output = &DeletePrefetchScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePrefetchSchedule API operation for AWS MediaTailor.
+//
+// Deletes a prefetch schedule for a specific playback configuration. If you
+// call DeletePrefetchSchedule on an expired prefetch schedule, MediaTailor
+// returns an HTTP 404 status code.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation DeletePrefetchSchedule for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/DeletePrefetchSchedule
+func (c *MediaTailor) DeletePrefetchSchedule(input *DeletePrefetchScheduleInput) (*DeletePrefetchScheduleOutput, error) {
+	req, out := c.DeletePrefetchScheduleRequest(input)
+	return out, req.Send()
+}
+
+// DeletePrefetchScheduleWithContext is the same as DeletePrefetchSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePrefetchSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) DeletePrefetchScheduleWithContext(ctx aws.Context, input *DeletePrefetchScheduleInput, opts ...request.Option) (*DeletePrefetchScheduleOutput, error) {
+	req, out := c.DeletePrefetchScheduleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1409,6 +1560,82 @@ func (c *MediaTailor) GetPlaybackConfigurationWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opGetPrefetchSchedule = "GetPrefetchSchedule"
+
+// GetPrefetchScheduleRequest generates a "aws/request.Request" representing the
+// client's request for the GetPrefetchSchedule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPrefetchSchedule for more information on using the GetPrefetchSchedule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPrefetchScheduleRequest method.
+//    req, resp := client.GetPrefetchScheduleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/GetPrefetchSchedule
+func (c *MediaTailor) GetPrefetchScheduleRequest(input *GetPrefetchScheduleInput) (req *request.Request, output *GetPrefetchScheduleOutput) {
+	op := &request.Operation{
+		Name:       opGetPrefetchSchedule,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
+	}
+
+	if input == nil {
+		input = &GetPrefetchScheduleInput{}
+	}
+
+	output = &GetPrefetchScheduleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPrefetchSchedule API operation for AWS MediaTailor.
+//
+// Returns information about the prefetch schedule for a specific playback configuration.
+// If you call GetPrefetchSchedule on an expired prefetch schedule, MediaTailor
+// returns an HTTP 404 status code.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation GetPrefetchSchedule for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/GetPrefetchSchedule
+func (c *MediaTailor) GetPrefetchSchedule(input *GetPrefetchScheduleInput) (*GetPrefetchScheduleOutput, error) {
+	req, out := c.GetPrefetchScheduleRequest(input)
+	return out, req.Send()
+}
+
+// GetPrefetchScheduleWithContext is the same as GetPrefetchSchedule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPrefetchSchedule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) GetPrefetchScheduleWithContext(ctx aws.Context, input *GetPrefetchScheduleInput, opts ...request.Option) (*GetPrefetchScheduleOutput, error) {
+	req, out := c.GetPrefetchScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAlerts = "ListAlerts"
 
 // ListAlertsRequest generates a "aws/request.Request" representing the
@@ -1802,6 +2029,138 @@ func (c *MediaTailor) ListPlaybackConfigurationsPagesWithContext(ctx aws.Context
 
 	for p.Next() {
 		if !fn(p.Page().(*ListPlaybackConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListPrefetchSchedules = "ListPrefetchSchedules"
+
+// ListPrefetchSchedulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListPrefetchSchedules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPrefetchSchedules for more information on using the ListPrefetchSchedules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPrefetchSchedulesRequest method.
+//    req, resp := client.ListPrefetchSchedulesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListPrefetchSchedules
+func (c *MediaTailor) ListPrefetchSchedulesRequest(input *ListPrefetchSchedulesInput) (req *request.Request, output *ListPrefetchSchedulesOutput) {
+	op := &request.Operation{
+		Name:       opListPrefetchSchedules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prefetchSchedule/{PlaybackConfigurationName}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPrefetchSchedulesInput{}
+	}
+
+	output = &ListPrefetchSchedulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPrefetchSchedules API operation for AWS MediaTailor.
+//
+// Creates a new prefetch schedule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation ListPrefetchSchedules for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListPrefetchSchedules
+func (c *MediaTailor) ListPrefetchSchedules(input *ListPrefetchSchedulesInput) (*ListPrefetchSchedulesOutput, error) {
+	req, out := c.ListPrefetchSchedulesRequest(input)
+	return out, req.Send()
+}
+
+// ListPrefetchSchedulesWithContext is the same as ListPrefetchSchedules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPrefetchSchedules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListPrefetchSchedulesWithContext(ctx aws.Context, input *ListPrefetchSchedulesInput, opts ...request.Option) (*ListPrefetchSchedulesOutput, error) {
+	req, out := c.ListPrefetchSchedulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPrefetchSchedulesPages iterates over the pages of a ListPrefetchSchedules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPrefetchSchedules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPrefetchSchedules operation.
+//    pageNum := 0
+//    err := client.ListPrefetchSchedulesPages(params,
+//        func(page *mediatailor.ListPrefetchSchedulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaTailor) ListPrefetchSchedulesPages(input *ListPrefetchSchedulesInput, fn func(*ListPrefetchSchedulesOutput, bool) bool) error {
+	return c.ListPrefetchSchedulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPrefetchSchedulesPagesWithContext same as ListPrefetchSchedulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListPrefetchSchedulesPagesWithContext(ctx aws.Context, input *ListPrefetchSchedulesInput, fn func(*ListPrefetchSchedulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPrefetchSchedulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPrefetchSchedulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPrefetchSchedulesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3078,6 +3437,88 @@ func (s *Alert) SetResourceArn(v string) *Alert {
 	return s
 }
 
+// MediaTailor only places (consumes) prefetched ads if the ad break meets the
+// criteria defined by the dynamic variables. This gives you granular control
+// over which ad break to place the prefetched ads into.
+//
+// As an example, let's say that you set DynamicVariable to scte.event_id and
+// Operator to EQUALS, and your playback configuration has an ADS URL of https://my.ads.server.com/path?&podId=[scte.avail_num]&event=[scte.event_id]&duration=[session.avail_duration_secs].
+// And the prefetch request to the ADS contains these values https://my.ads.server.com/path?&podId=3&event=my-awesome-event&duration=30.
+// MediaTailor will only insert the prefetched ads into the ad break if has
+// a SCTE marker with an event id of my-awesome-event, since it must match the
+// event id that MediaTailor uses to query the ADS.
+//
+// You can specify up to five AvailMatchingCriteria. If you specify multiple
+// AvailMatchingCriteria, MediaTailor combines them to match using a logical
+// AND. You can model logical OR combinations by creating multiple prefetch
+// schedules.
+type AvailMatchingCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The dynamic variable(s) that MediaTailor should use as avail matching criteria.
+	// MediaTailor only places the prefetched ads into the avail if the avail matches
+	// the criteria defined by the dynamic variable. For information about dynamic
+	// variables, see Using dynamic ad variables (https://docs.aws.amazon.com/mediatailor/latest/ug/variables.html)
+	// in the MediaTailor User Guide.
+	//
+	// You can include up to 100 dynamic variables.
+	//
+	// DynamicVariable is a required field
+	DynamicVariable *string `type:"string" required:"true"`
+
+	// For the DynamicVariable specified in AvailMatchingCriteria, the Operator
+	// that is used for the comparison.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"Operator"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailMatchingCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AvailMatchingCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AvailMatchingCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AvailMatchingCriteria"}
+	if s.DynamicVariable == nil {
+		invalidParams.Add(request.NewErrParamRequired("DynamicVariable"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDynamicVariable sets the DynamicVariable field's value.
+func (s *AvailMatchingCriteria) SetDynamicVariable(v string) *AvailMatchingCriteria {
+	s.DynamicVariable = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *AvailMatchingCriteria) SetOperator(v string) *AvailMatchingCriteria {
+	s.Operator = &v
+	return s
+}
+
 // The configuration for avail suppression, also known as ad suppression. For
 // more information about ad suppression, see Ad Suppression (https://docs.aws.amazon.com/mediatailor/latest/ug/ad-behavior.html).
 type AvailSuppression struct {
@@ -3724,6 +4165,202 @@ func (s *CreateChannelOutput) SetPlaybackMode(v string) *CreateChannelOutput {
 // SetTags sets the Tags field's value.
 func (s *CreateChannelOutput) SetTags(v map[string]*string) *CreateChannelOutput {
 	s.Tags = v
+	return s
+}
+
+// A complex type that contains configuration settings for retrieval, consumption,
+// and an optional stream ID.
+type CreatePrefetchScheduleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration settings for MediaTailor's consumption of the prefetched
+	// ads from the ad decision server. Each consumption configuration contains
+	// an end time and an optional start time that define the consumption window.
+	// Prefetch schedules automatically expire no earlier than seven days after
+	// the end time.
+	//
+	// Consumption is a required field
+	Consumption *PrefetchConsumption `type:"structure" required:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
+
+	// PlaybackConfigurationName is a required field
+	PlaybackConfigurationName *string `location:"uri" locationName:"PlaybackConfigurationName" type:"string" required:"true"`
+
+	// The configuration settings for retrieval of prefetched ads from the ad decision
+	// server. Only one set of prefetched ads will be retrieved and subsequently
+	// consumed for each ad break.
+	//
+	// Retrieval is a required field
+	Retrieval *PrefetchRetrieval `type:"structure" required:"true"`
+
+	// An optional stream identifier that MediaTailor uses to prefetch ads for multiple
+	// streams that use the same playback configuration. If StreamId is specified,
+	// MediaTailor returns all of the prefetch schedules with an exact match on
+	// StreamId. If not specified, MediaTailor returns all of the prefetch schedules
+	// for the playback configuration, regardless of StreamId.
+	StreamId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePrefetchScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePrefetchScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePrefetchScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePrefetchScheduleInput"}
+	if s.Consumption == nil {
+		invalidParams.Add(request.NewErrParamRequired("Consumption"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PlaybackConfigurationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlaybackConfigurationName"))
+	}
+	if s.PlaybackConfigurationName != nil && len(*s.PlaybackConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlaybackConfigurationName", 1))
+	}
+	if s.Retrieval == nil {
+		invalidParams.Add(request.NewErrParamRequired("Retrieval"))
+	}
+	if s.Consumption != nil {
+		if err := s.Consumption.Validate(); err != nil {
+			invalidParams.AddNested("Consumption", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Retrieval != nil {
+		if err := s.Retrieval.Validate(); err != nil {
+			invalidParams.AddNested("Retrieval", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumption sets the Consumption field's value.
+func (s *CreatePrefetchScheduleInput) SetConsumption(v *PrefetchConsumption) *CreatePrefetchScheduleInput {
+	s.Consumption = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePrefetchScheduleInput) SetName(v string) *CreatePrefetchScheduleInput {
+	s.Name = &v
+	return s
+}
+
+// SetPlaybackConfigurationName sets the PlaybackConfigurationName field's value.
+func (s *CreatePrefetchScheduleInput) SetPlaybackConfigurationName(v string) *CreatePrefetchScheduleInput {
+	s.PlaybackConfigurationName = &v
+	return s
+}
+
+// SetRetrieval sets the Retrieval field's value.
+func (s *CreatePrefetchScheduleInput) SetRetrieval(v *PrefetchRetrieval) *CreatePrefetchScheduleInput {
+	s.Retrieval = v
+	return s
+}
+
+// SetStreamId sets the StreamId field's value.
+func (s *CreatePrefetchScheduleInput) SetStreamId(v string) *CreatePrefetchScheduleInput {
+	s.StreamId = &v
+	return s
+}
+
+type CreatePrefetchScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	// A complex type that contains settings that determine how and when that MediaTailor
+	// places prefetched ads into upcoming ad breaks.
+	Consumption *PrefetchConsumption `type:"structure"`
+
+	Name *string `type:"string"`
+
+	PlaybackConfigurationName *string `type:"string"`
+
+	// A complex type that contains settings governing when MediaTailor prefetches
+	// ads, and which dynamic variables that MediaTailor includes in the request
+	// to the ad decision server.
+	Retrieval *PrefetchRetrieval `type:"structure"`
+
+	StreamId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePrefetchScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreatePrefetchScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreatePrefetchScheduleOutput) SetArn(v string) *CreatePrefetchScheduleOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConsumption sets the Consumption field's value.
+func (s *CreatePrefetchScheduleOutput) SetConsumption(v *PrefetchConsumption) *CreatePrefetchScheduleOutput {
+	s.Consumption = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreatePrefetchScheduleOutput) SetName(v string) *CreatePrefetchScheduleOutput {
+	s.Name = &v
+	return s
+}
+
+// SetPlaybackConfigurationName sets the PlaybackConfigurationName field's value.
+func (s *CreatePrefetchScheduleOutput) SetPlaybackConfigurationName(v string) *CreatePrefetchScheduleOutput {
+	s.PlaybackConfigurationName = &v
+	return s
+}
+
+// SetRetrieval sets the Retrieval field's value.
+func (s *CreatePrefetchScheduleOutput) SetRetrieval(v *PrefetchRetrieval) *CreatePrefetchScheduleOutput {
+	s.Retrieval = v
+	return s
+}
+
+// SetStreamId sets the StreamId field's value.
+func (s *CreatePrefetchScheduleOutput) SetStreamId(v string) *CreatePrefetchScheduleOutput {
+	s.StreamId = &v
 	return s
 }
 
@@ -4718,6 +5355,92 @@ func (s DeletePlaybackConfigurationOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeletePlaybackConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type DeletePrefetchScheduleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
+
+	// PlaybackConfigurationName is a required field
+	PlaybackConfigurationName *string `location:"uri" locationName:"PlaybackConfigurationName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePrefetchScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePrefetchScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePrefetchScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePrefetchScheduleInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PlaybackConfigurationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlaybackConfigurationName"))
+	}
+	if s.PlaybackConfigurationName != nil && len(*s.PlaybackConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlaybackConfigurationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeletePrefetchScheduleInput) SetName(v string) *DeletePrefetchScheduleInput {
+	s.Name = &v
+	return s
+}
+
+// SetPlaybackConfigurationName sets the PlaybackConfigurationName field's value.
+func (s *DeletePrefetchScheduleInput) SetPlaybackConfigurationName(v string) *DeletePrefetchScheduleInput {
+	s.PlaybackConfigurationName = &v
+	return s
+}
+
+// If the action is successful, the service sends back an HTTP 204 response
+// with an empty HTTP body.
+type DeletePrefetchScheduleOutput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePrefetchScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePrefetchScheduleOutput) GoString() string {
 	return s.String()
 }
 
@@ -6025,6 +6748,143 @@ func (s *GetPlaybackConfigurationOutput) SetVideoContentSourceUrl(v string) *Get
 	return s
 }
 
+type GetPrefetchScheduleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
+
+	// PlaybackConfigurationName is a required field
+	PlaybackConfigurationName *string `location:"uri" locationName:"PlaybackConfigurationName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrefetchScheduleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrefetchScheduleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPrefetchScheduleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPrefetchScheduleInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PlaybackConfigurationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlaybackConfigurationName"))
+	}
+	if s.PlaybackConfigurationName != nil && len(*s.PlaybackConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlaybackConfigurationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GetPrefetchScheduleInput) SetName(v string) *GetPrefetchScheduleInput {
+	s.Name = &v
+	return s
+}
+
+// SetPlaybackConfigurationName sets the PlaybackConfigurationName field's value.
+func (s *GetPrefetchScheduleInput) SetPlaybackConfigurationName(v string) *GetPrefetchScheduleInput {
+	s.PlaybackConfigurationName = &v
+	return s
+}
+
+type GetPrefetchScheduleOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `type:"string"`
+
+	// A complex type that contains settings that determine how and when that MediaTailor
+	// places prefetched ads into upcoming ad breaks.
+	Consumption *PrefetchConsumption `type:"structure"`
+
+	Name *string `type:"string"`
+
+	PlaybackConfigurationName *string `type:"string"`
+
+	// A complex type that contains settings governing when MediaTailor prefetches
+	// ads, and which dynamic variables that MediaTailor includes in the request
+	// to the ad decision server.
+	Retrieval *PrefetchRetrieval `type:"structure"`
+
+	StreamId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrefetchScheduleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPrefetchScheduleOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetPrefetchScheduleOutput) SetArn(v string) *GetPrefetchScheduleOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetConsumption sets the Consumption field's value.
+func (s *GetPrefetchScheduleOutput) SetConsumption(v *PrefetchConsumption) *GetPrefetchScheduleOutput {
+	s.Consumption = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetPrefetchScheduleOutput) SetName(v string) *GetPrefetchScheduleOutput {
+	s.Name = &v
+	return s
+}
+
+// SetPlaybackConfigurationName sets the PlaybackConfigurationName field's value.
+func (s *GetPrefetchScheduleOutput) SetPlaybackConfigurationName(v string) *GetPrefetchScheduleOutput {
+	s.PlaybackConfigurationName = &v
+	return s
+}
+
+// SetRetrieval sets the Retrieval field's value.
+func (s *GetPrefetchScheduleOutput) SetRetrieval(v *PrefetchRetrieval) *GetPrefetchScheduleOutput {
+	s.Retrieval = v
+	return s
+}
+
+// SetStreamId sets the StreamId field's value.
+func (s *GetPrefetchScheduleOutput) SetStreamId(v string) *GetPrefetchScheduleOutput {
+	s.StreamId = &v
+	return s
+}
+
 // The configuration for HLS content.
 type HlsConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -6505,6 +7365,140 @@ func (s *ListPlaybackConfigurationsOutput) SetItems(v []*PlaybackConfiguration) 
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListPlaybackConfigurationsOutput) SetNextToken(v string) *ListPlaybackConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// Retrieves the prefetch schedule(s) for a specific playback configuration.
+type ListPrefetchSchedulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of prefetch schedules that you want MediaTailor to return
+	// in response to the current request. If the playback configuration has more
+	// than MaxResults prefetch schedules, use the value of NextToken in the response
+	// to get the next page of results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// (Optional) If the playback configuration has more than MaxResults prefetch
+	// schedules, use NextToken to get the second and subsequent pages of results.
+	//
+	// For the first ListPrefetchSchedulesRequest request, omit this value.
+	//
+	// For the second and subsequent requests, get the value of NextToken from the
+	// previous response and specify that value for NextToken in the request.
+	//
+	// If the previous response didn't include a NextToken element, there are no
+	// more prefetch schedules to get.
+	NextToken *string `type:"string"`
+
+	// PlaybackConfigurationName is a required field
+	PlaybackConfigurationName *string `location:"uri" locationName:"PlaybackConfigurationName" type:"string" required:"true"`
+
+	// An optional filtering parameter whereby MediaTailor filters the prefetch
+	// schedules to include only specific streams.
+	StreamId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrefetchSchedulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrefetchSchedulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPrefetchSchedulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPrefetchSchedulesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.PlaybackConfigurationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlaybackConfigurationName"))
+	}
+	if s.PlaybackConfigurationName != nil && len(*s.PlaybackConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PlaybackConfigurationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPrefetchSchedulesInput) SetMaxResults(v int64) *ListPrefetchSchedulesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPrefetchSchedulesInput) SetNextToken(v string) *ListPrefetchSchedulesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPlaybackConfigurationName sets the PlaybackConfigurationName field's value.
+func (s *ListPrefetchSchedulesInput) SetPlaybackConfigurationName(v string) *ListPrefetchSchedulesInput {
+	s.PlaybackConfigurationName = &v
+	return s
+}
+
+// SetStreamId sets the StreamId field's value.
+func (s *ListPrefetchSchedulesInput) SetStreamId(v string) *ListPrefetchSchedulesInput {
+	s.StreamId = &v
+	return s
+}
+
+// The list of prefetch schedules.
+type ListPrefetchSchedulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the prefetch schedules. An empty Items list doesn't mean there aren't
+	// more items to fetch, just that that page was empty.
+	Items []*PrefetchSchedule `type:"list"`
+
+	// The value that you will use forNextToken in the next ListPrefetchSchedulesRequest
+	// request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrefetchSchedulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListPrefetchSchedulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListPrefetchSchedulesOutput) SetItems(v []*PrefetchSchedule) *ListPrefetchSchedulesOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPrefetchSchedulesOutput) SetNextToken(v string) *ListPrefetchSchedulesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -7132,6 +8126,259 @@ func (s *PlaybackConfiguration) SetTranscodeProfileName(v string) *PlaybackConfi
 // SetVideoContentSourceUrl sets the VideoContentSourceUrl field's value.
 func (s *PlaybackConfiguration) SetVideoContentSourceUrl(v string) *PlaybackConfiguration {
 	s.VideoContentSourceUrl = &v
+	return s
+}
+
+// A complex type that contains settings that determine how and when that MediaTailor
+// places prefetched ads into upcoming ad breaks.
+type PrefetchConsumption struct {
+	_ struct{} `type:"structure"`
+
+	// If you only want MediaTailor to insert prefetched ads into avails (ad breaks)
+	// that match specific dynamic variables, such as scte.event_id, set the avail
+	// matching criteria.
+	AvailMatchingCriteria []*AvailMatchingCriteria `type:"list"`
+
+	// The time when MediaTailor no longer considers the prefetched ads for use
+	// in an ad break. MediaTailor automatically deletes prefetch schedules no less
+	// than seven days after the end time. If you'd like to manually delete the
+	// prefetch schedule, you can call DeletePrefetchSchedule.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp" required:"true"`
+
+	// The time when prefetched ads are considered for use in an ad break. If you
+	// don't specify StartTime, the prefetched ads are available after MediaTailor
+	// retrives them from the ad decision server.
+	StartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrefetchConsumption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrefetchConsumption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrefetchConsumption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrefetchConsumption"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.AvailMatchingCriteria != nil {
+		for i, v := range s.AvailMatchingCriteria {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AvailMatchingCriteria", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAvailMatchingCriteria sets the AvailMatchingCriteria field's value.
+func (s *PrefetchConsumption) SetAvailMatchingCriteria(v []*AvailMatchingCriteria) *PrefetchConsumption {
+	s.AvailMatchingCriteria = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *PrefetchConsumption) SetEndTime(v time.Time) *PrefetchConsumption {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *PrefetchConsumption) SetStartTime(v time.Time) *PrefetchConsumption {
+	s.StartTime = &v
+	return s
+}
+
+// A complex type that contains settings governing when MediaTailor prefetches
+// ads, and which dynamic variables that MediaTailor includes in the request
+// to the ad decision server.
+type PrefetchRetrieval struct {
+	_ struct{} `type:"structure"`
+
+	// The dynamic variables to use for substitution during prefetch requests to
+	// the ad decision server (ADS).
+	//
+	// You intially configure dynamic variables (https://docs.aws.amazon.com/mediatailor/latest/ug/variables.html)
+	// for the ADS URL when you set up your playback configuration. When you specify
+	// DynamicVariables for prefetch retrieval, MediaTailor includes the dynamic
+	// variables in the request to the ADS.
+	DynamicVariables map[string]*string `type:"map"`
+
+	// The time when prefetch retrieval ends for the ad break. Prefetching will
+	// be attempted for manifest requests that occur at or before this time.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp" required:"true"`
+
+	// The time when prefetch retrievals can start for this break. Ad prefetching
+	// will be attempted for manifest requests that occur at or after this time.
+	// Defaults to the current time. If not specified, the prefetch retrieval starts
+	// as soon as possible.
+	StartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrefetchRetrieval) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrefetchRetrieval) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrefetchRetrieval) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrefetchRetrieval"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDynamicVariables sets the DynamicVariables field's value.
+func (s *PrefetchRetrieval) SetDynamicVariables(v map[string]*string) *PrefetchRetrieval {
+	s.DynamicVariables = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *PrefetchRetrieval) SetEndTime(v time.Time) *PrefetchRetrieval {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *PrefetchRetrieval) SetStartTime(v time.Time) *PrefetchRetrieval {
+	s.StartTime = &v
+	return s
+}
+
+// A complex type that contains prefetch schedule information.
+type PrefetchSchedule struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the prefetch schedule.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// Consumption settings determine how, and when, MediaTailor places the prefetched
+	// ads into ad breaks. Ad consumption occurs within a span of time that you
+	// define, called a consumption window. You can designate which ad breaks that
+	// MediaTailor fills with prefetch ads by setting avail matching criteria.
+	//
+	// Consumption is a required field
+	Consumption *PrefetchConsumption `type:"structure" required:"true"`
+
+	// The name of the prefetch schedule. The name must be unique among all prefetch
+	// schedules that are associated with the specified playback configuration.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The name of the playback configuration to create the prefetch schedule for.
+	//
+	// PlaybackConfigurationName is a required field
+	PlaybackConfigurationName *string `type:"string" required:"true"`
+
+	// A complex type that contains settings for prefetch retrieval from the ad
+	// decision server (ADS).
+	//
+	// Retrieval is a required field
+	Retrieval *PrefetchRetrieval `type:"structure" required:"true"`
+
+	// An optional stream identifier that you can specify in order to prefetch for
+	// multiple streams that use the same playback configuration.
+	StreamId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrefetchSchedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PrefetchSchedule) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PrefetchSchedule) SetArn(v string) *PrefetchSchedule {
+	s.Arn = &v
+	return s
+}
+
+// SetConsumption sets the Consumption field's value.
+func (s *PrefetchSchedule) SetConsumption(v *PrefetchConsumption) *PrefetchSchedule {
+	s.Consumption = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PrefetchSchedule) SetName(v string) *PrefetchSchedule {
+	s.Name = &v
+	return s
+}
+
+// SetPlaybackConfigurationName sets the PlaybackConfigurationName field's value.
+func (s *PrefetchSchedule) SetPlaybackConfigurationName(v string) *PrefetchSchedule {
+	s.PlaybackConfigurationName = &v
+	return s
+}
+
+// SetRetrieval sets the Retrieval field's value.
+func (s *PrefetchSchedule) SetRetrieval(v *PrefetchRetrieval) *PrefetchSchedule {
+	s.Retrieval = v
+	return s
+}
+
+// SetStreamId sets the StreamId field's value.
+func (s *PrefetchSchedule) SetStreamId(v string) *PrefetchSchedule {
+	s.StreamId = &v
 	return s
 }
 
@@ -9304,6 +10551,18 @@ func Mode_Values() []string {
 	return []string{
 		ModeOff,
 		ModeBehindLiveEdge,
+	}
+}
+
+const (
+	// OperatorEquals is a Operator enum value
+	OperatorEquals = "EQUALS"
+)
+
+// Operator_Values returns all elements of the Operator enum
+func Operator_Values() []string {
+	return []string{
+		OperatorEquals,
 	}
 }
 

@@ -42,6 +42,21 @@
         "shape": "CreateChannelResponse"
       }
     },
+    "CreatePrefetchSchedule": {
+      "errors": [],
+      "http": {
+        "method": "POST",
+        "requestUri": "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreatePrefetchScheduleRequest"
+      },
+      "name": "CreatePrefetchSchedule",
+      "output": {
+        "shape": "CreatePrefetchScheduleResponse"
+      }
+    },
     "CreateProgram": {
       "errors": [],
       "http": {
@@ -130,6 +145,21 @@
       "name": "DeletePlaybackConfiguration",
       "output": {
         "shape": "DeletePlaybackConfigurationResponse"
+      }
+    },
+    "DeletePrefetchSchedule": {
+      "errors": [],
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
+        "responseCode": 204
+      },
+      "input": {
+        "shape": "DeletePrefetchScheduleRequest"
+      },
+      "name": "DeletePrefetchSchedule",
+      "output": {
+        "shape": "DeletePrefetchScheduleResponse"
       }
     },
     "DeleteProgram": {
@@ -282,6 +312,21 @@
         "shape": "GetPlaybackConfigurationResponse"
       }
     },
+    "GetPrefetchSchedule": {
+      "errors": [],
+      "http": {
+        "method": "GET",
+        "requestUri": "/prefetchSchedule/{PlaybackConfigurationName}/{Name}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetPrefetchScheduleRequest"
+      },
+      "name": "GetPrefetchSchedule",
+      "output": {
+        "shape": "GetPrefetchScheduleResponse"
+      }
+    },
     "ListAlerts": {
       "errors": [],
       "http": {
@@ -325,6 +370,21 @@
       "name": "ListPlaybackConfigurations",
       "output": {
         "shape": "ListPlaybackConfigurationsResponse"
+      }
+    },
+    "ListPrefetchSchedules": {
+      "errors": [],
+      "http": {
+        "method": "POST",
+        "requestUri": "/prefetchSchedule/{PlaybackConfigurationName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListPrefetchSchedulesRequest"
+      },
+      "name": "ListPrefetchSchedules",
+      "output": {
+        "shape": "ListPrefetchSchedulesResponse"
       }
     },
     "ListSourceLocations": {
@@ -585,6 +645,21 @@
       ],
       "type": "structure"
     },
+    "AvailMatchingCriteria": {
+      "members": {
+        "DynamicVariable": {
+          "shape": "__string"
+        },
+        "Operator": {
+          "shape": "Operator"
+        }
+      },
+      "required": [
+        "Operator",
+        "DynamicVariable"
+      ],
+      "type": "structure"
+    },
     "AvailSuppression": {
       "members": {
         "Mode": {
@@ -778,6 +853,59 @@
         "Tags": {
           "locationName": "tags",
           "shape": "__mapOf__string"
+        }
+      },
+      "type": "structure"
+    },
+    "CreatePrefetchScheduleRequest": {
+      "members": {
+        "Consumption": {
+          "shape": "PrefetchConsumption"
+        },
+        "Name": {
+          "location": "uri",
+          "locationName": "Name",
+          "shape": "__string"
+        },
+        "PlaybackConfigurationName": {
+          "location": "uri",
+          "locationName": "PlaybackConfigurationName",
+          "shape": "__string"
+        },
+        "Retrieval": {
+          "shape": "PrefetchRetrieval"
+        },
+        "StreamId": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Name",
+        "PlaybackConfigurationName",
+        "Consumption",
+        "Retrieval"
+      ],
+      "type": "structure"
+    },
+    "CreatePrefetchScheduleResponse": {
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "Consumption": {
+          "shape": "PrefetchConsumption"
+        },
+        "Name": {
+          "shape": "__string"
+        },
+        "PlaybackConfigurationName": {
+          "shape": "__string"
+        },
+        "Retrieval": {
+          "shape": "PrefetchRetrieval"
+        },
+        "StreamId": {
+          "shape": "__string"
         }
       },
       "type": "structure"
@@ -1054,6 +1182,29 @@
       "type": "structure"
     },
     "DeletePlaybackConfigurationResponse": {
+      "members": {},
+      "type": "structure"
+    },
+    "DeletePrefetchScheduleRequest": {
+      "members": {
+        "Name": {
+          "location": "uri",
+          "locationName": "Name",
+          "shape": "__string"
+        },
+        "PlaybackConfigurationName": {
+          "location": "uri",
+          "locationName": "PlaybackConfigurationName",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Name",
+        "PlaybackConfigurationName"
+      ],
+      "type": "structure"
+    },
+    "DeletePrefetchScheduleResponse": {
       "members": {},
       "type": "structure"
     },
@@ -1439,6 +1590,48 @@
       },
       "type": "structure"
     },
+    "GetPrefetchScheduleRequest": {
+      "members": {
+        "Name": {
+          "location": "uri",
+          "locationName": "Name",
+          "shape": "__string"
+        },
+        "PlaybackConfigurationName": {
+          "location": "uri",
+          "locationName": "PlaybackConfigurationName",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Name",
+        "PlaybackConfigurationName"
+      ],
+      "type": "structure"
+    },
+    "GetPrefetchScheduleResponse": {
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "Consumption": {
+          "shape": "PrefetchConsumption"
+        },
+        "Name": {
+          "shape": "__string"
+        },
+        "PlaybackConfigurationName": {
+          "shape": "__string"
+        },
+        "Retrieval": {
+          "shape": "PrefetchRetrieval"
+        },
+        "StreamId": {
+          "shape": "__string"
+        }
+      },
+      "type": "structure"
+    },
     "HlsConfiguration": {
       "members": {
         "ManifestEndpointPrefix": {
@@ -1577,6 +1770,39 @@
       },
       "type": "structure"
     },
+    "ListPrefetchSchedulesRequest": {
+      "members": {
+        "MaxResults": {
+          "shape": "__integerMin1Max100"
+        },
+        "NextToken": {
+          "shape": "__string"
+        },
+        "PlaybackConfigurationName": {
+          "location": "uri",
+          "locationName": "PlaybackConfigurationName",
+          "shape": "__string"
+        },
+        "StreamId": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "PlaybackConfigurationName"
+      ],
+      "type": "structure"
+    },
+    "ListPrefetchSchedulesResponse": {
+      "members": {
+        "Items": {
+          "shape": "__listOfPrefetchSchedule"
+        },
+        "NextToken": {
+          "shape": "__string"
+        }
+      },
+      "type": "structure"
+    },
     "ListSourceLocationsRequest": {
       "members": {
         "MaxResults": {
@@ -1707,6 +1933,12 @@
       ],
       "type": "string"
     },
+    "Operator": {
+      "enum": [
+        "EQUALS"
+      ],
+      "type": "string"
+    },
     "OriginManifestType": {
       "enum": [
         "SINGLE_PERIOD",
@@ -1783,6 +2015,70 @@
         "LINEAR"
       ],
       "type": "string"
+    },
+    "PrefetchConsumption": {
+      "members": {
+        "AvailMatchingCriteria": {
+          "shape": "__listOfAvailMatchingCriteria"
+        },
+        "EndTime": {
+          "shape": "__timestampUnix"
+        },
+        "StartTime": {
+          "shape": "__timestampUnix"
+        }
+      },
+      "required": [
+        "EndTime"
+      ],
+      "type": "structure"
+    },
+    "PrefetchRetrieval": {
+      "members": {
+        "DynamicVariables": {
+          "shape": "__mapOf__string"
+        },
+        "EndTime": {
+          "shape": "__timestampUnix"
+        },
+        "StartTime": {
+          "shape": "__timestampUnix"
+        }
+      },
+      "required": [
+        "EndTime"
+      ],
+      "type": "structure"
+    },
+    "PrefetchSchedule": {
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "Consumption": {
+          "shape": "PrefetchConsumption"
+        },
+        "Name": {
+          "shape": "__string"
+        },
+        "PlaybackConfigurationName": {
+          "shape": "__string"
+        },
+        "Retrieval": {
+          "shape": "PrefetchRetrieval"
+        },
+        "StreamId": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Retrieval",
+        "Consumption",
+        "Arn",
+        "PlaybackConfigurationName",
+        "Name"
+      ],
+      "type": "structure"
     },
     "PutChannelPolicyRequest": {
       "members": {
@@ -2427,6 +2723,11 @@
       "min": 1,
       "type": "integer"
     },
+    "__integerMin1Max100": {
+      "max": 100,
+      "min": 1,
+      "type": "integer"
+    },
     "__listOfAdBreak": {
       "member": {
         "shape": "AdBreak"
@@ -2439,6 +2740,12 @@
       },
       "type": "list"
     },
+    "__listOfAvailMatchingCriteria": {
+      "member": {
+        "shape": "AvailMatchingCriteria"
+      },
+      "type": "list"
+    },
     "__listOfChannel": {
       "member": {
         "shape": "Channel"
@@ -2448,6 +2755,12 @@
     "__listOfPlaybackConfiguration": {
       "member": {
         "shape": "PlaybackConfiguration"
+      },
+      "type": "list"
+    },
+    "__listOfPrefetchSchedule": {
+      "member": {
+        "shape": "PrefetchSchedule"
       },
       "type": "list"
     },

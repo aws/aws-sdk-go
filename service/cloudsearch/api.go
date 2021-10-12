@@ -75,6 +75,9 @@ func (c *CloudSearch) BuildSuggestersRequest(input *BuildSuggestersInput) (req *
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
 //
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
+//
 func (c *CloudSearch) BuildSuggesters(input *BuildSuggestersInput) (*BuildSuggestersOutput, error) {
 	req, out := c.BuildSuggestersRequest(input)
 	return out, req.Send()
@@ -260,6 +263,9 @@ func (c *CloudSearch) DefineAnalysisSchemeRequest(input *DefineAnalysisSchemeInp
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
 //
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
+//
 func (c *CloudSearch) DefineAnalysisScheme(input *DefineAnalysisSchemeInput) (*DefineAnalysisSchemeOutput, error) {
 	req, out := c.DefineAnalysisSchemeRequest(input)
 	return out, req.Send()
@@ -352,6 +358,9 @@ func (c *CloudSearch) DefineExpressionRequest(input *DefineExpressionInput) (req
 //   * ErrCodeResourceNotFoundException "ResourceNotFound"
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
+//
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
 //
 func (c *CloudSearch) DefineExpression(input *DefineExpressionInput) (*DefineExpressionOutput, error) {
 	req, out := c.DefineExpressionRequest(input)
@@ -450,6 +459,9 @@ func (c *CloudSearch) DefineIndexFieldRequest(input *DefineIndexFieldInput) (req
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
 //
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
+//
 func (c *CloudSearch) DefineIndexField(input *DefineIndexFieldInput) (*DefineIndexFieldOutput, error) {
 	req, out := c.DefineIndexFieldRequest(input)
 	return out, req.Send()
@@ -545,6 +557,9 @@ func (c *CloudSearch) DefineSuggesterRequest(input *DefineSuggesterInput) (req *
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
 //
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
+//
 func (c *CloudSearch) DefineSuggester(input *DefineSuggesterInput) (*DefineSuggesterOutput, error) {
 	req, out := c.DefineSuggesterRequest(input)
 	return out, req.Send()
@@ -633,6 +648,9 @@ func (c *CloudSearch) DeleteAnalysisSchemeRequest(input *DeleteAnalysisSchemeInp
 //   * ErrCodeResourceNotFoundException "ResourceNotFound"
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
+//
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
 //
 func (c *CloudSearch) DeleteAnalysisScheme(input *DeleteAnalysisSchemeInput) (*DeleteAnalysisSchemeOutput, error) {
 	req, out := c.DeleteAnalysisSchemeRequest(input)
@@ -806,6 +824,9 @@ func (c *CloudSearch) DeleteExpressionRequest(input *DeleteExpressionInput) (req
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
 //
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
+//
 func (c *CloudSearch) DeleteExpression(input *DeleteExpressionInput) (*DeleteExpressionOutput, error) {
 	req, out := c.DeleteExpressionRequest(input)
 	return out, req.Send()
@@ -895,6 +916,9 @@ func (c *CloudSearch) DeleteIndexFieldRequest(input *DeleteIndexFieldInput) (req
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
 //
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
+//
 func (c *CloudSearch) DeleteIndexField(input *DeleteIndexFieldInput) (*DeleteIndexFieldOutput, error) {
 	req, out := c.DeleteIndexFieldRequest(input)
 	return out, req.Send()
@@ -983,6 +1007,9 @@ func (c *CloudSearch) DeleteSuggesterRequest(input *DeleteSuggesterInput) (req *
 //   * ErrCodeResourceNotFoundException "ResourceNotFound"
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
+//
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
 //
 func (c *CloudSearch) DeleteSuggester(input *DeleteSuggesterInput) (*DeleteSuggesterOutput, error) {
 	req, out := c.DeleteSuggesterRequest(input)
@@ -1879,6 +1906,9 @@ func (c *CloudSearch) IndexDocumentsRequest(input *IndexDocumentsInput) (req *re
 //   The request was rejected because it attempted to reference a resource that
 //   does not exist.
 //
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
+//
 func (c *CloudSearch) IndexDocuments(input *IndexDocumentsInput) (*IndexDocumentsOutput, error) {
 	req, out := c.IndexDocumentsRequest(input)
 	return out, req.Send()
@@ -2252,6 +2282,9 @@ func (c *CloudSearch) UpdateScalingParametersRequest(input *UpdateScalingParamet
 //   * ErrCodeInvalidTypeException "InvalidType"
 //   The request was rejected because it specified an invalid type definition.
 //
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
+//
 func (c *CloudSearch) UpdateScalingParameters(input *UpdateScalingParametersInput) (*UpdateScalingParametersOutput, error) {
 	req, out := c.UpdateScalingParametersRequest(input)
 	return out, req.Send()
@@ -2343,6 +2376,9 @@ func (c *CloudSearch) UpdateServiceAccessPoliciesRequest(input *UpdateServiceAcc
 //
 //   * ErrCodeInvalidTypeException "InvalidType"
 //   The request was rejected because it specified an invalid type definition.
+//
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
 //
 func (c *CloudSearch) UpdateServiceAccessPolicies(input *UpdateServiceAccessPoliciesInput) (*UpdateServiceAccessPoliciesOutput, error) {
 	req, out := c.UpdateServiceAccessPoliciesRequest(input)

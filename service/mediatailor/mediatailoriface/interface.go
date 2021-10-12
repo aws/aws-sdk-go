@@ -68,6 +68,10 @@ type MediaTailorAPI interface {
 	CreateChannelWithContext(aws.Context, *mediatailor.CreateChannelInput, ...request.Option) (*mediatailor.CreateChannelOutput, error)
 	CreateChannelRequest(*mediatailor.CreateChannelInput) (*request.Request, *mediatailor.CreateChannelOutput)
 
+	CreatePrefetchSchedule(*mediatailor.CreatePrefetchScheduleInput) (*mediatailor.CreatePrefetchScheduleOutput, error)
+	CreatePrefetchScheduleWithContext(aws.Context, *mediatailor.CreatePrefetchScheduleInput, ...request.Option) (*mediatailor.CreatePrefetchScheduleOutput, error)
+	CreatePrefetchScheduleRequest(*mediatailor.CreatePrefetchScheduleInput) (*request.Request, *mediatailor.CreatePrefetchScheduleOutput)
+
 	CreateProgram(*mediatailor.CreateProgramInput) (*mediatailor.CreateProgramOutput, error)
 	CreateProgramWithContext(aws.Context, *mediatailor.CreateProgramInput, ...request.Option) (*mediatailor.CreateProgramOutput, error)
 	CreateProgramRequest(*mediatailor.CreateProgramInput) (*request.Request, *mediatailor.CreateProgramOutput)
@@ -91,6 +95,10 @@ type MediaTailorAPI interface {
 	DeletePlaybackConfiguration(*mediatailor.DeletePlaybackConfigurationInput) (*mediatailor.DeletePlaybackConfigurationOutput, error)
 	DeletePlaybackConfigurationWithContext(aws.Context, *mediatailor.DeletePlaybackConfigurationInput, ...request.Option) (*mediatailor.DeletePlaybackConfigurationOutput, error)
 	DeletePlaybackConfigurationRequest(*mediatailor.DeletePlaybackConfigurationInput) (*request.Request, *mediatailor.DeletePlaybackConfigurationOutput)
+
+	DeletePrefetchSchedule(*mediatailor.DeletePrefetchScheduleInput) (*mediatailor.DeletePrefetchScheduleOutput, error)
+	DeletePrefetchScheduleWithContext(aws.Context, *mediatailor.DeletePrefetchScheduleInput, ...request.Option) (*mediatailor.DeletePrefetchScheduleOutput, error)
+	DeletePrefetchScheduleRequest(*mediatailor.DeletePrefetchScheduleInput) (*request.Request, *mediatailor.DeletePrefetchScheduleOutput)
 
 	DeleteProgram(*mediatailor.DeleteProgramInput) (*mediatailor.DeleteProgramOutput, error)
 	DeleteProgramWithContext(aws.Context, *mediatailor.DeleteProgramInput, ...request.Option) (*mediatailor.DeleteProgramOutput, error)
@@ -135,6 +143,10 @@ type MediaTailorAPI interface {
 	GetPlaybackConfigurationWithContext(aws.Context, *mediatailor.GetPlaybackConfigurationInput, ...request.Option) (*mediatailor.GetPlaybackConfigurationOutput, error)
 	GetPlaybackConfigurationRequest(*mediatailor.GetPlaybackConfigurationInput) (*request.Request, *mediatailor.GetPlaybackConfigurationOutput)
 
+	GetPrefetchSchedule(*mediatailor.GetPrefetchScheduleInput) (*mediatailor.GetPrefetchScheduleOutput, error)
+	GetPrefetchScheduleWithContext(aws.Context, *mediatailor.GetPrefetchScheduleInput, ...request.Option) (*mediatailor.GetPrefetchScheduleOutput, error)
+	GetPrefetchScheduleRequest(*mediatailor.GetPrefetchScheduleInput) (*request.Request, *mediatailor.GetPrefetchScheduleOutput)
+
 	ListAlerts(*mediatailor.ListAlertsInput) (*mediatailor.ListAlertsOutput, error)
 	ListAlertsWithContext(aws.Context, *mediatailor.ListAlertsInput, ...request.Option) (*mediatailor.ListAlertsOutput, error)
 	ListAlertsRequest(*mediatailor.ListAlertsInput) (*request.Request, *mediatailor.ListAlertsOutput)
@@ -155,6 +167,13 @@ type MediaTailorAPI interface {
 
 	ListPlaybackConfigurationsPages(*mediatailor.ListPlaybackConfigurationsInput, func(*mediatailor.ListPlaybackConfigurationsOutput, bool) bool) error
 	ListPlaybackConfigurationsPagesWithContext(aws.Context, *mediatailor.ListPlaybackConfigurationsInput, func(*mediatailor.ListPlaybackConfigurationsOutput, bool) bool, ...request.Option) error
+
+	ListPrefetchSchedules(*mediatailor.ListPrefetchSchedulesInput) (*mediatailor.ListPrefetchSchedulesOutput, error)
+	ListPrefetchSchedulesWithContext(aws.Context, *mediatailor.ListPrefetchSchedulesInput, ...request.Option) (*mediatailor.ListPrefetchSchedulesOutput, error)
+	ListPrefetchSchedulesRequest(*mediatailor.ListPrefetchSchedulesInput) (*request.Request, *mediatailor.ListPrefetchSchedulesOutput)
+
+	ListPrefetchSchedulesPages(*mediatailor.ListPrefetchSchedulesInput, func(*mediatailor.ListPrefetchSchedulesOutput, bool) bool) error
+	ListPrefetchSchedulesPagesWithContext(aws.Context, *mediatailor.ListPrefetchSchedulesInput, func(*mediatailor.ListPrefetchSchedulesOutput, bool) bool, ...request.Option) error
 
 	ListSourceLocations(*mediatailor.ListSourceLocationsInput) (*mediatailor.ListSourceLocationsOutput, error)
 	ListSourceLocationsWithContext(aws.Context, *mediatailor.ListSourceLocationsInput, ...request.Option) (*mediatailor.ListSourceLocationsOutput, error)

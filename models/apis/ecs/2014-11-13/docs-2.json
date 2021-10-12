@@ -989,13 +989,13 @@
       }
     },
     "InferenceAccelerator": {
-      "base": "<p>Details on a Elastic Inference accelerator. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-eia.html\">Working with Amazon Elastic Inference on Amazon ECS</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
+      "base": "<p>Details on a Elastic Inference accelerator. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-inference.html\">Working with Amazon Elastic Inference on Amazon ECS</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
       "refs": {
         "InferenceAccelerators$member": null
       }
     },
     "InferenceAcceleratorOverride": {
-      "base": "<p>Details on an Elastic Inference accelerator task override. This parameter is used to override the Elastic Inference accelerator specified in the task definition. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-eia.html\">Working with Amazon Elastic Inference on Amazon ECS</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
+      "base": "<p>Details on an Elastic Inference accelerator task override. This parameter is used to override the Elastic Inference accelerator specified in the task definition. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-inference.html\">Working with Amazon Elastic Inference on Amazon ECS</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
       "refs": {
         "InferenceAcceleratorOverrides$member": null
       }
@@ -1456,7 +1456,7 @@
     "PropagateTags": {
       "base": null,
       "refs": {
-        "CreateServiceRequest$propagateTags": "<p>Specifies whether to propagate the tags from the task definition or the service to the tasks in the service. If no value is specified, the tags are not propagated. Tags can only be propagated to the tasks within the service during service creation. To add tags to a task after service creation, use the <a>TagResource</a> API action.</p>",
+        "CreateServiceRequest$propagateTags": "<p>Specifies whether to propagate the tags from the task definition or the service to the tasks in the service. If no value is specified, the tags are not propagated. Tags can only be propagated to the tasks within the service during service creation. To add tags to a task after service creation or task creation, use the <a>TagResource</a> API action.</p>",
         "RunTaskRequest$propagateTags": "<p>Specifies whether to propagate the tags from the task definition to the task. If no value is specified, the tags are not propagated. Tags can only be propagated to the task during task creation. To add tags to a task after task creation, use the <a>TagResource</a> API action.</p> <note> <p>An error will be received if you specify the <code>SERVICE</code> option when running a task.</p> </note>",
         "Service$propagateTags": "<p>Specifies whether to propagate the tags from the task definition or the service to the task. If no value is specified, the tags are not propagated.</p>",
         "StartTaskRequest$propagateTags": "<p>Specifies whether to propagate the tags from the task definition or the service to the task. If no value is specified, the tags are not propagated.</p>"
@@ -1570,7 +1570,7 @@
       }
     },
     "ResourceRequirement": {
-      "base": "<p>The type and amount of a resource to assign to a container. The supported resource types are GPUs and Elastic Inference accelerators. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-gpu.html\">Working with GPUs on Amazon ECS</a> or <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-eia.html\">Working with Amazon Elastic Inference on Amazon ECS</a> in the <i>Amazon Elastic Container Service Developer Guide</i> </p>",
+      "base": "<p>The type and amount of a resource to assign to a container. The supported resource types are GPUs and Elastic Inference accelerators. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-gpu.html\">Working with GPUs on Amazon ECS</a> or <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-inference.html\">Working with Amazon Elastic Inference on Amazon ECS</a> in the <i>Amazon Elastic Container Service Developer Guide</i> </p>",
       "refs": {
         "ResourceRequirements$member": null
       }
@@ -1999,7 +1999,7 @@
         "RunTaskRequest$platformVersion": "<p>The platform version the task should use. A platform version is only specified for tasks hosted on Fargate. If one is not specified, the <code>LATEST</code> platform version is used by default. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html\">Fargate platform versions</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
         "RunTaskRequest$referenceId": "<p>The reference ID to use for the task. The reference ID can have a maximum length of 1024 characters.</p>",
         "RunTaskRequest$startedBy": "<p>An optional tag specified when a task is started. For example, if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the <code>startedBy</code> parameter. You can then identify which tasks belong to that job by filtering the results of a <a>ListTasks</a> call with the <code>startedBy</code> value. Up to 36 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p> <p>If a task is started by an Amazon ECS service, then the <code>startedBy</code> parameter contains the deployment ID of the service that starts it.</p>",
-        "RunTaskRequest$taskDefinition": "<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task definition to run. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision is used.</p>",
+        "RunTaskRequest$taskDefinition": "<p>The <code>family</code> and <code>revision</code> (<code>family:revision</code>) or full ARN of the task definition to run. If a <code>revision</code> is not specified, the latest <code>ACTIVE</code> revision is used.</p> <p>The full ARN value must match the value that you specified ias the <code>Resource</code> of the IAM principal's permissions policy. For example, if the <code>Resource</code> is arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName:*, the <code>taskDefinition</code> ARN value must be <code>arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName</code>.</p>",
         "Secret$name": "<p>The name of the secret.</p>",
         "Secret$valueFrom": "<p>The secret to expose to the container. The supported values are either the full ARN of the Secrets Manager secret or the full ARN of the parameter in the SSM Parameter Store.</p> <note> <p>If the SSM Parameter Store parameter exists in the same Region as the task you are launching, then you can use either the full ARN or name of the parameter. If the parameter exists in a different Region, then the full ARN must be specified.</p> </note>",
         "ServerException$message": null,
@@ -2070,9 +2070,9 @@
         "TaskDefinition$registeredBy": "<p>The principal that registered the task definition.</p>",
         "TaskDefinitionPlacementConstraint$expression": "<p>A cluster query language expression to apply to the constraint. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html\">Cluster query language</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
         "TaskOverride$cpu": "<p>The cpu override for the task.</p>",
-        "TaskOverride$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the task execution IAM role override for the task.</p>",
+        "TaskOverride$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the task execution IAM role override for the task. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html\">Amazon ECS task execution IAM role</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
         "TaskOverride$memory": "<p>The memory override for the task.</p>",
-        "TaskOverride$taskRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that containers in this task can assume. All containers in this task are granted the permissions that are specified in this role.</p>",
+        "TaskOverride$taskRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that containers in this task can assume. All containers in this task are granted the permissions that are specified in this role. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html\">IAM Role for Tasks</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
         "TaskSet$id": "<p>The ID of the task set.</p>",
         "TaskSet$taskSetArn": "<p>The Amazon Resource Name (ARN) of the task set.</p>",
         "TaskSet$serviceArn": "<p>The Amazon Resource Name (ARN) of the service the task set exists in.</p>",

@@ -25,7 +25,8 @@
       "errors":[
         {"shape":"BaseException"},
         {"shape":"InternalException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "CreateDomain":{
@@ -63,7 +64,8 @@
         {"shape":"InternalException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidTypeException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DefineExpression":{
@@ -82,7 +84,8 @@
         {"shape":"InternalException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidTypeException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DefineIndexField":{
@@ -101,7 +104,8 @@
         {"shape":"InternalException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidTypeException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DefineSuggester":{
@@ -120,7 +124,8 @@
         {"shape":"InternalException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidTypeException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteAnalysisScheme":{
@@ -138,7 +143,8 @@
         {"shape":"BaseException"},
         {"shape":"InternalException"},
         {"shape":"InvalidTypeException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteDomain":{
@@ -172,7 +178,8 @@
         {"shape":"BaseException"},
         {"shape":"InternalException"},
         {"shape":"InvalidTypeException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteIndexField":{
@@ -190,7 +197,8 @@
         {"shape":"BaseException"},
         {"shape":"InternalException"},
         {"shape":"InvalidTypeException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteSuggester":{
@@ -208,7 +216,8 @@
         {"shape":"BaseException"},
         {"shape":"InternalException"},
         {"shape":"InvalidTypeException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribeAnalysisSchemes":{
@@ -382,7 +391,8 @@
       "errors":[
         {"shape":"BaseException"},
         {"shape":"InternalException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListDomainNames":{
@@ -457,7 +467,8 @@
         {"shape":"InternalException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidTypeException"}
+        {"shape":"InvalidTypeException"},
+        {"shape":"ValidationException"}
       ]
     },
     "UpdateServiceAccessPolicies":{
@@ -476,7 +487,8 @@
         {"shape":"InternalException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidTypeException"}
+        {"shape":"InvalidTypeException"},
+        {"shape":"ValidationException"}
       ]
     }
   },

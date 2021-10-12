@@ -10972,6 +10972,9 @@
     "regions" : {
       "us-iso-east-1" : {
         "description" : "US ISO East"
+      },
+      "us-iso-west-1" : {
+        "description" : "US ISO WEST"
       }
     },
     "services" : {
@@ -10982,6 +10985,12 @@
               "region" : "us-iso-east-1"
             },
             "hostname" : "api.ecr.us-iso-east-1.c2s.ic.gov"
+          },
+          "us-iso-west-1" : {
+            "credentialScope" : {
+              "region" : "us-iso-west-1"
+            },
+            "hostname" : "api.ecr.us-iso-west-1.c2s.ic.gov"
           }
         }
       },
@@ -11000,29 +11009,34 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "autoscaling" : {
         "endpoints" : {
           "us-iso-east-1" : {
             "protocols" : [ "http", "https" ]
-          }
+          },
+          "us-iso-west-1" : { }
         }
       },
       "cloudformation" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "cloudtrail" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "codedeploy" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "comprehend" : {
@@ -11035,7 +11049,8 @@
       },
       "config" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "datapipeline" : {
@@ -11045,7 +11060,8 @@
       },
       "directconnect" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "dms" : {
@@ -11073,17 +11089,20 @@
       },
       "ec2" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "ecs" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "elasticache" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "elasticfilesystem" : {
@@ -11101,14 +11120,16 @@
         "endpoints" : {
           "us-iso-east-1" : {
             "protocols" : [ "http", "https" ]
-          }
+          },
+          "us-iso-west-1" : { }
         }
       },
       "elasticmapreduce" : {
         "endpoints" : {
           "us-iso-east-1" : {
             "protocols" : [ "https" ]
-          }
+          },
+          "us-iso-west-1" : { }
         }
       },
       "es" : {
@@ -11118,7 +11139,8 @@
       },
       "events" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "firehose" : {
@@ -11130,7 +11152,8 @@
         "endpoints" : {
           "us-iso-east-1" : {
             "protocols" : [ "http", "https" ]
-          }
+          },
+          "us-iso-west-1" : { }
         }
       },
       "health" : {
@@ -11152,7 +11175,8 @@
       },
       "kinesis" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "kms" : {
@@ -11163,12 +11187,14 @@
             },
             "hostname" : "kms-fips.us-iso-east-1.c2s.ic.gov"
           },
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "lambda" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "license-manager" : {
@@ -11178,7 +11204,8 @@
       },
       "logs" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "medialive" : {
@@ -11193,7 +11220,8 @@
       },
       "monitoring" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "outposts" : {
@@ -11208,12 +11236,14 @@
       },
       "rds" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "redshift" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "route53" : {
@@ -11263,14 +11293,16 @@
         "endpoints" : {
           "us-iso-east-1" : {
             "protocols" : [ "http", "https" ]
-          }
+          },
+          "us-iso-west-1" : { }
         }
       },
       "sqs" : {
         "endpoints" : {
           "us-iso-east-1" : {
             "protocols" : [ "http", "https" ]
-          }
+          },
+          "us-iso-west-1" : { }
         }
       },
       "ssm" : {
@@ -11280,7 +11312,8 @@
       },
       "states" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "streams.dynamodb" : {
@@ -11298,7 +11331,8 @@
       },
       "sts" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "support" : {
@@ -11314,7 +11348,8 @@
       },
       "swf" : {
         "endpoints" : {
-          "us-iso-east-1" : { }
+          "us-iso-east-1" : { },
+          "us-iso-west-1" : { }
         }
       },
       "transcribe" : {

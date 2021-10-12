@@ -24,6 +24,12 @@
             "output_token": "NextToken",
             "result_key": "Items"
         },
+        "ListPrefetchSchedules": {
+            "input_token": "NextToken",
+            "limit_key": "MaxResults",
+            "output_token": "NextToken",
+            "result_key": "Items"
+        },
         "ListSourceLocations": {
             "input_token": "NextToken",
             "limit_key": "MaxResults",

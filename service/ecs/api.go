@@ -9620,8 +9620,8 @@ type CreateServiceInput struct {
 	// Specifies whether to propagate the tags from the task definition or the service
 	// to the tasks in the service. If no value is specified, the tags are not propagated.
 	// Tags can only be propagated to the tasks within the service during service
-	// creation. To add tags to a task after service creation, use the TagResource
-	// API action.
+	// creation. To add tags to a task after service creation or task creation,
+	// use the TagResource API action.
 	PropagateTags *string `locationName:"propagateTags" type:"string" enum:"PropagateTags"`
 
 	// The name or full Amazon Resource Name (ARN) of the IAM role that allows Amazon
@@ -13632,7 +13632,7 @@ func (s *HostVolumeProperties) SetSourcePath(v string) *HostVolumeProperties {
 }
 
 // Details on a Elastic Inference accelerator. For more information, see Working
-// with Amazon Elastic Inference on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-eia.html)
+// with Amazon Elastic Inference on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-inference.html)
 // in the Amazon Elastic Container Service Developer Guide.
 type InferenceAccelerator struct {
 	_ struct{} `type:"structure"`
@@ -13698,7 +13698,7 @@ func (s *InferenceAccelerator) SetDeviceType(v string) *InferenceAccelerator {
 // Details on an Elastic Inference accelerator task override. This parameter
 // is used to override the Elastic Inference accelerator specified in the task
 // definition. For more information, see Working with Amazon Elastic Inference
-// on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-eia.html)
+// on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-inference.html)
 // in the Amazon Elastic Container Service Developer Guide.
 type InferenceAcceleratorOverride struct {
 	_ struct{} `type:"structure"`
@@ -18022,7 +18022,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 // The type and amount of a resource to assign to a container. The supported
 // resource types are GPUs and Elastic Inference accelerators. For more information,
 // see Working with GPUs on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-gpu.html)
-// or Working with Amazon Elastic Inference on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-eia.html)
+// or Working with Amazon Elastic Inference on Amazon ECS (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-inference.html)
 // in the Amazon Elastic Container Service Developer Guide
 type ResourceRequirement struct {
 	_ struct{} `type:"structure"`
@@ -18244,6 +18244,11 @@ type RunTaskInput struct {
 
 	// The family and revision (family:revision) or full ARN of the task definition
 	// to run. If a revision is not specified, the latest ACTIVE revision is used.
+	//
+	// The full ARN value must match the value that you specified ias the Resource
+	// of the IAM principal's permissions policy. For example, if the Resource is
+	// arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName:*, the
+	// taskDefinition ARN value must be arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName.
 	//
 	// TaskDefinition is a required field
 	TaskDefinition *string `locationName:"taskDefinition" type:"string" required:"true"`
@@ -21434,7 +21439,8 @@ type TaskOverride struct {
 	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the task execution IAM role override for
-	// the task.
+	// the task. For more information, see Amazon ECS task execution IAM role (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html)
+	// in the Amazon Elastic Container Service Developer Guide.
 	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string"`
 
 	// The Elastic Inference accelerator override for the task.
@@ -21445,7 +21451,9 @@ type TaskOverride struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role that containers in this task
 	// can assume. All containers in this task are granted the permissions that
-	// are specified in this role.
+	// are specified in this role. For more information, see IAM Role for Tasks
+	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html)
+	// in the Amazon Elastic Container Service Developer Guide.
 	TaskRoleArn *string `locationName:"taskRoleArn" type:"string"`
 }
 
