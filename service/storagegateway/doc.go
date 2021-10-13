@@ -7,7 +7,8 @@
 // with cloud-based storage to provide seamless and secure integration between
 // an organization's on-premises IT environment and the Amazon Web Services
 // storage infrastructure. The service enables you to securely upload data to
-// the Cloud for cost effective backup and rapid disaster recovery.
+// the Amazon Web Services Cloud for cost effective backup and rapid disaster
+// recovery.
 //
 // Use the following links to get started using the Storage Gateway Service
 // API Reference:
@@ -29,8 +30,8 @@
 //    requests and responses.
 //
 //    * Storage Gateway endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/sg.html):
-//    Provides a list of each Region and the endpoints available for use with
-//    Storage Gateway.
+//    Provides a list of each Amazon Web Services Region and the endpoints available
+//    for use with Storage Gateway.
 //
 // Storage Gateway resource IDs are in uppercase. When you use these resource
 // IDs with the Amazon EC2 API, EC2 expects resource IDs in lowercase. You must

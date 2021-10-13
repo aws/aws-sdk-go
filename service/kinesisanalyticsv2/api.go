@@ -262,7 +262,7 @@ func (c *KinesisAnalyticsV2) AddApplicationInputProcessingConfigurationRequest(i
 // Adds an InputProcessingConfiguration to a SQL-based Kinesis Data Analytics
 // application. An input processor pre-processes records on the input stream
 // before the application's SQL code executes. Currently, the only input processor
-// available is AWS Lambda (https://docs.aws.amazon.com/lambda/).
+// available is Amazon Lambda (https://docs.aws.amazon.com/lambda/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -359,10 +359,10 @@ func (c *KinesisAnalyticsV2) AddApplicationOutputRequest(input *AddApplicationOu
 //
 // If you want Kinesis Data Analytics to deliver data from an in-application
 // stream within your application to an external destination (such as an Kinesis
-// data stream, a Kinesis Data Firehose delivery stream, or an AWS Lambda function),
-// you add the relevant configuration to your application using this operation.
-// You can configure one or more outputs for your application. Each output configuration
-// maps an in-application stream and an external destination.
+// data stream, a Kinesis Data Firehose delivery stream, or an Amazon Lambda
+// function), you add the relevant configuration to your application using this
+// operation. You can configure one or more outputs for your application. Each
+// output configuration maps an in-application stream and an external destination.
 //
 // You can use one of the output configurations to deliver data from your in-application
 // error stream to an external destination so that you can analyze the errors.
@@ -701,6 +701,10 @@ func (c *KinesisAnalyticsV2) CreateApplicationRequest(input *CreateApplicationIn
 //   Exception thrown as a result of concurrent modifications to an application.
 //   This error can be the result of attempting to modify an application without
 //   using the current application ID.
+//
+//   * UnsupportedOperationException
+//   The request was rejected because a specified parameter is not supported or
+//   a specified resource is not valid for this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/CreateApplication
 func (c *KinesisAnalyticsV2) CreateApplication(input *CreateApplicationInput) (*CreateApplicationOutput, error) {
@@ -1935,6 +1939,10 @@ func (c *KinesisAnalyticsV2) DiscoverInputSchemaRequest(input *DiscoverInputSche
 //
 //   * InvalidRequestException
 //   The request JSON is not valid for the operation.
+//
+//   * UnsupportedOperationException
+//   The request was rejected because a specified parameter is not supported or
+//   a specified resource is not valid for this operation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/DiscoverInputSchema
 func (c *KinesisAnalyticsV2) DiscoverInputSchema(input *DiscoverInputSchemaInput) (*DiscoverInputSchemaOutput, error) {
@@ -3506,7 +3514,7 @@ type AddApplicationOutputInput struct {
 	// An array of objects, each describing one output configuration. In the output
 	// configuration, you specify the name of an in-application stream, a destination
 	// (that is, a Kinesis data stream, a Kinesis Data Firehose delivery stream,
-	// or an AWS Lambda function), and record the formation to use when writing
+	// or an Amazon Lambda function), and record the formation to use when writing
 	// to the destination.
 	//
 	// Output is a required field
@@ -5157,15 +5165,15 @@ func (s *CSVMappingParameters) SetRecordRowDelimiter(v string) *CSVMappingParame
 	return s
 }
 
-// The configuration parameters for the default AWS Glue database. You use this
-// database for SQL queries that you write in a Kinesis Data Analytics Studio
-// notebook.
+// The configuration parameters for the default Amazon Glue database. You use
+// this database for SQL queries that you write in a Kinesis Data Analytics
+// Studio notebook.
 type CatalogConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration parameters for the default AWS Glue database. You use this
-	// database for Apache Flink SQL queries and table API transforms that you write
-	// in a Kinesis Data Analytics Studio notebook.
+	// The configuration parameters for the default Amazon Glue database. You use
+	// this database for Apache Flink SQL queries and table API transforms that
+	// you write in a Kinesis Data Analytics Studio notebook.
 	//
 	// GlueDataCatalogConfiguration is a required field
 	GlueDataCatalogConfiguration *GlueDataCatalogConfiguration `type:"structure" required:"true"`
@@ -5213,15 +5221,15 @@ func (s *CatalogConfiguration) SetGlueDataCatalogConfiguration(v *GlueDataCatalo
 	return s
 }
 
-// The configuration parameters for the default AWS Glue database. You use this
-// database for Apache Flink SQL queries and table API transforms that you write
-// in a Kinesis Data Analytics Studio notebook.
+// The configuration parameters for the default Amazon Glue database. You use
+// this database for Apache Flink SQL queries and table API transforms that
+// you write in a Kinesis Data Analytics Studio notebook.
 type CatalogConfigurationDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration parameters for the default AWS Glue database. You use this
-	// database for SQL queries that you write in a Kinesis Data Analytics Studio
-	// notebook.
+	// The configuration parameters for the default Amazon Glue database. You use
+	// this database for SQL queries that you write in a Kinesis Data Analytics
+	// Studio notebook.
 	//
 	// GlueDataCatalogConfigurationDescription is a required field
 	GlueDataCatalogConfigurationDescription *GlueDataCatalogConfigurationDescription `type:"structure" required:"true"`
@@ -5251,11 +5259,13 @@ func (s *CatalogConfigurationDescription) SetGlueDataCatalogConfigurationDescrip
 	return s
 }
 
-// Updates to
+// Updates to the configuration parameters for the default Amazon Glue database.
+// You use this database for SQL queries that you write in a Kinesis Data Analytics
+// Studio notebook.
 type CatalogConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// Updates to the configuration parameters for the default AWS Glue database.
+	// Updates to the configuration parameters for the default Amazon Glue database.
 	// You use this database for SQL queries that you write in a Kinesis Data Analytics
 	// Studio notebook.
 	//
@@ -7475,7 +7485,7 @@ func (s *DeleteApplicationVpcConfigurationOutput) SetApplicationVersionId(v int6
 }
 
 // The information required to deploy a Kinesis Data Analytics Studio notebook
-// as an application with durable state..
+// as an application with durable state.
 type DeployAsApplicationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7567,15 +7577,13 @@ func (s *DeployAsApplicationConfigurationDescription) SetS3ContentLocationDescri
 }
 
 // Updates to the configuration information required to deploy an Amazon Data
-// Analytics Studio notebook as an application with durable state..
+// Analytics Studio notebook as an application with durable state.
 type DeployAsApplicationConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
 	// Updates to the location that holds the data required to specify an Amazon
 	// Data Analytics application.
-	//
-	// S3ContentLocationUpdate is a required field
-	S3ContentLocationUpdate *S3ContentBaseLocationUpdate `type:"structure" required:"true"`
+	S3ContentLocationUpdate *S3ContentBaseLocationUpdate `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7599,9 +7607,6 @@ func (s DeployAsApplicationConfigurationUpdate) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeployAsApplicationConfigurationUpdate) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeployAsApplicationConfigurationUpdate"}
-	if s.S3ContentLocationUpdate == nil {
-		invalidParams.Add(request.NewErrParamRequired("S3ContentLocationUpdate"))
-	}
 	if s.S3ContentLocationUpdate != nil {
 		if err := s.S3ContentLocationUpdate.Validate(); err != nil {
 			invalidParams.AddNested("S3ContentLocationUpdate", err.(request.ErrInvalidParams))
@@ -8619,7 +8624,9 @@ type GlueDataCatalogConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
 	// The updated Amazon Resource Name (ARN) of the database.
-	DatabaseARNUpdate *string `min:"1" type:"string"`
+	//
+	// DatabaseARNUpdate is a required field
+	DatabaseARNUpdate *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -8643,6 +8650,9 @@ func (s GlueDataCatalogConfigurationUpdate) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GlueDataCatalogConfigurationUpdate) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GlueDataCatalogConfigurationUpdate"}
+	if s.DatabaseARNUpdate == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseARNUpdate"))
+	}
 	if s.DatabaseARNUpdate != nil && len(*s.DatabaseARNUpdate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseARNUpdate", 1))
 	}
@@ -8912,17 +8922,17 @@ func (s *InputDescription) SetNamePrefix(v string) *InputDescription {
 	return s
 }
 
-// An object that contains the Amazon Resource Name (ARN) of the AWS Lambda
+// An object that contains the Amazon Resource Name (ARN) of the Amazon Lambda
 // function that is used to preprocess records in the stream in a SQL-based
 // Kinesis Data Analytics application.
 type InputLambdaProcessor struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the AWS Lambda function that operates on records in the stream.
+	// The ARN of the Amazon Lambda function that operates on records in the stream.
 	//
 	// To specify an earlier version of the Lambda function than the latest, include
 	// the Lambda function version in the Lambda function ARN. For more information
-	// about Lambda ARNs, see Example ARNs: AWS Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
+	// about Lambda ARNs, see Example ARNs: Amazon Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
@@ -8969,22 +8979,22 @@ func (s *InputLambdaProcessor) SetResourceARN(v string) *InputLambdaProcessor {
 }
 
 // For a SQL-based Kinesis Data Analytics application, an object that contains
-// the Amazon Resource Name (ARN) of the AWS Lambda function that is used to
-// preprocess records in the stream.
+// the Amazon Resource Name (ARN) of the Amazon Lambda function that is used
+// to preprocess records in the stream.
 type InputLambdaProcessorDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the AWS Lambda function that is used to preprocess the records
+	// The ARN of the Amazon Lambda function that is used to preprocess the records
 	// in the stream.
 	//
 	// To specify an earlier version of the Lambda function than the latest, include
 	// the Lambda function version in the Lambda function ARN. For more information
-	// about Lambda ARNs, see Example ARNs: AWS Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
+	// about Lambda ARNs, see Example ARNs: Amazon Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
 
-	// The ARN of the IAM role that is used to access the AWS Lambda function.
+	// The ARN of the IAM role that is used to access the Amazon Lambda function.
 	//
 	// Provided for backward compatibility. Applications that are created with the
 	// current API version have an application-level service execution role rather
@@ -9028,12 +9038,12 @@ func (s *InputLambdaProcessorDescription) SetRoleARN(v string) *InputLambdaProce
 type InputLambdaProcessorUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the new AWS Lambda function that is used
-	// to preprocess the records in the stream.
+	// The Amazon Resource Name (ARN) of the new Amazon Lambda function that is
+	// used to preprocess the records in the stream.
 	//
 	// To specify an earlier version of the Lambda function than the latest, include
 	// the Lambda function version in the Lambda function ARN. For more information
-	// about Lambda ARNs, see Example ARNs: AWS Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
+	// about Lambda ARNs, see Example ARNs: Amazon Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
 	//
 	// ResourceARNUpdate is a required field
 	ResourceARNUpdate *string `min:"1" type:"string" required:"true"`
@@ -9180,7 +9190,7 @@ func (s *InputParallelismUpdate) SetCountUpdate(v int64) *InputParallelismUpdate
 // For a SQL-based Kinesis Data Analytics application, describes a processor
 // that is used to preprocess the records in the stream before being processed
 // by your application code. Currently, the only input processor available is
-// AWS Lambda (https://docs.aws.amazon.com/lambda/).
+// Amazon Lambda (https://docs.aws.amazon.com/lambda/).
 type InputProcessingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9235,7 +9245,7 @@ func (s *InputProcessingConfiguration) SetInputLambdaProcessor(v *InputLambdaPro
 
 // For a SQL-based Kinesis Data Analytics application, provides the configuration
 // information about an input processor. Currently, the only input processor
-// available is AWS Lambda (https://docs.aws.amazon.com/lambda/).
+// available is Amazon Lambda (https://docs.aws.amazon.com/lambda/).
 type InputProcessingConfigurationDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -10443,8 +10453,8 @@ func (s *KinesisStreamsOutputUpdate) SetResourceARNUpdate(v string) *KinesisStre
 }
 
 // When you configure a SQL-based Kinesis Data Analytics application's output,
-// identifies an AWS Lambda function as the destination. You provide the function
-// Amazon Resource Name (ARN) of the Lambda function.
+// identifies an Amazon Lambda function as the destination. You provide the
+// function Amazon Resource Name (ARN) of the Lambda function.
 type LambdaOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10453,7 +10463,7 @@ type LambdaOutput struct {
 	//
 	// To specify an earlier version of the Lambda function than the latest, include
 	// the Lambda function version in the Lambda function ARN. For more information
-	// about Lambda ARNs, see Example ARNs: AWS Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
+	// about Lambda ARNs, see Example ARNs: Amazon Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `min:"1" type:"string" required:"true"`
@@ -10500,7 +10510,7 @@ func (s *LambdaOutput) SetResourceARN(v string) *LambdaOutput {
 }
 
 // For a SQL-based Kinesis Data Analytics application's output, describes the
-// AWS Lambda function that is configured as its destination.
+// Amazon Lambda function that is configured as its destination.
 type LambdaOutputDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -10550,15 +10560,15 @@ func (s *LambdaOutputDescription) SetRoleARN(v string) *LambdaOutputDescription 
 
 // When you update an SQL-based Kinesis Data Analytics application's output
 // configuration using the UpdateApplication operation, provides information
-// about an AWS Lambda function that is configured as the destination.
+// about an Amazon Lambda function that is configured as the destination.
 type LambdaOutputUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the destination AWS Lambda function.
+	// The Amazon Resource Name (ARN) of the destination Amazon Lambda function.
 	//
 	// To specify an earlier version of the Lambda function than the latest, include
 	// the Lambda function version in the Lambda function ARN. For more information
-	// about Lambda ARNs, see Example ARNs: AWS Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
+	// about Lambda ARNs, see Example ARNs: Amazon Lambda (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda)
 	//
 	// ResourceARNUpdate is a required field
 	ResourceARNUpdate *string `min:"1" type:"string" required:"true"`
@@ -10798,8 +10808,8 @@ type ListApplicationVersionsInput struct {
 
 	// If a previous invocation of this operation returned a pagination token, pass
 	// it into this value to retrieve the next set of results. For more information
-	// about pagination, see Using the AWS Command Line Interface's Pagination Options
-	// (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
+	// about pagination, see Using the Amazon Command Line Interface's Pagination
+	// Options (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -10874,7 +10884,7 @@ type ListApplicationVersionsOutput struct {
 	// The pagination token for the next set of results, or null if there are no
 	// additional results. To retrieve the next set of items, pass this token into
 	// a subsequent invocation of this operation. For more information about pagination,
-	// see Using the AWS Command Line Interface's Pagination Options (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
+	// see Using the Amazon Command Line Interface's Pagination Options (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -10916,7 +10926,7 @@ type ListApplicationsInput struct {
 
 	// If a previous command returned a pagination token, pass it into this value
 	// to retrieve the next set of results. For more information about pagination,
-	// see Using the AWS Command Line Interface's Pagination Options (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
+	// see Using the Amazon Command Line Interface's Pagination Options (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -10977,7 +10987,7 @@ type ListApplicationsOutput struct {
 	// The pagination token for the next set of results, or null if there are no
 	// additional results. Pass this token into a subsequent command to retrieve
 	// the next set of items For more information about pagination, see Using the
-	// AWS Command Line Interface's Pagination Options (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
+	// Amazon Command Line Interface's Pagination Options (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -11436,7 +11446,7 @@ type Output struct {
 	// Identifies a Kinesis data stream as the destination.
 	KinesisStreamsOutput *KinesisStreamsOutput `type:"structure"`
 
-	// Identifies an AWS Lambda function as the destination.
+	// Identifies an Amazon Lambda function as the destination.
 	LambdaOutput *LambdaOutput `type:"structure"`
 
 	// The name of the in-application stream.
@@ -11630,7 +11640,7 @@ type OutputUpdate struct {
 	// Describes a Kinesis data stream as the destination for the output.
 	KinesisStreamsOutputUpdate *KinesisStreamsOutputUpdate `type:"structure"`
 
-	// Describes an AWS Lambda function as the destination for the output.
+	// Describes an Amazon Lambda function as the destination for the output.
 	LambdaOutputUpdate *LambdaOutputUpdate `type:"structure"`
 
 	// If you want to specify a different in-application stream for this output
@@ -13196,9 +13206,7 @@ type S3ContentBaseLocationUpdate struct {
 	BasePathUpdate *string `min:"1" type:"string"`
 
 	// The updated Amazon Resource Name (ARN) of the S3 bucket.
-	//
-	// BucketARNUpdate is a required field
-	BucketARNUpdate *string `min:"1" type:"string" required:"true"`
+	BucketARNUpdate *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -13224,9 +13232,6 @@ func (s *S3ContentBaseLocationUpdate) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "S3ContentBaseLocationUpdate"}
 	if s.BasePathUpdate != nil && len(*s.BasePathUpdate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BasePathUpdate", 1))
-	}
-	if s.BucketARNUpdate == nil {
-		invalidParams.Add(request.NewErrParamRequired("BucketARNUpdate"))
 	}
 	if s.BucketARNUpdate != nil && len(*s.BucketARNUpdate) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BucketARNUpdate", 1))
@@ -14287,10 +14292,11 @@ func (s StopApplicationOutput) GoString() string {
 }
 
 // A key-value pair (the value is optional) that you can define and assign to
-// AWS resources. If you specify a tag that already exists, the tag value is
-// replaced with the value that you specify in the request. Note that the maximum
-// number of application tags includes system tags. The maximum number of user-defined
-// application tags is 50. For more information, see Using Tagging (https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html).
+// Amazon resources. If you specify a tag that already exists, the tag value
+// is replaced with the value that you specify in the request. Note that the
+// maximum number of application tags includes system tags. The maximum number
+// of user-defined application tags is 50. For more information, see Using Tagging
+// (https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html).
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -15240,7 +15246,7 @@ func (s *VpcConfigurationUpdate) SetVpcConfigurationId(v string) *VpcConfigurati
 type ZeppelinApplicationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Glue Data Catalog that you use in queries in a Kinesis Data Analytics
+	// The Amazon Glue Data Catalog that you use in queries in a Kinesis Data Analytics
 	// Studio notebook.
 	CatalogConfiguration *CatalogConfiguration `type:"structure"`
 
@@ -15248,7 +15254,7 @@ type ZeppelinApplicationConfiguration struct {
 	CustomArtifactsConfiguration []*CustomArtifactConfiguration `type:"list"`
 
 	// The information required to deploy a Kinesis Data Analytics Studio notebook
-	// as an application with durable state..
+	// as an application with durable state.
 	DeployAsApplicationConfiguration *DeployAsApplicationConfiguration `type:"structure"`
 
 	// The monitoring configuration of a Kinesis Data Analytics Studio notebook.
@@ -15336,7 +15342,7 @@ func (s *ZeppelinApplicationConfiguration) SetMonitoringConfiguration(v *Zeppeli
 type ZeppelinApplicationConfigurationDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Glue Data Catalog that is associated with the Kinesis Data Analytics
+	// The Amazon Glue Data Catalog that is associated with the Kinesis Data Analytics
 	// Studio notebook.
 	CatalogConfigurationDescription *CatalogConfigurationDescription `type:"structure"`
 
@@ -15344,7 +15350,7 @@ type ZeppelinApplicationConfigurationDescription struct {
 	CustomArtifactsConfigurationDescription []*CustomArtifactConfigurationDescription `type:"list"`
 
 	// The parameters required to deploy a Kinesis Data Analytics Studio notebook
-	// as an application with durable state..
+	// as an application with durable state.
 	DeployAsApplicationConfigurationDescription *DeployAsApplicationConfigurationDescription `type:"structure"`
 
 	// The monitoring configuration of a Kinesis Data Analytics Studio notebook.
@@ -15399,7 +15405,7 @@ func (s *ZeppelinApplicationConfigurationDescription) SetMonitoringConfiguration
 type ZeppelinApplicationConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// Updates to the configuration of the AWS Glue Data Catalog that is associated
+	// Updates to the configuration of the Amazon Glue Data Catalog that is associated
 	// with the Kinesis Data Analytics Studio notebook.
 	CatalogConfigurationUpdate *CatalogConfigurationUpdate `type:"structure"`
 
@@ -15408,7 +15414,7 @@ type ZeppelinApplicationConfigurationUpdate struct {
 	CustomArtifactsConfigurationUpdate []*CustomArtifactConfiguration `type:"list"`
 
 	// Updates to the configuration information required to deploy an Amazon Data
-	// Analytics Studio notebook as an application with durable state..
+	// Analytics Studio notebook as an application with durable state.
 	DeployAsApplicationConfigurationUpdate *DeployAsApplicationConfigurationUpdate `type:"structure"`
 
 	// Updates to the monitoring configuration of a Kinesis Data Analytics Studio
@@ -15685,11 +15691,11 @@ const (
 	// ApplicationStatusForceStopping is a ApplicationStatus enum value
 	ApplicationStatusForceStopping = "FORCE_STOPPING"
 
-	// ApplicationStatusMaintenance is a ApplicationStatus enum value
-	ApplicationStatusMaintenance = "MAINTENANCE"
-
 	// ApplicationStatusRollingBack is a ApplicationStatus enum value
 	ApplicationStatusRollingBack = "ROLLING_BACK"
+
+	// ApplicationStatusMaintenance is a ApplicationStatus enum value
+	ApplicationStatusMaintenance = "MAINTENANCE"
 
 	// ApplicationStatusRolledBack is a ApplicationStatus enum value
 	ApplicationStatusRolledBack = "ROLLED_BACK"
@@ -15706,8 +15712,8 @@ func ApplicationStatus_Values() []string {
 		ApplicationStatusUpdating,
 		ApplicationStatusAutoscaling,
 		ApplicationStatusForceStopping,
-		ApplicationStatusMaintenance,
 		ApplicationStatusRollingBack,
+		ApplicationStatusMaintenance,
 		ApplicationStatusRolledBack,
 	}
 }
@@ -15854,11 +15860,17 @@ const (
 	// RuntimeEnvironmentFlink18 is a RuntimeEnvironment enum value
 	RuntimeEnvironmentFlink18 = "FLINK-1_8"
 
+	// RuntimeEnvironmentZeppelinFlink10 is a RuntimeEnvironment enum value
+	RuntimeEnvironmentZeppelinFlink10 = "ZEPPELIN-FLINK-1_0"
+
 	// RuntimeEnvironmentFlink111 is a RuntimeEnvironment enum value
 	RuntimeEnvironmentFlink111 = "FLINK-1_11"
 
-	// RuntimeEnvironmentZeppelinFlink10 is a RuntimeEnvironment enum value
-	RuntimeEnvironmentZeppelinFlink10 = "ZEPPELIN-FLINK-1_0"
+	// RuntimeEnvironmentFlink113 is a RuntimeEnvironment enum value
+	RuntimeEnvironmentFlink113 = "FLINK-1_13"
+
+	// RuntimeEnvironmentZeppelinFlink20 is a RuntimeEnvironment enum value
+	RuntimeEnvironmentZeppelinFlink20 = "ZEPPELIN-FLINK-2_0"
 )
 
 // RuntimeEnvironment_Values returns all elements of the RuntimeEnvironment enum
@@ -15867,8 +15879,10 @@ func RuntimeEnvironment_Values() []string {
 		RuntimeEnvironmentSql10,
 		RuntimeEnvironmentFlink16,
 		RuntimeEnvironmentFlink18,
-		RuntimeEnvironmentFlink111,
 		RuntimeEnvironmentZeppelinFlink10,
+		RuntimeEnvironmentFlink111,
+		RuntimeEnvironmentFlink113,
+		RuntimeEnvironmentZeppelinFlink20,
 	}
 }
 

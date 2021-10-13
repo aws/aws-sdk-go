@@ -1727,6 +1727,10 @@
         "DescribeVpcsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeVpnConnectionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeVpnGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DestinationOptionsRequest$HiveCompatiblePartitions": "<p>Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon S3. The default is <code>false</code>.</p>",
+        "DestinationOptionsRequest$PerHourPartition": "<p>Indicates whether to partition the flow log per hour. This reduces the cost and response time for queries. The default is <code>false</code>.</p>",
+        "DestinationOptionsResponse$HiveCompatiblePartitions": "<p>Indicates whether to use Hive-compatible prefixes for flow logs stored in Amazon S3.</p>",
+        "DestinationOptionsResponse$PerHourPartition": "<p>Indicates whether to partition the flow log per hour.</p>",
         "DetachClassicLinkVpcRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DetachClassicLinkVpcResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "DetachInternetGatewayRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -6086,6 +6090,25 @@
     "DescribeVpnGatewaysResult": {
       "base": "<p>Contains the output of DescribeVpnGateways.</p>",
       "refs": {
+      }
+    },
+    "DestinationFileFormat": {
+      "base": null,
+      "refs": {
+        "DestinationOptionsRequest$FileFormat": "<p>The format for the flow log. The default is <code>plain-text</code>.</p>",
+        "DestinationOptionsResponse$FileFormat": "<p>The format for the flow log.</p>"
+      }
+    },
+    "DestinationOptionsRequest": {
+      "base": "<p>Describes the destination options for a flow log.</p>",
+      "refs": {
+        "CreateFlowLogsRequest$DestinationOptions": "<p>The destination options.</p>"
+      }
+    },
+    "DestinationOptionsResponse": {
+      "base": "<p>Describes the destination options for a flow log.</p>",
+      "refs": {
+        "FlowLog$DestinationOptions": "<p>The destination options.</p>"
       }
     },
     "DetachClassicLinkVpcRequest": {
@@ -10666,8 +10689,8 @@
     "LogDestinationType": {
       "base": null,
       "refs": {
-        "CreateFlowLogsRequest$LogDestinationType": "<p>Specifies the type of destination to which the flow log data is to be published. Flow log data can be published to CloudWatch Logs or Amazon S3. To publish flow log data to CloudWatch Logs, specify <code>cloud-watch-logs</code>. To publish flow log data to Amazon S3, specify <code>s3</code>.</p> <p>If you specify <code>LogDestinationType</code> as <code>s3</code>, do not specify <code>DeliverLogsPermissionArn</code> or <code>LogGroupName</code>.</p> <p>Default: <code>cloud-watch-logs</code> </p>",
-        "FlowLog$LogDestinationType": "<p>Specifies the type of destination to which the flow log data is published. Flow log data can be published to CloudWatch Logs or Amazon S3.</p>"
+        "CreateFlowLogsRequest$LogDestinationType": "<p>The type of destination to which the flow log data is to be published. Flow log data can be published to CloudWatch Logs or Amazon S3. To publish flow log data to CloudWatch Logs, specify <code>cloud-watch-logs</code>. To publish flow log data to Amazon S3, specify <code>s3</code>.</p> <p>If you specify <code>LogDestinationType</code> as <code>s3</code>, do not specify <code>DeliverLogsPermissionArn</code> or <code>LogGroupName</code>.</p> <p>Default: <code>cloud-watch-logs</code> </p>",
+        "FlowLog$LogDestinationType": "<p>The type of destination to which the flow log data is published. Flow log data can be published to CloudWatch Logs or Amazon S3.</p>"
       }
     },
     "Long": {
@@ -14618,7 +14641,7 @@
         "CreateFlowLogsRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to ensure idempotency</a>.</p>",
         "CreateFlowLogsRequest$DeliverLogsPermissionArn": "<p>The ARN for the IAM role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account.</p> <p>If you specify <code>LogDestinationType</code> as <code>s3</code>, do not specify <code>DeliverLogsPermissionArn</code> or <code>LogGroupName</code>.</p>",
         "CreateFlowLogsRequest$LogGroupName": "<p>The name of a new or existing CloudWatch Logs log group where Amazon EC2 publishes your flow logs.</p> <p>If you specify <code>LogDestinationType</code> as <code>s3</code>, do not specify <code>DeliverLogsPermissionArn</code> or <code>LogGroupName</code>.</p>",
-        "CreateFlowLogsRequest$LogDestination": "<p>Specifies the destination to which the flow log data is to be published. Flow log data can be published to a CloudWatch Logs log group or an Amazon S3 bucket. The value specified for this parameter depends on the value specified for <code>LogDestinationType</code>.</p> <p>If <code>LogDestinationType</code> is not specified or <code>cloud-watch-logs</code>, specify the Amazon Resource Name (ARN) of the CloudWatch Logs log group. For example, to publish to a log group called <code>my-logs</code>, specify <code>arn:aws:logs:us-east-1:123456789012:log-group:my-logs</code>. Alternatively, use <code>LogGroupName</code> instead.</p> <p>If LogDestinationType is <code>s3</code>, specify the ARN of the Amazon S3 bucket. You can also specify a subfolder in the bucket. To specify a subfolder in the bucket, use the following ARN format: <code>bucket_ARN/subfolder_name/</code>. For example, to specify a subfolder named <code>my-logs</code> in a bucket named <code>my-bucket</code>, use the following ARN: <code>arn:aws:s3:::my-bucket/my-logs/</code>. You cannot use <code>AWSLogs</code> as a subfolder name. This is a reserved term.</p>",
+        "CreateFlowLogsRequest$LogDestination": "<p>The destination to which the flow log data is to be published. Flow log data can be published to a CloudWatch Logs log group or an Amazon S3 bucket. The value specified for this parameter depends on the value specified for <code>LogDestinationType</code>.</p> <p>If <code>LogDestinationType</code> is not specified or <code>cloud-watch-logs</code>, specify the Amazon Resource Name (ARN) of the CloudWatch Logs log group. For example, to publish to a log group called <code>my-logs</code>, specify <code>arn:aws:logs:us-east-1:123456789012:log-group:my-logs</code>. Alternatively, use <code>LogGroupName</code> instead.</p> <p>If LogDestinationType is <code>s3</code>, specify the ARN of the Amazon S3 bucket. You can also specify a subfolder in the bucket. To specify a subfolder in the bucket, use the following ARN format: <code>bucket_ARN/subfolder_name/</code>. For example, to specify a subfolder named <code>my-logs</code> in a bucket named <code>my-bucket</code>, use the following ARN: <code>arn:aws:s3:::my-bucket/my-logs/</code>. You cannot use <code>AWSLogs</code> as a subfolder name. This is a reserved term.</p>",
         "CreateFlowLogsRequest$LogFormat": "<p>The fields to include in the flow log record, in the order in which they should appear. For a list of available fields, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records\">Flow log records</a>. If you omit this parameter, the flow log is created using the default format. If you specify this parameter, you must specify at least one field.</p> <p>Specify the fields using the <code>${field-id}</code> format, separated by spaces. For the CLI, surround this parameter value with single quotes on Linux or double quotes on Windows.</p>",
         "CreateFlowLogsResult$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateFpgaImageRequest$Description": "<p>A description for the AFI.</p>",
@@ -15047,7 +15070,7 @@
         "FlowLog$FlowLogStatus": "<p>The status of the flow log (<code>ACTIVE</code>).</p>",
         "FlowLog$LogGroupName": "<p>The name of the flow log group.</p>",
         "FlowLog$ResourceId": "<p>The ID of the resource on which the flow log was created.</p>",
-        "FlowLog$LogDestination": "<p>Specifies the destination to which the flow log data is published. Flow log data can be published to an CloudWatch Logs log group or an Amazon S3 bucket. If the flow log publishes to CloudWatch Logs, this element indicates the Amazon Resource Name (ARN) of the CloudWatch Logs log group to which the data is published. If the flow log publishes to Amazon S3, this element indicates the ARN of the Amazon S3 bucket to which the data is published.</p>",
+        "FlowLog$LogDestination": "<p>The destination to which the flow log data is published. Flow log data can be published to an CloudWatch Logs log group or an Amazon S3 bucket. If the flow log publishes to CloudWatch Logs, this element indicates the Amazon Resource Name (ARN) of the CloudWatch Logs log group to which the data is published. If the flow log publishes to Amazon S3, this element indicates the ARN of the Amazon S3 bucket to which the data is published.</p>",
         "FlowLog$LogFormat": "<p>The format of the flow log record.</p>",
         "FpgaImage$FpgaImageId": "<p>The FPGA image identifier (AFI ID).</p>",
         "FpgaImage$FpgaImageGlobalId": "<p>The global FPGA image identifier (AGFI ID).</p>",

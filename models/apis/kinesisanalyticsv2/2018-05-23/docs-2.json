@@ -4,8 +4,8 @@
   "operations": {
     "AddApplicationCloudWatchLoggingOption": "<p>Adds an Amazon CloudWatch log stream to monitor application configuration errors.</p>",
     "AddApplicationInput": "<p> Adds a streaming source to your SQL-based Kinesis Data Analytics application. </p> <p>You can add a streaming source when you create an application, or you can use this operation to add a streaming source after you create an application. For more information, see <a>CreateApplication</a>.</p> <p>Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version. </p>",
-    "AddApplicationInputProcessingConfiguration": "<p>Adds an <a>InputProcessingConfiguration</a> to a SQL-based Kinesis Data Analytics application. An input processor pre-processes records on the input stream before the application's SQL code executes. Currently, the only input processor available is <a href=\"https://docs.aws.amazon.com/lambda/\">AWS Lambda</a>.</p>",
-    "AddApplicationOutput": "<p>Adds an external destination to your SQL-based Kinesis Data Analytics application.</p> <p>If you want Kinesis Data Analytics to deliver data from an in-application stream within your application to an external destination (such as an Kinesis data stream, a Kinesis Data Firehose delivery stream, or an AWS Lambda function), you add the relevant configuration to your application using this operation. You can configure one or more outputs for your application. Each output configuration maps an in-application stream and an external destination.</p> <p> You can use one of the output configurations to deliver data from your in-application error stream to an external destination so that you can analyze the errors. </p> <p> Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
+    "AddApplicationInputProcessingConfiguration": "<p>Adds an <a>InputProcessingConfiguration</a> to a SQL-based Kinesis Data Analytics application. An input processor pre-processes records on the input stream before the application's SQL code executes. Currently, the only input processor available is <a href=\"https://docs.aws.amazon.com/lambda/\">Amazon Lambda</a>.</p>",
+    "AddApplicationOutput": "<p>Adds an external destination to your SQL-based Kinesis Data Analytics application.</p> <p>If you want Kinesis Data Analytics to deliver data from an in-application stream within your application to an external destination (such as an Kinesis data stream, a Kinesis Data Firehose delivery stream, or an Amazon Lambda function), you add the relevant configuration to your application using this operation. You can configure one or more outputs for your application. Each output configuration maps an in-application stream and an external destination.</p> <p> You can use one of the output configurations to deliver data from your in-application error stream to an external destination so that you can analyze the errors. </p> <p> Any configuration update, including adding a streaming source using this operation, results in a new version of the application. You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
     "AddApplicationReferenceDataSource": "<p>Adds a reference data source to an existing SQL-based Kinesis Data Analytics application.</p> <p>Kinesis Data Analytics reads reference data (that is, an Amazon S3 object) and creates an in-application table within your application. In the request, you provide the source (S3 bucket name and object key name), name of the in-application table to create, and the necessary mapping information that describes how data in an Amazon S3 object maps to columns in the resulting in-application table.</p>",
     "AddApplicationVpcConfiguration": "<p>Adds a Virtual Private Cloud (VPC) configuration to the application. Applications can use VPCs to store and access resources securely.</p> <p>Note the following about VPC configurations for Kinesis Data Analytics applications:</p> <ul> <li> <p>VPC configurations are not supported for SQL applications.</p> </li> <li> <p>When a VPC is added to a Kinesis Data Analytics application, the application can no longer be accessed from the Internet directly. To enable Internet access to the application, add an Internet gateway to your VPC.</p> </li> </ul>",
     "CreateApplication": "<p>Creates a Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/getting-started.html\">Creating an Application</a>.</p>",
@@ -208,8 +208,8 @@
         "DescribeApplicationVersionRequest$ApplicationName": "<p>The name of the application for which you want to get the version description.</p>",
         "ListApplicationSnapshotsRequest$ApplicationName": "<p>The name of an existing application.</p>",
         "ListApplicationVersionsRequest$ApplicationName": "<p>The name of the application for which you want to list all versions.</p>",
-        "ListApplicationsRequest$NextToken": "<p>If a previous command returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>",
-        "ListApplicationsResponse$NextToken": "<p>The pagination token for the next set of results, or <code>null</code> if there are no additional results. Pass this token into a subsequent command to retrieve the next set of items For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>",
+        "ListApplicationsRequest$NextToken": "<p>If a previous command returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the Amazon Command Line Interface's Pagination Options</a>.</p>",
+        "ListApplicationsResponse$NextToken": "<p>The pagination token for the next set of results, or <code>null</code> if there are no additional results. Pass this token into a subsequent command to retrieve the next set of items For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the Amazon Command Line Interface's Pagination Options</a>.</p>",
         "RollbackApplicationRequest$ApplicationName": "<p>The name of the application.</p>",
         "StartApplicationRequest$ApplicationName": "<p>The name of the application.</p>",
         "StopApplicationRequest$ApplicationName": "<p>The name of the running application to stop.</p>",
@@ -378,21 +378,21 @@
       }
     },
     "CatalogConfiguration": {
-      "base": "<p>The configuration parameters for the default AWS Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>The configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>",
       "refs": {
-        "ZeppelinApplicationConfiguration$CatalogConfiguration": "<p>The AWS Glue Data Catalog that you use in queries in a Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinApplicationConfiguration$CatalogConfiguration": "<p>The Amazon Glue Data Catalog that you use in queries in a Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "CatalogConfigurationDescription": {
-      "base": "<p>The configuration parameters for the default AWS Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Kinesis Data Analytics Studio notebook.</p>",
+      "base": "<p>The configuration parameters for the default Amazon Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Kinesis Data Analytics Studio notebook.</p>",
       "refs": {
-        "ZeppelinApplicationConfigurationDescription$CatalogConfigurationDescription": "<p>The AWS Glue Data Catalog that is associated with the Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinApplicationConfigurationDescription$CatalogConfigurationDescription": "<p>The Amazon Glue Data Catalog that is associated with the Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "CatalogConfigurationUpdate": {
-      "base": "<p>Updates to </p>",
+      "base": "<p>Updates to the configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>",
       "refs": {
-        "ZeppelinApplicationConfigurationUpdate$CatalogConfigurationUpdate": "<p>Updates to the configuration of the AWS Glue Data Catalog that is associated with the Kinesis Data Analytics Studio notebook.</p>"
+        "ZeppelinApplicationConfigurationUpdate$CatalogConfigurationUpdate": "<p>Updates to the configuration of the Amazon Glue Data Catalog that is associated with the Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "CheckpointConfiguration": {
@@ -667,19 +667,19 @@
       }
     },
     "DeployAsApplicationConfiguration": {
-      "base": "<p>The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state..</p>",
+      "base": "<p>The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state.</p>",
       "refs": {
-        "ZeppelinApplicationConfiguration$DeployAsApplicationConfiguration": "<p>The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state..</p>"
+        "ZeppelinApplicationConfiguration$DeployAsApplicationConfiguration": "<p>The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state.</p>"
       }
     },
     "DeployAsApplicationConfigurationDescription": {
       "base": "<p>The configuration information required to deploy an Amazon Data Analytics Studio notebook as an application with durable state.</p>",
       "refs": {
-        "ZeppelinApplicationConfigurationDescription$DeployAsApplicationConfigurationDescription": "<p>The parameters required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state..</p>"
+        "ZeppelinApplicationConfigurationDescription$DeployAsApplicationConfigurationDescription": "<p>The parameters required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state.</p>"
       }
     },
     "DeployAsApplicationConfigurationUpdate": {
-      "base": "<p>Updates to the configuration information required to deploy an Amazon Data Analytics Studio notebook as an application with durable state..</p>",
+      "base": "<p>Updates to the configuration information required to deploy an Amazon Data Analytics Studio notebook as an application with durable state.</p>",
       "refs": {
         "ZeppelinApplicationConfigurationUpdate$DeployAsApplicationConfigurationUpdate": null
       }
@@ -809,19 +809,19 @@
     "GlueDataCatalogConfiguration": {
       "base": "<p>The configuration of the Glue Data Catalog that you use for Apache Flink SQL queries and table API transforms that you write in an application.</p>",
       "refs": {
-        "CatalogConfiguration$GlueDataCatalogConfiguration": "<p>The configuration parameters for the default AWS Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Kinesis Data Analytics Studio notebook.</p>"
+        "CatalogConfiguration$GlueDataCatalogConfiguration": "<p>The configuration parameters for the default Amazon Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "GlueDataCatalogConfigurationDescription": {
       "base": "<p>The configuration of the Glue Data Catalog that you use for Apache Flink SQL queries and table API transforms that you write in an application.</p>",
       "refs": {
-        "CatalogConfigurationDescription$GlueDataCatalogConfigurationDescription": "<p>The configuration parameters for the default AWS Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>"
+        "CatalogConfigurationDescription$GlueDataCatalogConfigurationDescription": "<p>The configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "GlueDataCatalogConfigurationUpdate": {
       "base": "<p>Updates to the configuration of the Glue Data Catalog that you use for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>",
       "refs": {
-        "CatalogConfigurationUpdate$GlueDataCatalogConfigurationUpdate": "<p>Updates to the configuration parameters for the default AWS Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>"
+        "CatalogConfigurationUpdate$GlueDataCatalogConfigurationUpdate": "<p>Updates to the configuration parameters for the default Amazon Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "Id": {
@@ -895,13 +895,13 @@
       }
     },
     "InputLambdaProcessor": {
-      "base": "<p>An object that contains the Amazon Resource Name (ARN) of the AWS Lambda function that is used to preprocess records in the stream in a SQL-based Kinesis Data Analytics application. </p>",
+      "base": "<p>An object that contains the Amazon Resource Name (ARN) of the Amazon Lambda function that is used to preprocess records in the stream in a SQL-based Kinesis Data Analytics application. </p>",
       "refs": {
         "InputProcessingConfiguration$InputLambdaProcessor": "<p>The <a>InputLambdaProcessor</a> that is used to preprocess the records in the stream before being processed by your application code.</p>"
       }
     },
     "InputLambdaProcessorDescription": {
-      "base": "<p>For a SQL-based Kinesis Data Analytics application, an object that contains the Amazon Resource Name (ARN) of the AWS Lambda function that is used to preprocess records in the stream.</p>",
+      "base": "<p>For a SQL-based Kinesis Data Analytics application, an object that contains the Amazon Resource Name (ARN) of the Amazon Lambda function that is used to preprocess records in the stream.</p>",
       "refs": {
         "InputProcessingConfigurationDescription$InputLambdaProcessorDescription": "<p>Provides configuration information about the associated <a>InputLambdaProcessorDescription</a> </p>"
       }
@@ -933,7 +933,7 @@
       }
     },
     "InputProcessingConfiguration": {
-      "base": "<p>For a SQL-based Kinesis Data Analytics application, describes a processor that is used to preprocess the records in the stream before being processed by your application code. Currently, the only input processor available is <a href=\"https://docs.aws.amazon.com/lambda/\">AWS Lambda</a>.</p>",
+      "base": "<p>For a SQL-based Kinesis Data Analytics application, describes a processor that is used to preprocess the records in the stream before being processed by your application code. Currently, the only input processor available is <a href=\"https://docs.aws.amazon.com/lambda/\">Amazon Lambda</a>.</p>",
       "refs": {
         "AddApplicationInputProcessingConfigurationRequest$InputProcessingConfiguration": "<p>The <a>InputProcessingConfiguration</a> to add to the application.</p>",
         "DiscoverInputSchemaRequest$InputProcessingConfiguration": "<p>The <a>InputProcessingConfiguration</a> to use to preprocess the records before discovering the schema of the records.</p>",
@@ -941,7 +941,7 @@
       }
     },
     "InputProcessingConfigurationDescription": {
-      "base": "<p>For a SQL-based Kinesis Data Analytics application, provides the configuration information about an input processor. Currently, the only input processor available is <a href=\"https://docs.aws.amazon.com/lambda/\">AWS Lambda</a>.</p>",
+      "base": "<p>For a SQL-based Kinesis Data Analytics application, provides the configuration information about an input processor. Currently, the only input processor available is <a href=\"https://docs.aws.amazon.com/lambda/\">Amazon Lambda</a>.</p>",
       "refs": {
         "AddApplicationInputProcessingConfigurationResponse$InputProcessingConfigurationDescription": "<p>The description of the preprocessor that executes on records in this input before the application's code is run.</p>",
         "InputDescription$InputProcessingConfigurationDescription": "<p>The description of the preprocessor that executes on records in this input before the application's code is run. </p>"
@@ -1099,21 +1099,21 @@
       }
     },
     "LambdaOutput": {
-      "base": "<p>When you configure a SQL-based Kinesis Data Analytics application's output, identifies an AWS Lambda function as the destination. You provide the function Amazon Resource Name (ARN) of the Lambda function. </p>",
+      "base": "<p>When you configure a SQL-based Kinesis Data Analytics application's output, identifies an Amazon Lambda function as the destination. You provide the function Amazon Resource Name (ARN) of the Lambda function. </p>",
       "refs": {
-        "Output$LambdaOutput": "<p>Identifies an AWS Lambda function as the destination.</p>"
+        "Output$LambdaOutput": "<p>Identifies an Amazon Lambda function as the destination.</p>"
       }
     },
     "LambdaOutputDescription": {
-      "base": "<p>For a SQL-based Kinesis Data Analytics application's output, describes the AWS Lambda function that is configured as its destination. </p>",
+      "base": "<p>For a SQL-based Kinesis Data Analytics application's output, describes the Amazon Lambda function that is configured as its destination. </p>",
       "refs": {
         "OutputDescription$LambdaOutputDescription": "<p>Describes the Lambda function that is configured as the destination where output is written.</p>"
       }
     },
     "LambdaOutputUpdate": {
-      "base": "<p>When you update an SQL-based Kinesis Data Analytics application's output configuration using the <a>UpdateApplication</a> operation, provides information about an AWS Lambda function that is configured as the destination.</p>",
+      "base": "<p>When you update an SQL-based Kinesis Data Analytics application's output configuration using the <a>UpdateApplication</a> operation, provides information about an Amazon Lambda function that is configured as the destination.</p>",
       "refs": {
-        "OutputUpdate$LambdaOutputUpdate": "<p>Describes an AWS Lambda function as the destination for the output.</p>"
+        "OutputUpdate$LambdaOutputUpdate": "<p>Describes an Amazon Lambda function as the destination for the output.</p>"
       }
     },
     "LimitExceededException": {
@@ -1268,8 +1268,8 @@
       "refs": {
         "ListApplicationSnapshotsRequest$NextToken": "<p>Use this parameter if you receive a <code>NextToken</code> response in a previous request that indicates that there is more output available. Set it to the value of the previous call's <code>NextToken</code> response to indicate where the output should continue from. </p>",
         "ListApplicationSnapshotsResponse$NextToken": "<p>The token for the next set of results, or <code>null</code> if there are no additional results.</p>",
-        "ListApplicationVersionsRequest$NextToken": "<p>If a previous invocation of this operation returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>",
-        "ListApplicationVersionsResponse$NextToken": "<p>The pagination token for the next set of results, or <code>null</code> if there are no additional results. To retrieve the next set of items, pass this token into a subsequent invocation of this operation. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>"
+        "ListApplicationVersionsRequest$NextToken": "<p>If a previous invocation of this operation returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the Amazon Command Line Interface's Pagination Options</a>.</p>",
+        "ListApplicationVersionsResponse$NextToken": "<p>The pagination token for the next set of results, or <code>null</code> if there are no additional results. To retrieve the next set of items, pass this token into a subsequent invocation of this operation. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the Amazon Command Line Interface's Pagination Options</a>.</p>"
       }
     },
     "ObjectVersion": {
@@ -1283,7 +1283,7 @@
     "Output": {
       "base": "<p> Describes a SQL-based Kinesis Data Analytics application's output configuration, in which you identify an in-application stream and a destination where you want the in-application stream data to be written. The destination can be a Kinesis data stream or a Kinesis Data Firehose delivery stream. </p> <p/>",
       "refs": {
-        "AddApplicationOutputRequest$Output": "<p>An array of objects, each describing one output configuration. In the output configuration, you specify the name of an in-application stream, a destination (that is, a Kinesis data stream, a Kinesis Data Firehose delivery stream, or an AWS Lambda function), and record the formation to use when writing to the destination.</p>",
+        "AddApplicationOutputRequest$Output": "<p>An array of objects, each describing one output configuration. In the output configuration, you specify the name of an in-application stream, a destination (that is, a Kinesis data stream, a Kinesis Data Firehose delivery stream, or an Amazon Lambda function), and record the formation to use when writing to the destination.</p>",
         "Outputs$member": null
       }
     },
@@ -1554,9 +1554,9 @@
         "DeleteApplicationReferenceDataSourceResponse$ApplicationARN": "<p>The application Amazon Resource Name (ARN).</p>",
         "DeleteApplicationVpcConfigurationResponse$ApplicationARN": "<p>The ARN of the Kinesis Data Analytics application.</p>",
         "DiscoverInputSchemaRequest$ResourceARN": "<p>The Amazon Resource Name (ARN) of the streaming source.</p>",
-        "InputLambdaProcessor$ResourceARN": "<p>The ARN of the AWS Lambda function that operates on records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
-        "InputLambdaProcessorDescription$ResourceARN": "<p>The ARN of the AWS Lambda function that is used to preprocess the records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
-        "InputLambdaProcessorUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the new AWS Lambda function that is used to preprocess the records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
+        "InputLambdaProcessor$ResourceARN": "<p>The ARN of the Amazon Lambda function that operates on records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: Amazon Lambda</a> </p> </note>",
+        "InputLambdaProcessorDescription$ResourceARN": "<p>The ARN of the Amazon Lambda function that is used to preprocess the records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: Amazon Lambda</a> </p> </note>",
+        "InputLambdaProcessorUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the new Amazon Lambda function that is used to preprocess the records in the stream.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: Amazon Lambda</a> </p> </note>",
         "KinesisFirehoseInput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the delivery stream.</p>",
         "KinesisFirehoseInputDescription$ResourceARN": "<p>The Amazon Resource Name (ARN) of the delivery stream.</p>",
         "KinesisFirehoseInputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the input delivery stream to read.</p>",
@@ -1569,9 +1569,9 @@
         "KinesisStreamsOutput$ResourceARN": "<p>The ARN of the destination Kinesis data stream to write to.</p>",
         "KinesisStreamsOutputDescription$ResourceARN": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream.</p>",
         "KinesisStreamsOutputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream where you want to write the output.</p>",
-        "LambdaOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the destination Lambda function to write to.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
+        "LambdaOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the destination Lambda function to write to.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: Amazon Lambda</a> </p> </note>",
         "LambdaOutputDescription$ResourceARN": "<p>The Amazon Resource Name (ARN) of the destination Lambda function.</p>",
-        "LambdaOutputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the destination AWS Lambda function.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
+        "LambdaOutputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the destination Amazon Lambda function.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: Amazon Lambda</a> </p> </note>",
         "UpdateApplicationMaintenanceConfigurationResponse$ApplicationARN": "<p>The Amazon Resource Name (ARN) of the application.</p>"
       }
     },
@@ -1597,7 +1597,7 @@
         "CloudWatchLoggingOptionDescription$RoleARN": "<p>The IAM ARN of the role to use to send application messages. </p> <note> <p>Provided for backward compatibility. Applications created with the current API version have an application-level service execution role rather than a resource-level role.</p> </note>",
         "CreateApplicationRequest$ServiceExecutionRole": "<p>The IAM role used by the application to access Kinesis data streams, Kinesis Data Firehose delivery streams, Amazon S3 objects, and other external resources.</p>",
         "DiscoverInputSchemaRequest$ServiceExecutionRole": "<p>The ARN of the role that is used to access the streaming source.</p>",
-        "InputLambdaProcessorDescription$RoleARN": "<p>The ARN of the IAM role that is used to access the AWS Lambda function.</p> <note> <p>Provided for backward compatibility. Applications that are created with the current API version have an application-level service execution role rather than a resource-level role.</p> </note>",
+        "InputLambdaProcessorDescription$RoleARN": "<p>The ARN of the IAM role that is used to access the Amazon Lambda function.</p> <note> <p>Provided for backward compatibility. Applications that are created with the current API version have an application-level service execution role rather than a resource-level role.</p> </note>",
         "KinesisFirehoseInputDescription$RoleARN": "<p>The ARN of the IAM role that Kinesis Data Analytics assumes to access the stream.</p> <note> <p>Provided for backward compatibility. Applications that are created with the current API version have an application-level service execution role rather than a resource-level role.</p> </note>",
         "KinesisFirehoseOutputDescription$RoleARN": "<p>The ARN of the IAM role that Kinesis Data Analytics can assume to access the stream.</p> <note> <p>Provided for backward compatibility. Applications that are created with the current API version have an application-level service execution role rather than a resource-level role.</p> </note>",
         "KinesisStreamsInputDescription$RoleARN": "<p>The ARN of the IAM role that Kinesis Data Analytics can assume to access the stream.</p> <note> <p>Provided for backward compatibility. Applications that are created with the current API version have an application-level service execution role rather than a resource-level role.</p> </note>",
@@ -1835,7 +1835,7 @@
       }
     },
     "Tag": {
-      "base": "<p>A key-value pair (the value is optional) that you can define and assign to AWS resources. If you specify a tag that already exists, the tag value is replaced with the value that you specify in the request. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
+      "base": "<p>A key-value pair (the value is optional) that you can define and assign to Amazon resources. If you specify a tag that already exists, the tag value is replaced with the value that you specify in the request. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
       "refs": {
         "Tags$member": null
       }

@@ -140,6 +140,10 @@ type WorkMailAPI interface {
 	DeregisterFromWorkMailWithContext(aws.Context, *workmail.DeregisterFromWorkMailInput, ...request.Option) (*workmail.DeregisterFromWorkMailOutput, error)
 	DeregisterFromWorkMailRequest(*workmail.DeregisterFromWorkMailInput) (*request.Request, *workmail.DeregisterFromWorkMailOutput)
 
+	DeregisterMailDomain(*workmail.DeregisterMailDomainInput) (*workmail.DeregisterMailDomainOutput, error)
+	DeregisterMailDomainWithContext(aws.Context, *workmail.DeregisterMailDomainInput, ...request.Option) (*workmail.DeregisterMailDomainOutput, error)
+	DeregisterMailDomainRequest(*workmail.DeregisterMailDomainInput) (*request.Request, *workmail.DeregisterMailDomainOutput)
+
 	DescribeGroup(*workmail.DescribeGroupInput) (*workmail.DescribeGroupOutput, error)
 	DescribeGroupWithContext(aws.Context, *workmail.DescribeGroupInput, ...request.Option) (*workmail.DescribeGroupOutput, error)
 	DescribeGroupRequest(*workmail.DescribeGroupInput) (*request.Request, *workmail.DescribeGroupOutput)
@@ -180,6 +184,10 @@ type WorkMailAPI interface {
 	GetDefaultRetentionPolicyWithContext(aws.Context, *workmail.GetDefaultRetentionPolicyInput, ...request.Option) (*workmail.GetDefaultRetentionPolicyOutput, error)
 	GetDefaultRetentionPolicyRequest(*workmail.GetDefaultRetentionPolicyInput) (*request.Request, *workmail.GetDefaultRetentionPolicyOutput)
 
+	GetMailDomain(*workmail.GetMailDomainInput) (*workmail.GetMailDomainOutput, error)
+	GetMailDomainWithContext(aws.Context, *workmail.GetMailDomainInput, ...request.Option) (*workmail.GetMailDomainOutput, error)
+	GetMailDomainRequest(*workmail.GetMailDomainInput) (*request.Request, *workmail.GetMailDomainOutput)
+
 	GetMailboxDetails(*workmail.GetMailboxDetailsInput) (*workmail.GetMailboxDetailsOutput, error)
 	GetMailboxDetailsWithContext(aws.Context, *workmail.GetMailboxDetailsInput, ...request.Option) (*workmail.GetMailboxDetailsOutput, error)
 	GetMailboxDetailsRequest(*workmail.GetMailboxDetailsInput) (*request.Request, *workmail.GetMailboxDetailsOutput)
@@ -216,6 +224,13 @@ type WorkMailAPI interface {
 
 	ListGroupsPages(*workmail.ListGroupsInput, func(*workmail.ListGroupsOutput, bool) bool) error
 	ListGroupsPagesWithContext(aws.Context, *workmail.ListGroupsInput, func(*workmail.ListGroupsOutput, bool) bool, ...request.Option) error
+
+	ListMailDomains(*workmail.ListMailDomainsInput) (*workmail.ListMailDomainsOutput, error)
+	ListMailDomainsWithContext(aws.Context, *workmail.ListMailDomainsInput, ...request.Option) (*workmail.ListMailDomainsOutput, error)
+	ListMailDomainsRequest(*workmail.ListMailDomainsInput) (*request.Request, *workmail.ListMailDomainsOutput)
+
+	ListMailDomainsPages(*workmail.ListMailDomainsInput, func(*workmail.ListMailDomainsOutput, bool) bool) error
+	ListMailDomainsPagesWithContext(aws.Context, *workmail.ListMailDomainsInput, func(*workmail.ListMailDomainsOutput, bool) bool, ...request.Option) error
 
 	ListMailboxExportJobs(*workmail.ListMailboxExportJobsInput) (*workmail.ListMailboxExportJobsOutput, error)
 	ListMailboxExportJobsWithContext(aws.Context, *workmail.ListMailboxExportJobsInput, ...request.Option) (*workmail.ListMailboxExportJobsOutput, error)
@@ -294,6 +309,10 @@ type WorkMailAPI interface {
 	PutRetentionPolicyWithContext(aws.Context, *workmail.PutRetentionPolicyInput, ...request.Option) (*workmail.PutRetentionPolicyOutput, error)
 	PutRetentionPolicyRequest(*workmail.PutRetentionPolicyInput) (*request.Request, *workmail.PutRetentionPolicyOutput)
 
+	RegisterMailDomain(*workmail.RegisterMailDomainInput) (*workmail.RegisterMailDomainOutput, error)
+	RegisterMailDomainWithContext(aws.Context, *workmail.RegisterMailDomainInput, ...request.Option) (*workmail.RegisterMailDomainOutput, error)
+	RegisterMailDomainRequest(*workmail.RegisterMailDomainInput) (*request.Request, *workmail.RegisterMailDomainOutput)
+
 	RegisterToWorkMail(*workmail.RegisterToWorkMailInput) (*workmail.RegisterToWorkMailOutput, error)
 	RegisterToWorkMailWithContext(aws.Context, *workmail.RegisterToWorkMailInput, ...request.Option) (*workmail.RegisterToWorkMailOutput, error)
 	RegisterToWorkMailRequest(*workmail.RegisterToWorkMailInput) (*request.Request, *workmail.RegisterToWorkMailOutput)
@@ -313,6 +332,10 @@ type WorkMailAPI interface {
 	UntagResource(*workmail.UntagResourceInput) (*workmail.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *workmail.UntagResourceInput, ...request.Option) (*workmail.UntagResourceOutput, error)
 	UntagResourceRequest(*workmail.UntagResourceInput) (*request.Request, *workmail.UntagResourceOutput)
+
+	UpdateDefaultMailDomain(*workmail.UpdateDefaultMailDomainInput) (*workmail.UpdateDefaultMailDomainOutput, error)
+	UpdateDefaultMailDomainWithContext(aws.Context, *workmail.UpdateDefaultMailDomainInput, ...request.Option) (*workmail.UpdateDefaultMailDomainOutput, error)
+	UpdateDefaultMailDomainRequest(*workmail.UpdateDefaultMailDomainInput) (*request.Request, *workmail.UpdateDefaultMailDomainOutput)
 
 	UpdateMailboxQuota(*workmail.UpdateMailboxQuotaInput) (*workmail.UpdateMailboxQuotaOutput, error)
 	UpdateMailboxQuotaWithContext(aws.Context, *workmail.UpdateMailboxQuotaInput, ...request.Option) (*workmail.UpdateMailboxQuotaOutput, error)

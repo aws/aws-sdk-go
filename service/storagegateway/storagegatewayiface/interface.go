@@ -437,6 +437,10 @@ type StorageGatewayAPI interface {
 	UpdateSMBFileShareVisibilityWithContext(aws.Context, *storagegateway.UpdateSMBFileShareVisibilityInput, ...request.Option) (*storagegateway.UpdateSMBFileShareVisibilityOutput, error)
 	UpdateSMBFileShareVisibilityRequest(*storagegateway.UpdateSMBFileShareVisibilityInput) (*request.Request, *storagegateway.UpdateSMBFileShareVisibilityOutput)
 
+	UpdateSMBLocalGroups(*storagegateway.UpdateSMBLocalGroupsInput) (*storagegateway.UpdateSMBLocalGroupsOutput, error)
+	UpdateSMBLocalGroupsWithContext(aws.Context, *storagegateway.UpdateSMBLocalGroupsInput, ...request.Option) (*storagegateway.UpdateSMBLocalGroupsOutput, error)
+	UpdateSMBLocalGroupsRequest(*storagegateway.UpdateSMBLocalGroupsInput) (*request.Request, *storagegateway.UpdateSMBLocalGroupsOutput)
+
 	UpdateSMBSecurityStrategy(*storagegateway.UpdateSMBSecurityStrategyInput) (*storagegateway.UpdateSMBSecurityStrategyOutput, error)
 	UpdateSMBSecurityStrategyWithContext(aws.Context, *storagegateway.UpdateSMBSecurityStrategyInput, ...request.Option) (*storagegateway.UpdateSMBSecurityStrategyOutput, error)
 	UpdateSMBSecurityStrategyRequest(*storagegateway.UpdateSMBSecurityStrategyInput) (*request.Request, *storagegateway.UpdateSMBSecurityStrategyOutput)

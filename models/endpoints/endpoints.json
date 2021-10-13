@@ -11084,7 +11084,8 @@
         "endpoints" : {
           "us-iso-east-1" : {
             "protocols" : [ "http", "https" ]
-          }
+          },
+          "us-iso-west-1" : { }
         }
       },
       "ec2" : {

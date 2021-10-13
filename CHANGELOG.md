@@ -1,3 +1,16 @@
+Release v1.41.2 (2021-10-13)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for additional VPC Flow Logs delivery options to S3, such as Apache Parquet formatted files, Hourly partitions and Hive-compatible S3 prefixes
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/storagegateway`: Updates service API and documentation
+  * Adding support for Audit Logs on NFS shares and Force Closing Files on SMB shares.
+* `service/workmail`: Updates service API, documentation, and paginators
+  * This release adds APIs for adding, removing and retrieving details of mail domains
+
 Release v1.41.1 (2021-10-12)
 ===
 

@@ -62,6 +62,14 @@ const (
 	// can do so on its behalf.
 	ErrCodeInvalidConfigurationException = "InvalidConfigurationException"
 
+	// ErrCodeInvalidCustomSesConfigurationException for service response error code
+	// "InvalidCustomSesConfigurationException".
+	//
+	// You SES configuration has customizations that Amazon WorkMail cannot save.
+	// The error message lists the invalid setting. For examples of invalid settings,
+	// refer to CreateReceiptRule (https://docs.aws.amazon.com/ses/latest/APIReference/API_CreateReceiptRule.html).
+	ErrCodeInvalidCustomSesConfigurationException = "InvalidCustomSesConfigurationException"
+
 	// ErrCodeInvalidParameterException for service response error code
 	// "InvalidParameterException".
 	//
@@ -81,11 +89,17 @@ const (
 	// The request exceeds the limit of the resource.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
+	// ErrCodeMailDomainInUseException for service response error code
+	// "MailDomainInUseException".
+	//
+	// The domain you're trying to change is in use by another user or organization
+	// in your account. See the error message for details.
+	ErrCodeMailDomainInUseException = "MailDomainInUseException"
+
 	// ErrCodeMailDomainNotFoundException for service response error code
 	// "MailDomainNotFoundException".
 	//
-	// For an email or alias to be created in Amazon WorkMail, the included domain
-	// must be defined in the organization.
+	// The domain specified is not found in your organization.
 	ErrCodeMailDomainNotFoundException = "MailDomainNotFoundException"
 
 	// ErrCodeMailDomainStateException for service response error code
@@ -149,9 +163,11 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"EntityNotFoundException":                       newErrorEntityNotFoundException,
 	"EntityStateException":                          newErrorEntityStateException,
 	"InvalidConfigurationException":                 newErrorInvalidConfigurationException,
+	"InvalidCustomSesConfigurationException":        newErrorInvalidCustomSesConfigurationException,
 	"InvalidParameterException":                     newErrorInvalidParameterException,
 	"InvalidPasswordException":                      newErrorInvalidPasswordException,
 	"LimitExceededException":                        newErrorLimitExceededException,
+	"MailDomainInUseException":                      newErrorMailDomainInUseException,
 	"MailDomainNotFoundException":                   newErrorMailDomainNotFoundException,
 	"MailDomainStateException":                      newErrorMailDomainStateException,
 	"NameAvailabilityException":                     newErrorNameAvailabilityException,

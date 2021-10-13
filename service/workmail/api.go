@@ -380,8 +380,7 @@ func (c *WorkMail) CreateAliasRequest(input *CreateAliasInput) (req *request.Req
 //   One or more of the input parameters don't match the service's restrictions.
 //
 //   * MailDomainNotFoundException
-//   For an email or alias to be created in Amazon WorkMail, the included domain
-//   must be defined in the organization.
+//   The domain specified is not found in your organization.
 //
 //   * MailDomainStateException
 //   After a domain has been added to the organization, it must be verified. The
@@ -977,6 +976,10 @@ func (c *WorkMail) DeleteAccessControlRuleRequest(input *DeleteAccessControlRule
 //
 // Deletes an access control rule for the specified WorkMail organization.
 //
+// Deleting already deleted and non-existing rules does not produce an error.
+// In those cases, the service sends back an HTTP 200 response with an empty
+// HTTP body.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1356,6 +1359,10 @@ func (c *WorkMail) DeleteMobileDeviceAccessOverrideRequest(input *DeleteMobileDe
 // Deletes the mobile device access override for the given WorkMail organization,
 // user, and device.
 //
+// Deleting already deleted and non-existing overrides does not produce an error.
+// In those cases, the service sends back an HTTP 200 response with an empty
+// HTTP body.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1447,6 +1454,10 @@ func (c *WorkMail) DeleteMobileDeviceAccessRuleRequest(input *DeleteMobileDevice
 // DeleteMobileDeviceAccessRule API operation for Amazon WorkMail.
 //
 // Deletes a mobile device access rule for the specified Amazon WorkMail organization.
+//
+// Deleting already deleted and non-existing rules does not produce an error.
+// In those cases, the service sends back an HTTP 200 response with an empty
+// HTTP body.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1960,6 +1971,106 @@ func (c *WorkMail) DeregisterFromWorkMail(input *DeregisterFromWorkMailInput) (*
 // for more information on using Contexts.
 func (c *WorkMail) DeregisterFromWorkMailWithContext(ctx aws.Context, input *DeregisterFromWorkMailInput, opts ...request.Option) (*DeregisterFromWorkMailOutput, error) {
 	req, out := c.DeregisterFromWorkMailRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeregisterMailDomain = "DeregisterMailDomain"
+
+// DeregisterMailDomainRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterMailDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeregisterMailDomain for more information on using the DeregisterMailDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeregisterMailDomainRequest method.
+//    req, resp := client.DeregisterMailDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeregisterMailDomain
+func (c *WorkMail) DeregisterMailDomainRequest(input *DeregisterMailDomainInput) (req *request.Request, output *DeregisterMailDomainOutput) {
+	op := &request.Operation{
+		Name:       opDeregisterMailDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeregisterMailDomainInput{}
+	}
+
+	output = &DeregisterMailDomainOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeregisterMailDomain API operation for Amazon WorkMail.
+//
+// Removes a domain from Amazon WorkMail, stops email routing to WorkMail, and
+// removes the authorization allowing WorkMail use. SES keeps the domain because
+// other applications may use it. You must first remove any email address used
+// by WorkMail entities before you remove the domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation DeregisterMailDomain for usage and error information.
+//
+// Returned Error Types:
+//   * MailDomainInUseException
+//   The domain you're trying to change is in use by another user or organization
+//   in your account. See the error message for details.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * InvalidCustomSesConfigurationException
+//   You SES configuration has customizations that Amazon WorkMail cannot save.
+//   The error message lists the invalid setting. For examples of invalid settings,
+//   refer to CreateReceiptRule (https://docs.aws.amazon.com/ses/latest/APIReference/API_CreateReceiptRule.html).
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeregisterMailDomain
+func (c *WorkMail) DeregisterMailDomain(input *DeregisterMailDomainInput) (*DeregisterMailDomainOutput, error) {
+	req, out := c.DeregisterMailDomainRequest(input)
+	return out, req.Send()
+}
+
+// DeregisterMailDomainWithContext is the same as DeregisterMailDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeregisterMailDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) DeregisterMailDomainWithContext(ctx aws.Context, input *DeregisterMailDomainInput, opts ...request.Option) (*DeregisterMailDomainOutput, error) {
+	req, out := c.DeregisterMailDomainRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2880,6 +2991,97 @@ func (c *WorkMail) GetDefaultRetentionPolicyWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opGetMailDomain = "GetMailDomain"
+
+// GetMailDomainRequest generates a "aws/request.Request" representing the
+// client's request for the GetMailDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMailDomain for more information on using the GetMailDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMailDomainRequest method.
+//    req, resp := client.GetMailDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetMailDomain
+func (c *WorkMail) GetMailDomainRequest(input *GetMailDomainInput) (req *request.Request, output *GetMailDomainOutput) {
+	op := &request.Operation{
+		Name:       opGetMailDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMailDomainInput{}
+	}
+
+	output = &GetMailDomainOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMailDomain API operation for Amazon WorkMail.
+//
+// Gets details for a mail domain, including domain records required to configure
+// your domain with recommended security.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation GetMailDomain for usage and error information.
+//
+// Returned Error Types:
+//   * MailDomainNotFoundException
+//   The domain specified is not found in your organization.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetMailDomain
+func (c *WorkMail) GetMailDomain(input *GetMailDomainInput) (*GetMailDomainOutput, error) {
+	req, out := c.GetMailDomainRequest(input)
+	return out, req.Send()
+}
+
+// GetMailDomainWithContext is the same as GetMailDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMailDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) GetMailDomainWithContext(ctx aws.Context, input *GetMailDomainInput, opts ...request.Option) (*GetMailDomainOutput, error) {
+	req, out := c.GetMailDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMailboxDetails = "GetMailboxDetails"
 
 // GetMailboxDetailsRequest generates a "aws/request.Request" representing the
@@ -3686,6 +3888,151 @@ func (c *WorkMail) ListGroupsPagesWithContext(ctx aws.Context, input *ListGroups
 
 	for p.Next() {
 		if !fn(p.Page().(*ListGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMailDomains = "ListMailDomains"
+
+// ListMailDomainsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMailDomains operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMailDomains for more information on using the ListMailDomains
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMailDomainsRequest method.
+//    req, resp := client.ListMailDomainsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListMailDomains
+func (c *WorkMail) ListMailDomainsRequest(input *ListMailDomainsInput) (req *request.Request, output *ListMailDomainsOutput) {
+	op := &request.Operation{
+		Name:       opListMailDomains,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMailDomainsInput{}
+	}
+
+	output = &ListMailDomainsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMailDomains API operation for Amazon WorkMail.
+//
+// Lists the mail domains in a given Amazon WorkMail organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation ListMailDomains for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListMailDomains
+func (c *WorkMail) ListMailDomains(input *ListMailDomainsInput) (*ListMailDomainsOutput, error) {
+	req, out := c.ListMailDomainsRequest(input)
+	return out, req.Send()
+}
+
+// ListMailDomainsWithContext is the same as ListMailDomains with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMailDomains for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListMailDomainsWithContext(ctx aws.Context, input *ListMailDomainsInput, opts ...request.Option) (*ListMailDomainsOutput, error) {
+	req, out := c.ListMailDomainsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMailDomainsPages iterates over the pages of a ListMailDomains operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMailDomains method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMailDomains operation.
+//    pageNum := 0
+//    err := client.ListMailDomainsPages(params,
+//        func(page *workmail.ListMailDomainsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *WorkMail) ListMailDomainsPages(input *ListMailDomainsInput, fn func(*ListMailDomainsOutput, bool) bool) error {
+	return c.ListMailDomainsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMailDomainsPagesWithContext same as ListMailDomainsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListMailDomainsPagesWithContext(ctx aws.Context, input *ListMailDomainsInput, fn func(*ListMailDomainsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMailDomainsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMailDomainsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMailDomainsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5354,6 +5701,104 @@ func (c *WorkMail) PutRetentionPolicyWithContext(ctx aws.Context, input *PutRete
 	return out, req.Send()
 }
 
+const opRegisterMailDomain = "RegisterMailDomain"
+
+// RegisterMailDomainRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterMailDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RegisterMailDomain for more information on using the RegisterMailDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RegisterMailDomainRequest method.
+//    req, resp := client.RegisterMailDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/RegisterMailDomain
+func (c *WorkMail) RegisterMailDomainRequest(input *RegisterMailDomainInput) (req *request.Request, output *RegisterMailDomainOutput) {
+	op := &request.Operation{
+		Name:       opRegisterMailDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RegisterMailDomainInput{}
+	}
+
+	output = &RegisterMailDomainOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RegisterMailDomain API operation for Amazon WorkMail.
+//
+// Registers a new domain in Amazon WorkMail and SES, and configures it for
+// use by WorkMail. Emails received by SES for this domain are routed to the
+// specified WorkMail organization, and WorkMail has permanent permission to
+// use the specified domain for sending your users' emails.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation RegisterMailDomain for usage and error information.
+//
+// Returned Error Types:
+//   * MailDomainInUseException
+//   The domain you're trying to change is in use by another user or organization
+//   in your account. See the error message for details.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * LimitExceededException
+//   The request exceeds the limit of the resource.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/RegisterMailDomain
+func (c *WorkMail) RegisterMailDomain(input *RegisterMailDomainInput) (*RegisterMailDomainOutput, error) {
+	req, out := c.RegisterMailDomainRequest(input)
+	return out, req.Send()
+}
+
+// RegisterMailDomainWithContext is the same as RegisterMailDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterMailDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) RegisterMailDomainWithContext(ctx aws.Context, input *RegisterMailDomainInput, opts ...request.Option) (*RegisterMailDomainOutput, error) {
+	req, out := c.RegisterMailDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRegisterToWorkMail = "RegisterToWorkMail"
 
 // RegisterToWorkMailRequest generates a "aws/request.Request" representing the
@@ -5442,8 +5887,7 @@ func (c *WorkMail) RegisterToWorkMailRequest(input *RegisterToWorkMailInput) (re
 //   One or more of the input parameters don't match the service's restrictions.
 //
 //   * MailDomainNotFoundException
-//   For an email or alias to be created in Amazon WorkMail, the included domain
-//   must be defined in the organization.
+//   The domain specified is not found in your organization.
 //
 //   * MailDomainStateException
 //   After a domain has been added to the organization, it must be verified. The
@@ -5854,6 +6298,103 @@ func (c *WorkMail) UntagResourceWithContext(ctx aws.Context, input *UntagResourc
 	return out, req.Send()
 }
 
+const opUpdateDefaultMailDomain = "UpdateDefaultMailDomain"
+
+// UpdateDefaultMailDomainRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDefaultMailDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDefaultMailDomain for more information on using the UpdateDefaultMailDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateDefaultMailDomainRequest method.
+//    req, resp := client.UpdateDefaultMailDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateDefaultMailDomain
+func (c *WorkMail) UpdateDefaultMailDomainRequest(input *UpdateDefaultMailDomainInput) (req *request.Request, output *UpdateDefaultMailDomainOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDefaultMailDomain,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDefaultMailDomainInput{}
+	}
+
+	output = &UpdateDefaultMailDomainOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateDefaultMailDomain API operation for Amazon WorkMail.
+//
+// Updates the default mail domain for an organization. The default mail domain
+// is used by the WorkMail AWS Console to suggest an email address when enabling
+// a mail user. You can only have one default domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation UpdateDefaultMailDomain for usage and error information.
+//
+// Returned Error Types:
+//   * MailDomainNotFoundException
+//   The domain specified is not found in your organization.
+//
+//   * MailDomainStateException
+//   After a domain has been added to the organization, it must be verified. The
+//   domain is not yet verified.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateDefaultMailDomain
+func (c *WorkMail) UpdateDefaultMailDomain(input *UpdateDefaultMailDomainInput) (*UpdateDefaultMailDomainOutput, error) {
+	req, out := c.UpdateDefaultMailDomainRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDefaultMailDomainWithContext is the same as UpdateDefaultMailDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDefaultMailDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) UpdateDefaultMailDomainWithContext(ctx aws.Context, input *UpdateDefaultMailDomainInput, opts ...request.Option) (*UpdateDefaultMailDomainOutput, error) {
+	req, out := c.UpdateDefaultMailDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateMailboxQuota = "UpdateMailboxQuota"
 
 // UpdateMailboxQuotaRequest generates a "aws/request.Request" representing the
@@ -6122,8 +6663,7 @@ func (c *WorkMail) UpdatePrimaryEmailAddressRequest(input *UpdatePrimaryEmailAdd
 //   One or more of the input parameters don't match the service's restrictions.
 //
 //   * MailDomainNotFoundException
-//   For an email or alias to be created in Amazon WorkMail, the included domain
-//   must be defined in the organization.
+//   The domain specified is not found in your organization.
 //
 //   * MailDomainStateException
 //   After a domain has been added to the organization, it must be verified. The
@@ -6243,8 +6783,7 @@ func (c *WorkMail) UpdateResourceRequest(input *UpdateResourceInput) (req *reque
 //   user, group, or resource.
 //
 //   * MailDomainNotFoundException
-//   For an email or alias to be created in Amazon WorkMail, the included domain
-//   must be defined in the organization.
+//   The domain specified is not found in your organization.
 //
 //   * MailDomainStateException
 //   After a domain has been added to the organization, it must be verified. The
@@ -8701,6 +9240,94 @@ func (s DeregisterFromWorkMailOutput) GoString() string {
 	return s.String()
 }
 
+type DeregisterMailDomainInput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain to deregister in WorkMail and SES.
+	//
+	// DomainName is a required field
+	DomainName *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon WorkMail organization for which the domain will be deregistered.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterMailDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterMailDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeregisterMailDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeregisterMailDomainInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *DeregisterMailDomainInput) SetDomainName(v string) *DeregisterMailDomainInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DeregisterMailDomainInput) SetOrganizationId(v string) *DeregisterMailDomainInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type DeregisterMailDomainOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterMailDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterMailDomainOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10015,6 +10642,56 @@ func (s DisassociateMemberFromGroupOutput) GoString() string {
 	return s.String()
 }
 
+// A DNS record uploaded to your DNS provider.
+type DnsRecord struct {
+	_ struct{} `type:"structure"`
+
+	// The DNS hostname.- For example, domain.example.com.
+	Hostname *string `type:"string"`
+
+	// The RFC 1035 record type. Possible values: CNAME, A, MX.
+	Type *string `type:"string"`
+
+	// The value returned by the DNS for a query to that hostname and record type.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DnsRecord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DnsRecord) GoString() string {
+	return s.String()
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *DnsRecord) SetHostname(v string) *DnsRecord {
+	s.Hostname = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DnsRecord) SetType(v string) *DnsRecord {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *DnsRecord) SetValue(v string) *DnsRecord {
+	s.Value = &v
+	return s
+}
+
 // The domain to associate with an Amazon WorkMail organization.
 //
 // When you configure a domain hosted in Amazon Route 53 (Route 53), all recommended
@@ -10352,7 +11029,7 @@ type FolderConfiguration struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true" enum:"FolderName"`
 
-	// The period of time at which the folder configuration action is applied.
+	// The number of days for which the folder-configuration action applies.
 	Period *int64 `min:"1" type:"integer"`
 }
 
@@ -10656,6 +11333,143 @@ func (s *GetDefaultRetentionPolicyOutput) SetId(v string) *GetDefaultRetentionPo
 // SetName sets the Name field's value.
 func (s *GetDefaultRetentionPolicyOutput) SetName(v string) *GetDefaultRetentionPolicyOutput {
 	s.Name = &v
+	return s
+}
+
+type GetMailDomainInput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain from which you want to retrieve details.
+	//
+	// DomainName is a required field
+	DomainName *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon WorkMail organization for which the domain is retrieved.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMailDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMailDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMailDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMailDomainInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *GetMailDomainInput) SetDomainName(v string) *GetMailDomainInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *GetMailDomainInput) SetOrganizationId(v string) *GetMailDomainInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type GetMailDomainOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the status of a DKIM verification.
+	DkimVerificationStatus *string `type:"string" enum:"DnsRecordVerificationStatus"`
+
+	// Specifies whether the domain is the default domain for your organization.
+	IsDefault *bool `type:"boolean"`
+
+	// Specifies whether the domain is a test domain provided by WorkMail, or a
+	// custom domain.
+	IsTestDomain *bool `type:"boolean"`
+
+	// Indicates the status of the domain ownership verification.
+	OwnershipVerificationStatus *string `type:"string" enum:"DnsRecordVerificationStatus"`
+
+	// A list of the DNS records that Amazon WorkMail recommends adding in your
+	// DNS provider for the best user experience. The records configure your domain
+	// with DMARC, SPF, DKIM, and direct incoming email traffic to SES. See admin
+	// guide for more details.
+	Records []*DnsRecord `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMailDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMailDomainOutput) GoString() string {
+	return s.String()
+}
+
+// SetDkimVerificationStatus sets the DkimVerificationStatus field's value.
+func (s *GetMailDomainOutput) SetDkimVerificationStatus(v string) *GetMailDomainOutput {
+	s.DkimVerificationStatus = &v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *GetMailDomainOutput) SetIsDefault(v bool) *GetMailDomainOutput {
+	s.IsDefault = &v
+	return s
+}
+
+// SetIsTestDomain sets the IsTestDomain field's value.
+func (s *GetMailDomainOutput) SetIsTestDomain(v bool) *GetMailDomainOutput {
+	s.IsTestDomain = &v
+	return s
+}
+
+// SetOwnershipVerificationStatus sets the OwnershipVerificationStatus field's value.
+func (s *GetMailDomainOutput) SetOwnershipVerificationStatus(v string) *GetMailDomainOutput {
+	s.OwnershipVerificationStatus = &v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *GetMailDomainOutput) SetRecords(v []*DnsRecord) *GetMailDomainOutput {
+	s.Records = v
 	return s
 }
 
@@ -11212,6 +12026,72 @@ func (s *InvalidConfigurationException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidConfigurationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// You SES configuration has customizations that Amazon WorkMail cannot save.
+// The error message lists the invalid setting. For examples of invalid settings,
+// refer to CreateReceiptRule (https://docs.aws.amazon.com/ses/latest/APIReference/API_CreateReceiptRule.html).
+type InvalidCustomSesConfigurationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidCustomSesConfigurationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidCustomSesConfigurationException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidCustomSesConfigurationException(v protocol.ResponseMetadata) error {
+	return &InvalidCustomSesConfigurationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidCustomSesConfigurationException) Code() string {
+	return "InvalidCustomSesConfigurationException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidCustomSesConfigurationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidCustomSesConfigurationException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidCustomSesConfigurationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidCustomSesConfigurationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidCustomSesConfigurationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -11863,6 +12743,123 @@ func (s *ListGroupsOutput) SetGroups(v []*Group) *ListGroupsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListGroupsOutput) SetNextToken(v string) *ListGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMailDomainsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in a single call.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results. The first call does
+	// not require a token.
+	NextToken *string `min:"1" type:"string"`
+
+	// The Amazon WorkMail organization for which to list domains.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMailDomainsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMailDomainsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMailDomainsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMailDomainsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMailDomainsInput) SetMaxResults(v int64) *ListMailDomainsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMailDomainsInput) SetNextToken(v string) *ListMailDomainsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *ListMailDomainsInput) SetOrganizationId(v string) *ListMailDomainsInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type ListMailDomainsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of mail domain summaries, specifying domains that exist in the specified
+	// Amazon WorkMail organization, along with the information about whether the
+	// domain is or isn't the default.
+	MailDomains []*MailDomainSummary `type:"list"`
+
+	// The token to use to retrieve the next page of results. The value becomes
+	// null when there are no more results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMailDomainsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMailDomainsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMailDomains sets the MailDomains field's value.
+func (s *ListMailDomainsOutput) SetMailDomains(v []*MailDomainSummary) *ListMailDomainsOutput {
+	s.MailDomains = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMailDomainsOutput) SetNextToken(v string) *ListMailDomainsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -12885,8 +13882,72 @@ func (s *ListUsersOutput) SetUsers(v []*User) *ListUsersOutput {
 	return s
 }
 
-// For an email or alias to be created in Amazon WorkMail, the included domain
-// must be defined in the organization.
+// The domain you're trying to change is in use by another user or organization
+// in your account. See the error message for details.
+type MailDomainInUseException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MailDomainInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MailDomainInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorMailDomainInUseException(v protocol.ResponseMetadata) error {
+	return &MailDomainInUseException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *MailDomainInUseException) Code() string {
+	return "MailDomainInUseException"
+}
+
+// Message returns the exception's message.
+func (s *MailDomainInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *MailDomainInUseException) OrigErr() error {
+	return nil
+}
+
+func (s *MailDomainInUseException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *MailDomainInUseException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *MailDomainInUseException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The domain specified is not found in your organization.
 type MailDomainNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13013,6 +14074,47 @@ func (s *MailDomainStateException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *MailDomainStateException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The data for a given domain.
+type MailDomainSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the domain is default or not.
+	DefaultDomain *bool `type:"boolean"`
+
+	// The domain name.
+	DomainName *string `min:"3" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MailDomainSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MailDomainSummary) GoString() string {
+	return s.String()
+}
+
+// SetDefaultDomain sets the DefaultDomain field's value.
+func (s *MailDomainSummary) SetDefaultDomain(v bool) *MailDomainSummary {
+	s.DefaultDomain = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *MailDomainSummary) SetDomainName(v string) *MailDomainSummary {
+	s.DomainName = &v
+	return s
 }
 
 // The details of a mailbox export job, including the user or resource ID associated
@@ -14452,6 +15554,106 @@ func (s PutRetentionPolicyOutput) GoString() string {
 	return s.String()
 }
 
+type RegisterMailDomainInput struct {
+	_ struct{} `type:"structure"`
+
+	// Idempotency token used when retrying requests.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the mail domain to create in Amazon WorkMail and SES.
+	//
+	// DomainName is a required field
+	DomainName *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon WorkMail organization under which you're creating the domain.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterMailDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterMailDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterMailDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterMailDomainInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *RegisterMailDomainInput) SetClientToken(v string) *RegisterMailDomainInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *RegisterMailDomainInput) SetDomainName(v string) *RegisterMailDomainInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *RegisterMailDomainInput) SetOrganizationId(v string) *RegisterMailDomainInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type RegisterMailDomainOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterMailDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterMailDomainOutput) GoString() string {
+	return s.String()
+}
+
 type RegisterToWorkMailInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15439,6 +16641,94 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateDefaultMailDomainInput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain name that will become the default domain.
+	//
+	// DomainName is a required field
+	DomainName *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon WorkMail organization for which to list domains.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDefaultMailDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDefaultMailDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDefaultMailDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDefaultMailDomainInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 3))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *UpdateDefaultMailDomainInput) SetDomainName(v string) *UpdateDefaultMailDomainInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *UpdateDefaultMailDomainInput) SetOrganizationId(v string) *UpdateDefaultMailDomainInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type UpdateDefaultMailDomainOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDefaultMailDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDefaultMailDomainOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateMailboxQuotaInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16099,6 +17389,26 @@ func AccessControlRuleEffect_Values() []string {
 	return []string{
 		AccessControlRuleEffectAllow,
 		AccessControlRuleEffectDeny,
+	}
+}
+
+const (
+	// DnsRecordVerificationStatusPending is a DnsRecordVerificationStatus enum value
+	DnsRecordVerificationStatusPending = "PENDING"
+
+	// DnsRecordVerificationStatusVerified is a DnsRecordVerificationStatus enum value
+	DnsRecordVerificationStatusVerified = "VERIFIED"
+
+	// DnsRecordVerificationStatusFailed is a DnsRecordVerificationStatus enum value
+	DnsRecordVerificationStatusFailed = "FAILED"
+)
+
+// DnsRecordVerificationStatus_Values returns all elements of the DnsRecordVerificationStatus enum
+func DnsRecordVerificationStatus_Values() []string {
+	return []string{
+		DnsRecordVerificationStatusPending,
+		DnsRecordVerificationStatusVerified,
+		DnsRecordVerificationStatusFailed,
 	}
 }
 
