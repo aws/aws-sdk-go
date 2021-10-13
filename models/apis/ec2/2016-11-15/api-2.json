@@ -8264,7 +8264,8 @@
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
         },
-        "MaxAggregationInterval":{"shape":"Integer"}
+        "MaxAggregationInterval":{"shape":"Integer"},
+        "DestinationOptions":{"shape":"DestinationOptionsRequest"}
       }
     },
     "CreateFlowLogsResult":{
@@ -15272,6 +15273,38 @@
         }
       }
     },
+    "DestinationFileFormat":{
+      "type":"string",
+      "enum":[
+        "plain-text",
+        "parquet"
+      ]
+    },
+    "DestinationOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "FileFormat":{"shape":"DestinationFileFormat"},
+        "HiveCompatiblePartitions":{"shape":"Boolean"},
+        "PerHourPartition":{"shape":"Boolean"}
+      }
+    },
+    "DestinationOptionsResponse":{
+      "type":"structure",
+      "members":{
+        "FileFormat":{
+          "shape":"DestinationFileFormat",
+          "locationName":"fileFormat"
+        },
+        "HiveCompatiblePartitions":{
+          "shape":"Boolean",
+          "locationName":"hiveCompatiblePartitions"
+        },
+        "PerHourPartition":{
+          "shape":"Boolean",
+          "locationName":"perHourPartition"
+        }
+      }
+    },
     "DetachClassicLinkVpcRequest":{
       "type":"structure",
       "required":[
@@ -17867,6 +17900,10 @@
         "MaxAggregationInterval":{
           "shape":"Integer",
           "locationName":"maxAggregationInterval"
+        },
+        "DestinationOptions":{
+          "shape":"DestinationOptionsResponse",
+          "locationName":"destinationOptions"
         }
       }
     },

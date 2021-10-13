@@ -355,6 +355,23 @@
       ],
       "idempotent":true
     },
+    "DeregisterMailDomain":{
+      "name":"DeregisterMailDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeregisterMailDomainRequest"},
+      "output":{"shape":"DeregisterMailDomainResponse"},
+      "errors":[
+        {"shape":"MailDomainInUseException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidCustomSesConfigurationException"}
+      ],
+      "idempotent":true
+    },
     "DescribeGroup":{
       "name":"DescribeGroup",
       "http":{
@@ -515,6 +532,22 @@
       ],
       "idempotent":true
     },
+    "GetMailDomain":{
+      "name":"GetMailDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMailDomainRequest"},
+      "output":{"shape":"GetMailDomainResponse"},
+      "errors":[
+        {"shape":"MailDomainNotFoundException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"InvalidParameterException"}
+      ],
+      "idempotent":true
+    },
     "GetMailboxDetails":{
       "name":"GetMailboxDetails",
       "http":{
@@ -617,6 +650,21 @@
       "output":{"shape":"ListGroupsResponse"},
       "errors":[
         {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
+    "ListMailDomains":{
+      "name":"ListMailDomains",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMailDomainsRequest"},
+      "output":{"shape":"ListMailDomainsResponse"},
+      "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"}
@@ -834,6 +882,23 @@
       ],
       "idempotent":true
     },
+    "RegisterMailDomain":{
+      "name":"RegisterMailDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterMailDomainRequest"},
+      "output":{"shape":"RegisterMailDomainResponse"},
+      "errors":[
+        {"shape":"MailDomainInUseException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidParameterException"}
+      ],
+      "idempotent":true
+    },
     "RegisterToWorkMail":{
       "name":"RegisterToWorkMail",
       "http":{
@@ -920,6 +985,23 @@
       "errors":[
         {"shape":"ResourceNotFoundException"}
       ]
+    },
+    "UpdateDefaultMailDomain":{
+      "name":"UpdateDefaultMailDomain",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDefaultMailDomainRequest"},
+      "output":{"shape":"UpdateDefaultMailDomainResponse"},
+      "errors":[
+        {"shape":"MailDomainNotFoundException"},
+        {"shape":"MailDomainStateException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"InvalidParameterException"}
+      ],
+      "idempotent":true
     },
     "UpdateMailboxQuota":{
       "name":"UpdateMailboxQuota",
@@ -1463,6 +1545,22 @@
       "members":{
       }
     },
+    "DeregisterMailDomainRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "DomainName"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "DomainName":{"shape":"WorkMailDomainName"}
+      }
+    },
+    "DeregisterMailDomainResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DescribeGroupRequest":{
       "type":"structure",
       "required":[
@@ -1718,6 +1816,26 @@
       "members":{
       }
     },
+    "DnsRecord":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"String"},
+        "Hostname":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "DnsRecordVerificationStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "VERIFIED",
+        "FAILED"
+      ]
+    },
+    "DnsRecords":{
+      "type":"list",
+      "member":{"shape":"DnsRecord"}
+    },
     "Domain":{
       "type":"structure",
       "members":{
@@ -1849,6 +1967,27 @@
         "FolderConfigurations":{"shape":"FolderConfigurations"}
       }
     },
+    "GetMailDomainRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "DomainName"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "DomainName":{"shape":"WorkMailDomainName"}
+      }
+    },
+    "GetMailDomainResponse":{
+      "type":"structure",
+      "members":{
+        "Records":{"shape":"DnsRecords"},
+        "IsTestDomain":{"shape":"Boolean"},
+        "IsDefault":{"shape":"Boolean"},
+        "OwnershipVerificationStatus":{"shape":"DnsRecordVerificationStatus"},
+        "DkimVerificationStatus":{"shape":"DnsRecordVerificationStatus"}
+      }
+    },
     "GetMailboxDetailsRequest":{
       "type":"structure",
       "required":[
@@ -1943,6 +2082,13 @@
       "pattern":"[\\x21-\\x7e]+"
     },
     "InvalidConfigurationException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
+    "InvalidCustomSesConfigurationException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"}
@@ -2064,6 +2210,22 @@
       "type":"structure",
       "members":{
         "Groups":{"shape":"Groups"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListMailDomainsRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListMailDomainsResponse":{
+      "type":"structure",
+      "members":{
+        "MailDomains":{"shape":"MailDomains"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2213,6 +2375,13 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "MailDomainInUseException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "MailDomainNotFoundException":{
       "type":"structure",
       "members":{
@@ -2226,6 +2395,17 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "MailDomainSummary":{
+      "type":"structure",
+      "members":{
+        "DomainName":{"shape":"DomainName"},
+        "DefaultDomain":{"shape":"Boolean"}
+      }
+    },
+    "MailDomains":{
+      "type":"list",
+      "member":{"shape":"MailDomainSummary"}
     },
     "MailboxExportErrorInfo":{
       "type":"string",
@@ -2579,6 +2759,26 @@
       "members":{
       }
     },
+    "RegisterMailDomainRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "DomainName"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"IdempotencyClientToken",
+          "idempotencyToken":true
+        },
+        "OrganizationId":{"shape":"OrganizationId"},
+        "DomainName":{"shape":"WorkMailDomainName"}
+      }
+    },
+    "RegisterMailDomainResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RegisterToWorkMailRequest":{
       "type":"structure",
       "required":[
@@ -2820,6 +3020,22 @@
       "members":{
       }
     },
+    "UpdateDefaultMailDomainRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "DomainName"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "DomainName":{"shape":"WorkMailDomainName"}
+      }
+    },
+    "UpdateDefaultMailDomainResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateMailboxQuotaRequest":{
       "type":"structure",
       "required":[
@@ -2939,6 +3155,12 @@
     "Users":{
       "type":"list",
       "member":{"shape":"User"}
+    },
+    "WorkMailDomainName":{
+      "type":"string",
+      "max":209,
+      "min":3,
+      "pattern":"[a-zA-Z0-9.-]+\\.[a-zA-Z-]{2,}"
     },
     "WorkMailIdentifier":{
       "type":"string",

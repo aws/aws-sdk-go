@@ -31078,6 +31078,9 @@ const (
 
 	// ResourceTypeAwsEksCluster is a ResourceType enum value
 	ResourceTypeAwsEksCluster = "AWS::EKS::Cluster"
+
+	// ResourceTypeAwsOpenSearchDomain is a ResourceType enum value
+	ResourceTypeAwsOpenSearchDomain = "AWS::OpenSearch::Domain"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -31191,6 +31194,7 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsEfsAccessPoint,
 		ResourceTypeAwsEfsFileSystem,
 		ResourceTypeAwsEksCluster,
+		ResourceTypeAwsOpenSearchDomain,
 	}
 }
 

@@ -1132,6 +1132,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "UpdateSMBLocalGroups":{
+      "name":"UpdateSMBLocalGroups",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSMBLocalGroupsInput"},
+      "output":{"shape":"UpdateSMBLocalGroupsOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "UpdateSMBSecurityStrategy":{
       "name":"UpdateSMBSecurityStrategy",
       "http":{
@@ -1594,7 +1607,8 @@
         "CacheAttributes":{"shape":"CacheAttributes"},
         "NotificationPolicy":{"shape":"NotificationPolicy"},
         "VPCEndpointDNSName":{"shape":"DNSHostName"},
-        "BucketRegion":{"shape":"RegionId"}
+        "BucketRegion":{"shape":"RegionId"},
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"}
       }
     },
     "CreateNFSFileShareOutput":{
@@ -2153,7 +2167,8 @@
         "ActiveDirectoryStatus":{"shape":"ActiveDirectoryStatus"},
         "SMBGuestPasswordSet":{"shape":"Boolean"},
         "SMBSecurityStrategy":{"shape":"SMBSecurityStrategy"},
-        "FileSharesVisible":{"shape":"Boolean"}
+        "FileSharesVisible":{"shape":"Boolean"},
+        "SMBLocalGroups":{"shape":"SMBLocalGroups"}
       }
     },
     "DescribeSnapshotScheduleInput":{
@@ -2392,7 +2407,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"^([a-z0-9]+(-[a-z0-9]+)*\\.)+[a-z]{2,}$"
+      "pattern":"^([a-zA-Z0-9]+[\\\\.-])+([a-zA-Z0-9])+$"
     },
     "DomainUserName":{
       "type":"string",
@@ -2567,7 +2582,8 @@
         "GatewayARN":{"shape":"GatewayARN"},
         "Tags":{"shape":"Tags"},
         "CacheAttributes":{"shape":"CacheAttributes"},
-        "EndpointNetworkConfiguration":{"shape":"EndpointNetworkConfiguration"}
+        "EndpointNetworkConfiguration":{"shape":"EndpointNetworkConfiguration"},
+        "FileSystemAssociationStatusDetails":{"shape":"FileSystemAssociationStatusDetails"}
       }
     },
     "FileSystemAssociationInfoList":{
@@ -2578,6 +2594,16 @@
       "type":"string",
       "max":50,
       "min":3
+    },
+    "FileSystemAssociationStatusDetail":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"FileSystemAssociationSyncErrorCode"}
+      }
+    },
+    "FileSystemAssociationStatusDetails":{
+      "type":"list",
+      "member":{"shape":"FileSystemAssociationStatusDetail"}
     },
     "FileSystemAssociationSummary":{
       "type":"structure",
@@ -2592,6 +2618,7 @@
       "type":"list",
       "member":{"shape":"FileSystemAssociationSummary"}
     },
+    "FileSystemAssociationSyncErrorCode":{"type":"string"},
     "FileSystemLocationARN":{
       "type":"string",
       "max":512,
@@ -3008,7 +3035,8 @@
         "CacheAttributes":{"shape":"CacheAttributes"},
         "NotificationPolicy":{"shape":"NotificationPolicy"},
         "VPCEndpointDNSName":{"shape":"DNSHostName"},
-        "BucketRegion":{"shape":"RegionId"}
+        "BucketRegion":{"shape":"RegionId"},
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"}
       }
     },
     "NFSFileShareInfoList":{
@@ -3295,6 +3323,12 @@
       "min":6,
       "pattern":"^[ -~]+$",
       "sensitive":true
+    },
+    "SMBLocalGroups":{
+      "type":"structure",
+      "members":{
+        "GatewayAdmins":{"shape":"UserList"}
+      }
     },
     "SMBSecurityStrategy":{
       "type":"string",
@@ -3759,7 +3793,8 @@
         "RequesterPays":{"shape":"Boolean"},
         "FileShareName":{"shape":"FileShareName"},
         "CacheAttributes":{"shape":"CacheAttributes"},
-        "NotificationPolicy":{"shape":"NotificationPolicy"}
+        "NotificationPolicy":{"shape":"NotificationPolicy"},
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"}
       }
     },
     "UpdateNFSFileShareOutput":{
@@ -3811,6 +3846,23 @@
       }
     },
     "UpdateSMBFileShareVisibilityOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "UpdateSMBLocalGroupsInput":{
+      "type":"structure",
+      "required":[
+        "GatewayARN",
+        "SMBLocalGroups"
+      ],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"},
+        "SMBLocalGroups":{"shape":"SMBLocalGroups"}
+      }
+    },
+    "UpdateSMBLocalGroupsOutput":{
       "type":"structure",
       "members":{
         "GatewayARN":{"shape":"GatewayARN"}
