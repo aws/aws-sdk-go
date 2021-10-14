@@ -1,0 +1,46 @@
+name: License Scan
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    steps:
+      - name: Checkout target branch
+        uses: actions/checkout@v2
+        with:
+          path: sdkmain
+          ref: ${{ github.base_ref }}
+      - name: Checkout this ref
+        uses: actions/checkout@v2
+        with:
+          path: new-ref
+          fetch-depth: 0
+      - name: Get Diff
+        run: git --git-dir ./new-ref/.git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }}| xargs > fileList.txt
+      - name: Checkout scancode
+        uses: actions/checkout@v2
+        with:
+          repository: nexB/scancode-toolkit
+          path: scancode-toolkit
+          fetch-depth: 1
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      # ScanCode
+      - name: Self-configure scancode
+        working-directory: ./scancode-toolkit
+        run: ./scancode --help
+      - name: Run Scan code on pr ref
+        run: for filename in $(< fileList.txt); do ./scancode-toolkit/scancode -l -n 30 --json-pp - ./sdkmain/$filename | grep short_name | sort | uniq >> old-licenses.txt; done
+      - name: Run Scan code on target branch
+        run: for filename in $(< fileList.txt); do ./scancode-toolkit/scancode -l -n 30 --json-pp - ./new-ref/$filename | grep short_name | sort | uniq >> new-licenses.txt; done
+      # compare
+      - name: License test
+        run: if ! cmp old-licenses.txt new-licenses.txt; then echo "Licenses differ! Failing."; exit -1; else echo "Licenses are the same. Success."; exit 0; fi
