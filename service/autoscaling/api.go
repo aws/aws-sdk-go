@@ -1751,10 +1751,10 @@ func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsI
 //
 // Describes the current Amazon EC2 Auto Scaling resource quotas for your account.
 //
-// When you establish an account, the account has initial quotas on the maximum
-// number of Auto Scaling groups and launch configurations that you can create
-// in a given Region. For more information, see Amazon EC2 Auto Scaling service
-// quotas (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html)
+// When you establish an Amazon Web Services account, the account has initial
+// quotas on the maximum number of Auto Scaling groups and launch configurations
+// that you can create in a given Region. For more information, see Amazon EC2
+// Auto Scaling service quotas (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1932,7 +1932,13 @@ func (c *AutoScaling) DescribeAutoScalingGroupsRequest(input *DescribeAutoScalin
 //
 // Gets information about the Auto Scaling groups in the account and Region.
 //
-// This operation returns information about instances in Auto Scaling groups.
+// If you specify Auto Scaling group names, the output includes information
+// for only the specified Auto Scaling groups. If you specify filters, the output
+// includes information for only those Auto Scaling groups that meet the filter
+// criteria. If you do not specify group names or filters, the output includes
+// information for all Auto Scaling groups.
+//
+// This operation also returns information about instances in Auto Scaling groups.
 // To retrieve information about the instances in a warm pool, you must call
 // the DescribeWarmPool API.
 //
@@ -2746,6 +2752,9 @@ func (c *AutoScaling) DescribeLoadBalancerTargetGroupsRequest(input *DescribeLoa
 //   You already have a pending update to an Amazon EC2 Auto Scaling resource
 //   (for example, an Auto Scaling group, instance, or load balancer).
 //
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
+//   The NextToken value is not valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/DescribeLoadBalancerTargetGroups
 func (c *AutoScaling) DescribeLoadBalancerTargetGroups(input *DescribeLoadBalancerTargetGroupsInput) (*DescribeLoadBalancerTargetGroupsOutput, error) {
 	req, out := c.DescribeLoadBalancerTargetGroupsRequest(input)
@@ -2852,6 +2861,9 @@ func (c *AutoScaling) DescribeLoadBalancersRequest(input *DescribeLoadBalancersI
 //   * ErrCodeResourceContentionFault "ResourceContention"
 //   You already have a pending update to an Amazon EC2 Auto Scaling resource
 //   (for example, an Auto Scaling group, instance, or load balancer).
+//
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
+//   The NextToken value is not valid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/autoscaling-2011-01-01/DescribeLoadBalancers
 func (c *AutoScaling) DescribeLoadBalancers(input *DescribeLoadBalancersInput) (*DescribeLoadBalancersOutput, error) {
@@ -7684,8 +7696,8 @@ type CreateLaunchConfigurationInput struct {
 	// EBS and an optimized configuration stack to provide optimal I/O performance.
 	// This optimization is not available with all instance types. Additional fees
 	// are incurred when you enable EBS optimization for an instance type that is
-	// not EBS-optimized by default. For more information, see Amazon EBS-Optimized
-	// Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)
+	// not EBS-optimized by default. For more information, see Amazon EBS-optimized
+	// instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html)
 	// in the Amazon EC2 User Guide for Linux Instances.
 	//
 	// The default value is false.
@@ -9036,6 +9048,9 @@ type DescribeAutoScalingGroupsInput struct {
 	// If you omit this parameter, all Auto Scaling groups are described.
 	AutoScalingGroupNames []*string `type:"list"`
 
+	// One or more filters to limit the results based on specific tags.
+	Filters []*Filter `type:"list"`
+
 	// The maximum number of items to return with this call. The default value is
 	// 50 and the maximum value is 100.
 	MaxRecords *int64 `type:"integer"`
@@ -9066,6 +9081,12 @@ func (s DescribeAutoScalingGroupsInput) GoString() string {
 // SetAutoScalingGroupNames sets the AutoScalingGroupNames field's value.
 func (s *DescribeAutoScalingGroupsInput) SetAutoScalingGroupNames(v []*string) *DescribeAutoScalingGroupsInput {
 	s.AutoScalingGroupNames = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeAutoScalingGroupsInput) SetFilters(v []*Filter) *DescribeAutoScalingGroupsInput {
+	s.Filters = v
 	return s
 }
 
@@ -11227,27 +11248,20 @@ type Ebs struct {
 
 	// Specifies whether the volume should be encrypted. Encrypted EBS volumes can
 	// only be attached to instances that support Amazon EBS encryption. For more
-	// information, see Supported Instance Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances).
+	// information, see Supported instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances).
 	// If your AMI uses encrypted volumes, you can also only launch it on supported
 	// instance types.
 	//
-	// If you are creating a volume from a snapshot, you cannot specify an encryption
-	// value. Volumes that are created from encrypted snapshots are automatically
-	// encrypted, and volumes that are created from unencrypted snapshots are automatically
-	// unencrypted. By default, encrypted snapshots use the Amazon Web Services
-	// managed CMK that is used for EBS encryption, but you can specify a custom
-	// CMK when you create the snapshot. The ability to encrypt a snapshot during
-	// copying also allows you to apply a new CMK to an already-encrypted snapshot.
-	// Volumes restored from the resulting copy are only accessible using the new
-	// CMK.
+	// If you are creating a volume from a snapshot, you cannot create an unencrypted
+	// volume from an encrypted snapshot. Also, you cannot specify a KMS key ID
+	// when using a launch configuration.
 	//
-	// Enabling encryption by default (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default)
-	// results in all EBS volumes being encrypted with the Amazon Web Services managed
-	// CMK or a customer managed CMK, whether or not the snapshot was encrypted.
+	// If you enable encryption by default, the EBS volumes that you create are
+	// always encrypted, either using the Amazon Web Services managed KMS key or
+	// a customer-managed KMS key, regardless of whether the snapshot was encrypted.
 	//
-	// For more information, see Using Encryption with EBS-Backed AMIs (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html)
-	// in the Amazon EC2 User Guide for Linux Instances and Required CMK key policy
-	// for use with encrypted volumes (https://docs.aws.amazon.com/autoscaling/ec2/userguide/key-policy-requirements-EBS-encryption.html)
+	// For more information, see Using Amazon Web Services KMS keys to encrypt Amazon
+	// EBS volumes (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-data-protection.html#encryption)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	Encrypted *bool `type:"boolean"`
 
@@ -11295,7 +11309,7 @@ type Ebs struct {
 	// the size of the snapshot.
 	VolumeSize *int64 `min:"1" type:"integer"`
 
-	// The volume type. For more information, see Amazon EBS Volume Types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
+	// The volume type. For more information, see Amazon EBS volume types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)
 	// in the Amazon EC2 User Guide for Linux Instances.
 	//
 	// Valid Values: standard | io1 | gp2 | st1 | sc1 | gp3
@@ -11985,18 +11999,62 @@ func (s *FailedScheduledUpdateGroupActionRequest) SetScheduledActionName(v strin
 }
 
 // Describes a filter that is used to return a more specific list of results
-// when describing tags.
+// from a describe operation.
+//
+// If you specify multiple filters, the filters are joined with an AND, and
+// the request returns only results that match all of the specified filters.
 //
 // For more information, see Tagging Auto Scaling groups and instances (https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-tagging.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 type Filter struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the filter. The valid values are: auto-scaling-group, key, value,
-	// and propagate-at-launch.
+	// The name of the filter.
+	//
+	// The valid values for Name depend on the API operation that you are including
+	// the filter in, DescribeAutoScalingGroups or DescribeTags.
+	//
+	// DescribeAutoScalingGroups
+	//
+	// Valid values for Name include the following:
+	//
+	//    * tag-key - Accepts tag keys. The results will only include information
+	//    about the Auto Scaling groups associated with these tag keys.
+	//
+	//    * tag-value - Accepts tag values. The results will only include information
+	//    about the Auto Scaling groups associated with these tag values.
+	//
+	//    * tag:<key> - Accepts the key/value combination of the tag. Use the tag
+	//    key in the filter name and the tag value as the filter value. The results
+	//    will only include information about the Auto Scaling groups associated
+	//    with the specified key/value combination.
+	//
+	// DescribeTags
+	//
+	// Valid values for Name include the following:
+	//
+	//    * auto-scaling-group - Accepts the names of Auto Scaling groups. The results
+	//    will only include information about the tags associated with these Auto
+	//    Scaling groups.
+	//
+	//    * key - Accepts tag keys. The results will only include information about
+	//    the tags associated with these tag keys.
+	//
+	//    * value - Accepts tag values. The results will only include information
+	//    about the tags associated with these tag values.
+	//
+	//    * propagate-at-launch - Accepts a boolean value, which specifies whether
+	//    tags propagate to instances at launch. The results will only include information
+	//    about the tags associated with the specified boolean value.
 	Name *string `type:"string"`
 
 	// One or more filter values. Filter values are case-sensitive.
+	//
+	// If you specify multiple values for a filter, the values are joined with an
+	// OR, and the request returns all results that match any of the specified values.
+	// For example, specify "tag:environment" for the filter name and "production,development"
+	// for the filter values to find Auto Scaling groups with the tag "environment=production"
+	// or "environment=development".
 	Values []*string `type:"list"`
 }
 

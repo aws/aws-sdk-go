@@ -333,6 +333,12 @@
         "LaunchConfig$launchFile": "<p>The launch file name.</p>"
       }
     },
+    "CommandList": {
+      "base": null,
+      "refs": {
+        "LaunchConfig$command": "<p>If you've specified <code>General</code> as the value for your <code>RobotSoftwareSuite</code>, you can use this field to specify a list of commands for your container image.</p> <p>If you've specified <code>SimulationRuntime</code> as the value for your <code>SimulationSoftwareSuite</code>, you can use this field to specify a list of commands for your container image.</p>"
+      }
+    },
     "Compute": {
       "base": "<p>Compute information for the simulation job.</p>",
       "refs": {
@@ -346,6 +352,14 @@
         "CreateSimulationJobResponse$compute": "<p>Compute information for the simulation job.</p>",
         "DescribeSimulationJobResponse$compute": "<p>Compute information for the simulation job.</p>",
         "SimulationJob$compute": "<p>Compute information for the simulation job</p>"
+      }
+    },
+    "ComputeType": {
+      "base": null,
+      "refs": {
+        "Compute$computeType": "<p>Compute type information for the simulation job.</p>",
+        "ComputeResponse$computeType": "<p>Compute type response information for the simulation job.</p>",
+        "SimulationJobSummary$computeType": "<p>The compute type for the simulation job summary.</p>"
       }
     },
     "ConcurrentDeploymentException": {
@@ -530,6 +544,13 @@
       "base": null,
       "refs": {
         "SimulationJobSummary$dataSourceNames": "<p>The names of the data sources.</p>"
+      }
+    },
+    "DataSourceType": {
+      "base": null,
+      "refs": {
+        "DataSource$type": "<p>The data type for the data source that you're using for your container image or simulation job. You can use this field to specify whether your data source is an Archive, an Amazon S3 prefix, or a file.</p> <p>If you don't specify a field, the default value is <code>File</code>.</p>",
+        "DataSourceConfig$type": "<p>The data type for the data source that you're using for your container image or simulation job. You can use this field to specify whether your data source is an Archive, an Amazon S3 prefix, or a file.</p> <p>If you don't specify a field, the default value is <code>File</code>.</p>"
       }
     },
     "DataSources": {
@@ -915,6 +936,13 @@
         "WorldCount$floorplanCount": "<p>The number of unique floorplans.</p>"
       }
     },
+    "GPUUnit": {
+      "base": null,
+      "refs": {
+        "Compute$gpuUnitLimit": "<p>Compute GPU unit limit for the simulation job. It is the same as the number of GPUs allocated to the SimulationJob.</p>",
+        "ComputeResponse$gpuUnitLimit": "<p>Compute GPU unit limit for the simulation job. It is the same as the number of GPUs allocated to the SimulationJob.</p>"
+      }
+    },
     "GenericInteger": {
       "base": null,
       "refs": {
@@ -1283,6 +1311,7 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
+        "CommandList$member": null,
         "SecurityGroups$member": null,
         "Subnets$member": null
       }
@@ -1336,6 +1365,8 @@
     "Path": {
       "base": null,
       "refs": {
+        "DataSource$destination": "<p>The location where your files are mounted in the container image.</p> <p>If you've specified the <code>type</code> of the data source as an <code>Archive</code>, you must provide an Amazon S3 object key to your archive. The object key must point to either a <code>.zip</code> or <code>.tar.gz</code> file.</p> <p>If you've specified the <code>type</code> of the data source as a <code>Prefix</code>, you provide the Amazon S3 prefix that points to the files that you are using for your data source.</p> <p>If you've specified the <code>type</code> of the data source as a <code>File</code>, you provide the Amazon S3 path to the file that you're using as your data source.</p>",
+        "DataSourceConfig$destination": "<p>The location where your files are mounted in the container image.</p> <p>If you've specified the <code>type</code> of the data source as an <code>Archive</code>, you must provide an Amazon S3 object key to your archive. The object key must point to either a <code>.zip</code> or <code>.tar.gz</code> file.</p> <p>If you've specified the <code>type</code> of the data source as a <code>Prefix</code>, you provide the Amazon S3 prefix that points to the files that you are using for your data source.</p> <p>If you've specified the <code>type</code> of the data source as a <code>File</code>, you provide the Amazon S3 path to the file that you're using as your data source.</p>",
         "DeploymentLaunchConfig$preLaunchFile": "<p>The deployment pre-launch file. This file will be executed prior to the launch file.</p>",
         "DeploymentLaunchConfig$postLaunchFile": "<p>The deployment post-launch file. This file will be executed after the launch file.</p>",
         "UploadConfiguration$path": "<p> Specifies the path of the file(s) to upload. Standard Unix glob matching rules are accepted, with the addition of <code>**</code> as a <i>super asterisk</i>. For example, specifying <code>/var/log/**.log</code> causes all .log files in the <code>/var/log</code> directory tree to be collected. For more examples, see <a href=\"https://github.com/gobwas/glob\">Glob Library</a>. </p>"
@@ -1596,12 +1627,17 @@
       "base": null,
       "refs": {
         "OutputLocation$s3Prefix": "<p>The S3 folder in the <code>s3Bucket</code> where output files will be placed.</p>",
-        "S3KeyOutput$s3Key": "<p>The S3 key.</p>",
-        "S3Keys$member": null,
         "S3Object$key": "<p>The key of the object.</p>",
         "Source$s3Key": "<p>The s3 object key.</p>",
         "SourceConfig$s3Key": "<p>The s3 object key.</p>",
         "TemplateLocation$s3Key": "<p>The list of S3 keys identifying the data source files.</p>"
+      }
+    },
+    "S3KeyOrPrefix": {
+      "base": null,
+      "refs": {
+        "S3KeyOutput$s3Key": "<p>The S3 key.</p>",
+        "S3KeysOrPrefixes$member": null
       }
     },
     "S3KeyOutput": {
@@ -1616,7 +1652,7 @@
         "DataSource$s3Keys": "<p>The list of S3 keys identifying the data source files.</p>"
       }
     },
-    "S3Keys": {
+    "S3KeysOrPrefixes": {
       "base": null,
       "refs": {
         "DataSourceConfig$s3Keys": "<p>The list of S3 keys identifying the data source files.</p>"
@@ -1787,8 +1823,8 @@
     "SimulationUnit": {
       "base": null,
       "refs": {
-        "Compute$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximim value provided. The default is 15. </p>",
-        "ComputeResponse$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximim value provided. The default is 15. </p>"
+        "Compute$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximum value provided. The default is 15. </p>",
+        "ComputeResponse$simulationUnitLimit": "<p>The simulation unit limit. Your simulation is allocated CPU and memory proportional to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB of memory. You are only billed for the SU utilization you consume up to the maximum value provided. The default is 15. </p>"
       }
     },
     "Source": {

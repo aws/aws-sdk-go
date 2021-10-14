@@ -6478,10 +6478,17 @@ func (s CancelWorldGenerationJobOutput) GoString() string {
 type Compute struct {
 	_ struct{} `type:"structure"`
 
+	// Compute type information for the simulation job.
+	ComputeType *string `locationName:"computeType" type:"string" enum:"ComputeType"`
+
+	// Compute GPU unit limit for the simulation job. It is the same as the number
+	// of GPUs allocated to the SimulationJob.
+	GpuUnitLimit *int64 `locationName:"gpuUnitLimit" type:"integer"`
+
 	// The simulation unit limit. Your simulation is allocated CPU and memory proportional
 	// to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB
 	// of memory. You are only billed for the SU utilization you consume up to the
-	// maximim value provided. The default is 15.
+	// maximum value provided. The default is 15.
 	SimulationUnitLimit *int64 `locationName:"simulationUnitLimit" min:"1" type:"integer"`
 }
 
@@ -6516,6 +6523,18 @@ func (s *Compute) Validate() error {
 	return nil
 }
 
+// SetComputeType sets the ComputeType field's value.
+func (s *Compute) SetComputeType(v string) *Compute {
+	s.ComputeType = &v
+	return s
+}
+
+// SetGpuUnitLimit sets the GpuUnitLimit field's value.
+func (s *Compute) SetGpuUnitLimit(v int64) *Compute {
+	s.GpuUnitLimit = &v
+	return s
+}
+
 // SetSimulationUnitLimit sets the SimulationUnitLimit field's value.
 func (s *Compute) SetSimulationUnitLimit(v int64) *Compute {
 	s.SimulationUnitLimit = &v
@@ -6526,10 +6545,17 @@ func (s *Compute) SetSimulationUnitLimit(v int64) *Compute {
 type ComputeResponse struct {
 	_ struct{} `type:"structure"`
 
+	// Compute type response information for the simulation job.
+	ComputeType *string `locationName:"computeType" type:"string" enum:"ComputeType"`
+
+	// Compute GPU unit limit for the simulation job. It is the same as the number
+	// of GPUs allocated to the SimulationJob.
+	GpuUnitLimit *int64 `locationName:"gpuUnitLimit" type:"integer"`
+
 	// The simulation unit limit. Your simulation is allocated CPU and memory proportional
 	// to the supplied simulation unit limit. A simulation unit is 1 vcpu and 2GB
 	// of memory. You are only billed for the SU utilization you consume up to the
-	// maximim value provided. The default is 15.
+	// maximum value provided. The default is 15.
 	SimulationUnitLimit *int64 `locationName:"simulationUnitLimit" min:"1" type:"integer"`
 }
 
@@ -6549,6 +6575,18 @@ func (s ComputeResponse) String() string {
 // value will be replaced with "sensitive".
 func (s ComputeResponse) GoString() string {
 	return s.String()
+}
+
+// SetComputeType sets the ComputeType field's value.
+func (s *ComputeResponse) SetComputeType(v string) *ComputeResponse {
+	s.ComputeType = &v
+	return s
+}
+
+// SetGpuUnitLimit sets the GpuUnitLimit field's value.
+func (s *ComputeResponse) SetGpuUnitLimit(v int64) *ComputeResponse {
+	s.GpuUnitLimit = &v
+	return s
 }
 
 // SetSimulationUnitLimit sets the SimulationUnitLimit field's value.
@@ -9177,6 +9215,20 @@ func (s *CreateWorldTemplateOutput) SetTags(v map[string]*string) *CreateWorldTe
 type DataSource struct {
 	_ struct{} `type:"structure"`
 
+	// The location where your files are mounted in the container image.
+	//
+	// If you've specified the type of the data source as an Archive, you must provide
+	// an Amazon S3 object key to your archive. The object key must point to either
+	// a .zip or .tar.gz file.
+	//
+	// If you've specified the type of the data source as a Prefix, you provide
+	// the Amazon S3 prefix that points to the files that you are using for your
+	// data source.
+	//
+	// If you've specified the type of the data source as a File, you provide the
+	// Amazon S3 path to the file that you're using as your data source.
+	Destination *string `locationName:"destination" min:"1" type:"string"`
+
 	// The name of the data source.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
@@ -9185,6 +9237,13 @@ type DataSource struct {
 
 	// The list of S3 keys identifying the data source files.
 	S3Keys []*S3KeyOutput `locationName:"s3Keys" type:"list"`
+
+	// The data type for the data source that you're using for your container image
+	// or simulation job. You can use this field to specify whether your data source
+	// is an Archive, an Amazon S3 prefix, or a file.
+	//
+	// If you don't specify a field, the default value is File.
+	Type *string `locationName:"type" type:"string" enum:"DataSourceType"`
 }
 
 // String returns the string representation.
@@ -9205,6 +9264,12 @@ func (s DataSource) GoString() string {
 	return s.String()
 }
 
+// SetDestination sets the Destination field's value.
+func (s *DataSource) SetDestination(v string) *DataSource {
+	s.Destination = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *DataSource) SetName(v string) *DataSource {
 	s.Name = &v
@@ -9223,9 +9288,29 @@ func (s *DataSource) SetS3Keys(v []*S3KeyOutput) *DataSource {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *DataSource) SetType(v string) *DataSource {
+	s.Type = &v
+	return s
+}
+
 // Information about a data source.
 type DataSourceConfig struct {
 	_ struct{} `type:"structure"`
+
+	// The location where your files are mounted in the container image.
+	//
+	// If you've specified the type of the data source as an Archive, you must provide
+	// an Amazon S3 object key to your archive. The object key must point to either
+	// a .zip or .tar.gz file.
+	//
+	// If you've specified the type of the data source as a Prefix, you provide
+	// the Amazon S3 prefix that points to the files that you are using for your
+	// data source.
+	//
+	// If you've specified the type of the data source as a File, you provide the
+	// Amazon S3 path to the file that you're using as your data source.
+	Destination *string `locationName:"destination" min:"1" type:"string"`
 
 	// The name of the data source.
 	//
@@ -9241,6 +9326,13 @@ type DataSourceConfig struct {
 	//
 	// S3Keys is a required field
 	S3Keys []*string `locationName:"s3Keys" min:"1" type:"list" required:"true"`
+
+	// The data type for the data source that you're using for your container image
+	// or simulation job. You can use this field to specify whether your data source
+	// is an Archive, an Amazon S3 prefix, or a file.
+	//
+	// If you don't specify a field, the default value is File.
+	Type *string `locationName:"type" type:"string" enum:"DataSourceType"`
 }
 
 // String returns the string representation.
@@ -9264,6 +9356,9 @@ func (s DataSourceConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataSourceConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataSourceConfig"}
+	if s.Destination != nil && len(*s.Destination) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Destination", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -9289,6 +9384,12 @@ func (s *DataSourceConfig) Validate() error {
 	return nil
 }
 
+// SetDestination sets the Destination field's value.
+func (s *DataSourceConfig) SetDestination(v string) *DataSourceConfig {
+	s.Destination = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *DataSourceConfig) SetName(v string) *DataSourceConfig {
 	s.Name = &v
@@ -9304,6 +9405,12 @@ func (s *DataSourceConfig) SetS3Bucket(v string) *DataSourceConfig {
 // SetS3Keys sets the S3Keys field's value.
 func (s *DataSourceConfig) SetS3Keys(v []*string) *DataSourceConfig {
 	s.S3Keys = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DataSourceConfig) SetType(v string) *DataSourceConfig {
+	s.Type = &v
 	return s
 }
 
@@ -12860,18 +12967,21 @@ func (s *InvalidParameterException) RequestID() string {
 type LaunchConfig struct {
 	_ struct{} `type:"structure"`
 
+	// If you've specified General as the value for your RobotSoftwareSuite, you
+	// can use this field to specify a list of commands for your container image.
+	//
+	// If you've specified SimulationRuntime as the value for your SimulationSoftwareSuite,
+	// you can use this field to specify a list of commands for your container image.
+	Command []*string `locationName:"command" type:"list"`
+
 	// The environment variables for the application launch.
 	EnvironmentVariables map[string]*string `locationName:"environmentVariables" type:"map"`
 
 	// The launch file name.
-	//
-	// LaunchFile is a required field
-	LaunchFile *string `locationName:"launchFile" min:"1" type:"string" required:"true"`
+	LaunchFile *string `locationName:"launchFile" min:"1" type:"string"`
 
 	// The package name.
-	//
-	// PackageName is a required field
-	PackageName *string `locationName:"packageName" min:"1" type:"string" required:"true"`
+	PackageName *string `locationName:"packageName" min:"1" type:"string"`
 
 	// The port forwarding configuration.
 	PortForwardingConfig *PortForwardingConfig `locationName:"portForwardingConfig" type:"structure"`
@@ -12904,14 +13014,8 @@ func (s LaunchConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *LaunchConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "LaunchConfig"}
-	if s.LaunchFile == nil {
-		invalidParams.Add(request.NewErrParamRequired("LaunchFile"))
-	}
 	if s.LaunchFile != nil && len(*s.LaunchFile) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LaunchFile", 1))
-	}
-	if s.PackageName == nil {
-		invalidParams.Add(request.NewErrParamRequired("PackageName"))
 	}
 	if s.PackageName != nil && len(*s.PackageName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PackageName", 1))
@@ -12926,6 +13030,12 @@ func (s *LaunchConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCommand sets the Command field's value.
+func (s *LaunchConfig) SetCommand(v []*string) *LaunchConfig {
+	s.Command = v
+	return s
 }
 
 // SetEnvironmentVariables sets the EnvironmentVariables field's value.
@@ -15724,7 +15834,7 @@ type S3KeyOutput struct {
 	Etag *string `locationName:"etag" type:"string"`
 
 	// The S3 key.
-	S3Key *string `locationName:"s3Key" min:"1" type:"string"`
+	S3Key *string `locationName:"s3Key" type:"string"`
 }
 
 // String returns the string representation.
@@ -16734,6 +16844,9 @@ type SimulationJobSummary struct {
 	// The Amazon Resource Name (ARN) of the simulation job.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// The compute type for the simulation job summary.
+	ComputeType *string `locationName:"computeType" type:"string" enum:"ComputeType"`
+
 	// The names of the data sources.
 	DataSourceNames []*string `locationName:"dataSourceNames" type:"list"`
 
@@ -16775,6 +16888,12 @@ func (s SimulationJobSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *SimulationJobSummary) SetArn(v string) *SimulationJobSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetComputeType sets the ComputeType field's value.
+func (s *SimulationJobSummary) SetComputeType(v string) *SimulationJobSummary {
+	s.ComputeType = &v
 	return s
 }
 
@@ -19206,6 +19325,42 @@ func Architecture_Values() []string {
 }
 
 const (
+	// ComputeTypeCpu is a ComputeType enum value
+	ComputeTypeCpu = "CPU"
+
+	// ComputeTypeGpuAndCpu is a ComputeType enum value
+	ComputeTypeGpuAndCpu = "GPU_AND_CPU"
+)
+
+// ComputeType_Values returns all elements of the ComputeType enum
+func ComputeType_Values() []string {
+	return []string{
+		ComputeTypeCpu,
+		ComputeTypeGpuAndCpu,
+	}
+}
+
+const (
+	// DataSourceTypePrefix is a DataSourceType enum value
+	DataSourceTypePrefix = "Prefix"
+
+	// DataSourceTypeArchive is a DataSourceType enum value
+	DataSourceTypeArchive = "Archive"
+
+	// DataSourceTypeFile is a DataSourceType enum value
+	DataSourceTypeFile = "File"
+)
+
+// DataSourceType_Values returns all elements of the DataSourceType enum
+func DataSourceType_Values() []string {
+	return []string{
+		DataSourceTypePrefix,
+		DataSourceTypeArchive,
+		DataSourceTypeFile,
+	}
+}
+
+const (
 	// DeploymentJobErrorCodeResourceNotFound is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeResourceNotFound = "ResourceNotFound"
 
@@ -19427,6 +19582,9 @@ const (
 
 	// RobotSoftwareSuiteTypeRos2 is a RobotSoftwareSuiteType enum value
 	RobotSoftwareSuiteTypeRos2 = "ROS2"
+
+	// RobotSoftwareSuiteTypeGeneral is a RobotSoftwareSuiteType enum value
+	RobotSoftwareSuiteTypeGeneral = "General"
 )
 
 // RobotSoftwareSuiteType_Values returns all elements of the RobotSoftwareSuiteType enum
@@ -19434,6 +19592,7 @@ func RobotSoftwareSuiteType_Values() []string {
 	return []string{
 		RobotSoftwareSuiteTypeRos,
 		RobotSoftwareSuiteTypeRos2,
+		RobotSoftwareSuiteTypeGeneral,
 	}
 }
 
@@ -19739,6 +19898,9 @@ const (
 
 	// SimulationSoftwareSuiteTypeRosbagPlay is a SimulationSoftwareSuiteType enum value
 	SimulationSoftwareSuiteTypeRosbagPlay = "RosbagPlay"
+
+	// SimulationSoftwareSuiteTypeSimulationRuntime is a SimulationSoftwareSuiteType enum value
+	SimulationSoftwareSuiteTypeSimulationRuntime = "SimulationRuntime"
 )
 
 // SimulationSoftwareSuiteType_Values returns all elements of the SimulationSoftwareSuiteType enum
@@ -19746,6 +19908,7 @@ func SimulationSoftwareSuiteType_Values() []string {
 	return []string{
 		SimulationSoftwareSuiteTypeGazebo,
 		SimulationSoftwareSuiteTypeRosbagPlay,
+		SimulationSoftwareSuiteTypeSimulationRuntime,
 	}
 }
 

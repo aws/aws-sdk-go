@@ -1,3 +1,14 @@
+Release v1.41.3 (2021-10-14)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Amazon EC2 Auto Scaling now supports filtering describe Auto Scaling groups API using tags
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/robomaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * This release updates the provisioning artifact ID to an optional parameter in CreateProject API. The provisioning artifact ID defaults to the latest provisioning artifact ID of the product if you don't provide one.
+
 Release v1.41.2 (2021-10-13)
 ===
 
