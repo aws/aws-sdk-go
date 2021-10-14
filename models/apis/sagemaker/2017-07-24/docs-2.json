@@ -6138,7 +6138,7 @@
       }
     },
     "ModelArtifacts": {
-      "base": "<p>Provides information about the location that is configured for storing model artifacts. </p> <p>Model artifacts are the output that results from training a model, and typically consist of trained parameters, a model defintion that describes how to compute inferences, and other metadata.</p>",
+      "base": "<p>Provides information about the location that is configured for storing model artifacts. </p> <p>Model artifacts are the output that results from training a model, and typically consist of trained parameters, a model definition that describes how to compute inferences, and other metadata.</p>",
       "refs": {
         "DescribeCompilationJobResponse$ModelArtifacts": "<p>Information about the location in Amazon S3 that has been configured for storing the model artifacts used in the compilation job.</p>",
         "DescribeTrainingJobResponse$ModelArtifacts": "<p>Information about the Amazon S3 location that is configured for storing model artifacts. </p>",
@@ -8718,7 +8718,7 @@
     "ServiceCatalogProvisioningDetails": {
       "base": "<p>Details that you specify to provision a service catalog product. For information about service catalog, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
       "refs": {
-        "CreateProjectInput$ServiceCatalogProvisioningDetails": "<p>The product ID and provisioning artifact ID to provision a service catalog. For information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
+        "CreateProjectInput$ServiceCatalogProvisioningDetails": "<p>The product ID and provisioning artifact ID to provision a service catalog. The provisioning artifact ID will default to the latest provisioning artifact ID of the product, if you don't provide the provisioning artifact ID. For more information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
         "DescribeProjectOutput$ServiceCatalogProvisioningDetails": "<p>Information used to provision a service catalog product. For information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
         "Project$ServiceCatalogProvisioningDetails": null
       }

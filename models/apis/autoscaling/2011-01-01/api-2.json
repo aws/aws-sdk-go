@@ -411,7 +411,8 @@
         "resultWrapper":"DescribeLoadBalancerTargetGroupsResult"
       },
       "errors":[
-        {"shape":"ResourceContentionFault"}
+        {"shape":"ResourceContentionFault"},
+        {"shape":"InvalidNextToken"}
       ]
     },
     "DescribeLoadBalancers":{
@@ -426,7 +427,8 @@
         "resultWrapper":"DescribeLoadBalancersResult"
       },
       "errors":[
-        {"shape":"ResourceContentionFault"}
+        {"shape":"ResourceContentionFault"},
+        {"shape":"InvalidNextToken"}
       ]
     },
     "DescribeMetricCollectionTypes":{
@@ -1090,7 +1092,8 @@
       "members":{
         "AutoScalingGroupNames":{"shape":"AutoScalingGroupNames"},
         "NextToken":{"shape":"XmlString"},
-        "MaxRecords":{"shape":"MaxRecords"}
+        "MaxRecords":{"shape":"MaxRecords"},
+        "Filters":{"shape":"Filters"}
       }
     },
     "AutoScalingGroupPredictedCapacity":{"type":"integer"},

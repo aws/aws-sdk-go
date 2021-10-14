@@ -35017,7 +35017,9 @@ type CreateProjectInput struct {
 	ProjectName *string `min:"1" type:"string" required:"true"`
 
 	// The product ID and provisioning artifact ID to provision a service catalog.
-	// For information, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+	// The provisioning artifact ID will default to the latest provisioning artifact
+	// ID of the product, if you don't provide the provisioning artifact ID. For
+	// more information, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 	//
 	// ServiceCatalogProvisioningDetails is a required field
 	ServiceCatalogProvisioningDetails *ServiceCatalogProvisioningDetails `type:"structure" required:"true"`
@@ -66744,7 +66746,7 @@ func (s *MetricsSource) SetS3Uri(v string) *MetricsSource {
 // artifacts.
 //
 // Model artifacts are the output that results from training a model, and typically
-// consist of trained parameters, a model defintion that describes how to compute
+// consist of trained parameters, a model definition that describes how to compute
 // inferences, and other metadata.
 type ModelArtifacts struct {
 	_ struct{} `type:"structure"`
@@ -77516,9 +77518,7 @@ type ServiceCatalogProvisioningDetails struct {
 	ProductId *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the provisioning artifact.
-	//
-	// ProvisioningArtifactId is a required field
-	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
+	ProvisioningArtifactId *string `min:"1" type:"string"`
 
 	// A list of key value pairs that you specify when you provision a product.
 	ProvisioningParameters []*ProvisioningParameter `type:"list"`
@@ -77553,9 +77553,6 @@ func (s *ServiceCatalogProvisioningDetails) Validate() error {
 	}
 	if s.ProductId != nil && len(*s.ProductId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProductId", 1))
-	}
-	if s.ProvisioningArtifactId == nil {
-		invalidParams.Add(request.NewErrParamRequired("ProvisioningArtifactId"))
 	}
 	if s.ProvisioningArtifactId != nil && len(*s.ProvisioningArtifactId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProvisioningArtifactId", 1))

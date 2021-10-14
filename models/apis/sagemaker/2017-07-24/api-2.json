@@ -13420,10 +13420,7 @@
     },
     "ServiceCatalogProvisioningDetails":{
       "type":"structure",
-      "required":[
-        "ProductId",
-        "ProvisioningArtifactId"
-      ],
+      "required":["ProductId"],
       "members":{
         "ProductId":{"shape":"ServiceCatalogEntityId"},
         "ProvisioningArtifactId":{"shape":"ServiceCatalogEntityId"},

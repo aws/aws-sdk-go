@@ -1147,7 +1147,8 @@
       "members":{
         "Names":{"shape":"SslPolicyNames"},
         "Marker":{"shape":"Marker"},
-        "PageSize":{"shape":"PageSize"}
+        "PageSize":{"shape":"PageSize"},
+        "LoadBalancerType":{"shape":"LoadBalancerTypeEnum"}
       }
     },
     "DescribeSSLPoliciesOutput":{
@@ -2017,7 +2018,8 @@
       "members":{
         "SslProtocols":{"shape":"SslProtocols"},
         "Ciphers":{"shape":"Ciphers"},
-        "Name":{"shape":"SslPolicyName"}
+        "Name":{"shape":"SslPolicyName"},
+        "SupportedLoadBalancerTypes":{"shape":"ListOfString"}
       }
     },
     "SslPolicyName":{"type":"string"},

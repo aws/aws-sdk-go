@@ -1012,17 +1012,32 @@
       "min":1,
       "pattern":"[a-zA-Z0-9_.\\-]*"
     },
+    "CommandList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"}
+    },
     "Compute":{
       "type":"structure",
       "members":{
-        "simulationUnitLimit":{"shape":"SimulationUnit"}
+        "simulationUnitLimit":{"shape":"SimulationUnit"},
+        "computeType":{"shape":"ComputeType"},
+        "gpuUnitLimit":{"shape":"GPUUnit"}
       }
     },
     "ComputeResponse":{
       "type":"structure",
       "members":{
-        "simulationUnitLimit":{"shape":"SimulationUnit"}
+        "simulationUnitLimit":{"shape":"SimulationUnit"},
+        "computeType":{"shape":"ComputeType"},
+        "gpuUnitLimit":{"shape":"GPUUnit"}
       }
+    },
+    "ComputeType":{
+      "type":"string",
+      "enum":[
+        "CPU",
+        "GPU_AND_CPU"
+      ]
     },
     "ConcurrentDeploymentException":{
       "type":"structure",
@@ -1356,7 +1371,9 @@
       "members":{
         "name":{"shape":"Name"},
         "s3Bucket":{"shape":"S3Bucket"},
-        "s3Keys":{"shape":"S3KeyOutputs"}
+        "s3Keys":{"shape":"S3KeyOutputs"},
+        "type":{"shape":"DataSourceType"},
+        "destination":{"shape":"Path"}
       }
     },
     "DataSourceConfig":{
@@ -1369,7 +1386,9 @@
       "members":{
         "name":{"shape":"Name"},
         "s3Bucket":{"shape":"S3Bucket"},
-        "s3Keys":{"shape":"S3Keys"}
+        "s3Keys":{"shape":"S3KeysOrPrefixes"},
+        "type":{"shape":"DataSourceType"},
+        "destination":{"shape":"Path"}
       }
     },
     "DataSourceConfigs":{
@@ -1381,6 +1400,14 @@
     "DataSourceNames":{
       "type":"list",
       "member":{"shape":"Name"}
+    },
+    "DataSourceType":{
+      "type":"string",
+      "enum":[
+        "Prefix",
+        "Archive",
+        "File"
+      ]
     },
     "DataSources":{
       "type":"list",
@@ -1930,6 +1957,11 @@
       "min":0
     },
     "FloorplanCount":{"type":"integer"},
+    "GPUUnit":{
+      "type":"integer",
+      "max":1,
+      "min":0
+    },
     "GenericInteger":{"type":"integer"},
     "GenericString":{
       "type":"string",
@@ -2005,16 +2037,13 @@
     "LastUpdatedAt":{"type":"timestamp"},
     "LaunchConfig":{
       "type":"structure",
-      "required":[
-        "packageName",
-        "launchFile"
-      ],
       "members":{
         "packageName":{"shape":"Command"},
         "launchFile":{"shape":"Command"},
         "environmentVariables":{"shape":"EnvironmentVariableMap"},
         "portForwardingConfig":{"shape":"PortForwardingConfig"},
-        "streamUI":{"shape":"Boolean"}
+        "streamUI":{"shape":"Boolean"},
+        "command":{"shape":"CommandList"}
       }
     },
     "LimitExceededException":{
@@ -2482,7 +2511,8 @@
       "type":"string",
       "enum":[
         "ROS",
-        "ROS2"
+        "ROS2",
+        "General"
       ]
     },
     "RobotSoftwareSuiteVersionType":{
@@ -2529,10 +2559,16 @@
       "min":1,
       "pattern":".*"
     },
+    "S3KeyOrPrefix":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "pattern":".*"
+    },
     "S3KeyOutput":{
       "type":"structure",
       "members":{
-        "s3Key":{"shape":"S3Key"},
+        "s3Key":{"shape":"S3KeyOrPrefix"},
         "etag":{"shape":"S3Etag"}
       }
     },
@@ -2540,9 +2576,9 @@
       "type":"list",
       "member":{"shape":"S3KeyOutput"}
     },
-    "S3Keys":{
+    "S3KeysOrPrefixes":{
       "type":"list",
-      "member":{"shape":"S3Key"},
+      "member":{"shape":"S3KeyOrPrefix"},
       "max":100,
       "min":1
     },
@@ -2760,7 +2796,8 @@
         "status":{"shape":"SimulationJobStatus"},
         "simulationApplicationNames":{"shape":"SimulationApplicationNames"},
         "robotApplicationNames":{"shape":"RobotApplicationNames"},
-        "dataSourceNames":{"shape":"DataSourceNames"}
+        "dataSourceNames":{"shape":"DataSourceNames"},
+        "computeType":{"shape":"ComputeType"}
       }
     },
     "SimulationJobs":{
@@ -2778,7 +2815,8 @@
       "type":"string",
       "enum":[
         "Gazebo",
-        "RosbagPlay"
+        "RosbagPlay",
+        "SimulationRuntime"
       ]
     },
     "SimulationSoftwareSuiteVersionType":{

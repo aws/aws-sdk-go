@@ -982,6 +982,8 @@ func ExampleAutoScaling_DescribeLoadBalancerTargetGroups_shared00() {
 			switch aerr.Code() {
 			case autoscaling.ErrCodeResourceContentionFault:
 				fmt.Println(autoscaling.ErrCodeResourceContentionFault, aerr.Error())
+			case autoscaling.ErrCodeInvalidNextToken:
+				fmt.Println(autoscaling.ErrCodeInvalidNextToken, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1012,6 +1014,8 @@ func ExampleAutoScaling_DescribeLoadBalancers_shared00() {
 			switch aerr.Code() {
 			case autoscaling.ErrCodeResourceContentionFault:
 				fmt.Println(autoscaling.ErrCodeResourceContentionFault, aerr.Error())
+			case autoscaling.ErrCodeInvalidNextToken:
+				fmt.Println(autoscaling.ErrCodeInvalidNextToken, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

@@ -6106,6 +6106,10 @@ func (s *DescribeRulesOutput) SetRules(v []*Rule) *DescribeRulesOutput {
 type DescribeSSLPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
+	// The type of load balancer. The default lists the SSL policies for all load
+	// balancers.
+	LoadBalancerType *string `type:"string" enum:"LoadBalancerTypeEnum"`
+
 	// The marker for the next set of results. (You received this marker from a
 	// previous call.)
 	Marker *string `type:"string"`
@@ -6146,6 +6150,12 @@ func (s *DescribeSSLPoliciesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetLoadBalancerType sets the LoadBalancerType field's value.
+func (s *DescribeSSLPoliciesInput) SetLoadBalancerType(v string) *DescribeSSLPoliciesInput {
+	s.LoadBalancerType = &v
+	return s
 }
 
 // SetMarker sets the Marker field's value.
@@ -9321,6 +9331,9 @@ type SslPolicy struct {
 
 	// The protocols.
 	SslProtocols []*string `type:"list"`
+
+	// The supported load balancers.
+	SupportedLoadBalancerTypes []*string `type:"list"`
 }
 
 // String returns the string representation.
@@ -9356,6 +9369,12 @@ func (s *SslPolicy) SetName(v string) *SslPolicy {
 // SetSslProtocols sets the SslProtocols field's value.
 func (s *SslPolicy) SetSslProtocols(v []*string) *SslPolicy {
 	s.SslProtocols = v
+	return s
+}
+
+// SetSupportedLoadBalancerTypes sets the SupportedLoadBalancerTypes field's value.
+func (s *SslPolicy) SetSupportedLoadBalancerTypes(v []*string) *SslPolicy {
+	s.SupportedLoadBalancerTypes = v
 	return s
 }
 
