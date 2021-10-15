@@ -4809,6 +4809,7 @@
         "BatchWindow":{"shape":"BatchWindow"}
       }
     },
+    "EventQueueArn":{"type":"string"},
     "ExecutionProperty":{
       "type":"structure",
       "members":{
@@ -7040,7 +7041,8 @@
       "type":"string",
       "enum":[
         "CRAWL_EVERYTHING",
-        "CRAWL_NEW_FOLDERS_ONLY"
+        "CRAWL_NEW_FOLDERS_ONLY",
+        "CRAWL_EVENT_MODE"
       ]
     },
     "RecrawlPolicy":{
@@ -7223,7 +7225,9 @@
         "Path":{"shape":"Path"},
         "Exclusions":{"shape":"PathList"},
         "ConnectionName":{"shape":"ConnectionName"},
-        "SampleSize":{"shape":"NullableInteger"}
+        "SampleSize":{"shape":"NullableInteger"},
+        "EventQueueArn":{"shape":"EventQueueArn"},
+        "DlqEventQueueArn":{"shape":"EventQueueArn"}
       }
     },
     "S3TargetList":{

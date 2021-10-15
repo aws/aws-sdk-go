@@ -41924,6 +41924,9 @@ type RecrawlPolicy struct {
 	//
 	// A value of CRAWL_NEW_FOLDERS_ONLY specifies crawling only folders that were
 	// added since the last crawler run.
+	//
+	// A value of CRAWL_EVENT_MODE specifies crawling only the changes identified
+	// by Amazon S3 events.
 	RecrawlBehavior *string `type:"string" enum:"RecrawlBehavior"`
 }
 
@@ -42775,6 +42778,12 @@ type S3Target struct {
 	// Amazon S3 within an Amazon Virtual Private Cloud environment (Amazon VPC).
 	ConnectionName *string `type:"string"`
 
+	// A valid Amazon dead-letter SQS ARN. For example, arn:aws:sqs:region:account:deadLetterQueue.
+	DlqEventQueueArn *string `type:"string"`
+
+	// A valid Amazon SQS ARN. For example, arn:aws:sqs:region:account:sqs.
+	EventQueueArn *string `type:"string"`
+
 	// A list of glob patterns used to exclude from the crawl. For more information,
 	// see Catalog Tables with a Crawler (https://docs.aws.amazon.com/glue/latest/dg/add-crawler.html).
 	Exclusions []*string `type:"list"`
@@ -42809,6 +42818,18 @@ func (s S3Target) GoString() string {
 // SetConnectionName sets the ConnectionName field's value.
 func (s *S3Target) SetConnectionName(v string) *S3Target {
 	s.ConnectionName = &v
+	return s
+}
+
+// SetDlqEventQueueArn sets the DlqEventQueueArn field's value.
+func (s *S3Target) SetDlqEventQueueArn(v string) *S3Target {
+	s.DlqEventQueueArn = &v
+	return s
+}
+
+// SetEventQueueArn sets the EventQueueArn field's value.
+func (s *S3Target) SetEventQueueArn(v string) *S3Target {
+	s.EventQueueArn = &v
 	return s
 }
 
@@ -51534,6 +51555,9 @@ const (
 
 	// RecrawlBehaviorCrawlNewFoldersOnly is a RecrawlBehavior enum value
 	RecrawlBehaviorCrawlNewFoldersOnly = "CRAWL_NEW_FOLDERS_ONLY"
+
+	// RecrawlBehaviorCrawlEventMode is a RecrawlBehavior enum value
+	RecrawlBehaviorCrawlEventMode = "CRAWL_EVENT_MODE"
 )
 
 // RecrawlBehavior_Values returns all elements of the RecrawlBehavior enum
@@ -51541,6 +51565,7 @@ func RecrawlBehavior_Values() []string {
 	return []string{
 		RecrawlBehaviorCrawlEverything,
 		RecrawlBehaviorCrawlNewFoldersOnly,
+		RecrawlBehaviorCrawlEventMode,
 	}
 }
 

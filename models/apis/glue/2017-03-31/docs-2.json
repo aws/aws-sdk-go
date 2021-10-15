@@ -1959,6 +1959,13 @@
         "TriggerUpdate$EventBatchingCondition": "<p>Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires.</p>"
       }
     },
+    "EventQueueArn": {
+      "base": null,
+      "refs": {
+        "S3Target$EventQueueArn": "<p>A valid Amazon SQS ARN. For example, <code>arn:aws:sqs:region:account:sqs</code>.</p>",
+        "S3Target$DlqEventQueueArn": "<p>A valid Amazon dead-letter SQS ARN. For example, <code>arn:aws:sqs:region:account:deadLetterQueue</code>.</p>"
+      }
+    },
     "ExecutionProperty": {
       "base": "<p>An execution property of a job.</p>",
       "refs": {
@@ -4308,7 +4315,7 @@
     "RecrawlBehavior": {
       "base": null,
       "refs": {
-        "RecrawlPolicy$RecrawlBehavior": "<p>Specifies whether to crawl the entire dataset again or to crawl only folders that were added since the last crawler run.</p> <p>A value of <code>CRAWL_EVERYTHING</code> specifies crawling the entire dataset again.</p> <p>A value of <code>CRAWL_NEW_FOLDERS_ONLY</code> specifies crawling only folders that were added since the last crawler run.</p>"
+        "RecrawlPolicy$RecrawlBehavior": "<p>Specifies whether to crawl the entire dataset again or to crawl only folders that were added since the last crawler run.</p> <p>A value of <code>CRAWL_EVERYTHING</code> specifies crawling the entire dataset again.</p> <p>A value of <code>CRAWL_NEW_FOLDERS_ONLY</code> specifies crawling only folders that were added since the last crawler run.</p> <p>A value of <code>CRAWL_EVENT_MODE</code> specifies crawling only the changes identified by Amazon S3 events.</p>"
       }
     },
     "RecrawlPolicy": {

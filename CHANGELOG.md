@@ -1,3 +1,12 @@
+Release v1.41.4 (2021-10-15)
+===
+
+### Service Client Updates
+* `service/elasticfilesystem`: Updates service documentation
+  * EFS adds documentation for a new exception for short identifiers to be thrown after its migration to long resource identifiers.
+* `service/glue`: Updates service API and documentation
+  * Enable S3 event base crawler API.
+
 Release v1.41.3 (2021-10-14)
 ===
 
