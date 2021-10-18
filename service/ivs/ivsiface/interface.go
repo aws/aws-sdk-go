@@ -159,9 +159,6 @@ type IVSAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *ivs.ListTagsForResourceInput, ...request.Option) (*ivs.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*ivs.ListTagsForResourceInput) (*request.Request, *ivs.ListTagsForResourceOutput)
 
-	ListTagsForResourcePages(*ivs.ListTagsForResourceInput, func(*ivs.ListTagsForResourceOutput, bool) bool) error
-	ListTagsForResourcePagesWithContext(aws.Context, *ivs.ListTagsForResourceInput, func(*ivs.ListTagsForResourceOutput, bool) bool, ...request.Option) error
-
 	PutMetadata(*ivs.PutMetadataInput) (*ivs.PutMetadataOutput, error)
 	PutMetadataWithContext(aws.Context, *ivs.PutMetadataInput, ...request.Option) (*ivs.PutMetadataOutput, error)
 	PutMetadataRequest(*ivs.PutMetadataInput) (*request.Request, *ivs.PutMetadataOutput)

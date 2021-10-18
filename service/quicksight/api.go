@@ -155,7 +155,7 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 // CreateAccountCustomization API operation for Amazon QuickSight.
 //
 // Creates Amazon QuickSight customizations the current Amazon Web Services
-// Region;. Currently, you can add a custom default theme by using the CreateAccountCustomization
+// Region. Currently, you can add a custom default theme by using the CreateAccountCustomization
 // or UpdateAccountCustomization API operation. To further customize Amazon
 // QuickSight by removing Amazon QuickSight sample assets and videos for all
 // new users, see Customizing Amazon QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html)
@@ -1894,7 +1894,7 @@ func (c *QuickSight) DeleteAccountCustomizationRequest(input *DeleteAccountCusto
 // DeleteAccountCustomization API operation for Amazon QuickSight.
 //
 // Deletes all Amazon QuickSight customizations in this Amazon Web Services
-// Region; for the specified Amazon Web Services account and Amazon QuickSight
+// Region for the specified Amazon Web Services account and Amazon QuickSight
 // namespace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3614,47 +3614,47 @@ func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountC
 //
 // Describes the customizations associated with the provided Amazon Web Services
 // account and Amazon Amazon QuickSight namespace in an Amazon Web Services
-// Region;. The Amazon QuickSight console evaluates which customizations to
-// apply by running this API operation with the Resolved flag included.
+// Region. The Amazon QuickSight console evaluates which customizations to apply
+// by running this API operation with the Resolved flag included.
 //
 // To determine what customizations display when you run this command, it can
 // help to visualize the relationship of the entities involved.
 //
 //    * Amazon Web Services account - The Amazon Web Services account exists
 //    at the top of the hierarchy. It has the potential to use all of the Amazon
-//    Web Services Regions; and AWS Services. When you subscribe to Amazon QuickSight,
-//    you choose one Amazon Web Services Region; to use as your home Region.
+//    Web Services Regions and AWS Services. When you subscribe to Amazon QuickSight,
+//    you choose one Amazon Web Services Region to use as your home Region.
 //    That's where your free SPICE capacity is located. You can use Amazon QuickSight
-//    in any supported Amazon Web Services Region;.
+//    in any supported Amazon Web Services Region.
 //
-//    * Amazon Web Services Region; - In each Amazon Web Services Region; where
+//    * Amazon Web Services Region - In each Amazon Web Services Region where
 //    you sign in to Amazon QuickSight at least once, Amazon QuickSight acts
 //    as a separate instance of the same service. If you have a user directory,
 //    it resides in us-east-1, which is the US East (N. Virginia). Generally
 //    speaking, these users have access to Amazon QuickSight in any Amazon Web
-//    Services Region;, unless they are constrained to a namespace. To run the
-//    command in a different Amazon Web Services Region;, you change your Region
+//    Services Region, unless they are constrained to a namespace. To run the
+//    command in a different Amazon Web Services Region, you change your Region
 //    settings. If you're using the AWS CLI, you can use one of the following
 //    options: Use command line options (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html).
 //    Use named profiles (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
-//    Run aws configure to change your default Amazon Web Services Region;.
-//    Use Enter to key the same settings for your keys. For more information,
-//    see Configuring the AWS CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
+//    Run aws configure to change your default Amazon Web Services Region. Use
+//    Enter to key the same settings for your keys. For more information, see
+//    Configuring the AWS CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
 //
 //    * Namespace - A Amazon QuickSight namespace is a partition that contains
 //    users and assets (data sources, datasets, dashboards, and so on). To access
 //    assets that are in a specific namespace, users and groups must also be
 //    part of the same namespace. People who share a namespace are completely
 //    isolated from users and assets in other namespaces, even if they are in
-//    the same Amazon Web Services account and Amazon Web Services Region;.
+//    the same Amazon Web Services account and Amazon Web Services Region.
 //
-//    * Applied customizations - Within an Amazon Web Services Region;, a set
+//    * Applied customizations - Within an Amazon Web Services Region, a set
 //    of Amazon QuickSight customizations can apply to an Amazon Web Services
 //    account or to a namespace. Settings that you apply to a namespace override
 //    settings that you apply to an Amazon Web Services account. All settings
-//    are isolated to a single Amazon Web Services Region;. To apply them in
-//    other Amazon Web Services Regions;, run the CreateAccountCustomization
-//    command in each Amazon Web Services Region; where you want to apply the
+//    are isolated to a single Amazon Web Services Region. To apply them in
+//    other Amazon Web Services Regions, run the CreateAccountCustomization
+//    command in each Amazon Web Services Region where you want to apply the
 //    same customizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5178,6 +5178,101 @@ func (c *QuickSight) DescribeIngestion(input *DescribeIngestionInput) (*Describe
 // for more information on using Contexts.
 func (c *QuickSight) DescribeIngestionWithContext(ctx aws.Context, input *DescribeIngestionInput, opts ...request.Option) (*DescribeIngestionOutput, error) {
 	req, out := c.DescribeIngestionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeIpRestriction = "DescribeIpRestriction"
+
+// DescribeIpRestrictionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeIpRestriction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeIpRestriction for more information on using the DescribeIpRestriction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeIpRestrictionRequest method.
+//    req, resp := client.DescribeIpRestrictionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeIpRestriction
+func (c *QuickSight) DescribeIpRestrictionRequest(input *DescribeIpRestrictionInput) (req *request.Request, output *DescribeIpRestrictionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeIpRestriction,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/ip-restriction",
+	}
+
+	if input == nil {
+		input = &DescribeIpRestrictionInput{}
+	}
+
+	output = &DescribeIpRestrictionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeIpRestriction API operation for Amazon QuickSight.
+//
+// Provides a summary and status of IP Rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeIpRestriction for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeIpRestriction
+func (c *QuickSight) DescribeIpRestriction(input *DescribeIpRestrictionInput) (*DescribeIpRestrictionOutput, error) {
+	req, out := c.DescribeIpRestrictionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeIpRestrictionWithContext is the same as DescribeIpRestriction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeIpRestriction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeIpRestrictionWithContext(ctx aws.Context, input *DescribeIpRestrictionInput, opts ...request.Option) (*DescribeIpRestrictionOutput, error) {
+	req, out := c.DescribeIpRestrictionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7046,7 +7141,7 @@ func (c *QuickSight) ListDataSetsRequest(input *ListDataSetsInput) (req *request
 // ListDataSets API operation for Amazon QuickSight.
 //
 // Lists all of the datasets belonging to the current Amazon Web Services account
-// in an Amazon Web Services Region;.
+// in an Amazon Web Services Region.
 //
 // The permissions resource is arn:aws:quicksight:region:aws-account-id:dataset/*.
 //
@@ -7201,8 +7296,8 @@ func (c *QuickSight) ListDataSourcesRequest(input *ListDataSourcesInput) (req *r
 
 // ListDataSources API operation for Amazon QuickSight.
 //
-// Lists data sources in current Amazon Web Services Region; that belong to
-// this Amazon Web Services account.
+// Lists data sources in current Amazon Web Services Region that belong to this
+// Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10319,7 +10414,7 @@ func (c *QuickSight) UpdateAccountCustomizationRequest(input *UpdateAccountCusto
 // UpdateAccountCustomization API operation for Amazon QuickSight.
 //
 // Updates Amazon QuickSight customizations the current Amazon Web Services
-// Region;. Currently, the only customization you can use is a theme.
+// Region. Currently, the only customization you can use is a theme.
 //
 // You can use customizations for your Amazon Web Services account or, if you
 // specify a namespace, for a Amazon QuickSight namespace instead. Customizations
@@ -11791,6 +11886,104 @@ func (c *QuickSight) UpdateIAMPolicyAssignmentWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opUpdateIpRestriction = "UpdateIpRestriction"
+
+// UpdateIpRestrictionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateIpRestriction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateIpRestriction for more information on using the UpdateIpRestriction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateIpRestrictionRequest method.
+//    req, resp := client.UpdateIpRestrictionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateIpRestriction
+func (c *QuickSight) UpdateIpRestrictionRequest(input *UpdateIpRestrictionInput) (req *request.Request, output *UpdateIpRestrictionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateIpRestriction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/ip-restriction",
+	}
+
+	if input == nil {
+		input = &UpdateIpRestrictionInput{}
+	}
+
+	output = &UpdateIpRestrictionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateIpRestriction API operation for Amazon QuickSight.
+//
+// Updates content and status of IP Rules.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateIpRestriction for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   A limit is exceeded.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateIpRestriction
+func (c *QuickSight) UpdateIpRestriction(input *UpdateIpRestrictionInput) (*UpdateIpRestrictionOutput, error) {
+	req, out := c.UpdateIpRestrictionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateIpRestrictionWithContext is the same as UpdateIpRestriction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateIpRestriction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateIpRestrictionWithContext(ctx aws.Context, input *UpdateIpRestrictionInput, opts ...request.Option) (*UpdateIpRestrictionOutput, error) {
+	req, out := c.UpdateIpRestrictionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTemplate = "UpdateTemplate"
 
 // UpdateTemplateRequest generates a "aws/request.Request" representing the
@@ -12585,7 +12778,7 @@ func (s *AccessDeniedException) RequestID() string {
 
 // The Amazon QuickSight customizations associated with your Amazon Web Services
 // account or a Amazon QuickSight namespace in a specific Amazon Web Services
-// Region;.
+// Region.
 type AccountCustomization struct {
 	_ struct{} `type:"structure"`
 
@@ -12753,11 +12946,11 @@ func (s *AdHocFilteringOption) SetAvailabilityStatus(v string) *AdHocFilteringOp
 	return s
 }
 
-// The parameters for Elasticsearch.
+// The parameters for OpenSearch.
 type AmazonElasticsearchParameters struct {
 	_ struct{} `type:"structure"`
 
-	// The Elasticsearch domain.
+	// The OpenSearch domain.
 	//
 	// Domain is a required field
 	Domain *string `min:"1" type:"string" required:"true"`
@@ -14402,7 +14595,7 @@ type CreateAccountCustomizationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon QuickSight customizations you're adding in the current Amazon
-	// Web Services Region;. You can add these to an Amazon Web Services account
+	// Web Services Region. You can add these to an Amazon Web Services account
 	// and a Amazon QuickSight namespace.
 	//
 	// For example, you can add a default theme by setting AccountCustomization
@@ -14505,7 +14698,7 @@ type CreateAccountCustomizationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon QuickSight customizations you're adding in the current Amazon
-	// Web Services Region;.
+	// Web Services Region.
 	AccountCustomization *AccountCustomization `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the customization that you created for
@@ -14942,7 +15135,7 @@ type CreateDashboardInput struct {
 	// the analysis to a template by using the CreateTemplate API operation. For
 	// SourceTemplate, specify the Amazon Resource Name (ARN) of the source template.
 	// The SourceTemplateARN can contain any Amazon Web Services account and any
-	// Amazon QuickSight-supported Amazon Web Services Region;.
+	// Amazon QuickSight-supported Amazon Web Services Region.
 	//
 	// Use the DataSetReferences entity within SourceTemplate to list the replacement
 	// datasets for the placeholders listed in the original. The schema in each
@@ -15206,7 +15399,7 @@ type CreateDataSetInput struct {
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
 	// An ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `type:"string" required:"true"`
@@ -15477,7 +15670,7 @@ type CreateDataSetOutput struct {
 	Arn *string `type:"string"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account.
+	// Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// The ARN for the ingestion, which is triggered as a result of dataset creation
@@ -15565,7 +15758,7 @@ type CreateDataSourceInput struct {
 	// String and GoString methods.
 	Credentials *DataSourceCredentials `type:"structure" sensitive:"true"`
 
-	// An ID for the data source. This ID is unique per Amazon Web Services Region;
+	// An ID for the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
@@ -15593,7 +15786,7 @@ type CreateDataSourceInput struct {
 
 	// The type of the data source. To return a list of all data sources, use ListDataSources.
 	//
-	// Use AMAZON_ELASTICSEARCH for Amazon Elasticsearch Service.
+	// Use AMAZON_ELASTICSEARCH for Amazon OpenSearch Service.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataSourceType"`
@@ -15759,7 +15952,7 @@ type CreateDataSourceOutput struct {
 	// The status of creating the data source.
 	CreationStatus *string `type:"string" enum:"ResourceStatus"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
@@ -16695,7 +16888,7 @@ func (s *CreateIAMPolicyAssignmentOutput) SetStatus(v int64) *CreateIAMPolicyAss
 }
 
 type CreateIngestionInput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The Amazon Web Services account ID.
 	//
@@ -16711,6 +16904,9 @@ type CreateIngestionInput struct {
 	//
 	// IngestionId is a required field
 	IngestionId *string `location:"uri" locationName:"IngestionId" min:"1" type:"string" required:"true"`
+
+	// The type of ingestion that you want to create.
+	IngestionType *string `type:"string" enum:"IngestionType"`
 }
 
 // String returns the string representation.
@@ -16774,6 +16970,12 @@ func (s *CreateIngestionInput) SetDataSetId(v string) *CreateIngestionInput {
 // SetIngestionId sets the IngestionId field's value.
 func (s *CreateIngestionInput) SetIngestionId(v string) *CreateIngestionInput {
 	s.IngestionId = &v
+	return s
+}
+
+// SetIngestionType sets the IngestionType field's value.
+func (s *CreateIngestionInput) SetIngestionType(v string) *CreateIngestionInput {
+	s.IngestionType = &v
 	return s
 }
 
@@ -17210,7 +17412,7 @@ type CreateTemplateInput struct {
 	// Amazon Resource Name (ARN). For SourceTemplate, specify the ARN of the source
 	// template. For SourceAnalysis, specify the ARN of the source analysis. The
 	// SourceTemplate ARN can contain any Amazon Web Services account and any Amazon
-	// QuickSight-supported Amazon Web Services Region;.
+	// QuickSight-supported Amazon Web Services Region.
 	//
 	// Use the DataSetReferences entity within SourceTemplate or SourceAnalysis
 	// to list the replacement datasets for the placeholders listed in the original.
@@ -19222,7 +19424,7 @@ type DataSource struct {
 	// The time that this data source was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
@@ -19454,7 +19656,7 @@ func (s *DataSourceErrorInfo) SetType(v string) *DataSourceErrorInfo {
 type DataSourceParameters struct {
 	_ struct{} `type:"structure"`
 
-	// The parameters for Elasticsearch.
+	// The parameters for OpenSearch.
 	AmazonElasticsearchParameters *AmazonElasticsearchParameters `type:"structure"`
 
 	AmazonOpenSearchParameters *AmazonOpenSearchParameters `type:"structure"`
@@ -19902,7 +20104,7 @@ type DeleteAccountCustomizationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID for the Amazon Web Services account that you want to delete Amazon
-	// QuickSight customizations from in this Amazon Web Services Region;.
+	// QuickSight customizations from in this Amazon Web Services Region.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -20302,7 +20504,7 @@ type DeleteDataSetInput struct {
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -20367,7 +20569,7 @@ type DeleteDataSetOutput struct {
 	Arn *string `type:"string"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account.
+	// Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -20427,7 +20629,7 @@ type DeleteDataSourceInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
@@ -20492,7 +20694,7 @@ type DeleteDataSourceOutput struct {
 	// The Amazon Resource Name (ARN) of the data source that you deleted.
 	Arn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
@@ -22226,7 +22428,7 @@ type DescribeAccountCustomizationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon QuickSight customizations that exist in the current Amazon Web
-	// Services Region;.
+	// Services Region.
 	AccountCustomization *AccountCustomization `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the customization that's associated with
@@ -22361,7 +22563,7 @@ type DescribeAccountSettingsOutput struct {
 	// technically not an account by itself. Instead, it's a subscription to the
 	// Amazon QuickSight service for your Amazon Web Services account. The edition
 	// that you subscribe to applies to Amazon QuickSight in every Amazon Web Services
-	// Region; where you use it.
+	// Region where you use it.
 	AccountSettings *AccountSettings `type:"structure"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -22946,7 +23148,7 @@ type DescribeDataSetInput struct {
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -23062,7 +23264,7 @@ type DescribeDataSetPermissionsInput struct {
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -23127,7 +23329,7 @@ type DescribeDataSetPermissionsOutput struct {
 	DataSetArn *string `type:"string"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account.
+	// Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// A list of resource permissions on the dataset.
@@ -23196,7 +23398,7 @@ type DescribeDataSourceInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
@@ -23312,7 +23514,7 @@ type DescribeDataSourcePermissionsInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
@@ -23377,7 +23579,7 @@ type DescribeDataSourcePermissionsOutput struct {
 	// The Amazon Resource Name (ARN) of the data source.
 	DataSourceArn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
@@ -24219,6 +24421,123 @@ func (s *DescribeIngestionOutput) SetStatus(v int64) *DescribeIngestionOutput {
 	return s
 }
 
+type DescribeIpRestrictionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Your AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeIpRestrictionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeIpRestrictionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeIpRestrictionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeIpRestrictionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeIpRestrictionInput) SetAwsAccountId(v string) *DescribeIpRestrictionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+type DescribeIpRestrictionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Your AWS account ID.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// Whether or not IP rules are enabled.
+	Enabled *bool `type:"boolean"`
+
+	// Describes the IP rules with CIDR range and description.
+	IpRestrictionRuleMap map[string]*string `type:"map"`
+
+	// The ID of the describe request.
+	RequestId *string `type:"string"`
+
+	// The status of a set of IP restrictions. A successful request returns a 200
+	// status code.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeIpRestrictionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeIpRestrictionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeIpRestrictionOutput) SetAwsAccountId(v string) *DescribeIpRestrictionOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *DescribeIpRestrictionOutput) SetEnabled(v bool) *DescribeIpRestrictionOutput {
+	s.Enabled = &v
+	return s
+}
+
+// SetIpRestrictionRuleMap sets the IpRestrictionRuleMap field's value.
+func (s *DescribeIpRestrictionOutput) SetIpRestrictionRuleMap(v map[string]*string) *DescribeIpRestrictionOutput {
+	s.IpRestrictionRuleMap = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeIpRestrictionOutput) SetRequestId(v string) *DescribeIpRestrictionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeIpRestrictionOutput) SetStatus(v int64) *DescribeIpRestrictionOutput {
+	s.Status = &v
+	return s
+}
+
 type DescribeNamespaceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -24290,7 +24609,7 @@ type DescribeNamespaceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The information about the namespace that you're describing. The response
-	// includes the namespace ARN, name, Amazon Web Services Region;, creation status,
+	// includes the namespace ARN, name, Amazon Web Services Region, creation status,
 	// and identity store. DescribeNamespace also works for namespaces that are
 	// in the process of being created. For incomplete namespaces, this API operation
 	// lists the namespace error types and messages associated with the creation
@@ -29458,7 +29777,7 @@ type ListNamespacesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The information about the namespaces in this Amazon Web Services account.
-	// The response includes the namespace ARN, name, Amazon Web Services Region;,
+	// The response includes the namespace ARN, name, Amazon Web Services Region,
 	// notification email address, creation status, and identity store.
 	Namespaces []*NamespaceInfoV2 `type:"list"`
 
@@ -31302,7 +31621,7 @@ type NamespaceInfoV2 struct {
 	// The namespace ARN.
 	Arn *string `type:"string"`
 
-	// The namespace Amazon Web Services Region;.
+	// The namespace Amazon Web Services Region.
 	CapacityRegion *string `type:"string"`
 
 	// The creation status of a namespace that is not yet completely created.
@@ -33278,6 +33597,9 @@ type RowInfo struct {
 
 	// The number of rows that were ingested.
 	RowsIngested *int64 `type:"long"`
+
+	// The total number of rows in the dataset.
+	TotalRowsInDataset *int64 `type:"long"`
 }
 
 // String returns the string representation.
@@ -33307,6 +33629,12 @@ func (s *RowInfo) SetRowsDropped(v int64) *RowInfo {
 // SetRowsIngested sets the RowsIngested field's value.
 func (s *RowInfo) SetRowsIngested(v int64) *RowInfo {
 	s.RowsIngested = &v
+	return s
+}
+
+// SetTotalRowsInDataset sets the TotalRowsInDataset field's value.
+func (s *RowInfo) SetTotalRowsInDataset(v int64) *RowInfo {
+	s.TotalRowsInDataset = &v
 	return s
 }
 
@@ -35083,7 +35411,7 @@ type Template struct {
 	// The display name of the template.
 	Name *string `min:"1" type:"string"`
 
-	// The ID for the template. This is unique per Amazon Web Services Region; for
+	// The ID for the template. This is unique per Amazon Web Services Region for
 	// each Amazon Web Services account.
 	TemplateId *string `min:"1" type:"string"`
 
@@ -35438,7 +35766,7 @@ type TemplateSummary struct {
 	// A display name for the template.
 	Name *string `min:"1" type:"string"`
 
-	// The ID of the template. This ID is unique per Amazon Web Services Region;
+	// The ID of the template. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	TemplateId *string `min:"1" type:"string"`
 }
@@ -36006,7 +36334,7 @@ type ThemeSummary struct {
 	// the display name for the theme.
 	Name *string `min:"1" type:"string"`
 
-	// The ID of the theme. This ID is unique per Amazon Web Services Region; for
+	// The ID of the theme. This ID is unique per Amazon Web Services Region for
 	// each Amazon Web Services account.
 	ThemeId *string `min:"1" type:"string"`
 }
@@ -37070,7 +37398,7 @@ type UpdateAccountCustomizationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon QuickSight customizations you're updating in the current Amazon
-	// Web Services Region;.
+	// Web Services Region.
 	//
 	// AccountCustomization is a required field
 	AccountCustomization *AccountCustomization `type:"structure" required:"true"`
@@ -37144,7 +37472,7 @@ type UpdateAccountCustomizationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon QuickSight customizations you're updating in the current Amazon
-	// Web Services Region;.
+	// Web Services Region.
 	AccountCustomization *AccountCustomization `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the updated customization for this Amazon
@@ -37759,7 +38087,7 @@ type UpdateDashboardInput struct {
 	// the analysis to a template by using the CreateTemplate API operation. For
 	// SourceTemplate, specify the Amazon Resource Name (ARN) of the source template.
 	// The SourceTemplate ARN can contain any Amazon Web Services account and any
-	// Amazon QuickSight-supported Amazon Web Services Region;.
+	// Amazon QuickSight-supported Amazon Web Services Region.
 	//
 	// Use the DataSetReferences entity within SourceTemplate to list the replacement
 	// datasets for the placeholders listed in the original. The schema in each
@@ -38294,7 +38622,7 @@ type UpdateDataSetInput struct {
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
 	// The ID for the dataset that you want to update. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account.
+	// Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -38523,7 +38851,7 @@ type UpdateDataSetOutput struct {
 	Arn *string `type:"string"`
 
 	// The ID for the dataset that you want to create. This ID is unique per Amazon
-	// Web Services Region; for each Amazon Web Services account.
+	// Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// The ARN for the ingestion, which is triggered as a result of dataset creation
@@ -38604,7 +38932,7 @@ type UpdateDataSetPermissionsInput struct {
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The ID for the dataset whose permissions you want to update. This ID is unique
-	// per Amazon Web Services Region; for each Amazon Web Services account.
+	// per Amazon Web Services Region for each Amazon Web Services account.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -38713,7 +39041,7 @@ type UpdateDataSetPermissionsOutput struct {
 	DataSetArn *string `type:"string"`
 
 	// The ID for the dataset whose permissions you want to update. This ID is unique
-	// per Amazon Web Services Region; for each Amazon Web Services account.
+	// per Amazon Web Services Region for each Amazon Web Services account.
 	DataSetId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -38781,7 +39109,7 @@ type UpdateDataSourceInput struct {
 	// String and GoString methods.
 	Credentials *DataSourceCredentials `type:"structure" sensitive:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
@@ -38914,7 +39242,7 @@ type UpdateDataSourceOutput struct {
 	// The Amazon Resource Name (ARN) of the data source.
 	Arn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
@@ -38984,7 +39312,7 @@ type UpdateDataSourcePermissionsInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	//
 	// DataSourceId is a required field
@@ -39093,7 +39421,7 @@ type UpdateDataSourcePermissionsOutput struct {
 	// The Amazon Resource Name (ARN) of the data source.
 	DataSourceArn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// The ID of the data source. This ID is unique per Amazon Web Services Region
 	// for each Amazon Web Services account.
 	DataSourceId *string `type:"string"`
 
@@ -39822,6 +40150,122 @@ func (s *UpdateIAMPolicyAssignmentOutput) SetRequestId(v string) *UpdateIAMPolic
 
 // SetStatus sets the Status field's value.
 func (s *UpdateIAMPolicyAssignmentOutput) SetStatus(v int64) *UpdateIAMPolicyAssignmentOutput {
+	s.Status = &v
+	return s
+}
+
+type UpdateIpRestrictionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Your AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// Whether or not IP rules are enabled.
+	Enabled *bool `type:"boolean"`
+
+	// Describes updated IP rules.
+	IpRestrictionRuleMap map[string]*string `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpRestrictionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpRestrictionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateIpRestrictionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateIpRestrictionInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateIpRestrictionInput) SetAwsAccountId(v string) *UpdateIpRestrictionInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *UpdateIpRestrictionInput) SetEnabled(v bool) *UpdateIpRestrictionInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetIpRestrictionRuleMap sets the IpRestrictionRuleMap field's value.
+func (s *UpdateIpRestrictionInput) SetIpRestrictionRuleMap(v map[string]*string) *UpdateIpRestrictionInput {
+	s.IpRestrictionRuleMap = v
+	return s
+}
+
+type UpdateIpRestrictionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Your AWS account ID.
+	AwsAccountId *string `min:"12" type:"string"`
+
+	// The ID of the update request.
+	RequestId *string `type:"string"`
+
+	// The status of the updated IP rules. A successful request returns a 200 code.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpRestrictionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateIpRestrictionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateIpRestrictionOutput) SetAwsAccountId(v string) *UpdateIpRestrictionOutput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateIpRestrictionOutput) SetRequestId(v string) *UpdateIpRestrictionOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateIpRestrictionOutput) SetStatus(v int64) *UpdateIpRestrictionOutput {
 	s.Status = &v
 	return s
 }
@@ -42190,6 +42634,18 @@ const (
 
 	// IngestionErrorTypeInternalServiceError is a IngestionErrorType enum value
 	IngestionErrorTypeInternalServiceError = "INTERNAL_SERVICE_ERROR"
+
+	// IngestionErrorTypeRefreshSuppressedByEdit is a IngestionErrorType enum value
+	IngestionErrorTypeRefreshSuppressedByEdit = "REFRESH_SUPPRESSED_BY_EDIT"
+
+	// IngestionErrorTypePermissionNotFound is a IngestionErrorType enum value
+	IngestionErrorTypePermissionNotFound = "PERMISSION_NOT_FOUND"
+
+	// IngestionErrorTypeElasticsearchCursorNotEnabled is a IngestionErrorType enum value
+	IngestionErrorTypeElasticsearchCursorNotEnabled = "ELASTICSEARCH_CURSOR_NOT_ENABLED"
+
+	// IngestionErrorTypeCursorNotEnabled is a IngestionErrorType enum value
+	IngestionErrorTypeCursorNotEnabled = "CURSOR_NOT_ENABLED"
 )
 
 // IngestionErrorType_Values returns all elements of the IngestionErrorType enum
@@ -42235,6 +42691,10 @@ func IngestionErrorType_Values() []string {
 		IngestionErrorTypeDataSourceConnectionFailed,
 		IngestionErrorTypeFailureToProcessJsonFile,
 		IngestionErrorTypeInternalServiceError,
+		IngestionErrorTypeRefreshSuppressedByEdit,
+		IngestionErrorTypePermissionNotFound,
+		IngestionErrorTypeElasticsearchCursorNotEnabled,
+		IngestionErrorTypeCursorNotEnabled,
 	}
 }
 
@@ -42254,6 +42714,8 @@ func IngestionRequestSource_Values() []string {
 	}
 }
 
+// This defines the type of ingestion request. This is returned as part of create
+// ingestion response.
 const (
 	// IngestionRequestTypeInitialIngestion is a IngestionRequestType enum value
 	IngestionRequestTypeInitialIngestion = "INITIAL_INGESTION"
@@ -42307,6 +42769,24 @@ func IngestionStatus_Values() []string {
 		IngestionStatusFailed,
 		IngestionStatusCompleted,
 		IngestionStatusCancelled,
+	}
+}
+
+// This defines the type of ingestion user wants to trigger. This is part of
+// create ingestion request.
+const (
+	// IngestionTypeIncrementalRefresh is a IngestionType enum value
+	IngestionTypeIncrementalRefresh = "INCREMENTAL_REFRESH"
+
+	// IngestionTypeFullRefresh is a IngestionType enum value
+	IngestionTypeFullRefresh = "FULL_REFRESH"
+)
+
+// IngestionType_Values returns all elements of the IngestionType enum
+func IngestionType_Values() []string {
+	return []string{
+		IngestionTypeIncrementalRefresh,
+		IngestionTypeFullRefresh,
 	}
 }
 

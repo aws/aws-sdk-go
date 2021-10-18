@@ -3,34 +3,24 @@
     "ListChannels": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "channels"
+      "limit_key": "maxResults"
     },
     "ListPlaybackKeyPairs": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "keyPairs"
+      "limit_key": "maxResults"
     },
     "ListRecordingConfigurations": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "recordingConfigurations"
+      "limit_key": "maxResults"
     },
     "ListStreamKeys": {
       "input_token": "nextToken",
       "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "streamKeys"
+      "limit_key": "maxResults"
     },
     "ListStreams": {
-      "input_token": "nextToken",
-      "output_token": "nextToken",
-      "limit_key": "maxResults",
-      "result_key": "streams"
-    },
-    "ListTagsForResource": {
       "input_token": "nextToken",
       "output_token": "nextToken",
       "limit_key": "maxResults"

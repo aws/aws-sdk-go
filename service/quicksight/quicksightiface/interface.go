@@ -260,6 +260,10 @@ type QuickSightAPI interface {
 	DescribeIngestionWithContext(aws.Context, *quicksight.DescribeIngestionInput, ...request.Option) (*quicksight.DescribeIngestionOutput, error)
 	DescribeIngestionRequest(*quicksight.DescribeIngestionInput) (*request.Request, *quicksight.DescribeIngestionOutput)
 
+	DescribeIpRestriction(*quicksight.DescribeIpRestrictionInput) (*quicksight.DescribeIpRestrictionOutput, error)
+	DescribeIpRestrictionWithContext(aws.Context, *quicksight.DescribeIpRestrictionInput, ...request.Option) (*quicksight.DescribeIpRestrictionOutput, error)
+	DescribeIpRestrictionRequest(*quicksight.DescribeIpRestrictionInput) (*request.Request, *quicksight.DescribeIpRestrictionOutput)
+
 	DescribeNamespace(*quicksight.DescribeNamespaceInput) (*quicksight.DescribeNamespaceOutput, error)
 	DescribeNamespaceWithContext(aws.Context, *quicksight.DescribeNamespaceInput, ...request.Option) (*quicksight.DescribeNamespaceOutput, error)
 	DescribeNamespaceRequest(*quicksight.DescribeNamespaceInput) (*request.Request, *quicksight.DescribeNamespaceOutput)
@@ -525,6 +529,10 @@ type QuickSightAPI interface {
 	UpdateIAMPolicyAssignment(*quicksight.UpdateIAMPolicyAssignmentInput) (*quicksight.UpdateIAMPolicyAssignmentOutput, error)
 	UpdateIAMPolicyAssignmentWithContext(aws.Context, *quicksight.UpdateIAMPolicyAssignmentInput, ...request.Option) (*quicksight.UpdateIAMPolicyAssignmentOutput, error)
 	UpdateIAMPolicyAssignmentRequest(*quicksight.UpdateIAMPolicyAssignmentInput) (*request.Request, *quicksight.UpdateIAMPolicyAssignmentOutput)
+
+	UpdateIpRestriction(*quicksight.UpdateIpRestrictionInput) (*quicksight.UpdateIpRestrictionOutput, error)
+	UpdateIpRestrictionWithContext(aws.Context, *quicksight.UpdateIpRestrictionInput, ...request.Option) (*quicksight.UpdateIpRestrictionOutput, error)
+	UpdateIpRestrictionRequest(*quicksight.UpdateIpRestrictionInput) (*request.Request, *quicksight.UpdateIpRestrictionOutput)
 
 	UpdateTemplate(*quicksight.UpdateTemplateInput) (*quicksight.UpdateTemplateOutput, error)
 	UpdateTemplateWithContext(aws.Context, *quicksight.UpdateTemplateInput, ...request.Option) (*quicksight.UpdateTemplateOutput, error)

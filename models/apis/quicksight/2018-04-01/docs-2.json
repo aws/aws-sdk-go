@@ -3,7 +3,7 @@
   "service": "<fullname>Amazon QuickSight API Reference</fullname> <p>Amazon QuickSight is a fully managed, serverless business intelligence service for the Amazon Web Services Cloud that makes it easy to extend data and insights to every user in your organization. This API reference contains documentation for a programming interface that you can use to manage Amazon QuickSight. </p>",
   "operations": {
     "CancelIngestion": "<p>Cancels an ongoing ingestion of data into SPICE.</p>",
-    "CreateAccountCustomization": "<p>Creates Amazon QuickSight customizations the current Amazon Web Services Region;. Currently, you can add a custom default theme by using the <code>CreateAccountCustomization</code> or <code>UpdateAccountCustomization</code> API operation. To further customize Amazon QuickSight by removing Amazon QuickSight sample assets and videos for all new users, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html\">Customizing Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p> <p>You can create customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace always override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation.</p> <p>Before you use the <code>CreateAccountCustomization</code> API operation to add a theme as the namespace default, make sure that you first share the theme with the namespace. If you don't share it with the namespace, the theme isn't visible to your users even if you make it the default theme. To check if the theme is shared, view the current permissions by using the <code> <a>DescribeThemePermissions</a> </code> API operation. To share the theme, grant permissions by using the <code> <a>UpdateThemePermissions</a> </code> API operation. </p>",
+    "CreateAccountCustomization": "<p>Creates Amazon QuickSight customizations the current Amazon Web Services Region. Currently, you can add a custom default theme by using the <code>CreateAccountCustomization</code> or <code>UpdateAccountCustomization</code> API operation. To further customize Amazon QuickSight by removing Amazon QuickSight sample assets and videos for all new users, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html\">Customizing Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p> <p>You can create customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace always override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation.</p> <p>Before you use the <code>CreateAccountCustomization</code> API operation to add a theme as the namespace default, make sure that you first share the theme with the namespace. If you don't share it with the namespace, the theme isn't visible to your users even if you make it the default theme. To check if the theme is shared, view the current permissions by using the <code> <a>DescribeThemePermissions</a> </code> API operation. To share the theme, grant permissions by using the <code> <a>UpdateThemePermissions</a> </code> API operation. </p>",
     "CreateAnalysis": "<p>Creates an analysis in Amazon QuickSight.</p>",
     "CreateDashboard": "<p>Creates a dashboard from a template. To first create a template, see the <code> <a>CreateTemplate</a> </code> API operation.</p> <p>A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight reports, created from analyses. You can share Amazon QuickSight dashboards. With the right permissions, you can create scheduled email reports from them. If you have the correct permissions, you can create a dashboard from a template that exists in a different Amazon Web Services account.</p>",
     "CreateDataSet": "<p>Creates a dataset.</p>",
@@ -19,7 +19,7 @@
     "CreateTemplateAlias": "<p>Creates a template alias for a template.</p>",
     "CreateTheme": "<p>Creates a theme.</p> <p>A <i>theme</i> is set of configuration options for color and layout. Themes apply to analyses and dashboards. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide</i>.</p>",
     "CreateThemeAlias": "<p>Creates a theme alias for a theme.</p>",
-    "DeleteAccountCustomization": "<p>Deletes all Amazon QuickSight customizations in this Amazon Web Services Region; for the specified Amazon Web Services account and Amazon QuickSight namespace.</p>",
+    "DeleteAccountCustomization": "<p>Deletes all Amazon QuickSight customizations in this Amazon Web Services Region for the specified Amazon Web Services account and Amazon QuickSight namespace.</p>",
     "DeleteAnalysis": "<p>Deletes an analysis from Amazon QuickSight. You can optionally include a recovery window during which you can restore the analysis. If you don't specify a recovery window value, the operation defaults to 30 days. Amazon QuickSight attaches a <code>DeletionTime</code> stamp to the response that specifies the end of the recovery window. At the end of the recovery window, Amazon QuickSight deletes the analysis permanently.</p> <p>At any time before recovery window ends, you can use the <code>RestoreAnalysis</code> API operation to remove the <code>DeletionTime</code> stamp and cancel the deletion of the analysis. The analysis remains visible in the API until it's deleted, so you can describe it but you can't make a template from it.</p> <p>An analysis that's scheduled for deletion isn't accessible in the Amazon QuickSight console. To access it in the console, restore it. Deleting an analysis doesn't delete the dashboards that you publish from it.</p>",
     "DeleteDashboard": "<p>Deletes a dashboard.</p>",
     "DeleteDataSet": "<p>Deletes a dataset.</p>",
@@ -36,7 +36,7 @@
     "DeleteThemeAlias": "<p>Deletes the version of the theme that the specified theme alias points to. If you provide a specific alias, you delete the version of the theme that the alias points to.</p>",
     "DeleteUser": "<p>Deletes the Amazon QuickSight user that is associated with the identity of the Identity and Access Management (IAM) user or role that's making the call. The IAM user isn't deleted as a result of this call. </p>",
     "DeleteUserByPrincipalId": "<p>Deletes a user identified by its principal ID. </p>",
-    "DescribeAccountCustomization": "<p>Describes the customizations associated with the provided Amazon Web Services account and Amazon Amazon QuickSight namespace in an Amazon Web Services Region;. The Amazon QuickSight console evaluates which customizations to apply by running this API operation with the <code>Resolved</code> flag included. </p> <p>To determine what customizations display when you run this command, it can help to visualize the relationship of the entities involved. </p> <ul> <li> <p> <code>Amazon Web Services account</code> - The Amazon Web Services account exists at the top of the hierarchy. It has the potential to use all of the Amazon Web Services Regions; and AWS Services. When you subscribe to Amazon QuickSight, you choose one Amazon Web Services Region; to use as your home Region. That's where your free SPICE capacity is located. You can use Amazon QuickSight in any supported Amazon Web Services Region;. </p> </li> <li> <p> <code>Amazon Web Services Region;</code> - In each Amazon Web Services Region; where you sign in to Amazon QuickSight at least once, Amazon QuickSight acts as a separate instance of the same service. If you have a user directory, it resides in us-east-1, which is the US East (N. Virginia). Generally speaking, these users have access to Amazon QuickSight in any Amazon Web Services Region;, unless they are constrained to a namespace. </p> <p>To run the command in a different Amazon Web Services Region;, you change your Region settings. If you're using the AWS CLI, you can use one of the following options:</p> <ul> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html\">command line options</a>. </p> </li> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html\">named profiles</a>. </p> </li> <li> <p>Run <code>aws configure</code> to change your default Amazon Web Services Region;. Use Enter to key the same settings for your keys. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html\">Configuring the AWS CLI</a>.</p> </li> </ul> </li> <li> <p> <code>Namespace</code> - A Amazon QuickSight namespace is a partition that contains users and assets (data sources, datasets, dashboards, and so on). To access assets that are in a specific namespace, users and groups must also be part of the same namespace. People who share a namespace are completely isolated from users and assets in other namespaces, even if they are in the same Amazon Web Services account and Amazon Web Services Region;.</p> </li> <li> <p> <code>Applied customizations</code> - Within an Amazon Web Services Region;, a set of Amazon QuickSight customizations can apply to an Amazon Web Services account or to a namespace. Settings that you apply to a namespace override settings that you apply to an Amazon Web Services account. All settings are isolated to a single Amazon Web Services Region;. To apply them in other Amazon Web Services Regions;, run the <code>CreateAccountCustomization</code> command in each Amazon Web Services Region; where you want to apply the same customizations. </p> </li> </ul>",
+    "DescribeAccountCustomization": "<p>Describes the customizations associated with the provided Amazon Web Services account and Amazon Amazon QuickSight namespace in an Amazon Web Services Region. The Amazon QuickSight console evaluates which customizations to apply by running this API operation with the <code>Resolved</code> flag included. </p> <p>To determine what customizations display when you run this command, it can help to visualize the relationship of the entities involved. </p> <ul> <li> <p> <code>Amazon Web Services account</code> - The Amazon Web Services account exists at the top of the hierarchy. It has the potential to use all of the Amazon Web Services Regions and AWS Services. When you subscribe to Amazon QuickSight, you choose one Amazon Web Services Region to use as your home Region. That's where your free SPICE capacity is located. You can use Amazon QuickSight in any supported Amazon Web Services Region. </p> </li> <li> <p> <code>Amazon Web Services Region</code> - In each Amazon Web Services Region where you sign in to Amazon QuickSight at least once, Amazon QuickSight acts as a separate instance of the same service. If you have a user directory, it resides in us-east-1, which is the US East (N. Virginia). Generally speaking, these users have access to Amazon QuickSight in any Amazon Web Services Region, unless they are constrained to a namespace. </p> <p>To run the command in a different Amazon Web Services Region, you change your Region settings. If you're using the AWS CLI, you can use one of the following options:</p> <ul> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html\">command line options</a>. </p> </li> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html\">named profiles</a>. </p> </li> <li> <p>Run <code>aws configure</code> to change your default Amazon Web Services Region. Use Enter to key the same settings for your keys. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html\">Configuring the AWS CLI</a>.</p> </li> </ul> </li> <li> <p> <code>Namespace</code> - A Amazon QuickSight namespace is a partition that contains users and assets (data sources, datasets, dashboards, and so on). To access assets that are in a specific namespace, users and groups must also be part of the same namespace. People who share a namespace are completely isolated from users and assets in other namespaces, even if they are in the same Amazon Web Services account and Amazon Web Services Region.</p> </li> <li> <p> <code>Applied customizations</code> - Within an Amazon Web Services Region, a set of Amazon QuickSight customizations can apply to an Amazon Web Services account or to a namespace. Settings that you apply to a namespace override settings that you apply to an Amazon Web Services account. All settings are isolated to a single Amazon Web Services Region. To apply them in other Amazon Web Services Regions, run the <code>CreateAccountCustomization</code> command in each Amazon Web Services Region where you want to apply the same customizations. </p> </li> </ul>",
     "DescribeAccountSettings": "<p>Describes the settings that were used when your Amazon QuickSight subscription was first created in this Amazon Web Services account.</p>",
     "DescribeAnalysis": "<p>Provides a summary of the metadata for an analysis.</p>",
     "DescribeAnalysisPermissions": "<p>Provides the read and write permissions for an analysis.</p>",
@@ -52,6 +52,7 @@
     "DescribeGroup": "<p>Returns an Amazon QuickSight group's description and Amazon Resource Name (ARN). </p>",
     "DescribeIAMPolicyAssignment": "<p>Describes an existing IAMpolicy assignment, as specified by the assignment name.</p>",
     "DescribeIngestion": "<p>Describes a SPICE ingestion.</p>",
+    "DescribeIpRestriction": "<p>Provides a summary and status of IP Rules.</p>",
     "DescribeNamespace": "<p>Describes the current namespace.</p>",
     "DescribeTemplate": "<p>Describes a template's metadata.</p>",
     "DescribeTemplateAlias": "<p>Describes the template alias for a template.</p>",
@@ -67,8 +68,8 @@
     "ListAnalyses": "<p>Lists Amazon QuickSight analyses that exist in the specified Amazon Web Services account.</p>",
     "ListDashboardVersions": "<p>Lists all the versions of the dashboards in the Amazon QuickSight subscription.</p>",
     "ListDashboards": "<p>Lists dashboards in an Amazon Web Services account.</p>",
-    "ListDataSets": "<p>Lists all of the datasets belonging to the current Amazon Web Services account in an Amazon Web Services Region;.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/*</code>.</p>",
-    "ListDataSources": "<p>Lists data sources in current Amazon Web Services Region; that belong to this Amazon Web Services account.</p>",
+    "ListDataSets": "<p>Lists all of the datasets belonging to the current Amazon Web Services account in an Amazon Web Services Region.</p> <p>The permissions resource is <code>arn:aws:quicksight:region:aws-account-id:dataset/*</code>.</p>",
+    "ListDataSources": "<p>Lists data sources in current Amazon Web Services Region that belong to this Amazon Web Services account.</p>",
     "ListFolderMembers": "<p>List all assets (<code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code>) in a folder. </p>",
     "ListFolders": "<p>Lists all folders in an account.</p>",
     "ListGroupMemberships": "<p>Lists member users in a group.</p>",
@@ -93,7 +94,7 @@
     "SearchFolders": "<p>Searches the subfolders in a folder.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, and template. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other AWS services, except for the following:</p> <ul> <li> <p>You can't use tags to track AWS costs for Amazon QuickSight. This restriction is because Amazon QuickSight costs are based on users and SPICE capacity, which aren't taggable resources.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the Tag Editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
-    "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations the current Amazon Web Services Region;. Currently, the only customization you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
+    "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations the current Amazon Web Services Region. Currently, the only customization you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
     "UpdateAccountSettings": "<p>Updates the Amazon QuickSight settings in your Amazon Web Services account.</p>",
     "UpdateAnalysis": "<p>Updates an analysis in Amazon QuickSight</p>",
     "UpdateAnalysisPermissions": "<p>Updates the read and write permissions for an analysis.</p>",
@@ -108,6 +109,7 @@
     "UpdateFolderPermissions": "<p>Updates permissions of a folder.</p>",
     "UpdateGroup": "<p>Changes a group description. </p>",
     "UpdateIAMPolicyAssignment": "<p>Updates an existing IAMpolicy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
+    "UpdateIpRestriction": "<p>Updates content and status of IP Rules.</p>",
     "UpdateTemplate": "<p>Updates a template from an existing Amazon QuickSight analysis or another template.</p>",
     "UpdateTemplateAlias": "<p>Updates the template alias of a template.</p>",
     "UpdateTemplatePermissions": "<p>Updates the resource permissions for a template.</p>",
@@ -123,19 +125,19 @@
       }
     },
     "AccountCustomization": {
-      "base": "<p>The Amazon QuickSight customizations associated with your Amazon Web Services account or a Amazon QuickSight namespace in a specific Amazon Web Services Region;.</p>",
+      "base": "<p>The Amazon QuickSight customizations associated with your Amazon Web Services account or a Amazon QuickSight namespace in a specific Amazon Web Services Region.</p>",
       "refs": {
-        "CreateAccountCustomizationRequest$AccountCustomization": "<p>The Amazon QuickSight customizations you're adding in the current Amazon Web Services Region;. You can add these to an Amazon Web Services account and a Amazon QuickSight namespace. </p> <p>For example, you can add a default theme by setting <code>AccountCustomization</code> to the midnight theme: <code>\"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight::aws:theme/MIDNIGHT\" }</code>. Or, you can add a custom theme by specifying <code>\"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight:us-west-2:111122223333:theme/bdb844d0-0fe9-4d9d-b520-0fe602d93639\" }</code>. </p>",
-        "CreateAccountCustomizationResponse$AccountCustomization": "<p>The Amazon QuickSight customizations you're adding in the current Amazon Web Services Region;. </p>",
-        "DescribeAccountCustomizationResponse$AccountCustomization": "<p>The Amazon QuickSight customizations that exist in the current Amazon Web Services Region;. </p>",
-        "UpdateAccountCustomizationRequest$AccountCustomization": "<p>The Amazon QuickSight customizations you're updating in the current Amazon Web Services Region;. </p>",
-        "UpdateAccountCustomizationResponse$AccountCustomization": "<p>The Amazon QuickSight customizations you're updating in the current Amazon Web Services Region;. </p>"
+        "CreateAccountCustomizationRequest$AccountCustomization": "<p>The Amazon QuickSight customizations you're adding in the current Amazon Web Services Region. You can add these to an Amazon Web Services account and a Amazon QuickSight namespace. </p> <p>For example, you can add a default theme by setting <code>AccountCustomization</code> to the midnight theme: <code>\"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight::aws:theme/MIDNIGHT\" }</code>. Or, you can add a custom theme by specifying <code>\"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight:us-west-2:111122223333:theme/bdb844d0-0fe9-4d9d-b520-0fe602d93639\" }</code>. </p>",
+        "CreateAccountCustomizationResponse$AccountCustomization": "<p>The Amazon QuickSight customizations you're adding in the current Amazon Web Services Region. </p>",
+        "DescribeAccountCustomizationResponse$AccountCustomization": "<p>The Amazon QuickSight customizations that exist in the current Amazon Web Services Region. </p>",
+        "UpdateAccountCustomizationRequest$AccountCustomization": "<p>The Amazon QuickSight customizations you're updating in the current Amazon Web Services Region. </p>",
+        "UpdateAccountCustomizationResponse$AccountCustomization": "<p>The Amazon QuickSight customizations you're updating in the current Amazon Web Services Region. </p>"
       }
     },
     "AccountSettings": {
       "base": "<p>The Amazon QuickSight settings associated with your Amazon Web Services account.</p>",
       "refs": {
-        "DescribeAccountSettingsResponse$AccountSettings": "<p>The Amazon QuickSight settings for this Amazon Web Services account. This information includes the edition of Amazon Amazon QuickSight that you subscribed to (Standard or Enterprise) and the notification email for the Amazon QuickSight subscription. In the Amazon QuickSight console, the Amazon QuickSight subscription is sometimes referred to as a Amazon QuickSight \"account\" even though it's technically not an account by itself. Instead, it's a subscription to the Amazon QuickSight service for your Amazon Web Services account. The edition that you subscribe to applies to Amazon QuickSight in every Amazon Web Services Region; where you use it.</p>"
+        "DescribeAccountSettingsResponse$AccountSettings": "<p>The Amazon QuickSight settings for this Amazon Web Services account. This information includes the edition of Amazon Amazon QuickSight that you subscribed to (Standard or Enterprise) and the notification email for the Amazon QuickSight subscription. In the Amazon QuickSight console, the Amazon QuickSight subscription is sometimes referred to as a Amazon QuickSight \"account\" even though it's technically not an account by itself. Instead, it's a subscription to the Amazon QuickSight service for your Amazon Web Services account. The edition that you subscribe to applies to Amazon QuickSight in every Amazon Web Services Region where you use it.</p>"
       }
     },
     "ActionList": {
@@ -189,9 +191,9 @@
       }
     },
     "AmazonElasticsearchParameters": {
-      "base": "<p>The parameters for Elasticsearch.</p>",
+      "base": "<p>The parameters for OpenSearch.</p>",
       "refs": {
-        "DataSourceParameters$AmazonElasticsearchParameters": "<p>The parameters for Elasticsearch.</p>"
+        "DataSourceParameters$AmazonElasticsearchParameters": "<p>The parameters for OpenSearch.</p>"
       }
     },
     "AmazonOpenSearchParameters": {
@@ -469,7 +471,7 @@
         "CreateTemplateRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. You use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "CreateThemeAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the theme for the new theme alias.</p>",
         "CreateThemeRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to store the new theme. </p>",
-        "DeleteAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to delete Amazon QuickSight customizations from in this Amazon Web Services Region;.</p>",
+        "DeleteAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to delete Amazon QuickSight customizations from in this Amazon Web Services Region.</p>",
         "DeleteAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to delete an analysis.</p>",
         "DeleteDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're deleting.</p>",
         "DeleteDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
@@ -503,6 +505,8 @@
         "DescribeGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DescribeIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the assignment that you want to describe.</p>",
         "DescribeIngestionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
+        "DescribeIpRestrictionRequest$AwsAccountId": "<p>Your AWS account ID.</p>",
+        "DescribeIpRestrictionResponse$AwsAccountId": "<p>Your AWS account ID.</p>",
         "DescribeNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight namespace that you want to describe.</p>",
         "DescribeTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template alias that you're describing.</p>",
         "DescribeTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're describing.</p>",
@@ -557,6 +561,8 @@
         "UpdateFolderRequest$AwsAccountId": "<p>The AWS account ID.</p>",
         "UpdateGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "UpdateIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IAMpolicy assignment. </p>",
+        "UpdateIpRestrictionRequest$AwsAccountId": "<p>Your AWS account ID.</p>",
+        "UpdateIpRestrictionResponse$AwsAccountId": "<p>Your AWS account ID.</p>",
         "UpdateTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template alias that you're updating.</p>",
         "UpdateTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template.</p>",
         "UpdateTemplateRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're updating.</p>",
@@ -599,6 +605,12 @@
       "base": "<p>The display options for tile borders for visuals.</p>",
       "refs": {
         "TileStyle$Border": "<p>The border around a tile.</p>"
+      }
+    },
+    "CIDR": {
+      "base": null,
+      "refs": {
+        "IpRestrictionRuleMap$key": null
       }
     },
     "CalculatedColumn": {
@@ -1062,8 +1074,8 @@
     "DashboardSourceEntity": {
       "base": "<p>Dashboard source entity.</p>",
       "refs": {
-        "CreateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you create the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only create a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to create a dashboard from an analysis, first convert the analysis to a template by using the <a>CreateTemplate</a> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code>ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region;. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>",
-        "UpdateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you update the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only update a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to update a dashboard from an analysis, first convert the analysis to a template by using the <a>CreateTemplate</a> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region;. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>"
+        "CreateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you create the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only create a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to create a dashboard from an analysis, first convert the analysis to a template by using the <a>CreateTemplate</a> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code>ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>",
+        "UpdateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you update the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only update a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to update a dashboard from an analysis, first convert the analysis to a template by using the <a>CreateTemplate</a> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>"
       }
     },
     "DashboardSourceTemplate": {
@@ -1246,7 +1258,7 @@
     "DataSourceType": {
       "base": null,
       "refs": {
-        "CreateDataSourceRequest$Type": "<p>The type of the data source. To return a list of all data sources, use <code>ListDataSources</code>.</p> <p>Use <code>AMAZON_ELASTICSEARCH</code> for Amazon Elasticsearch Service.</p>",
+        "CreateDataSourceRequest$Type": "<p>The type of the data source. To return a list of all data sources, use <code>ListDataSources</code>.</p> <p>Use <code>AMAZON_ELASTICSEARCH</code> for Amazon OpenSearch Service.</p>",
         "DataSource$Type": "<p>The type of the data source. This type indicates which database engine the data source connects to.</p>"
       }
     },
@@ -1626,6 +1638,16 @@
       "refs": {
       }
     },
+    "DescribeIpRestrictionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeIpRestrictionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeNamespaceRequest": {
       "base": null,
       "refs": {
@@ -1709,7 +1731,7 @@
     "Domain": {
       "base": null,
       "refs": {
-        "AmazonElasticsearchParameters$Domain": "<p>The Elasticsearch domain.</p>",
+        "AmazonElasticsearchParameters$Domain": "<p>The OpenSearch domain.</p>",
         "AmazonOpenSearchParameters$Domain": null
       }
     },
@@ -2183,7 +2205,7 @@
       }
     },
     "IngestionRequestType": {
-      "base": null,
+      "base": "This defines the type of ingestion request. This is returned as part of create ingestion response.",
       "refs": {
         "Ingestion$RequestType": "<p>Type of this ingestion.</p>"
       }
@@ -2193,6 +2215,12 @@
       "refs": {
         "CreateIngestionResponse$IngestionStatus": "<p>The ingestion status.</p>",
         "Ingestion$IngestionStatus": "<p>Ingestion status.</p>"
+      }
+    },
+    "IngestionType": {
+      "base": "This defines the type of ingestion user wants to trigger. This is part of create ingestion request.",
+      "refs": {
+        "CreateIngestionRequest$IngestionType": "<p>The type of ingestion that you want to create.</p>"
       }
     },
     "Ingestions": {
@@ -2252,6 +2280,19 @@
     "InvalidParameterValueException": {
       "base": "<p>One or more parameters has a value that isn't valid.</p>",
       "refs": {
+      }
+    },
+    "IpRestrictionRuleDescription": {
+      "base": null,
+      "refs": {
+        "IpRestrictionRuleMap$value": null
+      }
+    },
+    "IpRestrictionRuleMap": {
+      "base": null,
+      "refs": {
+        "DescribeIpRestrictionResponse$IpRestrictionRuleMap": "<p>Describes the IP rules with CIDR range and description.</p>",
+        "UpdateIpRestrictionRequest$IpRestrictionRuleMap": "<p>Describes updated IP rules.</p>"
       }
     },
     "JiraParameters": {
@@ -2542,7 +2583,12 @@
       "base": null,
       "refs": {
         "DataSet$ConsumedSpiceCapacityInBytes": "<p>The amount of SPICE capacity used by this dataset. This is 0 if the dataset isn't imported into SPICE.</p>",
-        "LongList$member": null
+        "Ingestion$IngestionTimeInSeconds": "<p>The time that this ingestion took, measured in seconds.</p>",
+        "Ingestion$IngestionSizeInBytes": "<p>The size of the data ingested, in bytes.</p>",
+        "LongList$member": null,
+        "RowInfo$RowsIngested": "<p>The number of rows that were ingested.</p>",
+        "RowInfo$RowsDropped": "<p>The number of rows that were not ingested.</p>",
+        "RowInfo$TotalRowsInDataset": "<p>The total number of rows in the dataset.</p>"
       }
     },
     "LongList": {
@@ -2675,7 +2721,7 @@
     "NamespaceInfoV2": {
       "base": "<p>The error type.</p>",
       "refs": {
-        "DescribeNamespaceResponse$Namespace": "<p>The information about the namespace that you're describing. The response includes the namespace ARN, name, Amazon Web Services Region;, creation status, and identity store. <code>DescribeNamespace</code> also works for namespaces that are in the process of being created. For incomplete namespaces, this API operation lists the namespace error types and messages associated with the creation process.</p>",
+        "DescribeNamespaceResponse$Namespace": "<p>The information about the namespace that you're describing. The response includes the namespace ARN, name, Amazon Web Services Region, creation status, and identity store. <code>DescribeNamespace</code> also works for namespaces that are in the process of being created. For incomplete namespaces, this API operation lists the namespace error types and messages associated with the creation process.</p>",
         "Namespaces$member": null
       }
     },
@@ -2689,7 +2735,7 @@
     "Namespaces": {
       "base": null,
       "refs": {
-        "ListNamespacesResponse$Namespaces": "<p>The information about the namespaces in this Amazon Web Services account. The response includes the namespace ARN, name, Amazon Web Services Region;, notification email address, creation status, and identity store.</p>"
+        "ListNamespacesResponse$Namespaces": "<p>The information about the namespaces in this Amazon Web Services account. The response includes the namespace ARN, name, Amazon Web Services Region, notification email address, creation status, and identity store.</p>"
       }
     },
     "NonEmptyString": {
@@ -2705,6 +2751,13 @@
         "StringParameter$Name": "<p>A display name for a string parameter.</p>",
         "TemplateError$Message": "<p>Description of the error type.</p>",
         "ThemeError$Message": "<p>The error message.</p>"
+      }
+    },
+    "NullableBoolean": {
+      "base": null,
+      "refs": {
+        "DescribeIpRestrictionResponse$Enabled": "<p>Whether or not IP rules are enabled.</p>",
+        "UpdateIpRestrictionRequest$Enabled": "<p>Whether or not IP rules are enabled.</p>"
       }
     },
     "OnClause": {
@@ -2943,33 +2996,33 @@
     "ResourceId": {
       "base": null,
       "refs": {
-        "CreateDataSetRequest$DataSetId": "<p>An ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "CreateDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
+        "CreateDataSetRequest$DataSetId": "<p>An ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "CreateDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "CreateDataSetResponse$IngestionId": "<p>The ID of the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE.</p>",
-        "CreateDataSourceRequest$DataSourceId": "<p>An ID for the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account. </p>",
-        "CreateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
+        "CreateDataSourceRequest$DataSourceId": "<p>An ID for the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account. </p>",
+        "CreateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "DataSet$DataSetId": "<p>The ID of the dataset.</p>",
         "DataSetSummary$DataSetId": "<p>The ID of the dataset.</p>",
-        "DataSource$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DeleteDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DeleteDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DeleteDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DeleteDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DescribeDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DescribeDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DescribeDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DescribeDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DescribeDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "DescribeDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "UpdateDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset whose permissions you want to update. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "UpdateDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset whose permissions you want to update. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "UpdateDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to update. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "UpdateDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
+        "DataSource$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DeleteDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DeleteDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DeleteDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DeleteDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "DescribeDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateDataSetPermissionsRequest$DataSetId": "<p>The ID for the dataset whose permissions you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateDataSetPermissionsResponse$DataSetId": "<p>The ID for the dataset whose permissions you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateDataSetRequest$DataSetId": "<p>The ID for the dataset that you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateDataSetResponse$DataSetId": "<p>The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "UpdateDataSetResponse$IngestionId": "<p>The ID of the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE.</p>",
-        "UpdateDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account. </p>",
-        "UpdateDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "UpdateDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account. </p>",
-        "UpdateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>"
+        "UpdateDataSourcePermissionsRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account. </p>",
+        "UpdateDataSourcePermissionsResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "UpdateDataSourceRequest$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account. </p>",
+        "UpdateDataSourceResponse$DataSourceId": "<p>The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>"
       }
     },
     "ResourceName": {
@@ -3140,10 +3193,10 @@
         "RestoreAnalysisRequest$AnalysisId": "<p>The ID of the analysis that you're restoring.</p>",
         "RestoreAnalysisResponse$AnalysisId": "<p>The ID of the analysis that you're restoring. </p>",
         "Sheet$SheetId": "<p>The unique identifier associated with a sheet.</p>",
-        "Template$TemplateId": "<p>The ID for the template. This is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
-        "TemplateSummary$TemplateId": "<p>The ID of the template. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
+        "Template$TemplateId": "<p>The ID for the template. This is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
+        "TemplateSummary$TemplateId": "<p>The ID of the template. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "Theme$ThemeId": "<p>The identifier that the user gives to the theme.</p>",
-        "ThemeSummary$ThemeId": "<p>The ID of the theme. This ID is unique per Amazon Web Services Region; for each Amazon Web Services account.</p>",
+        "ThemeSummary$ThemeId": "<p>The ID of the theme. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.</p>",
         "ThemeVersion$BaseThemeId": "<p>The Amazon QuickSight-defined ID of the theme that a custom theme inherits from. All themes initially inherit from a default Amazon QuickSight theme.</p>",
         "UpdateAnalysisPermissionsRequest$AnalysisId": "<p>The ID of the analysis whose permissions you're updating. The ID is part of the analysis URL.</p>",
         "UpdateAnalysisPermissionsResponse$AnalysisId": "<p>The ID of the analysis that you updated permissions for.</p>",
@@ -3464,6 +3517,7 @@
         "DescribeGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeIpRestrictionResponse$Status": "<p>The status of a set of IP restrictions. A successful request returns a 200 status code.</p>",
         "DescribeNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3520,6 +3574,7 @@
         "UpdateFolderResponse$Status": "<p>The status. If succeeded, the status is <code>SC_OK</code>.</p>",
         "UpdateGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateIpRestrictionResponse$Status": "<p>The status of the updated IP rules. A successful request returns a 200 code.</p>",
         "UpdateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3538,6 +3593,8 @@
         "AccountSettings$NotificationEmail": "<p>The main notification email for your Amazon QuickSight subscription.</p>",
         "ActionList$member": null,
         "AnalysisSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_USER</code>, that you want to use as a filter, for example <code>\"Value\"</code>. An example is <code>\"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p>",
+        "CancelIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
+        "CancelIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ColumnGroupColumnSchema$Name": "<p>The name of the column group's column schema.</p>",
         "ColumnGroupSchema$Name": "<p>The name of the column group schema.</p>",
         "ColumnNameList$member": null,
@@ -3559,6 +3616,8 @@
         "CreateGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateIAMPolicyAssignmentResponse$AssignmentId": "<p>The ID for the assignment.</p>",
         "CreateIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "CreateIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
+        "CreateIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateNamespaceResponse$CapacityRegion": "<p>The Amazon Web Services Region; that you want to use for the free SPICE capacity for the new namespace. This is set to the region that you run CreateNamespace in. </p>",
         "CreateNamespaceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3601,6 +3660,9 @@
         "DescribeFolderResponse$RequestId": "<p>The request ID.</p>",
         "DescribeGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
+        "DescribeIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeIpRestrictionResponse$RequestId": "<p>The ID of the describe request.</p>",
         "DescribeNamespaceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplatePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3611,6 +3673,7 @@
         "DescribeUserResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DomainNotWhitelistedException$Message": null,
         "DomainNotWhitelistedException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
+        "ErrorInfo$Message": "<p>Error message.</p>",
         "FolderColumnList$member": null,
         "FolderSearchFilter$Value": "<p>The value of the named item (in this example, <code>PARENT_FOLDER_ARN</code>), that you want to use as a filter. For example, <code>\"Value\": \"arn:aws:quicksight:us-east-1:1:folder/folderId\"</code>.</p>",
         "GenerateEmbedUrlForAnonymousUserResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3663,6 +3726,10 @@
         "ListIAMPolicyAssignmentsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListIAMPolicyAssignmentsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListIAMPolicyAssignmentsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "ListIngestionsRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
+        "ListIngestionsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListIngestionsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListIngestionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListNamespacesRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListNamespacesResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListNamespacesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3692,11 +3759,13 @@
         "ListUsersResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListUsersResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "NamespaceError$Message": "<p>The message for the error.</p>",
-        "NamespaceInfoV2$CapacityRegion": "<p>The namespace Amazon Web Services Region;.</p>",
+        "NamespaceInfoV2$CapacityRegion": "<p>The namespace Amazon Web Services Region.</p>",
         "PreconditionNotMetException$Message": null,
         "PreconditionNotMetException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "PrincipalList$member": null,
         "ProjectedColumnList$member": null,
+        "QueueInfo$WaitingOnIngestion": "<p>The ID of the queued ingestion.</p>",
+        "QueueInfo$QueuedIngestion": "<p>The ID of the ongoing ingestion. The queued ingestion is waiting for the ongoing ingestion to complete.</p>",
         "QuickSightUserNotFoundException$Message": null,
         "QuickSightUserNotFoundException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "RegisterUserRequest$Email": "<p>The email address of the user that you want to register.</p>",
@@ -3751,6 +3820,7 @@
         "UpdateGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateIAMPolicyAssignmentResponse$AssignmentId": "<p>The ID of the assignment.</p>",
         "UpdateIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateIpRestrictionResponse$RequestId": "<p>The ID of the update request.</p>",
         "UpdateTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplatePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3901,7 +3971,7 @@
     "TemplateSourceEntity": {
       "base": "<p>The source entity of the template.</p>",
       "refs": {
-        "CreateTemplateRequest$SourceEntity": "<p>The entity that you are using as a source when you create the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region;. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>",
+        "CreateTemplateRequest$SourceEntity": "<p>The entity that you are using as a source when you create the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>",
         "UpdateTemplateRequest$SourceEntity": "<p>The entity that you are using as a source when you update the template. In <code>SourceEntity</code>, you specify the type of object you're using as source: <code>SourceTemplate</code> for a template or <code>SourceAnalysis</code> for an analysis. Both of these require an Amazon Resource Name (ARN). For <code>SourceTemplate</code>, specify the ARN of the source template. For <code>SourceAnalysis</code>, specify the ARN of the source analysis. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region;. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> or <code>SourceAnalysis</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>"
       }
     },
@@ -4089,6 +4159,7 @@
         "Folder$LastUpdatedTime": "<p>The time that the folder was last updated.</p>",
         "FolderSummary$CreatedTime": "<p>The time that the folder was created.</p>",
         "FolderSummary$LastUpdatedTime": "<p>The time that the folder was last updated.</p>",
+        "Ingestion$CreatedTime": "<p>The time that this ingestion started.</p>",
         "Template$LastUpdatedTime": "<p>Time when this was last updated.</p>",
         "Template$CreatedTime": "<p>Time when this was created.</p>",
         "TemplateSummary$CreatedTime": "<p>The last time that this template was created.</p>",
@@ -4316,6 +4387,16 @@
       "refs": {
       }
     },
+    "UpdateIpRestrictionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateIpRestrictionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateResourcePermissionList": {
       "base": null,
       "refs": {
@@ -4518,39 +4599,6 @@
         "DescribeAccountCustomizationRequest$Resolved": "<p>The <code>Resolved</code> flag works with the other parameters to determine which view of Amazon QuickSight customizations is returned. You can add this flag to your command to use the same view that Amazon QuickSight uses to identify which customizations to apply to the console. Omit this flag, or set it to <code>no-resolved</code>, to reveal customizations that are configured at different levels. </p>",
         "GutterStyle$Show": "<p>This Boolean value controls whether to display a gutter space between sheet tiles. </p>",
         "MarginStyle$Show": "<p>This Boolean value controls whether to display sheet margins.</p>"
-      }
-    },
-    "long": {
-      "base": null,
-      "refs": {
-        "Ingestion$IngestionTimeInSeconds": "<p>The time that this ingestion took, measured in seconds.</p>",
-        "Ingestion$IngestionSizeInBytes": "<p>The size of the data ingested, in bytes.</p>",
-        "RowInfo$RowsIngested": "<p>The number of rows that were ingested.</p>",
-        "RowInfo$RowsDropped": "<p>The number of rows that were not ingested.</p>"
-      }
-    },
-    "string": {
-      "base": null,
-      "refs": {
-        "CancelIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
-        "CancelIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "CreateIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
-        "CreateIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "DescribeIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
-        "DescribeIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "ErrorInfo$Message": "<p>Error message.</p>",
-        "ListIngestionsRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
-        "ListIngestionsRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListIngestionsResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListIngestionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "QueueInfo$WaitingOnIngestion": "<p>The ID of the queued ingestion.</p>",
-        "QueueInfo$QueuedIngestion": "<p>The ID of the ongoing ingestion. The queued ingestion is waiting for the ongoing ingestion to complete.</p>"
-      }
-    },
-    "timestamp": {
-      "base": null,
-      "refs": {
-        "Ingestion$CreatedTime": "<p>The time that this ingestion started.</p>"
       }
     }
   }
