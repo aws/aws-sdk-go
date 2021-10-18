@@ -3,6 +3,7 @@
   "metadata":{
     "apiVersion":"2020-07-14",
     "endpointPrefix":"ivs",
+    "jsonVersion":"1.1",
     "protocol":"rest-json",
     "serviceAbbreviation":"Amazon IVS",
     "serviceFullName":"Amazon Interactive Video Service",
@@ -16,7 +17,8 @@
       "name":"BatchGetChannel",
       "http":{
         "method":"POST",
-        "requestUri":"/BatchGetChannel"
+        "requestUri":"/BatchGetChannel",
+        "responseCode":200
       },
       "input":{"shape":"BatchGetChannelRequest"},
       "output":{"shape":"BatchGetChannelResponse"}
@@ -25,7 +27,8 @@
       "name":"BatchGetStreamKey",
       "http":{
         "method":"POST",
-        "requestUri":"/BatchGetStreamKey"
+        "requestUri":"/BatchGetStreamKey",
+        "responseCode":200
       },
       "input":{"shape":"BatchGetStreamKeyRequest"},
       "output":{"shape":"BatchGetStreamKeyResponse"}
@@ -34,49 +37,52 @@
       "name":"CreateChannel",
       "http":{
         "method":"POST",
-        "requestUri":"/CreateChannel"
+        "requestUri":"/CreateChannel",
+        "responseCode":200
       },
       "input":{"shape":"CreateChannelRequest"},
       "output":{"shape":"CreateChannelResponse"},
       "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ServiceQuotaExceededException"},
-        {"shape":"PendingVerification"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateRecordingConfiguration":{
       "name":"CreateRecordingConfiguration",
       "http":{
         "method":"POST",
-        "requestUri":"/CreateRecordingConfiguration"
+        "requestUri":"/CreateRecordingConfiguration",
+        "responseCode":200
       },
       "input":{"shape":"CreateRecordingConfigurationRequest"},
       "output":{"shape":"CreateRecordingConfigurationResponse"},
       "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"PendingVerification"},
-        {"shape":"ServiceQuotaExceededException"},
-        {"shape":"ValidationException"}
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateStreamKey":{
       "name":"CreateStreamKey",
       "http":{
         "method":"POST",
-        "requestUri":"/CreateStreamKey"
+        "requestUri":"/CreateStreamKey",
+        "responseCode":200
       },
       "input":{"shape":"CreateStreamKeyRequest"},
       "output":{"shape":"CreateStreamKeyResponse"},
       "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ServiceQuotaExceededException"},
-        {"shape":"PendingVerification"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "DeleteChannel":{
@@ -88,25 +94,26 @@
       },
       "input":{"shape":"DeleteChannelRequest"},
       "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ConflictException"},
-        {"shape":"PendingVerification"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ConflictException"}
       ]
     },
     "DeletePlaybackKeyPair":{
       "name":"DeletePlaybackKeyPair",
       "http":{
         "method":"POST",
-        "requestUri":"/DeletePlaybackKeyPair"
+        "requestUri":"/DeletePlaybackKeyPair",
+        "responseCode":200
       },
       "input":{"shape":"DeletePlaybackKeyPairRequest"},
       "output":{"shape":"DeletePlaybackKeyPairResponse"},
       "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"PendingVerification"}
       ]
     },
@@ -114,15 +121,16 @@
       "name":"DeleteRecordingConfiguration",
       "http":{
         "method":"POST",
-        "requestUri":"/DeleteRecordingConfiguration"
+        "requestUri":"/DeleteRecordingConfiguration",
+        "responseCode":200
       },
       "input":{"shape":"DeleteRecordingConfigurationRequest"},
       "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ConflictException"},
-        {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ValidationException"}
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     },
     "DeleteStreamKey":{
@@ -134,9 +142,9 @@
       },
       "input":{"shape":"DeleteStreamKeyRequest"},
       "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"PendingVerification"}
       ]
     },
@@ -144,42 +152,45 @@
       "name":"GetChannel",
       "http":{
         "method":"POST",
-        "requestUri":"/GetChannel"
+        "requestUri":"/GetChannel",
+        "responseCode":200
       },
       "input":{"shape":"GetChannelRequest"},
       "output":{"shape":"GetChannelResponse"},
       "errors":[
-        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ValidationException"}
       ]
     },
     "GetPlaybackKeyPair":{
       "name":"GetPlaybackKeyPair",
       "http":{
         "method":"POST",
-        "requestUri":"/GetPlaybackKeyPair"
+        "requestUri":"/GetPlaybackKeyPair",
+        "responseCode":200
       },
       "input":{"shape":"GetPlaybackKeyPairRequest"},
       "output":{"shape":"GetPlaybackKeyPairResponse"},
       "errors":[
-        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ValidationException"}
       ]
     },
     "GetRecordingConfiguration":{
       "name":"GetRecordingConfiguration",
       "http":{
         "method":"POST",
-        "requestUri":"/GetRecordingConfiguration"
+        "requestUri":"/GetRecordingConfiguration",
+        "responseCode":200
       },
       "input":{"shape":"GetRecordingConfigurationRequest"},
       "output":{"shape":"GetRecordingConfigurationResponse"},
       "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
       ]
     },
@@ -187,14 +198,15 @@
       "name":"GetStream",
       "http":{
         "method":"POST",
-        "requestUri":"/GetStream"
+        "requestUri":"/GetStream",
+        "responseCode":200
       },
       "input":{"shape":"GetStreamRequest"},
       "output":{"shape":"GetStreamResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ChannelNotBroadcasting"}
       ]
     },
@@ -202,43 +214,46 @@
       "name":"GetStreamKey",
       "http":{
         "method":"POST",
-        "requestUri":"/GetStreamKey"
+        "requestUri":"/GetStreamKey",
+        "responseCode":200
       },
       "input":{"shape":"GetStreamKeyRequest"},
       "output":{"shape":"GetStreamKeyResponse"},
       "errors":[
-        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ValidationException"}
       ]
     },
     "ImportPlaybackKeyPair":{
       "name":"ImportPlaybackKeyPair",
       "http":{
         "method":"POST",
-        "requestUri":"/ImportPlaybackKeyPair"
+        "requestUri":"/ImportPlaybackKeyPair",
+        "responseCode":200
       },
       "input":{"shape":"ImportPlaybackKeyPairRequest"},
       "output":{"shape":"ImportPlaybackKeyPairResponse"},
       "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ServiceQuotaExceededException"},
-        {"shape":"PendingVerification"}
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "ListChannels":{
       "name":"ListChannels",
       "http":{
         "method":"POST",
-        "requestUri":"/ListChannels"
+        "requestUri":"/ListChannels",
+        "responseCode":200
       },
       "input":{"shape":"ListChannelsRequest"},
       "output":{"shape":"ListChannelsResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
         {"shape":"ConflictException"}
       ]
     },
@@ -246,26 +261,28 @@
       "name":"ListPlaybackKeyPairs",
       "http":{
         "method":"POST",
-        "requestUri":"/ListPlaybackKeyPairs"
+        "requestUri":"/ListPlaybackKeyPairs",
+        "responseCode":200
       },
       "input":{"shape":"ListPlaybackKeyPairsRequest"},
       "output":{"shape":"ListPlaybackKeyPairsResponse"},
       "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListRecordingConfigurations":{
       "name":"ListRecordingConfigurations",
       "http":{
         "method":"POST",
-        "requestUri":"/ListRecordingConfigurations"
+        "requestUri":"/ListRecordingConfigurations",
+        "responseCode":200
       },
       "input":{"shape":"ListRecordingConfigurationsRequest"},
       "output":{"shape":"ListRecordingConfigurationsResponse"},
       "errors":[
-        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
       ]
     },
@@ -273,21 +290,23 @@
       "name":"ListStreamKeys",
       "http":{
         "method":"POST",
-        "requestUri":"/ListStreamKeys"
+        "requestUri":"/ListStreamKeys",
+        "responseCode":200
       },
       "input":{"shape":"ListStreamKeysRequest"},
       "output":{"shape":"ListStreamKeysResponse"},
       "errors":[
-        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ValidationException"}
       ]
     },
     "ListStreams":{
       "name":"ListStreams",
       "http":{
         "method":"POST",
-        "requestUri":"/ListStreams"
+        "requestUri":"/ListStreams",
+        "responseCode":200
       },
       "input":{"shape":"ListStreamsRequest"},
       "output":{"shape":"ListStreamsResponse"},
@@ -299,44 +318,47 @@
       "name":"ListTagsForResource",
       "http":{
         "method":"GET",
-        "requestUri":"/tags/{resourceArn}"
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
       },
       "input":{"shape":"ListTagsForResourceRequest"},
       "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ValidationException"}
       ]
     },
     "PutMetadata":{
       "name":"PutMetadata",
       "http":{
         "method":"POST",
-        "requestUri":"/PutMetadata"
+        "requestUri":"/PutMetadata",
+        "responseCode":200
       },
       "input":{"shape":"PutMetadataRequest"},
       "errors":[
-        {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ChannelNotBroadcasting"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"ChannelNotBroadcasting"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "StopStream":{
       "name":"StopStream",
       "http":{
         "method":"POST",
-        "requestUri":"/StopStream"
+        "requestUri":"/StopStream",
+        "responseCode":200
       },
       "input":{"shape":"StopStreamRequest"},
       "output":{"shape":"StopStreamResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ChannelNotBroadcasting"},
-        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ChannelNotBroadcasting"},
         {"shape":"StreamUnavailable"}
       ]
     },
@@ -344,44 +366,48 @@
       "name":"TagResource",
       "http":{
         "method":"POST",
-        "requestUri":"/tags/{resourceArn}"
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
       },
       "input":{"shape":"TagResourceRequest"},
       "output":{"shape":"TagResourceResponse"},
       "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ValidationException"}
       ]
     },
     "UntagResource":{
       "name":"UntagResource",
       "http":{
         "method":"DELETE",
-        "requestUri":"/tags/{resourceArn}"
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
       },
       "input":{"shape":"UntagResourceRequest"},
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
-      ]
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
     },
     "UpdateChannel":{
       "name":"UpdateChannel",
       "http":{
         "method":"POST",
-        "requestUri":"/UpdateChannel"
+        "requestUri":"/UpdateChannel",
+        "responseCode":200
       },
       "input":{"shape":"UpdateChannelRequest"},
       "output":{"shape":"UpdateChannelResponse"},
       "errors":[
-        {"shape":"ValidationException"},
-        {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ConflictException"},
-        {"shape":"PendingVerification"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ConflictException"}
       ]
     }
   },
@@ -391,7 +417,10 @@
       "members":{
         "exceptionMessage":{"shape":"errorMessage"}
       },
-      "error":{"httpStatusCode":403},
+      "error":{
+        "httpStatusCode":403,
+        "senderFault":true
+      },
       "exception":true
     },
     "BatchError":{
@@ -430,8 +459,8 @@
     "BatchGetStreamKeyResponse":{
       "type":"structure",
       "members":{
-        "streamKeys":{"shape":"StreamKeys"},
-        "errors":{"shape":"BatchErrors"}
+        "errors":{"shape":"BatchErrors"},
+        "streamKeys":{"shape":"StreamKeys"}
       }
     },
     "Boolean":{"type":"boolean"},
@@ -439,14 +468,14 @@
       "type":"structure",
       "members":{
         "arn":{"shape":"ChannelArn"},
-        "name":{"shape":"ChannelName"},
-        "latencyMode":{"shape":"ChannelLatencyMode"},
-        "type":{"shape":"ChannelType"},
-        "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
-        "ingestEndpoint":{"shape":"IngestEndpoint"},
-        "playbackUrl":{"shape":"PlaybackURL"},
         "authorized":{"shape":"IsAuthorized"},
-        "tags":{"shape":"Tags"}
+        "ingestEndpoint":{"shape":"IngestEndpoint"},
+        "latencyMode":{"shape":"ChannelLatencyMode"},
+        "name":{"shape":"ChannelName"},
+        "playbackUrl":{"shape":"PlaybackURL"},
+        "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
+        "tags":{"shape":"Tags"},
+        "type":{"shape":"ChannelType"}
       }
     },
     "ChannelArn":{
@@ -483,7 +512,10 @@
       "members":{
         "exceptionMessage":{"shape":"errorMessage"}
       },
-      "error":{"httpStatusCode":404},
+      "error":{
+        "httpStatusCode":404,
+        "senderFault":true
+      },
       "exception":true
     },
     "ChannelRecordingConfigurationArn":{
@@ -496,9 +528,9 @@
       "type":"structure",
       "members":{
         "arn":{"shape":"ChannelArn"},
-        "name":{"shape":"ChannelName"},
-        "latencyMode":{"shape":"ChannelLatencyMode"},
         "authorized":{"shape":"IsAuthorized"},
+        "latencyMode":{"shape":"ChannelLatencyMode"},
+        "name":{"shape":"ChannelName"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "tags":{"shape":"Tags"}
       }
@@ -519,18 +551,21 @@
       "members":{
         "exceptionMessage":{"shape":"errorMessage"}
       },
-      "error":{"httpStatusCode":409},
+      "error":{
+        "httpStatusCode":409,
+        "senderFault":true
+      },
       "exception":true
     },
     "CreateChannelRequest":{
       "type":"structure",
       "members":{
-        "name":{"shape":"ChannelName"},
-        "latencyMode":{"shape":"ChannelLatencyMode"},
-        "type":{"shape":"ChannelType"},
         "authorized":{"shape":"Boolean"},
+        "latencyMode":{"shape":"ChannelLatencyMode"},
+        "name":{"shape":"ChannelName"},
         "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "type":{"shape":"ChannelType"}
       }
     },
     "CreateChannelResponse":{
@@ -544,8 +579,8 @@
       "type":"structure",
       "required":["destinationConfiguration"],
       "members":{
-        "name":{"shape":"RecordingConfigurationName"},
         "destinationConfiguration":{"shape":"DestinationConfiguration"},
+        "name":{"shape":"RecordingConfigurationName"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -677,8 +712,8 @@
       "type":"structure",
       "required":["publicKeyMaterial"],
       "members":{
-        "publicKeyMaterial":{"shape":"PlaybackPublicKeyMaterial"},
         "name":{"shape":"PlaybackKeyPairName"},
+        "publicKeyMaterial":{"shape":"PlaybackPublicKeyMaterial"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -695,7 +730,8 @@
         "exceptionMessage":{"shape":"errorMessage"}
       },
       "error":{"httpStatusCode":500},
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "IsAuthorized":{"type":"boolean"},
     "ListChannelsRequest":{
@@ -703,8 +739,8 @@
       "members":{
         "filterByName":{"shape":"ChannelName"},
         "filterByRecordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
-        "nextToken":{"shape":"PaginationToken"},
-        "maxResults":{"shape":"MaxChannelResults"}
+        "maxResults":{"shape":"MaxChannelResults"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListChannelsResponse":{
@@ -718,8 +754,8 @@
     "ListPlaybackKeyPairsRequest":{
       "type":"structure",
       "members":{
-        "nextToken":{"shape":"PaginationToken"},
-        "maxResults":{"shape":"MaxPlaybackKeyPairResults"}
+        "maxResults":{"shape":"MaxPlaybackKeyPairResults"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListPlaybackKeyPairsResponse":{
@@ -733,16 +769,16 @@
     "ListRecordingConfigurationsRequest":{
       "type":"structure",
       "members":{
-        "nextToken":{"shape":"PaginationToken"},
-        "maxResults":{"shape":"MaxRecordingConfigurationResults"}
+        "maxResults":{"shape":"MaxRecordingConfigurationResults"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListRecordingConfigurationsResponse":{
       "type":"structure",
       "required":["recordingConfigurations"],
       "members":{
-        "recordingConfigurations":{"shape":"RecordingConfigurationList"},
-        "nextToken":{"shape":"PaginationToken"}
+        "nextToken":{"shape":"PaginationToken"},
+        "recordingConfigurations":{"shape":"RecordingConfigurationList"}
       }
     },
     "ListStreamKeysRequest":{
@@ -750,31 +786,31 @@
       "required":["channelArn"],
       "members":{
         "channelArn":{"shape":"ChannelArn"},
-        "nextToken":{"shape":"PaginationToken"},
-        "maxResults":{"shape":"MaxStreamKeyResults"}
+        "maxResults":{"shape":"MaxStreamKeyResults"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListStreamKeysResponse":{
       "type":"structure",
       "required":["streamKeys"],
       "members":{
-        "streamKeys":{"shape":"StreamKeyList"},
-        "nextToken":{"shape":"PaginationToken"}
+        "nextToken":{"shape":"PaginationToken"},
+        "streamKeys":{"shape":"StreamKeyList"}
       }
     },
     "ListStreamsRequest":{
       "type":"structure",
       "members":{
-        "nextToken":{"shape":"PaginationToken"},
-        "maxResults":{"shape":"MaxStreamResults"}
+        "maxResults":{"shape":"MaxStreamResults"},
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListStreamsResponse":{
       "type":"structure",
       "required":["streams"],
       "members":{
-        "streams":{"shape":"StreamList"},
-        "nextToken":{"shape":"PaginationToken"}
+        "nextToken":{"shape":"PaginationToken"},
+        "streams":{"shape":"StreamList"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -785,17 +821,14 @@
           "shape":"ResourceArn",
           "location":"uri",
           "locationName":"resourceArn"
-        },
-        "nextToken":{"shape":"String"},
-        "maxResults":{"shape":"MaxTagResults"}
+        }
       }
     },
     "ListTagsForResourceResponse":{
       "type":"structure",
       "required":["tags"],
       "members":{
-        "tags":{"shape":"Tags"},
-        "nextToken":{"shape":"String"}
+        "tags":{"shape":"Tags"}
       }
     },
     "MaxChannelResults":{
@@ -823,14 +856,9 @@
       "max":50,
       "min":1
     },
-    "MaxTagResults":{
-      "type":"integer",
-      "max":50,
-      "min":1
-    },
     "PaginationToken":{
       "type":"string",
-      "max":500,
+      "max":1024,
       "min":0
     },
     "PendingVerification":{
@@ -838,15 +866,18 @@
       "members":{
         "exceptionMessage":{"shape":"errorMessage"}
       },
-      "error":{"httpStatusCode":403},
+      "error":{
+        "httpStatusCode":403,
+        "senderFault":true
+      },
       "exception":true
     },
     "PlaybackKeyPair":{
       "type":"structure",
       "members":{
         "arn":{"shape":"PlaybackKeyPairArn"},
-        "name":{"shape":"PlaybackKeyPairName"},
         "fingerprint":{"shape":"PlaybackKeyPairFingerprint"},
+        "name":{"shape":"PlaybackKeyPairName"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -897,8 +928,8 @@
       ],
       "members":{
         "arn":{"shape":"RecordingConfigurationArn"},
-        "name":{"shape":"RecordingConfigurationName"},
         "destinationConfiguration":{"shape":"DestinationConfiguration"},
+        "name":{"shape":"RecordingConfigurationName"},
         "state":{"shape":"RecordingConfigurationState"},
         "tags":{"shape":"Tags"}
       }
@@ -936,8 +967,8 @@
       ],
       "members":{
         "arn":{"shape":"RecordingConfigurationArn"},
-        "name":{"shape":"RecordingConfigurationName"},
         "destinationConfiguration":{"shape":"DestinationConfiguration"},
+        "name":{"shape":"RecordingConfigurationName"},
         "state":{"shape":"RecordingConfigurationState"},
         "tags":{"shape":"Tags"}
       }
@@ -953,7 +984,10 @@
       "members":{
         "exceptionMessage":{"shape":"errorMessage"}
       },
-      "error":{"httpStatusCode":404},
+      "error":{
+        "httpStatusCode":404,
+        "senderFault":true
+      },
       "exception":true
     },
     "S3DestinationBucketName":{
@@ -974,7 +1008,10 @@
       "members":{
         "exceptionMessage":{"shape":"errorMessage"}
       },
-      "error":{"httpStatusCode":402},
+      "error":{
+        "httpStatusCode":402,
+        "senderFault":true
+      },
       "exception":true
     },
     "StopStreamRequest":{
@@ -993,10 +1030,10 @@
       "type":"structure",
       "members":{
         "channelArn":{"shape":"ChannelArn"},
+        "health":{"shape":"StreamHealth"},
         "playbackUrl":{"shape":"PlaybackURL"},
         "startTime":{"shape":"StreamStartTime"},
         "state":{"shape":"StreamState"},
-        "health":{"shape":"StreamHealth"},
         "viewerCount":{"shape":"StreamViewerCount"}
       }
     },
@@ -1012,9 +1049,9 @@
       "type":"structure",
       "members":{
         "arn":{"shape":"StreamKeyArn"},
-        "value":{"shape":"StreamKeyValue"},
         "channelArn":{"shape":"ChannelArn"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "value":{"shape":"StreamKeyValue"}
       }
     },
     "StreamKeyArn":{
@@ -1041,7 +1078,10 @@
         "tags":{"shape":"Tags"}
       }
     },
-    "StreamKeyValue":{"type":"string"},
+    "StreamKeyValue":{
+      "type":"string",
+      "sensitive":true
+    },
     "StreamKeys":{
       "type":"list",
       "member":{"shape":"StreamKey"}
@@ -1052,7 +1092,8 @@
     },
     "StreamMetadata":{
       "type":"string",
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "StreamStartTime":{
       "type":"timestamp",
@@ -1069,10 +1110,10 @@
       "type":"structure",
       "members":{
         "channelArn":{"shape":"ChannelArn"},
-        "state":{"shape":"StreamState"},
         "health":{"shape":"StreamHealth"},
-        "viewerCount":{"shape":"StreamViewerCount"},
-        "startTime":{"shape":"StreamStartTime"}
+        "startTime":{"shape":"StreamStartTime"},
+        "state":{"shape":"StreamState"},
+        "viewerCount":{"shape":"StreamViewerCount"}
       }
     },
     "StreamUnavailable":{
@@ -1081,10 +1122,10 @@
         "exceptionMessage":{"shape":"errorMessage"}
       },
       "error":{"httpStatusCode":503},
-      "exception":true
+      "exception":true,
+      "fault":true
     },
     "StreamViewerCount":{"type":"long"},
-    "String":{"type":"string"},
     "TagKey":{
       "type":"string",
       "max":128,
@@ -1118,7 +1159,8 @@
     },
     "TagValue":{
       "type":"string",
-      "max":256
+      "max":256,
+      "min":0
     },
     "Tags":{
       "type":"map",
@@ -1132,7 +1174,10 @@
       "members":{
         "exceptionMessage":{"shape":"errorMessage"}
       },
-      "error":{"httpStatusCode":429},
+      "error":{
+        "httpStatusCode":429,
+        "senderFault":true
+      },
       "exception":true
     },
     "UntagResourceRequest":{
@@ -1164,11 +1209,11 @@
       "required":["arn"],
       "members":{
         "arn":{"shape":"ChannelArn"},
-        "name":{"shape":"ChannelName"},
-        "latencyMode":{"shape":"ChannelLatencyMode"},
-        "type":{"shape":"ChannelType"},
         "authorized":{"shape":"Boolean"},
-        "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"}
+        "latencyMode":{"shape":"ChannelLatencyMode"},
+        "name":{"shape":"ChannelName"},
+        "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
+        "type":{"shape":"ChannelType"}
       }
     },
     "UpdateChannelResponse":{
@@ -1182,7 +1227,10 @@
       "members":{
         "exceptionMessage":{"shape":"errorMessage"}
       },
-      "error":{"httpStatusCode":400},
+      "error":{
+        "httpStatusCode":400,
+        "senderFault":true
+      },
       "exception":true
     },
     "errorCode":{"type":"string"},

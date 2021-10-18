@@ -1,3 +1,11 @@
+Release v1.41.5 (2021-10-18)
+===
+
+### Service Client Updates
+* `service/ivs`: Updates service API, documentation, and paginators
+* `service/quicksight`: Updates service API and documentation
+  * AWS QuickSight Service  Features    - Add IP Restriction UI and public APIs support.
+
 Release v1.41.4 (2021-10-15)
 ===
 
