@@ -11,6 +11,25 @@
     "uid":"chime-sdk-messaging-2021-05-15"
   },
   "operations":{
+    "AssociateChannelFlow":{
+      "name":"AssociateChannelFlow",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/channels/{channelArn}/channel-flow",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociateChannelFlowRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "BatchCreateChannelMembership":{
       "name":"BatchCreateChannelMembership",
       "http":{
@@ -27,6 +46,25 @@
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"ThrottledClientException"}
+      ]
+    },
+    "ChannelFlowCallback":{
+      "name":"ChannelFlowCallback",
+      "http":{
+        "method":"POST",
+        "requestUri":"/channels/{channelArn}?operation=channel-flow-callback",
+        "responseCode":200
+      },
+      "input":{"shape":"ChannelFlowCallbackRequest"},
+      "output":{"shape":"ChannelFlowCallbackResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
       ]
     },
     "CreateChannel":{
@@ -58,6 +96,26 @@
       },
       "input":{"shape":"CreateChannelBanRequest"},
       "output":{"shape":"CreateChannelBanResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "CreateChannelFlow":{
+      "name":"CreateChannelFlow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/channel-flows",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateChannelFlowRequest"},
+      "output":{"shape":"CreateChannelFlowResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
@@ -139,6 +197,24 @@
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteChannelFlow":{
+      "name":"DeleteChannelFlow",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/channel-flows/{channelFlowArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteChannelFlowRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ConflictException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -232,6 +308,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DescribeChannelFlow":{
+      "name":"DescribeChannelFlow",
+      "http":{
+        "method":"GET",
+        "requestUri":"/channel-flows/{channelFlowArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeChannelFlowRequest"},
+      "output":{"shape":"DescribeChannelFlowResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "DescribeChannelMembership":{
       "name":"DescribeChannelMembership",
       "http":{
@@ -306,6 +400,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DisassociateChannelFlow":{
+      "name":"DisassociateChannelFlow",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/channels/{channelArn}/channel-flow/{channelFlowArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"DisassociateChannelFlowRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetChannelMessage":{
       "name":"GetChannelMessage",
       "http":{
@@ -319,6 +432,24 @@
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetChannelMessageStatus":{
+      "name":"GetChannelMessageStatus",
+      "http":{
+        "method":"GET",
+        "requestUri":"/channels/{channelArn}/messages/{messageId}?scope=message-status",
+        "responseCode":200
+      },
+      "input":{"shape":"GetChannelMessageStatusRequest"},
+      "output":{"shape":"GetChannelMessageStatusResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
@@ -351,6 +482,24 @@
       },
       "input":{"shape":"ListChannelBansRequest"},
       "output":{"shape":"ListChannelBansResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListChannelFlows":{
+      "name":"ListChannelFlows",
+      "http":{
+        "method":"GET",
+        "requestUri":"/channel-flows",
+        "responseCode":200
+      },
+      "input":{"shape":"ListChannelFlowsRequest"},
+      "output":{"shape":"ListChannelFlowsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
@@ -450,6 +599,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "ListChannelsAssociatedWithChannelFlow":{
+      "name":"ListChannelsAssociatedWithChannelFlow",
+      "http":{
+        "method":"GET",
+        "requestUri":"/channels?scope=channel-flow-associations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListChannelsAssociatedWithChannelFlowRequest"},
+      "output":{"shape":"ListChannelsAssociatedWithChannelFlowResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "ListChannelsModeratedByAppInstanceUser":{
       "name":"ListChannelsModeratedByAppInstanceUser",
       "http":{
@@ -459,6 +626,24 @@
       },
       "input":{"shape":"ListChannelsModeratedByAppInstanceUserRequest"},
       "output":{"shape":"ListChannelsModeratedByAppInstanceUserResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
@@ -505,6 +690,41 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags?operation=tag-resource",
+        "responseCode":204
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags?operation=untag-resource",
+        "responseCode":204
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "UpdateChannel":{
       "name":"UpdateChannel",
       "http":{
@@ -519,6 +739,25 @@
         {"shape":"ForbiddenException"},
         {"shape":"ConflictException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdateChannelFlow":{
+      "name":"UpdateChannelFlow",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/channel-flows/{channelFlowArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateChannelFlowRequest"},
+      "output":{"shape":"UpdateChannelFlowResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ConflictException"},
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
@@ -569,6 +808,27 @@
       "members":{
         "Type":{"shape":"ChannelMembershipType"},
         "ReadMarkerTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "AssociateChannelFlowRequest":{
+      "type":"structure",
+      "required":[
+        "ChannelArn",
+        "ChannelFlowArn",
+        "ChimeBearer"
+      ],
+      "members":{
+        "ChannelArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelArn"
+        },
+        "ChannelFlowArn":{"shape":"ChimeArn"},
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
       }
     },
     "BadRequestException":{
@@ -630,6 +890,11 @@
         "Errors":{"shape":"BatchCreateChannelMembershipErrors"}
       }
     },
+    "CallbackIdType":{
+      "type":"string",
+      "max":64,
+      "min":32
+    },
     "Channel":{
       "type":"structure",
       "members":{
@@ -641,8 +906,23 @@
         "CreatedBy":{"shape":"Identity"},
         "CreatedTimestamp":{"shape":"Timestamp"},
         "LastMessageTimestamp":{"shape":"Timestamp"},
-        "LastUpdatedTimestamp":{"shape":"Timestamp"}
+        "LastUpdatedTimestamp":{"shape":"Timestamp"},
+        "ChannelFlowArn":{"shape":"ChimeArn"}
       }
+    },
+    "ChannelAssociatedWithFlowSummary":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NonEmptyResourceName"},
+        "ChannelArn":{"shape":"ChimeArn"},
+        "Mode":{"shape":"ChannelMode"},
+        "Privacy":{"shape":"ChannelPrivacy"},
+        "Metadata":{"shape":"Metadata"}
+      }
+    },
+    "ChannelAssociatedWithFlowSummaryList":{
+      "type":"list",
+      "member":{"shape":"ChannelAssociatedWithFlowSummary"}
     },
     "ChannelBan":{
       "type":"structure",
@@ -662,6 +942,61 @@
     "ChannelBanSummaryList":{
       "type":"list",
       "member":{"shape":"ChannelBanSummary"}
+    },
+    "ChannelFlow":{
+      "type":"structure",
+      "members":{
+        "ChannelFlowArn":{"shape":"ChimeArn"},
+        "Processors":{"shape":"ProcessorList"},
+        "Name":{"shape":"NonEmptyResourceName"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "LastUpdatedTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "ChannelFlowCallbackRequest":{
+      "type":"structure",
+      "required":[
+        "CallbackId",
+        "ChannelArn",
+        "ChannelMessage"
+      ],
+      "members":{
+        "CallbackId":{
+          "shape":"CallbackIdType",
+          "idempotencyToken":true
+        },
+        "ChannelArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelArn"
+        },
+        "DeleteResource":{"shape":"NonNullableBoolean"},
+        "ChannelMessage":{"shape":"ChannelMessageCallback"}
+      }
+    },
+    "ChannelFlowCallbackResponse":{
+      "type":"structure",
+      "members":{
+        "ChannelArn":{"shape":"ChimeArn"},
+        "CallbackId":{"shape":"CallbackIdType"}
+      }
+    },
+    "ChannelFlowExecutionOrder":{
+      "type":"integer",
+      "max":3,
+      "min":1
+    },
+    "ChannelFlowSummary":{
+      "type":"structure",
+      "members":{
+        "ChannelFlowArn":{"shape":"ChimeArn"},
+        "Name":{"shape":"NonEmptyResourceName"},
+        "Processors":{"shape":"ProcessorList"}
+      }
+    },
+    "ChannelFlowSummaryList":{
+      "type":"list",
+      "member":{"shape":"ChannelFlowSummary"}
     },
     "ChannelMembership":{
       "type":"structure",
@@ -715,7 +1050,17 @@
         "LastUpdatedTimestamp":{"shape":"Timestamp"},
         "Sender":{"shape":"Identity"},
         "Redacted":{"shape":"NonNullableBoolean"},
-        "Persistence":{"shape":"ChannelMessagePersistenceType"}
+        "Persistence":{"shape":"ChannelMessagePersistenceType"},
+        "Status":{"shape":"ChannelMessageStatusStructure"}
+      }
+    },
+    "ChannelMessageCallback":{
+      "type":"structure",
+      "required":["MessageId"],
+      "members":{
+        "MessageId":{"shape":"MessageId"},
+        "Content":{"shape":"NonEmptyContent"},
+        "Metadata":{"shape":"Metadata"}
       }
     },
     "ChannelMessagePersistenceType":{
@@ -724,6 +1069,22 @@
         "PERSISTENT",
         "NON_PERSISTENT"
       ]
+    },
+    "ChannelMessageStatus":{
+      "type":"string",
+      "enum":[
+        "SENT",
+        "PENDING",
+        "FAILED",
+        "DENIED"
+      ]
+    },
+    "ChannelMessageStatusStructure":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"ChannelMessageStatus"},
+        "Detail":{"shape":"StatusDetail"}
+      }
     },
     "ChannelMessageSummary":{
       "type":"structure",
@@ -736,7 +1097,8 @@
         "LastUpdatedTimestamp":{"shape":"Timestamp"},
         "LastEditedTimestamp":{"shape":"Timestamp"},
         "Sender":{"shape":"Identity"},
-        "Redacted":{"shape":"NonNullableBoolean"}
+        "Redacted":{"shape":"NonNullableBoolean"},
+        "Status":{"shape":"ChannelMessageStatusStructure"}
       }
     },
     "ChannelMessageSummaryList":{
@@ -865,6 +1227,28 @@
         "Member":{"shape":"Identity"}
       }
     },
+    "CreateChannelFlowRequest":{
+      "type":"structure",
+      "required":[
+        "AppInstanceArn",
+        "Processors",
+        "Name",
+        "ClientRequestToken"
+      ],
+      "members":{
+        "AppInstanceArn":{"shape":"ChimeArn"},
+        "Processors":{"shape":"ProcessorList"},
+        "Name":{"shape":"NonEmptyResourceName"},
+        "Tags":{"shape":"TagList"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"}
+      }
+    },
+    "CreateChannelFlowResponse":{
+      "type":"structure",
+      "members":{
+        "ChannelFlowArn":{"shape":"ChimeArn"}
+      }
+    },
     "CreateChannelMembershipRequest":{
       "type":"structure",
       "required":[
@@ -977,6 +1361,17 @@
           "shape":"ChimeArn",
           "location":"header",
           "locationName":"x-amz-chime-bearer"
+        }
+      }
+    },
+    "DeleteChannelFlowRequest":{
+      "type":"structure",
+      "required":["ChannelFlowArn"],
+      "members":{
+        "ChannelFlowArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelFlowArn"
         }
       }
     },
@@ -1103,6 +1498,23 @@
       "type":"structure",
       "members":{
         "ChannelBan":{"shape":"ChannelBan"}
+      }
+    },
+    "DescribeChannelFlowRequest":{
+      "type":"structure",
+      "required":["ChannelFlowArn"],
+      "members":{
+        "ChannelFlowArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelFlowArn"
+        }
+      }
+    },
+    "DescribeChannelFlowResponse":{
+      "type":"structure",
+      "members":{
+        "ChannelFlow":{"shape":"ChannelFlow"}
       }
     },
     "DescribeChannelMembershipForAppInstanceUserRequest":{
@@ -1254,6 +1666,31 @@
         "Channel":{"shape":"Channel"}
       }
     },
+    "DisassociateChannelFlowRequest":{
+      "type":"structure",
+      "required":[
+        "ChannelArn",
+        "ChannelFlowArn",
+        "ChimeBearer"
+      ],
+      "members":{
+        "ChannelArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelArn"
+        },
+        "ChannelFlowArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelFlowArn"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
+      }
+    },
     "ErrorCode":{
       "type":"string",
       "enum":[
@@ -1272,6 +1709,13 @@
         "Unprocessable",
         "VoiceConnectorGroupAssociationsExist",
         "PhoneNumberAssociationsExist"
+      ]
+    },
+    "FallbackAction":{
+      "type":"string",
+      "enum":[
+        "CONTINUE",
+        "ABORT"
       ]
     },
     "ForbiddenException":{
@@ -1314,6 +1758,37 @@
         "ChannelMessage":{"shape":"ChannelMessage"}
       }
     },
+    "GetChannelMessageStatusRequest":{
+      "type":"structure",
+      "required":[
+        "ChannelArn",
+        "MessageId",
+        "ChimeBearer"
+      ],
+      "members":{
+        "ChannelArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelArn"
+        },
+        "MessageId":{
+          "shape":"MessageId",
+          "location":"uri",
+          "locationName":"messageId"
+        },
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
+      }
+    },
+    "GetChannelMessageStatusResponse":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ChannelMessageStatusStructure"}
+      }
+    },
     "GetMessagingSessionEndpointRequest":{
       "type":"structure",
       "members":{
@@ -1331,6 +1806,27 @@
         "Arn":{"shape":"ChimeArn"},
         "Name":{"shape":"ResourceName"}
       }
+    },
+    "InvocationType":{
+      "type":"string",
+      "enum":["ASYNC"]
+    },
+    "LambdaConfiguration":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "InvocationType"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"LambdaFunctionArn"},
+        "InvocationType":{"shape":"InvocationType"}
+      }
+    },
+    "LambdaFunctionArn":{
+      "type":"string",
+      "max":2048,
+      "min":15,
+      "pattern":"arn:aws:lambda:[a-z]{2}-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9\\-_\\.]+(:(\\$LATEST|[a-zA-Z0-9\\-_]+))?"
     },
     "ListChannelBansRequest":{
       "type":"structure",
@@ -1367,6 +1863,34 @@
         "ChannelArn":{"shape":"ChimeArn"},
         "NextToken":{"shape":"NextToken"},
         "ChannelBans":{"shape":"ChannelBanSummaryList"}
+      }
+    },
+    "ListChannelFlowsRequest":{
+      "type":"structure",
+      "required":["AppInstanceArn"],
+      "members":{
+        "AppInstanceArn":{
+          "shape":"ChimeArn",
+          "location":"querystring",
+          "locationName":"app-instance-arn"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListChannelFlowsResponse":{
+      "type":"structure",
+      "members":{
+        "ChannelFlows":{"shape":"ChannelFlowSummaryList"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "ListChannelMembershipsForAppInstanceUserRequest":{
@@ -1533,6 +2057,34 @@
         "ChannelModerators":{"shape":"ChannelModeratorSummaryList"}
       }
     },
+    "ListChannelsAssociatedWithChannelFlowRequest":{
+      "type":"structure",
+      "required":["ChannelFlowArn"],
+      "members":{
+        "ChannelFlowArn":{
+          "shape":"ChimeArn",
+          "location":"querystring",
+          "locationName":"channel-flow-arn"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListChannelsAssociatedWithChannelFlowResponse":{
+      "type":"structure",
+      "members":{
+        "Channels":{"shape":"ChannelAssociatedWithFlowSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListChannelsModeratedByAppInstanceUserRequest":{
       "type":"structure",
       "required":["ChimeBearer"],
@@ -1607,6 +2159,23 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{
+          "shape":"ChimeArn",
+          "location":"querystring",
+          "locationName":"arn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":50,
@@ -1670,6 +2239,34 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "Processor":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Configuration",
+        "ExecutionOrder",
+        "FallbackAction"
+      ],
+      "members":{
+        "Name":{"shape":"NonEmptyResourceName"},
+        "Configuration":{"shape":"ProcessorConfiguration"},
+        "ExecutionOrder":{"shape":"ChannelFlowExecutionOrder"},
+        "FallbackAction":{"shape":"FallbackAction"}
+      }
+    },
+    "ProcessorConfiguration":{
+      "type":"structure",
+      "required":["Lambda"],
+      "members":{
+        "Lambda":{"shape":"LambdaConfiguration"}
+      }
+    },
+    "ProcessorList":{
+      "type":"list",
+      "member":{"shape":"Processor"},
+      "max":3,
+      "min":1
     },
     "RedactChannelMessageRequest":{
       "type":"structure",
@@ -1754,7 +2351,8 @@
       "type":"structure",
       "members":{
         "ChannelArn":{"shape":"ChimeArn"},
-        "MessageId":{"shape":"MessageId"}
+        "MessageId":{"shape":"MessageId"},
+        "Status":{"shape":"ChannelMessageStatusStructure"}
       }
     },
     "ServiceFailureException":{
@@ -1784,6 +2382,12 @@
         "DESCENDING"
       ]
     },
+    "StatusDetail":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"[\\s\\S]*"
+    },
     "String":{"type":"string"},
     "Tag":{
       "type":"structure",
@@ -1802,11 +2406,28 @@
       "min":1,
       "sensitive":true
     },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":50,
+      "min":1
+    },
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"},
       "max":50,
       "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"ChimeArn"},
+        "Tags":{"shape":"TagList"}
+      }
     },
     "TagValue":{
       "type":"string",
@@ -1832,6 +2453,40 @@
       },
       "error":{"httpStatusCode":401},
       "exception":true
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"ChimeArn"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UpdateChannelFlowRequest":{
+      "type":"structure",
+      "required":[
+        "ChannelFlowArn",
+        "Processors",
+        "Name"
+      ],
+      "members":{
+        "ChannelFlowArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelFlowArn"
+        },
+        "Processors":{"shape":"ProcessorList"},
+        "Name":{"shape":"NonEmptyResourceName"}
+      }
+    },
+    "UpdateChannelFlowResponse":{
+      "type":"structure",
+      "members":{
+        "ChannelFlowArn":{"shape":"ChimeArn"}
+      }
     },
     "UpdateChannelMessageRequest":{
       "type":"structure",
@@ -1864,7 +2519,8 @@
       "type":"structure",
       "members":{
         "ChannelArn":{"shape":"ChimeArn"},
-        "MessageId":{"shape":"MessageId"}
+        "MessageId":{"shape":"MessageId"},
+        "Status":{"shape":"ChannelMessageStatusStructure"}
       }
     },
     "UpdateChannelReadMarkerRequest":{

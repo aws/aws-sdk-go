@@ -343,6 +343,12 @@ func (c *DataExchange) CreateJobRequest(input *CreateJobInput) (req *request.Req
 // API operation CreateJob for usage and error information.
 //
 // Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource couldn't be found.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
 //   * ValidationException
 //   The request was invalid.
 //
@@ -351,12 +357,6 @@ func (c *DataExchange) CreateJobRequest(input *CreateJobInput) (req *request.Req
 //
 //   * AccessDeniedException
 //   Access to the resource is denied.
-//
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
-//
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateJob
 func (c *DataExchange) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
@@ -2779,10 +2779,11 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// What occurs after a certain event.
 type Action struct {
 	_ struct{} `type:"structure"`
 
-	// Details of the operation to be performed by the job.
+	// Details for the export revision to Amazon S3 action.
 	ExportRevisionToS3 *AutoExportRevisionToS3RequestDetails `type:"structure"`
 }
 
@@ -2895,8 +2896,12 @@ func (s *AssetDestinationEntry) SetKey(v string) *AssetDestinationEntry {
 	return s
 }
 
+// Information about the asset.
 type AssetDetails struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Redshift datashare that is the asset.
+	RedshiftDataShareAsset *RedshiftDataShareAsset `type:"structure"`
 
 	// The S3 object that is the asset.
 	S3SnapshotAsset *S3SnapshotAsset `type:"structure"`
@@ -2920,16 +2925,23 @@ func (s AssetDetails) GoString() string {
 	return s.String()
 }
 
+// SetRedshiftDataShareAsset sets the RedshiftDataShareAsset field's value.
+func (s *AssetDetails) SetRedshiftDataShareAsset(v *RedshiftDataShareAsset) *AssetDetails {
+	s.RedshiftDataShareAsset = v
+	return s
+}
+
 // SetS3SnapshotAsset sets the S3SnapshotAsset field's value.
 func (s *AssetDetails) SetS3SnapshotAsset(v *S3SnapshotAsset) *AssetDetails {
 	s.S3SnapshotAsset = v
 	return s
 }
 
-// An asset in AWS Data Exchange is a piece of data that can be stored as an
-// S3 object. The asset can be a structured data file, an image file, or some
-// other data file. When you create an import job for your files, you create
-// an asset in AWS Data Exchange for each of those files.
+// An asset in AWS Data Exchange is a piece of data. The asset can be a structured
+// data file, an image file, or some other data file that can be stored as an
+// S3 object, or an Amazon Redshift datashare (Preview). When you create an
+// import job for your files, you create an asset in AWS Data Exchange for each
+// of those files.
 type AssetEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -2938,13 +2950,12 @@ type AssetEntry struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
-	// Information about the asset, including its size.
+	// Information about the asset.
 	//
 	// AssetDetails is a required field
 	AssetDetails *AssetDetails `type:"structure" required:"true"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	//
 	// AssetType is a required field
 	AssetType *string `type:"string" required:"true" enum:"AssetType"`
@@ -3189,9 +3200,7 @@ func (s *AutoExportRevisionDestinationEntry) SetKeyPattern(v string) *AutoExport
 type AutoExportRevisionToS3RequestDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Encryption configuration of the export job. Includes the encryption type
-	// in addition to the AWS KMS key. The KMS key is only necessary if you chose
-	// the KMS encryption. type.
+	// Encryption configuration for the auto export job.
 	Encryption *ExportServerSideEncryption `type:"structure"`
 
 	// A revision destination is the Amazon S3 bucket folder destination to where
@@ -3400,8 +3409,7 @@ func (s *ConflictException) RequestID() string {
 type CreateDataSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	//
 	// AssetType is a required field
 	AssetType *string `type:"string" required:"true" enum:"AssetType"`
@@ -3491,8 +3499,7 @@ type CreateDataSetOutput struct {
 	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
 	Arn *string `type:"string"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
 	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
@@ -3513,6 +3520,7 @@ type CreateDataSetOutput struct {
 	// can access that copy of the data set as an entitled data set.
 	Origin *string `type:"string" enum:"Origin"`
 
+	// Information about the origin of the data set.
 	OriginDetails *OriginDetails `type:"structure"`
 
 	// A unique identifier.
@@ -3682,6 +3690,7 @@ func (s *CreateEventActionInput) SetEvent(v *Event) *CreateEventActionInput {
 type CreateEventActionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// What occurs after a certain event.
 	Action *Action `type:"structure"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
@@ -3690,6 +3699,7 @@ type CreateEventActionOutput struct {
 	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// What occurs to start an action.
 	Event *Event `type:"structure"`
 
 	// A unique identifier.
@@ -4095,8 +4105,7 @@ type DataSetEntry struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	//
 	// AssetType is a required field
 	AssetType *string `type:"string" required:"true" enum:"AssetType"`
@@ -4541,12 +4550,14 @@ func (s DeleteRevisionOutput) GoString() string {
 	return s.String()
 }
 
+// Information about the job error.
 type Details struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the job error.
 	ImportAssetFromSignedUrlJobErrorDetails *ImportAssetFromSignedUrlJobErrorDetails `type:"structure"`
 
-	// The list of sources for the assets.
+	// Information about the job error.
 	ImportAssetsFromS3JobErrorDetails []*AssetSourceEntry `type:"list"`
 }
 
@@ -4580,9 +4591,11 @@ func (s *Details) SetImportAssetsFromS3JobErrorDetails(v []*AssetSourceEntry) *D
 	return s
 }
 
+// What occurs to start an action.
 type Event struct {
 	_ struct{} `type:"structure"`
 
+	// What occurs to start the revision publish action.
 	RevisionPublished *RevisionPublished `type:"structure"`
 }
 
@@ -4635,7 +4648,7 @@ type EventActionEntry struct {
 	// Action is a required field
 	Action *Action `type:"structure" required:"true"`
 
-	// The ARN for the event action.
+	// The Amazon Resource Name (ARN) for the event action.
 	//
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
@@ -5125,7 +5138,7 @@ type ExportRevisionsToS3ResponseDetails struct {
 	// Encryption configuration of the export job.
 	Encryption *ExportServerSideEncryption `type:"structure"`
 
-	// The ARN for the event action.
+	// The Amazon Resource Name (ARN) of the event action.
 	EventActionArn *string `type:"string"`
 
 	// The destination in Amazon S3 where the revision is exported.
@@ -5320,10 +5333,10 @@ type GetAssetOutput struct {
 	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
 	Arn *string `type:"string"`
 
+	// Information about the asset.
 	AssetDetails *AssetDetails `type:"structure"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
 	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
@@ -5481,8 +5494,7 @@ type GetDataSetOutput struct {
 	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
 	Arn *string `type:"string"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
 	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
@@ -5503,6 +5515,7 @@ type GetDataSetOutput struct {
 	// can access that copy of the data set as an entitled data set.
 	Origin *string `type:"string" enum:"Origin"`
 
+	// Information about the origin of the data set.
 	OriginDetails *OriginDetails `type:"structure"`
 
 	// A unique identifier.
@@ -5648,6 +5661,7 @@ func (s *GetEventActionInput) SetEventActionId(v string) *GetEventActionInput {
 type GetEventActionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// What occurs after a certain event.
 	Action *Action `type:"structure"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
@@ -5656,6 +5670,7 @@ type GetEventActionOutput struct {
 	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// What occurs to start an action.
 	Event *Event `type:"structure"`
 
 	// A unique identifier.
@@ -6019,12 +6034,11 @@ func (s *GetRevisionOutput) SetUpdatedAt(v time.Time) *GetRevisionOutput {
 	return s
 }
 
+// Information about the job error.
 type ImportAssetFromSignedUrlJobErrorDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the asset. When importing from Amazon S3, the S3 object key is
-	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// Information about the job error.
 	//
 	// AssetName is a required field
 	AssetName *string `type:"string" required:"true"`
@@ -6153,7 +6167,7 @@ func (s *ImportAssetFromSignedUrlRequestDetails) SetRevisionId(v string) *Import
 type ImportAssetFromSignedUrlResponseDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The name for the asset associated with this import response.
+	// The name for the asset associated with this import job.
 	//
 	// AssetName is a required field
 	AssetName *string `type:"string" required:"true"`
@@ -6230,6 +6244,147 @@ func (s *ImportAssetFromSignedUrlResponseDetails) SetSignedUrl(v string) *Import
 // SetSignedUrlExpiresAt sets the SignedUrlExpiresAt field's value.
 func (s *ImportAssetFromSignedUrlResponseDetails) SetSignedUrlExpiresAt(v time.Time) *ImportAssetFromSignedUrlResponseDetails {
 	s.SignedUrlExpiresAt = &v
+	return s
+}
+
+// Details from an import from Amazon Redshift datashare request.
+type ImportAssetsFromRedshiftDataSharesRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Amazon Redshift datashare assets.
+	//
+	// AssetSources is a required field
+	AssetSources []*RedshiftDataShareAssetSourceEntry `type:"list" required:"true"`
+
+	// The unique identifier for the data set associated with this import job.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The unique identifier for the revision associated with this import job.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromRedshiftDataSharesRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromRedshiftDataSharesRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportAssetsFromRedshiftDataSharesRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportAssetsFromRedshiftDataSharesRequestDetails"}
+	if s.AssetSources == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetSources"))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.AssetSources != nil {
+		for i, v := range s.AssetSources {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AssetSources", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetSources sets the AssetSources field's value.
+func (s *ImportAssetsFromRedshiftDataSharesRequestDetails) SetAssetSources(v []*RedshiftDataShareAssetSourceEntry) *ImportAssetsFromRedshiftDataSharesRequestDetails {
+	s.AssetSources = v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetsFromRedshiftDataSharesRequestDetails) SetDataSetId(v string) *ImportAssetsFromRedshiftDataSharesRequestDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetsFromRedshiftDataSharesRequestDetails) SetRevisionId(v string) *ImportAssetsFromRedshiftDataSharesRequestDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// Details from an import from Amazon Redshift datashare response.
+type ImportAssetsFromRedshiftDataSharesResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Amazon Redshift datashare asset sources.
+	//
+	// AssetSources is a required field
+	AssetSources []*RedshiftDataShareAssetSourceEntry `type:"list" required:"true"`
+
+	// The unique identifier for the data set associated with this import job.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The unique identifier for the revision associated with this import job.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromRedshiftDataSharesResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetsFromRedshiftDataSharesResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssetSources sets the AssetSources field's value.
+func (s *ImportAssetsFromRedshiftDataSharesResponseDetails) SetAssetSources(v []*RedshiftDataShareAssetSourceEntry) *ImportAssetsFromRedshiftDataSharesResponseDetails {
+	s.AssetSources = v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetsFromRedshiftDataSharesResponseDetails) SetDataSetId(v string) *ImportAssetsFromRedshiftDataSharesResponseDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetsFromRedshiftDataSharesResponseDetails) SetRevisionId(v string) *ImportAssetsFromRedshiftDataSharesResponseDetails {
+	s.RevisionId = &v
 	return s
 }
 
@@ -6561,6 +6716,7 @@ type JobError struct {
 	// Code is a required field
 	Code *string `type:"string" required:"true" enum:"Code"`
 
+	// The details about the job error.
 	Details *Details `type:"structure"`
 
 	// The name of the limit that was reached.
@@ -7250,9 +7406,12 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// Information about the origin of the data set.
 type OriginDetails struct {
 	_ struct{} `type:"structure"`
 
+	// The product ID of the origin of the data set.
+	//
 	// ProductId is a required field
 	ProductId *string `type:"string" required:"true"`
 }
@@ -7281,6 +7440,87 @@ func (s *OriginDetails) SetProductId(v string) *OriginDetails {
 	return s
 }
 
+// The Amazon Redshift datashare asset.
+type RedshiftDataShareAsset struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the datashare asset.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareAsset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareAsset) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RedshiftDataShareAsset) SetArn(v string) *RedshiftDataShareAsset {
+	s.Arn = &v
+	return s
+}
+
+// The source of the Amazon Redshift datashare asset.
+type RedshiftDataShareAssetSourceEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the datashare asset.
+	//
+	// DataShareArn is a required field
+	DataShareArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareAssetSourceEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RedshiftDataShareAssetSourceEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedshiftDataShareAssetSourceEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedshiftDataShareAssetSourceEntry"}
+	if s.DataShareArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataShareArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *RedshiftDataShareAssetSourceEntry) SetDataShareArn(v string) *RedshiftDataShareAssetSourceEntry {
+	s.DataShareArn = &v
+	return s
+}
+
 // The details for the request.
 type RequestDetails struct {
 	_ struct{} `type:"structure"`
@@ -7296,6 +7536,9 @@ type RequestDetails struct {
 
 	// Details about the import from signed URL request.
 	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlRequestDetails `type:"structure"`
+
+	// Details from an import from Amazon Redshift datashare request.
+	ImportAssetsFromRedshiftDataShares *ImportAssetsFromRedshiftDataSharesRequestDetails `type:"structure"`
 
 	// Details about the import from Amazon S3 request.
 	ImportAssetsFromS3 *ImportAssetsFromS3RequestDetails `type:"structure"`
@@ -7342,6 +7585,11 @@ func (s *RequestDetails) Validate() error {
 			invalidParams.AddNested("ImportAssetFromSignedUrl", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ImportAssetsFromRedshiftDataShares != nil {
+		if err := s.ImportAssetsFromRedshiftDataShares.Validate(); err != nil {
+			invalidParams.AddNested("ImportAssetsFromRedshiftDataShares", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ImportAssetsFromS3 != nil {
 		if err := s.ImportAssetsFromS3.Validate(); err != nil {
 			invalidParams.AddNested("ImportAssetsFromS3", err.(request.ErrInvalidParams))
@@ -7375,6 +7623,12 @@ func (s *RequestDetails) SetExportRevisionsToS3(v *ExportRevisionsToS3RequestDet
 // SetImportAssetFromSignedUrl sets the ImportAssetFromSignedUrl field's value.
 func (s *RequestDetails) SetImportAssetFromSignedUrl(v *ImportAssetFromSignedUrlRequestDetails) *RequestDetails {
 	s.ImportAssetFromSignedUrl = v
+	return s
+}
+
+// SetImportAssetsFromRedshiftDataShares sets the ImportAssetsFromRedshiftDataShares field's value.
+func (s *RequestDetails) SetImportAssetsFromRedshiftDataShares(v *ImportAssetsFromRedshiftDataSharesRequestDetails) *RequestDetails {
+	s.ImportAssetsFromRedshiftDataShares = v
 	return s
 }
 
@@ -7471,6 +7725,9 @@ type ResponseDetails struct {
 	// Details for the import from signed URL response.
 	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlResponseDetails `type:"structure"`
 
+	// Details from an import from Amazon Redshift datashare response.
+	ImportAssetsFromRedshiftDataShares *ImportAssetsFromRedshiftDataSharesResponseDetails `type:"structure"`
+
 	// Details for the import from Amazon S3 response.
 	ImportAssetsFromS3 *ImportAssetsFromS3ResponseDetails `type:"structure"`
 }
@@ -7514,6 +7771,12 @@ func (s *ResponseDetails) SetExportRevisionsToS3(v *ExportRevisionsToS3ResponseD
 // SetImportAssetFromSignedUrl sets the ImportAssetFromSignedUrl field's value.
 func (s *ResponseDetails) SetImportAssetFromSignedUrl(v *ImportAssetFromSignedUrlResponseDetails) *ResponseDetails {
 	s.ImportAssetFromSignedUrl = v
+	return s
+}
+
+// SetImportAssetsFromRedshiftDataShares sets the ImportAssetsFromRedshiftDataShares field's value.
+func (s *ResponseDetails) SetImportAssetsFromRedshiftDataShares(v *ImportAssetsFromRedshiftDataSharesResponseDetails) *ResponseDetails {
+	s.ImportAssetsFromRedshiftDataShares = v
 	return s
 }
 
@@ -7710,10 +7973,11 @@ func (s *RevisionEntry) SetUpdatedAt(v time.Time) *RevisionEntry {
 	return s
 }
 
+// Information about the published revision.
 type RevisionPublished struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier.
+	// The data set ID of the published revision.
 	//
 	// DataSetId is a required field
 	DataSetId *string `type:"string" required:"true"`
@@ -8254,10 +8518,10 @@ type UpdateAssetOutput struct {
 	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
 	Arn *string `type:"string"`
 
+	// Information about the asset.
 	AssetDetails *AssetDetails `type:"structure"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
 	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
@@ -8434,8 +8698,7 @@ type UpdateDataSetOutput struct {
 	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
 	Arn *string `type:"string"`
 
-	// The type of file your data is stored in. Currently, the supported asset type
-	// is S3_SNAPSHOT.
+	// The type of asset that is added to a data set.
 	AssetType *string `type:"string" enum:"AssetType"`
 
 	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
@@ -8456,6 +8719,7 @@ type UpdateDataSetOutput struct {
 	// can access that copy of the data set as an entitled data set.
 	Origin *string `type:"string" enum:"Origin"`
 
+	// Information about the origin of the data set.
 	OriginDetails *OriginDetails `type:"structure"`
 
 	// A unique identifier.
@@ -8608,6 +8872,7 @@ func (s *UpdateEventActionInput) SetEventActionId(v string) *UpdateEventActionIn
 type UpdateEventActionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// What occurs after a certain event.
 	Action *Action `type:"structure"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
@@ -8616,6 +8881,7 @@ type UpdateEventActionOutput struct {
 	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
 	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// What occurs to start an action.
 	Event *Event `type:"structure"`
 
 	// A unique identifier.
@@ -8922,17 +9188,20 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The type of file your data is stored in. Currently, the supported asset type
-// is S3_SNAPSHOT.
+// The type of asset that is added to a data set.
 const (
 	// AssetTypeS3Snapshot is a AssetType enum value
 	AssetTypeS3Snapshot = "S3_SNAPSHOT"
+
+	// AssetTypeRedshiftDataShare is a AssetType enum value
+	AssetTypeRedshiftDataShare = "REDSHIFT_DATA_SHARE"
 )
 
 // AssetType_Values returns all elements of the AssetType enum
 func AssetType_Values() []string {
 	return []string{
 		AssetTypeS3Snapshot,
+		AssetTypeRedshiftDataShare,
 	}
 }
 
@@ -8995,6 +9264,9 @@ const (
 
 	// JobErrorLimitNameAssetsizeinGb is a JobErrorLimitName enum value
 	JobErrorLimitNameAssetsizeinGb = "Asset size in GB"
+
+	// JobErrorLimitNameAmazonRedshiftdatashareassetsperrevision is a JobErrorLimitName enum value
+	JobErrorLimitNameAmazonRedshiftdatashareassetsperrevision = "Amazon Redshift datashare assets per revision"
 )
 
 // JobErrorLimitName_Values returns all elements of the JobErrorLimitName enum
@@ -9002,6 +9274,7 @@ func JobErrorLimitName_Values() []string {
 	return []string{
 		JobErrorLimitNameAssetsperrevision,
 		JobErrorLimitNameAssetsizeinGb,
+		JobErrorLimitNameAmazonRedshiftdatashareassetsperrevision,
 	}
 }
 
@@ -9051,17 +9324,17 @@ const (
 	// LimitNameAssetsizeinGb is a LimitName enum value
 	LimitNameAssetsizeinGb = "Asset size in GB"
 
-	// LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3 is a LimitName enum value
-	LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3 = "Concurrent in progress jobs to import assets from Amazon S3"
-
-	// LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl is a LimitName enum value
-	LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl = "Concurrent in progress jobs to import assets from a signed URL"
-
 	// LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3 is a LimitName enum value
 	LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3 = "Concurrent in progress jobs to export assets to Amazon S3"
 
 	// LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl is a LimitName enum value
 	LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl = "Concurrent in progress jobs to export assets to a signed URL"
+
+	// LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3 is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3 = "Concurrent in progress jobs to import assets from Amazon S3"
+
+	// LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl = "Concurrent in progress jobs to import assets from a signed URL"
 
 	// LimitNameConcurrentinprogressjobstoexportrevisionstoAmazonS3 is a LimitName enum value
 	LimitNameConcurrentinprogressjobstoexportrevisionstoAmazonS3 = "Concurrent in progress jobs to export revisions to Amazon S3"
@@ -9071,6 +9344,18 @@ const (
 
 	// LimitNameAutoexporteventactionsperdataset is a LimitName enum value
 	LimitNameAutoexporteventactionsperdataset = "Auto export event actions per data set"
+
+	// LimitNameAmazonRedshiftdatashareassetsperimportjobfromRedshift is a LimitName enum value
+	LimitNameAmazonRedshiftdatashareassetsperimportjobfromRedshift = "Amazon Redshift datashare assets per import job from Redshift"
+
+	// LimitNameConcurrentinprogressjobstoimportassetsfromAmazonRedshiftdatashares is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoimportassetsfromAmazonRedshiftdatashares = "Concurrent in progress jobs to import assets from Amazon Redshift datashares"
+
+	// LimitNameRevisionsperAmazonRedshiftdatasharedataset is a LimitName enum value
+	LimitNameRevisionsperAmazonRedshiftdatasharedataset = "Revisions per Amazon Redshift datashare data set"
+
+	// LimitNameAmazonRedshiftdatashareassetsperrevision is a LimitName enum value
+	LimitNameAmazonRedshiftdatashareassetsperrevision = "Amazon Redshift datashare assets per revision"
 )
 
 // LimitName_Values returns all elements of the LimitName enum
@@ -9084,13 +9369,17 @@ func LimitName_Values() []string {
 		LimitNameAssetsperimportjobfromAmazonS3,
 		LimitNameAssetperexportjobfromAmazonS3,
 		LimitNameAssetsizeinGb,
-		LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3,
-		LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl,
 		LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3,
 		LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl,
+		LimitNameConcurrentinprogressjobstoimportassetsfromAmazonS3,
+		LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl,
 		LimitNameConcurrentinprogressjobstoexportrevisionstoAmazonS3,
 		LimitNameEventactionsperaccount,
 		LimitNameAutoexporteventactionsperdataset,
+		LimitNameAmazonRedshiftdatashareassetsperimportjobfromRedshift,
+		LimitNameConcurrentinprogressjobstoimportassetsfromAmazonRedshiftdatashares,
+		LimitNameRevisionsperAmazonRedshiftdatasharedataset,
+		LimitNameAmazonRedshiftdatashareassetsperrevision,
 	}
 }
 
@@ -9206,6 +9495,9 @@ const (
 
 	// TypeExportRevisionsToS3 is a Type enum value
 	TypeExportRevisionsToS3 = "EXPORT_REVISIONS_TO_S3"
+
+	// TypeImportAssetsFromRedshiftDataShares is a Type enum value
+	TypeImportAssetsFromRedshiftDataShares = "IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES"
 )
 
 // Type_Values returns all elements of the Type enum
@@ -9216,5 +9508,6 @@ func Type_Values() []string {
 		TypeExportAssetsToS3,
 		TypeExportAssetToSignedUrl,
 		TypeExportRevisionsToS3,
+		TypeImportAssetsFromRedshiftDataShares,
 	}
 }

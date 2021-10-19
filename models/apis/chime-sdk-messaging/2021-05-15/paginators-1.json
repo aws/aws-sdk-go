@@ -5,6 +5,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListChannelFlows": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListChannelMemberships": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -26,6 +31,11 @@
       "limit_key": "MaxResults"
     },
     "ListChannels": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListChannelsAssociatedWithChannelFlow": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"

@@ -36,7 +36,7 @@
       "refs" : { }
     },
     "Action" : {
-      "base" : null,
+      "base" : "<p>What occurs after a certain event.</p>",
       "refs" : {
         "CreateEventActionRequest$Action" : "<p>What occurs after a certain event.</p>",
         "EventAction$Action" : "<p>What occurs after a certain event.</p>",
@@ -52,17 +52,17 @@
         "DataSet$Arn" : "<p>The ARN for the data set.</p>",
         "DataSetEntry$Arn" : "<p>The ARN for the data set.</p>",
         "EventAction$Arn" : "<p>The ARN for the event action.</p>",
-        "EventActionEntry$Arn" : "<p>The ARN for the event action.</p>",
+        "EventActionEntry$Arn" : "<p>The Amazon Resource Name (ARN) for the event action.</p>",
         "Job$Arn" : "<p>The ARN for the job.</p>",
         "JobEntry$Arn" : "<p>The ARN for the job.</p>",
         "Revision$Arn" : "<p>The ARN for the revision.</p>",
         "RevisionEntry$Arn" : "<p>The ARN for the revision.</p>",
         "TaggedDataSet$Arn" : "<p>The ARN for the data set.</p>",
-        "TaggedRevision$Arn" : "<p>The ARN for the revision</p>"
+        "TaggedRevision$Arn" : "<p>The ARN for the revision.</p>"
       }
     },
     "Asset" : {
-      "base" : "<p>An asset in AWS Data Exchange is a piece of data that can be stored as an S3 object. The asset can be a structured data file, an image file, or some other data file. When you create an import job for your files, you create an asset in AWS Data Exchange for each of those files.</p>",
+      "base" : "<p>An asset in AWS Data Exchange is a piece of data. The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, or an Amazon Redshift datashare (Preview). When you create an import job for your files, you create an asset in AWS Data Exchange for each of those files.</p>",
       "refs" : { }
     },
     "AssetDestinationEntry" : {
@@ -72,14 +72,14 @@
       }
     },
     "AssetDetails" : {
-      "base" : null,
+      "base" : "<p>Information about the asset.</p>",
       "refs" : {
-        "Asset$AssetDetails" : "<p>Information about the asset, including its size.</p>",
-        "AssetEntry$AssetDetails" : "<p>Information about the asset, including its size.</p>"
+        "Asset$AssetDetails" : "<p>Information about the asset.</p>",
+        "AssetEntry$AssetDetails" : "<p>Information about the asset.</p>"
       }
     },
     "AssetEntry" : {
-      "base" : "<p>An asset in AWS Data Exchange is a piece of data that can be stored as an S3 object. The asset can be a structured data file, an image file, or some other data file. When you create an import job for your files, you create an asset in AWS Data Exchange for each of those files.</p>",
+      "base" : "<p>An asset in AWS Data Exchange is a piece of data. The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, or an Amazon Redshift datashare (Preview). When you create an import job for your files, you create an asset in AWS Data Exchange for each of those files.</p>",
       "refs" : {
         "ListOfAssetEntry$member" : null
       }
@@ -87,11 +87,11 @@
     "AssetName" : {
       "base" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.</p>",
       "refs" : {
-        "Asset$Name" : "<p>The name of the asset When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.</p>",
+        "Asset$Name" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.</p>",
         "AssetEntry$Name" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.</p>",
-        "ImportAssetFromSignedUrlJobErrorDetails$AssetName" : null,
+        "ImportAssetFromSignedUrlJobErrorDetails$AssetName" : "<p>Information about the job error.</p>",
         "ImportAssetFromSignedUrlRequestDetails$AssetName" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name.</p>",
-        "ImportAssetFromSignedUrlResponseDetails$AssetName" : "<p>The name for the asset associated with this import response.</p>",
+        "ImportAssetFromSignedUrlResponseDetails$AssetName" : "<p>The name for the asset associated with this import job.</p>",
         "UpdateAssetRequest$Name" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.</p>"
       }
     },
@@ -102,26 +102,26 @@
       }
     },
     "AssetType" : {
-      "base" : "<p>The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT.</p>",
+      "base" : "<p>The type of asset that is added to a data set.</p>",
       "refs" : {
-        "Asset$AssetType" : "<p>The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT.</p>",
-        "AssetEntry$AssetType" : "<p>The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT.</p>",
-        "CreateDataSetRequest$AssetType" : "<p>The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT.</p>",
-        "DataSet$AssetType" : "<p>The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT.</p>",
-        "DataSetEntry$AssetType" : "<p>The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT.</p>",
-        "TaggedDataSet$AssetType" : "<p>The type of file your data is stored in. Currently, the supported asset type is S3_SNAPSHOT.</p>"
+        "Asset$AssetType" : "<p>The type of asset that is added to a data set.</p>",
+        "AssetEntry$AssetType" : "<p>The type of asset that is added to a data set.</p>",
+        "CreateDataSetRequest$AssetType" : "<p>The type of asset that is added to a data set.</p>",
+        "DataSet$AssetType" : "<p>The type of asset that is added to a data set.</p>",
+        "DataSetEntry$AssetType" : "<p>The type of asset that is added to a data set.</p>",
+        "TaggedDataSet$AssetType" : "<p>The type of asset that is added to a data set.</p>"
       }
     },
     "AutoExportRevisionDestinationEntry" : {
       "base" : "<p>A revision destination is the Amazon S3 bucket folder destination to where the export will be sent.</p>",
       "refs" : {
-        "AutoExportRevisionToS3RequestDetails$RevisionDestination" : null
+        "AutoExportRevisionToS3RequestDetails$RevisionDestination" : "<p>A revision destination is the Amazon S3 bucket folder destination to where the export will be sent.</p>"
       }
     },
     "AutoExportRevisionToS3RequestDetails" : {
       "base" : "<p>Details of the operation to be performed by the job.</p>",
       "refs" : {
-        "Action$ExportRevisionToS3" : null
+        "Action$ExportRevisionToS3" : "<p>Details for the export revision to Amazon S3 action.</p>"
       }
     },
     "Code" : {
@@ -171,13 +171,13 @@
       }
     },
     "Details" : {
-      "base" : null,
+      "base" : "<p>Information about the job error.</p>",
       "refs" : {
-        "JobError$Details" : null
+        "JobError$Details" : "<p>The details about the job error.</p>"
       }
     },
     "Event" : {
-      "base" : null,
+      "base" : "<p>What occurs to start an action.</p>",
       "refs" : {
         "CreateEventActionRequest$Event" : "<p>What occurs to start an action.</p>",
         "EventAction$Event" : "<p>What occurs to start an action.</p>",
@@ -239,7 +239,7 @@
     "ExportServerSideEncryption" : {
       "base" : "<p>Encryption configuration of the export job. Includes the encryption type in addition to the AWS KMS key. The KMS key is only necessary if you chose the KMS encryption. type.</p>",
       "refs" : {
-        "AutoExportRevisionToS3RequestDetails$Encryption" : null,
+        "AutoExportRevisionToS3RequestDetails$Encryption" : "<p>Encryption configuration for the auto export job.</p>",
         "ExportAssetsToS3RequestDetails$Encryption" : "<p>Encryption configuration for the export job.</p>",
         "ExportAssetsToS3ResponseDetails$Encryption" : "<p>Encryption configuration of the export job.</p>",
         "ExportRevisionsToS3RequestDetails$Encryption" : "<p>Encryption configuration for the export job.</p>",
@@ -280,6 +280,10 @@
         "ImportAssetFromSignedUrlRequestDetails$RevisionId" : "<p>The unique identifier for the revision associated with this import request.</p>",
         "ImportAssetFromSignedUrlResponseDetails$DataSetId" : "<p>The unique identifier for the data set associated with this import job.</p>",
         "ImportAssetFromSignedUrlResponseDetails$RevisionId" : "<p>The unique identifier for the revision associated with this import response.</p>",
+        "ImportAssetsFromRedshiftDataSharesRequestDetails$DataSetId" : "The unique identifier for the data set associated with this import job.",
+        "ImportAssetsFromRedshiftDataSharesRequestDetails$RevisionId" : "The unique identifier for the revision associated with this import job.",
+        "ImportAssetsFromRedshiftDataSharesResponseDetails$DataSetId" : "The unique identifier for the data set associated with this import job.",
+        "ImportAssetsFromRedshiftDataSharesResponseDetails$RevisionId" : "The unique identifier for the revision associated with this import job.",
         "ImportAssetsFromS3RequestDetails$DataSetId" : "<p>The unique identifier for the data set associated with this import job.</p>",
         "ImportAssetsFromS3RequestDetails$RevisionId" : "<p>The unique identifier for the revision associated with this import request.</p>",
         "ImportAssetsFromS3ResponseDetails$DataSetId" : "<p>The unique identifier for the data set associated with this import job.</p>",
@@ -293,7 +297,7 @@
         "RevisionEntry$DataSetId" : "<p>The unique identifier for the data set associated with this revision.</p>",
         "RevisionEntry$Id" : "<p>The unique identifier for the revision.</p>",
         "RevisionEntry$SourceId" : "<p>The revision ID of the owned revision corresponding to the entitled revision being viewed. This parameter is returned when a revision owner is viewing the entitled copy of its owned revision.</p>",
-        "RevisionPublished$DataSetId" : null,
+        "RevisionPublished$DataSetId" : "<p>The data set ID of the published revision.</p>",
         "TaggedDataSet$Id" : "<p>The unique identifier for the data set.</p>",
         "TaggedDataSet$SourceId" : "<p>The data set ID of the owned data set corresponding to the entitled data set being viewed. This parameter is returned when a data set owner is viewing the entitled copy of its owned data set.</p>",
         "TaggedRevision$DataSetId" : "<p>The unique identifier for the data set associated with this revision.</p>",
@@ -302,9 +306,9 @@
       }
     },
     "ImportAssetFromSignedUrlJobErrorDetails" : {
-      "base" : null,
+      "base" : "<p>Information about the job error.</p>",
       "refs" : {
-        "Details$ImportAssetFromSignedUrlJobErrorDetails" : null
+        "Details$ImportAssetFromSignedUrlJobErrorDetails" : "<p>Information about the job error.</p>"
       }
     },
     "ImportAssetFromSignedUrlRequestDetails" : {
@@ -317,6 +321,18 @@
       "base" : "<p>The details in the response for an import request, including the signed URL and other information.</p>",
       "refs" : {
         "ResponseDetails$ImportAssetFromSignedUrl" : "<p>Details for the import from signed URL response.</p>"
+      }
+    },
+    "ImportAssetsFromRedshiftDataSharesRequestDetails" : {
+      "base" : "Details from an import from Amazon Redshift datashare request.",
+      "refs" : {
+        "RequestDetails$ImportAssetsFromRedshiftDataShares" : "<p>Details from an import from Amazon Redshift datashare request.</p>"
+      }
+    },
+    "ImportAssetsFromRedshiftDataSharesResponseDetails" : {
+      "base" : "Details from an import from Amazon Redshift datashare response.",
+      "refs" : {
+        "ResponseDetails$ImportAssetsFromRedshiftDataShares" : "<p>Details from an import from Amazon Redshift datashare response.</p>"
       }
     },
     "ImportAssetsFromS3RequestDetails" : {
@@ -379,7 +395,7 @@
     "ListOfAssetSourceEntry" : {
       "base" : "<p>The list of sources for the assets.</p>",
       "refs" : {
-        "Details$ImportAssetsFromS3JobErrorDetails" : null,
+        "Details$ImportAssetsFromS3JobErrorDetails" : "<p>Information about the job error.</p>",
         "ImportAssetsFromS3RequestDetails$AssetSources" : "<p>Is a list of S3 bucket and object key pairs.</p>",
         "ImportAssetsFromS3ResponseDetails$AssetSources" : "<p>Is a list of Amazon S3 bucket and object key pairs.</p>"
       }
@@ -393,12 +409,19 @@
       "refs" : { }
     },
     "ListOfEventActions" : {
-      "base" : "<p>The event entry oobjects listed by the request.</p>",
+      "base" : "<p>The event entry objects listed by the request.</p>",
       "refs" : { }
     },
     "ListOfJobs" : {
       "base" : "<p>The token value retrieved from a previous call to access the next page of results.</p>",
       "refs" : { }
+    },
+    "ListOfRedshiftDataShareAssetSourceEntry" : {
+      "base" : "A list of Amazon Redshift datashare asset sources.",
+      "refs" : {
+        "ImportAssetsFromRedshiftDataSharesRequestDetails$AssetSources" : "A list of Amazon Redshift datashare assets.",
+        "ImportAssetsFromRedshiftDataSharesResponseDetails$AssetSources" : "A list of Amazon Redshift datashare asset sources."
+      }
     },
     "ListOfRevisionDestinationEntry" : {
       "base" : "<p>The destination where the assets in the revision will be exported.</p>",
@@ -440,11 +463,23 @@
       }
     },
     "OriginDetails" : {
-      "base" : null,
+      "base" : "<p>Information about the origin of the data set.</p>",
       "refs" : {
         "DataSet$OriginDetails" : "<p>If the origin of this data set is ENTITLED, includes the details for the product on AWS Marketplace.</p>",
         "DataSetEntry$OriginDetails" : "<p>If the origin of this data set is ENTITLED, includes the details for the product on AWS Marketplace.</p>",
         "TaggedDataSet$OriginDetails" : "<p>If the origin of this data set is ENTITLED, includes the details for the product on AWS Marketplace.</p>"
+      }
+    },
+    "RedshiftDataShareAsset" : {
+      "base" : "The Amazon Redshift datashare asset.",
+      "refs" : {
+        "AssetDetails$RedshiftDataShareAsset" : "<p>The Amazon Redshift datashare that is the asset.</p>"
+      }
+    },
+    "RedshiftDataShareAssetSourceEntry" : {
+      "base" : "<p>The source of the Amazon Redshift datashare asset.</p>",
+      "refs" : {
+        "ListOfRedshiftDataShareAssetSourceEntry$member" : null
       }
     },
     "RequestDetails" : {
@@ -488,15 +523,15 @@
       }
     },
     "RevisionPublished" : {
-      "base" : null,
+      "base" : "<p>Information about the published revision.</p>",
       "refs" : {
-        "Event$RevisionPublished" : null
+        "Event$RevisionPublished" : "<p>What occurs to start the revision publish action.</p>"
       }
     },
     "S3SnapshotAsset" : {
       "base" : "<p>The S3 object that is the asset.</p>",
       "refs" : {
-        "AssetDetails$S3SnapshotAsset" : null
+        "AssetDetails$S3SnapshotAsset" : "<p>The S3 object that is the asset.</p>"
       }
     },
     "ServerSideEncryptionTypes" : {
@@ -677,13 +712,15 @@
         "ConflictException$Message" : "<p>The request couldn't be completed because it conflicted with the current state of the resource.</p>",
         "ConflictException$ResourceId" : "<p>The unique identifier for the resource with the conflict.</p>",
         "ExportAssetToSignedUrlResponseDetails$SignedUrl" : "<p>The signed URL for the export request.</p>",
-        "ExportRevisionsToS3ResponseDetails$EventActionArn": "<p>The ARN for the event action.</p>",
+        "ExportRevisionsToS3ResponseDetails$EventActionArn" : "<p>The Amazon Resource Name (ARN) of the event action.</p>",
         "ExportServerSideEncryption$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the AWS KMS key you want to use to encrypt the Amazon S3 objects. This parameter is required if you choose aws:kms as an encryption type.</p>",
         "ImportAssetFromSignedUrlResponseDetails$SignedUrl" : "<p>The signed URL.</p>",
         "InternalServerException$Message" : "The message identifying the service exception that occurred.",
         "JobError$Message" : "The message related to the job error.",
         "JobError$ResourceId" : "The unique identifier for the resource related to the error.",
-        "OriginDetails$ProductId" : null,
+        "OriginDetails$ProductId" : "<p>The product ID of the origin of the data set.</p>",
+        "RedshiftDataShareAsset$Arn" : "The Amazon Resource Name (ARN) of the datashare asset.",
+        "RedshiftDataShareAssetSourceEntry$DataShareArn" : "The Amazon Resource Name (ARN) of the datashare asset.",
         "ResourceNotFoundException$Message" : "<p>The resource couldn't be found.</p>",
         "ResourceNotFoundException$ResourceId" : "<p>The unique identifier for the resource that couldn't be found.</p>",
         "RevisionDestinationEntry$Bucket" : "<p>The S3 bucket that is the destination for the assets in the revision.</p>",
