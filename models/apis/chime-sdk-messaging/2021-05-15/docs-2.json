@@ -2,34 +2,47 @@
   "version": "2.0",
   "service": "<p>The Amazon Chime SDK Messaging APIs in this section allow software developers to send and receive messages in custom messaging applications. These APIs depend on the frameworks provided by the Amazon Chime SDK Identity APIs. For more information about the messaging APIs, see <a href=\"https://docs.aws.amazon.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Messaging\">Amazon Chime SDK messaging</a> </p>",
   "operations": {
+    "AssociateChannelFlow": "<p>Associates a channel flow with a channel. Once associated, all messages to that channel go through channel flow processors. To stop processing, use the <code>DisassociateChannelFlow</code> API.</p> <note> <p>Only administrators or channel moderators can associate a channel flow. The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "BatchCreateChannelMembership": "<p>Adds a specified number of users to a channel. </p>",
+    "ChannelFlowCallback": "<p>Calls back Chime SDK Messaging with a processing response message. This should be invoked from the processor Lambda. This is a developer API.</p> <p>You can return one of the following processing responses:</p> <ul> <li> <p>Update message content or metadata</p> </li> <li> <p>Deny a message</p> </li> <li> <p>Make no changes to the message</p> </li> </ul>",
     "CreateChannel": "<p>Creates a channel to which you can add users and send messages.</p> <p> <b>Restriction</b>: You can't change a channel's privacy.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "CreateChannelBan": "<p>Permanently bans a member from a channel. Moderators can't add banned members to a channel. To undo a ban, you first have to <code>DeleteChannelBan</code>, and then <code>CreateChannelMembership</code>. Bans are cleaned up when you delete users or channels.</p> <p>If you ban a user who is already part of a channel, that user is automatically kicked from the channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "CreateChannelFlow": "<p>Creates a channel flow, a container for processors. Processors are AWS Lambda functions that perform actions on chat messages, such as stripping out profanity. You can associate channel flows with channels, and the processors in the channel flow then take action on all messages sent to that channel. This is a developer API.</p> <p>Channel flows process the following items:</p> <ol> <li> <p>New and updated messages</p> </li> <li> <p>Persistent and non-persistent messages</p> </li> <li> <p>The Standard message type</p> </li> </ol> <note> <p>Channel flows don't process Control or System messages. For more information about the message types provided by Chime SDK Messaging, refer to <a href=\"https://docs.aws.amazon.com/chime/latest/dg/using-the-messaging-sdk.html#msg-types\">Message types</a> in the <i>Amazon Chime developer guide</i>.</p> </note>",
     "CreateChannelMembership": "<p>Adds a user to a channel. The <code>InvitedBy</code> response field is derived from the request header. A channel member can:</p> <ul> <li> <p>List messages</p> </li> <li> <p>Send messages</p> </li> <li> <p>Receive messages</p> </li> <li> <p>Edit their own messages</p> </li> <li> <p>Leave the channel</p> </li> </ul> <p>Privacy settings impact this action as follows:</p> <ul> <li> <p>Public Channels: You do not need to be a member to list messages, but you must be a member to send messages.</p> </li> <li> <p>Private Channels: You must be a member to list or send messages.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "CreateChannelModerator": "<p>Creates a new <code>ChannelModerator</code>. A channel moderator can:</p> <ul> <li> <p>Add and remove other members of the channel.</p> </li> <li> <p>Add and remove other moderators of the channel.</p> </li> <li> <p>Add and remove user bans for the channel.</p> </li> <li> <p>Redact messages in the channel.</p> </li> <li> <p>List messages in the channel.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DeleteChannel": "<p>Immediately makes a channel and its memberships inaccessible and marks them for deletion. This is an irreversible process.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DeleteChannelBan": "<p>Removes a user from a channel's ban list.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannelFlow": "<p>Deletes a channel flow, an irreversible process. This is a developer API.</p> <note> <p> This API works only when the channel flow is not associated with any channel. To get a list of all channels that a channel flow is associated with, use the <code>ListChannelsAssociatedWithChannelFlow</code> API. Use the <code>DisassociateChannelFlow</code> API to disassociate a channel flow from all channels. </p> </note>",
     "DeleteChannelMembership": "<p>Removes a member from a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DeleteChannelMessage": "<p>Deletes a channel message. Only admins can perform this action. Deletion makes messages inaccessible immediately. A background process deletes any revisions created by <code>UpdateChannelMessage</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DeleteChannelModerator": "<p>Deletes a channel moderator.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DescribeChannel": "<p>Returns the full details of a channel in an Amazon Chime <code>AppInstance</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DescribeChannelBan": "<p>Returns the full details of a channel ban.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelFlow": "<p>Returns the full details of a channel flow in an Amazon Chime <code>AppInstance</code>. This is a developer API.</p>",
     "DescribeChannelMembership": "<p>Returns the full details of a user's channel membership.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DescribeChannelMembershipForAppInstanceUser": "<p> Returns the details of a channel based on the membership of the specified <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DescribeChannelModeratedByAppInstanceUser": "<p>Returns the full details of a channel moderated by the specified <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DescribeChannelModerator": "<p>Returns the full details of a single ChannelModerator.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DisassociateChannelFlow": "<p>Disassociates a channel flow from all its channels. Once disassociated, all messages to that channel stop going through the channel flow processor.</p> <note> <p>Only administrators or channel moderators can disassociate a channel flow. The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "GetChannelMessage": "<p>Gets the full details of a channel message.</p> <note> <p>The x-amz-chime-bearer request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "GetChannelMessageStatus": "<p>Gets message status for a specified <code>messageId</code>. Use this API to determine the intermediate status of messages going through channel flow processing. The API provides an alternative to retrieving message status if the event was not received because a client wasn't connected to a websocket. </p> <p>Messages can have any one of these statuses.</p> <dl> <dt>SENT</dt> <dd> <p>Message processed successfully</p> </dd> <dt>PENDING</dt> <dd> <p>Ongoing processing</p> </dd> <dt>FAILED</dt> <dd> <p>Processing failed</p> </dd> <dt>DENIED</dt> <dd> <p>Messasge denied by the processor</p> </dd> </dl> <note> <ul> <li> <p>This API does not return statuses for denied messages, because we don't store them once the processor denies them. </p> </li> <li> <p>Only the message sender can invoke this API.</p> </li> <li> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header</p> </li> </ul> </note>",
     "GetMessagingSessionEndpoint": "<p>The details of the endpoint for the messaging session.</p>",
     "ListChannelBans": "<p>Lists all the users banned from a particular channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelFlows": "<p>Returns a paginated lists of all the channel flows created under a single Chime. This is a developer API.</p>",
     "ListChannelMemberships": "<p>Lists all channel memberships in a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelMembershipsForAppInstanceUser": "<p> Lists all channels that a particular <code>AppInstanceUser</code> is a part of. Only an <code>AppInstanceAdmin</code> can call the API with a user ARN that is not their own. </p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelMessages": "<p>List all the messages in a channel. Returns a paginated list of <code>ChannelMessages</code>. By default, sorted by creation timestamp in descending order.</p> <note> <p>Redacted messages appear in the results as empty, since they are only redacted, not deleted. Deleted messages do not appear in the results. This action always returns the latest version of an edited message.</p> <p>Also, the x-amz-chime-bearer request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelModerators": "<p>Lists all the moderators for a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannels": "<p>Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.</p> <p class=\"title\"> <b>Functionality &amp; restrictions</b> </p> <ul> <li> <p>Use privacy = <code>PUBLIC</code> to retrieve all public channels in the account.</p> </li> <li> <p>Only an <code>AppInstanceAdmin</code> can set privacy = <code>PRIVATE</code> to list the private channels in an account.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelsAssociatedWithChannelFlow": "<p>Lists all channels associated with a specified channel flow. You can associate a channel flow with multiple channels, but you can only associate a channel with one channel flow. This is a developer API.</p>",
     "ListChannelsModeratedByAppInstanceUser": "<p>A list of the channels moderated by an <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListTagsForResource": "<p>Lists the tags applied to an Amazon Chime SDK messaging resource.</p>",
     "RedactChannelMessage": "<p>Redacts message content, but not metadata. The message exists in the back end, but the action returns null content, and the state shows as redacted.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "SendChannelMessage": "<p>Sends a message to a particular channel that the member is a part of.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> <p>Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata. <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.</p> </note>",
+    "TagResource": "<p>Applies the specified tags to the specified Amazon Chime SDK messaging resource.</p>",
+    "UntagResource": "<p>Removes the specified tags from the specified Amazon Chime SDK messaging resource.</p>",
     "UpdateChannel": "<p>Update a channel's attributes.</p> <p> <b>Restriction</b>: You can't change a channel's privacy. </p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "UpdateChannelFlow": "<p>Updates channel flow attributes. This is a developer API.</p>",
     "UpdateChannelMessage": "<p>Updates the content of a message.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "UpdateChannelReadMarker": "<p>The details of the time when a user last read messages in a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>"
   },
@@ -38,6 +51,11 @@
       "base": "<p>Summary of the membership details of an <code>AppInstanceUser</code>.</p>",
       "refs": {
         "ChannelMembershipForAppInstanceUserSummary$AppInstanceUserMembershipSummary": "<p>Returns the channel membership data for an <code>AppInstance</code>.</p>"
+      }
+    },
+    "AssociateChannelFlowRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "BadRequestException": {
@@ -73,10 +91,29 @@
       "refs": {
       }
     },
+    "CallbackIdType": {
+      "base": null,
+      "refs": {
+        "ChannelFlowCallbackRequest$CallbackId": "<p>The identifier passed to the processor by the service when invoked. Use the identifier to call back the service.</p>",
+        "ChannelFlowCallbackResponse$CallbackId": "<p>The call back ID passed in the request.</p>"
+      }
+    },
     "Channel": {
       "base": "<p>The details of a channel.</p>",
       "refs": {
         "DescribeChannelResponse$Channel": "<p>The channel details.</p>"
+      }
+    },
+    "ChannelAssociatedWithFlowSummary": {
+      "base": "<p>Summary of details of a channel associated with channel flow.</p>",
+      "refs": {
+        "ChannelAssociatedWithFlowSummaryList$member": null
+      }
+    },
+    "ChannelAssociatedWithFlowSummaryList": {
+      "base": null,
+      "refs": {
+        "ListChannelsAssociatedWithChannelFlowResponse$Channels": "<p>The information about each channel.</p>"
       }
     },
     "ChannelBan": {
@@ -95,6 +132,40 @@
       "base": null,
       "refs": {
         "ListChannelBansResponse$ChannelBans": "<p>The information for each requested ban.</p>"
+      }
+    },
+    "ChannelFlow": {
+      "base": "<p>The details of a channel flow.</p>",
+      "refs": {
+        "DescribeChannelFlowResponse$ChannelFlow": "<p>The channel flow details.</p>"
+      }
+    },
+    "ChannelFlowCallbackRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ChannelFlowCallbackResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ChannelFlowExecutionOrder": {
+      "base": null,
+      "refs": {
+        "Processor$ExecutionOrder": "<p>The sequence in which processors run. If you have multiple processors in a channel flow, message processing goes through each processor in the sequence. The value determines the sequence. At this point, we support only 1 processor within a flow.</p>"
+      }
+    },
+    "ChannelFlowSummary": {
+      "base": "<p>Summary of details of a channel flow.</p>",
+      "refs": {
+        "ChannelFlowSummaryList$member": null
+      }
+    },
+    "ChannelFlowSummaryList": {
+      "base": null,
+      "refs": {
+        "ListChannelFlowsResponse$ChannelFlows": "<p>The information about each channel flow.</p>"
       }
     },
     "ChannelMembership": {
@@ -145,11 +216,33 @@
         "GetChannelMessageResponse$ChannelMessage": "<p>The details of and content in the message.</p>"
       }
     },
+    "ChannelMessageCallback": {
+      "base": "<p>Stores information about a callback.</p>",
+      "refs": {
+        "ChannelFlowCallbackRequest$ChannelMessage": "<p>Stores information about the processed message.</p>"
+      }
+    },
     "ChannelMessagePersistenceType": {
       "base": null,
       "refs": {
         "ChannelMessage$Persistence": "<p>The persistence setting for a channel message.</p>",
         "SendChannelMessageRequest$Persistence": "<p>Boolean that controls whether the message is persisted on the back end. Required.</p>"
+      }
+    },
+    "ChannelMessageStatus": {
+      "base": null,
+      "refs": {
+        "ChannelMessageStatusStructure$Value": "<p>The message status value.</p>"
+      }
+    },
+    "ChannelMessageStatusStructure": {
+      "base": "<p>Stores information about a message status.</p>",
+      "refs": {
+        "ChannelMessage$Status": "<p>The status of the channel message.</p>",
+        "ChannelMessageSummary$Status": "<p>The message status. The status value is <code>SENT</code> for messages sent to a channel without a channel flow. For channels associated with channel flow, the value determines the processing stage.</p>",
+        "GetChannelMessageStatusResponse$Status": "<p>The message status and details.</p>",
+        "SendChannelMessageResponse$Status": "<p>The status of the channel message.</p>",
+        "UpdateChannelMessageResponse$Status": "<p>The status of the message update.</p>"
       }
     },
     "ChannelMessageSummary": {
@@ -176,6 +269,7 @@
       "base": null,
       "refs": {
         "Channel$Mode": "<p>The mode of the channel.</p>",
+        "ChannelAssociatedWithFlowSummary$Mode": "<p>The mode of the channel.</p>",
         "ChannelSummary$Mode": "<p>The mode of the channel.</p>",
         "CreateChannelRequest$Mode": "<p>The channel mode: <code>UNRESTRICTED</code> or <code>RESTRICTED</code>. Administrators, moderators, and channel members can add themselves and other members to unrestricted channels. Only administrators and moderators can add members to restricted channels.</p>",
         "UpdateChannelRequest$Mode": "<p>The mode of the update request.</p>"
@@ -216,6 +310,7 @@
       "base": null,
       "refs": {
         "Channel$Privacy": "<p>The channel's privacy setting.</p>",
+        "ChannelAssociatedWithFlowSummary$Privacy": "<p>The channel's privacy setting.</p>",
         "ChannelSummary$Privacy": "<p>The privacy setting of the channel.</p>",
         "CreateChannelRequest$Privacy": "<p>The channel's privacy level: <code>PUBLIC</code> or <code>PRIVATE</code>. Private channels aren't discoverable by users outside the channel. Public channels are discoverable by anyone in the <code>AppInstance</code>.</p>",
         "ListChannelsRequest$Privacy": "<p>The privacy setting. <code>PUBLIC</code> retrieves all the public channels. <code>PRIVATE</code> retrieves private channels. Only an <code>AppInstanceAdmin</code> can retrieve private channels. </p>"
@@ -238,12 +333,21 @@
     "ChimeArn": {
       "base": null,
       "refs": {
+        "AssociateChannelFlowRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "AssociateChannelFlowRequest$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
+        "AssociateChannelFlowRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user making the API call.</p>",
         "BatchChannelMemberships$ChannelArn": "<p>The ARN of the channel to which you're adding users.</p>",
         "BatchCreateChannelMembershipError$MemberArn": "<p>The ARN of the member that the service couldn't add.</p>",
         "BatchCreateChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel to which you're adding users.</p>",
         "BatchCreateChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "Channel$ChannelArn": "<p>The ARN of a channel.</p>",
+        "Channel$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
+        "ChannelAssociatedWithFlowSummary$ChannelArn": "<p>The ARN of the channel.</p>",
         "ChannelBan$ChannelArn": "<p>The ARN of the channel from which a member is being banned.</p>",
+        "ChannelFlow$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
+        "ChannelFlowCallbackRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ChannelFlowCallbackResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ChannelFlowSummary$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
         "ChannelMembership$ChannelArn": "<p>The ARN of the member's channel.</p>",
         "ChannelMessage$ChannelArn": "<p>The ARN of the channel.</p>",
         "ChannelModerator$ChannelArn": "<p>The ARN of the moderator's channel.</p>",
@@ -252,6 +356,8 @@
         "CreateChannelBanRequest$MemberArn": "<p>The ARN of the member being banned.</p>",
         "CreateChannelBanRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "CreateChannelBanResponse$ChannelArn": "<p>The ARN of the response to the ban request.</p>",
+        "CreateChannelFlowRequest$AppInstanceArn": "<p>The ARN of the channel flow request.</p>",
+        "CreateChannelFlowResponse$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
         "CreateChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel to which you're adding users.</p>",
         "CreateChannelMembershipRequest$MemberArn": "<p>The ARN of the member you want to add to the channel.</p>",
         "CreateChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
@@ -266,6 +372,7 @@
         "DeleteChannelBanRequest$ChannelArn": "<p>The ARN of the channel from which the <code>AppInstanceUser</code> was banned.</p>",
         "DeleteChannelBanRequest$MemberArn": "<p>The ARN of the <code>AppInstanceUser</code> that you want to reinstate.</p>",
         "DeleteChannelBanRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DeleteChannelFlowRequest$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
         "DeleteChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel from which you want to remove the user.</p>",
         "DeleteChannelMembershipRequest$MemberArn": "<p>The ARN of the member that you're removing from the channel.</p>",
         "DeleteChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
@@ -279,6 +386,7 @@
         "DescribeChannelBanRequest$ChannelArn": "<p>The ARN of the channel from which the user is banned.</p>",
         "DescribeChannelBanRequest$MemberArn": "<p>The ARN of the member being banned.</p>",
         "DescribeChannelBanRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DescribeChannelFlowRequest$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
         "DescribeChannelMembershipForAppInstanceUserRequest$ChannelArn": "<p>The ARN of the channel to which the user belongs.</p>",
         "DescribeChannelMembershipForAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the user in a channel.</p>",
         "DescribeChannelMembershipForAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
@@ -293,12 +401,18 @@
         "DescribeChannelModeratorRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "DescribeChannelRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "DescribeChannelRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DisassociateChannelFlowRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "DisassociateChannelFlowRequest$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
+        "DisassociateChannelFlowRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user making the API call.</p>",
         "GetChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "GetChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "GetChannelMessageStatusRequest$ChannelArn": "<p>The ARN of the channel</p>",
+        "GetChannelMessageStatusRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user making the API call.</p>",
         "Identity$Arn": "<p>The ARN in an Identity.</p>",
         "ListChannelBansRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "ListChannelBansRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelBansResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelFlowsRequest$AppInstanceArn": "<p>The ARN of the app instance.</p>",
         "ListChannelMembershipsForAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>s</p>",
         "ListChannelMembershipsForAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelMembershipsRequest$ChannelArn": "<p>The maximum number of channel memberships that you want returned.</p>",
@@ -310,10 +424,12 @@
         "ListChannelModeratorsRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "ListChannelModeratorsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelModeratorsResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelsAssociatedWithChannelFlowRequest$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
         "ListChannelsModeratedByAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the user in the moderated channel.</p>",
         "ListChannelsModeratedByAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "ListChannelsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "ListChannelsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "ListTagsForResourceRequest$ResourceARN": "<p>The ARN of the resource.</p>",
         "MemberArns$member": null,
         "RedactChannelMessageRequest$ChannelArn": "<p>The ARN of the channel containing the messages that you want to redact.</p>",
         "RedactChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
@@ -321,6 +437,10 @@
         "SendChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "SendChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "SendChannelMessageResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "TagResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
+        "UntagResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
+        "UpdateChannelFlowRequest$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
+        "UpdateChannelFlowResponse$ChannelFlowArn": "<p>The ARN of the channel flow.</p>",
         "UpdateChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
         "UpdateChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "UpdateChannelMessageResponse$ChannelArn": "<p>The ARN of the channel.</p>",
@@ -335,6 +455,7 @@
     "ClientRequestToken": {
       "base": null,
       "refs": {
+        "CreateChannelFlowRequest$ClientRequestToken": "<p>The client token for the request. An Idempotency token.</p>",
         "CreateChannelRequest$ClientRequestToken": "<p>The client token for the request. An <code>Idempotency</code> token.</p>",
         "SendChannelMessageRequest$ClientRequestToken": "<p>The <code>Idempotency</code> token for each client request.</p>"
       }
@@ -358,6 +479,16 @@
       }
     },
     "CreateChannelBanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateChannelFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateChannelFlowResponse": {
       "base": null,
       "refs": {
       }
@@ -397,6 +528,11 @@
       "refs": {
       }
     },
+    "DeleteChannelFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteChannelMembershipRequest": {
       "base": null,
       "refs": {
@@ -423,6 +559,16 @@
       }
     },
     "DescribeChannelBanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelFlowResponse": {
       "base": null,
       "refs": {
       }
@@ -477,6 +623,11 @@
       "refs": {
       }
     },
+    "DisassociateChannelFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ErrorCode": {
       "base": null,
       "refs": {
@@ -492,6 +643,12 @@
         "UnauthorizedClientException$Code": null
       }
     },
+    "FallbackAction": {
+      "base": null,
+      "refs": {
+        "Processor$FallbackAction": "<p>Determines whether to continue or stop processing if communication with processor fails. If the last processor in a channel flow sequence has a fallback action of CONTINUE, and communication with the processor fails, the message is considered processed and sent to the recipients in the channel.</p>"
+      }
+    },
     "ForbiddenException": {
       "base": "<p>The client is permanently forbidden from making the request.</p>",
       "refs": {
@@ -503,6 +660,16 @@
       }
     },
     "GetChannelMessageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetChannelMessageStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetChannelMessageStatusResponse": {
       "base": null,
       "refs": {
       }
@@ -539,12 +706,40 @@
         "Members$member": null
       }
     },
+    "InvocationType": {
+      "base": null,
+      "refs": {
+        "LambdaConfiguration$InvocationType": "<p>Controls how the Lambda function is invoked.</p>"
+      }
+    },
+    "LambdaConfiguration": {
+      "base": "<p>Stores metadata about a Lambda processor.</p>",
+      "refs": {
+        "ProcessorConfiguration$Lambda": "<p>Indicates that the processor is of type Lambda.</p>"
+      }
+    },
+    "LambdaFunctionArn": {
+      "base": null,
+      "refs": {
+        "LambdaConfiguration$ResourceArn": "<p>The ARN of the Lambda message processing function.</p>"
+      }
+    },
     "ListChannelBansRequest": {
       "base": null,
       "refs": {
       }
     },
     "ListChannelBansResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelFlowsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelFlowsResponse": {
       "base": null,
       "refs": {
       }
@@ -589,6 +784,16 @@
       "refs": {
       }
     },
+    "ListChannelsAssociatedWithChannelFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelsAssociatedWithChannelFlowResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListChannelsModeratedByAppInstanceUserRequest": {
       "base": null,
       "refs": {
@@ -609,14 +814,26 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
         "ListChannelBansRequest$MaxResults": "<p>The maximum number of bans that you want returned.</p>",
+        "ListChannelFlowsRequest$MaxResults": "<p>The maximum number of channel flows that you want to return.</p>",
         "ListChannelMembershipsForAppInstanceUserRequest$MaxResults": "<p>The maximum number of users that you want returned.</p>",
         "ListChannelMembershipsRequest$MaxResults": "<p>The maximum number of channel memberships that you want returned.</p>",
         "ListChannelMessagesRequest$MaxResults": "<p>The maximum number of messages that you want returned.</p>",
         "ListChannelModeratorsRequest$MaxResults": "<p>The maximum number of moderators that you want returned.</p>",
+        "ListChannelsAssociatedWithChannelFlowRequest$MaxResults": "<p>The maximum number of channels that you want to return.</p>",
         "ListChannelsModeratedByAppInstanceUserRequest$MaxResults": "<p>The maximum number of channels in the request.</p>",
         "ListChannelsRequest$MaxResults": "<p>The maximum number of channels that you want to return.</p>"
       }
@@ -637,9 +854,11 @@
       "base": null,
       "refs": {
         "ChannelMessage$MessageId": "<p>The ID of a message.</p>",
+        "ChannelMessageCallback$MessageId": "<p>The message ID.</p>",
         "ChannelMessageSummary$MessageId": "<p>The ID of the message.</p>",
         "DeleteChannelMessageRequest$MessageId": "<p>The ID of the message being deleted.</p>",
         "GetChannelMessageRequest$MessageId": "<p>The ID of the message.</p>",
+        "GetChannelMessageStatusRequest$MessageId": "<p>The ID of the message.</p>",
         "RedactChannelMessageRequest$MessageId": "<p>The ID of the message being redacted.</p>",
         "RedactChannelMessageResponse$MessageId": "<p>The ID of the message being redacted.</p>",
         "SendChannelMessageResponse$MessageId": "<p>The ID string assigned to each message.</p>",
@@ -657,7 +876,9 @@
       "base": null,
       "refs": {
         "Channel$Metadata": "<p>The channel's metadata.</p>",
+        "ChannelAssociatedWithFlowSummary$Metadata": "<p>The channel's metadata.</p>",
         "ChannelMessage$Metadata": "<p>The message metadata.</p>",
+        "ChannelMessageCallback$Metadata": "<p>The message metadata.</p>",
         "ChannelMessageSummary$Metadata": "<p>The metadata of the message.</p>",
         "ChannelSummary$Metadata": "<p>The metadata of the channel.</p>",
         "CreateChannelRequest$Metadata": "<p>The metadata of the creation request. Limited to 1KB and UTF-8.</p>",
@@ -671,6 +892,8 @@
       "refs": {
         "ListChannelBansRequest$NextToken": "<p>The token passed by previous API calls until all requested bans are returned.</p>",
         "ListChannelBansResponse$NextToken": "<p>The token passed by previous API calls until all requested bans are returned.</p>",
+        "ListChannelFlowsRequest$NextToken": "<p>The token passed by previous API calls until all requested channel flows are returned.</p>",
+        "ListChannelFlowsResponse$NextToken": "<p>The token passed by previous API calls until all requested channels are returned.</p>",
         "ListChannelMembershipsForAppInstanceUserRequest$NextToken": "<p>The token returned from previous API requests until the number of channel memberships is reached.</p>",
         "ListChannelMembershipsForAppInstanceUserResponse$NextToken": "<p>The token passed by previous API calls until all requested users are returned.</p>",
         "ListChannelMembershipsRequest$NextToken": "<p>The token passed by previous API calls until all requested channel memberships are returned.</p>",
@@ -679,6 +902,8 @@
         "ListChannelMessagesResponse$NextToken": "<p>The token passed by previous API calls until all requested messages are returned.</p>",
         "ListChannelModeratorsRequest$NextToken": "<p>The token passed by previous API calls until all requested moderators are returned.</p>",
         "ListChannelModeratorsResponse$NextToken": "<p>The token passed by previous API calls until all requested moderators are returned.</p>",
+        "ListChannelsAssociatedWithChannelFlowRequest$NextToken": "<p>The token passed by previous API calls until all requested channels are returned.</p>",
+        "ListChannelsAssociatedWithChannelFlowResponse$NextToken": "<p>The token passed by previous API calls until all requested channels are returned.</p>",
         "ListChannelsModeratedByAppInstanceUserRequest$NextToken": "<p>The token returned from previous API requests until the number of channels moderated by the user is reached.</p>",
         "ListChannelsModeratedByAppInstanceUserResponse$NextToken": "<p>The token returned from previous API requests until the number of channels moderated by the user is reached.</p>",
         "ListChannelsRequest$NextToken": "<p>The token passed by previous API calls until all requested channels are returned.</p>",
@@ -688,6 +913,7 @@
     "NonEmptyContent": {
       "base": null,
       "refs": {
+        "ChannelMessageCallback$Content": "<p>The message content.</p>",
         "SendChannelMessageRequest$Content": "<p>The content of the message.</p>"
       }
     },
@@ -695,14 +921,21 @@
       "base": null,
       "refs": {
         "Channel$Name": "<p>The name of a channel.</p>",
+        "ChannelAssociatedWithFlowSummary$Name": "<p>The name of the channel flow.</p>",
+        "ChannelFlow$Name": "<p>The name of the channel flow.</p>",
+        "ChannelFlowSummary$Name": "<p>The name of the channel flow.</p>",
         "ChannelSummary$Name": "<p>The name of the channel.</p>",
+        "CreateChannelFlowRequest$Name": "<p>The name of the channel flow.</p>",
         "CreateChannelRequest$Name": "<p>The name of the channel.</p>",
+        "Processor$Name": "<p>The name of the channel flow.</p>",
+        "UpdateChannelFlowRequest$Name": "<p>The name of the channel flow.</p>",
         "UpdateChannelRequest$Name": "<p>The name of the channel.</p>"
       }
     },
     "NonNullableBoolean": {
       "base": null,
       "refs": {
+        "ChannelFlowCallbackRequest$DeleteResource": "<p>When a processor determines that a message needs to be <code>DENIED</code>, pass this parameter with a value of true.</p>",
         "ChannelMessage$Redacted": "<p>Hides the content of a message.</p>",
         "ChannelMessageSummary$Redacted": "<p>Indicates whether a message was redacted.</p>"
       }
@@ -710,6 +943,27 @@
     "NotFoundException": {
       "base": "<p>One or more of the resources in the request does not exist in the system.</p>",
       "refs": {
+      }
+    },
+    "Processor": {
+      "base": "<p>The information about a processor in a channel flow.</p>",
+      "refs": {
+        "ProcessorList$member": null
+      }
+    },
+    "ProcessorConfiguration": {
+      "base": "<p>A processor's metadata.</p>",
+      "refs": {
+        "Processor$Configuration": "<p>The information about the type of processor and its identifier.</p>"
+      }
+    },
+    "ProcessorList": {
+      "base": null,
+      "refs": {
+        "ChannelFlow$Processors": "<p>Information about the processor Lambda functions.</p>",
+        "ChannelFlowSummary$Processors": "<p>Information about the processor Lambda functions.</p>",
+        "CreateChannelFlowRequest$Processors": "<p>Information about the processor Lambda functions.</p>",
+        "UpdateChannelFlowRequest$Processors": "<p>Information about the processor Lambda functions </p>"
       }
     },
     "RedactChannelMessageRequest": {
@@ -759,6 +1013,12 @@
         "ListChannelMessagesRequest$SortOrder": "<p>The order in which you want messages sorted. Default is Descending, based on time created.</p>"
       }
     },
+    "StatusDetail": {
+      "base": null,
+      "refs": {
+        "ChannelMessageStatusStructure$Detail": "<p>Contains more details about the messasge status.</p>"
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -775,7 +1035,7 @@
       }
     },
     "Tag": {
-      "base": "<p>Describes a tag applied to a resource.</p>",
+      "base": "<p>A tag object containing a key-value pair.</p>",
       "refs": {
         "TagList$member": null
       }
@@ -783,19 +1043,34 @@
     "TagKey": {
       "base": null,
       "refs": {
-        "Tag$Key": "<p>The key of the tag.</p>"
+        "Tag$Key": "<p>The key in a tag.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag keys.</p>"
       }
     },
     "TagList": {
       "base": null,
       "refs": {
-        "CreateChannelRequest$Tags": "<p>The tags for the creation request.</p>"
+        "CreateChannelFlowRequest$Tags": "<p>The tags for the creation request.</p>",
+        "CreateChannelRequest$Tags": "<p>The tags for the creation request.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>The tag key-value pairs.</p>",
+        "TagResourceRequest$Tags": "<p>The tag key-value pairs.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": "<p>The value of the tag.</p>"
+        "Tag$Value": "<p>The value in a tag.</p>"
       }
     },
     "ThrottledClientException": {
@@ -811,6 +1086,8 @@
         "Channel$LastMessageTimestamp": "<p>The time at which a member sent the last message in the channel.</p>",
         "Channel$LastUpdatedTimestamp": "<p>The time at which a channel was last updated.</p>",
         "ChannelBan$CreatedTimestamp": "<p>The time at which the ban was created.</p>",
+        "ChannelFlow$CreatedTimestamp": "<p>The time at which the channel flow was created.</p>",
+        "ChannelFlow$LastUpdatedTimestamp": "<p>The time at which a channel flow was updated.</p>",
         "ChannelMembership$CreatedTimestamp": "<p>The time at which the channel membership was created.</p>",
         "ChannelMembership$LastUpdatedTimestamp": "<p>The time at which a channel membership was last updated.</p>",
         "ChannelMessage$CreatedTimestamp": "<p>The time at which the message was created.</p>",
@@ -827,6 +1104,21 @@
     },
     "UnauthorizedClientException": {
       "base": "<p>The client is not currently authorized to make the request.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateChannelFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateChannelFlowResponse": {
+      "base": null,
       "refs": {
       }
     },

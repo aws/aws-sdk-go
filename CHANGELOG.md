@@ -1,3 +1,10 @@
+Release v1.41.6 (2021-10-19)
+===
+
+### Service Client Updates
+* `service/chime-sdk-messaging`: Updates service API, documentation, and paginators
+* `service/dataexchange`: Updates service API and documentation
+
 Release v1.41.5 (2021-10-18)
 ===
 

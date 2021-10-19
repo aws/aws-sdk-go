@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Chime SDK Messaging.
 //    func myFunc(svc chimesdkmessagingiface.ChimeSDKMessagingAPI) bool {
-//        // Make svc.BatchCreateChannelMembership request
+//        // Make svc.AssociateChannelFlow request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockChimeSDKMessagingClient struct {
 //        chimesdkmessagingiface.ChimeSDKMessagingAPI
 //    }
-//    func (m *mockChimeSDKMessagingClient) BatchCreateChannelMembership(input *chimesdkmessaging.BatchCreateChannelMembershipInput) (*chimesdkmessaging.BatchCreateChannelMembershipOutput, error) {
+//    func (m *mockChimeSDKMessagingClient) AssociateChannelFlow(input *chimesdkmessaging.AssociateChannelFlowInput) (*chimesdkmessaging.AssociateChannelFlowOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,9 +60,17 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type ChimeSDKMessagingAPI interface {
+	AssociateChannelFlow(*chimesdkmessaging.AssociateChannelFlowInput) (*chimesdkmessaging.AssociateChannelFlowOutput, error)
+	AssociateChannelFlowWithContext(aws.Context, *chimesdkmessaging.AssociateChannelFlowInput, ...request.Option) (*chimesdkmessaging.AssociateChannelFlowOutput, error)
+	AssociateChannelFlowRequest(*chimesdkmessaging.AssociateChannelFlowInput) (*request.Request, *chimesdkmessaging.AssociateChannelFlowOutput)
+
 	BatchCreateChannelMembership(*chimesdkmessaging.BatchCreateChannelMembershipInput) (*chimesdkmessaging.BatchCreateChannelMembershipOutput, error)
 	BatchCreateChannelMembershipWithContext(aws.Context, *chimesdkmessaging.BatchCreateChannelMembershipInput, ...request.Option) (*chimesdkmessaging.BatchCreateChannelMembershipOutput, error)
 	BatchCreateChannelMembershipRequest(*chimesdkmessaging.BatchCreateChannelMembershipInput) (*request.Request, *chimesdkmessaging.BatchCreateChannelMembershipOutput)
+
+	ChannelFlowCallback(*chimesdkmessaging.ChannelFlowCallbackInput) (*chimesdkmessaging.ChannelFlowCallbackOutput, error)
+	ChannelFlowCallbackWithContext(aws.Context, *chimesdkmessaging.ChannelFlowCallbackInput, ...request.Option) (*chimesdkmessaging.ChannelFlowCallbackOutput, error)
+	ChannelFlowCallbackRequest(*chimesdkmessaging.ChannelFlowCallbackInput) (*request.Request, *chimesdkmessaging.ChannelFlowCallbackOutput)
 
 	CreateChannel(*chimesdkmessaging.CreateChannelInput) (*chimesdkmessaging.CreateChannelOutput, error)
 	CreateChannelWithContext(aws.Context, *chimesdkmessaging.CreateChannelInput, ...request.Option) (*chimesdkmessaging.CreateChannelOutput, error)
@@ -71,6 +79,10 @@ type ChimeSDKMessagingAPI interface {
 	CreateChannelBan(*chimesdkmessaging.CreateChannelBanInput) (*chimesdkmessaging.CreateChannelBanOutput, error)
 	CreateChannelBanWithContext(aws.Context, *chimesdkmessaging.CreateChannelBanInput, ...request.Option) (*chimesdkmessaging.CreateChannelBanOutput, error)
 	CreateChannelBanRequest(*chimesdkmessaging.CreateChannelBanInput) (*request.Request, *chimesdkmessaging.CreateChannelBanOutput)
+
+	CreateChannelFlow(*chimesdkmessaging.CreateChannelFlowInput) (*chimesdkmessaging.CreateChannelFlowOutput, error)
+	CreateChannelFlowWithContext(aws.Context, *chimesdkmessaging.CreateChannelFlowInput, ...request.Option) (*chimesdkmessaging.CreateChannelFlowOutput, error)
+	CreateChannelFlowRequest(*chimesdkmessaging.CreateChannelFlowInput) (*request.Request, *chimesdkmessaging.CreateChannelFlowOutput)
 
 	CreateChannelMembership(*chimesdkmessaging.CreateChannelMembershipInput) (*chimesdkmessaging.CreateChannelMembershipOutput, error)
 	CreateChannelMembershipWithContext(aws.Context, *chimesdkmessaging.CreateChannelMembershipInput, ...request.Option) (*chimesdkmessaging.CreateChannelMembershipOutput, error)
@@ -87,6 +99,10 @@ type ChimeSDKMessagingAPI interface {
 	DeleteChannelBan(*chimesdkmessaging.DeleteChannelBanInput) (*chimesdkmessaging.DeleteChannelBanOutput, error)
 	DeleteChannelBanWithContext(aws.Context, *chimesdkmessaging.DeleteChannelBanInput, ...request.Option) (*chimesdkmessaging.DeleteChannelBanOutput, error)
 	DeleteChannelBanRequest(*chimesdkmessaging.DeleteChannelBanInput) (*request.Request, *chimesdkmessaging.DeleteChannelBanOutput)
+
+	DeleteChannelFlow(*chimesdkmessaging.DeleteChannelFlowInput) (*chimesdkmessaging.DeleteChannelFlowOutput, error)
+	DeleteChannelFlowWithContext(aws.Context, *chimesdkmessaging.DeleteChannelFlowInput, ...request.Option) (*chimesdkmessaging.DeleteChannelFlowOutput, error)
+	DeleteChannelFlowRequest(*chimesdkmessaging.DeleteChannelFlowInput) (*request.Request, *chimesdkmessaging.DeleteChannelFlowOutput)
 
 	DeleteChannelMembership(*chimesdkmessaging.DeleteChannelMembershipInput) (*chimesdkmessaging.DeleteChannelMembershipOutput, error)
 	DeleteChannelMembershipWithContext(aws.Context, *chimesdkmessaging.DeleteChannelMembershipInput, ...request.Option) (*chimesdkmessaging.DeleteChannelMembershipOutput, error)
@@ -108,6 +124,10 @@ type ChimeSDKMessagingAPI interface {
 	DescribeChannelBanWithContext(aws.Context, *chimesdkmessaging.DescribeChannelBanInput, ...request.Option) (*chimesdkmessaging.DescribeChannelBanOutput, error)
 	DescribeChannelBanRequest(*chimesdkmessaging.DescribeChannelBanInput) (*request.Request, *chimesdkmessaging.DescribeChannelBanOutput)
 
+	DescribeChannelFlow(*chimesdkmessaging.DescribeChannelFlowInput) (*chimesdkmessaging.DescribeChannelFlowOutput, error)
+	DescribeChannelFlowWithContext(aws.Context, *chimesdkmessaging.DescribeChannelFlowInput, ...request.Option) (*chimesdkmessaging.DescribeChannelFlowOutput, error)
+	DescribeChannelFlowRequest(*chimesdkmessaging.DescribeChannelFlowInput) (*request.Request, *chimesdkmessaging.DescribeChannelFlowOutput)
+
 	DescribeChannelMembership(*chimesdkmessaging.DescribeChannelMembershipInput) (*chimesdkmessaging.DescribeChannelMembershipOutput, error)
 	DescribeChannelMembershipWithContext(aws.Context, *chimesdkmessaging.DescribeChannelMembershipInput, ...request.Option) (*chimesdkmessaging.DescribeChannelMembershipOutput, error)
 	DescribeChannelMembershipRequest(*chimesdkmessaging.DescribeChannelMembershipInput) (*request.Request, *chimesdkmessaging.DescribeChannelMembershipOutput)
@@ -124,9 +144,17 @@ type ChimeSDKMessagingAPI interface {
 	DescribeChannelModeratorWithContext(aws.Context, *chimesdkmessaging.DescribeChannelModeratorInput, ...request.Option) (*chimesdkmessaging.DescribeChannelModeratorOutput, error)
 	DescribeChannelModeratorRequest(*chimesdkmessaging.DescribeChannelModeratorInput) (*request.Request, *chimesdkmessaging.DescribeChannelModeratorOutput)
 
+	DisassociateChannelFlow(*chimesdkmessaging.DisassociateChannelFlowInput) (*chimesdkmessaging.DisassociateChannelFlowOutput, error)
+	DisassociateChannelFlowWithContext(aws.Context, *chimesdkmessaging.DisassociateChannelFlowInput, ...request.Option) (*chimesdkmessaging.DisassociateChannelFlowOutput, error)
+	DisassociateChannelFlowRequest(*chimesdkmessaging.DisassociateChannelFlowInput) (*request.Request, *chimesdkmessaging.DisassociateChannelFlowOutput)
+
 	GetChannelMessage(*chimesdkmessaging.GetChannelMessageInput) (*chimesdkmessaging.GetChannelMessageOutput, error)
 	GetChannelMessageWithContext(aws.Context, *chimesdkmessaging.GetChannelMessageInput, ...request.Option) (*chimesdkmessaging.GetChannelMessageOutput, error)
 	GetChannelMessageRequest(*chimesdkmessaging.GetChannelMessageInput) (*request.Request, *chimesdkmessaging.GetChannelMessageOutput)
+
+	GetChannelMessageStatus(*chimesdkmessaging.GetChannelMessageStatusInput) (*chimesdkmessaging.GetChannelMessageStatusOutput, error)
+	GetChannelMessageStatusWithContext(aws.Context, *chimesdkmessaging.GetChannelMessageStatusInput, ...request.Option) (*chimesdkmessaging.GetChannelMessageStatusOutput, error)
+	GetChannelMessageStatusRequest(*chimesdkmessaging.GetChannelMessageStatusInput) (*request.Request, *chimesdkmessaging.GetChannelMessageStatusOutput)
 
 	GetMessagingSessionEndpoint(*chimesdkmessaging.GetMessagingSessionEndpointInput) (*chimesdkmessaging.GetMessagingSessionEndpointOutput, error)
 	GetMessagingSessionEndpointWithContext(aws.Context, *chimesdkmessaging.GetMessagingSessionEndpointInput, ...request.Option) (*chimesdkmessaging.GetMessagingSessionEndpointOutput, error)
@@ -138,6 +166,13 @@ type ChimeSDKMessagingAPI interface {
 
 	ListChannelBansPages(*chimesdkmessaging.ListChannelBansInput, func(*chimesdkmessaging.ListChannelBansOutput, bool) bool) error
 	ListChannelBansPagesWithContext(aws.Context, *chimesdkmessaging.ListChannelBansInput, func(*chimesdkmessaging.ListChannelBansOutput, bool) bool, ...request.Option) error
+
+	ListChannelFlows(*chimesdkmessaging.ListChannelFlowsInput) (*chimesdkmessaging.ListChannelFlowsOutput, error)
+	ListChannelFlowsWithContext(aws.Context, *chimesdkmessaging.ListChannelFlowsInput, ...request.Option) (*chimesdkmessaging.ListChannelFlowsOutput, error)
+	ListChannelFlowsRequest(*chimesdkmessaging.ListChannelFlowsInput) (*request.Request, *chimesdkmessaging.ListChannelFlowsOutput)
+
+	ListChannelFlowsPages(*chimesdkmessaging.ListChannelFlowsInput, func(*chimesdkmessaging.ListChannelFlowsOutput, bool) bool) error
+	ListChannelFlowsPagesWithContext(aws.Context, *chimesdkmessaging.ListChannelFlowsInput, func(*chimesdkmessaging.ListChannelFlowsOutput, bool) bool, ...request.Option) error
 
 	ListChannelMemberships(*chimesdkmessaging.ListChannelMembershipsInput) (*chimesdkmessaging.ListChannelMembershipsOutput, error)
 	ListChannelMembershipsWithContext(aws.Context, *chimesdkmessaging.ListChannelMembershipsInput, ...request.Option) (*chimesdkmessaging.ListChannelMembershipsOutput, error)
@@ -174,12 +209,23 @@ type ChimeSDKMessagingAPI interface {
 	ListChannelsPages(*chimesdkmessaging.ListChannelsInput, func(*chimesdkmessaging.ListChannelsOutput, bool) bool) error
 	ListChannelsPagesWithContext(aws.Context, *chimesdkmessaging.ListChannelsInput, func(*chimesdkmessaging.ListChannelsOutput, bool) bool, ...request.Option) error
 
+	ListChannelsAssociatedWithChannelFlow(*chimesdkmessaging.ListChannelsAssociatedWithChannelFlowInput) (*chimesdkmessaging.ListChannelsAssociatedWithChannelFlowOutput, error)
+	ListChannelsAssociatedWithChannelFlowWithContext(aws.Context, *chimesdkmessaging.ListChannelsAssociatedWithChannelFlowInput, ...request.Option) (*chimesdkmessaging.ListChannelsAssociatedWithChannelFlowOutput, error)
+	ListChannelsAssociatedWithChannelFlowRequest(*chimesdkmessaging.ListChannelsAssociatedWithChannelFlowInput) (*request.Request, *chimesdkmessaging.ListChannelsAssociatedWithChannelFlowOutput)
+
+	ListChannelsAssociatedWithChannelFlowPages(*chimesdkmessaging.ListChannelsAssociatedWithChannelFlowInput, func(*chimesdkmessaging.ListChannelsAssociatedWithChannelFlowOutput, bool) bool) error
+	ListChannelsAssociatedWithChannelFlowPagesWithContext(aws.Context, *chimesdkmessaging.ListChannelsAssociatedWithChannelFlowInput, func(*chimesdkmessaging.ListChannelsAssociatedWithChannelFlowOutput, bool) bool, ...request.Option) error
+
 	ListChannelsModeratedByAppInstanceUser(*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserInput) (*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserOutput, error)
 	ListChannelsModeratedByAppInstanceUserWithContext(aws.Context, *chimesdkmessaging.ListChannelsModeratedByAppInstanceUserInput, ...request.Option) (*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserOutput, error)
 	ListChannelsModeratedByAppInstanceUserRequest(*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserInput) (*request.Request, *chimesdkmessaging.ListChannelsModeratedByAppInstanceUserOutput)
 
 	ListChannelsModeratedByAppInstanceUserPages(*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserInput, func(*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserOutput, bool) bool) error
 	ListChannelsModeratedByAppInstanceUserPagesWithContext(aws.Context, *chimesdkmessaging.ListChannelsModeratedByAppInstanceUserInput, func(*chimesdkmessaging.ListChannelsModeratedByAppInstanceUserOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*chimesdkmessaging.ListTagsForResourceInput) (*chimesdkmessaging.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *chimesdkmessaging.ListTagsForResourceInput, ...request.Option) (*chimesdkmessaging.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*chimesdkmessaging.ListTagsForResourceInput) (*request.Request, *chimesdkmessaging.ListTagsForResourceOutput)
 
 	RedactChannelMessage(*chimesdkmessaging.RedactChannelMessageInput) (*chimesdkmessaging.RedactChannelMessageOutput, error)
 	RedactChannelMessageWithContext(aws.Context, *chimesdkmessaging.RedactChannelMessageInput, ...request.Option) (*chimesdkmessaging.RedactChannelMessageOutput, error)
@@ -189,9 +235,21 @@ type ChimeSDKMessagingAPI interface {
 	SendChannelMessageWithContext(aws.Context, *chimesdkmessaging.SendChannelMessageInput, ...request.Option) (*chimesdkmessaging.SendChannelMessageOutput, error)
 	SendChannelMessageRequest(*chimesdkmessaging.SendChannelMessageInput) (*request.Request, *chimesdkmessaging.SendChannelMessageOutput)
 
+	TagResource(*chimesdkmessaging.TagResourceInput) (*chimesdkmessaging.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *chimesdkmessaging.TagResourceInput, ...request.Option) (*chimesdkmessaging.TagResourceOutput, error)
+	TagResourceRequest(*chimesdkmessaging.TagResourceInput) (*request.Request, *chimesdkmessaging.TagResourceOutput)
+
+	UntagResource(*chimesdkmessaging.UntagResourceInput) (*chimesdkmessaging.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *chimesdkmessaging.UntagResourceInput, ...request.Option) (*chimesdkmessaging.UntagResourceOutput, error)
+	UntagResourceRequest(*chimesdkmessaging.UntagResourceInput) (*request.Request, *chimesdkmessaging.UntagResourceOutput)
+
 	UpdateChannel(*chimesdkmessaging.UpdateChannelInput) (*chimesdkmessaging.UpdateChannelOutput, error)
 	UpdateChannelWithContext(aws.Context, *chimesdkmessaging.UpdateChannelInput, ...request.Option) (*chimesdkmessaging.UpdateChannelOutput, error)
 	UpdateChannelRequest(*chimesdkmessaging.UpdateChannelInput) (*request.Request, *chimesdkmessaging.UpdateChannelOutput)
+
+	UpdateChannelFlow(*chimesdkmessaging.UpdateChannelFlowInput) (*chimesdkmessaging.UpdateChannelFlowOutput, error)
+	UpdateChannelFlowWithContext(aws.Context, *chimesdkmessaging.UpdateChannelFlowInput, ...request.Option) (*chimesdkmessaging.UpdateChannelFlowOutput, error)
+	UpdateChannelFlowRequest(*chimesdkmessaging.UpdateChannelFlowInput) (*request.Request, *chimesdkmessaging.UpdateChannelFlowOutput)
 
 	UpdateChannelMessage(*chimesdkmessaging.UpdateChannelMessageInput) (*chimesdkmessaging.UpdateChannelMessageOutput, error)
 	UpdateChannelMessageWithContext(aws.Context, *chimesdkmessaging.UpdateChannelMessageInput, ...request.Option) (*chimesdkmessaging.UpdateChannelMessageOutput, error)
