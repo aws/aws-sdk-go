@@ -9,10 +9,12 @@
     "BatchImportFindings": "<p>Imports security findings generated from an integrated product into Security Hub. This action is requested by the integrated product to import its findings into Security Hub.</p> <p>The maximum allowed size for a finding is 240 Kb. An error is returned for any finding larger than 240 Kb.</p> <p>After a finding is created, <code>BatchImportFindings</code> cannot be used to update the following finding fields and objects, which Security Hub customers use to manage their investigation workflow.</p> <ul> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>Finding providers also should not use <code>BatchImportFindings</code> to update the following attributes.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> </ul> <p>Instead, finding providers use <code>FindingProviderFields</code> to provide values for these attributes.</p>",
     "BatchUpdateFindings": "<p>Used by Security Hub customers to update information about their investigation into a finding. Requested by administrator accounts or member accounts. Administrator accounts can update findings for their account and their member accounts. Member accounts can update findings for their account.</p> <p>Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code> for a finding.</p> <p>Administrator and member accounts can use <code>BatchUpdateFindings</code> to update the following finding fields and objects.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>You can configure IAM policies to restrict access to fields and field values. For example, you might not want member accounts to be able to suppress findings or change the finding severity. See <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/finding-update-batchupdatefindings.html#batchupdatefindings-configure-access\">Configuring access to BatchUpdateFindings</a> in the <i>Security Hub User Guide</i>.</p>",
     "CreateActionTarget": "<p>Creates a custom action target in Security Hub.</p> <p>You can use custom actions on findings and insights in Security Hub to trigger target actions in Amazon CloudWatch Events.</p>",
+    "CreateFindingAggregator": "<p>Used to enable finding aggregation. Must be called from the aggregation Region.</p> <p>For more details about cross-Region replication, see <a href=\"securityhub/latest/userguide/finding-aggregation.html\">Configuring finding aggregation</a> in the <i>Security Hub User Guide</i>. </p>",
     "CreateInsight": "<p>Creates a custom insight in Security Hub. An insight is a consolidation of findings that relate to a security issue that requires attention or remediation.</p> <p>To group the related findings in the insight, use the <code>GroupByAttribute</code>.</p>",
     "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the administrator account. If you are integrated with Organizations, then the administrator account is designated by the organization management account.</p> <p> <code>CreateMembers</code> is always used to add accounts that are not organization members.</p> <p>For accounts that are managed using Organizations, <code>CreateMembers</code> is only used in the following cases:</p> <ul> <li> <p>Security Hub is not configured to automatically add new organization accounts.</p> </li> <li> <p>The account was disassociated or deleted in Security Hub.</p> </li> </ul> <p>This action can only be used by an account that has Security Hub enabled. To enable Security Hub, you can use the <code>EnableSecurityHub</code> operation.</p> <p>For accounts that are not organization members, you create the account association and then send an invitation to the member account. To send the invitation, you use the <code>InviteMembers</code> operation. If the account owner accepts the invitation, the account becomes a member account in Security Hub.</p> <p>Accounts that are managed using Organizations do not receive an invitation. They automatically become a member account in Security Hub.</p> <ul> <li> <p>If the organization account does not have Security Hub enabled, then Security Hub and the default standards are automatically enabled. Note that Security Hub cannot be enabled automatically for the organization management account. The organization management account must enable Security Hub before the administrator account enables it as a member account.</p> </li> <li> <p>For organization accounts that already have Security Hub enabled, Security Hub does not make any other changes to those accounts. It does not change their enabled standards or controls.</p> </li> </ul> <p>A permissions policy is added that permits the administrator account to view the findings generated in the member account.</p> <p>To remove the association between the administrator and member accounts, use the <code>DisassociateFromMasterAccount</code> or <code>DisassociateMembers</code> operation.</p>",
     "DeclineInvitations": "<p>Declines invitations to become a member account.</p> <p>This operation is only used by accounts that are not part of an organization. Organization accounts do not receive invitations.</p>",
     "DeleteActionTarget": "<p>Deletes a custom action target from Security Hub.</p> <p>Deleting a custom action target does not affect any findings or insights that were already sent to Amazon CloudWatch Events using the custom action.</p>",
+    "DeleteFindingAggregator": "<p>Deletes a finding aggregator. When you delete the finding aggregator, you stop finding aggregation.</p> <p>When you stop finding aggregation, findings that were already aggregated to the aggregation Region are still visible from the aggregation Region. New findings and finding updates are not aggregated. </p>",
     "DeleteInsight": "<p>Deletes the insight specified by the <code>InsightArn</code>.</p>",
     "DeleteInvitations": "<p>Deletes invitations received by the Amazon Web Services account to become a member account.</p> <p>This operation is only used by accounts that are not part of an organization. Organization accounts do not receive invitations.</p>",
     "DeleteMembers": "<p>Deletes the specified member accounts from Security Hub.</p> <p>Can be used to delete member accounts that belong to an organization as well as member accounts that were invited manually.</p>",
@@ -33,7 +35,8 @@
     "EnableSecurityHub": "<p>Enables Security Hub for your account in the current Region or the Region you specify in the request.</p> <p>When you enable Security Hub, you grant to Security Hub the permissions necessary to gather findings from other services that are integrated with Security Hub.</p> <p>When you use the <code>EnableSecurityHub</code> operation to enable Security Hub, you also automatically enable the following standards.</p> <ul> <li> <p>CIS Amazon Web Services Foundations</p> </li> <li> <p>Amazon Web Services Foundational Security Best Practices</p> </li> </ul> <p>You do not enable the Payment Card Industry Data Security Standard (PCI DSS) standard. </p> <p>To not enable the automatically enabled standards, set <code>EnableDefaultStandards</code> to <code>false</code>.</p> <p>After you enable Security Hub, to enable a standard, use the <code>BatchEnableStandards</code> operation. To disable a standard, use the <code>BatchDisableStandards</code> operation.</p> <p>To learn more, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html\">setup information</a> in the <i>Security Hub User Guide</i>.</p>",
     "GetAdministratorAccount": "<p>Provides the details for the Security Hub administrator account for the current member account.</p> <p>Can be used by both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
     "GetEnabledStandards": "<p>Returns a list of the standards that are currently enabled.</p>",
-    "GetFindings": "<p>Returns a list of findings that match the specified criteria.</p>",
+    "GetFindingAggregator": "<p>Returns the current finding aggregation configuration.</p>",
+    "GetFindings": "<p>Returns a list of findings that match the specified criteria.</p> <p>If finding aggregation is enabled, then when you call <code>GetFindings</code> from the aggregation Region, the results include all of the matching findings from both the aggregation Region and the linked Regions.</p>",
     "GetInsightResults": "<p>Lists the results of the Security Hub insight specified by the insight ARN.</p>",
     "GetInsights": "<p>Lists and describes insights for the specified insight ARNs.</p>",
     "GetInvitationsCount": "<p>Returns the count of all Security Hub membership invitations that were sent to the current member account, not including the currently accepted invitation. </p>",
@@ -41,6 +44,7 @@
     "GetMembers": "<p>Returns the details for the Security Hub member accounts for the specified account IDs.</p> <p>An administrator account can be either the delegated Security Hub administrator account for an organization or an administrator account that enabled Security Hub manually.</p> <p>The results include both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
     "InviteMembers": "<p>Invites other Amazon Web Services accounts to become member accounts for the Security Hub administrator account that the invitation is sent from.</p> <p>This operation is only used to invite accounts that do not belong to an organization. Organization accounts do not receive invitations.</p> <p>Before you can use this action to invite a member, you must first use the <code>CreateMembers</code> action to create the member account in Security Hub.</p> <p>When the account owner enables Security Hub and accepts the invitation to become a member account, the administrator account can view the findings generated from the member account.</p>",
     "ListEnabledProductsForImport": "<p>Lists all findings-generating solutions (products) that you are subscribed to receive findings from in Security Hub.</p>",
+    "ListFindingAggregators": "<p>If finding aggregation is enabled, then <code>ListFindingAggregators</code> returns the ARN of the finding aggregator. You can run this operation from any Region.</p>",
     "ListInvitations": "<p>Lists all Security Hub membership invitations that were sent to the current Amazon Web Services account.</p> <p>This operation is only used by accounts that are managed by invitation. Accounts that are managed using the integration with Organizations do not receive invitations.</p>",
     "ListMembers": "<p>Lists details about all member accounts for the current Security Hub administrator account.</p> <p>The results include both member accounts that belong to an organization and member accounts that were invited manually.</p>",
     "ListOrganizationAdminAccounts": "<p>Lists the Security Hub administrator accounts. Can only be called by the organization management account.</p>",
@@ -48,6 +52,7 @@
     "TagResource": "<p>Adds one or more tags to a resource.</p>",
     "UntagResource": "<p>Removes one or more tags from a resource.</p>",
     "UpdateActionTarget": "<p>Updates the name and description of a custom action target in Security Hub.</p>",
+    "UpdateFindingAggregator": "<p>Updates the finding aggregation configuration. Used to update the Region linking mode and the list of included or excluded Regions. You cannot use <code>UpdateFindingAggregator</code> to change the aggregation Region.</p> <p>You must run <code>UpdateFindingAggregator</code> from the current aggregation Region. </p>",
     "UpdateFindings": "<p> <code>UpdateFindings</code> is deprecated. Instead of <code>UpdateFindings</code>, use <code>BatchUpdateFindings</code>.</p> <p>Updates the <code>Note</code> and <code>RecordState</code> of the Security Hub-aggregated findings that the filter attributes specify. Any member account that can view the finding also sees the update to the finding.</p>",
     "UpdateInsight": "<p>Updates the Security Hub insight identified by the specified insight ARN.</p>",
     "UpdateOrganizationConfiguration": "<p>Used to update the configuration related to Organizations. Can only be called from a Security Hub administrator account.</p>",
@@ -2979,6 +2984,16 @@
       "refs": {
       }
     },
+    "CreateFindingAggregatorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFindingAggregatorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateInsightRequest": {
       "base": null,
       "refs": {
@@ -3092,6 +3107,16 @@
       }
     },
     "DeleteActionTargetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFindingAggregatorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFindingAggregatorResponse": {
       "base": null,
       "refs": {
       }
@@ -3322,6 +3347,18 @@
         "ResourceDetails$Other": "<p>Details about a resource that are not available in a type-specific details object. Use the <code>Other</code> object in the following cases.</p> <ul> <li> <p>The type-specific object does not contain all of the fields that you want to populate. In this case, first use the type-specific object to populate those fields. Use the <code>Other</code> object to populate the fields that are missing from the type-specific object.</p> </li> <li> <p>The resource type does not have a corresponding object. This includes resources for which the type is <code>Other</code>. </p> </li> </ul>"
       }
     },
+    "FindingAggregator": {
+      "base": "<p>A finding aggregator. A finding aggregator contains the configuration for finding aggregation.</p>",
+      "refs": {
+        "FindingAggregatorList$member": null
+      }
+    },
+    "FindingAggregatorList": {
+      "base": null,
+      "refs": {
+        "ListFindingAggregatorsResponse$FindingAggregators": "<p>The list of finding aggregators. This operation currently only returns a single result.</p>"
+      }
+    },
     "FindingProviderFields": {
       "base": "<p>In a <code>BatchImportFindings</code> request, finding providers use <code>FindingProviderFields</code> to provide and update values for confidence, criticality, related findings, severity, and types.</p>",
       "refs": {
@@ -3356,6 +3393,16 @@
       }
     },
     "GetEnabledStandardsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFindingAggregatorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFindingAggregatorResponse": {
       "base": null,
       "refs": {
       }
@@ -3756,6 +3803,16 @@
       "refs": {
       }
     },
+    "ListFindingAggregatorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFindingAggregatorsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListInvitationsRequest": {
       "base": null,
       "refs": {
@@ -3881,7 +3938,8 @@
         "GetEnabledStandardsRequest$MaxResults": "<p>The maximum number of results to return in the response.</p>",
         "GetFindingsRequest$MaxResults": "<p>The maximum number of findings to return.</p>",
         "GetInsightsRequest$MaxResults": "<p>The maximum number of items to return in the response.</p>",
-        "ListEnabledProductsForImportRequest$MaxResults": "<p>The maximum number of items to return in the response.</p>"
+        "ListEnabledProductsForImportRequest$MaxResults": "<p>The maximum number of items to return in the response.</p>",
+        "ListFindingAggregatorsRequest$MaxResults": "<p>The maximum number of results to return. This operation currently only returns a single result.</p>"
       }
     },
     "Member": {
@@ -3960,6 +4018,8 @@
         "GetInsightsResponse$NextToken": "<p>The pagination token to use to request the next page of results.</p>",
         "ListEnabledProductsForImportRequest$NextToken": "<p>The token that is required for pagination. On your first call to the <code>ListEnabledProductsForImport</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>",
         "ListEnabledProductsForImportResponse$NextToken": "<p>The pagination token to use to request the next page of results.</p>",
+        "ListFindingAggregatorsRequest$NextToken": "<p>The token returned with the previous set of results. Identifies the next set of results to return.</p>",
+        "ListFindingAggregatorsResponse$NextToken": "<p>If there are more results, this is the token to provide in the next call to <code>ListFindingAggregators</code>.</p> <p>This operation currently only returns a single result. </p>",
         "ListInvitationsRequest$NextToken": "<p>The token that is required for pagination. On your first call to the <code>ListInvitations</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>",
         "ListMembersRequest$NextToken": "<p>The token that is required for pagination. On your first call to the <code>ListMembers</code> operation, set the value of this parameter to <code>NULL</code>.</p> <p>For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response.</p>",
         "ListOrganizationAdminAccountsRequest$NextToken": "<p>The token that is required for pagination. On your first call to the <code>ListOrganizationAdminAccounts</code> operation, set the value of this parameter to <code>NULL</code>. For subsequent calls to the operation, to continue listing data, set the value of this parameter to the value returned from the previous response. </p>",
@@ -4842,6 +4902,10 @@
         "CreateActionTargetRequest$Description": "<p>The description for the custom action target.</p>",
         "CreateActionTargetRequest$Id": "<p>The ID for the custom action target. Can contain up to 20 alphanumeric characters.</p>",
         "CreateActionTargetResponse$ActionTargetArn": "<p>The ARN for the custom action target.</p>",
+        "CreateFindingAggregatorRequest$RegionLinkingMode": "<p>Indicates whether to aggregate findings from all of the available Regions in the current partition. Also determines whether to automatically aggregate findings from new Regions as Security Hub supports them and you opt into them.</p> <p>The selected option also determines how to use the Regions provided in the Regions list.</p> <p>The options are as follows:</p> <ul> <li> <p> <code>ALL_REGIONS</code> - Indicates to aggregate findings from all of the Regions where Security Hub is enabled. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. </p> </li> <li> <p> <code>ALL_REGIONS_EXCEPT_SPECIFIED</code> - Indicates to aggregate findings from all of the Regions where Security Hub is enabled, except for the Regions listed in the <code>Regions</code> parameter. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. </p> </li> <li> <p> <code>SPECIFIED_REGIONS</code> - Indicates to aggregate findings only from the Regions listed in the <code>Regions</code> parameter. Security Hub does not automatically aggregate findings from new Regions. </p> </li> </ul>",
+        "CreateFindingAggregatorResponse$FindingAggregatorArn": "<p>The ARN of the finding aggregator. You use the finding aggregator ARN to retrieve details for, update, and stop finding aggregation.</p>",
+        "CreateFindingAggregatorResponse$FindingAggregationRegion": "<p>The aggregation Region.</p>",
+        "CreateFindingAggregatorResponse$RegionLinkingMode": "<p>Indicates whether to link all Regions, all Regions except for a list of excluded Regions, or a list of included Regions.</p>",
         "CreateInsightRequest$Name": "<p>The name of the custom insight to create.</p>",
         "CreateInsightRequest$GroupByAttribute": "<p>The attribute used to group the findings for the insight. The grouping attribute identifies the type of item that the insight applies to. For example, if an insight is grouped by resource identifier, then the insight produces a list of resource identifiers.</p>",
         "CreateInsightResponse$InsightArn": "<p>The ARN of the insight created.</p>",
@@ -4855,6 +4919,7 @@
         "DateFilter$End": "<p>An end date for the date filter.</p>",
         "DeleteActionTargetRequest$ActionTargetArn": "<p>The ARN of the custom action target to delete.</p>",
         "DeleteActionTargetResponse$ActionTargetArn": "<p>The ARN of the custom action target that was deleted.</p>",
+        "DeleteFindingAggregatorRequest$FindingAggregatorArn": "<p>The ARN of the finding aggregator to delete. To obtain the ARN, use <code>ListFindingAggregators</code>.</p>",
         "DeleteInsightRequest$InsightArn": "<p>The ARN of the insight to delete.</p>",
         "DeleteInsightResponse$InsightArn": "<p>The ARN of the insight that was deleted.</p>",
         "DescribeHubRequest$HubArn": "<p>The ARN of the Hub resource to retrieve.</p>",
@@ -4871,7 +4936,12 @@
         "EnableOrganizationAdminAccountRequest$AdminAccountId": "<p>The Amazon Web Services account identifier of the account to designate as the Security Hub administrator account.</p>",
         "FieldMap$key": null,
         "FieldMap$value": null,
+        "FindingAggregator$FindingAggregatorArn": "<p>The ARN of the finding aggregator. You use the finding aggregator ARN to retrieve details for, update, and delete the finding aggregator.</p>",
         "FindingProviderSeverity$Original": "<p>The finding provider's original value for the severity.</p>",
+        "GetFindingAggregatorRequest$FindingAggregatorArn": "<p>The ARN of the finding aggregator to return details for. To obtain the ARN, use <code>ListFindingAggregators</code>.</p>",
+        "GetFindingAggregatorResponse$FindingAggregatorArn": "<p>The ARN of the finding aggregator.</p>",
+        "GetFindingAggregatorResponse$FindingAggregationRegion": "<p>The aggregation Region.</p>",
+        "GetFindingAggregatorResponse$RegionLinkingMode": "<p>Indicates whether to link all Regions, all Regions except for a list of excluded Regions, or a list of included Regions.</p>",
         "GetInsightResultsRequest$InsightArn": "<p>The ARN of the insight for which to return results.</p>",
         "ImportFindingsError$Id": "<p>The identifier of the finding that could not be updated.</p>",
         "ImportFindingsError$ErrorCode": "<p>The code of the error returned by the <code>BatchImportFindings</code> operation.</p>",
@@ -5002,6 +5072,11 @@
         "UpdateActionTargetRequest$ActionTargetArn": "<p>The ARN of the custom action target to update.</p>",
         "UpdateActionTargetRequest$Name": "<p>The updated name of the custom action target.</p>",
         "UpdateActionTargetRequest$Description": "<p>The updated description for the custom action target.</p>",
+        "UpdateFindingAggregatorRequest$FindingAggregatorArn": "<p>The ARN of the finding aggregator. To obtain the ARN, use <code>ListFindingAggregators</code>.</p>",
+        "UpdateFindingAggregatorRequest$RegionLinkingMode": "<p>Indicates whether to aggregate findings from all of the available Regions in the current partition. Also determines whether to automatically aggregate findings from new Regions as Security Hub supports them and you opt into them.</p> <p>The selected option also determines how to use the Regions provided in the Regions list.</p> <p>The options are as follows:</p> <ul> <li> <p> <code>ALL_REGIONS</code> - Indicates to aggregate findings from all of the Regions where Security Hub is enabled. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. </p> </li> <li> <p> <code>ALL_REGIONS_EXCEPT_SPECIFIED</code> - Indicates to aggregate findings from all of the Regions where Security Hub is enabled, except for the Regions listed in the <code>Regions</code> parameter. When you choose this option, Security Hub also automatically aggregates findings from new Regions as Security Hub supports them and you opt into them. </p> </li> <li> <p> <code>SPECIFIED_REGIONS</code> - Indicates to aggregate findings only from the Regions listed in the <code>Regions</code> parameter. Security Hub does not automatically aggregate findings from new Regions. </p> </li> </ul>",
+        "UpdateFindingAggregatorResponse$FindingAggregatorArn": "<p>The ARN of the finding aggregator.</p>",
+        "UpdateFindingAggregatorResponse$FindingAggregationRegion": "<p>The aggregation Region.</p>",
+        "UpdateFindingAggregatorResponse$RegionLinkingMode": "<p>Indicates whether to link all Regions, all Regions except for a list of excluded Regions, or a list of included Regions.</p>",
         "UpdateInsightRequest$InsightArn": "<p>The ARN of the insight that you want to update.</p>",
         "UpdateInsightRequest$Name": "<p>The updated name for the insight.</p>",
         "UpdateInsightRequest$GroupByAttribute": "<p>The updated <code>GroupBy</code> attribute that defines this insight.</p>",
@@ -5610,7 +5685,12 @@
         "AwsRdsPendingCloudWatchLogsExports$LogTypesToEnable": "<p>A list of log types that are being enabled.</p>",
         "AwsRdsPendingCloudWatchLogsExports$LogTypesToDisable": "<p>A list of log types that are being disabled.</p>",
         "AwsRedshiftClusterDetails$PendingActions": "<p>A list of cluster operations that are waiting to start.</p>",
+        "CreateFindingAggregatorRequest$Regions": "<p>If <code>RegionLinkingMode</code> is <code>ALL_REGIONS_EXCEPT_SPECIFIED</code>, then this is a comma-separated list of Regions that do not aggregate findings to the aggregation Region.</p> <p>If <code>RegionLinkingMode</code> is <code>SPECIFIED_REGIONS</code>, then this is a comma-separated list of Regions that do aggregate findings to the aggregation Region. </p>",
+        "CreateFindingAggregatorResponse$Regions": "<p>The list of excluded Regions or included Regions.</p>",
+        "GetFindingAggregatorResponse$Regions": "<p>The list of excluded Regions or included Regions.</p>",
         "NetworkPathComponentDetails$Address": "<p>The IP addresses of the destination.</p>",
+        "UpdateFindingAggregatorRequest$Regions": "<p>If <code>RegionLinkingMode</code> is <code>ALL_REGIONS_EXCEPT_SPECIFIED</code>, then this is a comma-separated list of Regions that do not aggregate findings to the aggregation Region.</p> <p>If <code>RegionLinkingMode</code> is <code>SPECIFIED_REGIONS</code>, then this is a comma-separated list of Regions that do aggregate findings to the aggregation Region.</p>",
+        "UpdateFindingAggregatorResponse$Regions": "<p>The list of excluded Regions or included Regions.</p>",
         "Vulnerability$RelatedVulnerabilities": "<p>List of vulnerabilities that are related to this vulnerability.</p>",
         "Vulnerability$ReferenceUrls": "<p>A list of URLs that provide additional information about the vulnerability.</p>"
       }
@@ -5709,6 +5789,16 @@
       }
     },
     "UpdateActionTargetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFindingAggregatorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFindingAggregatorResponse": {
       "base": null,
       "refs": {
       }

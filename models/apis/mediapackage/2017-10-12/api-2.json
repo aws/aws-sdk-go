@@ -1680,6 +1680,10 @@
           "locationName": "encryption",
           "shape": "HlsEncryption"
         },
+        "IncludeDvbSubtitles": {
+          "locationName": "includeDvbSubtitles",
+          "shape": "__boolean"
+        },
         "IncludeIframeOnlyStream": {
           "locationName": "includeIframeOnlyStream",
           "shape": "__boolean"

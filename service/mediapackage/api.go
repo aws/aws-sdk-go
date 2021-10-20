@@ -4606,6 +4606,10 @@ type HlsPackage struct {
 	// An HTTP Live Streaming (HLS) encryption configuration.
 	Encryption *HlsEncryption `locationName:"encryption" type:"structure"`
 
+	// When enabled, MediaPackage passes through digital video broadcasting (DVB)
+	// subtitles into the output.
+	IncludeDvbSubtitles *bool `locationName:"includeDvbSubtitles" type:"boolean"`
+
 	// When enabled, an I-Frame only stream will be included in the output.
 	IncludeIframeOnlyStream *bool `locationName:"includeIframeOnlyStream" type:"boolean"`
 
@@ -4692,6 +4696,12 @@ func (s *HlsPackage) SetAdsOnDeliveryRestrictions(v string) *HlsPackage {
 // SetEncryption sets the Encryption field's value.
 func (s *HlsPackage) SetEncryption(v *HlsEncryption) *HlsPackage {
 	s.Encryption = v
+	return s
+}
+
+// SetIncludeDvbSubtitles sets the IncludeDvbSubtitles field's value.
+func (s *HlsPackage) SetIncludeDvbSubtitles(v bool) *HlsPackage {
+	s.IncludeDvbSubtitles = &v
 	return s
 }
 

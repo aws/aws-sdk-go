@@ -249,6 +249,7 @@
         "DashPackage$IncludeEncoderConfigurationInSegments" : "When includeEncoderConfigurationInSegments is set to true, MediaPackage places your encoder's Sequence Parameter Set (SPS), Picture Parameter Set (PPS), and Video Parameter Set (VPS) metadata in every video segment instead of in the init fragment. This lets you use different SPS/PPS/VPS settings for your assets during content playback.\n",
         "HlsManifest$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
         "HlsManifest$RepeatExtXKey" : "When enabled, the EXT-X-KEY tag will be repeated in output manifests.",
+        "HlsPackage$IncludeDvbSubtitles" : "When enabled, MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.",
         "HlsPackage$UseAudioRenditionGroup" : "When enabled, audio streams will be placed in rendition groups in the output."
       }
     },

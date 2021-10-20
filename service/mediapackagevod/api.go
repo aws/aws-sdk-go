@@ -3799,6 +3799,10 @@ type HlsPackage struct {
 	// HlsManifests is a required field
 	HlsManifests []*HlsManifest `locationName:"hlsManifests" type:"list" required:"true"`
 
+	// When enabled, MediaPackage passes through digital video broadcasting (DVB)
+	// subtitles into the output.
+	IncludeDvbSubtitles *bool `locationName:"includeDvbSubtitles" type:"boolean"`
+
 	// Duration (in seconds) of each fragment. Actual fragments will berounded to
 	// the nearest multiple of the source fragment duration.
 	SegmentDurationSeconds *int64 `locationName:"segmentDurationSeconds" type:"integer"`
@@ -3852,6 +3856,12 @@ func (s *HlsPackage) SetEncryption(v *HlsEncryption) *HlsPackage {
 // SetHlsManifests sets the HlsManifests field's value.
 func (s *HlsPackage) SetHlsManifests(v []*HlsManifest) *HlsPackage {
 	s.HlsManifests = v
+	return s
+}
+
+// SetIncludeDvbSubtitles sets the IncludeDvbSubtitles field's value.
+func (s *HlsPackage) SetIncludeDvbSubtitles(v bool) *HlsPackage {
+	s.IncludeDvbSubtitles = &v
 	return s
 }
 

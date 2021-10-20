@@ -48,6 +48,12 @@
       "limit_key": "MaxResults",
       "result_key": "ProductSubscriptions"
     },
+    "ListFindingAggregators": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "FindingAggregators"
+    },
     "ListInvitations": {
       "input_token": "NextToken",
       "output_token": "NextToken",

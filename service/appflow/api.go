@@ -8021,6 +8021,39 @@ func (s *S3DestinationProperties) SetS3OutputFormatConfig(v *S3OutputFormatConfi
 	return s
 }
 
+// When you use Amazon S3 as the source, the configuration format that you provide
+// the flow input data.
+type S3InputFormatConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The file type that Amazon AppFlow gets from your Amazon S3 bucket.
+	S3InputFileType *string `locationName:"s3InputFileType" type:"string" enum:"S3InputFileType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3InputFormatConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3InputFormatConfig) GoString() string {
+	return s.String()
+}
+
+// SetS3InputFileType sets the S3InputFileType field's value.
+func (s *S3InputFormatConfig) SetS3InputFileType(v string) *S3InputFormatConfig {
+	s.S3InputFileType = &v
+	return s
+}
+
 // The connector metadata specific to Amazon S3.
 type S3Metadata struct {
 	_ struct{} `type:"structure"`
@@ -8110,6 +8143,10 @@ type S3SourceProperties struct {
 
 	// The object key for the Amazon S3 bucket in which the source files are stored.
 	BucketPrefix *string `locationName:"bucketPrefix" type:"string"`
+
+	// When you use Amazon S3 as the source, the configuration format that you provide
+	// the flow input data.
+	S3InputFormatConfig *S3InputFormatConfig `locationName:"s3InputFormatConfig" type:"structure"`
 }
 
 // String returns the string representation.
@@ -8155,6 +8192,12 @@ func (s *S3SourceProperties) SetBucketName(v string) *S3SourceProperties {
 // SetBucketPrefix sets the BucketPrefix field's value.
 func (s *S3SourceProperties) SetBucketPrefix(v string) *S3SourceProperties {
 	s.BucketPrefix = &v
+	return s
+}
+
+// SetS3InputFormatConfig sets the S3InputFormatConfig field's value.
+func (s *S3SourceProperties) SetS3InputFormatConfig(v *S3InputFormatConfig) *S3SourceProperties {
+	s.S3InputFormatConfig = v
 	return s
 }
 
@@ -12799,6 +12842,22 @@ func S3ConnectorOperator_Values() []string {
 		S3ConnectorOperatorValidateNonNegative,
 		S3ConnectorOperatorValidateNumeric,
 		S3ConnectorOperatorNoOp,
+	}
+}
+
+const (
+	// S3InputFileTypeCsv is a S3InputFileType enum value
+	S3InputFileTypeCsv = "CSV"
+
+	// S3InputFileTypeJson is a S3InputFileType enum value
+	S3InputFileTypeJson = "JSON"
+)
+
+// S3InputFileType_Values returns all elements of the S3InputFileType enum
+func S3InputFileType_Values() []string {
+	return []string{
+		S3InputFileTypeCsv,
+		S3InputFileTypeJson,
 	}
 }
 

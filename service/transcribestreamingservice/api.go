@@ -2645,6 +2645,9 @@ type StartStreamTranscriptionInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" required:"true" enum:"LanguageCode"`
 
+	// The name of the language model you want to use.
+	LanguageModelName *string `location:"header" locationName:"x-amzn-transcribe-language-model-name" min:"1" type:"string"`
+
 	// The encoding used for the input audio.
 	//
 	// MediaEncoding is a required field
@@ -2668,10 +2671,6 @@ type StartStreamTranscriptionInput struct {
 	// List the PII entity types you want to identify or redact. In order to specify
 	// entity types, you must have either ContentIdentificationType or ContentRedactionType
 	// enabled.
-	//
-	// PIIEntityTypes must be comma-separated; the available values are: BANK_ACCOUNT_NUMBER,
-	// BANK_ROUTING, CREDIT_DEBIT_NUMBER, CREDIT_DEBIT_CVV, CREDIT_DEBIT_EXPIRY,
-	// PIN, EMAIL, ADDRESS, NAME, PHONE, SSN, and ALL.
 	//
 	// PiiEntityTypes is an optional parameter with a default value of ALL.
 	PiiEntityTypes *string `location:"header" locationName:"x-amzn-transcribe-pii-entity-types" min:"1" type:"string"`
@@ -2722,6 +2721,9 @@ func (s *StartStreamTranscriptionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartStreamTranscriptionInput"}
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.LanguageModelName != nil && len(*s.LanguageModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageModelName", 1))
 	}
 	if s.MediaEncoding == nil {
 		invalidParams.Add(request.NewErrParamRequired("MediaEncoding"))
@@ -2781,6 +2783,12 @@ func (s *StartStreamTranscriptionInput) SetEnablePartialResultsStabilization(v b
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *StartStreamTranscriptionInput) SetLanguageCode(v string) *StartStreamTranscriptionInput {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetLanguageModelName sets the LanguageModelName field's value.
+func (s *StartStreamTranscriptionInput) SetLanguageModelName(v string) *StartStreamTranscriptionInput {
+	s.LanguageModelName = &v
 	return s
 }
 
@@ -2864,6 +2872,8 @@ type StartStreamTranscriptionOutput struct {
 	// The language code for the input audio stream.
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" enum:"LanguageCode"`
 
+	LanguageModelName *string `location:"header" locationName:"x-amzn-transcribe-language-model-name" min:"1" type:"string"`
+
 	// The encoding used for the input audio stream.
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" enum:"MediaEncoding"`
 
@@ -2945,6 +2955,12 @@ func (s *StartStreamTranscriptionOutput) SetEnablePartialResultsStabilization(v 
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *StartStreamTranscriptionOutput) SetLanguageCode(v string) *StartStreamTranscriptionOutput {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetLanguageModelName sets the LanguageModelName field's value.
+func (s *StartStreamTranscriptionOutput) SetLanguageModelName(v string) *StartStreamTranscriptionOutput {
+	s.LanguageModelName = &v
 	return s
 }
 

@@ -164,6 +164,19 @@
         {"shape":"DirectConnectClientException"}
       ]
     },
+    "ConfirmCustomerAgreement":{
+      "name":"ConfirmCustomerAgreement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ConfirmCustomerAgreementRequest"},
+      "output":{"shape":"ConfirmCustomerAgreementResponse"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
     "ConfirmPrivateVirtualInterface":{
       "name":"ConfirmPrivateVirtualInterface",
       "http":{
@@ -490,6 +503,18 @@
       ],
       "deprecated":true
     },
+    "DescribeCustomerMetadata":{
+      "name":"DescribeCustomerMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "output":{"shape":"DescribeCustomerMetadataResponse"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
     "DescribeDirectConnectGatewayAssociationProposals":{
       "name":"DescribeDirectConnectGatewayAssociationProposals",
       "http":{
@@ -615,6 +640,19 @@
         "requestUri":"/"
       },
       "output":{"shape":"Locations"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
+    "DescribeRouterConfiguration":{
+      "name":"DescribeRouterConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRouterConfigurationRequest"},
+      "output":{"shape":"DescribeRouterConfigurationResponse"},
       "errors":[
         {"shape":"DirectConnectServerException"},
         {"shape":"DirectConnectClientException"}
@@ -764,6 +802,19 @@
         {"shape":"DirectConnectClientException"}
       ]
     },
+    "UpdateDirectConnectGateway":{
+      "name":"UpdateDirectConnectGateway",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateDirectConnectGatewayRequest"},
+      "output":{"shape":"UpdateDirectConnectGatewayResponse"},
+      "errors":[
+        {"shape":"DirectConnectServerException"},
+        {"shape":"DirectConnectClientException"}
+      ]
+    },
     "UpdateDirectConnectGatewayAssociation":{
       "name":"UpdateDirectConnectGatewayAssociation",
       "http":{
@@ -832,6 +883,14 @@
         "ipv4",
         "ipv6"
       ]
+    },
+    "AgreementList":{
+      "type":"list",
+      "member":{"shape":"CustomerAgreement"}
+    },
+    "AgreementName":{
+      "type":"string",
+      "max":100
     },
     "AllocateConnectionOnInterconnectRequest":{
       "type":"structure",
@@ -1047,6 +1106,18 @@
       "type":"structure",
       "members":{
         "connectionState":{"shape":"ConnectionState"}
+      }
+    },
+    "ConfirmCustomerAgreementRequest":{
+      "type":"structure",
+      "members":{
+        "agreementName":{"shape":"AgreementName"}
+      }
+    },
+    "ConfirmCustomerAgreementResponse":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"Status"}
       }
     },
     "ConfirmPrivateVirtualInterfaceRequest":{
@@ -1305,6 +1376,13 @@
       }
     },
     "CustomerAddress":{"type":"string"},
+    "CustomerAgreement":{
+      "type":"structure",
+      "members":{
+        "agreementName":{"shape":"AgreementName"},
+        "status":{"shape":"Status"}
+      }
+    },
     "DeleteBGPPeerRequest":{
       "type":"structure",
       "members":{
@@ -1428,6 +1506,13 @@
         "connectionId":{"shape":"ConnectionId"}
       }
     },
+    "DescribeCustomerMetadataResponse":{
+      "type":"structure",
+      "members":{
+        "agreements":{"shape":"AgreementList"},
+        "nniPartnerType":{"shape":"NniPartnerType"}
+      }
+    },
     "DescribeDirectConnectGatewayAssociationProposalsRequest":{
       "type":"structure",
       "members":{
@@ -1535,6 +1620,23 @@
         "connectionId":{"shape":"ConnectionId"},
         "providerName":{"shape":"ProviderName"},
         "loaContentType":{"shape":"LoaContentType"}
+      }
+    },
+    "DescribeRouterConfigurationRequest":{
+      "type":"structure",
+      "required":["virtualInterfaceId"],
+      "members":{
+        "virtualInterfaceId":{"shape":"VirtualInterfaceId"},
+        "routerTypeIdentifier":{"shape":"RouterTypeIdentifier"}
+      }
+    },
+    "DescribeRouterConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "customerRouterConfig":{"shape":"RouterConfig"},
+        "router":{"shape":"RouterType"},
+        "virtualInterfaceId":{"shape":"VirtualInterfaceId"},
+        "virtualInterfaceName":{"shape":"VirtualInterfaceName"}
       }
     },
     "DescribeTagsRequest":{
@@ -2026,9 +2128,18 @@
         "tags":{"shape":"TagList"}
       }
     },
+    "NniPartnerType":{
+      "type":"string",
+      "enum":[
+        "v1",
+        "v2",
+        "nonPartner"
+      ]
+    },
     "OwnerAccount":{"type":"string"},
     "PaginationToken":{"type":"string"},
     "PartnerName":{"type":"string"},
+    "Platform":{"type":"string"},
     "PortEncryptionStatus":{"type":"string"},
     "PortSpeed":{"type":"string"},
     "ProviderList":{
@@ -2065,7 +2176,20 @@
       "member":{"shape":"RouteFilterPrefix"}
     },
     "RouterConfig":{"type":"string"},
+    "RouterType":{
+      "type":"structure",
+      "members":{
+        "vendor":{"shape":"Vendor"},
+        "platform":{"shape":"Platform"},
+        "software":{"shape":"Software"},
+        "xsltTemplateName":{"shape":"XsltTemplateName"},
+        "xsltTemplateNameForMacSec":{"shape":"XsltTemplateNameForMacSec"},
+        "routerTypeIdentifier":{"shape":"RouterTypeIdentifier"}
+      }
+    },
+    "RouterTypeIdentifier":{"type":"string"},
     "SecretARN":{"type":"string"},
+    "Software":{"type":"string"},
     "StartBgpFailoverTestRequest":{
       "type":"structure",
       "required":["virtualInterfaceId"],
@@ -2085,6 +2209,10 @@
     "StartTime":{"type":"timestamp"},
     "State":{"type":"string"},
     "StateChangeError":{"type":"string"},
+    "Status":{
+      "type":"string",
+      "max":30
+    },
     "StopBgpFailoverTestRequest":{
       "type":"structure",
       "required":["virtualInterfaceId"],
@@ -2193,6 +2321,23 @@
         "directConnectGatewayAssociation":{"shape":"DirectConnectGatewayAssociation"}
       }
     },
+    "UpdateDirectConnectGatewayRequest":{
+      "type":"structure",
+      "required":[
+        "directConnectGatewayId",
+        "newDirectConnectGatewayName"
+      ],
+      "members":{
+        "directConnectGatewayId":{"shape":"DirectConnectGatewayId"},
+        "newDirectConnectGatewayName":{"shape":"DirectConnectGatewayName"}
+      }
+    },
+    "UpdateDirectConnectGatewayResponse":{
+      "type":"structure",
+      "members":{
+        "directConnectGateway":{"shape":"DirectConnectGateway"}
+      }
+    },
     "UpdateLagRequest":{
       "type":"structure",
       "required":["lagId"],
@@ -2212,6 +2357,7 @@
       }
     },
     "VLAN":{"type":"integer"},
+    "Vendor":{"type":"string"},
     "VirtualGateway":{
       "type":"structure",
       "members":{
@@ -2309,6 +2455,8 @@
       "members":{
         "virtualInterfaces":{"shape":"VirtualInterfaceList"}
       }
-    }
+    },
+    "XsltTemplateName":{"type":"string"},
+    "XsltTemplateNameForMacSec":{"type":"string"}
   }
 }

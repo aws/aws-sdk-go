@@ -1349,6 +1349,10 @@
           "locationName": "hlsManifests",
           "shape": "__listOfHlsManifest"
         },
+        "IncludeDvbSubtitles": {
+          "locationName": "includeDvbSubtitles",
+          "shape": "__boolean"
+        },
         "SegmentDurationSeconds": {
           "locationName": "segmentDurationSeconds",
           "shape": "__integer"
