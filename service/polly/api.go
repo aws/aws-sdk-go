@@ -1025,7 +1025,7 @@ func (s *DeleteLexiconInput) SetName(v string) *DeleteLexiconInput {
 }
 
 type DeleteLexiconOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2718,7 +2718,7 @@ func (s *PutLexiconInput) SetName(v string) *PutLexiconInput {
 }
 
 type PutLexiconOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

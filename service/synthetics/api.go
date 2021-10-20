@@ -2919,7 +2919,7 @@ func (s *DeleteCanaryInput) SetName(v string) *DeleteCanaryInput {
 }
 
 type DeleteCanaryOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3832,7 +3832,7 @@ func (s *StartCanaryInput) SetName(v string) *StartCanaryInput {
 }
 
 type StartCanaryOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3904,7 +3904,7 @@ func (s *StopCanaryInput) SetName(v string) *StopCanaryInput {
 }
 
 type StopCanaryOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3994,7 +3994,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4084,7 +4084,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4332,7 +4332,7 @@ func (s *UpdateCanaryInput) SetVpcConfig(v *VpcConfigInput) *UpdateCanaryInput {
 }
 
 type UpdateCanaryOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

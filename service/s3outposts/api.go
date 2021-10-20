@@ -695,7 +695,7 @@ func (s *DeleteEndpointInput) SetOutpostId(v string) *DeleteEndpointInput {
 }
 
 type DeleteEndpointOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

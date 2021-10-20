@@ -3779,7 +3779,7 @@ func (s *AssociateLensesInput) SetWorkloadId(v string) *AssociateLensesInput {
 }
 
 type AssociateLensesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4756,7 +4756,7 @@ func (s *DeleteWorkloadInput) SetWorkloadId(v string) *DeleteWorkloadInput {
 }
 
 type DeleteWorkloadOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4863,7 +4863,7 @@ func (s *DeleteWorkloadShareInput) SetWorkloadId(v string) *DeleteWorkloadShareI
 }
 
 type DeleteWorkloadShareOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4954,7 +4954,7 @@ func (s *DisassociateLensesInput) SetWorkloadId(v string) *DisassociateLensesInp
 }
 
 type DisassociateLensesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8167,7 +8167,7 @@ func (s *TagResourceInput) SetWorkloadArn(v string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8327,7 +8327,7 @@ func (s *UntagResourceInput) SetWorkloadArn(v string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9278,7 +9278,7 @@ func (s *UpgradeLensReviewInput) SetWorkloadId(v string) *UpgradeLensReviewInput
 }
 
 type UpgradeLensReviewOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

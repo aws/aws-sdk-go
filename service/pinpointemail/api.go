@@ -4860,7 +4860,7 @@ func (s *CreateConfigurationSetEventDestinationInput) SetEventDestinationName(v 
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type CreateConfigurationSetEventDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4996,7 +4996,7 @@ func (s *CreateConfigurationSetInput) SetTrackingOptions(v *TrackingOptions) *Cr
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type CreateConfigurationSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5087,7 +5087,7 @@ func (s *CreateDedicatedIpPoolInput) SetTags(v []*Tag) *CreateDedicatedIpPoolInp
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type CreateDedicatedIpPoolOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5587,7 +5587,7 @@ func (s *DeleteConfigurationSetEventDestinationInput) SetEventDestinationName(v 
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type DeleteConfigurationSetEventDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5661,7 +5661,7 @@ func (s *DeleteConfigurationSetInput) SetConfigurationSetName(v string) *DeleteC
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type DeleteConfigurationSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5735,7 +5735,7 @@ func (s *DeleteDedicatedIpPoolInput) SetPoolName(v string) *DeleteDedicatedIpPoo
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type DeleteDedicatedIpPoolOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5813,7 +5813,7 @@ func (s *DeleteEmailIdentityInput) SetEmailIdentity(v string) *DeleteEmailIdenti
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type DeleteEmailIdentityOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9428,7 +9428,7 @@ func (s *PutAccountDedicatedIpWarmupAttributesInput) SetAutoWarmupEnabled(v bool
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutAccountDedicatedIpWarmupAttributesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9488,7 +9488,7 @@ func (s *PutAccountSendingAttributesInput) SetSendingEnabled(v bool) *PutAccount
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutAccountSendingAttributesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9585,7 +9585,7 @@ func (s *PutConfigurationSetDeliveryOptionsInput) SetTlsPolicy(v string) *PutCon
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutConfigurationSetDeliveryOptionsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9672,7 +9672,7 @@ func (s *PutConfigurationSetReputationOptionsInput) SetReputationMetricsEnabled(
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutConfigurationSetReputationOptionsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9758,7 +9758,7 @@ func (s *PutConfigurationSetSendingOptionsInput) SetSendingEnabled(v bool) *PutC
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutConfigurationSetSendingOptionsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9843,7 +9843,7 @@ func (s *PutConfigurationSetTrackingOptionsInput) SetCustomRedirectDomain(v stri
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutConfigurationSetTrackingOptionsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9934,7 +9934,7 @@ func (s *PutDedicatedIpInPoolInput) SetIp(v string) *PutDedicatedIpInPoolInput {
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutDedicatedIpInPoolOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10024,7 +10024,7 @@ func (s *PutDedicatedIpWarmupAttributesInput) SetWarmupPercentage(v int64) *PutD
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutDedicatedIpWarmupAttributesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10115,7 +10115,7 @@ func (s *PutDeliverabilityDashboardOptionInput) SetSubscribedDomains(v []*Domain
 // A response that indicates whether the Deliverability dashboard is enabled
 // for your Amazon Pinpoint account.
 type PutDeliverabilityDashboardOptionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10203,7 +10203,7 @@ func (s *PutEmailIdentityDkimAttributesInput) SetSigningEnabled(v bool) *PutEmai
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutEmailIdentityDkimAttributesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10300,7 +10300,7 @@ func (s *PutEmailIdentityFeedbackAttributesInput) SetEmailIdentity(v string) *Pu
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutEmailIdentityFeedbackAttributesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10408,7 +10408,7 @@ func (s *PutEmailIdentityMailFromAttributesInput) SetMailFromDomain(v string) *P
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutEmailIdentityMailFromAttributesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11079,7 +11079,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11329,7 +11329,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11441,7 +11441,7 @@ func (s *UpdateConfigurationSetEventDestinationInput) SetEventDestinationName(v 
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type UpdateConfigurationSetEventDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

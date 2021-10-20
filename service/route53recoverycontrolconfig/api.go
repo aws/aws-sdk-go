@@ -3236,7 +3236,7 @@ func (s *DeleteClusterInput) SetClusterArn(v string) *DeleteClusterInput {
 
 // A successful DeleteCluster request returns no response.
 type DeleteClusterOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3306,7 +3306,7 @@ func (s *DeleteControlPanelInput) SetControlPanelArn(v string) *DeleteControlPan
 
 // A successful DeleteControlPanel request returns no response.
 type DeleteControlPanelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3376,7 +3376,7 @@ func (s *DeleteRoutingControlInput) SetRoutingControlArn(v string) *DeleteRoutin
 
 // A successful DeleteRoutingControl request returns no response.
 type DeleteRoutingControlOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3447,7 +3447,7 @@ func (s *DeleteSafetyRuleInput) SetSafetyRuleArn(v string) *DeleteSafetyRuleInpu
 // There is an empty response when you delete a safety rule.
 // />
 type DeleteSafetyRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

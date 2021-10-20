@@ -1021,7 +1021,7 @@ func (s *CreateConfigurationSetEventDestinationInput) SetEventDestinationName(v 
 
 // An empty object that indicates that the event destination was created successfully.
 type CreateConfigurationSetEventDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1077,7 +1077,7 @@ func (s *CreateConfigurationSetInput) SetConfigurationSetName(v string) *CreateC
 // An empty object that indicates that the configuration set was successfully
 // created.
 type CreateConfigurationSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1162,7 +1162,7 @@ func (s *DeleteConfigurationSetEventDestinationInput) SetEventDestinationName(v 
 
 // An empty object that indicates that the event destination was deleted successfully.
 type DeleteConfigurationSetEventDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1232,7 +1232,7 @@ func (s *DeleteConfigurationSetInput) SetConfigurationSetName(v string) *DeleteC
 
 // An empty object that indicates that the configuration set was deleted successfully.
 type DeleteConfigurationSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2192,7 +2192,7 @@ func (s *UpdateConfigurationSetEventDestinationInput) SetEventDestinationName(v 
 
 // An empty object that indicates that the event destination was updated successfully.
 type UpdateConfigurationSetEventDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

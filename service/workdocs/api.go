@@ -4310,7 +4310,7 @@ func (s *AbortDocumentVersionUploadInput) SetVersionId(v string) *AbortDocumentV
 }
 
 type AbortDocumentVersionUploadOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5256,7 +5256,7 @@ func (s *CreateCustomMetadataInput) SetVersionId(v string) *CreateCustomMetadata
 }
 
 type CreateCustomMetadataOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5467,7 +5467,7 @@ func (s *CreateLabelsInput) SetResourceId(v string) *CreateLabelsInput {
 }
 
 type CreateLabelsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5944,7 +5944,7 @@ func (s *DeactivateUserInput) SetUserId(v string) *DeactivateUserInput {
 }
 
 type DeactivateUserOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6130,7 +6130,7 @@ func (s *DeleteCommentInput) SetVersionId(v string) *DeleteCommentInput {
 }
 
 type DeleteCommentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6250,7 +6250,7 @@ func (s *DeleteCustomMetadataInput) SetVersionId(v string) *DeleteCustomMetadata
 }
 
 type DeleteCustomMetadataOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6338,7 +6338,7 @@ func (s *DeleteDocumentInput) SetDocumentId(v string) *DeleteDocumentInput {
 }
 
 type DeleteDocumentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6426,7 +6426,7 @@ func (s *DeleteFolderContentsInput) SetFolderId(v string) *DeleteFolderContentsI
 }
 
 type DeleteFolderContentsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6514,7 +6514,7 @@ func (s *DeleteFolderInput) SetFolderId(v string) *DeleteFolderInput {
 }
 
 type DeleteFolderOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6620,7 +6620,7 @@ func (s *DeleteLabelsInput) SetResourceId(v string) *DeleteLabelsInput {
 }
 
 type DeleteLabelsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6708,7 +6708,7 @@ func (s *DeleteNotificationSubscriptionInput) SetSubscriptionId(v string) *Delet
 }
 
 type DeleteNotificationSubscriptionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6796,7 +6796,7 @@ func (s *DeleteUserInput) SetUserId(v string) *DeleteUserInput {
 }
 
 type DeleteUserOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10690,7 +10690,7 @@ func (s *RemoveAllResourcePermissionsInput) SetResourceId(v string) *RemoveAllRe
 }
 
 type RemoveAllResourcePermissionsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10804,7 +10804,7 @@ func (s *RemoveResourcePermissionInput) SetResourceId(v string) *RemoveResourceP
 }
 
 type RemoveResourcePermissionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11913,7 +11913,7 @@ func (s *UpdateDocumentInput) SetResourceState(v string) *UpdateDocumentInput {
 }
 
 type UpdateDocumentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12027,7 +12027,7 @@ func (s *UpdateDocumentVersionInput) SetVersionStatus(v string) *UpdateDocumentV
 }
 
 type UpdateDocumentVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12149,7 +12149,7 @@ func (s *UpdateFolderInput) SetResourceState(v string) *UpdateFolderInput {
 }
 
 type UpdateFolderOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

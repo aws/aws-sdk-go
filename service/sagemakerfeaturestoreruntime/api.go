@@ -848,7 +848,7 @@ func (s *DeleteRecordInput) SetRecordIdentifierValueAsString(v string) *DeleteRe
 }
 
 type DeleteRecordOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1192,7 +1192,7 @@ func (s *PutRecordInput) SetRecord(v []*FeatureValue) *PutRecordInput {
 }
 
 type PutRecordOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -25204,7 +25204,7 @@ func (s *AcceptCertificateTransferInput) SetSetAsActive(v bool) *AcceptCertifica
 }
 
 type AcceptCertificateTransferOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -25760,7 +25760,7 @@ func (s *AddThingToBillingGroupInput) SetThingName(v string) *AddThingToBillingG
 }
 
 type AddThingToBillingGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -25868,7 +25868,7 @@ func (s *AddThingToThingGroupInput) SetThingName(v string) *AddThingToThingGroup
 }
 
 type AddThingToThingGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26530,7 +26530,7 @@ func (s *AttachPolicyInput) SetTarget(v string) *AttachPolicyInput {
 }
 
 type AttachPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26617,7 +26617,7 @@ func (s *AttachPrincipalPolicyInput) SetPrincipal(v string) *AttachPrincipalPoli
 }
 
 type AttachPrincipalPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26702,7 +26702,7 @@ func (s *AttachSecurityProfileInput) SetSecurityProfileTargetArn(v string) *Atta
 }
 
 type AttachSecurityProfileOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26790,7 +26790,7 @@ func (s *AttachThingPrincipalInput) SetThingName(v string) *AttachThingPrincipal
 
 // The output from the AttachThingPrincipal operation.
 type AttachThingPrincipalOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28981,7 +28981,7 @@ func (s *CancelAuditMitigationActionsTaskInput) SetTaskId(v string) *CancelAudit
 }
 
 type CancelAuditMitigationActionsTaskOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29053,7 +29053,7 @@ func (s *CancelAuditTaskInput) SetTaskId(v string) *CancelAuditTaskInput {
 }
 
 type CancelAuditTaskOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29126,7 +29126,7 @@ func (s *CancelCertificateTransferInput) SetCertificateId(v string) *CancelCerti
 }
 
 type CancelCertificateTransferOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29197,7 +29197,7 @@ func (s *CancelDetectMitigationActionsTaskInput) SetTaskId(v string) *CancelDete
 }
 
 type CancelDetectMitigationActionsTaskOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29328,7 +29328,7 @@ func (s *CancelJobExecutionInput) SetThingName(v string) *CancelJobExecutionInpu
 }
 
 type CancelJobExecutionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29962,7 +29962,7 @@ func (s ClearDefaultAuthorizerInput) GoString() string {
 }
 
 type ClearDefaultAuthorizerOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -30468,7 +30468,7 @@ func (s *ConfirmTopicRuleDestinationInput) SetConfirmationToken(v string) *Confi
 }
 
 type ConfirmTopicRuleDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -30729,7 +30729,7 @@ func (s *CreateAuditSuppressionInput) SetSuppressIndefinitely(v bool) *CreateAud
 }
 
 type CreateAuditSuppressionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35044,7 +35044,7 @@ func (s *CreateTopicRuleInput) SetTopicRulePayload(v *TopicRulePayload) *CreateT
 }
 
 type CreateTopicRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35156,7 +35156,7 @@ func (s *DeleteAccountAuditConfigurationInput) SetDeleteScheduledAudits(v bool) 
 }
 
 type DeleteAccountAuditConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35245,7 +35245,7 @@ func (s *DeleteAuditSuppressionInput) SetResourceIdentifier(v *ResourceIdentifie
 }
 
 type DeleteAuditSuppressionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35316,7 +35316,7 @@ func (s *DeleteAuthorizerInput) SetAuthorizerName(v string) *DeleteAuthorizerInp
 }
 
 type DeleteAuthorizerOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35398,7 +35398,7 @@ func (s *DeleteBillingGroupInput) SetExpectedVersion(v int64) *DeleteBillingGrou
 }
 
 type DeleteBillingGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35472,7 +35472,7 @@ func (s *DeleteCACertificateInput) SetCertificateId(v string) *DeleteCACertifica
 
 // The output for the DeleteCACertificate operation.
 type DeleteCACertificateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35555,7 +35555,7 @@ func (s *DeleteCertificateInput) SetForceDelete(v bool) *DeleteCertificateInput 
 }
 
 type DeleteCertificateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35691,7 +35691,7 @@ func (s *DeleteCustomMetricInput) SetMetricName(v string) *DeleteCustomMetricInp
 }
 
 type DeleteCustomMetricOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35762,7 +35762,7 @@ func (s *DeleteDimensionInput) SetName(v string) *DeleteDimensionInput {
 }
 
 type DeleteDimensionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35833,7 +35833,7 @@ func (s *DeleteDomainConfigurationInput) SetDomainConfigurationName(v string) *D
 }
 
 type DeleteDomainConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35913,7 +35913,7 @@ func (s *DeleteDynamicThingGroupInput) SetThingGroupName(v string) *DeleteDynami
 }
 
 type DeleteDynamicThingGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -35993,7 +35993,7 @@ func (s *DeleteFleetMetricInput) SetMetricName(v string) *DeleteFleetMetricInput
 }
 
 type DeleteFleetMetricOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36135,7 +36135,7 @@ func (s *DeleteJobExecutionInput) SetThingName(v string) *DeleteJobExecutionInpu
 }
 
 type DeleteJobExecutionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36246,7 +36246,7 @@ func (s *DeleteJobInput) SetNamespaceId(v string) *DeleteJobInput {
 }
 
 type DeleteJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36317,7 +36317,7 @@ func (s *DeleteJobTemplateInput) SetJobTemplateId(v string) *DeleteJobTemplateIn
 }
 
 type DeleteJobTemplateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36388,7 +36388,7 @@ func (s *DeleteMitigationActionInput) SetActionName(v string) *DeleteMitigationA
 }
 
 type DeleteMitigationActionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36481,7 +36481,7 @@ func (s *DeleteOTAUpdateInput) SetOtaUpdateId(v string) *DeleteOTAUpdateInput {
 }
 
 type DeleteOTAUpdateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36553,7 +36553,7 @@ func (s *DeletePolicyInput) SetPolicyName(v string) *DeletePolicyInput {
 }
 
 type DeletePolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36642,7 +36642,7 @@ func (s *DeletePolicyVersionInput) SetPolicyVersionId(v string) *DeletePolicyVer
 }
 
 type DeletePolicyVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36713,7 +36713,7 @@ func (s *DeleteProvisioningTemplateInput) SetTemplateName(v string) *DeleteProvi
 }
 
 type DeleteProvisioningTemplateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36798,7 +36798,7 @@ func (s *DeleteProvisioningTemplateVersionInput) SetVersionId(v int64) *DeletePr
 }
 
 type DeleteProvisioningTemplateVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36844,7 +36844,7 @@ func (s DeleteRegistrationCodeInput) GoString() string {
 
 // The output for the DeleteRegistrationCode operation.
 type DeleteRegistrationCodeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36915,7 +36915,7 @@ func (s *DeleteRoleAliasInput) SetRoleAlias(v string) *DeleteRoleAliasInput {
 }
 
 type DeleteRoleAliasOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -36986,7 +36986,7 @@ func (s *DeleteScheduledAuditInput) SetScheduledAuditName(v string) *DeleteSched
 }
 
 type DeleteScheduledAuditOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37068,7 +37068,7 @@ func (s *DeleteSecurityProfileInput) SetSecurityProfileName(v string) *DeleteSec
 }
 
 type DeleteSecurityProfileOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37139,7 +37139,7 @@ func (s *DeleteStreamInput) SetStreamId(v string) *DeleteStreamInput {
 }
 
 type DeleteStreamOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37219,7 +37219,7 @@ func (s *DeleteThingGroupInput) SetThingGroupName(v string) *DeleteThingGroupInp
 }
 
 type DeleteThingGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37303,7 +37303,7 @@ func (s *DeleteThingInput) SetThingName(v string) *DeleteThingInput {
 
 // The output of the DeleteThing operation.
 type DeleteThingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37376,7 +37376,7 @@ func (s *DeleteThingTypeInput) SetThingTypeName(v string) *DeleteThingTypeInput 
 
 // The output for the DeleteThingType operation.
 type DeleteThingTypeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37447,7 +37447,7 @@ func (s *DeleteTopicRuleDestinationInput) SetArn(v string) *DeleteTopicRuleDesti
 }
 
 type DeleteTopicRuleDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37519,7 +37519,7 @@ func (s *DeleteTopicRuleInput) SetRuleName(v string) *DeleteTopicRuleInput {
 }
 
 type DeleteTopicRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37601,7 +37601,7 @@ func (s *DeleteV2LoggingLevelInput) SetTargetType(v string) *DeleteV2LoggingLeve
 }
 
 type DeleteV2LoggingLevelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37727,7 +37727,7 @@ func (s *DeprecateThingTypeInput) SetUndoDeprecate(v bool) *DeprecateThingTypeIn
 
 // The output for the DeprecateThingType operation.
 type DeprecateThingTypeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -41651,7 +41651,7 @@ func (s *DetachPolicyInput) SetTarget(v string) *DetachPolicyInput {
 }
 
 type DetachPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -41741,7 +41741,7 @@ func (s *DetachPrincipalPolicyInput) SetPrincipal(v string) *DetachPrincipalPoli
 }
 
 type DetachPrincipalPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -41826,7 +41826,7 @@ func (s *DetachSecurityProfileInput) SetSecurityProfileTargetArn(v string) *Deta
 }
 
 type DetachSecurityProfileOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -41915,7 +41915,7 @@ func (s *DetachThingPrincipalInput) SetThingName(v string) *DetachThingPrincipal
 
 // The output from the DetachThingPrincipal operation.
 type DetachThingPrincipalOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -42323,7 +42323,7 @@ func (s *DisableTopicRuleInput) SetRuleName(v string) *DisableTopicRuleInput {
 }
 
 type DisableTopicRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -42913,7 +42913,7 @@ func (s *EnableTopicRuleInput) SetRuleName(v string) *EnableTopicRuleInput {
 }
 
 type EnableTopicRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -55711,7 +55711,7 @@ func (s *PutVerificationStateOnViolationInput) SetViolationId(v string) *PutVeri
 }
 
 type PutVerificationStateOnViolationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -56457,7 +56457,7 @@ func (s *RejectCertificateTransferInput) SetRejectReason(v string) *RejectCertif
 }
 
 type RejectCertificateTransferOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -56603,7 +56603,7 @@ func (s *RemoveThingFromBillingGroupInput) SetThingName(v string) *RemoveThingFr
 }
 
 type RemoveThingFromBillingGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -56699,7 +56699,7 @@ func (s *RemoveThingFromThingGroupInput) SetThingName(v string) *RemoveThingFrom
 }
 
 type RemoveThingFromThingGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -56838,7 +56838,7 @@ func (s *ReplaceTopicRuleInput) SetTopicRulePayload(v *TopicRulePayload) *Replac
 }
 
 type ReplaceTopicRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -58220,7 +58220,7 @@ func (s *SetDefaultPolicyVersionInput) SetPolicyVersionId(v string) *SetDefaultP
 }
 
 type SetDefaultPolicyVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -58294,7 +58294,7 @@ func (s *SetLoggingOptionsInput) SetLoggingOptionsPayload(v *LoggingOptionsPaylo
 }
 
 type SetLoggingOptionsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -58381,7 +58381,7 @@ func (s *SetV2LoggingLevelInput) SetLogTarget(v *LogTarget) *SetV2LoggingLevelIn
 }
 
 type SetV2LoggingLevelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -58452,7 +58452,7 @@ func (s *SetV2LoggingOptionsInput) SetRoleArn(v string) *SetV2LoggingOptionsInpu
 }
 
 type SetV2LoggingOptionsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -59638,7 +59638,7 @@ func (s *StopThingRegistrationTaskInput) SetTaskId(v string) *StopThingRegistrat
 }
 
 type StopThingRegistrationTaskOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -60056,7 +60056,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -62758,7 +62758,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -62867,7 +62867,7 @@ func (s *UpdateAccountAuditConfigurationInput) SetRoleArn(v string) *UpdateAccou
 }
 
 type UpdateAccountAuditConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -62984,7 +62984,7 @@ func (s *UpdateAuditSuppressionInput) SetSuppressIndefinitely(v bool) *UpdateAud
 }
 
 type UpdateAuditSuppressionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -63334,7 +63334,7 @@ func (s *UpdateCACertificateInput) SetRemoveAutoRegistration(v bool) *UpdateCACe
 }
 
 type UpdateCACertificateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -63477,7 +63477,7 @@ func (s *UpdateCertificateInput) SetNewStatus(v string) *UpdateCertificateInput 
 }
 
 type UpdateCertificateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -64131,7 +64131,7 @@ func (s *UpdateEventConfigurationsInput) SetEventConfigurations(v map[string]*Co
 }
 
 type UpdateEventConfigurationsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -64307,7 +64307,7 @@ func (s *UpdateFleetMetricInput) SetUnit(v string) *UpdateFleetMetricInput {
 }
 
 type UpdateFleetMetricOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -64389,7 +64389,7 @@ func (s *UpdateIndexingConfigurationInput) SetThingIndexingConfiguration(v *Thin
 }
 
 type UpdateIndexingConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -64543,7 +64543,7 @@ func (s *UpdateJobInput) SetTimeoutConfig(v *TimeoutConfig) *UpdateJobInput {
 }
 
 type UpdateJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -64794,7 +64794,7 @@ func (s *UpdateProvisioningTemplateInput) SetTemplateName(v string) *UpdateProvi
 }
 
 type UpdateProvisioningTemplateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -65682,7 +65682,7 @@ func (s *UpdateThingGroupsForThingInput) SetThingName(v string) *UpdateThingGrou
 }
 
 type UpdateThingGroupsForThingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -65804,7 +65804,7 @@ func (s *UpdateThingInput) SetThingTypeName(v string) *UpdateThingInput {
 
 // The output from the UpdateThing operation.
 type UpdateThingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -65911,7 +65911,7 @@ func (s *UpdateTopicRuleDestinationInput) SetStatus(v string) *UpdateTopicRuleDe
 }
 
 type UpdateTopicRuleDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

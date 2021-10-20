@@ -658,7 +658,7 @@ func (s *DeleteHumanLoopInput) SetHumanLoopName(v string) *DeleteHumanLoopInput 
 }
 
 type DeleteHumanLoopOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1563,7 +1563,7 @@ func (s *StopHumanLoopInput) SetHumanLoopName(v string) *StopHumanLoopInput {
 }
 
 type StopHumanLoopOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -2005,7 +2005,7 @@ func (s *DeleteDataIntegrationInput) SetDataIntegrationIdentifier(v string) *Del
 }
 
 type DeleteDataIntegrationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2076,7 +2076,7 @@ func (s *DeleteEventIntegrationInput) SetName(v string) *DeleteEventIntegrationI
 }
 
 type DeleteEventIntegrationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3527,7 +3527,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3679,7 +3679,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3774,7 +3774,7 @@ func (s *UpdateDataIntegrationInput) SetName(v string) *UpdateDataIntegrationInp
 }
 
 type UpdateDataIntegrationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3857,7 +3857,7 @@ func (s *UpdateEventIntegrationInput) SetName(v string) *UpdateEventIntegrationI
 }
 
 type UpdateEventIntegrationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

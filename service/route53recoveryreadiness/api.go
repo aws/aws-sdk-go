@@ -4226,7 +4226,7 @@ func (s *DeleteCellInput) SetCellName(v string) *DeleteCellInput {
 }
 
 type DeleteCellOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4295,7 +4295,7 @@ func (s *DeleteCrossAccountAuthorizationInput) SetCrossAccountAuthorization(v st
 }
 
 type DeleteCrossAccountAuthorizationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4364,7 +4364,7 @@ func (s *DeleteReadinessCheckInput) SetReadinessCheckName(v string) *DeleteReadi
 }
 
 type DeleteReadinessCheckOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4433,7 +4433,7 @@ func (s *DeleteRecoveryGroupInput) SetRecoveryGroupName(v string) *DeleteRecover
 }
 
 type DeleteRecoveryGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4502,7 +4502,7 @@ func (s *DeleteResourceSetInput) SetResourceSetName(v string) *DeleteResourceSet
 }
 
 type DeleteResourceSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6979,7 +6979,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7164,7 +7164,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

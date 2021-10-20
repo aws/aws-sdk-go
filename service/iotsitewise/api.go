@@ -8681,7 +8681,7 @@ func (s *AssociateAssetsInput) SetHierarchyId(v string) *AssociateAssetsInput {
 }
 
 type AssociateAssetsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10987,7 +10987,7 @@ func (s *DeleteAccessPolicyInput) SetClientToken(v string) *DeleteAccessPolicyIn
 }
 
 type DeleteAccessPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11266,7 +11266,7 @@ func (s *DeleteDashboardInput) SetDashboardId(v string) *DeleteDashboardInput {
 }
 
 type DeleteDashboardOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11337,7 +11337,7 @@ func (s *DeleteGatewayInput) SetGatewayId(v string) *DeleteGatewayInput {
 }
 
 type DeleteGatewayOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11519,7 +11519,7 @@ func (s *DeleteProjectInput) SetProjectId(v string) *DeleteProjectInput {
 }
 
 type DeleteProjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13428,7 +13428,7 @@ func (s *DisassociateAssetsInput) SetHierarchyId(v string) *DisassociateAssetsIn
 }
 
 type DisassociateAssetsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -18051,7 +18051,7 @@ func (s *PutLoggingOptionsInput) SetLoggingOptions(v *LoggingOptions) *PutLoggin
 }
 
 type PutLoggingOptionsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -18535,7 +18535,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -19158,7 +19158,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -19298,7 +19298,7 @@ func (s *UpdateAccessPolicyInput) SetClientToken(v string) *UpdateAccessPolicyIn
 }
 
 type UpdateAccessPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -19745,7 +19745,7 @@ func (s *UpdateAssetPropertyInput) SetPropertyNotificationState(v string) *Updat
 }
 
 type UpdateAssetPropertyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -19875,7 +19875,7 @@ func (s *UpdateDashboardInput) SetDashboardName(v string) *UpdateDashboardInput 
 }
 
 type UpdateDashboardOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -20105,7 +20105,7 @@ func (s *UpdateGatewayInput) SetGatewayName(v string) *UpdateGatewayInput {
 }
 
 type UpdateGatewayOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -20432,7 +20432,7 @@ func (s *UpdateProjectInput) SetProjectName(v string) *UpdateProjectInput {
 }
 
 type UpdateProjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

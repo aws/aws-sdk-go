@@ -3766,7 +3766,7 @@ func (s *CancelPipelineReprocessingInput) SetReprocessingId(v string) *CancelPip
 }
 
 type CancelPipelineReprocessingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6955,7 +6955,7 @@ func (s *DeleteChannelInput) SetChannelName(v string) *DeleteChannelInput {
 }
 
 type DeleteChannelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7040,7 +7040,7 @@ func (s *DeleteDatasetContentInput) SetVersionId(v string) *DeleteDatasetContent
 }
 
 type DeleteDatasetContentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7111,7 +7111,7 @@ func (s *DeleteDatasetInput) SetDatasetName(v string) *DeleteDatasetInput {
 }
 
 type DeleteDatasetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7182,7 +7182,7 @@ func (s *DeleteDatastoreInput) SetDatastoreName(v string) *DeleteDatastoreInput 
 }
 
 type DeleteDatastoreOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7253,7 +7253,7 @@ func (s *DeletePipelineInput) SetPipelineName(v string) *DeletePipelineInput {
 }
 
 type DeletePipelineOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8728,7 +8728,7 @@ func (s *IotSiteWiseCustomerManagedDatastoreS3StorageSummary) SetKeyPrefix(v str
 
 // Contains the configuration information of the JSON format.
 type JsonConfiguration struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10372,7 +10372,7 @@ func (s *PutLoggingOptionsInput) SetLoggingOptions(v *LoggingOptions) *PutLoggin
 }
 
 type PutLoggingOptionsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11344,7 +11344,7 @@ func (s *SelectAttributesActivity) SetNext(v string) *SelectAttributesActivity {
 // Used to store channel data in an S3 bucket managed by IoT Analytics. You
 // can't change the choice of S3 storage after the data store is created.
 type ServiceManagedChannelS3Storage struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11367,7 +11367,7 @@ func (s ServiceManagedChannelS3Storage) GoString() string {
 
 // Used to store channel data in an S3 bucket managed by IoT Analytics.
 type ServiceManagedChannelS3StorageSummary struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11391,7 +11391,7 @@ func (s ServiceManagedChannelS3StorageSummary) GoString() string {
 // Used to store data in an Amazon S3 bucket managed by IoT Analytics. You can't
 // change the choice of Amazon S3 storage after your data store is created.
 type ServiceManagedDatastoreS3Storage struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11414,7 +11414,7 @@ func (s ServiceManagedDatastoreS3Storage) GoString() string {
 
 // Contains information about the data store that is managed by IoT Analytics.
 type ServiceManagedDatastoreS3StorageSummary struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11830,7 +11830,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12097,7 +12097,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12199,7 +12199,7 @@ func (s *UpdateChannelInput) SetRetentionPeriod(v *RetentionPeriod) *UpdateChann
 }
 
 type UpdateChannelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12394,7 +12394,7 @@ func (s *UpdateDatasetInput) SetVersioningConfiguration(v *VersioningConfigurati
 }
 
 type UpdateDatasetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12516,7 +12516,7 @@ func (s *UpdateDatastoreInput) SetRetentionPeriod(v *RetentionPeriod) *UpdateDat
 }
 
 type UpdateDatastoreOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12625,7 +12625,7 @@ func (s *UpdatePipelineInput) SetPipelineName(v string) *UpdatePipelineInput {
 }
 
 type UpdatePipelineOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

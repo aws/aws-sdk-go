@@ -1831,7 +1831,7 @@ func (s *PutSnapshotBlockInput) SetSnapshotId(v string) *PutSnapshotBlockInput {
 }
 
 type PutSnapshotBlockOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The SHA256 checksum generated for the block data by Amazon EBS.
 	Checksum *string `location:"header" locationName:"x-amz-Checksum" type:"string"`

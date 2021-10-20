@@ -1038,7 +1038,7 @@ func (s *CompleteAttachmentUploadInput) SetConnectionToken(v string) *CompleteAt
 }
 
 type CompleteAttachmentUploadOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1337,7 +1337,7 @@ func (s *DisconnectParticipantInput) SetConnectionToken(v string) *DisconnectPar
 }
 
 type DisconnectParticipantOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

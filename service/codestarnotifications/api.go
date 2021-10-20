@@ -1835,7 +1835,7 @@ func (s *DeleteTargetInput) SetTargetAddress(v string) *DeleteTargetInput {
 }
 
 type DeleteTargetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3502,7 +3502,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3637,7 +3637,7 @@ func (s *UpdateNotificationRuleInput) SetTargets(v []*Target) *UpdateNotificatio
 }
 
 type UpdateNotificationRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

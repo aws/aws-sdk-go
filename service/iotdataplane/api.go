@@ -1649,7 +1649,7 @@ func (s *PublishInput) SetTopic(v string) *PublishInput {
 }
 
 type PublishOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

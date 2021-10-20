@@ -1582,7 +1582,7 @@ func (s *AssociateDeviceWithPlacementInput) SetProjectName(v string) *AssociateD
 }
 
 type AssociateDeviceWithPlacementOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1680,7 +1680,7 @@ func (s *CreatePlacementInput) SetProjectName(v string) *CreatePlacementInput {
 }
 
 type CreatePlacementOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1786,7 +1786,7 @@ func (s *CreateProjectInput) SetTags(v map[string]*string) *CreateProjectInput {
 }
 
 type CreateProjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1874,7 +1874,7 @@ func (s *DeletePlacementInput) SetProjectName(v string) *DeletePlacementInput {
 }
 
 type DeletePlacementOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1945,7 +1945,7 @@ func (s *DeleteProjectInput) SetProjectName(v string) *DeleteProjectInput {
 }
 
 type DeleteProjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2273,7 +2273,7 @@ func (s *DisassociateDeviceFromPlacementInput) SetProjectName(v string) *Disasso
 }
 
 type DisassociateDeviceFromPlacementOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3381,7 +3381,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3534,7 +3534,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3632,7 +3632,7 @@ func (s *UpdatePlacementInput) SetProjectName(v string) *UpdatePlacementInput {
 }
 
 type UpdatePlacementOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3724,7 +3724,7 @@ func (s *UpdateProjectInput) SetProjectName(v string) *UpdateProjectInput {
 }
 
 type UpdateProjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

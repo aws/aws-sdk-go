@@ -2816,7 +2816,7 @@ func (s *DeleteAppInstanceAdminInput) SetAppInstanceArn(v string) *DeleteAppInst
 }
 
 type DeleteAppInstanceAdminOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2887,7 +2887,7 @@ func (s *DeleteAppInstanceInput) SetAppInstanceArn(v string) *DeleteAppInstanceI
 }
 
 type DeleteAppInstanceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2958,7 +2958,7 @@ func (s *DeleteAppInstanceUserInput) SetAppInstanceUserArn(v string) *DeleteAppI
 }
 
 type DeleteAppInstanceUserOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -8156,7 +8156,7 @@ func (s *DeleteAliasInput) SetName(v string) *DeleteAliasInput {
 }
 
 type DeleteAliasOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8227,7 +8227,7 @@ func (s *DeleteCodeSigningConfigInput) SetCodeSigningConfigArn(v string) *Delete
 }
 
 type DeleteCodeSigningConfigOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8358,7 +8358,7 @@ func (s *DeleteFunctionCodeSigningConfigInput) SetFunctionName(v string) *Delete
 }
 
 type DeleteFunctionCodeSigningConfigOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8440,7 +8440,7 @@ func (s *DeleteFunctionConcurrencyInput) SetFunctionName(v string) *DeleteFuncti
 }
 
 type DeleteFunctionConcurrencyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8535,7 +8535,7 @@ func (s *DeleteFunctionEventInvokeConfigInput) SetQualifier(v string) *DeleteFun
 }
 
 type DeleteFunctionEventInvokeConfigOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8631,7 +8631,7 @@ func (s *DeleteFunctionInput) SetQualifier(v string) *DeleteFunctionInput {
 }
 
 type DeleteFunctionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8716,7 +8716,7 @@ func (s *DeleteLayerVersionInput) SetVersionNumber(v int64) *DeleteLayerVersionI
 }
 
 type DeleteLayerVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8815,7 +8815,7 @@ func (s *DeleteProvisionedConcurrencyConfigInput) SetQualifier(v string) *Delete
 }
 
 type DeleteProvisionedConcurrencyConfigOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12625,7 +12625,7 @@ func (s *InvokeAsyncInput) SetInvokeArgs(v io.ReadSeeker) *InvokeAsyncInput {
 //
 // Deprecated: InvokeAsyncOutput has been deprecated
 type InvokeAsyncOutput struct {
-	_ struct{} `deprecated:"true" type:"structure" nopayload:"true"`
+	_ struct{} `deprecated:"true" type:"structure"`
 
 	// The status code.
 	Status *int64 `location:"statusCode" type:"integer"`
@@ -16109,7 +16109,7 @@ func (s *RemoveLayerVersionPermissionInput) SetVersionNumber(v int64) *RemoveLay
 }
 
 type RemoveLayerVersionPermissionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -16233,7 +16233,7 @@ func (s *RemovePermissionInput) SetStatementId(v string) *RemovePermissionInput 
 }
 
 type RemovePermissionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -16913,7 +16913,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17201,7 +17201,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

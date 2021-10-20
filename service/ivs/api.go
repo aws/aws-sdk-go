@@ -3528,7 +3528,7 @@ func (s *DeleteChannelInput) SetArn(v string) *DeleteChannelInput {
 }
 
 type DeleteChannelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3599,7 +3599,7 @@ func (s *DeletePlaybackKeyPairInput) SetArn(v string) *DeletePlaybackKeyPairInpu
 }
 
 type DeletePlaybackKeyPairOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3667,7 +3667,7 @@ func (s *DeleteRecordingConfigurationInput) SetArn(v string) *DeleteRecordingCon
 }
 
 type DeleteRecordingConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3738,7 +3738,7 @@ func (s *DeleteStreamKeyInput) SetArn(v string) *DeleteStreamKeyInput {
 }
 
 type DeleteStreamKeyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5213,7 +5213,7 @@ func (s *PutMetadataInput) SetMetadata(v string) *PutMetadataInput {
 }
 
 type PutMetadataOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5619,7 +5619,7 @@ func (s *StopStreamInput) SetChannelArn(v string) *StopStreamInput {
 }
 
 type StopStreamOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6037,7 +6037,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6188,7 +6188,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -5869,7 +5869,7 @@ func (s *AssociateWirelessDeviceWithThingInput) SetThingArn(v string) *Associate
 }
 
 type AssociateWirelessDeviceWithThingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6051,7 +6051,7 @@ func (s *AssociateWirelessGatewayWithThingInput) SetThingArn(v string) *Associat
 }
 
 type AssociateWirelessGatewayWithThingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7220,7 +7220,7 @@ func (s *DeleteDestinationInput) SetName(v string) *DeleteDestinationInput {
 }
 
 type DeleteDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7291,7 +7291,7 @@ func (s *DeleteDeviceProfileInput) SetId(v string) *DeleteDeviceProfileInput {
 }
 
 type DeleteDeviceProfileOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7362,7 +7362,7 @@ func (s *DeleteServiceProfileInput) SetId(v string) *DeleteServiceProfileInput {
 }
 
 type DeleteServiceProfileOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7433,7 +7433,7 @@ func (s *DeleteWirelessDeviceInput) SetId(v string) *DeleteWirelessDeviceInput {
 }
 
 type DeleteWirelessDeviceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7504,7 +7504,7 @@ func (s *DeleteWirelessGatewayInput) SetId(v string) *DeleteWirelessGatewayInput
 }
 
 type DeleteWirelessGatewayOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7575,7 +7575,7 @@ func (s *DeleteWirelessGatewayTaskDefinitionInput) SetId(v string) *DeleteWirele
 }
 
 type DeleteWirelessGatewayTaskDefinitionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7646,7 +7646,7 @@ func (s *DeleteWirelessGatewayTaskInput) SetId(v string) *DeleteWirelessGatewayT
 }
 
 type DeleteWirelessGatewayTaskOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7858,7 +7858,7 @@ func (s *DisassociateAwsAccountFromPartnerAccountInput) SetPartnerType(v string)
 }
 
 type DisassociateAwsAccountFromPartnerAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7929,7 +7929,7 @@ func (s *DisassociateWirelessDeviceFromThingInput) SetId(v string) *Disassociate
 }
 
 type DisassociateWirelessDeviceFromThingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8000,7 +8000,7 @@ func (s *DisassociateWirelessGatewayFromCertificateInput) SetId(v string) *Disas
 }
 
 type DisassociateWirelessGatewayFromCertificateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8071,7 +8071,7 @@ func (s *DisassociateWirelessGatewayFromThingInput) SetId(v string) *Disassociat
 }
 
 type DisassociateWirelessGatewayFromThingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11710,7 +11710,7 @@ func (s *PutResourceLogLevelInput) SetResourceType(v string) *PutResourceLogLeve
 }
 
 type PutResourceLogLevelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11754,7 +11754,7 @@ func (s ResetAllResourceLogLevelsInput) GoString() string {
 }
 
 type ResetAllResourceLogLevelsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11840,7 +11840,7 @@ func (s *ResetResourceLogLevelInput) SetResourceType(v string) *ResetResourceLog
 }
 
 type ResetResourceLogLevelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12722,7 +12722,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13018,7 +13018,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13128,7 +13128,7 @@ func (s *UpdateDestinationInput) SetRoleArn(v string) *UpdateDestinationInput {
 }
 
 type UpdateDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13229,7 +13229,7 @@ func (s *UpdateLogLevelsByResourceTypesInput) SetWirelessGatewayLogOptions(v []*
 }
 
 type UpdateLogLevelsByResourceTypesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13333,7 +13333,7 @@ func (s *UpdatePartnerAccountInput) SetSidewalk(v *SidewalkUpdateAccount) *Updat
 }
 
 type UpdatePartnerAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13440,7 +13440,7 @@ func (s *UpdateWirelessDeviceInput) SetName(v string) *UpdateWirelessDeviceInput
 }
 
 type UpdateWirelessDeviceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13548,7 +13548,7 @@ func (s *UpdateWirelessGatewayInput) SetNetIdFilters(v []*string) *UpdateWireles
 }
 
 type UpdateWirelessGatewayOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

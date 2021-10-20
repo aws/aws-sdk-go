@@ -6132,7 +6132,7 @@ func (s *DeleteLaunchProfileMemberInput) SetStudioId(v string) *DeleteLaunchProf
 }
 
 type DeleteLaunchProfileMemberOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6626,7 +6626,7 @@ func (s *DeleteStudioMemberInput) SetStudioId(v string) *DeleteStudioMemberInput
 }
 
 type DeleteStudioMemberOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9626,7 +9626,7 @@ func (s *PutLaunchProfileMembersInput) SetStudioId(v string) *PutLaunchProfileMe
 }
 
 type PutLaunchProfileMembersOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9743,7 +9743,7 @@ func (s *PutStudioMembersInput) SetStudioId(v string) *PutStudioMembersInput {
 }
 
 type PutStudioMembersOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11428,7 +11428,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11583,7 +11583,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

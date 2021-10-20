@@ -3865,7 +3865,7 @@ func (s *PutGroupConfigurationInput) SetGroup(v string) *PutGroupConfigurationIn
 }
 
 type PutGroupConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -3811,7 +3811,7 @@ func (s *AbortMultipartUploadInput) SetVaultName(v string) *AbortMultipartUpload
 }
 
 type AbortMultipartUploadOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3905,7 +3905,7 @@ func (s *AbortVaultLockInput) SetVaultName(v string) *AbortVaultLockInput {
 }
 
 type AbortVaultLockOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4008,7 +4008,7 @@ func (s *AddTagsToVaultInput) SetVaultName(v string) *AddTagsToVaultInput {
 }
 
 type AddTagsToVaultOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4035,7 +4035,7 @@ func (s AddTagsToVaultOutput) GoString() string {
 // For conceptual information, see Working with Archives in Amazon S3 Glacier
 // (https://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html).
 type ArchiveCreationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The ID of the archive. This value is also included as part of the location.
 	ArchiveId *string `location:"header" locationName:"x-amz-archive-id" type:"string"`
@@ -4441,7 +4441,7 @@ func (s *CompleteVaultLockInput) SetVaultName(v string) *CompleteVaultLockInput 
 }
 
 type CompleteVaultLockOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4536,7 +4536,7 @@ func (s *CreateVaultInput) SetVaultName(v string) *CreateVaultInput {
 
 // Contains the Amazon S3 Glacier response to your request.
 type CreateVaultOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The URI of the vault that was created.
 	Location *string `location:"header" locationName:"Location" type:"string"`
@@ -4735,7 +4735,7 @@ func (s *DeleteArchiveInput) SetVaultName(v string) *DeleteArchiveInput {
 }
 
 type DeleteArchiveOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4828,7 +4828,7 @@ func (s *DeleteVaultAccessPolicyInput) SetVaultName(v string) *DeleteVaultAccess
 }
 
 type DeleteVaultAccessPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4993,7 +4993,7 @@ func (s *DeleteVaultNotificationsInput) SetVaultName(v string) *DeleteVaultNotif
 }
 
 type DeleteVaultNotificationsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5015,7 +5015,7 @@ func (s DeleteVaultNotificationsOutput) GoString() string {
 }
 
 type DeleteVaultOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6220,7 +6220,7 @@ func (s *InitiateJobInput) SetVaultName(v string) *InitiateJobInput {
 
 // Contains the Amazon S3 Glacier response to your request.
 type InitiateJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The ID of the job.
 	JobId *string `location:"header" locationName:"x-amz-job-id" type:"string"`
@@ -6366,7 +6366,7 @@ func (s *InitiateMultipartUploadInput) SetVaultName(v string) *InitiateMultipart
 
 // The Amazon S3 Glacier response to your request.
 type InitiateMultipartUploadOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The relative URI path of the multipart upload ID Amazon S3 Glacier created.
 	Location *string `location:"header" locationName:"Location" type:"string"`
@@ -6489,7 +6489,7 @@ func (s *InitiateVaultLockInput) SetVaultName(v string) *InitiateVaultLockInput 
 
 // Contains the Amazon S3 Glacier response to your request.
 type InitiateVaultLockOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The lock ID, which is used to complete the vault locking process.
 	LockId *string `location:"header" locationName:"x-amz-lock-id" type:"string"`
@@ -8485,7 +8485,7 @@ func (s *PurchaseProvisionedCapacityInput) SetAccountId(v string) *PurchaseProvi
 }
 
 type PurchaseProvisionedCapacityOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The ID that identifies the provisioned capacity unit.
 	CapacityId *string `location:"header" locationName:"x-amz-capacity-id" type:"string"`
@@ -8596,7 +8596,7 @@ func (s *RemoveTagsFromVaultInput) SetVaultName(v string) *RemoveTagsFromVaultIn
 }
 
 type RemoveTagsFromVaultOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9075,7 +9075,7 @@ func (s *SetDataRetrievalPolicyInput) SetPolicy(v *DataRetrievalPolicy) *SetData
 }
 
 type SetDataRetrievalPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9177,7 +9177,7 @@ func (s *SetVaultAccessPolicyInput) SetVaultName(v string) *SetVaultAccessPolicy
 }
 
 type SetVaultAccessPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9280,7 +9280,7 @@ func (s *SetVaultNotificationsInput) SetVaultNotificationConfig(v *VaultNotifica
 }
 
 type SetVaultNotificationsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9590,7 +9590,7 @@ func (s *UploadMultipartPartInput) SetVaultName(v string) *UploadMultipartPartIn
 
 // Contains the Amazon S3 Glacier response to your request.
 type UploadMultipartPartOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// The SHA256 tree hash that Amazon S3 Glacier computed for the uploaded part.
 	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`

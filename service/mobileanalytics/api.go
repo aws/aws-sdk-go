@@ -354,7 +354,7 @@ func (s *PutEventsInput) SetEvents(v []*Event) *PutEventsInput {
 }
 
 type PutEventsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

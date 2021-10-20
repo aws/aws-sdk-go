@@ -3661,7 +3661,7 @@ func (s *DeleteDiscovererInput) SetDiscovererId(v string) *DeleteDiscovererInput
 }
 
 type DeleteDiscovererOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3730,7 +3730,7 @@ func (s *DeleteRegistryInput) SetRegistryName(v string) *DeleteRegistryInput {
 }
 
 type DeleteRegistryOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3782,7 +3782,7 @@ func (s *DeleteResourcePolicyInput) SetRegistryName(v string) *DeleteResourcePol
 }
 
 type DeleteResourcePolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3866,7 +3866,7 @@ func (s *DeleteSchemaInput) SetSchemaName(v string) *DeleteSchemaInput {
 }
 
 type DeleteSchemaOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3965,7 +3965,7 @@ func (s *DeleteSchemaVersionInput) SetSchemaVersion(v string) *DeleteSchemaVersi
 }
 
 type DeleteSchemaVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6750,7 +6750,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6961,7 +6961,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -639,7 +639,7 @@ func (s *SendHeartbeatInput) SetModels(v []*Model) *SendHeartbeatInput {
 }
 
 type SendHeartbeatOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -3345,7 +3345,7 @@ func (s *AssociateCertificateInput) SetArn(v string) *AssociateCertificateInput 
 // Successful association of Certificate Manager Amazon Resource Name (ARN)
 // with Mediaconvert returns an OK message.
 type AssociateCertificateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5257,7 +5257,7 @@ func (s *CancelJobInput) SetId(v string) *CancelJobInput {
 
 // A cancel job request will receive a response with an empty body.
 type CancelJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8491,7 +8491,7 @@ func (s *DeleteJobTemplateInput) SetName(v string) *DeleteJobTemplateInput {
 // Delete job template requests will return an OK message or error message with
 // an empty body.
 type DeleteJobTemplateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8537,7 +8537,7 @@ func (s DeletePolicyInput) GoString() string {
 
 // Successful DELETE policy requests will return an OK message.
 type DeletePolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8611,7 +8611,7 @@ func (s *DeletePresetInput) SetName(v string) *DeletePresetInput {
 // Delete preset requests will return an OK message or error message with an
 // empty body.
 type DeletePresetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8686,7 +8686,7 @@ func (s *DeleteQueueInput) SetName(v string) *DeleteQueueInput {
 // Delete queue requests return an OK message or error message with an empty
 // body.
 type DeleteQueueOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8892,7 +8892,7 @@ func (s *DisassociateCertificateInput) SetArn(v string) *DisassociateCertificate
 // Successful disassociation of Certificate Manager Amazon Resource Name (ARN)
 // with Mediaconvert returns an OK message.
 type DisassociateCertificateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -22141,7 +22141,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 
 // A successful request to add tags to a resource returns an OK message.
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -22733,7 +22733,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 
 // A successful request to remove tags from a resource returns an OK message.
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

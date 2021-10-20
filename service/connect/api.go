@@ -12086,7 +12086,7 @@ func (s *AssociateApprovedOriginInput) SetOrigin(v string) *AssociateApprovedOri
 }
 
 type AssociateApprovedOriginOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12181,7 +12181,7 @@ func (s *AssociateBotInput) SetLexV2Bot(v *LexV2Bot) *AssociateBotInput {
 }
 
 type AssociateBotOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12386,7 +12386,7 @@ func (s *AssociateLambdaFunctionInput) SetInstanceId(v string) *AssociateLambdaF
 }
 
 type AssociateLambdaFunctionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12472,7 +12472,7 @@ func (s *AssociateLexBotInput) SetLexBot(v *LexBot) *AssociateLexBotInput {
 }
 
 type AssociateLexBotOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12578,7 +12578,7 @@ func (s *AssociateQueueQuickConnectsInput) SetQuickConnectIds(v []*string) *Asso
 }
 
 type AssociateQueueQuickConnectsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12694,7 +12694,7 @@ func (s *AssociateRoutingProfileQueuesInput) SetRoutingProfileId(v string) *Asso
 }
 
 type AssociateRoutingProfileQueuesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15264,7 +15264,7 @@ func (s *DeleteHoursOfOperationInput) SetInstanceId(v string) *DeleteHoursOfOper
 }
 
 type DeleteHoursOfOperationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15336,7 +15336,7 @@ func (s *DeleteInstanceInput) SetInstanceId(v string) *DeleteInstanceInput {
 }
 
 type DeleteInstanceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15425,7 +15425,7 @@ func (s *DeleteIntegrationAssociationInput) SetIntegrationAssociationId(v string
 }
 
 type DeleteIntegrationAssociationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15514,7 +15514,7 @@ func (s *DeleteQuickConnectInput) SetQuickConnectId(v string) *DeleteQuickConnec
 }
 
 type DeleteQuickConnectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15620,7 +15620,7 @@ func (s *DeleteUseCaseInput) SetUseCaseId(v string) *DeleteUseCaseInput {
 }
 
 type DeleteUseCaseOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15709,7 +15709,7 @@ func (s *DeleteUserHierarchyGroupInput) SetInstanceId(v string) *DeleteUserHiera
 }
 
 type DeleteUserHierarchyGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15798,7 +15798,7 @@ func (s *DeleteUserInput) SetUserId(v string) *DeleteUserInput {
 }
 
 type DeleteUserOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17146,7 +17146,7 @@ func (s *DisassociateApprovedOriginInput) SetOrigin(v string) *DisassociateAppro
 }
 
 type DisassociateApprovedOriginOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17241,7 +17241,7 @@ func (s *DisassociateBotInput) SetLexV2Bot(v *LexV2Bot) *DisassociateBotInput {
 }
 
 type DisassociateBotOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17345,7 +17345,7 @@ func (s *DisassociateInstanceStorageConfigInput) SetResourceType(v string) *Disa
 }
 
 type DisassociateInstanceStorageConfigOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17434,7 +17434,7 @@ func (s *DisassociateLambdaFunctionInput) SetInstanceId(v string) *DisassociateL
 }
 
 type DisassociateLambdaFunctionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17534,7 +17534,7 @@ func (s *DisassociateLexBotInput) SetLexRegion(v string) *DisassociateLexBotInpu
 }
 
 type DisassociateLexBotOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17640,7 +17640,7 @@ func (s *DisassociateQueueQuickConnectsInput) SetQuickConnectIds(v []*string) *D
 }
 
 type DisassociateQueueQuickConnectsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17753,7 +17753,7 @@ func (s *DisassociateRoutingProfileQueuesInput) SetRoutingProfileId(v string) *D
 }
 
 type DisassociateRoutingProfileQueuesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17843,7 +17843,7 @@ func (s *DisassociateSecurityKeyInput) SetInstanceId(v string) *DisassociateSecu
 }
 
 type DisassociateSecurityKeyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -24921,7 +24921,7 @@ func (s *ResumeContactRecordingInput) SetInstanceId(v string) *ResumeContactReco
 }
 
 type ResumeContactRecordingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -25857,7 +25857,7 @@ func (s *StartContactRecordingInput) SetVoiceRecordingConfiguration(v *VoiceReco
 }
 
 type StartContactRecordingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26322,7 +26322,7 @@ func (s *StopContactInput) SetInstanceId(v string) *StopContactInput {
 }
 
 type StopContactOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26429,7 +26429,7 @@ func (s *StopContactRecordingInput) SetInstanceId(v string) *StopContactRecordin
 }
 
 type StopContactRecordingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26536,7 +26536,7 @@ func (s *SuspendContactRecordingInput) SetInstanceId(v string) *SuspendContactRe
 }
 
 type SuspendContactRecordingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26625,7 +26625,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26818,7 +26818,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26958,7 +26958,7 @@ func (s *UpdateAgentStatusInput) SetState(v string) *UpdateAgentStatusInput {
 }
 
 type UpdateAgentStatusOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27066,7 +27066,7 @@ func (s *UpdateContactAttributesInput) SetInstanceId(v string) *UpdateContactAtt
 }
 
 type UpdateContactAttributesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27170,7 +27170,7 @@ func (s *UpdateContactFlowContentInput) SetInstanceId(v string) *UpdateContactFl
 }
 
 type UpdateContactFlowContentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27279,7 +27279,7 @@ func (s *UpdateContactFlowNameInput) SetName(v string) *UpdateContactFlowNameInp
 }
 
 type UpdateContactFlowNameOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27417,7 +27417,7 @@ func (s *UpdateHoursOfOperationInput) SetTimeZone(v string) *UpdateHoursOfOperat
 }
 
 type UpdateHoursOfOperationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27526,7 +27526,7 @@ func (s *UpdateInstanceAttributeInput) SetValue(v string) *UpdateInstanceAttribu
 }
 
 type UpdateInstanceAttributeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27649,7 +27649,7 @@ func (s *UpdateInstanceStorageConfigInput) SetStorageConfig(v *InstanceStorageCo
 }
 
 type UpdateInstanceStorageConfigOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27752,7 +27752,7 @@ func (s *UpdateQueueHoursOfOperationInput) SetQueueId(v string) *UpdateQueueHour
 }
 
 type UpdateQueueHoursOfOperationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27851,7 +27851,7 @@ func (s *UpdateQueueMaxContactsInput) SetQueueId(v string) *UpdateQueueMaxContac
 }
 
 type UpdateQueueMaxContactsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27964,7 +27964,7 @@ func (s *UpdateQueueNameInput) SetQueueId(v string) *UpdateQueueNameInput {
 }
 
 type UpdateQueueNameOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28072,7 +28072,7 @@ func (s *UpdateQueueOutboundCallerConfigInput) SetQueueId(v string) *UpdateQueue
 }
 
 type UpdateQueueOutboundCallerConfigOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28175,7 +28175,7 @@ func (s *UpdateQueueStatusInput) SetStatus(v string) *UpdateQueueStatusInput {
 }
 
 type UpdateQueueStatusOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28283,7 +28283,7 @@ func (s *UpdateQuickConnectConfigInput) SetQuickConnectId(v string) *UpdateQuick
 }
 
 type UpdateQuickConnectConfigOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28393,7 +28393,7 @@ func (s *UpdateQuickConnectNameInput) SetQuickConnectId(v string) *UpdateQuickCo
 }
 
 type UpdateQuickConnectNameOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28506,7 +28506,7 @@ func (s *UpdateRoutingProfileConcurrencyInput) SetRoutingProfileId(v string) *Up
 }
 
 type UpdateRoutingProfileConcurrencyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28609,7 +28609,7 @@ func (s *UpdateRoutingProfileDefaultOutboundQueueInput) SetRoutingProfileId(v st
 }
 
 type UpdateRoutingProfileDefaultOutboundQueueOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28722,7 +28722,7 @@ func (s *UpdateRoutingProfileNameInput) SetRoutingProfileId(v string) *UpdateRou
 }
 
 type UpdateRoutingProfileNameOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28839,7 +28839,7 @@ func (s *UpdateRoutingProfileQueuesInput) SetRoutingProfileId(v string) *UpdateR
 }
 
 type UpdateRoutingProfileQueuesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28942,7 +28942,7 @@ func (s *UpdateUserHierarchyGroupNameInput) SetName(v string) *UpdateUserHierarc
 }
 
 type UpdateUserHierarchyGroupNameOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29040,7 +29040,7 @@ func (s *UpdateUserHierarchyInput) SetUserId(v string) *UpdateUserHierarchyInput
 }
 
 type UpdateUserHierarchyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29131,7 +29131,7 @@ func (s *UpdateUserHierarchyStructureInput) SetInstanceId(v string) *UpdateUserH
 }
 
 type UpdateUserHierarchyStructureOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29239,7 +29239,7 @@ func (s *UpdateUserIdentityInfoInput) SetUserId(v string) *UpdateUserIdentityInf
 }
 
 type UpdateUserIdentityInfoOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29347,7 +29347,7 @@ func (s *UpdateUserPhoneConfigInput) SetUserId(v string) *UpdateUserPhoneConfigI
 }
 
 type UpdateUserPhoneConfigOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29450,7 +29450,7 @@ func (s *UpdateUserRoutingProfileInput) SetUserId(v string) *UpdateUserRoutingPr
 }
 
 type UpdateUserRoutingProfileOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29556,7 +29556,7 @@ func (s *UpdateUserSecurityProfilesInput) SetUserId(v string) *UpdateUserSecurit
 }
 
 type UpdateUserSecurityProfilesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

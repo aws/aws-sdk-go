@@ -21496,7 +21496,7 @@ func (s *AssociatePhoneNumberWithUserInput) SetUserId(v string) *AssociatePhoneN
 }
 
 type AssociatePhoneNumberWithUserOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -21796,7 +21796,7 @@ func (s *AssociateSigninDelegateGroupsWithAccountInput) SetSigninDelegateGroups(
 }
 
 type AssociateSigninDelegateGroupsWithAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27637,7 +27637,7 @@ func (s *DeleteAccountInput) SetAccountId(v string) *DeleteAccountInput {
 }
 
 type DeleteAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27725,7 +27725,7 @@ func (s *DeleteAppInstanceAdminInput) SetAppInstanceArn(v string) *DeleteAppInst
 }
 
 type DeleteAppInstanceAdminOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27796,7 +27796,7 @@ func (s *DeleteAppInstanceInput) SetAppInstanceArn(v string) *DeleteAppInstanceI
 }
 
 type DeleteAppInstanceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27867,7 +27867,7 @@ func (s *DeleteAppInstanceStreamingConfigurationsInput) SetAppInstanceArn(v stri
 }
 
 type DeleteAppInstanceStreamingConfigurationsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27938,7 +27938,7 @@ func (s *DeleteAppInstanceUserInput) SetAppInstanceUserArn(v string) *DeleteAppI
 }
 
 type DeleteAppInstanceUserOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28026,7 +28026,7 @@ func (s *DeleteAttendeeInput) SetMeetingId(v string) *DeleteAttendeeInput {
 }
 
 type DeleteAttendeeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28126,7 +28126,7 @@ func (s *DeleteChannelBanInput) SetMemberArn(v string) *DeleteChannelBanInput {
 }
 
 type DeleteChannelBanOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28287,7 +28287,7 @@ func (s *DeleteChannelMembershipInput) SetMemberArn(v string) *DeleteChannelMemb
 }
 
 type DeleteChannelMembershipOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28387,7 +28387,7 @@ func (s *DeleteChannelMessageInput) SetMessageId(v string) *DeleteChannelMessage
 }
 
 type DeleteChannelMessageOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28487,7 +28487,7 @@ func (s *DeleteChannelModeratorInput) SetChimeBearer(v string) *DeleteChannelMod
 }
 
 type DeleteChannelModeratorOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28509,7 +28509,7 @@ func (s DeleteChannelModeratorOutput) GoString() string {
 }
 
 type DeleteChannelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28597,7 +28597,7 @@ func (s *DeleteEventsConfigurationInput) SetBotId(v string) *DeleteEventsConfigu
 }
 
 type DeleteEventsConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28668,7 +28668,7 @@ func (s *DeleteMediaCapturePipelineInput) SetMediaPipelineId(v string) *DeleteMe
 }
 
 type DeleteMediaCapturePipelineOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28739,7 +28739,7 @@ func (s *DeleteMeetingInput) SetMeetingId(v string) *DeleteMeetingInput {
 }
 
 type DeleteMeetingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28810,7 +28810,7 @@ func (s *DeletePhoneNumberInput) SetPhoneNumberId(v string) *DeletePhoneNumberIn
 }
 
 type DeletePhoneNumberOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28898,7 +28898,7 @@ func (s *DeleteProxySessionInput) SetVoiceConnectorId(v string) *DeleteProxySess
 }
 
 type DeleteProxySessionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29069,7 +29069,7 @@ func (s *DeleteRoomMembershipInput) SetRoomId(v string) *DeleteRoomMembershipInp
 }
 
 type DeleteRoomMembershipOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29091,7 +29091,7 @@ func (s DeleteRoomMembershipOutput) GoString() string {
 }
 
 type DeleteRoomOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29162,7 +29162,7 @@ func (s *DeleteSipMediaApplicationInput) SetSipMediaApplicationId(v string) *Del
 }
 
 type DeleteSipMediaApplicationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29233,7 +29233,7 @@ func (s *DeleteSipRuleInput) SetSipRuleId(v string) *DeleteSipRuleInput {
 }
 
 type DeleteSipRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29304,7 +29304,7 @@ func (s *DeleteVoiceConnectorEmergencyCallingConfigurationInput) SetVoiceConnect
 }
 
 type DeleteVoiceConnectorEmergencyCallingConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29375,7 +29375,7 @@ func (s *DeleteVoiceConnectorGroupInput) SetVoiceConnectorGroupId(v string) *Del
 }
 
 type DeleteVoiceConnectorGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29495,7 +29495,7 @@ func (s *DeleteVoiceConnectorOriginationInput) SetVoiceConnectorId(v string) *De
 }
 
 type DeleteVoiceConnectorOriginationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29517,7 +29517,7 @@ func (s DeleteVoiceConnectorOriginationOutput) GoString() string {
 }
 
 type DeleteVoiceConnectorOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29588,7 +29588,7 @@ func (s *DeleteVoiceConnectorProxyInput) SetVoiceConnectorId(v string) *DeleteVo
 }
 
 type DeleteVoiceConnectorProxyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29659,7 +29659,7 @@ func (s *DeleteVoiceConnectorStreamingConfigurationInput) SetVoiceConnectorId(v 
 }
 
 type DeleteVoiceConnectorStreamingConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29745,7 +29745,7 @@ func (s *DeleteVoiceConnectorTerminationCredentialsInput) SetVoiceConnectorId(v 
 }
 
 type DeleteVoiceConnectorTerminationCredentialsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -29816,7 +29816,7 @@ func (s *DeleteVoiceConnectorTerminationInput) SetVoiceConnectorId(v string) *De
 }
 
 type DeleteVoiceConnectorTerminationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -30800,7 +30800,7 @@ func (s *DisassociatePhoneNumberFromUserInput) SetUserId(v string) *Disassociate
 }
 
 type DisassociatePhoneNumberFromUserOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -31080,7 +31080,7 @@ func (s *DisassociateSigninDelegateGroupsFromAccountInput) SetGroupNames(v []*st
 }
 
 type DisassociateSigninDelegateGroupsFromAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -37898,7 +37898,7 @@ func (s *LogoutUserInput) SetUserId(v string) *LogoutUserInput {
 }
 
 type LogoutUserOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -40560,7 +40560,7 @@ func (s *PutVoiceConnectorTerminationCredentialsInput) SetVoiceConnectorId(v str
 }
 
 type PutVoiceConnectorTerminationCredentialsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -40882,7 +40882,7 @@ func (s *RedactConversationMessageInput) SetMessageId(v string) *RedactConversat
 }
 
 type RedactConversationMessageOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -40987,7 +40987,7 @@ func (s *RedactRoomMessageInput) SetRoomId(v string) *RedactRoomMessageInput {
 }
 
 type RedactRoomMessageOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -42629,7 +42629,7 @@ func (s *StartMeetingTranscriptionInput) SetTranscriptionConfiguration(v *Transc
 }
 
 type StartMeetingTranscriptionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -42700,7 +42700,7 @@ func (s *StopMeetingTranscriptionInput) SetMeetingId(v string) *StopMeetingTrans
 }
 
 type StopMeetingTranscriptionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -43017,7 +43017,7 @@ func (s *TagAttendeeInput) SetTags(v []*Tag) *TagAttendeeInput {
 }
 
 type TagAttendeeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -43115,7 +43115,7 @@ func (s *TagMeetingInput) SetTags(v []*Tag) *TagMeetingInput {
 }
 
 type TagMeetingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -43217,7 +43217,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -43788,7 +43788,7 @@ func (s *UntagAttendeeInput) SetTagKeys(v []*string) *UntagAttendeeInput {
 }
 
 type UntagAttendeeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -43876,7 +43876,7 @@ func (s *UntagMeetingInput) SetTagKeys(v []*string) *UntagMeetingInput {
 }
 
 type UntagMeetingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -43968,7 +43968,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -44154,7 +44154,7 @@ func (s *UpdateAccountSettingsInput) SetAccountSettings(v *AccountSettings) *Upd
 }
 
 type UpdateAccountSettingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -44926,7 +44926,7 @@ func (s *UpdateGlobalSettingsInput) SetVoiceConnector(v *VoiceConnectorSettings)
 }
 
 type UpdateGlobalSettingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -45170,7 +45170,7 @@ func (s *UpdatePhoneNumberSettingsInput) SetCallingName(v string) *UpdatePhoneNu
 }
 
 type UpdatePhoneNumberSettingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -46176,7 +46176,7 @@ func (s *UpdateUserSettingsInput) SetUserSettings(v *UserSettings) *UpdateUserSe
 }
 
 type UpdateUserSettingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
