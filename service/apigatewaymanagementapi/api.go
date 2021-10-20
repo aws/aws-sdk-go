@@ -324,7 +324,7 @@ func (s *DeleteConnectionInput) SetConnectionId(v string) *DeleteConnectionInput
 }
 
 type DeleteConnectionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -801,7 +801,7 @@ func (s *PostToConnectionInput) SetData(v []byte) *PostToConnectionInput {
 }
 
 type PostToConnectionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

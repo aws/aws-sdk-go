@@ -6365,7 +6365,7 @@ func (s *PutFeedbackInput) SetInsightFeedback(v *InsightFeedback) *PutFeedbackIn
 }
 
 type PutFeedbackOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7151,7 +7151,7 @@ func (s *RemoveNotificationChannelInput) SetId(v string) *RemoveNotificationChan
 }
 
 type RemoveNotificationChannelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7943,7 +7943,7 @@ func (s *StartCostEstimationInput) SetResourceCollection(v *CostEstimationResour
 }
 
 type StartCostEstimationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8208,7 +8208,7 @@ func (s *UpdateResourceCollectionInput) SetResourceCollection(v *UpdateResourceC
 }
 
 type UpdateResourceCollectionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8311,7 +8311,7 @@ func (s *UpdateServiceIntegrationInput) SetServiceIntegration(v *UpdateServiceIn
 }
 
 type UpdateServiceIntegrationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

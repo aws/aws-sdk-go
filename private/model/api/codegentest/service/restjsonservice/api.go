@@ -560,7 +560,7 @@ func (c *RESTJSONService) OtherOperationWithContext(ctx aws.Context, input *Othe
 }
 
 type EmptyEvent struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -1616,7 +1616,7 @@ func (s OtherOperationInput) GoString() string {
 }
 
 type OtherOperationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

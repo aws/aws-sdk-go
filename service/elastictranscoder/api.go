@@ -2452,7 +2452,7 @@ func (s *CancelJobInput) SetId(v string) *CancelJobInput {
 // The response body contains a JSON object. If the job is successfully canceled,
 // the value of Success is true.
 type CancelJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3915,7 +3915,7 @@ func (s *DeletePipelineInput) SetId(v string) *DeletePipelineInput {
 
 // The DeletePipelineResponse structure.
 type DeletePipelineOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3988,7 +3988,7 @@ func (s *DeletePresetInput) SetId(v string) *DeletePresetInput {
 
 // The DeletePresetResponse structure.
 type DeletePresetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -8582,7 +8582,7 @@ func (s *DeleteBackupSelectionInput) SetSelectionId(v string) *DeleteBackupSelec
 }
 
 type DeleteBackupSelectionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8656,7 +8656,7 @@ func (s *DeleteBackupVaultAccessPolicyInput) SetBackupVaultName(v string) *Delet
 }
 
 type DeleteBackupVaultAccessPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8779,7 +8779,7 @@ func (s *DeleteBackupVaultLockConfigurationInput) SetBackupVaultName(v string) *
 }
 
 type DeleteBackupVaultLockConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8853,7 +8853,7 @@ func (s *DeleteBackupVaultNotificationsInput) SetBackupVaultName(v string) *Dele
 }
 
 type DeleteBackupVaultNotificationsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8875,7 +8875,7 @@ func (s DeleteBackupVaultNotificationsOutput) GoString() string {
 }
 
 type DeleteBackupVaultOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8946,7 +8946,7 @@ func (s *DeleteFrameworkInput) SetFrameworkName(v string) *DeleteFrameworkInput 
 }
 
 type DeleteFrameworkOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9038,7 +9038,7 @@ func (s *DeleteRecoveryPointInput) SetRecoveryPointArn(v string) *DeleteRecovery
 }
 
 type DeleteRecoveryPointOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9109,7 +9109,7 @@ func (s *DeleteReportPlanInput) SetReportPlanName(v string) *DeleteReportPlanInp
 }
 
 type DeleteReportPlanOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10902,7 +10902,7 @@ func (s *DisassociateRecoveryPointInput) SetRecoveryPointArn(v string) *Disassoc
 }
 
 type DisassociateRecoveryPointOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15020,7 +15020,7 @@ func (s *PutBackupVaultAccessPolicyInput) SetPolicy(v string) *PutBackupVaultAcc
 }
 
 type PutBackupVaultAccessPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15162,7 +15162,7 @@ func (s *PutBackupVaultLockConfigurationInput) SetMinRetentionDays(v int64) *Put
 }
 
 type PutBackupVaultLockConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15279,7 +15279,7 @@ func (s *PutBackupVaultNotificationsInput) SetSNSTopicArn(v string) *PutBackupVa
 }
 
 type PutBackupVaultNotificationsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17573,7 +17573,7 @@ func (s *StopBackupJobInput) SetBackupJobId(v string) *StopBackupJobInput {
 }
 
 type StopBackupJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17664,7 +17664,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17754,7 +17754,7 @@ func (s *UntagResourceInput) SetTagKeyList(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -18095,7 +18095,7 @@ func (s *UpdateGlobalSettingsInput) SetGlobalSettings(v map[string]*string) *Upd
 }
 
 type UpdateGlobalSettingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -18305,7 +18305,7 @@ func (s *UpdateRegionSettingsInput) SetResourceTypeOptInPreference(v map[string]
 }
 
 type UpdateRegionSettingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

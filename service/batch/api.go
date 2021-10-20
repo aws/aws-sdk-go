@@ -2285,7 +2285,7 @@ func (s *CancelJobInput) SetReason(v string) *CancelJobInput {
 }
 
 type CancelJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4393,7 +4393,7 @@ func (s *DeleteComputeEnvironmentInput) SetComputeEnvironment(v string) *DeleteC
 }
 
 type DeleteComputeEnvironmentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4462,7 +4462,7 @@ func (s *DeleteJobQueueInput) SetJobQueue(v string) *DeleteJobQueueInput {
 }
 
 type DeleteJobQueueOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4531,7 +4531,7 @@ func (s *DeregisterJobDefinitionInput) SetJobDefinition(v string) *DeregisterJob
 }
 
 type DeregisterJobDefinitionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8462,7 +8462,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8547,7 +8547,7 @@ func (s *TerminateJobInput) SetReason(v string) *TerminateJobInput {
 }
 
 type TerminateJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8794,7 +8794,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

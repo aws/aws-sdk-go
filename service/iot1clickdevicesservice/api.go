@@ -1111,7 +1111,7 @@ func (c *IoT1ClickDevicesService) UpdateDeviceStateWithContext(ctx aws.Context, 
 }
 
 type Attributes struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2682,7 +2682,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2840,7 +2840,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2918,7 +2918,7 @@ func (s *UpdateDeviceStateInput) SetEnabled(v bool) *UpdateDeviceStateInput {
 }
 
 type UpdateDeviceStateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

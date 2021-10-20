@@ -556,7 +556,7 @@ func (s *PutRawMessageContentInput) SetMessageId(v string) *PutRawMessageContent
 }
 
 type PutRawMessageContentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

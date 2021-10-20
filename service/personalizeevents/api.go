@@ -660,7 +660,7 @@ func (s *PutEventsInput) SetUserId(v string) *PutEventsInput {
 }
 
 type PutEventsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -756,7 +756,7 @@ func (s *PutItemsInput) SetItems(v []*Item) *PutItemsInput {
 }
 
 type PutItemsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -852,7 +852,7 @@ func (s *PutUsersInput) SetUsers(v []*User) *PutUsersInput {
 }
 
 type PutUsersOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

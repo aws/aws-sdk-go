@@ -5026,7 +5026,7 @@ func (s *DeleteAssistantAssociationInput) SetAssistantId(v string) *DeleteAssist
 }
 
 type DeleteAssistantAssociationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5098,7 +5098,7 @@ func (s *DeleteAssistantInput) SetAssistantId(v string) *DeleteAssistantInput {
 }
 
 type DeleteAssistantOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5188,7 +5188,7 @@ func (s *DeleteContentInput) SetKnowledgeBaseId(v string) *DeleteContentInput {
 }
 
 type DeleteContentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5260,7 +5260,7 @@ func (s *DeleteKnowledgeBaseInput) SetKnowledgeBaseId(v string) *DeleteKnowledge
 }
 
 type DeleteKnowledgeBaseOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7468,7 +7468,7 @@ func (s *RemoveKnowledgeBaseTemplateUriInput) SetKnowledgeBaseId(v string) *Remo
 }
 
 type RemoveKnowledgeBaseTemplateUriOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8496,7 +8496,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8652,7 +8652,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

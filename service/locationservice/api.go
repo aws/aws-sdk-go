@@ -5541,7 +5541,7 @@ func (s *AssociateTrackerConsumerInput) SetTrackerName(v string) *AssociateTrack
 }
 
 type AssociateTrackerConsumerOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8425,7 +8425,7 @@ func (s *DeleteGeofenceCollectionInput) SetCollectionName(v string) *DeleteGeofe
 }
 
 type DeleteGeofenceCollectionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8496,7 +8496,7 @@ func (s *DeleteMapInput) SetMapName(v string) *DeleteMapInput {
 }
 
 type DeleteMapOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8567,7 +8567,7 @@ func (s *DeletePlaceIndexInput) SetIndexName(v string) *DeletePlaceIndexInput {
 }
 
 type DeletePlaceIndexOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8638,7 +8638,7 @@ func (s *DeleteRouteCalculatorInput) SetCalculatorName(v string) *DeleteRouteCal
 }
 
 type DeleteRouteCalculatorOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8709,7 +8709,7 @@ func (s *DeleteTrackerInput) SetTrackerName(v string) *DeleteTrackerInput {
 }
 
 type DeleteTrackerOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9852,7 +9852,7 @@ func (s *DisassociateTrackerConsumerInput) SetTrackerName(v string) *Disassociat
 }
 
 type DisassociateTrackerConsumerOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13979,7 +13979,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14250,7 +14250,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

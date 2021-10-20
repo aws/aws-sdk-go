@@ -4632,7 +4632,7 @@ func (s *AddTagsInput) SetTagList(v []*Tag) *AddTagsInput {
 }
 
 type AddTagsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6579,7 +6579,7 @@ func (s DeleteElasticsearchServiceRoleInput) GoString() string {
 }
 
 type DeleteElasticsearchServiceRoleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11940,7 +11940,7 @@ func (s *RemoveTagsInput) SetTagKeys(v []*string) *RemoveTagsInput {
 }
 
 type RemoveTagsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

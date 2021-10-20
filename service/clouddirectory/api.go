@@ -9019,7 +9019,7 @@ func (s *AddFacetToObjectInput) SetSchemaFacet(v *SchemaFacet) *AddFacetToObject
 }
 
 type AddFacetToObjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9344,7 +9344,7 @@ func (s *AttachPolicyInput) SetPolicyReference(v *ObjectReference) *AttachPolicy
 }
 
 type AttachPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9924,7 +9924,7 @@ func (s *BatchAddFacetToObject) SetSchemaFacet(v *SchemaFacet) *BatchAddFacetToO
 
 // The result of a batch add facet to object operation.
 type BatchAddFacetToObjectResponse struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10119,7 +10119,7 @@ func (s *BatchAttachPolicy) SetPolicyReference(v *ObjectReference) *BatchAttachP
 
 // Represents the output of an AttachPolicy response operation.
 type BatchAttachPolicyResponse struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10703,7 +10703,7 @@ func (s *BatchDeleteObject) SetObjectReference(v *ObjectReference) *BatchDeleteO
 
 // Represents the output of a DeleteObject response operation.
 type BatchDeleteObjectResponse struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10988,7 +10988,7 @@ func (s *BatchDetachPolicy) SetPolicyReference(v *ObjectReference) *BatchDetachP
 
 // Represents the output of a DetachPolicy response operation.
 type BatchDetachPolicyResponse struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11064,7 +11064,7 @@ func (s *BatchDetachTypedLink) SetTypedLinkSpecifier(v *TypedLinkSpecifier) *Bat
 
 // Represents the output of a DetachTypedLink response operation.
 type BatchDetachTypedLinkResponse struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13383,7 +13383,7 @@ func (s *BatchRemoveFacetFromObject) SetSchemaFacet(v *SchemaFacet) *BatchRemove
 
 // An empty result that represents success.
 type BatchRemoveFacetFromObjectResponse struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13485,7 +13485,7 @@ func (s *BatchUpdateLinkAttributes) SetTypedLinkSpecifier(v *TypedLinkSpecifier)
 
 // Represents the output of a UpdateLinkAttributes response operation.
 type BatchUpdateLinkAttributesResponse struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14499,7 +14499,7 @@ func (s *CreateFacetInput) SetSchemaArn(v string) *CreateFacetInput {
 }
 
 type CreateFacetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14951,7 +14951,7 @@ func (s *CreateTypedLinkFacetInput) SetSchemaArn(v string) *CreateTypedLinkFacet
 }
 
 type CreateTypedLinkFacetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15116,7 +15116,7 @@ func (s *DeleteFacetInput) SetSchemaArn(v string) *DeleteFacetInput {
 }
 
 type DeleteFacetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15199,7 +15199,7 @@ func (s *DeleteObjectInput) SetObjectReference(v *ObjectReference) *DeleteObject
 }
 
 type DeleteObjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15361,7 +15361,7 @@ func (s *DeleteTypedLinkFacetInput) SetSchemaArn(v string) *DeleteTypedLinkFacet
 }
 
 type DeleteTypedLinkFacetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15674,7 +15674,7 @@ func (s *DetachPolicyInput) SetPolicyReference(v *ObjectReference) *DetachPolicy
 }
 
 type DetachPolicyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15762,7 +15762,7 @@ func (s *DetachTypedLinkInput) SetTypedLinkSpecifier(v *TypedLinkSpecifier) *Det
 }
 
 type DetachTypedLinkOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -22252,7 +22252,7 @@ func (s *RemoveFacetFromObjectInput) SetSchemaFacet(v *SchemaFacet) *RemoveFacet
 }
 
 type RemoveFacetFromObjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -22802,7 +22802,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -23598,7 +23598,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -23715,7 +23715,7 @@ func (s *UpdateFacetInput) SetSchemaArn(v string) *UpdateFacetInput {
 }
 
 type UpdateFacetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -23828,7 +23828,7 @@ func (s *UpdateLinkAttributesInput) SetTypedLinkSpecifier(v *TypedLinkSpecifier)
 }
 
 type UpdateLinkAttributesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -24168,7 +24168,7 @@ func (s *UpdateTypedLinkFacetInput) SetSchemaArn(v string) *UpdateTypedLinkFacet
 }
 
 type UpdateTypedLinkFacetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

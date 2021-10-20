@@ -6631,7 +6631,7 @@ func (s *AssociateAssessmentReportEvidenceFolderInput) SetEvidenceFolderId(v str
 }
 
 type AssociateAssessmentReportEvidenceFolderOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9077,7 +9077,7 @@ func (s *DeleteAssessmentFrameworkInput) SetFrameworkId(v string) *DeleteAssessm
 }
 
 type DeleteAssessmentFrameworkOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9148,7 +9148,7 @@ func (s *DeleteAssessmentInput) SetAssessmentId(v string) *DeleteAssessmentInput
 }
 
 type DeleteAssessmentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9236,7 +9236,7 @@ func (s *DeleteAssessmentReportInput) SetAssessmentReportId(v string) *DeleteAss
 }
 
 type DeleteAssessmentReportOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9307,7 +9307,7 @@ func (s *DeleteControlInput) SetControlId(v string) *DeleteControlInput {
 }
 
 type DeleteControlOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9426,7 +9426,7 @@ func (s *DeregisterOrganizationAdminAccountInput) SetAdminAccountId(v string) *D
 }
 
 type DeregisterOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9514,7 +9514,7 @@ func (s *DisassociateAssessmentReportEvidenceFolderInput) SetEvidenceFolderId(v 
 }
 
 type DisassociateAssessmentReportEvidenceFolderOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12971,7 +12971,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13101,7 +13101,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -3582,7 +3582,7 @@ func (s *DeleteMemberInput) SetNetworkId(v string) *DeleteMemberInput {
 }
 
 type DeleteMemberOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3692,7 +3692,7 @@ func (s *DeleteNodeInput) SetNodeId(v string) *DeleteNodeInput {
 }
 
 type DeleteNodeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7445,7 +7445,7 @@ func (s *RejectInvitationInput) SetInvitationId(v string) *RejectInvitationInput
 }
 
 type RejectInvitationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7852,7 +7852,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8071,7 +8071,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8169,7 +8169,7 @@ func (s *UpdateMemberInput) SetNetworkId(v string) *UpdateMemberInput {
 }
 
 type UpdateMemberOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8280,7 +8280,7 @@ func (s *UpdateNodeInput) SetNodeId(v string) *UpdateNodeInput {
 }
 
 type UpdateNodeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8399,7 +8399,7 @@ func (s *VoteOnProposalInput) SetVoterMemberId(v string) *VoteOnProposalInput {
 }
 
 type VoteOnProposalOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

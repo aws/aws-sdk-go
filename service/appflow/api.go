@@ -2003,7 +2003,7 @@ func (s *AmplitudeConnectorProfileCredentials) SetSecretKey(v string) *Amplitude
 
 // The connector-specific profile properties required when using Amplitude.
 type AmplitudeConnectorProfileProperties struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2026,7 +2026,7 @@ func (s AmplitudeConnectorProfileProperties) GoString() string {
 
 // The connector metadata specific to Amplitude.
 type AmplitudeMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4102,7 +4102,7 @@ func (s *CustomerProfilesDestinationProperties) SetObjectTypeName(v string) *Cus
 
 // The connector metadata specific to Amazon Connect Customer Profiles.
 type CustomerProfilesMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4237,7 +4237,7 @@ func (s *DatadogConnectorProfileProperties) SetInstanceUrl(v string) *DatadogCon
 
 // The connector metadata specific to Datadog.
 type DatadogMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4363,7 +4363,7 @@ func (s *DeleteConnectorProfileInput) SetForceDelete(v bool) *DeleteConnectorPro
 }
 
 type DeleteConnectorProfileOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4442,7 +4442,7 @@ func (s *DeleteFlowInput) SetForceDelete(v bool) *DeleteFlowInput {
 }
 
 type DeleteFlowOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5501,7 +5501,7 @@ func (s *DynatraceConnectorProfileProperties) SetInstanceUrl(v string) *Dynatrac
 
 // The connector metadata specific to Dynatrace.
 type DynatraceMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5747,7 +5747,7 @@ func (s *EventBridgeDestinationProperties) SetObject(v string) *EventBridgeDesti
 
 // The connector metadata specific to Amazon EventBridge.
 type EventBridgeMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6268,7 +6268,7 @@ func (s *GoogleAnalyticsConnectorProfileCredentials) SetRefreshToken(v string) *
 
 // The connector-specific profile properties required by Google Analytics.
 type GoogleAnalyticsConnectorProfileProperties struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6426,7 +6426,7 @@ func (s *HoneycodeConnectorProfileCredentials) SetRefreshToken(v string) *Honeyc
 
 // The connector-specific properties required when using Amazon Honeycode.
 type HoneycodeConnectorProfileProperties struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6720,7 +6720,7 @@ func (s *InforNexusConnectorProfileProperties) SetInstanceUrl(v string) *InforNe
 
 // The connector metadata specific to Infor Nexus.
 type InforNexusMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7120,7 +7120,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 // The properties that are applied when Amazon Lookout for Metrics is used as
 // a destination.
 type LookoutMetricsDestinationProperties struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7279,7 +7279,7 @@ func (s *MarketoConnectorProfileProperties) SetInstanceUrl(v string) *MarketoCon
 
 // The connector metadata specific to Marketo.
 type MarketoMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7864,7 +7864,7 @@ func (s *RedshiftDestinationProperties) SetObject(v string) *RedshiftDestination
 
 // The connector metadata specific to Amazon Redshift.
 type RedshiftMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8023,7 +8023,7 @@ func (s *S3DestinationProperties) SetS3OutputFormatConfig(v *S3OutputFormatConfi
 
 // The connector metadata specific to Amazon S3.
 type S3Metadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8348,7 +8348,7 @@ func (s *SAPODataConnectorProfileProperties) SetPrivateLinkServiceName(v string)
 
 // The connector metadata specific to SAPOData.
 type SAPODataMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8930,7 +8930,7 @@ func (s *ServiceNowConnectorProfileProperties) SetInstanceUrl(v string) *Service
 
 // The connector metadata specific to ServiceNow.
 type ServiceNowMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9113,7 +9113,7 @@ func (s *SingularConnectorProfileCredentials) SetApiKey(v string) *SingularConne
 
 // The connector-specific profile properties required when using Singular.
 type SingularConnectorProfileProperties struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9136,7 +9136,7 @@ func (s SingularConnectorProfileProperties) GoString() string {
 
 // The connector metadata specific to Singular.
 type SingularMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10376,7 +10376,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10541,7 +10541,7 @@ func (s *TrendmicroConnectorProfileCredentials) SetApiSecretKey(v string) *Trend
 
 // The connector-specific profile properties required when using Trend Micro.
 type TrendmicroConnectorProfileProperties struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10564,7 +10564,7 @@ func (s TrendmicroConnectorProfileProperties) GoString() string {
 
 // The connector metadata specific to Trend Micro.
 type TrendmicroMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10873,7 +10873,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11264,7 +11264,7 @@ func (s *UpsolverDestinationProperties) SetS3OutputFormatConfig(v *UpsolverS3Out
 
 // The connector metadata specific to Upsolver.
 type UpsolverMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11533,7 +11533,7 @@ func (s *VeevaConnectorProfileProperties) SetInstanceUrl(v string) *VeevaConnect
 
 // The connector metadata specific to Veeva.
 type VeevaMetadata struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

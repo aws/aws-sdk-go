@@ -6519,7 +6519,7 @@ func (s *AcceptInvitationInput) SetMasterAccount(v string) *AcceptInvitationInpu
 }
 
 type AcceptInvitationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9041,7 +9041,7 @@ func (s *CreateSampleFindingsInput) SetFindingTypes(v []*string) *CreateSampleFi
 }
 
 type CreateSampleFindingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9389,7 +9389,7 @@ func (s *CustomDetection) SetOccurrences(v *Occurrences) *CustomDetection {
 // Specifies that a classification job runs once a day, every day. This is an
 // empty object.
 type DailySchedule struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9587,7 +9587,7 @@ func (s *DeleteCustomDataIdentifierInput) SetId(v string) *DeleteCustomDataIdent
 }
 
 type DeleteCustomDataIdentifierOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9656,7 +9656,7 @@ func (s *DeleteFindingsFilterInput) SetId(v string) *DeleteFindingsFilterInput {
 }
 
 type DeleteFindingsFilterOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9803,7 +9803,7 @@ func (s *DeleteMemberInput) SetId(v string) *DeleteMemberInput {
 }
 
 type DeleteMemberOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10267,7 +10267,7 @@ func (s DisableMacieInput) GoString() string {
 }
 
 type DisableMacieOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10333,7 +10333,7 @@ func (s *DisableOrganizationAdminAccountInput) SetAdminAccountId(v string) *Disa
 }
 
 type DisableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10377,7 +10377,7 @@ func (s DisassociateFromAdministratorAccountInput) GoString() string {
 }
 
 type DisassociateFromAdministratorAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10421,7 +10421,7 @@ func (s DisassociateFromMasterAccountInput) GoString() string {
 }
 
 type DisassociateFromMasterAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10490,7 +10490,7 @@ func (s *DisassociateMemberInput) SetId(v string) *DisassociateMemberInput {
 }
 
 type DisassociateMemberOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10598,7 +10598,7 @@ func (s *EnableMacieInput) SetStatus(v string) *EnableMacieInput {
 }
 
 type EnableMacieOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10676,7 +10676,7 @@ func (s *EnableOrganizationAdminAccountInput) SetClientToken(v string) *EnableOr
 }
 
 type EnableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15144,7 +15144,7 @@ func (s *PutFindingsPublicationConfigurationInput) SetSecurityHubConfiguration(v
 }
 
 type PutFindingsPublicationConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17151,7 +17151,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 
 // The request succeeded. The specified tags were added to the resource.
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17558,7 +17558,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 
 // The request succeeded. The specified tags were removed from the resource.
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17645,7 +17645,7 @@ func (s *UpdateClassificationJobInput) SetJobStatus(v string) *UpdateClassificat
 }
 
 type UpdateClassificationJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17853,7 +17853,7 @@ func (s *UpdateMacieSessionInput) SetStatus(v string) *UpdateMacieSessionInput {
 }
 
 type UpdateMacieSessionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17937,7 +17937,7 @@ func (s *UpdateMemberSessionInput) SetStatus(v string) *UpdateMemberSessionInput
 }
 
 type UpdateMemberSessionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -18005,7 +18005,7 @@ func (s *UpdateOrganizationConfigurationInput) SetAutoEnable(v bool) *UpdateOrga
 }
 
 type UpdateOrganizationConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

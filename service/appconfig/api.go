@@ -4521,7 +4521,7 @@ func (s *DeleteApplicationInput) SetApplicationId(v string) *DeleteApplicationIn
 }
 
 type DeleteApplicationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4609,7 +4609,7 @@ func (s *DeleteConfigurationProfileInput) SetConfigurationProfileId(v string) *D
 }
 
 type DeleteConfigurationProfileOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4680,7 +4680,7 @@ func (s *DeleteDeploymentStrategyInput) SetDeploymentStrategyId(v string) *Delet
 }
 
 type DeleteDeploymentStrategyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4768,7 +4768,7 @@ func (s *DeleteEnvironmentInput) SetEnvironmentId(v string) *DeleteEnvironmentIn
 }
 
 type DeleteEnvironmentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4870,7 +4870,7 @@ func (s *DeleteHostedConfigurationVersionInput) SetVersionNumber(v int64) *Delet
 }
 
 type DeleteHostedConfigurationVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8226,7 +8226,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8311,7 +8311,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9142,7 +9142,7 @@ func (s *ValidateConfigurationInput) SetConfigurationVersion(v string) *Validate
 }
 
 type ValidateConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

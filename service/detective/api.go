@@ -1639,7 +1639,7 @@ func (s *AcceptInvitationInput) SetGraphArn(v string) *AcceptInvitationInput {
 }
 
 type AcceptInvitationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2061,7 +2061,7 @@ func (s *DeleteGraphInput) SetGraphArn(v string) *DeleteGraphInput {
 }
 
 type DeleteGraphOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -2238,7 +2238,7 @@ func (s *DisassociateMembershipInput) SetGraphArn(v string) *DisassociateMembers
 }
 
 type DisassociateMembershipOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3124,7 +3124,7 @@ func (s *RejectInvitationInput) SetGraphArn(v string) *RejectInvitationInput {
 }
 
 type RejectInvitationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3349,7 +3349,7 @@ func (s *StartMonitoringMemberInput) SetGraphArn(v string) *StartMonitoringMembe
 }
 
 type StartMonitoringMemberOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3439,7 +3439,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -3570,7 +3570,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

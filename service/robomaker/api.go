@@ -6169,7 +6169,7 @@ func (s *CancelDeploymentJobInput) SetJob(v string) *CancelDeploymentJobInput {
 }
 
 type CancelDeploymentJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6240,7 +6240,7 @@ func (s *CancelSimulationJobBatchInput) SetBatch(v string) *CancelSimulationJobB
 }
 
 type CancelSimulationJobBatchOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6311,7 +6311,7 @@ func (s *CancelSimulationJobInput) SetJob(v string) *CancelSimulationJobInput {
 }
 
 type CancelSimulationJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6382,7 +6382,7 @@ func (s *CancelWorldExportJobInput) SetJob(v string) *CancelWorldExportJobInput 
 }
 
 type CancelWorldExportJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6453,7 +6453,7 @@ func (s *CancelWorldGenerationJobInput) SetJob(v string) *CancelWorldGenerationJ
 }
 
 type CancelWorldGenerationJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9464,7 +9464,7 @@ func (s *DeleteFleetInput) SetFleet(v string) *DeleteFleetInput {
 }
 
 type DeleteFleetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9547,7 +9547,7 @@ func (s *DeleteRobotApplicationInput) SetApplicationVersion(v string) *DeleteRob
 }
 
 type DeleteRobotApplicationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9618,7 +9618,7 @@ func (s *DeleteRobotInput) SetRobot(v string) *DeleteRobotInput {
 }
 
 type DeleteRobotOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9701,7 +9701,7 @@ func (s *DeleteSimulationApplicationInput) SetApplicationVersion(v string) *Dele
 }
 
 type DeleteSimulationApplicationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9772,7 +9772,7 @@ func (s *DeleteWorldTemplateInput) SetTemplate(v string) *DeleteWorldTemplateInp
 }
 
 type DeleteWorldTemplateOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15363,7 +15363,7 @@ func (s *RestartSimulationJobInput) SetJob(v string) *RestartSimulationJobInput 
 }
 
 type RestartSimulationJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17640,7 +17640,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -18028,7 +18028,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

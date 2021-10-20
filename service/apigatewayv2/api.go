@@ -10048,7 +10048,7 @@ func (s *DeleteAccessLogSettingsInput) SetStageName(v string) *DeleteAccessLogSe
 }
 
 type DeleteAccessLogSettingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10179,7 +10179,7 @@ func (s *DeleteApiMappingInput) SetDomainName(v string) *DeleteApiMappingInput {
 }
 
 type DeleteApiMappingOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10201,7 +10201,7 @@ func (s DeleteApiMappingOutput) GoString() string {
 }
 
 type DeleteApiOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10285,7 +10285,7 @@ func (s *DeleteAuthorizerInput) SetAuthorizerId(v string) *DeleteAuthorizerInput
 }
 
 type DeleteAuthorizerOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10354,7 +10354,7 @@ func (s *DeleteCorsConfigurationInput) SetApiId(v string) *DeleteCorsConfigurati
 }
 
 type DeleteCorsConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10438,7 +10438,7 @@ func (s *DeleteDeploymentInput) SetDeploymentId(v string) *DeleteDeploymentInput
 }
 
 type DeleteDeploymentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10507,7 +10507,7 @@ func (s *DeleteDomainNameInput) SetDomainName(v string) *DeleteDomainNameInput {
 }
 
 type DeleteDomainNameOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10591,7 +10591,7 @@ func (s *DeleteIntegrationInput) SetIntegrationId(v string) *DeleteIntegrationIn
 }
 
 type DeleteIntegrationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10690,7 +10690,7 @@ func (s *DeleteIntegrationResponseInput) SetIntegrationResponseId(v string) *Del
 }
 
 type DeleteIntegrationResponseOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10774,7 +10774,7 @@ func (s *DeleteModelInput) SetModelId(v string) *DeleteModelInput {
 }
 
 type DeleteModelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10858,7 +10858,7 @@ func (s *DeleteRouteInput) SetRouteId(v string) *DeleteRouteInput {
 }
 
 type DeleteRouteOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10957,7 +10957,7 @@ func (s *DeleteRouteRequestParameterInput) SetRouteId(v string) *DeleteRouteRequ
 }
 
 type DeleteRouteRequestParameterOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11056,7 +11056,7 @@ func (s *DeleteRouteResponseInput) SetRouteResponseId(v string) *DeleteRouteResp
 }
 
 type DeleteRouteResponseOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11155,7 +11155,7 @@ func (s *DeleteRouteSettingsInput) SetStageName(v string) *DeleteRouteSettingsIn
 }
 
 type DeleteRouteSettingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11239,7 +11239,7 @@ func (s *DeleteStageInput) SetStageName(v string) *DeleteStageInput {
 }
 
 type DeleteStageOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11308,7 +11308,7 @@ func (s *DeleteVpcLinkInput) SetVpcLinkId(v string) *DeleteVpcLinkInput {
 }
 
 type DeleteVpcLinkOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -16477,7 +16477,7 @@ func (s *ResetAuthorizersCacheInput) SetStageName(v string) *ResetAuthorizersCac
 }
 
 type ResetAuthorizersCacheOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17016,7 +17016,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17235,7 +17235,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

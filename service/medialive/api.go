@@ -6036,7 +6036,7 @@ func (s *AcceptInputDeviceTransferInput) SetInputDeviceId(v string) *AcceptInput
 }
 
 type AcceptInputDeviceTransferOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6370,7 +6370,7 @@ func (s *ArchiveS3Settings) SetCannedAcl(v string) *ArchiveS3Settings {
 
 // Arib Destination Settings
 type AribDestinationSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6393,7 +6393,7 @@ func (s AribDestinationSettings) GoString() string {
 
 // Arib Source Settings
 type AribSourceSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8858,7 +8858,7 @@ func (s *CancelInputDeviceTransferInput) SetInputDeviceId(v string) *CancelInput
 }
 
 type CancelInputDeviceTransferOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9971,7 +9971,7 @@ func (s *ClaimDeviceInput) SetId(v string) *ClaimDeviceInput {
 }
 
 type ClaimDeviceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9994,7 +9994,7 @@ func (s ClaimDeviceOutput) GoString() string {
 
 // Passthrough applies no color space conversion to the output
 type ColorSpacePassthroughSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10897,7 +10897,7 @@ func (s *CreateTagsInput) SetTags(v map[string]*string) *CreateTagsInput {
 }
 
 type CreateTagsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11176,7 +11176,7 @@ func (s *DeleteInputInput) SetInputId(v string) *DeleteInputInput {
 }
 
 type DeleteInputOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11245,7 +11245,7 @@ func (s *DeleteInputSecurityGroupInput) SetInputSecurityGroupId(v string) *Delet
 }
 
 type DeleteInputSecurityGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11808,7 +11808,7 @@ func (s *DeleteScheduleInput) SetChannelId(v string) *DeleteScheduleInput {
 }
 
 type DeleteScheduleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11889,7 +11889,7 @@ func (s *DeleteTagsInput) SetTagKeys(v []*string) *DeleteTagsInput {
 }
 
 type DeleteTagsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14318,7 +14318,7 @@ func (s *EbuTtDDestinationSettings) SetStyleControl(v string) *EbuTtDDestination
 
 // Embedded Destination Settings
 type EmbeddedDestinationSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14341,7 +14341,7 @@ func (s EmbeddedDestinationSettings) GoString() string {
 
 // Embedded Plus Scte20 Destination Settings
 type EmbeddedPlusScte20DestinationSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15225,7 +15225,7 @@ func (s *FrameCaptureGroupSettings) SetFrameCaptureCdnSettings(v *FrameCaptureCd
 
 // Frame Capture Hls Settings
 type FrameCaptureHlsSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17939,7 +17939,7 @@ func (s *HlsWebdavSettings) SetRestartDelay(v int64) *HlsWebdavSettings {
 
 // Html Motion Graphics Settings
 type HtmlMotionGraphicsSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17962,7 +17962,7 @@ func (s HtmlMotionGraphicsSettings) GoString() string {
 
 // Settings to configure an action so that it occurs as soon as possible.
 type ImmediateModeScheduleActionStartSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -21950,7 +21950,7 @@ func (s *MediaPackageOutputDestinationSettings) SetChannelId(v string) *MediaPac
 
 // Media Package Output Settings
 type MediaPackageOutputSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -22093,7 +22093,7 @@ func (s *MotionGraphicsConfiguration) SetMotionGraphicsSettings(v *MotionGraphic
 // Settings to specify the ending of rendering motion graphics into the video
 // stream.
 type MotionGraphicsDeactivateScheduleActionSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -22859,7 +22859,7 @@ func (s *Multiplex) SetTags(v map[string]*string) *Multiplex {
 
 // Multiplex Group Settings
 type MultiplexGroupSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -24942,7 +24942,7 @@ func (s *OutputSettings) SetUdpOutputSettings(v *UdpOutputSettings) *OutputSetti
 
 // Pass Through Settings
 type PassThroughSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -25260,7 +25260,7 @@ func (s *PurchaseOfferingOutput) SetReservation(v *Reservation) *PurchaseOfferin
 
 // Raw Settings
 type RawSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -25283,7 +25283,7 @@ func (s RawSettings) GoString() string {
 
 // Rec601 Settings
 type Rec601Settings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -25306,7 +25306,7 @@ func (s Rec601Settings) GoString() string {
 
 // Rec709 Settings
 type Rec709Settings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -25375,7 +25375,7 @@ func (s *RejectInputDeviceTransferInput) SetInputDeviceId(v string) *RejectInput
 }
 
 type RejectInputDeviceTransferOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -25760,7 +25760,7 @@ func (s *ReservationResourceSpecification) SetVideoQuality(v string) *Reservatio
 
 // Rtmp Caption Info Destination Settings
 type RtmpCaptionInfoDestinationSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26325,7 +26325,7 @@ func (s *ScheduleActionStartSettings) SetImmediateModeScheduleActionStartSetting
 
 // Scte20 Plus Embedded Destination Settings
 type Scte20PlusEmbeddedDestinationSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -26405,7 +26405,7 @@ func (s *Scte20SourceSettings) SetSource608ChannelNumber(v int64) *Scte20SourceS
 
 // Scte27 Destination Settings
 type Scte27DestinationSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -27150,7 +27150,7 @@ func (s *Scte35TimeSignalScheduleActionSettings) SetScte35Descriptors(v []*Scte3
 
 // Smpte Tt Destination Settings
 type SmpteTtDestinationSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28296,7 +28296,7 @@ func (s *StopTimecode) SetTimecode(v string) *StopTimecode {
 
 // Teletext Destination Settings
 type TeletextDestinationSettings struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -28622,7 +28622,7 @@ func (s *TransferInputDeviceInput) SetTransferMessage(v string) *TransferInputDe
 }
 
 type TransferInputDeviceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

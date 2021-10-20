@@ -5024,7 +5024,7 @@ func (s *AssociateChannelFlowInput) SetChimeBearer(v string) *AssociateChannelFl
 }
 
 type AssociateChannelFlowOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7542,7 +7542,7 @@ func (s *DeleteChannelBanInput) SetMemberArn(v string) *DeleteChannelBanInput {
 }
 
 type DeleteChannelBanOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7613,7 +7613,7 @@ func (s *DeleteChannelFlowInput) SetChannelFlowArn(v string) *DeleteChannelFlowI
 }
 
 type DeleteChannelFlowOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7784,7 +7784,7 @@ func (s *DeleteChannelMembershipInput) SetMemberArn(v string) *DeleteChannelMemb
 }
 
 type DeleteChannelMembershipOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7889,7 +7889,7 @@ func (s *DeleteChannelMessageInput) SetMessageId(v string) *DeleteChannelMessage
 }
 
 type DeleteChannelMessageOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7994,7 +7994,7 @@ func (s *DeleteChannelModeratorInput) SetChimeBearer(v string) *DeleteChannelMod
 }
 
 type DeleteChannelModeratorOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8016,7 +8016,7 @@ func (s DeleteChannelModeratorOutput) GoString() string {
 }
 
 type DeleteChannelOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8868,7 +8868,7 @@ func (s *DisassociateChannelFlowInput) SetChimeBearer(v string) *DisassociateCha
 }
 
 type DisassociateChannelFlowOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11617,7 +11617,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -11837,7 +11837,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

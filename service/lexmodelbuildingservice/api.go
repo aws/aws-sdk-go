@@ -6446,7 +6446,7 @@ func (s *DeleteBotAliasInput) SetName(v string) *DeleteBotAliasInput {
 }
 
 type DeleteBotAliasOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6552,7 +6552,7 @@ func (s *DeleteBotChannelAssociationInput) SetName(v string) *DeleteBotChannelAs
 }
 
 type DeleteBotChannelAssociationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6623,7 +6623,7 @@ func (s *DeleteBotInput) SetName(v string) *DeleteBotInput {
 }
 
 type DeleteBotOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6712,7 +6712,7 @@ func (s *DeleteBotVersionInput) SetVersion(v string) *DeleteBotVersionInput {
 }
 
 type DeleteBotVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6783,7 +6783,7 @@ func (s *DeleteIntentInput) SetName(v string) *DeleteIntentInput {
 }
 
 type DeleteIntentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6872,7 +6872,7 @@ func (s *DeleteIntentVersionInput) SetVersion(v string) *DeleteIntentVersionInpu
 }
 
 type DeleteIntentVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6943,7 +6943,7 @@ func (s *DeleteSlotTypeInput) SetName(v string) *DeleteSlotTypeInput {
 }
 
 type DeleteSlotTypeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7032,7 +7032,7 @@ func (s *DeleteSlotTypeVersionInput) SetVersion(v string) *DeleteSlotTypeVersion
 }
 
 type DeleteSlotTypeVersionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7123,7 +7123,7 @@ func (s *DeleteUtterancesInput) SetUserId(v string) *DeleteUtterancesInput {
 }
 
 type DeleteUtterancesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14761,7 +14761,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14847,7 +14847,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

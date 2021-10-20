@@ -12112,7 +12112,7 @@ func (s *DeleteIntentInput) SetLocaleId(v string) *DeleteIntentInput {
 }
 
 type DeleteIntentOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12490,7 +12490,7 @@ func (s *DeleteSlotInput) SetSlotId(v string) *DeleteSlotInput {
 }
 
 type DeleteSlotOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12626,7 +12626,7 @@ func (s *DeleteSlotTypeInput) SetSlotTypeId(v string) *DeleteSlotTypeInput {
 }
 
 type DeleteSlotTypeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12721,7 +12721,7 @@ func (s *DeleteUtterancesInput) SetSessionId(v string) *DeleteUtterancesInput {
 }
 
 type DeleteUtterancesOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -21317,7 +21317,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -21590,7 +21590,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

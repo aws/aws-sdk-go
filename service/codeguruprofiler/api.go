@@ -3485,7 +3485,7 @@ func (s *DeleteProfilingGroupInput) SetProfilingGroupName(v string) *DeleteProfi
 
 // The structure representing the deleteProfilingGroupResponse.
 type DeleteProfilingGroupOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5471,7 +5471,7 @@ func (s *PostAgentProfileInput) SetProfilingGroupName(v string) *PostAgentProfil
 
 // The structure representing the postAgentProfileResponse.
 type PostAgentProfileOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6386,7 +6386,7 @@ func (s *SubmitFeedbackInput) SetType(v string) *SubmitFeedbackInput {
 
 // The structure representing the SubmitFeedbackResponse.
 type SubmitFeedbackOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6471,7 +6471,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6659,7 +6659,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

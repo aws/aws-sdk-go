@@ -6126,7 +6126,7 @@ func (s *DeleteApiCacheInput) SetApiId(v string) *DeleteApiCacheInput {
 
 // Represents the output of a DeleteApiCache operation.
 type DeleteApiCacheOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6214,7 +6214,7 @@ func (s *DeleteApiKeyInput) SetId(v string) *DeleteApiKeyInput {
 }
 
 type DeleteApiKeyOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6302,7 +6302,7 @@ func (s *DeleteDataSourceInput) SetName(v string) *DeleteDataSourceInput {
 }
 
 type DeleteDataSourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6390,7 +6390,7 @@ func (s *DeleteFunctionInput) SetFunctionId(v string) *DeleteFunctionInput {
 }
 
 type DeleteFunctionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6461,7 +6461,7 @@ func (s *DeleteGraphqlApiInput) SetApiId(v string) *DeleteGraphqlApiInput {
 }
 
 type DeleteGraphqlApiOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6566,7 +6566,7 @@ func (s *DeleteResolverInput) SetTypeName(v string) *DeleteResolverInput {
 }
 
 type DeleteResolverOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6654,7 +6654,7 @@ func (s *DeleteTypeInput) SetTypeName(v string) *DeleteTypeInput {
 }
 
 type DeleteTypeOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6931,7 +6931,7 @@ func (s *FlushApiCacheInput) SetApiId(v string) *FlushApiCacheInput {
 
 // Represents the output of a FlushApiCache operation.
 type FlushApiCacheOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10060,7 +10060,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -10280,7 +10280,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -6435,7 +6435,7 @@ func (s *RemoveBackendConfigOutput) SetError(v string) *RemoveBackendConfigOutpu
 }
 
 type ResourceConfig struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

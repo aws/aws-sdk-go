@@ -618,7 +618,7 @@ func (s *DeleteObjectInput) SetPath(v string) *DeleteObjectInput {
 }
 
 type DeleteObjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -690,7 +690,7 @@ func (s *DescribeObjectInput) SetPath(v string) *DescribeObjectInput {
 }
 
 type DescribeObjectOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// An optional CacheControl header that allows the caller to control the object's
 	// cache behavior. Headers can be passed in as specified in the HTTP at https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9

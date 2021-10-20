@@ -2774,7 +2774,7 @@ func (s *DeleteApplicationInput) SetApplicationId(v string) *DeleteApplicationIn
 }
 
 type DeleteApplicationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4389,7 +4389,7 @@ func (s *UnshareApplicationInput) SetOrganizationId(v string) *UnshareApplicatio
 }
 
 type UnshareApplicationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

@@ -3311,7 +3311,7 @@ func (s *CancelJobInput) SetJobId(v string) *CancelJobInput {
 }
 
 type CancelJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4307,7 +4307,7 @@ func (s *DeleteAssetInput) SetRevisionId(v string) *DeleteAssetInput {
 }
 
 type DeleteAssetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4376,7 +4376,7 @@ func (s *DeleteDataSetInput) SetDataSetId(v string) *DeleteDataSetInput {
 }
 
 type DeleteDataSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4445,7 +4445,7 @@ func (s *DeleteEventActionInput) SetEventActionId(v string) *DeleteEventActionIn
 }
 
 type DeleteEventActionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4529,7 +4529,7 @@ func (s *DeleteRevisionInput) SetRevisionId(v string) *DeleteRevisionInput {
 }
 
 type DeleteRevisionOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8170,7 +8170,7 @@ func (s *StartJobInput) SetJobId(v string) *StartJobInput {
 }
 
 type StartJobOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8251,7 +8251,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8397,7 +8397,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

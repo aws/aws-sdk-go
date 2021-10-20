@@ -5509,7 +5509,7 @@ func (s *AcceptInvitationInput) SetMasterId(v string) *AcceptInvitationInput {
 }
 
 type AcceptInvitationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5906,7 +5906,7 @@ func (s *ArchiveFindingsInput) SetFindingIds(v []*string) *ArchiveFindingsInput 
 }
 
 type ArchiveFindingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7358,7 +7358,7 @@ func (s *CreateSampleFindingsInput) SetFindingTypes(v []*string) *CreateSampleFi
 }
 
 type CreateSampleFindingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7879,7 +7879,7 @@ func (s *DeleteDetectorInput) SetDetectorId(v string) *DeleteDetectorInput {
 }
 
 type DeleteDetectorOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -7967,7 +7967,7 @@ func (s *DeleteFilterInput) SetFilterName(v string) *DeleteFilterInput {
 }
 
 type DeleteFilterOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8055,7 +8055,7 @@ func (s *DeleteIPSetInput) SetIpSetId(v string) *DeleteIPSetInput {
 }
 
 type DeleteIPSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8328,7 +8328,7 @@ func (s *DeletePublishingDestinationInput) SetDetectorId(v string) *DeletePublis
 }
 
 type DeletePublishingDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8416,7 +8416,7 @@ func (s *DeleteThreatIntelSetInput) SetThreatIntelSetId(v string) *DeleteThreatI
 }
 
 type DeleteThreatIntelSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8837,7 +8837,7 @@ func (s *DisableOrganizationAdminAccountInput) SetAdminAccountId(v string) *Disa
 }
 
 type DisableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8908,7 +8908,7 @@ func (s *DisassociateFromMasterAccountInput) SetDetectorId(v string) *Disassocia
 }
 
 type DisassociateFromMasterAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9143,7 +9143,7 @@ func (s *EnableOrganizationAdminAccountInput) SetAdminAccountId(v string) *Enabl
 }
 
 type EnableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14304,7 +14304,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14473,7 +14473,7 @@ func (s *UnarchiveFindingsInput) SetFindingIds(v []*string) *UnarchiveFindingsIn
 }
 
 type UnarchiveFindingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14606,7 +14606,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14710,7 +14710,7 @@ func (s *UpdateDetectorInput) SetFindingPublishingFrequency(v string) *UpdateDet
 }
 
 type UpdateDetectorOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -14962,7 +14962,7 @@ func (s *UpdateFindingsFeedbackInput) SetFindingIds(v []*string) *UpdateFindings
 }
 
 type UpdateFindingsFeedbackOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15084,7 +15084,7 @@ func (s *UpdateIPSetInput) SetName(v string) *UpdateIPSetInput {
 }
 
 type UpdateIPSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15297,7 +15297,7 @@ func (s *UpdateOrganizationConfigurationInput) SetDetectorId(v string) *UpdateOr
 }
 
 type UpdateOrganizationConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15395,7 +15395,7 @@ func (s *UpdatePublishingDestinationInput) SetDetectorId(v string) *UpdatePublis
 }
 
 type UpdatePublishingDestinationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -15518,7 +15518,7 @@ func (s *UpdateThreatIntelSetInput) SetThreatIntelSetId(v string) *UpdateThreatI
 }
 
 type UpdateThreatIntelSetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

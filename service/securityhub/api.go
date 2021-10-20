@@ -5822,7 +5822,7 @@ func (s *AcceptAdministratorInvitationInput) SetInvitationId(v string) *AcceptAd
 }
 
 type AcceptAdministratorInvitationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5905,7 +5905,7 @@ func (s *AcceptInvitationInput) SetMasterId(v string) *AcceptInvitationInput {
 }
 
 type AcceptInvitationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -31907,7 +31907,7 @@ func (s *DisableImportFindingsForProductInput) SetProductSubscriptionArn(v strin
 }
 
 type DisableImportFindingsForProductOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -31976,7 +31976,7 @@ func (s *DisableOrganizationAdminAccountInput) SetAdminAccountId(v string) *Disa
 }
 
 type DisableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -32020,7 +32020,7 @@ func (s DisableSecurityHubInput) GoString() string {
 }
 
 type DisableSecurityHubOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -32064,7 +32064,7 @@ func (s DisassociateFromAdministratorAccountInput) GoString() string {
 }
 
 type DisassociateFromAdministratorAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -32108,7 +32108,7 @@ func (s DisassociateFromMasterAccountInput) GoString() string {
 }
 
 type DisassociateFromMasterAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -32177,7 +32177,7 @@ func (s *DisassociateMembersInput) SetAccountIds(v []*string) *DisassociateMembe
 }
 
 type DisassociateMembersOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -32374,7 +32374,7 @@ func (s *EnableOrganizationAdminAccountInput) SetAdminAccountId(v string) *Enabl
 }
 
 type EnableOrganizationAdminAccountOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -32452,7 +32452,7 @@ func (s *EnableSecurityHubInput) SetTags(v map[string]*string) *EnableSecurityHu
 }
 
 type EnableSecurityHubOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -38285,7 +38285,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -38457,7 +38457,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -38546,7 +38546,7 @@ func (s *UpdateActionTargetInput) SetName(v string) *UpdateActionTargetInput {
 }
 
 type UpdateActionTargetOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -38637,7 +38637,7 @@ func (s *UpdateFindingsInput) SetRecordState(v string) *UpdateFindingsInput {
 }
 
 type UpdateFindingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -38735,7 +38735,7 @@ func (s *UpdateInsightInput) SetName(v string) *UpdateInsightInput {
 }
 
 type UpdateInsightOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -38807,7 +38807,7 @@ func (s *UpdateOrganizationConfigurationInput) SetAutoEnable(v bool) *UpdateOrga
 }
 
 type UpdateOrganizationConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -38864,7 +38864,7 @@ func (s *UpdateSecurityHubConfigurationInput) SetAutoEnableControls(v bool) *Upd
 }
 
 type UpdateSecurityHubConfigurationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -38954,7 +38954,7 @@ func (s *UpdateStandardsControlInput) SetStandardsControlArn(v string) *UpdateSt
 }
 
 type UpdateStandardsControlOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

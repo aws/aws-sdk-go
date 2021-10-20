@@ -1567,7 +1567,7 @@ type OutputService9TestShapeOutputService9TestCaseOperation1Input struct {
 }
 
 type OutputService9TestShapeOutputService9TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // OutputService10ProtocolTest provides the API operation methods for making requests to
@@ -1706,7 +1706,7 @@ type OutputService10TestShapeOutputService10TestCaseOperation1Input struct {
 }
 
 type OutputService10TestShapeOutputService10TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 
 	// By default unmarshaled keys are written as a map keys in following canonicalized format:
 	// the first letter and any letter following a hyphen will be capitalized, and the rest as lowercase.
@@ -2571,7 +2571,7 @@ func (s *OutputService14TestShapeOutputService14TestCaseOperation2Input) SetList
 }
 
 type OutputService14TestShapeOutputService14TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 const (

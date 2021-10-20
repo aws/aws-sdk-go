@@ -3979,7 +3979,7 @@ func (s *ApplyArchiveRuleInput) SetRuleName(v string) *ApplyArchiveRuleInput {
 }
 
 type ApplyArchiveRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4119,7 +4119,7 @@ func (s *CancelPolicyGenerationInput) SetJobId(v string) *CancelPolicyGeneration
 }
 
 type CancelPolicyGenerationOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4819,7 +4819,7 @@ func (s *CreateArchiveRuleInput) SetRuleName(v string) *CreateArchiveRuleInput {
 }
 
 type CreateArchiveRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4978,7 +4978,7 @@ func (s *DeleteAnalyzerInput) SetClientToken(v string) *DeleteAnalyzerInput {
 }
 
 type DeleteAnalyzerOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -5076,7 +5076,7 @@ func (s *DeleteArchiveRuleInput) SetRuleName(v string) *DeleteArchiveRuleInput {
 }
 
 type DeleteArchiveRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6431,7 +6431,7 @@ func (s *InternalServerException) RequestID() string {
 // This configuration sets the network origin for the Amazon S3 access point
 // or multi-region access point to Internet.
 type InternetConfiguration struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8887,7 +8887,7 @@ func (s *StartResourceScanInput) SetResourceArn(v string) *StartResourceScanInpu
 }
 
 type StartResourceScanOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9057,7 +9057,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 
 // The response to the request.
 type TagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9332,7 +9332,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 
 // The response to the request.
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9455,7 +9455,7 @@ func (s *UpdateArchiveRuleInput) SetRuleName(v string) *UpdateArchiveRuleInput {
 }
 
 type UpdateArchiveRuleOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.
@@ -9568,7 +9568,7 @@ func (s *UpdateFindingsInput) SetStatus(v string) *UpdateFindingsInput {
 }
 
 type UpdateFindingsOutput struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // String returns the string representation.

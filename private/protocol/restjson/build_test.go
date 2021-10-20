@@ -184,7 +184,7 @@ type InputService1TestShapeInputService1TestCaseOperation1Input struct {
 }
 
 type InputService1TestShapeInputService1TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService2ProtocolTest provides the API operation methods for making requests to
@@ -350,7 +350,7 @@ func (s *InputService2TestShapeInputService2TestCaseOperation1Input) SetPipeline
 }
 
 type InputService2TestShapeInputService2TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService3ProtocolTest provides the API operation methods for making requests to
@@ -516,7 +516,7 @@ func (s *InputService3TestShapeInputService3TestCaseOperation1Input) SetFoo(v st
 }
 
 type InputService3TestShapeInputService3TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService4ProtocolTest provides the API operation methods for making requests to
@@ -665,7 +665,7 @@ func (s *InputService4TestShapeInputService4TestCaseOperation1Input) SetItems(v 
 }
 
 type InputService4TestShapeInputService4TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService5ProtocolTest provides the API operation methods for making requests to
@@ -839,7 +839,7 @@ func (s *InputService5TestShapeInputService5TestCaseOperation1Input) SetQueryDoc
 }
 
 type InputService5TestShapeInputService5TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService6ProtocolTest provides the API operation methods for making requests to
@@ -1013,7 +1013,7 @@ func (s *InputService6TestShapeInputService6TestCaseOperation1Input) SetQueryDoc
 }
 
 type InputService6TestShapeInputService6TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService7ProtocolTest provides the API operation methods for making requests to
@@ -1232,7 +1232,7 @@ func (s *InputService7TestShapeInputService7TestCaseOperation1Input) SetBoolQuer
 }
 
 type InputService7TestShapeInputService7TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService7TestShapeInputService7TestCaseOperation2Input struct {
@@ -1248,7 +1248,7 @@ func (s *InputService7TestShapeInputService7TestCaseOperation2Input) SetBoolQuer
 }
 
 type InputService7TestShapeInputService7TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService8ProtocolTest provides the API operation methods for making requests to
@@ -1430,7 +1430,7 @@ func (s *InputService8TestShapeInputService8TestCaseOperation1Input) SetPipeline
 }
 
 type InputService8TestShapeInputService8TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService9ProtocolTest provides the API operation methods for making requests to
@@ -1620,7 +1620,7 @@ func (s *InputService9TestShapeInputService9TestCaseOperation1Input) SetPipeline
 }
 
 type InputService9TestShapeInputService9TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService9TestShapeStructType struct {
@@ -1838,7 +1838,7 @@ func (s *InputService10TestShapeInputService10TestCaseOperation1Input) SetPipeli
 }
 
 type InputService10TestShapeInputService10TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService10TestShapeStructType struct {
@@ -2040,7 +2040,7 @@ func (s *InputService11TestShapeInputService11TestCaseOperation1Input) SetVaultN
 }
 
 type InputService11TestShapeInputService11TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService12ProtocolTest provides the API operation methods for making requests to
@@ -2215,7 +2215,7 @@ func (s *InputService12TestShapeInputService12TestCaseOperation1Input) SetFoo(v 
 }
 
 type InputService12TestShapeInputService12TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService13ProtocolTest provides the API operation methods for making requests to
@@ -2434,7 +2434,7 @@ func (s *InputService13TestShapeInputService13TestCaseOperation1Input) SetFoo(v 
 }
 
 type InputService13TestShapeInputService13TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService13TestShapeInputService13TestCaseOperation2Input struct {
@@ -2450,7 +2450,7 @@ func (s *InputService13TestShapeInputService13TestCaseOperation2Input) SetFoo(v 
 }
 
 type InputService13TestShapeInputService13TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService14ProtocolTest provides the API operation methods for making requests to
@@ -2681,7 +2681,7 @@ func (s *InputService14TestShapeInputService14TestCaseOperation1Input) SetFoo(v 
 }
 
 type InputService14TestShapeInputService14TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService14TestShapeInputService14TestCaseOperation2Input struct {
@@ -2697,7 +2697,7 @@ func (s *InputService14TestShapeInputService14TestCaseOperation2Input) SetFoo(v 
 }
 
 type InputService14TestShapeInputService14TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService15ProtocolTest provides the API operation methods for making requests to
@@ -2916,7 +2916,7 @@ func (s *InputService15TestShapeInputService15TestCaseOperation1Input) SetFoo(v 
 }
 
 type InputService15TestShapeInputService15TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService15TestShapeInputService15TestCaseOperation2Input struct {
@@ -2932,7 +2932,7 @@ func (s *InputService15TestShapeInputService15TestCaseOperation2Input) SetFoo(v 
 }
 
 type InputService15TestShapeInputService15TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService16ProtocolTest provides the API operation methods for making requests to
@@ -3431,7 +3431,7 @@ func (s *InputService16TestShapeInputService16TestCaseOperation1Input) SetRecurs
 }
 
 type InputService16TestShapeInputService16TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService16TestShapeInputService16TestCaseOperation2Input struct {
@@ -3447,7 +3447,7 @@ func (s *InputService16TestShapeInputService16TestCaseOperation2Input) SetRecurs
 }
 
 type InputService16TestShapeInputService16TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService16TestShapeInputService16TestCaseOperation3Input struct {
@@ -3463,7 +3463,7 @@ func (s *InputService16TestShapeInputService16TestCaseOperation3Input) SetRecurs
 }
 
 type InputService16TestShapeInputService16TestCaseOperation3Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService16TestShapeInputService16TestCaseOperation4Input struct {
@@ -3479,7 +3479,7 @@ func (s *InputService16TestShapeInputService16TestCaseOperation4Input) SetRecurs
 }
 
 type InputService16TestShapeInputService16TestCaseOperation4Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService16TestShapeInputService16TestCaseOperation5Input struct {
@@ -3495,7 +3495,7 @@ func (s *InputService16TestShapeInputService16TestCaseOperation5Input) SetRecurs
 }
 
 type InputService16TestShapeInputService16TestCaseOperation5Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService16TestShapeInputService16TestCaseOperation6Input struct {
@@ -3511,7 +3511,7 @@ func (s *InputService16TestShapeInputService16TestCaseOperation6Input) SetRecurs
 }
 
 type InputService16TestShapeInputService16TestCaseOperation6Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService16TestShapeRecursiveStructType struct {
@@ -3760,7 +3760,7 @@ func (s *InputService17TestShapeInputService17TestCaseOperation1Input) SetTimeFo
 }
 
 type InputService17TestShapeInputService17TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService18ProtocolTest provides the API operation methods for making requests to
@@ -3909,7 +3909,7 @@ func (s *InputService18TestShapeInputService18TestCaseOperation1Input) SetTimeAr
 }
 
 type InputService18TestShapeInputService18TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService19ProtocolTest provides the API operation methods for making requests to
@@ -4058,7 +4058,7 @@ func (s *InputService19TestShapeInputService19TestCaseOperation1Input) SetFoo(v 
 }
 
 type InputService19TestShapeInputService19TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService20ProtocolTest provides the API operation methods for making requests to
@@ -4277,7 +4277,7 @@ func (s *InputService20TestShapeInputService20TestCaseOperation1Input) SetToken(
 }
 
 type InputService20TestShapeInputService20TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService20TestShapeInputService20TestCaseOperation2Input struct {
@@ -4293,7 +4293,7 @@ func (s *InputService20TestShapeInputService20TestCaseOperation2Input) SetToken(
 }
 
 type InputService20TestShapeInputService20TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService21ProtocolTest provides the API operation methods for making requests to
@@ -4618,7 +4618,7 @@ func (s *InputService21TestShapeInputService21TestCaseOperation1Input) SetQueryF
 }
 
 type InputService21TestShapeInputService21TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService21TestShapeInputService21TestCaseOperation2Input struct {
@@ -4650,7 +4650,7 @@ func (s *InputService21TestShapeInputService21TestCaseOperation2Input) SetQueryF
 }
 
 type InputService21TestShapeInputService21TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService21TestShapeInputService21TestCaseOperation3Input struct {
@@ -4682,7 +4682,7 @@ func (s *InputService21TestShapeInputService21TestCaseOperation3Input) SetQueryF
 }
 
 type InputService21TestShapeInputService21TestCaseOperation3Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService22ProtocolTest provides the API operation methods for making requests to
@@ -4933,7 +4933,7 @@ func (s *InputService22TestShapeInputService22TestCaseOperation1Input) SetQueryL
 }
 
 type InputService22TestShapeInputService22TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService22TestShapeInputService22TestCaseOperation2Input struct {
@@ -4981,7 +4981,7 @@ func (s *InputService22TestShapeInputService22TestCaseOperation2Input) SetQueryL
 }
 
 type InputService22TestShapeInputService22TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 const (
@@ -5228,7 +5228,7 @@ func (s *InputService23TestShapeInputService23TestCaseOperation1Input) SetName(v
 }
 
 type InputService23TestShapeInputService23TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService23TestShapeInputService23TestCaseOperation2Input struct {
@@ -5267,7 +5267,7 @@ func (s *InputService23TestShapeInputService23TestCaseOperation2Input) hostLabel
 }
 
 type InputService23TestShapeInputService23TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 // InputService24ProtocolTest provides the API operation methods for making requests to
@@ -5696,7 +5696,7 @@ func (s *InputService24TestShapeInputService24TestCaseOperation1Input) SetOneOf(
 }
 
 type InputService24TestShapeInputService24TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService24TestShapeInputService24TestCaseOperation2Input struct {
@@ -5712,7 +5712,7 @@ func (s *InputService24TestShapeInputService24TestCaseOperation2Input) SetOneOf(
 }
 
 type InputService24TestShapeInputService24TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService24TestShapeInputService24TestCaseOperation3Input struct {
@@ -5728,7 +5728,7 @@ func (s *InputService24TestShapeInputService24TestCaseOperation3Input) SetOneOf(
 }
 
 type InputService24TestShapeInputService24TestCaseOperation3Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService24TestShapeInputService24TestCaseOperation4Input struct {
@@ -5744,7 +5744,7 @@ func (s *InputService24TestShapeInputService24TestCaseOperation4Input) SetOneOf(
 }
 
 type InputService24TestShapeInputService24TestCaseOperation4Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService24TestShapeInputService24TestCaseOperation5Input struct {
@@ -5760,7 +5760,7 @@ func (s *InputService24TestShapeInputService24TestCaseOperation5Input) SetOneOf(
 }
 
 type InputService24TestShapeInputService24TestCaseOperation5Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService24TestShapeMyUnion struct {
@@ -6476,7 +6476,7 @@ func (s *InputService25TestShapeInputService25TestCaseOperation1Input) SetTestId
 }
 
 type InputService25TestShapeInputService25TestCaseOperation1Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService25TestShapeInputService25TestCaseOperation2Input struct {
@@ -6513,7 +6513,7 @@ func (s *InputService25TestShapeInputService25TestCaseOperation2Input) SetTestId
 }
 
 type InputService25TestShapeInputService25TestCaseOperation2Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService25TestShapeInputService25TestCaseOperation3Input struct {
@@ -6550,7 +6550,7 @@ func (s *InputService25TestShapeInputService25TestCaseOperation3Input) SetTestId
 }
 
 type InputService25TestShapeInputService25TestCaseOperation3Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService25TestShapeInputService25TestCaseOperation4Input struct {
@@ -6587,7 +6587,7 @@ func (s *InputService25TestShapeInputService25TestCaseOperation4Input) SetTestId
 }
 
 type InputService25TestShapeInputService25TestCaseOperation4Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService25TestShapeInputService25TestCaseOperation5Input struct {
@@ -6611,7 +6611,7 @@ func (s *InputService25TestShapeInputService25TestCaseOperation5Input) SetData(v
 }
 
 type InputService25TestShapeInputService25TestCaseOperation5Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService25TestShapeInputService25TestCaseOperation6Input struct {
@@ -6635,7 +6635,7 @@ func (s *InputService25TestShapeInputService25TestCaseOperation6Input) SetData(v
 }
 
 type InputService25TestShapeInputService25TestCaseOperation6Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService25TestShapeInputService25TestCaseOperation7Input struct {
@@ -6664,7 +6664,7 @@ func (s *InputService25TestShapeInputService25TestCaseOperation7Input) SetTestId
 }
 
 type InputService25TestShapeInputService25TestCaseOperation7Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService25TestShapeInputService25TestCaseOperation8Input struct {
@@ -6693,7 +6693,7 @@ func (s *InputService25TestShapeInputService25TestCaseOperation8Input) SetTestId
 }
 
 type InputService25TestShapeInputService25TestCaseOperation8Output struct {
-	_ struct{} `type:"structure" nopayload:"true"`
+	_ struct{} `type:"structure"`
 }
 
 type InputService25TestShapePayloadConfig struct {
