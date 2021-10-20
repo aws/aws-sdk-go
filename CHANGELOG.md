@@ -1,3 +1,23 @@
+Release v1.41.7 (2021-10-20)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/directconnect`: Updates service API and documentation
+  * This release adds 4 new APIS, which needs to be public able
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for specifying caption time delta in milliseconds and the ability to apply color range legalization to source content other than AVC video.
+* `service/mediapackage`: Updates service API and documentation
+  * When enabled, MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/panorama`: Updates service API, documentation, paginators, and examples
+* `service/securityhub`: Updates service API, documentation, and paginators
+* `service/transcribe-streaming`: Updates service API and documentation
+
+### SDK Bugs
+* `codegen`: Fix SDK not draining HTTP response body for operations without modeled output parameters.
+  * Fixes a bug in the SDK that was causing HTTP response bodies to not be drained, preventing the connection being reused in the connection pool. For some operations this could contributed to an increase in `close_wait` connection states.
+
 Release v1.41.6 (2021-10-19)
 ===
 

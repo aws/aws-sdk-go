@@ -783,6 +783,106 @@ func (c *SecurityHub) CreateActionTargetWithContext(ctx aws.Context, input *Crea
 	return out, req.Send()
 }
 
+const opCreateFindingAggregator = "CreateFindingAggregator"
+
+// CreateFindingAggregatorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFindingAggregator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFindingAggregator for more information on using the CreateFindingAggregator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFindingAggregatorRequest method.
+//    req, resp := client.CreateFindingAggregatorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateFindingAggregator
+func (c *SecurityHub) CreateFindingAggregatorRequest(input *CreateFindingAggregatorInput) (req *request.Request, output *CreateFindingAggregatorOutput) {
+	op := &request.Operation{
+		Name:       opCreateFindingAggregator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/findingAggregator/create",
+	}
+
+	if input == nil {
+		input = &CreateFindingAggregatorInput{}
+	}
+
+	output = &CreateFindingAggregatorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFindingAggregator API operation for AWS SecurityHub.
+//
+// Used to enable finding aggregation. Must be called from the aggregation Region.
+//
+// For more details about cross-Region replication, see Configuring finding
+// aggregation (securityhub/latest/userguide/finding-aggregation.html) in the
+// Security Hub User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation CreateFindingAggregator for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * LimitExceededException
+//   The request was rejected because it attempted to create resources beyond
+//   the current Amazon Web Services account or throttling limits. The error code
+//   describes the limit exceeded.
+//
+//   * InvalidAccessException
+//   There is an issue with the account used to make the request. Either Security
+//   Hub is not enabled for the account, or the account does not have permission
+//   to perform this action.
+//
+//   * AccessDeniedException
+//   You don't have permission to perform the action specified in the request.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/CreateFindingAggregator
+func (c *SecurityHub) CreateFindingAggregator(input *CreateFindingAggregatorInput) (*CreateFindingAggregatorOutput, error) {
+	req, out := c.CreateFindingAggregatorRequest(input)
+	return out, req.Send()
+}
+
+// CreateFindingAggregatorWithContext is the same as CreateFindingAggregator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFindingAggregator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) CreateFindingAggregatorWithContext(ctx aws.Context, input *CreateFindingAggregatorInput, opts ...request.Option) (*CreateFindingAggregatorOutput, error) {
+	req, out := c.CreateFindingAggregatorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateInsight = "CreateInsight"
 
 // CreateInsightRequest generates a "aws/request.Request" representing the
@@ -1201,6 +1301,111 @@ func (c *SecurityHub) DeleteActionTarget(input *DeleteActionTargetInput) (*Delet
 // for more information on using Contexts.
 func (c *SecurityHub) DeleteActionTargetWithContext(ctx aws.Context, input *DeleteActionTargetInput, opts ...request.Option) (*DeleteActionTargetOutput, error) {
 	req, out := c.DeleteActionTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFindingAggregator = "DeleteFindingAggregator"
+
+// DeleteFindingAggregatorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFindingAggregator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFindingAggregator for more information on using the DeleteFindingAggregator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFindingAggregatorRequest method.
+//    req, resp := client.DeleteFindingAggregatorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteFindingAggregator
+func (c *SecurityHub) DeleteFindingAggregatorRequest(input *DeleteFindingAggregatorInput) (req *request.Request, output *DeleteFindingAggregatorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFindingAggregator,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/findingAggregator/delete/{FindingAggregatorArn+}",
+	}
+
+	if input == nil {
+		input = &DeleteFindingAggregatorInput{}
+	}
+
+	output = &DeleteFindingAggregatorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFindingAggregator API operation for AWS SecurityHub.
+//
+// Deletes a finding aggregator. When you delete the finding aggregator, you
+// stop finding aggregation.
+//
+// When you stop finding aggregation, findings that were already aggregated
+// to the aggregation Region are still visible from the aggregation Region.
+// New findings and finding updates are not aggregated.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation DeleteFindingAggregator for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * LimitExceededException
+//   The request was rejected because it attempted to create resources beyond
+//   the current Amazon Web Services account or throttling limits. The error code
+//   describes the limit exceeded.
+//
+//   * InvalidAccessException
+//   There is an issue with the account used to make the request. Either Security
+//   Hub is not enabled for the account, or the account does not have permission
+//   to perform this action.
+//
+//   * AccessDeniedException
+//   You don't have permission to perform the action specified in the request.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * ResourceNotFoundException
+//   The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DeleteFindingAggregator
+func (c *SecurityHub) DeleteFindingAggregator(input *DeleteFindingAggregatorInput) (*DeleteFindingAggregatorOutput, error) {
+	req, out := c.DeleteFindingAggregatorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFindingAggregatorWithContext is the same as DeleteFindingAggregator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFindingAggregator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) DeleteFindingAggregatorWithContext(ctx aws.Context, input *DeleteFindingAggregatorInput, opts ...request.Option) (*DeleteFindingAggregatorOutput, error) {
+	req, out := c.DeleteFindingAggregatorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3488,6 +3693,105 @@ func (c *SecurityHub) GetEnabledStandardsPagesWithContext(ctx aws.Context, input
 	return p.Err()
 }
 
+const opGetFindingAggregator = "GetFindingAggregator"
+
+// GetFindingAggregatorRequest generates a "aws/request.Request" representing the
+// client's request for the GetFindingAggregator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFindingAggregator for more information on using the GetFindingAggregator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFindingAggregatorRequest method.
+//    req, resp := client.GetFindingAggregatorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetFindingAggregator
+func (c *SecurityHub) GetFindingAggregatorRequest(input *GetFindingAggregatorInput) (req *request.Request, output *GetFindingAggregatorOutput) {
+	op := &request.Operation{
+		Name:       opGetFindingAggregator,
+		HTTPMethod: "GET",
+		HTTPPath:   "/findingAggregator/get/{FindingAggregatorArn+}",
+	}
+
+	if input == nil {
+		input = &GetFindingAggregatorInput{}
+	}
+
+	output = &GetFindingAggregatorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFindingAggregator API operation for AWS SecurityHub.
+//
+// Returns the current finding aggregation configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation GetFindingAggregator for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * LimitExceededException
+//   The request was rejected because it attempted to create resources beyond
+//   the current Amazon Web Services account or throttling limits. The error code
+//   describes the limit exceeded.
+//
+//   * InvalidAccessException
+//   There is an issue with the account used to make the request. Either Security
+//   Hub is not enabled for the account, or the account does not have permission
+//   to perform this action.
+//
+//   * AccessDeniedException
+//   You don't have permission to perform the action specified in the request.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * ResourceNotFoundException
+//   The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetFindingAggregator
+func (c *SecurityHub) GetFindingAggregator(input *GetFindingAggregatorInput) (*GetFindingAggregatorOutput, error) {
+	req, out := c.GetFindingAggregatorRequest(input)
+	return out, req.Send()
+}
+
+// GetFindingAggregatorWithContext is the same as GetFindingAggregator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFindingAggregator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) GetFindingAggregatorWithContext(ctx aws.Context, input *GetFindingAggregatorInput, opts ...request.Option) (*GetFindingAggregatorOutput, error) {
+	req, out := c.GetFindingAggregatorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetFindings = "GetFindings"
 
 // GetFindingsRequest generates a "aws/request.Request" representing the
@@ -3539,6 +3843,10 @@ func (c *SecurityHub) GetFindingsRequest(input *GetFindingsInput) (req *request.
 // GetFindings API operation for AWS SecurityHub.
 //
 // Returns a list of findings that match the specified criteria.
+//
+// If finding aggregation is enabled, then when you call GetFindings from the
+// aggregation Region, the results include all of the matching findings from
+// both the aggregation Region and the linked Regions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4459,6 +4767,161 @@ func (c *SecurityHub) ListEnabledProductsForImportPagesWithContext(ctx aws.Conte
 	return p.Err()
 }
 
+const opListFindingAggregators = "ListFindingAggregators"
+
+// ListFindingAggregatorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFindingAggregators operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFindingAggregators for more information on using the ListFindingAggregators
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFindingAggregatorsRequest method.
+//    req, resp := client.ListFindingAggregatorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListFindingAggregators
+func (c *SecurityHub) ListFindingAggregatorsRequest(input *ListFindingAggregatorsInput) (req *request.Request, output *ListFindingAggregatorsOutput) {
+	op := &request.Operation{
+		Name:       opListFindingAggregators,
+		HTTPMethod: "GET",
+		HTTPPath:   "/findingAggregator/list",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFindingAggregatorsInput{}
+	}
+
+	output = &ListFindingAggregatorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFindingAggregators API operation for AWS SecurityHub.
+//
+// If finding aggregation is enabled, then ListFindingAggregators returns the
+// ARN of the finding aggregator. You can run this operation from any Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation ListFindingAggregators for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * LimitExceededException
+//   The request was rejected because it attempted to create resources beyond
+//   the current Amazon Web Services account or throttling limits. The error code
+//   describes the limit exceeded.
+//
+//   * InvalidAccessException
+//   There is an issue with the account used to make the request. Either Security
+//   Hub is not enabled for the account, or the account does not have permission
+//   to perform this action.
+//
+//   * AccessDeniedException
+//   You don't have permission to perform the action specified in the request.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/ListFindingAggregators
+func (c *SecurityHub) ListFindingAggregators(input *ListFindingAggregatorsInput) (*ListFindingAggregatorsOutput, error) {
+	req, out := c.ListFindingAggregatorsRequest(input)
+	return out, req.Send()
+}
+
+// ListFindingAggregatorsWithContext is the same as ListFindingAggregators with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFindingAggregators for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListFindingAggregatorsWithContext(ctx aws.Context, input *ListFindingAggregatorsInput, opts ...request.Option) (*ListFindingAggregatorsOutput, error) {
+	req, out := c.ListFindingAggregatorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFindingAggregatorsPages iterates over the pages of a ListFindingAggregators operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFindingAggregators method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFindingAggregators operation.
+//    pageNum := 0
+//    err := client.ListFindingAggregatorsPages(params,
+//        func(page *securityhub.ListFindingAggregatorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SecurityHub) ListFindingAggregatorsPages(input *ListFindingAggregatorsInput, fn func(*ListFindingAggregatorsOutput, bool) bool) error {
+	return c.ListFindingAggregatorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFindingAggregatorsPagesWithContext same as ListFindingAggregatorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) ListFindingAggregatorsPagesWithContext(ctx aws.Context, input *ListFindingAggregatorsInput, fn func(*ListFindingAggregatorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFindingAggregatorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFindingAggregatorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFindingAggregatorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListInvitations = "ListInvitations"
 
 // ListInvitationsRequest generates a "aws/request.Request" representing the
@@ -5272,6 +5735,109 @@ func (c *SecurityHub) UpdateActionTarget(input *UpdateActionTargetInput) (*Updat
 // for more information on using Contexts.
 func (c *SecurityHub) UpdateActionTargetWithContext(ctx aws.Context, input *UpdateActionTargetInput, opts ...request.Option) (*UpdateActionTargetOutput, error) {
 	req, out := c.UpdateActionTargetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFindingAggregator = "UpdateFindingAggregator"
+
+// UpdateFindingAggregatorRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFindingAggregator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFindingAggregator for more information on using the UpdateFindingAggregator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFindingAggregatorRequest method.
+//    req, resp := client.UpdateFindingAggregatorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateFindingAggregator
+func (c *SecurityHub) UpdateFindingAggregatorRequest(input *UpdateFindingAggregatorInput) (req *request.Request, output *UpdateFindingAggregatorOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFindingAggregator,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/findingAggregator/update",
+	}
+
+	if input == nil {
+		input = &UpdateFindingAggregatorInput{}
+	}
+
+	output = &UpdateFindingAggregatorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFindingAggregator API operation for AWS SecurityHub.
+//
+// Updates the finding aggregation configuration. Used to update the Region
+// linking mode and the list of included or excluded Regions. You cannot use
+// UpdateFindingAggregator to change the aggregation Region.
+//
+// You must run UpdateFindingAggregator from the current aggregation Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation UpdateFindingAggregator for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * LimitExceededException
+//   The request was rejected because it attempted to create resources beyond
+//   the current Amazon Web Services account or throttling limits. The error code
+//   describes the limit exceeded.
+//
+//   * InvalidAccessException
+//   There is an issue with the account used to make the request. Either Security
+//   Hub is not enabled for the account, or the account does not have permission
+//   to perform this action.
+//
+//   * AccessDeniedException
+//   You don't have permission to perform the action specified in the request.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * ResourceNotFoundException
+//   The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/UpdateFindingAggregator
+func (c *SecurityHub) UpdateFindingAggregator(input *UpdateFindingAggregatorInput) (*UpdateFindingAggregatorOutput, error) {
+	req, out := c.UpdateFindingAggregatorRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFindingAggregatorWithContext is the same as UpdateFindingAggregator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFindingAggregator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) UpdateFindingAggregatorWithContext(ctx aws.Context, input *UpdateFindingAggregatorInput, opts ...request.Option) (*UpdateFindingAggregatorOutput, error) {
+	req, out := c.UpdateFindingAggregatorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -30374,6 +30940,148 @@ func (s *CreateActionTargetOutput) SetActionTargetArn(v string) *CreateActionTar
 	return s
 }
 
+type CreateFindingAggregatorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether to aggregate findings from all of the available Regions
+	// in the current partition. Also determines whether to automatically aggregate
+	// findings from new Regions as Security Hub supports them and you opt into
+	// them.
+	//
+	// The selected option also determines how to use the Regions provided in the
+	// Regions list.
+	//
+	// The options are as follows:
+	//
+	//    * ALL_REGIONS - Indicates to aggregate findings from all of the Regions
+	//    where Security Hub is enabled. When you choose this option, Security Hub
+	//    also automatically aggregates findings from new Regions as Security Hub
+	//    supports them and you opt into them.
+	//
+	//    * ALL_REGIONS_EXCEPT_SPECIFIED - Indicates to aggregate findings from
+	//    all of the Regions where Security Hub is enabled, except for the Regions
+	//    listed in the Regions parameter. When you choose this option, Security
+	//    Hub also automatically aggregates findings from new Regions as Security
+	//    Hub supports them and you opt into them.
+	//
+	//    * SPECIFIED_REGIONS - Indicates to aggregate findings only from the Regions
+	//    listed in the Regions parameter. Security Hub does not automatically aggregate
+	//    findings from new Regions.
+	//
+	// RegionLinkingMode is a required field
+	RegionLinkingMode *string `type:"string" required:"true"`
+
+	// If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a comma-separated
+	// list of Regions that do not aggregate findings to the aggregation Region.
+	//
+	// If RegionLinkingMode is SPECIFIED_REGIONS, then this is a comma-separated
+	// list of Regions that do aggregate findings to the aggregation Region.
+	Regions []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFindingAggregatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFindingAggregatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFindingAggregatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFindingAggregatorInput"}
+	if s.RegionLinkingMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegionLinkingMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRegionLinkingMode sets the RegionLinkingMode field's value.
+func (s *CreateFindingAggregatorInput) SetRegionLinkingMode(v string) *CreateFindingAggregatorInput {
+	s.RegionLinkingMode = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *CreateFindingAggregatorInput) SetRegions(v []*string) *CreateFindingAggregatorInput {
+	s.Regions = v
+	return s
+}
+
+type CreateFindingAggregatorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation Region.
+	FindingAggregationRegion *string `type:"string"`
+
+	// The ARN of the finding aggregator. You use the finding aggregator ARN to
+	// retrieve details for, update, and stop finding aggregation.
+	FindingAggregatorArn *string `type:"string"`
+
+	// Indicates whether to link all Regions, all Regions except for a list of excluded
+	// Regions, or a list of included Regions.
+	RegionLinkingMode *string `type:"string"`
+
+	// The list of excluded Regions or included Regions.
+	Regions []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFindingAggregatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFindingAggregatorOutput) GoString() string {
+	return s.String()
+}
+
+// SetFindingAggregationRegion sets the FindingAggregationRegion field's value.
+func (s *CreateFindingAggregatorOutput) SetFindingAggregationRegion(v string) *CreateFindingAggregatorOutput {
+	s.FindingAggregationRegion = &v
+	return s
+}
+
+// SetFindingAggregatorArn sets the FindingAggregatorArn field's value.
+func (s *CreateFindingAggregatorOutput) SetFindingAggregatorArn(v string) *CreateFindingAggregatorOutput {
+	s.FindingAggregatorArn = &v
+	return s
+}
+
+// SetRegionLinkingMode sets the RegionLinkingMode field's value.
+func (s *CreateFindingAggregatorOutput) SetRegionLinkingMode(v string) *CreateFindingAggregatorOutput {
+	s.RegionLinkingMode = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *CreateFindingAggregatorOutput) SetRegions(v []*string) *CreateFindingAggregatorOutput {
+	s.Regions = v
+	return s
+}
+
 type CreateInsightInput struct {
 	_ struct{} `type:"structure"`
 
@@ -31036,6 +31744,77 @@ func (s DeleteActionTargetOutput) GoString() string {
 func (s *DeleteActionTargetOutput) SetActionTargetArn(v string) *DeleteActionTargetOutput {
 	s.ActionTargetArn = &v
 	return s
+}
+
+type DeleteFindingAggregatorInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the finding aggregator to delete. To obtain the ARN, use ListFindingAggregators.
+	//
+	// FindingAggregatorArn is a required field
+	FindingAggregatorArn *string `location:"uri" locationName:"FindingAggregatorArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFindingAggregatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFindingAggregatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFindingAggregatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFindingAggregatorInput"}
+	if s.FindingAggregatorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingAggregatorArn"))
+	}
+	if s.FindingAggregatorArn != nil && len(*s.FindingAggregatorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FindingAggregatorArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFindingAggregatorArn sets the FindingAggregatorArn field's value.
+func (s *DeleteFindingAggregatorInput) SetFindingAggregatorArn(v string) *DeleteFindingAggregatorInput {
+	s.FindingAggregatorArn = &v
+	return s
+}
+
+type DeleteFindingAggregatorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFindingAggregatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFindingAggregatorOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteInsightInput struct {
@@ -32473,6 +33252,40 @@ func (s EnableSecurityHubOutput) GoString() string {
 	return s.String()
 }
 
+// A finding aggregator. A finding aggregator contains the configuration for
+// finding aggregation.
+type FindingAggregator struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the finding aggregator. You use the finding aggregator ARN to
+	// retrieve details for, update, and delete the finding aggregator.
+	FindingAggregatorArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingAggregator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FindingAggregator) GoString() string {
+	return s.String()
+}
+
+// SetFindingAggregatorArn sets the FindingAggregatorArn field's value.
+func (s *FindingAggregator) SetFindingAggregatorArn(v string) *FindingAggregator {
+	s.FindingAggregatorArn = &v
+	return s
+}
+
 // In a BatchImportFindings request, finding providers use FindingProviderFields
 // to provide and update values for confidence, criticality, related findings,
 // severity, and types.
@@ -32816,6 +33629,115 @@ func (s *GetEnabledStandardsOutput) SetNextToken(v string) *GetEnabledStandardsO
 // SetStandardsSubscriptions sets the StandardsSubscriptions field's value.
 func (s *GetEnabledStandardsOutput) SetStandardsSubscriptions(v []*StandardsSubscription) *GetEnabledStandardsOutput {
 	s.StandardsSubscriptions = v
+	return s
+}
+
+type GetFindingAggregatorInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the finding aggregator to return details for. To obtain the ARN,
+	// use ListFindingAggregators.
+	//
+	// FindingAggregatorArn is a required field
+	FindingAggregatorArn *string `location:"uri" locationName:"FindingAggregatorArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingAggregatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingAggregatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFindingAggregatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFindingAggregatorInput"}
+	if s.FindingAggregatorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingAggregatorArn"))
+	}
+	if s.FindingAggregatorArn != nil && len(*s.FindingAggregatorArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FindingAggregatorArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFindingAggregatorArn sets the FindingAggregatorArn field's value.
+func (s *GetFindingAggregatorInput) SetFindingAggregatorArn(v string) *GetFindingAggregatorInput {
+	s.FindingAggregatorArn = &v
+	return s
+}
+
+type GetFindingAggregatorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation Region.
+	FindingAggregationRegion *string `type:"string"`
+
+	// The ARN of the finding aggregator.
+	FindingAggregatorArn *string `type:"string"`
+
+	// Indicates whether to link all Regions, all Regions except for a list of excluded
+	// Regions, or a list of included Regions.
+	RegionLinkingMode *string `type:"string"`
+
+	// The list of excluded Regions or included Regions.
+	Regions []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingAggregatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFindingAggregatorOutput) GoString() string {
+	return s.String()
+}
+
+// SetFindingAggregationRegion sets the FindingAggregationRegion field's value.
+func (s *GetFindingAggregatorOutput) SetFindingAggregationRegion(v string) *GetFindingAggregatorOutput {
+	s.FindingAggregationRegion = &v
+	return s
+}
+
+// SetFindingAggregatorArn sets the FindingAggregatorArn field's value.
+func (s *GetFindingAggregatorOutput) SetFindingAggregatorArn(v string) *GetFindingAggregatorOutput {
+	s.FindingAggregatorArn = &v
+	return s
+}
+
+// SetRegionLinkingMode sets the RegionLinkingMode field's value.
+func (s *GetFindingAggregatorOutput) SetRegionLinkingMode(v string) *GetFindingAggregatorOutput {
+	s.RegionLinkingMode = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *GetFindingAggregatorOutput) SetRegions(v []*string) *GetFindingAggregatorOutput {
+	s.Regions = v
 	return s
 }
 
@@ -34283,6 +35205,105 @@ func (s *ListEnabledProductsForImportOutput) SetNextToken(v string) *ListEnabled
 // SetProductSubscriptions sets the ProductSubscriptions field's value.
 func (s *ListEnabledProductsForImportOutput) SetProductSubscriptions(v []*string) *ListEnabledProductsForImportOutput {
 	s.ProductSubscriptions = v
+	return s
+}
+
+type ListFindingAggregatorsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return. This operation currently only returns
+	// a single result.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The token returned with the previous set of results. Identifies the next
+	// set of results to return.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFindingAggregatorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFindingAggregatorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFindingAggregatorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFindingAggregatorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFindingAggregatorsInput) SetMaxResults(v int64) *ListFindingAggregatorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFindingAggregatorsInput) SetNextToken(v string) *ListFindingAggregatorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFindingAggregatorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of finding aggregators. This operation currently only returns a
+	// single result.
+	FindingAggregators []*FindingAggregator `type:"list"`
+
+	// If there are more results, this is the token to provide in the next call
+	// to ListFindingAggregators.
+	//
+	// This operation currently only returns a single result.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFindingAggregatorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFindingAggregatorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFindingAggregators sets the FindingAggregators field's value.
+func (s *ListFindingAggregatorsOutput) SetFindingAggregators(v []*FindingAggregator) *ListFindingAggregatorsOutput {
+	s.FindingAggregators = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFindingAggregatorsOutput) SetNextToken(v string) *ListFindingAggregatorsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -38565,6 +39586,161 @@ func (s UpdateActionTargetOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateActionTargetOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateFindingAggregatorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the finding aggregator. To obtain the ARN, use ListFindingAggregators.
+	//
+	// FindingAggregatorArn is a required field
+	FindingAggregatorArn *string `type:"string" required:"true"`
+
+	// Indicates whether to aggregate findings from all of the available Regions
+	// in the current partition. Also determines whether to automatically aggregate
+	// findings from new Regions as Security Hub supports them and you opt into
+	// them.
+	//
+	// The selected option also determines how to use the Regions provided in the
+	// Regions list.
+	//
+	// The options are as follows:
+	//
+	//    * ALL_REGIONS - Indicates to aggregate findings from all of the Regions
+	//    where Security Hub is enabled. When you choose this option, Security Hub
+	//    also automatically aggregates findings from new Regions as Security Hub
+	//    supports them and you opt into them.
+	//
+	//    * ALL_REGIONS_EXCEPT_SPECIFIED - Indicates to aggregate findings from
+	//    all of the Regions where Security Hub is enabled, except for the Regions
+	//    listed in the Regions parameter. When you choose this option, Security
+	//    Hub also automatically aggregates findings from new Regions as Security
+	//    Hub supports them and you opt into them.
+	//
+	//    * SPECIFIED_REGIONS - Indicates to aggregate findings only from the Regions
+	//    listed in the Regions parameter. Security Hub does not automatically aggregate
+	//    findings from new Regions.
+	//
+	// RegionLinkingMode is a required field
+	RegionLinkingMode *string `type:"string" required:"true"`
+
+	// If RegionLinkingMode is ALL_REGIONS_EXCEPT_SPECIFIED, then this is a comma-separated
+	// list of Regions that do not aggregate findings to the aggregation Region.
+	//
+	// If RegionLinkingMode is SPECIFIED_REGIONS, then this is a comma-separated
+	// list of Regions that do aggregate findings to the aggregation Region.
+	Regions []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFindingAggregatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFindingAggregatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFindingAggregatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFindingAggregatorInput"}
+	if s.FindingAggregatorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FindingAggregatorArn"))
+	}
+	if s.RegionLinkingMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegionLinkingMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFindingAggregatorArn sets the FindingAggregatorArn field's value.
+func (s *UpdateFindingAggregatorInput) SetFindingAggregatorArn(v string) *UpdateFindingAggregatorInput {
+	s.FindingAggregatorArn = &v
+	return s
+}
+
+// SetRegionLinkingMode sets the RegionLinkingMode field's value.
+func (s *UpdateFindingAggregatorInput) SetRegionLinkingMode(v string) *UpdateFindingAggregatorInput {
+	s.RegionLinkingMode = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *UpdateFindingAggregatorInput) SetRegions(v []*string) *UpdateFindingAggregatorInput {
+	s.Regions = v
+	return s
+}
+
+type UpdateFindingAggregatorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation Region.
+	FindingAggregationRegion *string `type:"string"`
+
+	// The ARN of the finding aggregator.
+	FindingAggregatorArn *string `type:"string"`
+
+	// Indicates whether to link all Regions, all Regions except for a list of excluded
+	// Regions, or a list of included Regions.
+	RegionLinkingMode *string `type:"string"`
+
+	// The list of excluded Regions or included Regions.
+	Regions []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFindingAggregatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFindingAggregatorOutput) GoString() string {
+	return s.String()
+}
+
+// SetFindingAggregationRegion sets the FindingAggregationRegion field's value.
+func (s *UpdateFindingAggregatorOutput) SetFindingAggregationRegion(v string) *UpdateFindingAggregatorOutput {
+	s.FindingAggregationRegion = &v
+	return s
+}
+
+// SetFindingAggregatorArn sets the FindingAggregatorArn field's value.
+func (s *UpdateFindingAggregatorOutput) SetFindingAggregatorArn(v string) *UpdateFindingAggregatorOutput {
+	s.FindingAggregatorArn = &v
+	return s
+}
+
+// SetRegionLinkingMode sets the RegionLinkingMode field's value.
+func (s *UpdateFindingAggregatorOutput) SetRegionLinkingMode(v string) *UpdateFindingAggregatorOutput {
+	s.RegionLinkingMode = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *UpdateFindingAggregatorOutput) SetRegions(v []*string) *UpdateFindingAggregatorOutput {
+	s.Regions = v
+	return s
 }
 
 type UpdateFindingsInput struct {

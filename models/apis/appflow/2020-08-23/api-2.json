@@ -1797,6 +1797,19 @@
         "s3OutputFormatConfig":{"shape":"S3OutputFormatConfig"}
       }
     },
+    "S3InputFileType":{
+      "type":"string",
+      "enum":[
+        "CSV",
+        "JSON"
+      ]
+    },
+    "S3InputFormatConfig":{
+      "type":"structure",
+      "members":{
+        "s3InputFileType":{"shape":"S3InputFileType"}
+      }
+    },
     "S3Metadata":{
       "type":"structure",
       "members":{
@@ -1815,7 +1828,8 @@
       "required":["bucketName"],
       "members":{
         "bucketName":{"shape":"BucketName"},
-        "bucketPrefix":{"shape":"BucketPrefix"}
+        "bucketPrefix":{"shape":"BucketPrefix"},
+        "s3InputFormatConfig":{"shape":"S3InputFormatConfig"}
       }
     },
     "SAPODataConnectorOperator":{

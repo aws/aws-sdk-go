@@ -122,6 +122,22 @@
         {"shape":"ResourceConflictException"}
       ]
     },
+    "CreateFindingAggregator":{
+      "name":"CreateFindingAggregator",
+      "http":{
+        "method":"POST",
+        "requestUri":"/findingAggregator/create"
+      },
+      "input":{"shape":"CreateFindingAggregatorRequest"},
+      "output":{"shape":"CreateFindingAggregatorResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "CreateInsight":{
       "name":"CreateInsight",
       "http":{
@@ -181,6 +197,23 @@
         {"shape":"InternalException"},
         {"shape":"InvalidInputException"},
         {"shape":"InvalidAccessException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DeleteFindingAggregator":{
+      "name":"DeleteFindingAggregator",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/findingAggregator/delete/{FindingAggregatorArn+}"
+      },
+      "input":{"shape":"DeleteFindingAggregatorRequest"},
+      "output":{"shape":"DeleteFindingAggregatorResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -496,6 +529,23 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "GetFindingAggregator":{
+      "name":"GetFindingAggregator",
+      "http":{
+        "method":"GET",
+        "requestUri":"/findingAggregator/get/{FindingAggregatorArn+}"
+      },
+      "input":{"shape":"GetFindingAggregatorRequest"},
+      "output":{"shape":"GetFindingAggregatorResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetFindings":{
       "name":"GetFindings",
       "http":{
@@ -622,6 +672,22 @@
         {"shape":"InvalidAccessException"}
       ]
     },
+    "ListFindingAggregators":{
+      "name":"ListFindingAggregators",
+      "http":{
+        "method":"GET",
+        "requestUri":"/findingAggregator/list"
+      },
+      "input":{"shape":"ListFindingAggregatorsRequest"},
+      "output":{"shape":"ListFindingAggregatorsResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "ListInvitations":{
       "name":"ListInvitations",
       "http":{
@@ -722,6 +788,23 @@
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidAccessException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UpdateFindingAggregator":{
+      "name":"UpdateFindingAggregator",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/findingAggregator/update"
+      },
+      "input":{"shape":"UpdateFindingAggregatorRequest"},
+      "output":{"shape":"UpdateFindingAggregatorResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -4727,6 +4810,23 @@
         "ActionTargetArn":{"shape":"NonEmptyString"}
       }
     },
+    "CreateFindingAggregatorRequest":{
+      "type":"structure",
+      "required":["RegionLinkingMode"],
+      "members":{
+        "RegionLinkingMode":{"shape":"NonEmptyString"},
+        "Regions":{"shape":"StringList"}
+      }
+    },
+    "CreateFindingAggregatorResponse":{
+      "type":"structure",
+      "members":{
+        "FindingAggregatorArn":{"shape":"NonEmptyString"},
+        "FindingAggregationRegion":{"shape":"NonEmptyString"},
+        "RegionLinkingMode":{"shape":"NonEmptyString"},
+        "Regions":{"shape":"StringList"}
+      }
+    },
     "CreateInsightRequest":{
       "type":"structure",
       "required":[
@@ -4858,6 +4958,22 @@
       "required":["ActionTargetArn"],
       "members":{
         "ActionTargetArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteFindingAggregatorRequest":{
+      "type":"structure",
+      "required":["FindingAggregatorArn"],
+      "members":{
+        "FindingAggregatorArn":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"FindingAggregatorArn"
+        }
+      }
+    },
+    "DeleteFindingAggregatorResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteInsightRequest":{
@@ -5149,6 +5265,16 @@
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"NonEmptyString"}
     },
+    "FindingAggregator":{
+      "type":"structure",
+      "members":{
+        "FindingAggregatorArn":{"shape":"NonEmptyString"}
+      }
+    },
+    "FindingAggregatorList":{
+      "type":"list",
+      "member":{"shape":"FindingAggregator"}
+    },
     "FindingProviderFields":{
       "type":"structure",
       "members":{
@@ -5197,6 +5323,26 @@
       "members":{
         "StandardsSubscriptions":{"shape":"StandardsSubscriptions"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetFindingAggregatorRequest":{
+      "type":"structure",
+      "required":["FindingAggregatorArn"],
+      "members":{
+        "FindingAggregatorArn":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"FindingAggregatorArn"
+        }
+      }
+    },
+    "GetFindingAggregatorResponse":{
+      "type":"structure",
+      "members":{
+        "FindingAggregatorArn":{"shape":"NonEmptyString"},
+        "FindingAggregationRegion":{"shape":"NonEmptyString"},
+        "RegionLinkingMode":{"shape":"NonEmptyString"},
+        "Regions":{"shape":"StringList"}
       }
     },
     "GetFindingsRequest":{
@@ -5496,6 +5642,28 @@
       "type":"structure",
       "members":{
         "ProductSubscriptions":{"shape":"ProductSubscriptionArnList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListFindingAggregatorsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        }
+      }
+    },
+    "ListFindingAggregatorsResponse":{
+      "type":"structure",
+      "members":{
+        "FindingAggregators":{"shape":"FindingAggregatorList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -6446,6 +6614,27 @@
     "UpdateActionTargetResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateFindingAggregatorRequest":{
+      "type":"structure",
+      "required":[
+        "FindingAggregatorArn",
+        "RegionLinkingMode"
+      ],
+      "members":{
+        "FindingAggregatorArn":{"shape":"NonEmptyString"},
+        "RegionLinkingMode":{"shape":"NonEmptyString"},
+        "Regions":{"shape":"StringList"}
+      }
+    },
+    "UpdateFindingAggregatorResponse":{
+      "type":"structure",
+      "members":{
+        "FindingAggregatorArn":{"shape":"NonEmptyString"},
+        "FindingAggregationRegion":{"shape":"NonEmptyString"},
+        "RegionLinkingMode":{"shape":"NonEmptyString"},
+        "Regions":{"shape":"StringList"}
       }
     },
     "UpdateFindingsRequest":{

@@ -1329,6 +1329,18 @@
         "DestinationConnectorProperties$S3": "<p> The properties required to query Amazon S3. </p>"
       }
     },
+    "S3InputFileType": {
+      "base": null,
+      "refs": {
+        "S3InputFormatConfig$s3InputFileType": "<p> The file type that Amazon AppFlow gets from your Amazon S3 bucket. </p>"
+      }
+    },
+    "S3InputFormatConfig": {
+      "base": "<p> When you use Amazon S3 as the source, the configuration format that you provide the flow input data. </p>",
+      "refs": {
+        "S3SourceProperties$s3InputFormatConfig": null
+      }
+    },
     "S3Metadata": {
       "base": "<p> The connector metadata specific to Amazon S3. </p>",
       "refs": {

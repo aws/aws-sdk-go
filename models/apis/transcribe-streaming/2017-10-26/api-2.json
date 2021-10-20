@@ -274,6 +274,12 @@
       },
       "eventstream":true
     },
+    "ModelName":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z._-]+"
+    },
     "NumberOfChannels":{
       "type":"integer",
       "min":2
@@ -555,6 +561,11 @@
           "shape":"PiiEntityTypes",
           "location":"header",
           "locationName":"x-amzn-transcribe-pii-entity-types"
+        },
+        "LanguageModelName":{
+          "shape":"ModelName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-language-model-name"
         }
       },
       "payload":"AudioStream"
@@ -642,6 +653,11 @@
           "shape":"PiiEntityTypes",
           "location":"header",
           "locationName":"x-amzn-transcribe-pii-entity-types"
+        },
+        "LanguageModelName":{
+          "shape":"ModelName",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-language-model-name"
         }
       },
       "payload":"TranscriptResultStream"

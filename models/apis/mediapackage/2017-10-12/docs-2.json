@@ -342,6 +342,7 @@
         "HlsEncryption$RepeatExtXKey" : "When enabled, the EXT-X-KEY tag will be repeated in output manifests.",
         "HlsManifest$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
         "HlsManifestCreateOrUpdateParameters$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
+        "HlsPackage$IncludeDvbSubtitles" : "When enabled, MediaPackage passes through digital video broadcasting (DVB) subtitles into the output.",
         "HlsPackage$IncludeIframeOnlyStream" : "When enabled, an I-Frame only stream will be included in the output.",
         "HlsPackage$UseAudioRenditionGroup" : "When enabled, audio streams will be placed in rendition groups in the output."
       }

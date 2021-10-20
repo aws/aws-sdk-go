@@ -88,6 +88,10 @@ type SecurityHubAPI interface {
 	CreateActionTargetWithContext(aws.Context, *securityhub.CreateActionTargetInput, ...request.Option) (*securityhub.CreateActionTargetOutput, error)
 	CreateActionTargetRequest(*securityhub.CreateActionTargetInput) (*request.Request, *securityhub.CreateActionTargetOutput)
 
+	CreateFindingAggregator(*securityhub.CreateFindingAggregatorInput) (*securityhub.CreateFindingAggregatorOutput, error)
+	CreateFindingAggregatorWithContext(aws.Context, *securityhub.CreateFindingAggregatorInput, ...request.Option) (*securityhub.CreateFindingAggregatorOutput, error)
+	CreateFindingAggregatorRequest(*securityhub.CreateFindingAggregatorInput) (*request.Request, *securityhub.CreateFindingAggregatorOutput)
+
 	CreateInsight(*securityhub.CreateInsightInput) (*securityhub.CreateInsightOutput, error)
 	CreateInsightWithContext(aws.Context, *securityhub.CreateInsightInput, ...request.Option) (*securityhub.CreateInsightOutput, error)
 	CreateInsightRequest(*securityhub.CreateInsightInput) (*request.Request, *securityhub.CreateInsightOutput)
@@ -103,6 +107,10 @@ type SecurityHubAPI interface {
 	DeleteActionTarget(*securityhub.DeleteActionTargetInput) (*securityhub.DeleteActionTargetOutput, error)
 	DeleteActionTargetWithContext(aws.Context, *securityhub.DeleteActionTargetInput, ...request.Option) (*securityhub.DeleteActionTargetOutput, error)
 	DeleteActionTargetRequest(*securityhub.DeleteActionTargetInput) (*request.Request, *securityhub.DeleteActionTargetOutput)
+
+	DeleteFindingAggregator(*securityhub.DeleteFindingAggregatorInput) (*securityhub.DeleteFindingAggregatorOutput, error)
+	DeleteFindingAggregatorWithContext(aws.Context, *securityhub.DeleteFindingAggregatorInput, ...request.Option) (*securityhub.DeleteFindingAggregatorOutput, error)
+	DeleteFindingAggregatorRequest(*securityhub.DeleteFindingAggregatorInput) (*request.Request, *securityhub.DeleteFindingAggregatorOutput)
 
 	DeleteInsight(*securityhub.DeleteInsightInput) (*securityhub.DeleteInsightOutput, error)
 	DeleteInsightWithContext(aws.Context, *securityhub.DeleteInsightInput, ...request.Option) (*securityhub.DeleteInsightOutput, error)
@@ -199,6 +207,10 @@ type SecurityHubAPI interface {
 	GetEnabledStandardsPages(*securityhub.GetEnabledStandardsInput, func(*securityhub.GetEnabledStandardsOutput, bool) bool) error
 	GetEnabledStandardsPagesWithContext(aws.Context, *securityhub.GetEnabledStandardsInput, func(*securityhub.GetEnabledStandardsOutput, bool) bool, ...request.Option) error
 
+	GetFindingAggregator(*securityhub.GetFindingAggregatorInput) (*securityhub.GetFindingAggregatorOutput, error)
+	GetFindingAggregatorWithContext(aws.Context, *securityhub.GetFindingAggregatorInput, ...request.Option) (*securityhub.GetFindingAggregatorOutput, error)
+	GetFindingAggregatorRequest(*securityhub.GetFindingAggregatorInput) (*request.Request, *securityhub.GetFindingAggregatorOutput)
+
 	GetFindings(*securityhub.GetFindingsInput) (*securityhub.GetFindingsOutput, error)
 	GetFindingsWithContext(aws.Context, *securityhub.GetFindingsInput, ...request.Option) (*securityhub.GetFindingsOutput, error)
 	GetFindingsRequest(*securityhub.GetFindingsInput) (*request.Request, *securityhub.GetFindingsOutput)
@@ -240,6 +252,13 @@ type SecurityHubAPI interface {
 	ListEnabledProductsForImportPages(*securityhub.ListEnabledProductsForImportInput, func(*securityhub.ListEnabledProductsForImportOutput, bool) bool) error
 	ListEnabledProductsForImportPagesWithContext(aws.Context, *securityhub.ListEnabledProductsForImportInput, func(*securityhub.ListEnabledProductsForImportOutput, bool) bool, ...request.Option) error
 
+	ListFindingAggregators(*securityhub.ListFindingAggregatorsInput) (*securityhub.ListFindingAggregatorsOutput, error)
+	ListFindingAggregatorsWithContext(aws.Context, *securityhub.ListFindingAggregatorsInput, ...request.Option) (*securityhub.ListFindingAggregatorsOutput, error)
+	ListFindingAggregatorsRequest(*securityhub.ListFindingAggregatorsInput) (*request.Request, *securityhub.ListFindingAggregatorsOutput)
+
+	ListFindingAggregatorsPages(*securityhub.ListFindingAggregatorsInput, func(*securityhub.ListFindingAggregatorsOutput, bool) bool) error
+	ListFindingAggregatorsPagesWithContext(aws.Context, *securityhub.ListFindingAggregatorsInput, func(*securityhub.ListFindingAggregatorsOutput, bool) bool, ...request.Option) error
+
 	ListInvitations(*securityhub.ListInvitationsInput) (*securityhub.ListInvitationsOutput, error)
 	ListInvitationsWithContext(aws.Context, *securityhub.ListInvitationsInput, ...request.Option) (*securityhub.ListInvitationsOutput, error)
 	ListInvitationsRequest(*securityhub.ListInvitationsInput) (*request.Request, *securityhub.ListInvitationsOutput)
@@ -276,6 +295,10 @@ type SecurityHubAPI interface {
 	UpdateActionTarget(*securityhub.UpdateActionTargetInput) (*securityhub.UpdateActionTargetOutput, error)
 	UpdateActionTargetWithContext(aws.Context, *securityhub.UpdateActionTargetInput, ...request.Option) (*securityhub.UpdateActionTargetOutput, error)
 	UpdateActionTargetRequest(*securityhub.UpdateActionTargetInput) (*request.Request, *securityhub.UpdateActionTargetOutput)
+
+	UpdateFindingAggregator(*securityhub.UpdateFindingAggregatorInput) (*securityhub.UpdateFindingAggregatorOutput, error)
+	UpdateFindingAggregatorWithContext(aws.Context, *securityhub.UpdateFindingAggregatorInput, ...request.Option) (*securityhub.UpdateFindingAggregatorOutput, error)
+	UpdateFindingAggregatorRequest(*securityhub.UpdateFindingAggregatorInput) (*request.Request, *securityhub.UpdateFindingAggregatorOutput)
 
 	UpdateFindings(*securityhub.UpdateFindingsInput) (*securityhub.UpdateFindingsOutput, error)
 	UpdateFindingsWithContext(aws.Context, *securityhub.UpdateFindingsInput, ...request.Option) (*securityhub.UpdateFindingsOutput, error)
