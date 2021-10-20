@@ -535,7 +535,7 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 		if name := ref.Shape.PayloadRefName(); len(name) > 0 {
 			tags = append(tags, ShapeTag{"payload", name})
 		}
-		if !ref.Shape.HasPayloadMembers() && ref.API.Metadata.Protocol == "rest-json" {
+		if ref.Shape.UsedAsInput && !ref.Shape.HasPayloadMembers() && ref.API.Metadata.Protocol == "rest-json" {
 			tags = append(tags, ShapeTag{"nopayload", "true"})
 		}
 	}
