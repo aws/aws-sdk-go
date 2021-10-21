@@ -1,3 +1,9 @@
+Release v1.41.8 (2021-10-21)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service documentation
+
 Release v1.41.7 (2021-10-20)
 ===
 

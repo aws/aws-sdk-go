@@ -1053,8 +1053,6 @@ func (c *Connect) CreateHoursOfOperationRequest(input *CreateHoursOfOperationInp
 
 // CreateHoursOfOperation API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Creates hours of operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1928,8 +1926,6 @@ func (c *Connect) DeleteHoursOfOperationRequest(input *DeleteHoursOfOperationInp
 
 // DeleteHoursOfOperation API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Deletes an hours of operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2767,8 +2763,6 @@ func (c *Connect) DescribeHoursOfOperationRequest(input *DescribeHoursOfOperatio
 }
 
 // DescribeHoursOfOperation API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Describes the hours of operation.
 //
@@ -9891,8 +9885,6 @@ func (c *Connect) UpdateHoursOfOperationRequest(input *UpdateHoursOfOperationInp
 }
 
 // UpdateHoursOfOperation API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Updates the hours of operation.
 //
@@ -19557,12 +19549,12 @@ type HoursOfOperationConfig struct {
 	// Day is a required field
 	Day *string `type:"string" required:"true" enum:"HoursOfOperationDays"`
 
-	// The end time that your contact center is closes.
+	// The end time that your contact center closes.
 	//
 	// EndTime is a required field
 	EndTime *HoursOfOperationTimeSlice `type:"structure" required:"true"`
 
-	// The start time that your contact center is open.
+	// The start time that your contact center opens.
 	//
 	// StartTime is a required field
 	StartTime *HoursOfOperationTimeSlice `type:"structure" required:"true"`
@@ -22014,7 +22006,8 @@ type ListLexBotsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The maximum number of results to return per page.
+	// The maximum number of results to return per page. If no value is specified,
+	// the default is 10.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token for the next set of results. Use the value returned in the previous
