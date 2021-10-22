@@ -2905,7 +2905,9 @@
         "UserError$UserId": "<p>The user ID for which the action failed.</p>",
         "UserIdList$member": null,
         "VoiceConnector$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
+        "VoiceConnector$VoiceConnectorArn": "<p>The ARN of the specified Amazon Chime Voice Connector.</p>",
         "VoiceConnectorGroup$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
+        "VoiceConnectorGroup$VoiceConnectorGroupArn": "<p>The ARN of the specified Amazon Chime Voice Connector group.</p>",
         "VoiceConnectorItem$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>"
       }
     },

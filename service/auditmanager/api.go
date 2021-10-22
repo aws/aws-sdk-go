@@ -1417,8 +1417,8 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 
 // DeregisterOrganizationAdminAccount API operation for AWS Audit Manager.
 //
-// Removes the specified member account as a delegated administrator for Audit
-// Manager.
+// Removes the specified member Amazon Web Services account as a delegated administrator
+// for Audit Manager.
 //
 // When you remove a delegated administrator from your Audit Manager settings,
 // or when you deregister a delegated administrator from Organizations, you
@@ -3143,7 +3143,7 @@ func (c *AuditManager) GetSettingsRequest(input *GetSettingsInput) (req *request
 
 // GetSettings API operation for AWS Audit Manager.
 //
-// Returns the settings for the specified account.
+// Returns the settings for the specified Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4185,7 +4185,7 @@ func (c *AuditManager) RegisterAccountRequest(input *RegisterAccountInput) (req 
 
 // RegisterAccount API operation for AWS Audit Manager.
 //
-// Enables Audit Manager for the specified account.
+// Enables Audit Manager for the specified Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4275,8 +4275,8 @@ func (c *AuditManager) RegisterOrganizationAdminAccountRequest(input *RegisterOr
 
 // RegisterOrganizationAdminAccount API operation for AWS Audit Manager.
 //
-// Enables an account within the organization as the delegated administrator
-// for Audit Manager.
+// Enables an Amazon Web Services account within the organization as the delegated
+// administrator for Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5213,18 +5213,18 @@ func (c *AuditManager) ValidateAssessmentReportIntegrityWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
-// The wrapper of account details, such as account ID, email address, and so
-// on.
+// The wrapper of Amazon Web Services account details, such as account ID, email
+// address, and so on.
 type AWSAccount struct {
 	_ struct{} `type:"structure"`
 
-	// The email address associated with the specified account.
+	// The email address associated with the specified Amazon Web Services account.
 	EmailAddress *string `locationName:"emailAddress" min:"1" type:"string"`
 
-	// The identifier for the specified account.
+	// The identifier for the specified Amazon Web Services account.
 	Id *string `locationName:"id" min:"12" type:"string"`
 
-	// The name of the specified account.
+	// The name of the specified Amazon Web Services account.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
@@ -5401,7 +5401,7 @@ type Assessment struct {
 	// The Amazon Resource Name (ARN) of the assessment.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The account associated with the assessment.
+	// The Amazon Web Services account associated with the assessment.
 	AwsAccount *AWSAccount `locationName:"awsAccount" type:"structure"`
 
 	// The framework from which the assessment was created.
@@ -6070,7 +6070,8 @@ type AssessmentMetadata struct {
 	// The roles associated with the assessment.
 	Roles []*Role `locationName:"roles" type:"list"`
 
-	// The wrapper of accounts and services in scope for the assessment.
+	// The wrapper of Amazon Web Services accounts and services in scope for the
+	// assessment.
 	Scope *Scope `locationName:"scope" type:"structure"`
 
 	// The overall status of the assessment.
@@ -6272,7 +6273,7 @@ type AssessmentReport struct {
 	// The name of the user who created the assessment report.
 	Author *string `locationName:"author" min:"1" type:"string"`
 
-	// The identifier for the specified account.
+	// The identifier for the specified Amazon Web Services account.
 	AwsAccountId *string `locationName:"awsAccountId" min:"12" type:"string"`
 
 	// Specifies when the assessment report was created.
@@ -8213,7 +8214,8 @@ type CreateAssessmentInput struct {
 	// Roles is a required field
 	Roles []*Role `locationName:"roles" type:"list" required:"true"`
 
-	// The wrapper that contains the accounts and services in scope for the assessment.
+	// The wrapper that contains the Amazon Web Services accounts and services in
+	// scope for the assessment.
 	//
 	// Scope is a required field
 	Scope *Scope `locationName:"scope" type:"structure" required:"true"`
@@ -9548,10 +9550,11 @@ type Evidence struct {
 	// (such as allowUsersToChangePassword) and value (such as true or false).
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
-	// The identifier for the specified account.
+	// The identifier for the specified Amazon Web Services account.
 	AwsAccountId *string `locationName:"awsAccountId" min:"12" type:"string"`
 
-	// The account from which the evidence is collected, and its organization path.
+	// The Amazon Web Services account from which the evidence is collected, and
+	// its organization path.
 	AwsOrganization *string `locationName:"awsOrganization" type:"string"`
 
 	// The evaluation status for evidence that falls under the compliance check
@@ -9569,7 +9572,7 @@ type Evidence struct {
 	// The Amazon Web Service from which the evidence is collected.
 	EventSource *string `locationName:"eventSource" min:"1" type:"string"`
 
-	// The identifier for the specified account.
+	// The identifier for the specified Amazon Web Services account.
 	EvidenceAwsAccountId *string `locationName:"evidenceAwsAccountId" min:"12" type:"string"`
 
 	// The type of automated evidence.
@@ -9935,7 +9938,7 @@ func (s GetAccountStatusInput) GoString() string {
 type GetAccountStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the specified account.
+	// The status of the specified Amazon Web Services account.
 	Status *string `locationName:"status" type:"string" enum:"AccountStatus"`
 }
 
@@ -12651,11 +12654,12 @@ func (s *Role) SetRoleType(v string) *Role {
 	return s
 }
 
-// The wrapper that contains the accounts and services in scope for the assessment.
+// The wrapper that contains the Amazon Web Services accounts and services in
+// scope for the assessment.
 type Scope struct {
 	_ struct{} `type:"structure"`
 
-	// The accounts included in the scope of the assessment.
+	// The Amazon Web Services accounts included in the scope of the assessment.
 	AwsAccounts []*AWSAccount `locationName:"awsAccounts" type:"list"`
 
 	// The Amazon Web Services services included in the scope of the assessment.

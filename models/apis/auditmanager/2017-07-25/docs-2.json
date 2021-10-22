@@ -17,7 +17,7 @@
     "DeleteAssessmentReport": "<p> Deletes an assessment report from an assessment in Audit Manager. </p>",
     "DeleteControl": "<p> Deletes a custom control in Audit Manager. </p>",
     "DeregisterAccount": "<p> Deregisters an account in Audit Manager. </p>",
-    "DeregisterOrganizationAdminAccount": "<p>Removes the specified member account as a delegated administrator for Audit Manager. </p> <important> <p>When you remove a delegated administrator from your Audit Manager settings, or when you deregister a delegated administrator from Organizations, you continue to have access to the evidence that you previously collected under that account. However, Audit Manager will stop collecting and attaching evidence to that delegated administrator account moving forward.</p> </important>",
+    "DeregisterOrganizationAdminAccount": "<p>Removes the specified member Amazon Web Services account as a delegated administrator for Audit Manager. </p> <important> <p>When you remove a delegated administrator from your Audit Manager settings, or when you deregister a delegated administrator from Organizations, you continue to have access to the evidence that you previously collected under that account. However, Audit Manager will stop collecting and attaching evidence to that delegated administrator account moving forward.</p> </important>",
     "DisassociateAssessmentReportEvidenceFolder": "<p> Disassociates an evidence folder from the specified assessment report in Audit Manager. </p>",
     "GetAccountStatus": "<p> Returns the registration status of an account in Audit Manager. </p>",
     "GetAssessment": "<p> Returns an assessment from Audit Manager. </p>",
@@ -33,7 +33,7 @@
     "GetEvidenceFoldersByAssessmentControl": "<p> Returns a list of evidence folders associated with a specified control of an assessment in Audit Manager. </p>",
     "GetOrganizationAdminAccount": "<p> Returns the name of the delegated Amazon Web Services administrator account for the organization. </p>",
     "GetServicesInScope": "<p> Returns a list of the in-scope Amazon Web Services services for the specified assessment. </p>",
-    "GetSettings": "<p> Returns the settings for the specified account. </p>",
+    "GetSettings": "<p> Returns the settings for the specified Amazon Web Services account. </p>",
     "ListAssessmentFrameworks": "<p> Returns a list of the frameworks available in the Audit Manager framework library. </p>",
     "ListAssessmentReports": "<p> Returns a list of assessment reports created in Audit Manager. </p>",
     "ListAssessments": "<p> Returns a list of current and past assessments from Audit Manager. </p>",
@@ -41,8 +41,8 @@
     "ListKeywordsForDataSource": "<p> Returns a list of keywords that pre-mapped to the specified control data source. </p>",
     "ListNotifications": "<p> Returns a list of all Audit Manager notifications. </p>",
     "ListTagsForResource": "<p> Returns a list of tags for the specified resource in Audit Manager. </p>",
-    "RegisterAccount": "<p> Enables Audit Manager for the specified account. </p>",
-    "RegisterOrganizationAdminAccount": "<p> Enables an account within the organization as the delegated administrator for Audit Manager. </p>",
+    "RegisterAccount": "<p> Enables Audit Manager for the specified Amazon Web Services account. </p>",
+    "RegisterOrganizationAdminAccount": "<p> Enables an Amazon Web Services account within the organization as the delegated administrator for Audit Manager. </p>",
     "TagResource": "<p> Tags the specified resource in Audit Manager. </p>",
     "UntagResource": "<p> Removes a tag from a resource in Audit Manager. </p>",
     "UpdateAssessment": "<p> Edits an Audit Manager assessment. </p>",
@@ -56,16 +56,16 @@
   },
   "shapes": {
     "AWSAccount": {
-      "base": "<p> The wrapper of account details, such as account ID, email address, and so on. </p>",
+      "base": "<p> The wrapper of Amazon Web Services account details, such as account ID, email address, and so on. </p>",
       "refs": {
         "AWSAccounts$member": null,
-        "Assessment$awsAccount": "<p> The account associated with the assessment. </p>"
+        "Assessment$awsAccount": "<p> The Amazon Web Services account associated with the assessment. </p>"
       }
     },
     "AWSAccounts": {
       "base": null,
       "refs": {
-        "Scope$awsAccounts": "<p> The accounts included in the scope of the assessment. </p>"
+        "Scope$awsAccounts": "<p> The Amazon Web Services accounts included in the scope of the assessment. </p>"
       }
     },
     "AWSService": {
@@ -96,11 +96,11 @@
     "AccountId": {
       "base": null,
       "refs": {
-        "AWSAccount$id": "<p> The identifier for the specified account. </p>",
-        "AssessmentReport$awsAccountId": "<p> The identifier for the specified account. </p>",
+        "AWSAccount$id": "<p> The identifier for the specified Amazon Web Services account. </p>",
+        "AssessmentReport$awsAccountId": "<p> The identifier for the specified Amazon Web Services account. </p>",
         "DeregisterOrganizationAdminAccountRequest$adminAccountId": "<p> The identifier for the specified administrator account. </p>",
-        "Evidence$evidenceAwsAccountId": "<p> The identifier for the specified account. </p>",
-        "Evidence$awsAccountId": "<p> The identifier for the specified account. </p>",
+        "Evidence$evidenceAwsAccountId": "<p> The identifier for the specified Amazon Web Services account. </p>",
+        "Evidence$awsAccountId": "<p> The identifier for the specified Amazon Web Services account. </p>",
         "GetOrganizationAdminAccountResponse$adminAccountId": "<p> The identifier for the specified administrator account. </p>",
         "RegisterAccountRequest$delegatedAdminAccount": "<p> The delegated administrator account for Audit Manager. </p>",
         "RegisterOrganizationAdminAccountRequest$adminAccountId": "<p> The identifier for the specified delegated administrator account. </p>",
@@ -110,14 +110,14 @@
     "AccountName": {
       "base": null,
       "refs": {
-        "AWSAccount$name": "<p> The name of the specified account. </p>"
+        "AWSAccount$name": "<p> The name of the specified Amazon Web Services account. </p>"
       }
     },
     "AccountStatus": {
       "base": null,
       "refs": {
         "DeregisterAccountResponse$status": "<p> The registration status of the account. </p>",
-        "GetAccountStatusResponse$status": "<p> The status of the specified account. </p>",
+        "GetAccountStatusResponse$status": "<p> The status of the specified Amazon Web Services account. </p>",
         "RegisterAccountResponse$status": "<p> The status of the account registration request. </p>"
       }
     },
@@ -853,7 +853,7 @@
     "EmailAddress": {
       "base": null,
       "refs": {
-        "AWSAccount$emailAddress": "<p> The email address associated with the specified account. </p>"
+        "AWSAccount$emailAddress": "<p> The email address associated with the specified Amazon Web Services account. </p>"
       }
     },
     "ErrorCode": {
@@ -1428,9 +1428,9 @@
       }
     },
     "Scope": {
-      "base": "<p> The wrapper that contains the accounts and services in scope for the assessment. </p>",
+      "base": "<p> The wrapper that contains the Amazon Web Services accounts and services in scope for the assessment. </p>",
       "refs": {
-        "AssessmentMetadata$scope": "<p> The wrapper of accounts and services in scope for the assessment. </p>",
+        "AssessmentMetadata$scope": "<p> The wrapper of Amazon Web Services accounts and services in scope for the assessment. </p>",
         "CreateAssessmentRequest$scope": null,
         "UpdateAssessmentRequest$scope": "<p> The scope of the specified assessment. </p>"
       }
@@ -1518,7 +1518,7 @@
         "Evidence$dataSource": "<p> The data source from which the specified evidence was collected. </p>",
         "Evidence$evidenceByType": "<p> The type of automated evidence. </p>",
         "Evidence$complianceCheck": "<p> The evaluation status for evidence that falls under the compliance check category. For evidence collected from Security Hub, a <i>Pass</i> or <i>Fail</i> result is shown. For evidence collected from Config, a <i>Compliant</i> or <i>Noncompliant</i> result is shown. </p>",
-        "Evidence$awsOrganization": "<p> The account from which the evidence is collected, and its organization path. </p>",
+        "Evidence$awsOrganization": "<p> The Amazon Web Services account from which the evidence is collected, and its organization path. </p>",
         "Evidence$assessmentReportSelection": "<p> Specifies whether the evidence is included in the assessment report. </p>",
         "InternalServerException$message": null,
         "Resource$value": "<p> The value of the specified resource. </p>",

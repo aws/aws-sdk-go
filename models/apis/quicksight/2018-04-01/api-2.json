@@ -7077,7 +7077,14 @@
       "type":"structure",
       "members":{
         "Dashboard":{"shape":"RegisteredUserDashboardEmbeddingConfiguration"},
-        "QuickSightConsole":{"shape":"RegisteredUserQuickSightConsoleEmbeddingConfiguration"}
+        "QuickSightConsole":{"shape":"RegisteredUserQuickSightConsoleEmbeddingConfiguration"},
+        "QSearchBar":{"shape":"RegisteredUserQSearchBarEmbeddingConfiguration"}
+      }
+    },
+    "RegisteredUserQSearchBarEmbeddingConfiguration":{
+      "type":"structure",
+      "members":{
+        "InitialTopicId":{"shape":"RestrictiveResourceId"}
       }
     },
     "RegisteredUserQuickSightConsoleEmbeddingConfiguration":{
