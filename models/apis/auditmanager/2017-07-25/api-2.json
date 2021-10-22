@@ -1385,7 +1385,7 @@
       "type":"string",
       "max":300,
       "min":1,
-      "pattern":"^[^\\_]*$"
+      "pattern":"^[^\\\\\\_]*$"
     },
     "ControlSetStatus":{
       "type":"string",

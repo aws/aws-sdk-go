@@ -9706,7 +9706,8 @@
         "OutboundHostName":{"shape":"String"},
         "RequireEncryption":{"shape":"Boolean"},
         "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
-        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "VoiceConnectorArn":{"shape":"NonEmptyString"}
       }
     },
     "VoiceConnectorAwsRegion":{
@@ -9723,7 +9724,8 @@
         "Name":{"shape":"VoiceConnectorGroupName"},
         "VoiceConnectorItems":{"shape":"VoiceConnectorItemList"},
         "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
-        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "VoiceConnectorGroupArn":{"shape":"NonEmptyString"}
       }
     },
     "VoiceConnectorGroupList":{

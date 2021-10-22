@@ -1,3 +1,13 @@
+Release v1.41.9 (2021-10-22)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API and documentation
+* `service/chime`: Updates service API and documentation
+  * Chime VoiceConnector and VoiceConnectorGroup APIs will now return an ARN.
+* `service/quicksight`: Updates service API and documentation
+  * Added QSearchBar option for GenerateEmbedUrlForRegisteredUser ExperienceConfiguration to support Q search bar embedding
+
 Release v1.41.8 (2021-10-21)
 ===
 

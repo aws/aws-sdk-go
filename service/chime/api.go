@@ -46769,6 +46769,9 @@ type VoiceConnector struct {
 	// The updated Amazon Chime Voice Connector timestamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ARN of the specified Amazon Chime Voice Connector.
+	VoiceConnectorArn *string `type:"string"`
+
 	// The Amazon Chime Voice Connector ID.
 	VoiceConnectorId *string `type:"string"`
 }
@@ -46827,6 +46830,12 @@ func (s *VoiceConnector) SetUpdatedTimestamp(v time.Time) *VoiceConnector {
 	return s
 }
 
+// SetVoiceConnectorArn sets the VoiceConnectorArn field's value.
+func (s *VoiceConnector) SetVoiceConnectorArn(v string) *VoiceConnector {
+	s.VoiceConnectorArn = &v
+	return s
+}
+
 // SetVoiceConnectorId sets the VoiceConnectorId field's value.
 func (s *VoiceConnector) SetVoiceConnectorId(v string) *VoiceConnector {
 	s.VoiceConnectorId = &v
@@ -46848,6 +46857,9 @@ type VoiceConnectorGroup struct {
 
 	// The updated Amazon Chime Voice Connector group time stamp, in ISO 8601 format.
 	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ARN of the specified Amazon Chime Voice Connector group.
+	VoiceConnectorGroupArn *string `type:"string"`
 
 	// The Amazon Chime Voice Connector group ID.
 	VoiceConnectorGroupId *string `type:"string"`
@@ -46889,6 +46901,12 @@ func (s *VoiceConnectorGroup) SetName(v string) *VoiceConnectorGroup {
 // SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
 func (s *VoiceConnectorGroup) SetUpdatedTimestamp(v time.Time) *VoiceConnectorGroup {
 	s.UpdatedTimestamp = &v
+	return s
+}
+
+// SetVoiceConnectorGroupArn sets the VoiceConnectorGroupArn field's value.
+func (s *VoiceConnectorGroup) SetVoiceConnectorGroupArn(v string) *VoiceConnectorGroup {
+	s.VoiceConnectorGroupArn = &v
 	return s
 }
 

@@ -26320,7 +26320,8 @@ type GenerateEmbedUrlForRegisteredUserInput struct {
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The experience you are embedding. For registered users, you can embed Amazon
-	// QuickSight dashboards or the entire Amazon QuickSight console.
+	// QuickSight dashboards, the entire Amazon QuickSight console, or the Amazon
+	// QuickSight Q search bar.
 	//
 	// ExperienceConfiguration is a required field
 	ExperienceConfiguration *RegisteredUserEmbeddingExperienceConfiguration `type:"structure" required:"true"`
@@ -26410,7 +26411,7 @@ func (s *GenerateEmbedUrlForRegisteredUserInput) SetUserArn(v string) *GenerateE
 type GenerateEmbedUrlForRegisteredUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The embed URL for the Amazon QuickSight dashboard or console.
+	// The embed URL for the Amazon QuickSight dashboard, console, or Q search bar.
 	//
 	// EmbedUrl is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GenerateEmbedUrlForRegisteredUserOutput's
@@ -32864,6 +32865,12 @@ type RegisteredUserEmbeddingExperienceConfiguration struct {
 	// The configuration details for providing a dashboard embedding experience.
 	Dashboard *RegisteredUserDashboardEmbeddingConfiguration `type:"structure"`
 
+	// The configuration details for embedding the Q search bar.
+	//
+	// For more information about embedding the Q search bar, see Embedding Overview
+	// (https://docs.aws.amazon.com/quicksight/latest/user/embedding-overview.html).
+	QSearchBar *RegisteredUserQSearchBarEmbeddingConfiguration `type:"structure"`
+
 	// The configuration details for providing an Amazon QuickSight console embedding
 	// experience. This can be used along with custom permissions to restrict access
 	// to certain features. For more information, see Customizing Access to the
@@ -32916,6 +32923,11 @@ func (s *RegisteredUserEmbeddingExperienceConfiguration) Validate() error {
 			invalidParams.AddNested("Dashboard", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.QSearchBar != nil {
+		if err := s.QSearchBar.Validate(); err != nil {
+			invalidParams.AddNested("QSearchBar", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.QuickSightConsole != nil {
 		if err := s.QuickSightConsole.Validate(); err != nil {
 			invalidParams.AddNested("QuickSightConsole", err.(request.ErrInvalidParams))
@@ -32934,9 +32946,68 @@ func (s *RegisteredUserEmbeddingExperienceConfiguration) SetDashboard(v *Registe
 	return s
 }
 
+// SetQSearchBar sets the QSearchBar field's value.
+func (s *RegisteredUserEmbeddingExperienceConfiguration) SetQSearchBar(v *RegisteredUserQSearchBarEmbeddingConfiguration) *RegisteredUserEmbeddingExperienceConfiguration {
+	s.QSearchBar = v
+	return s
+}
+
 // SetQuickSightConsole sets the QuickSightConsole field's value.
 func (s *RegisteredUserEmbeddingExperienceConfiguration) SetQuickSightConsole(v *RegisteredUserQuickSightConsoleEmbeddingConfiguration) *RegisteredUserEmbeddingExperienceConfiguration {
 	s.QuickSightConsole = v
+	return s
+}
+
+// Information about the Q search bar embedding experience.
+type RegisteredUserQSearchBarEmbeddingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Q topic that you want to make the starting topic in the Q search
+	// bar. You can find a topic ID by navigating to the Topics pane in the Amazon
+	// QuickSight application and opening a topic. The ID is in the URL for the
+	// topic that you open.
+	//
+	// If you don't specify an initial topic, a list of all shared topics is shown
+	// in the Q bar for your readers. When you select an initial topic, you can
+	// specify whether or not readers are allowed to select other topics from the
+	// available ones in the list.
+	InitialTopicId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserQSearchBarEmbeddingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisteredUserQSearchBarEmbeddingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisteredUserQSearchBarEmbeddingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisteredUserQSearchBarEmbeddingConfiguration"}
+	if s.InitialTopicId != nil && len(*s.InitialTopicId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InitialTopicId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInitialTopicId sets the InitialTopicId field's value.
+func (s *RegisteredUserQSearchBarEmbeddingConfiguration) SetInitialTopicId(v string) *RegisteredUserQSearchBarEmbeddingConfiguration {
+	s.InitialTopicId = &v
 	return s
 }
 
