@@ -108,6 +108,10 @@ type AuditManagerAPI interface {
 	DeleteAssessmentFrameworkWithContext(aws.Context, *auditmanager.DeleteAssessmentFrameworkInput, ...request.Option) (*auditmanager.DeleteAssessmentFrameworkOutput, error)
 	DeleteAssessmentFrameworkRequest(*auditmanager.DeleteAssessmentFrameworkInput) (*request.Request, *auditmanager.DeleteAssessmentFrameworkOutput)
 
+	DeleteAssessmentFrameworkShare(*auditmanager.DeleteAssessmentFrameworkShareInput) (*auditmanager.DeleteAssessmentFrameworkShareOutput, error)
+	DeleteAssessmentFrameworkShareWithContext(aws.Context, *auditmanager.DeleteAssessmentFrameworkShareInput, ...request.Option) (*auditmanager.DeleteAssessmentFrameworkShareOutput, error)
+	DeleteAssessmentFrameworkShareRequest(*auditmanager.DeleteAssessmentFrameworkShareInput) (*request.Request, *auditmanager.DeleteAssessmentFrameworkShareOutput)
+
 	DeleteAssessmentReport(*auditmanager.DeleteAssessmentReportInput) (*auditmanager.DeleteAssessmentReportOutput, error)
 	DeleteAssessmentReportWithContext(aws.Context, *auditmanager.DeleteAssessmentReportInput, ...request.Option) (*auditmanager.DeleteAssessmentReportOutput, error)
 	DeleteAssessmentReportRequest(*auditmanager.DeleteAssessmentReportInput) (*request.Request, *auditmanager.DeleteAssessmentReportOutput)
@@ -203,6 +207,13 @@ type AuditManagerAPI interface {
 	GetSettingsWithContext(aws.Context, *auditmanager.GetSettingsInput, ...request.Option) (*auditmanager.GetSettingsOutput, error)
 	GetSettingsRequest(*auditmanager.GetSettingsInput) (*request.Request, *auditmanager.GetSettingsOutput)
 
+	ListAssessmentFrameworkShareRequests(*auditmanager.ListAssessmentFrameworkShareRequestsInput) (*auditmanager.ListAssessmentFrameworkShareRequestsOutput, error)
+	ListAssessmentFrameworkShareRequestsWithContext(aws.Context, *auditmanager.ListAssessmentFrameworkShareRequestsInput, ...request.Option) (*auditmanager.ListAssessmentFrameworkShareRequestsOutput, error)
+	ListAssessmentFrameworkShareRequestsRequest(*auditmanager.ListAssessmentFrameworkShareRequestsInput) (*request.Request, *auditmanager.ListAssessmentFrameworkShareRequestsOutput)
+
+	ListAssessmentFrameworkShareRequestsPages(*auditmanager.ListAssessmentFrameworkShareRequestsInput, func(*auditmanager.ListAssessmentFrameworkShareRequestsOutput, bool) bool) error
+	ListAssessmentFrameworkShareRequestsPagesWithContext(aws.Context, *auditmanager.ListAssessmentFrameworkShareRequestsInput, func(*auditmanager.ListAssessmentFrameworkShareRequestsOutput, bool) bool, ...request.Option) error
+
 	ListAssessmentFrameworks(*auditmanager.ListAssessmentFrameworksInput) (*auditmanager.ListAssessmentFrameworksOutput, error)
 	ListAssessmentFrameworksWithContext(aws.Context, *auditmanager.ListAssessmentFrameworksInput, ...request.Option) (*auditmanager.ListAssessmentFrameworksOutput, error)
 	ListAssessmentFrameworksRequest(*auditmanager.ListAssessmentFrameworksInput) (*request.Request, *auditmanager.ListAssessmentFrameworksOutput)
@@ -257,6 +268,10 @@ type AuditManagerAPI interface {
 	RegisterOrganizationAdminAccountWithContext(aws.Context, *auditmanager.RegisterOrganizationAdminAccountInput, ...request.Option) (*auditmanager.RegisterOrganizationAdminAccountOutput, error)
 	RegisterOrganizationAdminAccountRequest(*auditmanager.RegisterOrganizationAdminAccountInput) (*request.Request, *auditmanager.RegisterOrganizationAdminAccountOutput)
 
+	StartAssessmentFrameworkShare(*auditmanager.StartAssessmentFrameworkShareInput) (*auditmanager.StartAssessmentFrameworkShareOutput, error)
+	StartAssessmentFrameworkShareWithContext(aws.Context, *auditmanager.StartAssessmentFrameworkShareInput, ...request.Option) (*auditmanager.StartAssessmentFrameworkShareOutput, error)
+	StartAssessmentFrameworkShareRequest(*auditmanager.StartAssessmentFrameworkShareInput) (*request.Request, *auditmanager.StartAssessmentFrameworkShareOutput)
+
 	TagResource(*auditmanager.TagResourceInput) (*auditmanager.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *auditmanager.TagResourceInput, ...request.Option) (*auditmanager.TagResourceOutput, error)
 	TagResourceRequest(*auditmanager.TagResourceInput) (*request.Request, *auditmanager.TagResourceOutput)
@@ -280,6 +295,10 @@ type AuditManagerAPI interface {
 	UpdateAssessmentFramework(*auditmanager.UpdateAssessmentFrameworkInput) (*auditmanager.UpdateAssessmentFrameworkOutput, error)
 	UpdateAssessmentFrameworkWithContext(aws.Context, *auditmanager.UpdateAssessmentFrameworkInput, ...request.Option) (*auditmanager.UpdateAssessmentFrameworkOutput, error)
 	UpdateAssessmentFrameworkRequest(*auditmanager.UpdateAssessmentFrameworkInput) (*request.Request, *auditmanager.UpdateAssessmentFrameworkOutput)
+
+	UpdateAssessmentFrameworkShare(*auditmanager.UpdateAssessmentFrameworkShareInput) (*auditmanager.UpdateAssessmentFrameworkShareOutput, error)
+	UpdateAssessmentFrameworkShareWithContext(aws.Context, *auditmanager.UpdateAssessmentFrameworkShareInput, ...request.Option) (*auditmanager.UpdateAssessmentFrameworkShareOutput, error)
+	UpdateAssessmentFrameworkShareRequest(*auditmanager.UpdateAssessmentFrameworkShareInput) (*request.Request, *auditmanager.UpdateAssessmentFrameworkShareOutput)
 
 	UpdateAssessmentStatus(*auditmanager.UpdateAssessmentStatusInput) (*auditmanager.UpdateAssessmentStatusOutput, error)
 	UpdateAssessmentStatusWithContext(aws.Context, *auditmanager.UpdateAssessmentStatusInput, ...request.Option) (*auditmanager.UpdateAssessmentStatusOutput, error)

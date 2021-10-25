@@ -160,6 +160,10 @@ type Route53ResolverAPI interface {
 	GetFirewallRuleGroupPolicyWithContext(aws.Context, *route53resolver.GetFirewallRuleGroupPolicyInput, ...request.Option) (*route53resolver.GetFirewallRuleGroupPolicyOutput, error)
 	GetFirewallRuleGroupPolicyRequest(*route53resolver.GetFirewallRuleGroupPolicyInput) (*request.Request, *route53resolver.GetFirewallRuleGroupPolicyOutput)
 
+	GetResolverConfig(*route53resolver.GetResolverConfigInput) (*route53resolver.GetResolverConfigOutput, error)
+	GetResolverConfigWithContext(aws.Context, *route53resolver.GetResolverConfigInput, ...request.Option) (*route53resolver.GetResolverConfigOutput, error)
+	GetResolverConfigRequest(*route53resolver.GetResolverConfigInput) (*request.Request, *route53resolver.GetResolverConfigOutput)
+
 	GetResolverDnssecConfig(*route53resolver.GetResolverDnssecConfigInput) (*route53resolver.GetResolverDnssecConfigOutput, error)
 	GetResolverDnssecConfigWithContext(aws.Context, *route53resolver.GetResolverDnssecConfigInput, ...request.Option) (*route53resolver.GetResolverDnssecConfigOutput, error)
 	GetResolverDnssecConfigRequest(*route53resolver.GetResolverDnssecConfigInput) (*request.Request, *route53resolver.GetResolverDnssecConfigOutput)
@@ -237,6 +241,13 @@ type Route53ResolverAPI interface {
 
 	ListFirewallRulesPages(*route53resolver.ListFirewallRulesInput, func(*route53resolver.ListFirewallRulesOutput, bool) bool) error
 	ListFirewallRulesPagesWithContext(aws.Context, *route53resolver.ListFirewallRulesInput, func(*route53resolver.ListFirewallRulesOutput, bool) bool, ...request.Option) error
+
+	ListResolverConfigs(*route53resolver.ListResolverConfigsInput) (*route53resolver.ListResolverConfigsOutput, error)
+	ListResolverConfigsWithContext(aws.Context, *route53resolver.ListResolverConfigsInput, ...request.Option) (*route53resolver.ListResolverConfigsOutput, error)
+	ListResolverConfigsRequest(*route53resolver.ListResolverConfigsInput) (*request.Request, *route53resolver.ListResolverConfigsOutput)
+
+	ListResolverConfigsPages(*route53resolver.ListResolverConfigsInput, func(*route53resolver.ListResolverConfigsOutput, bool) bool) error
+	ListResolverConfigsPagesWithContext(aws.Context, *route53resolver.ListResolverConfigsInput, func(*route53resolver.ListResolverConfigsOutput, bool) bool, ...request.Option) error
 
 	ListResolverDnssecConfigs(*route53resolver.ListResolverDnssecConfigsInput) (*route53resolver.ListResolverDnssecConfigsOutput, error)
 	ListResolverDnssecConfigsWithContext(aws.Context, *route53resolver.ListResolverDnssecConfigsInput, ...request.Option) (*route53resolver.ListResolverDnssecConfigsOutput, error)
@@ -329,6 +340,10 @@ type Route53ResolverAPI interface {
 	UpdateFirewallRuleGroupAssociation(*route53resolver.UpdateFirewallRuleGroupAssociationInput) (*route53resolver.UpdateFirewallRuleGroupAssociationOutput, error)
 	UpdateFirewallRuleGroupAssociationWithContext(aws.Context, *route53resolver.UpdateFirewallRuleGroupAssociationInput, ...request.Option) (*route53resolver.UpdateFirewallRuleGroupAssociationOutput, error)
 	UpdateFirewallRuleGroupAssociationRequest(*route53resolver.UpdateFirewallRuleGroupAssociationInput) (*request.Request, *route53resolver.UpdateFirewallRuleGroupAssociationOutput)
+
+	UpdateResolverConfig(*route53resolver.UpdateResolverConfigInput) (*route53resolver.UpdateResolverConfigOutput, error)
+	UpdateResolverConfigWithContext(aws.Context, *route53resolver.UpdateResolverConfigInput, ...request.Option) (*route53resolver.UpdateResolverConfigOutput, error)
+	UpdateResolverConfigRequest(*route53resolver.UpdateResolverConfigInput) (*request.Request, *route53resolver.UpdateResolverConfigOutput)
 
 	UpdateResolverDnssecConfig(*route53resolver.UpdateResolverDnssecConfigInput) (*route53resolver.UpdateResolverDnssecConfigOutput, error)
 	UpdateResolverDnssecConfigWithContext(aws.Context, *route53resolver.UpdateResolverDnssecConfigInput, ...request.Option) (*route53resolver.UpdateResolverDnssecConfigOutput, error)

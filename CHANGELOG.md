@@ -1,3 +1,14 @@
+Release v1.41.10 (2021-10-25)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API and documentation
+  * This release adds support to create a VPN Connection that is not attached to a Gateway at the time of creation. Use this to create VPNs associated with Core Networks, or modify your VPN and attach a gateway using the modify API after creation.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for Amazon RDS Custom, which is a new RDS management type that gives you full access to your database and operating system. For more information, see https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-custom.html
+* `service/route53resolver`: Updates service API, documentation, and paginators
+
 Release v1.41.9 (2021-10-22)
 ===
 

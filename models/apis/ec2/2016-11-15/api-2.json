@@ -35254,6 +35254,18 @@
           "shape":"String",
           "locationName":"transitGatewayId"
         },
+        "CoreNetworkArn":{
+          "shape":"String",
+          "locationName":"coreNetworkArn"
+        },
+        "CoreNetworkAttachmentArn":{
+          "shape":"String",
+          "locationName":"coreNetworkAttachmentArn"
+        },
+        "GatewayAssociationState":{
+          "shape":"String",
+          "locationName":"gatewayAssociationState"
+        },
         "Options":{
           "shape":"VpnConnectionOptions",
           "locationName":"options"

@@ -159,6 +159,8 @@ func (c *RDS) AddRoleToDBInstanceRequest(input *AddRoleToDBInstanceInput) (req *
 //
 // To add a role to a DB instance, the status of the DB instance must be available.
 //
+// This command doesn't apply to RDS Custom.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -897,9 +899,9 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 //    action that can be executed in the source Amazon Web Services Region that
 //    contains the encrypted DB cluster snapshot to be copied. The pre-signed
 //    URL request must contain the following parameter values: KmsKeyId - The
-//    Amazon Web Services KMS key identifier for the customer master key (CMK)
-//    to use to encrypt the copy of the DB cluster snapshot in the destination
-//    Amazon Web Services Region. This is the same identifier for both the CopyDBClusterSnapshot
+//    Amazon Web Services KMS key identifier for the KMS key to use to encrypt
+//    the copy of the DB cluster snapshot in the destination Amazon Web Services
+//    Region. This is the same identifier for both the CopyDBClusterSnapshot
 //    action that is called in the destination Amazon Web Services Region, and
 //    the action contained in the pre-signed URL. DestinationRegion - The name
 //    of the Amazon Web Services Region that the DB cluster snapshot is to be
@@ -1127,6 +1129,8 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Re
 // action is the destination Amazon Web Services Region for the DB snapshot
 // copy.
 //
+// This command doesn't apply to RDS Custom.
+//
 // For more information about copying snapshots, see Copying a DB Snapshot (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CopySnapshot.html#USER_CopyDBSnapshot)
 // in the Amazon RDS User Guide.
 //
@@ -1351,6 +1355,127 @@ func (c *RDS) CreateCustomAvailabilityZone(input *CreateCustomAvailabilityZoneIn
 // for more information on using Contexts.
 func (c *RDS) CreateCustomAvailabilityZoneWithContext(ctx aws.Context, input *CreateCustomAvailabilityZoneInput, opts ...request.Option) (*CreateCustomAvailabilityZoneOutput, error) {
 	req, out := c.CreateCustomAvailabilityZoneRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateCustomDBEngineVersion = "CreateCustomDBEngineVersion"
+
+// CreateCustomDBEngineVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCustomDBEngineVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCustomDBEngineVersion for more information on using the CreateCustomDBEngineVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCustomDBEngineVersionRequest method.
+//    req, resp := client.CreateCustomDBEngineVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateCustomDBEngineVersion
+func (c *RDS) CreateCustomDBEngineVersionRequest(input *CreateCustomDBEngineVersionInput) (req *request.Request, output *CreateCustomDBEngineVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreateCustomDBEngineVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCustomDBEngineVersionInput{}
+	}
+
+	output = &CreateCustomDBEngineVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCustomDBEngineVersion API operation for Amazon Relational Database Service.
+//
+// Creates a custom DB engine version (CEV). A CEV is a binary volume snapshot
+// of a database engine and specific AMI. The only supported engine is Oracle
+// Database 19c Enterprise Edition with the January 2021 or later RU/RUR. For
+// more information, see Amazon RDS Custom requirements and limitations (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.preparing.manifest)
+// in the Amazon RDS User Guide.
+//
+// Amazon RDS, which is a fully managed service, supplies the Amazon Machine
+// Image (AMI) and database software. The Amazon RDS database software is preinstalled,
+// so you need only select a DB engine and version, and create your database.
+// With Amazon RDS Custom, you upload your database installation files in Amazon
+// S3. For more information, see Preparing to create a CEV (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.html#custom-cev.preparing)
+// in the Amazon RDS User Guide.
+//
+// When you create a custom engine version, you specify the files in a JSON
+// document called a CEV manifest. This document describes installation .zip
+// files stored in Amazon S3. RDS Custom creates your CEV from the installation
+// files that you provided. This service model is called Bring Your Own Media
+// (BYOM).
+//
+// Creation takes approximately two hours. If creation fails, RDS Custom issues
+// RDS-EVENT-0196 with the message Creation failed for custom engine version,
+// and includes details about the failure. For example, the event prints missing
+// files.
+//
+// After you create the CEV, it is available for use. You can create multiple
+// CEVs, and create multiple RDS Custom instances from any CEV. You can also
+// change the status of a CEV to make it available or inactive.
+//
+// The MediaImport service that imports files from Amazon S3 to create CEVs
+// isn't integrated with Amazon Web Services CloudTrail. If you turn on data
+// logging for Amazon RDS in CloudTrail, calls to the CreateCustomDbEngineVersion
+// event aren't logged. However, you might see calls from the API gateway that
+// accesses your Amazon S3 bucket. These calls originate from the MediaImport
+// service for the CreateCustomDbEngineVersion event.
+//
+// For more information, see Creating a CEV (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.create)
+// in the Amazon RDS User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation CreateCustomDBEngineVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeCustomDBEngineVersionAlreadyExistsFault "CustomDBEngineVersionAlreadyExistsFault"
+//   A CEV with the specified name already exists.
+//
+//   * ErrCodeCustomDBEngineVersionQuotaExceededFault "CustomDBEngineVersionQuotaExceededFault"
+//   You have exceeded your CEV quota.
+//
+//   * ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
+//   An error occurred accessing an Amazon Web Services KMS key.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CreateCustomDBEngineVersion
+func (c *RDS) CreateCustomDBEngineVersion(input *CreateCustomDBEngineVersionInput) (*CreateCustomDBEngineVersionOutput, error) {
+	req, out := c.CreateCustomDBEngineVersionRequest(input)
+	return out, req.Send()
+}
+
+// CreateCustomDBEngineVersionWithContext is the same as CreateCustomDBEngineVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCustomDBEngineVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) CreateCustomDBEngineVersionWithContext(ctx aws.Context, input *CreateCustomDBEngineVersionInput, opts ...request.Option) (*CreateCustomDBEngineVersionOutput, error) {
+	req, out := c.CreateCustomDBEngineVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2160,6 +2285,8 @@ func (c *RDS) CreateDBParameterGroupRequest(input *CreateDBParameterGroupInput) 
 // DB instance without failover for the new DB parameter group and associated
 // settings to take effect.
 //
+// This command doesn't apply to RDS Custom.
+//
 // After you create a DB parameter group, you should wait at least 5 minutes
 // before creating your first DB instance that uses that DB parameter group
 // as the default parameter group. This allows Amazon RDS to fully complete
@@ -2935,6 +3062,8 @@ func (c *RDS) CreateOptionGroupRequest(input *CreateOptionGroupInput) (req *requ
 //
 // Creates a new option group. You can create up to 20 option groups.
 //
+// This command doesn't apply to RDS Custom.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3055,6 +3184,107 @@ func (c *RDS) DeleteCustomAvailabilityZone(input *DeleteCustomAvailabilityZoneIn
 // for more information on using Contexts.
 func (c *RDS) DeleteCustomAvailabilityZoneWithContext(ctx aws.Context, input *DeleteCustomAvailabilityZoneInput, opts ...request.Option) (*DeleteCustomAvailabilityZoneOutput, error) {
 	req, out := c.DeleteCustomAvailabilityZoneRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCustomDBEngineVersion = "DeleteCustomDBEngineVersion"
+
+// DeleteCustomDBEngineVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCustomDBEngineVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCustomDBEngineVersion for more information on using the DeleteCustomDBEngineVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCustomDBEngineVersionRequest method.
+//    req, resp := client.DeleteCustomDBEngineVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteCustomDBEngineVersion
+func (c *RDS) DeleteCustomDBEngineVersionRequest(input *DeleteCustomDBEngineVersionInput) (req *request.Request, output *DeleteCustomDBEngineVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCustomDBEngineVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCustomDBEngineVersionInput{}
+	}
+
+	output = &DeleteCustomDBEngineVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteCustomDBEngineVersion API operation for Amazon Relational Database Service.
+//
+// Deletes a custom engine version. To run this command, make sure you meet
+// the following prerequisites:
+//
+//    * The CEV must not be the default for RDS Custom. If it is, change the
+//    default before running this command.
+//
+//    * The CEV must not be associated with an RDS Custom DB instance, RDS Custom
+//    instance snapshot, or automated backup of your RDS Custom instance.
+//
+// Typically, deletion takes a few minutes.
+//
+// The MediaImport service that imports files from Amazon S3 to create CEVs
+// isn't integrated with Amazon Web Services CloudTrail. If you turn on data
+// logging for Amazon RDS in CloudTrail, calls to the DeleteCustomDbEngineVersion
+// event aren't logged. However, you might see calls from the API gateway that
+// accesses your Amazon S3 bucket. These calls originate from the MediaImport
+// service for the DeleteCustomDbEngineVersion event.
+//
+// For more information, see Deleting a CEV (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.delete)
+// in the Amazon RDS User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation DeleteCustomDBEngineVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeCustomDBEngineVersionNotFoundFault "CustomDBEngineVersionNotFoundFault"
+//   The specified CEV was not found.
+//
+//   * ErrCodeInvalidCustomDBEngineVersionStateFault "InvalidCustomDBEngineVersionStateFault"
+//   You can't delete the CEV.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DeleteCustomDBEngineVersion
+func (c *RDS) DeleteCustomDBEngineVersion(input *DeleteCustomDBEngineVersionInput) (*DeleteCustomDBEngineVersionOutput, error) {
+	req, out := c.DeleteCustomDBEngineVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCustomDBEngineVersionWithContext is the same as DeleteCustomDBEngineVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCustomDBEngineVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) DeleteCustomDBEngineVersionWithContext(ctx aws.Context, input *DeleteCustomDBEngineVersionInput, opts ...request.Option) (*DeleteCustomDBEngineVersionOutput, error) {
+	req, out := c.DeleteCustomDBEngineVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6350,6 +6580,8 @@ func (c *RDS) DescribeDBLogFilesRequest(input *DescribeDBLogFilesInput) (req *re
 // DescribeDBLogFiles API operation for Amazon Relational Database Service.
 //
 // Returns a list of DB log files for the DB instance.
+//
+// This command doesn't apply to RDS Custom.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9777,6 +10009,8 @@ func (c *RDS) DescribeValidDBInstanceModificationsRequest(input *DescribeValidDB
 // you can make to your DB instance. You can use this information when you call
 // ModifyDBInstance.
 //
+// This command doesn't apply to RDS Custom.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9864,6 +10098,8 @@ func (c *RDS) DownloadDBLogFilePortionRequest(input *DownloadDBLogFilePortionInp
 // DownloadDBLogFilePortion API operation for Amazon Relational Database Service.
 //
 // Downloads all or a portion of the specified log file, up to 1 MB in size.
+//
+// This command doesn't apply to RDS Custom.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10547,6 +10783,99 @@ func (c *RDS) ModifyCurrentDBClusterCapacity(input *ModifyCurrentDBClusterCapaci
 // for more information on using Contexts.
 func (c *RDS) ModifyCurrentDBClusterCapacityWithContext(ctx aws.Context, input *ModifyCurrentDBClusterCapacityInput, opts ...request.Option) (*ModifyCurrentDBClusterCapacityOutput, error) {
 	req, out := c.ModifyCurrentDBClusterCapacityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyCustomDBEngineVersion = "ModifyCustomDBEngineVersion"
+
+// ModifyCustomDBEngineVersionRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyCustomDBEngineVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyCustomDBEngineVersion for more information on using the ModifyCustomDBEngineVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyCustomDBEngineVersionRequest method.
+//    req, resp := client.ModifyCustomDBEngineVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyCustomDBEngineVersion
+func (c *RDS) ModifyCustomDBEngineVersionRequest(input *ModifyCustomDBEngineVersionInput) (req *request.Request, output *ModifyCustomDBEngineVersionOutput) {
+	op := &request.Operation{
+		Name:       opModifyCustomDBEngineVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyCustomDBEngineVersionInput{}
+	}
+
+	output = &ModifyCustomDBEngineVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyCustomDBEngineVersion API operation for Amazon Relational Database Service.
+//
+// Modifies the status of a custom engine version (CEV). You can find CEVs to
+// modify by calling DescribeDBEngineVersions.
+//
+// The MediaImport service that imports files from Amazon S3 to create CEVs
+// isn't integrated with Amazon Web Services CloudTrail. If you turn on data
+// logging for Amazon RDS in CloudTrail, calls to the ModifyCustomDbEngineVersion
+// event aren't logged. However, you might see calls from the API gateway that
+// accesses your Amazon S3 bucket. These calls originate from the MediaImport
+// service for the ModifyCustomDbEngineVersion event.
+//
+// For more information, see Modifying CEV status (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.preparing.manifest)
+// in the Amazon RDS User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation ModifyCustomDBEngineVersion for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeCustomDBEngineVersionNotFoundFault "CustomDBEngineVersionNotFoundFault"
+//   The specified CEV was not found.
+//
+//   * ErrCodeInvalidCustomDBEngineVersionStateFault "InvalidCustomDBEngineVersionStateFault"
+//   You can't delete the CEV.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/ModifyCustomDBEngineVersion
+func (c *RDS) ModifyCustomDBEngineVersion(input *ModifyCustomDBEngineVersionInput) (*ModifyCustomDBEngineVersionOutput, error) {
+	req, out := c.ModifyCustomDBEngineVersionRequest(input)
+	return out, req.Send()
+}
+
+// ModifyCustomDBEngineVersionWithContext is the same as ModifyCustomDBEngineVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyCustomDBEngineVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) ModifyCustomDBEngineVersionWithContext(ctx aws.Context, input *ModifyCustomDBEngineVersionInput, opts ...request.Option) (*ModifyCustomDBEngineVersionOutput, error) {
+	req, out := c.ModifyCustomDBEngineVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11537,7 +11866,8 @@ func (c *RDS) ModifyDBSnapshotRequest(input *ModifyDBSnapshotInput) (req *reques
 // Updates a manual DB snapshot with a new engine version. The snapshot can
 // be encrypted or unencrypted, but not shared or public.
 //
-// Amazon RDS supports upgrading DB snapshots for MySQL, Oracle, and PostgreSQL.
+// Amazon RDS supports upgrading DB snapshots for MySQL, PostgreSQL, and Oracle.
+// This command doesn't apply to RDS Custom.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12107,7 +12437,8 @@ func (c *RDS) PromoteReadReplicaRequest(input *PromoteReadReplicaInput) (req *re
 //    backup window so that daily backups do not interfere with read replica
 //    promotion.
 //
-//    * This command doesn't apply to Aurora MySQL and Aurora PostgreSQL.
+//    * This command doesn't apply to Aurora MySQL, Aurora PostgreSQL, or RDS
+//    Custom.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12369,6 +12700,8 @@ func (c *RDS) RebootDBInstanceRequest(input *RebootDBInstanceInput) (req *reques
 //
 // For more information about rebooting, see Rebooting a DB Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RebootInstance.html)
 // in the Amazon RDS User Guide.
+//
+// This command doesn't apply to RDS Custom.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13825,6 +14158,8 @@ func (c *RDS) RestoreDBInstanceFromS3Request(input *RestoreDBInstanceFromS3Input
 // (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Procedural.Importing.html)
 // in the Amazon RDS User Guide.
 //
+// This command doesn't apply to RDS Custom.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -14411,8 +14746,8 @@ func (c *RDS) StartDBInstanceRequest(input *StartDBInstanceInput) (req *request.
 // Stopped (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StartInstance.html)
 // in the Amazon RDS User Guide.
 //
-// This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora
-// DB clusters, use StartDBCluster instead.
+// This command doesn't apply to RDS Custom, Aurora MySQL, and Aurora PostgreSQL.
+// For Aurora DB clusters, use StartDBCluster instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14532,6 +14867,8 @@ func (c *RDS) StartDBInstanceAutomatedBackupsReplicationRequest(input *StartDBIn
 // Enables replication of automated backups to a different Amazon Web Services
 // Region.
 //
+// This command doesn't apply to RDS Custom.
+//
 // For more information, see Replicating Automated Backups to Another Amazon
 // Web Services Region (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReplicateBackups.html)
 // in the Amazon RDS User Guide.
@@ -14629,6 +14966,8 @@ func (c *RDS) StartExportTaskRequest(input *StartExportTaskInput) (req *request.
 //
 // Starts an export of a snapshot to Amazon S3. The provided IAM role must have
 // access to the S3 bucket.
+//
+// This command doesn't apply to RDS Custom.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14932,8 +15271,8 @@ func (c *RDS) StopDBInstanceRequest(input *StopDBInstanceInput) (req *request.Re
 // (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html)
 // in the Amazon RDS User Guide.
 //
-// This command doesn't apply to Aurora MySQL and Aurora PostgreSQL. For Aurora
-// clusters, use StopDBCluster instead.
+// This command doesn't apply to RDS Custom, Aurora MySQL, and Aurora PostgreSQL.
+// For Aurora clusters, use StopDBCluster instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15025,6 +15364,8 @@ func (c *RDS) StopDBInstanceAutomatedBackupsReplicationRequest(input *StopDBInst
 // StopDBInstanceAutomatedBackupsReplication API operation for Amazon Relational Database Service.
 //
 // Stops automated backup replication for a DB instance.
+//
+// This command doesn't apply to RDS Custom.
 //
 // For more information, see Replicating Automated Backups to Another Amazon
 // Web Services Region (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReplicateBackups.html)
@@ -15207,7 +15548,7 @@ type AddRoleToDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the feature for the DB cluster that the IAM role is to be associated
-	// with. For the list of supported feature names, see DBEngineVersion.
+	// with. For information about supported feature names, see DBEngineVersion.
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to associate with the Aurora
@@ -15300,7 +15641,7 @@ type AddRoleToDBInstanceInput struct {
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The name of the feature for the DB instance that the IAM role is to be associated
-	// with. For the list of supported feature names, see DBEngineVersion.
+	// with. For information about supported feature names, see DBEngineVersion.
 	//
 	// FeatureName is a required field
 	FeatureName *string `type:"string" required:"true"`
@@ -16195,11 +16536,10 @@ type CancelExportTaskOutput struct {
 	// a snapshot.
 	IamRoleArn *string `type:"string"`
 
-	// The key identifier of the Amazon Web Services KMS customer master key (CMK)
-	// that is used to encrypt the snapshot when it's exported to Amazon S3. The
-	// Amazon Web Services KMS CMK identifier is its key ARN, key ID, alias ARN,
-	// or alias name. The IAM role used for the snapshot export must have encryption
-	// and decryption permissions to use this Amazon Web Services KMS CMK.
+	// The key identifier of the Amazon Web Services KMS key that is used to encrypt
+	// the snapshot when it's exported to Amazon S3. The KMS key identifier is its
+	// key ARN, key ID, alias ARN, or alias name. The IAM role used for the snapshot
+	// export must have encryption and decryption permissions to use this KMS key.
 	KmsKeyId *string `type:"string"`
 
 	// The progress of the snapshot export task as a percentage.
@@ -16941,13 +17281,13 @@ type CopyDBClusterSnapshotInput struct {
 
 	// The Amazon Web Services KMS key identifier for an encrypted DB cluster snapshot.
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the Amazon Web Services KMS key.
 	//
 	// If you copy an encrypted DB cluster snapshot from your Amazon Web Services
 	// account, you can specify a value for KmsKeyId to encrypt the copy with a
-	// new Amazon Web Services KMS CMK. If you don't specify a value for KmsKeyId,
-	// then the copy of the DB cluster snapshot is encrypted with the same Amazon
-	// Web Services KMS key as the source DB cluster snapshot.
+	// new KMS key. If you don't specify a value for KmsKeyId, then the copy of
+	// the DB cluster snapshot is encrypted with the same KMS key as the source
+	// DB cluster snapshot.
 	//
 	// If you copy an encrypted DB cluster snapshot that is shared from another
 	// Amazon Web Services account, then you must specify a value for KmsKeyId.
@@ -16955,9 +17295,9 @@ type CopyDBClusterSnapshotInput struct {
 	// To copy an encrypted DB cluster snapshot to another Amazon Web Services Region,
 	// you must set KmsKeyId to the Amazon Web Services KMS key identifier you want
 	// to use to encrypt the copy of the DB cluster snapshot in the destination
-	// Amazon Web Services Region. Amazon Web Services KMS CMKs are specific to
-	// the Amazon Web Services Region that they are created in, and you can't use
-	// CMKs from one Amazon Web Services Region in another Amazon Web Services Region.
+	// Amazon Web Services Region. KMS keys are specific to the Amazon Web Services
+	// Region that they are created in, and you can't use KMS keys from one Amazon
+	// Web Services Region in another Amazon Web Services Region.
 	//
 	// If you copy an unencrypted DB cluster snapshot and specify a value for the
 	// KmsKeyId parameter, an error is returned.
@@ -16975,12 +17315,11 @@ type CopyDBClusterSnapshotInput struct {
 	// that contains the encrypted DB cluster snapshot to be copied. The pre-signed
 	// URL request must contain the following parameter values:
 	//
-	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the customer
-	//    master key (CMK) to use to encrypt the copy of the DB cluster snapshot
-	//    in the destination Amazon Web Services Region. This is the same identifier
-	//    for both the CopyDBClusterSnapshot action that is called in the destination
-	//    Amazon Web Services Region, and the action contained in the pre-signed
-	//    URL.
+	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the KMS key
+	//    to use to encrypt the copy of the DB cluster snapshot in the destination
+	//    Amazon Web Services Region. This is the same identifier for both the CopyDBClusterSnapshot
+	//    action that is called in the destination Amazon Web Services Region, and
+	//    the action contained in the pre-signed URL.
 	//
 	//    * DestinationRegion - The name of the Amazon Web Services Region that
 	//    the DB cluster snapshot is to be created in.
@@ -17316,13 +17655,13 @@ type CopyDBSnapshotInput struct {
 
 	// The Amazon Web Services KMS key identifier for an encrypted DB snapshot.
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	//
 	// If you copy an encrypted DB snapshot from your Amazon Web Services account,
 	// you can specify a value for this parameter to encrypt the copy with a new
-	// Amazon Web Services KMS CMK. If you don't specify a value for this parameter,
-	// then the copy of the DB snapshot is encrypted with the same Amazon Web Services
-	// KMS key as the source DB snapshot.
+	// KMS key. If you don't specify a value for this parameter, then the copy of
+	// the DB snapshot is encrypted with the same Amazon Web Services KMS key as
+	// the source DB snapshot.
 	//
 	// If you copy an encrypted DB snapshot that is shared from another Amazon Web
 	// Services account, then you must specify a value for this parameter.
@@ -17331,10 +17670,10 @@ type CopyDBSnapshotInput struct {
 	// copy is encrypted.
 	//
 	// If you copy an encrypted snapshot to a different Amazon Web Services Region,
-	// then you must specify a Amazon Web Services KMS key identifier for the destination
-	// Amazon Web Services Region. Amazon Web Services KMS CMKs are specific to
-	// the Amazon Web Services Region that they are created in, and you can't use
-	// CMKs from one Amazon Web Services Region in another Amazon Web Services Region.
+	// then you must specify an Amazon Web Services KMS key identifier for the destination
+	// Amazon Web Services Region. KMS keys are specific to the Amazon Web Services
+	// Region that they are created in, and you can't use KMS keys from one Amazon
+	// Web Services Region in another Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// The name of an option group to associate with the copy of the snapshot.
@@ -17372,11 +17711,11 @@ type CopyDBSnapshotInput struct {
 	//    the DestinationRegion in the presigned URL must be set to the us-east-1
 	//    Amazon Web Services Region.
 	//
-	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the customer
-	//    master key (CMK) to use to encrypt the copy of the DB snapshot in the
-	//    destination Amazon Web Services Region. This is the same identifier for
-	//    both the CopyDBSnapshot action that is called in the destination Amazon
-	//    Web Services Region, and the action contained in the presigned URL.
+	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the KMS key
+	//    to use to encrypt the copy of the DB snapshot in the destination Amazon
+	//    Web Services Region. This is the same identifier for both the CopyDBSnapshot
+	//    action that is called in the destination Amazon Web Services Region, and
+	//    the action contained in the presigned URL.
 	//
 	//    * SourceDBSnapshotIdentifier - The DB snapshot identifier for the encrypted
 	//    snapshot to be copied. This identifier must be in the Amazon Resource
@@ -17825,6 +18164,479 @@ func (s CreateCustomAvailabilityZoneOutput) GoString() string {
 // SetCustomAvailabilityZone sets the CustomAvailabilityZone field's value.
 func (s *CreateCustomAvailabilityZoneOutput) SetCustomAvailabilityZone(v *CustomAvailabilityZone) *CreateCustomAvailabilityZoneOutput {
 	s.CustomAvailabilityZone = v
+	return s
+}
+
+type CreateCustomDBEngineVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an Amazon S3 bucket that contains database installation files
+	// for your CEV. For example, a valid bucket name is my-custom-installation-files.
+	//
+	// DatabaseInstallationFilesS3BucketName is a required field
+	DatabaseInstallationFilesS3BucketName *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon S3 directory that contains the database installation files for
+	// your CEV. For example, a valid bucket name is 123456789012/cev1. If this
+	// setting isn't specified, no prefix is assumed.
+	DatabaseInstallationFilesS3Prefix *string `min:"1" type:"string"`
+
+	// An optional description of your CEV.
+	Description *string `min:"1" type:"string"`
+
+	// The database engine to use for your custom engine version (CEV). The only
+	// supported value is custom-oracle-ee.
+	//
+	// Engine is a required field
+	Engine *string `min:"1" type:"string" required:"true"`
+
+	// The name of your CEV. The name format is 19.customized_string . For example,
+	// a valid name is 19.my_cev1. This setting is required for RDS Custom, but
+	// optional for Amazon RDS. The combination of Engine and EngineVersion is unique
+	// per customer per Region.
+	//
+	// EngineVersion is a required field
+	EngineVersion *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Web Services KMS key identifier for an encrypted CEV. A symmetric
+	// KMS key is required for RDS Custom, but optional for Amazon RDS.
+	//
+	// If you have an existing symmetric KMS key in your account, you can use it
+	// with RDS Custom. No further action is necessary. If you don't already have
+	// a symmetric KMS key in your account, follow the instructions in Creating
+	// symmetric KMS keys (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk)
+	// in the Amazon Web Services Key Management Service Developer Guide.
+	//
+	// You can choose the same symmetric key when you create a CEV and a DB instance,
+	// or choose different keys.
+	//
+	// KMSKeyId is a required field
+	KMSKeyId *string `min:"1" type:"string" required:"true"`
+
+	// The CEV manifest, which is a JSON document that describes the installation
+	// .zip files stored in Amazon S3. Specify the name/value pairs in a file or
+	// a quoted string. RDS Custom applies the patches in the order in which they
+	// are listed.
+	//
+	// The following JSON fields are valid:
+	//
+	// MediaImportTemplateVersion
+	//
+	// Version of the CEV manifest. The date is in the format YYYY-MM-DD.
+	//
+	// databaseInstallationFileNames
+	//
+	// Ordered list of installation files for the CEV.
+	//
+	// opatchFileNames
+	//
+	// Ordered list of OPatch installers used for the Oracle DB engine.
+	//
+	// psuRuPatchFileNames
+	//
+	// The PSU and RU patches for this CEV.
+	//
+	// OtherPatchFileNames
+	//
+	// The patches that are not in the list of PSU and RU patches. Amazon RDS applies
+	// these patches after applying the PSU and RU patches.
+	//
+	// For more information, see Creating the CEV manifest (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.preparing.manifest)
+	// in the Amazon RDS User Guide.
+	//
+	// Manifest is a required field
+	Manifest *string `min:"1" type:"string" required:"true"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDBEngineVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDBEngineVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomDBEngineVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomDBEngineVersionInput"}
+	if s.DatabaseInstallationFilesS3BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseInstallationFilesS3BucketName"))
+	}
+	if s.DatabaseInstallationFilesS3BucketName != nil && len(*s.DatabaseInstallationFilesS3BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseInstallationFilesS3BucketName", 3))
+	}
+	if s.DatabaseInstallationFilesS3Prefix != nil && len(*s.DatabaseInstallationFilesS3Prefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseInstallationFilesS3Prefix", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Engine == nil {
+		invalidParams.Add(request.NewErrParamRequired("Engine"))
+	}
+	if s.Engine != nil && len(*s.Engine) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Engine", 1))
+	}
+	if s.EngineVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineVersion"))
+	}
+	if s.EngineVersion != nil && len(*s.EngineVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EngineVersion", 1))
+	}
+	if s.KMSKeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KMSKeyId"))
+	}
+	if s.KMSKeyId != nil && len(*s.KMSKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSKeyId", 1))
+	}
+	if s.Manifest == nil {
+		invalidParams.Add(request.NewErrParamRequired("Manifest"))
+	}
+	if s.Manifest != nil && len(*s.Manifest) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Manifest", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseInstallationFilesS3BucketName sets the DatabaseInstallationFilesS3BucketName field's value.
+func (s *CreateCustomDBEngineVersionInput) SetDatabaseInstallationFilesS3BucketName(v string) *CreateCustomDBEngineVersionInput {
+	s.DatabaseInstallationFilesS3BucketName = &v
+	return s
+}
+
+// SetDatabaseInstallationFilesS3Prefix sets the DatabaseInstallationFilesS3Prefix field's value.
+func (s *CreateCustomDBEngineVersionInput) SetDatabaseInstallationFilesS3Prefix(v string) *CreateCustomDBEngineVersionInput {
+	s.DatabaseInstallationFilesS3Prefix = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateCustomDBEngineVersionInput) SetDescription(v string) *CreateCustomDBEngineVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateCustomDBEngineVersionInput) SetEngine(v string) *CreateCustomDBEngineVersionInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CreateCustomDBEngineVersionInput) SetEngineVersion(v string) *CreateCustomDBEngineVersionInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *CreateCustomDBEngineVersionInput) SetKMSKeyId(v string) *CreateCustomDBEngineVersionInput {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetManifest sets the Manifest field's value.
+func (s *CreateCustomDBEngineVersionInput) SetManifest(v string) *CreateCustomDBEngineVersionInput {
+	s.Manifest = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCustomDBEngineVersionInput) SetTags(v []*Tag) *CreateCustomDBEngineVersionInput {
+	s.Tags = v
+	return s
+}
+
+// This data type is used as a response element in the action DescribeDBEngineVersions.
+type CreateCustomDBEngineVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation time of the DB engine version.
+	CreateTime *time.Time `type:"timestamp"`
+
+	// The description of the database engine.
+	DBEngineDescription *string `type:"string"`
+
+	// The ARN of the custom engine version.
+	DBEngineVersionArn *string `type:"string"`
+
+	// The description of the database engine version.
+	DBEngineVersionDescription *string `type:"string"`
+
+	// The name of the DB parameter group family for the database engine.
+	DBParameterGroupFamily *string `type:"string"`
+
+	// The name of the Amazon S3 bucket that contains your database installation
+	// files.
+	DatabaseInstallationFilesS3BucketName *string `type:"string"`
+
+	// The Amazon S3 directory that contains the database installation files. If
+	// not specified, then no prefix is assumed.
+	DatabaseInstallationFilesS3Prefix *string `type:"string"`
+
+	// The default character set for new instances of this engine version, if the
+	// CharacterSetName parameter of the CreateDBInstance API isn't specified.
+	DefaultCharacterSet *CharacterSet `type:"structure"`
+
+	// The name of the database engine.
+	Engine *string `type:"string"`
+
+	// The version number of the database engine.
+	EngineVersion *string `type:"string"`
+
+	// The types of logs that the database engine has available for export to CloudWatch
+	// Logs.
+	ExportableLogTypes []*string `type:"list"`
+
+	// The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter
+	// is required for RDS Custom, but optional for Amazon RDS.
+	KMSKeyId *string `type:"string"`
+
+	// The major engine version of the CEV.
+	MajorEngineVersion *string `type:"string"`
+
+	// The status of the DB engine version, either available or deprecated.
+	Status *string `type:"string"`
+
+	// A list of the character sets supported by this engine for the CharacterSetName
+	// parameter of the CreateDBInstance operation.
+	SupportedCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
+
+	// A list of the supported DB engine modes.
+	SupportedEngineModes []*string `type:"list"`
+
+	// A list of features supported by the DB engine.
+	//
+	// The supported features vary by DB engine and DB engine version.
+	//
+	// To determine the supported features for a specific DB engine and DB engine
+	// version using the CLI, use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine <engine_name> --engine-version
+	// <engine_version>
+	//
+	// For example, to determine the supported features for RDS for PostgreSQL version
+	// 13.3 using the CLI, use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine postgres --engine-version 13.3
+	//
+	// The supported features are listed under SupportedFeatureNames in the output.
+	SupportedFeatureNames []*string `type:"list"`
+
+	// A list of the character sets supported by the Oracle DB engine for the NcharCharacterSetName
+	// parameter of the CreateDBInstance operation.
+	SupportedNcharCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
+
+	// A list of the time zones supported by this engine for the Timezone parameter
+	// of the CreateDBInstance action.
+	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
+
+	// A value that indicates whether you can use Aurora global databases with a
+	// specific DB engine version.
+	SupportsGlobalDatabases *bool `type:"boolean"`
+
+	// A value that indicates whether the engine version supports exporting the
+	// log types specified by ExportableLogTypes to CloudWatch Logs.
+	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
+
+	// A value that indicates whether you can use Aurora parallel query with a specific
+	// DB engine version.
+	SupportsParallelQuery *bool `type:"boolean"`
+
+	// Indicates whether the database engine version supports read replicas.
+	SupportsReadReplica *bool `type:"boolean"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A list of engine versions that this database engine version can be upgraded
+	// to.
+	ValidUpgradeTarget []*UpgradeTarget `locationNameList:"UpgradeTarget" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDBEngineVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateCustomDBEngineVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetCreateTime(v time.Time) *CreateCustomDBEngineVersionOutput {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDBEngineDescription sets the DBEngineDescription field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetDBEngineDescription(v string) *CreateCustomDBEngineVersionOutput {
+	s.DBEngineDescription = &v
+	return s
+}
+
+// SetDBEngineVersionArn sets the DBEngineVersionArn field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetDBEngineVersionArn(v string) *CreateCustomDBEngineVersionOutput {
+	s.DBEngineVersionArn = &v
+	return s
+}
+
+// SetDBEngineVersionDescription sets the DBEngineVersionDescription field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetDBEngineVersionDescription(v string) *CreateCustomDBEngineVersionOutput {
+	s.DBEngineVersionDescription = &v
+	return s
+}
+
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetDBParameterGroupFamily(v string) *CreateCustomDBEngineVersionOutput {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDatabaseInstallationFilesS3BucketName sets the DatabaseInstallationFilesS3BucketName field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetDatabaseInstallationFilesS3BucketName(v string) *CreateCustomDBEngineVersionOutput {
+	s.DatabaseInstallationFilesS3BucketName = &v
+	return s
+}
+
+// SetDatabaseInstallationFilesS3Prefix sets the DatabaseInstallationFilesS3Prefix field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetDatabaseInstallationFilesS3Prefix(v string) *CreateCustomDBEngineVersionOutput {
+	s.DatabaseInstallationFilesS3Prefix = &v
+	return s
+}
+
+// SetDefaultCharacterSet sets the DefaultCharacterSet field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetDefaultCharacterSet(v *CharacterSet) *CreateCustomDBEngineVersionOutput {
+	s.DefaultCharacterSet = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetEngine(v string) *CreateCustomDBEngineVersionOutput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetEngineVersion(v string) *CreateCustomDBEngineVersionOutput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetExportableLogTypes sets the ExportableLogTypes field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetExportableLogTypes(v []*string) *CreateCustomDBEngineVersionOutput {
+	s.ExportableLogTypes = v
+	return s
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetKMSKeyId(v string) *CreateCustomDBEngineVersionOutput {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetMajorEngineVersion sets the MajorEngineVersion field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetMajorEngineVersion(v string) *CreateCustomDBEngineVersionOutput {
+	s.MajorEngineVersion = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetStatus(v string) *CreateCustomDBEngineVersionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetSupportedCharacterSets sets the SupportedCharacterSets field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportedCharacterSets(v []*CharacterSet) *CreateCustomDBEngineVersionOutput {
+	s.SupportedCharacterSets = v
+	return s
+}
+
+// SetSupportedEngineModes sets the SupportedEngineModes field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportedEngineModes(v []*string) *CreateCustomDBEngineVersionOutput {
+	s.SupportedEngineModes = v
+	return s
+}
+
+// SetSupportedFeatureNames sets the SupportedFeatureNames field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportedFeatureNames(v []*string) *CreateCustomDBEngineVersionOutput {
+	s.SupportedFeatureNames = v
+	return s
+}
+
+// SetSupportedNcharCharacterSets sets the SupportedNcharCharacterSets field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportedNcharCharacterSets(v []*CharacterSet) *CreateCustomDBEngineVersionOutput {
+	s.SupportedNcharCharacterSets = v
+	return s
+}
+
+// SetSupportedTimezones sets the SupportedTimezones field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportedTimezones(v []*Timezone) *CreateCustomDBEngineVersionOutput {
+	s.SupportedTimezones = v
+	return s
+}
+
+// SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportsGlobalDatabases(v bool) *CreateCustomDBEngineVersionOutput {
+	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsLogExportsToCloudwatchLogs sets the SupportsLogExportsToCloudwatchLogs field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportsLogExportsToCloudwatchLogs(v bool) *CreateCustomDBEngineVersionOutput {
+	s.SupportsLogExportsToCloudwatchLogs = &v
+	return s
+}
+
+// SetSupportsParallelQuery sets the SupportsParallelQuery field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportsParallelQuery(v bool) *CreateCustomDBEngineVersionOutput {
+	s.SupportsParallelQuery = &v
+	return s
+}
+
+// SetSupportsReadReplica sets the SupportsReadReplica field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetSupportsReadReplica(v bool) *CreateCustomDBEngineVersionOutput {
+	s.SupportsReadReplica = &v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetTagList(v []*Tag) *CreateCustomDBEngineVersionOutput {
+	s.TagList = v
+	return s
+}
+
+// SetValidUpgradeTarget sets the ValidUpgradeTarget field's value.
+func (s *CreateCustomDBEngineVersionOutput) SetValidUpgradeTarget(v []*UpgradeTarget) *CreateCustomDBEngineVersionOutput {
+	s.ValidUpgradeTarget = v
 	return s
 }
 
@@ -18278,27 +19090,26 @@ type CreateDBClusterInput struct {
 	// The Amazon Web Services KMS key identifier for an encrypted DB cluster.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
-	// To use a CMK in a different Amazon Web Services account, specify the key
-	// ARN or alias ARN.
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
 	//
-	// When a CMK isn't specified in KmsKeyId:
+	// When a KMS key isn't specified in KmsKeyId:
 	//
 	//    * If ReplicationSourceIdentifier identifies an encrypted source, then
-	//    Amazon RDS will use the CMK used to encrypt the source. Otherwise, Amazon
-	//    RDS will use your default CMK.
+	//    Amazon RDS will use the KMS key used to encrypt the source. Otherwise,
+	//    Amazon RDS will use your default KMS key.
 	//
 	//    * If the StorageEncrypted parameter is enabled and ReplicationSourceIdentifier
-	//    isn't specified, then Amazon RDS will use your default CMK.
+	//    isn't specified, then Amazon RDS will use your default KMS key.
 	//
-	// There is a default CMK for your Amazon Web Services account. Your Amazon
-	// Web Services account has a different default CMK for each Amazon Web Services
-	// Region.
+	// There is a default KMS key for your Amazon Web Services account. Your Amazon
+	// Web Services account has a different default KMS key for each Amazon Web
+	// Services Region.
 	//
 	// If you create a read replica of an encrypted DB cluster in another Amazon
-	// Web Services Region, you must set KmsKeyId to a Amazon Web Services KMS key
-	// identifier that is valid in the destination Amazon Web Services Region. This
-	// CMK is used to encrypt the read replica in that Amazon Web Services Region.
+	// Web Services Region, you must set KmsKeyId to a KMS key identifier that is
+	// valid in the destination Amazon Web Services Region. This KMS key is used
+	// to encrypt the read replica in that Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// The password for the master database user. This password can contain any
@@ -18341,12 +19152,11 @@ type CreateDBClusterInput struct {
 	//
 	// The pre-signed URL request must contain the following parameter values:
 	//
-	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the key to
-	//    use to encrypt the copy of the DB cluster in the destination Amazon Web
-	//    Services Region. This should refer to the same Amazon Web Services KMS
-	//    CMK for both the CreateDBCluster action that is called in the destination
-	//    Amazon Web Services Region, and the action contained in the pre-signed
-	//    URL.
+	//    * KmsKeyId - The Amazon Web Services KMS key identifier for the KMS key
+	//    to use to encrypt the copy of the DB cluster in the destination Amazon
+	//    Web Services Region. This should refer to the same KMS key for both the
+	//    CreateDBCluster action that is called in the destination Amazon Web Services
+	//    Region, and the action contained in the pre-signed URL.
 	//
 	//    * DestinationRegion - The name of the Amazon Web Services Region that
 	//    Aurora read replica will be created in.
@@ -18996,6 +19806,14 @@ type CreateDBInstanceInput struct {
 	// data in your database increases, though you are only charged for the space
 	// that you use in an Aurora cluster volume.
 	//
+	// Amazon RDS Custom
+	//
+	// Constraints to the amount of storage for each storage type are the following:
+	//
+	//    * General Purpose (SSD) storage (gp2): Must be an integer from 40 to 65536.
+	//
+	//    * Provisioned IOPS storage (io1): Must be an integer from 40 to 65536.
+	//
 	// MySQL
 	//
 	// Constraints to the amount of storage for each storage type are the following:
@@ -19056,6 +19874,9 @@ type CreateDBInstanceInput struct {
 	// A value that indicates whether minor engine upgrades are applied automatically
 	// to the DB instance during the maintenance window. By default, minor engine
 	// upgrades are applied automatically.
+	//
+	// If you create an RDS Custom DB instance, you must set AutoMinorVersionUpgrade
+	// to false.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The Availability Zone (AZ) where the database will be created. For information
@@ -19095,10 +19916,15 @@ type CreateDBInstanceInput struct {
 	//    * Must be a value from 0 to 35
 	//
 	//    * Can't be set to 0 if the DB instance is a source to read replicas
+	//
+	//    * Can't be set to 0 or 35 for an RDS Custom DB instance
 	BackupRetentionPeriod *int64 `type:"integer"`
 
-	// For supported engines, indicates that the DB instance should be associated
-	// with the specified CharacterSet.
+	// For supported engines, this value indicates that the DB instance should be
+	// associated with the specified CharacterSet.
+	//
+	// This setting doesn't apply to RDS Custom. However, if you need to change
+	// the character set, you can change it on the database itself.
 	//
 	// Amazon Aurora
 	//
@@ -19115,7 +19941,27 @@ type CreateDBInstanceInput struct {
 	// this value for an Aurora DB instance has no effect on the DB cluster setting.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
+	// The instance profile associated with the underlying Amazon EC2 instance of
+	// an RDS Custom DB instance. The instance profile must meet the following requirements:
+	//
+	//    * The profile must exist in your account.
+	//
+	//    * The profile must have an IAM role that Amazon EC2 has permissions to
+	//    assume.
+	//
+	//    * The instance profile name and the associated IAM role name must start
+	//    with the prefix AWSRDSCustom.
+	//
+	// For the list of permissions required for the IAM role, see Configure IAM
+	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
+	// in the Amazon Relational Database Service User Guide.
+	//
+	// This setting is required for RDS Custom.
+	CustomIamInstanceProfile *string `type:"string"`
+
 	// The identifier of the DB cluster that the instance will belong to.
+	//
+	// This setting doesn't apply to RDS Custom.
 	DBClusterIdentifier *string `type:"string"`
 
 	// The compute and memory capacity of the DB instance, for example, db.m4.large.
@@ -19200,6 +20046,21 @@ type CreateDBInstanceInput struct {
 	//
 	//    * Can't be longer than 8 characters
 	//
+	// Amazon RDS Custom
+	//
+	// The Oracle System ID (SID) of the created RDS Custom DB instance. If you
+	// don't specify a value, the default value is ORCL.
+	//
+	// Default: ORCL
+	//
+	// Constraints:
+	//
+	//    * It must contain 1 to 8 alphanumeric characters.
+	//
+	//    * It must contain a letter.
+	//
+	//    * It can't be a word reserved by the database engine.
+	//
 	// SQL Server
 	//
 	// Not applicable. Must be null.
@@ -19236,6 +20097,8 @@ type CreateDBInstanceInput struct {
 	// The name of the DB parameter group to associate with this DB instance. If
 	// you do not specify a value, then the default DB parameter group for the specified
 	// DB engine and version is used.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Constraints:
 	//
@@ -19275,20 +20138,28 @@ type CreateDBInstanceInput struct {
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	Domain *string `type:"string"`
 
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
+	//
+	// This setting doesn't apply to RDS Custom.
 	DomainIAMRoleName *string `type:"string"`
 
 	// The list of log types that need to be enabled for exporting to CloudWatch
-	// Logs. The values in the list depend on the DB engine being used. For more
-	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
+	// Logs. The values in the list depend on the DB engine. For more information,
+	// see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon Relational Database Service User Guide.
 	//
 	// Amazon Aurora
 	//
 	// Not applicable. CloudWatch Logs exports are managed by the DB cluster.
+	//
+	// RDS Custom
+	//
+	// Not applicable.
 	//
 	// MariaDB
 	//
@@ -19331,8 +20202,9 @@ type CreateDBInstanceInput struct {
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
 	// is disabled.
 	//
-	// This setting doesn't apply to Amazon Aurora. Mapping Amazon Web Services
-	// IAM accounts to database accounts is managed by the DB cluster.
+	// This setting doesn't apply to RDS Custom or Amazon Aurora. In Aurora, mapping
+	// Amazon Web Services IAM accounts to database accounts is managed by the DB
+	// cluster.
 	//
 	// For more information, see IAM Database Authentication for MySQL and PostgreSQL
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
@@ -19340,10 +20212,10 @@ type CreateDBInstanceInput struct {
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
 	// A value that indicates whether to enable Performance Insights for the DB
-	// instance.
-	//
-	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
+	// instance. For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
 	// in the Amazon Relational Database Service User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	EnablePerformanceInsights *bool `type:"boolean"`
 
 	// The name of the database engine to be used for this instance.
@@ -19357,6 +20229,8 @@ type CreateDBInstanceInput struct {
 	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
 	//
 	//    * aurora-postgresql
+	//
+	//    * custom-oracle-ee (for RDS Custom instances)
 	//
 	//    * mariadb
 	//
@@ -19395,6 +20269,14 @@ type CreateDBInstanceInput struct {
 	//
 	// Not applicable. The version number of the database engine to be used by the
 	// DB instance is managed by the DB cluster.
+	//
+	// Amazon RDS Custom
+	//
+	// A custom engine version (CEV) that you have previously created. This setting
+	// is required for RDS Custom. The CEV name has the following format: 19.customized_string
+	// . An example identifier is 19.my_cev1. For more information, see Creating
+	// an RDS Custom DB instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-creating.html#custom-creating.create)
+	// in the Amazon RDS User Guide..
 	//
 	// MariaDB
 	//
@@ -19436,9 +20318,8 @@ type CreateDBInstanceInput struct {
 	// The Amazon Web Services KMS key identifier for an encrypted DB instance.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
-	// To use a CMK in a different Amazon Web Services account, specify the key
-	// ARN or alias ARN.
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
 	//
 	// Amazon Aurora
 	//
@@ -19446,14 +20327,23 @@ type CreateDBInstanceInput struct {
 	// the DB cluster. For more information, see CreateDBCluster.
 	//
 	// If StorageEncrypted is enabled, and you do not specify a value for the KmsKeyId
-	// parameter, then Amazon RDS uses your default CMK. There is a default CMK
-	// for your Amazon Web Services account. Your Amazon Web Services account has
-	// a different default CMK for each Amazon Web Services Region.
+	// parameter, then Amazon RDS uses your default KMS key. There is a default
+	// KMS key for your Amazon Web Services account. Your Amazon Web Services account
+	// has a different default KMS key for each Amazon Web Services Region.
+	//
+	// Amazon RDS Custom
+	//
+	// A KMS key is required for RDS Custom Oracle instances. For most RDS engines,
+	// if you leave this parameter empty while enabling StorageEncrypted, the engine
+	// uses the default KMS key. However, RDS Custom for Oracle doesn't use the
+	// default key when this parameter is empty. You must explicitly specify a key.
 	KmsKeyId *string `type:"string"`
 
 	// License model information for this DB instance.
 	//
 	// Valid values: license-included | bring-your-own-license | general-public-license
+	//
+	// This setting doesn't apply to RDS Custom.
 	LicenseModel *string `type:"string"`
 
 	// The password for the master user. The password can include any printable
@@ -19556,34 +20446,44 @@ type CreateDBInstanceInput struct {
 	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
-	// are collected for the DB instance. To disable collecting Enhanced Monitoring
+	// are collected for the DB instance. To disable collection of Enhanced Monitoring
 	// metrics, specify 0. The default is 0.
 	//
-	// If MonitoringRoleArn is specified, then you must also set MonitoringInterval
-	// to a value other than 0.
+	// If MonitoringRoleArn is specified, then you must set MonitoringInterval to
+	// a value other than 0.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Valid Values: 0, 1, 5, 10, 15, 30, 60
 	MonitoringInterval *int64 `type:"integer"`
 
 	// The ARN for the IAM role that permits RDS to send enhanced monitoring metrics
 	// to Amazon CloudWatch Logs. For example, arn:aws:iam:123456789012:role/emaccess.
-	// For information on creating a monitoring role, go to Setting Up and Enabling
+	// For information on creating a monitoring role, see Setting Up and Enabling
 	// Enhanced Monitoring (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.Enabling)
 	// in the Amazon RDS User Guide.
 	//
 	// If MonitoringInterval is set to a value other than 0, then you must supply
 	// a MonitoringRoleArn value.
+	//
+	// This setting doesn't apply to RDS Custom.
 	MonitoringRoleArn *string `type:"string"`
 
 	// A value that indicates whether the DB instance is a Multi-AZ deployment.
 	// You can't set the AvailabilityZone parameter if the DB instance is a Multi-AZ
 	// deployment.
+	//
+	// This setting doesn't apply to RDS Custom.
 	MultiAZ *bool `type:"boolean"`
 
 	// The name of the NCHAR character set for the Oracle DB instance.
+	//
+	// This parameter doesn't apply to RDS Custom.
 	NcharCharacterSetName *string `type:"string"`
 
 	// A value that indicates that the DB instance should be associated with the
@@ -19591,23 +20491,29 @@ type CreateDBInstanceInput struct {
 	//
 	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
 	// can't be removed from an option group. Also, that option group can't be removed
-	// from a DB instance once it is associated with a DB instance
+	// from a DB instance after it is associated with a DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	OptionGroupName *string `type:"string"`
 
 	// The Amazon Web Services KMS key identifier for encryption of Performance
 	// Insights data.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	//
 	// If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon
-	// RDS uses your default CMK. There is a default CMK for your Amazon Web Services
-	// account. Your Amazon Web Services account has a different default CMK for
-	// each Amazon Web Services Region.
+	// RDS uses your default KMS key. There is a default KMS key for your Amazon
+	// Web Services account. Your Amazon Web Services account has a different default
+	// KMS key for each Amazon Web Services Region.
+	//
+	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
 	// are 7 or 731 (2 years).
+	//
+	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
 
 	// The port number on which the database accepts connections.
@@ -19698,12 +20604,16 @@ type CreateDBInstanceInput struct {
 
 	// The number of CPU cores and the number of threads per core for the DB instance
 	// class of the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
 	// A value that specifies the order in which an Aurora Replica is promoted to
 	// the primary instance after a failure of the existing primary instance. For
 	// more information, see Fault Tolerance for an Aurora DB Cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.FaultTolerance)
 	// in the Amazon Aurora User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Default: 1
 	//
@@ -19747,6 +20657,9 @@ type CreateDBInstanceInput struct {
 	// A value that indicates whether the DB instance is encrypted. By default,
 	// it isn't encrypted.
 	//
+	// For RDS Custom Oracle instances, either set this parameter to true or leave
+	// it unset. If you set this parameter to false, RDS reports an error.
+	//
 	// Amazon Aurora
 	//
 	// Not applicable. The encryption for DB instances is managed by the DB cluster.
@@ -19765,10 +20678,14 @@ type CreateDBInstanceInput struct {
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// The ARN from the key store with which to associate the instance for TDE encryption.
+	//
+	// This setting doesn't apply to RDS Custom.
 	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the key store in order to access the
 	// device.
+	//
+	// This setting doesn't apply to RDS Custom.
 	TdeCredentialPassword *string `type:"string"`
 
 	// The time zone of the DB instance. The time zone parameter is currently supported
@@ -19856,6 +20773,12 @@ func (s *CreateDBInstanceInput) SetCharacterSetName(v string) *CreateDBInstanceI
 // SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
 func (s *CreateDBInstanceInput) SetCopyTagsToSnapshot(v bool) *CreateDBInstanceInput {
 	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetCustomIamInstanceProfile sets the CustomIamInstanceProfile field's value.
+func (s *CreateDBInstanceInput) SetCustomIamInstanceProfile(v string) *CreateDBInstanceInput {
+	s.CustomIamInstanceProfile = &v
 	return s
 }
 
@@ -20150,6 +21073,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// A value that indicates whether minor engine upgrades are applied automatically
 	// to the read replica during the maintenance window.
 	//
+	// This setting doesn't apply to RDS Custom.
+	//
 	// Default: Inherits from the source DB instance
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
@@ -20164,6 +21089,24 @@ type CreateDBInstanceReadReplicaInput struct {
 	// A value that indicates whether to copy all tags from the read replica to
 	// snapshots of the read replica. By default, tags are not copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
+
+	// The instance profile associated with the underlying Amazon EC2 instance of
+	// an RDS Custom DB instance. The instance profile must meet the following requirements:
+	//
+	//    * The profile must exist in your account.
+	//
+	//    * The profile must have an IAM role that Amazon EC2 has permissions to
+	//    assume.
+	//
+	//    * The instance profile name and the associated IAM role name must start
+	//    with the prefix AWSRDSCustom.
+	//
+	// For the list of permissions required for the IAM role, see Configure IAM
+	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
+	// in the Amazon Relational Database Service User Guide.
+	//
+	// This setting is required for RDS Custom.
+	CustomIamInstanceProfile *string `type:"string"`
 
 	// The compute and memory capacity of the read replica, for example, db.m4.large.
 	// Not all DB instance classes are available in all Amazon Web Services Regions,
@@ -20188,8 +21131,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// or the default DBParameterGroup for the specified DB engine for a cross region
 	// read replica.
 	//
-	// Currently, specifying a parameter group for this operation is only supported
-	// for Oracle DB instances.
+	// Specifying a parameter group for this operation is only supported for Oracle
+	// DB instances. It isn't supported for RDS Custom.
 	//
 	// Constraints:
 	//
@@ -20238,16 +21181,22 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	Domain *string `type:"string"`
 
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
+	//
+	// This setting doesn't apply to RDS Custom.
 	DomainIAMRoleName *string `type:"string"`
 
 	// The list of logs that the new DB instance is to export to CloudWatch Logs.
 	// The values in the list depend on the DB engine being used. For more information,
 	// see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
@@ -20257,6 +21206,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
 	// A value that indicates whether to enable Performance Insights for the read
@@ -20264,6 +21215,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	EnablePerformanceInsights *bool `type:"boolean"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
@@ -20273,21 +21226,23 @@ type CreateDBInstanceReadReplicaInput struct {
 	// The Amazon Web Services KMS key identifier for an encrypted read replica.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS CMK.
+	// ARN, or alias name for the KMS key.
 	//
 	// If you create an encrypted read replica in the same Amazon Web Services Region
 	// as the source DB instance, then do not specify a value for this parameter.
-	// A read replica in the same Region is always encrypted with the same Amazon
-	// Web Services KMS CMK as the source DB instance.
+	// A read replica in the same Amazon Web Services Region is always encrypted
+	// with the same KMS key as the source DB instance.
 	//
 	// If you create an encrypted read replica in a different Amazon Web Services
-	// Region, then you must specify a Amazon Web Services KMS key identifier for
-	// the destination Amazon Web Services Region. Amazon Web Services KMS CMKs
-	// are specific to the Amazon Web Services Region that they are created in,
-	// and you can't use CMKs from one Amazon Web Services Region in another Amazon
-	// Web Services Region.
+	// Region, then you must specify a KMS key identifier for the destination Amazon
+	// Web Services Region. KMS keys are specific to the Amazon Web Services Region
+	// that they are created in, and you can't use KMS keys from one Amazon Web
+	// Services Region in another Amazon Web Services Region.
 	//
 	// You can't create an encrypted read replica from an unencrypted DB instance.
+	//
+	// This setting doesn't apply to RDS Custom, which uses the same KMS key as
+	// the primary replica.
 	KmsKeyId *string `type:"string"`
 
 	// The upper limit in gibibytes (GiB) to which Amazon RDS can automatically
@@ -20306,6 +21261,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// If MonitoringRoleArn is specified, then you must also set MonitoringInterval
 	// to a value other than 0.
 	//
+	// This setting doesn't apply to RDS Custom.
+	//
 	// Valid Values: 0, 1, 5, 10, 15, 30, 60
 	MonitoringInterval *int64 `type:"integer"`
 
@@ -20317,6 +21274,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// If MonitoringInterval is set to a value other than 0, then you must supply
 	// a MonitoringRoleArn value.
+	//
+	// This setting doesn't apply to RDS Custom.
 	MonitoringRoleArn *string `type:"string"`
 
 	// A value that indicates whether the read replica is in a Multi-AZ deployment.
@@ -20325,6 +21284,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// of your replica in another Availability Zone for failover support for the
 	// replica. Creating your read replica as a Multi-AZ DB instance is independent
 	// of whether the source database is a Multi-AZ DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	MultiAZ *bool `type:"boolean"`
 
 	// The option group the DB instance is associated with. If omitted, the option
@@ -20332,22 +21293,28 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// For SQL Server, you must use the option group associated with the source
 	// instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	OptionGroupName *string `type:"string"`
 
 	// The Amazon Web Services KMS key identifier for encryption of Performance
 	// Insights data.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	//
 	// If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon
-	// RDS uses your default CMK. There is a default CMK for your Amazon Web Services
-	// account. Your Amazon Web Services account has a different default CMK for
-	// each Amazon Web Services Region.
+	// RDS uses your default KMS key. There is a default KMS key for your Amazon
+	// Web Services account. Your Amazon Web Services account has a different default
+	// KMS key for each Amazon Web Services Region.
+	//
+	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
 	// are 7 or 731 (2 years).
+	//
+	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
 
 	// The port number that the DB instance uses for connections.
@@ -20409,10 +21376,14 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// SourceRegion isn't supported for SQL Server, because SQL Server on Amazon
 	// RDS doesn't support cross-region read replicas.
+	//
+	// This setting doesn't apply to RDS Custom.
 	PreSignedUrl *string `type:"string"`
 
 	// The number of CPU cores and the number of threads per core for the DB instance
 	// class of the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
 	// A value that indicates whether the DB instance is publicly accessible.
@@ -20434,16 +21405,20 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// This parameter is only supported for Oracle DB instances.
 	//
-	// Mounted DB replicas are included in Oracle Enterprise Edition. The main use
-	// case for mounted replicas is cross-Region disaster recovery. The primary
-	// database doesn't use Active Data Guard to transmit information to the mounted
-	// replica. Because it doesn't accept user connections, a mounted replica can't
-	// serve a read-only workload.
+	// Mounted DB replicas are included in Oracle Database Enterprise Edition. The
+	// main use case for mounted replicas is cross-Region disaster recovery. The
+	// primary database doesn't use Active Data Guard to transmit information to
+	// the mounted replica. Because it doesn't accept user connections, a mounted
+	// replica can't serve a read-only workload.
 	//
 	// You can create a combination of mounted and read-only DB replicas for the
 	// same primary DB instance. For more information, see Working with Oracle Read
 	// Replicas for Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-read-replicas.html)
 	// in the Amazon RDS User Guide.
+	//
+	// For RDS Custom, you must specify this parameter and set it to mounted. The
+	// value won't be set by default. After replica creation, you can manage the
+	// open mode manually.
 	ReplicaMode *string `type:"string" enum:"ReplicaMode"`
 
 	// The identifier of the DB instance that will act as the source for the read
@@ -20477,8 +21452,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	//    * If the source DB instance is in a different Amazon Web Services Region
 	//    from the read replica, specify a valid DB instance ARN. For more information,
 	//    see Constructing an ARN for Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing)
-	//    in the Amazon RDS User Guide. This doesn't apply to SQL Server, which
-	//    doesn't support cross-region replicas.
+	//    in the Amazon RDS User Guide. This doesn't apply to SQL Server or RDS
+	//    Custom, which don't support cross-Region replicas.
 	//
 	// SourceDBInstanceIdentifier is a required field
 	SourceDBInstanceIdentifier *string `type:"string" required:"true"`
@@ -20503,9 +21478,13 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// A value that indicates whether the DB instance class of the DB instance uses
 	// its default processor features.
+	//
+	// This setting doesn't apply to RDS Custom.
 	UseDefaultProcessorFeatures *bool `type:"boolean"`
 
-	// A list of EC2 VPC security groups to associate with the read replica.
+	// A list of Amazon EC2 VPC security groups to associate with the read replica.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Default: The default EC2 VPC security group for the DB subnet group's VPC.
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
@@ -20560,6 +21539,12 @@ func (s *CreateDBInstanceReadReplicaInput) SetAvailabilityZone(v string) *Create
 // SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetCopyTagsToSnapshot(v bool) *CreateDBInstanceReadReplicaInput {
 	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetCustomIamInstanceProfile sets the CustomIamInstanceProfile field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetCustomIamInstanceProfile(v string) *CreateDBInstanceReadReplicaInput {
+	s.CustomIamInstanceProfile = &v
 	return s
 }
 
@@ -22195,7 +23180,7 @@ type DBCluster struct {
 	// the database activity stream.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	ActivityStreamKmsKeyId *string `type:"string"`
 
 	// The mode of the database activity stream. Database events such as a change
@@ -22292,7 +23277,7 @@ type DBCluster struct {
 
 	// The Amazon Web Services Region-unique, immutable identifier for the DB cluster.
 	// This identifier is found in Amazon Web Services CloudTrail log entries whenever
-	// the Amazon Web Services KMS CMK for the DB cluster is accessed.
+	// the KMS key for the DB cluster is accessed.
 	DbClusterResourceId *string `type:"string"`
 
 	// Indicates if the DB cluster has deletion protection enabled. The database
@@ -22365,7 +23350,7 @@ type DBCluster struct {
 	// for the encrypted DB cluster.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies the latest time to which a database can be restored with point-in-time
@@ -23149,8 +24134,8 @@ type DBClusterRole struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the feature associated with the Amazon Web Services Identity
-	// and Access Management (IAM) role. For the list of supported feature names,
-	// see DBEngineVersion.
+	// and Access Management (IAM) role. For information about supported feature
+	// names, see DBEngineVersion.
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that is associated with the
@@ -23252,7 +24237,7 @@ type DBClusterSnapshot struct {
 	// the encrypted DB cluster snapshot.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	KmsKeyId *string `type:"string"`
 
 	// Provides the license model information for this DB cluster snapshot.
@@ -23550,14 +24535,28 @@ func (s *DBClusterSnapshotAttributesResult) SetDBClusterSnapshotIdentifier(v str
 type DBEngineVersion struct {
 	_ struct{} `type:"structure"`
 
+	// The creation time of the DB engine version.
+	CreateTime *time.Time `type:"timestamp"`
+
 	// The description of the database engine.
 	DBEngineDescription *string `type:"string"`
+
+	// The ARN of the custom engine version.
+	DBEngineVersionArn *string `type:"string"`
 
 	// The description of the database engine version.
 	DBEngineVersionDescription *string `type:"string"`
 
 	// The name of the DB parameter group family for the database engine.
 	DBParameterGroupFamily *string `type:"string"`
+
+	// The name of the Amazon S3 bucket that contains your database installation
+	// files.
+	DatabaseInstallationFilesS3BucketName *string `type:"string"`
+
+	// The Amazon S3 directory that contains the database installation files. If
+	// not specified, then no prefix is assumed.
+	DatabaseInstallationFilesS3Prefix *string `type:"string"`
 
 	// The default character set for new instances of this engine version, if the
 	// CharacterSetName parameter of the CreateDBInstance API isn't specified.
@@ -23573,6 +24572,13 @@ type DBEngineVersion struct {
 	// Logs.
 	ExportableLogTypes []*string `type:"list"`
 
+	// The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter
+	// is required for RDS Custom, but optional for Amazon RDS.
+	KMSKeyId *string `type:"string"`
+
+	// The major engine version of the CEV.
+	MajorEngineVersion *string `type:"string"`
+
 	// The status of the DB engine version, either available or deprecated.
 	Status *string `type:"string"`
 
@@ -23583,10 +24589,22 @@ type DBEngineVersion struct {
 	// A list of the supported DB engine modes.
 	SupportedEngineModes []*string `type:"list"`
 
-	// A list of features supported by the DB engine. Supported feature names include
-	// the following.
+	// A list of features supported by the DB engine.
 	//
-	//    * s3Import
+	// The supported features vary by DB engine and DB engine version.
+	//
+	// To determine the supported features for a specific DB engine and DB engine
+	// version using the CLI, use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine <engine_name> --engine-version
+	// <engine_version>
+	//
+	// For example, to determine the supported features for RDS for PostgreSQL version
+	// 13.3 using the CLI, use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine postgres --engine-version 13.3
+	//
+	// The supported features are listed under SupportedFeatureNames in the output.
 	SupportedFeatureNames []*string `type:"list"`
 
 	// A list of the character sets supported by the Oracle DB engine for the NcharCharacterSetName
@@ -23612,6 +24630,10 @@ type DBEngineVersion struct {
 	// Indicates whether the database engine version supports read replicas.
 	SupportsReadReplica *bool `type:"boolean"`
 
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
 	// A list of engine versions that this database engine version can be upgraded
 	// to.
 	ValidUpgradeTarget []*UpgradeTarget `locationNameList:"UpgradeTarget" type:"list"`
@@ -23635,9 +24657,21 @@ func (s DBEngineVersion) GoString() string {
 	return s.String()
 }
 
+// SetCreateTime sets the CreateTime field's value.
+func (s *DBEngineVersion) SetCreateTime(v time.Time) *DBEngineVersion {
+	s.CreateTime = &v
+	return s
+}
+
 // SetDBEngineDescription sets the DBEngineDescription field's value.
 func (s *DBEngineVersion) SetDBEngineDescription(v string) *DBEngineVersion {
 	s.DBEngineDescription = &v
+	return s
+}
+
+// SetDBEngineVersionArn sets the DBEngineVersionArn field's value.
+func (s *DBEngineVersion) SetDBEngineVersionArn(v string) *DBEngineVersion {
+	s.DBEngineVersionArn = &v
 	return s
 }
 
@@ -23650,6 +24684,18 @@ func (s *DBEngineVersion) SetDBEngineVersionDescription(v string) *DBEngineVersi
 // SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
 func (s *DBEngineVersion) SetDBParameterGroupFamily(v string) *DBEngineVersion {
 	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDatabaseInstallationFilesS3BucketName sets the DatabaseInstallationFilesS3BucketName field's value.
+func (s *DBEngineVersion) SetDatabaseInstallationFilesS3BucketName(v string) *DBEngineVersion {
+	s.DatabaseInstallationFilesS3BucketName = &v
+	return s
+}
+
+// SetDatabaseInstallationFilesS3Prefix sets the DatabaseInstallationFilesS3Prefix field's value.
+func (s *DBEngineVersion) SetDatabaseInstallationFilesS3Prefix(v string) *DBEngineVersion {
+	s.DatabaseInstallationFilesS3Prefix = &v
 	return s
 }
 
@@ -23674,6 +24720,18 @@ func (s *DBEngineVersion) SetEngineVersion(v string) *DBEngineVersion {
 // SetExportableLogTypes sets the ExportableLogTypes field's value.
 func (s *DBEngineVersion) SetExportableLogTypes(v []*string) *DBEngineVersion {
 	s.ExportableLogTypes = v
+	return s
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *DBEngineVersion) SetKMSKeyId(v string) *DBEngineVersion {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetMajorEngineVersion sets the MajorEngineVersion field's value.
+func (s *DBEngineVersion) SetMajorEngineVersion(v string) *DBEngineVersion {
+	s.MajorEngineVersion = &v
 	return s
 }
 
@@ -23737,6 +24795,12 @@ func (s *DBEngineVersion) SetSupportsReadReplica(v bool) *DBEngineVersion {
 	return s
 }
 
+// SetTagList sets the TagList field's value.
+func (s *DBEngineVersion) SetTagList(v []*Tag) *DBEngineVersion {
+	s.TagList = v
+	return s
+}
+
 // SetValidUpgradeTarget sets the ValidUpgradeTarget field's value.
 func (s *DBEngineVersion) SetValidUpgradeTarget(v []*UpgradeTarget) *DBEngineVersion {
 	s.ValidUpgradeTarget = v
@@ -23759,8 +24823,7 @@ type DBInstance struct {
 
 	// The Amazon Web Services KMS key identifier used for encrypting messages in
 	// the database activity stream. The Amazon Web Services KMS key identifier
-	// is the key ARN, key ID, alias ARN, or alias name for the Amazon Web Services
-	// KMS customer master key (CMK).
+	// is the key ARN, key ID, alias ARN, or alias name for the KMS key.
 	ActivityStreamKmsKeyId *string `type:"string"`
 
 	// The mode of the database activity stream. Database events such as a change
@@ -23783,6 +24846,11 @@ type DBInstance struct {
 
 	// The time when a stopped DB instance is restarted automatically.
 	AutomaticRestartTime *time.Time `type:"timestamp"`
+
+	// The automation mode of the RDS Custom DB instance: full or all paused. If
+	// full, the DB instance automates monitoring and instance recovery. If all
+	// paused, the instance pauses automation for the duration set by --resume-full-automation-mode-minutes.
+	AutomationMode *string `type:"string" enum:"AutomationMode"`
 
 	// Specifies the name of the Availability Zone the DB instance is located in.
 	AvailabilityZone *string `type:"string"`
@@ -23810,6 +24878,22 @@ type DBInstance struct {
 	// this value for an Aurora DB instance has no effect on the DB cluster setting.
 	// For more information, see DBCluster.
 	CopyTagsToSnapshot *bool `type:"boolean"`
+
+	// The instance profile associated with the underlying Amazon EC2 instance of
+	// an RDS Custom DB instance. The instance profile must meet the following requirements:
+	//
+	//    * The profile must exist in your account.
+	//
+	//    * The profile must have an IAM role that Amazon EC2 has permissions to
+	//    assume.
+	//
+	//    * The instance profile name and the associated IAM role name must start
+	//    with the prefix AWSRDSCustom.
+	//
+	// For the list of permissions required for the IAM role, see Configure IAM
+	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
+	// in the Amazon Relational Database Service User Guide.
+	CustomIamInstanceProfile *string `type:"string"`
 
 	// Specifies whether a customer-owned IP address (CoIP) is enabled for an RDS
 	// on Outposts DB instance.
@@ -23885,8 +24969,7 @@ type DBInstance struct {
 
 	// The Amazon Web Services Region-unique, immutable identifier for the DB instance.
 	// This identifier is found in Amazon Web Services CloudTrail log entries whenever
-	// the Amazon Web Services KMS customer master key (CMK) for the DB instance
-	// is accessed.
+	// the Amazon Web Services KMS key for the DB instance is accessed.
 	DbiResourceId *string `type:"string"`
 
 	// Indicates if the DB instance has deletion protection enabled. The database
@@ -23943,14 +25026,15 @@ type DBInstance struct {
 	// the encrypted DB instance.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies the latest time to which a database can be restored with point-in-time
 	// restore.
 	LatestRestorableTime *time.Time `type:"timestamp"`
 
-	// License model information for this DB instance.
+	// License model information for this DB instance. This setting doesn't apply
+	// to RDS Custom.
 	LicenseModel *string `type:"string"`
 
 	// Specifies the listener connection endpoint for SQL Server Always On.
@@ -23971,7 +25055,8 @@ type DBInstance struct {
 	// to Amazon CloudWatch Logs.
 	MonitoringRoleArn *string `type:"string"`
 
-	// Specifies if the DB instance is a Multi-AZ deployment.
+	// Specifies if the DB instance is a Multi-AZ deployment. This setting doesn't
+	// apply to RDS Custom.
 	MultiAZ *bool `type:"boolean"`
 
 	// The name of the NCHAR character set for the Oracle DB instance. This character
@@ -23995,7 +25080,7 @@ type DBInstance struct {
 	// Insights data.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
@@ -24058,6 +25143,11 @@ type DBInstance struct {
 	//
 	// This attribute is only supported in RDS for Oracle.
 	ReplicaMode *string `type:"string" enum:"ReplicaMode"`
+
+	// The number of minutes to pause the automation. When the time period ends,
+	// RDS Custom resumes full automation. The minimum value is 60 (default). The
+	// maximum value is 1,440.
+	ResumeFullAutomationModeTime *time.Time `type:"timestamp"`
 
 	// If present, specifies the name of the secondary Availability Zone for a DB
 	// instance with multi-AZ support.
@@ -24163,6 +25253,12 @@ func (s *DBInstance) SetAutomaticRestartTime(v time.Time) *DBInstance {
 	return s
 }
 
+// SetAutomationMode sets the AutomationMode field's value.
+func (s *DBInstance) SetAutomationMode(v string) *DBInstance {
+	s.AutomationMode = &v
+	return s
+}
+
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *DBInstance) SetAvailabilityZone(v string) *DBInstance {
 	s.AvailabilityZone = &v
@@ -24196,6 +25292,12 @@ func (s *DBInstance) SetCharacterSetName(v string) *DBInstance {
 // SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
 func (s *DBInstance) SetCopyTagsToSnapshot(v bool) *DBInstance {
 	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetCustomIamInstanceProfile sets the CustomIamInstanceProfile field's value.
+func (s *DBInstance) SetCustomIamInstanceProfile(v string) *DBInstance {
+	s.CustomIamInstanceProfile = &v
 	return s
 }
 
@@ -24481,6 +25583,12 @@ func (s *DBInstance) SetReplicaMode(v string) *DBInstance {
 	return s
 }
 
+// SetResumeFullAutomationModeTime sets the ResumeFullAutomationModeTime field's value.
+func (s *DBInstance) SetResumeFullAutomationModeTime(v time.Time) *DBInstance {
+	s.ResumeFullAutomationModeTime = &v
+	return s
+}
+
 // SetSecondaryAvailabilityZone sets the SecondaryAvailabilityZone field's value.
 func (s *DBInstance) SetSecondaryAvailabilityZone(v string) *DBInstance {
 	s.SecondaryAvailabilityZone = &v
@@ -24586,7 +25694,7 @@ type DBInstanceAutomatedBackup struct {
 	// The Amazon Web Services KMS key ID for an automated backup.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	KmsKeyId *string `type:"string"`
 
 	// License model information for the automated backup.
@@ -24852,8 +25960,8 @@ type DBInstanceRole struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the feature associated with the Amazon Web Services Identity
-	// and Access Management (IAM) role. For the list of supported feature names,
-	// see DBEngineVersion.
+	// and Access Management (IAM) role. For information about supported feature
+	// names, see DBEngineVersion.
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that is associated with the
@@ -25849,7 +26957,7 @@ type DBSnapshot struct {
 	// encrypted DB snapshot.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	KmsKeyId *string `type:"string"`
 
 	// License model information for the restored DB instance.
@@ -26374,6 +27482,350 @@ func (s *DeleteCustomAvailabilityZoneOutput) SetCustomAvailabilityZone(v *Custom
 	return s
 }
 
+type DeleteCustomDBEngineVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The database engine. The only supported engine is custom-oracle-ee.
+	//
+	// Engine is a required field
+	Engine *string `min:"1" type:"string" required:"true"`
+
+	// The custom engine version (CEV) for your DB instance. This option is required
+	// for RDS Custom, but optional for Amazon RDS. The combination of Engine and
+	// EngineVersion is unique per customer per Amazon Web Services Region.
+	//
+	// EngineVersion is a required field
+	EngineVersion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDBEngineVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDBEngineVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCustomDBEngineVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCustomDBEngineVersionInput"}
+	if s.Engine == nil {
+		invalidParams.Add(request.NewErrParamRequired("Engine"))
+	}
+	if s.Engine != nil && len(*s.Engine) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Engine", 1))
+	}
+	if s.EngineVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineVersion"))
+	}
+	if s.EngineVersion != nil && len(*s.EngineVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EngineVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DeleteCustomDBEngineVersionInput) SetEngine(v string) *DeleteCustomDBEngineVersionInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DeleteCustomDBEngineVersionInput) SetEngineVersion(v string) *DeleteCustomDBEngineVersionInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// This data type is used as a response element in the action DescribeDBEngineVersions.
+type DeleteCustomDBEngineVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation time of the DB engine version.
+	CreateTime *time.Time `type:"timestamp"`
+
+	// The description of the database engine.
+	DBEngineDescription *string `type:"string"`
+
+	// The ARN of the custom engine version.
+	DBEngineVersionArn *string `type:"string"`
+
+	// The description of the database engine version.
+	DBEngineVersionDescription *string `type:"string"`
+
+	// The name of the DB parameter group family for the database engine.
+	DBParameterGroupFamily *string `type:"string"`
+
+	// The name of the Amazon S3 bucket that contains your database installation
+	// files.
+	DatabaseInstallationFilesS3BucketName *string `type:"string"`
+
+	// The Amazon S3 directory that contains the database installation files. If
+	// not specified, then no prefix is assumed.
+	DatabaseInstallationFilesS3Prefix *string `type:"string"`
+
+	// The default character set for new instances of this engine version, if the
+	// CharacterSetName parameter of the CreateDBInstance API isn't specified.
+	DefaultCharacterSet *CharacterSet `type:"structure"`
+
+	// The name of the database engine.
+	Engine *string `type:"string"`
+
+	// The version number of the database engine.
+	EngineVersion *string `type:"string"`
+
+	// The types of logs that the database engine has available for export to CloudWatch
+	// Logs.
+	ExportableLogTypes []*string `type:"list"`
+
+	// The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter
+	// is required for RDS Custom, but optional for Amazon RDS.
+	KMSKeyId *string `type:"string"`
+
+	// The major engine version of the CEV.
+	MajorEngineVersion *string `type:"string"`
+
+	// The status of the DB engine version, either available or deprecated.
+	Status *string `type:"string"`
+
+	// A list of the character sets supported by this engine for the CharacterSetName
+	// parameter of the CreateDBInstance operation.
+	SupportedCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
+
+	// A list of the supported DB engine modes.
+	SupportedEngineModes []*string `type:"list"`
+
+	// A list of features supported by the DB engine.
+	//
+	// The supported features vary by DB engine and DB engine version.
+	//
+	// To determine the supported features for a specific DB engine and DB engine
+	// version using the CLI, use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine <engine_name> --engine-version
+	// <engine_version>
+	//
+	// For example, to determine the supported features for RDS for PostgreSQL version
+	// 13.3 using the CLI, use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine postgres --engine-version 13.3
+	//
+	// The supported features are listed under SupportedFeatureNames in the output.
+	SupportedFeatureNames []*string `type:"list"`
+
+	// A list of the character sets supported by the Oracle DB engine for the NcharCharacterSetName
+	// parameter of the CreateDBInstance operation.
+	SupportedNcharCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
+
+	// A list of the time zones supported by this engine for the Timezone parameter
+	// of the CreateDBInstance action.
+	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
+
+	// A value that indicates whether you can use Aurora global databases with a
+	// specific DB engine version.
+	SupportsGlobalDatabases *bool `type:"boolean"`
+
+	// A value that indicates whether the engine version supports exporting the
+	// log types specified by ExportableLogTypes to CloudWatch Logs.
+	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
+
+	// A value that indicates whether you can use Aurora parallel query with a specific
+	// DB engine version.
+	SupportsParallelQuery *bool `type:"boolean"`
+
+	// Indicates whether the database engine version supports read replicas.
+	SupportsReadReplica *bool `type:"boolean"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A list of engine versions that this database engine version can be upgraded
+	// to.
+	ValidUpgradeTarget []*UpgradeTarget `locationNameList:"UpgradeTarget" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDBEngineVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteCustomDBEngineVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetCreateTime(v time.Time) *DeleteCustomDBEngineVersionOutput {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDBEngineDescription sets the DBEngineDescription field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetDBEngineDescription(v string) *DeleteCustomDBEngineVersionOutput {
+	s.DBEngineDescription = &v
+	return s
+}
+
+// SetDBEngineVersionArn sets the DBEngineVersionArn field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetDBEngineVersionArn(v string) *DeleteCustomDBEngineVersionOutput {
+	s.DBEngineVersionArn = &v
+	return s
+}
+
+// SetDBEngineVersionDescription sets the DBEngineVersionDescription field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetDBEngineVersionDescription(v string) *DeleteCustomDBEngineVersionOutput {
+	s.DBEngineVersionDescription = &v
+	return s
+}
+
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetDBParameterGroupFamily(v string) *DeleteCustomDBEngineVersionOutput {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDatabaseInstallationFilesS3BucketName sets the DatabaseInstallationFilesS3BucketName field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetDatabaseInstallationFilesS3BucketName(v string) *DeleteCustomDBEngineVersionOutput {
+	s.DatabaseInstallationFilesS3BucketName = &v
+	return s
+}
+
+// SetDatabaseInstallationFilesS3Prefix sets the DatabaseInstallationFilesS3Prefix field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetDatabaseInstallationFilesS3Prefix(v string) *DeleteCustomDBEngineVersionOutput {
+	s.DatabaseInstallationFilesS3Prefix = &v
+	return s
+}
+
+// SetDefaultCharacterSet sets the DefaultCharacterSet field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetDefaultCharacterSet(v *CharacterSet) *DeleteCustomDBEngineVersionOutput {
+	s.DefaultCharacterSet = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetEngine(v string) *DeleteCustomDBEngineVersionOutput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetEngineVersion(v string) *DeleteCustomDBEngineVersionOutput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetExportableLogTypes sets the ExportableLogTypes field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetExportableLogTypes(v []*string) *DeleteCustomDBEngineVersionOutput {
+	s.ExportableLogTypes = v
+	return s
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetKMSKeyId(v string) *DeleteCustomDBEngineVersionOutput {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetMajorEngineVersion sets the MajorEngineVersion field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetMajorEngineVersion(v string) *DeleteCustomDBEngineVersionOutput {
+	s.MajorEngineVersion = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetStatus(v string) *DeleteCustomDBEngineVersionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetSupportedCharacterSets sets the SupportedCharacterSets field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportedCharacterSets(v []*CharacterSet) *DeleteCustomDBEngineVersionOutput {
+	s.SupportedCharacterSets = v
+	return s
+}
+
+// SetSupportedEngineModes sets the SupportedEngineModes field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportedEngineModes(v []*string) *DeleteCustomDBEngineVersionOutput {
+	s.SupportedEngineModes = v
+	return s
+}
+
+// SetSupportedFeatureNames sets the SupportedFeatureNames field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportedFeatureNames(v []*string) *DeleteCustomDBEngineVersionOutput {
+	s.SupportedFeatureNames = v
+	return s
+}
+
+// SetSupportedNcharCharacterSets sets the SupportedNcharCharacterSets field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportedNcharCharacterSets(v []*CharacterSet) *DeleteCustomDBEngineVersionOutput {
+	s.SupportedNcharCharacterSets = v
+	return s
+}
+
+// SetSupportedTimezones sets the SupportedTimezones field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportedTimezones(v []*Timezone) *DeleteCustomDBEngineVersionOutput {
+	s.SupportedTimezones = v
+	return s
+}
+
+// SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportsGlobalDatabases(v bool) *DeleteCustomDBEngineVersionOutput {
+	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsLogExportsToCloudwatchLogs sets the SupportsLogExportsToCloudwatchLogs field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportsLogExportsToCloudwatchLogs(v bool) *DeleteCustomDBEngineVersionOutput {
+	s.SupportsLogExportsToCloudwatchLogs = &v
+	return s
+}
+
+// SetSupportsParallelQuery sets the SupportsParallelQuery field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportsParallelQuery(v bool) *DeleteCustomDBEngineVersionOutput {
+	s.SupportsParallelQuery = &v
+	return s
+}
+
+// SetSupportsReadReplica sets the SupportsReadReplica field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetSupportsReadReplica(v bool) *DeleteCustomDBEngineVersionOutput {
+	s.SupportsReadReplica = &v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetTagList(v []*Tag) *DeleteCustomDBEngineVersionOutput {
+	s.TagList = v
+	return s
+}
+
+// SetValidUpgradeTarget sets the ValidUpgradeTarget field's value.
+func (s *DeleteCustomDBEngineVersionOutput) SetValidUpgradeTarget(v []*UpgradeTarget) *DeleteCustomDBEngineVersionOutput {
+	s.ValidUpgradeTarget = v
+	return s
+}
+
 type DeleteDBClusterEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -26842,6 +28294,8 @@ type DeleteDBInstanceAutomatedBackupInput struct {
 
 	// The Amazon Resource Name (ARN) of the automated backups to delete, for example,
 	// arn:aws:rds:us-east-1:123456789012:auto-backup:ab-L2IJCEXJP7XQ7HOJ4SIEXAMPLE.
+	//
+	// This setting doesn't apply to RDS Custom.
 	DBInstanceAutomatedBackupsArn *string `type:"string"`
 
 	// The identifier for the source DB instance, which can't be changed and which
@@ -26933,8 +28387,10 @@ type DeleteDBInstanceInput struct {
 	// The DBSnapshotIdentifier of the new DBSnapshot created when the SkipFinalSnapshot
 	// parameter is disabled.
 	//
-	// Specifying this parameter and also specifying to skip final DB snapshot creation
-	// in SkipFinalShapshot results in an error.
+	// If you enable this parameter and also enable SkipFinalShapshot, the command
+	// results in an error.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Constraints:
 	//
@@ -26948,17 +28404,22 @@ type DeleteDBInstanceInput struct {
 	FinalDBSnapshotIdentifier *string `type:"string"`
 
 	// A value that indicates whether to skip the creation of a final DB snapshot
-	// before the DB instance is deleted. If skip is specified, no DB snapshot is
-	// created. If skip isn't specified, a DB snapshot is created before the DB
-	// instance is deleted. By default, skip isn't specified, and the DB snapshot
-	// is created.
+	// before deleting the instance. If you enable this parameter, RDS doesn't create
+	// a DB snapshot. If you don't enable this parameter, RDS creates a DB snapshot
+	// before the DB instance is deleted. By default, skip isn't enabled, and the
+	// DB snapshot is created.
 	//
-	// When a DB instance is in a failure state and has a status of 'failed', 'incompatible-restore',
-	// or 'incompatible-network', it can only be deleted when skip is specified.
+	// If you don't enable this parameter, you must specify the FinalDBSnapshotIdentifier
+	// parameter.
 	//
-	// Specify skip when deleting a read replica.
+	// When a DB instance is in a failure state and has a status of failed, incompatible-restore,
+	// or incompatible-network, RDS can delete the instance only if you enable this
+	// parameter.
 	//
-	// The FinalDBSnapshotIdentifier parameter must be specified if skip isn't specified.
+	// If you delete a read replica or an RDS Custom instance, you must enable this
+	// setting.
+	//
+	// This setting is required for RDS Custom.
 	SkipFinalSnapshot *bool `type:"boolean"`
 }
 
@@ -29439,6 +30900,9 @@ type DescribeDBEngineVersionsInput struct {
 	// If this parameter is enabled and the requested engine supports the CharacterSetName
 	// parameter for CreateDBInstance, the response includes a list of supported
 	// character sets for each engine version.
+	//
+	// For RDS Custom, the default is not to list supported character sets. If you
+	// set ListSupportedCharacterSets to true, RDS Custom returns no results.
 	ListSupportedCharacterSets *bool `type:"boolean"`
 
 	// A value that indicates whether to list the supported time zones for each
@@ -29447,6 +30911,9 @@ type DescribeDBEngineVersionsInput struct {
 	// If this parameter is enabled and the requested engine supports the TimeZone
 	// parameter for CreateDBInstance, the response includes a list of supported
 	// time zones for each engine version.
+	//
+	// For RDS Custom, the default is not to list supported time zones. If you set
+	// ListSupportedTimezones to true, RDS Custom returns no results.
 	ListSupportedTimezones *bool `type:"boolean"`
 
 	// An optional pagination token provided by a previous request. If this parameter
@@ -29612,6 +31079,8 @@ type DescribeDBInstanceAutomatedBackupsInput struct {
 
 	// The Amazon Resource Name (ARN) of the replicated automated backups, for example,
 	// arn:aws:rds:us-east-1:123456789012:auto-backup:ab-L2IJCEXJP7XQ7HOJ4SIEXAMPLE.
+	//
+	// This setting doesn't apply to RDS Custom.
 	DBInstanceAutomatedBackupsArn *string `type:"string"`
 
 	// (Optional) The user-supplied instance identifier. If this parameter is specified,
@@ -31264,6 +32733,8 @@ type DescribeDBSnapshotsInput struct {
 	//
 	// You can share a manual DB snapshot as public by using the ModifyDBSnapshotAttribute
 	// API.
+	//
+	// This setting doesn't apply to RDS Custom.
 	IncludePublic *bool `type:"boolean"`
 
 	// A value that indicates whether to include shared manual DB cluster snapshots
@@ -31274,6 +32745,8 @@ type DescribeDBSnapshotsInput struct {
 	// You can give an Amazon Web Services account permission to restore a manual
 	// DB snapshot from another Amazon Web Services account by using the ModifyDBSnapshotAttribute
 	// API action.
+	//
+	// This setting doesn't apply to RDS Custom.
 	IncludeShared *bool `type:"boolean"`
 
 	// An optional pagination token provided by a previous DescribeDBSnapshots request.
@@ -32289,8 +33762,8 @@ type DescribeExportTasksInput struct {
 	//    * source-arn - The Amazon Resource Name (ARN) of the snapshot exported
 	//    to Amazon S3
 	//
-	//    * status - The status of the export task. Must be lowercase, for example,
-	//    complete.
+	//    * status - The status of the export task. Must be lowercase. Valid statuses
+	//    are the following: canceled canceling complete failed starting
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// An optional pagination token provided by a previous DescribeExportTasks request.
@@ -33042,6 +34515,8 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	//
 	// Omit this parameter to show the available offerings in the specified Amazon
 	// Web Services Region.
+	//
+	// This setting doesn't apply to RDS Custom.
 	AvailabilityZoneGroup *string `type:"string"`
 
 	// The DB instance class filter value. Specify this parameter to show only the
@@ -33092,6 +34567,8 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 
 	// The license model filter value. Specify this parameter to show only the available
 	// offerings matching the specified license model.
+	//
+	// RDS Custom supports only the BYOL licensing model.
 	LicenseModel *string `type:"string"`
 
 	// An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions
@@ -33108,7 +34585,11 @@ type DescribeOrderableDBInstanceOptionsInput struct {
 	// Constraints: Minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	// A value that indicates whether to show only VPC or non-VPC offerings.
+	// A value that indicates whether to show only VPC or non-VPC offerings. RDS
+	// Custom supports only VPC offerings.
+	//
+	// RDS Custom supports only VPC offerings. If you describe non-VPC offerings
+	// for RDS Custom, the output shows VPC offerings.
 	Vpc *bool `type:"boolean"`
 }
 
@@ -34720,11 +36201,10 @@ type ExportTask struct {
 	// a snapshot.
 	IamRoleArn *string `type:"string"`
 
-	// The key identifier of the Amazon Web Services KMS customer master key (CMK)
-	// that is used to encrypt the snapshot when it's exported to Amazon S3. The
-	// Amazon Web Services KMS CMK identifier is its key ARN, key ID, alias ARN,
-	// or alias name. The IAM role used for the snapshot export must have encryption
-	// and decryption permissions to use this Amazon Web Services KMS CMK.
+	// The key identifier of the Amazon Web Services KMS key that is used to encrypt
+	// the snapshot when it's exported to Amazon S3. The KMS key identifier is its
+	// key ARN, key ID, alias ARN, or alias name. The IAM role used for the snapshot
+	// export must have encryption and decryption permissions to use this KMS key.
 	KmsKeyId *string `type:"string"`
 
 	// The progress of the snapshot export task as a percentage.
@@ -35253,8 +36733,8 @@ type GlobalCluster struct {
 
 	// The Amazon Web Services Region-unique, immutable identifier for the global
 	// database cluster. This identifier is found in Amazon Web Services CloudTrail
-	// log entries whenever the Amazon Web Services KMS customer master key (CMK)
-	// for the DB cluster is accessed.
+	// log entries whenever the Amazon Web Services KMS key for the DB cluster is
+	// accessed.
 	GlobalClusterResourceId *string `type:"string"`
 
 	// Specifies the current state of this global database cluster.
@@ -36200,6 +37680,387 @@ func (s *ModifyCurrentDBClusterCapacityOutput) SetTimeoutAction(v string) *Modif
 	return s
 }
 
+type ModifyCustomDBEngineVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional description of your CEV.
+	Description *string `min:"1" type:"string"`
+
+	// The DB engine. The only supported value is custom-oracle-ee.
+	//
+	// Engine is a required field
+	Engine *string `min:"1" type:"string" required:"true"`
+
+	// The custom engine version (CEV) that you want to modify. This option is required
+	// for RDS Custom, but optional for Amazon RDS. The combination of Engine and
+	// EngineVersion is unique per customer per Amazon Web Services Region.
+	//
+	// EngineVersion is a required field
+	EngineVersion *string `min:"1" type:"string" required:"true"`
+
+	// The availability status to be assigned to the CEV. Valid values are as follows:
+	//
+	// available
+	//
+	// You can use this CEV to create a new RDS Custom DB instance.
+	//
+	// inactive
+	//
+	// You can create a new RDS Custom instance by restoring a DB snapshot with
+	// this CEV. You can't patch or create new instances with this CEV.
+	//
+	// You can change any status to any status. A typical reason to change status
+	// is to prevent the accidental use of a CEV, or to make a deprecated CEV eligible
+	// for use again. For example, you might change the status of your CEV from
+	// available to inactive, and from inactive back to available. To change the
+	// availability status of the CEV, it must not currently be in use by an RDS
+	// Custom instance, snapshot, or automated backup.
+	Status *string `type:"string" enum:"CustomEngineVersionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCustomDBEngineVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCustomDBEngineVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyCustomDBEngineVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyCustomDBEngineVersionInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Engine == nil {
+		invalidParams.Add(request.NewErrParamRequired("Engine"))
+	}
+	if s.Engine != nil && len(*s.Engine) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Engine", 1))
+	}
+	if s.EngineVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineVersion"))
+	}
+	if s.EngineVersion != nil && len(*s.EngineVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EngineVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *ModifyCustomDBEngineVersionInput) SetDescription(v string) *ModifyCustomDBEngineVersionInput {
+	s.Description = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *ModifyCustomDBEngineVersionInput) SetEngine(v string) *ModifyCustomDBEngineVersionInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ModifyCustomDBEngineVersionInput) SetEngineVersion(v string) *ModifyCustomDBEngineVersionInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModifyCustomDBEngineVersionInput) SetStatus(v string) *ModifyCustomDBEngineVersionInput {
+	s.Status = &v
+	return s
+}
+
+// This data type is used as a response element in the action DescribeDBEngineVersions.
+type ModifyCustomDBEngineVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation time of the DB engine version.
+	CreateTime *time.Time `type:"timestamp"`
+
+	// The description of the database engine.
+	DBEngineDescription *string `type:"string"`
+
+	// The ARN of the custom engine version.
+	DBEngineVersionArn *string `type:"string"`
+
+	// The description of the database engine version.
+	DBEngineVersionDescription *string `type:"string"`
+
+	// The name of the DB parameter group family for the database engine.
+	DBParameterGroupFamily *string `type:"string"`
+
+	// The name of the Amazon S3 bucket that contains your database installation
+	// files.
+	DatabaseInstallationFilesS3BucketName *string `type:"string"`
+
+	// The Amazon S3 directory that contains the database installation files. If
+	// not specified, then no prefix is assumed.
+	DatabaseInstallationFilesS3Prefix *string `type:"string"`
+
+	// The default character set for new instances of this engine version, if the
+	// CharacterSetName parameter of the CreateDBInstance API isn't specified.
+	DefaultCharacterSet *CharacterSet `type:"structure"`
+
+	// The name of the database engine.
+	Engine *string `type:"string"`
+
+	// The version number of the database engine.
+	EngineVersion *string `type:"string"`
+
+	// The types of logs that the database engine has available for export to CloudWatch
+	// Logs.
+	ExportableLogTypes []*string `type:"list"`
+
+	// The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter
+	// is required for RDS Custom, but optional for Amazon RDS.
+	KMSKeyId *string `type:"string"`
+
+	// The major engine version of the CEV.
+	MajorEngineVersion *string `type:"string"`
+
+	// The status of the DB engine version, either available or deprecated.
+	Status *string `type:"string"`
+
+	// A list of the character sets supported by this engine for the CharacterSetName
+	// parameter of the CreateDBInstance operation.
+	SupportedCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
+
+	// A list of the supported DB engine modes.
+	SupportedEngineModes []*string `type:"list"`
+
+	// A list of features supported by the DB engine.
+	//
+	// The supported features vary by DB engine and DB engine version.
+	//
+	// To determine the supported features for a specific DB engine and DB engine
+	// version using the CLI, use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine <engine_name> --engine-version
+	// <engine_version>
+	//
+	// For example, to determine the supported features for RDS for PostgreSQL version
+	// 13.3 using the CLI, use the following command:
+	//
+	// aws rds describe-db-engine-versions --engine postgres --engine-version 13.3
+	//
+	// The supported features are listed under SupportedFeatureNames in the output.
+	SupportedFeatureNames []*string `type:"list"`
+
+	// A list of the character sets supported by the Oracle DB engine for the NcharCharacterSetName
+	// parameter of the CreateDBInstance operation.
+	SupportedNcharCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
+
+	// A list of the time zones supported by this engine for the Timezone parameter
+	// of the CreateDBInstance action.
+	SupportedTimezones []*Timezone `locationNameList:"Timezone" type:"list"`
+
+	// A value that indicates whether you can use Aurora global databases with a
+	// specific DB engine version.
+	SupportsGlobalDatabases *bool `type:"boolean"`
+
+	// A value that indicates whether the engine version supports exporting the
+	// log types specified by ExportableLogTypes to CloudWatch Logs.
+	SupportsLogExportsToCloudwatchLogs *bool `type:"boolean"`
+
+	// A value that indicates whether you can use Aurora parallel query with a specific
+	// DB engine version.
+	SupportsParallelQuery *bool `type:"boolean"`
+
+	// Indicates whether the database engine version supports read replicas.
+	SupportsReadReplica *bool `type:"boolean"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
+	// A list of engine versions that this database engine version can be upgraded
+	// to.
+	ValidUpgradeTarget []*UpgradeTarget `locationNameList:"UpgradeTarget" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCustomDBEngineVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModifyCustomDBEngineVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetCreateTime(v time.Time) *ModifyCustomDBEngineVersionOutput {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDBEngineDescription sets the DBEngineDescription field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetDBEngineDescription(v string) *ModifyCustomDBEngineVersionOutput {
+	s.DBEngineDescription = &v
+	return s
+}
+
+// SetDBEngineVersionArn sets the DBEngineVersionArn field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetDBEngineVersionArn(v string) *ModifyCustomDBEngineVersionOutput {
+	s.DBEngineVersionArn = &v
+	return s
+}
+
+// SetDBEngineVersionDescription sets the DBEngineVersionDescription field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetDBEngineVersionDescription(v string) *ModifyCustomDBEngineVersionOutput {
+	s.DBEngineVersionDescription = &v
+	return s
+}
+
+// SetDBParameterGroupFamily sets the DBParameterGroupFamily field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetDBParameterGroupFamily(v string) *ModifyCustomDBEngineVersionOutput {
+	s.DBParameterGroupFamily = &v
+	return s
+}
+
+// SetDatabaseInstallationFilesS3BucketName sets the DatabaseInstallationFilesS3BucketName field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetDatabaseInstallationFilesS3BucketName(v string) *ModifyCustomDBEngineVersionOutput {
+	s.DatabaseInstallationFilesS3BucketName = &v
+	return s
+}
+
+// SetDatabaseInstallationFilesS3Prefix sets the DatabaseInstallationFilesS3Prefix field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetDatabaseInstallationFilesS3Prefix(v string) *ModifyCustomDBEngineVersionOutput {
+	s.DatabaseInstallationFilesS3Prefix = &v
+	return s
+}
+
+// SetDefaultCharacterSet sets the DefaultCharacterSet field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetDefaultCharacterSet(v *CharacterSet) *ModifyCustomDBEngineVersionOutput {
+	s.DefaultCharacterSet = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetEngine(v string) *ModifyCustomDBEngineVersionOutput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetEngineVersion(v string) *ModifyCustomDBEngineVersionOutput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetExportableLogTypes sets the ExportableLogTypes field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetExportableLogTypes(v []*string) *ModifyCustomDBEngineVersionOutput {
+	s.ExportableLogTypes = v
+	return s
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetKMSKeyId(v string) *ModifyCustomDBEngineVersionOutput {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetMajorEngineVersion sets the MajorEngineVersion field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetMajorEngineVersion(v string) *ModifyCustomDBEngineVersionOutput {
+	s.MajorEngineVersion = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetStatus(v string) *ModifyCustomDBEngineVersionOutput {
+	s.Status = &v
+	return s
+}
+
+// SetSupportedCharacterSets sets the SupportedCharacterSets field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportedCharacterSets(v []*CharacterSet) *ModifyCustomDBEngineVersionOutput {
+	s.SupportedCharacterSets = v
+	return s
+}
+
+// SetSupportedEngineModes sets the SupportedEngineModes field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportedEngineModes(v []*string) *ModifyCustomDBEngineVersionOutput {
+	s.SupportedEngineModes = v
+	return s
+}
+
+// SetSupportedFeatureNames sets the SupportedFeatureNames field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportedFeatureNames(v []*string) *ModifyCustomDBEngineVersionOutput {
+	s.SupportedFeatureNames = v
+	return s
+}
+
+// SetSupportedNcharCharacterSets sets the SupportedNcharCharacterSets field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportedNcharCharacterSets(v []*CharacterSet) *ModifyCustomDBEngineVersionOutput {
+	s.SupportedNcharCharacterSets = v
+	return s
+}
+
+// SetSupportedTimezones sets the SupportedTimezones field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportedTimezones(v []*Timezone) *ModifyCustomDBEngineVersionOutput {
+	s.SupportedTimezones = v
+	return s
+}
+
+// SetSupportsGlobalDatabases sets the SupportsGlobalDatabases field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportsGlobalDatabases(v bool) *ModifyCustomDBEngineVersionOutput {
+	s.SupportsGlobalDatabases = &v
+	return s
+}
+
+// SetSupportsLogExportsToCloudwatchLogs sets the SupportsLogExportsToCloudwatchLogs field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportsLogExportsToCloudwatchLogs(v bool) *ModifyCustomDBEngineVersionOutput {
+	s.SupportsLogExportsToCloudwatchLogs = &v
+	return s
+}
+
+// SetSupportsParallelQuery sets the SupportsParallelQuery field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportsParallelQuery(v bool) *ModifyCustomDBEngineVersionOutput {
+	s.SupportsParallelQuery = &v
+	return s
+}
+
+// SetSupportsReadReplica sets the SupportsReadReplica field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetSupportsReadReplica(v bool) *ModifyCustomDBEngineVersionOutput {
+	s.SupportsReadReplica = &v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetTagList(v []*Tag) *ModifyCustomDBEngineVersionOutput {
+	s.TagList = v
+	return s
+}
+
+// SetValidUpgradeTarget sets the ValidUpgradeTarget field's value.
+func (s *ModifyCustomDBEngineVersionOutput) SetValidUpgradeTarget(v []*UpgradeTarget) *ModifyCustomDBEngineVersionOutput {
+	s.ValidUpgradeTarget = v
+	return s
+}
+
 type ModifyDBClusterEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -37081,6 +38942,8 @@ type ModifyDBInstanceInput struct {
 	// this parameter doesn't result in an outage and the change is asynchronously
 	// applied as soon as possible.
 	//
+	// This setting doesn't apply to RDS Custom.
+	//
 	// Constraints: Major version upgrades must be allowed when specifying a value
 	// for the EngineVersion parameter that is a different major version than the
 	// DB instance's current version.
@@ -37101,15 +38964,31 @@ type ModifyDBInstanceInput struct {
 	ApplyImmediately *bool `type:"boolean"`
 
 	// A value that indicates whether minor version upgrades are applied automatically
-	// to the DB instance during the maintenance window. Changing this parameter
-	// doesn't result in an outage except in the following case and the change is
-	// asynchronously applied as soon as possible. An outage results if this parameter
-	// is enabled during the maintenance window, and a newer minor version is available,
-	// and RDS has enabled auto patching for that engine version.
+	// to the DB instance during the maintenance window. An outage occurs when all
+	// the following conditions are met:
+	//
+	//    * The automatic upgrade is enabled for the maintenance window.
+	//
+	//    * A newer minor version is available.
+	//
+	//    * RDS has enabled automatic patching for the engine version.
+	//
+	// If any of the preceding conditions isn't met, RDS applies the change as soon
+	// as possible and doesn't cause an outage.
+	//
+	// For an RDS Custom DB instance, set AutoMinorVersionUpgrade to false. Otherwise,
+	// the operation returns an error.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// The automation mode of the RDS Custom DB instance: full or all paused. If
+	// full, the DB instance automates monitoring and instance recovery. If all
+	// paused, the instance pauses automation for the duration set by ResumeFullAutomationModeMinutes.
+	AutomationMode *string `type:"string" enum:"AutomationMode"`
 
 	// The Amazon Resource Name (ARN) of the recovery point in Amazon Web Services
 	// Backup.
+	//
+	// This setting doesn't apply to RDS Custom.
 	AwsBackupRecoveryPointArn *string `min:"43" type:"string"`
 
 	// The number of days to retain automated backups. Setting this parameter to
@@ -37134,18 +39013,20 @@ type ModifyDBInstanceInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must be a value from 0 to 35
+	//    * It must be a value from 0 to 35. It can't be set to 0 if the DB instance
+	//    is a source to read replicas. It can't be set to 0 or 35 for an RDS Custom
+	//    DB instance.
 	//
-	//    * Can be specified for a MySQL read replica only if the source is running
-	//    MySQL 5.6 or later
+	//    * It can be specified for a MySQL read replica only if the source is running
+	//    MySQL 5.6 or later.
 	//
-	//    * Can be specified for a PostgreSQL read replica only if the source is
-	//    running PostgreSQL 9.3.5
-	//
-	//    * Can't be set to 0 if the DB instance is a source to read replicas
+	//    * It can be specified for a PostgreSQL read replica only if the source
+	//    is running PostgreSQL 9.3.5.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
-	// Indicates the certificate that needs to be associated with the instance.
+	// Specifies the certificate to associate with the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	CACertificateIdentifier *string `type:"string"`
 
 	// A value that indicates whether the DB instance is restarted when you rotate
@@ -37167,6 +39048,8 @@ type ModifyDBInstanceInput struct {
 	//    * For more information about rotating your SSL/TLS certificate for Aurora
 	//    DB engines, see Rotating Your SSL/TLS Certificate (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL-certificate-rotation.html)
 	//    in the Amazon Aurora User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	CertificateRotationRestart *bool `type:"boolean"`
 
 	// The configuration setting for the log types to be enabled for export to CloudWatch
@@ -37175,6 +39058,8 @@ type ModifyDBInstanceInput struct {
 	// A change to the CloudwatchLogsExportConfiguration parameter is always applied
 	// to the DB instance immediately. Therefore, the ApplyImmediately parameter
 	// has no effect.
+	//
+	// This setting doesn't apply to RDS Custom.
 	CloudwatchLogsExportConfiguration *CloudwatchLogsExportConfiguration `type:"structure"`
 
 	// A value that indicates whether to copy all tags from the DB instance to snapshots
@@ -37197,6 +39082,8 @@ type ModifyDBInstanceInput struct {
 	// The change is applied during the next maintenance window, unless ApplyImmediately
 	// is enabled for this request.
 	//
+	// This setting doesn't apply to RDS Custom.
+	//
 	// Default: Uses existing setting
 	DBInstanceClass *string `type:"string"`
 
@@ -37209,17 +39096,22 @@ type ModifyDBInstanceInput struct {
 	// DBInstanceIdentifier is a required field
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
-	// The name of the DB parameter group to apply to the DB instance. Changing
-	// this setting doesn't result in an outage. The parameter group name itself
-	// is changed immediately, but the actual parameter changes are not applied
+	// The name of the DB parameter group to apply to the DB instance.
+	//
+	// Changing this setting doesn't result in an outage. The parameter group name
+	// itself is changed immediately, but the actual parameter changes are not applied
 	// until you reboot the instance without failover. In this case, the DB instance
-	// isn't rebooted automatically and the parameter changes isn't applied during
-	// the next maintenance window.
+	// isn't rebooted automatically, and the parameter changes aren't applied during
+	// the next maintenance window. However, if you modify dynamic parameters in
+	// the newly associated DB parameter group, these changes are applied immediately
+	// without a reboot.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Default: Uses existing setting
 	//
 	// Constraints: The DB parameter group must be in the same DB parameter group
-	// family as this DB instance.
+	// family as the DB instance.
 	DBParameterGroupName *string `type:"string"`
 
 	// The port number on which the database accepts connections.
@@ -37227,8 +39119,10 @@ type ModifyDBInstanceInput struct {
 	// The value of the DBPortNumber parameter must not match any of the port values
 	// specified for options in the option group for the DB instance.
 	//
-	// Your database will restart when you change the DBPortNumber value regardless
-	// of the value of the ApplyImmediately parameter.
+	// If you change the DBPortNumber value, your database restarts regardless of
+	// the value of the ApplyImmediately parameter.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// MySQL
 	//
@@ -37274,6 +39168,8 @@ type ModifyDBInstanceInput struct {
 	// setting doesn't result in an outage and the change is asynchronously applied
 	// as soon as possible.
 	//
+	// This setting doesn't apply to RDS Custom.
+	//
 	// Constraints:
 	//
 	//    * If supplied, must match existing DBSecurityGroups.
@@ -37288,6 +39184,8 @@ type ModifyDBInstanceInput struct {
 	// Changing the subnet group causes an outage during the change. The change
 	// is applied during the next maintenance window, unless you enable ApplyImmediately.
 	//
+	// This parameter doesn't apply to RDS Custom.
+	//
 	// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
 	//
 	// Example: mySubnetGroup
@@ -37300,15 +39198,19 @@ type ModifyDBInstanceInput struct {
 	DeletionProtection *bool `type:"boolean"`
 
 	// The Active Directory directory ID to move the DB instance to. Specify none
-	// to remove the instance from its current domain. The domain must be created
-	// prior to this operation. Currently, only MySQL, Microsoft SQL Server, Oracle,
-	// and PostgreSQL DB instances can be created in an Active Directory Domain.
+	// to remove the instance from its current domain. You must create the domain
+	// before this operation. Currently, you can create only MySQL, Microsoft SQL
+	// Server, Oracle, and PostgreSQL DB instances in an Active Directory Domain.
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	Domain *string `type:"string"`
 
 	// The name of the IAM role to use when making API calls to the Directory Service.
+	//
+	// This setting doesn't apply to RDS Custom.
 	DomainIAMRoleName *string `type:"string"`
 
 	// A value that indicates whether to enable a customer-owned IP address (CoIP)
@@ -37337,6 +39239,8 @@ type ModifyDBInstanceInput struct {
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
 	// A value that indicates whether to enable Performance Insights for the DB
@@ -37344,6 +39248,8 @@ type ModifyDBInstanceInput struct {
 	//
 	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
 	// in the Amazon Relational Database Service User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	EnablePerformanceInsights *bool `type:"boolean"`
 
 	// The version number of the database engine to upgrade to. Changing this parameter
@@ -37358,6 +39264,9 @@ type ModifyDBInstanceInput struct {
 	// If you specify only a major version, Amazon RDS will update the DB instance
 	// to the default minor version if the current minor version is lower. For information
 	// about valid engine versions, see CreateDBInstance, or call DescribeDBEngineVersions.
+	//
+	// In RDS Custom, this parameter is supported for read replicas only if they
+	// are in the PATCH_DB_FAILURE lifecycle.
 	EngineVersion *string `type:"string"`
 
 	// The new Provisioned IOPS (I/O operations per second) value for the RDS instance.
@@ -37391,6 +39300,8 @@ type ModifyDBInstanceInput struct {
 
 	// The license model for the DB instance.
 	//
+	// This setting doesn't apply to RDS Custom.
+	//
 	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
@@ -37401,6 +39312,8 @@ type ModifyDBInstanceInput struct {
 	// applied as soon as possible. Between the time of the request and the completion
 	// of the request, the MasterUserPassword element exists in the PendingModifiedValues
 	// element of the operation response.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Amazon Aurora
 	//
@@ -37441,32 +39354,40 @@ type ModifyDBInstanceInput struct {
 	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
 	// are collected for the DB instance. To disable collecting Enhanced Monitoring
-	// metrics, specify 0. The default is 0.
+	// metrics, specify 0, which is the default.
 	//
-	// If MonitoringRoleArn is specified, then you must also set MonitoringInterval
-	// to a value other than 0.
+	// If MonitoringRoleArn is specified, set MonitoringInterval to a value other
+	// than 0.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Valid Values: 0, 1, 5, 10, 15, 30, 60
 	MonitoringInterval *int64 `type:"integer"`
 
 	// The ARN for the IAM role that permits RDS to send enhanced monitoring metrics
 	// to Amazon CloudWatch Logs. For example, arn:aws:iam:123456789012:role/emaccess.
-	// For information on creating a monitoring role, go to To create an IAM role
+	// For information on creating a monitoring role, see To create an IAM role
 	// for Amazon RDS Enhanced Monitoring (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.html#USER_Monitoring.OS.IAMRole)
 	// in the Amazon RDS User Guide.
 	//
-	// If MonitoringInterval is set to a value other than 0, then you must supply
-	// a MonitoringRoleArn value.
+	// If MonitoringInterval is set to a value other than 0, supply a MonitoringRoleArn
+	// value.
+	//
+	// This setting doesn't apply to RDS Custom.
 	MonitoringRoleArn *string `type:"string"`
 
 	// A value that indicates whether the DB instance is a Multi-AZ deployment.
-	// Changing this parameter doesn't result in an outage and the change is applied
+	// Changing this parameter doesn't result in an outage. The change is applied
 	// during the next maintenance window unless the ApplyImmediately parameter
 	// is enabled for this request.
+	//
+	// This setting doesn't apply to RDS Custom.
 	MultiAZ *bool `type:"boolean"`
 
 	// The new DB instance identifier for the DB instance when renaming a DB instance.
@@ -37474,6 +39395,8 @@ type ModifyDBInstanceInput struct {
 	// if you enable ApplyImmediately, or will occur during the next maintenance
 	// window if you disable Apply Immediately. This value is stored as a lowercase
 	// string.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Constraints:
 	//
@@ -37487,32 +39410,41 @@ type ModifyDBInstanceInput struct {
 	NewDBInstanceIdentifier *string `type:"string"`
 
 	// A value that indicates the DB instance should be associated with the specified
-	// option group. Changing this parameter doesn't result in an outage except
-	// in the following case and the change is applied during the next maintenance
-	// window unless the ApplyImmediately parameter is enabled for this request.
-	// If the parameter change results in an option group that enables OEM, this
-	// change can cause a brief (sub-second) period during which new connections
-	// are rejected but existing connections are not interrupted.
+	// option group.
+	//
+	// Changing this parameter doesn't result in an outage, with one exception.
+	// If the parameter change results in an option group that enables OEM, it can
+	// cause a brief period, lasting less than a second, during which new connections
+	// are rejected but existing connections aren't interrupted.
+	//
+	// The change is applied during the next maintenance window unless the ApplyImmediately
+	// parameter is enabled for this request.
 	//
 	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
 	// can't be removed from an option group, and that option group can't be removed
-	// from a DB instance once it is associated with a DB instance
+	// from a DB instance after it is associated with a DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	OptionGroupName *string `type:"string"`
 
 	// The Amazon Web Services KMS key identifier for encryption of Performance
 	// Insights data.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	//
 	// If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon
-	// RDS uses your default CMK. There is a default CMK for your Amazon Web Services
-	// account. Your Amazon Web Services account has a different default CMK for
-	// each Amazon Web Services Region.
+	// RDS uses your default KMS key. There is a default KMS key for your Amazon
+	// Web Services account. Your Amazon Web Services account has a different default
+	// KMS key for each Amazon Web Services Region.
+	//
+	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
 	// are 7 or 731 (2 years).
+	//
+	// This setting doesn't apply to RDS Custom.
 	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
 
 	// The daily time range during which automated backups are created if automated
@@ -37562,12 +39494,16 @@ type ModifyDBInstanceInput struct {
 
 	// The number of CPU cores and the number of threads per core for the DB instance
 	// class of the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
 	// A value that specifies the order in which an Aurora Replica is promoted to
 	// the primary instance after a failure of the existing primary instance. For
 	// more information, see Fault Tolerance for an Aurora DB Cluster (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.FaultTolerance)
 	// in the Amazon Aurora User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Default: 1
 	//
@@ -37592,6 +39528,8 @@ type ModifyDBInstanceInput struct {
 	//
 	// Changes to the PubliclyAccessible parameter are applied immediately regardless
 	// of the value of the ApplyImmediately parameter.
+	//
+	// This setting doesn't apply to RDS Custom.
 	PubliclyAccessible *bool `type:"boolean"`
 
 	// A value that sets the open mode of a replica database to either mounted or
@@ -37606,7 +39544,14 @@ type ModifyDBInstanceInput struct {
 	// serve a read-only workload. For more information, see Working with Oracle
 	// Read Replicas for Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/oracle-read-replicas.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	ReplicaMode *string `type:"string" enum:"ReplicaMode"`
+
+	// The number of minutes to pause the automation. When the time period ends,
+	// RDS Custom resumes full automation. The minimum value is 60 (default). The
+	// maximum value is 1,440.
+	ResumeFullAutomationModeMinutes *int64 `type:"integer"`
 
 	// Specifies the storage type to be associated with the DB instance.
 	//
@@ -37632,18 +39577,26 @@ type ModifyDBInstanceInput struct {
 	StorageType *string `type:"string"`
 
 	// The ARN from the key store with which to associate the instance for TDE encryption.
+	//
+	// This setting doesn't apply to RDS Custom.
 	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the key store in order to access the
 	// device.
+	//
+	// This setting doesn't apply to RDS Custom.
 	TdeCredentialPassword *string `type:"string"`
 
 	// A value that indicates whether the DB instance class of the DB instance uses
 	// its default processor features.
+	//
+	// This setting doesn't apply to RDS Custom.
 	UseDefaultProcessorFeatures *bool `type:"boolean"`
 
-	// A list of EC2 VPC security groups to authorize on this DB instance. This
-	// change is asynchronously applied as soon as possible.
+	// A list of Amazon EC2 VPC security groups to authorize on this DB instance.
+	// This change is asynchronously applied as soon as possible.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Amazon Aurora
 	//
@@ -37711,6 +39664,12 @@ func (s *ModifyDBInstanceInput) SetApplyImmediately(v bool) *ModifyDBInstanceInp
 // SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
 func (s *ModifyDBInstanceInput) SetAutoMinorVersionUpgrade(v bool) *ModifyDBInstanceInput {
 	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
+// SetAutomationMode sets the AutomationMode field's value.
+func (s *ModifyDBInstanceInput) SetAutomationMode(v string) *ModifyDBInstanceInput {
+	s.AutomationMode = &v
 	return s
 }
 
@@ -37927,6 +39886,12 @@ func (s *ModifyDBInstanceInput) SetPubliclyAccessible(v bool) *ModifyDBInstanceI
 // SetReplicaMode sets the ReplicaMode field's value.
 func (s *ModifyDBInstanceInput) SetReplicaMode(v string) *ModifyDBInstanceInput {
 	s.ReplicaMode = &v
+	return s
+}
+
+// SetResumeFullAutomationModeMinutes sets the ResumeFullAutomationModeMinutes field's value.
+func (s *ModifyDBInstanceInput) SetResumeFullAutomationModeMinutes(v int64) *ModifyDBInstanceInput {
+	s.ResumeFullAutomationModeMinutes = &v
 	return s
 }
 
@@ -40559,6 +42524,11 @@ type PendingModifiedValues struct {
 	// The allocated storage size for the DB instance specified in gibibytes (GiB).
 	AllocatedStorage *int64 `type:"integer"`
 
+	// The automation mode of the RDS Custom DB instance: full or all-paused. If
+	// full, the DB instance automates monitoring and instance recovery. If all-paused,
+	// the instance pauses automation for the duration set by --resume-full-automation-mode-minutes.
+	AutomationMode *string `type:"string" enum:"AutomationMode"`
+
 	// The number of days for which automated backups are retained.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
@@ -40607,6 +42577,11 @@ type PendingModifiedValues struct {
 	// class of the DB instance.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
+	// The number of minutes to pause the automation. When the time period ends,
+	// RDS Custom resumes full automation. The minimum value is 60 (default). The
+	// maximum value is 1,440.
+	ResumeFullAutomationModeTime *time.Time `type:"timestamp"`
+
 	// The storage type of the DB instance.
 	StorageType *string `type:"string"`
 }
@@ -40632,6 +42607,12 @@ func (s PendingModifiedValues) GoString() string {
 // SetAllocatedStorage sets the AllocatedStorage field's value.
 func (s *PendingModifiedValues) SetAllocatedStorage(v int64) *PendingModifiedValues {
 	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAutomationMode sets the AutomationMode field's value.
+func (s *PendingModifiedValues) SetAutomationMode(v string) *PendingModifiedValues {
+	s.AutomationMode = &v
 	return s
 }
 
@@ -40716,6 +42697,12 @@ func (s *PendingModifiedValues) SetPort(v int64) *PendingModifiedValues {
 // SetProcessorFeatures sets the ProcessorFeatures field's value.
 func (s *PendingModifiedValues) SetProcessorFeatures(v []*ProcessorFeature) *PendingModifiedValues {
 	s.ProcessorFeatures = v
+	return s
+}
+
+// SetResumeFullAutomationModeTime sets the ResumeFullAutomationModeTime field's value.
+func (s *PendingModifiedValues) SetResumeFullAutomationModeTime(v time.Time) *PendingModifiedValues {
+	s.ResumeFullAutomationModeTime = &v
 	return s
 }
 
@@ -41515,7 +43502,7 @@ type RemoveRoleFromDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the feature for the DB cluster that the IAM role is to be disassociated
-	// from. For the list of supported feature names, see DBEngineVersion.
+	// from. For information about supported feature names, see DBEngineVersion.
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to disassociate from the Aurora
@@ -41608,7 +43595,7 @@ type RemoveRoleFromDBInstanceInput struct {
 	DBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The name of the feature for the DB instance that the IAM role is to be disassociated
-	// from. For the list of supported feature names, see DBEngineVersion.
+	// from. For information about supported feature names, see DBEngineVersion.
 	//
 	// FeatureName is a required field
 	FeatureName *string `type:"string" required:"true"`
@@ -42505,14 +44492,14 @@ type RestoreDBClusterFromS3Input struct {
 	// The Amazon Web Services KMS key identifier for an encrypted DB cluster.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
-	// To use a CMK in a different Amazon Web Services account, specify the key
-	// ARN or alias ARN.
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
 	//
 	// If the StorageEncrypted parameter is enabled, and you do not specify a value
-	// for the KmsKeyId parameter, then Amazon RDS will use your default CMK. There
-	// is a default CMK for your Amazon Web Services account. Your Amazon Web Services
-	// account has a different default CMK for each Amazon Web Services Region.
+	// for the KmsKeyId parameter, then Amazon RDS will use your default KMS key.
+	// There is a default KMS key for your Amazon Web Services account. Your Amazon
+	// Web Services account has a different default KMS key for each Amazon Web
+	// Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// The password for the master database user. This password can contain any
@@ -43049,16 +45036,15 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// DB cluster from a DB snapshot or DB cluster snapshot.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
-	// To use a CMK in a different Amazon Web Services account, specify the key
-	// ARN or alias ARN.
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
 	//
 	// When you don't specify a value for the KmsKeyId parameter, then the following
 	// occurs:
 	//
 	//    * If the DB snapshot or DB cluster snapshot in SnapshotIdentifier is encrypted,
-	//    then the restored DB cluster is encrypted using the Amazon Web Services
-	//    KMS CMK that was used to encrypt the DB snapshot or DB cluster snapshot.
+	//    then the restored DB cluster is encrypted using the KMS key that was used
+	//    to encrypt the DB snapshot or DB cluster snapshot.
 	//
 	//    * If the DB snapshot or DB cluster snapshot in SnapshotIdentifier isn't
 	//    encrypted, then the restored DB cluster isn't encrypted.
@@ -43401,21 +45387,19 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// DB cluster from an encrypted DB cluster.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
-	// To use a CMK in a different Amazon Web Services account, specify the key
-	// ARN or alias ARN.
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
 	//
 	// You can restore to a new DB cluster and encrypt the new DB cluster with a
-	// Amazon Web Services KMS CMK that is different than the Amazon Web Services
-	// KMS key used to encrypt the source DB cluster. The new DB cluster is encrypted
-	// with the Amazon Web Services KMS CMK identified by the KmsKeyId parameter.
+	// KMS key that is different from the KMS key used to encrypt the source DB
+	// cluster. The new DB cluster is encrypted with the KMS key identified by the
+	// KmsKeyId parameter.
 	//
 	// If you don't specify a value for the KmsKeyId parameter, then the following
 	// occurs:
 	//
 	//    * If the DB cluster is encrypted, then the restored DB cluster is encrypted
-	//    using the Amazon Web Services KMS CMK that was used to encrypt the source
-	//    DB cluster.
+	//    using the KMS key that was used to encrypt the source DB cluster.
 	//
 	//    * If the DB cluster isn't encrypted, then the restored DB cluster isn't
 	//    encrypted.
@@ -43694,6 +45678,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// A value that indicates whether minor version upgrades are applied automatically
 	// to the DB instance during the maintenance window.
+	//
+	// If you restore an RDS Custom DB instance, you must disable this parameter.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The Availability Zone (AZ) where the DB instance will be created.
@@ -43709,6 +45695,24 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// A value that indicates whether to copy all tags from the restored DB instance
 	// to snapshots of the DB instance. By default, tags are not copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
+
+	// The instance profile associated with the underlying Amazon EC2 instance of
+	// an RDS Custom DB instance. The instance profile must meet the following requirements:
+	//
+	//    * The profile must exist in your account.
+	//
+	//    * The profile must have an IAM role that Amazon EC2 has permissions to
+	//    assume.
+	//
+	//    * The instance profile name and the associated IAM role name must start
+	//    with the prefix AWSRDSCustom.
+	//
+	// For the list of permissions required for the IAM role, see Configure IAM
+	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
+	// in the Amazon Relational Database Service User Guide.
+	//
+	// This setting is required for RDS Custom.
+	CustomIamInstanceProfile *string `type:"string"`
 
 	// The compute and memory capacity of the Amazon RDS DB instance, for example,
 	// db.m4.large. Not all DB instance classes are available in all Amazon Web
@@ -43738,12 +45742,15 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// The database name for the restored DB instance.
 	//
 	// This parameter doesn't apply to the MySQL, PostgreSQL, or MariaDB engines.
+	// It also doesn't apply to RDS Custom DB instances.
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance.
 	//
-	// If you do not specify a value for DBParameterGroupName, then the default
-	// DBParameterGroup for the specified DB engine is used.
+	// If you don't specify a value for DBParameterGroupName, then RDS uses the
+	// default DBParameterGroup for the specified DB engine.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Constraints:
 	//
@@ -43782,22 +45789,28 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	DeletionProtection *bool `type:"boolean"`
 
 	// Specify the Active Directory directory ID to restore the DB instance in.
-	// The domain must be created prior to this operation. Currently, only MySQL,
-	// Microsoft SQL Server, Oracle, and PostgreSQL DB instances can be created
-	// in an Active Directory Domain.
+	// The domain/ must be created prior to this operation. Currently, you can create
+	// only MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances in
+	// an Active Directory Domain.
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	Domain *string `type:"string"`
 
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
+	//
+	// This setting doesn't apply to RDS Custom.
 	DomainIAMRoleName *string `type:"string"`
 
 	// The list of logs that the restored DB instance is to export to CloudWatch
 	// Logs. The values in the list depend on the DB engine being used. For more
 	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
 	// A value that indicates whether to enable a customer-owned IP address (CoIP)
@@ -43807,6 +45820,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// subnets through your on-premises network. For some use cases, a CoIP can
 	// provide lower latency for connections to the DB instance from outside of
 	// its virtual private cloud (VPC) on your local network.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// For more information about RDS on Outposts, see Working with Amazon RDS on
 	// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
@@ -43823,9 +45838,13 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
 	// The database engine to use for the new instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Default: The same as source
 	//
@@ -43874,12 +45893,16 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// License model information for the restored DB instance.
 	//
+	// This setting doesn't apply to RDS Custom.
+	//
 	// Default: Same as source.
 	//
 	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
 	// A value that indicates whether the DB instance is a Multi-AZ deployment.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Constraint: You can't specify the AvailabilityZone parameter if the DB instance
 	// is a Multi-AZ deployment.
@@ -43889,7 +45912,9 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	//
 	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
 	// can't be removed from an option group, and that option group can't be removed
-	// from a DB instance once it is associated with a DB instance
+	// from a DB instance after it is associated with a DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	OptionGroupName *string `type:"string"`
 
 	// The port number on which the database accepts connections.
@@ -43901,6 +45926,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// The number of CPU cores and the number of threads per core for the DB instance
 	// class of the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
 	// A value that indicates whether the DB instance is publicly accessible.
@@ -43932,14 +45959,20 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// The ARN from the key store with which to associate the instance for TDE encryption.
+	//
+	// This setting doesn't apply to RDS Custom.
 	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the key store in order to access the
 	// device.
+	//
+	// This setting doesn't apply to RDS Custom.
 	TdeCredentialPassword *string `type:"string"`
 
 	// A value that indicates whether the DB instance class of the DB instance uses
 	// its default processor features.
+	//
+	// This setting doesn't apply to RDS Custom.
 	UseDefaultProcessorFeatures *bool `type:"boolean"`
 
 	// A list of EC2 VPC security groups to associate with this DB instance.
@@ -43997,6 +46030,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetAvailabilityZone(v string) *Re
 // SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetCopyTagsToSnapshot(v bool) *RestoreDBInstanceFromDBSnapshotInput {
 	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetCustomIamInstanceProfile sets the CustomIamInstanceProfile field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetCustomIamInstanceProfile(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.CustomIamInstanceProfile = &v
 	return s
 }
 
@@ -44322,14 +46361,14 @@ type RestoreDBInstanceFromS3Input struct {
 	// The Amazon Web Services KMS key identifier for an encrypted DB instance.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
-	// To use a CMK in a different Amazon Web Services account, specify the key
-	// ARN or alias ARN.
+	// ARN, or alias name for the KMS key. To use a KMS key in a different Amazon
+	// Web Services account, specify the key ARN or alias ARN.
 	//
 	// If the StorageEncrypted parameter is enabled, and you do not specify a value
-	// for the KmsKeyId parameter, then Amazon RDS will use your default CMK. There
-	// is a default CMK for your Amazon Web Services account. Your Amazon Web Services
-	// account has a different default CMK for each Amazon Web Services Region.
+	// for the KmsKeyId parameter, then Amazon RDS will use your default KMS key.
+	// There is a default KMS key for your Amazon Web Services account. Your Amazon
+	// Web Services account has a different default KMS key for each Amazon Web
+	// Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// The license model for this DB instance. Use general-public-license.
@@ -44397,12 +46436,12 @@ type RestoreDBInstanceFromS3Input struct {
 	// Insights data.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	//
 	// If you do not specify a value for PerformanceInsightsKMSKeyId, then Amazon
-	// RDS uses your default CMK. There is a default CMK for your Amazon Web Services
-	// account. Your Amazon Web Services account has a different default CMK for
-	// each Amazon Web Services Region.
+	// RDS uses your default KMS key. There is a default KMS key for your Amazon
+	// Web Services account. Your Amazon Web Services account has a different default
+	// KMS key for each Amazon Web Services Region.
 	PerformanceInsightsKMSKeyId *string `type:"string"`
 
 	// The amount of time, in days, to retain Performance Insights data. Valid values
@@ -44876,6 +46915,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// A value that indicates whether minor version upgrades are applied automatically
 	// to the DB instance during the maintenance window.
+	//
+	// This setting doesn't apply to RDS Custom.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The Availability Zone (AZ) where the DB instance will be created.
@@ -44892,6 +46933,24 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// to snapshots of the DB instance. By default, tags are not copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
+	// The instance profile associated with the underlying Amazon EC2 instance of
+	// an RDS Custom DB instance. The instance profile must meet the following requirements:
+	//
+	//    * The profile must exist in your account.
+	//
+	//    * The profile must have an IAM role that Amazon EC2 has permissions to
+	//    assume.
+	//
+	//    * The instance profile name and the associated IAM role name must start
+	//    with the prefix AWSRDSCustom.
+	//
+	// For the list of permissions required for the IAM role, see Configure IAM
+	// and your VPC (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-setup-orcl.html#custom-setup-orcl.iam-vpc)
+	// in the Amazon Relational Database Service User Guide.
+	//
+	// This setting is required for RDS Custom.
+	CustomIamInstanceProfile *string `type:"string"`
+
 	// The compute and memory capacity of the Amazon RDS DB instance, for example,
 	// db.m4.large. Not all DB instance classes are available in all Amazon Web
 	// Services Regions, or for all database engines. For the full list of DB instance
@@ -44903,13 +46962,16 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The database name for the restored DB instance.
 	//
-	// This parameter isn't used for the MySQL or MariaDB engines.
+	// This parameter isn't supported for the MySQL or MariaDB engines. It also
+	// doesn't apply to RDS Custom.
 	DBName *string `type:"string"`
 
 	// The name of the DB parameter group to associate with this DB instance.
 	//
 	// If you do not specify a value for DBParameterGroupName, then the default
 	// DBParameterGroup for the specified DB engine is used.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Constraints:
 	//
@@ -44936,9 +46998,11 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	DeletionProtection *bool `type:"boolean"`
 
 	// Specify the Active Directory directory ID to restore the DB instance in.
-	// The domain must be created prior to this operation. Currently, only MySQL,
-	// Microsoft SQL Server, Oracle, and PostgreSQL DB instances can be created
+	// Create the domain before running this command. Currently, you can create
+	// only the MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances
 	// in an Active Directory Domain.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
@@ -44946,12 +47010,16 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
+	//
+	// This setting doesn't apply to RDS Custom.
 	DomainIAMRoleName *string `type:"string"`
 
 	// The list of logs that the restored DB instance is to export to CloudWatch
 	// Logs. The values in the list depend on the DB engine being used. For more
 	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
 	// A value that indicates whether to enable a customer-owned IP address (CoIP)
@@ -44961,6 +47029,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// subnets through your on-premises network. For some use cases, a CoIP can
 	// provide lower latency for connections to the DB instance from outside of
 	// its virtual private cloud (VPC) on your local network.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// For more information about RDS on Outposts, see Working with Amazon RDS on
 	// Amazon Web Services Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
@@ -44974,12 +47044,16 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
 	// is disabled.
 	//
+	// This setting doesn't apply to RDS Custom.
+	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon RDS User Guide.
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
 	// The database engine to use for the new instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Default: The same as source
 	//
@@ -45022,6 +47096,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// License model information for the restored DB instance.
 	//
+	// This setting doesn't apply to RDS Custom.
+	//
 	// Default: Same as source.
 	//
 	// Valid values: license-included | bring-your-own-license | general-public-license
@@ -45034,9 +47110,13 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// to it, see Managing capacity automatically with Amazon RDS storage autoscaling
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PIOPS.StorageTypes.html#USER_PIOPS.Autoscaling)
 	// in the Amazon RDS User Guide.
+	//
+	// This setting doesn't apply to RDS Custom.
 	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// A value that indicates whether the DB instance is a Multi-AZ deployment.
+	//
+	// This setting doesn't apply to RDS Custom.
 	//
 	// Constraint: You can't specify the AvailabilityZone parameter if the DB instance
 	// is a Multi-AZ deployment.
@@ -45046,7 +47126,9 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	//
 	// Permanent options, such as the TDE option for Oracle Advanced Security TDE,
 	// can't be removed from an option group, and that option group can't be removed
-	// from a DB instance once it is associated with a DB instance
+	// from a DB instance after it is associated with a DB instance
+	//
+	// This setting doesn't apply to RDS Custom.
 	OptionGroupName *string `type:"string"`
 
 	// The port number on which the database accepts connections.
@@ -45058,6 +47140,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The number of CPU cores and the number of threads per core for the DB instance
 	// class of the DB instance.
+	//
+	// This setting doesn't apply to RDS Custom.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
 	// A value that indicates whether the DB instance is publicly accessible.
@@ -45090,6 +47174,8 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// The Amazon Resource Name (ARN) of the replicated automated backups from which
 	// to restore, for example, arn:aws:rds:useast-1:123456789012:auto-backup:ab-L2IJCEXJP7XQ7HOJ4SIEXAMPLE.
+	//
+	// This setting doesn't apply to RDS Custom.
 	SourceDBInstanceAutomatedBackupsArn *string `type:"string"`
 
 	// The identifier of the source DB instance from which to restore.
@@ -45129,14 +47215,20 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	TargetDBInstanceIdentifier *string `type:"string" required:"true"`
 
 	// The ARN from the key store with which to associate the instance for TDE encryption.
+	//
+	// This setting doesn't apply to RDS Custom.
 	TdeCredentialArn *string `type:"string"`
 
 	// The password for the given ARN from the key store in order to access the
 	// device.
+	//
+	// This setting doesn't apply to RDS Custom.
 	TdeCredentialPassword *string `type:"string"`
 
 	// A value that indicates whether the DB instance class of the DB instance uses
 	// its default processor features.
+	//
+	// This setting doesn't apply to RDS Custom.
 	UseDefaultProcessorFeatures *bool `type:"boolean"`
 
 	// A value that indicates whether the DB instance is restored from the latest
@@ -45198,6 +47290,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetAvailabilityZone(v string) *Res
 // SetCopyTagsToSnapshot sets the CopyTagsToSnapshot field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetCopyTagsToSnapshot(v bool) *RestoreDBInstanceToPointInTimeInput {
 	s.CopyTagsToSnapshot = &v
+	return s
+}
+
+// SetCustomIamInstanceProfile sets the CustomIamInstanceProfile field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetCustomIamInstanceProfile(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.CustomIamInstanceProfile = &v
 	return s
 }
 
@@ -45879,8 +47977,7 @@ type StartActivityStreamInput struct {
 
 	// The Amazon Web Services KMS key identifier for encrypting messages in the
 	// database activity stream. The Amazon Web Services KMS key identifier is the
-	// key ARN, key ID, alias ARN, or alias name for the Amazon Web Services KMS
-	// customer master key (CMK).
+	// key ARN, key ID, alias ARN, or alias name for the KMS key.
 	//
 	// KmsKeyId is a required field
 	KmsKeyId *string `type:"string" required:"true"`
@@ -46369,12 +48466,11 @@ type StartExportTaskInput struct {
 	// IamRoleArn is a required field
 	IamRoleArn *string `type:"string" required:"true"`
 
-	// The ID of the Amazon Web Services KMS customer master key (CMK) to use to
-	// encrypt the snapshot exported to Amazon S3. The Amazon Web Services KMS key
-	// identifier is the key ARN, key ID, alias ARN, or alias name for the Amazon
-	// Web Services KMS customer master key (CMK). The caller of this operation
-	// must be authorized to execute the following operations. These can be set
-	// in the Amazon Web Services KMS key policy:
+	// The ID of the Amazon Web Services KMS key to use to encrypt the snapshot
+	// exported to Amazon S3. The Amazon Web Services KMS key identifier is the
+	// key ARN, key ID, alias ARN, or alias name for the KMS key. The caller of
+	// this operation must be authorized to execute the following operations. These
+	// can be set in the Amazon Web Services KMS key policy:
 	//
 	//    * GrantOperation.Encrypt
 	//
@@ -46528,11 +48624,10 @@ type StartExportTaskOutput struct {
 	// a snapshot.
 	IamRoleArn *string `type:"string"`
 
-	// The key identifier of the Amazon Web Services KMS customer master key (CMK)
-	// that is used to encrypt the snapshot when it's exported to Amazon S3. The
-	// Amazon Web Services KMS CMK identifier is its key ARN, key ID, alias ARN,
-	// or alias name. The IAM role used for the snapshot export must have encryption
-	// and decryption permissions to use this Amazon Web Services KMS CMK.
+	// The key identifier of the Amazon Web Services KMS key that is used to encrypt
+	// the snapshot when it's exported to Amazon S3. The KMS key identifier is its
+	// key ARN, key ID, alias ARN, or alias name. The IAM role used for the snapshot
+	// export must have encryption and decryption permissions to use this KMS key.
 	KmsKeyId *string `type:"string"`
 
 	// The progress of the snapshot export task as a percentage.
@@ -46743,7 +48838,7 @@ type StopActivityStreamOutput struct {
 	// the database activity stream.
 	//
 	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
-	// ARN, or alias name for the Amazon Web Services KMS customer master key (CMK).
+	// ARN, or alias name for the KMS key.
 	KmsKeyId *string `type:"string"`
 
 	// The status of the database activity stream.
@@ -47800,6 +49895,42 @@ func AuthScheme_Values() []string {
 }
 
 const (
+	// AutomationModeFull is a AutomationMode enum value
+	AutomationModeFull = "full"
+
+	// AutomationModeAllPaused is a AutomationMode enum value
+	AutomationModeAllPaused = "all-paused"
+)
+
+// AutomationMode_Values returns all elements of the AutomationMode enum
+func AutomationMode_Values() []string {
+	return []string{
+		AutomationModeFull,
+		AutomationModeAllPaused,
+	}
+}
+
+const (
+	// CustomEngineVersionStatusAvailable is a CustomEngineVersionStatus enum value
+	CustomEngineVersionStatusAvailable = "available"
+
+	// CustomEngineVersionStatusInactive is a CustomEngineVersionStatus enum value
+	CustomEngineVersionStatusInactive = "inactive"
+
+	// CustomEngineVersionStatusInactiveExceptRestore is a CustomEngineVersionStatus enum value
+	CustomEngineVersionStatusInactiveExceptRestore = "inactive-except-restore"
+)
+
+// CustomEngineVersionStatus_Values returns all elements of the CustomEngineVersionStatus enum
+func CustomEngineVersionStatus_Values() []string {
+	return []string{
+		CustomEngineVersionStatusAvailable,
+		CustomEngineVersionStatusInactive,
+		CustomEngineVersionStatusInactiveExceptRestore,
+	}
+}
+
+const (
 	// DBProxyEndpointStatusAvailable is a DBProxyEndpointStatus enum value
 	DBProxyEndpointStatusAvailable = "available"
 
@@ -47977,6 +50108,9 @@ const (
 
 	// SourceTypeDbClusterSnapshot is a SourceType enum value
 	SourceTypeDbClusterSnapshot = "db-cluster-snapshot"
+
+	// SourceTypeCustomEngineVersion is a SourceType enum value
+	SourceTypeCustomEngineVersion = "custom-engine-version"
 )
 
 // SourceType_Values returns all elements of the SourceType enum
@@ -47988,6 +50122,7 @@ func SourceType_Values() []string {
 		SourceTypeDbSnapshot,
 		SourceTypeDbCluster,
 		SourceTypeDbClusterSnapshot,
+		SourceTypeCustomEngineVersion,
 	}
 }
 

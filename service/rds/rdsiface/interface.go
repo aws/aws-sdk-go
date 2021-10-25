@@ -116,6 +116,10 @@ type RDSAPI interface {
 	CreateCustomAvailabilityZoneWithContext(aws.Context, *rds.CreateCustomAvailabilityZoneInput, ...request.Option) (*rds.CreateCustomAvailabilityZoneOutput, error)
 	CreateCustomAvailabilityZoneRequest(*rds.CreateCustomAvailabilityZoneInput) (*request.Request, *rds.CreateCustomAvailabilityZoneOutput)
 
+	CreateCustomDBEngineVersion(*rds.CreateCustomDBEngineVersionInput) (*rds.CreateCustomDBEngineVersionOutput, error)
+	CreateCustomDBEngineVersionWithContext(aws.Context, *rds.CreateCustomDBEngineVersionInput, ...request.Option) (*rds.CreateCustomDBEngineVersionOutput, error)
+	CreateCustomDBEngineVersionRequest(*rds.CreateCustomDBEngineVersionInput) (*request.Request, *rds.CreateCustomDBEngineVersionOutput)
+
 	CreateDBCluster(*rds.CreateDBClusterInput) (*rds.CreateDBClusterOutput, error)
 	CreateDBClusterWithContext(aws.Context, *rds.CreateDBClusterInput, ...request.Option) (*rds.CreateDBClusterOutput, error)
 	CreateDBClusterRequest(*rds.CreateDBClusterInput) (*request.Request, *rds.CreateDBClusterOutput)
@@ -179,6 +183,10 @@ type RDSAPI interface {
 	DeleteCustomAvailabilityZone(*rds.DeleteCustomAvailabilityZoneInput) (*rds.DeleteCustomAvailabilityZoneOutput, error)
 	DeleteCustomAvailabilityZoneWithContext(aws.Context, *rds.DeleteCustomAvailabilityZoneInput, ...request.Option) (*rds.DeleteCustomAvailabilityZoneOutput, error)
 	DeleteCustomAvailabilityZoneRequest(*rds.DeleteCustomAvailabilityZoneInput) (*request.Request, *rds.DeleteCustomAvailabilityZoneOutput)
+
+	DeleteCustomDBEngineVersion(*rds.DeleteCustomDBEngineVersionInput) (*rds.DeleteCustomDBEngineVersionOutput, error)
+	DeleteCustomDBEngineVersionWithContext(aws.Context, *rds.DeleteCustomDBEngineVersionInput, ...request.Option) (*rds.DeleteCustomDBEngineVersionOutput, error)
+	DeleteCustomDBEngineVersionRequest(*rds.DeleteCustomDBEngineVersionInput) (*request.Request, *rds.DeleteCustomDBEngineVersionOutput)
 
 	DeleteDBCluster(*rds.DeleteDBClusterInput) (*rds.DeleteDBClusterOutput, error)
 	DeleteDBClusterWithContext(aws.Context, *rds.DeleteDBClusterInput, ...request.Option) (*rds.DeleteDBClusterOutput, error)
@@ -540,6 +548,10 @@ type RDSAPI interface {
 	ModifyCurrentDBClusterCapacity(*rds.ModifyCurrentDBClusterCapacityInput) (*rds.ModifyCurrentDBClusterCapacityOutput, error)
 	ModifyCurrentDBClusterCapacityWithContext(aws.Context, *rds.ModifyCurrentDBClusterCapacityInput, ...request.Option) (*rds.ModifyCurrentDBClusterCapacityOutput, error)
 	ModifyCurrentDBClusterCapacityRequest(*rds.ModifyCurrentDBClusterCapacityInput) (*request.Request, *rds.ModifyCurrentDBClusterCapacityOutput)
+
+	ModifyCustomDBEngineVersion(*rds.ModifyCustomDBEngineVersionInput) (*rds.ModifyCustomDBEngineVersionOutput, error)
+	ModifyCustomDBEngineVersionWithContext(aws.Context, *rds.ModifyCustomDBEngineVersionInput, ...request.Option) (*rds.ModifyCustomDBEngineVersionOutput, error)
+	ModifyCustomDBEngineVersionRequest(*rds.ModifyCustomDBEngineVersionInput) (*request.Request, *rds.ModifyCustomDBEngineVersionOutput)
 
 	ModifyDBCluster(*rds.ModifyDBClusterInput) (*rds.ModifyDBClusterOutput, error)
 	ModifyDBClusterWithContext(aws.Context, *rds.ModifyDBClusterInput, ...request.Option) (*rds.ModifyDBClusterOutput, error)

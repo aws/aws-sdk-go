@@ -57,6 +57,24 @@ const (
 	// You have exceeded the maximum number of custom Availability Zones.
 	ErrCodeCustomAvailabilityZoneQuotaExceededFault = "CustomAvailabilityZoneQuotaExceeded"
 
+	// ErrCodeCustomDBEngineVersionAlreadyExistsFault for service response error code
+	// "CustomDBEngineVersionAlreadyExistsFault".
+	//
+	// A CEV with the specified name already exists.
+	ErrCodeCustomDBEngineVersionAlreadyExistsFault = "CustomDBEngineVersionAlreadyExistsFault"
+
+	// ErrCodeCustomDBEngineVersionNotFoundFault for service response error code
+	// "CustomDBEngineVersionNotFoundFault".
+	//
+	// The specified CEV was not found.
+	ErrCodeCustomDBEngineVersionNotFoundFault = "CustomDBEngineVersionNotFoundFault"
+
+	// ErrCodeCustomDBEngineVersionQuotaExceededFault for service response error code
+	// "CustomDBEngineVersionQuotaExceededFault".
+	//
+	// You have exceeded your CEV quota.
+	ErrCodeCustomDBEngineVersionQuotaExceededFault = "CustomDBEngineVersionQuotaExceededFault"
+
 	// ErrCodeDBClusterAlreadyExistsFault for service response error code
 	// "DBClusterAlreadyExistsFault".
 	//
@@ -462,6 +480,12 @@ const (
 	// be able to resolve this error by updating your subnet group to use different
 	// Availability Zones that have more storage available.
 	ErrCodeInsufficientStorageClusterCapacityFault = "InsufficientStorageClusterCapacity"
+
+	// ErrCodeInvalidCustomDBEngineVersionStateFault for service response error code
+	// "InvalidCustomDBEngineVersionStateFault".
+	//
+	// You can't delete the CEV.
+	ErrCodeInvalidCustomDBEngineVersionStateFault = "InvalidCustomDBEngineVersionStateFault"
 
 	// ErrCodeInvalidDBClusterCapacityFault for service response error code
 	// "InvalidDBClusterCapacityFault".
