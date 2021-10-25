@@ -27,6 +27,7 @@
     "GetFirewallRuleGroup": "<p>Retrieves the specified firewall rule group. </p>",
     "GetFirewallRuleGroupAssociation": "<p>Retrieves a firewall rule group association, which enables DNS filtering for a VPC with one rule group. A VPC can have more than one firewall rule group association, and a rule group can be associated with more than one VPC.</p>",
     "GetFirewallRuleGroupPolicy": "<p>Returns the Identity and Access Management (Amazon Web Services IAM) policy for sharing the specified rule group. You can use the policy to share the rule group using Resource Access Manager (RAM). </p>",
+    "GetResolverConfig": "<p>Retrieves the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud.</p>",
     "GetResolverDnssecConfig": "<p>Gets DNSSEC validation information for a specified resource.</p>",
     "GetResolverEndpoint": "<p>Gets information about a specified Resolver endpoint, such as whether it's an inbound or an outbound Resolver endpoint, and the current status of the endpoint.</p>",
     "GetResolverQueryLogConfig": "<p>Gets information about a specified Resolver query logging configuration, such as the number of VPCs that the configuration is logging queries for and the location that logs are sent to. </p>",
@@ -42,6 +43,7 @@
     "ListFirewallRuleGroupAssociations": "<p>Retrieves the firewall rule group associations that you have defined. Each association enables DNS filtering for a VPC with one rule group. </p> <p>A single call might return only a partial list of the associations. For information, see <code>MaxResults</code>. </p>",
     "ListFirewallRuleGroups": "<p>Retrieves the minimal high-level information for the rule groups that you have defined. </p> <p>A single call might return only a partial list of the rule groups. For information, see <code>MaxResults</code>. </p>",
     "ListFirewallRules": "<p>Retrieves the firewall rules that you have defined for the specified firewall rule group. DNS Firewall uses the rules in a rule group to filter DNS network traffic for a VPC. </p> <p>A single call might return only a partial list of the rules. For information, see <code>MaxResults</code>. </p>",
+    "ListResolverConfigs": "<p>Retrieves the Resolver configurations that you have defined. Route 53 Resolver uses the configurations to manage DNS resolution behavior for your VPCs.</p>",
     "ListResolverDnssecConfigs": "<p>Lists the configurations for DNSSEC validation that are associated with the current Amazon Web Services account.</p>",
     "ListResolverEndpointIpAddresses": "<p>Gets the IP addresses for a specified Resolver endpoint.</p>",
     "ListResolverEndpoints": "<p>Lists all the Resolver endpoints that were created using the current Amazon Web Services account.</p>",
@@ -59,6 +61,7 @@
     "UpdateFirewallDomains": "<p>Updates the firewall domain list from an array of domain specifications. </p>",
     "UpdateFirewallRule": "<p>Updates the specified firewall rule. </p>",
     "UpdateFirewallRuleGroupAssociation": "<p>Changes the association of a <a>FirewallRuleGroup</a> with a VPC. The association enables DNS filtering for the VPC. </p>",
+    "UpdateResolverConfig": "<p>Updates the behavior configuration of Route 53 Resolver behavior for a single VPC from Amazon Virtual Private Cloud.</p>",
     "UpdateResolverDnssecConfig": "<p>Updates an existing DNSSEC validation configuration. If there is no existing DNSSEC validation configuration, one is created.</p>",
     "UpdateResolverEndpoint": "<p>Updates the name of an inbound or an outbound Resolver endpoint. </p>",
     "UpdateResolverRule": "<p>Updates settings for a specified Resolver rule. <code>ResolverRuleId</code> is required, and all other parameters are optional. If you don't specify a parameter, it retains its current value.</p>"
@@ -75,6 +78,7 @@
         "FirewallConfig$OwnerId": "<p>The Amazon Web Services account ID of the owner of the VPC that this firewall configuration applies to.</p>",
         "FirewallRuleGroup$OwnerId": "<p>The Amazon Web Services account ID for the account that created the rule group. When a rule group is shared with your account, this is the account that has shared the rule group with you. </p>",
         "FirewallRuleGroupMetadata$OwnerId": "<p>The Amazon Web Services account ID for the account that created the rule group. When a rule group is shared with your account, this is the account that has shared the rule group with you. </p>",
+        "ResolverConfig$OwnerId": "<p>The owner account ID of the Amazon Virtual Private Cloud VPC.</p>",
         "ResolverDnssecConfig$OwnerId": "<p>The owner account ID of the virtual private cloud (VPC) for a configuration for DNSSEC validation.</p>",
         "ResolverQueryLogConfig$OwnerId": "<p>The Amazon Web Services account ID for the account that created the query logging configuration. </p>",
         "ResolverRule$OwnerId": "<p>When a rule is shared with another Amazon Web Services account, the account ID of the account that the rule is shared with.</p>"
@@ -149,6 +153,12 @@
     "AssociateResolverRuleResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "AutodefinedReverseFlag": {
+      "base": null,
+      "refs": {
+        "UpdateResolverConfigRequest$AutodefinedReverseFlag": "<p>Indicates whether or not the Resolver will create autodefined rules for reverse DNS lookups. This is enabled by default. Disabling this option will also affect EC2-Classic instances using ClassicLink. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html\">ClassicLink</a> in the <i>Amazon EC2 guide</i>.</p> <note> <p>It can take some time for the status change to be completed.</p> </note> <p/>"
       }
     },
     "BlockOverrideDnsType": {
@@ -651,6 +661,16 @@
       "refs": {
       }
     },
+    "GetResolverConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResolverConfigResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetResolverDnssecConfigRequest": {
       "base": null,
       "refs": {
@@ -900,6 +920,22 @@
       "refs": {
       }
     },
+    "ListResolverConfigsMaxResult": {
+      "base": null,
+      "refs": {
+        "ListResolverConfigsRequest$MaxResults": "<p>The maximum number of Resolver configurations that you want to return in the response to a <code>ListResolverConfigs</code> request. If you don't specify a value for <code>MaxResults</code>, up to 100 Resolver configurations are returned.</p>"
+      }
+    },
+    "ListResolverConfigsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResolverConfigsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListResolverDnssecConfigsRequest": {
       "base": null,
       "refs": {
@@ -1051,6 +1087,8 @@
         "ListFirewallRuleGroupsResponse$NextToken": "<p>If objects are still available for retrieval, Resolver returns this token in the response. To retrieve the next batch of objects, provide this token in your next request.</p>",
         "ListFirewallRulesRequest$NextToken": "<p>For the first call to this list request, omit this value.</p> <p>When you request a list of objects, Resolver returns at most the number of objects specified in <code>MaxResults</code>. If more objects are available for retrieval, Resolver returns a <code>NextToken</code> value in the response. To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.</p>",
         "ListFirewallRulesResponse$NextToken": "<p>If objects are still available for retrieval, Resolver returns this token in the response. To retrieve the next batch of objects, provide this token in your next request.</p>",
+        "ListResolverConfigsRequest$NextToken": "<p>(Optional) If the current Amazon Web Services account has more than <code>MaxResults</code> Resolver configurations, use <code>NextToken</code> to get the second and subsequent pages of results.</p> <p>For the first <code>ListResolverConfigs</code> request, omit this value.</p> <p>For the second and subsequent requests, get the value of <code>NextToken</code> from the previous response and specify that value for <code>NextToken</code> in the request.</p>",
+        "ListResolverConfigsResponse$NextToken": "<p>If a response includes the last of the Resolver configurations that are associated with the current Amazon Web Services account, <code>NextToken</code> doesn't appear in the response.</p> <p>If a response doesn't include the last of the configurations, you can get more configurations by submitting another <code>ListResolverConfigs</code> request. Get the value of <code>NextToken</code> that Amazon Route 53 returned in the previous response and include it in <code>NextToken</code> in the next request.</p>",
         "ListResolverDnssecConfigsRequest$NextToken": "<p>(Optional) If the current Amazon Web Services account has more than <code>MaxResults</code> DNSSEC configurations, use <code>NextToken</code> to get the second and subsequent pages of results.</p> <p>For the first <code>ListResolverDnssecConfigs</code> request, omit this value.</p> <p>For the second and subsequent requests, get the value of <code>NextToken</code> from the previous response and specify that value for <code>NextToken</code> in the request.</p>",
         "ListResolverDnssecConfigsResponse$NextToken": "<p>If a response includes the last of the DNSSEC configurations that are associated with the current Amazon Web Services account, <code>NextToken</code> doesn't appear in the response.</p> <p>If a response doesn't include the last of the configurations, you can get more configurations by submitting another <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListResolverDnssecConfigs.html\">ListResolverDnssecConfigs</a> request. Get the value of <code>NextToken</code> that Amazon Route 53 returned in the previous response and include it in <code>NextToken</code> in the next request.</p>",
         "ListResolverEndpointIpAddressesRequest$NextToken": "<p>For the first <code>ListResolverEndpointIpAddresses</code> request, omit this value.</p> <p>If the specified Resolver endpoint has more than <code>MaxResults</code> IP addresses, you can submit another <code>ListResolverEndpointIpAddresses</code> request to get the next group of IP addresses. In the next request, specify the value of <code>NextToken</code> from the previous response. </p>",
@@ -1116,6 +1154,26 @@
     "PutResolverRulePolicyResponse": {
       "base": "<p>The response to a <code>PutResolverRulePolicy</code> request.</p>",
       "refs": {
+      }
+    },
+    "ResolverAutodefinedReverseStatus": {
+      "base": null,
+      "refs": {
+        "ResolverConfig$AutodefinedReverse": "<p> The status of whether or not the Resolver will create autodefined rules for reverse DNS lookups. This is enabled by default. The status can be one of following:</p> <p> Status of the rules generated by VPCs based on CIDR/Region for reverse DNS resolution. The status can be one of following:</p> <ul> <li> <p> <b>ENABLING:</b> Autodefined rules for reverse DNS lookups are being enabled but are not complete.</p> </li> <li> <p> <b>ENABLED:</b> Autodefined rules for reverse DNS lookups are enabled.</p> </li> <li> <p> <b>DISABLING:</b> Autodefined rules for reverse DNS lookups are being disabled but are not complete.</p> </li> <li> <p> <b>DISABLED:</b> Autodefined rules for reverse DNS lookups are disabled.</p> </li> </ul>"
+      }
+    },
+    "ResolverConfig": {
+      "base": "<p>A complex type that contains information about a Resolver configuration for a VPC.</p>",
+      "refs": {
+        "GetResolverConfigResponse$ResolverConfig": "<p>Information about the behavior configuration of Route 53 Resolver behavior for the VPC you specified in the <code>GetResolverConfig</code> request.</p>",
+        "ResolverConfigList$member": null,
+        "UpdateResolverConfigResponse$ResolverConfig": "<p>An array that contains settings for the specified Resolver configuration.</p>"
+      }
+    },
+    "ResolverConfigList": {
+      "base": null,
+      "refs": {
+        "ListResolverConfigsResponse$ResolverConfigs": "<p>An array that contains one <code>ResolverConfigs</code> element for each Resolver configuration that is associated with the current Amazon Web Services account.</p>"
       }
     },
     "ResolverDNSSECValidationStatus": {
@@ -1339,6 +1397,7 @@
         "GetFirewallDomainListRequest$FirewallDomainListId": "<p>The ID of the domain list. </p>",
         "GetFirewallRuleGroupAssociationRequest$FirewallRuleGroupAssociationId": "<p>The identifier of the <a>FirewallRuleGroupAssociation</a>. </p>",
         "GetFirewallRuleGroupRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group. </p>",
+        "GetResolverConfigRequest$ResourceId": "<p>Resource ID of the Amazon VPC that you want to get information about.</p>",
         "GetResolverDnssecConfigRequest$ResourceId": "<p>The ID of the virtual private cloud (VPC) for the DNSSEC validation status.</p>",
         "GetResolverEndpointRequest$ResolverEndpointId": "<p>The ID of the Resolver endpoint that you want to get information about.</p>",
         "GetResolverQueryLogConfigAssociationRequest$ResolverQueryLogConfigAssociationId": "<p>The ID of the Resolver query logging configuration association that you want to get information about.</p>",
@@ -1354,6 +1413,8 @@
         "ListFirewallRuleGroupAssociationsRequest$VpcId": "<p>The unique identifier of the VPC that you want to retrieve the associations for. Leave this blank to retrieve associations for any VPC. </p>",
         "ListFirewallRulesRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group that you want to retrieve the rules for. </p>",
         "ListResolverEndpointIpAddressesRequest$ResolverEndpointId": "<p>The ID of the Resolver endpoint that you want to get IP addresses for.</p>",
+        "ResolverConfig$Id": "<p>ID for the Resolver configuration.</p>",
+        "ResolverConfig$ResourceId": "<p>The ID of the Amazon Virtual Private Cloud VPC that you're configuring Resolver for.</p>",
         "ResolverDnssecConfig$Id": "<p>The ID for a configuration for DNSSEC validation.</p>",
         "ResolverDnssecConfig$ResourceId": "<p>The ID of the virtual private cloud (VPC) that you're configuring the DNSSEC validation status for.</p>",
         "ResolverEndpoint$Id": "<p>The ID of the Resolver endpoint.</p>",
@@ -1375,6 +1436,7 @@
         "UpdateFirewallRuleGroupAssociationRequest$FirewallRuleGroupAssociationId": "<p>The identifier of the <a>FirewallRuleGroupAssociation</a>. </p>",
         "UpdateFirewallRuleRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group for the rule. </p>",
         "UpdateFirewallRuleRequest$FirewallDomainListId": "<p>The ID of the domain list to use in the rule. </p>",
+        "UpdateResolverConfigRequest$ResourceId": "<p>Resource ID of the Amazon VPC that you want to update the Resolver configuration for.</p>",
         "UpdateResolverDnssecConfigRequest$ResourceId": "<p>The ID of the virtual private cloud (VPC) that you're updating the DNSSEC validation status for.</p>",
         "UpdateResolverEndpointRequest$ResolverEndpointId": "<p>The ID of the Resolver endpoint that you want to update.</p>",
         "UpdateResolverRuleRequest$ResolverRuleId": "<p>The ID of the Resolver rule that you want to update.</p>"
@@ -1626,6 +1688,16 @@
       }
     },
     "UpdateFirewallRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateResolverConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateResolverConfigResponse": {
       "base": null,
       "refs": {
       }

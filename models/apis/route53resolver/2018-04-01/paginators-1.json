@@ -36,6 +36,12 @@
       "limit_key": "MaxResults",
       "result_key": "FirewallRules"
     },
+    "ListResolverConfigs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ResolverConfigs"
+    },
     "ListResolverDnssecConfigs": {
       "input_token": "NextToken",
       "output_token": "NextToken",

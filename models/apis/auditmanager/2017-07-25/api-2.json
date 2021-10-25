@@ -192,6 +192,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteAssessmentFrameworkShare":{
+      "name":"DeleteAssessmentFrameworkShare",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/assessmentFrameworkShareRequests/{requestId}"
+      },
+      "input":{"shape":"DeleteAssessmentFrameworkShareRequest"},
+      "output":{"shape":"DeleteAssessmentFrameworkShareResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteAssessmentReport":{
       "name":"DeleteAssessmentReport",
       "http":{
@@ -485,6 +500,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListAssessmentFrameworkShareRequests":{
+      "name":"ListAssessmentFrameworkShareRequests",
+      "http":{
+        "method":"GET",
+        "requestUri":"/assessmentFrameworkShareRequests"
+      },
+      "input":{"shape":"ListAssessmentFrameworkShareRequestsRequest"},
+      "output":{"shape":"ListAssessmentFrameworkShareRequestsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListAssessmentFrameworks":{
       "name":"ListAssessmentFrameworks",
       "http":{
@@ -613,6 +642,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "StartAssessmentFrameworkShare":{
+      "name":"StartAssessmentFrameworkShare",
+      "http":{
+        "method":"POST",
+        "requestUri":"/assessmentFrameworks/{frameworkId}/shareRequests"
+      },
+      "input":{"shape":"StartAssessmentFrameworkShareRequest"},
+      "output":{"shape":"StartAssessmentFrameworkShareResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -694,6 +738,21 @@
       },
       "input":{"shape":"UpdateAssessmentFrameworkRequest"},
       "output":{"shape":"UpdateAssessmentFrameworkResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateAssessmentFrameworkShare":{
+      "name":"UpdateAssessmentFrameworkShare",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/assessmentFrameworkShareRequests/{requestId}"
+      },
+      "input":{"shape":"UpdateAssessmentFrameworkShareRequest"},
+      "output":{"shape":"UpdateAssessmentFrameworkShareResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
@@ -955,6 +1014,30 @@
         "createdAt":{"shape":"Timestamp"},
         "lastUpdatedAt":{"shape":"Timestamp"}
       }
+    },
+    "AssessmentFrameworkShareRequest":{
+      "type":"structure",
+      "members":{
+        "id":{"shape":"UUID"},
+        "frameworkId":{"shape":"UUID"},
+        "frameworkName":{"shape":"FrameworkName"},
+        "frameworkDescription":{"shape":"FrameworkDescription"},
+        "status":{"shape":"ShareRequestStatus"},
+        "sourceAccount":{"shape":"AccountId"},
+        "destinationAccount":{"shape":"AccountId"},
+        "destinationRegion":{"shape":"Region"},
+        "expirationTime":{"shape":"Timestamp"},
+        "creationTime":{"shape":"Timestamp"},
+        "lastUpdated":{"shape":"Timestamp"},
+        "comment":{"shape":"ShareRequestComment"},
+        "standardControlsCount":{"shape":"NullableInteger"},
+        "customControlsCount":{"shape":"NullableInteger"},
+        "complianceType":{"shape":"ComplianceType"}
+      }
+    },
+    "AssessmentFrameworkShareRequestList":{
+      "type":"list",
+      "member":{"shape":"AssessmentFrameworkShareRequest"}
     },
     "AssessmentMetadata":{
       "type":"structure",
@@ -1650,6 +1733,30 @@
       "members":{
       }
     },
+    "DeleteAssessmentFrameworkShareRequest":{
+      "type":"structure",
+      "required":[
+        "requestId",
+        "requestType"
+      ],
+      "members":{
+        "requestId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"requestId"
+        },
+        "requestType":{
+          "shape":"ShareRequestType",
+          "location":"querystring",
+          "locationName":"requestType"
+        }
+      }
+    },
+    "DeleteAssessmentFrameworkShareResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteAssessmentReportRequest":{
       "type":"structure",
       "required":[
@@ -2299,6 +2406,34 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9\\s-_()\\[\\]]+$"
     },
+    "ListAssessmentFrameworkShareRequestsRequest":{
+      "type":"structure",
+      "required":["requestType"],
+      "members":{
+        "requestType":{
+          "shape":"ShareRequestType",
+          "location":"querystring",
+          "locationName":"requestType"
+        },
+        "nextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAssessmentFrameworkShareRequestsResponse":{
+      "type":"structure",
+      "members":{
+        "assessmentFrameworkShareRequests":{"shape":"AssessmentFrameworkShareRequestList"},
+        "nextToken":{"shape":"Token"}
+      }
+    },
     "ListAssessmentFrameworksRequest":{
       "type":"structure",
       "required":["frameworkType"],
@@ -2510,6 +2645,7 @@
       "type":"list",
       "member":{"shape":"Notification"}
     },
+    "NullableInteger":{"type":"integer"},
     "ObjectTypeEnum":{
       "type":"string",
       "enum":[
@@ -2519,6 +2655,10 @@
         "DELEGATION",
         "ASSESSMENT_REPORT"
       ]
+    },
+    "Region":{
+      "type":"string",
+      "pattern":"^[a-z]{2}-[a-z]+-[0-9]{1}$"
     },
     "RegisterAccountRequest":{
       "type":"structure",
@@ -2643,6 +2783,39 @@
         "kmsKey":{"shape":"KmsKey"}
       }
     },
+    "ShareRequestAction":{
+      "type":"string",
+      "enum":[
+        "ACCEPT",
+        "DECLINE",
+        "REVOKE"
+      ]
+    },
+    "ShareRequestComment":{
+      "type":"string",
+      "max":500,
+      "pattern":"^[\\w\\W\\s\\S]*$"
+    },
+    "ShareRequestStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "REPLICATING",
+        "SHARED",
+        "EXPIRING",
+        "FAILED",
+        "EXPIRED",
+        "DECLINED",
+        "REVOKED"
+      ]
+    },
+    "ShareRequestType":{
+      "type":"string",
+      "enum":[
+        "SENT",
+        "RECEIVED"
+      ]
+    },
     "SnsArn":{
       "type":"string",
       "max":2048,
@@ -2690,6 +2863,30 @@
         "AWS_API_Call",
         "MANUAL"
       ]
+    },
+    "StartAssessmentFrameworkShareRequest":{
+      "type":"structure",
+      "required":[
+        "frameworkId",
+        "destinationAccount",
+        "destinationRegion"
+      ],
+      "members":{
+        "frameworkId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"frameworkId"
+        },
+        "destinationAccount":{"shape":"AccountId"},
+        "destinationRegion":{"shape":"Region"},
+        "comment":{"shape":"ShareRequestComment"}
+      }
+    },
+    "StartAssessmentFrameworkShareResponse":{
+      "type":"structure",
+      "members":{
+        "assessmentFrameworkShareRequest":{"shape":"AssessmentFrameworkShareRequest"}
+      }
     },
     "String":{
       "type":"string",
@@ -2900,6 +3097,29 @@
       "type":"structure",
       "members":{
         "framework":{"shape":"Framework"}
+      }
+    },
+    "UpdateAssessmentFrameworkShareRequest":{
+      "type":"structure",
+      "required":[
+        "requestId",
+        "requestType",
+        "action"
+      ],
+      "members":{
+        "requestId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"requestId"
+        },
+        "requestType":{"shape":"ShareRequestType"},
+        "action":{"shape":"ShareRequestAction"}
+      }
+    },
+    "UpdateAssessmentFrameworkShareResponse":{
+      "type":"structure",
+      "members":{
+        "assessmentFrameworkShareRequest":{"shape":"AssessmentFrameworkShareRequest"}
       }
     },
     "UpdateAssessmentRequest":{

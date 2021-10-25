@@ -2442,6 +2442,99 @@ func (c *Route53Resolver) GetFirewallRuleGroupPolicyWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opGetResolverConfig = "GetResolverConfig"
+
+// GetResolverConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetResolverConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResolverConfig for more information on using the GetResolverConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResolverConfigRequest method.
+//    req, resp := client.GetResolverConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverConfig
+func (c *Route53Resolver) GetResolverConfigRequest(input *GetResolverConfigInput) (req *request.Request, output *GetResolverConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetResolverConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResolverConfigInput{}
+	}
+
+	output = &GetResolverConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResolverConfig API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the behavior configuration of Route 53 Resolver behavior for a
+// single VPC from Amazon Virtual Private Cloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetResolverConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * InvalidParameterException
+//   One or more parameters in this request are not valid.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetResolverConfig
+func (c *Route53Resolver) GetResolverConfig(input *GetResolverConfigInput) (*GetResolverConfigOutput, error) {
+	req, out := c.GetResolverConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetResolverConfigWithContext is the same as GetResolverConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResolverConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetResolverConfigWithContext(ctx aws.Context, input *GetResolverConfigInput, opts ...request.Option) (*GetResolverConfigOutput, error) {
+	req, out := c.GetResolverConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetResolverDnssecConfig = "GetResolverDnssecConfig"
 
 // GetResolverDnssecConfigRequest generates a "aws/request.Request" representing the
@@ -4191,6 +4284,160 @@ func (c *Route53Resolver) ListFirewallRulesPagesWithContext(ctx aws.Context, inp
 
 	for p.Next() {
 		if !fn(p.Page().(*ListFirewallRulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListResolverConfigs = "ListResolverConfigs"
+
+// ListResolverConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListResolverConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResolverConfigs for more information on using the ListResolverConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListResolverConfigsRequest method.
+//    req, resp := client.ListResolverConfigsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverConfigs
+func (c *Route53Resolver) ListResolverConfigsRequest(input *ListResolverConfigsInput) (req *request.Request, output *ListResolverConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListResolverConfigs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListResolverConfigsInput{}
+	}
+
+	output = &ListResolverConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResolverConfigs API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the Resolver configurations that you have defined. Route 53 Resolver
+// uses the configurations to manage DNS resolution behavior for your VPCs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListResolverConfigs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidNextTokenException
+//   The value that you specified for NextToken in a List request isn't valid.
+//
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * InvalidParameterException
+//   One or more parameters in this request are not valid.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListResolverConfigs
+func (c *Route53Resolver) ListResolverConfigs(input *ListResolverConfigsInput) (*ListResolverConfigsOutput, error) {
+	req, out := c.ListResolverConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListResolverConfigsWithContext is the same as ListResolverConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResolverConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListResolverConfigsWithContext(ctx aws.Context, input *ListResolverConfigsInput, opts ...request.Option) (*ListResolverConfigsOutput, error) {
+	req, out := c.ListResolverConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListResolverConfigsPages iterates over the pages of a ListResolverConfigs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResolverConfigs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListResolverConfigs operation.
+//    pageNum := 0
+//    err := client.ListResolverConfigsPages(params,
+//        func(page *route53resolver.ListResolverConfigsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Route53Resolver) ListResolverConfigsPages(input *ListResolverConfigsInput, fn func(*ListResolverConfigsOutput, bool) bool) error {
+	return c.ListResolverConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResolverConfigsPagesWithContext same as ListResolverConfigsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListResolverConfigsPagesWithContext(ctx aws.Context, input *ListResolverConfigsInput, fn func(*ListResolverConfigsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResolverConfigsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResolverConfigsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResolverConfigsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6253,6 +6500,108 @@ func (c *Route53Resolver) UpdateFirewallRuleGroupAssociation(input *UpdateFirewa
 // for more information on using Contexts.
 func (c *Route53Resolver) UpdateFirewallRuleGroupAssociationWithContext(ctx aws.Context, input *UpdateFirewallRuleGroupAssociationInput, opts ...request.Option) (*UpdateFirewallRuleGroupAssociationOutput, error) {
 	req, out := c.UpdateFirewallRuleGroupAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateResolverConfig = "UpdateResolverConfig"
+
+// UpdateResolverConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResolverConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResolverConfig for more information on using the UpdateResolverConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateResolverConfigRequest method.
+//    req, resp := client.UpdateResolverConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverConfig
+func (c *Route53Resolver) UpdateResolverConfigRequest(input *UpdateResolverConfigInput) (req *request.Request, output *UpdateResolverConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResolverConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateResolverConfigInput{}
+	}
+
+	output = &UpdateResolverConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateResolverConfig API operation for Amazon Route 53 Resolver.
+//
+// Updates the behavior configuration of Route 53 Resolver behavior for a single
+// VPC from Amazon Virtual Private Cloud.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation UpdateResolverConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * InvalidParameterException
+//   One or more parameters in this request are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ResourceUnavailableException
+//   The specified resource isn't available.
+//
+//   * LimitExceededException
+//   The request caused one or more limits to be exceeded.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateResolverConfig
+func (c *Route53Resolver) UpdateResolverConfig(input *UpdateResolverConfigInput) (*UpdateResolverConfigOutput, error) {
+	req, out := c.UpdateResolverConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResolverConfigWithContext is the same as UpdateResolverConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResolverConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) UpdateResolverConfigWithContext(ctx aws.Context, input *UpdateResolverConfigInput, opts ...request.Option) (*UpdateResolverConfigOutput, error) {
+	req, out := c.UpdateResolverConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10432,6 +10781,87 @@ func (s *GetFirewallRuleGroupPolicyOutput) SetFirewallRuleGroupPolicy(v string) 
 	return s
 }
 
+type GetResolverConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Resource ID of the Amazon VPC that you want to get information about.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResolverConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResolverConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResolverConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResolverConfigInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *GetResolverConfigInput) SetResourceId(v string) *GetResolverConfigInput {
+	s.ResourceId = &v
+	return s
+}
+
+type GetResolverConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the behavior configuration of Route 53 Resolver behavior
+	// for the VPC you specified in the GetResolverConfig request.
+	ResolverConfig *ResolverConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResolverConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResolverConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetResolverConfig sets the ResolverConfig field's value.
+func (s *GetResolverConfigOutput) SetResolverConfig(v *ResolverConfig) *GetResolverConfigOutput {
+	s.ResolverConfig = v
+	return s
+}
+
 type GetResolverDnssecConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12674,6 +13104,116 @@ func (s *ListFirewallRulesOutput) SetNextToken(v string) *ListFirewallRulesOutpu
 	return s
 }
 
+type ListResolverConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of Resolver configurations that you want to return in
+	// the response to a ListResolverConfigs request. If you don't specify a value
+	// for MaxResults, up to 100 Resolver configurations are returned.
+	MaxResults *int64 `min:"5" type:"integer"`
+
+	// (Optional) If the current Amazon Web Services account has more than MaxResults
+	// Resolver configurations, use NextToken to get the second and subsequent pages
+	// of results.
+	//
+	// For the first ListResolverConfigs request, omit this value.
+	//
+	// For the second and subsequent requests, get the value of NextToken from the
+	// previous response and specify that value for NextToken in the request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResolverConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResolverConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListResolverConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListResolverConfigsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListResolverConfigsInput) SetMaxResults(v int64) *ListResolverConfigsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResolverConfigsInput) SetNextToken(v string) *ListResolverConfigsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListResolverConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If a response includes the last of the Resolver configurations that are associated
+	// with the current Amazon Web Services account, NextToken doesn't appear in
+	// the response.
+	//
+	// If a response doesn't include the last of the configurations, you can get
+	// more configurations by submitting another ListResolverConfigs request. Get
+	// the value of NextToken that Amazon Route 53 returned in the previous response
+	// and include it in NextToken in the next request.
+	NextToken *string `type:"string"`
+
+	// An array that contains one ResolverConfigs element for each Resolver configuration
+	// that is associated with the current Amazon Web Services account.
+	ResolverConfigs []*ResolverConfig `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResolverConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResolverConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListResolverConfigsOutput) SetNextToken(v string) *ListResolverConfigsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResolverConfigs sets the ResolverConfigs field's value.
+func (s *ListResolverConfigsOutput) SetResolverConfigs(v []*ResolverConfig) *ListResolverConfigsOutput {
+	s.ResolverConfigs = v
+	return s
+}
+
 type ListResolverDnssecConfigsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14206,6 +14746,82 @@ func (s PutResolverRulePolicyOutput) GoString() string {
 // SetReturnValue sets the ReturnValue field's value.
 func (s *PutResolverRulePolicyOutput) SetReturnValue(v bool) *PutResolverRulePolicyOutput {
 	s.ReturnValue = &v
+	return s
+}
+
+// A complex type that contains information about a Resolver configuration for
+// a VPC.
+type ResolverConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The status of whether or not the Resolver will create autodefined rules for
+	// reverse DNS lookups. This is enabled by default. The status can be one of
+	// following:
+	//
+	// Status of the rules generated by VPCs based on CIDR/Region for reverse DNS
+	// resolution. The status can be one of following:
+	//
+	//    * ENABLING: Autodefined rules for reverse DNS lookups are being enabled
+	//    but are not complete.
+	//
+	//    * ENABLED: Autodefined rules for reverse DNS lookups are enabled.
+	//
+	//    * DISABLING: Autodefined rules for reverse DNS lookups are being disabled
+	//    but are not complete.
+	//
+	//    * DISABLED: Autodefined rules for reverse DNS lookups are disabled.
+	AutodefinedReverse *string `type:"string" enum:"ResolverAutodefinedReverseStatus"`
+
+	// ID for the Resolver configuration.
+	Id *string `min:"1" type:"string"`
+
+	// The owner account ID of the Amazon Virtual Private Cloud VPC.
+	OwnerId *string `min:"12" type:"string"`
+
+	// The ID of the Amazon Virtual Private Cloud VPC that you're configuring Resolver
+	// for.
+	ResourceId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolverConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResolverConfig) GoString() string {
+	return s.String()
+}
+
+// SetAutodefinedReverse sets the AutodefinedReverse field's value.
+func (s *ResolverConfig) SetAutodefinedReverse(v string) *ResolverConfig {
+	s.AutodefinedReverse = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ResolverConfig) SetId(v string) *ResolverConfig {
+	s.Id = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *ResolverConfig) SetOwnerId(v string) *ResolverConfig {
+	s.OwnerId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ResolverConfig) SetResourceId(v string) *ResolverConfig {
+	s.ResourceId = &v
 	return s
 }
 
@@ -16366,6 +16982,107 @@ func (s *UpdateFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *UpdateFirew
 	return s
 }
 
+type UpdateResolverConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether or not the Resolver will create autodefined rules for reverse
+	// DNS lookups. This is enabled by default. Disabling this option will also
+	// affect EC2-Classic instances using ClassicLink. For more information, see
+	// ClassicLink (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html)
+	// in the Amazon EC2 guide.
+	//
+	// It can take some time for the status change to be completed.
+	//
+	// AutodefinedReverseFlag is a required field
+	AutodefinedReverseFlag *string `type:"string" required:"true" enum:"AutodefinedReverseFlag"`
+
+	// Resource ID of the Amazon VPC that you want to update the Resolver configuration
+	// for.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResolverConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResolverConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResolverConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResolverConfigInput"}
+	if s.AutodefinedReverseFlag == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutodefinedReverseFlag"))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutodefinedReverseFlag sets the AutodefinedReverseFlag field's value.
+func (s *UpdateResolverConfigInput) SetAutodefinedReverseFlag(v string) *UpdateResolverConfigInput {
+	s.AutodefinedReverseFlag = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *UpdateResolverConfigInput) SetResourceId(v string) *UpdateResolverConfigInput {
+	s.ResourceId = &v
+	return s
+}
+
+type UpdateResolverConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array that contains settings for the specified Resolver configuration.
+	ResolverConfig *ResolverConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResolverConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResolverConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetResolverConfig sets the ResolverConfig field's value.
+func (s *UpdateResolverConfigOutput) SetResolverConfig(v *ResolverConfig) *UpdateResolverConfigOutput {
+	s.ResolverConfig = v
+	return s
+}
+
 type UpdateResolverDnssecConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16735,6 +17452,22 @@ func Action_Values() []string {
 }
 
 const (
+	// AutodefinedReverseFlagEnable is a AutodefinedReverseFlag enum value
+	AutodefinedReverseFlagEnable = "ENABLE"
+
+	// AutodefinedReverseFlagDisable is a AutodefinedReverseFlag enum value
+	AutodefinedReverseFlagDisable = "DISABLE"
+)
+
+// AutodefinedReverseFlag_Values returns all elements of the AutodefinedReverseFlag enum
+func AutodefinedReverseFlag_Values() []string {
+	return []string{
+		AutodefinedReverseFlagEnable,
+		AutodefinedReverseFlagDisable,
+	}
+}
+
+const (
 	// BlockOverrideDnsTypeCname is a BlockOverrideDnsType enum value
 	BlockOverrideDnsTypeCname = "CNAME"
 )
@@ -16943,6 +17676,30 @@ func MutationProtectionStatus_Values() []string {
 	return []string{
 		MutationProtectionStatusEnabled,
 		MutationProtectionStatusDisabled,
+	}
+}
+
+const (
+	// ResolverAutodefinedReverseStatusEnabling is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusEnabling = "ENABLING"
+
+	// ResolverAutodefinedReverseStatusEnabled is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusEnabled = "ENABLED"
+
+	// ResolverAutodefinedReverseStatusDisabling is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusDisabling = "DISABLING"
+
+	// ResolverAutodefinedReverseStatusDisabled is a ResolverAutodefinedReverseStatus enum value
+	ResolverAutodefinedReverseStatusDisabled = "DISABLED"
+)
+
+// ResolverAutodefinedReverseStatus_Values returns all elements of the ResolverAutodefinedReverseStatus enum
+func ResolverAutodefinedReverseStatus_Values() []string {
+	return []string{
+		ResolverAutodefinedReverseStatusEnabling,
+		ResolverAutodefinedReverseStatusEnabled,
+		ResolverAutodefinedReverseStatusDisabling,
+		ResolverAutodefinedReverseStatusDisabled,
 	}
 }
 

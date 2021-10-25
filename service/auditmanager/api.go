@@ -58,8 +58,8 @@ func (c *AuditManager) AssociateAssessmentReportEvidenceFolderRequest(input *Ass
 
 // AssociateAssessmentReportEvidenceFolder API operation for AWS Audit Manager.
 //
-// Associates an evidence folder to the specified assessment report in Audit
-// Manager.
+// Associates an evidence folder to an assessment report in a Audit Manager
+// assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -73,7 +73,7 @@ func (c *AuditManager) AssociateAssessmentReportEvidenceFolderRequest(input *Ass
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -81,7 +81,7 @@ func (c *AuditManager) AssociateAssessmentReportEvidenceFolderRequest(input *Ass
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/AssociateAssessmentReportEvidenceFolder
 func (c *AuditManager) AssociateAssessmentReportEvidenceFolder(input *AssociateAssessmentReportEvidenceFolderInput) (*AssociateAssessmentReportEvidenceFolderOutput, error) {
@@ -164,7 +164,7 @@ func (c *AuditManager) BatchAssociateAssessmentReportEvidenceRequest(input *Batc
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -172,7 +172,7 @@ func (c *AuditManager) BatchAssociateAssessmentReportEvidenceRequest(input *Batc
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/BatchAssociateAssessmentReportEvidence
 func (c *AuditManager) BatchAssociateAssessmentReportEvidence(input *BatchAssociateAssessmentReportEvidenceInput) (*BatchAssociateAssessmentReportEvidenceOutput, error) {
@@ -240,7 +240,7 @@ func (c *AuditManager) BatchCreateDelegationByAssessmentRequest(input *BatchCrea
 
 // BatchCreateDelegationByAssessment API operation for AWS Audit Manager.
 //
-// Create a batch of delegations for a specified assessment in Audit Manager.
+// Creates a batch of delegations for an assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -251,10 +251,10 @@ func (c *AuditManager) BatchCreateDelegationByAssessmentRequest(input *BatchCrea
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
@@ -330,7 +330,7 @@ func (c *AuditManager) BatchDeleteDelegationByAssessmentRequest(input *BatchDele
 
 // BatchDeleteDelegationByAssessment API operation for AWS Audit Manager.
 //
-// Deletes the delegations in the specified Audit Manager assessment.
+// Deletes a batch of delegations for an assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -341,10 +341,10 @@ func (c *AuditManager) BatchDeleteDelegationByAssessmentRequest(input *BatchDele
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
@@ -420,8 +420,7 @@ func (c *AuditManager) BatchDisassociateAssessmentReportEvidenceRequest(input *B
 
 // BatchDisassociateAssessmentReportEvidence API operation for AWS Audit Manager.
 //
-// Disassociates a list of evidence from the specified assessment report in
-// Audit Manager.
+// Disassociates a list of evidence from an assessment report in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -435,7 +434,7 @@ func (c *AuditManager) BatchDisassociateAssessmentReportEvidenceRequest(input *B
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -443,7 +442,7 @@ func (c *AuditManager) BatchDisassociateAssessmentReportEvidenceRequest(input *B
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/BatchDisassociateAssessmentReportEvidence
 func (c *AuditManager) BatchDisassociateAssessmentReportEvidence(input *BatchDisassociateAssessmentReportEvidenceInput) (*BatchDisassociateAssessmentReportEvidenceOutput, error) {
@@ -511,8 +510,7 @@ func (c *AuditManager) BatchImportEvidenceToAssessmentControlRequest(input *Batc
 
 // BatchImportEvidenceToAssessmentControl API operation for AWS Audit Manager.
 //
-// Uploads one or more pieces of evidence to the specified control in the assessment
-// in Audit Manager.
+// Uploads one or more pieces of evidence to a control in an Audit Manager assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -523,10 +521,10 @@ func (c *AuditManager) BatchImportEvidenceToAssessmentControlRequest(input *Batc
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
@@ -613,13 +611,13 @@ func (c *AuditManager) CreateAssessmentRequest(input *CreateAssessmentInput) (re
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -703,13 +701,13 @@ func (c *AuditManager) CreateAssessmentFrameworkRequest(input *CreateAssessmentF
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -796,7 +794,7 @@ func (c *AuditManager) CreateAssessmentReportRequest(input *CreateAssessmentRepo
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -804,7 +802,7 @@ func (c *AuditManager) CreateAssessmentReportRequest(input *CreateAssessmentRepo
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/CreateAssessmentReport
 func (c *AuditManager) CreateAssessmentReport(input *CreateAssessmentReportInput) (*CreateAssessmentReportOutput, error) {
@@ -883,13 +881,13 @@ func (c *AuditManager) CreateControlRequest(input *CreateControlInput) (req *req
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -974,13 +972,13 @@ func (c *AuditManager) DeleteAssessmentRequest(input *DeleteAssessmentInput) (re
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1065,13 +1063,13 @@ func (c *AuditManager) DeleteAssessmentFrameworkRequest(input *DeleteAssessmentF
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1095,6 +1093,97 @@ func (c *AuditManager) DeleteAssessmentFramework(input *DeleteAssessmentFramewor
 // for more information on using Contexts.
 func (c *AuditManager) DeleteAssessmentFrameworkWithContext(ctx aws.Context, input *DeleteAssessmentFrameworkInput, opts ...request.Option) (*DeleteAssessmentFrameworkOutput, error) {
 	req, out := c.DeleteAssessmentFrameworkRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAssessmentFrameworkShare = "DeleteAssessmentFrameworkShare"
+
+// DeleteAssessmentFrameworkShareRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAssessmentFrameworkShare operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAssessmentFrameworkShare for more information on using the DeleteAssessmentFrameworkShare
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAssessmentFrameworkShareRequest method.
+//    req, resp := client.DeleteAssessmentFrameworkShareRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/DeleteAssessmentFrameworkShare
+func (c *AuditManager) DeleteAssessmentFrameworkShareRequest(input *DeleteAssessmentFrameworkShareInput) (req *request.Request, output *DeleteAssessmentFrameworkShareOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAssessmentFrameworkShare,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/assessmentFrameworkShareRequests/{requestId}",
+	}
+
+	if input == nil {
+		input = &DeleteAssessmentFrameworkShareInput{}
+	}
+
+	output = &DeleteAssessmentFrameworkShareOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAssessmentFrameworkShare API operation for AWS Audit Manager.
+//
+// Deletes a share request for a custom framework in Audit Manager.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation DeleteAssessmentFrameworkShare for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource that's specified in the request can't be found.
+//
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/DeleteAssessmentFrameworkShare
+func (c *AuditManager) DeleteAssessmentFrameworkShare(input *DeleteAssessmentFrameworkShareInput) (*DeleteAssessmentFrameworkShareOutput, error) {
+	req, out := c.DeleteAssessmentFrameworkShareRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAssessmentFrameworkShareWithContext is the same as DeleteAssessmentFrameworkShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAssessmentFrameworkShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) DeleteAssessmentFrameworkShareWithContext(ctx aws.Context, input *DeleteAssessmentFrameworkShareInput, opts ...request.Option) (*DeleteAssessmentFrameworkShareOutput, error) {
+	req, out := c.DeleteAssessmentFrameworkShareRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1159,7 +1248,7 @@ func (c *AuditManager) DeleteAssessmentReportRequest(input *DeleteAssessmentRepo
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1167,7 +1256,7 @@ func (c *AuditManager) DeleteAssessmentReportRequest(input *DeleteAssessmentRepo
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/DeleteAssessmentReport
 func (c *AuditManager) DeleteAssessmentReport(input *DeleteAssessmentReportInput) (*DeleteAssessmentReportOutput, error) {
@@ -1247,13 +1336,13 @@ func (c *AuditManager) DeleteControlRequest(input *DeleteControlInput) (req *req
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1340,7 +1429,7 @@ func (c *AuditManager) DeregisterAccountRequest(input *DeregisterAccountInput) (
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1348,7 +1437,7 @@ func (c *AuditManager) DeregisterAccountRequest(input *DeregisterAccountInput) (
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/DeregisterAccount
 func (c *AuditManager) DeregisterAccount(input *DeregisterAccountInput) (*DeregisterAccountOutput, error) {
@@ -1421,10 +1510,10 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 // for Audit Manager.
 //
 // When you remove a delegated administrator from your Audit Manager settings,
-// or when you deregister a delegated administrator from Organizations, you
-// continue to have access to the evidence that you previously collected under
-// that account. However, Audit Manager will stop collecting and attaching evidence
-// to that delegated administrator account moving forward.
+// you continue to have access to the evidence that you previously collected
+// under that account. This is also the case when you deregister a delegated
+// administrator from Audit Manager. However, Audit Manager will stop collecting
+// and attaching evidence to that delegated administrator account moving forward.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1438,7 +1527,7 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1446,7 +1535,7 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/DeregisterOrganizationAdminAccount
 func (c *AuditManager) DeregisterOrganizationAdminAccount(input *DeregisterOrganizationAdminAccountInput) (*DeregisterOrganizationAdminAccountOutput, error) {
@@ -1530,7 +1619,7 @@ func (c *AuditManager) DisassociateAssessmentReportEvidenceFolderRequest(input *
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1538,7 +1627,7 @@ func (c *AuditManager) DisassociateAssessmentReportEvidenceFolderRequest(input *
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/DisassociateAssessmentReportEvidenceFolder
 func (c *AuditManager) DisassociateAssessmentReportEvidenceFolder(input *DisassociateAssessmentReportEvidenceFolderInput) (*DisassociateAssessmentReportEvidenceFolderOutput, error) {
@@ -1697,13 +1786,13 @@ func (c *AuditManager) GetAssessmentRequest(input *GetAssessmentInput) (req *req
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1787,13 +1876,13 @@ func (c *AuditManager) GetAssessmentFrameworkRequest(input *GetAssessmentFramewo
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1866,7 +1955,7 @@ func (c *AuditManager) GetAssessmentReportUrlRequest(input *GetAssessmentReportU
 
 // GetAssessmentReportUrl API operation for AWS Audit Manager.
 //
-// Returns the URL of a specified assessment report in Audit Manager.
+// Returns the URL of an assessment report in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1880,7 +1969,7 @@ func (c *AuditManager) GetAssessmentReportUrlRequest(input *GetAssessmentReportU
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -1888,7 +1977,7 @@ func (c *AuditManager) GetAssessmentReportUrlRequest(input *GetAssessmentReportU
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/GetAssessmentReportUrl
 func (c *AuditManager) GetAssessmentReportUrl(input *GetAssessmentReportUrlInput) (*GetAssessmentReportUrlOutput, error) {
@@ -1973,11 +2062,11 @@ func (c *AuditManager) GetChangeLogsRequest(input *GetChangeLogsInput) (req *req
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -2115,13 +2204,13 @@ func (c *AuditManager) GetControlRequest(input *GetControlInput) (req *request.R
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -2214,7 +2303,7 @@ func (c *AuditManager) GetDelegationsRequest(input *GetDelegationsInput) (req *r
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -2350,13 +2439,13 @@ func (c *AuditManager) GetEvidenceRequest(input *GetEvidenceInput) (req *request
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -2446,13 +2535,13 @@ func (c *AuditManager) GetEvidenceByEvidenceFolderRequest(input *GetEvidenceByEv
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -2588,13 +2677,13 @@ func (c *AuditManager) GetEvidenceFolderRequest(input *GetEvidenceFolderInput) (
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -2684,10 +2773,10 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentRequest(input *GetEvidenceF
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
@@ -2821,8 +2910,8 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentControlRequest(input *GetEv
 
 // GetEvidenceFoldersByAssessmentControl API operation for AWS Audit Manager.
 //
-// Returns a list of evidence folders associated with a specified control of
-// an assessment in Audit Manager.
+// Returns a list of evidence folders that are associated with a specified control
+// of an assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2833,13 +2922,13 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentControlRequest(input *GetEv
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -2979,7 +3068,7 @@ func (c *AuditManager) GetOrganizationAdminAccountRequest(input *GetOrganization
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -2987,7 +3076,7 @@ func (c *AuditManager) GetOrganizationAdminAccountRequest(input *GetOrganization
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/GetOrganizationAdminAccount
 func (c *AuditManager) GetOrganizationAdminAccount(input *GetOrganizationAdminAccountInput) (*GetOrganizationAdminAccountOutput, error) {
@@ -3067,7 +3156,7 @@ func (c *AuditManager) GetServicesInScopeRequest(input *GetServicesInScopeInput)
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
@@ -3154,7 +3243,7 @@ func (c *AuditManager) GetSettingsRequest(input *GetSettingsInput) (req *request
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -3181,6 +3270,152 @@ func (c *AuditManager) GetSettingsWithContext(ctx aws.Context, input *GetSetting
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAssessmentFrameworkShareRequests = "ListAssessmentFrameworkShareRequests"
+
+// ListAssessmentFrameworkShareRequestsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssessmentFrameworkShareRequests operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAssessmentFrameworkShareRequests for more information on using the ListAssessmentFrameworkShareRequests
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAssessmentFrameworkShareRequestsRequest method.
+//    req, resp := client.ListAssessmentFrameworkShareRequestsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListAssessmentFrameworkShareRequests
+func (c *AuditManager) ListAssessmentFrameworkShareRequestsRequest(input *ListAssessmentFrameworkShareRequestsInput) (req *request.Request, output *ListAssessmentFrameworkShareRequestsOutput) {
+	op := &request.Operation{
+		Name:       opListAssessmentFrameworkShareRequests,
+		HTTPMethod: "GET",
+		HTTPPath:   "/assessmentFrameworkShareRequests",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAssessmentFrameworkShareRequestsInput{}
+	}
+
+	output = &ListAssessmentFrameworkShareRequestsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAssessmentFrameworkShareRequests API operation for AWS Audit Manager.
+//
+// Returns a list of sent or received share requests for custom frameworks in
+// Audit Manager.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation ListAssessmentFrameworkShareRequests for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListAssessmentFrameworkShareRequests
+func (c *AuditManager) ListAssessmentFrameworkShareRequests(input *ListAssessmentFrameworkShareRequestsInput) (*ListAssessmentFrameworkShareRequestsOutput, error) {
+	req, out := c.ListAssessmentFrameworkShareRequestsRequest(input)
+	return out, req.Send()
+}
+
+// ListAssessmentFrameworkShareRequestsWithContext is the same as ListAssessmentFrameworkShareRequests with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAssessmentFrameworkShareRequests for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListAssessmentFrameworkShareRequestsWithContext(ctx aws.Context, input *ListAssessmentFrameworkShareRequestsInput, opts ...request.Option) (*ListAssessmentFrameworkShareRequestsOutput, error) {
+	req, out := c.ListAssessmentFrameworkShareRequestsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAssessmentFrameworkShareRequestsPages iterates over the pages of a ListAssessmentFrameworkShareRequests operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssessmentFrameworkShareRequests method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAssessmentFrameworkShareRequests operation.
+//    pageNum := 0
+//    err := client.ListAssessmentFrameworkShareRequestsPages(params,
+//        func(page *auditmanager.ListAssessmentFrameworkShareRequestsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AuditManager) ListAssessmentFrameworkShareRequestsPages(input *ListAssessmentFrameworkShareRequestsInput, fn func(*ListAssessmentFrameworkShareRequestsOutput, bool) bool) error {
+	return c.ListAssessmentFrameworkShareRequestsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAssessmentFrameworkShareRequestsPagesWithContext same as ListAssessmentFrameworkShareRequestsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListAssessmentFrameworkShareRequestsPagesWithContext(ctx aws.Context, input *ListAssessmentFrameworkShareRequestsInput, fn func(*ListAssessmentFrameworkShareRequestsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAssessmentFrameworkShareRequestsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAssessmentFrameworkShareRequestsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAssessmentFrameworkShareRequestsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListAssessmentFrameworks = "ListAssessmentFrameworks"
@@ -3233,8 +3468,8 @@ func (c *AuditManager) ListAssessmentFrameworksRequest(input *ListAssessmentFram
 
 // ListAssessmentFrameworks API operation for AWS Audit Manager.
 //
-// Returns a list of the frameworks available in the Audit Manager framework
-// library.
+// Returns a list of the frameworks that are available in the Audit Manager
+// framework library.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3248,7 +3483,7 @@ func (c *AuditManager) ListAssessmentFrameworksRequest(input *ListAssessmentFram
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -3393,7 +3628,7 @@ func (c *AuditManager) ListAssessmentReportsRequest(input *ListAssessmentReports
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -3535,7 +3770,7 @@ func (c *AuditManager) ListAssessmentsRequest(input *ListAssessmentsInput) (req 
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
@@ -3680,7 +3915,7 @@ func (c *AuditManager) ListControlsRequest(input *ListControlsInput) (req *reque
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
@@ -3814,7 +4049,7 @@ func (c *AuditManager) ListKeywordsForDataSourceRequest(input *ListKeywordsForDa
 
 // ListKeywordsForDataSource API operation for AWS Audit Manager.
 //
-// Returns a list of keywords that pre-mapped to the specified control data
+// Returns a list of keywords that are pre-mapped to the specified control data
 // source.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3826,7 +4061,7 @@ func (c *AuditManager) ListKeywordsForDataSourceRequest(input *ListKeywordsForDa
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
@@ -3971,7 +4206,7 @@ func (c *AuditManager) ListNotificationsRequest(input *ListNotificationsInput) (
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
@@ -4117,7 +4352,7 @@ func (c *AuditManager) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 //   The request has invalid or missing parameters.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListTagsForResource
 func (c *AuditManager) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -4199,7 +4434,7 @@ func (c *AuditManager) RegisterAccountRequest(input *RegisterAccountInput) (req 
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -4207,7 +4442,7 @@ func (c *AuditManager) RegisterAccountRequest(input *RegisterAccountInput) (req 
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/RegisterAccount
 func (c *AuditManager) RegisterAccount(input *RegisterAccountInput) (*RegisterAccountOutput, error) {
@@ -4290,7 +4525,7 @@ func (c *AuditManager) RegisterOrganizationAdminAccountRequest(input *RegisterOr
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -4298,7 +4533,7 @@ func (c *AuditManager) RegisterOrganizationAdminAccountRequest(input *RegisterOr
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/RegisterOrganizationAdminAccount
 func (c *AuditManager) RegisterOrganizationAdminAccount(input *RegisterOrganizationAdminAccountInput) (*RegisterOrganizationAdminAccountOutput, error) {
@@ -4317,6 +4552,109 @@ func (c *AuditManager) RegisterOrganizationAdminAccount(input *RegisterOrganizat
 // for more information on using Contexts.
 func (c *AuditManager) RegisterOrganizationAdminAccountWithContext(ctx aws.Context, input *RegisterOrganizationAdminAccountInput, opts ...request.Option) (*RegisterOrganizationAdminAccountOutput, error) {
 	req, out := c.RegisterOrganizationAdminAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartAssessmentFrameworkShare = "StartAssessmentFrameworkShare"
+
+// StartAssessmentFrameworkShareRequest generates a "aws/request.Request" representing the
+// client's request for the StartAssessmentFrameworkShare operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartAssessmentFrameworkShare for more information on using the StartAssessmentFrameworkShare
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartAssessmentFrameworkShareRequest method.
+//    req, resp := client.StartAssessmentFrameworkShareRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/StartAssessmentFrameworkShare
+func (c *AuditManager) StartAssessmentFrameworkShareRequest(input *StartAssessmentFrameworkShareInput) (req *request.Request, output *StartAssessmentFrameworkShareOutput) {
+	op := &request.Operation{
+		Name:       opStartAssessmentFrameworkShare,
+		HTTPMethod: "POST",
+		HTTPPath:   "/assessmentFrameworks/{frameworkId}/shareRequests",
+	}
+
+	if input == nil {
+		input = &StartAssessmentFrameworkShareInput{}
+	}
+
+	output = &StartAssessmentFrameworkShareOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartAssessmentFrameworkShare API operation for AWS Audit Manager.
+//
+// Creates a share request for a custom framework in Audit Manager.
+//
+// The share request specifies a recipient and notifies them that a custom framework
+// is available. Recipients have 120 days to accept or decline the request.
+// If no action is taken, the share request expires.
+//
+// When you invoke the StartAssessmentFrameworkShare API, you are about to share
+// a custom framework with another Amazon Web Services account. You may not
+// share a custom framework that is derived from a standard framework if the
+// standard framework is designated as not eligible for sharing by Amazon Web
+// Services, unless you have obtained permission to do so from the owner of
+// the standard framework. To learn more about which standard frameworks are
+// eligible for sharing, see Framework sharing eligibility (https://docs.aws.amazon.com/audit-manager/latest/userguide/share-custom-framework-concepts-and-terminology.html#eligibility)
+// in the Audit Manager User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation StartAssessmentFrameworkShare for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+//   * ResourceNotFoundException
+//   The resource that's specified in the request can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/StartAssessmentFrameworkShare
+func (c *AuditManager) StartAssessmentFrameworkShare(input *StartAssessmentFrameworkShareInput) (*StartAssessmentFrameworkShareOutput, error) {
+	req, out := c.StartAssessmentFrameworkShareRequest(input)
+	return out, req.Send()
+}
+
+// StartAssessmentFrameworkShareWithContext is the same as StartAssessmentFrameworkShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartAssessmentFrameworkShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) StartAssessmentFrameworkShareWithContext(ctx aws.Context, input *StartAssessmentFrameworkShareInput, opts ...request.Option) (*StartAssessmentFrameworkShareOutput, error) {
+	req, out := c.StartAssessmentFrameworkShareRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4385,7 +4723,7 @@ func (c *AuditManager) TagResourceRequest(input *TagResourceInput) (req *request
 //   The request has invalid or missing parameters.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/TagResource
 func (c *AuditManager) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -4472,7 +4810,7 @@ func (c *AuditManager) UntagResourceRequest(input *UntagResourceInput) (req *req
 //   The request has invalid or missing parameters.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/UntagResource
 func (c *AuditManager) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -4551,13 +4889,13 @@ func (c *AuditManager) UpdateAssessmentRequest(input *UpdateAssessmentInput) (re
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -4641,13 +4979,13 @@ func (c *AuditManager) UpdateAssessmentControlRequest(input *UpdateAssessmentCon
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -4731,13 +5069,13 @@ func (c *AuditManager) UpdateAssessmentControlSetStatusRequest(input *UpdateAsse
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -4821,13 +5159,13 @@ func (c *AuditManager) UpdateAssessmentFrameworkRequest(input *UpdateAssessmentF
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -4851,6 +5189,96 @@ func (c *AuditManager) UpdateAssessmentFramework(input *UpdateAssessmentFramewor
 // for more information on using Contexts.
 func (c *AuditManager) UpdateAssessmentFrameworkWithContext(ctx aws.Context, input *UpdateAssessmentFrameworkInput, opts ...request.Option) (*UpdateAssessmentFrameworkOutput, error) {
 	req, out := c.UpdateAssessmentFrameworkRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAssessmentFrameworkShare = "UpdateAssessmentFrameworkShare"
+
+// UpdateAssessmentFrameworkShareRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAssessmentFrameworkShare operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAssessmentFrameworkShare for more information on using the UpdateAssessmentFrameworkShare
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAssessmentFrameworkShareRequest method.
+//    req, resp := client.UpdateAssessmentFrameworkShareRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/UpdateAssessmentFrameworkShare
+func (c *AuditManager) UpdateAssessmentFrameworkShareRequest(input *UpdateAssessmentFrameworkShareInput) (req *request.Request, output *UpdateAssessmentFrameworkShareOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAssessmentFrameworkShare,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/assessmentFrameworkShareRequests/{requestId}",
+	}
+
+	if input == nil {
+		input = &UpdateAssessmentFrameworkShareInput{}
+	}
+
+	output = &UpdateAssessmentFrameworkShareOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAssessmentFrameworkShare API operation for AWS Audit Manager.
+//
+// Updates a share request for a custom framework in Audit Manager.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation UpdateAssessmentFrameworkShare for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource that's specified in the request can't be found.
+//
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/UpdateAssessmentFrameworkShare
+func (c *AuditManager) UpdateAssessmentFrameworkShare(input *UpdateAssessmentFrameworkShareInput) (*UpdateAssessmentFrameworkShareOutput, error) {
+	req, out := c.UpdateAssessmentFrameworkShareRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAssessmentFrameworkShareWithContext is the same as UpdateAssessmentFrameworkShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAssessmentFrameworkShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) UpdateAssessmentFrameworkShareWithContext(ctx aws.Context, input *UpdateAssessmentFrameworkShareInput, opts ...request.Option) (*UpdateAssessmentFrameworkShareOutput, error) {
+	req, out := c.UpdateAssessmentFrameworkShareRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4911,13 +5339,13 @@ func (c *AuditManager) UpdateAssessmentStatusRequest(input *UpdateAssessmentStat
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -5001,13 +5429,13 @@ func (c *AuditManager) UpdateControlRequest(input *UpdateControlInput) (req *req
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -5094,7 +5522,7 @@ func (c *AuditManager) UpdateSettingsRequest(input *UpdateSettingsInput) (req *r
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -5181,7 +5609,7 @@ func (c *AuditManager) ValidateAssessmentReportIntegrityRequest(input *ValidateA
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
 //   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
@@ -5189,7 +5617,7 @@ func (c *AuditManager) ValidateAssessmentReportIntegrityRequest(input *ValidateA
 //   Try again later.
 //
 //   * ResourceNotFoundException
-//   The resource specified in the request cannot be found.
+//   The resource that's specified in the request can't be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ValidateAssessmentReportIntegrity
 func (c *AuditManager) ValidateAssessmentReportIntegrity(input *ValidateAssessmentReportIntegrityInput) (*ValidateAssessmentReportIntegrityOutput, error) {
@@ -5213,18 +5641,18 @@ func (c *AuditManager) ValidateAssessmentReportIntegrityWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
-// The wrapper of Amazon Web Services account details, such as account ID, email
-// address, and so on.
+// The wrapper of Amazon Web Services account details, such as account ID or
+// email address.
 type AWSAccount struct {
 	_ struct{} `type:"structure"`
 
-	// The email address associated with the specified Amazon Web Services account.
+	// The email address that's associated with the Amazon Web Services account.
 	EmailAddress *string `locationName:"emailAddress" min:"1" type:"string"`
 
-	// The identifier for the specified Amazon Web Services account.
+	// The identifier for the Amazon Web Services account.
 	Id *string `locationName:"id" min:"12" type:"string"`
 
-	// The name of the specified Amazon Web Services account.
+	// The name of the Amazon Web Services account.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
@@ -5283,7 +5711,7 @@ func (s *AWSAccount) SetName(v string) *AWSAccount {
 	return s
 }
 
-// An Amazon Web Service such as Amazon S3, CloudTrail, and so on.
+// An Amazon Web Service such as Amazon S3 or CloudTrail.
 type AWSService struct {
 	_ struct{} `type:"structure"`
 
@@ -5328,7 +5756,7 @@ func (s *AWSService) SetServiceName(v string) *AWSService {
 	return s
 }
 
-// Your account is not registered with Audit Manager. Check the delegated administrator
+// Your account isn't registered with Audit Manager. Check the delegated administrator
 // setup on the Audit Manager settings page, and try again.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -5401,16 +5829,16 @@ type Assessment struct {
 	// The Amazon Resource Name (ARN) of the assessment.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The Amazon Web Services account associated with the assessment.
+	// The Amazon Web Services account that's associated with the assessment.
 	AwsAccount *AWSAccount `locationName:"awsAccount" type:"structure"`
 
-	// The framework from which the assessment was created.
+	// The framework that the assessment was created from.
 	Framework *AssessmentFramework `locationName:"framework" type:"structure"`
 
-	// The metadata for the specified assessment.
+	// The metadata for the assessment.
 	Metadata *AssessmentMetadata `locationName:"metadata" type:"structure"`
 
-	// The tags associated with the assessment.
+	// The tags that are associated with the assessment.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5462,36 +5890,36 @@ func (s *Assessment) SetTags(v map[string]*string) *Assessment {
 	return s
 }
 
-// The control entity that represents a standard or custom control used in an
-// Audit Manager assessment.
+// The control entity that represents a standard control or a custom control
+// in an Audit Manager assessment.
 type AssessmentControl struct {
 	_ struct{} `type:"structure"`
 
 	// The amount of evidence in the assessment report.
 	AssessmentReportEvidenceCount *int64 `locationName:"assessmentReportEvidenceCount" type:"integer"`
 
-	// The list of comments attached to the specified control.
+	// The list of comments that's attached to the control.
 	Comments []*ControlComment `locationName:"comments" type:"list"`
 
-	// The description of the specified control.
+	// The description of the control.
 	Description *string `locationName:"description" type:"string"`
 
-	// The amount of evidence generated for the control.
+	// The amount of evidence that's generated for the control.
 	EvidenceCount *int64 `locationName:"evidenceCount" type:"integer"`
 
-	// The list of data sources for the specified evidence.
+	// The list of data sources for the evidence.
 	EvidenceSources []*string `locationName:"evidenceSources" type:"list"`
 
-	// The identifier for the specified control.
+	// The identifier for the control.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
-	// The name of the specified control.
+	// The name of the control.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The response of the specified control.
+	// The response of the control.
 	Response *string `locationName:"response" type:"string" enum:"ControlResponse"`
 
-	// The status of the specified control.
+	// The status of the control.
 	Status *string `locationName:"status" type:"string" enum:"ControlStatus"`
 }
 
@@ -5571,10 +5999,10 @@ func (s *AssessmentControl) SetStatus(v string) *AssessmentControl {
 type AssessmentControlSet struct {
 	_ struct{} `type:"structure"`
 
-	// The list of controls contained with the control set.
+	// The list of controls that's contained with the control set.
 	Controls []*AssessmentControl `locationName:"controls" type:"list"`
 
-	// The delegations associated with the control set.
+	// The delegations that are associated with the control set.
 	Delegations []*Delegation `locationName:"delegations" type:"list"`
 
 	// The description for the control set.
@@ -5584,17 +6012,18 @@ type AssessmentControlSet struct {
 	// set name in a plain string format.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
-	// The total number of evidence objects uploaded manually to the control set.
+	// The total number of evidence objects that are uploaded manually to the control
+	// set.
 	ManualEvidenceCount *int64 `locationName:"manualEvidenceCount" type:"integer"`
 
-	// The roles associated with the control set.
+	// The roles that are associated with the control set.
 	Roles []*Role `locationName:"roles" type:"list"`
 
 	// Specifies the current status of the control set.
 	Status *string `locationName:"status" type:"string" enum:"ControlSetStatus"`
 
-	// The total number of evidence objects retrieved automatically for the control
-	// set.
+	// The total number of evidence objects that are retrieved automatically for
+	// the control set.
 	SystemEvidenceCount *int64 `locationName:"systemEvidenceCount" type:"integer"`
 }
 
@@ -5664,20 +6093,20 @@ func (s *AssessmentControlSet) SetSystemEvidenceCount(v int64) *AssessmentContro
 	return s
 }
 
-// The folder in which Audit Manager stores evidence for an assessment.
+// The folder where Audit Manager stores evidence for an assessment.
 type AssessmentEvidenceFolder struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	AssessmentId *string `locationName:"assessmentId" min:"36" type:"string"`
 
-	// The total count of evidence included in the assessment report.
+	// The total count of evidence that's included in the assessment report.
 	AssessmentReportSelectionCount *int64 `locationName:"assessmentReportSelectionCount" type:"integer"`
 
 	// The name of the user who created the evidence folder.
 	Author *string `locationName:"author" type:"string"`
 
-	// The unique identifier for the specified control.
+	// The unique identifier for the control.
 	ControlId *string `locationName:"controlId" min:"36" type:"string"`
 
 	// The name of the control.
@@ -5686,14 +6115,14 @@ type AssessmentEvidenceFolder struct {
 	// The identifier for the control set.
 	ControlSetId *string `locationName:"controlSetId" min:"1" type:"string"`
 
-	// The Amazon Web Service from which the evidence was collected.
+	// The Amazon Web Service that the evidence was collected from.
 	DataSource *string `locationName:"dataSource" type:"string"`
 
 	// The date when the first evidence was added to the evidence folder.
 	Date *time.Time `locationName:"date" type:"timestamp"`
 
-	// The total number of Amazon Web Services resources assessed to generate the
-	// evidence.
+	// The total number of Amazon Web Services resources that were assessed to generate
+	// the evidence.
 	EvidenceAwsServiceSourceCount *int64 `locationName:"evidenceAwsServiceSourceCount" type:"integer"`
 
 	// The number of evidence that falls under the compliance check category. This
@@ -5717,13 +6146,13 @@ type AssessmentEvidenceFolder struct {
 	// evidence is collected from CloudTrail logs.
 	EvidenceByTypeUserActivityCount *int64 `locationName:"evidenceByTypeUserActivityCount" type:"integer"`
 
-	// The amount of evidence included in the evidence folder.
+	// The amount of evidence that's included in the evidence folder.
 	EvidenceResourcesIncludedCount *int64 `locationName:"evidenceResourcesIncludedCount" type:"integer"`
 
-	// The identifier for the folder in which evidence is stored.
+	// The identifier for the folder that the evidence is stored in.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
-	// The name of the specified evidence folder.
+	// The name of the evidence folder.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The total amount of evidence in the evidence folder.
@@ -5861,16 +6290,16 @@ func (s *AssessmentEvidenceFolder) SetTotalEvidence(v int64) *AssessmentEvidence
 type AssessmentFramework struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the specified framework.
+	// The Amazon Resource Name (ARN) of the framework.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The control sets associated with the framework.
+	// The control sets that are associated with the framework.
 	ControlSets []*AssessmentControlSet `locationName:"controlSets" type:"list"`
 
 	// The unique identifier for the framework.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
-	// The metadata of a framework, such as the name, ID, description, and so on.
+	// The metadata of a framework, such as the name, ID, or description.
 	Metadata *FrameworkMetadata `locationName:"metadata" type:"structure"`
 }
 
@@ -5916,7 +6345,7 @@ func (s *AssessmentFramework) SetMetadata(v *FrameworkMetadata) *AssessmentFrame
 	return s
 }
 
-// The metadata associated with a standard or custom framework.
+// The metadata that's associated with a standard framework or a custom framework.
 type AssessmentFrameworkMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -5927,31 +6356,31 @@ type AssessmentFrameworkMetadata struct {
 	// HIPAA.
 	ComplianceType *string `locationName:"complianceType" type:"string"`
 
-	// The number of control sets associated with the specified framework.
+	// The number of control sets that are associated with the framework.
 	ControlSetsCount *int64 `locationName:"controlSetsCount" type:"integer"`
 
-	// The number of controls associated with the specified framework.
+	// The number of controls that are associated with the framework.
 	ControlsCount *int64 `locationName:"controlsCount" type:"integer"`
 
 	// Specifies when the framework was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// The description of the specified framework.
+	// The description of the framework.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The unique identified for the specified framework.
+	// The unique identifier for the framework.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
 	// Specifies when the framework was most recently updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// The logo associated with the framework.
+	// The logo that's associated with the framework.
 	Logo *string `locationName:"logo" min:"1" type:"string"`
 
-	// The name of the specified framework.
+	// The name of the framework.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The framework type, such as standard or custom.
+	// The framework type, such as a standard framework or a custom framework.
 	Type *string `locationName:"type" type:"string" enum:"FrameworkType"`
 }
 
@@ -6039,20 +6468,180 @@ func (s *AssessmentFrameworkMetadata) SetType(v string) *AssessmentFrameworkMeta
 	return s
 }
 
-// The metadata associated with the specified assessment.
+// Represents a share request for a custom framework in Audit Manager.
+type AssessmentFrameworkShareRequest struct {
+	_ struct{} `type:"structure"`
+
+	// An optional comment from the sender about the share request.
+	Comment *string `locationName:"comment" type:"string"`
+
+	// The compliance type that the shared custom framework supports, such as CIS
+	// or HIPAA.
+	ComplianceType *string `locationName:"complianceType" type:"string"`
+
+	// The time when the share request was created.
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
+
+	// The number of custom controls that are part of the shared custom framework.
+	CustomControlsCount *int64 `locationName:"customControlsCount" type:"integer"`
+
+	// The Amazon Web Services account of the recipient.
+	DestinationAccount *string `locationName:"destinationAccount" min:"12" type:"string"`
+
+	// The Amazon Web Services Region of the recipient.
+	DestinationRegion *string `locationName:"destinationRegion" type:"string"`
+
+	// The time when the share request expires.
+	ExpirationTime *time.Time `locationName:"expirationTime" type:"timestamp"`
+
+	// The description of the shared custom framework.
+	FrameworkDescription *string `locationName:"frameworkDescription" min:"1" type:"string"`
+
+	// The unique identifier for the shared custom framework.
+	FrameworkId *string `locationName:"frameworkId" min:"36" type:"string"`
+
+	// The name of the custom framework that the share request is for.
+	FrameworkName *string `locationName:"frameworkName" min:"1" type:"string"`
+
+	// The unique identifier for the share request.
+	Id *string `locationName:"id" min:"36" type:"string"`
+
+	// Specifies when the share request was last updated.
+	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
+
+	// The Amazon Web Services account of the sender.
+	SourceAccount *string `locationName:"sourceAccount" min:"12" type:"string"`
+
+	// The number of standard controls that are part of the shared custom framework.
+	StandardControlsCount *int64 `locationName:"standardControlsCount" type:"integer"`
+
+	// The status of the share request.
+	Status *string `locationName:"status" type:"string" enum:"ShareRequestStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssessmentFrameworkShareRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssessmentFrameworkShareRequest) GoString() string {
+	return s.String()
+}
+
+// SetComment sets the Comment field's value.
+func (s *AssessmentFrameworkShareRequest) SetComment(v string) *AssessmentFrameworkShareRequest {
+	s.Comment = &v
+	return s
+}
+
+// SetComplianceType sets the ComplianceType field's value.
+func (s *AssessmentFrameworkShareRequest) SetComplianceType(v string) *AssessmentFrameworkShareRequest {
+	s.ComplianceType = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *AssessmentFrameworkShareRequest) SetCreationTime(v time.Time) *AssessmentFrameworkShareRequest {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCustomControlsCount sets the CustomControlsCount field's value.
+func (s *AssessmentFrameworkShareRequest) SetCustomControlsCount(v int64) *AssessmentFrameworkShareRequest {
+	s.CustomControlsCount = &v
+	return s
+}
+
+// SetDestinationAccount sets the DestinationAccount field's value.
+func (s *AssessmentFrameworkShareRequest) SetDestinationAccount(v string) *AssessmentFrameworkShareRequest {
+	s.DestinationAccount = &v
+	return s
+}
+
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *AssessmentFrameworkShareRequest) SetDestinationRegion(v string) *AssessmentFrameworkShareRequest {
+	s.DestinationRegion = &v
+	return s
+}
+
+// SetExpirationTime sets the ExpirationTime field's value.
+func (s *AssessmentFrameworkShareRequest) SetExpirationTime(v time.Time) *AssessmentFrameworkShareRequest {
+	s.ExpirationTime = &v
+	return s
+}
+
+// SetFrameworkDescription sets the FrameworkDescription field's value.
+func (s *AssessmentFrameworkShareRequest) SetFrameworkDescription(v string) *AssessmentFrameworkShareRequest {
+	s.FrameworkDescription = &v
+	return s
+}
+
+// SetFrameworkId sets the FrameworkId field's value.
+func (s *AssessmentFrameworkShareRequest) SetFrameworkId(v string) *AssessmentFrameworkShareRequest {
+	s.FrameworkId = &v
+	return s
+}
+
+// SetFrameworkName sets the FrameworkName field's value.
+func (s *AssessmentFrameworkShareRequest) SetFrameworkName(v string) *AssessmentFrameworkShareRequest {
+	s.FrameworkName = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AssessmentFrameworkShareRequest) SetId(v string) *AssessmentFrameworkShareRequest {
+	s.Id = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *AssessmentFrameworkShareRequest) SetLastUpdated(v time.Time) *AssessmentFrameworkShareRequest {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetSourceAccount sets the SourceAccount field's value.
+func (s *AssessmentFrameworkShareRequest) SetSourceAccount(v string) *AssessmentFrameworkShareRequest {
+	s.SourceAccount = &v
+	return s
+}
+
+// SetStandardControlsCount sets the StandardControlsCount field's value.
+func (s *AssessmentFrameworkShareRequest) SetStandardControlsCount(v int64) *AssessmentFrameworkShareRequest {
+	s.StandardControlsCount = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AssessmentFrameworkShareRequest) SetStatus(v string) *AssessmentFrameworkShareRequest {
+	s.Status = &v
+	return s
+}
+
+// The metadata that's associated with the specified assessment.
 type AssessmentMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The destination in which evidence reports are stored for the specified assessment.
+	// The destination that evidence reports are stored in for the assessment.
 	AssessmentReportsDestination *AssessmentReportsDestination `locationName:"assessmentReportsDestination" type:"structure"`
 
-	// The name of a compliance standard related to the assessment, such as PCI-DSS.
+	// The name of the compliance standard that's related to the assessment, such
+	// as PCI-DSS.
 	ComplianceType *string `locationName:"complianceType" type:"string"`
 
 	// Specifies when the assessment was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The delegations associated with the assessment.
+	// The delegations that are associated with the assessment.
 	Delegations []*Delegation `locationName:"delegations" type:"list"`
 
 	// The description of the assessment.
@@ -6067,11 +6656,11 @@ type AssessmentMetadata struct {
 	// The name of the assessment.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The roles associated with the assessment.
+	// The roles that are associated with the assessment.
 	Roles []*Role `locationName:"roles" type:"list"`
 
-	// The wrapper of Amazon Web Services accounts and services in scope for the
-	// assessment.
+	// The wrapper of Amazon Web Services accounts and services that are in scope
+	// for the assessment.
 	Scope *Scope `locationName:"scope" type:"structure"`
 
 	// The overall status of the assessment.
@@ -6162,17 +6751,18 @@ func (s *AssessmentMetadata) SetStatus(v string) *AssessmentMetadata {
 	return s
 }
 
-// A metadata object associated with an assessment in Audit Manager.
+// A metadata object that's associated with an assessment in Audit Manager.
 type AssessmentMetadataItem struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the compliance standard related to the assessment, such as PCI-DSS.
+	// The name of the compliance standard that's related to the assessment, such
+	// as PCI-DSS.
 	ComplianceType *string `locationName:"complianceType" type:"string"`
 
 	// Specifies when the assessment was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The delegations associated with the assessment.
+	// The delegations that are associated with the assessment.
 	Delegations []*Delegation `locationName:"delegations" type:"list"`
 
 	// The unique identifier for the assessment.
@@ -6184,7 +6774,7 @@ type AssessmentMetadataItem struct {
 	// The name of the assessment.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The roles associated with the assessment.
+	// The roles that are associated with the assessment.
 	Roles []*Role `locationName:"roles" type:"list"`
 
 	// The current status of the assessment.
@@ -6257,10 +6847,10 @@ func (s *AssessmentMetadataItem) SetStatus(v string) *AssessmentMetadataItem {
 	return s
 }
 
-// A finalized document generated from an Audit Manager assessment. These reports
-// summarize the relevant evidence collected for your audit, and link to the
-// relevant evidence folders which are named and organized according to the
-// controls specified in your assessment.
+// A finalized document that's generated from an Audit Manager assessment. These
+// reports summarize the relevant evidence that was collected for your audit,
+// and link to the relevant evidence folders. These evidence folders are named
+// and organized according to the controls that are specified in your assessment.
 type AssessmentReport struct {
 	_ struct{} `type:"structure"`
 
@@ -6282,10 +6872,10 @@ type AssessmentReport struct {
 	// The description of the specified assessment report.
 	Description *string `locationName:"description" type:"string"`
 
-	// The unique identifier for the specified assessment report.
+	// The unique identifier for the assessment report.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
-	// The name given to the assessment report.
+	// The name that's given to the assessment report.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The current status of the specified assessment report.
@@ -6369,10 +6959,10 @@ func (s *AssessmentReport) SetStatus(v string) *AssessmentReport {
 type AssessmentReportEvidenceError struct {
 	_ struct{} `type:"structure"`
 
-	// The error code returned by the AssessmentReportEvidence API.
+	// The error code that the AssessmentReportEvidence API returned.
 	ErrorCode *string `locationName:"errorCode" min:"3" type:"string"`
 
-	// The error message returned by the AssessmentReportEvidence API.
+	// The error message that the AssessmentReportEvidence API returned.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
 	// The identifier for the evidence.
@@ -6415,7 +7005,7 @@ func (s *AssessmentReportEvidenceError) SetEvidenceId(v string) *AssessmentRepor
 	return s
 }
 
-// The metadata objects associated with the specified assessment report.
+// The metadata objects that are associated with the specified assessment report.
 type AssessmentReportMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -6431,7 +7021,7 @@ type AssessmentReportMetadata struct {
 	// Specifies when the assessment report was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The description of the specified assessment report.
+	// The description of the assessment report.
 	Description *string `locationName:"description" type:"string"`
 
 	// The unique identifier for the assessment report.
@@ -6510,8 +7100,7 @@ func (s *AssessmentReportMetadata) SetStatus(v string) *AssessmentReportMetadata
 	return s
 }
 
-// The location in which Audit Manager saves assessment reports for the given
-// assessment.
+// The location where Audit Manager saves assessment reports for the given assessment.
 type AssessmentReportsDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -6568,12 +7157,12 @@ func (s *AssessmentReportsDestination) SetDestinationType(v string) *AssessmentR
 type AssociateAssessmentReportEvidenceFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the folder in which evidence is stored.
+	// The identifier for the folder that the evidence is stored in.
 	//
 	// EvidenceFolderId is a required field
 	EvidenceFolderId *string `locationName:"evidenceFolderId" min:"36" type:"string" required:"true"`
@@ -6656,12 +7245,12 @@ func (s AssociateAssessmentReportEvidenceFolderOutput) GoString() string {
 type BatchAssociateAssessmentReportEvidenceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the folder in which the evidence is stored.
+	// The identifier for the folder that the evidence is stored in.
 	//
 	// EvidenceFolderId is a required field
 	EvidenceFolderId *string `locationName:"evidenceFolderId" min:"36" type:"string" required:"true"`
@@ -6736,10 +7325,10 @@ func (s *BatchAssociateAssessmentReportEvidenceInput) SetEvidenceIds(v []*string
 type BatchAssociateAssessmentReportEvidenceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of errors returned by the BatchAssociateAssessmentReportEvidence API.
+	// A list of errors that the BatchAssociateAssessmentReportEvidence API returned.
 	Errors []*AssessmentReportEvidenceError `locationName:"errors" type:"list"`
 
-	// The identifier for the evidence.
+	// The list of evidence identifiers.
 	EvidenceIds []*string `locationName:"evidenceIds" type:"list"`
 }
 
@@ -6781,10 +7370,10 @@ type BatchCreateDelegationByAssessmentError struct {
 	// The API request to batch create delegations in Audit Manager.
 	CreateDelegationRequest *CreateDelegationRequest `locationName:"createDelegationRequest" type:"structure"`
 
-	// The error code returned by the BatchCreateDelegationByAssessment API.
+	// The error code that the BatchCreateDelegationByAssessment API returned.
 	ErrorCode *string `locationName:"errorCode" min:"3" type:"string"`
 
-	// The error message returned by the BatchCreateDelegationByAssessment API.
+	// The error message that the BatchCreateDelegationByAssessment API returned.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 }
 
@@ -6827,7 +7416,7 @@ func (s *BatchCreateDelegationByAssessmentError) SetErrorMessage(v string) *Batc
 type BatchCreateDelegationByAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -6903,10 +7492,10 @@ func (s *BatchCreateDelegationByAssessmentInput) SetCreateDelegationRequests(v [
 type BatchCreateDelegationByAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The delegations associated with the assessment.
+	// The delegations that are associated with the assessment.
 	Delegations []*Delegation `locationName:"delegations" type:"list"`
 
-	// A list of errors returned by the BatchCreateDelegationByAssessment API.
+	// A list of errors that the BatchCreateDelegationByAssessment API returned.
 	Errors []*BatchCreateDelegationByAssessmentError `locationName:"errors" type:"list"`
 }
 
@@ -6945,13 +7534,13 @@ func (s *BatchCreateDelegationByAssessmentOutput) SetErrors(v []*BatchCreateDele
 type BatchDeleteDelegationByAssessmentError struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified delegation.
+	// The identifier for the delegation.
 	DelegationId *string `locationName:"delegationId" min:"36" type:"string"`
 
-	// The error code returned by the BatchDeleteDelegationByAssessment API.
+	// The error code that the BatchDeleteDelegationByAssessment API returned.
 	ErrorCode *string `locationName:"errorCode" min:"3" type:"string"`
 
-	// The error message returned by the BatchDeleteDelegationByAssessment API.
+	// The error message that the BatchDeleteDelegationByAssessment API returned.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 }
 
@@ -6994,12 +7583,12 @@ func (s *BatchDeleteDelegationByAssessmentError) SetErrorMessage(v string) *Batc
 type BatchDeleteDelegationByAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifiers for the specified delegations.
+	// The identifiers for the delegations.
 	//
 	// DelegationIds is a required field
 	DelegationIds []*string `locationName:"delegationIds" min:"1" type:"list" required:"true"`
@@ -7060,7 +7649,7 @@ func (s *BatchDeleteDelegationByAssessmentInput) SetDelegationIds(v []*string) *
 type BatchDeleteDelegationByAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of errors returned by the BatchDeleteDelegationByAssessment API.
+	// A list of errors that the BatchDeleteDelegationByAssessment API returned.
 	Errors []*BatchDeleteDelegationByAssessmentError `locationName:"errors" type:"list"`
 }
 
@@ -7091,12 +7680,12 @@ func (s *BatchDeleteDelegationByAssessmentOutput) SetErrors(v []*BatchDeleteDele
 type BatchDisassociateAssessmentReportEvidenceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the folder in which evidence is stored.
+	// The identifier for the folder that the evidence is stored in.
 	//
 	// EvidenceFolderId is a required field
 	EvidenceFolderId *string `locationName:"evidenceFolderId" min:"36" type:"string" required:"true"`
@@ -7171,8 +7760,7 @@ func (s *BatchDisassociateAssessmentReportEvidenceInput) SetEvidenceIds(v []*str
 type BatchDisassociateAssessmentReportEvidenceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of errors returned by the BatchDisassociateAssessmentReportEvidence
-	// API.
+	// A list of errors that the BatchDisassociateAssessmentReportEvidence API returned.
 	Errors []*AssessmentReportEvidenceError `locationName:"errors" type:"list"`
 
 	// The identifier for the evidence.
@@ -7214,14 +7802,13 @@ func (s *BatchDisassociateAssessmentReportEvidenceOutput) SetEvidenceIds(v []*st
 type BatchImportEvidenceToAssessmentControlError struct {
 	_ struct{} `type:"structure"`
 
-	// The error code returned by the BatchImportEvidenceToAssessmentControl API.
+	// The error code that the BatchImportEvidenceToAssessmentControl API returned.
 	ErrorCode *string `locationName:"errorCode" min:"3" type:"string"`
 
-	// The error message returned by the BatchImportEvidenceToAssessmentControl
-	// API.
+	// The error message that the BatchImportEvidenceToAssessmentControl API returned.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
-	// Manual evidence that cannot be collected automatically by Audit Manager.
+	// Manual evidence that can't be collected automatically by Audit Manager.
 	ManualEvidence *ManualEvidence `locationName:"manualEvidence" type:"structure"`
 }
 
@@ -7264,17 +7851,17 @@ func (s *BatchImportEvidenceToAssessmentControlError) SetManualEvidence(v *Manua
 type BatchImportEvidenceToAssessmentControlInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the specified control.
+	// The identifier for the control.
 	//
 	// ControlId is a required field
 	ControlId *string `location:"uri" locationName:"controlId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the specified control set.
+	// The identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" min:"1" type:"string" required:"true"`
@@ -7374,7 +7961,7 @@ func (s *BatchImportEvidenceToAssessmentControlInput) SetManualEvidence(v []*Man
 type BatchImportEvidenceToAssessmentControlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of errors returned by the BatchImportEvidenceToAssessmentControl API.
+	// A list of errors that the BatchImportEvidenceToAssessmentControl API returned.
 	Errors []*BatchImportEvidenceToAssessmentControlError `locationName:"errors" type:"list"`
 }
 
@@ -7402,24 +7989,25 @@ func (s *BatchImportEvidenceToAssessmentControlOutput) SetErrors(v []*BatchImpor
 	return s
 }
 
-// The record of a change within Audit Manager, such as a modified assessment,
-// a delegated control set, and so on.
+// The record of a change within Audit Manager. For example, this could be the
+// status change of an assessment or the delegation of a control set.
 type ChangeLog struct {
 	_ struct{} `type:"structure"`
 
-	// The action performed.
+	// The action that was performed.
 	Action *string `locationName:"action" type:"string" enum:"ActionEnum"`
 
-	// The time of creation for the changelog object.
+	// The time when the action was performed and the changelog record was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
 	// The IAM user or role that performed the action.
 	CreatedBy *string `locationName:"createdBy" min:"20" type:"string"`
 
-	// The name of the changelog object.
+	// The name of the object that changed. This could be the name of an assessment,
+	// control, or control set.
 	ObjectName *string `locationName:"objectName" min:"1" type:"string"`
 
-	// The changelog object type, such as an assessment, control, or control set.
+	// The object that was changed, such as an assessment, control, or control set.
 	ObjectType *string `locationName:"objectType" type:"string" enum:"ObjectTypeEnum"`
 }
 
@@ -7475,19 +8063,19 @@ func (s *ChangeLog) SetObjectType(v string) *ChangeLog {
 type Control struct {
 	_ struct{} `type:"structure"`
 
-	// The recommended actions to carry out if the control is not fulfilled.
+	// The recommended actions to carry out if the control isn't fulfilled.
 	ActionPlanInstructions *string `locationName:"actionPlanInstructions" type:"string"`
 
 	// The title of the action plan for remediating the control.
 	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the specified control.
+	// The Amazon Resource Name (ARN) of the control.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The data mapping sources for the specified control.
+	// The data mapping sources for the control.
 	ControlMappingSources []*ControlMappingSource `locationName:"controlMappingSources" min:"1" type:"list"`
 
-	// The data source that determines from where Audit Manager collects evidence
+	// The data source that determines where Audit Manager collects evidence from
 	// for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
@@ -7497,7 +8085,7 @@ type Control struct {
 	// The IAM user or role that created the control.
 	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
 
-	// The description of the specified control.
+	// The description of the control.
 	Description *string `locationName:"description" type:"string"`
 
 	// The unique identifier for the control.
@@ -7509,16 +8097,16 @@ type Control struct {
 	// The IAM user or role that most recently updated the control.
 	LastUpdatedBy *string `locationName:"lastUpdatedBy" min:"1" type:"string"`
 
-	// The name of the specified control.
+	// The name of the control.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The tags associated with the control.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The steps to follow to determine if the control has been satisfied.
+	// The steps that you should follow to determine if the control has been satisfied.
 	TestingInformation *string `locationName:"testingInformation" type:"string"`
 
-	// The type of control, such as custom or standard.
+	// The type of control, such as a custom control or a standard control.
 	Type *string `locationName:"type" type:"string" enum:"ControlType"`
 }
 
@@ -7630,8 +8218,8 @@ func (s *Control) SetType(v string) *Control {
 	return s
 }
 
-// A comment posted by a user on a control. This includes the author's name,
-// the comment text, and a timestamp.
+// A comment that's posted by a user on a control. This includes the author's
+// name, the comment text, and a timestamp.
 type ControlComment struct {
 	_ struct{} `type:"structure"`
 
@@ -7681,35 +8269,35 @@ func (s *ControlComment) SetPostedDate(v time.Time) *ControlComment {
 	return s
 }
 
-// The data source that determines from where Audit Manager collects evidence
+// The data source that determines where Audit Manager collects evidence from
 // for the control.
 type ControlMappingSource struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the specified source.
+	// The description of the source.
 	SourceDescription *string `locationName:"sourceDescription" type:"string"`
 
-	// The frequency of evidence collection for the specified control mapping source.
+	// The frequency of evidence collection for the control mapping source.
 	SourceFrequency *string `locationName:"sourceFrequency" type:"string" enum:"SourceFrequency"`
 
-	// The unique identifier for the specified source.
+	// The unique identifier for the source.
 	SourceId *string `locationName:"sourceId" min:"36" type:"string"`
 
 	// The keyword to search for in CloudTrail logs, Config rules, Security Hub
 	// checks, and Amazon Web Services API names.
 	SourceKeyword *SourceKeyword `locationName:"sourceKeyword" type:"structure"`
 
-	// The name of the specified source.
+	// The name of the source.
 	SourceName *string `locationName:"sourceName" min:"1" type:"string"`
 
-	// The setup option for the data source, which reflects if the evidence collection
-	// is automated or manual.
+	// The setup option for the data source. This option reflects if the evidence
+	// collection is automated or manual.
 	SourceSetUpOption *string `locationName:"sourceSetUpOption" type:"string" enum:"SourceSetUpOption"`
 
 	// Specifies one of the five types of data sources for evidence collection.
 	SourceType *string `locationName:"sourceType" type:"string" enum:"SourceType"`
 
-	// The instructions for troubleshooting the specified control.
+	// The instructions for troubleshooting the control.
 	TroubleshootingText *string `locationName:"troubleshootingText" type:"string"`
 }
 
@@ -7800,27 +8388,27 @@ func (s *ControlMappingSource) SetTroubleshootingText(v string) *ControlMappingS
 	return s
 }
 
-// The metadata associated with the specified standard or custom control.
+// The metadata that's associated with the standard control or custom control.
 type ControlMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the specified control.
+	// The Amazon Resource Name (ARN) of the control.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The data source that determines from where Audit Manager collects evidence
+	// The data source that determines where Audit Manager collects evidence from
 	// for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
 	// Specifies when the control was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// The unique identifier for the specified control.
+	// The unique identifier for the control.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
 	// Specifies when the control was most recently updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// The name of the specified control.
+	// The name of the control.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
@@ -7929,8 +8517,8 @@ func (s *ControlSet) SetName(v string) *ControlSet {
 	return s
 }
 
-// Control entity attributes that uniquely identify an existing control to be
-// added to a framework in Audit Manager.
+// The control entity attributes that uniquely identify an existing control
+// to be added to a framework in Audit Manager.
 type CreateAssessmentFrameworkControl struct {
 	_ struct{} `type:"structure"`
 
@@ -7976,15 +8564,15 @@ func (s *CreateAssessmentFrameworkControl) SetId(v string) *CreateAssessmentFram
 }
 
 // A controlSet entity that represents a collection of controls in Audit Manager.
-// This does not contain the control set ID.
+// This doesn't contain the control set ID.
 type CreateAssessmentFrameworkControlSet struct {
 	_ struct{} `type:"structure"`
 
-	// The list of controls within the control set. This does not contain the control
+	// The list of controls within the control set. This doesn't contain the control
 	// set ID.
 	Controls []*CreateAssessmentFrameworkControl `locationName:"controls" min:"1" type:"list"`
 
-	// The name of the specified control set.
+	// The name of the control set.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -8056,7 +8644,7 @@ type CreateAssessmentFrameworkInput struct {
 	// HIPAA.
 	ComplianceType *string `locationName:"complianceType" type:"string"`
 
-	// The control sets to be associated with the framework.
+	// The control sets that are associated with the framework.
 	//
 	// ControlSets is a required field
 	ControlSets []*CreateAssessmentFrameworkControlSet `locationName:"controlSets" min:"1" type:"list" required:"true"`
@@ -8069,7 +8657,7 @@ type CreateAssessmentFrameworkInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The tags associated with the framework.
+	// The tags that are associated with the framework.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -8159,7 +8747,7 @@ func (s *CreateAssessmentFrameworkInput) SetTags(v map[string]*string) *CreateAs
 type CreateAssessmentFrameworkOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the new framework returned by the CreateAssessmentFramework API.
+	// The name of the new framework that the CreateAssessmentFramework API returned.
 	Framework *Framework `locationName:"framework" type:"structure"`
 }
 
@@ -8190,8 +8778,8 @@ func (s *CreateAssessmentFrameworkOutput) SetFramework(v *Framework) *CreateAsse
 type CreateAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The assessment report storage destination for the specified assessment that
-	// is being created.
+	// The assessment report storage destination for the assessment that's being
+	// created.
 	//
 	// AssessmentReportsDestination is a required field
 	AssessmentReportsDestination *AssessmentReportsDestination `locationName:"assessmentReportsDestination" type:"structure" required:"true"`
@@ -8199,7 +8787,7 @@ type CreateAssessmentInput struct {
 	// The optional description of the assessment to be created.
 	Description *string `locationName:"description" type:"string"`
 
-	// The identifier for the specified framework.
+	// The identifier for the framework that the assessment will be created from.
 	//
 	// FrameworkId is a required field
 	FrameworkId *string `locationName:"frameworkId" min:"36" type:"string" required:"true"`
@@ -8209,18 +8797,18 @@ type CreateAssessmentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The list of roles for the specified assessment.
+	// The list of roles for the assessment.
 	//
 	// Roles is a required field
 	Roles []*Role `locationName:"roles" type:"list" required:"true"`
 
-	// The wrapper that contains the Amazon Web Services accounts and services in
-	// scope for the assessment.
+	// The wrapper that contains the Amazon Web Services accounts and services that
+	// are in scope for the assessment.
 	//
 	// Scope is a required field
 	Scope *Scope `locationName:"scope" type:"structure" required:"true"`
 
-	// The tags associated with the assessment.
+	// The tags that are associated with the assessment.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -8370,7 +8958,7 @@ func (s *CreateAssessmentOutput) SetAssessment(v *Assessment) *CreateAssessmentO
 type CreateAssessmentReportInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -8445,7 +9033,7 @@ func (s *CreateAssessmentReportInput) SetName(v string) *CreateAssessmentReportI
 type CreateAssessmentReportOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The new assessment report returned by the CreateAssessmentReport API.
+	// The new assessment report that the CreateAssessmentReport API returned.
 	AssessmentReport *AssessmentReport `locationName:"assessmentReport" type:"structure"`
 }
 
@@ -8476,13 +9064,13 @@ func (s *CreateAssessmentReportOutput) SetAssessmentReport(v *AssessmentReport) 
 type CreateControlInput struct {
 	_ struct{} `type:"structure"`
 
-	// The recommended actions to carry out if the control is not fulfilled.
+	// The recommended actions to carry out if the control isn't fulfilled.
 	ActionPlanInstructions *string `locationName:"actionPlanInstructions" type:"string"`
 
 	// The title of the action plan for remediating the control.
 	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string"`
 
-	// The data mapping sources for the specified control.
+	// The data mapping sources for the control.
 	//
 	// ControlMappingSources is a required field
 	ControlMappingSources []*CreateControlMappingSource `locationName:"controlMappingSources" min:"1" type:"list" required:"true"`
@@ -8495,10 +9083,10 @@ type CreateControlInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The tags associated with the control.
+	// The tags that are associated with the control.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The steps to follow to determine if the control has been satisfied.
+	// The steps to follow to determine if the control is satisfied.
 	TestingInformation *string `locationName:"testingInformation" type:"string"`
 }
 
@@ -8594,16 +9182,16 @@ func (s *CreateControlInput) SetTestingInformation(v string) *CreateControlInput
 	return s
 }
 
-// Control mapping fields that represent the source for evidence collection,
-// along with related parameters and metadata. This does not contain mappingID.
+// The control mapping fields that represent the source for evidence collection,
+// along with related parameters and metadata. This doesn't contain mappingID.
 type CreateControlMappingSource struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the data source that determines from where Audit Manager
-	// collects evidence for the control.
+	// The description of the data source that determines where Audit Manager collects
+	// evidence from for the control.
 	SourceDescription *string `locationName:"sourceDescription" type:"string"`
 
-	// The frequency of evidence collection for the specified control mapping source.
+	// The frequency of evidence collection for the control mapping source.
 	SourceFrequency *string `locationName:"sourceFrequency" type:"string" enum:"SourceFrequency"`
 
 	// The keyword to search for in CloudTrail logs, Config rules, Security Hub
@@ -8620,7 +9208,7 @@ type CreateControlMappingSource struct {
 	// Specifies one of the five types of data sources for evidence collection.
 	SourceType *string `locationName:"sourceType" type:"string" enum:"SourceType"`
 
-	// The instructions for troubleshooting the specified control.
+	// The instructions for troubleshooting the control.
 	TroubleshootingText *string `locationName:"troubleshootingText" type:"string"`
 }
 
@@ -8705,7 +9293,7 @@ func (s *CreateControlMappingSource) SetTroubleshootingText(v string) *CreateCon
 type CreateControlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The new control returned by the CreateControl API.
+	// The new control that the CreateControl API returned.
 	Control *Control `locationName:"control" type:"structure"`
 }
 
@@ -8733,12 +9321,12 @@ func (s *CreateControlOutput) SetControl(v *Control) *CreateControlOutput {
 	return s
 }
 
-// A collection of attributes used to create a delegation for an assessment
+// A collection of attributes that's used to create a delegation for an assessment
 // in Audit Manager.
 type CreateDelegationRequest struct {
 	_ struct{} `type:"structure"`
 
-	// A comment related to the delegation request.
+	// A comment that's related to the delegation request.
 	Comment *string `locationName:"comment" type:"string"`
 
 	// The unique identifier for the control set.
@@ -8819,16 +9407,16 @@ func (s *CreateDelegationRequest) SetRoleType(v string) *CreateDelegationRequest
 type Delegation struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the associated assessment.
+	// The identifier for the assessment that's associated with the delegation.
 	AssessmentId *string `locationName:"assessmentId" min:"36" type:"string"`
 
-	// The name of the associated assessment.
+	// The name of the assessment that's associated with the delegation.
 	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
 
-	// The comment related to the delegation.
+	// The comment that's related to the delegation.
 	Comment *string `locationName:"comment" type:"string"`
 
-	// The identifier for the associated control set.
+	// The identifier for the control set that's associated with the delegation.
 	ControlSetId *string `locationName:"controlSetId" min:"1" type:"string"`
 
 	// The IAM user or role that created the delegation.
@@ -8943,17 +9531,17 @@ func (s *Delegation) SetStatus(v string) *Delegation {
 	return s
 }
 
-// The metadata associated with the specified delegation.
+// The metadata that's associated with the delegation.
 type DelegationMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the specified assessment.
+	// The unique identifier for the assessment.
 	AssessmentId *string `locationName:"assessmentId" min:"36" type:"string"`
 
 	// The name of the associated assessment.
 	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
 
-	// Specifies the name of the control set delegated for review.
+	// Specifies the name of the control set that was delegated for review.
 	ControlSetName *string `locationName:"controlSetName" min:"1" type:"string"`
 
 	// Specifies when the delegation was created.
@@ -8965,7 +9553,7 @@ type DelegationMetadata struct {
 	// The Amazon Resource Name (ARN) of the IAM role.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 
-	// The current status of the delgation.
+	// The current status of the delegation.
 	Status *string `locationName:"status" type:"string" enum:"DelegationStatus"`
 }
 
@@ -9032,7 +9620,7 @@ func (s *DelegationMetadata) SetStatus(v string) *DelegationMetadata {
 type DeleteAssessmentFrameworkInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified framework.
+	// The identifier for the framework.
 	//
 	// FrameworkId is a required field
 	FrameworkId *string `location:"uri" locationName:"frameworkId" min:"36" type:"string" required:"true"`
@@ -9100,10 +9688,95 @@ func (s DeleteAssessmentFrameworkOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteAssessmentFrameworkShareInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the share request to be deleted.
+	//
+	// RequestId is a required field
+	RequestId *string `location:"uri" locationName:"requestId" min:"36" type:"string" required:"true"`
+
+	// Specifies whether the share request is a sent request or a received request.
+	//
+	// RequestType is a required field
+	RequestType *string `location:"querystring" locationName:"requestType" type:"string" required:"true" enum:"ShareRequestType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAssessmentFrameworkShareInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAssessmentFrameworkShareInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAssessmentFrameworkShareInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAssessmentFrameworkShareInput"}
+	if s.RequestId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequestId"))
+	}
+	if s.RequestId != nil && len(*s.RequestId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestId", 36))
+	}
+	if s.RequestType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequestType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteAssessmentFrameworkShareInput) SetRequestId(v string) *DeleteAssessmentFrameworkShareInput {
+	s.RequestId = &v
+	return s
+}
+
+// SetRequestType sets the RequestType field's value.
+func (s *DeleteAssessmentFrameworkShareInput) SetRequestType(v string) *DeleteAssessmentFrameworkShareInput {
+	s.RequestType = &v
+	return s
+}
+
+type DeleteAssessmentFrameworkShareOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAssessmentFrameworkShareOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAssessmentFrameworkShareOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteAssessmentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -9174,7 +9847,7 @@ func (s DeleteAssessmentOutput) GoString() string {
 type DeleteAssessmentReportInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -9262,7 +9935,7 @@ func (s DeleteAssessmentReportOutput) GoString() string {
 type DeleteControlInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified control.
+	// The identifier for the control.
 	//
 	// ControlId is a required field
 	ControlId *string `location:"uri" locationName:"controlId" min:"36" type:"string" required:"true"`
@@ -9386,7 +10059,7 @@ func (s *DeregisterAccountOutput) SetStatus(v string) *DeregisterAccountOutput {
 type DeregisterOrganizationAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified administrator account.
+	// The identifier for the administrator account.
 	AdminAccountId *string `locationName:"adminAccountId" min:"12" type:"string"`
 }
 
@@ -9452,7 +10125,7 @@ func (s DeregisterOrganizationAdminAccountOutput) GoString() string {
 type DisassociateAssessmentReportEvidenceFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -9546,14 +10219,15 @@ type Evidence struct {
 	// Specifies whether the evidence is included in the assessment report.
 	AssessmentReportSelection *string `locationName:"assessmentReportSelection" type:"string"`
 
-	// The names and values used by the evidence event, including an attribute name
-	// (such as allowUsersToChangePassword) and value (such as true or false).
+	// The names and values that are used by the evidence event. This includes an
+	// attribute name (such as allowUsersToChangePassword) and value (such as true
+	// or false).
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
-	// The identifier for the specified Amazon Web Services account.
+	// The identifier for the Amazon Web Services account.
 	AwsAccountId *string `locationName:"awsAccountId" min:"12" type:"string"`
 
-	// The Amazon Web Services account from which the evidence is collected, and
+	// The Amazon Web Services account that the evidence is collected from, and
 	// its organization path.
 	AwsOrganization *string `locationName:"awsOrganization" type:"string"`
 
@@ -9563,31 +10237,32 @@ type Evidence struct {
 	// result is shown.
 	ComplianceCheck *string `locationName:"complianceCheck" type:"string"`
 
-	// The data source from which the specified evidence was collected.
+	// The data source where the evidence was collected from.
 	DataSource *string `locationName:"dataSource" type:"string"`
 
-	// The name of the specified evidence event.
+	// The name of the evidence event.
 	EventName *string `locationName:"eventName" type:"string"`
 
-	// The Amazon Web Service from which the evidence is collected.
+	// The Amazon Web Service that the evidence is collected from.
 	EventSource *string `locationName:"eventSource" min:"1" type:"string"`
 
-	// The identifier for the specified Amazon Web Services account.
+	// The identifier for the Amazon Web Services account.
 	EvidenceAwsAccountId *string `locationName:"evidenceAwsAccountId" min:"12" type:"string"`
 
 	// The type of automated evidence.
 	EvidenceByType *string `locationName:"evidenceByType" type:"string"`
 
-	// The identifier for the folder in which the evidence is stored.
+	// The identifier for the folder that the evidence is stored in.
 	EvidenceFolderId *string `locationName:"evidenceFolderId" min:"36" type:"string"`
 
-	// The unique identifier for the IAM user or role associated with the evidence.
+	// The unique identifier for the IAM user or role that's associated with the
+	// evidence.
 	IamId *string `locationName:"iamId" min:"20" type:"string"`
 
 	// The identifier for the evidence.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
-	// The list of resources assessed to generate the evidence.
+	// The list of resources that are assessed to generate the evidence.
 	ResourcesIncluded []*Resource `locationName:"resourcesIncluded" type:"list"`
 
 	// The timestamp that represents when the evidence was collected.
@@ -9702,22 +10377,22 @@ func (s *Evidence) SetTime(v time.Time) *Evidence {
 	return s
 }
 
-// The file used to structure and automate Audit Manager assessments for a given
-// compliance standard.
+// The file that's used to structure and automate Audit Manager assessments
+// for a given compliance standard.
 type Framework struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the specified framework.
+	// The Amazon Resource Name (ARN) of the framework.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
 	// The compliance type that the new custom framework supports, such as CIS or
 	// HIPAA.
 	ComplianceType *string `locationName:"complianceType" type:"string"`
 
-	// The control sets associated with the framework.
+	// The control sets that are associated with the framework.
 	ControlSets []*ControlSet `locationName:"controlSets" min:"1" type:"list"`
 
-	// The sources from which Audit Manager collects evidence for the control.
+	// The sources that Audit Manager collects evidence from for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
 	// Specifies when the framework was created.
@@ -9726,10 +10401,10 @@ type Framework struct {
 	// The IAM user or role that created the framework.
 	CreatedBy *string `locationName:"createdBy" min:"1" type:"string"`
 
-	// The description of the specified framework.
+	// The description of the framework.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The unique identifier for the specified framework.
+	// The unique identifier for the framework.
 	Id *string `locationName:"id" min:"36" type:"string"`
 
 	// Specifies when the framework was most recently updated.
@@ -9738,16 +10413,16 @@ type Framework struct {
 	// The IAM user or role that most recently updated the framework.
 	LastUpdatedBy *string `locationName:"lastUpdatedBy" min:"1" type:"string"`
 
-	// The logo associated with the framework.
+	// The logo that's associated with the framework.
 	Logo *string `locationName:"logo" min:"1" type:"string"`
 
-	// The name of the specified framework.
+	// The name of the framework.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The tags associated with the framework.
+	// The tags that are associated with the framework.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The framework type, such as custom or standard.
+	// The framework type, such as a custom framework or a standard framework.
 	Type *string `locationName:"type" type:"string" enum:"FrameworkType"`
 }
 
@@ -9853,18 +10528,18 @@ func (s *Framework) SetType(v string) *Framework {
 	return s
 }
 
-// The metadata of a framework, such as the name, ID, description, and so on.
+// The metadata of a framework, such as the name, ID, or description.
 type FrameworkMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The compliance standard associated with the framework, such as PCI-DSS or
-	// HIPAA.
+	// The compliance standard that's associated with the framework. For example,
+	// this could be PCI DSS or HIPAA.
 	ComplianceType *string `locationName:"complianceType" type:"string"`
 
 	// The description of the framework.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The logo associated with the framework.
+	// The logo that's associated with the framework.
 	Logo *string `locationName:"logo" min:"1" type:"string"`
 
 	// The name of the framework.
@@ -9938,7 +10613,7 @@ func (s GetAccountStatusInput) GoString() string {
 type GetAccountStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the specified Amazon Web Services account.
+	// The status of the Amazon Web Services account.
 	Status *string `locationName:"status" type:"string" enum:"AccountStatus"`
 }
 
@@ -9969,7 +10644,7 @@ func (s *GetAccountStatusOutput) SetStatus(v string) *GetAccountStatusOutput {
 type GetAssessmentFrameworkInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified framework.
+	// The identifier for the framework.
 	//
 	// FrameworkId is a required field
 	FrameworkId *string `location:"uri" locationName:"frameworkId" min:"36" type:"string" required:"true"`
@@ -10018,7 +10693,7 @@ func (s *GetAssessmentFrameworkInput) SetFrameworkId(v string) *GetAssessmentFra
 type GetAssessmentFrameworkOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The framework returned by the GetAssessmentFramework API.
+	// The framework that the GetAssessmentFramework API returned.
 	Framework *Framework `locationName:"framework" type:"structure"`
 }
 
@@ -10049,7 +10724,7 @@ func (s *GetAssessmentFrameworkOutput) SetFramework(v *Framework) *GetAssessment
 type GetAssessmentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -10103,7 +10778,7 @@ type GetAssessmentOutput struct {
 	Assessment *Assessment `locationName:"assessment" type:"structure"`
 
 	// The wrapper that contains the Audit Manager role information of the current
-	// user, such as the role type and IAM Amazon Resource Name (ARN).
+	// user. This includes the role type and IAM Amazon Resource Name (ARN).
 	UserRole *Role `locationName:"userRole" type:"structure"`
 }
 
@@ -10140,7 +10815,7 @@ func (s *GetAssessmentOutput) SetUserRole(v *Role) *GetAssessmentOutput {
 type GetAssessmentReportUrlInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -10206,8 +10881,8 @@ func (s *GetAssessmentReportUrlInput) SetAssessmentReportId(v string) *GetAssess
 type GetAssessmentReportUrlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A uniform resource locator, used as a unique identifier to locate a resource
-	// on the internet.
+	// Short for uniform resource locator. A URL is used as a unique identifier
+	// to locate a resource on the internet.
 	PreSignedUrl *URL `locationName:"preSignedUrl" type:"structure"`
 }
 
@@ -10238,21 +10913,22 @@ func (s *GetAssessmentReportUrlOutput) SetPreSignedUrl(v *URL) *GetAssessmentRep
 type GetChangeLogsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the specified control.
+	// The identifier for the control.
 	ControlId *string `location:"querystring" locationName:"controlId" min:"36" type:"string"`
 
-	// The identifier for the specified control set.
+	// The identifier for the control set.
 	ControlSetId *string `location:"querystring" locationName:"controlSetId" min:"1" type:"string"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10338,7 +11014,7 @@ type GetChangeLogsOutput struct {
 	// The list of user activity for the control.
 	ChangeLogs []*ChangeLog `locationName:"changeLogs" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10375,7 +11051,7 @@ func (s *GetChangeLogsOutput) SetNextToken(v string) *GetChangeLogsOutput {
 type GetControlInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified control.
+	// The identifier for the control.
 	//
 	// ControlId is a required field
 	ControlId *string `location:"uri" locationName:"controlId" min:"36" type:"string" required:"true"`
@@ -10424,7 +11100,7 @@ func (s *GetControlInput) SetControlId(v string) *GetControlInput {
 type GetControlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the control returned by the GetControl API.
+	// The name of the control that the GetControl API returned.
 	Control *Control `locationName:"control" type:"structure"`
 }
 
@@ -10455,10 +11131,11 @@ func (s *GetControlOutput) SetControl(v *Control) *GetControlOutput {
 type GetDelegationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10511,10 +11188,10 @@ func (s *GetDelegationsInput) SetNextToken(v string) *GetDelegationsInput {
 type GetDelegationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of delegations returned by the GetDelegations API.
+	// The list of delegations that the GetDelegations API returned.
 	Delegations []*DelegationMetadata `locationName:"delegations" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10551,7 +11228,7 @@ func (s *GetDelegationsOutput) SetNextToken(v string) *GetDelegationsOutput {
 type GetEvidenceByEvidenceFolderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -10561,15 +11238,16 @@ type GetEvidenceByEvidenceFolderInput struct {
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" min:"1" type:"string" required:"true"`
 
-	// The unique identifier for the folder in which the evidence is stored.
+	// The unique identifier for the folder that the evidence is stored in.
 	//
 	// EvidenceFolderId is a required field
 	EvidenceFolderId *string `location:"uri" locationName:"evidenceFolderId" min:"36" type:"string" required:"true"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10658,10 +11336,10 @@ func (s *GetEvidenceByEvidenceFolderInput) SetNextToken(v string) *GetEvidenceBy
 type GetEvidenceByEvidenceFolderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of evidence returned by the GetEvidenceByEvidenceFolder API.
+	// The list of evidence that the GetEvidenceByEvidenceFolder API returned.
 	Evidence []*Evidence `locationName:"evidence" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10698,17 +11376,17 @@ func (s *GetEvidenceByEvidenceFolderOutput) SetNextToken(v string) *GetEvidenceB
 type GetEvidenceFolderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the specified control set.
+	// The identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the folder in which the evidence is stored.
+	// The identifier for the folder that the evidence is stored in.
 	//
 	// EvidenceFolderId is a required field
 	EvidenceFolderId *string `location:"uri" locationName:"evidenceFolderId" min:"36" type:"string" required:"true"`
@@ -10781,7 +11459,7 @@ func (s *GetEvidenceFolderInput) SetEvidenceFolderId(v string) *GetEvidenceFolde
 type GetEvidenceFolderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The folder in which evidence is stored.
+	// The folder that the evidence is stored in.
 	EvidenceFolder *AssessmentEvidenceFolder `locationName:"evidenceFolder" type:"structure"`
 }
 
@@ -10812,25 +11490,26 @@ func (s *GetEvidenceFolderOutput) SetEvidenceFolder(v *AssessmentEvidenceFolder)
 type GetEvidenceFoldersByAssessmentControlInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the specified control.
+	// The identifier for the control.
 	//
 	// ControlId is a required field
 	ControlId *string `location:"uri" locationName:"controlId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the specified control set.
+	// The identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" min:"1" type:"string" required:"true"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10919,11 +11598,11 @@ func (s *GetEvidenceFoldersByAssessmentControlInput) SetNextToken(v string) *Get
 type GetEvidenceFoldersByAssessmentControlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of evidence folders returned by the GetEvidenceFoldersByAssessmentControl
-	// API.
+	// The list of evidence folders that the GetEvidenceFoldersByAssessmentControl
+	// API returned.
 	EvidenceFolders []*AssessmentEvidenceFolder `locationName:"evidenceFolders" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -10960,15 +11639,16 @@ func (s *GetEvidenceFoldersByAssessmentControlOutput) SetNextToken(v string) *Ge
 type GetEvidenceFoldersByAssessmentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11033,11 +11713,11 @@ func (s *GetEvidenceFoldersByAssessmentInput) SetNextToken(v string) *GetEvidenc
 type GetEvidenceFoldersByAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of evidence folders returned by the GetEvidenceFoldersByAssessment
-	// API.
+	// The list of evidence folders that the GetEvidenceFoldersByAssessment API
+	// returned.
 	EvidenceFolders []*AssessmentEvidenceFolder `locationName:"evidenceFolders" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11074,17 +11754,17 @@ func (s *GetEvidenceFoldersByAssessmentOutput) SetNextToken(v string) *GetEviden
 type GetEvidenceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the specified control set.
+	// The identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the folder in which the evidence is stored.
+	// The identifier for the folder that the evidence is stored in.
 	//
 	// EvidenceFolderId is a required field
 	EvidenceFolderId *string `location:"uri" locationName:"evidenceFolderId" min:"36" type:"string" required:"true"`
@@ -11174,7 +11854,7 @@ func (s *GetEvidenceInput) SetEvidenceId(v string) *GetEvidenceInput {
 type GetEvidenceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The evidence returned by the GetEvidenceResponse API.
+	// The evidence that the GetEvidenceResponse API returned.
 	Evidence *Evidence `locationName:"evidence" type:"structure"`
 }
 
@@ -11227,10 +11907,10 @@ func (s GetOrganizationAdminAccountInput) GoString() string {
 type GetOrganizationAdminAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified administrator account.
+	// The identifier for the administrator account.
 	AdminAccountId *string `locationName:"adminAccountId" min:"12" type:"string"`
 
-	// The identifier for the specified organization.
+	// The identifier for the organization.
 	OrganizationId *string `locationName:"organizationId" min:"12" type:"string"`
 }
 
@@ -11289,7 +11969,7 @@ func (s GetServicesInScopeInput) GoString() string {
 type GetServicesInScopeOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The metadata associated with the Amazon Web Service.
+	// The metadata that's associated with the Amazon Web Service.
 	ServiceMetadata []*ServiceMetadata `locationName:"serviceMetadata" type:"list"`
 }
 
@@ -11462,18 +12142,131 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListAssessmentFrameworkShareRequestsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Represents the maximum number of results on a page or for an API request
+	// call.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// Specifies whether the share request is a sent request or a received request.
+	//
+	// RequestType is a required field
+	RequestType *string `location:"querystring" locationName:"requestType" type:"string" required:"true" enum:"ShareRequestType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssessmentFrameworkShareRequestsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssessmentFrameworkShareRequestsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssessmentFrameworkShareRequestsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssessmentFrameworkShareRequestsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.RequestType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequestType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAssessmentFrameworkShareRequestsInput) SetMaxResults(v int64) *ListAssessmentFrameworkShareRequestsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssessmentFrameworkShareRequestsInput) SetNextToken(v string) *ListAssessmentFrameworkShareRequestsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestType sets the RequestType field's value.
+func (s *ListAssessmentFrameworkShareRequestsInput) SetRequestType(v string) *ListAssessmentFrameworkShareRequestsInput {
+	s.RequestType = &v
+	return s
+}
+
+type ListAssessmentFrameworkShareRequestsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of share requests that the ListAssessmentFrameworkShareRequests
+	// API returned.
+	AssessmentFrameworkShareRequests []*AssessmentFrameworkShareRequest `locationName:"assessmentFrameworkShareRequests" type:"list"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssessmentFrameworkShareRequestsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssessmentFrameworkShareRequestsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssessmentFrameworkShareRequests sets the AssessmentFrameworkShareRequests field's value.
+func (s *ListAssessmentFrameworkShareRequestsOutput) SetAssessmentFrameworkShareRequests(v []*AssessmentFrameworkShareRequest) *ListAssessmentFrameworkShareRequestsOutput {
+	s.AssessmentFrameworkShareRequests = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssessmentFrameworkShareRequestsOutput) SetNextToken(v string) *ListAssessmentFrameworkShareRequestsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListAssessmentFrameworksInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The type of framework, such as standard or custom.
+	// The type of framework, such as a standard framework or a custom framework.
 	//
 	// FrameworkType is a required field
 	FrameworkType *string `location:"querystring" locationName:"frameworkType" type:"string" required:"true" enum:"FrameworkType"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11535,10 +12328,10 @@ func (s *ListAssessmentFrameworksInput) SetNextToken(v string) *ListAssessmentFr
 type ListAssessmentFrameworksOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of metadata objects for the specified framework.
+	// The list of metadata objects for the framework.
 	FrameworkMetadataList []*AssessmentFrameworkMetadata `locationName:"frameworkMetadataList" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11575,10 +12368,11 @@ func (s *ListAssessmentFrameworksOutput) SetNextToken(v string) *ListAssessmentF
 type ListAssessmentReportsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11631,10 +12425,10 @@ func (s *ListAssessmentReportsInput) SetNextToken(v string) *ListAssessmentRepor
 type ListAssessmentReportsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of assessment reports returned by the ListAssessmentReports API.
+	// The list of assessment reports that the ListAssessmentReports API returned.
 	AssessmentReports []*AssessmentReportMetadata `locationName:"assessmentReports" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11671,10 +12465,11 @@ func (s *ListAssessmentReportsOutput) SetNextToken(v string) *ListAssessmentRepo
 type ListAssessmentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11727,10 +12522,10 @@ func (s *ListAssessmentsInput) SetNextToken(v string) *ListAssessmentsInput {
 type ListAssessmentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The metadata associated with the assessment.
+	// The metadata that's associated with the assessment.
 	AssessmentMetadata []*AssessmentMetadataItem `locationName:"assessmentMetadata" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11767,15 +12562,16 @@ func (s *ListAssessmentsOutput) SetNextToken(v string) *ListAssessmentsOutput {
 type ListControlsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The type of control, such as standard or custom.
+	// The type of control, such as a standard control or a custom control.
 	//
 	// ControlType is a required field
 	ControlType *string `location:"querystring" locationName:"controlType" type:"string" required:"true" enum:"ControlType"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11837,10 +12633,10 @@ func (s *ListControlsInput) SetNextToken(v string) *ListControlsInput {
 type ListControlsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of control metadata objects returned by the ListControls API.
+	// The list of control metadata objects that the ListControls API returned.
 	ControlMetadataList []*ControlMetadata `locationName:"controlMetadataList" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11877,13 +12673,14 @@ func (s *ListControlsOutput) SetNextToken(v string) *ListControlsOutput {
 type ListKeywordsForDataSourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The control mapping data source to which the keywords apply.
+	// The control mapping data source that the keywords apply to.
 	//
 	// Source is a required field
 	Source *string `location:"querystring" locationName:"source" type:"string" required:"true" enum:"SourceType"`
@@ -11947,10 +12744,10 @@ func (s *ListKeywordsForDataSourceInput) SetSource(v string) *ListKeywordsForDat
 type ListKeywordsForDataSourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of keywords for the specified event mapping source.
+	// The list of keywords for the event mapping source.
 	Keywords []*string `locationName:"keywords" type:"list"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -11987,10 +12784,11 @@ func (s *ListKeywordsForDataSourceOutput) SetNextToken(v string) *ListKeywordsFo
 type ListNotificationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Represents the maximum number of results per page, or per API request call.
+	// Represents the maximum number of results on a page or for an API request
+	// call.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 }
 
@@ -12043,7 +12841,7 @@ func (s *ListNotificationsInput) SetNextToken(v string) *ListNotificationsInput 
 type ListNotificationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pagination token used to fetch the next set of results.
+	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// The returned list of notifications.
@@ -12083,7 +12881,7 @@ func (s *ListNotificationsOutput) SetNotifications(v []*Notification) *ListNotif
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the specified resource.
+	// The Amazon Resource Name (ARN) of the resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
@@ -12132,7 +12930,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of tags returned by the ListTagsForResource API.
+	// The list of tags that the ListTagsForResource API returned.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -12160,7 +12958,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Evidence that is uploaded to Audit Manager manually.
+// Evidence that's uploaded to Audit Manager manually.
 type ManualEvidence struct {
 	_ struct{} `type:"structure"`
 
@@ -12205,19 +13003,19 @@ func (s *ManualEvidence) SetS3ResourcePath(v string) *ManualEvidence {
 	return s
 }
 
-// The notification used to inform a user of an update in Audit Manager. For
-// example, this includes the notification that is sent when a control set is
-// delegated for review.
+// The notification that informs a user of an update in Audit Manager. For example,
+// this includes the notification that's sent when a control set is delegated
+// for review.
 type Notification struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	AssessmentId *string `locationName:"assessmentId" min:"36" type:"string"`
 
 	// The name of the related assessment.
 	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
 
-	// The identifier for the specified control set.
+	// The identifier for the control set.
 	ControlSetId *string `locationName:"controlSetId" min:"1" type:"string"`
 
 	// Specifies the name of the control set that the notification is about.
@@ -12392,7 +13190,7 @@ func (s *RegisterAccountOutput) SetStatus(v string) *RegisterAccountOutput {
 type RegisterOrganizationAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified delegated administrator account.
+	// The identifier for the delegated administrator account.
 	//
 	// AdminAccountId is a required field
 	AdminAccountId *string `locationName:"adminAccountId" min:"12" type:"string" required:"true"`
@@ -12441,10 +13239,10 @@ func (s *RegisterOrganizationAdminAccountInput) SetAdminAccountId(v string) *Reg
 type RegisterOrganizationAdminAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified delegated administrator account.
+	// The identifier for the delegated administrator account.
 	AdminAccountId *string `locationName:"adminAccountId" min:"12" type:"string"`
 
-	// The identifier for the specified organization.
+	// The identifier for the organization.
 	OrganizationId *string `locationName:"organizationId" min:"12" type:"string"`
 }
 
@@ -12478,14 +13276,14 @@ func (s *RegisterOrganizationAdminAccountOutput) SetOrganizationId(v string) *Re
 	return s
 }
 
-// A system asset that is evaluated in an Audit Manager assessment.
+// A system asset that's evaluated in an Audit Manager assessment.
 type Resource struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for the specified resource.
+	// The Amazon Resource Name (ARN) for the resource.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The value of the specified resource.
+	// The value of the resource.
 	Value *string `locationName:"value" type:"string"`
 }
 
@@ -12519,19 +13317,19 @@ func (s *Resource) SetValue(v string) *Resource {
 	return s
 }
 
-// The resource specified in the request cannot be found.
+// The resource that's specified in the request can't be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
-	// The unique identifier for the specified resource.
+	// The unique identifier for the resource.
 	//
 	// ResourceId is a required field
 	ResourceId *string `locationName:"resourceId" type:"string" required:"true"`
 
-	// The type of resource affected by the error.
+	// The type of resource that's affected by the error.
 	//
 	// ResourceType is a required field
 	ResourceType *string `locationName:"resourceType" type:"string" required:"true"`
@@ -12594,7 +13392,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 }
 
 // The wrapper that contains the Audit Manager role information of the current
-// user, such as the role type and IAM Amazon Resource Name (ARN).
+// user. This includes the role type and IAM Amazon Resource Name (ARN).
 type Role struct {
 	_ struct{} `type:"structure"`
 
@@ -12654,15 +13452,15 @@ func (s *Role) SetRoleType(v string) *Role {
 	return s
 }
 
-// The wrapper that contains the Amazon Web Services accounts and services in
-// scope for the assessment.
+// The wrapper that contains the Amazon Web Services accounts and services that
+// are in scope for the assessment.
 type Scope struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Web Services accounts included in the scope of the assessment.
+	// The Amazon Web Services accounts that are included in the scope of the assessment.
 	AwsAccounts []*AWSAccount `locationName:"awsAccounts" type:"list"`
 
-	// The Amazon Web Services services included in the scope of the assessment.
+	// The Amazon Web Services services that are included in the scope of the assessment.
 	AwsServices []*AWSService `locationName:"awsServices" type:"list"`
 }
 
@@ -12726,15 +13524,15 @@ func (s *Scope) SetAwsServices(v []*AWSService) *Scope {
 	return s
 }
 
-// The metadata associated with the specified Amazon Web Service.
+// The metadata that's associated with the Amazon Web Service.
 type ServiceMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The category in which the Amazon Web Service belongs, such as compute, storage,
-	// database, and so on.
+	// The category that the Amazon Web Service belongs to, such as compute, storage,
+	// or database.
 	Category *string `locationName:"category" min:"1" type:"string"`
 
-	// The description of the specified Amazon Web Service.
+	// The description of the Amazon Web Service.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// The display name of the Amazon Web Service.
@@ -12859,12 +13657,12 @@ func (s *Settings) SetSnsTopic(v string) *Settings {
 type SourceKeyword struct {
 	_ struct{} `type:"structure"`
 
-	// The method of input for the specified keyword.
+	// The method of input for the keyword.
 	KeywordInputType *string `locationName:"keywordInputType" type:"string" enum:"KeywordInputType"`
 
-	// The value of the keyword used to search CloudTrail logs, Config rules, Security
-	// Hub checks, and Amazon Web Services API names when mapping a control data
-	// source.
+	// The value of the keyword that's used to search CloudTrail logs, Config rules,
+	// Security Hub checks, and Amazon Web Services API names when mapping a control
+	// data source.
 	KeywordValue *string `locationName:"keywordValue" min:"1" type:"string"`
 }
 
@@ -12911,15 +13709,135 @@ func (s *SourceKeyword) SetKeywordValue(v string) *SourceKeyword {
 	return s
 }
 
+type StartAssessmentFrameworkShareInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional comment from the sender about the share request.
+	Comment *string `locationName:"comment" type:"string"`
+
+	// The Amazon Web Services account of the recipient.
+	//
+	// DestinationAccount is a required field
+	DestinationAccount *string `locationName:"destinationAccount" min:"12" type:"string" required:"true"`
+
+	// The Amazon Web Services Region of the recipient.
+	//
+	// DestinationRegion is a required field
+	DestinationRegion *string `locationName:"destinationRegion" type:"string" required:"true"`
+
+	// The unique identifier for the custom framework to be shared.
+	//
+	// FrameworkId is a required field
+	FrameworkId *string `location:"uri" locationName:"frameworkId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssessmentFrameworkShareInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssessmentFrameworkShareInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartAssessmentFrameworkShareInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartAssessmentFrameworkShareInput"}
+	if s.DestinationAccount == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationAccount"))
+	}
+	if s.DestinationAccount != nil && len(*s.DestinationAccount) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationAccount", 12))
+	}
+	if s.DestinationRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationRegion"))
+	}
+	if s.FrameworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FrameworkId"))
+	}
+	if s.FrameworkId != nil && len(*s.FrameworkId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("FrameworkId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComment sets the Comment field's value.
+func (s *StartAssessmentFrameworkShareInput) SetComment(v string) *StartAssessmentFrameworkShareInput {
+	s.Comment = &v
+	return s
+}
+
+// SetDestinationAccount sets the DestinationAccount field's value.
+func (s *StartAssessmentFrameworkShareInput) SetDestinationAccount(v string) *StartAssessmentFrameworkShareInput {
+	s.DestinationAccount = &v
+	return s
+}
+
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *StartAssessmentFrameworkShareInput) SetDestinationRegion(v string) *StartAssessmentFrameworkShareInput {
+	s.DestinationRegion = &v
+	return s
+}
+
+// SetFrameworkId sets the FrameworkId field's value.
+func (s *StartAssessmentFrameworkShareInput) SetFrameworkId(v string) *StartAssessmentFrameworkShareInput {
+	s.FrameworkId = &v
+	return s
+}
+
+type StartAssessmentFrameworkShareOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The share request that's created by the StartAssessmentFrameworkShare API.
+	AssessmentFrameworkShareRequest *AssessmentFrameworkShareRequest `locationName:"assessmentFrameworkShareRequest" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssessmentFrameworkShareOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartAssessmentFrameworkShareOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssessmentFrameworkShareRequest sets the AssessmentFrameworkShareRequest field's value.
+func (s *StartAssessmentFrameworkShareOutput) SetAssessmentFrameworkShareRequest(v *AssessmentFrameworkShareRequest) *StartAssessmentFrameworkShareOutput {
+	s.AssessmentFrameworkShareRequest = v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the specified resource.
+	// The Amazon Resource Name (ARN) of the resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
 
-	// The tags to be associated with the resource.
+	// The tags that are associated with the resource.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
@@ -12996,12 +13914,12 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// A uniform resource locator, used as a unique identifier to locate a resource
-// on the internet.
+// Short for uniform resource locator. A URL is used as a unique identifier
+// to locate a resource on the internet.
 type URL struct {
 	_ struct{} `type:"structure"`
 
-	// The name or word used as a hyperlink to the URL.
+	// The name or word that's used as a hyperlink to the URL.
 	HyperlinkName *string `locationName:"hyperlinkName" min:"1" type:"string"`
 
 	// The unique identifier for the internet resource.
@@ -13129,25 +14047,25 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAssessmentControlInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The comment body text for the specified control.
+	// The comment body text for the control.
 	CommentBody *string `locationName:"commentBody" type:"string"`
 
-	// The identifier for the specified control.
+	// The identifier for the control.
 	//
 	// ControlId is a required field
 	ControlId *string `location:"uri" locationName:"controlId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the specified control set.
+	// The identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" min:"1" type:"string" required:"true"`
 
-	// The status of the specified control.
+	// The status of the control.
 	ControlStatus *string `locationName:"controlStatus" type:"string" enum:"ControlStatus"`
 }
 
@@ -13230,8 +14148,8 @@ func (s *UpdateAssessmentControlInput) SetControlStatus(v string) *UpdateAssessm
 type UpdateAssessmentControlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the updated control set returned by the UpdateAssessmentControl
-	// API.
+	// The name of the updated control set that the UpdateAssessmentControl API
+	// returned.
 	Control *AssessmentControl `locationName:"control" type:"structure"`
 }
 
@@ -13262,22 +14180,22 @@ func (s *UpdateAssessmentControlOutput) SetControl(v *AssessmentControl) *Update
 type UpdateAssessmentControlSetStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The comment related to the status update.
+	// The comment that's related to the status update.
 	//
 	// Comment is a required field
 	Comment *string `locationName:"comment" type:"string" required:"true"`
 
-	// The identifier for the specified control set.
+	// The identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" type:"string" required:"true"`
 
-	// The status of the control set that is being updated.
+	// The status of the control set that's being updated.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"ControlSetStatus"`
@@ -13356,8 +14274,8 @@ func (s *UpdateAssessmentControlSetStatusInput) SetStatus(v string) *UpdateAsses
 type UpdateAssessmentControlSetStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the updated control set returned by the UpdateAssessmentControlSetStatus
-	// API.
+	// The name of the updated control set that the UpdateAssessmentControlSetStatus
+	// API returned.
 	ControlSet *AssessmentControlSet `locationName:"controlSet" type:"structure"`
 }
 
@@ -13386,11 +14304,11 @@ func (s *UpdateAssessmentControlSetStatusOutput) SetControlSet(v *AssessmentCont
 }
 
 // A controlSet entity that represents a collection of controls in Audit Manager.
-// This does not contain the control set ID.
+// This doesn't contain the control set ID.
 type UpdateAssessmentFrameworkControlSet struct {
 	_ struct{} `type:"structure"`
 
-	// The list of controls contained within the control set.
+	// The list of controls that are contained within the control set.
 	Controls []*CreateAssessmentFrameworkControl `locationName:"controls" min:"1" type:"list"`
 
 	// The unique identifier for the control set.
@@ -13477,15 +14395,15 @@ type UpdateAssessmentFrameworkInput struct {
 	// HIPAA.
 	ComplianceType *string `locationName:"complianceType" type:"string"`
 
-	// The control sets associated with the framework.
+	// The control sets that are associated with the framework.
 	//
 	// ControlSets is a required field
 	ControlSets []*UpdateAssessmentFrameworkControlSet `locationName:"controlSets" type:"list" required:"true"`
 
-	// The description of the framework that is to be updated.
+	// The description of the updated framework.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The identifier for the specified framework.
+	// The identifier for the framework.
 	//
 	// FrameworkId is a required field
 	FrameworkId *string `location:"uri" locationName:"frameworkId" min:"36" type:"string" required:"true"`
@@ -13585,7 +14503,7 @@ func (s *UpdateAssessmentFrameworkInput) SetName(v string) *UpdateAssessmentFram
 type UpdateAssessmentFrameworkOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the specified framework.
+	// The name of the framework.
 	Framework *Framework `locationName:"framework" type:"structure"`
 }
 
@@ -13613,28 +14531,137 @@ func (s *UpdateAssessmentFrameworkOutput) SetFramework(v *Framework) *UpdateAsse
 	return s
 }
 
+type UpdateAssessmentFrameworkShareInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the update action for the share request.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"ShareRequestAction"`
+
+	// The unique identifier for the share request.
+	//
+	// RequestId is a required field
+	RequestId *string `location:"uri" locationName:"requestId" min:"36" type:"string" required:"true"`
+
+	// Specifies whether the share request is a sent request or a received request.
+	//
+	// RequestType is a required field
+	RequestType *string `locationName:"requestType" type:"string" required:"true" enum:"ShareRequestType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAssessmentFrameworkShareInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAssessmentFrameworkShareInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAssessmentFrameworkShareInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAssessmentFrameworkShareInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.RequestId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequestId"))
+	}
+	if s.RequestId != nil && len(*s.RequestId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestId", 36))
+	}
+	if s.RequestType == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequestType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *UpdateAssessmentFrameworkShareInput) SetAction(v string) *UpdateAssessmentFrameworkShareInput {
+	s.Action = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateAssessmentFrameworkShareInput) SetRequestId(v string) *UpdateAssessmentFrameworkShareInput {
+	s.RequestId = &v
+	return s
+}
+
+// SetRequestType sets the RequestType field's value.
+func (s *UpdateAssessmentFrameworkShareInput) SetRequestType(v string) *UpdateAssessmentFrameworkShareInput {
+	s.RequestType = &v
+	return s
+}
+
+type UpdateAssessmentFrameworkShareOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated share request that's returned by the UpdateAssessmentFrameworkShare
+	// operation.
+	AssessmentFrameworkShareRequest *AssessmentFrameworkShareRequest `locationName:"assessmentFrameworkShareRequest" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAssessmentFrameworkShareOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAssessmentFrameworkShareOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssessmentFrameworkShareRequest sets the AssessmentFrameworkShareRequest field's value.
+func (s *UpdateAssessmentFrameworkShareOutput) SetAssessmentFrameworkShareRequest(v *AssessmentFrameworkShareRequest) *UpdateAssessmentFrameworkShareOutput {
+	s.AssessmentFrameworkShareRequest = v
+	return s
+}
+
 type UpdateAssessmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the specified assessment.
+	// The description of the assessment.
 	AssessmentDescription *string `locationName:"assessmentDescription" type:"string"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The name of the specified assessment to be updated.
+	// The name of the assessment to be updated.
 	AssessmentName *string `locationName:"assessmentName" min:"1" type:"string"`
 
-	// The assessment report storage destination for the specified assessment that
-	// is being updated.
+	// The assessment report storage destination for the assessment that's being
+	// updated.
 	AssessmentReportsDestination *AssessmentReportsDestination `locationName:"assessmentReportsDestination" type:"structure"`
 
-	// The list of roles for the specified assessment.
+	// The list of roles for the assessment.
 	Roles []*Role `locationName:"roles" type:"list"`
 
-	// The scope of the specified assessment.
+	// The scope of the assessment.
 	//
 	// Scope is a required field
 	Scope *Scope `locationName:"scope" type:"structure" required:"true"`
@@ -13739,8 +14766,8 @@ func (s *UpdateAssessmentInput) SetScope(v *Scope) *UpdateAssessmentInput {
 type UpdateAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The response object (name of the updated assessment) for the UpdateAssessmentRequest
-	// API.
+	// The response object for the UpdateAssessmentRequest API. This is the name
+	// of the updated assessment.
 	Assessment *Assessment `locationName:"assessment" type:"structure"`
 }
 
@@ -13771,12 +14798,12 @@ func (s *UpdateAssessmentOutput) SetAssessment(v *Assessment) *UpdateAssessmentO
 type UpdateAssessmentStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the specified assessment.
+	// The identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The current status of the specified assessment.
+	// The current status of the assessment.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"AssessmentStatus"`
@@ -13834,8 +14861,7 @@ func (s *UpdateAssessmentStatusInput) SetStatus(v string) *UpdateAssessmentStatu
 type UpdateAssessmentStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the updated assessment returned by the UpdateAssessmentStatus
-	// API.
+	// The name of the updated assessment that the UpdateAssessmentStatus API returned.
 	Assessment *Assessment `locationName:"assessment" type:"structure"`
 }
 
@@ -13866,18 +14892,18 @@ func (s *UpdateAssessmentStatusOutput) SetAssessment(v *Assessment) *UpdateAsses
 type UpdateControlInput struct {
 	_ struct{} `type:"structure"`
 
-	// The recommended actions to carry out if the control is not fulfilled.
+	// The recommended actions to carry out if the control isn't fulfilled.
 	ActionPlanInstructions *string `locationName:"actionPlanInstructions" type:"string"`
 
 	// The title of the action plan for remediating the control.
 	ActionPlanTitle *string `locationName:"actionPlanTitle" type:"string"`
 
-	// The identifier for the specified control.
+	// The identifier for the control.
 	//
 	// ControlId is a required field
 	ControlId *string `location:"uri" locationName:"controlId" min:"36" type:"string" required:"true"`
 
-	// The data mapping sources for the specified control.
+	// The data mapping sources for the control.
 	//
 	// ControlMappingSources is a required field
 	ControlMappingSources []*ControlMappingSource `locationName:"controlMappingSources" min:"1" type:"list" required:"true"`
@@ -13885,12 +14911,12 @@ type UpdateControlInput struct {
 	// The optional description of the control.
 	Description *string `locationName:"description" type:"string"`
 
-	// The name of the control to be updated.
+	// The name of the updated control.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The steps that to follow to determine if the control has been satisfied.
+	// The steps that you should follow to determine if the control is met.
 	TestingInformation *string `locationName:"testingInformation" type:"string"`
 }
 
@@ -13995,7 +15021,7 @@ func (s *UpdateControlInput) SetTestingInformation(v string) *UpdateControlInput
 type UpdateControlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the updated control set returned by the UpdateControl API.
+	// The name of the updated control set that the UpdateControl API returned.
 	Control *Control `locationName:"control" type:"structure"`
 }
 
@@ -14035,8 +15061,8 @@ type UpdateSettingsInput struct {
 	// The KMS key details.
 	KmsKey *string `locationName:"kmsKey" min:"7" type:"string"`
 
-	// The Amazon Simple Notification Service (Amazon SNS) topic to which Audit
-	// Manager sends notifications.
+	// The Amazon Simple Notification Service (Amazon SNS) topic that Audit Manager
+	// sends notifications to.
 	SnsTopic *string `locationName:"snsTopic" min:"20" type:"string"`
 }
 
@@ -14147,8 +15173,8 @@ func (s *UpdateSettingsOutput) SetSettings(v *Settings) *UpdateSettingsOutput {
 type ValidateAssessmentReportIntegrityInput struct {
 	_ struct{} `type:"structure"`
 
-	// The relative path of the specified Amazon S3 bucket in which the assessment
-	// report is stored.
+	// The relative path of the Amazon S3 bucket that the assessment report is stored
+	// in.
 	//
 	// S3RelativePath is a required field
 	S3RelativePath *string `locationName:"s3RelativePath" min:"1" type:"string" required:"true"`
@@ -14197,7 +15223,7 @@ func (s *ValidateAssessmentReportIntegrityInput) SetS3RelativePath(v string) *Va
 type ValidateAssessmentReportIntegrityOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The signature algorithm used to code sign the assessment report file.
+	// The signature algorithm that's used to code sign the assessment report file.
 	SignatureAlgorithm *string `locationName:"signatureAlgorithm" type:"string"`
 
 	// The date and time signature that specifies when the assessment report was
@@ -14332,8 +15358,7 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Indicates that the request has invalid or missing parameters for the specified
-// field.
+// Indicates that the request has invalid or missing parameters for the field.
 type ValidationExceptionField struct {
 	_ struct{} `type:"structure"`
 
@@ -14683,6 +15708,82 @@ func SettingAttribute_Values() []string {
 		SettingAttributeSnsTopic,
 		SettingAttributeDefaultAssessmentReportsDestination,
 		SettingAttributeDefaultProcessOwners,
+	}
+}
+
+const (
+	// ShareRequestActionAccept is a ShareRequestAction enum value
+	ShareRequestActionAccept = "ACCEPT"
+
+	// ShareRequestActionDecline is a ShareRequestAction enum value
+	ShareRequestActionDecline = "DECLINE"
+
+	// ShareRequestActionRevoke is a ShareRequestAction enum value
+	ShareRequestActionRevoke = "REVOKE"
+)
+
+// ShareRequestAction_Values returns all elements of the ShareRequestAction enum
+func ShareRequestAction_Values() []string {
+	return []string{
+		ShareRequestActionAccept,
+		ShareRequestActionDecline,
+		ShareRequestActionRevoke,
+	}
+}
+
+const (
+	// ShareRequestStatusActive is a ShareRequestStatus enum value
+	ShareRequestStatusActive = "ACTIVE"
+
+	// ShareRequestStatusReplicating is a ShareRequestStatus enum value
+	ShareRequestStatusReplicating = "REPLICATING"
+
+	// ShareRequestStatusShared is a ShareRequestStatus enum value
+	ShareRequestStatusShared = "SHARED"
+
+	// ShareRequestStatusExpiring is a ShareRequestStatus enum value
+	ShareRequestStatusExpiring = "EXPIRING"
+
+	// ShareRequestStatusFailed is a ShareRequestStatus enum value
+	ShareRequestStatusFailed = "FAILED"
+
+	// ShareRequestStatusExpired is a ShareRequestStatus enum value
+	ShareRequestStatusExpired = "EXPIRED"
+
+	// ShareRequestStatusDeclined is a ShareRequestStatus enum value
+	ShareRequestStatusDeclined = "DECLINED"
+
+	// ShareRequestStatusRevoked is a ShareRequestStatus enum value
+	ShareRequestStatusRevoked = "REVOKED"
+)
+
+// ShareRequestStatus_Values returns all elements of the ShareRequestStatus enum
+func ShareRequestStatus_Values() []string {
+	return []string{
+		ShareRequestStatusActive,
+		ShareRequestStatusReplicating,
+		ShareRequestStatusShared,
+		ShareRequestStatusExpiring,
+		ShareRequestStatusFailed,
+		ShareRequestStatusExpired,
+		ShareRequestStatusDeclined,
+		ShareRequestStatusRevoked,
+	}
+}
+
+const (
+	// ShareRequestTypeSent is a ShareRequestType enum value
+	ShareRequestTypeSent = "SENT"
+
+	// ShareRequestTypeReceived is a ShareRequestType enum value
+	ShareRequestTypeReceived = "RECEIVED"
+)
+
+// ShareRequestType_Values returns all elements of the ShareRequestType enum
+func ShareRequestType_Values() []string {
+	return []string{
+		ShareRequestTypeSent,
+		ShareRequestTypeReceived,
 	}
 }
 

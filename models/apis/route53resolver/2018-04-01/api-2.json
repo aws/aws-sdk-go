@@ -432,6 +432,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetResolverConfig":{
+      "name":"GetResolverConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResolverConfigRequest"},
+      "output":{"shape":"GetResolverConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GetResolverDnssecConfig":{
       "name":"GetResolverDnssecConfig",
       "http":{
@@ -666,6 +682,23 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceErrorException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListResolverConfigs":{
+      "name":"ListResolverConfigs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListResolverConfigsRequest"},
+      "output":{"shape":"ListResolverConfigsResponse"},
+      "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "ListResolverDnssecConfigs":{
@@ -950,6 +983,25 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "UpdateResolverConfig":{
+      "name":"UpdateResolverConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateResolverConfigRequest"},
+      "output":{"shape":"UpdateResolverConfigResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceUnavailableException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalServiceErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "UpdateResolverDnssecConfig":{
       "name":"UpdateResolverDnssecConfig",
       "http":{
@@ -1113,6 +1165,13 @@
       "members":{
         "ResolverRuleAssociation":{"shape":"ResolverRuleAssociation"}
       }
+    },
+    "AutodefinedReverseFlag":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
     },
     "BlockOverrideDnsType":{
       "type":"string",
@@ -1676,7 +1735,7 @@
     },
     "FirewallRuleGroupPolicy":{
       "type":"string",
-      "max":5000
+      "max":30000
     },
     "FirewallRuleGroupStatus":{
       "type":"string",
@@ -1753,6 +1812,19 @@
       "type":"structure",
       "members":{
         "FirewallRuleGroup":{"shape":"FirewallRuleGroup"}
+      }
+    },
+    "GetResolverConfigRequest":{
+      "type":"structure",
+      "required":["ResourceId"],
+      "members":{
+        "ResourceId":{"shape":"ResourceId"}
+      }
+    },
+    "GetResolverConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverConfig":{"shape":"ResolverConfig"}
       }
     },
     "GetResolverDnssecConfigRequest":{
@@ -2162,6 +2234,31 @@
         "FirewallRules":{"shape":"FirewallRules"}
       }
     },
+    "ListResolverConfigsMaxResult":{
+      "type":"integer",
+      "max":100,
+      "min":5
+    },
+    "ListResolverConfigsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"ListResolverConfigsMaxResult",
+          "box":true
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "box":true
+        }
+      }
+    },
+    "ListResolverConfigsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "ResolverConfigs":{"shape":"ResolverConfigList"}
+      }
+    },
     "ListResolverDnssecConfigsRequest":{
       "type":"structure",
       "members":{
@@ -2428,6 +2525,28 @@
         "ReturnValue":{"shape":"Boolean"}
       }
     },
+    "ResolverAutodefinedReverseStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLING",
+        "ENABLED",
+        "DISABLING",
+        "DISABLED"
+      ]
+    },
+    "ResolverConfig":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResourceId"},
+        "ResourceId":{"shape":"ResourceId"},
+        "OwnerId":{"shape":"AccountId"},
+        "AutodefinedReverse":{"shape":"ResolverAutodefinedReverseStatus"}
+      }
+    },
+    "ResolverConfigList":{
+      "type":"list",
+      "member":{"shape":"ResolverConfig"}
+    },
     "ResolverDNSSECValidationStatus":{
       "type":"string",
       "enum":[
@@ -2552,7 +2671,7 @@
     },
     "ResolverQueryLogConfigPolicy":{
       "type":"string",
-      "max":5000
+      "max":30000
     },
     "ResolverQueryLogConfigStatus":{
       "type":"string",
@@ -2922,6 +3041,23 @@
       "type":"structure",
       "members":{
         "FirewallRule":{"shape":"FirewallRule"}
+      }
+    },
+    "UpdateResolverConfigRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "AutodefinedReverseFlag"
+      ],
+      "members":{
+        "ResourceId":{"shape":"ResourceId"},
+        "AutodefinedReverseFlag":{"shape":"AutodefinedReverseFlag"}
+      }
+    },
+    "UpdateResolverConfigResponse":{
+      "type":"structure",
+      "members":{
+        "ResolverConfig":{"shape":"ResolverConfig"}
       }
     },
     "UpdateResolverDnssecConfigRequest":{

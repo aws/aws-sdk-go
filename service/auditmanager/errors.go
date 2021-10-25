@@ -11,7 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// Your account is not registered with Audit Manager. Check the delegated administrator
+	// Your account isn't registered with Audit Manager. Check the delegated administrator
 	// setup on the Audit Manager settings page, and try again.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
@@ -25,7 +25,7 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// The resource specified in the request cannot be found.
+	// The resource that's specified in the request can't be found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeValidationException for service response error code

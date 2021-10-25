@@ -25,6 +25,11 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListAssessmentFrameworkShareRequests": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListAssessmentFrameworks": {
       "input_token": "nextToken",
       "output_token": "nextToken",
