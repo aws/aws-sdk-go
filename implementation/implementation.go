@@ -7,7 +7,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/accessanalyzer"
 	"github.com/aws/aws-sdk-go/service/acm"
@@ -286,8 +285,10 @@ import (
 	description2 "github.com/blinkops/blink-sdk/plugin/description"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
+	"math/rand"
 	"net/http"
 	"path"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -1928,7 +1929,7 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 			return &plugin.CredentialsValidationResponse{
 				AreCredentialsValid:   false,
 				RawValidationResponse: []byte("failed on credentials validation"),
-			}, fmt.Errorf("failed on credentials validation, got: %v", output)
+			}, fmt.Errorf("failed on credentials validation, got: %v and error: %w", output, err)
 		}
 
 		log.Debugf("Credentials are valid, continue to the next instnace")
@@ -2029,15 +2030,24 @@ func convertInterfaceMapToStringMap(m map[string]interface{}) map[string]string 
 	return mapString
 }
 
-func assumeRole(role, externalID string) (creds *credentials.Credentials, err error) {
-	sess, err := session.NewSession()
-	if err != nil {
-		return creds, fmt.Errorf("unable to start AWS session with error: %w", err)
-	}
-	creds = stscreds.NewCredentials(sess, role, func(p *stscreds.AssumeRoleProvider) {
-		p.ExternalID = &externalID
+func assumeRole(role, externalID, region string) (creds *credentials.Credentials, err error) {
+	sess, _ := session.NewSession(&aws.Config{
+		Region: aws.String(region),
 	})
-	return creds, nil
+	svc := sts.New(sess)
+
+	sessionName := strconv.Itoa(rand.Int())
+	result, err := svc.AssumeRole(&sts.AssumeRoleInput{
+		RoleArn:         &role,
+		RoleSessionName: &sessionName,
+		ExternalId: &externalID,
+	})
+
+	if err != nil {
+		return nil, fmt.Errorf("unable to assume role with error: %w", err)
+	}
+	id, secret, token := result.Credentials.AccessKeyId, result.Credentials.SecretAccessKey, result.Credentials.SessionToken
+	return credentials.NewStaticCredentials(*id, *secret, *token), nil
 }
 
 
@@ -2050,7 +2060,7 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	// do assume role
 	case "roleBased":
 		var err error
-		creds, err = assumeRole(k, v)
+		creds, err = assumeRole(k, v, region)
 		if err != nil {
 			return nil, fmt.Errorf("unable to assume role with error: %w", err)
 		}
