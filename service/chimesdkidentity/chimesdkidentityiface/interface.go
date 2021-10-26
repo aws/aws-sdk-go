@@ -84,6 +84,10 @@ type ChimeSDKIdentityAPI interface {
 	DeleteAppInstanceUserWithContext(aws.Context, *chimesdkidentity.DeleteAppInstanceUserInput, ...request.Option) (*chimesdkidentity.DeleteAppInstanceUserOutput, error)
 	DeleteAppInstanceUserRequest(*chimesdkidentity.DeleteAppInstanceUserInput) (*request.Request, *chimesdkidentity.DeleteAppInstanceUserOutput)
 
+	DeregisterAppInstanceUserEndpoint(*chimesdkidentity.DeregisterAppInstanceUserEndpointInput) (*chimesdkidentity.DeregisterAppInstanceUserEndpointOutput, error)
+	DeregisterAppInstanceUserEndpointWithContext(aws.Context, *chimesdkidentity.DeregisterAppInstanceUserEndpointInput, ...request.Option) (*chimesdkidentity.DeregisterAppInstanceUserEndpointOutput, error)
+	DeregisterAppInstanceUserEndpointRequest(*chimesdkidentity.DeregisterAppInstanceUserEndpointInput) (*request.Request, *chimesdkidentity.DeregisterAppInstanceUserEndpointOutput)
+
 	DescribeAppInstance(*chimesdkidentity.DescribeAppInstanceInput) (*chimesdkidentity.DescribeAppInstanceOutput, error)
 	DescribeAppInstanceWithContext(aws.Context, *chimesdkidentity.DescribeAppInstanceInput, ...request.Option) (*chimesdkidentity.DescribeAppInstanceOutput, error)
 	DescribeAppInstanceRequest(*chimesdkidentity.DescribeAppInstanceInput) (*request.Request, *chimesdkidentity.DescribeAppInstanceOutput)
@@ -96,6 +100,10 @@ type ChimeSDKIdentityAPI interface {
 	DescribeAppInstanceUserWithContext(aws.Context, *chimesdkidentity.DescribeAppInstanceUserInput, ...request.Option) (*chimesdkidentity.DescribeAppInstanceUserOutput, error)
 	DescribeAppInstanceUserRequest(*chimesdkidentity.DescribeAppInstanceUserInput) (*request.Request, *chimesdkidentity.DescribeAppInstanceUserOutput)
 
+	DescribeAppInstanceUserEndpoint(*chimesdkidentity.DescribeAppInstanceUserEndpointInput) (*chimesdkidentity.DescribeAppInstanceUserEndpointOutput, error)
+	DescribeAppInstanceUserEndpointWithContext(aws.Context, *chimesdkidentity.DescribeAppInstanceUserEndpointInput, ...request.Option) (*chimesdkidentity.DescribeAppInstanceUserEndpointOutput, error)
+	DescribeAppInstanceUserEndpointRequest(*chimesdkidentity.DescribeAppInstanceUserEndpointInput) (*request.Request, *chimesdkidentity.DescribeAppInstanceUserEndpointOutput)
+
 	GetAppInstanceRetentionSettings(*chimesdkidentity.GetAppInstanceRetentionSettingsInput) (*chimesdkidentity.GetAppInstanceRetentionSettingsOutput, error)
 	GetAppInstanceRetentionSettingsWithContext(aws.Context, *chimesdkidentity.GetAppInstanceRetentionSettingsInput, ...request.Option) (*chimesdkidentity.GetAppInstanceRetentionSettingsOutput, error)
 	GetAppInstanceRetentionSettingsRequest(*chimesdkidentity.GetAppInstanceRetentionSettingsInput) (*request.Request, *chimesdkidentity.GetAppInstanceRetentionSettingsOutput)
@@ -106,6 +114,13 @@ type ChimeSDKIdentityAPI interface {
 
 	ListAppInstanceAdminsPages(*chimesdkidentity.ListAppInstanceAdminsInput, func(*chimesdkidentity.ListAppInstanceAdminsOutput, bool) bool) error
 	ListAppInstanceAdminsPagesWithContext(aws.Context, *chimesdkidentity.ListAppInstanceAdminsInput, func(*chimesdkidentity.ListAppInstanceAdminsOutput, bool) bool, ...request.Option) error
+
+	ListAppInstanceUserEndpoints(*chimesdkidentity.ListAppInstanceUserEndpointsInput) (*chimesdkidentity.ListAppInstanceUserEndpointsOutput, error)
+	ListAppInstanceUserEndpointsWithContext(aws.Context, *chimesdkidentity.ListAppInstanceUserEndpointsInput, ...request.Option) (*chimesdkidentity.ListAppInstanceUserEndpointsOutput, error)
+	ListAppInstanceUserEndpointsRequest(*chimesdkidentity.ListAppInstanceUserEndpointsInput) (*request.Request, *chimesdkidentity.ListAppInstanceUserEndpointsOutput)
+
+	ListAppInstanceUserEndpointsPages(*chimesdkidentity.ListAppInstanceUserEndpointsInput, func(*chimesdkidentity.ListAppInstanceUserEndpointsOutput, bool) bool) error
+	ListAppInstanceUserEndpointsPagesWithContext(aws.Context, *chimesdkidentity.ListAppInstanceUserEndpointsInput, func(*chimesdkidentity.ListAppInstanceUserEndpointsOutput, bool) bool, ...request.Option) error
 
 	ListAppInstanceUsers(*chimesdkidentity.ListAppInstanceUsersInput) (*chimesdkidentity.ListAppInstanceUsersOutput, error)
 	ListAppInstanceUsersWithContext(aws.Context, *chimesdkidentity.ListAppInstanceUsersInput, ...request.Option) (*chimesdkidentity.ListAppInstanceUsersOutput, error)
@@ -121,9 +136,25 @@ type ChimeSDKIdentityAPI interface {
 	ListAppInstancesPages(*chimesdkidentity.ListAppInstancesInput, func(*chimesdkidentity.ListAppInstancesOutput, bool) bool) error
 	ListAppInstancesPagesWithContext(aws.Context, *chimesdkidentity.ListAppInstancesInput, func(*chimesdkidentity.ListAppInstancesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*chimesdkidentity.ListTagsForResourceInput) (*chimesdkidentity.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *chimesdkidentity.ListTagsForResourceInput, ...request.Option) (*chimesdkidentity.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*chimesdkidentity.ListTagsForResourceInput) (*request.Request, *chimesdkidentity.ListTagsForResourceOutput)
+
 	PutAppInstanceRetentionSettings(*chimesdkidentity.PutAppInstanceRetentionSettingsInput) (*chimesdkidentity.PutAppInstanceRetentionSettingsOutput, error)
 	PutAppInstanceRetentionSettingsWithContext(aws.Context, *chimesdkidentity.PutAppInstanceRetentionSettingsInput, ...request.Option) (*chimesdkidentity.PutAppInstanceRetentionSettingsOutput, error)
 	PutAppInstanceRetentionSettingsRequest(*chimesdkidentity.PutAppInstanceRetentionSettingsInput) (*request.Request, *chimesdkidentity.PutAppInstanceRetentionSettingsOutput)
+
+	RegisterAppInstanceUserEndpoint(*chimesdkidentity.RegisterAppInstanceUserEndpointInput) (*chimesdkidentity.RegisterAppInstanceUserEndpointOutput, error)
+	RegisterAppInstanceUserEndpointWithContext(aws.Context, *chimesdkidentity.RegisterAppInstanceUserEndpointInput, ...request.Option) (*chimesdkidentity.RegisterAppInstanceUserEndpointOutput, error)
+	RegisterAppInstanceUserEndpointRequest(*chimesdkidentity.RegisterAppInstanceUserEndpointInput) (*request.Request, *chimesdkidentity.RegisterAppInstanceUserEndpointOutput)
+
+	TagResource(*chimesdkidentity.TagResourceInput) (*chimesdkidentity.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *chimesdkidentity.TagResourceInput, ...request.Option) (*chimesdkidentity.TagResourceOutput, error)
+	TagResourceRequest(*chimesdkidentity.TagResourceInput) (*request.Request, *chimesdkidentity.TagResourceOutput)
+
+	UntagResource(*chimesdkidentity.UntagResourceInput) (*chimesdkidentity.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *chimesdkidentity.UntagResourceInput, ...request.Option) (*chimesdkidentity.UntagResourceOutput, error)
+	UntagResourceRequest(*chimesdkidentity.UntagResourceInput) (*request.Request, *chimesdkidentity.UntagResourceOutput)
 
 	UpdateAppInstance(*chimesdkidentity.UpdateAppInstanceInput) (*chimesdkidentity.UpdateAppInstanceOutput, error)
 	UpdateAppInstanceWithContext(aws.Context, *chimesdkidentity.UpdateAppInstanceInput, ...request.Option) (*chimesdkidentity.UpdateAppInstanceOutput, error)
@@ -132,6 +163,10 @@ type ChimeSDKIdentityAPI interface {
 	UpdateAppInstanceUser(*chimesdkidentity.UpdateAppInstanceUserInput) (*chimesdkidentity.UpdateAppInstanceUserOutput, error)
 	UpdateAppInstanceUserWithContext(aws.Context, *chimesdkidentity.UpdateAppInstanceUserInput, ...request.Option) (*chimesdkidentity.UpdateAppInstanceUserOutput, error)
 	UpdateAppInstanceUserRequest(*chimesdkidentity.UpdateAppInstanceUserInput) (*request.Request, *chimesdkidentity.UpdateAppInstanceUserOutput)
+
+	UpdateAppInstanceUserEndpoint(*chimesdkidentity.UpdateAppInstanceUserEndpointInput) (*chimesdkidentity.UpdateAppInstanceUserEndpointOutput, error)
+	UpdateAppInstanceUserEndpointWithContext(aws.Context, *chimesdkidentity.UpdateAppInstanceUserEndpointInput, ...request.Option) (*chimesdkidentity.UpdateAppInstanceUserEndpointOutput, error)
+	UpdateAppInstanceUserEndpointRequest(*chimesdkidentity.UpdateAppInstanceUserEndpointInput) (*request.Request, *chimesdkidentity.UpdateAppInstanceUserEndpointOutput)
 }
 
 var _ ChimeSDKIdentityAPI = (*chimesdkidentity.ChimeSDKIdentity)(nil)

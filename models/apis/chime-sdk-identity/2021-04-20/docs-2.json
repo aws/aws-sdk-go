@@ -8,18 +8,35 @@
     "DeleteAppInstance": "<p>Deletes an <code>AppInstance</code> and all associated data asynchronously.</p>",
     "DeleteAppInstanceAdmin": "<p>Demotes an <code>AppInstanceAdmin</code> to an <code>AppInstanceUser</code>. This action does not delete the user.</p>",
     "DeleteAppInstanceUser": "<p>Deletes an <code>AppInstanceUser</code>.</p>",
+    "DeregisterAppInstanceUserEndpoint": "<p>Deregisters an <code>AppInstanceUserEndpoint</code>.</p>",
     "DescribeAppInstance": "<p>Returns the full details of an <code>AppInstance</code>.</p>",
     "DescribeAppInstanceAdmin": "<p>Returns the full details of an <code>AppInstanceAdmin</code>.</p>",
     "DescribeAppInstanceUser": "<p>Returns the full details of an <code>AppInstanceUser</code>.</p>",
+    "DescribeAppInstanceUserEndpoint": "<p>Returns the full details of an <code>AppInstanceUserEndpoint</code>.</p>",
     "GetAppInstanceRetentionSettings": "<p>Gets the retention settings for an <code>AppInstance</code>.</p>",
     "ListAppInstanceAdmins": "<p>Returns a list of the administrators in the <code>AppInstance</code>.</p>",
+    "ListAppInstanceUserEndpoints": "<p>Lists all the <code>AppInstanceUserEndpoints</code> created under a single <code>AppInstanceUser</code>.</p>",
     "ListAppInstanceUsers": "<p>List all <code>AppInstanceUsers</code> created under a single <code>AppInstance</code>.</p>",
     "ListAppInstances": "<p>Lists all Amazon Chime <code>AppInstance</code>s created under a single AWS account.</p>",
+    "ListTagsForResource": "<p>Lists the tags applied to an Amazon Chime SDK identity resource.</p>",
     "PutAppInstanceRetentionSettings": "<p>Sets the amount of time in days that a given <code>AppInstance</code> retains data.</p>",
+    "RegisterAppInstanceUserEndpoint": "<p>Registers an endpoint under an Amazon Chime <code>AppInstanceUser</code>. The endpoint receives messages for a user. For push notifications, the endpoint is a mobile device used to receive mobile push notifications for a user.</p>",
+    "TagResource": "<p>Applies the specified tags to the specified Amazon Chime SDK identity resource.</p>",
+    "UntagResource": "<p>Removes the specified tags from the specified Amazon Chime SDK identity resource.</p>",
     "UpdateAppInstance": "<p>Updates <code>AppInstance</code> metadata.</p>",
-    "UpdateAppInstanceUser": "<p>Updates the details of an <code>AppInstanceUser</code>. You can update names and metadata.</p>"
+    "UpdateAppInstanceUser": "<p>Updates the details of an <code>AppInstanceUser</code>. You can update names and metadata.</p>",
+    "UpdateAppInstanceUserEndpoint": "<p>Updates the details of an <code>AppInstanceUserEndpoint</code>. You can update the name and <code>AllowMessage</code> values.</p>"
   },
   "shapes": {
+    "AllowMessages": {
+      "base": null,
+      "refs": {
+        "AppInstanceUserEndpoint$AllowMessages": "<p>Boolean that controls whether the <code>AppInstanceUserEndpoint</code> is opted in to receive messages. <code>ALL</code> indicates the endpoint will receive all messages. <code>NONE</code> indicates the endpoint will receive no messages.</p>",
+        "AppInstanceUserEndpointSummary$AllowMessages": "<p>BBoolean that controls whether the <code>AppInstanceUserEndpoint</code> is opted in to receive messages. <code>ALL</code> indicates the endpoint will receive all messages. <code>NONE</code> indicates the endpoint will receive no messages.</p>",
+        "RegisterAppInstanceUserEndpointRequest$AllowMessages": "<p>Boolean that controls whether the AppInstanceUserEndpoint is opted in to receive messages. <code>ALL</code> indicates the endpoint receives all messages. <code>NONE</code> indicates the endpoint receives no messages.</p>",
+        "UpdateAppInstanceUserEndpointRequest$AllowMessages": "<p>Boolean that controls whether the <code>AppInstanceUserEndpoint</code> is opted in to receive messages. <code>ALL</code> indicates the endpoint will receive all messages. <code>NONE</code> indicates the endpoint will receive no messages.</p>"
+      }
+    },
     "AppInstance": {
       "base": "<p>The details of an <code>AppInstance</code>, an instance of an Amazon Chime SDK messaging application.</p>",
       "refs": {
@@ -68,6 +85,32 @@
       "base": "<p>The details of an <code>AppInstanceUser</code>.</p>",
       "refs": {
         "DescribeAppInstanceUserResponse$AppInstanceUser": "<p>The name of the <code>AppInstanceUser</code>.</p>"
+      }
+    },
+    "AppInstanceUserEndpoint": {
+      "base": "<p>An endpoint under an Amazon Chime <code>AppInstanceUser</code> that receives messages for a user. For push notifications, the endpoint is a mobile device used to receive mobile push notifications for a user.</p>",
+      "refs": {
+        "DescribeAppInstanceUserEndpointResponse$AppInstanceUserEndpoint": "<p>The full details of an <code>AppInstanceUserEndpoint</code>: the <code>AppInstanceUserArn</code>, ID, name, type, resource ARN, attributes, allow messages, state, and created and last updated timestamps. All timestamps use epoch milliseconds.</p>"
+      }
+    },
+    "AppInstanceUserEndpointSummary": {
+      "base": "<p>Summary of the details of an <code>AppInstanceUserEndpoint</code>.</p>",
+      "refs": {
+        "AppInstanceUserEndpointSummaryList$member": null
+      }
+    },
+    "AppInstanceUserEndpointSummaryList": {
+      "base": null,
+      "refs": {
+        "ListAppInstanceUserEndpointsResponse$AppInstanceUserEndpoints": "<p>The information for each requested <code>AppInstanceUserEndpoint</code>.</p>"
+      }
+    },
+    "AppInstanceUserEndpointType": {
+      "base": null,
+      "refs": {
+        "AppInstanceUserEndpoint$Type": "<p>The type of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "AppInstanceUserEndpointSummary$Type": "<p>The type of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "RegisterAppInstanceUserEndpointRequest$Type": "<p>The type of the <code>AppInstanceUserEndpoint</code>. Supported types:</p> <ul> <li> <p> <code>APNS</code>: The mobile notification service for an Apple device.</p> </li> <li> <p> <code>APNS_SANDBOX</code>: The sandbox environment of the mobile notification service for an Apple device.</p> </li> <li> <p> <code>GCM</code>: The mobile notification service for an Android device.</p> </li> </ul> <p>Populate the <code>ResourceArn</code> value of each type as <code>PinpointAppArn</code>.</p>"
       }
     },
     "AppInstanceUserList": {
@@ -121,7 +164,10 @@
         "ListAppInstanceAdminsResponse$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "ListAppInstanceUsersRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "ListAppInstanceUsersResponse$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "ListTagsForResourceRequest$ResourceARN": "<p>The ARN of the resource.</p>",
         "PutAppInstanceRetentionSettingsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "TagResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
+        "UntagResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
         "UpdateAppInstanceRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "UpdateAppInstanceResponse$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
         "UpdateAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
@@ -132,7 +178,8 @@
       "base": null,
       "refs": {
         "CreateAppInstanceRequest$ClientRequestToken": "<p>The <code>ClientRequestToken</code> of the <code>AppInstance</code>.</p>",
-        "CreateAppInstanceUserRequest$ClientRequestToken": "<p>The token assigned to the user requesting an <code>AppInstance</code>.</p>"
+        "CreateAppInstanceUserRequest$ClientRequestToken": "<p>The token assigned to the user requesting an <code>AppInstance</code>.</p>",
+        "RegisterAppInstanceUserEndpointRequest$ClientRequestToken": "<p>The idempotency token for each client request. </p>"
       }
     },
     "ConflictException": {
@@ -185,6 +232,11 @@
       "refs": {
       }
     },
+    "DeregisterAppInstanceUserEndpointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeAppInstanceAdminRequest": {
       "base": null,
       "refs": {
@@ -205,6 +257,16 @@
       "refs": {
       }
     },
+    "DescribeAppInstanceUserEndpointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAppInstanceUserEndpointResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeAppInstanceUserRequest": {
       "base": null,
       "refs": {
@@ -213,6 +275,32 @@
     "DescribeAppInstanceUserResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "EndpointAttributes": {
+      "base": "<p>The attributes of an <code>Endpoint</code>.</p>",
+      "refs": {
+        "AppInstanceUserEndpoint$EndpointAttributes": "<p>The attributes of an <code>Endpoint</code>.</p>",
+        "RegisterAppInstanceUserEndpointRequest$EndpointAttributes": "<p>The attributes of an <code>Endpoint</code>.</p>"
+      }
+    },
+    "EndpointState": {
+      "base": "<p>A read-only field that represents the state of an <code>AppInstanceUserEndpoint</code>. Supported values:</p> <ul> <li> <p> <code>ACTIVE</code>: The <code>AppInstanceUserEndpoint</code> is active and able to receive messages. When <code>ACTIVE</code>, the <code>EndpointStatusReason</code> remains empty.</p> </li> <li> <p> <code>INACTIVE</code>: The <code>AppInstanceUserEndpoint</code> is inactive and can't receive message. When INACTIVE, the corresponding reason will be conveyed through EndpointStatusReason.</p> </li> <li> <p> <code>INVALID_DEVICE_TOKEN</code> indicates that an <code>AppInstanceUserEndpoint</code> is <code>INACTIVE</code> due to invalid device token</p> </li> <li> <p> <code>INVALID_PINPOINT_ARN</code> indicates that an <code>AppInstanceUserEndpoint</code> is <code>INACTIVE</code> due to an invalid pinpoint ARN that was input through the <code>ResourceArn</code> field.</p> </li> </ul>",
+      "refs": {
+        "AppInstanceUserEndpoint$EndpointState": "<p>A read-only field that represents the state of an <code>AppInstanceUserEndpoint</code>. Supported values:</p> <ul> <li> <p> <code>ACTIVE</code>: The <code>AppInstanceUserEndpoint</code> is active and able to receive messages. When <code>ACTIVE</code>, the <code>EndpointStatusReason</code> remains empty.</p> </li> <li> <p> <code>INACTIVE</code>: The <code>AppInstanceUserEndpoint</code> is inactive and can't receive message. When <code>INACTIVE</code>, the corresponding reason will be conveyed through <code>EndpointStatusReason</code>.</p> </li> <li> <p> <code>INVALID_DEVICE_TOKEN</code> indicates that an <code>AppInstanceUserEndpoint</code> is <code>INACTIVE</code> due to invalid device token</p> </li> <li> <p> <code>INVALID_PINPOINT_ARN</code> indicates that an <code>AppInstanceUserEndpoint</code> is <code>INACTIVE</code> due to an invalid pinpoint ARN that was input through the <code>ResourceArn</code> field.</p> </li> </ul>",
+        "AppInstanceUserEndpointSummary$EndpointState": "<p>A read-only field that represent the state of an <code>AppInstanceUserEndpoint</code>.</p>"
+      }
+    },
+    "EndpointStatus": {
+      "base": null,
+      "refs": {
+        "EndpointState$Status": "<p>Enum that indicates the Status of an <code>AppInstanceUserEndpoint</code>.</p>"
+      }
+    },
+    "EndpointStatusReason": {
+      "base": null,
+      "refs": {
+        "EndpointState$StatusReason": "<p>The reason for the <code>EndpointStatus</code>.</p>"
       }
     },
     "ErrorCode": {
@@ -261,6 +349,16 @@
       "refs": {
       }
     },
+    "ListAppInstanceUserEndpointsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAppInstanceUserEndpointsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListAppInstanceUsersRequest": {
       "base": null,
       "refs": {
@@ -281,10 +379,21 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
         "ListAppInstanceAdminsRequest$MaxResults": "<p>The maximum number of administrators that you want to return.</p>",
+        "ListAppInstanceUserEndpointsRequest$MaxResults": "<p>The maximum number of endpoints that you want to return.</p>",
         "ListAppInstanceUsersRequest$MaxResults": "<p>The maximum number of requests that you want returned.</p>",
         "ListAppInstancesRequest$MaxResults": "<p>The maximum number of <code>AppInstance</code>s that you want to return.</p>"
       }
@@ -307,6 +416,8 @@
       "refs": {
         "ListAppInstanceAdminsRequest$NextToken": "<p>The token returned from previous API requests until the number of administrators is reached.</p>",
         "ListAppInstanceAdminsResponse$NextToken": "<p>The token returned from previous API requests until the number of administrators is reached.</p>",
+        "ListAppInstanceUserEndpointsRequest$NextToken": "<p>The token passed by previous API calls until all requested endpoints are returned.</p>",
+        "ListAppInstanceUserEndpointsResponse$NextToken": "<p>The token passed by previous API calls until all requested endpoints are returned.</p>",
         "ListAppInstanceUsersRequest$NextToken": "<p>The token passed by previous API calls until all requested users are returned.</p>",
         "ListAppInstanceUsersResponse$NextToken": "<p>The token passed by previous API calls until all requested users are returned.</p>",
         "ListAppInstancesRequest$NextToken": "<p>The token passed by previous API requests until you reach the maximum number of <code>AppInstances</code>.</p>",
@@ -322,12 +433,29 @@
         "UpdateAppInstanceRequest$Name": "<p>The name that you want to change.</p>"
       }
     },
+    "NonEmptySensitiveString1600": {
+      "base": null,
+      "refs": {
+        "EndpointAttributes$DeviceToken": "<p>The device token for the GCM, APNS, and APNS_SANDBOX endpoint types.</p>",
+        "EndpointAttributes$VoipDeviceToken": "<p>The VOIP device token for the APNS and APNS_SANDBOX endpoint types.</p>"
+      }
+    },
     "PutAppInstanceRetentionSettingsRequest": {
       "base": null,
       "refs": {
       }
     },
     "PutAppInstanceRetentionSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterAppInstanceUserEndpointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterAppInstanceUserEndpointResponse": {
       "base": null,
       "refs": {
       }
@@ -347,6 +475,43 @@
       "base": null,
       "refs": {
         "ChannelRetentionSettings$RetentionDays": "<p>The time in days to retain the messages in a channel.</p>"
+      }
+    },
+    "SensitiveChimeArn": {
+      "base": null,
+      "refs": {
+        "AppInstanceUserEndpoint$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "AppInstanceUserEndpoint$ResourceArn": "<p>The ARN of the resource to which the endpoint belongs.</p>",
+        "AppInstanceUserEndpointSummary$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "DeregisterAppInstanceUserEndpointRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "ListAppInstanceUserEndpointsRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "RegisterAppInstanceUserEndpointRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "RegisterAppInstanceUserEndpointRequest$ResourceArn": "<p>The ARN of the resource to which the endpoint belongs.</p>",
+        "RegisterAppInstanceUserEndpointResponse$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "UpdateAppInstanceUserEndpointRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "UpdateAppInstanceUserEndpointResponse$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>"
+      }
+    },
+    "SensitiveString1600": {
+      "base": null,
+      "refs": {
+        "AppInstanceUserEndpoint$Name": "<p>The name of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "AppInstanceUserEndpointSummary$Name": "<p>The name of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "DescribeAppInstanceUserEndpointRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>.</p>",
+        "RegisterAppInstanceUserEndpointRequest$Name": "<p>The name of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "UpdateAppInstanceUserEndpointRequest$Name": "<p>The name of the <code>AppInstanceUserEndpoint</code>.</p>"
+      }
+    },
+    "SensitiveString64": {
+      "base": null,
+      "refs": {
+        "AppInstanceUserEndpoint$EndpointId": "<p>The unique identifier of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "AppInstanceUserEndpointSummary$EndpointId": "<p>The unique identifier of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "DeregisterAppInstanceUserEndpointRequest$EndpointId": "<p>The unique identifier of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "DescribeAppInstanceUserEndpointRequest$EndpointId": "<p>The unique identifier of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "RegisterAppInstanceUserEndpointResponse$EndpointId": "<p>The unique identifier of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "UpdateAppInstanceUserEndpointRequest$EndpointId": "<p>The unique identifier of the <code>AppInstanceUserEndpoint</code>.</p>",
+        "UpdateAppInstanceUserEndpointResponse$EndpointId": "<p>The unique identifier of the <code>AppInstanceUserEndpoint</code>.</p>"
       }
     },
     "ServiceFailureException": {
@@ -373,7 +538,7 @@
       }
     },
     "Tag": {
-      "base": "<p>Describes a tag applied to a resource.</p>",
+      "base": "<p>A tag object containing a key-value pair.</p>",
       "refs": {
         "TagList$member": null
       }
@@ -381,20 +546,34 @@
     "TagKey": {
       "base": null,
       "refs": {
-        "Tag$Key": "<p>The key of the tag.</p>"
+        "Tag$Key": "<p>The key in a tag.</p>",
+        "TagKeyList$member": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag keys.</p>"
       }
     },
     "TagList": {
       "base": null,
       "refs": {
         "CreateAppInstanceRequest$Tags": "<p>Tags assigned to the <code>AppInstanceUser</code>.</p>",
-        "CreateAppInstanceUserRequest$Tags": "<p>Tags assigned to the <code>AppInstanceUser</code>.</p>"
+        "CreateAppInstanceUserRequest$Tags": "<p>Tags assigned to the <code>AppInstanceUser</code>.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>The tag key-value pairs.</p>",
+        "TagResourceRequest$Tags": "<p>The tag key-value pairs.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": "<p>The value of the tag.</p>"
+        "Tag$Value": "<p>The value in a tag.</p>"
       }
     },
     "ThrottledClientException": {
@@ -410,6 +589,8 @@
         "AppInstanceAdmin$CreatedTimestamp": "<p>The time at which an administrator was created.</p>",
         "AppInstanceUser$CreatedTimestamp": "<p>The time at which the <code>AppInstanceUser</code> was created.</p>",
         "AppInstanceUser$LastUpdatedTimestamp": "<p>The time at which the <code>AppInstanceUser</code> was last updated.</p>",
+        "AppInstanceUserEndpoint$CreatedTimestamp": "<p>The time at which an <code>AppInstanceUserEndpoint</code> was created.</p>",
+        "AppInstanceUserEndpoint$LastUpdatedTimestamp": "<p>The time at which an <code>AppInstanceUserEndpoint</code> was last updated.</p>",
         "GetAppInstanceRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The timestamp representing the time at which the specified items are retained, in Epoch Seconds.</p>",
         "PutAppInstanceRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The time at which the API deletes data.</p>"
       }
@@ -419,12 +600,27 @@
       "refs": {
       }
     },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateAppInstanceRequest": {
       "base": null,
       "refs": {
       }
     },
     "UpdateAppInstanceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAppInstanceUserEndpointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAppInstanceUserEndpointResponse": {
       "base": null,
       "refs": {
       }

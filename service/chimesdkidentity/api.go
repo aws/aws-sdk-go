@@ -631,6 +631,101 @@ func (c *ChimeSDKIdentity) DeleteAppInstanceUserWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDeregisterAppInstanceUserEndpoint = "DeregisterAppInstanceUserEndpoint"
+
+// DeregisterAppInstanceUserEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterAppInstanceUserEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeregisterAppInstanceUserEndpoint for more information on using the DeregisterAppInstanceUserEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeregisterAppInstanceUserEndpointRequest method.
+//    req, resp := client.DeregisterAppInstanceUserEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/DeregisterAppInstanceUserEndpoint
+func (c *ChimeSDKIdentity) DeregisterAppInstanceUserEndpointRequest(input *DeregisterAppInstanceUserEndpointInput) (req *request.Request, output *DeregisterAppInstanceUserEndpointOutput) {
+	op := &request.Operation{
+		Name:       opDeregisterAppInstanceUserEndpoint,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/app-instance-users/{appInstanceUserArn}/endpoints/{endpointId}",
+	}
+
+	if input == nil {
+		input = &DeregisterAppInstanceUserEndpointInput{}
+	}
+
+	output = &DeregisterAppInstanceUserEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeregisterAppInstanceUserEndpoint API operation for Amazon Chime SDK Identity.
+//
+// Deregisters an AppInstanceUserEndpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Identity's
+// API operation DeregisterAppInstanceUserEndpoint for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/DeregisterAppInstanceUserEndpoint
+func (c *ChimeSDKIdentity) DeregisterAppInstanceUserEndpoint(input *DeregisterAppInstanceUserEndpointInput) (*DeregisterAppInstanceUserEndpointOutput, error) {
+	req, out := c.DeregisterAppInstanceUserEndpointRequest(input)
+	return out, req.Send()
+}
+
+// DeregisterAppInstanceUserEndpointWithContext is the same as DeregisterAppInstanceUserEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeregisterAppInstanceUserEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKIdentity) DeregisterAppInstanceUserEndpointWithContext(ctx aws.Context, input *DeregisterAppInstanceUserEndpointInput, opts ...request.Option) (*DeregisterAppInstanceUserEndpointOutput, error) {
+	req, out := c.DeregisterAppInstanceUserEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAppInstance = "DescribeAppInstance"
 
 // DescribeAppInstanceRequest generates a "aws/request.Request" representing the
@@ -913,6 +1008,100 @@ func (c *ChimeSDKIdentity) DescribeAppInstanceUserWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opDescribeAppInstanceUserEndpoint = "DescribeAppInstanceUserEndpoint"
+
+// DescribeAppInstanceUserEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAppInstanceUserEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAppInstanceUserEndpoint for more information on using the DescribeAppInstanceUserEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAppInstanceUserEndpointRequest method.
+//    req, resp := client.DescribeAppInstanceUserEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/DescribeAppInstanceUserEndpoint
+func (c *ChimeSDKIdentity) DescribeAppInstanceUserEndpointRequest(input *DescribeAppInstanceUserEndpointInput) (req *request.Request, output *DescribeAppInstanceUserEndpointOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAppInstanceUserEndpoint,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instance-users/{appInstanceUserArn}/endpoints/{endpointId}",
+	}
+
+	if input == nil {
+		input = &DescribeAppInstanceUserEndpointInput{}
+	}
+
+	output = &DescribeAppInstanceUserEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAppInstanceUserEndpoint API operation for Amazon Chime SDK Identity.
+//
+// Returns the full details of an AppInstanceUserEndpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Identity's
+// API operation DescribeAppInstanceUserEndpoint for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/DescribeAppInstanceUserEndpoint
+func (c *ChimeSDKIdentity) DescribeAppInstanceUserEndpoint(input *DescribeAppInstanceUserEndpointInput) (*DescribeAppInstanceUserEndpointOutput, error) {
+	req, out := c.DescribeAppInstanceUserEndpointRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAppInstanceUserEndpointWithContext is the same as DescribeAppInstanceUserEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAppInstanceUserEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKIdentity) DescribeAppInstanceUserEndpointWithContext(ctx aws.Context, input *DescribeAppInstanceUserEndpointInput, opts ...request.Option) (*DescribeAppInstanceUserEndpointOutput, error) {
+	req, out := c.DescribeAppInstanceUserEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAppInstanceRetentionSettings = "GetAppInstanceRetentionSettings"
 
 // GetAppInstanceRetentionSettingsRequest generates a "aws/request.Request" representing the
@@ -1155,6 +1344,158 @@ func (c *ChimeSDKIdentity) ListAppInstanceAdminsPagesWithContext(ctx aws.Context
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAppInstanceAdminsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAppInstanceUserEndpoints = "ListAppInstanceUserEndpoints"
+
+// ListAppInstanceUserEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAppInstanceUserEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAppInstanceUserEndpoints for more information on using the ListAppInstanceUserEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAppInstanceUserEndpointsRequest method.
+//    req, resp := client.ListAppInstanceUserEndpointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/ListAppInstanceUserEndpoints
+func (c *ChimeSDKIdentity) ListAppInstanceUserEndpointsRequest(input *ListAppInstanceUserEndpointsInput) (req *request.Request, output *ListAppInstanceUserEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opListAppInstanceUserEndpoints,
+		HTTPMethod: "GET",
+		HTTPPath:   "/app-instance-users/{appInstanceUserArn}/endpoints",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAppInstanceUserEndpointsInput{}
+	}
+
+	output = &ListAppInstanceUserEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAppInstanceUserEndpoints API operation for Amazon Chime SDK Identity.
+//
+// Lists all the AppInstanceUserEndpoints created under a single AppInstanceUser.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Identity's
+// API operation ListAppInstanceUserEndpoints for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/ListAppInstanceUserEndpoints
+func (c *ChimeSDKIdentity) ListAppInstanceUserEndpoints(input *ListAppInstanceUserEndpointsInput) (*ListAppInstanceUserEndpointsOutput, error) {
+	req, out := c.ListAppInstanceUserEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// ListAppInstanceUserEndpointsWithContext is the same as ListAppInstanceUserEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAppInstanceUserEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKIdentity) ListAppInstanceUserEndpointsWithContext(ctx aws.Context, input *ListAppInstanceUserEndpointsInput, opts ...request.Option) (*ListAppInstanceUserEndpointsOutput, error) {
+	req, out := c.ListAppInstanceUserEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAppInstanceUserEndpointsPages iterates over the pages of a ListAppInstanceUserEndpoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAppInstanceUserEndpoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAppInstanceUserEndpoints operation.
+//    pageNum := 0
+//    err := client.ListAppInstanceUserEndpointsPages(params,
+//        func(page *chimesdkidentity.ListAppInstanceUserEndpointsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ChimeSDKIdentity) ListAppInstanceUserEndpointsPages(input *ListAppInstanceUserEndpointsInput, fn func(*ListAppInstanceUserEndpointsOutput, bool) bool) error {
+	return c.ListAppInstanceUserEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAppInstanceUserEndpointsPagesWithContext same as ListAppInstanceUserEndpointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKIdentity) ListAppInstanceUserEndpointsPagesWithContext(ctx aws.Context, input *ListAppInstanceUserEndpointsInput, fn func(*ListAppInstanceUserEndpointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAppInstanceUserEndpointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAppInstanceUserEndpointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAppInstanceUserEndpointsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1466,6 +1807,100 @@ func (c *ChimeSDKIdentity) ListAppInstancesPagesWithContext(ctx aws.Context, inp
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/ListTagsForResource
+func (c *ChimeSDKIdentity) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Chime SDK Identity.
+//
+// Lists the tags applied to an Amazon Chime SDK identity resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Identity's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/ListTagsForResource
+func (c *ChimeSDKIdentity) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKIdentity) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutAppInstanceRetentionSettings = "PutAppInstanceRetentionSettings"
 
 // PutAppInstanceRetentionSettingsRequest generates a "aws/request.Request" representing the
@@ -1555,6 +1990,302 @@ func (c *ChimeSDKIdentity) PutAppInstanceRetentionSettings(input *PutAppInstance
 // for more information on using Contexts.
 func (c *ChimeSDKIdentity) PutAppInstanceRetentionSettingsWithContext(ctx aws.Context, input *PutAppInstanceRetentionSettingsInput, opts ...request.Option) (*PutAppInstanceRetentionSettingsOutput, error) {
 	req, out := c.PutAppInstanceRetentionSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRegisterAppInstanceUserEndpoint = "RegisterAppInstanceUserEndpoint"
+
+// RegisterAppInstanceUserEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterAppInstanceUserEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RegisterAppInstanceUserEndpoint for more information on using the RegisterAppInstanceUserEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RegisterAppInstanceUserEndpointRequest method.
+//    req, resp := client.RegisterAppInstanceUserEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/RegisterAppInstanceUserEndpoint
+func (c *ChimeSDKIdentity) RegisterAppInstanceUserEndpointRequest(input *RegisterAppInstanceUserEndpointInput) (req *request.Request, output *RegisterAppInstanceUserEndpointOutput) {
+	op := &request.Operation{
+		Name:       opRegisterAppInstanceUserEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/app-instance-users/{appInstanceUserArn}/endpoints",
+	}
+
+	if input == nil {
+		input = &RegisterAppInstanceUserEndpointInput{}
+	}
+
+	output = &RegisterAppInstanceUserEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RegisterAppInstanceUserEndpoint API operation for Amazon Chime SDK Identity.
+//
+// Registers an endpoint under an Amazon Chime AppInstanceUser. The endpoint
+// receives messages for a user. For push notifications, the endpoint is a mobile
+// device used to receive mobile push notifications for a user.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Identity's
+// API operation RegisterAppInstanceUserEndpoint for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/RegisterAppInstanceUserEndpoint
+func (c *ChimeSDKIdentity) RegisterAppInstanceUserEndpoint(input *RegisterAppInstanceUserEndpointInput) (*RegisterAppInstanceUserEndpointOutput, error) {
+	req, out := c.RegisterAppInstanceUserEndpointRequest(input)
+	return out, req.Send()
+}
+
+// RegisterAppInstanceUserEndpointWithContext is the same as RegisterAppInstanceUserEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterAppInstanceUserEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKIdentity) RegisterAppInstanceUserEndpointWithContext(ctx aws.Context, input *RegisterAppInstanceUserEndpointInput, opts ...request.Option) (*RegisterAppInstanceUserEndpointOutput, error) {
+	req, out := c.RegisterAppInstanceUserEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/TagResource
+func (c *ChimeSDKIdentity) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags?operation=tag-resource",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Chime SDK Identity.
+//
+// Applies the specified tags to the specified Amazon Chime SDK identity resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Identity's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/TagResource
+func (c *ChimeSDKIdentity) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKIdentity) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/UntagResource
+func (c *ChimeSDKIdentity) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags?operation=untag-resource",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Chime SDK Identity.
+//
+// Removes the specified tags from the specified Amazon Chime SDK identity resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Identity's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/UntagResource
+func (c *ChimeSDKIdentity) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKIdentity) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1754,6 +2485,105 @@ func (c *ChimeSDKIdentity) UpdateAppInstanceUser(input *UpdateAppInstanceUserInp
 // for more information on using Contexts.
 func (c *ChimeSDKIdentity) UpdateAppInstanceUserWithContext(ctx aws.Context, input *UpdateAppInstanceUserInput, opts ...request.Option) (*UpdateAppInstanceUserOutput, error) {
 	req, out := c.UpdateAppInstanceUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAppInstanceUserEndpoint = "UpdateAppInstanceUserEndpoint"
+
+// UpdateAppInstanceUserEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAppInstanceUserEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAppInstanceUserEndpoint for more information on using the UpdateAppInstanceUserEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAppInstanceUserEndpointRequest method.
+//    req, resp := client.UpdateAppInstanceUserEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/UpdateAppInstanceUserEndpoint
+func (c *ChimeSDKIdentity) UpdateAppInstanceUserEndpointRequest(input *UpdateAppInstanceUserEndpointInput) (req *request.Request, output *UpdateAppInstanceUserEndpointOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAppInstanceUserEndpoint,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/app-instance-users/{appInstanceUserArn}/endpoints/{endpointId}",
+	}
+
+	if input == nil {
+		input = &UpdateAppInstanceUserEndpointInput{}
+	}
+
+	output = &UpdateAppInstanceUserEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAppInstanceUserEndpoint API operation for Amazon Chime SDK Identity.
+//
+// Updates the details of an AppInstanceUserEndpoint. You can update the name
+// and AllowMessage values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Identity's
+// API operation UpdateAppInstanceUserEndpoint for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-identity-2021-04-20/UpdateAppInstanceUserEndpoint
+func (c *ChimeSDKIdentity) UpdateAppInstanceUserEndpoint(input *UpdateAppInstanceUserEndpointInput) (*UpdateAppInstanceUserEndpointOutput, error) {
+	req, out := c.UpdateAppInstanceUserEndpointRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAppInstanceUserEndpointWithContext is the same as UpdateAppInstanceUserEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAppInstanceUserEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKIdentity) UpdateAppInstanceUserEndpointWithContext(ctx aws.Context, input *UpdateAppInstanceUserEndpointInput, opts ...request.Option) (*UpdateAppInstanceUserEndpointOutput, error) {
+	req, out := c.UpdateAppInstanceUserEndpointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2096,6 +2926,245 @@ func (s *AppInstanceUser) SetMetadata(v string) *AppInstanceUser {
 // SetName sets the Name field's value.
 func (s *AppInstanceUser) SetName(v string) *AppInstanceUser {
 	s.Name = &v
+	return s
+}
+
+// An endpoint under an Amazon Chime AppInstanceUser that receives messages
+// for a user. For push notifications, the endpoint is a mobile device used
+// to receive mobile push notifications for a user.
+type AppInstanceUserEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// Boolean that controls whether the AppInstanceUserEndpoint is opted in to
+	// receive messages. ALL indicates the endpoint will receive all messages. NONE
+	// indicates the endpoint will receive no messages.
+	AllowMessages *string `type:"string" enum:"AllowMessages"`
+
+	// The ARN of the AppInstanceUser.
+	//
+	// AppInstanceUserArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AppInstanceUserEndpoint's
+	// String and GoString methods.
+	AppInstanceUserArn *string `min:"5" type:"string" sensitive:"true"`
+
+	// The time at which an AppInstanceUserEndpoint was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The attributes of an Endpoint.
+	EndpointAttributes *EndpointAttributes `type:"structure"`
+
+	// The unique identifier of the AppInstanceUserEndpoint.
+	//
+	// EndpointId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AppInstanceUserEndpoint's
+	// String and GoString methods.
+	EndpointId *string `type:"string" sensitive:"true"`
+
+	// A read-only field that represents the state of an AppInstanceUserEndpoint.
+	// Supported values:
+	//
+	//    * ACTIVE: The AppInstanceUserEndpoint is active and able to receive messages.
+	//    When ACTIVE, the EndpointStatusReason remains empty.
+	//
+	//    * INACTIVE: The AppInstanceUserEndpoint is inactive and can't receive
+	//    message. When INACTIVE, the corresponding reason will be conveyed through
+	//    EndpointStatusReason.
+	//
+	//    * INVALID_DEVICE_TOKEN indicates that an AppInstanceUserEndpoint is INACTIVE
+	//    due to invalid device token
+	//
+	//    * INVALID_PINPOINT_ARN indicates that an AppInstanceUserEndpoint is INACTIVE
+	//    due to an invalid pinpoint ARN that was input through the ResourceArn
+	//    field.
+	EndpointState *EndpointState `type:"structure"`
+
+	// The time at which an AppInstanceUserEndpoint was last updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The name of the AppInstanceUserEndpoint.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AppInstanceUserEndpoint's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
+
+	// The ARN of the resource to which the endpoint belongs.
+	//
+	// ResourceArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AppInstanceUserEndpoint's
+	// String and GoString methods.
+	ResourceArn *string `min:"5" type:"string" sensitive:"true"`
+
+	// The type of the AppInstanceUserEndpoint.
+	Type *string `type:"string" enum:"AppInstanceUserEndpointType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppInstanceUserEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppInstanceUserEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetAllowMessages sets the AllowMessages field's value.
+func (s *AppInstanceUserEndpoint) SetAllowMessages(v string) *AppInstanceUserEndpoint {
+	s.AllowMessages = &v
+	return s
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *AppInstanceUserEndpoint) SetAppInstanceUserArn(v string) *AppInstanceUserEndpoint {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *AppInstanceUserEndpoint) SetCreatedTimestamp(v time.Time) *AppInstanceUserEndpoint {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetEndpointAttributes sets the EndpointAttributes field's value.
+func (s *AppInstanceUserEndpoint) SetEndpointAttributes(v *EndpointAttributes) *AppInstanceUserEndpoint {
+	s.EndpointAttributes = v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *AppInstanceUserEndpoint) SetEndpointId(v string) *AppInstanceUserEndpoint {
+	s.EndpointId = &v
+	return s
+}
+
+// SetEndpointState sets the EndpointState field's value.
+func (s *AppInstanceUserEndpoint) SetEndpointState(v *EndpointState) *AppInstanceUserEndpoint {
+	s.EndpointState = v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *AppInstanceUserEndpoint) SetLastUpdatedTimestamp(v time.Time) *AppInstanceUserEndpoint {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AppInstanceUserEndpoint) SetName(v string) *AppInstanceUserEndpoint {
+	s.Name = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *AppInstanceUserEndpoint) SetResourceArn(v string) *AppInstanceUserEndpoint {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AppInstanceUserEndpoint) SetType(v string) *AppInstanceUserEndpoint {
+	s.Type = &v
+	return s
+}
+
+// Summary of the details of an AppInstanceUserEndpoint.
+type AppInstanceUserEndpointSummary struct {
+	_ struct{} `type:"structure"`
+
+	// BBoolean that controls whether the AppInstanceUserEndpoint is opted in to
+	// receive messages. ALL indicates the endpoint will receive all messages. NONE
+	// indicates the endpoint will receive no messages.
+	AllowMessages *string `type:"string" enum:"AllowMessages"`
+
+	// The ARN of the AppInstanceUser.
+	//
+	// AppInstanceUserArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AppInstanceUserEndpointSummary's
+	// String and GoString methods.
+	AppInstanceUserArn *string `min:"5" type:"string" sensitive:"true"`
+
+	// The unique identifier of the AppInstanceUserEndpoint.
+	//
+	// EndpointId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AppInstanceUserEndpointSummary's
+	// String and GoString methods.
+	EndpointId *string `type:"string" sensitive:"true"`
+
+	// A read-only field that represent the state of an AppInstanceUserEndpoint.
+	EndpointState *EndpointState `type:"structure"`
+
+	// The name of the AppInstanceUserEndpoint.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AppInstanceUserEndpointSummary's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
+
+	// The type of the AppInstanceUserEndpoint.
+	Type *string `type:"string" enum:"AppInstanceUserEndpointType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppInstanceUserEndpointSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AppInstanceUserEndpointSummary) GoString() string {
+	return s.String()
+}
+
+// SetAllowMessages sets the AllowMessages field's value.
+func (s *AppInstanceUserEndpointSummary) SetAllowMessages(v string) *AppInstanceUserEndpointSummary {
+	s.AllowMessages = &v
+	return s
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *AppInstanceUserEndpointSummary) SetAppInstanceUserArn(v string) *AppInstanceUserEndpointSummary {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *AppInstanceUserEndpointSummary) SetEndpointId(v string) *AppInstanceUserEndpointSummary {
+	s.EndpointId = &v
+	return s
+}
+
+// SetEndpointState sets the EndpointState field's value.
+func (s *AppInstanceUserEndpointSummary) SetEndpointState(v *EndpointState) *AppInstanceUserEndpointSummary {
+	s.EndpointState = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AppInstanceUserEndpointSummary) SetName(v string) *AppInstanceUserEndpointSummary {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AppInstanceUserEndpointSummary) SetType(v string) *AppInstanceUserEndpointSummary {
+	s.Type = &v
 	return s
 }
 
@@ -2979,6 +4048,102 @@ func (s DeleteAppInstanceUserOutput) GoString() string {
 	return s.String()
 }
 
+type DeregisterAppInstanceUserEndpointInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the AppInstanceUser.
+	//
+	// AppInstanceUserArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DeregisterAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true" sensitive:"true"`
+
+	// The unique identifier of the AppInstanceUserEndpoint.
+	//
+	// EndpointId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DeregisterAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	//
+	// EndpointId is a required field
+	EndpointId *string `location:"uri" locationName:"endpointId" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterAppInstanceUserEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterAppInstanceUserEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeregisterAppInstanceUserEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeregisterAppInstanceUserEndpointInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+	if s.EndpointId != nil && len(*s.EndpointId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *DeregisterAppInstanceUserEndpointInput) SetAppInstanceUserArn(v string) *DeregisterAppInstanceUserEndpointInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *DeregisterAppInstanceUserEndpointInput) SetEndpointId(v string) *DeregisterAppInstanceUserEndpointInput {
+	s.EndpointId = &v
+	return s
+}
+
+type DeregisterAppInstanceUserEndpointOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterAppInstanceUserEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeregisterAppInstanceUserEndpointOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeAppInstanceAdminInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3158,6 +4323,113 @@ func (s *DescribeAppInstanceOutput) SetAppInstance(v *AppInstance) *DescribeAppI
 	return s
 }
 
+type DescribeAppInstanceUserEndpointInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the AppInstanceUser.
+	//
+	// AppInstanceUserArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" type:"string" required:"true" sensitive:"true"`
+
+	// The unique identifier of the AppInstanceUserEndpoint.
+	//
+	// EndpointId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by DescribeAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	//
+	// EndpointId is a required field
+	EndpointId *string `location:"uri" locationName:"endpointId" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAppInstanceUserEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAppInstanceUserEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAppInstanceUserEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAppInstanceUserEndpointInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 1))
+	}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+	if s.EndpointId != nil && len(*s.EndpointId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *DescribeAppInstanceUserEndpointInput) SetAppInstanceUserArn(v string) *DescribeAppInstanceUserEndpointInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *DescribeAppInstanceUserEndpointInput) SetEndpointId(v string) *DescribeAppInstanceUserEndpointInput {
+	s.EndpointId = &v
+	return s
+}
+
+type DescribeAppInstanceUserEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The full details of an AppInstanceUserEndpoint: the AppInstanceUserArn, ID,
+	// name, type, resource ARN, attributes, allow messages, state, and created
+	// and last updated timestamps. All timestamps use epoch milliseconds.
+	AppInstanceUserEndpoint *AppInstanceUserEndpoint `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAppInstanceUserEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAppInstanceUserEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUserEndpoint sets the AppInstanceUserEndpoint field's value.
+func (s *DescribeAppInstanceUserEndpointOutput) SetAppInstanceUserEndpoint(v *AppInstanceUserEndpoint) *DescribeAppInstanceUserEndpointOutput {
+	s.AppInstanceUserEndpoint = v
+	return s
+}
+
 type DescribeAppInstanceUserInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3235,6 +4507,134 @@ func (s DescribeAppInstanceUserOutput) GoString() string {
 // SetAppInstanceUser sets the AppInstanceUser field's value.
 func (s *DescribeAppInstanceUserOutput) SetAppInstanceUser(v *AppInstanceUser) *DescribeAppInstanceUserOutput {
 	s.AppInstanceUser = v
+	return s
+}
+
+// The attributes of an Endpoint.
+type EndpointAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The device token for the GCM, APNS, and APNS_SANDBOX endpoint types.
+	//
+	// DeviceToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EndpointAttributes's
+	// String and GoString methods.
+	//
+	// DeviceToken is a required field
+	DeviceToken *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The VOIP device token for the APNS and APNS_SANDBOX endpoint types.
+	//
+	// VoipDeviceToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EndpointAttributes's
+	// String and GoString methods.
+	VoipDeviceToken *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EndpointAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EndpointAttributes"}
+	if s.DeviceToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceToken"))
+	}
+	if s.DeviceToken != nil && len(*s.DeviceToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceToken", 1))
+	}
+	if s.VoipDeviceToken != nil && len(*s.VoipDeviceToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VoipDeviceToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceToken sets the DeviceToken field's value.
+func (s *EndpointAttributes) SetDeviceToken(v string) *EndpointAttributes {
+	s.DeviceToken = &v
+	return s
+}
+
+// SetVoipDeviceToken sets the VoipDeviceToken field's value.
+func (s *EndpointAttributes) SetVoipDeviceToken(v string) *EndpointAttributes {
+	s.VoipDeviceToken = &v
+	return s
+}
+
+// A read-only field that represents the state of an AppInstanceUserEndpoint.
+// Supported values:
+//
+//    * ACTIVE: The AppInstanceUserEndpoint is active and able to receive messages.
+//    When ACTIVE, the EndpointStatusReason remains empty.
+//
+//    * INACTIVE: The AppInstanceUserEndpoint is inactive and can't receive
+//    message. When INACTIVE, the corresponding reason will be conveyed through
+//    EndpointStatusReason.
+//
+//    * INVALID_DEVICE_TOKEN indicates that an AppInstanceUserEndpoint is INACTIVE
+//    due to invalid device token
+//
+//    * INVALID_PINPOINT_ARN indicates that an AppInstanceUserEndpoint is INACTIVE
+//    due to an invalid pinpoint ARN that was input through the ResourceArn
+//    field.
+type EndpointState struct {
+	_ struct{} `type:"structure"`
+
+	// Enum that indicates the Status of an AppInstanceUserEndpoint.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"EndpointStatus"`
+
+	// The reason for the EndpointStatus.
+	StatusReason *string `type:"string" enum:"EndpointStatusReason"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointState) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *EndpointState) SetStatus(v string) *EndpointState {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *EndpointState) SetStatusReason(v string) *EndpointState {
+	s.StatusReason = &v
 	return s
 }
 
@@ -3568,6 +4968,130 @@ func (s *ListAppInstanceAdminsOutput) SetNextToken(v string) *ListAppInstanceAdm
 	return s
 }
 
+type ListAppInstanceUserEndpointsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the AppInstanceUser.
+	//
+	// AppInstanceUserArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListAppInstanceUserEndpointsInput's
+	// String and GoString methods.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true" sensitive:"true"`
+
+	// The maximum number of endpoints that you want to return.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token passed by previous API calls until all requested endpoints are
+	// returned.
+	//
+	// NextToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListAppInstanceUserEndpointsInput's
+	// String and GoString methods.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppInstanceUserEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppInstanceUserEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAppInstanceUserEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAppInstanceUserEndpointsInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *ListAppInstanceUserEndpointsInput) SetAppInstanceUserArn(v string) *ListAppInstanceUserEndpointsInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAppInstanceUserEndpointsInput) SetMaxResults(v int64) *ListAppInstanceUserEndpointsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppInstanceUserEndpointsInput) SetNextToken(v string) *ListAppInstanceUserEndpointsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppInstanceUserEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The information for each requested AppInstanceUserEndpoint.
+	AppInstanceUserEndpoints []*AppInstanceUserEndpointSummary `type:"list"`
+
+	// The token passed by previous API calls until all requested endpoints are
+	// returned.
+	//
+	// NextToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ListAppInstanceUserEndpointsOutput's
+	// String and GoString methods.
+	NextToken *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppInstanceUserEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAppInstanceUserEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUserEndpoints sets the AppInstanceUserEndpoints field's value.
+func (s *ListAppInstanceUserEndpointsOutput) SetAppInstanceUserEndpoints(v []*AppInstanceUserEndpointSummary) *ListAppInstanceUserEndpointsOutput {
+	s.AppInstanceUserEndpoints = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppInstanceUserEndpointsOutput) SetNextToken(v string) *ListAppInstanceUserEndpointsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListAppInstanceUsersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3798,6 +5322,86 @@ func (s *ListAppInstancesOutput) SetNextToken(v string) *ListAppInstancesOutput 
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the resource.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `location:"querystring" locationName:"arn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The tag key-value pairs.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 type PutAppInstanceRetentionSettingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3903,6 +5507,210 @@ func (s *PutAppInstanceRetentionSettingsOutput) SetAppInstanceRetentionSettings(
 // SetInitiateDeletionTimestamp sets the InitiateDeletionTimestamp field's value.
 func (s *PutAppInstanceRetentionSettingsOutput) SetInitiateDeletionTimestamp(v time.Time) *PutAppInstanceRetentionSettingsOutput {
 	s.InitiateDeletionTimestamp = &v
+	return s
+}
+
+type RegisterAppInstanceUserEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// Boolean that controls whether the AppInstanceUserEndpoint is opted in to
+	// receive messages. ALL indicates the endpoint receives all messages. NONE
+	// indicates the endpoint receives no messages.
+	AllowMessages *string `type:"string" enum:"AllowMessages"`
+
+	// The ARN of the AppInstanceUser.
+	//
+	// AppInstanceUserArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RegisterAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true" sensitive:"true"`
+
+	// The idempotency token for each client request.
+	//
+	// ClientRequestToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RegisterAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The attributes of an Endpoint.
+	//
+	// EndpointAttributes is a required field
+	EndpointAttributes *EndpointAttributes `type:"structure" required:"true"`
+
+	// The name of the AppInstanceUserEndpoint.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RegisterAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
+
+	// The ARN of the resource to which the endpoint belongs.
+	//
+	// ResourceArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RegisterAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"5" type:"string" required:"true" sensitive:"true"`
+
+	// The type of the AppInstanceUserEndpoint. Supported types:
+	//
+	//    * APNS: The mobile notification service for an Apple device.
+	//
+	//    * APNS_SANDBOX: The sandbox environment of the mobile notification service
+	//    for an Apple device.
+	//
+	//    * GCM: The mobile notification service for an Android device.
+	//
+	// Populate the ResourceArn value of each type as PinpointAppArn.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"AppInstanceUserEndpointType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterAppInstanceUserEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterAppInstanceUserEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterAppInstanceUserEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterAppInstanceUserEndpointInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.EndpointAttributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointAttributes"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 5))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.EndpointAttributes != nil {
+		if err := s.EndpointAttributes.Validate(); err != nil {
+			invalidParams.AddNested("EndpointAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowMessages sets the AllowMessages field's value.
+func (s *RegisterAppInstanceUserEndpointInput) SetAllowMessages(v string) *RegisterAppInstanceUserEndpointInput {
+	s.AllowMessages = &v
+	return s
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *RegisterAppInstanceUserEndpointInput) SetAppInstanceUserArn(v string) *RegisterAppInstanceUserEndpointInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *RegisterAppInstanceUserEndpointInput) SetClientRequestToken(v string) *RegisterAppInstanceUserEndpointInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetEndpointAttributes sets the EndpointAttributes field's value.
+func (s *RegisterAppInstanceUserEndpointInput) SetEndpointAttributes(v *EndpointAttributes) *RegisterAppInstanceUserEndpointInput {
+	s.EndpointAttributes = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RegisterAppInstanceUserEndpointInput) SetName(v string) *RegisterAppInstanceUserEndpointInput {
+	s.Name = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *RegisterAppInstanceUserEndpointInput) SetResourceArn(v string) *RegisterAppInstanceUserEndpointInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RegisterAppInstanceUserEndpointInput) SetType(v string) *RegisterAppInstanceUserEndpointInput {
+	s.Type = &v
+	return s
+}
+
+type RegisterAppInstanceUserEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the AppInstanceUser.
+	//
+	// AppInstanceUserArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RegisterAppInstanceUserEndpointOutput's
+	// String and GoString methods.
+	AppInstanceUserArn *string `min:"5" type:"string" sensitive:"true"`
+
+	// The unique identifier of the AppInstanceUserEndpoint.
+	//
+	// EndpointId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by RegisterAppInstanceUserEndpointOutput's
+	// String and GoString methods.
+	EndpointId *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterAppInstanceUserEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegisterAppInstanceUserEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *RegisterAppInstanceUserEndpointOutput) SetAppInstanceUserArn(v string) *RegisterAppInstanceUserEndpointOutput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *RegisterAppInstanceUserEndpointOutput) SetEndpointId(v string) *RegisterAppInstanceUserEndpointOutput {
+	s.EndpointId = &v
 	return s
 }
 
@@ -4104,11 +5912,11 @@ func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a tag applied to a resource.
+// A tag object containing a key-value pair.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// The key of the tag.
+	// The key in a tag.
 	//
 	// Key is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Tag's
@@ -4117,7 +5925,7 @@ type Tag struct {
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The value of the tag.
+	// The value in a tag.
 	//
 	// Value is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Tag's
@@ -4177,6 +5985,104 @@ func (s *Tag) SetKey(v string) *Tag {
 func (s *Tag) SetValue(v string) *Tag {
 	s.Value = &v
 	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ARN.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"5" type:"string" required:"true"`
+
+	// The tag key-value pairs.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 5))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The client exceeded its request rate limit.
@@ -4311,6 +6217,94 @@ func (s *UnauthorizedClientException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ARN.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"5" type:"string" required:"true"`
+
+	// The tag keys.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 5))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateAppInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4427,6 +6421,152 @@ func (s UpdateAppInstanceOutput) GoString() string {
 // SetAppInstanceArn sets the AppInstanceArn field's value.
 func (s *UpdateAppInstanceOutput) SetAppInstanceArn(v string) *UpdateAppInstanceOutput {
 	s.AppInstanceArn = &v
+	return s
+}
+
+type UpdateAppInstanceUserEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// Boolean that controls whether the AppInstanceUserEndpoint is opted in to
+	// receive messages. ALL indicates the endpoint will receive all messages. NONE
+	// indicates the endpoint will receive no messages.
+	AllowMessages *string `type:"string" enum:"AllowMessages"`
+
+	// The ARN of the AppInstanceUser.
+	//
+	// AppInstanceUserArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	//
+	// AppInstanceUserArn is a required field
+	AppInstanceUserArn *string `location:"uri" locationName:"appInstanceUserArn" min:"5" type:"string" required:"true" sensitive:"true"`
+
+	// The unique identifier of the AppInstanceUserEndpoint.
+	//
+	// EndpointId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	//
+	// EndpointId is a required field
+	EndpointId *string `location:"uri" locationName:"endpointId" type:"string" required:"true" sensitive:"true"`
+
+	// The name of the AppInstanceUserEndpoint.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAppInstanceUserEndpointInput's
+	// String and GoString methods.
+	Name *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAppInstanceUserEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAppInstanceUserEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAppInstanceUserEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAppInstanceUserEndpointInput"}
+	if s.AppInstanceUserArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppInstanceUserArn"))
+	}
+	if s.AppInstanceUserArn != nil && len(*s.AppInstanceUserArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("AppInstanceUserArn", 5))
+	}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+	if s.EndpointId != nil && len(*s.EndpointId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowMessages sets the AllowMessages field's value.
+func (s *UpdateAppInstanceUserEndpointInput) SetAllowMessages(v string) *UpdateAppInstanceUserEndpointInput {
+	s.AllowMessages = &v
+	return s
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *UpdateAppInstanceUserEndpointInput) SetAppInstanceUserArn(v string) *UpdateAppInstanceUserEndpointInput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *UpdateAppInstanceUserEndpointInput) SetEndpointId(v string) *UpdateAppInstanceUserEndpointInput {
+	s.EndpointId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateAppInstanceUserEndpointInput) SetName(v string) *UpdateAppInstanceUserEndpointInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateAppInstanceUserEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the AppInstanceUser.
+	//
+	// AppInstanceUserArn is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAppInstanceUserEndpointOutput's
+	// String and GoString methods.
+	AppInstanceUserArn *string `min:"5" type:"string" sensitive:"true"`
+
+	// The unique identifier of the AppInstanceUserEndpoint.
+	//
+	// EndpointId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAppInstanceUserEndpointOutput's
+	// String and GoString methods.
+	EndpointId *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAppInstanceUserEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateAppInstanceUserEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppInstanceUserArn sets the AppInstanceUserArn field's value.
+func (s *UpdateAppInstanceUserEndpointOutput) SetAppInstanceUserArn(v string) *UpdateAppInstanceUserEndpointOutput {
+	s.AppInstanceUserArn = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *UpdateAppInstanceUserEndpointOutput) SetEndpointId(v string) *UpdateAppInstanceUserEndpointOutput {
+	s.EndpointId = &v
 	return s
 }
 
@@ -4547,6 +6687,74 @@ func (s UpdateAppInstanceUserOutput) GoString() string {
 func (s *UpdateAppInstanceUserOutput) SetAppInstanceUserArn(v string) *UpdateAppInstanceUserOutput {
 	s.AppInstanceUserArn = &v
 	return s
+}
+
+const (
+	// AllowMessagesAll is a AllowMessages enum value
+	AllowMessagesAll = "ALL"
+
+	// AllowMessagesNone is a AllowMessages enum value
+	AllowMessagesNone = "NONE"
+)
+
+// AllowMessages_Values returns all elements of the AllowMessages enum
+func AllowMessages_Values() []string {
+	return []string{
+		AllowMessagesAll,
+		AllowMessagesNone,
+	}
+}
+
+const (
+	// AppInstanceUserEndpointTypeApns is a AppInstanceUserEndpointType enum value
+	AppInstanceUserEndpointTypeApns = "APNS"
+
+	// AppInstanceUserEndpointTypeApnsSandbox is a AppInstanceUserEndpointType enum value
+	AppInstanceUserEndpointTypeApnsSandbox = "APNS_SANDBOX"
+
+	// AppInstanceUserEndpointTypeGcm is a AppInstanceUserEndpointType enum value
+	AppInstanceUserEndpointTypeGcm = "GCM"
+)
+
+// AppInstanceUserEndpointType_Values returns all elements of the AppInstanceUserEndpointType enum
+func AppInstanceUserEndpointType_Values() []string {
+	return []string{
+		AppInstanceUserEndpointTypeApns,
+		AppInstanceUserEndpointTypeApnsSandbox,
+		AppInstanceUserEndpointTypeGcm,
+	}
+}
+
+const (
+	// EndpointStatusActive is a EndpointStatus enum value
+	EndpointStatusActive = "ACTIVE"
+
+	// EndpointStatusInactive is a EndpointStatus enum value
+	EndpointStatusInactive = "INACTIVE"
+)
+
+// EndpointStatus_Values returns all elements of the EndpointStatus enum
+func EndpointStatus_Values() []string {
+	return []string{
+		EndpointStatusActive,
+		EndpointStatusInactive,
+	}
+}
+
+const (
+	// EndpointStatusReasonInvalidDeviceToken is a EndpointStatusReason enum value
+	EndpointStatusReasonInvalidDeviceToken = "INVALID_DEVICE_TOKEN"
+
+	// EndpointStatusReasonInvalidPinpointArn is a EndpointStatusReason enum value
+	EndpointStatusReasonInvalidPinpointArn = "INVALID_PINPOINT_ARN"
+)
+
+// EndpointStatusReason_Values returns all elements of the EndpointStatusReason enum
+func EndpointStatusReason_Values() []string {
+	return []string{
+		EndpointStatusReasonInvalidDeviceToken,
+		EndpointStatusReasonInvalidPinpointArn,
+	}
 }
 
 const (

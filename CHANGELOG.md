@@ -1,3 +1,11 @@
+Release v1.41.11 (2021-10-26)
+===
+
+### Service Client Updates
+* `service/chime-sdk-identity`: Updates service API, documentation, and paginators
+* `service/chime-sdk-messaging`: Updates service API and documentation
+* `service/emr-containers`: Updates service API and documentation
+
 Release v1.41.10 (2021-10-25)
 ===
 

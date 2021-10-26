@@ -699,8 +699,8 @@ func (c *ChimeSDKMessaging) CreateChannelMembershipRequest(input *CreateChannelM
 
 // CreateChannelMembership API operation for Amazon Chime SDK Messaging.
 //
-// Adds a user to a channel. The InvitedBy response field is derived from the
-// request header. A channel member can:
+// Adds a user to a channel. The InvitedBy field in ChannelMembership is derived
+// from the request header. A channel member can:
 //
 //    * List messages
 //
@@ -2286,6 +2286,105 @@ func (c *ChimeSDKMessaging) DisassociateChannelFlowWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opGetChannelMembershipPreferences = "GetChannelMembershipPreferences"
+
+// GetChannelMembershipPreferencesRequest generates a "aws/request.Request" representing the
+// client's request for the GetChannelMembershipPreferences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetChannelMembershipPreferences for more information on using the GetChannelMembershipPreferences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetChannelMembershipPreferencesRequest method.
+//    req, resp := client.GetChannelMembershipPreferencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/GetChannelMembershipPreferences
+func (c *ChimeSDKMessaging) GetChannelMembershipPreferencesRequest(input *GetChannelMembershipPreferencesInput) (req *request.Request, output *GetChannelMembershipPreferencesOutput) {
+	op := &request.Operation{
+		Name:       opGetChannelMembershipPreferences,
+		HTTPMethod: "GET",
+		HTTPPath:   "/channels/{channelArn}/memberships/{memberArn}/preferences",
+	}
+
+	if input == nil {
+		input = &GetChannelMembershipPreferencesInput{}
+	}
+
+	output = &GetChannelMembershipPreferencesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetChannelMembershipPreferences API operation for Amazon Chime SDK Messaging.
+//
+// Gets the membership preferences of an AppInstanceUser for the specified channel.
+// The AppInstanceUser must be a member of the channel. Only the AppInstanceUser
+// who owns the membership can retrieve preferences. Users in the AppInstanceAdmin
+// and channel moderator roles can't retrieve preferences for other users. Banned
+// users can't retrieve membership preferences for the channel from which they
+// are banned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Messaging's
+// API operation GetChannelMembershipPreferences for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/GetChannelMembershipPreferences
+func (c *ChimeSDKMessaging) GetChannelMembershipPreferences(input *GetChannelMembershipPreferencesInput) (*GetChannelMembershipPreferencesOutput, error) {
+	req, out := c.GetChannelMembershipPreferencesRequest(input)
+	return out, req.Send()
+}
+
+// GetChannelMembershipPreferencesWithContext is the same as GetChannelMembershipPreferences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetChannelMembershipPreferences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMessaging) GetChannelMembershipPreferencesWithContext(ctx aws.Context, input *GetChannelMembershipPreferencesInput, opts ...request.Option) (*GetChannelMembershipPreferencesOutput, error) {
+	req, out := c.GetChannelMembershipPreferencesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetChannelMessage = "GetChannelMessage"
 
 // GetChannelMessageRequest generates a "aws/request.Request" representing the
@@ -2962,6 +3061,10 @@ func (c *ChimeSDKMessaging) ListChannelMembershipsRequest(input *ListChannelMemb
 //
 // The x-amz-chime-bearer request header is mandatory. Use the AppInstanceUserArn
 // of the user that makes the API call as the value in the header.
+//
+// If you want to list the channels to which a specific app instance user belongs,
+// see the ListChannelMembershipsForAppInstanceUser (https://docs.aws.amazon.com/chime/latest/APIReference/API_messaging-chime_ListChannelMembershipsForAppInstanceUser.html)
+// API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4100,6 +4203,109 @@ func (c *ChimeSDKMessaging) ListTagsForResourceWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opPutChannelMembershipPreferences = "PutChannelMembershipPreferences"
+
+// PutChannelMembershipPreferencesRequest generates a "aws/request.Request" representing the
+// client's request for the PutChannelMembershipPreferences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutChannelMembershipPreferences for more information on using the PutChannelMembershipPreferences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutChannelMembershipPreferencesRequest method.
+//    req, resp := client.PutChannelMembershipPreferencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/PutChannelMembershipPreferences
+func (c *ChimeSDKMessaging) PutChannelMembershipPreferencesRequest(input *PutChannelMembershipPreferencesInput) (req *request.Request, output *PutChannelMembershipPreferencesOutput) {
+	op := &request.Operation{
+		Name:       opPutChannelMembershipPreferences,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channels/{channelArn}/memberships/{memberArn}/preferences",
+	}
+
+	if input == nil {
+		input = &PutChannelMembershipPreferencesInput{}
+	}
+
+	output = &PutChannelMembershipPreferencesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutChannelMembershipPreferences API operation for Amazon Chime SDK Messaging.
+//
+// Sets the membership preferences of an AppInstanceUser for the specified channel.
+// The AppInstanceUser must be a member of the channel. Only the AppInstanceUser
+// who owns the membership can set preferences. Users in the AppInstanceAdmin
+// and channel moderator roles can't set preferences for other users. Banned
+// users can't set membership preferences for the channel from which they are
+// banned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime SDK Messaging's
+// API operation PutChannelMembershipPreferences for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-messaging-2021-05-15/PutChannelMembershipPreferences
+func (c *ChimeSDKMessaging) PutChannelMembershipPreferences(input *PutChannelMembershipPreferencesInput) (*PutChannelMembershipPreferencesOutput, error) {
+	req, out := c.PutChannelMembershipPreferencesRequest(input)
+	return out, req.Send()
+}
+
+// PutChannelMembershipPreferencesWithContext is the same as PutChannelMembershipPreferences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutChannelMembershipPreferences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ChimeSDKMessaging) PutChannelMembershipPreferencesWithContext(ctx aws.Context, input *PutChannelMembershipPreferencesInput, opts ...request.Option) (*PutChannelMembershipPreferencesOutput, error) {
+	req, out := c.PutChannelMembershipPreferencesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRedactChannelMessage = "RedactChannelMessage"
 
 // RedactChannelMessageRequest generates a "aws/request.Request" representing the
@@ -5181,7 +5387,7 @@ type BatchCreateChannelMembershipError struct {
 	// The error message.
 	ErrorMessage *string `type:"string"`
 
-	// The ARN of the member that the service couldn't add.
+	// The AppInstanceUserArn of the member that the service couldn't add.
 	MemberArn *string `min:"5" type:"string"`
 }
 
@@ -5234,7 +5440,7 @@ type BatchCreateChannelMembershipInput struct {
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
 
-	// The ARNs of the members you want to add to the channel.
+	// The AppInstanceUserArns of the members you want to add to the channel.
 	//
 	// MemberArns is a required field
 	MemberArns []*string `min:"1" type:"list" required:"true"`
@@ -6020,6 +6226,53 @@ func (s *ChannelMembershipForAppInstanceUserSummary) SetChannelSummary(v *Channe
 	return s
 }
 
+// The channel membership preferences for an AppInstanceUser.
+type ChannelMembershipPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// The push notification configuration of a message.
+	PushNotifications *PushNotificationPreferences `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChannelMembershipPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChannelMembershipPreferences) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChannelMembershipPreferences) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChannelMembershipPreferences"}
+	if s.PushNotifications != nil {
+		if err := s.PushNotifications.Validate(); err != nil {
+			invalidParams.AddNested("PushNotifications", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPushNotifications sets the PushNotifications field's value.
+func (s *ChannelMembershipPreferences) SetPushNotifications(v *PushNotificationPreferences) *ChannelMembershipPreferences {
+	s.PushNotifications = v
+	return s
+}
+
 // Summary of the details of a ChannelMembership.
 type ChannelMembershipSummary struct {
 	_ struct{} `type:"structure"`
@@ -6074,6 +6327,10 @@ type ChannelMessage struct {
 
 	// The time at which a message was updated.
 	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The attributes for the message, used for message filtering along with a FilterRule
+	// defined in the PushNotificationPreferences.
+	MessageAttributes map[string]*MessageAttributeValue `type:"map"`
 
 	// The ID of a message.
 	MessageId *string `min:"1" type:"string"`
@@ -6146,6 +6403,12 @@ func (s *ChannelMessage) SetLastEditedTimestamp(v time.Time) *ChannelMessage {
 // SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
 func (s *ChannelMessage) SetLastUpdatedTimestamp(v time.Time) *ChannelMessage {
 	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetMessageAttributes sets the MessageAttributes field's value.
+func (s *ChannelMessage) SetMessageAttributes(v map[string]*MessageAttributeValue) *ChannelMessage {
+	s.MessageAttributes = v
 	return s
 }
 
@@ -6331,6 +6594,9 @@ type ChannelMessageSummary struct {
 	// The time at which a message was last updated.
 	LastUpdatedTimestamp *time.Time `type:"timestamp"`
 
+	// The message attribues listed in a the summary of a channel message.
+	MessageAttributes map[string]*MessageAttributeValue `type:"map"`
+
 	// The ID of the message.
 	MessageId *string `min:"1" type:"string"`
 
@@ -6395,6 +6661,12 @@ func (s *ChannelMessageSummary) SetLastEditedTimestamp(v time.Time) *ChannelMess
 // SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
 func (s *ChannelMessageSummary) SetLastUpdatedTimestamp(v time.Time) *ChannelMessageSummary {
 	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetMessageAttributes sets the MessageAttributes field's value.
+func (s *ChannelMessageSummary) SetMessageAttributes(v map[string]*MessageAttributeValue) *ChannelMessageSummary {
+	s.MessageAttributes = v
 	return s
 }
 
@@ -6722,7 +6994,7 @@ type CreateChannelBanInput struct {
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
 
-	// The ARN of the member being banned.
+	// The AppInstanceUserArn of the member being banned.
 	//
 	// MemberArn is a required field
 	MemberArn *string `min:"5" type:"string" required:"true"`
@@ -7177,7 +7449,7 @@ type CreateChannelMembershipInput struct {
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
 
-	// The ARN of the member you want to add to the channel.
+	// The AppInstanceUserArn of the member you want to add to the channel.
 	//
 	// MemberArn is a required field
 	MemberArn *string `min:"5" type:"string" required:"true"`
@@ -7312,7 +7584,7 @@ type CreateChannelModeratorInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
-	// The ARN of the moderator.
+	// The AppInstanceUserArn of the moderator.
 	//
 	// ChannelModeratorArn is a required field
 	ChannelModeratorArn *string `min:"5" type:"string" required:"true"`
@@ -7713,7 +7985,7 @@ type DeleteChannelMembershipInput struct {
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
 
-	// The ARN of the member that you're removing from the channel.
+	// The AppInstanceUserArn of the member that you're removing from the channel.
 	//
 	// MemberArn is a required field
 	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
@@ -7918,7 +8190,7 @@ type DeleteChannelModeratorInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
-	// The ARN of the moderator being deleted.
+	// The AppInstanceUserArn of the moderator being deleted.
 	//
 	// ChannelModeratorArn is a required field
 	ChannelModeratorArn *string `location:"uri" locationName:"channelModeratorArn" min:"5" type:"string" required:"true"`
@@ -8050,7 +8322,7 @@ type DescribeChannelBanInput struct {
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
 
-	// The ARN of the member being banned.
+	// The AppInstanceUserArn of the member being banned.
 	//
 	// MemberArn is a required field
 	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
@@ -8424,7 +8696,7 @@ type DescribeChannelMembershipInput struct {
 	// ChimeBearer is a required field
 	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
 
-	// The ARN of the member.
+	// The AppInstanceUserArn of the member.
 	//
 	// MemberArn is a required field
 	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
@@ -8647,7 +8919,7 @@ type DescribeChannelModeratorInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
 
-	// The ARN of the channel moderator.
+	// The AppInstanceUserArn of the channel moderator.
 	//
 	// ChannelModeratorArn is a required field
 	ChannelModeratorArn *string `location:"uri" locationName:"channelModeratorArn" min:"5" type:"string" required:"true"`
@@ -8953,6 +9225,138 @@ func (s *ForbiddenException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ForbiddenException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type GetChannelMembershipPreferencesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserARN of the user making the API call.
+	//
+	// ChimeBearer is a required field
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the member retrieving the preferences.
+	//
+	// MemberArn is a required field
+	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetChannelMembershipPreferencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetChannelMembershipPreferencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetChannelMembershipPreferencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetChannelMembershipPreferencesInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.ChimeBearer == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChimeBearer"))
+	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
+	if s.MemberArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
+	}
+	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *GetChannelMembershipPreferencesInput) SetChannelArn(v string) *GetChannelMembershipPreferencesInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *GetChannelMembershipPreferencesInput) SetChimeBearer(v string) *GetChannelMembershipPreferencesInput {
+	s.ChimeBearer = &v
+	return s
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *GetChannelMembershipPreferencesInput) SetMemberArn(v string) *GetChannelMembershipPreferencesInput {
+	s.MemberArn = &v
+	return s
+}
+
+type GetChannelMembershipPreferencesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The details of a user.
+	Member *Identity `type:"structure"`
+
+	// The channel membership preferences for an AppInstanceUser .
+	Preferences *ChannelMembershipPreferences `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetChannelMembershipPreferencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetChannelMembershipPreferencesOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *GetChannelMembershipPreferencesOutput) SetChannelArn(v string) *GetChannelMembershipPreferencesOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMember sets the Member field's value.
+func (s *GetChannelMembershipPreferencesOutput) SetMember(v *Identity) *GetChannelMembershipPreferencesOutput {
+	s.Member = v
+	return s
+}
+
+// SetPreferences sets the Preferences field's value.
+func (s *GetChannelMembershipPreferencesOutput) SetPreferences(v *ChannelMembershipPreferences) *GetChannelMembershipPreferencesOutput {
+	s.Preferences = v
+	return s
 }
 
 type GetChannelMessageInput struct {
@@ -10691,6 +11095,38 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+// A list of message attribute values.
+type MessageAttributeValue struct {
+	_ struct{} `type:"structure"`
+
+	// The strings in a message attribute value.
+	StringValues []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageAttributeValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MessageAttributeValue) GoString() string {
+	return s.String()
+}
+
+// SetStringValues sets the StringValues field's value.
+func (s *MessageAttributeValue) SetStringValues(v []*string) *MessageAttributeValue {
+	s.StringValues = v
+	return s
+}
+
 // The websocket endpoint used to connect to Amazon Chime SDK messaging.
 type MessagingSessionEndpoint struct {
 	_ struct{} `type:"structure"`
@@ -10806,10 +11242,13 @@ type Processor struct {
 	// ExecutionOrder is a required field
 	ExecutionOrder *int64 `min:"1" type:"integer" required:"true"`
 
-	// Determines whether to continue or stop processing if communication with processor
-	// fails. If the last processor in a channel flow sequence has a fallback action
-	// of CONTINUE, and communication with the processor fails, the message is considered
-	// processed and sent to the recipients in the channel.
+	// Determines whether to continue with message processing or stop it in cases
+	// where communication with a processor fails. If a processor has a fallback
+	// action of ABORT and communication with it fails, the processor sets the message
+	// status to FAILED and does not send the message to any recipients. Note that
+	// if the last processor in the channel flow sequence has a fallback action
+	// of CONTINUE and communication with the processor fails, then the message
+	// is considered processed and sent to recipients of the channel.
 	//
 	// FallbackAction is a required field
 	FallbackAction *string `type:"string" required:"true" enum:"FallbackAction"`
@@ -10948,6 +11387,307 @@ func (s *ProcessorConfiguration) Validate() error {
 // SetLambda sets the Lambda field's value.
 func (s *ProcessorConfiguration) SetLambda(v *LambdaConfiguration) *ProcessorConfiguration {
 	s.Lambda = v
+	return s
+}
+
+// The push notification configuration of the message.
+type PushNotificationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The body of the push notification.
+	//
+	// Body is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PushNotificationConfiguration's
+	// String and GoString methods.
+	//
+	// Body is a required field
+	Body *string `type:"string" required:"true" sensitive:"true"`
+
+	// The title of the push notification.
+	//
+	// Title is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PushNotificationConfiguration's
+	// String and GoString methods.
+	//
+	// Title is a required field
+	Title *string `type:"string" required:"true" sensitive:"true"`
+
+	// Enum value that indicates the type of the push notification for a message.
+	// DEFAULT: Normal mobile push notification. VOIP: VOIP mobile push notification.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"PushNotificationType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PushNotificationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PushNotificationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PushNotificationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PushNotificationConfiguration"}
+	if s.Body == nil {
+		invalidParams.Add(request.NewErrParamRequired("Body"))
+	}
+	if s.Title == nil {
+		invalidParams.Add(request.NewErrParamRequired("Title"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBody sets the Body field's value.
+func (s *PushNotificationConfiguration) SetBody(v string) *PushNotificationConfiguration {
+	s.Body = &v
+	return s
+}
+
+// SetTitle sets the Title field's value.
+func (s *PushNotificationConfiguration) SetTitle(v string) *PushNotificationConfiguration {
+	s.Title = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PushNotificationConfiguration) SetType(v string) *PushNotificationConfiguration {
+	s.Type = &v
+	return s
+}
+
+// The channel membership preferences for push notification.
+type PushNotificationPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// Enum value that indicates which push notifications to send to the requested
+	// member of a channel. ALL sends all push notifications, NONE sends no push
+	// notifications, FILTERED sends only filtered push notifications.
+	//
+	// AllowNotifications is a required field
+	AllowNotifications *string `type:"string" required:"true" enum:"AllowNotifications"`
+
+	// The simple JSON object used to send a subset of a push notification to the
+	// requsted member.
+	//
+	// FilterRule is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by PushNotificationPreferences's
+	// String and GoString methods.
+	FilterRule *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PushNotificationPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PushNotificationPreferences) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PushNotificationPreferences) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PushNotificationPreferences"}
+	if s.AllowNotifications == nil {
+		invalidParams.Add(request.NewErrParamRequired("AllowNotifications"))
+	}
+	if s.FilterRule != nil && len(*s.FilterRule) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterRule", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowNotifications sets the AllowNotifications field's value.
+func (s *PushNotificationPreferences) SetAllowNotifications(v string) *PushNotificationPreferences {
+	s.AllowNotifications = &v
+	return s
+}
+
+// SetFilterRule sets the FilterRule field's value.
+func (s *PushNotificationPreferences) SetFilterRule(v string) *PushNotificationPreferences {
+	s.FilterRule = &v
+	return s
+}
+
+type PutChannelMembershipPreferencesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserARN of the user making the API call.
+	//
+	// ChimeBearer is a required field
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the member setting the preferences.
+	//
+	// MemberArn is a required field
+	MemberArn *string `location:"uri" locationName:"memberArn" min:"5" type:"string" required:"true"`
+
+	// The channel membership preferences of an AppInstanceUser .
+	//
+	// Preferences is a required field
+	Preferences *ChannelMembershipPreferences `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutChannelMembershipPreferencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutChannelMembershipPreferencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutChannelMembershipPreferencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutChannelMembershipPreferencesInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.ChimeBearer == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChimeBearer"))
+	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
+	if s.MemberArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberArn"))
+	}
+	if s.MemberArn != nil && len(*s.MemberArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArn", 5))
+	}
+	if s.Preferences == nil {
+		invalidParams.Add(request.NewErrParamRequired("Preferences"))
+	}
+	if s.Preferences != nil {
+		if err := s.Preferences.Validate(); err != nil {
+			invalidParams.AddNested("Preferences", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *PutChannelMembershipPreferencesInput) SetChannelArn(v string) *PutChannelMembershipPreferencesInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *PutChannelMembershipPreferencesInput) SetChimeBearer(v string) *PutChannelMembershipPreferencesInput {
+	s.ChimeBearer = &v
+	return s
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *PutChannelMembershipPreferencesInput) SetMemberArn(v string) *PutChannelMembershipPreferencesInput {
+	s.MemberArn = &v
+	return s
+}
+
+// SetPreferences sets the Preferences field's value.
+func (s *PutChannelMembershipPreferencesInput) SetPreferences(v *ChannelMembershipPreferences) *PutChannelMembershipPreferencesInput {
+	s.Preferences = v
+	return s
+}
+
+type PutChannelMembershipPreferencesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The details of a user.
+	Member *Identity `type:"structure"`
+
+	// The ARN and metadata of the member being added.
+	Preferences *ChannelMembershipPreferences `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutChannelMembershipPreferencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutChannelMembershipPreferencesOutput) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *PutChannelMembershipPreferencesOutput) SetChannelArn(v string) *PutChannelMembershipPreferencesOutput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMember sets the Member field's value.
+func (s *PutChannelMembershipPreferencesOutput) SetMember(v *Identity) *PutChannelMembershipPreferencesOutput {
+	s.Member = v
+	return s
+}
+
+// SetPreferences sets the Preferences field's value.
+func (s *PutChannelMembershipPreferencesOutput) SetPreferences(v *ChannelMembershipPreferences) *PutChannelMembershipPreferencesOutput {
+	s.Preferences = v
 	return s
 }
 
@@ -11169,6 +11909,10 @@ type SendChannelMessageInput struct {
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// The attributes for the message, used for message filtering along with a FilterRule
+	// defined in the PushNotificationPreferences.
+	MessageAttributes map[string]*MessageAttributeValue `type:"map"`
+
 	// The optional metadata for each message.
 	//
 	// Metadata is a sensitive parameter and its value will be
@@ -11180,6 +11924,9 @@ type SendChannelMessageInput struct {
 	//
 	// Persistence is a required field
 	Persistence *string `type:"string" required:"true" enum:"ChannelMessagePersistenceType"`
+
+	// The push notification configuration of the message.
+	PushNotification *PushNotificationConfiguration `type:"structure"`
 
 	// The type of message, STANDARD or CONTROL.
 	//
@@ -11235,6 +11982,11 @@ func (s *SendChannelMessageInput) Validate() error {
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
+	if s.PushNotification != nil {
+		if err := s.PushNotification.Validate(); err != nil {
+			invalidParams.AddNested("PushNotification", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11266,6 +12018,12 @@ func (s *SendChannelMessageInput) SetContent(v string) *SendChannelMessageInput 
 	return s
 }
 
+// SetMessageAttributes sets the MessageAttributes field's value.
+func (s *SendChannelMessageInput) SetMessageAttributes(v map[string]*MessageAttributeValue) *SendChannelMessageInput {
+	s.MessageAttributes = v
+	return s
+}
+
 // SetMetadata sets the Metadata field's value.
 func (s *SendChannelMessageInput) SetMetadata(v string) *SendChannelMessageInput {
 	s.Metadata = &v
@@ -11275,6 +12033,12 @@ func (s *SendChannelMessageInput) SetMetadata(v string) *SendChannelMessageInput
 // SetPersistence sets the Persistence field's value.
 func (s *SendChannelMessageInput) SetPersistence(v string) *SendChannelMessageInput {
 	s.Persistence = &v
+	return s
+}
+
+// SetPushNotification sets the PushNotification field's value.
+func (s *SendChannelMessageInput) SetPushNotification(v *PushNotificationConfiguration) *SendChannelMessageInput {
+	s.PushNotification = v
 	return s
 }
 
@@ -12387,6 +13151,26 @@ func (s *UpdateChannelReadMarkerOutput) SetChannelArn(v string) *UpdateChannelRe
 }
 
 const (
+	// AllowNotificationsAll is a AllowNotifications enum value
+	AllowNotificationsAll = "ALL"
+
+	// AllowNotificationsNone is a AllowNotifications enum value
+	AllowNotificationsNone = "NONE"
+
+	// AllowNotificationsFiltered is a AllowNotifications enum value
+	AllowNotificationsFiltered = "FILTERED"
+)
+
+// AllowNotifications_Values returns all elements of the AllowNotifications enum
+func AllowNotifications_Values() []string {
+	return []string{
+		AllowNotificationsAll,
+		AllowNotificationsNone,
+		AllowNotificationsFiltered,
+	}
+}
+
+const (
 	// ChannelMembershipTypeDefault is a ChannelMembershipType enum value
 	ChannelMembershipTypeDefault = "DEFAULT"
 
@@ -12583,6 +13367,22 @@ const (
 func InvocationType_Values() []string {
 	return []string{
 		InvocationTypeAsync,
+	}
+}
+
+const (
+	// PushNotificationTypeDefault is a PushNotificationType enum value
+	PushNotificationTypeDefault = "DEFAULT"
+
+	// PushNotificationTypeVoip is a PushNotificationType enum value
+	PushNotificationTypeVoip = "VOIP"
+)
+
+// PushNotificationType_Values returns all elements of the PushNotificationType enum
+func PushNotificationType_Values() []string {
+	return []string{
+		PushNotificationTypeDefault,
+		PushNotificationTypeVoip,
 	}
 }
 
