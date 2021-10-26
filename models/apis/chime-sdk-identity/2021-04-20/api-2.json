@@ -127,6 +127,23 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DeregisterAppInstanceUserEndpoint":{
+      "name":"DeregisterAppInstanceUserEndpoint",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/app-instance-users/{appInstanceUserArn}/endpoints/{endpointId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeregisterAppInstanceUserEndpointRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "DescribeAppInstance":{
       "name":"DescribeAppInstance",
       "http":{
@@ -179,6 +196,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "DescribeAppInstanceUserEndpoint":{
+      "name":"DescribeAppInstanceUserEndpoint",
+      "http":{
+        "method":"GET",
+        "requestUri":"/app-instance-users/{appInstanceUserArn}/endpoints/{endpointId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeAppInstanceUserEndpointRequest"},
+      "output":{"shape":"DescribeAppInstanceUserEndpointResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetAppInstanceRetentionSettings":{
       "name":"GetAppInstanceRetentionSettings",
       "http":{
@@ -210,6 +245,24 @@
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListAppInstanceUserEndpoints":{
+      "name":"ListAppInstanceUserEndpoints",
+      "http":{
+        "method":"GET",
+        "requestUri":"/app-instance-users/{appInstanceUserArn}/endpoints",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAppInstanceUserEndpointsRequest"},
+      "output":{"shape":"ListAppInstanceUserEndpointsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
         {"shape":"ThrottledClientException"},
         {"shape":"UnauthorizedClientException"},
         {"shape":"ServiceUnavailableException"},
@@ -250,6 +303,24 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "PutAppInstanceRetentionSettings":{
       "name":"PutAppInstanceRetentionSettings",
       "http":{
@@ -264,6 +335,61 @@
         {"shape":"ForbiddenException"},
         {"shape":"ThrottledClientException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "RegisterAppInstanceUserEndpoint":{
+      "name":"RegisterAppInstanceUserEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/app-instance-users/{appInstanceUserArn}/endpoints",
+        "responseCode":201
+      },
+      "input":{"shape":"RegisterAppInstanceUserEndpointRequest"},
+      "output":{"shape":"RegisterAppInstanceUserEndpointResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags?operation=tag-resource",
+        "responseCode":204
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags?operation=untag-resource",
+        "responseCode":204
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -306,9 +432,35 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
+    },
+    "UpdateAppInstanceUserEndpoint":{
+      "name":"UpdateAppInstanceUserEndpoint",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/app-instance-users/{appInstanceUserArn}/endpoints/{endpointId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateAppInstanceUserEndpointRequest"},
+      "output":{"shape":"UpdateAppInstanceUserEndpointResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
     }
   },
   "shapes":{
+    "AllowMessages":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "NONE"
+      ]
+    },
     "AppInstance":{
       "type":"structure",
       "members":{
@@ -364,6 +516,44 @@
         "CreatedTimestamp":{"shape":"Timestamp"},
         "LastUpdatedTimestamp":{"shape":"Timestamp"}
       }
+    },
+    "AppInstanceUserEndpoint":{
+      "type":"structure",
+      "members":{
+        "AppInstanceUserArn":{"shape":"SensitiveChimeArn"},
+        "EndpointId":{"shape":"SensitiveString64"},
+        "Name":{"shape":"SensitiveString1600"},
+        "Type":{"shape":"AppInstanceUserEndpointType"},
+        "ResourceArn":{"shape":"SensitiveChimeArn"},
+        "EndpointAttributes":{"shape":"EndpointAttributes"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "LastUpdatedTimestamp":{"shape":"Timestamp"},
+        "AllowMessages":{"shape":"AllowMessages"},
+        "EndpointState":{"shape":"EndpointState"}
+      }
+    },
+    "AppInstanceUserEndpointSummary":{
+      "type":"structure",
+      "members":{
+        "AppInstanceUserArn":{"shape":"SensitiveChimeArn"},
+        "EndpointId":{"shape":"SensitiveString64"},
+        "Name":{"shape":"SensitiveString1600"},
+        "Type":{"shape":"AppInstanceUserEndpointType"},
+        "AllowMessages":{"shape":"AllowMessages"},
+        "EndpointState":{"shape":"EndpointState"}
+      }
+    },
+    "AppInstanceUserEndpointSummaryList":{
+      "type":"list",
+      "member":{"shape":"AppInstanceUserEndpointSummary"}
+    },
+    "AppInstanceUserEndpointType":{
+      "type":"string",
+      "enum":[
+        "APNS",
+        "APNS_SANDBOX",
+        "GCM"
+      ]
     },
     "AppInstanceUserList":{
       "type":"list",
@@ -525,6 +715,25 @@
         }
       }
     },
+    "DeregisterAppInstanceUserEndpointRequest":{
+      "type":"structure",
+      "required":[
+        "AppInstanceUserArn",
+        "EndpointId"
+      ],
+      "members":{
+        "AppInstanceUserArn":{
+          "shape":"SensitiveChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceUserArn"
+        },
+        "EndpointId":{
+          "shape":"SensitiveString64",
+          "location":"uri",
+          "locationName":"endpointId"
+        }
+      }
+    },
     "DescribeAppInstanceAdminRequest":{
       "type":"structure",
       "required":[
@@ -567,6 +776,31 @@
         "AppInstance":{"shape":"AppInstance"}
       }
     },
+    "DescribeAppInstanceUserEndpointRequest":{
+      "type":"structure",
+      "required":[
+        "AppInstanceUserArn",
+        "EndpointId"
+      ],
+      "members":{
+        "AppInstanceUserArn":{
+          "shape":"SensitiveString1600",
+          "location":"uri",
+          "locationName":"appInstanceUserArn"
+        },
+        "EndpointId":{
+          "shape":"SensitiveString64",
+          "location":"uri",
+          "locationName":"endpointId"
+        }
+      }
+    },
+    "DescribeAppInstanceUserEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "AppInstanceUserEndpoint":{"shape":"AppInstanceUserEndpoint"}
+      }
+    },
     "DescribeAppInstanceUserRequest":{
       "type":"structure",
       "required":["AppInstanceUserArn"],
@@ -583,6 +817,36 @@
       "members":{
         "AppInstanceUser":{"shape":"AppInstanceUser"}
       }
+    },
+    "EndpointAttributes":{
+      "type":"structure",
+      "required":["DeviceToken"],
+      "members":{
+        "DeviceToken":{"shape":"NonEmptySensitiveString1600"},
+        "VoipDeviceToken":{"shape":"NonEmptySensitiveString1600"}
+      }
+    },
+    "EndpointState":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"EndpointStatus"},
+        "StatusReason":{"shape":"EndpointStatusReason"}
+      }
+    },
+    "EndpointStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "EndpointStatusReason":{
+      "type":"string",
+      "enum":[
+        "INVALID_DEVICE_TOKEN",
+        "INVALID_PINPOINT_ARN"
+      ]
     },
     "ErrorCode":{
       "type":"string",
@@ -667,6 +931,34 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListAppInstanceUserEndpointsRequest":{
+      "type":"structure",
+      "required":["AppInstanceUserArn"],
+      "members":{
+        "AppInstanceUserArn":{
+          "shape":"SensitiveChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceUserArn"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListAppInstanceUserEndpointsResponse":{
+      "type":"structure",
+      "members":{
+        "AppInstanceUserEndpoints":{"shape":"AppInstanceUserEndpointSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListAppInstanceUsersRequest":{
       "type":"structure",
       "required":["AppInstanceArn"],
@@ -718,6 +1010,23 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{
+          "shape":"ChimeArn",
+          "location":"querystring",
+          "locationName":"arn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "MaxResults":{
       "type":"integer",
       "max":50,
@@ -744,6 +1053,13 @@
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u007E\\u0085\\u00A0-\\uD7FF\\uE000-\\uFFFD\\u10000-\\u10FFFF]*",
       "sensitive":true
     },
+    "NonEmptySensitiveString1600":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":".*",
+      "sensitive":true
+    },
     "PutAppInstanceRetentionSettingsRequest":{
       "type":"structure",
       "required":[
@@ -766,6 +1082,39 @@
         "InitiateDeletionTimestamp":{"shape":"Timestamp"}
       }
     },
+    "RegisterAppInstanceUserEndpointRequest":{
+      "type":"structure",
+      "required":[
+        "AppInstanceUserArn",
+        "Type",
+        "ResourceArn",
+        "EndpointAttributes",
+        "ClientRequestToken"
+      ],
+      "members":{
+        "AppInstanceUserArn":{
+          "shape":"SensitiveChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceUserArn"
+        },
+        "Name":{"shape":"SensitiveString1600"},
+        "Type":{"shape":"AppInstanceUserEndpointType"},
+        "ResourceArn":{"shape":"SensitiveChimeArn"},
+        "EndpointAttributes":{"shape":"EndpointAttributes"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "AllowMessages":{"shape":"AllowMessages"}
+      }
+    },
+    "RegisterAppInstanceUserEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "AppInstanceUserArn":{"shape":"SensitiveChimeArn"},
+        "EndpointId":{"shape":"SensitiveString64"}
+      }
+    },
     "ResourceLimitExceededException":{
       "type":"structure",
       "members":{
@@ -786,6 +1135,27 @@
       "type":"integer",
       "max":5475,
       "min":1
+    },
+    "SensitiveChimeArn":{
+      "type":"string",
+      "max":1600,
+      "min":5,
+      "pattern":"arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}",
+      "sensitive":true
+    },
+    "SensitiveString1600":{
+      "type":"string",
+      "max":1600,
+      "min":0,
+      "pattern":".*",
+      "sensitive":true
+    },
+    "SensitiveString64":{
+      "type":"string",
+      "max":64,
+      "min":0,
+      "pattern":".*",
+      "sensitive":true
     },
     "ServiceFailureException":{
       "type":"structure",
@@ -825,11 +1195,28 @@
       "min":1,
       "sensitive":true
     },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":50,
+      "min":1
+    },
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"},
       "max":50,
       "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"ChimeArn"},
+        "Tags":{"shape":"TagList"}
+      }
     },
     "TagValue":{
       "type":"string",
@@ -856,6 +1243,17 @@
       "error":{"httpStatusCode":401},
       "exception":true
     },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"ChimeArn"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
     "UpdateAppInstanceRequest":{
       "type":"structure",
       "required":[
@@ -877,6 +1275,34 @@
       "type":"structure",
       "members":{
         "AppInstanceArn":{"shape":"ChimeArn"}
+      }
+    },
+    "UpdateAppInstanceUserEndpointRequest":{
+      "type":"structure",
+      "required":[
+        "AppInstanceUserArn",
+        "EndpointId"
+      ],
+      "members":{
+        "AppInstanceUserArn":{
+          "shape":"SensitiveChimeArn",
+          "location":"uri",
+          "locationName":"appInstanceUserArn"
+        },
+        "EndpointId":{
+          "shape":"SensitiveString64",
+          "location":"uri",
+          "locationName":"endpointId"
+        },
+        "Name":{"shape":"SensitiveString1600"},
+        "AllowMessages":{"shape":"AllowMessages"}
+      }
+    },
+    "UpdateAppInstanceUserEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "AppInstanceUserArn":{"shape":"SensitiveChimeArn"},
+        "EndpointId":{"shape":"SensitiveString64"}
       }
     },
     "UpdateAppInstanceUserRequest":{

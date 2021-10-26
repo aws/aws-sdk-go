@@ -148,6 +148,10 @@ type ChimeSDKMessagingAPI interface {
 	DisassociateChannelFlowWithContext(aws.Context, *chimesdkmessaging.DisassociateChannelFlowInput, ...request.Option) (*chimesdkmessaging.DisassociateChannelFlowOutput, error)
 	DisassociateChannelFlowRequest(*chimesdkmessaging.DisassociateChannelFlowInput) (*request.Request, *chimesdkmessaging.DisassociateChannelFlowOutput)
 
+	GetChannelMembershipPreferences(*chimesdkmessaging.GetChannelMembershipPreferencesInput) (*chimesdkmessaging.GetChannelMembershipPreferencesOutput, error)
+	GetChannelMembershipPreferencesWithContext(aws.Context, *chimesdkmessaging.GetChannelMembershipPreferencesInput, ...request.Option) (*chimesdkmessaging.GetChannelMembershipPreferencesOutput, error)
+	GetChannelMembershipPreferencesRequest(*chimesdkmessaging.GetChannelMembershipPreferencesInput) (*request.Request, *chimesdkmessaging.GetChannelMembershipPreferencesOutput)
+
 	GetChannelMessage(*chimesdkmessaging.GetChannelMessageInput) (*chimesdkmessaging.GetChannelMessageOutput, error)
 	GetChannelMessageWithContext(aws.Context, *chimesdkmessaging.GetChannelMessageInput, ...request.Option) (*chimesdkmessaging.GetChannelMessageOutput, error)
 	GetChannelMessageRequest(*chimesdkmessaging.GetChannelMessageInput) (*request.Request, *chimesdkmessaging.GetChannelMessageOutput)
@@ -226,6 +230,10 @@ type ChimeSDKMessagingAPI interface {
 	ListTagsForResource(*chimesdkmessaging.ListTagsForResourceInput) (*chimesdkmessaging.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *chimesdkmessaging.ListTagsForResourceInput, ...request.Option) (*chimesdkmessaging.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*chimesdkmessaging.ListTagsForResourceInput) (*request.Request, *chimesdkmessaging.ListTagsForResourceOutput)
+
+	PutChannelMembershipPreferences(*chimesdkmessaging.PutChannelMembershipPreferencesInput) (*chimesdkmessaging.PutChannelMembershipPreferencesOutput, error)
+	PutChannelMembershipPreferencesWithContext(aws.Context, *chimesdkmessaging.PutChannelMembershipPreferencesInput, ...request.Option) (*chimesdkmessaging.PutChannelMembershipPreferencesOutput, error)
+	PutChannelMembershipPreferencesRequest(*chimesdkmessaging.PutChannelMembershipPreferencesInput) (*request.Request, *chimesdkmessaging.PutChannelMembershipPreferencesOutput)
 
 	RedactChannelMessage(*chimesdkmessaging.RedactChannelMessageInput) (*chimesdkmessaging.RedactChannelMessageOutput, error)
 	RedactChannelMessageWithContext(aws.Context, *chimesdkmessaging.RedactChannelMessageInput, ...request.Option) (*chimesdkmessaging.RedactChannelMessageOutput, error)
