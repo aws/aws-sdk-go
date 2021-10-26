@@ -7,6 +7,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/credentials"
+	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/accessanalyzer"
 	"github.com/aws/aws-sdk-go/service/acm"
@@ -2013,30 +2014,52 @@ func determineConnectionType(awsCredentials map[string]interface{}) string {
 	return "userBased"
 }
 
-func assumeRole(role, externalID string) (string, string, string, error) {
-
+func convertToStringOrEmpty(str interface{}) string {
+	s, ok := str.(string)
+	if !ok {
+		return ""
+	}
+	return s
 }
 
+func assumeRole(role, externalID string) (creds *credentials.Credentials, err error) {
+	sess, err := session.NewSession()
+	if err != nil {
+		return creds, fmt.Errorf("unable to start AWS session with error: %w", err)
+	}
+	creds = stscreds.NewCredentials(sess, role, func(p *stscreds.AssumeRoleProvider) {
+		p.ExternalID = &externalID
+	})
+	return creds, nil
+}
+
+
 func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}, timeout int32) (*session.Session, error) {
-	var accessKeyIdAsString, secretAccessKeyAsString, sessionToken string
+	var creds *credentials.Credentials
+
 	sessionType := determineConnectionType(awsCredentials)
 	switch sessionType {
+	// do assume role
 	case "assumeRole":
-		// do assume role
 		var err error
-		accessKeyIdAsString, secretAccessKeyAsString, sessionToken, err = assumeRole(awsCredentials[roleArn], awsCredentials[externalID])
+		role := convertToStringOrEmpty(awsCredentials[awsAccessKeyId])
+		id := convertToStringOrEmpty(awsCredentials[awsSecretAccessKey])
+		if role == "" || id == "" {
+			return nil, fmt.Errorf("aws access key or secret access key provided not as expected")
+		}
+		creds, err = assumeRole(role, id)
 		if err != nil {
 			return nil, fmt.Errorf("unable to assume role with error: %w", err)
 		}
+	// continue as usual with access and secret key
 	case "userBased":
-		// continue as usual with access and secret key
-		var ok1, ok2 bool
-		accessKeyIdAsString, ok1 = awsCredentials[awsAccessKeyId].(string)
-		secretAccessKeyAsString, ok2 = awsCredentials[awsSecretAccessKey].(string)
-		if !ok1 || !ok2 {
+		accessKeyIdAsString := convertToStringOrEmpty(awsCredentials[awsAccessKeyId])
+		secretAccessKeyAsString := convertToStringOrEmpty(awsCredentials[awsSecretAccessKey])
+		if accessKeyIdAsString == "" || secretAccessKeyAsString == "" {
 			return nil, fmt.Errorf("aws access key or secret access key provided not as expected")
 		}
-		// invalid credentials
+		creds = credentials.NewStaticCredentials(accessKeyIdAsString, secretAccessKeyAsString, "")
+	// invalid credentials
 	default:
 		return nil, fmt.Errorf("invalid credentials: make sure access+secret key are supplied OR role_arn+external_id")
 	}
@@ -2044,7 +2067,7 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	// Create new session
 	awsConfig := &aws.Config{
 		Region:      aws.String(region),
-		Credentials: credentials.NewStaticCredentials(accessKeyIdAsString, secretAccessKeyAsString, sessionToken),
+		Credentials: creds,
 	}
 	if timeout > 0 {
 		awsConfig.HTTPClient = &http.Client{Timeout: time.Duration(timeout) * time.Second}
