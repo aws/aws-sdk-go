@@ -2003,23 +2003,30 @@ func createAWSSessionByContext(region string, context *plugin.ActionContext, tim
 	return createAWSSessionByCredentials(region, awsCredentials, timeout)
 }
 
-func determineConnectionType(awsCredentials map[string]interface{}) string {
+func determineConnectionType(awsCredentials map[string]string) (credsType, key, value string) {
 	if awsCredentials[awsAccessKeyId] == "" || awsCredentials[awsSecretAccessKey] == "" {
-		if awsCredentials[roleArn] != "" && awsCredentials[externalID] != "" {
-			return "assumeRole"
+		if awsCredentials[roleArn] == "" || awsCredentials[externalID] == "" {
+			return "", "", ""
 		} else {
-			return ""
+			return "roleBased", awsCredentials[roleArn], awsCredentials[externalID]
 		}
 	}
-	return "userBased"
+	return "userBased", awsCredentials[awsAccessKeyId], awsCredentials[awsSecretAccessKey]
 }
 
-func convertToStringOrEmpty(str interface{}) string {
-	s, ok := str.(string)
-	if !ok {
-		return ""
+func convertInterfaceMapToStringMap(m map[string]interface{}) map[string]string {
+	mapString := make(map[string]string)
+	for key, value := range m {
+		var strValue string
+		strKey := fmt.Sprintf("%v", key)
+		if value == nil {
+			strValue = ""
+		} else {
+			strValue = fmt.Sprintf("%v", value)
+		}
+		mapString[strKey] = strValue
 	}
-	return s
+	return mapString
 }
 
 func assumeRole(role, externalID string) (creds *credentials.Credentials, err error) {
@@ -2037,28 +2044,19 @@ func assumeRole(role, externalID string) (creds *credentials.Credentials, err er
 func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}, timeout int32) (*session.Session, error) {
 	var creds *credentials.Credentials
 
-	sessionType := determineConnectionType(awsCredentials)
+	m := convertInterfaceMapToStringMap(awsCredentials)
+	sessionType, k, v := determineConnectionType(m)
 	switch sessionType {
 	// do assume role
-	case "assumeRole":
+	case "roleBased":
 		var err error
-		role := convertToStringOrEmpty(awsCredentials[awsAccessKeyId])
-		id := convertToStringOrEmpty(awsCredentials[awsSecretAccessKey])
-		if role == "" || id == "" {
-			return nil, fmt.Errorf("aws access key or secret access key provided not as expected")
-		}
-		creds, err = assumeRole(role, id)
+		creds, err = assumeRole(k, v)
 		if err != nil {
 			return nil, fmt.Errorf("unable to assume role with error: %w", err)
 		}
 	// continue as usual with access and secret key
 	case "userBased":
-		accessKeyIdAsString := convertToStringOrEmpty(awsCredentials[awsAccessKeyId])
-		secretAccessKeyAsString := convertToStringOrEmpty(awsCredentials[awsSecretAccessKey])
-		if accessKeyIdAsString == "" || secretAccessKeyAsString == "" {
-			return nil, fmt.Errorf("aws access key or secret access key provided not as expected")
-		}
-		creds = credentials.NewStaticCredentials(accessKeyIdAsString, secretAccessKeyAsString, "")
+		creds = credentials.NewStaticCredentials(k, v, "")
 	// invalid credentials
 	default:
 		return nil, fmt.Errorf("invalid credentials: make sure access+secret key are supplied OR role_arn+external_id")
