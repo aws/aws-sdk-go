@@ -299,6 +299,8 @@ const (
 	runOnAllRegions        = "*"
 	awsAccessKeyId         = "aws_access_key_id"
 	awsSecretAccessKey     = "aws_secret_access_key"
+	roleArn                = "role_arn"
+	externalID             = "external_id"
 )
 
 type ActionExecutor func(map[string]interface{}) (map[string]interface{}, error)
@@ -1894,6 +1896,10 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 			}, err
 		}
 
+		// check whether both role_arn and extenral_id are set.
+		// if they are, do assume role.
+		//
+
 		serviceName := "sts"
 		serviceRegions := awsutil.GetServiceRegions(serviceName)
 
@@ -1996,30 +2002,49 @@ func createAWSSessionByContext(region string, context *plugin.ActionContext, tim
 	return createAWSSessionByCredentials(region, awsCredentials, timeout)
 }
 
+func determineConnectionType(awsCredentials map[string]interface{}) string {
+	if awsCredentials[awsAccessKeyId] == "" || awsCredentials[awsSecretAccessKey] == "" {
+		if awsCredentials[roleArn] != "" && awsCredentials[externalID] != "" {
+			return "assumeRole"
+		} else {
+			return ""
+		}
+	}
+	return "userBased"
+}
+
+func assumeRole(role, externalID string) (string, string, string, error) {
+
+}
+
 func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}, timeout int32) (*session.Session, error) {
-	accessKeyId := awsCredentials[awsAccessKeyId]
-	if accessKeyId == "" {
-		return nil, errors.New("aws access key ID is missing")
-	}
-
-	secretAccessKey := awsCredentials[awsSecretAccessKey]
-	if secretAccessKey == "" {
-		return nil, errors.New("aws secret access key is missing")
-	}
-
-	accessKeyIdAsString, ok := accessKeyId.(string)
-	if !ok {
-		return nil, errors.New("aws access key ID provided not as expected")
-	}
-	secretAccessKeyAsString, ok := secretAccessKey.(string)
-	if !ok {
-		return nil, errors.New("aws secret access key provided not as expected")
+	var accessKeyIdAsString, secretAccessKeyAsString, sessionToken string
+	sessionType := determineConnectionType(awsCredentials)
+	switch sessionType {
+	case "assumeRole":
+		// do assume role
+		var err error
+		accessKeyIdAsString, secretAccessKeyAsString, sessionToken, err = assumeRole(awsCredentials[roleArn], awsCredentials[externalID])
+		if err != nil {
+			return nil, fmt.Errorf("unable to assume role with error: %w", err)
+		}
+	case "userBased":
+		// continue as usual with access and secret key
+		var ok1, ok2 bool
+		accessKeyIdAsString, ok1 = awsCredentials[awsAccessKeyId].(string)
+		secretAccessKeyAsString, ok2 = awsCredentials[awsSecretAccessKey].(string)
+		if !ok1 || !ok2 {
+			return nil, fmt.Errorf("aws access key or secret access key provided not as expected")
+		}
+		// invalid credentials
+	default:
+		return nil, fmt.Errorf("invalid credentials: make sure access+secret key are supplied OR role_arn+external_id")
 	}
 
 	// Create new session
 	awsConfig := &aws.Config{
 		Region:      aws.String(region),
-		Credentials: credentials.NewStaticCredentials(accessKeyIdAsString, secretAccessKeyAsString, ""),
+		Credentials: credentials.NewStaticCredentials(accessKeyIdAsString, secretAccessKeyAsString, sessionToken),
 	}
 	if timeout > 0 {
 		awsConfig.HTTPClient = &http.Client{Timeout: time.Duration(timeout) * time.Second}
