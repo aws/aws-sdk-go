@@ -1898,10 +1898,6 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 			}, err
 		}
 
-		// check whether both role_arn and extenral_id are set.
-		// if they are, do assume role.
-		//
-
 		serviceName := "sts"
 		serviceRegions := awsutil.GetServiceRegions(serviceName)
 
@@ -2031,6 +2027,8 @@ func convertInterfaceMapToStringMap(m map[string]interface{}) map[string]string 
 }
 
 func assumeRole(role, externalID, region string) (creds *credentials.Credentials, err error) {
+	log.Debug("attempting to assume role")
+	log.Debugf("%s, %s, %s", role, externalID, region)
 	sess, _ := session.NewSession(&aws.Config{
 		Region: aws.String(region),
 	})
@@ -2052,6 +2050,8 @@ func assumeRole(role, externalID, region string) (creds *credentials.Credentials
 
 
 func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}, timeout int32) (*session.Session, error) {
+	log.Debug("inside createAWSSessionByCredentials")
+	log.Debugf("%+v\n", awsCredentials)
 	var creds *credentials.Credentials
 
 	m := convertInterfaceMapToStringMap(awsCredentials)
@@ -2072,6 +2072,7 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 		return nil, fmt.Errorf("invalid credentials: make sure access+secret key are supplied OR role_arn+external_id")
 	}
 
+	log.Debugf("chose %s", sessionType)
 	// Create new session
 	awsConfig := &aws.Config{
 		Region:      aws.String(region),
