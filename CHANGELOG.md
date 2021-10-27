@@ -1,3 +1,16 @@
+Release v1.41.12 (2021-10-27)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * This release adds support for attribute-based instance type selection, a new EC2 Auto Scaling feature that lets customers express their instance requirements as a set of attributes, such as vCPU, memory, and storage.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release adds: attribute-based instance type selection for EC2 Fleet, Spot Fleet, a feature that lets customers express instance requirements as attributes like vCPU, memory, and storage; and Spot placement score, a feature that helps customers identify an optimal location to run Spot workloads.
+* `service/eks`: Updates service API
+* `service/sagemaker`: Updates service API and documentation
+  * This release allows customers to describe one or more versioned model packages through BatchDescribeModelPackage, update project via UpdateProject, modify and read customer metadata properties using Create, Update and Describe ModelPackage and enables cross account registration of model packages.
+* `service/textract`: Updates service API and documentation
+
 Release v1.41.11 (2021-10-26)
 ===
 

@@ -7,8 +7,10 @@
     "DetectDocumentText": "<p>Detects text in the input document. Amazon Textract can detect lines of text and the words that make up a line of text. The input document must be an image in JPEG or PNG format. <code>DetectDocumentText</code> returns the detected text in an array of <a>Block</a> objects. </p> <p>Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent the lines of detected text on a page. A LINE <code>Block</code> object is a parent for each word that makes up the line. Words are represented by <code>Block</code> objects of type WORD.</p> <p> <code>DetectDocumentText</code> is a synchronous operation. To analyze documents asynchronously, use <a>StartDocumentTextDetection</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html\">Document Text Detection</a>.</p>",
     "GetDocumentAnalysis": "<p>Gets the results for an Amazon Textract asynchronous operation that analyzes text in a document.</p> <p>You start asynchronous text analysis by calling <a>StartDocumentAnalysis</a>, which returns a job identifier (<code>JobId</code>). When the text analysis operation finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentAnalysis</code>. To get the results of the text-detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentAnalysis</code>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.</p> <p> <code>GetDocumentAnalysis</code> returns an array of <a>Block</a> objects. The following types of information are returned: </p> <ul> <li> <p>Form data (key-value pairs). The related information is returned in two <a>Block</a> objects, each of type <code>KEY_VALUE_SET</code>: a KEY <code>Block</code> object and a VALUE <code>Block</code> object. For example, <i>Name: Ana Silva Carolina</i> contains a key and value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.</p> </li> <li> <p>Table and table cell data. A TABLE <code>Block</code> object contains information about a detected table. A CELL <code>Block</code> object is returned for each cell in a table.</p> </li> <li> <p>Lines and words of text. A LINE <code>Block</code> object contains one or more WORD <code>Block</code> objects. All lines and words that are detected in the document are returned (including text that doesn't have a relationship with the value of the <code>StartDocumentAnalysis</code> <code>FeatureTypes</code> input parameter). </p> </li> </ul> <p>Selection elements such as check boxes and option buttons (radio buttons) can be detected in form data and in tables. A SELECTION_ELEMENT <code>Block</code> object contains information about a selection element, including the selection status.</p> <p>Use the <code>MaxResults</code> parameter to limit the number of blocks that are returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetDocumentAnalysis</code>, and populate the <code>NextToken</code> request parameter with the token value that's returned from the previous call to <code>GetDocumentAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html\">Document Text Analysis</a>.</p>",
     "GetDocumentTextDetection": "<p>Gets the results for an Amazon Textract asynchronous operation that detects text in a document. Amazon Textract can detect lines of text and the words that make up a line of text.</p> <p>You start asynchronous text detection by calling <a>StartDocumentTextDetection</a>, which returns a job identifier (<code>JobId</code>). When the text detection operation finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentTextDetection</code>. To get the results of the text-detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentTextDetection</code>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.</p> <p> <code>GetDocumentTextDetection</code> returns an array of <a>Block</a> objects. </p> <p>Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent the lines of detected text on a page. A LINE <code>Block</code> object is a parent for each word that makes up the line. Words are represented by <code>Block</code> objects of type WORD.</p> <p>Use the MaxResults parameter to limit the number of blocks that are returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetDocumentTextDetection</code>, and populate the <code>NextToken</code> request parameter with the token value that's returned from the previous call to <code>GetDocumentTextDetection</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html\">Document Text Detection</a>.</p>",
-    "StartDocumentAnalysis": "<p>Starts the asynchronous analysis of an input document for relationships between detected items such as key-value pairs, tables, and selection elements.</p> <p> <code>StartDocumentAnalysis</code> can analyze text in documents that are in JPEG, PNG, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name and file name of the document. </p> <p> <code>StartDocumentAnalysis</code> returns a job identifier (<code>JobId</code>) that you use to get the results of the operation. When text analysis is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the results of the text analysis operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentAnalysis</a>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html\">Document Text Analysis</a>.</p>",
-    "StartDocumentTextDetection": "<p>Starts the asynchronous detection of text in a document. Amazon Textract can detect lines of text and the words that make up a line of text.</p> <p> <code>StartDocumentTextDetection</code> can analyze text in documents that are in JPEG, PNG, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name and file name of the document. </p> <p> <code>StartTextDetection</code> returns a job identifier (<code>JobId</code>) that you use to get the results of the operation. When text detection is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the results of the text detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentTextDetection</a>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html\">Document Text Detection</a>.</p>"
+    "GetExpenseAnalysis": "<p>Gets the results for an Amazon Textract asynchronous operation that analyzes invoices and receipts. Amazon Textract finds contact information, items purchased, and vendor name, from input invoices and receipts.</p> <p>You start asynchronous invoice/receipt analysis by calling <a>StartExpenseAnalysis</a>, which returns a job identifier (<code>JobId</code>). Upon completion of the invoice/receipt analysis, Amazon Textract publishes the completion status to the Amazon Simple Notification Service (Amazon SNS) topic. This topic must be registered in the initial call to <code>StartExpenseAnalysis</code>. To get the results of the invoice/receipt analysis operation, first ensure that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetExpenseAnalysis</code>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartExpenseAnalysis</code>.</p> <p>Use the MaxResults parameter to limit the number of blocks that are returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetExpenseAnalysis</code>, and populate the <code>NextToken</code> request parameter with the token value that's returned from the previous call to <code>GetExpenseAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/invoices-receipts.html\">Analyzing Invoices and Receipts</a>.</p>",
+    "StartDocumentAnalysis": "<p>Starts the asynchronous analysis of an input document for relationships between detected items such as key-value pairs, tables, and selection elements.</p> <p> <code>StartDocumentAnalysis</code> can analyze text in documents that are in JPEG, PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name and file name of the document. </p> <p> <code>StartDocumentAnalysis</code> returns a job identifier (<code>JobId</code>) that you use to get the results of the operation. When text analysis is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the results of the text analysis operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentAnalysis</a>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html\">Document Text Analysis</a>.</p>",
+    "StartDocumentTextDetection": "<p>Starts the asynchronous detection of text in a document. Amazon Textract can detect lines of text and the words that make up a line of text.</p> <p> <code>StartDocumentTextDetection</code> can analyze text in documents that are in JPEG, PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name and file name of the document. </p> <p> <code>StartTextDetection</code> returns a job identifier (<code>JobId</code>) that you use to get the results of the operation. When text detection is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you specify in <code>NotificationChannel</code>. To get the results of the text detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetDocumentTextDetection</a>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html\">Document Text Detection</a>.</p>",
+    "StartExpenseAnalysis": "<p>Starts the asynchronous analysis of invoices or receipts for data like contact information, items purchased, and vendor names.</p> <p> <code>StartExpenseAnalysis</code> can analyze text in documents that are in JPEG, PNG, and PDF format. The documents must be stored in an Amazon S3 bucket. Use the <a>DocumentLocation</a> parameter to specify the name of your S3 bucket and the name of the document in that bucket. </p> <p> <code>StartExpenseAnalysis</code> returns a job identifier (<code>JobId</code>) that you will provide to <code>GetExpenseAnalysis</code> to retrieve the results of the operation. When the analysis of the input invoices/receipts is finished, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that you provide to the <code>NotificationChannel</code>. To obtain the results of the invoice and receipt analysis operation, ensure that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <a>GetExpenseAnalysis</a>, and pass the job identifier (<code>JobId</code>) that was returned by your call to <code>StartExpenseAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/invoice-receipts.html\">Analyzing Invoices and Receipts</a>.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -72,7 +74,8 @@
       "base": null,
       "refs": {
         "StartDocumentAnalysisRequest$ClientRequestToken": "<p>The idempotent token that you use to identify the start request. If you use the same token with multiple <code>StartDocumentAnalysis</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidentally started more than once. For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/api-async.html\">Calling Amazon Textract Asynchronous Operations</a>.</p>",
-        "StartDocumentTextDetectionRequest$ClientRequestToken": "<p>The idempotent token that's used to identify the start request. If you use the same token with multiple <code>StartDocumentTextDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidentally started more than once. For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/api-async.html\">Calling Amazon Textract Asynchronous Operations</a>.</p>"
+        "StartDocumentTextDetectionRequest$ClientRequestToken": "<p>The idempotent token that's used to identify the start request. If you use the same token with multiple <code>StartDocumentTextDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidentally started more than once. For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/api-async.html\">Calling Amazon Textract Asynchronous Operations</a>.</p>",
+        "StartExpenseAnalysisRequest$ClientRequestToken": "<p>The idempotent token that's used to identify the start request. If you use the same token with multiple <code>StartDocumentTextDetection</code> requests, the same <code>JobId</code> is returned. Use <code>ClientRequestToken</code> to prevent the same job from being accidentally started more than once. For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/api-async.html\">Calling Amazon Textract Asynchronous Operations</a> </p>"
       }
     },
     "ContentClassifier": {
@@ -109,7 +112,8 @@
       "base": "<p>The Amazon S3 bucket that contains the document to be processed. It's used by asynchronous operations such as <a>StartDocumentTextDetection</a>.</p> <p>The input document can be an image file in JPEG or PNG format. It can also be a file in PDF format.</p>",
       "refs": {
         "StartDocumentAnalysisRequest$DocumentLocation": "<p>The location of the document to be processed.</p>",
-        "StartDocumentTextDetectionRequest$DocumentLocation": "<p>The location of the document to be processed.</p>"
+        "StartDocumentTextDetectionRequest$DocumentLocation": "<p>The location of the document to be processed.</p>",
+        "StartExpenseAnalysisRequest$DocumentLocation": "<p>The location of the document to be processed.</p>"
       }
     },
     "DocumentMetadata": {
@@ -119,7 +123,8 @@
         "AnalyzeExpenseResponse$DocumentMetadata": null,
         "DetectDocumentTextResponse$DocumentMetadata": "<p>Metadata about the document. It contains the number of pages that are detected in the document.</p>",
         "GetDocumentAnalysisResponse$DocumentMetadata": "<p>Information about a document that Amazon Textract processed. <code>DocumentMetadata</code> is returned in every page of paginated responses from an Amazon Textract video operation.</p>",
-        "GetDocumentTextDetectionResponse$DocumentMetadata": "<p>Information about a document that Amazon Textract processed. <code>DocumentMetadata</code> is returned in every page of paginated responses from an Amazon Textract video operation.</p>"
+        "GetDocumentTextDetectionResponse$DocumentMetadata": "<p>Information about a document that Amazon Textract processed. <code>DocumentMetadata</code> is returned in every page of paginated responses from an Amazon Textract video operation.</p>",
+        "GetExpenseAnalysisResponse$DocumentMetadata": "<p>Information about a document that Amazon Textract processed. <code>DocumentMetadata</code> is returned in every page of paginated responses from an Amazon Textract operation.</p>"
       }
     },
     "DocumentTooLargeException": {
@@ -161,7 +166,8 @@
     "ExpenseDocumentList": {
       "base": null,
       "refs": {
-        "AnalyzeExpenseResponse$ExpenseDocuments": "<p>The expenses detected by Amazon Textract.</p>"
+        "AnalyzeExpenseResponse$ExpenseDocuments": "<p>The expenses detected by Amazon Textract.</p>",
+        "GetExpenseAnalysisResponse$ExpenseDocuments": "<p>The expenses detected by Amazon Textract.</p>"
       }
     },
     "ExpenseField": {
@@ -236,6 +242,16 @@
       }
     },
     "GetDocumentTextDetectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetExpenseAnalysisRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetExpenseAnalysisResponse": {
       "base": null,
       "refs": {
       }
@@ -340,29 +356,34 @@
       "refs": {
         "GetDocumentAnalysisRequest$JobId": "<p>A unique identifier for the text-detection job. The <code>JobId</code> is returned from <code>StartDocumentAnalysis</code>. A <code>JobId</code> value is only valid for 7 days.</p>",
         "GetDocumentTextDetectionRequest$JobId": "<p>A unique identifier for the text detection job. The <code>JobId</code> is returned from <code>StartDocumentTextDetection</code>. A <code>JobId</code> value is only valid for 7 days.</p>",
+        "GetExpenseAnalysisRequest$JobId": "<p>A unique identifier for the text detection job. The <code>JobId</code> is returned from <code>StartExpenseAnalysis</code>. A <code>JobId</code> value is only valid for 7 days.</p>",
         "StartDocumentAnalysisResponse$JobId": "<p>The identifier for the document text detection job. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetDocumentAnalysis</code>. A <code>JobId</code> value is only valid for 7 days.</p>",
-        "StartDocumentTextDetectionResponse$JobId": "<p>The identifier of the text detection job for the document. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetDocumentTextDetection</code>. A <code>JobId</code> value is only valid for 7 days.</p>"
+        "StartDocumentTextDetectionResponse$JobId": "<p>The identifier of the text detection job for the document. Use <code>JobId</code> to identify the job in a subsequent call to <code>GetDocumentTextDetection</code>. A <code>JobId</code> value is only valid for 7 days.</p>",
+        "StartExpenseAnalysisResponse$JobId": "<p>A unique identifier for the text detection job. The <code>JobId</code> is returned from <code>StartExpenseAnalysis</code>. A <code>JobId</code> value is only valid for 7 days.</p>"
       }
     },
     "JobStatus": {
       "base": null,
       "refs": {
         "GetDocumentAnalysisResponse$JobStatus": "<p>The current status of the text detection job.</p>",
-        "GetDocumentTextDetectionResponse$JobStatus": "<p>The current status of the text detection job.</p>"
+        "GetDocumentTextDetectionResponse$JobStatus": "<p>The current status of the text detection job.</p>",
+        "GetExpenseAnalysisResponse$JobStatus": "<p>The current status of the text detection job.</p>"
       }
     },
     "JobTag": {
       "base": null,
       "refs": {
         "StartDocumentAnalysisRequest$JobTag": "<p>An identifier that you specify that's included in the completion notification published to the Amazon SNS topic. For example, you can use <code>JobTag</code> to identify the type of document that the completion notification corresponds to (such as a tax form or a receipt).</p>",
-        "StartDocumentTextDetectionRequest$JobTag": "<p>An identifier that you specify that's included in the completion notification published to the Amazon SNS topic. For example, you can use <code>JobTag</code> to identify the type of document that the completion notification corresponds to (such as a tax form or a receipt).</p>"
+        "StartDocumentTextDetectionRequest$JobTag": "<p>An identifier that you specify that's included in the completion notification published to the Amazon SNS topic. For example, you can use <code>JobTag</code> to identify the type of document that the completion notification corresponds to (such as a tax form or a receipt).</p>",
+        "StartExpenseAnalysisRequest$JobTag": "<p>An identifier you specify that's included in the completion notification published to the Amazon SNS topic. For example, you can use <code>JobTag</code> to identify the type of document that the completion notification corresponds to (such as a tax form or a receipt).</p>"
       }
     },
     "KMSKeyId": {
       "base": null,
       "refs": {
         "StartDocumentAnalysisRequest$KMSKeyId": "<p>The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.</p>",
-        "StartDocumentTextDetectionRequest$KMSKeyId": "<p>The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.</p>"
+        "StartDocumentTextDetectionRequest$KMSKeyId": "<p>The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.</p>",
+        "StartExpenseAnalysisRequest$KMSKeyId": "<p>The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.</p>"
       }
     },
     "LimitExceededException": {
@@ -398,7 +419,8 @@
       "base": null,
       "refs": {
         "GetDocumentAnalysisRequest$MaxResults": "<p>The maximum number of results to return per paginated call. The largest value that you can specify is 1,000. If you specify a value greater than 1,000, a maximum of 1,000 results is returned. The default value is 1,000.</p>",
-        "GetDocumentTextDetectionRequest$MaxResults": "<p>The maximum number of results to return per paginated call. The largest value you can specify is 1,000. If you specify a value greater than 1,000, a maximum of 1,000 results is returned. The default value is 1,000.</p>"
+        "GetDocumentTextDetectionRequest$MaxResults": "<p>The maximum number of results to return per paginated call. The largest value you can specify is 1,000. If you specify a value greater than 1,000, a maximum of 1,000 results is returned. The default value is 1,000.</p>",
+        "GetExpenseAnalysisRequest$MaxResults": "<p>The maximum number of results to return per paginated call. The largest value you can specify is 20. If you specify a value greater than 20, a maximum of 20 results is returned. The default value is 20.</p>"
       }
     },
     "NonEmptyString": {
@@ -412,14 +434,16 @@
       "base": "<p>The Amazon Simple Notification Service (Amazon SNS) topic to which Amazon Textract publishes the completion status of an asynchronous document operation, such as <a>StartDocumentTextDetection</a>. </p>",
       "refs": {
         "StartDocumentAnalysisRequest$NotificationChannel": "<p>The Amazon SNS topic ARN that you want Amazon Textract to publish the completion status of the operation to. </p>",
-        "StartDocumentTextDetectionRequest$NotificationChannel": "<p>The Amazon SNS topic ARN that you want Amazon Textract to publish the completion status of the operation to. </p>"
+        "StartDocumentTextDetectionRequest$NotificationChannel": "<p>The Amazon SNS topic ARN that you want Amazon Textract to publish the completion status of the operation to. </p>",
+        "StartExpenseAnalysisRequest$NotificationChannel": "<p>The Amazon SNS topic ARN that you want Amazon Textract to publish the completion status of the operation to. </p>"
       }
     },
     "OutputConfig": {
       "base": "<p>Sets whether or not your output will go to a user created bucket. Used to set the name of the bucket, and the prefix on the output file.</p> <p> <code>OutputConfig</code> is an optional parameter which lets you adjust where your output will be placed. By default, Amazon Textract will store the results internally and can only be accessed by the Get API operations. With OutputConfig enabled, you can set the name of the bucket the output will be sent to and the file prefix of the results where you can download your results. Additionally, you can set the <code>KMSKeyID</code> parameter to a customer master key (CMK) to encrypt your output. Without this parameter set Amazon Textract will encrypt server-side using the AWS managed CMK for Amazon S3.</p> <p>Decryption of Customer Content is necessary for processing of the documents by Amazon Textract. If your account is opted out under an AI services opt out policy then all unencrypted Customer Content is immediately and permanently deleted after the Customer Content has been processed by the service. No copy of of the output is retained by Amazon Textract. For information about how to opt out, see <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html\"> Managing AI services opt-out policy. </a> </p> <p>For more information on data privacy, see the <a href=\"https://aws.amazon.com/compliance/data-privacy-faq/\">Data Privacy FAQ</a>.</p>",
       "refs": {
         "StartDocumentAnalysisRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default, Amazon Textract will save the results internally to be accessed by the GetDocumentAnalysis operation.</p>",
-        "StartDocumentTextDetectionRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default Amazon Textract will save the results internally to be accessed with the GetDocumentTextDetection operation.</p>"
+        "StartDocumentTextDetectionRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default Amazon Textract will save the results internally to be accessed with the GetDocumentTextDetection operation.</p>",
+        "StartExpenseAnalysisRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default, Amazon Textract will save the results internally to be accessed by the <code>GetExpenseAnalysis</code> operation.</p>"
       }
     },
     "Pages": {
@@ -434,7 +458,9 @@
         "GetDocumentAnalysisRequest$NextToken": "<p>If the previous response was incomplete (because there are more blocks to retrieve), Amazon Textract returns a pagination token in the response. You can use this pagination token to retrieve the next set of blocks.</p>",
         "GetDocumentAnalysisResponse$NextToken": "<p>If the response is truncated, Amazon Textract returns this token. You can use this token in the subsequent request to retrieve the next set of text detection results.</p>",
         "GetDocumentTextDetectionRequest$NextToken": "<p>If the previous response was incomplete (because there are more blocks to retrieve), Amazon Textract returns a pagination token in the response. You can use this pagination token to retrieve the next set of blocks.</p>",
-        "GetDocumentTextDetectionResponse$NextToken": "<p>If the response is truncated, Amazon Textract returns this token. You can use this token in the subsequent request to retrieve the next set of text-detection results.</p>"
+        "GetDocumentTextDetectionResponse$NextToken": "<p>If the response is truncated, Amazon Textract returns this token. You can use this token in the subsequent request to retrieve the next set of text-detection results.</p>",
+        "GetExpenseAnalysisRequest$NextToken": "<p>If the previous response was incomplete (because there are more blocks to retrieve), Amazon Textract returns a pagination token in the response. You can use this pagination token to retrieve the next set of blocks.</p>",
+        "GetExpenseAnalysisResponse$NextToken": "<p>If the response is truncated, Amazon Textract returns this token. You can use this token in the subsequent request to retrieve the next set of text-detection results.</p>"
       }
     },
     "Percent": {
@@ -504,7 +530,7 @@
       "base": null,
       "refs": {
         "OutputConfig$S3Prefix": "<p>The prefix of the object key that the output will be saved to. When not enabled, the prefix will be “textract_output\".</p>",
-        "S3Object$Name": "<p>The file name of the input document. Synchronous operations can use image files that are in JPEG or PNG format. Asynchronous operations also support PDF format files.</p>"
+        "S3Object$Name": "<p>The file name of the input document. Synchronous operations can use image files that are in JPEG or PNG format. Asynchronous operations also support PDF and TIFF format files.</p>"
       }
     },
     "S3ObjectVersion": {
@@ -545,11 +571,22 @@
       "refs": {
       }
     },
+    "StartExpenseAnalysisRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartExpenseAnalysisResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StatusMessage": {
       "base": null,
       "refs": {
         "GetDocumentAnalysisResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occured.</p>",
-        "GetDocumentTextDetectionResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occured. </p>"
+        "GetDocumentTextDetectionResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occured. </p>",
+        "GetExpenseAnalysisResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occured. </p>"
       }
     },
     "String": {
@@ -562,6 +599,7 @@
         "ExpenseType$Text": "<p>The word or line of text detected by Amazon Textract.</p>",
         "GetDocumentAnalysisResponse$AnalyzeDocumentModelVersion": "<p/>",
         "GetDocumentTextDetectionResponse$DetectDocumentTextModelVersion": "<p/>",
+        "GetExpenseAnalysisResponse$AnalyzeExpenseModelVersion": "<p>The current model version of AnalyzeExpense.</p>",
         "HumanLoopQuotaExceededException$ResourceType": "<p>The resource type.</p>",
         "HumanLoopQuotaExceededException$QuotaCode": "<p>The quota code.</p>",
         "HumanLoopQuotaExceededException$ServiceCode": "<p>The service code.</p>"
@@ -585,7 +623,7 @@
         "Block$ColumnIndex": "<p>The column in which a table cell appears. The first column position is 1. <code>ColumnIndex</code> isn't returned by <code>DetectDocumentText</code> and <code>GetDocumentTextDetection</code>.</p>",
         "Block$RowSpan": "<p>The number of rows that a table cell spans. Currently this value is always 1, even if the number of rows spanned is greater than 1. <code>RowSpan</code> isn't returned by <code>DetectDocumentText</code> and <code>GetDocumentTextDetection</code>.</p>",
         "Block$ColumnSpan": "<p>The number of columns that a table cell spans. Currently this value is always 1, even if the number of columns spanned is greater than 1. <code>ColumnSpan</code> isn't returned by <code>DetectDocumentText</code> and <code>GetDocumentTextDetection</code>. </p>",
-        "Block$Page": "<p>The page on which a block was detected. <code>Page</code> is returned by asynchronous operations. Page values greater than 1 are only returned for multipage documents that are in PDF format. A scanned image (JPEG/PNG), even if it contains multiple document pages, is considered to be a single-page document. The value of <code>Page</code> is always 1. Synchronous operations don't return <code>Page</code> because every input document is considered to be a single-page document.</p>",
+        "Block$Page": "<p>The page on which a block was detected. <code>Page</code> is returned by asynchronous operations. Page values greater than 1 are only returned for multipage documents that are in PDF or TIFF format. A scanned image (JPEG/PNG), even if it contains multiple document pages, is considered to be a single-page document. The value of <code>Page</code> is always 1. Synchronous operations don't return <code>Page</code> because every input document is considered to be a single-page document.</p>",
         "DocumentMetadata$Pages": "<p>The number of pages that are detected in the document.</p>",
         "ExpenseDocument$ExpenseIndex": "<p>Denotes which invoice or receipt in the document the information is coming from. First document will be 1, the second 2, and so on.</p>",
         "ExpenseField$PageNumber": "<p>The page number the value was detected on.</p>",
@@ -608,7 +646,8 @@
       "base": null,
       "refs": {
         "GetDocumentAnalysisResponse$Warnings": "<p>A list of warnings that occurred during the document-analysis operation.</p>",
-        "GetDocumentTextDetectionResponse$Warnings": "<p>A list of warnings that occurred during the text-detection operation for the document.</p>"
+        "GetDocumentTextDetectionResponse$Warnings": "<p>A list of warnings that occurred during the text-detection operation for the document.</p>",
+        "GetExpenseAnalysisResponse$Warnings": "<p>A list of warnings that occurred during the text-detection operation for the document.</p>"
       }
     }
   }

@@ -11699,6 +11699,12 @@ const (
 
 	// AMITypesCustom is a AMITypes enum value
 	AMITypesCustom = "CUSTOM"
+
+	// AMITypesBottlerocketArm64 is a AMITypes enum value
+	AMITypesBottlerocketArm64 = "BOTTLEROCKET_ARM_64"
+
+	// AMITypesBottlerocketX8664 is a AMITypes enum value
+	AMITypesBottlerocketX8664 = "BOTTLEROCKET_x86_64"
 )
 
 // AMITypes_Values returns all elements of the AMITypes enum
@@ -11708,6 +11714,8 @@ func AMITypes_Values() []string {
 		AMITypesAl2X8664Gpu,
 		AMITypesAl2Arm64,
 		AMITypesCustom,
+		AMITypesBottlerocketArm64,
+		AMITypesBottlerocketX8664,
 	}
 }
 

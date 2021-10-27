@@ -896,6 +896,61 @@
     }
   },
   "shapes":{
+    "AcceleratorCountRequest":{
+      "type":"structure",
+      "members":{
+        "Min":{"shape":"NullablePositiveInteger"},
+        "Max":{"shape":"NullablePositiveInteger"}
+      }
+    },
+    "AcceleratorManufacturer":{
+      "type":"string",
+      "enum":[
+        "nvidia",
+        "amd",
+        "amazon-web-services",
+        "xilinx"
+      ]
+    },
+    "AcceleratorManufacturers":{
+      "type":"list",
+      "member":{"shape":"AcceleratorManufacturer"}
+    },
+    "AcceleratorName":{
+      "type":"string",
+      "enum":[
+        "a100",
+        "v100",
+        "k80",
+        "t4",
+        "m60",
+        "radeon-pro-v520",
+        "vu9p"
+      ]
+    },
+    "AcceleratorNames":{
+      "type":"list",
+      "member":{"shape":"AcceleratorName"}
+    },
+    "AcceleratorTotalMemoryMiBRequest":{
+      "type":"structure",
+      "members":{
+        "Min":{"shape":"NullablePositiveInteger"},
+        "Max":{"shape":"NullablePositiveInteger"}
+      }
+    },
+    "AcceleratorType":{
+      "type":"string",
+      "enum":[
+        "gpu",
+        "fpga",
+        "inference"
+      ]
+    },
+    "AcceleratorTypes":{
+      "type":"list",
+      "member":{"shape":"AcceleratorType"}
+    },
     "ActiveInstanceRefreshNotFoundFault":{
       "type":"structure",
       "members":{
@@ -1077,7 +1132,8 @@
         "CapacityRebalance":{"shape":"CapacityRebalanceEnabled"},
         "WarmPoolConfiguration":{"shape":"WarmPoolConfiguration"},
         "WarmPoolSize":{"shape":"WarmPoolSize"},
-        "Context":{"shape":"Context"}
+        "Context":{"shape":"Context"},
+        "DesiredCapacityType":{"shape":"XmlStringMaxLen255"}
       }
     },
     "AutoScalingGroupDesiredCapacity":{"type":"integer"},
@@ -1156,6 +1212,21 @@
       "type":"list",
       "member":{"shape":"XmlStringMaxLen255"}
     },
+    "BareMetal":{
+      "type":"string",
+      "enum":[
+        "included",
+        "excluded",
+        "required"
+      ]
+    },
+    "BaselineEbsBandwidthMbpsRequest":{
+      "type":"structure",
+      "members":{
+        "Min":{"shape":"NullablePositiveInteger"},
+        "Max":{"shape":"NullablePositiveInteger"}
+      }
+    },
     "BatchDeleteScheduledActionAnswer":{
       "type":"structure",
       "members":{
@@ -1226,6 +1297,14 @@
       "type":"list",
       "member":{"shape":"BlockDeviceMapping"}
     },
+    "BurstablePerformance":{
+      "type":"string",
+      "enum":[
+        "included",
+        "excluded",
+        "required"
+      ]
+    },
     "CancelInstanceRefreshAnswer":{
       "type":"structure",
       "members":{
@@ -1286,6 +1365,18 @@
     },
     "Context":{"type":"string"},
     "Cooldown":{"type":"integer"},
+    "CpuManufacturer":{
+      "type":"string",
+      "enum":[
+        "intel",
+        "amd",
+        "amazon-web-services"
+      ]
+    },
+    "CpuManufacturers":{
+      "type":"list",
+      "member":{"shape":"CpuManufacturer"}
+    },
     "CreateAutoScalingGroupType":{
       "type":"structure",
       "required":[
@@ -1317,7 +1408,8 @@
         "Tags":{"shape":"Tags"},
         "ServiceLinkedRoleARN":{"shape":"ResourceName"},
         "MaxInstanceLifetime":{"shape":"MaxInstanceLifetime"},
-        "Context":{"shape":"Context"}
+        "Context":{"shape":"Context"},
+        "DesiredCapacityType":{"shape":"XmlStringMaxLen255"}
       }
     },
     "CreateLaunchConfigurationType":{
@@ -1745,6 +1837,17 @@
       }
     },
     "EstimatedInstanceWarmup":{"type":"integer"},
+    "ExcludedInstance":{
+      "type":"string",
+      "max":30,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\.\\*]+"
+    },
+    "ExcludedInstanceTypes":{
+      "type":"list",
+      "member":{"shape":"ExcludedInstance"},
+      "max":400
+    },
     "ExecutePolicyType":{
       "type":"structure",
       "required":["PolicyName"],
@@ -1848,6 +1951,17 @@
         "ProtectedFromScaleIn":{"shape":"InstanceProtected"},
         "WeightedCapacity":{"shape":"XmlStringMaxLen32"}
       }
+    },
+    "InstanceGeneration":{
+      "type":"string",
+      "enum":[
+        "current",
+        "previous"
+      ]
+    },
+    "InstanceGenerations":{
+      "type":"list",
+      "member":{"shape":"InstanceGeneration"}
     },
     "InstanceIds":{
       "type":"list",
@@ -1954,6 +2068,36 @@
     "InstanceRefreshes":{
       "type":"list",
       "member":{"shape":"InstanceRefresh"}
+    },
+    "InstanceRequirements":{
+      "type":"structure",
+      "required":[
+        "VCpuCount",
+        "MemoryMiB"
+      ],
+      "members":{
+        "VCpuCount":{"shape":"VCpuCountRequest"},
+        "MemoryMiB":{"shape":"MemoryMiBRequest"},
+        "CpuManufacturers":{"shape":"CpuManufacturers"},
+        "MemoryGiBPerVCpu":{"shape":"MemoryGiBPerVCpuRequest"},
+        "ExcludedInstanceTypes":{"shape":"ExcludedInstanceTypes"},
+        "InstanceGenerations":{"shape":"InstanceGenerations"},
+        "SpotMaxPricePercentageOverLowestPrice":{"shape":"NullablePositiveInteger"},
+        "OnDemandMaxPricePercentageOverLowestPrice":{"shape":"NullablePositiveInteger"},
+        "BareMetal":{"shape":"BareMetal"},
+        "BurstablePerformance":{"shape":"BurstablePerformance"},
+        "RequireHibernateSupport":{"shape":"NullableBoolean"},
+        "NetworkInterfaceCount":{"shape":"NetworkInterfaceCountRequest"},
+        "LocalStorage":{"shape":"LocalStorage"},
+        "LocalStorageTypes":{"shape":"LocalStorageTypes"},
+        "TotalLocalStorageGB":{"shape":"TotalLocalStorageGBRequest"},
+        "BaselineEbsBandwidthMbps":{"shape":"BaselineEbsBandwidthMbpsRequest"},
+        "AcceleratorTypes":{"shape":"AcceleratorTypes"},
+        "AcceleratorCount":{"shape":"AcceleratorCountRequest"},
+        "AcceleratorManufacturers":{"shape":"AcceleratorManufacturers"},
+        "AcceleratorNames":{"shape":"AcceleratorNames"},
+        "AcceleratorTotalMemoryMiB":{"shape":"AcceleratorTotalMemoryMiBRequest"}
+      }
     },
     "Instances":{
       "type":"list",
@@ -2071,7 +2215,8 @@
       "members":{
         "InstanceType":{"shape":"XmlStringMaxLen255"},
         "WeightedCapacity":{"shape":"XmlStringMaxLen32"},
-        "LaunchTemplateSpecification":{"shape":"LaunchTemplateSpecification"}
+        "LaunchTemplateSpecification":{"shape":"LaunchTemplateSpecification"},
+        "InstanceRequirements":{"shape":"InstanceRequirements"}
       }
     },
     "LaunchTemplateSpecification":{
@@ -2214,6 +2359,25 @@
       "type":"list",
       "member":{"shape":"LoadForecast"}
     },
+    "LocalStorage":{
+      "type":"string",
+      "enum":[
+        "included",
+        "excluded",
+        "required"
+      ]
+    },
+    "LocalStorageType":{
+      "type":"string",
+      "enum":[
+        "hdd",
+        "ssd"
+      ]
+    },
+    "LocalStorageTypes":{
+      "type":"list",
+      "member":{"shape":"LocalStorageType"}
+    },
     "MaxGroupPreparedCapacity":{
       "type":"integer",
       "min":-1
@@ -2222,6 +2386,21 @@
     "MaxNumberOfAutoScalingGroups":{"type":"integer"},
     "MaxNumberOfLaunchConfigurations":{"type":"integer"},
     "MaxRecords":{"type":"integer"},
+    "MemoryGiBPerVCpuRequest":{
+      "type":"structure",
+      "members":{
+        "Min":{"shape":"NullablePositiveDouble"},
+        "Max":{"shape":"NullablePositiveDouble"}
+      }
+    },
+    "MemoryMiBRequest":{
+      "type":"structure",
+      "required":["Min"],
+      "members":{
+        "Min":{"shape":"NullablePositiveInteger"},
+        "Max":{"shape":"NullablePositiveInteger"}
+      }
+    },
     "MetricCollectionType":{
       "type":"structure",
       "members":{
@@ -2304,6 +2483,13 @@
       }
     },
     "MonitoringEnabled":{"type":"boolean"},
+    "NetworkInterfaceCountRequest":{
+      "type":"structure",
+      "members":{
+        "Min":{"shape":"NullablePositiveInteger"},
+        "Max":{"shape":"NullablePositiveInteger"}
+      }
+    },
     "NoDevice":{"type":"boolean"},
     "NonZeroIntPercent":{
       "type":"integer",
@@ -2327,6 +2513,15 @@
       "max":255,
       "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "NullableBoolean":{"type":"boolean"},
+    "NullablePositiveDouble":{
+      "type":"double",
+      "min":0
+    },
+    "NullablePositiveInteger":{
+      "type":"integer",
+      "min":0
     },
     "NumberOfAutoScalingGroups":{"type":"integer"},
     "NumberOfLaunchConfigurations":{"type":"integer"},
@@ -2953,6 +3148,13 @@
       "member":{"shape":"XmlStringMaxLen1600"}
     },
     "TimestampType":{"type":"timestamp"},
+    "TotalLocalStorageGBRequest":{
+      "type":"structure",
+      "members":{
+        "Min":{"shape":"NullablePositiveDouble"},
+        "Max":{"shape":"NullablePositiveDouble"}
+      }
+    },
     "UpdateAutoScalingGroupType":{
       "type":"structure",
       "required":["AutoScalingGroupName"],
@@ -2975,7 +3177,16 @@
         "ServiceLinkedRoleARN":{"shape":"ResourceName"},
         "MaxInstanceLifetime":{"shape":"MaxInstanceLifetime"},
         "CapacityRebalance":{"shape":"CapacityRebalanceEnabled"},
-        "Context":{"shape":"Context"}
+        "Context":{"shape":"Context"},
+        "DesiredCapacityType":{"shape":"XmlStringMaxLen255"}
+      }
+    },
+    "VCpuCountRequest":{
+      "type":"structure",
+      "required":["Min"],
+      "members":{
+        "Min":{"shape":"NullablePositiveInteger"},
+        "Max":{"shape":"NullablePositiveInteger"}
       }
     },
     "Values":{

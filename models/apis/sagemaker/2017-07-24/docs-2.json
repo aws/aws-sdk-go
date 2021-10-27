@@ -5,6 +5,7 @@
     "AddAssociation": "<p>Creates an <i>association</i> between the source and the destination. A source can be associated with multiple destinations, and a destination can be associated with multiple sources. An association is a lineage tracking entity. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html\">Amazon SageMaker ML Lineage Tracking</a>.</p>",
     "AddTags": "<p>Adds or overwrites one or more tags for the specified Amazon SageMaker resource. You can add tags to notebook instances, training jobs, hyperparameter tuning jobs, batch transform jobs, models, labeling jobs, work teams, endpoint configurations, and endpoints.</p> <p>Each tag consists of a key and an optional value. Tag keys must be unique per resource. For more information about tags, see For more information, see <a href=\"https://aws.amazon.com/answers/account-management/aws-tagging-strategies/\">Amazon Web Services Tagging Strategies</a>.</p> <note> <p>Tags that you add to a hyperparameter tuning job by calling this API are also added to any training jobs that the hyperparameter tuning job launches after you call this API, but not to training jobs that the hyperparameter tuning job launched before you called this API. To make sure that the tags associated with a hyperparameter tuning job are also added to all training jobs that the hyperparameter tuning job launches, add the tags when you first create the tuning job by specifying them in the <code>Tags</code> parameter of <a>CreateHyperParameterTuningJob</a> </p> </note> <note> <p>Tags that you add to a SageMaker Studio Domain or User Profile by calling this API are also added to any Apps that the Domain or User Profile launches after you call this API, but not to Apps that the Domain or User Profile launched before you called this API. To make sure that the tags associated with a Domain or User Profile are also added to all Apps that the Domain or User Profile launches, add the tags when you first create the Domain or User Profile by specifying them in the <code>Tags</code> parameter of <a>CreateDomain</a> or <a>CreateUserProfile</a>.</p> </note>",
     "AssociateTrialComponent": "<p>Associates a trial component with a trial. A trial component can be associated with multiple trials. To disassociate a trial component from a trial, call the <a>DisassociateTrialComponent</a> API.</p>",
+    "BatchDescribeModelPackage": "<p>This action batch describes a list of versioned model packages</p>",
     "CreateAction": "<p>Creates an <i>action</i>. An action is a lineage tracking entity that represents an action or activity. For example, a model deployment or an HPO job. Generally, an action involves at least one input or output artifact. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html\">Amazon SageMaker ML Lineage Tracking</a>.</p>",
     "CreateAlgorithm": "<p>Create a machine learning algorithm that you can use in Amazon SageMaker and list in the Amazon Web Services Marketplace.</p>",
     "CreateApp": "<p>Creates a running app for the specified UserProfile. Supported apps are <code>JupyterServer</code> and <code>KernelGateway</code>. This operation is automatically invoked by Amazon SageMaker Studio upon access to the associated Domain, and when new kernel configurations are selected by the user. A user may have multiple Apps active simultaneously.</p>",
@@ -116,7 +117,7 @@
     "DescribeModel": "<p>Describes a model that you created using the <code>CreateModel</code> API.</p>",
     "DescribeModelBiasJobDefinition": "<p>Returns a description of a model bias job definition.</p>",
     "DescribeModelExplainabilityJobDefinition": "<p>Returns a description of a model explainability job definition.</p>",
-    "DescribeModelPackage": "<p>Returns a description of the specified model package, which is used to create Amazon SageMaker models or list them on Amazon Web Services Marketplace.</p> <p>To create models in Amazon SageMaker, buyers can subscribe to model packages listed on Amazon Web Services Marketplace.</p>",
+    "DescribeModelPackage": "<p>Returns a description of the specified model package, which is used to create SageMaker models or list them on Amazon Web Services Marketplace.</p> <p>To create models in SageMaker, buyers can subscribe to model packages listed on Amazon Web Services Marketplace.</p>",
     "DescribeModelPackageGroup": "<p>Gets a description for the specified model group.</p>",
     "DescribeModelQualityJobDefinition": "<p>Returns a description of a model quality job definition.</p>",
     "DescribeMonitoringSchedule": "<p>Describes the schedule for a monitoring job.</p>",
@@ -236,6 +237,7 @@
     "UpdateNotebookInstanceLifecycleConfig": "<p>Updates a notebook instance lifecycle configuration created with the <a>CreateNotebookInstanceLifecycleConfig</a> API.</p>",
     "UpdatePipeline": "<p>Updates a pipeline.</p>",
     "UpdatePipelineExecution": "<p>Updates a pipeline execution.</p>",
+    "UpdateProject": "<p>Updates a machine learning (ML) project that is created from a template that sets up an ML pipeline from training to deploying an approved model.</p> <note> <p>You must not update a project that is in use. If you update the <code>ServiceCatalogProvisioningUpdateDetails</code> of a project that is active or being created, or updated, you may lose resources already created by the project.</p> </note>",
     "UpdateTrainingJob": "<p>Update a model training job to request a new Debugger profiling configuration.</p>",
     "UpdateTrial": "<p>Updates the display name of a trial.</p>",
     "UpdateTrialComponent": "<p>Updates one or more properties of a trial component.</p>",
@@ -580,6 +582,7 @@
       "base": null,
       "refs": {
         "AlgorithmSpecification$AlgorithmName": "<p>The name of the algorithm resource to use for the training job. This must be an algorithm resource that you created or subscribe to on Amazon Web Services Marketplace. If you specify a value for this parameter, you can't specify a value for <code>TrainingImage</code>.</p>",
+        "CreateModelPackageInput$ModelPackageGroupName": "<p>The name or Amazon Resource Name (ARN) of the model package group that this model version belongs to.</p> <p>This parameter is required for versioned models, and does not apply to unversioned models.</p>",
         "DeleteModelPackageGroupInput$ModelPackageGroupName": "<p>The name of the model group to delete.</p>",
         "DescribeAlgorithmInput$AlgorithmName": "<p>The name of the algorithm to describe.</p>",
         "DescribeModelPackageGroupInput$ModelPackageGroupName": "<p>The name of the model group to describe.</p>",
@@ -1019,6 +1022,34 @@
       "base": null,
       "refs": {
         "HumanLoopRequestSource$AwsManagedHumanLoopRequestSource": "<p>Specifies whether Amazon Rekognition or Amazon Textract are used as the integration source. The default field settings and JSON parsing rules are different based on the integration source. Valid values:</p>"
+      }
+    },
+    "BatchDescribeModelPackageError": {
+      "base": "<p>The error code and error description associated with the resource.</p>",
+      "refs": {
+        "BatchDescribeModelPackageErrorMap$value": null
+      }
+    },
+    "BatchDescribeModelPackageErrorMap": {
+      "base": null,
+      "refs": {
+        "BatchDescribeModelPackageOutput$BatchDescribeModelPackageErrorMap": "<p>A map of the resource and BatchDescribeModelPackageError objects reporting the error associated with describing the model package.</p>"
+      }
+    },
+    "BatchDescribeModelPackageInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDescribeModelPackageOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDescribeModelPackageSummary": {
+      "base": "<p>Provides summary information about the model package.</p>",
+      "refs": {
+        "ModelPackageSummaries$value": null
       }
     },
     "BatchStrategy": {
@@ -2121,6 +2152,7 @@
       "refs": {
         "AlgorithmSummary$CreationTime": "<p>A timestamp that shows when the algorithm was created.</p>",
         "AppDetails$CreationTime": "<p>The creation time.</p>",
+        "BatchDescribeModelPackageSummary$CreationTime": "<p>The creation time of the mortgage package summary.</p>",
         "CodeRepositorySummary$CreationTime": "<p>The date and time that the Git repository was created.</p>",
         "CompilationJobSummary$CreationTime": "<p>The time when the model compilation job was created.</p>",
         "DescribeAlgorithmOutput$CreationTime": "<p>A timestamp specifying when the algorithm was created.</p>",
@@ -2183,6 +2215,34 @@
       "base": null,
       "refs": {
         "KernelGatewayAppSettings$CustomImages": "<p>A list of custom SageMaker images that are configured to run as a KernelGateway app.</p>"
+      }
+    },
+    "CustomerMetadataKey": {
+      "base": null,
+      "refs": {
+        "CustomerMetadataKeyList$member": null,
+        "CustomerMetadataMap$key": null
+      }
+    },
+    "CustomerMetadataKeyList": {
+      "base": null,
+      "refs": {
+        "UpdateModelPackageInput$CustomerMetadataPropertiesToRemove": "<p>The metadata properties associated with the model package versions to remove.</p>"
+      }
+    },
+    "CustomerMetadataMap": {
+      "base": null,
+      "refs": {
+        "CreateModelPackageInput$CustomerMetadataProperties": "<p>The metadata properties associated with the model package versions.</p>",
+        "DescribeModelPackageOutput$CustomerMetadataProperties": "<p>The metadata properties associated with the model package versions.</p>",
+        "ModelPackage$CustomerMetadataProperties": "<p>The metadata properties for the model package. </p>",
+        "UpdateModelPackageInput$CustomerMetadataProperties": "<p>The metadata properties associated with the model package versions.</p>"
+      }
+    },
+    "CustomerMetadataValue": {
+      "base": null,
+      "refs": {
+        "CustomerMetadataMap$value": null
       }
     },
     "DataCaptureConfig": {
@@ -3623,6 +3683,7 @@
       "base": null,
       "refs": {
         "AlgorithmSummary$AlgorithmDescription": "<p>A brief description of the algorithm.</p>",
+        "BatchDescribeModelPackageSummary$ModelPackageDescription": "<p>The description of the model package.</p>",
         "ChannelSpecification$Description": "<p>A brief description of the channel.</p>",
         "CreateAlgorithmInput$AlgorithmDescription": "<p>A description of the algorithm.</p>",
         "CreateModelPackageGroupInput$ModelPackageGroupDescription": "<p>A description for the model group.</p>",
@@ -3638,7 +3699,8 @@
         "ModelPackageGroupSummary$ModelPackageGroupDescription": "<p>A description of the model group.</p>",
         "ModelPackageSummary$ModelPackageDescription": "<p>A brief description of the model package.</p>",
         "Project$ProjectDescription": "<p>The description of the project.</p>",
-        "ProjectSummary$ProjectDescription": "<p>The description of the project.</p>"
+        "ProjectSummary$ProjectDescription": "<p>The description of the project.</p>",
+        "UpdateProjectInput$ProjectDescription": "<p>The description for the project.</p>"
       }
     },
     "EntityName": {
@@ -3647,6 +3709,7 @@
         "AlgorithmStatusItem$Name": "<p>The name of the algorithm for which the overall status is being reported.</p>",
         "AlgorithmSummary$AlgorithmName": "<p>The name of the algorithm that is described by the summary.</p>",
         "AlgorithmValidationProfile$ProfileName": "<p>The name of the profile for the algorithm. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
+        "BatchDescribeModelPackageSummary$ModelPackageGroupName": "<p>The group name for the model package</p>",
         "CodeRepositorySummary$CodeRepositoryName": "<p>The name of the Git repository.</p>",
         "CompilationJobSummary$CompilationJobName": "<p>The name of the model compilation job that you want a summary for.</p>",
         "CreateAlgorithmInput$AlgorithmName": "<p>The name of the algorithm.</p>",
@@ -3658,7 +3721,6 @@
         "CreateEdgePackagingJobRequest$ModelName": "<p>The name of the model.</p>",
         "CreateModelPackageGroupInput$ModelPackageGroupName": "<p>The name of the model group.</p>",
         "CreateModelPackageInput$ModelPackageName": "<p>The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p> <p>This parameter is required for unversioned models. It is not applicable to versioned models.</p>",
-        "CreateModelPackageInput$ModelPackageGroupName": "<p>The name of the model group that this model version belongs to.</p> <p>This parameter is required for versioned models, and does not apply to unversioned models.</p>",
         "DeleteAlgorithmInput$AlgorithmName": "<p>The name of the algorithm to delete.</p>",
         "DeleteCodeRepositoryInput$CodeRepositoryName": "<p>The name of the Git repository to delete.</p>",
         "DeleteDeviceFleetRequest$DeviceFleetName": "<p>The name of the fleet to delete.</p>",
@@ -4796,6 +4858,7 @@
     "InferenceSpecification": {
       "base": "<p>Defines how to perform inference generation after a training job is run.</p>",
       "refs": {
+        "BatchDescribeModelPackageSummary$InferenceSpecification": null,
         "CreateAlgorithmInput$InferenceSpecification": "<p>Specifies details about inference jobs that the algorithm runs, including the following:</p> <ul> <li> <p>The Amazon ECR paths of containers that contain the inference code and model artifacts.</p> </li> <li> <p>The instance types that the algorithm supports for transform jobs and real-time endpoints used for inference.</p> </li> <li> <p>The input and output content formats that the algorithm supports for inference.</p> </li> </ul>",
         "CreateModelPackageInput$InferenceSpecification": "<p>Specifies details about inference jobs that can be run with models based on this model package, including the following:</p> <ul> <li> <p>The Amazon ECR paths of containers that contain the inference code and model artifacts.</p> </li> <li> <p>The instance types that the model package supports for transform jobs and real-time endpoints used for inference.</p> </li> <li> <p>The input and output content formats that the model package supports for inference.</p> </li> </ul>",
         "DescribeAlgorithmOutput$InferenceSpecification": "<p>Details about inference jobs that the algorithm runs.</p>",
@@ -6119,6 +6182,7 @@
     "ModelApprovalStatus": {
       "base": null,
       "refs": {
+        "BatchDescribeModelPackageSummary$ModelApprovalStatus": "<p>The approval status of the model.</p>",
         "CreateModelPackageInput$ModelApprovalStatus": "<p>Whether the model is approved for deployment.</p> <p>This parameter is optional for versioned models, and does not apply to unversioned models.</p> <p>For versioned models, the value of this parameter must be set to <code>Approved</code> to deploy the model.</p>",
         "DescribeModelPackageOutput$ModelApprovalStatus": "<p>The approval status of the model package.</p>",
         "ListModelPackagesInput$ModelApprovalStatus": "<p>A filter that returns only the model packages with the specified approval status.</p>",
@@ -6263,12 +6327,22 @@
     "ModelPackageArn": {
       "base": null,
       "refs": {
+        "BatchDescribeModelPackageErrorMap$key": null,
+        "BatchDescribeModelPackageSummary$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
         "CreateModelPackageOutput$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the new model package.</p>",
         "DescribeModelPackageOutput$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
         "ModelPackage$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
+        "ModelPackageArnList$member": null,
+        "ModelPackageSummaries$key": null,
         "ModelPackageSummary$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
-        "UpdateModelPackageInput$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the model.</p>",
+        "UpdateModelPackageInput$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
         "UpdateModelPackageOutput$ModelPackageArn": "<p>The Amazon Resource Name (ARN) of the model.</p>"
+      }
+    },
+    "ModelPackageArnList": {
+      "base": null,
+      "refs": {
+        "BatchDescribeModelPackageInput$ModelPackageArnList": "<p>The list of Amazon Resource Name (ARN) of the model package groups.</p>"
       }
     },
     "ModelPackageContainerDefinition": {
@@ -6334,6 +6408,7 @@
     "ModelPackageStatus": {
       "base": null,
       "refs": {
+        "BatchDescribeModelPackageSummary$ModelPackageStatus": "<p>The status of the mortgage package.</p>",
         "DescribeModelPackageOutput$ModelPackageStatus": "<p>The current status of the model package.</p>",
         "ModelPackage$ModelPackageStatus": "<p>The status of the model package. This can be one of the following values.</p> <ul> <li> <p> <code>PENDING</code> - The model package is pending being created.</p> </li> <li> <p> <code>IN_PROGRESS</code> - The model package is in the process of being created.</p> </li> <li> <p> <code>COMPLETED</code> - The model package was successfully created.</p> </li> <li> <p> <code>FAILED</code> - The model package failed.</p> </li> <li> <p> <code>DELETING</code> - The model package is in the process of being deleted.</p> </li> </ul>",
         "ModelPackageSummary$ModelPackageStatus": "<p>The overall status of the model package.</p>"
@@ -6357,6 +6432,12 @@
       "refs": {
         "ModelPackageStatusDetails$ValidationStatuses": "<p>The validation status of the model package.</p>",
         "ModelPackageStatusDetails$ImageScanStatuses": "<p>The status of the scan of the Docker image container for the model package.</p>"
+      }
+    },
+    "ModelPackageSummaries": {
+      "base": null,
+      "refs": {
+        "BatchDescribeModelPackageOutput$ModelPackageSummaries": "<p>The summaries for the model package versions</p>"
       }
     },
     "ModelPackageSummary": {
@@ -6393,13 +6474,14 @@
       "base": "<p>Specifies batch transform jobs that Amazon SageMaker runs to validate your model package.</p>",
       "refs": {
         "CreateModelPackageInput$ValidationSpecification": "<p>Specifies configurations for one or more transform jobs that Amazon SageMaker runs to test the model package.</p>",
-        "DescribeModelPackageOutput$ValidationSpecification": "<p>Configurations for one or more transform jobs that Amazon SageMaker runs to test the model package.</p>",
+        "DescribeModelPackageOutput$ValidationSpecification": "<p>Configurations for one or more transform jobs that SageMaker runs to test the model package.</p>",
         "ModelPackage$ValidationSpecification": null
       }
     },
     "ModelPackageVersion": {
       "base": null,
       "refs": {
+        "BatchDescribeModelPackageSummary$ModelPackageVersion": "<p>The version number of a versioned model.</p>",
         "DescribeModelPackageOutput$ModelPackageVersion": "<p>The version of the model package.</p>",
         "ModelPackage$ModelPackageVersion": "<p>The version number of a versioned model.</p>",
         "ModelPackageSummary$ModelPackageVersion": "<p>If the model package is a versioned model, the version of the model.</p>"
@@ -8037,7 +8119,8 @@
         "CreateProjectOutput$ProjectArn": "<p>The Amazon Resource Name (ARN) of the project.</p>",
         "DescribeProjectOutput$ProjectArn": "<p>The Amazon Resource Name (ARN) of the project.</p>",
         "Project$ProjectArn": "<p>The Amazon Resource Name (ARN) of the project.</p>",
-        "ProjectSummary$ProjectArn": "<p>The Amazon Resource Name (ARN) of the project.</p>"
+        "ProjectSummary$ProjectArn": "<p>The Amazon Resource Name (ARN) of the project.</p>",
+        "UpdateProjectOutput$ProjectArn": "<p>The Amazon Resource Name (ARN) of the project.</p>"
       }
     },
     "ProjectEntityName": {
@@ -8049,7 +8132,8 @@
         "DescribeProjectOutput$ProjectName": "<p>The name of the project.</p>",
         "ListProjectsInput$NameContains": "<p>A filter that returns the projects whose name contains a specified string.</p>",
         "Project$ProjectName": "<p>The name of the project.</p>",
-        "ProjectSummary$ProjectName": "<p>The name of the project.</p>"
+        "ProjectSummary$ProjectName": "<p>The name of the project.</p>",
+        "UpdateProjectInput$ProjectName": "<p>The name of the project.</p>"
       }
     },
     "ProjectId": {
@@ -8144,7 +8228,8 @@
     "ProvisioningParameters": {
       "base": null,
       "refs": {
-        "ServiceCatalogProvisioningDetails$ProvisioningParameters": "<p>A list of key value pairs that you specify when you provision a product.</p>"
+        "ServiceCatalogProvisioningDetails$ProvisioningParameters": "<p>A list of key value pairs that you specify when you provision a product.</p>",
+        "ServiceCatalogProvisioningUpdateDetails$ProvisioningParameters": "<p>A list of key value pairs that you specify when you provision a product.</p>"
       }
     },
     "PublicWorkforceTaskPrice": {
@@ -8705,7 +8790,8 @@
         "ServiceCatalogProvisionedProductDetails$ProvisionedProductId": "<p>The ID of the provisioned product.</p>",
         "ServiceCatalogProvisioningDetails$ProductId": "<p>The ID of the product to provision.</p>",
         "ServiceCatalogProvisioningDetails$ProvisioningArtifactId": "<p>The ID of the provisioning artifact.</p>",
-        "ServiceCatalogProvisioningDetails$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. </p>"
+        "ServiceCatalogProvisioningDetails$PathId": "<p>The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. </p>",
+        "ServiceCatalogProvisioningUpdateDetails$ProvisioningArtifactId": "<p>The ID of the provisioning artifact.</p>"
       }
     },
     "ServiceCatalogProvisionedProductDetails": {
@@ -8721,6 +8807,12 @@
         "CreateProjectInput$ServiceCatalogProvisioningDetails": "<p>The product ID and provisioning artifact ID to provision a service catalog. The provisioning artifact ID will default to the latest provisioning artifact ID of the product, if you don't provide the provisioning artifact ID. For more information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
         "DescribeProjectOutput$ServiceCatalogProvisioningDetails": "<p>Information used to provision a service catalog product. For information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
         "Project$ServiceCatalogProvisioningDetails": null
+      }
+    },
+    "ServiceCatalogProvisioningUpdateDetails": {
+      "base": "<p>Details that you specify to provision a service catalog product. For information about service catalog, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is AWS Service Catalog</a>. </p>",
+      "refs": {
+        "UpdateProjectInput$ServiceCatalogProvisioningUpdateDetails": "<p>The product ID and provisioning artifact ID to provision a service catalog. The provisioning artifact ID will default to the latest provisioning artifact ID of the product, if you don't provide the provisioning artifact ID. For more information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is AWS Service Catalog</a>. </p>"
       }
     },
     "SessionExpirationDurationInSeconds": {
@@ -9034,6 +9126,8 @@
       "base": null,
       "refs": {
         "AlgorithmStatusItem$FailureReason": "<p>if the overall status is <code>Failed</code>, the reason for the failure.</p>",
+        "BatchDescribeModelPackageError$ErrorCode": "<p/>",
+        "BatchDescribeModelPackageError$ErrorResponse": "<p/>",
         "DescribeEdgePackagingJobResponse$EdgePackagingJobStatusMessage": "<p>Returns a message describing the job status and error messages.</p>",
         "DescribeEdgePackagingJobResponse$ModelSignature": "<p>The signature document of files in the model artifact.</p>",
         "EdgeOutputConfig$PresetDeploymentConfig": "<p>The configuration used to create deployment artifacts. Specify configuration options with a JSON string. The available configuration options for each type are:</p> <ul> <li> <p> <code>ComponentName</code> (optional) - Name of the GreenGrass V2 component. If not specified, the default name generated consists of \"SagemakerEdgeManager\" and the name of your SageMaker Edge Manager packaging job.</p> </li> <li> <p> <code>ComponentDescription</code> (optional) - Description of the component.</p> </li> <li> <p> <code>ComponentVersion</code> (optional) - The version of the component.</p> <note> <p>Amazon Web Services IoT Greengrass uses semantic versions for components. Semantic versions follow a<i> major.minor.patch</i> number system. For example, version 1.0.0 represents the first major release for a component. For more information, see the <a href=\"https://semver.org/\">semantic version specification</a>.</p> </note> </li> <li> <p> <code>PlatformOS</code> (optional) - The name of the operating system for the platform. Supported platforms include Windows and Linux.</p> </li> <li> <p> <code>PlatformArchitecture</code> (optional) - The processor architecture for the platform. </p> <p>Supported architectures Windows include: Windows32_x86, Windows64_x64.</p> <p>Supported architectures for Linux include: Linux x86_64, Linux ARMV8.</p> </li> </ul>",
@@ -9318,7 +9412,8 @@
         "TrainingJob$Tags": "<p>An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services Resources</a>.</p>",
         "TransformJob$Tags": "<p>A list of tags associated with the transform job.</p>",
         "Trial$Tags": "<p>The list of tags that are associated with the trial. You can use <a>Search</a> API to search on the tags.</p>",
-        "TrialComponent$Tags": "<p>The list of tags that are associated with the component. You can use <a>Search</a> API to search on the tags.</p>"
+        "TrialComponent$Tags": "<p>The list of tags that are associated with the component. You can use <a>Search</a> API to search on the tags.</p>",
+        "UpdateProjectInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>"
       }
     },
     "TagValue": {
@@ -9555,6 +9650,7 @@
         "DescribeProcessingJobResponse$LastModifiedTime": "<p>The time at which the processing job was last modified.</p>",
         "DescribeProcessingJobResponse$CreationTime": "<p>The time at which the processing job was created.</p>",
         "DescribeProjectOutput$CreationTime": "<p>The time when the project was created.</p>",
+        "DescribeProjectOutput$LastModifiedTime": "<p>The timestamp when project was last modified.</p>",
         "DescribeStudioLifecycleConfigResponse$CreationTime": "<p>The creation time of the Studio Lifecycle Configuration.</p>",
         "DescribeStudioLifecycleConfigResponse$LastModifiedTime": "<p>This value is equivalent to CreationTime because Studio Lifecycle Configurations are immutable.</p>",
         "DescribeTrainingJobResponse$CreationTime": "<p>A timestamp that indicates when the training job was created.</p>",
@@ -9738,6 +9834,7 @@
         "ProcessingJobSummary$LastModifiedTime": "<p>A timestamp that indicates the last time the processing job was modified.</p>",
         "ProfilerRuleEvaluationStatus$LastModifiedTime": "<p>Timestamp when the rule evaluation status was last modified.</p>",
         "Project$CreationTime": "<p>A timestamp specifying when the project was created.</p>",
+        "Project$LastModifiedTime": "<p>A timestamp container for when the project was last modified.</p>",
         "ProjectSummary$CreationTime": "<p>The time that the project was created.</p>",
         "SecondaryStatusTransition$StartTime": "<p>A timestamp that shows when the training job transitioned to the current secondary status state.</p>",
         "SecondaryStatusTransition$EndTime": "<p>A timestamp that shows when the training job transitioned out of this secondary status state into another secondary status state or when the training job has ended.</p>",
@@ -10498,6 +10595,16 @@
       "refs": {
       }
     },
+    "UpdateProjectInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProjectOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateTrainingJobRequest": {
       "base": null,
       "refs": {
@@ -10587,6 +10694,7 @@
         "DescribePipelineResponse$CreatedBy": null,
         "DescribePipelineResponse$LastModifiedBy": null,
         "DescribeProjectOutput$CreatedBy": null,
+        "DescribeProjectOutput$LastModifiedBy": null,
         "DescribeTrialComponentResponse$CreatedBy": "<p>Who created the trial component.</p>",
         "DescribeTrialComponentResponse$LastModifiedBy": "<p>Who last modified the component.</p>",
         "DescribeTrialResponse$CreatedBy": "<p>Who created the trial.</p>",
@@ -10601,6 +10709,7 @@
         "PipelineExecution$CreatedBy": null,
         "PipelineExecution$LastModifiedBy": null,
         "Project$CreatedBy": "<p>Who created the project.</p>",
+        "Project$LastModifiedBy": null,
         "Trial$CreatedBy": "<p>Who created the trial.</p>",
         "Trial$LastModifiedBy": null,
         "TrialComponent$CreatedBy": "<p>Who created the trial component.</p>",

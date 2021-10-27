@@ -701,6 +701,135 @@ func (c *Textract) GetDocumentTextDetectionWithContext(ctx aws.Context, input *G
 	return out, req.Send()
 }
 
+const opGetExpenseAnalysis = "GetExpenseAnalysis"
+
+// GetExpenseAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the GetExpenseAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetExpenseAnalysis for more information on using the GetExpenseAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetExpenseAnalysisRequest method.
+//    req, resp := client.GetExpenseAnalysisRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetExpenseAnalysis
+func (c *Textract) GetExpenseAnalysisRequest(input *GetExpenseAnalysisInput) (req *request.Request, output *GetExpenseAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opGetExpenseAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetExpenseAnalysisInput{}
+	}
+
+	output = &GetExpenseAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetExpenseAnalysis API operation for Amazon Textract.
+//
+// Gets the results for an Amazon Textract asynchronous operation that analyzes
+// invoices and receipts. Amazon Textract finds contact information, items purchased,
+// and vendor name, from input invoices and receipts.
+//
+// You start asynchronous invoice/receipt analysis by calling StartExpenseAnalysis,
+// which returns a job identifier (JobId). Upon completion of the invoice/receipt
+// analysis, Amazon Textract publishes the completion status to the Amazon Simple
+// Notification Service (Amazon SNS) topic. This topic must be registered in
+// the initial call to StartExpenseAnalysis. To get the results of the invoice/receipt
+// analysis operation, first ensure that the status value published to the Amazon
+// SNS topic is SUCCEEDED. If so, call GetExpenseAnalysis, and pass the job
+// identifier (JobId) from the initial call to StartExpenseAnalysis.
+//
+// Use the MaxResults parameter to limit the number of blocks that are returned.
+// If there are more results than specified in MaxResults, the value of NextToken
+// in the operation response contains a pagination token for getting the next
+// set of results. To get the next page of results, call GetExpenseAnalysis,
+// and populate the NextToken request parameter with the token value that's
+// returned from the previous call to GetExpenseAnalysis.
+//
+// For more information, see Analyzing Invoices and Receipts (https://docs.aws.amazon.com/textract/latest/dg/invoices-receipts.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Textract's
+// API operation GetExpenseAnalysis for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   An input parameter violated a constraint. For example, in synchronous operations,
+//   an InvalidParameterException exception occurs when neither of the S3Object
+//   or Bytes values are supplied in the Document request parameter. Validate
+//   your parameter before calling the API operation again.
+//
+//   * AccessDeniedException
+//   You aren't authorized to perform the action. Use the Amazon Resource Name
+//   (ARN) of an authorized user or IAM role to perform the operation.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Textract.
+//
+//   * InvalidJobIdException
+//   An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
+//
+//   * InternalServerError
+//   Amazon Textract experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Textract is temporarily unable to process the request. Try your call
+//   again.
+//
+//   * InvalidS3ObjectException
+//   Amazon Textract is unable to access the S3 object that's specified in the
+//   request. for more information, Configure Access to Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)
+//   For troubleshooting information, see Troubleshooting Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/troubleshooting.html)
+//
+//   * InvalidKMSKeyException
+//   Indicates you do not have decrypt permissions with the KMS key entered, or
+//   the KMS key was entered incorrectly.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/GetExpenseAnalysis
+func (c *Textract) GetExpenseAnalysis(input *GetExpenseAnalysisInput) (*GetExpenseAnalysisOutput, error) {
+	req, out := c.GetExpenseAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// GetExpenseAnalysisWithContext is the same as GetExpenseAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetExpenseAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Textract) GetExpenseAnalysisWithContext(ctx aws.Context, input *GetExpenseAnalysisInput, opts ...request.Option) (*GetExpenseAnalysisOutput, error) {
+	req, out := c.GetExpenseAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartDocumentAnalysis = "StartDocumentAnalysis"
 
 // StartDocumentAnalysisRequest generates a "aws/request.Request" representing the
@@ -749,8 +878,8 @@ func (c *Textract) StartDocumentAnalysisRequest(input *StartDocumentAnalysisInpu
 // detected items such as key-value pairs, tables, and selection elements.
 //
 // StartDocumentAnalysis can analyze text in documents that are in JPEG, PNG,
-// and PDF format. The documents are stored in an Amazon S3 bucket. Use DocumentLocation
-// to specify the bucket name and file name of the document.
+// TIFF, and PDF format. The documents are stored in an Amazon S3 bucket. Use
+// DocumentLocation to specify the bucket name and file name of the document.
 //
 // StartDocumentAnalysis returns a job identifier (JobId) that you use to get
 // the results of the operation. When text analysis is finished, Amazon Textract
@@ -896,8 +1025,8 @@ func (c *Textract) StartDocumentTextDetectionRequest(input *StartDocumentTextDet
 // can detect lines of text and the words that make up a line of text.
 //
 // StartDocumentTextDetection can analyze text in documents that are in JPEG,
-// PNG, and PDF format. The documents are stored in an Amazon S3 bucket. Use
-// DocumentLocation to specify the bucket name and file name of the document.
+// PNG, TIFF, and PDF format. The documents are stored in an Amazon S3 bucket.
+// Use DocumentLocation to specify the bucket name and file name of the document.
 //
 // StartTextDetection returns a job identifier (JobId) that you use to get the
 // results of the operation. When text detection is finished, Amazon Textract
@@ -990,6 +1119,155 @@ func (c *Textract) StartDocumentTextDetection(input *StartDocumentTextDetectionI
 // for more information on using Contexts.
 func (c *Textract) StartDocumentTextDetectionWithContext(ctx aws.Context, input *StartDocumentTextDetectionInput, opts ...request.Option) (*StartDocumentTextDetectionOutput, error) {
 	req, out := c.StartDocumentTextDetectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartExpenseAnalysis = "StartExpenseAnalysis"
+
+// StartExpenseAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the StartExpenseAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartExpenseAnalysis for more information on using the StartExpenseAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartExpenseAnalysisRequest method.
+//    req, resp := client.StartExpenseAnalysisRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/StartExpenseAnalysis
+func (c *Textract) StartExpenseAnalysisRequest(input *StartExpenseAnalysisInput) (req *request.Request, output *StartExpenseAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opStartExpenseAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartExpenseAnalysisInput{}
+	}
+
+	output = &StartExpenseAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartExpenseAnalysis API operation for Amazon Textract.
+//
+// Starts the asynchronous analysis of invoices or receipts for data like contact
+// information, items purchased, and vendor names.
+//
+// StartExpenseAnalysis can analyze text in documents that are in JPEG, PNG,
+// and PDF format. The documents must be stored in an Amazon S3 bucket. Use
+// the DocumentLocation parameter to specify the name of your S3 bucket and
+// the name of the document in that bucket.
+//
+// StartExpenseAnalysis returns a job identifier (JobId) that you will provide
+// to GetExpenseAnalysis to retrieve the results of the operation. When the
+// analysis of the input invoices/receipts is finished, Amazon Textract publishes
+// a completion status to the Amazon Simple Notification Service (Amazon SNS)
+// topic that you provide to the NotificationChannel. To obtain the results
+// of the invoice and receipt analysis operation, ensure that the status value
+// published to the Amazon SNS topic is SUCCEEDED. If so, call GetExpenseAnalysis,
+// and pass the job identifier (JobId) that was returned by your call to StartExpenseAnalysis.
+//
+// For more information, see Analyzing Invoices and Receipts (https://docs.aws.amazon.com/textract/latest/dg/invoice-receipts.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Textract's
+// API operation StartExpenseAnalysis for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   An input parameter violated a constraint. For example, in synchronous operations,
+//   an InvalidParameterException exception occurs when neither of the S3Object
+//   or Bytes values are supplied in the Document request parameter. Validate
+//   your parameter before calling the API operation again.
+//
+//   * InvalidS3ObjectException
+//   Amazon Textract is unable to access the S3 object that's specified in the
+//   request. for more information, Configure Access to Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)
+//   For troubleshooting information, see Troubleshooting Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/troubleshooting.html)
+//
+//   * InvalidKMSKeyException
+//   Indicates you do not have decrypt permissions with the KMS key entered, or
+//   the KMS key was entered incorrectly.
+//
+//   * UnsupportedDocumentException
+//   The format of the input document isn't supported. Documents for synchronous
+//   operations can be in PNG or JPEG format. Documents for asynchronous operations
+//   can also be in PDF format.
+//
+//   * DocumentTooLargeException
+//   The document can't be processed because it's too large. The maximum document
+//   size for synchronous operations 10 MB. The maximum document size for asynchronous
+//   operations is 500 MB for PDF files.
+//
+//   * BadDocumentException
+//   Amazon Textract isn't able to read the document. For more information on
+//   the document limits in Amazon Textract, see limits.
+//
+//   * AccessDeniedException
+//   You aren't authorized to perform the action. Use the Amazon Resource Name
+//   (ARN) of an authorized user or IAM role to perform the operation.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Textract.
+//
+//   * InternalServerError
+//   Amazon Textract experienced a service issue. Try your call again.
+//
+//   * IdempotentParameterMismatchException
+//   A ClientRequestToken input parameter was reused with an operation, but at
+//   least one of the other input parameters is different from the previous call
+//   to the operation.
+//
+//   * ThrottlingException
+//   Amazon Textract is temporarily unable to process the request. Try your call
+//   again.
+//
+//   * LimitExceededException
+//   An Amazon Textract service limit was exceeded. For example, if you start
+//   too many asynchronous jobs concurrently, calls to start operations (StartDocumentTextDetection,
+//   for example) raise a LimitExceededException exception (HTTP status code:
+//   400) until the number of concurrently running jobs is below the Amazon Textract
+//   service limit.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/StartExpenseAnalysis
+func (c *Textract) StartExpenseAnalysis(input *StartExpenseAnalysisInput) (*StartExpenseAnalysisOutput, error) {
+	req, out := c.StartExpenseAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// StartExpenseAnalysisWithContext is the same as StartExpenseAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartExpenseAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Textract) StartExpenseAnalysisWithContext(ctx aws.Context, input *StartExpenseAnalysisInput, opts ...request.Option) (*StartExpenseAnalysisOutput, error) {
+	req, out := c.StartExpenseAnalysisRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1473,10 +1751,10 @@ type Block struct {
 
 	// The page on which a block was detected. Page is returned by asynchronous
 	// operations. Page values greater than 1 are only returned for multipage documents
-	// that are in PDF format. A scanned image (JPEG/PNG), even if it contains multiple
-	// document pages, is considered to be a single-page document. The value of
-	// Page is always 1. Synchronous operations don't return Page because every
-	// input document is considered to be a single-page document.
+	// that are in PDF or TIFF format. A scanned image (JPEG/PNG), even if it contains
+	// multiple document pages, is considered to be a single-page document. The
+	// value of Page is always 1. Synchronous operations don't return Page because
+	// every input document is considered to be a single-page document.
 	Page *int64 `type:"integer"`
 
 	// A list of child blocks of the current block. For example, a LINE object has
@@ -2613,6 +2891,175 @@ func (s *GetDocumentTextDetectionOutput) SetWarnings(v []*Warning) *GetDocumentT
 	return s
 }
 
+type GetExpenseAnalysisInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the text detection job. The JobId is returned from
+	// StartExpenseAnalysis. A JobId value is only valid for 7 days.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per paginated call. The largest value
+	// you can specify is 20. If you specify a value greater than 20, a maximum
+	// of 20 results is returned. The default value is 20.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there are more blocks to
+	// retrieve), Amazon Textract returns a pagination token in the response. You
+	// can use this pagination token to retrieve the next set of blocks.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExpenseAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExpenseAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetExpenseAnalysisInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetExpenseAnalysisInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetExpenseAnalysisInput) SetJobId(v string) *GetExpenseAnalysisInput {
+	s.JobId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetExpenseAnalysisInput) SetMaxResults(v int64) *GetExpenseAnalysisInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetExpenseAnalysisInput) SetNextToken(v string) *GetExpenseAnalysisInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetExpenseAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The current model version of AnalyzeExpense.
+	AnalyzeExpenseModelVersion *string `type:"string"`
+
+	// Information about a document that Amazon Textract processed. DocumentMetadata
+	// is returned in every page of paginated responses from an Amazon Textract
+	// operation.
+	DocumentMetadata *DocumentMetadata `type:"structure"`
+
+	// The expenses detected by Amazon Textract.
+	ExpenseDocuments []*ExpenseDocument `type:"list"`
+
+	// The current status of the text detection job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// If the response is truncated, Amazon Textract returns this token. You can
+	// use this token in the subsequent request to retrieve the next set of text-detection
+	// results.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returns if the detection job could not be completed. Contains explanation
+	// for what error occured.
+	StatusMessage *string `type:"string"`
+
+	// A list of warnings that occurred during the text-detection operation for
+	// the document.
+	Warnings []*Warning `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExpenseAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetExpenseAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalyzeExpenseModelVersion sets the AnalyzeExpenseModelVersion field's value.
+func (s *GetExpenseAnalysisOutput) SetAnalyzeExpenseModelVersion(v string) *GetExpenseAnalysisOutput {
+	s.AnalyzeExpenseModelVersion = &v
+	return s
+}
+
+// SetDocumentMetadata sets the DocumentMetadata field's value.
+func (s *GetExpenseAnalysisOutput) SetDocumentMetadata(v *DocumentMetadata) *GetExpenseAnalysisOutput {
+	s.DocumentMetadata = v
+	return s
+}
+
+// SetExpenseDocuments sets the ExpenseDocuments field's value.
+func (s *GetExpenseAnalysisOutput) SetExpenseDocuments(v []*ExpenseDocument) *GetExpenseAnalysisOutput {
+	s.ExpenseDocuments = v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *GetExpenseAnalysisOutput) SetJobStatus(v string) *GetExpenseAnalysisOutput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetExpenseAnalysisOutput) SetNextToken(v string) *GetExpenseAnalysisOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *GetExpenseAnalysisOutput) SetStatusMessage(v string) *GetExpenseAnalysisOutput {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *GetExpenseAnalysisOutput) SetWarnings(v []*Warning) *GetExpenseAnalysisOutput {
+	s.Warnings = v
+	return s
+}
+
 // Shows the results of the human in the loop evaluation. If there is no HumanLoopArn,
 // the input did not trigger human review.
 type HumanLoopActivationOutput struct {
@@ -3718,7 +4165,7 @@ type S3Object struct {
 
 	// The file name of the input document. Synchronous operations can use image
 	// files that are in JPEG or PNG format. Asynchronous operations also support
-	// PDF format files.
+	// PDF and TIFF format files.
 	Name *string `min:"1" type:"string"`
 
 	// If the bucket has versioning enabled, you can specify the object version.
@@ -4119,6 +4566,167 @@ func (s StartDocumentTextDetectionOutput) GoString() string {
 
 // SetJobId sets the JobId field's value.
 func (s *StartDocumentTextDetectionOutput) SetJobId(v string) *StartDocumentTextDetectionOutput {
+	s.JobId = &v
+	return s
+}
+
+type StartExpenseAnalysisInput struct {
+	_ struct{} `type:"structure"`
+
+	// The idempotent token that's used to identify the start request. If you use
+	// the same token with multiple StartDocumentTextDetection requests, the same
+	// JobId is returned. Use ClientRequestToken to prevent the same job from being
+	// accidentally started more than once. For more information, see Calling Amazon
+	// Textract Asynchronous Operations (https://docs.aws.amazon.com/textract/latest/dg/api-async.html)
+	ClientRequestToken *string `min:"1" type:"string"`
+
+	// The location of the document to be processed.
+	//
+	// DocumentLocation is a required field
+	DocumentLocation *DocumentLocation `type:"structure" required:"true"`
+
+	// An identifier you specify that's included in the completion notification
+	// published to the Amazon SNS topic. For example, you can use JobTag to identify
+	// the type of document that the completion notification corresponds to (such
+	// as a tax form or a receipt).
+	JobTag *string `min:"1" type:"string"`
+
+	// The KMS key used to encrypt the inference results. This can be in either
+	// Key ID or Key Alias format. When a KMS key is provided, the KMS key will
+	// be used for server-side encryption of the objects in the customer bucket.
+	// When this parameter is not enabled, the result will be encrypted server side,using
+	// SSE-S3.
+	KMSKeyId *string `min:"1" type:"string"`
+
+	// The Amazon SNS topic ARN that you want Amazon Textract to publish the completion
+	// status of the operation to.
+	NotificationChannel *NotificationChannel `type:"structure"`
+
+	// Sets if the output will go to a customer defined bucket. By default, Amazon
+	// Textract will save the results internally to be accessed by the GetExpenseAnalysis
+	// operation.
+	OutputConfig *OutputConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExpenseAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExpenseAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartExpenseAnalysisInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartExpenseAnalysisInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DocumentLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentLocation"))
+	}
+	if s.JobTag != nil && len(*s.JobTag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobTag", 1))
+	}
+	if s.KMSKeyId != nil && len(*s.KMSKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSKeyId", 1))
+	}
+	if s.DocumentLocation != nil {
+		if err := s.DocumentLocation.Validate(); err != nil {
+			invalidParams.AddNested("DocumentLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.NotificationChannel != nil {
+		if err := s.NotificationChannel.Validate(); err != nil {
+			invalidParams.AddNested("NotificationChannel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputConfig != nil {
+		if err := s.OutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartExpenseAnalysisInput) SetClientRequestToken(v string) *StartExpenseAnalysisInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDocumentLocation sets the DocumentLocation field's value.
+func (s *StartExpenseAnalysisInput) SetDocumentLocation(v *DocumentLocation) *StartExpenseAnalysisInput {
+	s.DocumentLocation = v
+	return s
+}
+
+// SetJobTag sets the JobTag field's value.
+func (s *StartExpenseAnalysisInput) SetJobTag(v string) *StartExpenseAnalysisInput {
+	s.JobTag = &v
+	return s
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *StartExpenseAnalysisInput) SetKMSKeyId(v string) *StartExpenseAnalysisInput {
+	s.KMSKeyId = &v
+	return s
+}
+
+// SetNotificationChannel sets the NotificationChannel field's value.
+func (s *StartExpenseAnalysisInput) SetNotificationChannel(v *NotificationChannel) *StartExpenseAnalysisInput {
+	s.NotificationChannel = v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *StartExpenseAnalysisInput) SetOutputConfig(v *OutputConfig) *StartExpenseAnalysisInput {
+	s.OutputConfig = v
+	return s
+}
+
+type StartExpenseAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the text detection job. The JobId is returned from
+	// StartExpenseAnalysis. A JobId value is only valid for 7 days.
+	JobId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExpenseAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartExpenseAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartExpenseAnalysisOutput) SetJobId(v string) *StartExpenseAnalysisOutput {
 	s.JobId = &v
 	return s
 }

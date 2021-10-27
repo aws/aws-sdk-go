@@ -72,6 +72,10 @@ type SageMakerAPI interface {
 	AssociateTrialComponentWithContext(aws.Context, *sagemaker.AssociateTrialComponentInput, ...request.Option) (*sagemaker.AssociateTrialComponentOutput, error)
 	AssociateTrialComponentRequest(*sagemaker.AssociateTrialComponentInput) (*request.Request, *sagemaker.AssociateTrialComponentOutput)
 
+	BatchDescribeModelPackage(*sagemaker.BatchDescribeModelPackageInput) (*sagemaker.BatchDescribeModelPackageOutput, error)
+	BatchDescribeModelPackageWithContext(aws.Context, *sagemaker.BatchDescribeModelPackageInput, ...request.Option) (*sagemaker.BatchDescribeModelPackageOutput, error)
+	BatchDescribeModelPackageRequest(*sagemaker.BatchDescribeModelPackageInput) (*request.Request, *sagemaker.BatchDescribeModelPackageOutput)
+
 	CreateAction(*sagemaker.CreateActionInput) (*sagemaker.CreateActionOutput, error)
 	CreateActionWithContext(aws.Context, *sagemaker.CreateActionInput, ...request.Option) (*sagemaker.CreateActionOutput, error)
 	CreateActionRequest(*sagemaker.CreateActionInput) (*request.Request, *sagemaker.CreateActionOutput)
@@ -1160,6 +1164,10 @@ type SageMakerAPI interface {
 	UpdatePipelineExecution(*sagemaker.UpdatePipelineExecutionInput) (*sagemaker.UpdatePipelineExecutionOutput, error)
 	UpdatePipelineExecutionWithContext(aws.Context, *sagemaker.UpdatePipelineExecutionInput, ...request.Option) (*sagemaker.UpdatePipelineExecutionOutput, error)
 	UpdatePipelineExecutionRequest(*sagemaker.UpdatePipelineExecutionInput) (*request.Request, *sagemaker.UpdatePipelineExecutionOutput)
+
+	UpdateProject(*sagemaker.UpdateProjectInput) (*sagemaker.UpdateProjectOutput, error)
+	UpdateProjectWithContext(aws.Context, *sagemaker.UpdateProjectInput, ...request.Option) (*sagemaker.UpdateProjectOutput, error)
+	UpdateProjectRequest(*sagemaker.UpdateProjectInput) (*request.Request, *sagemaker.UpdateProjectOutput)
 
 	UpdateTrainingJob(*sagemaker.UpdateTrainingJobInput) (*sagemaker.UpdateTrainingJobOutput, error)
 	UpdateTrainingJobWithContext(aws.Context, *sagemaker.UpdateTrainingJobInput, ...request.Option) (*sagemaker.UpdateTrainingJobOutput, error)
