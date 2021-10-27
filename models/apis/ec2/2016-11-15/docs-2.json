@@ -349,12 +349,14 @@
     "GetFlowLogsIntegrationTemplate": "<p>Generates a CloudFormation template that streamlines and automates the integration of VPC flow logs with Amazon Athena. This make it easier for you to query and gain insights from VPC flow logs data. Based on the information that you provide, we configure resources in the template to do the following:</p> <ul> <li> <p>Create a table in Athena that maps fields to a custom log format</p> </li> <li> <p>Create a Lambda function that updates the table with new partitions on a daily, weekly, or monthly basis</p> </li> <li> <p>Create a table partitioned between two timestamps in the past</p> </li> <li> <p>Create a set of named queries in Athena that you can use to get started quickly</p> </li> </ul>",
     "GetGroupsForCapacityReservation": "<p>Lists the resource groups to which a Capacity Reservation has been added.</p>",
     "GetHostReservationPurchasePreview": "<p>Preview a reservation purchase with configurations that match those of your Dedicated Host. You must have active Dedicated Hosts in your account before you purchase a reservation.</p> <p>This is a preview of the <a>PurchaseHostReservation</a> action and does not result in the offering being purchased.</p>",
+    "GetInstanceTypesFromInstanceRequirements": "<p>Returns a list of instance types with the specified instance attributes. You can use the response to preview the instance types without launching instances. Note that the response does not consider capacity.</p> <p>When you specify multiple parameters, you get instance types that satisfy all of the specified parameters. If you specify multiple values for a parameter, you get instance types that satisfy any of the specified values.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html#spotfleet-get-instance-types-from-instance-requirements\">Preview instance types with specified attributes</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for EC2 Fleet</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for Spot Fleet</a>, and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the <i>Amazon EC2 User Guide</i>, and <a href=\"https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html\">Creating an Auto Scaling group using attribute-based instance type selection</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.</p>",
     "GetLaunchTemplateData": "<p>Retrieves the configuration data of the specified instance. You can use this data to create a launch template. </p> <p>This action calls on other describe actions to get instance information. Depending on your instance configuration, you may need to allow the following actions in your IAM policy: DescribeSpotInstanceRequests, DescribeInstanceCreditSpecifications, DescribeVolumes, DescribeInstanceAttribute, and DescribeElasticGpus. Or, you can allow <code>describe*</code> depending on your instance requirements.</p>",
     "GetManagedPrefixListAssociations": "<p>Gets information about the resources that are associated with the specified managed prefix list.</p>",
     "GetManagedPrefixListEntries": "<p>Gets information about the entries for a specified managed prefix list.</p>",
     "GetPasswordData": "<p>Retrieves the encrypted administrator password for a running Windows instance.</p> <p>The Windows password is generated at boot by the <code>EC2Config</code> service or <code>EC2Launch</code> scripts (Windows Server 2016 and later). This usually only happens the first time an instance is launched. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/UsingConfig_WinAMI.html\">EC2Config</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2launch.html\">EC2Launch</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For the <code>EC2Config</code> service, the password is not generated for rebundled AMIs unless <code>Ec2SetPassword</code> is enabled before bundling.</p> <p>The password is encrypted using the key pair that you specified when you launched the instance. You must provide the corresponding key pair file.</p> <p>When you launch an instance, password generation and encryption may take a few minutes. If you try to retrieve the password before it's available, the output returns an empty string. We recommend that you wait up to 15 minutes after launching an instance before trying to retrieve the generated password.</p>",
     "GetReservedInstancesExchangeQuote": "<p>Returns a quote and exchange information for exchanging one or more specified Convertible Reserved Instances for a new Convertible Reserved Instance. If the exchange cannot be performed, the reason is returned in the response. Use <a>AcceptReservedInstancesExchangeQuote</a> to perform the exchange.</p>",
     "GetSerialConsoleAccessStatus": "<p>Retrieves the access status of your account to the EC2 serial console of all instances. By default, access to the EC2 serial console is disabled for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-access-to-serial-console.html#serial-console-account-access\">Manage account access to the EC2 serial console</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "GetSpotPlacementScores": "<p>Calculates the Spot placement score for a Region or Availability Zone based on the specified target capacity and compute requirements.</p> <p>You can specify your compute requirements either by using <code>InstanceRequirementsWithMetadata</code> and letting Amazon EC2 choose the optimal instance types to fulfill your Spot request, or you can specify the instance types by using <code>InstanceTypes</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the Amazon EC2 User Guide.</p>",
     "GetSubnetCidrReservations": "<p>Gets information about the subnet CIDR reservations.</p>",
     "GetTransitGatewayAttachmentPropagations": "<p>Lists the route tables to which the specified resource attachment propagates routes.</p>",
     "GetTransitGatewayMulticastDomainAssociations": "<p>Gets information about the associations for the transit gateway multicast domain.</p>",
@@ -475,6 +477,69 @@
     "WithdrawByoipCidr": "<p>Stops advertising an address range that is provisioned as an address pool.</p> <p>You can perform this operation at most once every 10 seconds, even if you specify different address ranges each time.</p> <p>It can take a few minutes before traffic to the specified addresses stops routing to Amazon Web Services because of BGP propagation delays.</p>"
   },
   "shapes": {
+    "AcceleratorCount": {
+      "base": "<p>The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) on an instance.</p>",
+      "refs": {
+        "InstanceRequirements$AcceleratorCount": "<p>The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) on an instance.</p> <p>To exclude accelerator-enabled instance types, set <code>Max</code> to <code>0</code>.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "AcceleratorCountRequest": {
+      "base": "<p>The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) on an instance. To exclude accelerator-enabled instance types, set <code>Max</code> to <code>0</code>.</p>",
+      "refs": {
+        "InstanceRequirementsRequest$AcceleratorCount": "<p>The minimum and maximum number of accelerators (GPUs, FPGAs, or Amazon Web Services Inferentia chips) on an instance.</p> <p>To exclude accelerator-enabled instance types, set <code>Max</code> to <code>0</code>.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "AcceleratorManufacturer": {
+      "base": null,
+      "refs": {
+        "AcceleratorManufacturerSet$member": null
+      }
+    },
+    "AcceleratorManufacturerSet": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$AcceleratorManufacturers": "<p>Indicates whether instance types must have accelerators by specific manufacturers.</p> <ul> <li> <p>For instance types with NVIDIA devices, specify <code>nvidia</code>.</p> </li> <li> <p>For instance types with AMD devices, specify <code>amd</code>.</p> </li> <li> <p>For instance types with Amazon Web Services devices, specify <code>amazon-web-services</code>.</p> </li> <li> <p>For instance types with Xilinx devices, specify <code>xilinx</code>.</p> </li> </ul> <p>Default: Any manufacturer</p>",
+        "InstanceRequirementsRequest$AcceleratorManufacturers": "<p>Indicates whether instance types must have accelerators by specific manufacturers.</p> <ul> <li> <p>For instance types with NVIDIA devices, specify <code>nvidia</code>.</p> </li> <li> <p>For instance types with AMD devices, specify <code>amd</code>.</p> </li> <li> <p>For instance types with Amazon Web Services devices, specify <code>amazon-web-services</code>.</p> </li> <li> <p>For instance types with Xilinx devices, specify <code>xilinx</code>.</p> </li> </ul> <p>Default: Any manufacturer</p>"
+      }
+    },
+    "AcceleratorName": {
+      "base": null,
+      "refs": {
+        "AcceleratorNameSet$member": null
+      }
+    },
+    "AcceleratorNameSet": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$AcceleratorNames": "<p>The accelerators that must be on the instance type.</p> <ul> <li> <p>For instance types with NVIDIA A100 GPUs, specify <code>a100</code>.</p> </li> <li> <p>For instance types with NVIDIA V100 GPUs, specify <code>v100</code>.</p> </li> <li> <p>For instance types with NVIDIA K80 GPUs, specify <code>k80</code>.</p> </li> <li> <p>For instance types with NVIDIA T4 GPUs, specify <code>t4</code>.</p> </li> <li> <p>For instance types with NVIDIA M60 GPUs, specify <code>m60</code>.</p> </li> <li> <p>For instance types with AMD Radeon Pro V520 GPUs, specify <code>radeon-pro-v520</code>.</p> </li> <li> <p>For instance types with Xilinx VU9P FPGAs, specify <code>vu9p</code>.</p> </li> </ul> <p>Default: Any accelerator</p>",
+        "InstanceRequirementsRequest$AcceleratorNames": "<p>The accelerators that must be on the instance type.</p> <ul> <li> <p>For instance types with NVIDIA A100 GPUs, specify <code>a100</code>.</p> </li> <li> <p>For instance types with NVIDIA V100 GPUs, specify <code>v100</code>.</p> </li> <li> <p>For instance types with NVIDIA K80 GPUs, specify <code>k80</code>.</p> </li> <li> <p>For instance types with NVIDIA T4 GPUs, specify <code>t4</code>.</p> </li> <li> <p>For instance types with NVIDIA M60 GPUs, specify <code>m60</code>.</p> </li> <li> <p>For instance types with AMD Radeon Pro V520 GPUs, specify <code>radeon-pro-v520</code>.</p> </li> <li> <p>For instance types with Xilinx VU9P FPGAs, specify <code> vu9p</code>.</p> </li> </ul> <p>Default: Any accelerator</p>"
+      }
+    },
+    "AcceleratorTotalMemoryMiB": {
+      "base": "<p>The minimum and maximum amount of total accelerator memory, in MiB.</p>",
+      "refs": {
+        "InstanceRequirements$AcceleratorTotalMemoryMiB": "<p>The minimum and maximum amount of total accelerator memory, in MiB.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "AcceleratorTotalMemoryMiBRequest": {
+      "base": "<p>The minimum and maximum amount of total accelerator memory, in MiB.</p>",
+      "refs": {
+        "InstanceRequirementsRequest$AcceleratorTotalMemoryMiB": "<p>The minimum and maximum amount of total accelerator memory, in MiB.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "AcceleratorType": {
+      "base": null,
+      "refs": {
+        "AcceleratorTypeSet$member": null
+      }
+    },
+    "AcceleratorTypeSet": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$AcceleratorTypes": "<p>The accelerator types that must be on the instance type.</p> <ul> <li> <p>For instance types with GPU accelerators, specify <code>gpu</code>.</p> </li> <li> <p>For instance types with FPGA accelerators, specify <code>fpga</code>.</p> </li> <li> <p>For instance types with inference accelerators, specify <code>inference</code>.</p> </li> </ul> <p>Default: Any accelerator type</p>",
+        "InstanceRequirementsRequest$AcceleratorTypes": "<p>The accelerator types that must be on the instance type.</p> <ul> <li> <p>To include instance types with GPU hardware, specify <code>gpu</code>.</p> </li> <li> <p>To include instance types with FPGA hardware, specify <code>fpga</code>.</p> </li> <li> <p>To include instance types with inference hardware, specify <code>inference</code>.</p> </li> </ul> <p>Default: Any accelerator type</p>"
+      }
+    },
     "AcceptReservedInstancesExchangeQuoteRequest": {
       "base": "<p>Contains the parameters for accepting the quote.</p>",
       "refs": {
@@ -854,13 +919,21 @@
     "ArchitectureType": {
       "base": null,
       "refs": {
-        "ArchitectureTypeList$member": null
+        "ArchitectureTypeList$member": null,
+        "ArchitectureTypeSet$member": null
       }
     },
     "ArchitectureTypeList": {
       "base": null,
       "refs": {
         "ProcessorInfo$SupportedArchitectures": "<p>The architectures supported by the instance type.</p>"
+      }
+    },
+    "ArchitectureTypeSet": {
+      "base": null,
+      "refs": {
+        "GetInstanceTypesFromInstanceRequirementsRequest$ArchitectureTypes": "<p>The processor architecture type.</p>",
+        "InstanceRequirementsWithMetadataRequest$ArchitectureTypes": "<p>The architecture type.</p>"
       }
     },
     "ArchitectureValues": {
@@ -1314,6 +1387,13 @@
         "AvailableCapacity$AvailableInstanceCapacity": "<p>The number of instances that can be launched onto the Dedicated Host depending on the host's available capacity. For Dedicated Hosts that support multiple instance types, this parameter represents the number of instances for each instance size that is supported on the host.</p>"
       }
     },
+    "BareMetal": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$BareMetal": "<p>Indicates whether bare metal instance types must be included, excluded, or required.</p> <ul> <li> <p>To include bare metal instance types, specify <code>included</code>.</p> </li> <li> <p>To require only bare metal instance types, specify <code>required</code>.</p> </li> <li> <p>To exclude bare metal instance types, specify <code>excluded</code>.</p> </li> </ul> <p>Default: <code>excluded</code> </p>",
+        "InstanceRequirementsRequest$BareMetal": "<p>Indicates whether bare metal instance types must be included, excluded, or required.</p> <ul> <li> <p>To include bare metal instance types, specify <code>included</code>.</p> </li> <li> <p>To require only bare metal instance types, specify <code>required</code>.</p> </li> <li> <p>To exclude bare metal instance types, specify <code>excluded</code>.</p> </li> </ul> <p>Default: <code>excluded</code> </p>"
+      }
+    },
     "BareMetalFlag": {
       "base": null,
       "refs": {
@@ -1324,6 +1404,18 @@
       "base": null,
       "refs": {
         "EbsOptimizedInfo$BaselineBandwidthInMbps": "<p>The baseline bandwidth performance for an EBS-optimized instance type, in Mbps.</p>"
+      }
+    },
+    "BaselineEbsBandwidthMbps": {
+      "base": "<p>The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html\">Amazon EBS–optimized instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+      "refs": {
+        "InstanceRequirements$BaselineEbsBandwidthMbps": "<p>The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html\">Amazon EBS–optimized instances</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "BaselineEbsBandwidthMbpsRequest": {
+      "base": "<p>The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html\">Amazon EBS–optimized instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+      "refs": {
+        "InstanceRequirementsRequest$BaselineEbsBandwidthMbps": "<p>The minimum and maximum baseline bandwidth to Amazon EBS, in Mbps. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-optimized.html\">Amazon EBS–optimized instances</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>Default: No minimum or maximum limits</p>"
       }
     },
     "BaselineIops": {
@@ -1804,6 +1896,7 @@
         "GetEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>Indicates whether encryption by default is enabled.</p>",
         "GetFlowLogsIntegrationTemplateRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetGroupsForCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "GetInstanceTypesFromInstanceRequirementsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetLaunchTemplateDataRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetManagedPrefixListAssociationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetManagedPrefixListEntriesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1812,6 +1905,8 @@
         "GetReservedInstancesExchangeQuoteResult$IsValidExchange": "<p>If <code>true</code>, the exchange is valid. If <code>false</code>, the exchange cannot be completed.</p>",
         "GetSerialConsoleAccessStatusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetSerialConsoleAccessStatusResult$SerialConsoleAccessEnabled": "<p>If <code>true</code>, access to the EC2 serial console of all instances is enabled for your account. If <code>false</code>, access to the EC2 serial console of all instances is disabled for your account.</p>",
+        "GetSpotPlacementScoresRequest$SingleAvailabilityZone": "<p>Specify <code>true</code> so that the response returns a list of scored Availability Zones. Otherwise, the response returns a list of scored Regions.</p> <p>A list of scored Availability Zones is useful if you want to launch all of your Spot capacity into a single Availability Zone.</p>",
+        "GetSpotPlacementScoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetSubnetCidrReservationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetTransitGatewayAttachmentPropagationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetTransitGatewayMulticastDomainAssociationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1847,6 +1942,8 @@
         "InstanceNetworkInterfaceSpecification$DeleteOnTermination": "<p>If set to <code>true</code>, the interface is deleted when the instance is terminated. You can specify <code>true</code> only if creating a new network interface when launching an instance.</p>",
         "InstanceNetworkInterfaceSpecification$AssociateCarrierIpAddress": "<p>Indicates whether to assign a carrier IP address to the network interface.</p> <p>You can only assign a carrier IP address to a network interface that is in a subnet in a Wavelength Zone. For more information about carrier IP addresses, see Carrier IP addresses in the Amazon Web Services Wavelength Developer Guide.</p>",
         "InstancePrivateIpAddress$Primary": "<p>Indicates whether this IPv4 address is the primary private IP address of the network interface.</p>",
+        "InstanceRequirements$RequireHibernateSupport": "<p>Indicates whether instance types must support hibernation for On-Demand Instances.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetSpotPlacementScores.html\">GetSpotPlacementScores</a>.</p> <p>Default: <code>false</code> </p>",
+        "InstanceRequirementsRequest$RequireHibernateSupport": "<p>Indicates whether instance types must support hibernation for On-Demand Instances.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetSpotPlacementScores.html\">GetSpotPlacementScores</a>.</p> <p>Default: <code>false</code> </p>",
         "InstanceSpecification$ExcludeBootVolume": "<p>Excludes the root volume from being snapshotted.</p>",
         "InstanceTagNotificationAttribute$IncludeAllTagsOfInstance": "<p>Indicates wheter all tag keys in the current Region are registered to appear in scheduled event notifications. <code>true</code> indicates that all tag keys in the current Region are registered.</p>",
         "LaunchSpecification$EbsOptimized": "<p>Indicates whether the instance is optimized for EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS Optimized instance.</p> <p>Default: <code>false</code> </p>",
@@ -2155,6 +2252,13 @@
       "base": null,
       "refs": {
         "BundleTask$State": "<p>The state of the task.</p>"
+      }
+    },
+    "BurstablePerformance": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$BurstablePerformance": "<p>Indicates whether burstable performance T instance types are included, excluded, or required. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a>.</p> <ul> <li> <p>To include burstable performance instance types, specify <code>included</code>.</p> </li> <li> <p>To require only burstable performance instance types, specify <code>required</code>.</p> </li> <li> <p>To exclude burstable performance instance types, specify <code>excluded</code>.</p> </li> </ul> <p>Default: <code>excluded</code> </p>",
+        "InstanceRequirementsRequest$BurstablePerformance": "<p>Indicates whether burstable performance T instance types are included, excluded, or required. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a>.</p> <ul> <li> <p>To include burstable performance instance types, specify <code>included</code>.</p> </li> <li> <p>To require only burstable performance instance types, specify <code>required</code>.</p> </li> <li> <p>To exclude burstable performance instance types, specify <code>excluded</code>.</p> </li> </ul> <p>Default: <code>excluded</code> </p>"
       }
     },
     "BurstablePerformanceFlag": {
@@ -3020,6 +3124,19 @@
       "base": null,
       "refs": {
         "VCpuInfo$ValidCores": "<p>The valid number of cores that can be configured for the instance type.</p>"
+      }
+    },
+    "CpuManufacturer": {
+      "base": null,
+      "refs": {
+        "CpuManufacturerSet$member": null
+      }
+    },
+    "CpuManufacturerSet": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$CpuManufacturers": "<p>The CPU manufacturers to include.</p> <ul> <li> <p>For instance types with Intel CPUs, specify <code>intel</code>.</p> </li> <li> <p>For instance types with AMD CPUs, specify <code>amd</code>.</p> </li> <li> <p>For instance types with Amazon Web Services CPUs, specify <code>amazon-web-services</code>.</p> </li> </ul> <note> <p>Don't confuse the CPU manufacturer with the CPU architecture. Instances will be launched with a compatible CPU architecture based on the Amazon Machine Image (AMI) that you specify in your launch template.</p> </note> <p>Default: Any manufacturer</p>",
+        "InstanceRequirementsRequest$CpuManufacturers": "<p>The CPU manufacturers to include.</p> <ul> <li> <p>For instance types with Intel CPUs, specify <code>intel</code>.</p> </li> <li> <p>For instance types with AMD CPUs, specify <code>amd</code>.</p> </li> <li> <p>For instance types with Amazon Web Services CPUs, specify <code>amazon-web-services</code>.</p> </li> </ul> <note> <p>Don't confuse the CPU manufacturer with the CPU architecture. Instances will be launched with a compatible CPU architecture based on the Amazon Machine Image (AMI) that you specify in your launch template.</p> </note> <p>Default: Any manufacturer</p>"
       }
     },
     "CpuOptions": {
@@ -6556,6 +6673,10 @@
         "FleetLaunchTemplateOverridesRequest$Priority": "<p>The priority for the launch template override. The highest priority is launched first.</p> <p>If the On-Demand <code>AllocationStrategy</code> is set to <code>prioritized</code>, EC2 Fleet uses priority to determine which launch template override to use first in fulfilling On-Demand capacity.</p> <p>If the Spot <code>AllocationStrategy</code> is set to <code>capacity-optimized-prioritized</code>, EC2 Fleet uses priority on a best-effort basis to determine which launch template override to use in fulfilling Spot capacity, but optimizes for capacity first.</p> <p>Valid values are whole numbers starting at <code>0</code>. The lower the number, the higher the priority. If no number is set, the launch template override has the lowest priority. You can set the same priority for different launch template overrides.</p>",
         "LaunchTemplateOverrides$WeightedCapacity": "<p>The number of units provided by the specified instance type.</p>",
         "LaunchTemplateOverrides$Priority": "<p>The priority for the launch template override. The highest priority is launched first.</p> <p>If <code>OnDemandAllocationStrategy</code> is set to <code>prioritized</code>, Spot Fleet uses priority to determine which launch template override to use first in fulfilling On-Demand capacity.</p> <p>If the Spot <code>AllocationStrategy</code> is set to <code>capacityOptimizedPrioritized</code>, Spot Fleet uses priority on a best-effort basis to determine which launch template override to use in fulfilling Spot capacity, but optimizes for capacity first.</p> <p>Valid values are whole numbers starting at <code>0</code>. The lower the number, the higher the priority. If no number is set, the launch template override has the lowest priority. You can set the same priority for different launch template overrides.</p>",
+        "MemoryGiBPerVCpu$Min": "<p>The minimum amount of memory per vCPU, in GiB. If this parameter is not specified, there is no minimum limit.</p>",
+        "MemoryGiBPerVCpu$Max": "<p>The maximum amount of memory per vCPU, in GiB. If this parameter is not specified, there is no maximum limit.</p>",
+        "MemoryGiBPerVCpuRequest$Min": "<p>The minimum amount of memory per vCPU, in GiB. To specify no minimum limit, omit this parameter.</p>",
+        "MemoryGiBPerVCpuRequest$Max": "<p>The maximum amount of memory per vCPU, in GiB. To specify no maximum limit, omit this parameter.</p>",
         "PriceSchedule$Price": "<p>The fixed price for the term.</p>",
         "PriceScheduleSpecification$Price": "<p>The fixed price for the term.</p>",
         "PricingDetail$Price": "<p>The price per instance.</p>",
@@ -6565,7 +6686,11 @@
         "SnapshotTaskDetail$DiskImageSize": "<p>The size of the disk in the snapshot, in GiB.</p>",
         "SpotFleetLaunchSpecification$WeightedCapacity": "<p>The number of units provided by the specified instance type. These are the same units that you chose to set the target capacity in terms of instances, or a performance characteristic such as vCPUs, memory, or I/O.</p> <p>If the target capacity divided by this value is not a whole number, Amazon EC2 rounds the number of instances to the next whole number. If this value is not specified, the default is 1.</p>",
         "SpotFleetRequestConfigData$FulfilledCapacity": "<p>The number of units fulfilled by this request compared to the set target capacity. You cannot set this value.</p>",
-        "SpotFleetRequestConfigData$OnDemandFulfilledCapacity": "<p>The number of On-Demand units fulfilled by this request compared to the set target On-Demand capacity.</p>"
+        "SpotFleetRequestConfigData$OnDemandFulfilledCapacity": "<p>The number of On-Demand units fulfilled by this request compared to the set target On-Demand capacity.</p>",
+        "TotalLocalStorageGB$Min": "<p>The minimum amount of total local storage, in GB. If this parameter is not specified, there is no minimum limit.</p>",
+        "TotalLocalStorageGB$Max": "<p>The maximum amount of total local storage, in GB. If this parameter is not specified, there is no maximum limit.</p>",
+        "TotalLocalStorageGBRequest$Min": "<p>The minimum amount of total local storage, in GB. To specify no minimum limit, omit this parameter.</p>",
+        "TotalLocalStorageGBRequest$Max": "<p>The maximum amount of total local storage, in GB. To specify no maximum limit, omit this parameter.</p>"
       }
     },
     "DoubleWithConstraints": {
@@ -6985,6 +7110,19 @@
         "SpotFleetRequestConfigData$ExcessCapacityTerminationPolicy": "<p>Indicates whether running Spot Instances should be terminated if you decrease the target capacity of the Spot Fleet request below the current size of the Spot Fleet.</p>"
       }
     },
+    "ExcludedInstanceType": {
+      "base": null,
+      "refs": {
+        "ExcludedInstanceTypeSet$member": null
+      }
+    },
+    "ExcludedInstanceTypeSet": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$ExcludedInstanceTypes": "<p>The instance types to exclude. You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>), to exclude an instance type, size, or generation. The following are examples: <code>m5.8xlarge</code>, <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>.</p> <p>For example, if you specify <code>c5*.*</code>, Amazon EC2 will exclude the entire C5 instance family (all C5a and C5n instance types). If you specify <code>c5a.*</code>, Amazon EC2 excludes all the C5a instance types, but does not exclude the C5n instance types.</p> <p>Default: No excluded instance types</p>",
+        "InstanceRequirementsRequest$ExcludedInstanceTypes": "<p>The instance types to exclude. You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>), to exclude an instance family, type, size, or generation. The following are examples: <code>m5.8xlarge</code>, <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>.</p> <p>For example, if you specify <code>c5*.*</code>, Amazon EC2 will exclude the entire C5 instance family (all C5a and C5n instance types). If you specify <code>c5a.*</code>, Amazon EC2 excludes all the C5a instance types, but does not exclude the C5n instance types.</p> <p>Default: No excluded instance types</p>"
+      }
+    },
     "ExecutableByStringList": {
       "base": null,
       "refs": {
@@ -7225,7 +7363,7 @@
         "DescribeInstanceStatusRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>event.code</code> - The code for the scheduled event (<code>instance-reboot</code> | <code>system-reboot</code> | <code>system-maintenance</code> | <code>instance-retirement</code> | <code>instance-stop</code>).</p> </li> <li> <p> <code>event.description</code> - A description of the event.</p> </li> <li> <p> <code>event.instance-event-id</code> - The ID of the event whose date and time you are modifying.</p> </li> <li> <p> <code>event.not-after</code> - The latest end time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>event.not-before</code> - The earliest start time for the scheduled event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>event.not-before-deadline</code> - The deadline for starting the event (for example, <code>2014-09-15T17:15:20.000Z</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The code for the instance state, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-status.reachability</code> - Filters on instance status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p> </li> <li> <p> <code>instance-status.status</code> - The status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p> </li> <li> <p> <code>system-status.reachability</code> - Filters on system status where the name is <code>reachability</code> (<code>passed</code> | <code>failed</code> | <code>initializing</code> | <code>insufficient-data</code>).</p> </li> <li> <p> <code>system-status.status</code> - The system status of the instance (<code>ok</code> | <code>impaired</code> | <code>initializing</code> | <code>insufficient-data</code> | <code>not-applicable</code>).</p> </li> </ul>",
         "DescribeInstanceTypeOfferingsRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>location</code> - This depends on the location type. For example, if the location type is <code>region</code> (default), the location is the Region code (for example, <code>us-east-2</code>.)</p> </li> <li> <p> <code>instance-type</code> - The instance type. For example, <code>c5.2xlarge</code>.</p> </li> </ul>",
         "DescribeInstanceTypesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>auto-recovery-supported</code> - Indicates whether auto recovery is supported (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>bare-metal</code> - Indicates whether it is a bare metal instance type (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>burstable-performance-supported</code> - Indicates whether it is a burstable performance instance type (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>current-generation</code> - Indicates whether this instance type is the latest generation instance type of an instance family (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.baseline-bandwidth-in-mbps</code> - The baseline bandwidth performance for an EBS-optimized instance type, in Mbps.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.baseline-iops</code> - The baseline input/output storage operations per second for an EBS-optimized instance type.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.baseline-throughput-in-mbps</code> - The baseline throughput performance for an EBS-optimized instance type, in MB/s.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.maximum-bandwidth-in-mbps</code> - The maximum bandwidth performance for an EBS-optimized instance type, in Mbps.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.maximum-iops</code> - The maximum input/output storage operations per second for an EBS-optimized instance type.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-info.maximum-throughput-in-mbps</code> - The maximum throughput performance for an EBS-optimized instance type, in MB/s.</p> </li> <li> <p> <code>ebs-info.ebs-optimized-support</code> - Indicates whether the instance type is EBS-optimized (<code>supported</code> | <code>unsupported</code> | <code>default</code>).</p> </li> <li> <p> <code>ebs-info.encryption-support</code> - Indicates whether EBS encryption is supported (<code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>ebs-info.nvme-support</code> - Indicates whether non-volatile memory express (NVMe) is supported for EBS volumes (<code>required</code> | <code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>free-tier-eligible</code> - Indicates whether the instance type is eligible to use in the free tier (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>hibernation-supported</code> - Indicates whether On-Demand hibernation is supported (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor (<code>nitro</code> | <code>xen</code>).</p> </li> <li> <p> <code>instance-storage-info.disk.count</code> - The number of local disks.</p> </li> <li> <p> <code>instance-storage-info.disk.size-in-gb</code> - The storage size of each instance storage disk, in GB.</p> </li> <li> <p> <code>instance-storage-info.disk.type</code> - The storage technology for the local instance storage disks (<code>hdd</code> | <code>ssd</code>).</p> </li> <li> <p> <code>instance-storage-info.encryption-supported</code> - Indicates whether data is encrypted at rest (<code>required</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>instance-storage-info.nvme-support</code> - Indicates whether non-volatile memory express (NVMe) is supported for instance store (<code>required</code> | <code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>instance-storage-info.total-size-in-gb</code> - The total amount of storage available from all local instance storage, in GB.</p> </li> <li> <p> <code>instance-storage-supported</code> - Indicates whether the instance type has local instance storage (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>instance-type</code> - The instance type (for example <code>c5.2xlarge</code> or c5*).</p> </li> <li> <p> <code>memory-info.size-in-mib</code> - The memory size.</p> </li> <li> <p> <code>network-info.efa-info.maximum-efa-interfaces</code> - The maximum number of Elastic Fabric Adapters (EFAs) per instance.</p> </li> <li> <p> <code>network-info.efa-supported</code> - Indicates whether the instance type supports Elastic Fabric Adapter (EFA) (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>network-info.ena-support</code> - Indicates whether Elastic Network Adapter (ENA) is supported or required (<code>required</code> | <code>supported</code> | <code>unsupported</code>).</p> </li> <li> <p> <code>network-info.encryption-in-transit-supported</code> - Indicates whether the instance type automatically encrypts in-transit traffic between instances (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>network-info.ipv4-addresses-per-interface</code> - The maximum number of private IPv4 addresses per network interface.</p> </li> <li> <p> <code>network-info.ipv6-addresses-per-interface</code> - The maximum number of private IPv6 addresses per network interface.</p> </li> <li> <p> <code>network-info.ipv6-supported</code> - Indicates whether the instance type supports IPv6 (<code>true</code> | <code>false</code>).</p> </li> <li> <p> <code>network-info.maximum-network-interfaces</code> - The maximum number of network interfaces per instance.</p> </li> <li> <p> <code>network-info.network-performance</code> - The network performance (for example, \"25 Gigabit\").</p> </li> <li> <p> <code>processor-info.supported-architecture</code> - The CPU architecture (<code>arm64</code> | <code>i386</code> | <code>x86_64</code>).</p> </li> <li> <p> <code>processor-info.sustained-clock-speed-in-ghz</code> - The CPU clock speed, in GHz.</p> </li> <li> <p> <code>supported-boot-mode</code> - The boot mode (<code>legacy-bios</code> | <code>uefi</code>).</p> </li> <li> <p> <code>supported-root-device-type</code> - The root device type (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>supported-usage-class</code> - The usage class (<code>on-demand</code> | <code>spot</code>).</p> </li> <li> <p> <code>supported-virtualization-type</code> - The virtualization type (<code>hvm</code> | <code>paravirtual</code>).</p> </li> <li> <p> <code>vcpu-info.default-cores</code> - The default number of cores for the instance type.</p> </li> <li> <p> <code>vcpu-info.default-threads-per-core</code> - The default number of threads per core for the instance type.</p> </li> <li> <p> <code>vcpu-info.default-vcpus</code> - The default number of vCPUs for the instance type.</p> </li> <li> <p> <code>vcpu-info.valid-cores</code> - The number of cores that can be configured for the instance type.</p> </li> <li> <p> <code>vcpu-info.valid-threads-per-core</code> - The number of threads per core that can be configured for the instance type. For example, \"1\" or \"1,2\".</p> </li> </ul>",
-        "DescribeInstancesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2010-09-15T17:15:20.000Z</code>.</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p> </li> <li> <p> <code>client-token</code> - The idempotency token you provided when you launched the instance.</p> </li> <li> <p> <code>dns-name</code> - The public DNS name of the instance.</p> </li> <li> <p> <code>group-id</code> - The ID of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>group-name</code> - The name of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>hibernation-options.configured</code> - A Boolean that indicates whether the instance is enabled for hibernation. A value of <code>true</code> means that the instance is enabled for hibernation. </p> </li> <li> <p> <code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>). The value <code>xen</code> is used for both Xen and Nitro hypervisors.</p> </li> <li> <p> <code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN.</p> </li> <li> <p> <code>image-id</code> - The ID of the image used to launch the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>instance-lifecycle</code> - Indicates whether this is a Spot Instance or a Scheduled Instance (<code>spot</code> | <code>scheduled</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p> </li> <li> <p> <code>instance.group-id</code> - The ID of the security group for the instance. </p> </li> <li> <p> <code>instance.group-name</code> - The name of the security group for the instance. </p> </li> <li> <p> <code>ip-address</code> - The public IPv4 address of the instance.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair used when the instance was launched.</p> </li> <li> <p> <code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p> </li> <li> <p> <code>launch-time</code> - The time when the instance was launched.</p> </li> <li> <p> <code>metadata-options.http-tokens</code> - The metadata request authorization state (<code>optional</code> | <code>required</code>)</p> </li> <li> <p> <code>metadata-options.http-put-response-hop-limit</code> - The http metadata request put response hop limit (integer, possible values <code>1</code> to <code>64</code>)</p> </li> <li> <p> <code>metadata-options.http-endpoint</code> - Enable or disable metadata access on http endpoint (<code>enabled</code> | <code>disabled</code>)</p> </li> <li> <p> <code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p> </li> <li> <p> <code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p> </li> <li> <p> <code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p> </li> <li> <p> <code>network-interface.description</code> - The description of the network interface.</p> </li> <li> <p> <code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p> </li> <li> <p> <code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p> </li> <li> <p> <code>network-interface.requester-id</code> - The requester ID for the network interface.</p> </li> <li> <p> <code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by Amazon Web Services.</p> </li> <li> <p> <code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p> </li> <li> <p> <code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p> </li> <li> <p> <code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the instance owner.</p> </li> <li> <p> <code>placement-group-name</code> - The name of the placement group for the instance.</p> </li> <li> <p> <code>placement-partition-number</code> - The partition in which the instance is located.</p> </li> <li> <p> <code>platform</code> - The platform. To list only Windows instances, use <code>windows</code>.</p> </li> <li> <p> <code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address of the instance.</p> </li> <li> <p> <code>product-code</code> - The product code associated with the AMI used to launch the instance.</p> </li> <li> <p> <code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>reason</code> - The reason for the current state of the instance (for example, shows \"User Initiated [date]\" when you stop or terminate the instance). Similar to the state-reason-code filter.</p> </li> <li> <p> <code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, Amazon Web Services Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - A message that describes the state change.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the instance.</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC that the instance is running in.</p> </li> </ul>",
+        "DescribeInstancesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2010-09-15T17:15:20.000Z</code>.</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p> </li> <li> <p> <code>client-token</code> - The idempotency token you provided when you launched the instance.</p> </li> <li> <p> <code>dns-name</code> - The public DNS name of the instance.</p> </li> <li> <p> <code>group-id</code> - The ID of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>group-name</code> - The name of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>hibernation-options.configured</code> - A Boolean that indicates whether the instance is enabled for hibernation. A value of <code>true</code> means that the instance is enabled for hibernation. </p> </li> <li> <p> <code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>). The value <code>xen</code> is used for both Xen and Nitro hypervisors.</p> </li> <li> <p> <code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN.</p> </li> <li> <p> <code>image-id</code> - The ID of the image used to launch the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>instance-lifecycle</code> - Indicates whether this is a Spot Instance or a Scheduled Instance (<code>spot</code> | <code>scheduled</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p> </li> <li> <p> <code>instance.group-id</code> - The ID of the security group for the instance. </p> </li> <li> <p> <code>instance.group-name</code> - The name of the security group for the instance. </p> </li> <li> <p> <code>ip-address</code> - The public IPv4 address of the instance.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair used when the instance was launched.</p> </li> <li> <p> <code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p> </li> <li> <p> <code>launch-time</code> - The time when the instance was launched, in the ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), for example, <code>2021-09-29T11:04:43.305Z</code>. You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>metadata-options.http-tokens</code> - The metadata request authorization state (<code>optional</code> | <code>required</code>)</p> </li> <li> <p> <code>metadata-options.http-put-response-hop-limit</code> - The http metadata request put response hop limit (integer, possible values <code>1</code> to <code>64</code>)</p> </li> <li> <p> <code>metadata-options.http-endpoint</code> - Enable or disable metadata access on http endpoint (<code>enabled</code> | <code>disabled</code>)</p> </li> <li> <p> <code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p> </li> <li> <p> <code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p> </li> <li> <p> <code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p> </li> <li> <p> <code>network-interface.description</code> - The description of the network interface.</p> </li> <li> <p> <code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p> </li> <li> <p> <code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p> </li> <li> <p> <code>network-interface.requester-id</code> - The requester ID for the network interface.</p> </li> <li> <p> <code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by Amazon Web Services.</p> </li> <li> <p> <code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p> </li> <li> <p> <code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p> </li> <li> <p> <code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the instance owner.</p> </li> <li> <p> <code>placement-group-name</code> - The name of the placement group for the instance.</p> </li> <li> <p> <code>placement-partition-number</code> - The partition in which the instance is located.</p> </li> <li> <p> <code>platform</code> - The platform. To list only Windows instances, use <code>windows</code>.</p> </li> <li> <p> <code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address of the instance.</p> </li> <li> <p> <code>product-code</code> - The product code associated with the AMI used to launch the instance.</p> </li> <li> <p> <code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>reason</code> - The reason for the current state of the instance (for example, shows \"User Initiated [date]\" when you stop or terminate the instance). Similar to the state-reason-code filter.</p> </li> <li> <p> <code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, Amazon Web Services Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - A message that describes the state change.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the instance.</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC that the instance is running in.</p> </li> </ul>",
         "DescribeInternetGatewaysRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>attachment.state</code> - The current state of the attachment between the gateway and the VPC (<code>available</code>). Present only if a VPC is attached.</p> </li> <li> <p> <code>attachment.vpc-id</code> - The ID of an attached VPC.</p> </li> <li> <p> <code>internet-gateway-id</code> - The ID of the Internet gateway.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the internet gateway.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeIpv6PoolsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeKeyPairsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>key-pair-id</code> - The ID of the key pair.</p> </li> <li> <p> <code>fingerprint</code> - The fingerprint of the key pair.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> </ul>",
@@ -7814,6 +7952,16 @@
       "refs": {
       }
     },
+    "GetInstanceTypesFromInstanceRequirementsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInstanceTypesFromInstanceRequirementsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetLaunchTemplateDataRequest": {
       "base": null,
       "refs": {
@@ -7876,6 +8024,16 @@
       }
     },
     "GetSerialConsoleAccessStatusResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSpotPlacementScoresRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSpotPlacementScoresResult": {
       "base": null,
       "refs": {
       }
@@ -8805,6 +8963,19 @@
         "ModifyDefaultCreditSpecificationResult$InstanceFamilyCreditSpecification": "<p>The default credit option for CPU usage of the instance family.</p>"
       }
     },
+    "InstanceGeneration": {
+      "base": null,
+      "refs": {
+        "InstanceGenerationSet$member": null
+      }
+    },
+    "InstanceGenerationSet": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$InstanceGenerations": "<p>Indicates whether current or previous generation instance types are included. The current generation instance types are recommended for use. Current generation instance types are typically the latest two to three generations in each instance family. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For current generation instance types, specify <code>current</code>.</p> <p>For previous generation instance types, specify <code>previous</code>.</p> <p>Default: Current and previous generation instance types</p>",
+        "InstanceRequirementsRequest$InstanceGenerations": "<p>Indicates whether current or previous generation instance types are included. The current generation instance types are recommended for use. Current generation instance types are typically the latest two to three generations in each instance family. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For current generation instance types, specify <code>current</code>.</p> <p>For previous generation instance types, specify <code>previous</code>.</p> <p>Default: Current and previous generation instance types</p>"
+      }
+    },
     "InstanceHealthStatus": {
       "base": null,
       "refs": {
@@ -9083,6 +9254,30 @@
         "InstanceNetworkInterface$PrivateIpAddresses": "<p>One or more private IPv4 addresses associated with the network interface.</p>"
       }
     },
+    "InstanceRequirements": {
+      "base": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.</p> <p>When you specify multiple parameters, you get instance types that satisfy all of the specified parameters. If you specify multiple values for a parameter, you get instance types that satisfy any of the specified values.</p> <note> <p>You must specify <code>VCpuCount</code> and <code>MemoryMiB</code>. All other parameters are optional. Any unspecified optional parameter is set to its default.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for EC2 Fleet</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for Spot Fleet</a>, and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+      "refs": {
+        "FleetLaunchTemplateOverrides$InstanceRequirements": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with those attributes.</p> <note> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceTypes</code>.</p> </note>",
+        "LaunchTemplateOverrides$InstanceRequirements": "<p>The instance requirements. When you specify instance requirements, Amazon EC2 will identify instance types with the provided requirements, and then use your On-Demand and Spot allocation strategies to launch instances from these instance types, in the same way as when you specify a list of instance types.</p> <note> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceTypes</code>.</p> </note>",
+        "ResponseLaunchTemplateData$InstanceRequirements": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.</p> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceTypes</code>.</p>",
+        "SpotFleetLaunchSpecification$InstanceRequirements": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with those attributes.</p> <note> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceTypes</code>.</p> </note>"
+      }
+    },
+    "InstanceRequirementsRequest": {
+      "base": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.</p> <p>When you specify multiple parameters, you get instance types that satisfy all of the specified parameters. If you specify multiple values for a parameter, you get instance types that satisfy any of the specified values.</p> <note> <p>You must specify <code>VCpuCount</code> and <code>MemoryMiB</code>. All other parameters are optional. Any unspecified optional parameter is set to its default.</p> </note> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for EC2 Fleet</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet-attribute-based-instance-type-selection.html\">Attribute-based instance type selection for Spot Fleet</a>, and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-placement-score.html\">Spot placement score</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+      "refs": {
+        "FleetLaunchTemplateOverridesRequest$InstanceRequirements": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with those attributes.</p> <note> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceTypes</code>.</p> </note>",
+        "GetInstanceTypesFromInstanceRequirementsRequest$InstanceRequirements": "<p>The attributes required for the instance types.</p>",
+        "InstanceRequirementsWithMetadataRequest$InstanceRequirements": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with those attributes.</p>",
+        "RequestLaunchTemplateData$InstanceRequirements": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with these attributes.</p> <p>If you specify <code>InstanceRequirements</code>, you can't specify <code>InstanceTypes</code>.</p>"
+      }
+    },
+    "InstanceRequirementsWithMetadataRequest": {
+      "base": "<p>The architecture type, virtualization type, and other attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with those attributes.</p> <p>If you specify <code>InstanceRequirementsWithMetadataRequest</code>, you can't specify <code>InstanceTypes</code>.</p>",
+      "refs": {
+        "GetSpotPlacementScoresRequest$InstanceRequirementsWithMetadata": "<p>The attributes for the instance types. When you specify instance attributes, Amazon EC2 will identify instance types with those attributes.</p> <p>If you specify <code>InstanceRequirementsWithMetadata</code>, you can't specify <code>InstanceTypes</code>.</p>"
+      }
+    },
     "InstanceSpecification": {
       "base": "<p>The instance details to specify which volumes should be snapshotted.</p>",
       "refs": {
@@ -9203,8 +9398,8 @@
         "DescribeFleetsInstances$InstanceType": "<p>The instance type.</p>",
         "DescribeReservedInstancesOfferingsRequest$InstanceType": "<p>The instance type that the reservation will cover (for example, <code>m1.small</code>). For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "FleetCapacityReservation$InstanceType": "<p>The instance type for which the Capacity Reservation reserves capacity.</p>",
-        "FleetLaunchTemplateOverrides$InstanceType": "<p>The instance type.</p>",
-        "FleetLaunchTemplateOverridesRequest$InstanceType": "<p>The instance type.</p>",
+        "FleetLaunchTemplateOverrides$InstanceType": "<p>The instance type.</p> <note> <p>If you specify <code>InstanceTypes</code>, you can't specify <code>InstanceRequirements</code>.</p> </note>",
+        "FleetLaunchTemplateOverridesRequest$InstanceType": "<p>The instance type.</p> <note> <p>If you specify <code>InstanceTypes</code>, you can't specify <code>InstanceRequirements</code>.</p> </note>",
         "ImportInstanceLaunchSpecification$InstanceType": "<p>The instance type. For more information about the instance types that you can import, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-instance-types\">Instance Types</a> in the VM Import/Export User Guide.</p>",
         "Instance$InstanceType": "<p>The instance type.</p>",
         "InstanceTypeInfo$InstanceType": "<p>The instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon EC2 User Guide</i>.</p>",
@@ -9213,7 +9408,7 @@
         "LaunchSpecification$InstanceType": "<p>The instance type.</p>",
         "LaunchTemplateOverrides$InstanceType": "<p>The instance type.</p>",
         "RequestInstanceTypeList$member": null,
-        "RequestLaunchTemplateData$InstanceType": "<p>The instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+        "RequestLaunchTemplateData$InstanceType": "<p>The instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you specify <code>InstanceTypes</code>, you can't specify <code>InstanceRequirements</code>.</p>",
         "RequestSpotLaunchSpecification$InstanceType": "<p>The instance type.</p>",
         "ReservationFleetInstanceSpecification$InstanceType": "<p>The instance type for which the Capacity Reservation Fleet reserves capacity.</p>",
         "ReservedInstances$InstanceType": "<p>The instance type on which the Reserved Instance can be used.</p>",
@@ -9235,6 +9430,18 @@
       "base": "<p>Describes the instance type.</p>",
       "refs": {
         "InstanceTypeInfoList$member": null
+      }
+    },
+    "InstanceTypeInfoFromInstanceRequirements": {
+      "base": "<p>The list of instance types with the specified instance attributes.</p>",
+      "refs": {
+        "InstanceTypeInfoFromInstanceRequirementsSet$member": null
+      }
+    },
+    "InstanceTypeInfoFromInstanceRequirementsSet": {
+      "base": null,
+      "refs": {
+        "GetInstanceTypesFromInstanceRequirementsResult$InstanceTypes": "<p>The instance types with the specified instance attributes.</p>"
       }
     },
     "InstanceTypeInfoList": {
@@ -9261,6 +9468,12 @@
         "DescribeInstanceTypeOfferingsResult$InstanceTypeOfferings": "<p>The instance types offered.</p>"
       }
     },
+    "InstanceTypes": {
+      "base": null,
+      "refs": {
+        "GetSpotPlacementScoresRequest$InstanceTypes": "<p>The instance types. We recommend that you specify at least three instance types. If you specify one or two instance types, or specify variations of a single instance type (for example, an <code>m3.xlarge</code> with and without instance storage), the returned placement score will always be low. </p> <p>If you specify <code>InstanceTypes</code>, you can't specify <code>InstanceRequirementsWithMetadata</code>.</p>"
+      }
+    },
     "InstanceUsage": {
       "base": "<p>Information about the Capacity Reservation usage.</p>",
       "refs": {
@@ -9276,6 +9489,14 @@
     "Integer": {
       "base": null,
       "refs": {
+        "AcceleratorCount$Min": "<p>The minimum number of accelerators. If this parameter is not specified, there is no minimum limit.</p>",
+        "AcceleratorCount$Max": "<p>The maximum number of accelerators. If this parameter is not specified, there is no maximum limit.</p>",
+        "AcceleratorCountRequest$Min": "<p>The minimum number of accelerators. To specify no minimum limit, omit this parameter.</p>",
+        "AcceleratorCountRequest$Max": "<p>The maximum number of accelerators. To specify no maximum limit, omit this parameter. To exclude accelerator-enabled instance types, set <code>Max</code> to <code>0</code>.</p>",
+        "AcceleratorTotalMemoryMiB$Min": "<p>The minimum amount of accelerator memory, in MiB. If this parameter is not specified, there is no minimum limit.</p>",
+        "AcceleratorTotalMemoryMiB$Max": "<p>The maximum amount of accelerator memory, in MiB. If this parameter is not specified, there is no maximum limit.</p>",
+        "AcceleratorTotalMemoryMiBRequest$Min": "<p>The minimum amount of accelerator memory, in MiB. To specify no minimum limit, omit this parameter.</p>",
+        "AcceleratorTotalMemoryMiBRequest$Max": "<p>The maximum amount of accelerator memory, in MiB. To specify no maximum limit, omit this parameter.</p>",
         "AllocateHostsRequest$Quantity": "<p>The number of Dedicated Hosts to allocate to your account with these parameters.</p>",
         "AnalysisAclRule$RuleNumber": "<p>The rule number.</p>",
         "AssignIpv6AddressesRequest$Ipv6AddressCount": "<p>The number of additional IPv6 addresses to assign to the network interface. The specified number of IPv6 addresses are assigned in addition to the existing IPv6 addresses that are already assigned to the network interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range. You can't use this option if specifying specific IPv6 addresses.</p>",
@@ -9292,6 +9513,10 @@
         "AuthorizeSecurityGroupIngressRequest$FromPort": "<p>The start of port range for the TCP and UDP protocols, or an ICMP type number. For the ICMP type number, use <code>-1</code> to specify all types. If you specify all ICMP types, you must specify all codes.</p> <p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>",
         "AuthorizeSecurityGroupIngressRequest$ToPort": "<p>The end of port range for the TCP and UDP protocols, or an ICMP code number. For the ICMP code number, use <code>-1</code> to specify all codes. If you specify all ICMP types, you must specify all codes.</p> <p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>",
         "AvailableCapacity$AvailableVCpus": "<p>The number of vCPUs available for launching instances onto the Dedicated Host.</p>",
+        "BaselineEbsBandwidthMbps$Min": "<p>The minimum baseline bandwidth, in Mbps. If this parameter is not specified, there is no minimum limit.</p>",
+        "BaselineEbsBandwidthMbps$Max": "<p>The maximum baseline bandwidth, in Mbps. If this parameter is not specified, there is no maximum limit.</p>",
+        "BaselineEbsBandwidthMbpsRequest$Min": "<p>The minimum baseline bandwidth, in Mbps. To specify no minimum limit, omit this parameter.</p>",
+        "BaselineEbsBandwidthMbpsRequest$Max": "<p>The maximum baseline bandwidth, in Mbps. To specify no maximum limit, omit this parameter.</p>",
         "CapacityReservation$TotalInstanceCount": "<p>The total number of instances for which the Capacity Reservation reserves capacity.</p>",
         "CapacityReservation$AvailableInstanceCount": "<p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>",
         "CapacityReservationFleet$TotalTargetCapacity": "<p>The total number of capacity units for which the Capacity Reservation Fleet reserves capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
@@ -9364,6 +9589,7 @@
         "FlowLog$MaxAggregationInterval": "<p>The maximum interval of time, in seconds, during which a flow of packets is captured and aggregated into a flow log record.</p> <p>When a network interface is attached to a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instance</a>, the aggregation interval is always 60 seconds (1 minute) or less, regardless of the specified value.</p> <p>Valid Values: <code>60</code> | <code>600</code> </p>",
         "GetCapacityReservationUsageResult$TotalInstanceCount": "<p>The number of instances for which the Capacity Reservation reserves capacity.</p>",
         "GetCapacityReservationUsageResult$AvailableInstanceCount": "<p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>",
+        "GetInstanceTypesFromInstanceRequirementsRequest$MaxResults": "<p>The maximum number of results to return in a single call. Specify a value between 1 and&#x2028; 1000. The default value is 1000. To retrieve the remaining results, make another call with&#x2028; the returned <code>NextToken</code> value.</p>",
         "HostOffering$Duration": "<p>The duration of the offering (in seconds).</p>",
         "HostProperties$Cores": "<p>The number of cores on the Dedicated Host.</p>",
         "HostProperties$Sockets": "<p>The number of sockets on the Dedicated Host.</p>",
@@ -9386,6 +9612,10 @@
         "InstanceNetworkInterfaceSpecification$NetworkCardIndex": "<p>The index of the network card. Some instance types support multiple network cards. The primary network interface must be assigned to network card index 0. The default is network card index 0.</p> <p>If you are using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotInstances.html\">RequestSpotInstances</a> to create Spot Instances, omit this parameter because you can’t specify the network card index when using this API. To specify the network card index, use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances</a>.</p>",
         "InstanceNetworkInterfaceSpecification$Ipv4PrefixCount": "<p>The number of IPv4 delegated prefixes to be automatically assigned to the network interface. You cannot use this option if you use the <code>Ipv4Prefix</code> option.</p>",
         "InstanceNetworkInterfaceSpecification$Ipv6PrefixCount": "<p>The number of IPv6 delegated prefixes to be automatically assigned to the network interface. You cannot use this option if you use the <code>Ipv6Prefix</code> option.</p>",
+        "InstanceRequirements$SpotMaxPricePercentageOverLowestPrice": "<p>The price protection threshold for Spot Instances. This is the maximum you’ll pay for a Spot Instance, expressed as a percentage above the cheapest M, C, or R instance type with your specified attributes. When Amazon EC2 selects instance types with your attributes, it excludes instance types priced above your threshold.</p> <p>The parameter accepts an integer, which Amazon EC2 interprets as a percentage.</p> <p>To turn off price protection, specify a high value, such as <code>999999</code>.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetSpotPlacementScores.html\">GetSpotPlacementScores</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceTypesFromInstanceRequirements.html\">GetInstanceTypesFromInstanceRequirements</a>.</p> <p>Default: <code>100</code> </p>",
+        "InstanceRequirements$OnDemandMaxPricePercentageOverLowestPrice": "<p>The price protection threshold for On-Demand Instances. This is the maximum you’ll pay for an On-Demand Instance, expressed as a percentage above the cheapest M, C, or R instance type with your specified attributes. When Amazon EC2 selects instance types with your attributes, it excludes instance types priced above your threshold.</p> <p>The parameter accepts an integer, which Amazon EC2 interprets as a percentage.</p> <p>To turn off price protection, specify a high value, such as <code>999999</code>.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetSpotPlacementScores.html\">GetSpotPlacementScores</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceTypesFromInstanceRequirements.html\">GetInstanceTypesFromInstanceRequirements</a>.</p> <p>Default: <code>20</code> </p>",
+        "InstanceRequirementsRequest$SpotMaxPricePercentageOverLowestPrice": "<p>The price protection threshold for Spot Instance. This is the maximum you’ll pay for an Spot Instance, expressed as a percentage above the cheapest M, C, or R instance type with your specified attributes. When Amazon EC2 selects instance types with your attributes, it excludes instance types priced above your threshold.</p> <p>The parameter accepts an integer, which Amazon EC2 interprets as a percentage.</p> <p>To turn off price protection, specify a high value, such as <code>999999</code>.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetSpotPlacementScores.html\">GetSpotPlacementScores</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceTypesFromInstanceRequirements.html\">GetInstanceTypesFromInstanceRequirements</a>.</p> <p>Default: <code>100</code> </p>",
+        "InstanceRequirementsRequest$OnDemandMaxPricePercentageOverLowestPrice": "<p>The price protection threshold for On-Demand Instances. This is the maximum you’ll pay for an On-Demand Instance, expressed as a percentage above the cheapest M, C, or R instance type with your specified attributes. When Amazon EC2 selects instance types with your attributes, it excludes instance types priced above your threshold.</p> <p>The parameter accepts an integer, which Amazon EC2 interprets as a percentage.</p> <p>To turn off price protection, specify a high value, such as <code>999999</code>.</p> <p>This parameter is not supported for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetSpotPlacementScores.html\">GetSpotPlacementScores</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceTypesFromInstanceRequirements.html\">GetInstanceTypesFromInstanceRequirements</a>.</p> <p>Default: <code>20</code> </p>",
         "InstanceState$Code": "<p>The state of the instance as a 16-bit unsigned integer. </p> <p>The high byte is all of the bits between 2^8 and (2^16)-1, which equals decimal values between 256 and 65,535. These numerical values are used for internal purposes and should be ignored.</p> <p>The low byte is all of the bits between 2^0 and (2^8)-1, which equals decimal values between 0 and 255. </p> <p>The valid values for instance-state-code will all be in the range of the low byte and they are:</p> <ul> <li> <p> <code>0</code> : <code>pending</code> </p> </li> <li> <p> <code>16</code> : <code>running</code> </p> </li> <li> <p> <code>32</code> : <code>shutting-down</code> </p> </li> <li> <p> <code>48</code> : <code>terminated</code> </p> </li> <li> <p> <code>64</code> : <code>stopping</code> </p> </li> <li> <p> <code>80</code> : <code>stopped</code> </p> </li> </ul> <p>You can ignore the high byte value by zeroing out all of the bits above 2^8 or 256 in decimal.</p>",
         "InstanceUsage$UsedInstanceCount": "<p>The number of instances the Amazon Web Services account currently has in the Capacity Reservation.</p>",
         "IpPermission$FromPort": "<p>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of <code>-1</code> indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>",
@@ -9423,6 +9653,10 @@
         "LocalGatewayVirtualInterface$LocalBgpAsn": "<p>The Border Gateway Protocol (BGP) Autonomous System Number (ASN) of the local gateway.</p>",
         "LocalGatewayVirtualInterface$PeerBgpAsn": "<p>The peer BGP ASN.</p>",
         "ManagedPrefixList$MaxEntries": "<p>The maximum number of entries for the prefix list.</p>",
+        "MemoryMiB$Min": "<p>The minimum amount of memory, in MiB. If this parameter is not specified, there is no minimum limit.</p>",
+        "MemoryMiB$Max": "<p>The maximum amount of memory, in MiB. If this parameter is not specified, there is no maximum limit.</p>",
+        "MemoryMiBRequest$Min": "<p>The minimum amount of memory, in MiB. To specify no minimum limit, specify <code>0</code>.</p>",
+        "MemoryMiBRequest$Max": "<p>The maximum amount of memory, in MiB. To specify no maximum limit, omit this parameter.</p>",
         "ModifyCapacityReservationFleetRequest$TotalTargetCapacity": "<p>The total number of capacity units to be reserved by the Capacity Reservation Fleet. This value, together with the instance type weights that you assign to each instance type used by the Fleet determine the number of instances for which the Fleet reserves capacity. Both values are based on units that make sense for your workload. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
         "ModifyCapacityReservationRequest$InstanceCount": "<p>The number of instances for which to reserve capacity. The number of instances can't be increased or decreased by more than <code>1000</code> in a single request.</p>",
         "ModifyClientVpnEndpointRequest$VpnPort": "<p>The port number to assign to the Client VPN endpoint for TCP and UDP traffic.</p> <p>Valid Values: <code>443</code> | <code>1194</code> </p> <p>Default Value: <code>443</code> </p>",
@@ -9449,6 +9683,10 @@
         "NetworkInsightsPath$DestinationPort": "<p>The destination port.</p>",
         "NetworkInterfaceAttachment$DeviceIndex": "<p>The device index of the network interface attachment on the instance.</p>",
         "NetworkInterfaceAttachment$NetworkCardIndex": "<p>The index of the network card.</p>",
+        "NetworkInterfaceCount$Min": "<p>The minimum number of network interfaces. If this parameter is not specified, there is no minimum limit.</p>",
+        "NetworkInterfaceCount$Max": "<p>The maximum number of network interfaces. If this parameter is not specified, there is no maximum limit.</p>",
+        "NetworkInterfaceCountRequest$Min": "<p>The minimum number of network interfaces. To specify no minimum limit, omit this parameter.</p>",
+        "NetworkInterfaceCountRequest$Max": "<p>The maximum number of network interfaces. To specify no maximum limit, omit this parameter.</p>",
         "OccurrenceDayRequestSet$member": null,
         "OccurrenceDaySet$member": null,
         "OnDemandOptions$MinTargetCapacity": "<p>The minimum target capacity for On-Demand Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
@@ -9513,6 +9751,7 @@
         "SpotOptions$MinTargetCapacity": "<p>The minimum target capacity for Spot Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
         "SpotOptionsRequest$InstancePoolsToUseCount": "<p>The number of Spot pools across which to allocate your target Spot capacity. Valid only when Spot <b>AllocationStrategy</b> is set to <code>lowest-price</code>. EC2 Fleet selects the cheapest Spot pools and evenly allocates your target Spot capacity across the number of Spot pools that you specify.</p> <p>Note that EC2 Fleet attempts to draw Spot Instances from the number of pools that you specify on a best effort basis. If a pool runs out of Spot capacity before fulfilling your target capacity, EC2 Fleet will continue to fulfill your request by drawing from the next cheapest pool. To ensure that your target capacity is met, you might receive Spot Instances from more than the number of pools that you specified. Similarly, if most of the pools have no Spot capacity, you might receive your full target capacity from fewer than the number of pools that you specified.</p>",
         "SpotOptionsRequest$MinTargetCapacity": "<p>The minimum target capacity for Spot Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
+        "SpotPlacementScore$Score": "<p>The placement score, on a scale from <code>1</code> to <code>10</code>. A score of <code>10</code> indicates that your Spot request is highly likely to succeed in this Region or Availability Zone. A score of <code>1</code> indicates that your Spot request is not likely to succeed. </p>",
         "StaleIpPermission$FromPort": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP type number. A value of <code>-1</code> indicates all ICMP types. </p>",
         "StaleIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP type number. A value of <code>-1</code> indicates all ICMP types. </p>",
         "StoreImageTaskResult$ProgressPercentage": "<p>The progress of the task as a percentage.</p>",
@@ -9542,6 +9781,10 @@
         "TunnelOption$RekeyFuzzPercentage": "<p>The percentage of the rekey window determined by <code>RekeyMarginTimeSeconds</code> during which the rekey time is randomly selected.</p>",
         "TunnelOption$ReplayWindowSize": "<p>The number of packets in an IKE replay window.</p>",
         "TunnelOption$DpdTimeoutSeconds": "<p>The number of seconds after which a DPD timeout occurs.</p>",
+        "VCpuCountRange$Min": "<p>The minimum number of vCPUs. If the value is <code>0</code>, there is no minimum limit.</p>",
+        "VCpuCountRange$Max": "<p>The maximum number of vCPUs. If this parameter is not specified, there is no maximum limit.</p>",
+        "VCpuCountRangeRequest$Min": "<p>The minimum number of vCPUs. To specify no minimum limit, specify <code>0</code>.</p>",
+        "VCpuCountRangeRequest$Max": "<p>The maximum number of vCPUs. To specify no maximum limit, omit this parameter.</p>",
         "VgwTelemetry$AcceptedRouteCount": "<p>The number of accepted routes.</p>",
         "Volume$Size": "<p>The size of the volume, in GiBs.</p>",
         "Volume$Iops": "<p>The number of I/O operations per second (IOPS). For <code>gp3</code>, <code>io1</code>, and <code>io2</code> volumes, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code> volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.</p>",
@@ -10673,6 +10916,26 @@
         "DescribeLocalGatewayVirtualInterfacesResult$LocalGatewayVirtualInterfaces": "<p>Information about the virtual interfaces.</p>"
       }
     },
+    "LocalStorage": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$LocalStorage": "<p>Indicates whether instance types with instance store volumes are included, excluded, or required. For more information, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html\">Amazon EC2 instance store</a> in the <i>Amazon EC2 User Guide</i>.</p> <ul> <li> <p>To include instance types with instance store volumes, specify <code>included</code>.</p> </li> <li> <p>To require only instance types with instance store volumes, specify <code>required</code>.</p> </li> <li> <p>To exclude instance types with instance store volumes, specify <code>excluded</code>.</p> </li> </ul> <p>Default: <code>included</code> </p>",
+        "InstanceRequirementsRequest$LocalStorage": "<p>Indicates whether instance types with instance store volumes are included, excluded, or required. For more information, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html\">Amazon EC2 instance store</a> in the <i>Amazon EC2 User Guide</i>.</p> <ul> <li> <p>To include instance types with instance store volumes, specify <code>included</code>.</p> </li> <li> <p>To require only instance types with instance store volumes, specify <code>required</code>.</p> </li> <li> <p>To exclude instance types with instance store volumes, specify <code>excluded</code>.</p> </li> </ul> <p>Default: <code>included</code> </p>"
+      }
+    },
+    "LocalStorageType": {
+      "base": null,
+      "refs": {
+        "LocalStorageTypeSet$member": null
+      }
+    },
+    "LocalStorageTypeSet": {
+      "base": null,
+      "refs": {
+        "InstanceRequirements$LocalStorageTypes": "<p>The type of local storage that is required.</p> <ul> <li> <p>For instance types with hard disk drive (HDD) storage, specify <code>hdd</code>.</p> </li> <li> <p>For instance types with solid state drive (SDD) storage, specify <code>sdd</code>.</p> </li> </ul> <p>Default: <code>hdd</code> and <code>sdd</code> </p>",
+        "InstanceRequirementsRequest$LocalStorageTypes": "<p>The type of local storage that is required.</p> <ul> <li> <p>For instance types with hard disk drive (HDD) storage, specify <code>hdd</code>.</p> </li> <li> <p>For instance types with solid state drive (SDD) storage, specify <code>sdd</code>.</p> </li> </ul> <p>Default: <code>hdd</code> and <code>sdd</code> </p>"
+      }
+    },
     "Location": {
       "base": null,
       "refs": {
@@ -10814,10 +11077,34 @@
         "TransitGatewayMulticastGroup$SourceType": "<p>The source type.</p>"
       }
     },
+    "MemoryGiBPerVCpu": {
+      "base": "<p>The minimum and maximum amount of memory per vCPU, in GiB.</p> <p/>",
+      "refs": {
+        "InstanceRequirements$MemoryGiBPerVCpu": "<p>The minimum and maximum amount of memory per vCPU, in GiB.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "MemoryGiBPerVCpuRequest": {
+      "base": "<p>The minimum and maximum amount of memory per vCPU, in GiB.</p>",
+      "refs": {
+        "InstanceRequirementsRequest$MemoryGiBPerVCpu": "<p>The minimum and maximum amount of memory per vCPU, in GiB.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
     "MemoryInfo": {
       "base": "<p>Describes the memory for the instance type.</p>",
       "refs": {
         "InstanceTypeInfo$MemoryInfo": "<p>Describes the memory for the instance type.</p>"
+      }
+    },
+    "MemoryMiB": {
+      "base": "<p>The minimum and maximum amount of memory, in MiB.</p>",
+      "refs": {
+        "InstanceRequirements$MemoryMiB": "<p>The minimum and maximum amount of memory, in MiB.</p>"
+      }
+    },
+    "MemoryMiBRequest": {
+      "base": "<p>The minimum and maximum amount of memory, in MiB.</p>",
+      "refs": {
+        "InstanceRequirementsRequest$MemoryMiB": "<p>The minimum and maximum amount of memory, in MiB.</p>"
       }
     },
     "MemorySize": {
@@ -11611,6 +11898,18 @@
       "base": null,
       "refs": {
         "DescribeNetworkInterfaceAttributeRequest$Attribute": "<p>The attribute of the network interface. This parameter is required.</p>"
+      }
+    },
+    "NetworkInterfaceCount": {
+      "base": "<p>The minimum and maximum number of network interfaces.</p>",
+      "refs": {
+        "InstanceRequirements$NetworkInterfaceCount": "<p>The minimum and maximum number of network interfaces.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "NetworkInterfaceCountRequest": {
+      "base": "<p>The minimum and maximum number of network interfaces.</p>",
+      "refs": {
+        "InstanceRequirementsRequest$NetworkInterfaceCount": "<p>The minimum and maximum number of network interfaces.</p> <p>Default: No minimum or maximum limits</p>"
       }
     },
     "NetworkInterfaceCreationType": {
@@ -12718,6 +13017,12 @@
       "base": null,
       "refs": {
         "DescribeRegionsRequest$RegionNames": "<p>The names of the Regions. You can specify any Regions, whether they are enabled and disabled for your account.</p>"
+      }
+    },
+    "RegionNames": {
+      "base": null,
+      "refs": {
+        "GetSpotPlacementScoresRequest$RegionNames": "<p>The Regions used to narrow down the list of Regions to be scored. Enter the Region code, for example, <code>us-east-1</code>.</p>"
       }
     },
     "RegisterImageRequest": {
@@ -14233,6 +14538,30 @@
         "SpotFleetLaunchSpecification$Placement": "<p>The placement information.</p>"
       }
     },
+    "SpotPlacementScore": {
+      "base": "<p>The Spot placement score for this Region or Availability Zone. The score is calculated based on the assumption that the <code>capacity-optimized</code> allocation strategy is used and that all of the Availability Zones in the Region can be used.</p>",
+      "refs": {
+        "SpotPlacementScores$member": null
+      }
+    },
+    "SpotPlacementScores": {
+      "base": null,
+      "refs": {
+        "GetSpotPlacementScoresResult$SpotPlacementScores": "<p>The Spot placement score for the top 10 Regions or Availability Zones, scored on a scale from 1 to 10. Each score&#x2028; reflects how likely it is that each Region or Availability Zone will succeed at fulfilling the specified target capacity&#x2028; <i>at the time of the Spot placement score request</i>. A score of <code>10</code> means that your Spot capacity request is highly likely to succeed in that Region or Availability Zone. </p> <p>If you request a Spot placement score for Regions, a high score assumes that your fleet request will be configured to use all Availability Zones and the <code>capacity-optimized</code> allocation strategy. If you request a Spot placement score for Availability Zones, a high score assumes that your fleet request will be configured to use a single Availability Zone and the <code>capacity-optimized</code> allocation strategy.</p> <p>Different&#x2028; Regions or Availability Zones might return the same score.</p> <note> <p>The Spot placement score serves as a recommendation only. No score guarantees that your Spot request will be fully or partially fulfilled.</p> </note>"
+      }
+    },
+    "SpotPlacementScoresMaxResults": {
+      "base": null,
+      "refs": {
+        "GetSpotPlacementScoresRequest$MaxResults": "<p>The maximum number of results to return in a single call. Specify a value between 1 and&#x2028; 1000. The default value is 1000. To retrieve the remaining results, make another call with&#x2028; the returned <code>NextToken</code> value.</p>"
+      }
+    },
+    "SpotPlacementScoresTargetCapacity": {
+      "base": null,
+      "refs": {
+        "GetSpotPlacementScoresRequest$TargetCapacity": "<p>The target capacity.</p>"
+      }
+    },
     "SpotPrice": {
       "base": "<p>Describes the maximum price per hour that you are willing to pay for a Spot Instance.</p>",
       "refs": {
@@ -15102,12 +15431,16 @@
         "GetGroupsForCapacityReservationResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetHostReservationPurchasePreviewResult$TotalHourlyPrice": "<p>The potential total hourly price of the reservation per hour.</p>",
         "GetHostReservationPurchasePreviewResult$TotalUpfrontPrice": "<p>The potential total upfront price. This is billed immediately.</p>",
+        "GetInstanceTypesFromInstanceRequirementsRequest$NextToken": "<p>The token for the next set of results.</p>",
+        "GetInstanceTypesFromInstanceRequirementsResult$NextToken": "<p>The token for the next set of results.</p>",
         "GetManagedPrefixListAssociationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetPasswordDataResult$InstanceId": "<p>The ID of the Windows instance.</p>",
         "GetPasswordDataResult$PasswordData": "<p>The password of the instance. Returns an empty string if the password is not available.</p>",
         "GetReservedInstancesExchangeQuoteResult$CurrencyCode": "<p>The currency of the transaction.</p>",
         "GetReservedInstancesExchangeQuoteResult$PaymentDue": "<p>The total true upfront charge for the exchange.</p>",
         "GetReservedInstancesExchangeQuoteResult$ValidationFailureReason": "<p>Describes the reason why the exchange cannot be completed.</p>",
+        "GetSpotPlacementScoresRequest$NextToken": "<p>The token for the next set of results.</p>",
+        "GetSpotPlacementScoresResult$NextToken": "<p>The token for the next set of results.</p>",
         "GetSubnetCidrReservationsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetSubnetCidrReservationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetTransitGatewayAttachmentPropagationsRequest$NextToken": "<p>The token for the next page of results.</p>",
@@ -15292,6 +15625,8 @@
         "InstanceStatus$InstanceId": "<p>The ID of the instance.</p>",
         "InstanceStatusEvent$Description": "<p>A description of the event.</p> <p>After a scheduled event is completed, it can still be described for up to a week. If the event has been completed, this description starts with the following text: [Completed].</p>",
         "InstanceTagKeySet$member": null,
+        "InstanceTypeInfoFromInstanceRequirements$InstanceType": "<p>The matching instance type.</p>",
+        "InstanceTypes$member": null,
         "InstanceUsage$AccountId": "<p>The ID of the Amazon Web Services account that is making use of the Capacity Reservation.</p>",
         "InternetGateway$InternetGatewayId": "<p>The ID of the internet gateway.</p>",
         "InternetGateway$OwnerId": "<p>The ID of the Amazon Web Services account that owns the internet gateway.</p>",
@@ -15404,6 +15739,7 @@
         "ManagedPrefixList$OwnerId": "<p>The ID of the owner of the prefix list.</p>",
         "ModifyAddressAttributeRequest$DomainName": "<p>The domain name to modify for the IP address.</p>",
         "ModifyAvailabilityZoneGroupRequest$GroupName": "<p>The name of the Availability Zone group, Local Zone group, or Wavelength Zone group.</p>",
+        "ModifyCapacityReservationRequest$AdditionalInfo": "<p>Reserved for future use.</p>",
         "ModifyClientVpnEndpointRequest$ServerCertificateArn": "<p>The ARN of the server certificate to be used. The server certificate must be provisioned in Certificate Manager (ACM).</p>",
         "ModifyClientVpnEndpointRequest$Description": "<p>A brief description of the Client VPN endpoint.</p>",
         "ModifyDefaultCreditSpecificationRequest$CpuCredits": "<p>The credit option for CPU usage of the instance family.</p> <p>Valid Values: <code>standard</code> | <code>unlimited</code> </p>",
@@ -15586,6 +15922,7 @@
         "Region$RegionName": "<p>The name of the Region.</p>",
         "Region$OptInStatus": "<p>The Region opt-in status. The possible values are <code>opt-in-not-required</code>, <code>opted-in</code>, and <code>not-opted-in</code>.</p>",
         "RegionNameStringList$member": null,
+        "RegionNames$member": null,
         "RegisterImageRequest$ImageLocation": "<p>The full path to your AMI manifest in Amazon S3 storage. The specified bucket must have the <code>aws-exec-read</code> canned access control list (ACL) to ensure that it can be accessed by Amazon EC2. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl\">Canned ACLs</a> in the <i>Amazon S3 Service Developer Guide</i>.</p>",
         "RegisterImageRequest$Description": "<p>A description for your AMI.</p>",
         "RegisterImageRequest$Name": "<p>A name for your AMI.</p> <p>Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets ([]), spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('), at-signs (@), or underscores(_)</p>",
@@ -15824,6 +16161,8 @@
         "SpotOptions$MaxTotalPrice": "<p>The maximum amount per hour for Spot Instances that you're willing to pay.</p>",
         "SpotOptionsRequest$MaxTotalPrice": "<p>The maximum amount per hour for Spot Instances that you're willing to pay.</p>",
         "SpotPlacement$AvailabilityZone": "<p>The Availability Zone.</p> <p>[Spot Fleet only] To specify multiple Availability Zones, separate them using commas; for example, \"us-west-2a, us-west-2b\".</p>",
+        "SpotPlacementScore$Region": "<p>The Region.</p>",
+        "SpotPlacementScore$AvailabilityZoneId": "<p>The Availability Zone.</p>",
         "SpotPrice$AvailabilityZone": "<p>The Availability Zone.</p>",
         "SpotPrice$SpotPrice": "<p>The maximum price per hour that you are willing to pay for a Spot Instance.</p>",
         "StaleIpPermission$IpProtocol": "<p>The IP protocol name (for <code>tcp</code>, <code>udp</code>, and <code>icmp</code>) or number (see <a href=\"http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml\">Protocol Numbers)</a>.</p>",
@@ -16449,6 +16788,15 @@
         "ModifyFleetRequest$TargetCapacitySpecification": "<p>The size of the EC2 Fleet.</p>"
       }
     },
+    "TargetCapacityUnitType": {
+      "base": null,
+      "refs": {
+        "GetSpotPlacementScoresRequest$TargetCapacityUnitType": "<p>The unit for the target capacity.</p> <p>Default: <code>units</code> (translates to number of instances)</p>",
+        "SpotFleetRequestConfigData$TargetCapacityUnitType": "<p>The unit for the target capacity.</p> <p>Default: <code>units</code> (translates to number of instances)</p>",
+        "TargetCapacitySpecification$TargetCapacityUnitType": "<p>The unit for the target capacity.</p> <p>Default: <code>units</code> (translates to number of instances)</p>",
+        "TargetCapacitySpecificationRequest$TargetCapacityUnitType": "<p>The unit for the target capacity.</p> <p>Default: <code>units</code> (translates to number of instances)</p>"
+      }
+    },
     "TargetConfiguration": {
       "base": "<p>Information about the Convertible Reserved Instance offering.</p>",
       "refs": {
@@ -16573,6 +16921,18 @@
       "base": null,
       "refs": {
         "VCpuInfo$ValidThreadsPerCore": "<p>The valid number of threads per core that can be configured for the instance type. </p>"
+      }
+    },
+    "TotalLocalStorageGB": {
+      "base": "<p>The minimum and maximum amount of total local storage, in GB.</p>",
+      "refs": {
+        "InstanceRequirements$TotalLocalStorageGB": "<p>The minimum and maximum amount of total local storage, in GB.</p> <p>Default: No minimum or maximum limits</p>"
+      }
+    },
+    "TotalLocalStorageGBRequest": {
+      "base": "<p>The minimum and maximum amount of total local storage, in GB.</p>",
+      "refs": {
+        "InstanceRequirementsRequest$TotalLocalStorageGB": "<p>The minimum and maximum amount of total local storage, in GB.</p> <p>Default: No minimum or maximum limits</p>"
       }
     },
     "TrafficDirection": {
@@ -17617,6 +17977,18 @@
         "VCpuInfo$DefaultVCpus": "<p>The default number of vCPUs for the instance type.</p>"
       }
     },
+    "VCpuCountRange": {
+      "base": "<p>The minimum and maximum number of vCPUs.</p>",
+      "refs": {
+        "InstanceRequirements$VCpuCount": "<p>The minimum and maximum number of vCPUs.</p>"
+      }
+    },
+    "VCpuCountRangeRequest": {
+      "base": "<p>The minimum and maximum number of vCPUs.</p>",
+      "refs": {
+        "InstanceRequirementsRequest$VCpuCount": "<p>The minimum and maximum number of vCPUs.</p>"
+      }
+    },
     "VCpuInfo": {
       "base": "<p>Describes the vCPU configurations for the instance type.</p>",
       "refs": {
@@ -17722,13 +18094,21 @@
       "refs": {
         "Image$VirtualizationType": "<p>The type of virtualization of the AMI.</p>",
         "Instance$VirtualizationType": "<p>The virtualization type of the instance.</p>",
-        "VirtualizationTypeList$member": null
+        "VirtualizationTypeList$member": null,
+        "VirtualizationTypeSet$member": null
       }
     },
     "VirtualizationTypeList": {
       "base": null,
       "refs": {
         "InstanceTypeInfo$SupportedVirtualizationTypes": "<p>The supported virtualization types.</p>"
+      }
+    },
+    "VirtualizationTypeSet": {
+      "base": null,
+      "refs": {
+        "GetInstanceTypesFromInstanceRequirementsRequest$VirtualizationTypes": "<p>The virtualization type.</p>",
+        "InstanceRequirementsWithMetadataRequest$VirtualizationTypes": "<p>The virtualization type.</p>"
       }
     },
     "Volume": {

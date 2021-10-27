@@ -282,6 +282,80 @@ func (c *SageMaker) AssociateTrialComponentWithContext(ctx aws.Context, input *A
 	return out, req.Send()
 }
 
+const opBatchDescribeModelPackage = "BatchDescribeModelPackage"
+
+// BatchDescribeModelPackageRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDescribeModelPackage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDescribeModelPackage for more information on using the BatchDescribeModelPackage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchDescribeModelPackageRequest method.
+//    req, resp := client.BatchDescribeModelPackageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/BatchDescribeModelPackage
+func (c *SageMaker) BatchDescribeModelPackageRequest(input *BatchDescribeModelPackageInput) (req *request.Request, output *BatchDescribeModelPackageOutput) {
+	op := &request.Operation{
+		Name:       opBatchDescribeModelPackage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchDescribeModelPackageInput{}
+	}
+
+	output = &BatchDescribeModelPackageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDescribeModelPackage API operation for Amazon SageMaker Service.
+//
+// This action batch describes a list of versioned model packages
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation BatchDescribeModelPackage for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/BatchDescribeModelPackage
+func (c *SageMaker) BatchDescribeModelPackage(input *BatchDescribeModelPackageInput) (*BatchDescribeModelPackageOutput, error) {
+	req, out := c.BatchDescribeModelPackageRequest(input)
+	return out, req.Send()
+}
+
+// BatchDescribeModelPackageWithContext is the same as BatchDescribeModelPackage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDescribeModelPackage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) BatchDescribeModelPackageWithContext(ctx aws.Context, input *BatchDescribeModelPackageInput, opts ...request.Option) (*BatchDescribeModelPackageOutput, error) {
+	req, out := c.BatchDescribeModelPackageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAction = "CreateAction"
 
 // CreateActionRequest generates a "aws/request.Request" representing the
@@ -9799,10 +9873,10 @@ func (c *SageMaker) DescribeModelPackageRequest(input *DescribeModelPackageInput
 // DescribeModelPackage API operation for Amazon SageMaker Service.
 //
 // Returns a description of the specified model package, which is used to create
-// Amazon SageMaker models or list them on Amazon Web Services Marketplace.
+// SageMaker models or list them on Amazon Web Services Marketplace.
 //
-// To create models in Amazon SageMaker, buyers can subscribe to model packages
-// listed on Amazon Web Services Marketplace.
+// To create models in SageMaker, buyers can subscribe to model packages listed
+// on Amazon Web Services Marketplace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22389,6 +22463,85 @@ func (c *SageMaker) UpdatePipelineExecutionWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
+const opUpdateProject = "UpdateProject"
+
+// UpdateProjectRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateProject operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateProject for more information on using the UpdateProject
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateProjectRequest method.
+//    req, resp := client.UpdateProjectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateProject
+func (c *SageMaker) UpdateProjectRequest(input *UpdateProjectInput) (req *request.Request, output *UpdateProjectOutput) {
+	op := &request.Operation{
+		Name:       opUpdateProject,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateProjectInput{}
+	}
+
+	output = &UpdateProjectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateProject API operation for Amazon SageMaker Service.
+//
+// Updates a machine learning (ML) project that is created from a template that
+// sets up an ML pipeline from training to deploying an approved model.
+//
+// You must not update a project that is in use. If you update the ServiceCatalogProvisioningUpdateDetails
+// of a project that is active or being created, or updated, you may lose resources
+// already created by the project.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation UpdateProject for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateProject
+func (c *SageMaker) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
+	req, out := c.UpdateProjectRequest(input)
+	return out, req.Send()
+}
+
+// UpdateProjectWithContext is the same as UpdateProject with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateProject for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) UpdateProjectWithContext(ctx aws.Context, input *UpdateProjectInput, opts ...request.Option) (*UpdateProjectOutput, error) {
+	req, out := c.UpdateProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateTrainingJob = "UpdateTrainingJob"
 
 // UpdateTrainingJobRequest generates a "aws/request.Request" representing the
@@ -26605,6 +26758,242 @@ func (s *AutoRollbackConfig) Validate() error {
 // SetAlarms sets the Alarms field's value.
 func (s *AutoRollbackConfig) SetAlarms(v []*Alarm) *AutoRollbackConfig {
 	s.Alarms = v
+	return s
+}
+
+// The error code and error description associated with the resource.
+type BatchDescribeModelPackageError struct {
+	_ struct{} `type:"structure"`
+
+	// ErrorCode is a required field
+	ErrorCode *string `type:"string" required:"true"`
+
+	// ErrorResponse is a required field
+	ErrorResponse *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeModelPackageError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeModelPackageError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchDescribeModelPackageError) SetErrorCode(v string) *BatchDescribeModelPackageError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorResponse sets the ErrorResponse field's value.
+func (s *BatchDescribeModelPackageError) SetErrorResponse(v string) *BatchDescribeModelPackageError {
+	s.ErrorResponse = &v
+	return s
+}
+
+type BatchDescribeModelPackageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of Amazon Resource Name (ARN) of the model package groups.
+	//
+	// ModelPackageArnList is a required field
+	ModelPackageArnList []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeModelPackageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeModelPackageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDescribeModelPackageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDescribeModelPackageInput"}
+	if s.ModelPackageArnList == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelPackageArnList"))
+	}
+	if s.ModelPackageArnList != nil && len(s.ModelPackageArnList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelPackageArnList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelPackageArnList sets the ModelPackageArnList field's value.
+func (s *BatchDescribeModelPackageInput) SetModelPackageArnList(v []*string) *BatchDescribeModelPackageInput {
+	s.ModelPackageArnList = v
+	return s
+}
+
+type BatchDescribeModelPackageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A map of the resource and BatchDescribeModelPackageError objects reporting
+	// the error associated with describing the model package.
+	BatchDescribeModelPackageErrorMap map[string]*BatchDescribeModelPackageError `type:"map"`
+
+	// The summaries for the model package versions
+	ModelPackageSummaries map[string]*BatchDescribeModelPackageSummary `type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeModelPackageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeModelPackageOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchDescribeModelPackageErrorMap sets the BatchDescribeModelPackageErrorMap field's value.
+func (s *BatchDescribeModelPackageOutput) SetBatchDescribeModelPackageErrorMap(v map[string]*BatchDescribeModelPackageError) *BatchDescribeModelPackageOutput {
+	s.BatchDescribeModelPackageErrorMap = v
+	return s
+}
+
+// SetModelPackageSummaries sets the ModelPackageSummaries field's value.
+func (s *BatchDescribeModelPackageOutput) SetModelPackageSummaries(v map[string]*BatchDescribeModelPackageSummary) *BatchDescribeModelPackageOutput {
+	s.ModelPackageSummaries = v
+	return s
+}
+
+// Provides summary information about the model package.
+type BatchDescribeModelPackageSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The creation time of the mortgage package summary.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// Defines how to perform inference generation after a training job is run.
+	//
+	// InferenceSpecification is a required field
+	InferenceSpecification *InferenceSpecification `type:"structure" required:"true"`
+
+	// The approval status of the model.
+	ModelApprovalStatus *string `type:"string" enum:"ModelApprovalStatus"`
+
+	// The Amazon Resource Name (ARN) of the model package.
+	//
+	// ModelPackageArn is a required field
+	ModelPackageArn *string `min:"1" type:"string" required:"true"`
+
+	// The description of the model package.
+	ModelPackageDescription *string `type:"string"`
+
+	// The group name for the model package
+	//
+	// ModelPackageGroupName is a required field
+	ModelPackageGroupName *string `min:"1" type:"string" required:"true"`
+
+	// The status of the mortgage package.
+	//
+	// ModelPackageStatus is a required field
+	ModelPackageStatus *string `type:"string" required:"true" enum:"ModelPackageStatus"`
+
+	// The version number of a versioned model.
+	ModelPackageVersion *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeModelPackageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchDescribeModelPackageSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *BatchDescribeModelPackageSummary) SetCreationTime(v time.Time) *BatchDescribeModelPackageSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetInferenceSpecification sets the InferenceSpecification field's value.
+func (s *BatchDescribeModelPackageSummary) SetInferenceSpecification(v *InferenceSpecification) *BatchDescribeModelPackageSummary {
+	s.InferenceSpecification = v
+	return s
+}
+
+// SetModelApprovalStatus sets the ModelApprovalStatus field's value.
+func (s *BatchDescribeModelPackageSummary) SetModelApprovalStatus(v string) *BatchDescribeModelPackageSummary {
+	s.ModelApprovalStatus = &v
+	return s
+}
+
+// SetModelPackageArn sets the ModelPackageArn field's value.
+func (s *BatchDescribeModelPackageSummary) SetModelPackageArn(v string) *BatchDescribeModelPackageSummary {
+	s.ModelPackageArn = &v
+	return s
+}
+
+// SetModelPackageDescription sets the ModelPackageDescription field's value.
+func (s *BatchDescribeModelPackageSummary) SetModelPackageDescription(v string) *BatchDescribeModelPackageSummary {
+	s.ModelPackageDescription = &v
+	return s
+}
+
+// SetModelPackageGroupName sets the ModelPackageGroupName field's value.
+func (s *BatchDescribeModelPackageSummary) SetModelPackageGroupName(v string) *BatchDescribeModelPackageSummary {
+	s.ModelPackageGroupName = &v
+	return s
+}
+
+// SetModelPackageStatus sets the ModelPackageStatus field's value.
+func (s *BatchDescribeModelPackageSummary) SetModelPackageStatus(v string) *BatchDescribeModelPackageSummary {
+	s.ModelPackageStatus = &v
+	return s
+}
+
+// SetModelPackageVersion sets the ModelPackageVersion field's value.
+func (s *BatchDescribeModelPackageSummary) SetModelPackageVersion(v int64) *BatchDescribeModelPackageSummary {
+	s.ModelPackageVersion = &v
 	return s
 }
 
@@ -33384,6 +33773,9 @@ type CreateModelPackageInput struct {
 	// A unique token that guarantees that the call to this API is idempotent.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
+	// The metadata properties associated with the model package versions.
+	CustomerMetadataProperties map[string]*string `min:"1" type:"map"`
+
 	// Specifies details about inference jobs that can be run with models based
 	// on this model package, including the following:
 	//
@@ -33415,7 +33807,8 @@ type CreateModelPackageInput struct {
 	// A description of the model package.
 	ModelPackageDescription *string `type:"string"`
 
-	// The name of the model group that this model version belongs to.
+	// The name or Amazon Resource Name (ARN) of the model package group that this
+	// model version belongs to.
 	//
 	// This parameter is required for versioned models, and does not apply to unversioned
 	// models.
@@ -33464,6 +33857,9 @@ func (s *CreateModelPackageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateModelPackageInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.CustomerMetadataProperties != nil && len(s.CustomerMetadataProperties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerMetadataProperties", 1))
 	}
 	if s.ModelPackageGroupName != nil && len(*s.ModelPackageGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelPackageGroupName", 1))
@@ -33517,6 +33913,12 @@ func (s *CreateModelPackageInput) SetCertifyForMarketplace(v bool) *CreateModelP
 // SetClientToken sets the ClientToken field's value.
 func (s *CreateModelPackageInput) SetClientToken(v string) *CreateModelPackageInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetCustomerMetadataProperties sets the CustomerMetadataProperties field's value.
+func (s *CreateModelPackageInput) SetCustomerMetadataProperties(v map[string]*string) *CreateModelPackageInput {
+	s.CustomerMetadataProperties = v
 	return s
 }
 
@@ -46384,6 +46786,9 @@ type DescribeModelPackageOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
+	// The metadata properties associated with the model package versions.
+	CustomerMetadataProperties map[string]*string `min:"1" type:"map"`
+
 	// Details about inference jobs that can be run with models based on this model
 	// package.
 	InferenceSpecification *InferenceSpecification `type:"structure"`
@@ -46437,8 +46842,8 @@ type DescribeModelPackageOutput struct {
 	// Details about the algorithm that was used to create the model package.
 	SourceAlgorithmSpecification *SourceAlgorithmSpecification `type:"structure"`
 
-	// Configurations for one or more transform jobs that Amazon SageMaker runs
-	// to test the model package.
+	// Configurations for one or more transform jobs that SageMaker runs to test
+	// the model package.
 	ValidationSpecification *ModelPackageValidationSpecification `type:"structure"`
 }
 
@@ -46481,6 +46886,12 @@ func (s *DescribeModelPackageOutput) SetCreatedBy(v *UserContext) *DescribeModel
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeModelPackageOutput) SetCreationTime(v time.Time) *DescribeModelPackageOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetCustomerMetadataProperties sets the CustomerMetadataProperties field's value.
+func (s *DescribeModelPackageOutput) SetCustomerMetadataProperties(v map[string]*string) *DescribeModelPackageOutput {
+	s.CustomerMetadataProperties = v
 	return s
 }
 
@@ -48140,6 +48551,13 @@ type DescribeProjectOutput struct {
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
+	// Information about the user who created or modified an experiment, trial,
+	// trial component, or project.
+	LastModifiedBy *UserContext `type:"structure"`
+
+	// The timestamp when project was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The Amazon Resource Name (ARN) of the project.
 	//
 	// ProjectArn is a required field
@@ -48200,6 +48618,18 @@ func (s *DescribeProjectOutput) SetCreatedBy(v *UserContext) *DescribeProjectOut
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeProjectOutput) SetCreationTime(v time.Time) *DescribeProjectOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *DescribeProjectOutput) SetLastModifiedBy(v *UserContext) *DescribeProjectOutput {
+	s.LastModifiedBy = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeProjectOutput) SetLastModifiedTime(v time.Time) *DescribeProjectOutput {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -67493,6 +67923,9 @@ type ModelPackage struct {
 	// The time that the model package was created.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// The metadata properties for the model package.
+	CustomerMetadataProperties map[string]*string `min:"1" type:"map"`
+
 	// Defines how to perform inference generation after a training job is run.
 	InferenceSpecification *InferenceSpecification `type:"structure"`
 
@@ -67601,6 +68034,12 @@ func (s *ModelPackage) SetCreatedBy(v *UserContext) *ModelPackage {
 // SetCreationTime sets the CreationTime field's value.
 func (s *ModelPackage) SetCreationTime(v time.Time) *ModelPackage {
 	s.CreationTime = &v
+	return s
+}
+
+// SetCustomerMetadataProperties sets the CustomerMetadataProperties field's value.
+func (s *ModelPackage) SetCustomerMetadataProperties(v map[string]*string) *ModelPackage {
+	s.CustomerMetadataProperties = v
 	return s
 }
 
@@ -74430,6 +74869,13 @@ type Project struct {
 	// A timestamp specifying when the project was created.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// Information about the user who created or modified an experiment, trial,
+	// trial component, or project.
+	LastModifiedBy *UserContext `type:"structure"`
+
+	// A timestamp container for when the project was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
 	// The Amazon Resource Name (ARN) of the project.
 	ProjectArn *string `min:"1" type:"string"`
 
@@ -74487,6 +74933,18 @@ func (s *Project) SetCreatedBy(v *UserContext) *Project {
 // SetCreationTime sets the CreationTime field's value.
 func (s *Project) SetCreationTime(v time.Time) *Project {
 	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *Project) SetLastModifiedBy(v *UserContext) *Project {
+	s.LastModifiedBy = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Project) SetLastModifiedTime(v time.Time) *Project {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -77594,6 +78052,71 @@ func (s *ServiceCatalogProvisioningDetails) SetProvisioningArtifactId(v string) 
 
 // SetProvisioningParameters sets the ProvisioningParameters field's value.
 func (s *ServiceCatalogProvisioningDetails) SetProvisioningParameters(v []*ProvisioningParameter) *ServiceCatalogProvisioningDetails {
+	s.ProvisioningParameters = v
+	return s
+}
+
+// Details that you specify to provision a service catalog product. For information
+// about service catalog, see What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+type ServiceCatalogProvisioningUpdateDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the provisioning artifact.
+	ProvisioningArtifactId *string `min:"1" type:"string"`
+
+	// A list of key value pairs that you specify when you provision a product.
+	ProvisioningParameters []*ProvisioningParameter `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceCatalogProvisioningUpdateDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceCatalogProvisioningUpdateDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServiceCatalogProvisioningUpdateDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServiceCatalogProvisioningUpdateDetails"}
+	if s.ProvisioningArtifactId != nil && len(*s.ProvisioningArtifactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisioningArtifactId", 1))
+	}
+	if s.ProvisioningParameters != nil {
+		for i, v := range s.ProvisioningParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ProvisioningParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProvisioningArtifactId sets the ProvisioningArtifactId field's value.
+func (s *ServiceCatalogProvisioningUpdateDetails) SetProvisioningArtifactId(v string) *ServiceCatalogProvisioningUpdateDetails {
+	s.ProvisioningArtifactId = &v
+	return s
+}
+
+// SetProvisioningParameters sets the ProvisioningParameters field's value.
+func (s *ServiceCatalogProvisioningUpdateDetails) SetProvisioningParameters(v []*ProvisioningParameter) *ServiceCatalogProvisioningUpdateDetails {
 	s.ProvisioningParameters = v
 	return s
 }
@@ -84239,12 +84762,16 @@ type UpdateModelPackageInput struct {
 	// A description for the approval status of the model.
 	ApprovalDescription *string `type:"string"`
 
-	// The approval status of the model.
-	//
-	// ModelApprovalStatus is a required field
-	ModelApprovalStatus *string `type:"string" required:"true" enum:"ModelApprovalStatus"`
+	// The metadata properties associated with the model package versions.
+	CustomerMetadataProperties map[string]*string `min:"1" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the model.
+	// The metadata properties associated with the model package versions to remove.
+	CustomerMetadataPropertiesToRemove []*string `type:"list"`
+
+	// The approval status of the model.
+	ModelApprovalStatus *string `type:"string" enum:"ModelApprovalStatus"`
+
+	// The Amazon Resource Name (ARN) of the model package.
 	//
 	// ModelPackageArn is a required field
 	ModelPackageArn *string `min:"1" type:"string" required:"true"`
@@ -84271,8 +84798,8 @@ func (s UpdateModelPackageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateModelPackageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateModelPackageInput"}
-	if s.ModelApprovalStatus == nil {
-		invalidParams.Add(request.NewErrParamRequired("ModelApprovalStatus"))
+	if s.CustomerMetadataProperties != nil && len(s.CustomerMetadataProperties) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomerMetadataProperties", 1))
 	}
 	if s.ModelPackageArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelPackageArn"))
@@ -84290,6 +84817,18 @@ func (s *UpdateModelPackageInput) Validate() error {
 // SetApprovalDescription sets the ApprovalDescription field's value.
 func (s *UpdateModelPackageInput) SetApprovalDescription(v string) *UpdateModelPackageInput {
 	s.ApprovalDescription = &v
+	return s
+}
+
+// SetCustomerMetadataProperties sets the CustomerMetadataProperties field's value.
+func (s *UpdateModelPackageInput) SetCustomerMetadataProperties(v map[string]*string) *UpdateModelPackageInput {
+	s.CustomerMetadataProperties = v
+	return s
+}
+
+// SetCustomerMetadataPropertiesToRemove sets the CustomerMetadataPropertiesToRemove field's value.
+func (s *UpdateModelPackageInput) SetCustomerMetadataPropertiesToRemove(v []*string) *UpdateModelPackageInput {
+	s.CustomerMetadataPropertiesToRemove = v
 	return s
 }
 
@@ -85000,6 +85539,135 @@ func (s UpdatePipelineOutput) GoString() string {
 // SetPipelineArn sets the PipelineArn field's value.
 func (s *UpdatePipelineOutput) SetPipelineArn(v string) *UpdatePipelineOutput {
 	s.PipelineArn = &v
+	return s
+}
+
+type UpdateProjectInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description for the project.
+	ProjectDescription *string `type:"string"`
+
+	// The name of the project.
+	//
+	// ProjectName is a required field
+	ProjectName *string `min:"1" type:"string" required:"true"`
+
+	// The product ID and provisioning artifact ID to provision a service catalog.
+	// The provisioning artifact ID will default to the latest provisioning artifact
+	// ID of the product, if you don't provide the provisioning artifact ID. For
+	// more information, see What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+	ServiceCatalogProvisioningUpdateDetails *ServiceCatalogProvisioningUpdateDetails `type:"structure"`
+
+	// An array of key-value pairs. You can use tags to categorize your AWS resources
+	// in different ways, for example, by purpose, owner, or environment. For more
+	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProjectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProjectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateProjectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateProjectInput"}
+	if s.ProjectName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectName"))
+	}
+	if s.ProjectName != nil && len(*s.ProjectName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectName", 1))
+	}
+	if s.ServiceCatalogProvisioningUpdateDetails != nil {
+		if err := s.ServiceCatalogProvisioningUpdateDetails.Validate(); err != nil {
+			invalidParams.AddNested("ServiceCatalogProvisioningUpdateDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProjectDescription sets the ProjectDescription field's value.
+func (s *UpdateProjectInput) SetProjectDescription(v string) *UpdateProjectInput {
+	s.ProjectDescription = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *UpdateProjectInput) SetProjectName(v string) *UpdateProjectInput {
+	s.ProjectName = &v
+	return s
+}
+
+// SetServiceCatalogProvisioningUpdateDetails sets the ServiceCatalogProvisioningUpdateDetails field's value.
+func (s *UpdateProjectInput) SetServiceCatalogProvisioningUpdateDetails(v *ServiceCatalogProvisioningUpdateDetails) *UpdateProjectInput {
+	s.ServiceCatalogProvisioningUpdateDetails = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateProjectInput) SetTags(v []*Tag) *UpdateProjectInput {
+	s.Tags = v
+	return s
+}
+
+type UpdateProjectOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the project.
+	//
+	// ProjectArn is a required field
+	ProjectArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProjectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateProjectOutput) GoString() string {
+	return s.String()
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *UpdateProjectOutput) SetProjectArn(v string) *UpdateProjectOutput {
+	s.ProjectArn = &v
 	return s
 }
 
@@ -89851,6 +90519,15 @@ const (
 
 	// ProjectStatusDeleteCompleted is a ProjectStatus enum value
 	ProjectStatusDeleteCompleted = "DeleteCompleted"
+
+	// ProjectStatusUpdateInProgress is a ProjectStatus enum value
+	ProjectStatusUpdateInProgress = "UpdateInProgress"
+
+	// ProjectStatusUpdateCompleted is a ProjectStatus enum value
+	ProjectStatusUpdateCompleted = "UpdateCompleted"
+
+	// ProjectStatusUpdateFailed is a ProjectStatus enum value
+	ProjectStatusUpdateFailed = "UpdateFailed"
 )
 
 // ProjectStatus_Values returns all elements of the ProjectStatus enum
@@ -89863,6 +90540,9 @@ func ProjectStatus_Values() []string {
 		ProjectStatusDeleteInProgress,
 		ProjectStatusDeleteFailed,
 		ProjectStatusDeleteCompleted,
+		ProjectStatusUpdateInProgress,
+		ProjectStatusUpdateCompleted,
+		ProjectStatusUpdateFailed,
 	}
 }
 

@@ -1727,6 +1727,13 @@ type EC2API interface {
 	GetHostReservationPurchasePreviewWithContext(aws.Context, *ec2.GetHostReservationPurchasePreviewInput, ...request.Option) (*ec2.GetHostReservationPurchasePreviewOutput, error)
 	GetHostReservationPurchasePreviewRequest(*ec2.GetHostReservationPurchasePreviewInput) (*request.Request, *ec2.GetHostReservationPurchasePreviewOutput)
 
+	GetInstanceTypesFromInstanceRequirements(*ec2.GetInstanceTypesFromInstanceRequirementsInput) (*ec2.GetInstanceTypesFromInstanceRequirementsOutput, error)
+	GetInstanceTypesFromInstanceRequirementsWithContext(aws.Context, *ec2.GetInstanceTypesFromInstanceRequirementsInput, ...request.Option) (*ec2.GetInstanceTypesFromInstanceRequirementsOutput, error)
+	GetInstanceTypesFromInstanceRequirementsRequest(*ec2.GetInstanceTypesFromInstanceRequirementsInput) (*request.Request, *ec2.GetInstanceTypesFromInstanceRequirementsOutput)
+
+	GetInstanceTypesFromInstanceRequirementsPages(*ec2.GetInstanceTypesFromInstanceRequirementsInput, func(*ec2.GetInstanceTypesFromInstanceRequirementsOutput, bool) bool) error
+	GetInstanceTypesFromInstanceRequirementsPagesWithContext(aws.Context, *ec2.GetInstanceTypesFromInstanceRequirementsInput, func(*ec2.GetInstanceTypesFromInstanceRequirementsOutput, bool) bool, ...request.Option) error
+
 	GetLaunchTemplateData(*ec2.GetLaunchTemplateDataInput) (*ec2.GetLaunchTemplateDataOutput, error)
 	GetLaunchTemplateDataWithContext(aws.Context, *ec2.GetLaunchTemplateDataInput, ...request.Option) (*ec2.GetLaunchTemplateDataOutput, error)
 	GetLaunchTemplateDataRequest(*ec2.GetLaunchTemplateDataInput) (*request.Request, *ec2.GetLaunchTemplateDataOutput)
@@ -1756,6 +1763,13 @@ type EC2API interface {
 	GetSerialConsoleAccessStatus(*ec2.GetSerialConsoleAccessStatusInput) (*ec2.GetSerialConsoleAccessStatusOutput, error)
 	GetSerialConsoleAccessStatusWithContext(aws.Context, *ec2.GetSerialConsoleAccessStatusInput, ...request.Option) (*ec2.GetSerialConsoleAccessStatusOutput, error)
 	GetSerialConsoleAccessStatusRequest(*ec2.GetSerialConsoleAccessStatusInput) (*request.Request, *ec2.GetSerialConsoleAccessStatusOutput)
+
+	GetSpotPlacementScores(*ec2.GetSpotPlacementScoresInput) (*ec2.GetSpotPlacementScoresOutput, error)
+	GetSpotPlacementScoresWithContext(aws.Context, *ec2.GetSpotPlacementScoresInput, ...request.Option) (*ec2.GetSpotPlacementScoresOutput, error)
+	GetSpotPlacementScoresRequest(*ec2.GetSpotPlacementScoresInput) (*request.Request, *ec2.GetSpotPlacementScoresOutput)
+
+	GetSpotPlacementScoresPages(*ec2.GetSpotPlacementScoresInput, func(*ec2.GetSpotPlacementScoresOutput, bool) bool) error
+	GetSpotPlacementScoresPagesWithContext(aws.Context, *ec2.GetSpotPlacementScoresInput, func(*ec2.GetSpotPlacementScoresOutput, bool) bool, ...request.Option) error
 
 	GetSubnetCidrReservations(*ec2.GetSubnetCidrReservationsInput) (*ec2.GetSubnetCidrReservationsOutput, error)
 	GetSubnetCidrReservationsWithContext(aws.Context, *ec2.GetSubnetCidrReservationsInput, ...request.Option) (*ec2.GetSubnetCidrReservationsOutput, error)
