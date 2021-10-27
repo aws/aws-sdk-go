@@ -285,8 +285,10 @@ import (
 	description2 "github.com/blinkops/blink-sdk/plugin/description"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
+	"io/ioutil"
 	"math/rand"
 	"net/http"
+	"os"
 	"path"
 	"strconv"
 	"strings"
@@ -2000,7 +2002,7 @@ func createAWSSessionByContext(region string, context *plugin.ActionContext, tim
 	return createAWSSessionByCredentials(region, awsCredentials, timeout)
 }
 
-func determineConnectionType(awsCredentials map[string]string) (credsType, key, value string) {
+func detectConnectionType(awsCredentials map[string]string) (credsType, key, value string) {
 	if awsCredentials[awsAccessKeyId] == "" || awsCredentials[awsSecretAccessKey] == "" {
 		if awsCredentials[roleArn] == "" || awsCredentials[externalID] == "" {
 			return "", "", ""
@@ -2026,53 +2028,68 @@ func convertInterfaceMapToStringMap(m map[string]interface{}) map[string]string 
 	return mapString
 }
 
-func assumeRole(role, externalID, region string) (creds *credentials.Credentials, err error) {
-	log.Debug("attempting to assume role")
-	log.Debugf("%s, %s, %s", role, externalID, region)
+func assumeRole(role, externalID, region string) (access, secret, sessionToken string, err error) {
 	sess, _ := session.NewSession(&aws.Config{
 		Region: aws.String(region),
 	})
+
 	svc := sts.New(sess)
-
 	sessionName := strconv.Itoa(rand.Int())
-	result, err := svc.AssumeRole(&sts.AssumeRoleInput{
-		RoleArn:         &role,
-		RoleSessionName: &sessionName,
-		ExternalId: &externalID,
-	})
 
-	if err != nil {
-		return nil, fmt.Errorf("unable to assume role with error: %w", err)
+	tokenFile, ok := os.LookupEnv("AWS_WEB_IDENTITY_TOKEN_FILE")
+	if ok {
+		log.Debug("assuming role with web identity")
+		data, err := ioutil.ReadFile(tokenFile)
+		if err != nil {
+			return access, secret, sessionToken, fmt.Errorf("unable to open web identity token file with error: %w", err)
+		}
+
+		fmt.Println("Contents of file:", string(data))
+		result, err := svc.AssumeRoleWithWebIdentity(&sts.AssumeRoleWithWebIdentityInput{
+			DurationSeconds:  aws.Int64(3600),
+			RoleArn:          aws.String(role),
+			RoleSessionName:  aws.String(sessionName),
+			WebIdentityToken: aws.String(string(data)),
+		})
+		if err != nil {
+			return access, secret, sessionToken, fmt.Errorf("unable to assume web identity role with error: %w", err)
+		}
+		access, secret, sessionToken = *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken
+	} else {
+		log.Debug("assuming role with trusted entity")
+		result, err := svc.AssumeRole(&sts.AssumeRoleInput{
+			RoleArn:         &role,
+			RoleSessionName: &sessionName,
+			ExternalId:      &externalID,
+		})
+		if err != nil {
+			return access, secret, sessionToken, fmt.Errorf("unable to assume trusted identity role with error: %w", err)
+		}
+		access, secret, sessionToken = *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken
 	}
-	id, secret, token := result.Credentials.AccessKeyId, result.Credentials.SecretAccessKey, result.Credentials.SessionToken
-	return credentials.NewStaticCredentials(*id, *secret, *token), nil
+	return access, secret, sessionToken, nil
 }
 
-
 func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}, timeout int32) (*session.Session, error) {
-	log.Debug("inside createAWSSessionByCredentials")
-	log.Debugf("%+v\n", awsCredentials)
 	var creds *credentials.Credentials
+	var access, secret, sessionToken string
 
 	m := convertInterfaceMapToStringMap(awsCredentials)
-	sessionType, k, v := determineConnectionType(m)
+	sessionType, k, v := detectConnectionType(m)
 	switch sessionType {
-	// do assume role
 	case "roleBased":
 		var err error
-		creds, err = assumeRole(k, v, region)
+		access, secret, sessionToken, err = assumeRole(k, v, region)
 		if err != nil {
 			return nil, fmt.Errorf("unable to assume role with error: %w", err)
 		}
-	// continue as usual with access and secret key
 	case "userBased":
-		creds = credentials.NewStaticCredentials(k, v, "")
-	// invalid credentials
+		access, secret, sessionToken = k, v, ""
 	default:
 		return nil, fmt.Errorf("invalid credentials: make sure access+secret key are supplied OR role_arn+external_id")
 	}
 
-	log.Debugf("chose %s", sessionType)
+	creds = credentials.NewStaticCredentials(access, secret, sessionToken)
 	// Create new session
 	awsConfig := &aws.Config{
 		Region:      aws.String(region),
