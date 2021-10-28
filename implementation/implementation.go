@@ -2006,6 +2006,7 @@ func createAWSSessionByContext(region string, context *plugin.ActionContext, tim
 // role arn can be supplied alone if it's irsa
 // role arn and external id have to be supplied together for traditional assume role
 func detectConnectionType(awsCredentials map[string]string) (credsType, key, value string) {
+	log.Debug(awsCredentials[roleArn], awsCredentials[externalID], awsCredentials[awsAccessKeyId], awsCredentials[awsSecretAccessKey])
 	if awsCredentials[awsAccessKeyId] == "" || awsCredentials[awsSecretAccessKey] == "" {
 		if awsCredentials[roleArn] == "" {
 			return "", "", ""
@@ -2095,7 +2096,7 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	case "userBased":
 		access, secret, sessionToken = k, v, ""
 	default:
-		return nil, fmt.Errorf("invalid credentials: make sure access+secret key are supplied OR role_arn and/orexternal_id")
+		return nil, fmt.Errorf("invalid credentials: make sure access+secret key are supplied OR role_arn and/or external_id")
 	}
 
 	// setting the credentials we just obtained
