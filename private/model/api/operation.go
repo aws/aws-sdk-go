@@ -639,20 +639,20 @@ func (o *Operation) GoCode() string {
 func (o *Operation) GenerateAction() error {
 	actionParameters := make(map[string]plugin.ActionParameter)
 
-	isActionRequired := true
+	isRegionRequired := true
 	// aws services that are not region specific
 	const services = []string{"IAM", "S3"}
 
 	for _, s := range services {
 		if s == o.API.StructName() {
-			isActionRequired = false
+			isRegionRequired = false
 		}
 	}
 
 	actionParameters["awsRegion"] = plugin.ActionParameter{
 		Type:        "string",
 		Description: "AWS Region(s), More than 1 region can be provided seperated by \",\", Use \"*\" to run on all regions",
-		Required:    isActionRequired,
+		Required:    isRegionRequired,
 	}
 
 	inputShape := o.API.Shapes[o.InputRef.ShapeName]
