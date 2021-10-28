@@ -2052,7 +2052,6 @@ func assumeRole(role, externalID, region string) (access, secret, sessionToken s
 			return access, secret, sessionToken, fmt.Errorf("unable to open web identity token file with error: %w", err)
 		}
 
-		fmt.Println("Contents of file:", string(data))
 		result, err := svc.AssumeRoleWithWebIdentity(&sts.AssumeRoleWithWebIdentityInput{
 			DurationSeconds:  aws.Int64(3600),
 			RoleArn:          aws.String(role),
