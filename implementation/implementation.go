@@ -2036,8 +2036,8 @@ func assumeRole(role, externalID, region string) (access, secret, sessionToken s
 	svc := sts.New(sess)
 	sessionName := strconv.Itoa(rand.Int())
 
-	tokenFile, ok := os.LookupEnv("AWS_WEB_IDENTITY_TOKEN_FILE")
-	if ok {
+	// irsa does not work with externalID, only the "traditional" assume role does
+	if externalID == "" {
 		log.Debug("assuming role with web identity")
 		data, err := ioutil.ReadFile(tokenFile)
 		if err != nil {
@@ -2071,11 +2071,13 @@ func assumeRole(role, externalID, region string) (access, secret, sessionToken s
 }
 
 func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}, timeout int32) (*session.Session, error) {
-	var creds *credentials.Credentials
 	var access, secret, sessionToken string
 
+	// aws credentials are always strings. interface is annoying, let's convert to map[string]string
 	m := convertInterfaceMapToStringMap(awsCredentials)
 	sessionType, k, v := detectConnectionType(m)
+
+	// checking whether the session is going to be with regular aws access keys or a role needed to be assumed
 	switch sessionType {
 	case "roleBased":
 		var err error
@@ -2086,10 +2088,12 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	case "userBased":
 		access, secret, sessionToken = k, v, ""
 	default:
-		return nil, fmt.Errorf("invalid credentials: make sure access+secret key are supplied OR role_arn+external_id")
+		return nil, fmt.Errorf("invalid credentials: make sure access+secret key are supplied OR role_arn and/orexternal_id")
 	}
 
-	creds = credentials.NewStaticCredentials(access, secret, sessionToken)
+	// setting the credentials we just obtained
+	creds := credentials.NewStaticCredentials(access, secret, sessionToken)
+
 	// Create new session
 	awsConfig := &aws.Config{
 		Region:      aws.String(region),
