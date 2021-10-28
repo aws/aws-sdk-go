@@ -641,7 +641,7 @@ func (o *Operation) GenerateAction() error {
 
 	isRegionRequired := true
 	// aws services that are not region specific
-	const services = []string{"IAM", "S3"}
+	const services = []string{"IAM", "S3", "STS"}
 
 	for _, s := range services {
 		if s == o.API.StructName() {
