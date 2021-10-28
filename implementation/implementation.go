@@ -2038,6 +2038,11 @@ func assumeRole(role, externalID, region string) (access, secret, sessionToken s
 
 	// irsa does not work with externalID, only the "traditional" assume role does
 	if externalID == "" {
+		tokenFile, ok := os.LookupEnv("AWS_WEB_IDENTITY_TOKEN_FILE")
+		if !ok {
+			return access, secret, sessionToken, fmt.Errorf("token file for irsa not found. make sure pod is configured correctly and that your service account is created and properly annotated")
+		}
+
 		log.Debug("assuming role with web identity")
 		data, err := ioutil.ReadFile(tokenFile)
 		if err != nil {
