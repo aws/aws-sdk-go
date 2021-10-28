@@ -1644,6 +1644,22 @@
         "Player$LatencyInMs": "<p>A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to AWS Regions. If this property is present, FlexMatch considers placing the match only in Regions for which latency is reported. </p> <p>If a matchmaker has a rule that evaluates player latency, players must report latency in order to be matched. If no latency is reported in this scenario, FlexMatch assumes that no Regions are available to the player and the ticket is not matchable. </p>"
       }
     },
+    "LaunchParametersStringModel": {
+      "base": null,
+      "refs": {
+        "CreateFleetInput$ServerLaunchParameters": "<p> <b>This parameter is no longer used.</b> Specify server launch parameters using the <code>RuntimeConfiguration</code> parameter. Requests that use this parameter instead continue to be valid.</p>",
+        "FleetAttributes$ServerLaunchParameters": "<p> <b>This parameter is no longer used.</b> Server launch parameters are now defined using the fleet's <a>RuntimeConfiguration</a> parameter. Requests that use this parameter instead continue to be valid.</p>",
+        "ServerProcess$Parameters": "<p>An optional list of parameters to pass to the server executable or Realtime script on launch.</p>"
+      }
+    },
+    "LaunchPathStringModel": {
+      "base": null,
+      "refs": {
+        "CreateFleetInput$ServerLaunchPath": "<p> <b>This parameter is no longer used.</b> Specify a server launch path using the <code>RuntimeConfiguration</code> parameter. Requests that use this parameter instead continue to be valid.</p>",
+        "FleetAttributes$ServerLaunchPath": "<p> <b>This parameter is no longer used.</b> Server launch paths are now defined using the fleet's <a>RuntimeConfiguration</a> parameter. Requests that use this parameter instead continue to be valid.</p>",
+        "ServerProcess$LaunchPath": "<p>The location of a game build executable or the Realtime script file that contains the <code>Init()</code> function. Game builds and Realtime scripts are installed on instances at the root: </p> <ul> <li> <p>Windows (custom game builds only): <code>C:\\game</code>. Example: \"<code>C:\\game\\MyGame\\server.exe</code>\" </p> </li> <li> <p>Linux: <code>/local/game</code>. Examples: \"<code>/local/game/MyGame/server.exe</code>\" or \"<code>/local/game/MyRealtimeScript.js</code>\"</p> </li> </ul>"
+      }
+    },
     "LaunchTemplateId": {
       "base": null,
       "refs": {
@@ -2076,8 +2092,6 @@
         "CreateBuildInput$Version": "<p>Version information that is associated with a build or script. Version strings do not need to be unique. You can use <a>UpdateBuild</a> to change this value later. </p>",
         "CreateFleetInput$Name": "<p>A descriptive label that is associated with a fleet. Fleet names do not need to be unique.</p>",
         "CreateFleetInput$Description": "<p>A human-readable description of the fleet.</p>",
-        "CreateFleetInput$ServerLaunchPath": "<p> <b>This parameter is no longer used.</b> Specify a server launch path using the <code>RuntimeConfiguration</code> parameter. Requests that use this parameter instead continue to be valid.</p>",
-        "CreateFleetInput$ServerLaunchParameters": "<p> <b>This parameter is no longer used.</b> Specify server launch parameters using the <code>RuntimeConfiguration</code> parameter. Requests that use this parameter instead continue to be valid.</p>",
         "CreateFleetInput$PeerVpcAwsAccountId": "<p>Used when peering your GameLift fleet with a VPC, the unique identifier for the AWS account that owns the VPC. You can find your account ID in the AWS Management Console under account settings. </p>",
         "CreateFleetInput$PeerVpcId": "<p>A unique identifier for a VPC with resources to be accessed by your GameLift fleet. The VPC must be in the same Region as your fleet. To look up a VPC ID, use the <a href=\"https://console.aws.amazon.com/vpc/\">VPC Dashboard</a> in the AWS Management Console. Learn more about VPC peering in <a href=\"https://docs.aws.amazon.com/gamelift/latest/developerguide/vpc-peering.html\">VPC Peering with GameLift Fleets</a>. </p>",
         "CreateGameSessionInput$Name": "<p>A descriptive label that is associated with a game session. Session names do not need to be unique.</p>",
@@ -2132,8 +2146,6 @@
         "Event$PreSignedLogUrl": "<p>Location of stored logs with additional detail that is related to the event. This is useful for debugging issues. The URL is valid for 15 minutes. You can also access fleet creation logs through the GameLift console.</p>",
         "FleetAttributes$Description": "<p>A human-readable description of the fleet.</p>",
         "FleetAttributes$Name": "<p>A descriptive label that is associated with a fleet. Fleet names do not need to be unique.</p>",
-        "FleetAttributes$ServerLaunchPath": "<p> <b>This parameter is no longer used.</b> Server launch paths are now defined using the fleet's <a>RuntimeConfiguration</a> parameter. Requests that use this parameter instead continue to be valid.</p>",
-        "FleetAttributes$ServerLaunchParameters": "<p> <b>This parameter is no longer used.</b> Server launch parameters are now defined using the fleet's <a>RuntimeConfiguration</a> parameter. Requests that use this parameter instead continue to be valid.</p>",
         "GameServerGroup$StatusReason": "<p>Additional information about the current game server group status. This information might provide additional insight on groups that are in <code>ERROR</code> status.</p>",
         "GameSession$GameSessionId": "<p>A unique identifier for the game session. A game session ARN has the following format: <code>arn:aws:gamelift:&lt;region&gt;::gamesession/&lt;fleet ID&gt;/&lt;custom ID string or idempotency token&gt;</code>.</p>",
         "GameSession$Name": "<p>A descriptive label that is associated with a game session. Session names do not need to be unique.</p>",
@@ -2170,8 +2182,6 @@
         "SearchGameSessionsInput$SortExpression": "<p>Instructions on how to sort the search results. If no sort expression is included, the request returns results in random order. A sort expression consists of the following elements:</p> <ul> <li> <p> <b>Operand</b> -- Name of a game session attribute. Valid values are <code>gameSessionName</code>, <code>gameSessionId</code>, <code>gameSessionProperties</code>, <code>maximumSessions</code>, <code>creationTimeMillis</code>, <code>playerSessionCount</code>, <code>hasAvailablePlayerSessions</code>.</p> </li> <li> <p> <b>Order</b> -- Valid sort orders are <code>ASC</code> (ascending) and <code>DESC</code> (descending).</p> </li> </ul> <p>For example, this sort expression returns the oldest active sessions first: <code>\"SortExpression\": \"creationTimeMillis ASC\"</code>. Results with a null value for the sort operand are returned at the end of the list.</p>",
         "SearchGameSessionsInput$NextToken": "<p>A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.</p>",
         "SearchGameSessionsOutput$NextToken": "<p>A token that indicates where to resume retrieving results on the next call to this operation. If no token is returned, these results represent the end of the list.</p>",
-        "ServerProcess$LaunchPath": "<p>The location of a game build executable or the Realtime script file that contains the <code>Init()</code> function. Game builds and Realtime scripts are installed on instances at the root: </p> <ul> <li> <p>Windows (custom game builds only): <code>C:\\game</code>. Example: \"<code>C:\\game\\MyGame\\server.exe</code>\" </p> </li> <li> <p>Linux: <code>/local/game</code>. Examples: \"<code>/local/game/MyGame/server.exe</code>\" or \"<code>/local/game/MyRealtimeScript.js</code>\"</p> </li> </ul>",
-        "ServerProcess$Parameters": "<p>An optional list of parameters to pass to the server executable or Realtime script on launch.</p>",
         "StartGameSessionPlacementInput$GameSessionName": "<p>A descriptive label that is associated with a game session. Session names do not need to be unique.</p>",
         "StringDoubleMap$key": null,
         "StringList$member": null,
