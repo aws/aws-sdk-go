@@ -1,16 +1,16 @@
 {
   "version": "2.0",
-  "service": "<p>AWS Systems Manager Incident Manager is an incident management console designed to help users mitigate and recover from incidents affecting their AWS-hosted applications. An incident is any unplanned interruption or reduction in quality of services. </p> <p>Incident Manager increases incident resolution by notifying responders of impact, highlighting relevant troubleshooting data, and providing collaboration tools to get services back up and running. To achieve the primary goal of reducing the time-to-resolution of critical incidents, Incident Manager automates response plans and enables responder team escalation. </p>",
+  "service": "<p>Systems Manager Incident Manager is an incident management console designed to help users mitigate and recover from incidents affecting their Amazon Web Services-hosted applications. An incident is any unplanned interruption or reduction in quality of services. </p> <p>Incident Manager increases incident resolution by notifying responders of impact, highlighting relevant troubleshooting data, and providing collaboration tools to get services back up and running. To achieve the primary goal of reducing the time-to-resolution of critical incidents, Incident Manager automates response plans and enables responder team escalation. </p>",
   "operations": {
     "CreateReplicationSet": "<p>A replication set replicates and encrypts your data to the provided Regions with the provided KMS key. </p>",
     "CreateResponsePlan": "<p>Creates a response plan that automates the initial response to incidents. A response plan engages contacts, starts chat channel collaboration, and initiates runbooks at the beginning of an incident.</p>",
     "CreateTimelineEvent": "<p>Creates a custom timeline event on the incident details page of an incident record. Timeline events are automatically created by Incident Manager, marking key moment during an incident. You can create custom timeline events to mark important events that are automatically detected by Incident Manager.</p>",
     "DeleteIncidentRecord": "<p>Delete an incident record from Incident Manager. </p>",
     "DeleteReplicationSet": "<p>Deletes all Regions in your replication set. Deleting the replication set deletes all Incident Manager data.</p>",
-    "DeleteResourcePolicy": "<p>Deletes the resource policy that AWS Resource Access Manager uses to share your Incident Manager resource.</p>",
+    "DeleteResourcePolicy": "<p>Deletes the resource policy that Resource Access Manager uses to share your Incident Manager resource.</p>",
     "DeleteResponsePlan": "<p>Deletes the specified response plan. Deleting a response plan stops all linked CloudWatch alarms and EventBridge events from creating an incident with this response plan.</p>",
     "DeleteTimelineEvent": "<p>Deletes a timeline event from an incident.</p>",
-    "GetIncidentRecord": "<p>Returns the details of the specified incident record.</p>",
+    "GetIncidentRecord": "<p>Returns the details for the specified incident record.</p>",
     "GetReplicationSet": "<p>Retrieve your Incident Manager replication set.</p>",
     "GetResourcePolicies": "<p>Retrieves the resource policies attached to the specified response plan.</p>",
     "GetResponsePlan": "<p>Retrieves the details of the specified response plan.</p>",
@@ -20,13 +20,13 @@
     "ListReplicationSets": "<p>Lists details about the replication set configured in your account. </p>",
     "ListResponsePlans": "<p>Lists all response plans in your account.</p>",
     "ListTagsForResource": "<p>Lists the tags that are attached to the specified response plan.</p>",
-    "ListTimelineEvents": "<p>Lists timeline events of the specified incident record.</p>",
+    "ListTimelineEvents": "<p>Lists timeline events for the specified incident record.</p>",
     "PutResourcePolicy": "<p>Adds a resource policy to the specified response plan.</p>",
     "StartIncident": "<p>Used to start an incident from CloudWatch alarms, EventBridge events, or manually. </p>",
     "TagResource": "<p>Adds a tag to a response plan.</p>",
     "UntagResource": "<p>Removes a tag from a resource.</p>",
     "UpdateDeletionProtection": "<p>Update deletion protection to either allow or deny deletion of the final Region in a replication set.</p>",
-    "UpdateIncidentRecord": "<p>Update the details of an incident record. You can use this action to update an incident record from the defined chat channel. For more information about using actions in chat channels, see <a href=\"https://docs.aws.amazon.com/incident-manager/latest/userguide/chat.html#chat-interact\">Interacting through chat</a>.</p>",
+    "UpdateIncidentRecord": "<p>Update the details of an incident record. You can use this operation to update an incident record from the defined chat channel. For more information about using actions in chat channels, see <a href=\"https://docs.aws.amazon.com/incident-manager/latest/userguide/chat.html#chat-interact\">Interacting through chat</a>.</p>",
     "UpdateRelatedItems": "<p>Add or remove related items from the related items tab of an incident record.</p>",
     "UpdateReplicationSet": "<p>Add or delete Regions from your replication set.</p>",
     "UpdateResponsePlan": "<p>Updates the specified response plan.</p>",
@@ -34,7 +34,7 @@
   },
   "shapes": {
     "AccessDeniedException": {
-      "base": "<p>You don't have sufficient access to perform this action.</p>",
+      "base": "<p>You don't have sufficient access to perform this operation.</p>",
       "refs": {
       }
     },
@@ -53,9 +53,9 @@
       }
     },
     "AddRegionAction": {
-      "base": "<p>Defines the Region and KMS key to add to the replication set. </p>",
+      "base": "<p>Defines the Amazon Web Services Region and KMS key to add to the replication set. </p>",
       "refs": {
-        "UpdateReplicationSetAction$addRegionAction": "<p>Details about the Region that you're adding to the replication set.</p>"
+        "UpdateReplicationSetAction$addRegionAction": "<p>Details about the Amazon Web Services Region that you're adding to the replication set.</p>"
       }
     },
     "Arn": {
@@ -64,20 +64,20 @@
         "AutomationExecution$ssmExecutionArn": "<p>The Amazon Resource Name (ARN) of the automation process.</p>",
         "CreateReplicationSetOutput$arn": "<p>The Amazon Resource Name (ARN) of the replication set. </p>",
         "CreateResponsePlanOutput$arn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
-        "CreateTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record you are adding the event to.</p>",
+        "CreateTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record to which the event will be added.</p>",
         "CreateTimelineEventOutput$incidentRecordArn": "<p>The ARN of the incident record that you added the event to.</p>",
         "DeleteIncidentRecordInput$arn": "<p>The Amazon Resource Name (ARN) of the incident record you are deleting.</p>",
         "DeleteReplicationSetInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set you're deleting.</p>",
         "DeleteResourcePolicyInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource you're deleting the policy from.</p>",
         "DeleteResponsePlanInput$arn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
-        "DeleteTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that the event is part of.</p>",
+        "DeleteTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that includes the timeline event.</p>",
         "EventSummary$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that the event happened during.</p>",
         "GetIncidentRecordInput$arn": "<p>The Amazon Resource Name (ARN) of the incident record.</p>",
         "GetReplicationSetInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set you want to retrieve.</p>",
         "GetResourcePoliciesInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the response plan with the attached resource policy. </p>",
         "GetResponsePlanInput$arn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
         "GetResponsePlanOutput$arn": "<p>The ARN of the response plan.</p>",
-        "GetTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that the timeline event is part of.</p>",
+        "GetTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that includes the timeline event.</p>",
         "IncidentRecord$arn": "<p>The Amazon Resource Name (ARN) of the incident record.</p>",
         "IncidentRecord$lastModifiedBy": "<p>Who modified the incident most recently.</p>",
         "IncidentRecordSource$createdBy": "<p>The principal that started the incident.</p>",
@@ -85,8 +85,8 @@
         "IncidentRecordSource$resourceArn": "<p>The resource that caused the incident to be created.</p>",
         "IncidentRecordSummary$arn": "<p>The Amazon Resource Name (ARN) of the incident.</p>",
         "ItemValue$arn": "<p>The Amazon Resource Name (ARN) of the related item, if the related item is an Amazon resource.</p>",
-        "ListRelatedItemsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record that you are listing related items for.</p>",
-        "ListTimelineEventsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that the event is part of.</p>",
+        "ListRelatedItemsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record containing the listed related items.</p>",
+        "ListTimelineEventsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that includes the timeline event.</p>",
         "NotificationTargetItem$snsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic.</p>",
         "PutResourcePolicyInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the response plan you're adding the resource policy to.</p>",
         "ReplicationSet$arn": "<p>The Amazon Resource Name (ARN) of the replication set.</p>",
@@ -94,16 +94,16 @@
         "ReplicationSet$lastModifiedBy": "<p>Who last modified the replication set.</p>",
         "ReplicationSetArnList$member": null,
         "ResponsePlanSummary$arn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
-        "StartIncidentInput$responsePlanArn": "<p>The Amazon Resource Name (ARN) of the response plan that pre-defines summary, chat channels, SNS topics, runbooks, title, and impact of the incident. </p>",
+        "StartIncidentInput$responsePlanArn": "<p>The Amazon Resource Name (ARN) of the response plan that pre-defines summary, chat channels, Amazon SNS topics, runbooks, title, and impact of the incident. </p>",
         "StartIncidentOutput$incidentRecordArn": "<p>The ARN of the newly created incident record.</p>",
         "TimelineEvent$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that the event occurred during.</p>",
-        "TriggerDetails$triggerArn": "<p>The ARN of the source that detected the incident.</p>",
+        "TriggerDetails$triggerArn": "<p>The Amazon Resource Name (ARN) of the source that detected the incident.</p>",
         "UpdateDeletionProtectionInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set you're updating.</p>",
         "UpdateIncidentRecordInput$arn": "<p>The Amazon Resource Name (ARN) of the incident record you are updating.</p>",
-        "UpdateRelatedItemsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record you are updating related items in.</p>",
+        "UpdateRelatedItemsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident record containing the related items you are updating.</p>",
         "UpdateReplicationSetInput$arn": "<p>The Amazon Resource Name (ARN) of the replication set you're updating.</p>",
         "UpdateResponsePlanInput$arn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
-        "UpdateTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that the timeline event is part of.</p>"
+        "UpdateTimelineEventInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that includes the timeline event.</p>"
       }
     },
     "AttributeValueList": {
@@ -127,39 +127,39 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "ReplicationSet$deletionProtected": "<p>Determines if the replication set deletion protection is enabled or not. If deletion protection is enabled, you can't delete the last Region in the replication set. </p>",
+        "ReplicationSet$deletionProtected": "<p>Determines if the replication set deletion protection is enabled or not. If deletion protection is enabled, you can't delete the last Amazon Web Services Region in the replication set. </p>",
         "UpdateDeletionProtectionInput$deletionProtected": "<p>Details if deletion protection is enabled or disabled in your account.</p>"
       }
     },
     "ChatChannel": {
-      "base": "<p>The AWS Chatbot chat channel used for collaboration during an incident.</p>",
+      "base": "<p>The Chatbot chat channel used for collaboration during an incident.</p>",
       "refs": {
-        "CreateResponsePlanInput$chatChannel": "<p>The AWS Chatbot chat channel used for collaboration during an incident.</p>",
-        "GetResponsePlanOutput$chatChannel": "<p>The AWS Chatbot chat channel used for collaboration during an incident.</p>",
+        "CreateResponsePlanInput$chatChannel": "<p>The Chatbot chat channel used for collaboration during an incident.</p>",
+        "GetResponsePlanOutput$chatChannel": "<p>The Chatbot chat channel used for collaboration during an incident.</p>",
         "IncidentRecord$chatChannel": "<p>The chat channel used for collaboration during an incident.</p>",
-        "UpdateIncidentRecordInput$chatChannel": "<p>The AWS Chatbot chat channel for responders to collaborate in.</p>",
-        "UpdateResponsePlanInput$chatChannel": "<p>The AWS Chatbot chat channel used for collaboration during an incident.</p> <p>Use the empty structure to remove the chat channel from the response plan.</p>"
+        "UpdateIncidentRecordInput$chatChannel": "<p>The Chatbot chat channel where responders can collaborate.</p>",
+        "UpdateResponsePlanInput$chatChannel": "<p>The Chatbot chat channel used for collaboration during an incident.</p> <p>Use the empty structure to remove the chat channel from the response plan.</p>"
       }
     },
     "ChatbotSnsConfigurationSet": {
       "base": null,
       "refs": {
-        "ChatChannel$chatbotSns": "<p>The SNS targets that AWS Chatbot uses to notify the chat channel of updates to an incident. You can also make updates to the incident through the chat channel by using the SNS topics. </p>"
+        "ChatChannel$chatbotSns": "<p>The Amazon SNS targets that Chatbot uses to notify the chat channel of updates to an incident. You can also make updates to the incident through the chat channel by using the Amazon SNS topics. </p>"
       }
     },
     "ClientToken": {
       "base": null,
       "refs": {
-        "CreateReplicationSetInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "CreateResponsePlanInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
+        "CreateReplicationSetInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "CreateResponsePlanInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
         "CreateTimelineEventInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "StartIncidentInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "UpdateDeletionProtectionInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "UpdateIncidentRecordInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "UpdateRelatedItemsInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "UpdateReplicationSetInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "UpdateResponsePlanInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "UpdateTimelineEventInput$clientToken": "<p>A token ensuring that the action is called only once with the specified details.</p>"
+        "StartIncidentInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "UpdateDeletionProtectionInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "UpdateIncidentRecordInput$clientToken": "<p>A token that ensures that the operation is called only once with the specified details.</p>",
+        "UpdateRelatedItemsInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "UpdateReplicationSetInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "UpdateResponsePlanInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "UpdateTimelineEventInput$clientToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>"
       }
     },
     "Condition": {
@@ -206,9 +206,9 @@
     "DedupeString": {
       "base": null,
       "refs": {
-        "IncidentRecord$dedupeString": "<p>The string Incident Manager uses to prevent duplicate incidents from being created by the same incident.</p>",
+        "IncidentRecord$dedupeString": "<p>The string Incident Manager uses to prevent duplicate incidents from being created by the same incident in the same account.</p>",
         "IncidentTemplate$dedupeString": "<p>Used to stop Incident Manager from creating multiple incident records for the same incident. </p>",
-        "UpdateResponsePlanInput$incidentTemplateDedupeString": "<p>Used to create only one incident record for an incident.</p>"
+        "UpdateResponsePlanInput$incidentTemplateDedupeString": "<p>The string Incident Manager uses to prevent duplicate incidents from being created by the same incident in the same account.</p>"
       }
     },
     "DeleteIncidentRecordInput": {
@@ -222,9 +222,9 @@
       }
     },
     "DeleteRegionAction": {
-      "base": "<p>Defines the information about the Region you're deleting from your replication set.</p>",
+      "base": "<p>Defines the information about the Amazon Web Services Region you're deleting from your replication set.</p>",
       "refs": {
-        "UpdateReplicationSetAction$deleteRegionAction": "<p>Details about the Region that you're deleting to the replication set.</p>"
+        "UpdateReplicationSetAction$deleteRegionAction": "<p>Details about the Amazon Web Services Region that you're deleting to the replication set.</p>"
       }
     },
     "DeleteReplicationSetInput": {
@@ -284,7 +284,7 @@
     "EventData": {
       "base": null,
       "refs": {
-        "CreateTimelineEventInput$eventData": "<p>A valid JSON string. There is no other schema imposed. A short description of the event.</p>",
+        "CreateTimelineEventInput$eventData": "<p>A short description of the event as a valid JSON string. There is no other schema imposed.</p>",
         "TimelineEvent$eventData": "<p>A short description of the event.</p>",
         "UpdateTimelineEventInput$eventData": "<p>A short description of the event.</p>"
       }
@@ -328,8 +328,8 @@
     "FilterList": {
       "base": null,
       "refs": {
-        "ListIncidentRecordsInput$filters": "<p>Filter the list of incident records you are searching through. You can filter on the following keys:</p> <ul> <li> <p> <code>creationTime</code> </p> </li> <li> <p> <code>impact</code> </p> </li> <li> <p> <code>status</code> </p> </li> <li> <p> <code>createdBy</code> </p> </li> </ul>",
-        "ListTimelineEventsInput$filters": "<p>Filters the timeline events based on the provided conditional values. You can filter timeline events using the following keys:</p> <ul> <li> <p> <code>eventTime</code> </p> </li> <li> <p> <code>eventType</code> </p> </li> </ul>"
+        "ListIncidentRecordsInput$filters": "<p>Filters the list of incident records through which you are searching. You can filter on the following keys:</p> <ul> <li> <p> <code>creationTime</code> </p> </li> <li> <p> <code>impact</code> </p> </li> <li> <p> <code>status</code> </p> </li> <li> <p> <code>createdBy</code> </p> </li> </ul> <p>Note the following when deciding how to use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all incident records.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns incident records that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns incident records that match any of the values provided.</p> </li> </ul>",
+        "ListTimelineEventsInput$filters": "<p>Filters the timeline events based on the provided conditional values. You can filter timeline events using the following keys:</p> <ul> <li> <p> <code>eventTime</code> </p> </li> <li> <p> <code>eventType</code> </p> </li> </ul> <p>Note the following when deciding how to use Filters:</p> <ul> <li> <p>If you don't specify a Filter, the response includes all timeline events.</p> </li> <li> <p>If you specify more than one filter in a single request, the response returns timeline events that match all filters.</p> </li> <li> <p>If you specify a filter with more than one value, the response returns timeline events that match any of the values provided.</p> </li> </ul>"
       }
     },
     "GetIncidentRecordInput": {
@@ -389,18 +389,18 @@
         "IncidentRecordSummary$impact": "<p>Defines the impact to customers and applications.</p>",
         "IncidentTemplate$impact": "<p>The impact of the incident on your customers and applications. </p>",
         "StartIncidentInput$impact": "<p>Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>1</code> - Critical impact, this typically relates to full application failure that impacts many to all customers. </p> </li> <li> <p> <code>2</code> - High impact, partial application failure with impact to many customers.</p> </li> <li> <p> <code>3</code> - Medium impact, the application is providing reduced service to customers.</p> </li> <li> <p> <code>4</code> - Low impact, customer might aren't impacted by the problem yet.</p> </li> <li> <p> <code>5</code> - No impact, customers aren't currently impacted but urgent action is needed to avoid impact.</p> </li> </ul>",
-        "UpdateIncidentRecordInput$impact": "<p>Defines the impact to customers and applications. Providing an impact overwrites the impact provided by the response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>1</code> - Critical impact, this typically relates to full application failure that impacts many to all customers. </p> </li> <li> <p> <code>2</code> - High impact, partial application failure with impact to many customers.</p> </li> <li> <p> <code>3</code> - Medium impact, the application is providing reduced service to customers.</p> </li> <li> <p> <code>4</code> - Low impact, customer might aren't impacted by the problem yet.</p> </li> <li> <p> <code>5</code> - No impact, customers aren't currently impacted but urgent action is needed to avoid impact.</p> </li> </ul>",
+        "UpdateIncidentRecordInput$impact": "<p>Defines the impact of the incident to customers and applications. Providing an impact overwrites the impact provided by the response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>1</code> - Critical impact, full application failure that impacts many to all customers. </p> </li> <li> <p> <code>2</code> - High impact, partial application failure with impact to many customers.</p> </li> <li> <p> <code>3</code> - Medium impact, the application is providing reduced service to customers.</p> </li> <li> <p> <code>4</code> - Low impact, customer aren't impacted by the problem yet.</p> </li> <li> <p> <code>5</code> - No impact, customers aren't currently impacted but urgent action is needed to avoid impact.</p> </li> </ul>",
         "UpdateResponsePlanInput$incidentTemplateImpact": "<p>Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.</p> <p class=\"title\"> <b>Possible impacts:</b> </p> <ul> <li> <p> <code>5</code> - Severe impact</p> </li> <li> <p> <code>4</code> - High impact</p> </li> <li> <p> <code>3</code> - Medium impact</p> </li> <li> <p> <code>2</code> - Low impact</p> </li> <li> <p> <code>1</code> - No impact</p> </li> </ul>"
       }
     },
     "IncidentRecord": {
       "base": "<p>The record of the incident that's created when an incident occurs.</p>",
       "refs": {
-        "GetIncidentRecordOutput$incidentRecord": "<p>Details structure of the incident record.</p>"
+        "GetIncidentRecordOutput$incidentRecord": "<p>Details the structure of the incident record.</p>"
       }
     },
     "IncidentRecordSource": {
-      "base": "<p>Details about how the incident record was created and when.</p>",
+      "base": "<p>Details about what created the incident record and when it was created.</p>",
       "refs": {
         "IncidentRecord$incidentRecordSource": "<p>Details about the action that started the incident.</p>",
         "IncidentRecordSummary$incidentRecordSource": "<p>What caused Incident Manager to create the incident.</p>"
@@ -429,16 +429,16 @@
     "IncidentSource": {
       "base": null,
       "refs": {
-        "IncidentRecordSource$source": "<p>The service that started the incident. This can be manually created from Incident Manager, automatically created using an AWS CloudWatch alarm, or Amazon EventBridge event.</p>",
-        "TriggerDetails$source": "<p>Identifies the service that sourced the event. All events sourced from within AWS begin with \"aws.\" Customer-generated events can have any value here, as long as it doesn't begin with \"aws.\" We recommend the use of Java package-name style reverse domain-name strings. </p>"
+        "IncidentRecordSource$source": "<p>The service that started the incident. This can be manually created from Incident Manager, automatically created using an Amazon CloudWatch alarm, or Amazon EventBridge event.</p>",
+        "TriggerDetails$source": "<p>Identifies the service that sourced the event. All events sourced from within Amazon Web Services begin with \"<code>aws.</code>\" Customer-generated events can have any value here, as long as it doesn't begin with \"<code>aws.</code>\" We recommend the use of Java package-name style reverse domain-name strings. </p>"
       }
     },
     "IncidentSummary": {
       "base": null,
       "refs": {
-        "IncidentRecord$summary": "<p>The summary of the incident. The summary is a brief synopsis of what occurred, what is currently happening, and context.</p>",
+        "IncidentRecord$summary": "<p>The summary of the incident. The summary is a brief synopsis of what occurred, what's currently happening, and context of the incident.</p>",
         "IncidentTemplate$summary": "<p>The summary of the incident. The summary is a brief synopsis of what occurred, what's currently happening, and context.</p>",
-        "UpdateIncidentRecordInput$summary": "<p>The summary describes what has happened during the incident.</p>",
+        "UpdateIncidentRecordInput$summary": "<p>A longer description of what occurred during the incident.</p>",
         "UpdateResponsePlanInput$incidentTemplateSummary": "<p>A brief summary of the incident. This typically contains what has happened, what's currently happening, and next steps.</p>"
       }
     },
@@ -456,8 +456,8 @@
         "IncidentRecordSummary$title": "<p>The title of the incident. This value is either provided by the response plan or overwritten on creation.</p>",
         "IncidentTemplate$title": "<p>The title of the incident. </p>",
         "StartIncidentInput$title": "<p>Provide a title for the incident. Providing a title overwrites the title provided by the response plan. </p>",
-        "UpdateIncidentRecordInput$title": "<p>The title of the incident is a brief and easily recognizable.</p>",
-        "UpdateResponsePlanInput$incidentTemplateTitle": "<p>The short format name of the incident. Can't contain spaces.</p>"
+        "UpdateIncidentRecordInput$title": "<p>A brief description of the incident.</p>",
+        "UpdateResponsePlanInput$incidentTemplateTitle": "<p>The short format name of the incident. The title can't contain spaces.</p>"
       }
     },
     "Integer": {
@@ -570,7 +570,7 @@
     "MetricDefinition": {
       "base": null,
       "refs": {
-        "ItemValue$metricDefinition": "<p>The metric definition, if the related item is a metric in CloudWatch.</p>"
+        "ItemValue$metricDefinition": "<p>The metric definition, if the related item is a metric in Amazon CloudWatch.</p>"
       }
     },
     "NextToken": {
@@ -599,10 +599,10 @@
     "NotificationTargetSet": {
       "base": null,
       "refs": {
-        "IncidentRecord$notificationTargets": "<p>The SNS targets that are notified when updates are made to an incident.</p>",
-        "IncidentTemplate$notificationTargets": "<p>The SNS targets that are notified when updates are made to an incident.</p>",
-        "UpdateIncidentRecordInput$notificationTargets": "<p>The SNS targets that are notified when updates are made to an incident.</p> <p>Using multiple SNS topics creates redundancy in the case that a Region is down during the incident.</p>",
-        "UpdateResponsePlanInput$incidentTemplateNotificationTargets": "<p>The SNS targets that are notified when updates are made to an incident.</p>"
+        "IncidentRecord$notificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p>",
+        "IncidentTemplate$notificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p>",
+        "UpdateIncidentRecordInput$notificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p> <p>Using multiple SNS topics creates redundancy in the event that a Region is down during the incident.</p>",
+        "UpdateResponsePlanInput$incidentTemplateNotificationTargets": "<p>The Amazon SNS targets that are notified when updates are made to an incident.</p>"
       }
     },
     "Policy": {
@@ -633,11 +633,11 @@
     "RawData": {
       "base": null,
       "refs": {
-        "TriggerDetails$rawData": "<p>Raw data passed from either EventBridge, CloudWatch, or Incident Manager when an incident is created.</p>"
+        "TriggerDetails$rawData": "<p>Raw data passed from either Amazon EventBridge, Amazon CloudWatch, or Incident Manager when an incident is created.</p>"
       }
     },
     "RegionInfo": {
-      "base": "<p>Information about a Region in your replication set.</p>",
+      "base": "<p>Information about a Amazon Web Services Region in your replication set.</p>",
       "refs": {
         "RegionInfoMap$value": null
       }
@@ -645,7 +645,7 @@
     "RegionInfoMap": {
       "base": null,
       "refs": {
-        "ReplicationSet$regionMap": "<p>The map between each Region in your replication set and the KMS key that is used to encrypt the data in that Region.</p>"
+        "ReplicationSet$regionMap": "<p>The map between each Amazon Web Services Region in your replication set and the KMS key that's used to encrypt the data in that Region.</p>"
       }
     },
     "RegionMapInput": {
@@ -655,7 +655,7 @@
       }
     },
     "RegionMapInputValue": {
-      "base": "<p>The mapping between a Region and the key that's used to encrypt the data.</p>",
+      "base": "<p>The mapping between a Amazon Web Services Region and the key that's used to encrypt the data.</p>",
       "refs": {
         "RegionMapInput$value": null
       }
@@ -663,8 +663,8 @@
     "RegionName": {
       "base": null,
       "refs": {
-        "AddRegionAction$regionName": "<p>The Region name to add to the replication set.</p>",
-        "DeleteRegionAction$regionName": "<p>The name of the Region you're deleting from the replication set.</p>",
+        "AddRegionAction$regionName": "<p>The Amazon Web Services Region name to add to the replication set.</p>",
+        "DeleteRegionAction$regionName": "<p>The name of the Amazon Web Services Region you're deleting from the replication set.</p>",
         "RegionInfoMap$key": null,
         "RegionMapInput$key": null
       }
@@ -672,7 +672,7 @@
     "RegionStatus": {
       "base": null,
       "refs": {
-        "RegionInfo$status": "<p>The status of the Region in the replication set.</p>"
+        "RegionInfo$status": "<p>The status of the Amazon Web Services Region in the replication set.</p>"
       }
     },
     "RelatedItem": {
@@ -686,7 +686,7 @@
       "base": null,
       "refs": {
         "ListRelatedItemsOutput$relatedItems": "<p>Details about each related item.</p>",
-        "StartIncidentInput$relatedItems": "<p>Add related items to the incident for other responders to use. Related items are AWS resources, external links, or files uploaded to an S3 bucket. </p>"
+        "StartIncidentInput$relatedItems": "<p>Add related items to the incident for other responders to use. Related items are AWS resources, external links, or files uploaded to an Amazon S3 bucket. </p>"
       }
     },
     "RelatedItemTitleString": {
@@ -702,7 +702,7 @@
       }
     },
     "ReplicationSet": {
-      "base": "<p>The set of Regions that your Incident Manager data will be replicated to and the KMS key used to encrypt the data. </p>",
+      "base": "<p>The set of Amazon Web Services Region that your Incident Manager data will be replicated to and the KMS key used to encrypt the data. </p>",
       "refs": {
         "GetReplicationSetOutput$replicationSet": "<p>Details of the replication set.</p>"
       }
@@ -720,7 +720,7 @@
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>Request references a resource which does not exist. </p>",
+      "base": "<p>Request references a resource which doesn't exist. </p>",
       "refs": {
       }
     },
@@ -750,14 +750,14 @@
         "CreateResponsePlanInput$displayName": "<p>The long format of the response plan name. This field can contain spaces.</p>",
         "GetResponsePlanOutput$displayName": "<p>The long format name of the response plan. Can contain spaces.</p>",
         "ResponsePlanSummary$displayName": "<p>The human readable name of the response plan. This can include spaces.</p>",
-        "UpdateResponsePlanInput$displayName": "<p>The long format name of the response plan. Can't contain spaces.</p>"
+        "UpdateResponsePlanInput$displayName": "<p>The long format name of the response plan. The display name can't contain spaces.</p>"
       }
     },
     "ResponsePlanName": {
       "base": null,
       "refs": {
         "CreateResponsePlanInput$name": "<p>The short format name of the response plan. Can't include spaces.</p>",
-        "GetResponsePlanOutput$name": "<p>The short format name of the response plan. Can't contain spaces.</p>",
+        "GetResponsePlanOutput$name": "<p>The short format name of the response plan. The name can't contain spaces.</p>",
         "ResponsePlanSummary$name": "<p>The name of the response plan. This can't include spaces.</p>"
       }
     },
@@ -807,7 +807,7 @@
       "base": null,
       "refs": {
         "AddRegionAction$sseKmsKeyId": "<p>The KMS key ID to use to encrypt your replication set.</p>",
-        "RegionInfo$sseKmsKeyId": "<p>The ID of the KMS key used to encrypt the data in this Region.</p>",
+        "RegionInfo$sseKmsKeyId": "<p>The ID of the KMS key used to encrypt the data in this Amazon Web Services Region.</p>",
         "RegionMapInputValue$sseKmsKeyId": "<p>The KMS key used to encrypt the data in your replication set.</p>"
       }
     },
@@ -880,9 +880,9 @@
       "refs": {
         "ConflictException$resourceIdentifier": "<p>The identifier of the requested resource</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the response plan.</p>",
-        "RegionInfo$statusMessage": "<p>Information displayed about the status of the Region.</p>",
+        "RegionInfo$statusMessage": "<p>Information displayed about the status of the Amazon Web Services Region.</p>",
         "ResourceNotFoundException$resourceIdentifier": "<p>The identifier for the requested resource</p>",
-        "ResourcePolicy$ramResourceShareRegion": "<p>The Region that policy allows resources to be used in.</p>",
+        "ResourcePolicy$ramResourceShareRegion": "<p>The Amazon Web Services Region that policy allows resources to be used in.</p>",
         "ServiceQuotaExceededException$quotaCode": "<p>Originating quota code</p>",
         "ServiceQuotaExceededException$resourceIdentifier": "<p>The identifier for the requested resource</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the response plan you're adding the tags to.</p>",
@@ -970,6 +970,7 @@
       "refs": {
         "Condition$after": "<p>After the specified timestamp.</p>",
         "Condition$before": "<p>Before the specified timestamp</p>",
+        "ConflictException$retryAfter": "<p>If present in the output, the operation can be retried after this time</p>",
         "CreateTimelineEventInput$eventTime": "<p>The time that the event occurred.</p>",
         "EventSummary$eventTime": "<p>The time that the event occurred.</p>",
         "EventSummary$eventUpdatedTime": "<p>The time that the timeline event was last updated.</p>",
@@ -978,7 +979,7 @@
         "IncidentRecord$resolvedTime": "<p>The time at which the incident was resolved. This appears as a timeline event.</p>",
         "IncidentRecordSummary$creationTime": "<p>The time the incident was created.</p>",
         "IncidentRecordSummary$resolvedTime": "<p>The time the incident was resolved.</p>",
-        "RegionInfo$statusUpdateDateTime": "<p>The most recent date and time that the Region's status was updated.</p>",
+        "RegionInfo$statusUpdateDateTime": "<p>The most recent date and time that Incident Manager updated the Amazon Web Services Region's status.</p>",
         "ReplicationSet$createdTime": "<p>When the replication set was created.</p>",
         "ReplicationSet$lastModifiedTime": "<p>When the replication set was last updated.</p>",
         "TimelineEvent$eventTime": "<p>The time that the event occurred.</p>",
@@ -999,7 +1000,7 @@
         "CreateTimelineEventOutput$eventId": "<p>The ID of the event for easy reference later. </p>",
         "DeleteTimelineEventInput$eventId": "<p>The ID of the event you are updating. You can find this by using <code>ListTimelineEvents</code>.</p>",
         "EventSummary$eventId": "<p>The timeline event ID.</p>",
-        "GetTimelineEventInput$eventId": "<p>The ID of the event. You can get an event's ID when you create it or by using <code>ListTimelineEvents</code>.</p>",
+        "GetTimelineEventInput$eventId": "<p>The ID of the event. You can get an event's ID when you create it, or by using <code>ListTimelineEvents</code>.</p>",
         "TimelineEvent$eventId": "<p>The ID of the timeline event.</p>",
         "UpdateTimelineEventInput$eventId": "<p>The ID of the event you are updating. You can find this by using <code>ListTimelineEvents</code>.</p>"
       }
@@ -1089,11 +1090,11 @@
     "Url": {
       "base": null,
       "refs": {
-        "ItemValue$url": "<p>The URL, if the related item is a non-AWS resource.</p>"
+        "ItemValue$url": "<p>The URL, if the related item is a non-Amazon Web Services resource.</p>"
       }
     },
     "ValidationException": {
-      "base": "<p>The input fails to satisfy the constraints specified by an AWS service.</p>",
+      "base": "<p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>",
       "refs": {
       }
     }

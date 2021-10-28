@@ -92,7 +92,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"TaggingFailedException"}
+        {"shape":"TaggingFailedException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "CreateFleetLocations":{
@@ -108,7 +109,8 @@
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
-        {"shape":"InvalidFleetStatusException"}
+        {"shape":"InvalidFleetStatusException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "CreateGameServerGroup":{
@@ -145,7 +147,8 @@
         {"shape":"NotFoundException"},
         {"shape":"FleetCapacityExceededException"},
         {"shape":"LimitExceededException"},
-        {"shape":"IdempotentParameterMismatchException"}
+        {"shape":"IdempotentParameterMismatchException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "CreateGameSessionQueue":{
@@ -337,7 +340,8 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DeleteGameServerGroup":{
@@ -517,7 +521,8 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServiceException"},
-        {"shape":"UnauthorizedException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DescribeFleetAttributes":{
@@ -577,7 +582,8 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DescribeFleetLocationCapacity":{
@@ -592,7 +598,8 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DescribeFleetLocationUtilization":{
@@ -607,7 +614,8 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DescribeFleetPortSettings":{
@@ -698,7 +706,8 @@
         {"shape":"NotFoundException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"TerminalRoutingStrategyException"}
+        {"shape":"TerminalRoutingStrategyException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DescribeGameSessionPlacement":{
@@ -744,7 +753,8 @@
         {"shape":"NotFoundException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"TerminalRoutingStrategyException"}
+        {"shape":"TerminalRoutingStrategyException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DescribeInstances":{
@@ -759,7 +769,8 @@
         {"shape":"UnauthorizedException"},
         {"shape":"InvalidRequestException"},
         {"shape":"NotFoundException"},
-        {"shape":"InternalServiceException"}
+        {"shape":"InternalServiceException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DescribeMatchmaking":{
@@ -847,7 +858,8 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "DescribeScript":{
@@ -1114,7 +1126,8 @@
         {"shape":"NotFoundException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"TerminalRoutingStrategyException"}
+        {"shape":"TerminalRoutingStrategyException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "StartFleetActions":{
@@ -1129,7 +1142,8 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "StartGameSessionPlacement":{
@@ -1189,7 +1203,8 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"}
+        {"shape":"NotFoundException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "StopGameSessionPlacement":{
@@ -1330,7 +1345,8 @@
         {"shape":"InvalidFleetStatusException"},
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
-        {"shape":"UnauthorizedException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"UnsupportedRegionException"}
       ]
     },
     "UpdateFleetPortSettings":{
@@ -1709,8 +1725,8 @@
         "Description":{"shape":"NonZeroAndMaxString"},
         "BuildId":{"shape":"BuildIdOrArn"},
         "ScriptId":{"shape":"ScriptIdOrArn"},
-        "ServerLaunchPath":{"shape":"NonZeroAndMaxString"},
-        "ServerLaunchParameters":{"shape":"NonZeroAndMaxString"},
+        "ServerLaunchPath":{"shape":"LaunchPathStringModel"},
+        "ServerLaunchParameters":{"shape":"LaunchParametersStringModel"},
         "LogPaths":{"shape":"StringList"},
         "EC2InstanceType":{"shape":"EC2InstanceType"},
         "EC2InboundPermissions":{"shape":"IpPermissionsList"},
@@ -2769,8 +2785,8 @@
         "BuildArn":{"shape":"BuildArn"},
         "ScriptId":{"shape":"ScriptId"},
         "ScriptArn":{"shape":"ScriptArn"},
-        "ServerLaunchPath":{"shape":"NonZeroAndMaxString"},
-        "ServerLaunchParameters":{"shape":"NonZeroAndMaxString"},
+        "ServerLaunchPath":{"shape":"LaunchPathStringModel"},
+        "ServerLaunchParameters":{"shape":"LaunchParametersStringModel"},
         "LogPaths":{"shape":"StringList"},
         "NewGameSessionProtectionPolicy":{"shape":"ProtectionPolicy"},
         "OperatingSystem":{"shape":"OperatingSystem"},
@@ -2999,6 +3015,14 @@
         "c5a.12xlarge",
         "c5a.16xlarge",
         "c5a.24xlarge",
+        "c6g.medium",
+        "c6g.large",
+        "c6g.xlarge",
+        "c6g.2xlarge",
+        "c6g.4xlarge",
+        "c6g.8xlarge",
+        "c6g.12xlarge",
+        "c6g.16xlarge",
         "r4.large",
         "r4.xlarge",
         "r4.2xlarge",
@@ -3021,6 +3045,14 @@
         "r5a.12xlarge",
         "r5a.16xlarge",
         "r5a.24xlarge",
+        "r6g.medium",
+        "r6g.large",
+        "r6g.xlarge",
+        "r6g.2xlarge",
+        "r6g.4xlarge",
+        "r6g.8xlarge",
+        "r6g.12xlarge",
+        "r6g.16xlarge",
         "m4.large",
         "m4.xlarge",
         "m4.2xlarge",
@@ -3041,7 +3073,15 @@
         "m5a.8xlarge",
         "m5a.12xlarge",
         "m5a.16xlarge",
-        "m5a.24xlarge"
+        "m5a.24xlarge",
+        "m6g.medium",
+        "m6g.large",
+        "m6g.xlarge",
+        "m6g.2xlarge",
+        "m6g.4xlarge",
+        "m6g.8xlarge",
+        "m6g.12xlarge",
+        "m6g.16xlarge"
       ]
     },
     "GameServerGroupName":{
@@ -3438,7 +3478,12 @@
       },
       "exception":true
     },
-    "IpAddress":{"type":"string"},
+    "IpAddress":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$"
+    },
     "IpPermission":{
       "type":"structure",
       "required":[
@@ -3475,6 +3520,18 @@
       "type":"map",
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"PositiveInteger"}
+    },
+    "LaunchParametersStringModel":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[A-Za-z0-9_:.+\\/\\\\\\- =@;{},?'\\[\\]\"]+"
+    },
+    "LaunchPathStringModel":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[A-Za-z0-9_:.+\\/\\\\\\- ]+"
     },
     "LaunchTemplateId":{
       "type":"string",
@@ -4291,8 +4348,8 @@
         "ConcurrentExecutions"
       ],
       "members":{
-        "LaunchPath":{"shape":"NonZeroAndMaxString"},
-        "Parameters":{"shape":"NonZeroAndMaxString"},
+        "LaunchPath":{"shape":"LaunchPathStringModel"},
+        "Parameters":{"shape":"LaunchParametersStringModel"},
         "ConcurrentExecutions":{"shape":"PositiveInteger"}
       }
     },

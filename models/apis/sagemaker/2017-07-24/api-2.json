@@ -3040,6 +3040,13 @@
         "VpcOnly"
       ]
     },
+    "AppSecurityGroupManagement":{
+      "type":"string",
+      "enum":[
+        "Service",
+        "Customer"
+      ]
+    },
     "AppSortKey":{
       "type":"string",
       "enum":["CreationTime"]
@@ -3068,7 +3075,9 @@
       "enum":[
         "JupyterServer",
         "KernelGateway",
-        "TensorBoard"
+        "TensorBoard",
+        "RStudioServerPro",
+        "RSessionGateway"
       ]
     },
     "ApprovalDescription":{
@@ -4562,7 +4571,9 @@
           "deprecated":true,
           "deprecatedMessage":"This property is deprecated, use KmsKeyId instead."
         },
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "AppSecurityGroupManagement":{"shape":"AppSecurityGroupManagement"},
+        "DomainSettings":{"shape":"DomainSettings"}
       }
     },
     "CreateDomainResponse":{
@@ -6375,7 +6386,10 @@
         "SubnetIds":{"shape":"Subnets"},
         "Url":{"shape":"String1024"},
         "VpcId":{"shape":"VpcId"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "DomainSettings":{"shape":"DomainSettings"},
+        "AppSecurityGroupManagement":{"shape":"AppSecurityGroupManagement"},
+        "SecurityGroupIdForDomainBoundary":{"shape":"SecurityGroupId"}
       }
     },
     "DescribeEdgePackagingJobRequest":{
@@ -7558,6 +7572,24 @@
       "type":"string",
       "max":63,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}"
+    },
+    "DomainSecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupId"},
+      "max":3
+    },
+    "DomainSettings":{
+      "type":"structure",
+      "members":{
+        "SecurityGroupIds":{"shape":"DomainSecurityGroupIds"},
+        "RStudioServerProDomainSettings":{"shape":"RStudioServerProDomainSettings"}
+      }
+    },
+    "DomainSettingsForUpdate":{
+      "type":"structure",
+      "members":{
+        "RStudioServerProDomainSettingsForUpdate":{"shape":"RStudioServerProDomainSettingsForUpdate"}
+      }
     },
     "DomainStatus":{
       "type":"string",
@@ -12948,6 +12980,50 @@
         "ModelPackageGroupArn":{"shape":"ModelPackageGroupArn"}
       }
     },
+    "RSessionAppSettings":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RStudioServerProAccessStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "RStudioServerProAppSettings":{
+      "type":"structure",
+      "members":{
+        "AccessStatus":{"shape":"RStudioServerProAccessStatus"},
+        "UserGroup":{"shape":"RStudioServerProUserGroup"}
+      }
+    },
+    "RStudioServerProDomainSettings":{
+      "type":"structure",
+      "required":["DomainExecutionRoleArn"],
+      "members":{
+        "DomainExecutionRoleArn":{"shape":"RoleArn"},
+        "RStudioConnectUrl":{"shape":"String"},
+        "RStudioPackageManagerUrl":{"shape":"String"},
+        "DefaultResourceSpec":{"shape":"ResourceSpec"}
+      }
+    },
+    "RStudioServerProDomainSettingsForUpdate":{
+      "type":"structure",
+      "required":["DomainExecutionRoleArn"],
+      "members":{
+        "DomainExecutionRoleArn":{"shape":"RoleArn"},
+        "DefaultResourceSpec":{"shape":"ResourceSpec"}
+      }
+    },
+    "RStudioServerProUserGroup":{
+      "type":"string",
+      "enum":[
+        "R_STUDIO_ADMIN",
+        "R_STUDIO_USER"
+      ]
+    },
     "RealtimeInferenceInstanceTypes":{
       "type":"list",
       "member":{"shape":"ProductionVariantInstanceType"}
@@ -14995,7 +15071,8 @@
       "required":["DomainId"],
       "members":{
         "DomainId":{"shape":"DomainId"},
-        "DefaultUserSettings":{"shape":"UserSettings"}
+        "DefaultUserSettings":{"shape":"UserSettings"},
+        "DomainSettingsForUpdate":{"shape":"DomainSettingsForUpdate"}
       }
     },
     "UpdateDomainResponse":{
@@ -15366,7 +15443,9 @@
         "SharingSettings":{"shape":"SharingSettings"},
         "JupyterServerAppSettings":{"shape":"JupyterServerAppSettings"},
         "KernelGatewayAppSettings":{"shape":"KernelGatewayAppSettings"},
-        "TensorBoardAppSettings":{"shape":"TensorBoardAppSettings"}
+        "TensorBoardAppSettings":{"shape":"TensorBoardAppSettings"},
+        "RStudioServerProAppSettings":{"shape":"RStudioServerProAppSettings"},
+        "RSessionAppSettings":{"shape":"RSessionAppSettings"}
       }
     },
     "VariantName":{

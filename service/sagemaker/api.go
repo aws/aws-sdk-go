@@ -30770,6 +30770,12 @@ type CreateDomainInput struct {
 	//    * VpcOnly - All Studio traffic is through the specified VPC and subnets
 	AppNetworkAccessType *string `type:"string" enum:"AppNetworkAccessType"`
 
+	// The entity that creates and manages the required security groups for inter-app
+	// communication in VPCOnly mode. Required when CreateDomain.AppNetworkAccessType
+	// is VPCOnly and DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn
+	// is provided.
+	AppSecurityGroupManagement *string `type:"string" enum:"AppSecurityGroupManagement"`
+
 	// The mode of authentication that members use to access the domain.
 	//
 	// AuthMode is a required field
@@ -30789,6 +30795,9 @@ type CreateDomainInput struct {
 	//
 	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
+
+	// A collection of Domain settings.
+	DomainSettings *DomainSettings `type:"structure"`
 
 	// This member is deprecated and replaced with KmsKeyId.
 	//
@@ -30863,6 +30872,11 @@ func (s *CreateDomainInput) Validate() error {
 			invalidParams.AddNested("DefaultUserSettings", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DomainSettings != nil {
+		if err := s.DomainSettings.Validate(); err != nil {
+			invalidParams.AddNested("DomainSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -30886,6 +30900,12 @@ func (s *CreateDomainInput) SetAppNetworkAccessType(v string) *CreateDomainInput
 	return s
 }
 
+// SetAppSecurityGroupManagement sets the AppSecurityGroupManagement field's value.
+func (s *CreateDomainInput) SetAppSecurityGroupManagement(v string) *CreateDomainInput {
+	s.AppSecurityGroupManagement = &v
+	return s
+}
+
 // SetAuthMode sets the AuthMode field's value.
 func (s *CreateDomainInput) SetAuthMode(v string) *CreateDomainInput {
 	s.AuthMode = &v
@@ -30901,6 +30921,12 @@ func (s *CreateDomainInput) SetDefaultUserSettings(v *UserSettings) *CreateDomai
 // SetDomainName sets the DomainName field's value.
 func (s *CreateDomainInput) SetDomainName(v string) *CreateDomainInput {
 	s.DomainName = &v
+	return s
+}
+
+// SetDomainSettings sets the DomainSettings field's value.
+func (s *CreateDomainInput) SetDomainSettings(v *DomainSettings) *CreateDomainInput {
+	s.DomainSettings = v
 	return s
 }
 
@@ -43753,6 +43779,12 @@ type DescribeDomainOutput struct {
 	//    * VpcOnly - All Studio traffic is through the specified VPC and subnets
 	AppNetworkAccessType *string `type:"string" enum:"AppNetworkAccessType"`
 
+	// The entity that creates and manages the required security groups for inter-app
+	// communication in VPCOnly mode. Required when CreateDomain.AppNetworkAccessType
+	// is VPCOnly and DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn
+	// is provided.
+	AppSecurityGroupManagement *string `type:"string" enum:"AppSecurityGroupManagement"`
+
 	// The domain's authentication mode.
 	AuthMode *string `type:"string" enum:"AuthMode"`
 
@@ -43772,6 +43804,9 @@ type DescribeDomainOutput struct {
 	// The domain name.
 	DomainName *string `type:"string"`
 
+	// A collection of Domain settings.
+	DomainSettings *DomainSettings `type:"structure"`
+
 	// The failure reason.
 	FailureReason *string `type:"string"`
 
@@ -43789,6 +43824,10 @@ type DescribeDomainOutput struct {
 
 	// The last modified time.
 	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The ID of the security group that authorizes traffic between the RSessionGateway
+	// apps and the RStudioServerPro app.
+	SecurityGroupIdForDomainBoundary *string `type:"string"`
 
 	// The SSO managed application instance ID.
 	SingleSignOnManagedApplicationInstanceId *string `type:"string"`
@@ -43830,6 +43869,12 @@ func (s *DescribeDomainOutput) SetAppNetworkAccessType(v string) *DescribeDomain
 	return s
 }
 
+// SetAppSecurityGroupManagement sets the AppSecurityGroupManagement field's value.
+func (s *DescribeDomainOutput) SetAppSecurityGroupManagement(v string) *DescribeDomainOutput {
+	s.AppSecurityGroupManagement = &v
+	return s
+}
+
 // SetAuthMode sets the AuthMode field's value.
 func (s *DescribeDomainOutput) SetAuthMode(v string) *DescribeDomainOutput {
 	s.AuthMode = &v
@@ -43866,6 +43911,12 @@ func (s *DescribeDomainOutput) SetDomainName(v string) *DescribeDomainOutput {
 	return s
 }
 
+// SetDomainSettings sets the DomainSettings field's value.
+func (s *DescribeDomainOutput) SetDomainSettings(v *DomainSettings) *DescribeDomainOutput {
+	s.DomainSettings = v
+	return s
+}
+
 // SetFailureReason sets the FailureReason field's value.
 func (s *DescribeDomainOutput) SetFailureReason(v string) *DescribeDomainOutput {
 	s.FailureReason = &v
@@ -43893,6 +43944,12 @@ func (s *DescribeDomainOutput) SetKmsKeyId(v string) *DescribeDomainOutput {
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DescribeDomainOutput) SetLastModifiedTime(v time.Time) *DescribeDomainOutput {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSecurityGroupIdForDomainBoundary sets the SecurityGroupIdForDomainBoundary field's value.
+func (s *DescribeDomainOutput) SetSecurityGroupIdForDomainBoundary(v string) *DescribeDomainOutput {
+	s.SecurityGroupIdForDomainBoundary = &v
 	return s
 }
 
@@ -51064,6 +51121,112 @@ func (s *DomainDetails) SetStatus(v string) *DomainDetails {
 // SetUrl sets the Url field's value.
 func (s *DomainDetails) SetUrl(v string) *DomainDetails {
 	s.Url = &v
+	return s
+}
+
+// A collection of settings that apply to the SageMaker Domain. These settings
+// are specified through the CreateDomain API call.
+type DomainSettings struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of settings that configure the RStudioServerPro Domain-level
+	// app.
+	RStudioServerProDomainSettings *RStudioServerProDomainSettings `type:"structure"`
+
+	// The security groups for the Amazon Virtual Private Cloud that the Domain
+	// uses for communication between Domain-level apps and user apps.
+	SecurityGroupIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DomainSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DomainSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DomainSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DomainSettings"}
+	if s.RStudioServerProDomainSettings != nil {
+		if err := s.RStudioServerProDomainSettings.Validate(); err != nil {
+			invalidParams.AddNested("RStudioServerProDomainSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRStudioServerProDomainSettings sets the RStudioServerProDomainSettings field's value.
+func (s *DomainSettings) SetRStudioServerProDomainSettings(v *RStudioServerProDomainSettings) *DomainSettings {
+	s.RStudioServerProDomainSettings = v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *DomainSettings) SetSecurityGroupIds(v []*string) *DomainSettings {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// A collection of Domain configuration settings to update.
+type DomainSettingsForUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of RStudioServerPro Domain-level app settings to update.
+	RStudioServerProDomainSettingsForUpdate *RStudioServerProDomainSettingsForUpdate `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DomainSettingsForUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DomainSettingsForUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DomainSettingsForUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DomainSettingsForUpdate"}
+	if s.RStudioServerProDomainSettingsForUpdate != nil {
+		if err := s.RStudioServerProDomainSettingsForUpdate.Validate(); err != nil {
+			invalidParams.AddNested("RStudioServerProDomainSettingsForUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRStudioServerProDomainSettingsForUpdate sets the RStudioServerProDomainSettingsForUpdate field's value.
+func (s *DomainSettingsForUpdate) SetRStudioServerProDomainSettingsForUpdate(v *RStudioServerProDomainSettingsForUpdate) *DomainSettingsForUpdate {
+	s.RStudioServerProDomainSettingsForUpdate = v
 	return s
 }
 
@@ -75556,6 +75719,214 @@ func (s *PutModelPackageGroupPolicyOutput) SetModelPackageGroupArn(v string) *Pu
 	return s
 }
 
+// A collection of settings that apply to an RSessionGateway app.
+type RSessionAppSettings struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RSessionAppSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RSessionAppSettings) GoString() string {
+	return s.String()
+}
+
+// A collection of settings that configure user interaction with the RStudioServerPro
+// app. RStudioServerProAppSettings cannot be updated. The RStudioServerPro
+// app must be deleted and a new one created to make any changes.
+type RStudioServerProAppSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the current user has access to the RStudioServerPro app.
+	AccessStatus *string `type:"string" enum:"RStudioServerProAccessStatus"`
+
+	// The level of permissions that the user has within the RStudioServerPro app.
+	// This value defaults to `User`. The `Admin` value allows the user access to
+	// the RStudio Administrative Dashboard.
+	UserGroup *string `type:"string" enum:"RStudioServerProUserGroup"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RStudioServerProAppSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RStudioServerProAppSettings) GoString() string {
+	return s.String()
+}
+
+// SetAccessStatus sets the AccessStatus field's value.
+func (s *RStudioServerProAppSettings) SetAccessStatus(v string) *RStudioServerProAppSettings {
+	s.AccessStatus = &v
+	return s
+}
+
+// SetUserGroup sets the UserGroup field's value.
+func (s *RStudioServerProAppSettings) SetUserGroup(v string) *RStudioServerProAppSettings {
+	s.UserGroup = &v
+	return s
+}
+
+// A collection of settings that configure the RStudioServerPro Domain-level
+// app.
+type RStudioServerProDomainSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ARN's of a SageMaker image and SageMaker image version, and
+	// the instance type that the version runs on.
+	DefaultResourceSpec *ResourceSpec `type:"structure"`
+
+	// The ARN of the execution role for the RStudioServerPro Domain-level app.
+	//
+	// DomainExecutionRoleArn is a required field
+	DomainExecutionRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A URL pointing to an RStudio Connect server.
+	RStudioConnectUrl *string `type:"string"`
+
+	// A URL pointing to an RStudio Package Manager server.
+	RStudioPackageManagerUrl *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RStudioServerProDomainSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RStudioServerProDomainSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RStudioServerProDomainSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RStudioServerProDomainSettings"}
+	if s.DomainExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainExecutionRoleArn"))
+	}
+	if s.DomainExecutionRoleArn != nil && len(*s.DomainExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainExecutionRoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultResourceSpec sets the DefaultResourceSpec field's value.
+func (s *RStudioServerProDomainSettings) SetDefaultResourceSpec(v *ResourceSpec) *RStudioServerProDomainSettings {
+	s.DefaultResourceSpec = v
+	return s
+}
+
+// SetDomainExecutionRoleArn sets the DomainExecutionRoleArn field's value.
+func (s *RStudioServerProDomainSettings) SetDomainExecutionRoleArn(v string) *RStudioServerProDomainSettings {
+	s.DomainExecutionRoleArn = &v
+	return s
+}
+
+// SetRStudioConnectUrl sets the RStudioConnectUrl field's value.
+func (s *RStudioServerProDomainSettings) SetRStudioConnectUrl(v string) *RStudioServerProDomainSettings {
+	s.RStudioConnectUrl = &v
+	return s
+}
+
+// SetRStudioPackageManagerUrl sets the RStudioPackageManagerUrl field's value.
+func (s *RStudioServerProDomainSettings) SetRStudioPackageManagerUrl(v string) *RStudioServerProDomainSettings {
+	s.RStudioPackageManagerUrl = &v
+	return s
+}
+
+// A collection of settings that update the current configuration for the RStudioServerPro
+// Domain-level app.
+type RStudioServerProDomainSettingsForUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ARN's of a SageMaker image and SageMaker image version, and
+	// the instance type that the version runs on.
+	DefaultResourceSpec *ResourceSpec `type:"structure"`
+
+	// The execution role for the RStudioServerPro Domain-level app.
+	//
+	// DomainExecutionRoleArn is a required field
+	DomainExecutionRoleArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RStudioServerProDomainSettingsForUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RStudioServerProDomainSettingsForUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RStudioServerProDomainSettingsForUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RStudioServerProDomainSettingsForUpdate"}
+	if s.DomainExecutionRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainExecutionRoleArn"))
+	}
+	if s.DomainExecutionRoleArn != nil && len(*s.DomainExecutionRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainExecutionRoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultResourceSpec sets the DefaultResourceSpec field's value.
+func (s *RStudioServerProDomainSettingsForUpdate) SetDefaultResourceSpec(v *ResourceSpec) *RStudioServerProDomainSettingsForUpdate {
+	s.DefaultResourceSpec = v
+	return s
+}
+
+// SetDomainExecutionRoleArn sets the DomainExecutionRoleArn field's value.
+func (s *RStudioServerProDomainSettingsForUpdate) SetDomainExecutionRoleArn(v string) *RStudioServerProDomainSettingsForUpdate {
+	s.DomainExecutionRoleArn = &v
+	return s
+}
+
 // Configuration for Redshift Dataset Definition input.
 type RedshiftDatasetDefinition struct {
 	_ struct{} `type:"structure"`
@@ -78057,7 +78428,7 @@ func (s *ServiceCatalogProvisioningDetails) SetProvisioningParameters(v []*Provi
 }
 
 // Details that you specify to provision a service catalog product. For information
-// about service catalog, see What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+// about service catalog, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 type ServiceCatalogProvisioningUpdateDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -84195,6 +84566,9 @@ type UpdateDomainInput struct {
 	//
 	// DomainId is a required field
 	DomainId *string `type:"string" required:"true"`
+
+	// A collection of DomainSettings configuration values to update.
+	DomainSettingsForUpdate *DomainSettingsForUpdate `type:"structure"`
 }
 
 // String returns the string representation.
@@ -84226,6 +84600,11 @@ func (s *UpdateDomainInput) Validate() error {
 			invalidParams.AddNested("DefaultUserSettings", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DomainSettingsForUpdate != nil {
+		if err := s.DomainSettingsForUpdate.Validate(); err != nil {
+			invalidParams.AddNested("DomainSettingsForUpdate", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -84242,6 +84621,12 @@ func (s *UpdateDomainInput) SetDefaultUserSettings(v *UserSettings) *UpdateDomai
 // SetDomainId sets the DomainId field's value.
 func (s *UpdateDomainInput) SetDomainId(v string) *UpdateDomainInput {
 	s.DomainId = &v
+	return s
+}
+
+// SetDomainSettingsForUpdate sets the DomainSettingsForUpdate field's value.
+func (s *UpdateDomainInput) SetDomainSettingsForUpdate(v *DomainSettingsForUpdate) *UpdateDomainInput {
+	s.DomainSettingsForUpdate = v
 	return s
 }
 
@@ -85556,12 +85941,13 @@ type UpdateProjectInput struct {
 	// The product ID and provisioning artifact ID to provision a service catalog.
 	// The provisioning artifact ID will default to the latest provisioning artifact
 	// ID of the product, if you don't provide the provisioning artifact ID. For
-	// more information, see What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+	// more information, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 	ServiceCatalogProvisioningUpdateDetails *ServiceCatalogProvisioningUpdateDetails `type:"structure"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 }
 
@@ -86577,6 +86963,13 @@ type UserSettings struct {
 	// The kernel gateway app settings.
 	KernelGatewayAppSettings *KernelGatewayAppSettings `type:"structure"`
 
+	// A collection of settings that configure the RSessionGateway app.
+	RSessionAppSettings *RSessionAppSettings `type:"structure"`
+
+	// A collection of settings that configure user interaction with the RStudioServerPro
+	// app.
+	RStudioServerProAppSettings *RStudioServerProAppSettings `type:"structure"`
+
 	// The security groups for the Amazon Virtual Private Cloud (VPC) that Studio
 	// uses for communication.
 	//
@@ -86647,6 +87040,18 @@ func (s *UserSettings) SetJupyterServerAppSettings(v *JupyterServerAppSettings) 
 // SetKernelGatewayAppSettings sets the KernelGatewayAppSettings field's value.
 func (s *UserSettings) SetKernelGatewayAppSettings(v *KernelGatewayAppSettings) *UserSettings {
 	s.KernelGatewayAppSettings = v
+	return s
+}
+
+// SetRSessionAppSettings sets the RSessionAppSettings field's value.
+func (s *UserSettings) SetRSessionAppSettings(v *RSessionAppSettings) *UserSettings {
+	s.RSessionAppSettings = v
+	return s
+}
+
+// SetRStudioServerProAppSettings sets the RStudioServerProAppSettings field's value.
+func (s *UserSettings) SetRStudioServerProAppSettings(v *RStudioServerProAppSettings) *UserSettings {
+	s.RStudioServerProAppSettings = v
 	return s
 }
 
@@ -87355,6 +87760,22 @@ func AppNetworkAccessType_Values() []string {
 }
 
 const (
+	// AppSecurityGroupManagementService is a AppSecurityGroupManagement enum value
+	AppSecurityGroupManagementService = "Service"
+
+	// AppSecurityGroupManagementCustomer is a AppSecurityGroupManagement enum value
+	AppSecurityGroupManagementCustomer = "Customer"
+)
+
+// AppSecurityGroupManagement_Values returns all elements of the AppSecurityGroupManagement enum
+func AppSecurityGroupManagement_Values() []string {
+	return []string{
+		AppSecurityGroupManagementService,
+		AppSecurityGroupManagementCustomer,
+	}
+}
+
+const (
 	// AppSortKeyCreationTime is a AppSortKey enum value
 	AppSortKeyCreationTime = "CreationTime"
 )
@@ -87403,6 +87824,12 @@ const (
 
 	// AppTypeTensorBoard is a AppType enum value
 	AppTypeTensorBoard = "TensorBoard"
+
+	// AppTypeRstudioServerPro is a AppType enum value
+	AppTypeRstudioServerPro = "RStudioServerPro"
+
+	// AppTypeRsessionGateway is a AppType enum value
+	AppTypeRsessionGateway = "RSessionGateway"
 )
 
 // AppType_Values returns all elements of the AppType enum
@@ -87411,6 +87838,8 @@ func AppType_Values() []string {
 		AppTypeJupyterServer,
 		AppTypeKernelGateway,
 		AppTypeTensorBoard,
+		AppTypeRstudioServerPro,
+		AppTypeRsessionGateway,
 	}
 }
 
@@ -90543,6 +90972,38 @@ func ProjectStatus_Values() []string {
 		ProjectStatusUpdateInProgress,
 		ProjectStatusUpdateCompleted,
 		ProjectStatusUpdateFailed,
+	}
+}
+
+const (
+	// RStudioServerProAccessStatusEnabled is a RStudioServerProAccessStatus enum value
+	RStudioServerProAccessStatusEnabled = "ENABLED"
+
+	// RStudioServerProAccessStatusDisabled is a RStudioServerProAccessStatus enum value
+	RStudioServerProAccessStatusDisabled = "DISABLED"
+)
+
+// RStudioServerProAccessStatus_Values returns all elements of the RStudioServerProAccessStatus enum
+func RStudioServerProAccessStatus_Values() []string {
+	return []string{
+		RStudioServerProAccessStatusEnabled,
+		RStudioServerProAccessStatusDisabled,
+	}
+}
+
+const (
+	// RStudioServerProUserGroupRStudioAdmin is a RStudioServerProUserGroup enum value
+	RStudioServerProUserGroupRStudioAdmin = "R_STUDIO_ADMIN"
+
+	// RStudioServerProUserGroupRStudioUser is a RStudioServerProUserGroup enum value
+	RStudioServerProUserGroupRStudioUser = "R_STUDIO_USER"
+)
+
+// RStudioServerProUserGroup_Values returns all elements of the RStudioServerProUserGroup enum
+func RStudioServerProUserGroup_Values() []string {
+	return []string{
+		RStudioServerProUserGroupRStudioAdmin,
+		RStudioServerProUserGroupRStudioUser,
 	}
 }
 

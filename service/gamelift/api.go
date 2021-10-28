@@ -672,6 +672,9 @@ func (c *GameLift) CreateFleetRequest(input *CreateFleetInput) (req *request.Req
 //   tag format or the maximum tag limit may have been exceeded. Resolve the issue
 //   before retrying.
 //
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateFleet
 func (c *GameLift) CreateFleet(input *CreateFleetInput) (*CreateFleetOutput, error) {
 	req, out := c.CreateFleetRequest(input)
@@ -799,6 +802,9 @@ func (c *GameLift) CreateFleetLocationsRequest(input *CreateFleetLocationsInput)
 //   The requested operation would cause a conflict with the current state of
 //   a resource associated with the request and/or the fleet. Resolve the conflict
 //   before retrying.
+//
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateFleetLocations
 func (c *GameLift) CreateFleetLocations(input *CreateFleetLocationsInput) (*CreateFleetLocationsOutput, error) {
@@ -1104,6 +1110,9 @@ func (c *GameLift) CreateGameSessionRequest(input *CreateGameSessionInput) (req 
 //   * IdempotentParameterMismatchException
 //   A game session with this custom ID string already exists in this fleet. Resolve
 //   this conflict before retrying this request.
+//
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/CreateGameSession
 func (c *GameLift) CreateGameSession(input *CreateGameSessionInput) (*CreateGameSessionOutput, error) {
@@ -2582,6 +2591,9 @@ func (c *GameLift) DeleteFleetLocationsRequest(input *DeleteFleetLocationsInput)
 //   A service resource associated with the request could not be found. Clients
 //   should not retry such requests.
 //
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DeleteFleetLocations
 func (c *GameLift) DeleteFleetLocations(input *DeleteFleetLocationsInput) (*DeleteFleetLocationsOutput, error) {
 	req, out := c.DeleteFleetLocationsRequest(input)
@@ -3918,6 +3930,9 @@ func (c *GameLift) DescribeEC2InstanceLimitsRequest(input *DescribeEC2InstanceLi
 //   * UnauthorizedException
 //   The client failed authentication. Clients should not retry such requests.
 //
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeEC2InstanceLimits
 func (c *GameLift) DescribeEC2InstanceLimits(input *DescribeEC2InstanceLimitsInput) (*DescribeEC2InstanceLimitsOutput, error) {
 	req, out := c.DescribeEC2InstanceLimitsRequest(input)
@@ -4579,6 +4594,9 @@ func (c *GameLift) DescribeFleetLocationAttributesRequest(input *DescribeFleetLo
 //   A service resource associated with the request could not be found. Clients
 //   should not retry such requests.
 //
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeFleetLocationAttributes
 func (c *GameLift) DescribeFleetLocationAttributes(input *DescribeFleetLocationAttributesInput) (*DescribeFleetLocationAttributesOutput, error) {
 	req, out := c.DescribeFleetLocationAttributesRequest(input)
@@ -4745,6 +4763,9 @@ func (c *GameLift) DescribeFleetLocationCapacityRequest(input *DescribeFleetLoca
 //   A service resource associated with the request could not be found. Clients
 //   should not retry such requests.
 //
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeFleetLocationCapacity
 func (c *GameLift) DescribeFleetLocationCapacity(input *DescribeFleetLocationCapacityInput) (*DescribeFleetLocationCapacityOutput, error) {
 	req, out := c.DescribeFleetLocationCapacityRequest(input)
@@ -4858,6 +4879,9 @@ func (c *GameLift) DescribeFleetLocationUtilizationRequest(input *DescribeFleetL
 //   * NotFoundException
 //   A service resource associated with the request could not be found. Clients
 //   should not retry such requests.
+//
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeFleetLocationUtilization
 func (c *GameLift) DescribeFleetLocationUtilization(input *DescribeFleetLocationUtilizationInput) (*DescribeFleetLocationUtilizationOutput, error) {
@@ -5704,6 +5728,9 @@ func (c *GameLift) DescribeGameSessionDetailsRequest(input *DescribeGameSessionD
 //   Such requests should only be retried if the routing strategy for the specified
 //   alias is modified.
 //
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessionDetails
 func (c *GameLift) DescribeGameSessionDetails(input *DescribeGameSessionDetailsInput) (*DescribeGameSessionDetailsOutput, error) {
 	req, out := c.DescribeGameSessionDetailsRequest(input)
@@ -6167,6 +6194,9 @@ func (c *GameLift) DescribeGameSessionsRequest(input *DescribeGameSessionsInput)
 //   Such requests should only be retried if the routing strategy for the specified
 //   alias is modified.
 //
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeGameSessions
 func (c *GameLift) DescribeGameSessions(input *DescribeGameSessionsInput) (*DescribeGameSessionsOutput, error) {
 	req, out := c.DescribeGameSessionsRequest(input)
@@ -6345,6 +6375,9 @@ func (c *GameLift) DescribeInstancesRequest(input *DescribeInstancesInput) (req 
 //   The service encountered an unrecoverable internal failure while processing
 //   the request. Clients can retry such requests immediately or after a waiting
 //   period.
+//
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeInstances
 func (c *GameLift) DescribeInstances(input *DescribeInstancesInput) (*DescribeInstancesOutput, error) {
@@ -7243,6 +7276,9 @@ func (c *GameLift) DescribeScalingPoliciesRequest(input *DescribeScalingPolicies
 //   * NotFoundException
 //   A service resource associated with the request could not be found. Clients
 //   should not retry such requests.
+//
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/DescribeScalingPolicies
 func (c *GameLift) DescribeScalingPolicies(input *DescribeScalingPoliciesInput) (*DescribeScalingPoliciesOutput, error) {
@@ -9721,6 +9757,9 @@ func (c *GameLift) SearchGameSessionsRequest(input *SearchGameSessionsInput) (re
 //   Such requests should only be retried if the routing strategy for the specified
 //   alias is modified.
 //
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/SearchGameSessions
 func (c *GameLift) SearchGameSessions(input *SearchGameSessionsInput) (*SearchGameSessionsOutput, error) {
 	req, out := c.SearchGameSessionsRequest(input)
@@ -9890,6 +9929,9 @@ func (c *GameLift) StartFleetActionsRequest(input *StartFleetActionsInput) (req 
 //   * NotFoundException
 //   A service resource associated with the request could not be found. Clients
 //   should not retry such requests.
+//
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/StartFleetActions
 func (c *GameLift) StartFleetActions(input *StartFleetActionsInput) (*StartFleetActionsOutput, error) {
@@ -10407,6 +10449,9 @@ func (c *GameLift) StopFleetActionsRequest(input *StopFleetActionsInput) (req *r
 //   * NotFoundException
 //   A service resource associated with the request could not be found. Clients
 //   should not retry such requests.
+//
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/StopFleetActions
 func (c *GameLift) StopFleetActions(input *StopFleetActionsInput) (*StopFleetActionsOutput, error) {
@@ -11473,6 +11518,9 @@ func (c *GameLift) UpdateFleetCapacityRequest(input *UpdateFleetCapacityInput) (
 //
 //   * UnauthorizedException
 //   The client failed authentication. Clients should not retry such requests.
+//
+//   * UnsupportedRegionException
+//   The requested operation is not supported in the Region specified.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/gamelift-2015-10-01/UpdateFleetCapacity
 func (c *GameLift) UpdateFleetCapacity(input *UpdateFleetCapacityInput) (*UpdateFleetCapacityOutput, error) {
@@ -21693,7 +21741,7 @@ type GameSession struct {
 
 	// The IP address of the game session. To connect to a GameLift game server,
 	// an app needs both the IP address and port number.
-	IpAddress *string `type:"string"`
+	IpAddress *string `min:"1" type:"string"`
 
 	// The fleet location where the game session is running. This value might specify
 	// the fleet's home Region or a remote location. Location is expressed as an
@@ -22133,7 +22181,7 @@ type GameSessionPlacement struct {
 	// The IP address of the game session. To connect to a GameLift game server,
 	// an app needs both the IP address and port number. This value is set once
 	// the new game session is placed (placement status is FULFILLED).
-	IpAddress *string `type:"string"`
+	IpAddress *string `min:"1" type:"string"`
 
 	// Information on the matchmaking process for this game. Data is in JSON syntax,
 	// formatted as a string. It identifies the matchmaking configuration used to
@@ -22783,7 +22831,7 @@ type Instance struct {
 	InstanceId *string `type:"string"`
 
 	// IP address that is assigned to the instance.
-	IpAddress *string `type:"string"`
+	IpAddress *string `min:"1" type:"string"`
 
 	// The fleet location of the instance, expressed as an AWS Region code, such
 	// as us-west-2.
@@ -22908,7 +22956,7 @@ type InstanceAccess struct {
 	InstanceId *string `type:"string"`
 
 	// IP address that is assigned to the instance.
-	IpAddress *string `type:"string"`
+	IpAddress *string `min:"1" type:"string"`
 
 	// Operating system that is running on the instance.
 	OperatingSystem *string `type:"string" enum:"OperatingSystem"`
@@ -25539,7 +25587,7 @@ type PlayerSession struct {
 
 	// The IP address of the game session. To connect to a GameLift game server,
 	// an app needs both the IP address and port number.
-	IpAddress *string `type:"string"`
+	IpAddress *string `min:"1" type:"string"`
 
 	// Developer-defined information related to a player. GameLift does not use
 	// this data, so it can be formatted as needed for use in the game.
@@ -31841,6 +31889,30 @@ const (
 	// GameServerGroupInstanceTypeC5a24xlarge is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeC5a24xlarge = "c5a.24xlarge"
 
+	// GameServerGroupInstanceTypeC6gMedium is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC6gMedium = "c6g.medium"
+
+	// GameServerGroupInstanceTypeC6gLarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC6gLarge = "c6g.large"
+
+	// GameServerGroupInstanceTypeC6gXlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC6gXlarge = "c6g.xlarge"
+
+	// GameServerGroupInstanceTypeC6g2xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC6g2xlarge = "c6g.2xlarge"
+
+	// GameServerGroupInstanceTypeC6g4xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC6g4xlarge = "c6g.4xlarge"
+
+	// GameServerGroupInstanceTypeC6g8xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC6g8xlarge = "c6g.8xlarge"
+
+	// GameServerGroupInstanceTypeC6g12xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC6g12xlarge = "c6g.12xlarge"
+
+	// GameServerGroupInstanceTypeC6g16xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeC6g16xlarge = "c6g.16xlarge"
+
 	// GameServerGroupInstanceTypeR4Large is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeR4Large = "r4.large"
 
@@ -31907,6 +31979,30 @@ const (
 	// GameServerGroupInstanceTypeR5a24xlarge is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeR5a24xlarge = "r5a.24xlarge"
 
+	// GameServerGroupInstanceTypeR6gMedium is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR6gMedium = "r6g.medium"
+
+	// GameServerGroupInstanceTypeR6gLarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR6gLarge = "r6g.large"
+
+	// GameServerGroupInstanceTypeR6gXlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR6gXlarge = "r6g.xlarge"
+
+	// GameServerGroupInstanceTypeR6g2xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR6g2xlarge = "r6g.2xlarge"
+
+	// GameServerGroupInstanceTypeR6g4xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR6g4xlarge = "r6g.4xlarge"
+
+	// GameServerGroupInstanceTypeR6g8xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR6g8xlarge = "r6g.8xlarge"
+
+	// GameServerGroupInstanceTypeR6g12xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR6g12xlarge = "r6g.12xlarge"
+
+	// GameServerGroupInstanceTypeR6g16xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeR6g16xlarge = "r6g.16xlarge"
+
 	// GameServerGroupInstanceTypeM4Large is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeM4Large = "m4.large"
 
@@ -31969,6 +32065,30 @@ const (
 
 	// GameServerGroupInstanceTypeM5a24xlarge is a GameServerGroupInstanceType enum value
 	GameServerGroupInstanceTypeM5a24xlarge = "m5a.24xlarge"
+
+	// GameServerGroupInstanceTypeM6gMedium is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM6gMedium = "m6g.medium"
+
+	// GameServerGroupInstanceTypeM6gLarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM6gLarge = "m6g.large"
+
+	// GameServerGroupInstanceTypeM6gXlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM6gXlarge = "m6g.xlarge"
+
+	// GameServerGroupInstanceTypeM6g2xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM6g2xlarge = "m6g.2xlarge"
+
+	// GameServerGroupInstanceTypeM6g4xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM6g4xlarge = "m6g.4xlarge"
+
+	// GameServerGroupInstanceTypeM6g8xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM6g8xlarge = "m6g.8xlarge"
+
+	// GameServerGroupInstanceTypeM6g12xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM6g12xlarge = "m6g.12xlarge"
+
+	// GameServerGroupInstanceTypeM6g16xlarge is a GameServerGroupInstanceType enum value
+	GameServerGroupInstanceTypeM6g16xlarge = "m6g.16xlarge"
 )
 
 // GameServerGroupInstanceType_Values returns all elements of the GameServerGroupInstanceType enum
@@ -31995,6 +32115,14 @@ func GameServerGroupInstanceType_Values() []string {
 		GameServerGroupInstanceTypeC5a12xlarge,
 		GameServerGroupInstanceTypeC5a16xlarge,
 		GameServerGroupInstanceTypeC5a24xlarge,
+		GameServerGroupInstanceTypeC6gMedium,
+		GameServerGroupInstanceTypeC6gLarge,
+		GameServerGroupInstanceTypeC6gXlarge,
+		GameServerGroupInstanceTypeC6g2xlarge,
+		GameServerGroupInstanceTypeC6g4xlarge,
+		GameServerGroupInstanceTypeC6g8xlarge,
+		GameServerGroupInstanceTypeC6g12xlarge,
+		GameServerGroupInstanceTypeC6g16xlarge,
 		GameServerGroupInstanceTypeR4Large,
 		GameServerGroupInstanceTypeR4Xlarge,
 		GameServerGroupInstanceTypeR42xlarge,
@@ -32017,6 +32145,14 @@ func GameServerGroupInstanceType_Values() []string {
 		GameServerGroupInstanceTypeR5a12xlarge,
 		GameServerGroupInstanceTypeR5a16xlarge,
 		GameServerGroupInstanceTypeR5a24xlarge,
+		GameServerGroupInstanceTypeR6gMedium,
+		GameServerGroupInstanceTypeR6gLarge,
+		GameServerGroupInstanceTypeR6gXlarge,
+		GameServerGroupInstanceTypeR6g2xlarge,
+		GameServerGroupInstanceTypeR6g4xlarge,
+		GameServerGroupInstanceTypeR6g8xlarge,
+		GameServerGroupInstanceTypeR6g12xlarge,
+		GameServerGroupInstanceTypeR6g16xlarge,
 		GameServerGroupInstanceTypeM4Large,
 		GameServerGroupInstanceTypeM4Xlarge,
 		GameServerGroupInstanceTypeM42xlarge,
@@ -32038,6 +32174,14 @@ func GameServerGroupInstanceType_Values() []string {
 		GameServerGroupInstanceTypeM5a12xlarge,
 		GameServerGroupInstanceTypeM5a16xlarge,
 		GameServerGroupInstanceTypeM5a24xlarge,
+		GameServerGroupInstanceTypeM6gMedium,
+		GameServerGroupInstanceTypeM6gLarge,
+		GameServerGroupInstanceTypeM6gXlarge,
+		GameServerGroupInstanceTypeM6g2xlarge,
+		GameServerGroupInstanceTypeM6g4xlarge,
+		GameServerGroupInstanceTypeM6g8xlarge,
+		GameServerGroupInstanceTypeM6g12xlarge,
+		GameServerGroupInstanceTypeM6g16xlarge,
 	}
 }
 

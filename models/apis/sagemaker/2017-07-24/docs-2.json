@@ -539,6 +539,13 @@
         "DescribeDomainResponse$AppNetworkAccessType": "<p>Specifies the VPC used for non-EFS traffic. The default value is <code>PublicInternetOnly</code>.</p> <ul> <li> <p> <code>PublicInternetOnly</code> - Non-EFS traffic is through a VPC managed by Amazon SageMaker, which allows direct internet access</p> </li> <li> <p> <code>VpcOnly</code> - All Studio traffic is through the specified VPC and subnets</p> </li> </ul>"
       }
     },
+    "AppSecurityGroupManagement": {
+      "base": null,
+      "refs": {
+        "CreateDomainRequest$AppSecurityGroupManagement": "<p>The entity that creates and manages the required security groups for inter-app communication in <code>VPCOnly</code> mode. Required when <code>CreateDomain.AppNetworkAccessType</code> is <code>VPCOnly</code> and <code>DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn</code> is provided.</p>",
+        "DescribeDomainResponse$AppSecurityGroupManagement": "<p>The entity that creates and manages the required security groups for inter-app communication in <code>VPCOnly</code> mode. Required when <code>CreateDomain.AppNetworkAccessType</code> is <code>VPCOnly</code> and <code>DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn</code> is provided.</p>"
+      }
+    },
     "AppSortKey": {
       "base": null,
       "refs": {
@@ -3390,6 +3397,25 @@
         "CreateDomainRequest$DomainName": "<p>A name for the domain.</p>",
         "DescribeDomainResponse$DomainName": "<p>The domain name.</p>",
         "DomainDetails$DomainName": "<p>The domain name.</p>"
+      }
+    },
+    "DomainSecurityGroupIds": {
+      "base": null,
+      "refs": {
+        "DomainSettings$SecurityGroupIds": "<p>The security groups for the Amazon Virtual Private Cloud that the <code>Domain</code> uses for communication between Domain-level apps and user apps.</p>"
+      }
+    },
+    "DomainSettings": {
+      "base": "<p>A collection of settings that apply to the <code>SageMaker Domain</code>. These settings are specified through the <code>CreateDomain</code> API call.</p>",
+      "refs": {
+        "CreateDomainRequest$DomainSettings": "<p>A collection of <code>Domain</code> settings.</p>",
+        "DescribeDomainResponse$DomainSettings": "<p>A collection of <code>Domain</code> settings.</p>"
+      }
+    },
+    "DomainSettingsForUpdate": {
+      "base": "<p>A collection of <code>Domain</code> configuration settings to update.</p>",
+      "refs": {
+        "UpdateDomainRequest$DomainSettingsForUpdate": "<p>A collection of <code>DomainSettings</code> configuration values to update.</p>"
       }
     },
     "DomainStatus": {
@@ -8249,6 +8275,42 @@
       "refs": {
       }
     },
+    "RSessionAppSettings": {
+      "base": "<p>A collection of settings that apply to an <code>RSessionGateway</code> app.</p>",
+      "refs": {
+        "UserSettings$RSessionAppSettings": "<p>A collection of settings that configure the <code>RSessionGateway</code> app.</p>"
+      }
+    },
+    "RStudioServerProAccessStatus": {
+      "base": null,
+      "refs": {
+        "RStudioServerProAppSettings$AccessStatus": "<p>Indicates whether the current user has access to the <code>RStudioServerPro</code> app.</p>"
+      }
+    },
+    "RStudioServerProAppSettings": {
+      "base": "<p>A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app. <code>RStudioServerProAppSettings</code> cannot be updated. The <code>RStudioServerPro</code> app must be deleted and a new one created to make any changes.</p>",
+      "refs": {
+        "UserSettings$RStudioServerProAppSettings": "<p>A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app.</p>"
+      }
+    },
+    "RStudioServerProDomainSettings": {
+      "base": "<p>A collection of settings that configure the <code>RStudioServerPro</code> Domain-level app.</p>",
+      "refs": {
+        "DomainSettings$RStudioServerProDomainSettings": "<p>A collection of settings that configure the <code>RStudioServerPro</code> Domain-level app.</p>"
+      }
+    },
+    "RStudioServerProDomainSettingsForUpdate": {
+      "base": "<p>A collection of settings that update the current configuration for the <code>RStudioServerPro</code> Domain-level app.</p>",
+      "refs": {
+        "DomainSettingsForUpdate$RStudioServerProDomainSettingsForUpdate": "<p>A collection of <code>RStudioServerPro</code> Domain-level app settings to update.</p>"
+      }
+    },
+    "RStudioServerProUserGroup": {
+      "base": null,
+      "refs": {
+        "RStudioServerProAppSettings$UserGroup": "<p>The level of permissions that the user has within the <code>RStudioServerPro</code> app. This value defaults to `User`. The `Admin` value allows the user access to the RStudio Administrative Dashboard.</p>"
+      }
+    },
     "RealtimeInferenceInstanceTypes": {
       "base": null,
       "refs": {
@@ -8428,6 +8490,8 @@
         "DescribeAppResponse$ResourceSpec": "<p>The instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p>",
         "JupyterServerAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterServer app.</p>",
         "KernelGatewayAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the KernelGateway app.</p>",
+        "RStudioServerProDomainSettings$DefaultResourceSpec": null,
+        "RStudioServerProDomainSettingsForUpdate$DefaultResourceSpec": null,
         "TensorBoardAppSettings$DefaultResourceSpec": "<p>The default instance type and the Amazon Resource Name (ARN) of the SageMaker image created on the instance.</p>"
       }
     },
@@ -8526,6 +8590,8 @@
         "Pipeline$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that created the pipeline.</p>",
         "PipelineSummary$RoleArn": "<p>The Amazon Resource Name (ARN) that the pipeline used to execute.</p>",
         "ProcessingJob$RoleArn": "<p>The ARN of the role used to create the processing job.</p>",
+        "RStudioServerProDomainSettings$DomainExecutionRoleArn": "<p>The ARN of the execution role for the <code>RStudioServerPro</code> Domain-level app.</p>",
+        "RStudioServerProDomainSettingsForUpdate$DomainExecutionRoleArn": "<p>The execution role for the <code>RStudioServerPro</code> Domain-level app.</p>",
         "RedshiftDatasetDefinition$ClusterRoleArn": "<p>The IAM role attached to your Redshift cluster that Amazon SageMaker uses to generate datasets.</p>",
         "RenderUiTemplateRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to the S3 objects that are used by the template.</p>",
         "TrainingJob$RoleArn": "<p>The Amazon Web Services Identity and Access Management (IAM) role configured for the training job.</p>",
@@ -8746,6 +8812,8 @@
     "SecurityGroupId": {
       "base": null,
       "refs": {
+        "DescribeDomainResponse$SecurityGroupIdForDomainBoundary": "<p>The ID of the security group that authorizes traffic between the <code>RSessionGateway</code> apps and the <code>RStudioServerPro</code> app.</p>",
+        "DomainSecurityGroupIds$member": null,
         "SecurityGroupIds$member": null,
         "VpcSecurityGroupIds$member": null
       }
@@ -8810,9 +8878,9 @@
       }
     },
     "ServiceCatalogProvisioningUpdateDetails": {
-      "base": "<p>Details that you specify to provision a service catalog product. For information about service catalog, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is AWS Service Catalog</a>. </p>",
+      "base": "<p>Details that you specify to provision a service catalog product. For information about service catalog, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>. </p>",
       "refs": {
-        "UpdateProjectInput$ServiceCatalogProvisioningUpdateDetails": "<p>The product ID and provisioning artifact ID to provision a service catalog. The provisioning artifact ID will default to the latest provisioning artifact ID of the product, if you don't provide the provisioning artifact ID. For more information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is AWS Service Catalog</a>. </p>"
+        "UpdateProjectInput$ServiceCatalogProvisioningUpdateDetails": "<p>The product ID and provisioning artifact ID to provision a service catalog. The provisioning artifact ID will default to the latest provisioning artifact ID of the product, if you don't provide the provisioning artifact ID. For more information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>. </p>"
       }
     },
     "SessionExpirationDurationInSeconds": {
@@ -9140,6 +9208,8 @@
         "ProcessingInput$InputName": "<p>The name for the processing job input.</p>",
         "ProcessingOutput$OutputName": "<p>The name for the processing job output.</p>",
         "ProductListings$member": null,
+        "RStudioServerProDomainSettings$RStudioConnectUrl": "<p>A URL pointing to an RStudio Connect server.</p>",
+        "RStudioServerProDomainSettings$RStudioPackageManagerUrl": "<p>A URL pointing to an RStudio Package Manager server.</p>",
         "RenderUiTemplateResponse$RenderedContent": "<p>A Liquid template that renders the HTML for the worker UI.</p>",
         "RenderingError$Code": "<p>A unique identifier for a specific class of errors.</p>",
         "RenderingError$Message": "<p>A human-readable message describing the error.</p>",
@@ -9413,7 +9483,7 @@
         "TransformJob$Tags": "<p>A list of tags associated with the transform job.</p>",
         "Trial$Tags": "<p>The list of tags that are associated with the trial. You can use <a>Search</a> API to search on the tags.</p>",
         "TrialComponent$Tags": "<p>The list of tags that are associated with the component. You can use <a>Search</a> API to search on the tags.</p>",
-        "UpdateProjectInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>"
+        "UpdateProjectInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your Amazon Web Services resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging Amazon Web Services Resources</a>.</p>"
       }
     },
     "TagValue": {

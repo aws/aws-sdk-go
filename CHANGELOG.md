@@ -1,3 +1,18 @@
+Release v1.41.13 (2021-10-28)
+===
+
+### Service Client Updates
+* `service/connectparticipant`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Added new read-only DenyAllIGWTraffic network interface attribute. Added support for DL1 24xlarge instances powered by Habana Gaudi Accelerators for deep learning model training workloads
+* `service/ecs`: Updates service API and documentation
+  * Amazon ECS now supports running Fargate tasks on Windows Operating Systems Families which includes Windows Server 2019 Core and Windows Server 2019 Full.
+* `service/gamelift`: Updates service API and documentation
+  * Added support for Arm-based AWS Graviton2 instances, such as M6g, C6g, and R6g.
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for RStudio on SageMaker.
+* `service/ssm-incidents`: Updates service API and documentation
+
 Release v1.41.12 (2021-10-27)
 ===
 

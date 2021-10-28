@@ -188,6 +188,7 @@
       "type":"list",
       "member":{"shape":"AttachmentItem"}
     },
+    "Bool":{"type":"boolean"},
     "ChatContent":{
       "type":"string",
       "max":1024,
@@ -215,7 +216,11 @@
         "MESSAGE",
         "EVENT",
         "ATTACHMENT",
-        "CONNECTION_ACK"
+        "CONNECTION_ACK",
+        "PARTICIPANT_ACTIVE",
+        "PARTICIPANT_INACTIVE",
+        "PARTICIPANT_ENGAGED",
+        "PARTICIPANT_DISENGAGED"
       ]
     },
     "ClientToken":{
@@ -297,7 +302,8 @@
           "shape":"ParticipantToken",
           "location":"header",
           "locationName":"X-Amz-Bearer"
-        }
+        },
+        "ConnectParticipant":{"shape":"Bool"}
       }
     },
     "CreateParticipantConnectionResponse":{

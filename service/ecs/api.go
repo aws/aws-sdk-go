@@ -7706,8 +7706,12 @@ type ContainerDefinition struct {
 	// AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
-	// For tasks using the Fargate launch type, the task or service requires platform
-	// version 1.3.0 or later.
+	// For tasks using the Fargate launch type, the task or service requires the
+	// followiwng platforms:
+	//
+	//    * Linux platform version 1.3.0 or later.
+	//
+	//    * Windows platform version 1.0.0 or later.
 	DependsOn []*ContainerDependency `locationName:"dependsOn" type:"list"`
 
 	// When this parameter is true, networking is disabled within the container.
@@ -8090,8 +8094,12 @@ type ContainerDefinition struct {
 	// When the ECS_CONTAINER_START_TIMEOUT container agent configuration variable
 	// is used, it is enforced indendently from this start timeout value.
 	//
-	// For tasks using the Fargate launch type, this parameter requires that the
-	// task or service uses platform version 1.3.0 or later.
+	// For tasks using the Fargate launch type, the task or service requires the
+	// followiwng platforms:
+	//
+	//    * Linux platform version 1.3.0 or later.
+	//
+	//    * Windows platform version 1.0.0 or later.
 	//
 	// For tasks using the EC2 launch type, your container instances require at
 	// least version 1.26.0 of the container agent to enable a container start timeout
@@ -8110,9 +8118,15 @@ type ContainerDefinition struct {
 	// Time duration (in seconds) to wait before the container is forcefully killed
 	// if it doesn't exit normally on its own.
 	//
-	// For tasks using the Fargate launch type, the task or service requires platform
-	// version 1.3.0 or later. The max stop timeout value is 120 seconds and if
-	// the parameter is not specified, the default value of 30 seconds is used.
+	// For tasks using the Fargate launch type, the task or service requires the
+	// followiwng platforms:
+	//
+	//    * Linux platform version 1.3.0 or later.
+	//
+	//    * Windows platform version 1.0.0 or later.
+	//
+	// The max stop timeout value is 120 seconds and if the parameter is not specified,
+	// the default value of 30 seconds is used.
 	//
 	// For tasks using the EC2 launch type, if the stopTimeout parameter is not
 	// specified, the value set for the Amazon ECS container agent configuration
@@ -8571,8 +8585,12 @@ func (s *ContainerDefinition) SetWorkingDirectory(v string) *ContainerDefinition
 // AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
-// For tasks using the Fargate launch type, this parameter requires that the
-// task or service uses platform version 1.3.0 or later.
+// For tasks using the Fargate launch type, the task or service requires the
+// followiwng platforms:
+//
+//    * Linux platform version 1.3.0 or later.
+//
+//    * Windows platform version 1.0.0 or later.
 type ContainerDependency struct {
 	_ struct{} `type:"structure"`
 
@@ -10854,6 +10872,14 @@ type Deployment struct {
 	// The number of tasks in the deployment that are in the PENDING status.
 	PendingCount *int64 `locationName:"pendingCount" type:"integer"`
 
+	// The operating system that your tasks in the service, or tasks are running
+	// on. A platform family is specified only for tasks using the Fargate launch
+	// type.
+	//
+	// All tasks that run as part of this service must use the same platformFamily
+	// value as the service, for example, LINUX..
+	PlatformFamily *string `locationName:"platformFamily" type:"string"`
+
 	// The platform version on which your tasks in the service are running. A platform
 	// version is only specified for tasks using the Fargate launch type. If one
 	// is not specified, the LATEST platform version is used by default. For more
@@ -10966,6 +10992,12 @@ func (s *Deployment) SetNetworkConfiguration(v *NetworkConfiguration) *Deploymen
 // SetPendingCount sets the PendingCount field's value.
 func (s *Deployment) SetPendingCount(v int64) *Deployment {
 	s.PendingCount = &v
+	return s
+}
+
+// SetPlatformFamily sets the PlatformFamily field's value.
+func (s *Deployment) SetPlatformFamily(v string) *Deployment {
+	s.PlatformFamily = &v
 	return s
 }
 
@@ -12663,8 +12695,12 @@ func (s *EFSVolumeConfiguration) SetTransitEncryptionPort(v int64) *EFSVolumeCon
 // variables (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/taskdef-envfiles.html)
 // in the Amazon Elastic Container Service Developer Guide.
 //
-// This field is only valid for containers in Fargate tasks that use platform
-// version 1.4.0 or later.
+// This parameter is only supported for tasks hosted on Fargate using the following
+// platform versions:
+//
+//    * Linux platform version 1.4.0 or later.
+//
+//    * Windows platform version 1.0.0 or later.
 type EnvironmentFile struct {
 	_ struct{} `type:"structure"`
 
@@ -12732,8 +12768,12 @@ func (s *EnvironmentFile) SetValue(v string) *EnvironmentFile {
 // Fargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)
 // in the Amazon ECS User Guide for Fargate.
 //
-// This parameter is only supported for tasks hosted on Fargate using platform
-// version 1.4.0 or later.
+// This parameter is only supported for tasks hosted on Fargate using the following
+// platform versions:
+//
+//    * Linux platform version 1.4.0 or later.
+//
+//    * Windows platform version 1.0.0 or later.
 type EphemeralStorage struct {
 	_ struct{} `type:"structure"`
 
@@ -12957,8 +12997,8 @@ type ExecuteCommandLogConfiguration struct {
 	// The S3 bucket must already be created.
 	S3BucketName *string `locationName:"s3BucketName" type:"string"`
 
-	// Whether or not to enable encryption on the CloudWatch logs. If not specified,
-	// encryption will be disabled.
+	// Whether or not to use encryption on the S3 logs. If not specified, encryption
+	// is not used.
 	S3EncryptionEnabled *bool `locationName:"s3EncryptionEnabled" type:"boolean"`
 
 	// An optional folder in the S3 bucket to place logs in.
@@ -17340,8 +17380,12 @@ type RegisterTaskDefinitionInput struct {
 	// Fargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)
 	// in the Amazon ECS User Guide for Fargate.
 	//
-	// This parameter is only supported for tasks hosted on Fargate using platform
-	// version 1.4.0 or later.
+	// This parameter is only supported for tasks hosted on Fargate using the following
+	// platform versions:
+	//
+	//    * Linux platform version 1.4.0 or later.
+	//
+	//    * Windows platform version 1.0.0 or later.
 	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the task execution role that grants the
@@ -17495,6 +17539,13 @@ type RegisterTaskDefinitionInput struct {
 	// against the compatibilities specified. If no value is specified, the parameter
 	// is omitted from the response.
 	RequiresCompatibilities []*string `locationName:"requiresCompatibilities" type:"list"`
+
+	// The operating system that your tasks definitions run on. A platform family
+	// is specified only for tasks using the Fargate launch type.
+	//
+	// When you specify a task definition in a service, this value must match the
+	// runtimePlatform value of the service.
+	RuntimePlatform *RuntimePlatform `locationName:"runtimePlatform" type:"structure"`
 
 	// The metadata that you apply to the task definition to help you categorize
 	// and organize them. Each tag consists of a key and an optional value, both
@@ -17695,6 +17746,12 @@ func (s *RegisterTaskDefinitionInput) SetProxyConfiguration(v *ProxyConfiguratio
 // SetRequiresCompatibilities sets the RequiresCompatibilities field's value.
 func (s *RegisterTaskDefinitionInput) SetRequiresCompatibilities(v []*string) *RegisterTaskDefinitionInput {
 	s.RequiresCompatibilities = v
+	return s
+}
+
+// SetRuntimePlatform sets the RuntimePlatform field's value.
+func (s *RegisterTaskDefinitionInput) SetRuntimePlatform(v *RuntimePlatform) *RegisterTaskDefinitionInput {
+	s.RuntimePlatform = v
 	return s
 }
 
@@ -18458,6 +18515,47 @@ func (s *RunTaskOutput) SetTasks(v []*Task) *RunTaskOutput {
 	return s
 }
 
+// Information about the platform for the Amazon ECS service or task.
+type RuntimePlatform struct {
+	_ struct{} `type:"structure"`
+
+	// The CPU architecture.
+	CpuArchitecture *string `locationName:"cpuArchitecture" type:"string" enum:"CPUArchitecture"`
+
+	// The operating system.
+	OperatingSystemFamily *string `locationName:"operatingSystemFamily" type:"string" enum:"OSFamily"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimePlatform) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuntimePlatform) GoString() string {
+	return s.String()
+}
+
+// SetCpuArchitecture sets the CpuArchitecture field's value.
+func (s *RuntimePlatform) SetCpuArchitecture(v string) *RuntimePlatform {
+	s.CpuArchitecture = &v
+	return s
+}
+
+// SetOperatingSystemFamily sets the OperatingSystemFamily field's value.
+func (s *RuntimePlatform) SetOperatingSystemFamily(v string) *RuntimePlatform {
+	s.OperatingSystemFamily = &v
+	return s
+}
+
 // A floating-point percentage of the desired number of tasks to place and keep
 // running in the task set.
 type Scale struct {
@@ -18719,6 +18817,13 @@ type Service struct {
 	// The placement strategy that determines how tasks for the service are placed.
 	PlacementStrategy []*PlacementStrategy `locationName:"placementStrategy" type:"list"`
 
+	// The operating system that your tasks in the service are running on. A platform
+	// family is specified only for tasks using the Fargate launch type.
+	//
+	// All tasks that run as part of this service must use the same platformFamily
+	// value as the service, for example, LINUX.
+	PlatformFamily *string `locationName:"platformFamily" type:"string"`
+
 	// The platform version on which to run your service. A platform version is
 	// only specified for tasks hosted on Fargate. If one is not specified, the
 	// LATEST platform version is used by default. For more information, see Fargate
@@ -18938,6 +19043,12 @@ func (s *Service) SetPlacementConstraints(v []*PlacementConstraint) *Service {
 // SetPlacementStrategy sets the PlacementStrategy field's value.
 func (s *Service) SetPlacementStrategy(v []*PlacementStrategy) *Service {
 	s.PlacementStrategy = v
+	return s
+}
+
+// SetPlatformFamily sets the PlatformFamily field's value.
+func (s *Service) SetPlatformFamily(v string) *Service {
+	s.PlatformFamily = &v
 	return s
 }
 
@@ -20661,6 +20772,13 @@ type Task struct {
 	// One or more container overrides.
 	Overrides *TaskOverride `locationName:"overrides" type:"structure"`
 
+	// The operating system that your tasks are running on. A platform family is
+	// specified only for tasks using the Fargate launch type.
+	//
+	// All tasks that run as part of this service must use the same platformFamily
+	// value as the service, for example, LINUX..
+	PlatformFamily *string `locationName:"platformFamily" type:"string"`
+
 	// The platform version on which your task is running. A platform version is
 	// only specified for tasks using the Fargate launch type. If one is not specified,
 	// the LATEST platform version is used by default. For more information, see
@@ -20888,6 +21006,12 @@ func (s *Task) SetMemory(v string) *Task {
 // SetOverrides sets the Overrides field's value.
 func (s *Task) SetOverrides(v *TaskOverride) *Task {
 	s.Overrides = v
+	return s
+}
+
+// SetPlatformFamily sets the PlatformFamily field's value.
+func (s *Task) SetPlatformFamily(v string) *Task {
+	s.PlatformFamily = &v
 	return s
 }
 
@@ -21191,6 +21315,13 @@ type TaskDefinition struct {
 	// family.
 	Revision *int64 `locationName:"revision" type:"integer"`
 
+	// The operating system that your task definitions are running on. A platform
+	// family is specified only for tasks using the Fargate launch type.
+	//
+	// When you specify a task in a service, this value must match the runtimePlatform
+	// value of the service.
+	RuntimePlatform *RuntimePlatform `locationName:"runtimePlatform" type:"structure"`
+
 	// The status of the task definition.
 	Status *string `locationName:"status" type:"string" enum:"TaskDefinitionStatus"`
 
@@ -21350,6 +21481,12 @@ func (s *TaskDefinition) SetRevision(v int64) *TaskDefinition {
 	return s
 }
 
+// SetRuntimePlatform sets the RuntimePlatform field's value.
+func (s *TaskDefinition) SetRuntimePlatform(v *RuntimePlatform) *TaskDefinition {
+	s.RuntimePlatform = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *TaskDefinition) SetStatus(v string) *TaskDefinition {
 	s.Status = &v
@@ -21434,8 +21571,12 @@ type TaskOverride struct {
 
 	// The ephemeral storage setting override for the task.
 	//
-	// This parameter is only supported for tasks hosted on Fargate using platform
-	// version 1.4.0 or later.
+	// This parameter is only supported for tasks hosted on Fargate using the following
+	// platform versions:
+	//
+	//    * Linux platform version 1.4.0 or later.
+	//
+	//    * Windows platform version 1.0.0 or later.
 	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the task execution IAM role override for
@@ -21594,6 +21735,12 @@ type TaskSet struct {
 	// state. A task set enters the PENDING status when it launches for the first
 	// time or when it is restarted after being in the STOPPED state.
 	PendingCount *int64 `locationName:"pendingCount" type:"integer"`
+
+	// The operating system that your tasks in the set are running on. A platform
+	// family is specified only for tasks using the Fargate launch type.
+	//
+	// All tasks in the set must have the same value.
+	PlatformFamily *string `locationName:"platformFamily" type:"string"`
 
 	// The Fargate platform version on which the tasks in the task set are running.
 	// A platform version is only specified for tasks run on Fargate. For more information,
@@ -21770,6 +21917,12 @@ func (s *TaskSet) SetNetworkConfiguration(v *NetworkConfiguration) *TaskSet {
 // SetPendingCount sets the PendingCount field's value.
 func (s *TaskSet) SetPendingCount(v int64) *TaskSet {
 	s.PendingCount = &v
+	return s
+}
+
+// SetPlatformFamily sets the PlatformFamily field's value.
+func (s *TaskSet) SetPlatformFamily(v string) *TaskSet {
+	s.PlatformFamily = &v
 	return s
 }
 
@@ -23539,6 +23692,22 @@ func AssignPublicIp_Values() []string {
 }
 
 const (
+	// CPUArchitectureX8664 is a CPUArchitecture enum value
+	CPUArchitectureX8664 = "X86_64"
+
+	// CPUArchitectureArm64 is a CPUArchitecture enum value
+	CPUArchitectureArm64 = "ARM64"
+)
+
+// CPUArchitecture_Values returns all elements of the CPUArchitecture enum
+func CPUArchitecture_Values() []string {
+	return []string{
+		CPUArchitectureX8664,
+		CPUArchitectureArm64,
+	}
+}
+
+const (
 	// CapacityProviderFieldTags is a CapacityProviderField enum value
 	CapacityProviderFieldTags = "TAGS"
 )
@@ -24063,6 +24232,46 @@ func NetworkMode_Values() []string {
 		NetworkModeHost,
 		NetworkModeAwsvpc,
 		NetworkModeNone,
+	}
+}
+
+const (
+	// OSFamilyWindowsServer2019Full is a OSFamily enum value
+	OSFamilyWindowsServer2019Full = "WINDOWS_SERVER_2019_FULL"
+
+	// OSFamilyWindowsServer2019Core is a OSFamily enum value
+	OSFamilyWindowsServer2019Core = "WINDOWS_SERVER_2019_CORE"
+
+	// OSFamilyWindowsServer2016Full is a OSFamily enum value
+	OSFamilyWindowsServer2016Full = "WINDOWS_SERVER_2016_FULL"
+
+	// OSFamilyWindowsServer2004Core is a OSFamily enum value
+	OSFamilyWindowsServer2004Core = "WINDOWS_SERVER_2004_CORE"
+
+	// OSFamilyWindowsServer2022Core is a OSFamily enum value
+	OSFamilyWindowsServer2022Core = "WINDOWS_SERVER_2022_CORE"
+
+	// OSFamilyWindowsServer2022Full is a OSFamily enum value
+	OSFamilyWindowsServer2022Full = "WINDOWS_SERVER_2022_FULL"
+
+	// OSFamilyWindowsServer20h2Core is a OSFamily enum value
+	OSFamilyWindowsServer20h2Core = "WINDOWS_SERVER_20H2_CORE"
+
+	// OSFamilyLinux is a OSFamily enum value
+	OSFamilyLinux = "LINUX"
+)
+
+// OSFamily_Values returns all elements of the OSFamily enum
+func OSFamily_Values() []string {
+	return []string{
+		OSFamilyWindowsServer2019Full,
+		OSFamilyWindowsServer2019Core,
+		OSFamilyWindowsServer2016Full,
+		OSFamilyWindowsServer2004Core,
+		OSFamilyWindowsServer2022Core,
+		OSFamilyWindowsServer2022Full,
+		OSFamilyWindowsServer20h2Core,
+		OSFamilyLinux,
 	}
 }
 

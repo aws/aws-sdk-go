@@ -2035,6 +2035,7 @@
         "NetworkInsightsAnalysis$NetworkPathFound": "<p>Indicates whether the destination is reachable from the source.</p>",
         "NetworkInterface$RequesterManaged": "<p>Indicates whether the network interface is being managed by Amazon Web Services.</p>",
         "NetworkInterface$SourceDestCheck": "<p>Indicates whether source/destination checking is enabled.</p>",
+        "NetworkInterface$DenyAllIgwTraffic": "<p>Indicates whether a network interface with an IPv6 address is unreachable from the public internet. If the value is <code>true</code>, inbound traffic from the internet is dropped and you cannot assign an elastic IP address to the network interface. The network interface is reachable from peered VPCs and resources connected through a transit gateway, including on-premises networks.</p>",
         "NetworkInterfaceAttachment$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
         "NetworkInterfaceAttachmentChanges$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
         "NetworkInterfacePrivateIpAddress$Primary": "<p>Indicates whether this IPv4 address is the primary private IPv4 address of the network interface.</p>",

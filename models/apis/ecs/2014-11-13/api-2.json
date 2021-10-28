@@ -944,6 +944,13 @@
       "type":"integer",
       "box":true
     },
+    "CPUArchitecture":{
+      "type":"string",
+      "enum":[
+        "X86_64",
+        "ARM64"
+      ]
+    },
     "CapacityProvider":{
       "type":"structure",
       "members":{
@@ -1495,6 +1502,7 @@
         "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "launchType":{"shape":"LaunchType"},
         "platformVersion":{"shape":"String"},
+        "platformFamily":{"shape":"String"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "rolloutState":{"shape":"DeploymentRolloutState"},
         "rolloutStateReason":{"shape":"String"}
@@ -2377,6 +2385,19 @@
       },
       "exception":true
     },
+    "OSFamily":{
+      "type":"string",
+      "enum":[
+        "WINDOWS_SERVER_2019_FULL",
+        "WINDOWS_SERVER_2019_CORE",
+        "WINDOWS_SERVER_2016_FULL",
+        "WINDOWS_SERVER_2004_CORE",
+        "WINDOWS_SERVER_2022_CORE",
+        "WINDOWS_SERVER_2022_FULL",
+        "WINDOWS_SERVER_20H2_CORE",
+        "LINUX"
+      ]
+    },
     "PidMode":{
       "type":"string",
       "enum":[
@@ -2598,7 +2619,8 @@
         "ipcMode":{"shape":"IpcMode"},
         "proxyConfiguration":{"shape":"ProxyConfiguration"},
         "inferenceAccelerators":{"shape":"InferenceAccelerators"},
-        "ephemeralStorage":{"shape":"EphemeralStorage"}
+        "ephemeralStorage":{"shape":"EphemeralStorage"},
+        "runtimePlatform":{"shape":"RuntimePlatform"}
       }
     },
     "RegisterTaskDefinitionResponse":{
@@ -2698,6 +2720,13 @@
         "failures":{"shape":"Failures"}
       }
     },
+    "RuntimePlatform":{
+      "type":"structure",
+      "members":{
+        "cpuArchitecture":{"shape":"CPUArchitecture"},
+        "operatingSystemFamily":{"shape":"OSFamily"}
+      }
+    },
     "Scale":{
       "type":"structure",
       "members":{
@@ -2765,6 +2794,7 @@
         "launchType":{"shape":"LaunchType"},
         "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "platformVersion":{"shape":"String"},
+        "platformFamily":{"shape":"String"},
         "taskDefinition":{"shape":"String"},
         "deploymentConfiguration":{"shape":"DeploymentConfiguration"},
         "taskSets":{"shape":"TaskSets"},
@@ -3086,6 +3116,7 @@
         "memory":{"shape":"String"},
         "overrides":{"shape":"TaskOverride"},
         "platformVersion":{"shape":"String"},
+        "platformFamily":{"shape":"String"},
         "pullStartedAt":{"shape":"Timestamp"},
         "pullStoppedAt":{"shape":"Timestamp"},
         "startedAt":{"shape":"Timestamp"},
@@ -3116,6 +3147,7 @@
         "requiresAttributes":{"shape":"RequiresAttributes"},
         "placementConstraints":{"shape":"TaskDefinitionPlacementConstraints"},
         "compatibilities":{"shape":"CompatibilityList"},
+        "runtimePlatform":{"shape":"RuntimePlatform"},
         "requiresCompatibilities":{"shape":"CompatibilityList"},
         "cpu":{"shape":"String"},
         "memory":{"shape":"String"},
@@ -3206,6 +3238,7 @@
         "launchType":{"shape":"LaunchType"},
         "capacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
         "platformVersion":{"shape":"String"},
+        "platformFamily":{"shape":"String"},
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "loadBalancers":{"shape":"LoadBalancers"},
         "serviceRegistries":{"shape":"ServiceRegistries"},
