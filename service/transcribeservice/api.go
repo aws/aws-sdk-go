@@ -3622,7 +3622,7 @@ func (c *TranscribeService) TagResourceRequest(input *TagResourceInput) (req *re
 
 // TagResource API operation for Amazon Transcribe Service.
 //
-// Tags a Amazon Transcribe resource with the given list of tags.
+// Tags an Amazon Transcribe resource with the given list of tags.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4334,8 +4334,8 @@ type CallAnalyticsJob struct {
 	// A timestamp that shows when the analytics job was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Number (ARN) that you use to get access to the analytics
-	// job.
+	// The Amazon Resource Number (ARN) that you use to access the analytics job.
+	// ARNs have the format arn:partition:service:region:account-id:resource-type/resource-id.
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
 	// If the AnalyticsJobStatus is FAILED, this field contains information about
@@ -4523,6 +4523,10 @@ type CallAnalyticsJobSettings struct {
 	// Settings for content redaction within a transcription job.
 	ContentRedaction *ContentRedaction `type:"structure"`
 
+	// The language identification settings associated with your call analytics
+	// job. These settings include VocabularyName, VocabularyFilterName, and LanguageModelName.
+	LanguageIdSettings map[string]*LanguageIdSettings `min:"1" type:"map"`
+
 	// The structure used to describe a custom language model.
 	LanguageModelName *string `min:"1" type:"string"`
 
@@ -4576,6 +4580,9 @@ func (s CallAnalyticsJobSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CallAnalyticsJobSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CallAnalyticsJobSettings"}
+	if s.LanguageIdSettings != nil && len(s.LanguageIdSettings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageIdSettings", 1))
+	}
 	if s.LanguageModelName != nil && len(*s.LanguageModelName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LanguageModelName", 1))
 	}
@@ -4593,6 +4600,16 @@ func (s *CallAnalyticsJobSettings) Validate() error {
 			invalidParams.AddNested("ContentRedaction", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.LanguageIdSettings != nil {
+		for i, v := range s.LanguageIdSettings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LanguageIdSettings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4603,6 +4620,12 @@ func (s *CallAnalyticsJobSettings) Validate() error {
 // SetContentRedaction sets the ContentRedaction field's value.
 func (s *CallAnalyticsJobSettings) SetContentRedaction(v *ContentRedaction) *CallAnalyticsJobSettings {
 	s.ContentRedaction = v
+	return s
+}
+
+// SetLanguageIdSettings sets the LanguageIdSettings field's value.
+func (s *CallAnalyticsJobSettings) SetLanguageIdSettings(v map[string]*LanguageIdSettings) *CallAnalyticsJobSettings {
+	s.LanguageIdSettings = v
 	return s
 }
 
@@ -7171,7 +7194,7 @@ type InputDataConfig struct {
 
 	// The Amazon Resource Name (ARN) that uniquely identifies the permissions you've
 	// given Amazon Transcribe to access your Amazon S3 buckets containing your
-	// media files or text data.
+	// media files or text data. ARNs have the format arn:partition:service:region:account-id:resource-type/resource-id.
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
@@ -7406,10 +7429,11 @@ type JobExecutionSettings struct {
 	// field.
 	AllowDeferredExecution *bool `type:"boolean"`
 
-	// The Amazon Resource Name (ARN) of a role that has access to the S3 bucket
-	// that contains the input files. Amazon Transcribe assumes this role to read
-	// queued media files. If you have specified an output S3 bucket for the transcription
-	// results, this role should have access to the output bucket as well.
+	// The Amazon Resource Name (ARN), in the form arn:partition:service:region:account-id:resource-type/resource-id,
+	// of a role that has access to the S3 bucket that contains the input files.
+	// Amazon Transcribe assumes this role to read queued media files. If you have
+	// specified an output S3 bucket for the transcription results, this role should
+	// have access to the output bucket as well.
 	//
 	// If you specify the AllowDeferredExecution field, you must specify the DataAccessRoleArn
 	// field.
@@ -7456,6 +7480,82 @@ func (s *JobExecutionSettings) SetAllowDeferredExecution(v bool) *JobExecutionSe
 // SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
 func (s *JobExecutionSettings) SetDataAccessRoleArn(v string) *JobExecutionSettings {
 	s.DataAccessRoleArn = &v
+	return s
+}
+
+// Language-specific settings that can be specified when language identification
+// is enabled.
+type LanguageIdSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the language model you want to use when transcribing your audio.
+	// The model you specify must have the same language code as the transcription
+	// job; if the languages don't match, the language model won't be applied.
+	LanguageModelName *string `min:"1" type:"string"`
+
+	// The name of the vocabulary filter you want to use when transcribing your
+	// audio. The filter you specify must have the same language code as the transcription
+	// job; if the languages don't match, the vocabulary filter won't be applied.
+	VocabularyFilterName *string `min:"1" type:"string"`
+
+	// The name of the vocabulary you want to use when processing your transcription
+	// job. The vocabulary you specify must have the same language code as the transcription
+	// job; if the languages don't match, the vocabulary won't be applied.
+	VocabularyName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LanguageIdSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LanguageIdSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LanguageIdSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LanguageIdSettings"}
+	if s.LanguageModelName != nil && len(*s.LanguageModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageModelName", 1))
+	}
+	if s.VocabularyFilterName != nil && len(*s.VocabularyFilterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyFilterName", 1))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageModelName sets the LanguageModelName field's value.
+func (s *LanguageIdSettings) SetLanguageModelName(v string) *LanguageIdSettings {
+	s.LanguageModelName = &v
+	return s
+}
+
+// SetVocabularyFilterName sets the VocabularyFilterName field's value.
+func (s *LanguageIdSettings) SetVocabularyFilterName(v string) *LanguageIdSettings {
+	s.VocabularyFilterName = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *LanguageIdSettings) SetVocabularyName(v string) *LanguageIdSettings {
+	s.VocabularyName = &v
 	return s
 }
 
@@ -8267,7 +8367,11 @@ func (s *ListMedicalVocabulariesOutput) SetVocabularies(v []*VocabularyInfo) *Li
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists all tags associated with a given Amazon Resource Name (ARN).
+	// Lists all tags associated with a given Amazon Resource Name (ARN). ARNs have
+	// the format arn:partition:service:region:account-id:resource-type/resource-id
+	// (for example, arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name).
+	// Valid values for resource-type are: transcription-job, medical-transcription-job,
+	// vocabulary, medical-vocabulary, vocabulary-filter, and language-model.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`
@@ -10190,7 +10294,7 @@ type StartMedicalTranscriptionJobInput struct {
 	// account or another account:
 	//
 	//    * Amazon Resource Name (ARN) of a KMS key in the current account or another
-	//    account: "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	//    account: "arn:aws:kms:region:account-ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
 	//    * ARN of a KMS Key Alias: "arn:aws:kms:region:account ID:alias/ExampleAlias"
 	//
@@ -10464,6 +10568,10 @@ type StartTranscriptionJobInput struct {
 	// file must be encoded at a sample rate of 16,000 Hz or higher.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
+	// The language identification settings associated with your transcription job.
+	// These settings include VocabularyName, VocabularyFilterName, and LanguageModelName.
+	LanguageIdSettings map[string]*LanguageIdSettings `min:"1" type:"map"`
+
 	// An object containing a list of languages that might be present in your collection
 	// of audio files. Automatic language identification chooses a language that
 	// best matches the source audio from that list.
@@ -10533,7 +10641,7 @@ type StartTranscriptionJobInput struct {
 	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:region:account
 	//    ID:key/1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
-	//    * ARN of a KMS Key Alias: "arn:aws:kms:region:account ID:alias/ExampleAlias"
+	//    * ARN of a KMS Key Alias: "arn:aws:kms:region:account-ID:alias/ExampleAlias"
 	//
 	// If you don't specify an encryption key, the output of the transcription job
 	// is encrypted with the default Amazon S3 key (SSE-S3).
@@ -10602,6 +10710,9 @@ func (s *StartTranscriptionJobInput) Validate() error {
 	if s.KMSEncryptionContext != nil && len(s.KMSEncryptionContext) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KMSEncryptionContext", 1))
 	}
+	if s.LanguageIdSettings != nil && len(s.LanguageIdSettings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageIdSettings", 1))
+	}
 	if s.LanguageOptions != nil && len(s.LanguageOptions) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LanguageOptions", 1))
 	}
@@ -10634,6 +10745,16 @@ func (s *StartTranscriptionJobInput) Validate() error {
 	if s.JobExecutionSettings != nil {
 		if err := s.JobExecutionSettings.Validate(); err != nil {
 			invalidParams.AddNested("JobExecutionSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LanguageIdSettings != nil {
+		for i, v := range s.LanguageIdSettings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LanguageIdSettings", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.Media != nil {
@@ -10695,6 +10816,12 @@ func (s *StartTranscriptionJobInput) SetKMSEncryptionContext(v map[string]*strin
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *StartTranscriptionJobInput) SetLanguageCode(v string) *StartTranscriptionJobInput {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetLanguageIdSettings sets the LanguageIdSettings field's value.
+func (s *StartTranscriptionJobInput) SetLanguageIdSettings(v map[string]*LanguageIdSettings) *StartTranscriptionJobInput {
+	s.LanguageIdSettings = v
 	return s
 }
 
@@ -10950,7 +11077,10 @@ type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want
-	// to tag.
+	// to tag. ARNs have the format arn:partition:service:region:account-id:resource-type/resource-id
+	// (for example, arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name).
+	// Valid values for resource-type are: transcription-job, medical-transcription-job,
+	// vocabulary, medical-vocabulary, vocabulary-filter, and language-model.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`
@@ -11270,6 +11400,11 @@ type TranscriptionJob struct {
 	// The language code for the input speech.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
+	// Language-specific settings that can be specified when language identification
+	// is enabled for your transcription job. These settings include VocabularyName,
+	// VocabularyFilterName, and LanguageModelNameLanguageModelName.
+	LanguageIdSettings map[string]*LanguageIdSettings `min:"1" type:"map"`
+
 	// An object that shows the optional array of languages inputted for transcription
 	// jobs with automatic language identification enabled.
 	LanguageOptions []*string `min:"1" type:"list"`
@@ -11374,6 +11509,12 @@ func (s *TranscriptionJob) SetJobExecutionSettings(v *JobExecutionSettings) *Tra
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *TranscriptionJob) SetLanguageCode(v string) *TranscriptionJob {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetLanguageIdSettings sets the LanguageIdSettings field's value.
+func (s *TranscriptionJob) SetLanguageIdSettings(v map[string]*LanguageIdSettings) *TranscriptionJob {
+	s.LanguageIdSettings = v
 	return s
 }
 
@@ -11597,7 +11738,10 @@ type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want
-	// to remove tags from.
+	// to remove tags from. ARNs have the format arn:partition:service:region:account-id:resource-type/resource-id
+	// (for example, arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name).
+	// Valid values for resource-type are: transcription-job, medical-transcription-job,
+	// vocabulary, medical-vocabulary, vocabulary-filter, and language-model.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`

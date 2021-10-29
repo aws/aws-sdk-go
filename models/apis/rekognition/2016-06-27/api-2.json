@@ -1082,7 +1082,8 @@
         "Id":{"shape":"RekognitionUniqueId"},
         "Confidence":{"shape":"Percent"},
         "BoundingBox":{"shape":"BoundingBox"},
-        "Face":{"shape":"FaceDetail"}
+        "Face":{"shape":"FaceDetail"},
+        "KnownGender":{"shape":"KnownGender"}
       }
     },
     "CelebrityList":{

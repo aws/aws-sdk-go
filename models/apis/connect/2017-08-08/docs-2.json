@@ -79,10 +79,12 @@
     "ResumeContactRecording": "<p>When a contact is being recorded, and the recording has been suspended using SuspendContactRecording, this API resumes recording the call.</p> <p>Only voice recordings are supported at this time.</p>",
     "StartChatContact": "<p>Initiates a contact flow to start a new chat for the customer. Response of this API provides a token required to obtain credentials from the <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> API in the Amazon Connect Participant Service.</p> <p>When a new chat contact is successfully created, clients must subscribe to the participant’s connection for the created chat within 5 minutes. This is achieved by invoking <a href=\"https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html\">CreateParticipantConnection</a> with WEBSOCKET and CONNECTION_CREDENTIALS. </p> <p>A 429 error occurs in two situations:</p> <ul> <li> <p>API rate limit is exceeded. API TPS throttling returns a <code>TooManyRequests</code> exception.</p> </li> <li> <p>The <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">quota for concurrent active chats</a> is exceeded. Active chat throttling returns a <code>LimitExceededException</code>.</p> </li> </ul> <p>For more information about chat, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat.html\">Chat</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "StartContactRecording": "<p>Starts recording the contact when the agent joins the call. StartContactRecording is a one-time action. For example, if you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend and resume it, such as when collecting sensitive information (for example, a credit card number), use SuspendContactRecording and ResumeContactRecording.</p> <p>You can use this API to override the recording behavior configured in the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-recording-behavior.html\">Set recording behavior</a> block.</p> <p>Only voice recordings are supported at this time.</p>",
+    "StartContactStreaming": "<p> Initiates real-time message streaming for a new chat contact.</p> <p> For more information about message streaming, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html\">Enable real-time chat message streaming</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "StartOutboundVoiceContact": "<p>Places an outbound call to a contact, and then initiates the contact flow. It performs the actions in the contact flow that's specified (in <code>ContactFlowId</code>).</p> <p>Agents do not initiate the outbound API, which means that they do not dial the contact. If the contact flow places an outbound call to a contact, and then puts the contact in queue, the call is then routed to the agent, like any other inbound case.</p> <p>There is a 60-second dialing timeout for this operation. If the call is not connected after 60 seconds, it fails.</p> <note> <p>UK numbers with a 447 prefix are not allowed by default. Before you can dial these UK mobile numbers, you must submit a service quota increase request. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>. </p> </note> <note> <p>Campaign calls are not allowed by default. Before you can make a call with <code>TrafficType</code> = <code>CAMPAIGN</code>, you must submit a service quota increase request. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>. </p> </note>",
     "StartTaskContact": "<p>Initiates a contact flow to start a new task.</p>",
     "StopContact": "<p>Ends the specified contact.</p>",
     "StopContactRecording": "<p>Stops recording a call when a contact is being recorded. StopContactRecording is a one-time action. If you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend it for sensitive information (for example, to collect a credit card number), and then restart it, use SuspendContactRecording and ResumeContactRecording.</p> <p>Only voice recordings are supported at this time.</p>",
+    "StopContactStreaming": "<p> Ends message streaming on a specified contact. To restart message streaming on that contact, call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html\">StartContactStreaming</a> API. </p>",
     "SuspendContactRecording": "<p>When a contact is being recorded, this API suspends recording the call. For example, you might suspend the call recording while collecting sensitive information, such as a credit card number. Then use ResumeContactRecording to restart recording. </p> <p>The period of time that the recording is suspended is filled with silence in the final recording. </p> <p>Only voice recordings are supported at this time.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource.</p> <p>The supported resource types are users, routing profiles, queues, quick connects, contact flows, agent status, and hours of operation.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "UntagResource": "<p>Removes the specified tags from the specified resource.</p>",
@@ -139,6 +141,7 @@
         "HoursOfOperationSummary$Arn": "<p>The Amazon Resource Name (ARN) of the hours of operation.</p>",
         "Instance$Arn": "<p>The Amazon Resource Name (ARN) of the instance.</p>",
         "Instance$ServiceRole": "<p>The service role of the instance.</p>",
+        "InstanceReference$Arn": "<p>The Amazon Resource Name (ARN) of the instance reference.</p>",
         "InstanceSummary$Arn": "<p>The Amazon Resource Name (ARN) of the instance.</p>",
         "InstanceSummary$ServiceRole": "<p>The service role of the instance.</p>",
         "IntegrationAssociationSummary$IntegrationAssociationArn": "<p>The Amazon Resource Name (ARN) for the AppIntegration association.</p>",
@@ -156,6 +159,7 @@
         "ResourceInUseException$ResourceId": "<p>The identifier for the resource.</p>",
         "RoutingProfile$RoutingProfileArn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
         "RoutingProfileQueueConfigSummary$QueueArn": "<p>The Amazon Resource Name (ARN) of the queue.</p>",
+        "RoutingProfileReference$Arn": "<p>The Amazon Resource Name (ARN) of the routing profile reference.</p>",
         "RoutingProfileSummary$Arn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
         "SecurityProfileSummary$Arn": "<p>The Amazon Resource Name (ARN) of the security profile.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -442,11 +446,24 @@
         "StartChatContactRequest$InitialMessage": "<p>The initial message to be sent to the newly created chat.</p>"
       }
     },
+    "ChatStreamingConfiguration": {
+      "base": "<p>The streaming configuration, such as the Amazon SNS streaming endpoint.</p>",
+      "refs": {
+        "StartContactStreamingRequest$ChatStreamingConfiguration": "<p>The streaming configuration, such as the Amazon SNS streaming endpoint.</p>"
+      }
+    },
+    "ChatStreamingEndpointARN": {
+      "base": null,
+      "refs": {
+        "ChatStreamingConfiguration$StreamingEndpointArn": "<p>The Amazon Resource Name (ARN) of the standard Amazon SNS topic. The Amazon Resource Name (ARN) of the streaming endpoint that is used to publish real-time message streaming for chat conversations.</p>"
+      }
+    },
     "ClientToken": {
       "base": null,
       "refs": {
         "CreateInstanceRequest$ClientToken": "<p>The idempotency token.</p>",
         "StartChatContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "StartContactStreamingRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "StartOutboundVoiceContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. The token is valid for 7 days after creation. If a contact is already started, the contact ID is returned. </p>",
         "StartTaskContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
       }
@@ -563,12 +580,14 @@
         "StartChatContactResponse$ContactId": "<p>The identifier of this contact within the Amazon Connect instance. </p>",
         "StartContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
         "StartContactRecordingRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
+        "StartContactStreamingRequest$ContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "StartOutboundVoiceContactResponse$ContactId": "<p>The identifier of this contact within the Amazon Connect instance.</p>",
         "StartTaskContactRequest$PreviousContactId": "<p>The identifier of the previous chat, voice, or task contact. </p>",
         "StartTaskContactResponse$ContactId": "<p>The identifier of this contact within the Amazon Connect instance.</p>",
         "StopContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
         "StopContactRecordingRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "StopContactRequest$ContactId": "<p>The ID of the contact.</p>",
+        "StopContactStreamingRequest$ContactId": "<p>The identifier of the contact. This is the identifier of the contact that is associated with the first interaction with the contact center.</p>",
         "SuspendContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
         "SuspendContactRecordingRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>",
         "UpdateContactAttributesRequest$InitialContactId": "<p>The identifier of the contact. This is the identifier of the contact associated with the first interaction with the contact center.</p>"
@@ -1406,6 +1425,7 @@
         "GetFederationTokenRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "GetMetricDataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "Instance$Id": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "InstanceReference$Id": "<p>The identifier of the instance reference.</p>",
         "InstanceSummary$Id": "<p>The identifier of the instance.</p>",
         "IntegrationAssociationSummary$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -1434,10 +1454,12 @@
         "RoutingProfile$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "StartChatContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "StartContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "StartContactStreamingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "StartOutboundVoiceContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "StartTaskContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "StopContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "StopContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "StopContactStreamingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "SuspendContactRecordingRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateContactAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -1464,6 +1486,12 @@
         "UpdateUserPhoneConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateUserRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateUserSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>"
+      }
+    },
+    "InstanceReference": {
+      "base": "<p>The instance reference.</p>",
+      "refs": {
+        "Dimensions$InstanceReference": "<p>The instance reference.</p>"
       }
     },
     "InstanceStatus": {
@@ -2325,6 +2353,7 @@
     "QueueType": {
       "base": null,
       "refs": {
+        "QueueReference$QueueType": "<p>The type of queue.</p>",
         "QueueSummary$QueueType": "<p>The type of queue.</p>",
         "QueueTypes$member": null
       }
@@ -2498,7 +2527,9 @@
         "DisassociateRoutingProfileQueuesRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "ListRoutingProfileQueuesRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "RoutingProfile$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
+        "RoutingProfileReference$Id": "<p>The identifier of the routing profile reference.</p>",
         "RoutingProfileSummary$Id": "<p>The identifier of the routing profile.</p>",
+        "RoutingProfiles$member": null,
         "UpdateRoutingProfileConcurrencyRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "UpdateRoutingProfileDefaultOutboundQueueRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "UpdateRoutingProfileNameRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
@@ -2555,6 +2586,12 @@
         "DisassociateRoutingProfileQueuesRequest$QueueReferences": "<p>The queues to disassociate from this routing profile.</p>"
       }
     },
+    "RoutingProfileReference": {
+      "base": "<p>The routing profile reference.</p>",
+      "refs": {
+        "Dimensions$RoutingProfile": "<p>The routing profile.</p>"
+      }
+    },
     "RoutingProfileSummary": {
       "base": "<p>Contains summary information about a routing profile.</p>",
       "refs": {
@@ -2565,6 +2602,12 @@
       "base": null,
       "refs": {
         "ListRoutingProfilesResponse$RoutingProfileSummaryList": "<p>Information about the routing profiles.</p>"
+      }
+    },
+    "RoutingProfiles": {
+      "base": null,
+      "refs": {
+        "Filters$RoutingProfiles": "<p>The filters used to sort routing profiles. </p>"
       }
     },
     "S3Config": {
@@ -2664,6 +2707,16 @@
       "refs": {
       }
     },
+    "StartContactStreamingRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartContactStreamingResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartOutboundVoiceContactRequest": {
       "base": null,
       "refs": {
@@ -2710,10 +2763,27 @@
       "refs": {
       }
     },
+    "StopContactStreamingRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopContactStreamingResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StorageType": {
       "base": null,
       "refs": {
         "InstanceStorageConfig$StorageType": "<p>A valid storage type.</p>"
+      }
+    },
+    "StreamingId": {
+      "base": null,
+      "refs": {
+        "StartContactStreamingResponse$StreamingId": "<p>The identifier of the streaming configuration enabled. </p>",
+        "StopContactStreamingRequest$StreamingId": "<p>The identifier of the streaming configuration enabled. </p>"
       }
     },
     "String": {

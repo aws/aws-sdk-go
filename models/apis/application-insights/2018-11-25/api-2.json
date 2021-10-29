@@ -438,13 +438,17 @@
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
         "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
         "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
-        "Remarks":{"shape":"Remarks"}
+        "Remarks":{"shape":"Remarks"},
+        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"},
+        "DiscoveryType":{"shape":"DiscoveryType"}
       }
     },
     "ApplicationInfoList":{
       "type":"list",
       "member":{"shape":"ApplicationInfo"}
     },
+    "AutoConfigEnabled":{"type":"boolean"},
+    "AutoCreate":{"type":"boolean"},
     "BadRequestException":{
       "type":"structure",
       "members":{
@@ -519,13 +523,14 @@
     "ConfigurationEventTime":{"type":"timestamp"},
     "CreateApplicationRequest":{
       "type":"structure",
-      "required":["ResourceGroupName"],
       "members":{
         "ResourceGroupName":{"shape":"ResourceGroupName"},
         "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
         "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"},
+        "AutoCreate":{"shape":"AutoCreate"}
       }
     },
     "CreateApplicationResponse":{
@@ -761,6 +766,13 @@
       "key":{"shape":"Tier"},
       "value":{"shape":"WorkloadMetaData"}
     },
+    "DiscoveryType":{
+      "type":"string",
+      "enum":[
+        "RESOURCE_GROUP_BASED",
+        "ACCOUNT_BASED"
+      ]
+    },
     "EbsCause":{"type":"string"},
     "EbsEvent":{"type":"string"},
     "EbsRequestId":{"type":"string"},
@@ -800,6 +812,7 @@
       },
       "exception":true
     },
+    "LastRecurrenceTime":{"type":"timestamp"},
     "LifeCycle":{"type":"string"},
     "LineTime":{"type":"timestamp"},
     "ListApplicationsRequest":{
@@ -892,14 +905,16 @@
         "StartTime":{"shape":"StartTime"},
         "EndTime":{"shape":"EndTime"},
         "MaxResults":{"shape":"MaxEntities"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "ComponentName":{"shape":"ComponentName"}
       }
     },
     "ListProblemsResponse":{
       "type":"structure",
       "members":{
         "ProblemList":{"shape":"ProblemList"},
-        "NextToken":{"shape":"PaginationToken"}
+        "NextToken":{"shape":"PaginationToken"},
+        "ResourceGroupName":{"shape":"ResourceGroupName"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -1063,7 +1078,9 @@
         "EndTime":{"shape":"EndTime"},
         "SeverityLevel":{"shape":"SeverityLevel"},
         "ResourceGroupName":{"shape":"ResourceGroupName"},
-        "Feedback":{"shape":"Feedback"}
+        "Feedback":{"shape":"Feedback"},
+        "RecurringCount":{"shape":"RecurringCount"},
+        "LastRecurrenceTime":{"shape":"LastRecurrenceTime"}
       }
     },
     "ProblemId":{
@@ -1078,6 +1095,7 @@
     },
     "RdsEventCategories":{"type":"string"},
     "RdsEventMessage":{"type":"string"},
+    "RecurringCount":{"type":"long"},
     "RelatedObservations":{
       "type":"structure",
       "members":{
@@ -1143,7 +1161,8 @@
       "enum":[
         "IGNORE",
         "RESOLVED",
-        "PENDING"
+        "PENDING",
+        "RECURRING"
       ]
     },
     "Tag":{
@@ -1218,7 +1237,12 @@
         "MYSQL",
         "POSTGRESQL",
         "JAVA_JMX",
-        "ORACLE"
+        "ORACLE",
+        "SAP_HANA",
+        "SAP_HANA_MULTI_NODE",
+        "SAP_HANA_SINGLE_NODE",
+        "SAP_HANA_HIGH_AVAILABILITY",
+        "SQL_SERVER_FAILOVER_CLUSTER_INSTANCE"
       ],
       "max":50,
       "min":1
@@ -1257,7 +1281,8 @@
         "OpsCenterEnabled":{"shape":"OpsCenterEnabled"},
         "CWEMonitorEnabled":{"shape":"CWEMonitorEnabled"},
         "OpsItemSNSTopicArn":{"shape":"OpsItemSNSTopicArn"},
-        "RemoveSNSTopic":{"shape":"RemoveSNSTopic"}
+        "RemoveSNSTopic":{"shape":"RemoveSNSTopic"},
+        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"}
       }
     },
     "UpdateApplicationResponse":{
@@ -1277,7 +1302,8 @@
         "ComponentName":{"shape":"ComponentName"},
         "Monitor":{"shape":"Monitor"},
         "Tier":{"shape":"Tier"},
-        "ComponentConfiguration":{"shape":"ComponentConfiguration"}
+        "ComponentConfiguration":{"shape":"ComponentConfiguration"},
+        "AutoConfigEnabled":{"shape":"AutoConfigEnabled"}
       }
     },
     "UpdateComponentConfigurationResponse":{

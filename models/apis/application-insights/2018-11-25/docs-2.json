@@ -79,6 +79,21 @@
         "ListApplicationsResponse$ApplicationInfoList": "<p>The list of applications.</p>"
       }
     },
+    "AutoConfigEnabled": {
+      "base": null,
+      "refs": {
+        "ApplicationInfo$AutoConfigEnabled": null,
+        "CreateApplicationRequest$AutoConfigEnabled": null,
+        "UpdateApplicationRequest$AutoConfigEnabled": null,
+        "UpdateComponentConfigurationRequest$AutoConfigEnabled": null
+      }
+    },
+    "AutoCreate": {
+      "base": null,
+      "refs": {
+        "CreateApplicationRequest$AutoCreate": null
+      }
+    },
     "BadRequestException": {
       "base": "<p>The request is not understood by the server.</p>",
       "refs": {
@@ -155,6 +170,7 @@
         "DescribeComponentConfigurationRecommendationRequest$ComponentName": "<p>The name of the component.</p>",
         "DescribeComponentConfigurationRequest$ComponentName": "<p>The name of the component.</p>",
         "DescribeComponentRequest$ComponentName": "<p>The name of the component.</p>",
+        "ListProblemsRequest$ComponentName": null,
         "UpdateComponentConfigurationRequest$ComponentName": "<p>The name of the component.</p>"
       }
     },
@@ -362,6 +378,12 @@
         "ApplicationComponent$DetectedWorkload": "<p> Workloads detected in the application component. </p>"
       }
     },
+    "DiscoveryType": {
+      "base": null,
+      "refs": {
+        "ApplicationInfo$DiscoveryType": null
+      }
+    },
     "EbsCause": {
       "base": null,
       "refs": {
@@ -476,6 +498,12 @@
     "InternalServerException": {
       "base": "<p>The server encountered an internal error and is unable to complete the request.</p>",
       "refs": {
+      }
+    },
+    "LastRecurrenceTime": {
+      "base": null,
+      "refs": {
+        "Problem$LastRecurrenceTime": null
       }
     },
     "LifeCycle": {
@@ -772,6 +800,12 @@
         "Observation$RdsEventMessage": "<p> The message of an RDS event. </p>"
       }
     },
+    "RecurringCount": {
+      "base": null,
+      "refs": {
+        "Problem$RecurringCount": null
+      }
+    },
     "RelatedObservations": {
       "base": "<p>Describes observations related to the problem.</p>",
       "refs": {
@@ -821,6 +855,7 @@
         "ListLogPatternsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListLogPatternsResponse$ResourceGroupName": "<p>The name of the resource group.</p>",
         "ListProblemsRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
+        "ListProblemsResponse$ResourceGroupName": null,
         "Problem$ResourceGroupName": "<p>The name of the resource group affected by the problem.</p>",
         "UpdateApplicationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",
         "UpdateComponentConfigurationRequest$ResourceGroupName": "<p>The name of the resource group.</p>",

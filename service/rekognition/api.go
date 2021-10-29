@@ -2647,11 +2647,13 @@ func (c *Rekognition) GetCelebrityRecognitionRequest(input *GetCelebrityRecognit
 //
 // Celebrity recognition in a video is an asynchronous operation. Analysis is
 // started by a call to StartCelebrityRecognition which returns a job identifier
-// (JobId). When the celebrity recognition operation finishes, Amazon Rekognition
-// Video publishes a completion status to the Amazon Simple Notification Service
-// topic registered in the initial call to StartCelebrityRecognition. To get
-// the results of the celebrity recognition analysis, first check that the status
-// value published to the Amazon SNS topic is SUCCEEDED. If so, call GetCelebrityDetection
+// (JobId).
+//
+// When the celebrity recognition operation finishes, Amazon Rekognition Video
+// publishes a completion status to the Amazon Simple Notification Service topic
+// registered in the initial call to StartCelebrityRecognition. To get the results
+// of the celebrity recognition analysis, first check that the status value
+// published to the Amazon SNS topic is SUCCEEDED. If so, call GetCelebrityDetection
 // and pass the job identifier (JobId) from the initial call to StartCelebrityDetection.
 //
 // For more information, see Working With Stored Videos in the Amazon Rekognition
@@ -2660,12 +2662,16 @@ func (c *Rekognition) GetCelebrityRecognitionRequest(input *GetCelebrityRecognit
 // GetCelebrityRecognition returns detected celebrities and the time(s) they
 // are detected in an array (Celebrities) of CelebrityRecognition objects. Each
 // CelebrityRecognition contains information about the celebrity in a CelebrityDetail
-// object and the time, Timestamp, the celebrity was detected.
+// object and the time, Timestamp, the celebrity was detected. This CelebrityDetail
+// object stores information about the detected celebrity's face attributes,
+// a face bounding box, known gender, the celebrity's name, and a confidence
+// estimate.
 //
 // GetCelebrityRecognition only returns the default facial attributes (BoundingBox,
-// Confidence, Landmarks, Pose, and Quality). The other facial attributes listed
-// in the Face object of the following response syntax are not returned. For
-// more information, see FaceDetail in the Amazon Rekognition Developer Guide.
+// Confidence, Landmarks, Pose, and Quality). The BoundingBox field only applies
+// to the detected face instance. The other facial attributes listed in the
+// Face object of the following response syntax are not returned. For more information,
+// see FaceDetail in the Amazon Rekognition Developer Guide.
 //
 // By default, the Celebrities array is sorted by time (milliseconds from the
 // start of the video). You can also sort the array by celebrity by specifying
@@ -7358,6 +7364,9 @@ type CelebrityDetail struct {
 	// The unique identifier for the celebrity.
 	Id *string `type:"string"`
 
+	// Retrieves the known gender for the celebrity.
+	KnownGender *KnownGender `type:"structure"`
+
 	// The name of the celebrity.
 	Name *string `type:"string"`
 
@@ -7404,6 +7413,12 @@ func (s *CelebrityDetail) SetFace(v *FaceDetail) *CelebrityDetail {
 // SetId sets the Id field's value.
 func (s *CelebrityDetail) SetId(v string) *CelebrityDetail {
 	s.Id = &v
+	return s
+}
+
+// SetKnownGender sets the KnownGender field's value.
+func (s *CelebrityDetail) SetKnownGender(v *KnownGender) *CelebrityDetail {
+	s.KnownGender = v
 	return s
 }
 

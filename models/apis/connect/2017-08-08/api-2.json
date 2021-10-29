@@ -1238,6 +1238,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "StartContactStreaming":{
+      "name":"StartContactStreaming",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/start-streaming"
+      },
+      "input":{"shape":"StartContactStreamingRequest"},
+      "output":{"shape":"StartContactStreamingResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "StartOutboundVoiceContact":{
       "name":"StartOutboundVoiceContact",
       "http":{
@@ -1299,6 +1315,21 @@
       "output":{"shape":"StopContactRecordingResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "StopContactStreaming":{
+      "name":"StopContactStreaming",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/stop-streaming"
+      },
+      "input":{"shape":"StopContactStreamingRequest"},
+      "output":{"shape":"StopContactStreamingResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"}
       ]
@@ -2029,7 +2060,7 @@
     "Channels":{
       "type":"list",
       "member":{"shape":"Channel"},
-      "max":1
+      "max":3
     },
     "ChatContent":{
       "type":"string",
@@ -2043,14 +2074,22 @@
     },
     "ChatMessage":{
       "type":"structure",
-      "required":[
-        "ContentType",
-        "Content"
-      ],
       "members":{
         "ContentType":{"shape":"ChatContentType"},
         "Content":{"shape":"ChatContent"}
       }
+    },
+    "ChatStreamingConfiguration":{
+      "type":"structure",
+      "required":["StreamingEndpointArn"],
+      "members":{
+        "StreamingEndpointArn":{"shape":"ChatStreamingEndpointARN"}
+      }
+    },
+    "ChatStreamingEndpointARN":{
+      "type":"string",
+      "max":350,
+      "min":1
     },
     "ClientToken":{
       "type":"string",
@@ -2966,7 +3005,9 @@
       "type":"structure",
       "members":{
         "Queue":{"shape":"QueueReference"},
-        "Channel":{"shape":"Channel"}
+        "Channel":{"shape":"Channel"},
+        "RoutingProfile":{"shape":"RoutingProfileReference"},
+        "InstanceReference":{"shape":"InstanceReference"}
       }
     },
     "DirectoryAlias":{
@@ -3186,6 +3227,7 @@
       "type":"structure",
       "members":{
         "Queues":{"shape":"Queues"},
+        "RoutingProfiles":{"shape":"RoutingProfiles"},
         "Channels":{"shape":"Channels"}
       }
     },
@@ -3309,7 +3351,9 @@
       "type":"string",
       "enum":[
         "QUEUE",
-        "CHANNEL"
+        "CHANNEL",
+        "ROUTING_PROFILE",
+        "INSTANCE"
       ]
     },
     "Groupings":{
@@ -3429,6 +3473,8 @@
         "CONTACTS_TRANSFERRED_OUT",
         "CONTACTS_TRANSFERRED_IN_FROM_QUEUE",
         "CONTACTS_TRANSFERRED_OUT_FROM_QUEUE",
+        "CONTACTS_TRANSFERRED_IN_BY_AGENT",
+        "CONTACTS_TRANSFERRED_OUT_BY_AGENT",
         "CONTACTS_MISSED",
         "CALLBACK_CONTACTS_HANDLED",
         "API_CONTACTS_HANDLED",
@@ -3583,8 +3629,15 @@
     },
     "InstanceId":{
       "type":"string",
-      "max":100,
+      "max":256,
       "min":1
+    },
+    "InstanceReference":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"InstanceId"},
+        "Arn":{"shape":"ARN"}
+      }
     },
     "InstanceStatus":{
       "type":"string",
@@ -4648,7 +4701,8 @@
     },
     "Password":{
       "type":"string",
-      "pattern":"/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\S]{8,64}$/"
+      "pattern":"/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\S]{8,64}$/",
+      "sensitive":true
     },
     "PhoneNumber":{"type":"string"},
     "PhoneNumberCountryCode":{
@@ -5035,7 +5089,8 @@
       "type":"structure",
       "members":{
         "Id":{"shape":"QueueId"},
-        "Arn":{"shape":"ARN"}
+        "Arn":{"shape":"ARN"},
+        "QueueType":{"shape":"QueueType"}
       }
     },
     "QueueStatus":{
@@ -5158,7 +5213,14 @@
     },
     "ReferenceType":{
       "type":"string",
-      "enum":["URL"]
+      "enum":[
+        "URL",
+        "ATTACHMENT",
+        "NUMBER",
+        "STRING",
+        "DATE",
+        "EMAIL"
+      ]
     },
     "ReferenceValue":{
       "type":"string",
@@ -5308,6 +5370,13 @@
       "type":"list",
       "member":{"shape":"RoutingProfileQueueReference"}
     },
+    "RoutingProfileReference":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"RoutingProfileId"},
+        "Arn":{"shape":"ARN"}
+      }
+    },
     "RoutingProfileSummary":{
       "type":"structure",
       "members":{
@@ -5319,6 +5388,12 @@
     "RoutingProfileSummaryList":{
       "type":"list",
       "member":{"shape":"RoutingProfileSummary"}
+    },
+    "RoutingProfiles":{
+      "type":"list",
+      "member":{"shape":"RoutingProfileId"},
+      "max":100,
+      "min":1
     },
     "S3Config":{
       "type":"structure",
@@ -5436,6 +5511,31 @@
       "members":{
       }
     },
+    "StartContactStreamingRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "ChatStreamingConfiguration",
+        "ClientToken"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "ChatStreamingConfiguration":{"shape":"ChatStreamingConfiguration"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartContactStreamingResponse":{
+      "type":"structure",
+      "required":["StreamingId"],
+      "members":{
+        "StreamingId":{"shape":"StreamingId"}
+      }
+    },
     "StartOutboundVoiceContactRequest":{
       "type":"structure",
       "required":[
@@ -5534,6 +5634,24 @@
       "members":{
       }
     },
+    "StopContactStreamingRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "StreamingId"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "StreamingId":{"shape":"StreamingId"}
+      }
+    },
+    "StopContactStreamingResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "StorageType":{
       "type":"string",
       "enum":[
@@ -5542,6 +5660,11 @@
         "KINESIS_STREAM",
         "KINESIS_FIREHOSE"
       ]
+    },
+    "StreamingId":{
+      "type":"string",
+      "max":100,
+      "min":1
     },
     "String":{"type":"string"},
     "SuspendContactRecordingRequest":{
@@ -5637,6 +5760,7 @@
       "type":"string",
       "enum":[
         "SECONDS",
+        "MILLISECONDS",
         "COUNT",
         "PERCENT"
       ]

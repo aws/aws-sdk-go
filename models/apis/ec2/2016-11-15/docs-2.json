@@ -7120,14 +7120,14 @@
     "ExcludedInstanceTypeSet": {
       "base": null,
       "refs": {
-        "InstanceRequirements$ExcludedInstanceTypes": "<p>The instance types to exclude. You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>), to exclude an instance type, size, or generation. The following are examples: <code>m5.8xlarge</code>, <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>.</p> <p>For example, if you specify <code>c5*.*</code>, Amazon EC2 will exclude the entire C5 instance family (all C5a and C5n instance types). If you specify <code>c5a.*</code>, Amazon EC2 excludes all the C5a instance types, but does not exclude the C5n instance types.</p> <p>Default: No excluded instance types</p>",
-        "InstanceRequirementsRequest$ExcludedInstanceTypes": "<p>The instance types to exclude. You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>), to exclude an instance family, type, size, or generation. The following are examples: <code>m5.8xlarge</code>, <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>.</p> <p>For example, if you specify <code>c5*.*</code>, Amazon EC2 will exclude the entire C5 instance family (all C5a and C5n instance types). If you specify <code>c5a.*</code>, Amazon EC2 excludes all the C5a instance types, but does not exclude the C5n instance types.</p> <p>Default: No excluded instance types</p>"
+        "InstanceRequirements$ExcludedInstanceTypes": "<p>The instance types to exclude. You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>), to exclude an instance type, size, or generation. The following are examples: <code>m5.8xlarge</code>, <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>.</p> <p>For example, if you specify <code>c5*</code>,Amazon EC2 will exclude the entire C5 instance family, which includes all C5a and C5n instance types. If you specify <code>m5a.*</code>, Amazon EC2 will exclude all the M5a instance types, but not the M5n instance types.</p> <p>Default: No excluded instance types</p>",
+        "InstanceRequirementsRequest$ExcludedInstanceTypes": "<p>The instance types to exclude. You can use strings with one or more wild cards, represented by an asterisk (<code>*</code>), to exclude an instance family, type, size, or generation. The following are examples: <code>m5.8xlarge</code>, <code>c5*.*</code>, <code>m5a.*</code>, <code>r*</code>, <code>*3*</code>.</p> <p>For example, if you specify <code>c5*</code>,Amazon EC2 will exclude the entire C5 instance family, which includes all C5a and C5n instance types. If you specify <code>m5a.*</code>, Amazon EC2 will exclude all the M5a instance types, but not the M5n instance types.</p> <p>Default: No excluded instance types</p>"
       }
     },
     "ExecutableByStringList": {
       "base": null,
       "refs": {
-        "DescribeImagesRequest$ExecutableUsers": "<p>Scopes the images by users with explicit launch permissions. Specify an Amazon Web Services account ID, <code>self</code> (the sender of the request), or <code>all</code> (public AMIs).</p>"
+        "DescribeImagesRequest$ExecutableUsers": "<p>Scopes the images by users with explicit launch permissions. Specify an Amazon Web Services account ID, <code>self</code> (the sender of the request), or <code>all</code> (public AMIs).</p> <ul> <li> <p>If you specify an Amazon Web Services account ID that is not your own, only AMIs shared with that specific Amazon Web Services account ID are returned. However, AMIs that are shared with the account’s organization or organizational unit (OU) are not returned.</p> </li> <li> <p>If you specify <code>self</code> or your own Amazon Web Services account ID, AMIs shared with your account are returned. In addition, AMIs that are shared with the organization or OU of which you are member are also returned. </p> </li> <li> <p>If you specify <code>all</code>, all public AMIs are returned.</p> </li> </ul>"
       }
     },
     "Explanation": {
@@ -12164,6 +12164,18 @@
         "ModifySnapshotAttributeRequest$OperationType": "<p>The type of operation to perform to the attribute.</p>"
       }
     },
+    "OrganizationArnStringList": {
+      "base": null,
+      "refs": {
+        "ModifyImageAttributeRequest$OrganizationArns": "<p>The Amazon Resource Name (ARN) of an organization. This parameter can be used only when the <code>Attribute</code> parameter is <code>launchPermission</code>.</p>"
+      }
+    },
+    "OrganizationalUnitArnStringList": {
+      "base": null,
+      "refs": {
+        "ModifyImageAttributeRequest$OrganizationalUnitArns": "<p>The Amazon Resource Name (ARN) of an organizational unit (OU). This parameter can be used only when the <code>Attribute</code> parameter is <code>launchPermission</code>.</p>"
+      }
+    },
     "OutpostArn": {
       "base": null,
       "refs": {
@@ -15660,6 +15672,8 @@
         "LastError$Message": "<p>The error message for the VPC endpoint error.</p>",
         "LastError$Code": "<p>The error code for the VPC endpoint error.</p>",
         "LaunchPermission$UserId": "<p>The Amazon Web Services account ID.</p> <p>Constraints: Up to 10 000 account IDs can be specified in a single request.</p>",
+        "LaunchPermission$OrganizationArn": "<p>The Amazon Resource Name (ARN) of an organization.</p>",
+        "LaunchPermission$OrganizationalUnitArn": "<p>The Amazon Resource Name (ARN) of an organizational unit (OU).</p>",
         "LaunchSpecification$UserData": "<p>The Base64-encoded user data for the instance.</p>",
         "LaunchSpecification$AddressingType": "<p>Deprecated.</p>",
         "LaunchSpecification$ImageId": "<p>The ID of the AMI.</p>",
@@ -15753,7 +15767,7 @@
         "ModifyIdFormatRequest$Resource": "<p>The type of resource: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p> <p>Alternatively, use the <code>all-current</code> option to include all resource types that are currently within their opt-in period for longer IDs.</p>",
         "ModifyIdentityIdFormatRequest$PrincipalArn": "<p>The ARN of the principal, which can be an IAM user, IAM role, or the root user. Specify <code>all</code> to modify the ID format for all IAM users, IAM roles, and the root user of the account.</p>",
         "ModifyIdentityIdFormatRequest$Resource": "<p>The type of resource: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>.</p> <p>Alternatively, use the <code>all-current</code> option to include all resource types that are currently within their opt-in period for longer IDs.</p>",
-        "ModifyImageAttributeRequest$Attribute": "<p>The name of the attribute to modify. The valid values are <code>description</code> and <code>launchPermission</code>.</p>",
+        "ModifyImageAttributeRequest$Attribute": "<p>The name of the attribute to modify.</p> <p>Valid values: <code>description</code> | <code>launchPermission</code> </p>",
         "ModifyImageAttributeRequest$Value": "<p>The value of the attribute being modified. This parameter can be used only when the <code>Attribute</code> parameter is <code>description</code>.</p>",
         "ModifyInstanceAttributeRequest$Value": "<p>A new value for the attribute. Use only with the <code>kernel</code>, <code>ramdisk</code>, <code>userData</code>, <code>disableApiTermination</code>, or <code>instanceInitiatedShutdownBehavior</code> attribute.</p>",
         "ModifyInstanceCreditSpecificationRequest$ClientToken": "<p>A unique, case-sensitive token that you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
@@ -15842,6 +15856,8 @@
         "NewDhcpConfiguration$Key": null,
         "OnDemandOptions$MaxTotalPrice": "<p>The maximum amount per hour for On-Demand Instances that you're willing to pay.</p>",
         "OnDemandOptionsRequest$MaxTotalPrice": "<p>The maximum amount per hour for On-Demand Instances that you're willing to pay.</p>",
+        "OrganizationArnStringList$member": null,
+        "OrganizationalUnitArnStringList$member": null,
         "OwnerStringList$member": null,
         "PciId$DeviceId": "<p>The ID of the device.</p>",
         "PciId$VendorId": "<p>The ID of the vendor.</p>",
