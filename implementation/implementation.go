@@ -2086,7 +2086,7 @@ func assumeRole(role, externalID, region string) (access, secret, sessionToken s
 
 	// irsa does not work with externalID, only the "traditional" assume role does
 	if externalID == "" {
-		return assumeRoleWithWebIdentity(svc, role, sessionToken)
+		return assumeRoleWithWebIdentity(svc, role, sessionName)
 	}
 	return assumeRoleWithTrustedIdentity(svc, role, externalID, sessionName)
 }
