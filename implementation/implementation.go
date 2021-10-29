@@ -2031,6 +2031,37 @@ func convertInterfaceMapToStringMap(m map[string]interface{}) map[string]string 
 	return mapString
 }
 
+func assumeRoleWithWebIdentity(svc *sts.STS, role, sessionName string) (string, string, string, error) {
+	log.Debug("assuming role with web identity")
+	tokenFile, ok := os.LookupEnv("AWS_WEB_IDENTITY_TOKEN_FILE")
+	if !ok {
+		return "", "", "", fmt.Errorf("token file for irsa not found. make sure your pod is configured correctly and that your service account is created and properly annotated")
+	}
+
+	data, err := ioutil.ReadFile(tokenFile)
+	if err != nil {
+		return "", "", "", fmt.Errorf("unable to open web identity token file with error: %w", err)
+	}
+
+	result, err := svc.AssumeRoleWithWebIdentity(&sts.AssumeRoleWithWebIdentityInput{
+		DurationSeconds:  aws.Int64(3600),
+		RoleArn:          aws.String(role),
+		RoleSessionName:  aws.String(sessionName),
+		WebIdentityToken: aws.String(string(data)),
+	})
+	return *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken, err
+}
+
+func assumeRoleWithTrustedIdentity(svc *sts.STS, role, externalID, sessionName string) (string, string, string, error) {
+	log.Debug("assuming role with trusted entity")
+	result, err := svc.AssumeRole(&sts.AssumeRoleInput{
+		RoleArn:         &role,
+		RoleSessionName: &sessionName,
+		ExternalId:      &externalID,
+	})
+	return *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken, err
+}
+
 func assumeRole(role, externalID, region string) (access, secret, sessionToken string, err error) {
 	sess, _ := session.NewSession(&aws.Config{
 		Region: aws.String(region),
@@ -2041,40 +2072,9 @@ func assumeRole(role, externalID, region string) (access, secret, sessionToken s
 
 	// irsa does not work with externalID, only the "traditional" assume role does
 	if externalID == "" {
-		tokenFile, ok := os.LookupEnv("AWS_WEB_IDENTITY_TOKEN_FILE")
-		if !ok {
-			return access, secret, sessionToken, fmt.Errorf("token file for irsa not found. make sure pod is configured correctly and that your service account is created and properly annotated")
-		}
-
-		log.Debug("assuming role with web identity")
-		data, err := ioutil.ReadFile(tokenFile)
-		if err != nil {
-			return access, secret, sessionToken, fmt.Errorf("unable to open web identity token file with error: %w", err)
-		}
-
-		result, err := svc.AssumeRoleWithWebIdentity(&sts.AssumeRoleWithWebIdentityInput{
-			DurationSeconds:  aws.Int64(3600),
-			RoleArn:          aws.String(role),
-			RoleSessionName:  aws.String(sessionName),
-			WebIdentityToken: aws.String(string(data)),
-		})
-		if err != nil {
-			return access, secret, sessionToken, fmt.Errorf("unable to assume web identity role with error: %w", err)
-		}
-		access, secret, sessionToken = *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken
-	} else {
-		log.Debug("assuming role with trusted entity")
-		result, err := svc.AssumeRole(&sts.AssumeRoleInput{
-			RoleArn:         &role,
-			RoleSessionName: &sessionName,
-			ExternalId:      &externalID,
-		})
-		if err != nil {
-			return access, secret, sessionToken, fmt.Errorf("unable to assume trusted identity role with error: %w", err)
-		}
-		access, secret, sessionToken = *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken
+		return assumeRoleWithWebIdentity(svc, role, sessionToken)
 	}
-	return access, secret, sessionToken, nil
+	return assumeRoleWithTrustedIdentity(svc, role, externalID, sessionName)
 }
 
 func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}, timeout int32) (*session.Session, error) {
@@ -2114,7 +2114,6 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	if err != nil {
 		return nil, errors.New("failed to create AWS session using provided credentials")
 	}
-
 	return sess, nil
 }
 
