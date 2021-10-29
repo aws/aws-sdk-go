@@ -258,6 +258,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/ssooidc"
 	"github.com/aws/aws-sdk-go/service/storagegateway"
 	"github.com/aws/aws-sdk-go/service/sts"
+	"github.com/aws/aws-sdk-go/service/sts/stsiface"
 	"github.com/aws/aws-sdk-go/service/support"
 	"github.com/aws/aws-sdk-go/service/swf"
 	"github.com/aws/aws-sdk-go/service/synthetics"
@@ -2039,7 +2040,7 @@ func readFile(path string) (string, error) {
 	return string(data), nil
 }
 
-func assumeRoleWithWebIdentity(svc *sts.STS, role, sessionName string) (string, string, string, error) {
+func assumeRoleWithWebIdentity(svc stsiface.STSAPI, role, sessionName string) (string, string, string, error) {
 	log.Debug("assuming role with web identity")
 	tokenFile, ok := os.LookupEnv("AWS_WEB_IDENTITY_TOKEN_FILE")
 	if !ok {
@@ -2063,7 +2064,7 @@ func assumeRoleWithWebIdentity(svc *sts.STS, role, sessionName string) (string, 
 	return *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken, err
 }
 
-func assumeRoleWithTrustedIdentity(svc *sts.STS, role, externalID, sessionName string) (string, string, string, error) {
+func assumeRoleWithTrustedIdentity(svc stsiface.STSAPI, role, externalID, sessionName string) (string, string, string, error) {
 	log.Debug("assuming role with trusted entity")
 	result, err := svc.AssumeRole(&sts.AssumeRoleInput{
 		RoleArn:         &role,
@@ -2076,12 +2077,7 @@ func assumeRoleWithTrustedIdentity(svc *sts.STS, role, externalID, sessionName s
 	return *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken, err
 }
 
-func assumeRole(role, externalID, region string) (access, secret, sessionToken string, err error) {
-	sess, _ := session.NewSession(&aws.Config{
-		Region: aws.String(region),
-	})
-
-	svc := sts.New(sess)
+func assumeRole(svc stsiface.STSAPI, role, externalID string) (access, secret, sessionToken string, err error) {
 	sessionName := strconv.Itoa(rand.Int())
 
 	// irsa does not work with externalID, only the "traditional" assume role does
@@ -2101,8 +2097,13 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	// checking whether the session is going to be with regular aws access keys or a role needed to be assumed
 	switch sessionType {
 	case "roleBased":
+		sess, _ := session.NewSession(&aws.Config{
+			Region: aws.String(region),
+		})
+
+		svc := sts.New(sess)
 		var err error
-		access, secret, sessionToken, err = assumeRole(k, v, region)
+		access, secret, sessionToken, err = assumeRole(svc, k, v)
 		if err != nil {
 			return nil, fmt.Errorf("unable to assume role with error: %w", err)
 		}
