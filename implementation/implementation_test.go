@@ -73,6 +73,8 @@ func TestAssumeRole(t *testing.T) {
 			wantErr:        "invalid role ARN",
 		},
 	}
+
+	// this part mimics the service account annotation on plugin pods
 	file := "/tmp/lewl123"
 	err := os.WriteFile(file, []byte(""), 0644)
 	defer os.Remove(file)
@@ -81,6 +83,7 @@ func TestAssumeRole(t *testing.T) {
 	}
 	os.Setenv("AWS_WEB_IDENTITY_TOKEN_FILE", file)
 
+	// mocking the sts client
 	client := &STSMockClient{}
 	for _, tt := range tests {
 		t.Run("test assumeRole(): "+tt.name, func(t *testing.T) {
