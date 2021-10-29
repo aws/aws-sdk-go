@@ -2031,14 +2031,22 @@ func convertInterfaceMapToStringMap(m map[string]interface{}) map[string]string 
 	return mapString
 }
 
+func readFile(path string) (string, error) {
+	data, err := ioutil.ReadFile(path)
+	if err != nil {
+		return "", err
+	}
+	return string(data), nil
+}
+
 func assumeRoleWithWebIdentity(svc *sts.STS, role, sessionName string) (string, string, string, error) {
 	log.Debug("assuming role with web identity")
 	tokenFile, ok := os.LookupEnv("AWS_WEB_IDENTITY_TOKEN_FILE")
 	if !ok {
-		return "", "", "", fmt.Errorf("token file for irsa not found. make sure your pod is configured correctly and that your service account is created and properly annotated")
+		return "", "", "", fmt.Errorf("token file for irsa not found. make sure your pod is configured correctly and that your service account is created and annotated properly")
 	}
 
-	data, err := ioutil.ReadFile(tokenFile)
+	data, err := readFile(tokenFile)
 	if err != nil {
 		return "", "", "", fmt.Errorf("unable to open web identity token file with error: %w", err)
 	}
