@@ -655,7 +655,8 @@
         "VocabularyFilterMethod":{"shape":"VocabularyFilterMethod"},
         "LanguageModelName":{"shape":"ModelName"},
         "ContentRedaction":{"shape":"ContentRedaction"},
-        "LanguageOptions":{"shape":"LanguageOptions"}
+        "LanguageOptions":{"shape":"LanguageOptions"},
+        "LanguageIdSettings":{"shape":"LanguageIdSettingsMap"}
       }
     },
     "CallAnalyticsJobStatus":{
@@ -1137,6 +1138,21 @@
         "en-ZA",
         "en-NZ"
       ]
+    },
+    "LanguageIdSettings":{
+      "type":"structure",
+      "members":{
+        "VocabularyName":{"shape":"VocabularyName"},
+        "VocabularyFilterName":{"shape":"VocabularyFilterName"},
+        "LanguageModelName":{"shape":"ModelName"}
+      }
+    },
+    "LanguageIdSettingsMap":{
+      "type":"map",
+      "key":{"shape":"LanguageCode"},
+      "value":{"shape":"LanguageIdSettings"},
+      "max":5,
+      "min":1
     },
     "LanguageModel":{
       "type":"structure",
@@ -1657,7 +1673,8 @@
         "IdentifyLanguage":{"shape":"Boolean"},
         "LanguageOptions":{"shape":"LanguageOptions"},
         "Subtitles":{"shape":"Subtitles"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "LanguageIdSettings":{"shape":"LanguageIdSettingsMap"}
       }
     },
     "StartTranscriptionJobResponse":{
@@ -1808,7 +1825,8 @@
         "LanguageOptions":{"shape":"LanguageOptions"},
         "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"},
         "Tags":{"shape":"TagList"},
-        "Subtitles":{"shape":"SubtitlesOutput"}
+        "Subtitles":{"shape":"SubtitlesOutput"},
+        "LanguageIdSettings":{"shape":"LanguageIdSettingsMap"}
       }
     },
     "TranscriptionJobName":{

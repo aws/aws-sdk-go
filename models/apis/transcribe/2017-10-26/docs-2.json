@@ -35,7 +35,7 @@
     "StartCallAnalyticsJob": "<p>Starts an asynchronous analytics job that not only transcribes the audio recording of a caller and agent, but also returns additional insights. These insights include how quickly or loudly the caller or agent was speaking. To retrieve additional insights with your analytics jobs, create categories. A category is a way to classify analytics jobs based on attributes, such as a customer's sentiment or a particular phrase being used during the call. For more information, see the operation. </p>",
     "StartMedicalTranscriptionJob": "<p>Starts a batch job to transcribe medical speech to text.</p>",
     "StartTranscriptionJob": "<p>Starts an asynchronous job to transcribe speech to text.</p>",
-    "TagResource": "<p>Tags a Amazon Transcribe resource with the given list of tags.</p>",
+    "TagResource": "<p>Tags an Amazon Transcribe resource with the given list of tags.</p>",
     "UntagResource": "<p>Removes specified tags from a specified Amazon Transcribe resource.</p>",
     "UpdateCallAnalyticsCategory": "<p>Updates the call analytics category with new values. The <code>UpdateCallAnalyticsCategory</code> operation overwrites all of the existing information with the values that you provide in the request. </p>",
     "UpdateMedicalVocabulary": "<p>Updates a vocabulary with new values that you provide in a different text file from the one you used to create the vocabulary. The <code>UpdateMedicalVocabulary</code> operation overwrites all of the existing information with the values that you provide in the request.</p>",
@@ -250,9 +250,9 @@
     "DataAccessRoleArn": {
       "base": null,
       "refs": {
-        "CallAnalyticsJob$DataAccessRoleArn": "<p>The Amazon Resource Number (ARN) that you use to get access to the analytics job.</p>",
-        "InputDataConfig$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that uniquely identifies the permissions you've given Amazon Transcribe to access your Amazon S3 buckets containing your media files or text data.</p>",
-        "JobExecutionSettings$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of a role that has access to the S3 bucket that contains the input files. Amazon Transcribe assumes this role to read queued media files. If you have specified an output S3 bucket for the transcription results, this role should have access to the output bucket as well.</p> <p>If you specify the <code>AllowDeferredExecution</code> field, you must specify the <code>DataAccessRoleArn</code> field.</p>",
+        "CallAnalyticsJob$DataAccessRoleArn": "<p>The Amazon Resource Number (ARN) that you use to access the analytics job. ARNs have the format <code>arn:partition:service:region:account-id:resource-type/resource-id</code>.</p>",
+        "InputDataConfig$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that uniquely identifies the permissions you've given Amazon Transcribe to access your Amazon S3 buckets containing your media files or text data. ARNs have the format <code>arn:partition:service:region:account-id:resource-type/resource-id</code>.</p>",
+        "JobExecutionSettings$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN), in the form <code>arn:partition:service:region:account-id:resource-type/resource-id</code>, of a role that has access to the S3 bucket that contains the input files. Amazon Transcribe assumes this role to read queued media files. If you have specified an output S3 bucket for the transcription results, this role should have access to the output bucket as well.</p> <p>If you specify the <code>AllowDeferredExecution</code> field, you must specify the <code>DataAccessRoleArn</code> field.</p>",
         "StartCallAnalyticsJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of a role that has access to the S3 bucket that contains your input files. Amazon Transcribe assumes this role to read queued audio files. If you have specified an output S3 bucket for your transcription results, this role should have access to the output bucket as well.</p>"
       }
     },
@@ -486,8 +486,8 @@
       "base": null,
       "refs": {
         "StartCallAnalyticsJobRequest$OutputEncryptionKMSKeyId": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Key Management Service key used to encrypt the output of the call analytics job. The user calling the operation must have permission to use the specified KMS key.</p> <p>You use either of the following to identify an Amazon Web Services KMS key in the current account:</p> <ul> <li> <p>KMS Key ID: \"1234abcd-12ab-34cd-56ef-1234567890ab\"</p> </li> <li> <p>KMS Key Alias: \"alias/ExampleAlias\"</p> </li> </ul> <p> You can use either of the following to identify a KMS key in the current account or another account:</p> <ul> <li> <p>Amazon Resource Name (ARN) of a KMS key in the current account or another account: \"arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef1234567890ab\"</p> </li> <li> <p>ARN of a KMS Key Alias: \"arn:aws:kms:region:account ID:alias/ExampleAlias\"</p> </li> </ul> <p>If you don't specify an encryption key, the output of the call analytics job is encrypted with the default Amazon S3 key (SSE-S3).</p> <p>If you specify a KMS key to encrypt your output, you must also specify an output location in the <code>OutputLocation</code> parameter. </p>",
-        "StartMedicalTranscriptionJobRequest$OutputEncryptionKMSKeyId": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Key Management Service (KMS) key used to encrypt the output of the transcription job. The user calling the <a>StartMedicalTranscriptionJob</a> operation must have permission to use the specified KMS key.</p> <p>You use either of the following to identify a KMS key in the current account:</p> <ul> <li> <p>KMS Key ID: \"1234abcd-12ab-34cd-56ef-1234567890ab\"</p> </li> <li> <p>KMS Key Alias: \"alias/ExampleAlias\"</p> </li> </ul> <p>You can use either of the following to identify a KMS key in the current account or another account:</p> <ul> <li> <p>Amazon Resource Name (ARN) of a KMS key in the current account or another account: \"arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</p> </li> <li> <p>ARN of a KMS Key Alias: \"arn:aws:kms:region:account ID:alias/ExampleAlias\"</p> </li> </ul> <p>If you don't specify an encryption key, the output of the medical transcription job is encrypted with the default Amazon S3 key (SSE-S3).</p> <p>If you specify a KMS key to encrypt your output, you must also specify an output location in the <code>OutputBucketName</code> parameter.</p>",
-        "StartTranscriptionJobRequest$OutputEncryptionKMSKeyId": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Key Management Service (KMS) key used to encrypt the output of the transcription job. The user calling the <code>StartTranscriptionJob</code> operation must have permission to use the specified KMS key.</p> <p>You can use either of the following to identify a KMS key in the current account:</p> <ul> <li> <p>KMS Key ID: \"1234abcd-12ab-34cd-56ef-1234567890ab\"</p> </li> <li> <p>KMS Key Alias: \"alias/ExampleAlias\"</p> </li> </ul> <p>You can use either of the following to identify a KMS key in the current account or another account:</p> <ul> <li> <p>Amazon Resource Name (ARN) of a KMS Key: \"arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</p> </li> <li> <p>ARN of a KMS Key Alias: \"arn:aws:kms:region:account ID:alias/ExampleAlias\"</p> </li> </ul> <p>If you don't specify an encryption key, the output of the transcription job is encrypted with the default Amazon S3 key (SSE-S3).</p> <p>If you specify a KMS key to encrypt your output, you must also specify an output location in the <code>OutputBucketName</code> parameter.</p>"
+        "StartMedicalTranscriptionJobRequest$OutputEncryptionKMSKeyId": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Key Management Service (KMS) key used to encrypt the output of the transcription job. The user calling the <a>StartMedicalTranscriptionJob</a> operation must have permission to use the specified KMS key.</p> <p>You use either of the following to identify a KMS key in the current account:</p> <ul> <li> <p>KMS Key ID: \"1234abcd-12ab-34cd-56ef-1234567890ab\"</p> </li> <li> <p>KMS Key Alias: \"alias/ExampleAlias\"</p> </li> </ul> <p>You can use either of the following to identify a KMS key in the current account or another account:</p> <ul> <li> <p>Amazon Resource Name (ARN) of a KMS key in the current account or another account: \"arn:aws:kms:region:account-ID:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</p> </li> <li> <p>ARN of a KMS Key Alias: \"arn:aws:kms:region:account ID:alias/ExampleAlias\"</p> </li> </ul> <p>If you don't specify an encryption key, the output of the medical transcription job is encrypted with the default Amazon S3 key (SSE-S3).</p> <p>If you specify a KMS key to encrypt your output, you must also specify an output location in the <code>OutputBucketName</code> parameter.</p>",
+        "StartTranscriptionJobRequest$OutputEncryptionKMSKeyId": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services Key Management Service (KMS) key used to encrypt the output of the transcription job. The user calling the <code>StartTranscriptionJob</code> operation must have permission to use the specified KMS key.</p> <p>You can use either of the following to identify a KMS key in the current account:</p> <ul> <li> <p>KMS Key ID: \"1234abcd-12ab-34cd-56ef-1234567890ab\"</p> </li> <li> <p>KMS Key Alias: \"alias/ExampleAlias\"</p> </li> </ul> <p>You can use either of the following to identify a KMS key in the current account or another account:</p> <ul> <li> <p>Amazon Resource Name (ARN) of a KMS Key: \"arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</p> </li> <li> <p>ARN of a KMS Key Alias: \"arn:aws:kms:region:account-ID:alias/ExampleAlias\"</p> </li> </ul> <p>If you don't specify an encryption key, the output of the transcription job is encrypted with the default Amazon S3 key (SSE-S3).</p> <p>If you specify a KMS key to encrypt your output, you must also specify an output location in the <code>OutputBucketName</code> parameter.</p>"
       }
     },
     "LanguageCode": {
@@ -504,6 +504,7 @@
         "GetMedicalVocabularyResponse$LanguageCode": "<p>The valid language code for your vocabulary entries.</p>",
         "GetVocabularyFilterResponse$LanguageCode": "<p>The language code of the words in the vocabulary filter.</p>",
         "GetVocabularyResponse$LanguageCode": "<p>The language code of the vocabulary entries.</p>",
+        "LanguageIdSettingsMap$key": null,
         "LanguageOptions$member": null,
         "MedicalTranscriptionJob$LanguageCode": "<p>The language code for the language spoken in the source audio file. US English (en-US) is the only supported language for medical transcriptions. Any other value you enter for language code results in a <code>BadRequestException</code> error.</p>",
         "MedicalTranscriptionJobSummary$LanguageCode": "<p>The language of the transcript in the source audio file.</p>",
@@ -518,6 +519,20 @@
         "UpdateVocabularyResponse$LanguageCode": "<p>The language code of the vocabulary entries.</p>",
         "VocabularyFilterInfo$LanguageCode": "<p>The language code of the words in the vocabulary filter.</p>",
         "VocabularyInfo$LanguageCode": "<p>The language code of the vocabulary entries.</p>"
+      }
+    },
+    "LanguageIdSettings": {
+      "base": "<p>Language-specific settings that can be specified when language identification is enabled.</p>",
+      "refs": {
+        "LanguageIdSettingsMap$value": null
+      }
+    },
+    "LanguageIdSettingsMap": {
+      "base": null,
+      "refs": {
+        "CallAnalyticsJobSettings$LanguageIdSettings": "<p>The language identification settings associated with your call analytics job. These settings include <code>VocabularyName</code>, <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.</p>",
+        "StartTranscriptionJobRequest$LanguageIdSettings": "<p>The language identification settings associated with your transcription job. These settings include <code>VocabularyName</code>, <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.</p>",
+        "TranscriptionJob$LanguageIdSettings": "<p>Language-specific settings that can be specified when language identification is enabled for your transcription job. These settings include <code>VocabularyName</code>, <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>LanguageModelName.</p>"
       }
     },
     "LanguageModel": {
@@ -736,6 +751,7 @@
         "CreateLanguageModelResponse$ModelName": "<p>The name you've chosen for your custom language model.</p>",
         "DeleteLanguageModelRequest$ModelName": "<p>The name of the model you're choosing to delete.</p>",
         "DescribeLanguageModelRequest$ModelName": "<p>The name of the custom language model you submit to get more information.</p>",
+        "LanguageIdSettings$LanguageModelName": "<p>The name of the language model you want to use when transcribing your audio. The model you specify must have the same language code as the transcription job; if the languages don't match, the language model won't be applied.</p>",
         "LanguageModel$ModelName": "<p>The name of the custom language model.</p>",
         "ListLanguageModelsRequest$NameContains": "<p>When specified, the custom language model names returned contain the substring you've specified.</p>",
         "ModelSettings$LanguageModelName": "<p>The name of your custom language model.</p>"
@@ -1063,10 +1079,10 @@
     "TranscribeArn": {
       "base": null,
       "refs": {
-        "ListTagsForResourceRequest$ResourceArn": "<p>Lists all tags associated with a given Amazon Resource Name (ARN).</p>",
-        "ListTagsForResourceResponse$ResourceArn": "<p>Lists all tags associated with the given Amazon Resource Name (ARN).</p>",
-        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want to tag.</p>",
-        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want to remove tags from.</p>"
+        "ListTagsForResourceRequest$ResourceArn": "<p>Lists all tags associated with a given Amazon Resource Name (ARN). ARNs have the format <code>arn:partition:service:region:account-id:resource-type/resource-id</code> (for example, <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>). Valid values for <code>resource-type</code> are: <code>transcription-job</code>, <code>medical-transcription-job</code>, <code>vocabulary</code>, <code>medical-vocabulary</code>, <code>vocabulary-filter</code>, and <code>language-model</code>.</p>",
+        "ListTagsForResourceResponse$ResourceArn": "<p>Lists all tags associated with the given Amazon Resource Name (ARN). </p>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want to tag. ARNs have the format <code>arn:partition:service:region:account-id:resource-type/resource-id</code> (for example, <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>). Valid values for <code>resource-type</code> are: <code>transcription-job</code>, <code>medical-transcription-job</code>, <code>vocabulary</code>, <code>medical-vocabulary</code>, <code>vocabulary-filter</code>, and <code>language-model</code>.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want to remove tags from. ARNs have the format <code>arn:partition:service:region:account-id:resource-type/resource-id</code> (for example, <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>). Valid values for <code>resource-type</code> are: <code>transcription-job</code>, <code>medical-transcription-job</code>, <code>vocabulary</code>, <code>medical-vocabulary</code>, <code>vocabulary-filter</code>, and <code>language-model</code>.</p>"
       }
     },
     "Transcript": {
@@ -1247,6 +1263,7 @@
         "DeleteVocabularyFilterRequest$VocabularyFilterName": "<p>The name of the vocabulary filter to remove.</p>",
         "GetVocabularyFilterRequest$VocabularyFilterName": "<p>The name of the vocabulary filter for which to return information.</p>",
         "GetVocabularyFilterResponse$VocabularyFilterName": "<p>The name of the vocabulary filter.</p>",
+        "LanguageIdSettings$VocabularyFilterName": "<p>The name of the vocabulary filter you want to use when transcribing your audio. The filter you specify must have the same language code as the transcription job; if the languages don't match, the vocabulary filter won't be applied.</p>",
         "ListVocabularyFiltersRequest$NameContains": "<p>Filters the response so that it only contains vocabulary filters whose name contains the specified string.</p>",
         "Settings$VocabularyFilterName": "<p>The name of the vocabulary filter to use when transcribing the audio. The filter that you specify must have the same language code as the transcription job.</p>",
         "UpdateVocabularyFilterRequest$VocabularyFilterName": "<p>The name of the vocabulary filter to update. If you try to update a vocabulary filter with the same name as another vocabulary filter, you get a <code>ConflictException</code> error.</p>",
@@ -1280,6 +1297,7 @@
         "GetMedicalVocabularyResponse$VocabularyName": "<p>The name of the vocabulary returned by Amazon Transcribe Medical.</p>",
         "GetVocabularyRequest$VocabularyName": "<p>The name of the vocabulary to return information about. The name is case sensitive.</p>",
         "GetVocabularyResponse$VocabularyName": "<p>The name of the vocabulary to return.</p>",
+        "LanguageIdSettings$VocabularyName": "<p>The name of the vocabulary you want to use when processing your transcription job. The vocabulary you specify must have the same language code as the transcription job; if the languages don't match, the vocabulary won't be applied.</p>",
         "ListMedicalVocabulariesRequest$NameContains": "<p>Returns vocabularies whose names contain the specified string. The search is not case sensitive. <code>ListMedicalVocabularies</code> returns both \"<code>vocabularyname</code>\" and \"<code>VocabularyName</code>\".</p>",
         "ListVocabulariesRequest$NameContains": "<p>When specified, the vocabularies returned in the list are limited to vocabularies whose name contains the specified string. The search is not case sensitive, <code>ListVocabularies</code> returns both \"vocabularyname\" and \"VocabularyName\" in the response list.</p>",
         "MedicalTranscriptionSetting$VocabularyName": "<p>The name of the vocabulary to use when processing a medical transcription job.</p>",

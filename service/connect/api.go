@@ -8753,6 +8753,101 @@ func (c *Connect) StartContactRecordingWithContext(ctx aws.Context, input *Start
 	return out, req.Send()
 }
 
+const opStartContactStreaming = "StartContactStreaming"
+
+// StartContactStreamingRequest generates a "aws/request.Request" representing the
+// client's request for the StartContactStreaming operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartContactStreaming for more information on using the StartContactStreaming
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartContactStreamingRequest method.
+//    req, resp := client.StartContactStreamingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactStreaming
+func (c *Connect) StartContactStreamingRequest(input *StartContactStreamingInput) (req *request.Request, output *StartContactStreamingOutput) {
+	op := &request.Operation{
+		Name:       opStartContactStreaming,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/start-streaming",
+	}
+
+	if input == nil {
+		input = &StartContactStreamingInput{}
+	}
+
+	output = &StartContactStreamingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartContactStreaming API operation for Amazon Connect Service.
+//
+// Initiates real-time message streaming for a new chat contact.
+//
+// For more information about message streaming, see Enable real-time chat message
+// streaming (https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StartContactStreaming for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StartContactStreaming
+func (c *Connect) StartContactStreaming(input *StartContactStreamingInput) (*StartContactStreamingOutput, error) {
+	req, out := c.StartContactStreamingRequest(input)
+	return out, req.Send()
+}
+
+// StartContactStreamingWithContext is the same as StartContactStreaming with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartContactStreaming for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StartContactStreamingWithContext(ctx aws.Context, input *StartContactStreamingInput, opts ...request.Option) (*StartContactStreamingOutput, error) {
+	req, out := c.StartContactStreamingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartOutboundVoiceContact = "StartOutboundVoiceContact"
 
 // StartOutboundVoiceContactRequest generates a "aws/request.Request" representing the
@@ -9143,6 +9238,97 @@ func (c *Connect) StopContactRecording(input *StopContactRecordingInput) (*StopC
 // for more information on using Contexts.
 func (c *Connect) StopContactRecordingWithContext(ctx aws.Context, input *StopContactRecordingInput, opts ...request.Option) (*StopContactRecordingOutput, error) {
 	req, out := c.StopContactRecordingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopContactStreaming = "StopContactStreaming"
+
+// StopContactStreamingRequest generates a "aws/request.Request" representing the
+// client's request for the StopContactStreaming operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopContactStreaming for more information on using the StopContactStreaming
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopContactStreamingRequest method.
+//    req, resp := client.StopContactStreamingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactStreaming
+func (c *Connect) StopContactStreamingRequest(input *StopContactStreamingInput) (req *request.Request, output *StopContactStreamingOutput) {
+	op := &request.Operation{
+		Name:       opStopContactStreaming,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact/stop-streaming",
+	}
+
+	if input == nil {
+		input = &StopContactStreamingInput{}
+	}
+
+	output = &StopContactStreamingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopContactStreaming API operation for Amazon Connect Service.
+//
+// Ends message streaming on a specified contact. To restart message streaming
+// on that contact, call the StartContactStreaming (https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html)
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation StopContactStreaming for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/StopContactStreaming
+func (c *Connect) StopContactStreaming(input *StopContactStreamingInput) (*StopContactStreamingOutput, error) {
+	req, out := c.StopContactStreamingRequest(input)
+	return out, req.Send()
+}
+
+// StopContactStreamingWithContext is the same as StopContactStreaming with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopContactStreaming for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) StopContactStreamingWithContext(ctx aws.Context, input *StopContactStreamingInput, opts ...request.Option) (*StopContactStreamingOutput, error) {
+	req, out := c.StopContactStreamingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12852,14 +13038,10 @@ type ChatMessage struct {
 	_ struct{} `type:"structure"`
 
 	// The content of the chat message.
-	//
-	// Content is a required field
-	Content *string `min:"1" type:"string" required:"true"`
+	Content *string `min:"1" type:"string"`
 
 	// The type of the content. Supported types are text and plain.
-	//
-	// ContentType is a required field
-	ContentType *string `min:"1" type:"string" required:"true"`
+	ContentType *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -12883,14 +13065,8 @@ func (s ChatMessage) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ChatMessage) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ChatMessage"}
-	if s.Content == nil {
-		invalidParams.Add(request.NewErrParamRequired("Content"))
-	}
 	if s.Content != nil && len(*s.Content) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
-	}
-	if s.ContentType == nil {
-		invalidParams.Add(request.NewErrParamRequired("ContentType"))
 	}
 	if s.ContentType != nil && len(*s.ContentType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ContentType", 1))
@@ -12911,6 +13087,58 @@ func (s *ChatMessage) SetContent(v string) *ChatMessage {
 // SetContentType sets the ContentType field's value.
 func (s *ChatMessage) SetContentType(v string) *ChatMessage {
 	s.ContentType = &v
+	return s
+}
+
+// The streaming configuration, such as the Amazon SNS streaming endpoint.
+type ChatStreamingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the standard Amazon SNS topic. The Amazon
+	// Resource Name (ARN) of the streaming endpoint that is used to publish real-time
+	// message streaming for chat conversations.
+	//
+	// StreamingEndpointArn is a required field
+	StreamingEndpointArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatStreamingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChatStreamingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChatStreamingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChatStreamingConfiguration"}
+	if s.StreamingEndpointArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamingEndpointArn"))
+	}
+	if s.StreamingEndpointArn != nil && len(*s.StreamingEndpointArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamingEndpointArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStreamingEndpointArn sets the StreamingEndpointArn field's value.
+func (s *ChatStreamingConfiguration) SetStreamingEndpointArn(v string) *ChatStreamingConfiguration {
+	s.StreamingEndpointArn = &v
 	return s
 }
 
@@ -14801,7 +15029,11 @@ type CreateUserInput struct {
 	// The password for the user account. A password is required if you are using
 	// Amazon Connect for identity management. Otherwise, it is an error to include
 	// a password.
-	Password *string `type:"string"`
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateUserInput's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
 
 	// The phone settings for the user.
 	//
@@ -17039,8 +17271,14 @@ type Dimensions struct {
 	// The channel used for grouping and filters.
 	Channel *string `type:"string" enum:"Channel"`
 
+	// The instance reference.
+	InstanceReference *InstanceReference `type:"structure"`
+
 	// Information about the queue for which metrics are returned.
 	Queue *QueueReference `type:"structure"`
+
+	// The routing profile.
+	RoutingProfile *RoutingProfileReference `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17067,9 +17305,21 @@ func (s *Dimensions) SetChannel(v string) *Dimensions {
 	return s
 }
 
+// SetInstanceReference sets the InstanceReference field's value.
+func (s *Dimensions) SetInstanceReference(v *InstanceReference) *Dimensions {
+	s.InstanceReference = v
+	return s
+}
+
 // SetQueue sets the Queue field's value.
 func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 	s.Queue = v
+	return s
+}
+
+// SetRoutingProfile sets the RoutingProfile field's value.
+func (s *Dimensions) SetRoutingProfile(v *RoutingProfileReference) *Dimensions {
+	s.RoutingProfile = v
 	return s
 }
 
@@ -17996,6 +18246,9 @@ type Filters struct {
 	// The queues to use to filter the metrics. You can specify up to 100 queues
 	// per request.
 	Queues []*string `min:"1" type:"list"`
+
+	// The filters used to sort routing profiles.
+	RoutingProfiles []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -18022,6 +18275,9 @@ func (s *Filters) Validate() error {
 	if s.Queues != nil && len(s.Queues) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Queues", 1))
 	}
+	if s.RoutingProfiles != nil && len(s.RoutingProfiles) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfiles", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -18038,6 +18294,12 @@ func (s *Filters) SetChannels(v []*string) *Filters {
 // SetQueues sets the Queues field's value.
 func (s *Filters) SetQueues(v []*string) *Filters {
 	s.Queues = v
+	return s
+}
+
+// SetRoutingProfiles sets the RoutingProfiles field's value.
+func (s *Filters) SetRoutingProfiles(v []*string) *Filters {
+	s.RoutingProfiles = v
 	return s
 }
 
@@ -19851,6 +20113,47 @@ func (s *Instance) SetServiceRole(v string) *Instance {
 // SetStatusReason sets the StatusReason field's value.
 func (s *Instance) SetStatusReason(v *InstanceStatusReason) *Instance {
 	s.StatusReason = v
+	return s
+}
+
+// The instance reference.
+type InstanceReference struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the instance reference.
+	Arn *string `type:"string"`
+
+	// The identifier of the instance reference.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceReference) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *InstanceReference) SetArn(v string) *InstanceReference {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *InstanceReference) SetId(v string) *InstanceReference {
+	s.Id = &v
 	return s
 }
 
@@ -24247,6 +24550,9 @@ type QueueReference struct {
 
 	// The identifier of the queue.
 	Id *string `type:"string"`
+
+	// The type of queue.
+	QueueType *string `type:"string" enum:"QueueType"`
 }
 
 // String returns the string representation.
@@ -24276,6 +24582,12 @@ func (s *QueueReference) SetArn(v string) *QueueReference {
 // SetId sets the Id field's value.
 func (s *QueueReference) SetId(v string) *QueueReference {
 	s.Id = &v
+	return s
+}
+
+// SetQueueType sets the QueueType field's value.
+func (s *QueueReference) SetQueueType(v string) *QueueReference {
+	s.QueueType = &v
 	return s
 }
 
@@ -25275,6 +25587,47 @@ func (s *RoutingProfileQueueReference) SetQueueId(v string) *RoutingProfileQueue
 	return s
 }
 
+// The routing profile reference.
+type RoutingProfileReference struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the routing profile reference.
+	Arn *string `type:"string"`
+
+	// The identifier of the routing profile reference.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingProfileReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RoutingProfileReference) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RoutingProfileReference) SetArn(v string) *RoutingProfileReference {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *RoutingProfileReference) SetId(v string) *RoutingProfileReference {
+	s.Id = &v
+	return s
+}
+
 // Contains summary information about a routing profile.
 type RoutingProfileSummary struct {
 	_ struct{} `type:"structure"`
@@ -25871,6 +26224,136 @@ func (s StartContactRecordingOutput) GoString() string {
 	return s.String()
 }
 
+type StartContactStreamingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The streaming configuration, such as the Amazon SNS streaming endpoint.
+	//
+	// ChatStreamingConfiguration is a required field
+	ChatStreamingConfiguration *ChatStreamingConfiguration `type:"structure" required:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The identifier of the contact. This is the identifier of the contact associated
+	// with the first interaction with the contact center.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactStreamingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactStreamingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartContactStreamingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartContactStreamingInput"}
+	if s.ChatStreamingConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChatStreamingConfiguration"))
+	}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.ChatStreamingConfiguration != nil {
+		if err := s.ChatStreamingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ChatStreamingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChatStreamingConfiguration sets the ChatStreamingConfiguration field's value.
+func (s *StartContactStreamingInput) SetChatStreamingConfiguration(v *ChatStreamingConfiguration) *StartContactStreamingInput {
+	s.ChatStreamingConfiguration = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartContactStreamingInput) SetClientToken(v string) *StartContactStreamingInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *StartContactStreamingInput) SetContactId(v string) *StartContactStreamingInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StartContactStreamingInput) SetInstanceId(v string) *StartContactStreamingInput {
+	s.InstanceId = &v
+	return s
+}
+
+type StartContactStreamingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the streaming configuration enabled.
+	//
+	// StreamingId is a required field
+	StreamingId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactStreamingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartContactStreamingOutput) GoString() string {
+	return s.String()
+}
+
+// SetStreamingId sets the StreamingId field's value.
+func (s *StartContactStreamingOutput) SetStreamingId(v string) *StartContactStreamingOutput {
+	s.StreamingId = &v
+	return s
+}
+
 type StartOutboundVoiceContactInput struct {
 	_ struct{} `type:"structure"`
 
@@ -26440,6 +26923,113 @@ func (s StopContactRecordingOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s StopContactRecordingOutput) GoString() string {
+	return s.String()
+}
+
+type StopContactStreamingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact. This is the identifier of the contact that
+	// is associated with the first interaction with the contact center.
+	//
+	// ContactId is a required field
+	ContactId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the streaming configuration enabled.
+	//
+	// StreamingId is a required field
+	StreamingId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopContactStreamingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopContactStreamingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopContactStreamingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopContactStreamingInput"}
+	if s.ContactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactId"))
+	}
+	if s.ContactId != nil && len(*s.ContactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.StreamingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StreamingId"))
+	}
+	if s.StreamingId != nil && len(*s.StreamingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactId sets the ContactId field's value.
+func (s *StopContactStreamingInput) SetContactId(v string) *StopContactStreamingInput {
+	s.ContactId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *StopContactStreamingInput) SetInstanceId(v string) *StopContactStreamingInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetStreamingId sets the StreamingId field's value.
+func (s *StopContactStreamingInput) SetStreamingId(v string) *StopContactStreamingInput {
+	s.StreamingId = &v
+	return s
+}
+
+type StopContactStreamingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopContactStreamingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopContactStreamingOutput) GoString() string {
 	return s.String()
 }
 
@@ -30296,6 +30886,12 @@ const (
 
 	// GroupingChannel is a Grouping enum value
 	GroupingChannel = "CHANNEL"
+
+	// GroupingRoutingProfile is a Grouping enum value
+	GroupingRoutingProfile = "ROUTING_PROFILE"
+
+	// GroupingInstance is a Grouping enum value
+	GroupingInstance = "INSTANCE"
 )
 
 // Grouping_Values returns all elements of the Grouping enum
@@ -30303,6 +30899,8 @@ func Grouping_Values() []string {
 	return []string{
 		GroupingQueue,
 		GroupingChannel,
+		GroupingRoutingProfile,
+		GroupingInstance,
 	}
 }
 
@@ -30343,6 +30941,12 @@ const (
 
 	// HistoricalMetricNameContactsTransferredOutFromQueue is a HistoricalMetricName enum value
 	HistoricalMetricNameContactsTransferredOutFromQueue = "CONTACTS_TRANSFERRED_OUT_FROM_QUEUE"
+
+	// HistoricalMetricNameContactsTransferredInByAgent is a HistoricalMetricName enum value
+	HistoricalMetricNameContactsTransferredInByAgent = "CONTACTS_TRANSFERRED_IN_BY_AGENT"
+
+	// HistoricalMetricNameContactsTransferredOutByAgent is a HistoricalMetricName enum value
+	HistoricalMetricNameContactsTransferredOutByAgent = "CONTACTS_TRANSFERRED_OUT_BY_AGENT"
 
 	// HistoricalMetricNameContactsMissed is a HistoricalMetricName enum value
 	HistoricalMetricNameContactsMissed = "CONTACTS_MISSED"
@@ -30399,6 +31003,8 @@ func HistoricalMetricName_Values() []string {
 		HistoricalMetricNameContactsTransferredOut,
 		HistoricalMetricNameContactsTransferredInFromQueue,
 		HistoricalMetricNameContactsTransferredOutFromQueue,
+		HistoricalMetricNameContactsTransferredInByAgent,
+		HistoricalMetricNameContactsTransferredOutByAgent,
 		HistoricalMetricNameContactsMissed,
 		HistoricalMetricNameCallbackContactsHandled,
 		HistoricalMetricNameApiContactsHandled,
@@ -31626,12 +32232,32 @@ func QuickConnectType_Values() []string {
 const (
 	// ReferenceTypeUrl is a ReferenceType enum value
 	ReferenceTypeUrl = "URL"
+
+	// ReferenceTypeAttachment is a ReferenceType enum value
+	ReferenceTypeAttachment = "ATTACHMENT"
+
+	// ReferenceTypeNumber is a ReferenceType enum value
+	ReferenceTypeNumber = "NUMBER"
+
+	// ReferenceTypeString is a ReferenceType enum value
+	ReferenceTypeString = "STRING"
+
+	// ReferenceTypeDate is a ReferenceType enum value
+	ReferenceTypeDate = "DATE"
+
+	// ReferenceTypeEmail is a ReferenceType enum value
+	ReferenceTypeEmail = "EMAIL"
 )
 
 // ReferenceType_Values returns all elements of the ReferenceType enum
 func ReferenceType_Values() []string {
 	return []string{
 		ReferenceTypeUrl,
+		ReferenceTypeAttachment,
+		ReferenceTypeNumber,
+		ReferenceTypeString,
+		ReferenceTypeDate,
+		ReferenceTypeEmail,
 	}
 }
 
@@ -31751,6 +32377,9 @@ const (
 	// UnitSeconds is a Unit enum value
 	UnitSeconds = "SECONDS"
 
+	// UnitMilliseconds is a Unit enum value
+	UnitMilliseconds = "MILLISECONDS"
+
 	// UnitCount is a Unit enum value
 	UnitCount = "COUNT"
 
@@ -31762,6 +32391,7 @@ const (
 func Unit_Values() []string {
 	return []string{
 		UnitSeconds,
+		UnitMilliseconds,
 		UnitCount,
 		UnitPercent,
 	}

@@ -2867,10 +2867,14 @@ func (s *ApplicationComponent) SetTier(v string) *ApplicationComponent {
 type ApplicationInfo struct {
 	_ struct{} `type:"structure"`
 
+	AutoConfigEnabled *bool `type:"boolean"`
+
 	// Indicates whether Application Insights can listen to CloudWatch events for
 	// the application resources, such as instance terminated, failed deployment,
 	// and others.
 	CWEMonitorEnabled *bool `type:"boolean"`
+
+	DiscoveryType *string `type:"string" enum:"DiscoveryType"`
 
 	// The lifecycle of the application.
 	LifeCycle *string `type:"string"`
@@ -2913,9 +2917,21 @@ func (s ApplicationInfo) GoString() string {
 	return s.String()
 }
 
+// SetAutoConfigEnabled sets the AutoConfigEnabled field's value.
+func (s *ApplicationInfo) SetAutoConfigEnabled(v bool) *ApplicationInfo {
+	s.AutoConfigEnabled = &v
+	return s
+}
+
 // SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
 func (s *ApplicationInfo) SetCWEMonitorEnabled(v bool) *ApplicationInfo {
 	s.CWEMonitorEnabled = &v
+	return s
+}
+
+// SetDiscoveryType sets the DiscoveryType field's value.
+func (s *ApplicationInfo) SetDiscoveryType(v string) *ApplicationInfo {
+	s.DiscoveryType = &v
 	return s
 }
 
@@ -3095,6 +3111,10 @@ func (s *ConfigurationEvent) SetMonitoredResourceARN(v string) *ConfigurationEve
 type CreateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	AutoConfigEnabled *bool `type:"boolean"`
+
+	AutoCreate *bool `type:"boolean"`
+
 	// Indicates whether Application Insights can listen to CloudWatch events for
 	// the application resources, such as instance terminated, failed deployment,
 	// and others.
@@ -3108,9 +3128,7 @@ type CreateApplicationInput struct {
 	OpsItemSNSTopicArn *string `min:"20" type:"string"`
 
 	// The name of the resource group.
-	//
-	// ResourceGroupName is a required field
-	ResourceGroupName *string `min:"1" type:"string" required:"true"`
+	ResourceGroupName *string `min:"1" type:"string"`
 
 	// List of tags to add to the application. tag key (Key) and an associated tag
 	// value (Value). The maximum length of a tag key is 128 characters. The maximum
@@ -3142,9 +3160,6 @@ func (s *CreateApplicationInput) Validate() error {
 	if s.OpsItemSNSTopicArn != nil && len(*s.OpsItemSNSTopicArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("OpsItemSNSTopicArn", 20))
 	}
-	if s.ResourceGroupName == nil {
-		invalidParams.Add(request.NewErrParamRequired("ResourceGroupName"))
-	}
 	if s.ResourceGroupName != nil && len(*s.ResourceGroupName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceGroupName", 1))
 	}
@@ -3163,6 +3178,18 @@ func (s *CreateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoConfigEnabled sets the AutoConfigEnabled field's value.
+func (s *CreateApplicationInput) SetAutoConfigEnabled(v bool) *CreateApplicationInput {
+	s.AutoConfigEnabled = &v
+	return s
+}
+
+// SetAutoCreate sets the AutoCreate field's value.
+func (s *CreateApplicationInput) SetAutoCreate(v bool) *CreateApplicationInput {
+	s.AutoCreate = &v
+	return s
 }
 
 // SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
@@ -5224,6 +5251,8 @@ func (s *ListLogPatternsOutput) SetResourceGroupName(v string) *ListLogPatternsO
 type ListProblemsInput struct {
 	_ struct{} `type:"structure"`
 
+	ComponentName *string `min:"1" type:"string"`
+
 	// The time when the problem ended, in epoch seconds. If not specified, problems
 	// within the past seven days are returned.
 	EndTime *time.Time `type:"timestamp"`
@@ -5264,6 +5293,9 @@ func (s ListProblemsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListProblemsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListProblemsInput"}
+	if s.ComponentName != nil && len(*s.ComponentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComponentName", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -5278,6 +5310,12 @@ func (s *ListProblemsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetComponentName sets the ComponentName field's value.
+func (s *ListProblemsInput) SetComponentName(v string) *ListProblemsInput {
+	s.ComponentName = &v
+	return s
 }
 
 // SetEndTime sets the EndTime field's value.
@@ -5319,6 +5357,8 @@ type ListProblemsOutput struct {
 
 	// The list of problems.
 	ProblemList []*Problem `type:"list"`
+
+	ResourceGroupName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -5348,6 +5388,12 @@ func (s *ListProblemsOutput) SetNextToken(v string) *ListProblemsOutput {
 // SetProblemList sets the ProblemList field's value.
 func (s *ListProblemsOutput) SetProblemList(v []*Problem) *ListProblemsOutput {
 	s.ProblemList = v
+	return s
+}
+
+// SetResourceGroupName sets the ResourceGroupName field's value.
+func (s *ListProblemsOutput) SetResourceGroupName(v string) *ListProblemsOutput {
+	s.ResourceGroupName = &v
 	return s
 }
 
@@ -5959,6 +6005,10 @@ type Problem struct {
 	// A detailed analysis of the problem using machine learning.
 	Insights *string `type:"string"`
 
+	LastRecurrenceTime *time.Time `type:"timestamp"`
+
+	RecurringCount *int64 `type:"long"`
+
 	// The name of the resource group affected by the problem.
 	ResourceGroupName *string `min:"1" type:"string"`
 
@@ -6020,6 +6070,18 @@ func (s *Problem) SetId(v string) *Problem {
 // SetInsights sets the Insights field's value.
 func (s *Problem) SetInsights(v string) *Problem {
 	s.Insights = &v
+	return s
+}
+
+// SetLastRecurrenceTime sets the LastRecurrenceTime field's value.
+func (s *Problem) SetLastRecurrenceTime(v time.Time) *Problem {
+	s.LastRecurrenceTime = &v
+	return s
+}
+
+// SetRecurringCount sets the RecurringCount field's value.
+func (s *Problem) SetRecurringCount(v int64) *Problem {
+	s.RecurringCount = &v
 	return s
 }
 
@@ -6624,6 +6686,8 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	AutoConfigEnabled *bool `type:"boolean"`
+
 	// Indicates whether Application Insights can listen to CloudWatch events for
 	// the application resources, such as instance terminated, failed deployment,
 	// and others.
@@ -6680,6 +6744,12 @@ func (s *UpdateApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoConfigEnabled sets the AutoConfigEnabled field's value.
+func (s *UpdateApplicationInput) SetAutoConfigEnabled(v bool) *UpdateApplicationInput {
+	s.AutoConfigEnabled = &v
+	return s
 }
 
 // SetCWEMonitorEnabled sets the CWEMonitorEnabled field's value.
@@ -6745,6 +6815,8 @@ func (s *UpdateApplicationOutput) SetApplicationInfo(v *ApplicationInfo) *Update
 
 type UpdateComponentConfigurationInput struct {
 	_ struct{} `type:"structure"`
+
+	AutoConfigEnabled *bool `type:"boolean"`
 
 	// The configuration settings of the component. The value is the escaped JSON
 	// of the configuration. For more information about the JSON format, see Working
@@ -6816,6 +6888,12 @@ func (s *UpdateComponentConfigurationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoConfigEnabled sets the AutoConfigEnabled field's value.
+func (s *UpdateComponentConfigurationInput) SetAutoConfigEnabled(v bool) *UpdateComponentConfigurationInput {
+	s.AutoConfigEnabled = &v
+	return s
 }
 
 // SetComponentConfiguration sets the ComponentConfiguration field's value.
@@ -7264,6 +7342,22 @@ func ConfigurationEventStatus_Values() []string {
 }
 
 const (
+	// DiscoveryTypeResourceGroupBased is a DiscoveryType enum value
+	DiscoveryTypeResourceGroupBased = "RESOURCE_GROUP_BASED"
+
+	// DiscoveryTypeAccountBased is a DiscoveryType enum value
+	DiscoveryTypeAccountBased = "ACCOUNT_BASED"
+)
+
+// DiscoveryType_Values returns all elements of the DiscoveryType enum
+func DiscoveryType_Values() []string {
+	return []string{
+		DiscoveryTypeResourceGroupBased,
+		DiscoveryTypeAccountBased,
+	}
+}
+
+const (
 	// FeedbackKeyInsightsFeedback is a FeedbackKey enum value
 	FeedbackKeyInsightsFeedback = "INSIGHTS_FEEDBACK"
 )
@@ -7360,6 +7454,9 @@ const (
 
 	// StatusPending is a Status enum value
 	StatusPending = "PENDING"
+
+	// StatusRecurring is a Status enum value
+	StatusRecurring = "RECURRING"
 )
 
 // Status_Values returns all elements of the Status enum
@@ -7368,6 +7465,7 @@ func Status_Values() []string {
 		StatusIgnore,
 		StatusResolved,
 		StatusPending,
+		StatusRecurring,
 	}
 }
 
@@ -7407,6 +7505,21 @@ const (
 
 	// TierOracle is a Tier enum value
 	TierOracle = "ORACLE"
+
+	// TierSapHana is a Tier enum value
+	TierSapHana = "SAP_HANA"
+
+	// TierSapHanaMultiNode is a Tier enum value
+	TierSapHanaMultiNode = "SAP_HANA_MULTI_NODE"
+
+	// TierSapHanaSingleNode is a Tier enum value
+	TierSapHanaSingleNode = "SAP_HANA_SINGLE_NODE"
+
+	// TierSapHanaHighAvailability is a Tier enum value
+	TierSapHanaHighAvailability = "SAP_HANA_HIGH_AVAILABILITY"
+
+	// TierSqlServerFailoverClusterInstance is a Tier enum value
+	TierSqlServerFailoverClusterInstance = "SQL_SERVER_FAILOVER_CLUSTER_INSTANCE"
 )
 
 // Tier_Values returns all elements of the Tier enum
@@ -7424,5 +7537,10 @@ func Tier_Values() []string {
 		TierPostgresql,
 		TierJavaJmx,
 		TierOracle,
+		TierSapHana,
+		TierSapHanaMultiNode,
+		TierSapHanaSingleNode,
+		TierSapHanaHighAvailability,
+		TierSqlServerFailoverClusterInstance,
 	}
 }

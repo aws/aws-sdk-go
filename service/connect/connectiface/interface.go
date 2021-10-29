@@ -443,6 +443,10 @@ type ConnectAPI interface {
 	StartContactRecordingWithContext(aws.Context, *connect.StartContactRecordingInput, ...request.Option) (*connect.StartContactRecordingOutput, error)
 	StartContactRecordingRequest(*connect.StartContactRecordingInput) (*request.Request, *connect.StartContactRecordingOutput)
 
+	StartContactStreaming(*connect.StartContactStreamingInput) (*connect.StartContactStreamingOutput, error)
+	StartContactStreamingWithContext(aws.Context, *connect.StartContactStreamingInput, ...request.Option) (*connect.StartContactStreamingOutput, error)
+	StartContactStreamingRequest(*connect.StartContactStreamingInput) (*request.Request, *connect.StartContactStreamingOutput)
+
 	StartOutboundVoiceContact(*connect.StartOutboundVoiceContactInput) (*connect.StartOutboundVoiceContactOutput, error)
 	StartOutboundVoiceContactWithContext(aws.Context, *connect.StartOutboundVoiceContactInput, ...request.Option) (*connect.StartOutboundVoiceContactOutput, error)
 	StartOutboundVoiceContactRequest(*connect.StartOutboundVoiceContactInput) (*request.Request, *connect.StartOutboundVoiceContactOutput)
@@ -458,6 +462,10 @@ type ConnectAPI interface {
 	StopContactRecording(*connect.StopContactRecordingInput) (*connect.StopContactRecordingOutput, error)
 	StopContactRecordingWithContext(aws.Context, *connect.StopContactRecordingInput, ...request.Option) (*connect.StopContactRecordingOutput, error)
 	StopContactRecordingRequest(*connect.StopContactRecordingInput) (*request.Request, *connect.StopContactRecordingOutput)
+
+	StopContactStreaming(*connect.StopContactStreamingInput) (*connect.StopContactStreamingOutput, error)
+	StopContactStreamingWithContext(aws.Context, *connect.StopContactStreamingInput, ...request.Option) (*connect.StopContactStreamingOutput, error)
+	StopContactStreamingRequest(*connect.StopContactStreamingInput) (*request.Request, *connect.StopContactStreamingOutput)
 
 	SuspendContactRecording(*connect.SuspendContactRecordingInput) (*connect.SuspendContactRecordingOutput, error)
 	SuspendContactRecordingWithContext(aws.Context, *connect.SuspendContactRecordingInput, ...request.Option) (*connect.SuspendContactRecordingOutput, error)

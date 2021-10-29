@@ -1,3 +1,15 @@
+Release v1.41.14 (2021-10-29)
+===
+
+### Service Client Updates
+* `service/application-insights`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Support added for AMI sharing with organizations and organizational units in ModifyImageAttribute API
+* `service/rekognition`: Updates service API and documentation
+  * This release added new attributes to Rekognition Video GetCelebrityRecognition API operations.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.41.13 (2021-10-28)
 ===
 
