@@ -2057,6 +2057,9 @@ func assumeRoleWithWebIdentity(svc *sts.STS, role, sessionName string) (string, 
 		RoleSessionName:  aws.String(sessionName),
 		WebIdentityToken: aws.String(string(data)),
 	})
+	if err != nil {
+		return "", "", "", err
+	}
 	return *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken, err
 }
 
@@ -2067,6 +2070,9 @@ func assumeRoleWithTrustedIdentity(svc *sts.STS, role, externalID, sessionName s
 		RoleSessionName: &sessionName,
 		ExternalId:      &externalID,
 	})
+	if err != nil {
+		return "", "", "", err
+	}
 	return *result.Credentials.AccessKeyId, *result.Credentials.SecretAccessKey, *result.Credentials.SessionToken, err
 }
 
