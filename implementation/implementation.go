@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -1924,6 +1925,14 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 
 		output, err := sts.ExecuteGetCallerIdentity(awsActionParameters)
 		if err != nil {
+			if awserr, ok := err.(awserr.RequestFailure); ok {
+				if awserr.Code() == "AccessDenied" { // This means that the credentials are actually truthy, but do not have permissions to perform the specific action
+					return &plugin.CredentialsValidationResponse{
+						AreCredentialsValid:   true,
+						RawValidationResponse: []byte("Credentials are valid!"),
+					}, nil
+				}
+			}
 			log.Debugf("failed on credentials validation, got: %v", output)
 			return &plugin.CredentialsValidationResponse{
 				AreCredentialsValid:   false,
