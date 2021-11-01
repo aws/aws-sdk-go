@@ -52,24 +52,25 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *IoTSecureTunneling {
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "IoTSecuredTunneling"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *IoTSecureTunneling {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *IoTSecureTunneling {
 	svc := &IoTSecureTunneling{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2018-10-05",
-				JSONVersion:   "1.1",
-				TargetPrefix:  "IoTSecuredTunneling",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2018-10-05",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.1",
+				TargetPrefix:   "IoTSecuredTunneling",
 			},
 			handlers,
 		),

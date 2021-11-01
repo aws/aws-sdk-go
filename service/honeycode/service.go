@@ -52,22 +52,23 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *Honeycode {
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "honeycode"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *Honeycode {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *Honeycode {
 	svc := &Honeycode{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2020-03-01",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2020-03-01",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),

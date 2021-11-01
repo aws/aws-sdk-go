@@ -52,22 +52,23 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *Schemas {
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "schemas"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *Schemas {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *Schemas {
 	svc := &Schemas{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2019-12-02",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2019-12-02",
+				ResolvedRegion: resolvedRegion,
 			},
 			handlers,
 		),
