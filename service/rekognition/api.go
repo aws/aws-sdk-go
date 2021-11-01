@@ -285,6 +285,137 @@ func (c *Rekognition) CreateCollectionWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateDataset = "CreateDataset"
+
+// CreateDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataset for more information on using the CreateDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDatasetRequest method.
+//    req, resp := client.CreateDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) CreateDatasetRequest(input *CreateDatasetInput) (req *request.Request, output *CreateDatasetOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDatasetInput{}
+	}
+
+	output = &CreateDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDataset API operation for Amazon Rekognition.
+//
+// Creates a new Amazon Rekognition Custom Labels dataset. You can create a
+// dataset by using an Amazon Sagemaker format manifest file or by copying an
+// existing Amazon Rekognition Custom Labels dataset.
+//
+// To create a training dataset for a project, specify train for the value of
+// DatasetType. To create the test dataset for a project, specify test for the
+// value of DatasetType.
+//
+// The response from CreateDataset is the Amazon Resource Name (ARN) for the
+// dataset. Creating a dataset takes a while to complete. Use DescribeDataset
+// to check the current status. The dataset created successfully if the value
+// of Status is CREATE_COMPLETE.
+//
+// To check if any non-terminal errors occurred, call ListDatasetEntries and
+// check for the presence of errors lists in the JSON Lines.
+//
+// Dataset creation fails if a terminal error occurs (Status = CREATE_FAILED).
+// Currently, you can't access the terminal error information.
+//
+// For more information, see Creating dataset in the Amazon Rekognition Custom
+// Labels Developer Guide.
+//
+// This operation requires permissions to perform the rekognition:CreateDataset
+// action. If you want to copy an existing dataset, you also require permission
+// to perform the rekognition:ListDatasetEntries action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation CreateDataset for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * LimitExceededException
+//   An Amazon Rekognition service limit was exceeded. For example, if you start
+//   too many Amazon Rekognition Video jobs concurrently, calls to start operations
+//   (StartLabelDetection, for example) will raise a LimitExceededException exception
+//   (HTTP status code: 400) until the number of concurrently running jobs is
+//   below the Amazon Rekognition service limit.
+//
+//   * InvalidS3ObjectException
+//   Amazon Rekognition is unable to access the S3 object specified in the request.
+//
+//   * ResourceAlreadyExistsException
+//   A resource with the specified ID already exists.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request cannot be found.
+//
+func (c *Rekognition) CreateDataset(input *CreateDatasetInput) (*CreateDatasetOutput, error) {
+	req, out := c.CreateDatasetRequest(input)
+	return out, req.Send()
+}
+
+// CreateDatasetWithContext is the same as CreateDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) CreateDatasetWithContext(ctx aws.Context, input *CreateDatasetInput, opts ...request.Option) (*CreateDatasetOutput, error) {
+	req, out := c.CreateDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateProject = "CreateProject"
 
 // CreateProjectRequest generates a "aws/request.Request" representing the
@@ -327,9 +458,9 @@ func (c *Rekognition) CreateProjectRequest(input *CreateProjectInput) (req *requ
 
 // CreateProject API operation for Amazon Rekognition.
 //
-// Creates a new Amazon Rekognition Custom Labels project. A project is a logical
-// grouping of resources (images, Labels, models) and operations (training,
-// evaluation and detection).
+// Creates a new Amazon Rekognition Custom Labels project. A project is a group
+// of resources (datasets, model versions) that you use to create and manage
+// Amazon Rekognition Custom Labels models.
 //
 // This operation requires permissions to perform the rekognition:CreateProject
 // action.
@@ -434,15 +565,37 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 // CreateProjectVersion API operation for Amazon Rekognition.
 //
 // Creates a new version of a model and begins training. Models are managed
-// as part of an Amazon Rekognition Custom Labels project. You can specify one
-// training dataset and one testing dataset. The response from CreateProjectVersion
-// is an Amazon Resource Name (ARN) for the version of the model.
+// as part of an Amazon Rekognition Custom Labels project. The response from
+// CreateProjectVersion is an Amazon Resource Name (ARN) for the version of
+// the model.
+//
+// Training uses the training and test datasets associated with the project.
+// For more information, see Creating training and test dataset in the Amazon
+// Rekognition Custom Labels Developer Guide.
+//
+// You can train a modelin a project that doesn't have associated datasets by
+// specifying manifest files in the TrainingData and TestingData fields.
+//
+// If you open the console after training a model with manifest files, Amazon
+// Rekognition Custom Labels creates the datasets for you using the most recent
+// manifest files. You can no longer train a model version for the project by
+// specifying manifest files.
+//
+// Instead of training with a project without associated datasets, we recommend
+// that you use the manifest files to create training and test datasets for
+// the project.
 //
 // Training takes a while to complete. You can get the current status by calling
-// DescribeProjectVersions.
+// DescribeProjectVersions. Training completed successfully if the value of
+// the Status field is TRAINING_COMPLETED.
+//
+// If training fails, see Debugging a failed model training in the Amazon Rekognition
+// Custom Labels developer guide.
 //
 // Once training has successfully completed, call DescribeProjectVersions to
-// get the training results and evaluate the model.
+// get the training results and evaluate the model. For more information, see
+// Improving a trained Amazon Rekognition Custom Labels model in the Amazon
+// Rekognition Custom Labels developers guide.
 //
 // After evaluating the model, you start the model by calling StartProjectVersion.
 //
@@ -735,6 +888,121 @@ func (c *Rekognition) DeleteCollectionWithContext(ctx aws.Context, input *Delete
 	return out, req.Send()
 }
 
+const opDeleteDataset = "DeleteDataset"
+
+// DeleteDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataset for more information on using the DeleteDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDatasetRequest method.
+//    req, resp := client.DeleteDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) DeleteDatasetRequest(input *DeleteDatasetInput) (req *request.Request, output *DeleteDatasetOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDatasetInput{}
+	}
+
+	output = &DeleteDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDataset API operation for Amazon Rekognition.
+//
+// Deletes an existing Amazon Rekognition Custom Labels dataset. Deleting a
+// dataset might take while. Use DescribeDataset to check the current status.
+// The dataset is still deleting if the value of Status is DELETE_IN_PROGRESS.
+// If you try to access the dataset after it is deleted, you get a ResourceNotFoundException
+// exception.
+//
+// You can't delete a dataset while it is creating (Status = CREATE_IN_PROGRESS)
+// or if the dataset is updating (Status = UPDATE_IN_PROGRESS).
+//
+// This operation requires permissions to perform the rekognition:DeleteDataset
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DeleteDataset for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * LimitExceededException
+//   An Amazon Rekognition service limit was exceeded. For example, if you start
+//   too many Amazon Rekognition Video jobs concurrently, calls to start operations
+//   (StartLabelDetection, for example) will raise a LimitExceededException exception
+//   (HTTP status code: 400) until the number of concurrently running jobs is
+//   below the Amazon Rekognition service limit.
+//
+//   * ResourceInUseException
+//   The specified resource is already being used.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request cannot be found.
+//
+func (c *Rekognition) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOutput, error) {
+	req, out := c.DeleteDatasetRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDatasetWithContext is the same as DeleteDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DeleteDatasetWithContext(ctx aws.Context, input *DeleteDatasetInput, opts ...request.Option) (*DeleteDatasetOutput, error) {
+	req, out := c.DeleteDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteFaces = "DeleteFaces"
 
 // DeleteFacesRequest generates a "aws/request.Request" representing the
@@ -878,6 +1146,10 @@ func (c *Rekognition) DeleteProjectRequest(input *DeleteProjectInput) (req *requ
 // Deletes an Amazon Rekognition Custom Labels project. To delete a project
 // you must first delete all models associated with the project. To delete a
 // model, see DeleteProjectVersion.
+//
+// DeleteProject is an asynchronous operation. To check if the project is deleted,
+// call DescribeProjects. The project is deleted when the project no longer
+// appears in the response.
 //
 // This operation requires permissions to perform the rekognition:DeleteProject
 // action.
@@ -1240,6 +1512,105 @@ func (c *Rekognition) DescribeCollectionWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+const opDescribeDataset = "DescribeDataset"
+
+// DescribeDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDataset for more information on using the DescribeDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDatasetRequest method.
+//    req, resp := client.DescribeDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) DescribeDatasetRequest(input *DescribeDatasetInput) (req *request.Request, output *DescribeDatasetOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDataset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDatasetInput{}
+	}
+
+	output = &DescribeDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDataset API operation for Amazon Rekognition.
+//
+// Describes an Amazon Rekognition Custom Labels dataset. You can get information
+// such as the current status of a dataset and statistics about the images and
+// labels in a dataset.
+//
+// This operation requires permissions to perform the rekognition:DescribeDataset
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DescribeDataset for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request cannot be found.
+//
+func (c *Rekognition) DescribeDataset(input *DescribeDatasetInput) (*DescribeDatasetOutput, error) {
+	req, out := c.DescribeDatasetRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDatasetWithContext is the same as DescribeDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DescribeDatasetWithContext(ctx aws.Context, input *DescribeDatasetInput, opts ...request.Option) (*DescribeDatasetOutput, error) {
+	req, out := c.DescribeDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeProjectVersions = "DescribeProjectVersions"
 
 // DescribeProjectVersionsRequest generates a "aws/request.Request" representing the
@@ -1288,9 +1659,10 @@ func (c *Rekognition) DescribeProjectVersionsRequest(input *DescribeProjectVersi
 
 // DescribeProjectVersions API operation for Amazon Rekognition.
 //
-// Lists and describes the models in an Amazon Rekognition Custom Labels project.
-// You can specify up to 10 model versions in ProjectVersionArns. If you don't
-// specify a value, descriptions for all models are returned.
+// Lists and describes the versions of a model in an Amazon Rekognition Custom
+// Labels project. You can specify up to 10 model versions in ProjectVersionArns.
+// If you don't specify a value, descriptions for all model versions in the
+// project are returned.
 //
 // This operation requires permissions to perform the rekognition:DescribeProjectVersions
 // action.
@@ -1448,7 +1820,7 @@ func (c *Rekognition) DescribeProjectsRequest(input *DescribeProjectsInput) (req
 
 // DescribeProjects API operation for Amazon Rekognition.
 //
-// Lists and gets information about your Amazon Rekognition Custom Labels projects.
+// Gets information about your Amazon Rekognition Custom Labels projects.
 //
 // This operation requires permissions to perform the rekognition:DescribeProjects
 // action.
@@ -2486,6 +2858,121 @@ func (c *Rekognition) DetectText(input *DetectTextInput) (*DetectTextOutput, err
 // for more information on using Contexts.
 func (c *Rekognition) DetectTextWithContext(ctx aws.Context, input *DetectTextInput, opts ...request.Option) (*DetectTextOutput, error) {
 	req, out := c.DetectTextRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDistributeDatasetEntries = "DistributeDatasetEntries"
+
+// DistributeDatasetEntriesRequest generates a "aws/request.Request" representing the
+// client's request for the DistributeDatasetEntries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DistributeDatasetEntries for more information on using the DistributeDatasetEntries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DistributeDatasetEntriesRequest method.
+//    req, resp := client.DistributeDatasetEntriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) DistributeDatasetEntriesRequest(input *DistributeDatasetEntriesInput) (req *request.Request, output *DistributeDatasetEntriesOutput) {
+	op := &request.Operation{
+		Name:       opDistributeDatasetEntries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DistributeDatasetEntriesInput{}
+	}
+
+	output = &DistributeDatasetEntriesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DistributeDatasetEntries API operation for Amazon Rekognition.
+//
+// Distributes the entries (images) in a training dataset across the training
+// dataset and the test dataset for a project. DistributeDatasetEntries moves
+// 20% of the training dataset images to the test dataset. An entry is a JSON
+// Line that describes an image.
+//
+// You supply the Amazon Resource Names (ARN) of a project's training dataset
+// and test dataset. The training dataset must contain the images that you want
+// to split. The test dataset must be empty. The datasets must belong to the
+// same project. To create training and test datasets for a project, call CreateDataset.
+//
+// Distributing a dataset takes a while to complete. To check the status call
+// DescribeDataset. The operation is complete when the Status field for the
+// training dataset and the test dataset is UPDATE_COMPLETE. If the dataset
+// split fails, the value of Status is UPDATE_FAILED.
+//
+// This operation requires permissions to perform the rekognition:DistributeDatasetEntries
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DistributeDatasetEntries for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource specified in the request cannot be found.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * ResourceNotReadyException
+//   The requested resource isn't ready. For example, this exception occurs when
+//   you call DetectCustomLabels with a model version that isn't deployed.
+//
+func (c *Rekognition) DistributeDatasetEntries(input *DistributeDatasetEntriesInput) (*DistributeDatasetEntriesOutput, error) {
+	req, out := c.DistributeDatasetEntriesRequest(input)
+	return out, req.Send()
+}
+
+// DistributeDatasetEntriesWithContext is the same as DistributeDatasetEntries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DistributeDatasetEntries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DistributeDatasetEntriesWithContext(ctx aws.Context, input *DistributeDatasetEntriesInput, opts ...request.Option) (*DistributeDatasetEntriesOutput, error) {
+	req, out := c.DistributeDatasetEntriesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4447,6 +4934,350 @@ func (c *Rekognition) ListCollectionsPagesWithContext(ctx aws.Context, input *Li
 	return p.Err()
 }
 
+const opListDatasetEntries = "ListDatasetEntries"
+
+// ListDatasetEntriesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDatasetEntries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDatasetEntries for more information on using the ListDatasetEntries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDatasetEntriesRequest method.
+//    req, resp := client.ListDatasetEntriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) ListDatasetEntriesRequest(input *ListDatasetEntriesInput) (req *request.Request, output *ListDatasetEntriesOutput) {
+	op := &request.Operation{
+		Name:       opListDatasetEntries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDatasetEntriesInput{}
+	}
+
+	output = &ListDatasetEntriesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDatasetEntries API operation for Amazon Rekognition.
+//
+// Lists the entries (images) within a dataset. An entry is a JSON Line that
+// contains the information for a single image, including the image location,
+// assigned labels, and object location bounding boxes. For more information,
+// see Creating a manifest file (https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-manifest-files.html).
+//
+// JSON Lines in the response include information about non-terminal errors
+// found in the dataset. Non terminal errors are reported in errors lists within
+// each JSON Line. The same information is reported in the training and testing
+// validation result manifests that Amazon Rekognition Custom Labels creates
+// during model training.
+//
+// You can filter the response in variety of ways, such as choosing which labels
+// to return and returning JSON Lines created after a specific date.
+//
+// This operation requires permissions to perform the rekognition:ListDatasetEntries
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation ListDatasetEntries for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * ResourceInUseException
+//   The specified resource is already being used.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request cannot be found.
+//
+//   * InvalidPaginationTokenException
+//   Pagination token in the request is not valid.
+//
+//   * ResourceNotReadyException
+//   The requested resource isn't ready. For example, this exception occurs when
+//   you call DetectCustomLabels with a model version that isn't deployed.
+//
+func (c *Rekognition) ListDatasetEntries(input *ListDatasetEntriesInput) (*ListDatasetEntriesOutput, error) {
+	req, out := c.ListDatasetEntriesRequest(input)
+	return out, req.Send()
+}
+
+// ListDatasetEntriesWithContext is the same as ListDatasetEntries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDatasetEntries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListDatasetEntriesWithContext(ctx aws.Context, input *ListDatasetEntriesInput, opts ...request.Option) (*ListDatasetEntriesOutput, error) {
+	req, out := c.ListDatasetEntriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDatasetEntriesPages iterates over the pages of a ListDatasetEntries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDatasetEntries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDatasetEntries operation.
+//    pageNum := 0
+//    err := client.ListDatasetEntriesPages(params,
+//        func(page *rekognition.ListDatasetEntriesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Rekognition) ListDatasetEntriesPages(input *ListDatasetEntriesInput, fn func(*ListDatasetEntriesOutput, bool) bool) error {
+	return c.ListDatasetEntriesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDatasetEntriesPagesWithContext same as ListDatasetEntriesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListDatasetEntriesPagesWithContext(ctx aws.Context, input *ListDatasetEntriesInput, fn func(*ListDatasetEntriesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDatasetEntriesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDatasetEntriesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDatasetEntriesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDatasetLabels = "ListDatasetLabels"
+
+// ListDatasetLabelsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDatasetLabels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDatasetLabels for more information on using the ListDatasetLabels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDatasetLabelsRequest method.
+//    req, resp := client.ListDatasetLabelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) ListDatasetLabelsRequest(input *ListDatasetLabelsInput) (req *request.Request, output *ListDatasetLabelsOutput) {
+	op := &request.Operation{
+		Name:       opListDatasetLabels,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDatasetLabelsInput{}
+	}
+
+	output = &ListDatasetLabelsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDatasetLabels API operation for Amazon Rekognition.
+//
+// Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels
+// to describe images. For more information, see Labeling images (https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-labeling-images.html).
+//
+// Lists the labels in a dataset. Amazon Rekognition Custom Labels uses labels
+// to describe images. For more information, see Labeling images in the Amazon
+// Rekognition Custom Labels Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation ListDatasetLabels for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * ResourceInUseException
+//   The specified resource is already being used.
+//
+//   * InvalidPaginationTokenException
+//   Pagination token in the request is not valid.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request cannot be found.
+//
+//   * ResourceNotReadyException
+//   The requested resource isn't ready. For example, this exception occurs when
+//   you call DetectCustomLabels with a model version that isn't deployed.
+//
+func (c *Rekognition) ListDatasetLabels(input *ListDatasetLabelsInput) (*ListDatasetLabelsOutput, error) {
+	req, out := c.ListDatasetLabelsRequest(input)
+	return out, req.Send()
+}
+
+// ListDatasetLabelsWithContext is the same as ListDatasetLabels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDatasetLabels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListDatasetLabelsWithContext(ctx aws.Context, input *ListDatasetLabelsInput, opts ...request.Option) (*ListDatasetLabelsOutput, error) {
+	req, out := c.ListDatasetLabelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDatasetLabelsPages iterates over the pages of a ListDatasetLabels operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDatasetLabels method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDatasetLabels operation.
+//    pageNum := 0
+//    err := client.ListDatasetLabelsPages(params,
+//        func(page *rekognition.ListDatasetLabelsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Rekognition) ListDatasetLabelsPages(input *ListDatasetLabelsInput, fn func(*ListDatasetLabelsOutput, bool) bool) error {
+	return c.ListDatasetLabelsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDatasetLabelsPagesWithContext same as ListDatasetLabelsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) ListDatasetLabelsPagesWithContext(ctx aws.Context, input *ListDatasetLabelsInput, fn func(*ListDatasetLabelsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDatasetLabelsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDatasetLabelsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDatasetLabelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListFaces = "ListFaces"
 
 // ListFacesRequest generates a "aws/request.Request" representing the
@@ -4904,9 +5735,9 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 // see Recognizing Celebrities in the Amazon Rekognition Developer Guide.
 //
 // RecognizeCelebrities returns the 64 largest faces in the image. It lists
-// recognized celebrities in the CelebrityFaces array and unrecognized faces
-// in the UnrecognizedFaces array. RecognizeCelebrities doesn't return celebrities
-// whose faces aren't among the largest 64 faces in the image.
+// the recognized celebrities in the CelebrityFaces array and any unrecognized
+// faces in the UnrecognizedFaces array. RecognizeCelebrities doesn't return
+// celebrities whose faces aren't among the largest 64 faces in the image.
 //
 // For each celebrity recognized, RecognizeCelebrities returns a Celebrity object.
 // The Celebrity object contains the celebrity name, ID, URL links to additional
@@ -6864,6 +7695,137 @@ func (c *Rekognition) UntagResourceWithContext(ctx aws.Context, input *UntagReso
 	return out, req.Send()
 }
 
+const opUpdateDatasetEntries = "UpdateDatasetEntries"
+
+// UpdateDatasetEntriesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDatasetEntries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDatasetEntries for more information on using the UpdateDatasetEntries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateDatasetEntriesRequest method.
+//    req, resp := client.UpdateDatasetEntriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) UpdateDatasetEntriesRequest(input *UpdateDatasetEntriesInput) (req *request.Request, output *UpdateDatasetEntriesOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDatasetEntries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateDatasetEntriesInput{}
+	}
+
+	output = &UpdateDatasetEntriesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateDatasetEntries API operation for Amazon Rekognition.
+//
+// Adds or updates one or more entries (images) in a dataset. An entry is a
+// JSON Line which contains the information for a single image, including the
+// image location, assigned labels, and object location bounding boxes. For
+// more information, see Image-Level labels in manifest files and Object localization
+// in manifest files in the Amazon Rekognition Custom Labels Developer Guide.
+//
+// If the source-ref field in the JSON line references an existing image, the
+// existing image in the dataset is updated. If source-ref field doesn't reference
+// an existing image, the image is added as a new image to the dataset.
+//
+// You specify the changes that you want to make in the Changes input parameter.
+// There isn't a limit to the number JSON Lines that you can change, but the
+// size of Changes must be less than 5MB.
+//
+// UpdateDatasetEntries returns immediatly, but the dataset update might take
+// a while to complete. Use DescribeDataset to check the current status. The
+// dataset updated successfully if the value of Status is UPDATE_COMPLETE.
+//
+// To check if any non-terminal errors occured, call ListDatasetEntries and
+// check for the presence of errors lists in the JSON Lines.
+//
+// Dataset update fails if a terminal error occurs (Status = UPDATE_FAILED).
+// Currently, you can't access the terminal error information from the Amazon
+// Rekognition Custom Labels SDK.
+//
+// This operation requires permissions to perform the rekognition:UpdateDatasetEntries
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation UpdateDatasetEntries for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * LimitExceededException
+//   An Amazon Rekognition service limit was exceeded. For example, if you start
+//   too many Amazon Rekognition Video jobs concurrently, calls to start operations
+//   (StartLabelDetection, for example) will raise a LimitExceededException exception
+//   (HTTP status code: 400) until the number of concurrently running jobs is
+//   below the Amazon Rekognition service limit.
+//
+//   * ResourceInUseException
+//   The specified resource is already being used.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request cannot be found.
+//
+func (c *Rekognition) UpdateDatasetEntries(input *UpdateDatasetEntriesInput) (*UpdateDatasetEntriesOutput, error) {
+	req, out := c.UpdateDatasetEntriesRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDatasetEntriesWithContext is the same as UpdateDatasetEntries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDatasetEntries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) UpdateDatasetEntriesWithContext(ctx aws.Context, input *UpdateDatasetEntriesInput, opts ...request.Option) (*UpdateDatasetEntriesOutput, error) {
+	req, out := c.UpdateDatasetEntriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You are not authorized to perform the action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -8058,6 +9020,119 @@ func (s *CreateCollectionOutput) SetStatusCode(v int64) *CreateCollectionOutput 
 	return s
 }
 
+type CreateDatasetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The source files for the dataset. You can specify the ARN of an existing
+	// dataset or specify the Amazon S3 bucket location of an Amazon Sagemaker format
+	// manifest file. If you don't specify datasetSource, an empty dataset is created.
+	// To add labeled images to the dataset, You can use the console or call UpdateDatasetEntries.
+	DatasetSource *DatasetSource `type:"structure"`
+
+	// The type of the dataset. Specify train to create a training dataset. Specify
+	// test to create a test dataset.
+	//
+	// DatasetType is a required field
+	DatasetType *string `type:"string" required:"true" enum:"DatasetType"`
+
+	// The ARN of the Amazon Rekognition Custom Labels project to which you want
+	// to asssign the dataset.
+	//
+	// ProjectArn is a required field
+	ProjectArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDatasetInput"}
+	if s.DatasetType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetType"))
+	}
+	if s.ProjectArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProjectArn"))
+	}
+	if s.ProjectArn != nil && len(*s.ProjectArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectArn", 20))
+	}
+	if s.DatasetSource != nil {
+		if err := s.DatasetSource.Validate(); err != nil {
+			invalidParams.AddNested("DatasetSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetSource sets the DatasetSource field's value.
+func (s *CreateDatasetInput) SetDatasetSource(v *DatasetSource) *CreateDatasetInput {
+	s.DatasetSource = v
+	return s
+}
+
+// SetDatasetType sets the DatasetType field's value.
+func (s *CreateDatasetInput) SetDatasetType(v string) *CreateDatasetInput {
+	s.DatasetType = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *CreateDatasetInput) SetProjectArn(v string) *CreateDatasetInput {
+	s.ProjectArn = &v
+	return s
+}
+
+type CreateDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the created Amazon Rekognition Custom Labels dataset.
+	DatasetArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *CreateDatasetOutput) SetDatasetArn(v string) *CreateDatasetOutput {
+	s.DatasetArn = &v
+	return s
+}
+
 type CreateProjectInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8142,15 +9217,15 @@ func (s *CreateProjectOutput) SetProjectArn(v string) *CreateProjectOutput {
 type CreateProjectVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for your AWS Key Management Service (AWS KMS) customer master
-	// key (CMK). You can supply the Amazon Resource Name (ARN) of your CMK, the
-	// ID of your CMK, an alias for your CMK, or an alias ARN. The key is used to
-	// encrypt training and test images copied into the service for model training.
-	// Your source images are unaffected. The key is also used to encrypt training
-	// results and manifest files written to the output Amazon S3 bucket (OutputConfig).
+	// The identifier for your AWS Key Management Service key (AWS KMS key). You
+	// can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your
+	// KMS key, an alias for your KMS key, or an alias ARN. The key is used to encrypt
+	// training and test images copied into the service for model training. Your
+	// source images are unaffected. The key is also used to encrypt training results
+	// and manifest files written to the output Amazon S3 bucket (OutputConfig).
 	//
-	// If you choose to use your own CMK, you need the following permissions on
-	// the CMK.
+	// If you choose to use your own KMS key, you need the following permissions
+	// on the KMS key.
 	//
 	//    * kms:CreateGrant
 	//
@@ -8180,15 +9255,15 @@ type CreateProjectVersionInput struct {
 	// A set of tags (key-value pairs) that you want to attach to the model.
 	Tags map[string]*string `type:"map"`
 
-	// The dataset to use for testing.
-	//
-	// TestingData is a required field
-	TestingData *TestingData `type:"structure" required:"true"`
+	// Specifies an external manifest that the service uses to test the model. If
+	// you specify TestingData you must also specify TrainingData. The project must
+	// not have any associated datasets.
+	TestingData *TestingData `type:"structure"`
 
-	// The dataset to use for training.
-	//
-	// TrainingData is a required field
-	TrainingData *TrainingData `type:"structure" required:"true"`
+	// Specifies an external manifest that the services uses to train the model.
+	// If you specify TrainingData you must also specify TestingData. The project
+	// must not have any associated datasets.
+	TrainingData *TrainingData `type:"structure"`
 
 	// A name for the version of the model. This value must be unique.
 	//
@@ -8228,12 +9303,6 @@ func (s *CreateProjectVersionInput) Validate() error {
 	}
 	if s.ProjectArn != nil && len(*s.ProjectArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ProjectArn", 20))
-	}
-	if s.TestingData == nil {
-		invalidParams.Add(request.NewErrParamRequired("TestingData"))
-	}
-	if s.TrainingData == nil {
-		invalidParams.Add(request.NewErrParamRequired("TrainingData"))
 	}
 	if s.VersionName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VersionName"))
@@ -8545,6 +9614,442 @@ func (s *CustomLabel) SetName(v string) *CustomLabel {
 	return s
 }
 
+// Describes updates or additions to a dataset. A Single update or addition
+// is an entry (JSON Line) that provides information about a single image. To
+// update an existing entry, you match the source-ref field of the update entry
+// with the source-ref filed of the entry that you want to update. If the source-ref
+// field doesn't match an existing entry, the entry is added to dataset as a
+// new entry.
+type DatasetChanges struct {
+	_ struct{} `type:"structure"`
+
+	// A Base64-encoded binary data object containing one or JSON lines that either
+	// update the dataset or are additions to the dataset. You change a dataset
+	// by calling UpdateDatasetEntries. If you are using an AWS SDK to call UpdateDatasetEntries,
+	// you don't need to encode Changes as the SDK encodes the data for you.
+	//
+	// For example JSON lines, see Image-Level labels in manifest files and and
+	// Object localization in manifest files in the Amazon Rekognition Custom Labels
+	// Developer Guide.
+	// GroundTruth is automatically base64 encoded/decoded by the SDK.
+	//
+	// GroundTruth is a required field
+	GroundTruth []byte `min:"1" type:"blob" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetChanges) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetChanges) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetChanges) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetChanges"}
+	if s.GroundTruth == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroundTruth"))
+	}
+	if s.GroundTruth != nil && len(s.GroundTruth) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroundTruth", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroundTruth sets the GroundTruth field's value.
+func (s *DatasetChanges) SetGroundTruth(v []byte) *DatasetChanges {
+	s.GroundTruth = v
+	return s
+}
+
+// A description for a dataset. For more information, see DescribeDataset.
+//
+// The status fields Status, StatusMessage, and StatusMessageCode reflect the
+// last operation on the dataset.
+type DatasetDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix timestamp for the time and date that the dataset was created.
+	CreationTimestamp *time.Time `type:"timestamp"`
+
+	// The status message code for the dataset.
+	DatasetStats *DatasetStats `type:"structure"`
+
+	// The Unix timestamp for the date and time that the dataset was last updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The status of the dataset.
+	Status *string `type:"string" enum:"DatasetStatus"`
+
+	// The status message for the dataset.
+	StatusMessage *string `type:"string"`
+
+	// The status message code for the dataset operation. If a service error occurs,
+	// try the API call again later. If a client error occurs, check the input parameters
+	// to the dataset API call that failed.
+	StatusMessageCode *string `type:"string" enum:"DatasetStatusMessageCode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetDescription) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *DatasetDescription) SetCreationTimestamp(v time.Time) *DatasetDescription {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetDatasetStats sets the DatasetStats field's value.
+func (s *DatasetDescription) SetDatasetStats(v *DatasetStats) *DatasetDescription {
+	s.DatasetStats = v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *DatasetDescription) SetLastUpdatedTimestamp(v time.Time) *DatasetDescription {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetDescription) SetStatus(v string) *DatasetDescription {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *DatasetDescription) SetStatusMessage(v string) *DatasetDescription {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetStatusMessageCode sets the StatusMessageCode field's value.
+func (s *DatasetDescription) SetStatusMessageCode(v string) *DatasetDescription {
+	s.StatusMessageCode = &v
+	return s
+}
+
+// Describes a dataset label. For more information, see ListDatasetLabels.
+type DatasetLabelDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the label.
+	LabelName *string `min:"1" type:"string"`
+
+	// Statistics about the label.
+	LabelStats *DatasetLabelStats `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetLabelDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetLabelDescription) GoString() string {
+	return s.String()
+}
+
+// SetLabelName sets the LabelName field's value.
+func (s *DatasetLabelDescription) SetLabelName(v string) *DatasetLabelDescription {
+	s.LabelName = &v
+	return s
+}
+
+// SetLabelStats sets the LabelStats field's value.
+func (s *DatasetLabelDescription) SetLabelStats(v *DatasetLabelStats) *DatasetLabelDescription {
+	s.LabelStats = v
+	return s
+}
+
+// Statistics about a label used in a dataset. For more information, see DatasetLabelDescription.
+type DatasetLabelStats struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of images that have the label assigned to a bounding box.
+	BoundingBoxCount *int64 `type:"integer"`
+
+	// The total number of images that use the label.
+	EntryCount *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetLabelStats) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetLabelStats) GoString() string {
+	return s.String()
+}
+
+// SetBoundingBoxCount sets the BoundingBoxCount field's value.
+func (s *DatasetLabelStats) SetBoundingBoxCount(v int64) *DatasetLabelStats {
+	s.BoundingBoxCount = &v
+	return s
+}
+
+// SetEntryCount sets the EntryCount field's value.
+func (s *DatasetLabelStats) SetEntryCount(v int64) *DatasetLabelStats {
+	s.EntryCount = &v
+	return s
+}
+
+// Summary information for an Amazon Rekognition Custom Labels dataset. For
+// more information, see ProjectDescription.
+type DatasetMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Unix timestamp for the date and time that the dataset was created.
+	CreationTimestamp *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) for the dataset.
+	DatasetArn *string `min:"20" type:"string"`
+
+	// The type of the dataset.
+	DatasetType *string `type:"string" enum:"DatasetType"`
+
+	// The status for the dataset.
+	Status *string `type:"string" enum:"DatasetStatus"`
+
+	// The status message for the dataset.
+	StatusMessage *string `type:"string"`
+
+	// The status message code for the dataset operation. If a service error occurs,
+	// try the API call again later. If a client error occurs, check the input parameters
+	// to the dataset API call that failed.
+	StatusMessageCode *string `type:"string" enum:"DatasetStatusMessageCode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetMetadata) GoString() string {
+	return s.String()
+}
+
+// SetCreationTimestamp sets the CreationTimestamp field's value.
+func (s *DatasetMetadata) SetCreationTimestamp(v time.Time) *DatasetMetadata {
+	s.CreationTimestamp = &v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DatasetMetadata) SetDatasetArn(v string) *DatasetMetadata {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetType sets the DatasetType field's value.
+func (s *DatasetMetadata) SetDatasetType(v string) *DatasetMetadata {
+	s.DatasetType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetMetadata) SetStatus(v string) *DatasetMetadata {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *DatasetMetadata) SetStatusMessage(v string) *DatasetMetadata {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetStatusMessageCode sets the StatusMessageCode field's value.
+func (s *DatasetMetadata) SetStatusMessageCode(v string) *DatasetMetadata {
+	s.StatusMessageCode = &v
+	return s
+}
+
+// The source that Amazon Rekognition Custom Labels uses to create a dataset.
+// To use an Amazon Sagemaker format manifest file, specify the S3 bucket location
+// in the GroundTruthManifest field. The S3 bucket must be in your AWS account.
+// To create a copy of an existing dataset, specify the Amazon Resource Name
+// (ARN) of an existing dataset in DatasetArn.
+//
+// You need to specify a value for DatasetArn or GroundTruthManifest, but not
+// both. if you supply both values, or if you don't specify any values, an InvalidParameterException
+// exception occurs.
+//
+// For more information, see CreateDataset.
+type DatasetSource struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of an Amazon Rekognition Custom Labels dataset that you want to copy.
+	DatasetArn *string `min:"20" type:"string"`
+
+	// The S3 bucket that contains an Amazon Sagemaker Ground Truth format manifest
+	// file.
+	GroundTruthManifest *GroundTruthManifest `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetSource"}
+	if s.DatasetArn != nil && len(*s.DatasetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetArn", 20))
+	}
+	if s.GroundTruthManifest != nil {
+		if err := s.GroundTruthManifest.Validate(); err != nil {
+			invalidParams.AddNested("GroundTruthManifest", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DatasetSource) SetDatasetArn(v string) *DatasetSource {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetGroundTruthManifest sets the GroundTruthManifest field's value.
+func (s *DatasetSource) SetGroundTruthManifest(v *GroundTruthManifest) *DatasetSource {
+	s.GroundTruthManifest = v
+	return s
+}
+
+// Provides statistics about a dataset. For more information, see DescribeDataset.
+type DatasetStats struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of entries that contain at least one error.
+	ErrorEntries *int64 `type:"integer"`
+
+	// The total number of images in the dataset that have labels.
+	LabeledEntries *int64 `type:"integer"`
+
+	// The total number of images in the dataset.
+	TotalEntries *int64 `type:"integer"`
+
+	// The total number of labels declared in the dataset.
+	TotalLabels *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetStats) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetStats) GoString() string {
+	return s.String()
+}
+
+// SetErrorEntries sets the ErrorEntries field's value.
+func (s *DatasetStats) SetErrorEntries(v int64) *DatasetStats {
+	s.ErrorEntries = &v
+	return s
+}
+
+// SetLabeledEntries sets the LabeledEntries field's value.
+func (s *DatasetStats) SetLabeledEntries(v int64) *DatasetStats {
+	s.LabeledEntries = &v
+	return s
+}
+
+// SetTotalEntries sets the TotalEntries field's value.
+func (s *DatasetStats) SetTotalEntries(v int64) *DatasetStats {
+	s.TotalEntries = &v
+	return s
+}
+
+// SetTotalLabels sets the TotalLabels field's value.
+func (s *DatasetStats) SetTotalLabels(v int64) *DatasetStats {
+	s.TotalLabels = &v
+	return s
+}
+
 type DeleteCollectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8623,6 +10128,78 @@ func (s DeleteCollectionOutput) GoString() string {
 func (s *DeleteCollectionOutput) SetStatusCode(v int64) *DeleteCollectionOutput {
 	s.StatusCode = &v
 	return s
+}
+
+type DeleteDatasetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Amazon Rekognition Custom Labels dataset that you want to
+	// delete.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDatasetInput"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.DatasetArn != nil && len(*s.DatasetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DeleteDatasetInput) SetDatasetArn(v string) *DeleteDatasetInput {
+	s.DatasetArn = &v
+	return s
+}
+
+type DeleteDatasetOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDatasetOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteFacesInput struct {
@@ -9066,6 +10643,86 @@ func (s *DescribeCollectionOutput) SetFaceModelVersion(v string) *DescribeCollec
 	return s
 }
 
+type DescribeDatasetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset that you want to describe.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDatasetInput"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.DatasetArn != nil && len(*s.DatasetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DescribeDatasetInput) SetDatasetArn(v string) *DescribeDatasetInput {
+	s.DatasetArn = &v
+	return s
+}
+
+type DescribeDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The description for the dataset.
+	DatasetDescription *DatasetDescription `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetDescription sets the DatasetDescription field's value.
+func (s *DescribeDatasetOutput) SetDatasetDescription(v *DatasetDescription) *DescribeDatasetOutput {
+	s.DatasetDescription = v
+	return s
+}
+
 type DescribeProjectVersionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9215,6 +10872,11 @@ type DescribeProjectsInput struct {
 	// the response. You can use this pagination token to retrieve the next set
 	// of results.
 	NextToken *string `type:"string"`
+
+	// A list of the projects that you want Amazon Rekognition Custom Labels to
+	// describe. If you don't specify a value, the response includes descriptions
+	// for all the projects in your AWS account.
+	ProjectNames []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -9241,6 +10903,9 @@ func (s *DescribeProjectsInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.ProjectNames != nil && len(s.ProjectNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProjectNames", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9257,6 +10922,12 @@ func (s *DescribeProjectsInput) SetMaxResults(v int64) *DescribeProjectsInput {
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeProjectsInput) SetNextToken(v string) *DescribeProjectsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetProjectNames sets the ProjectNames field's value.
+func (s *DescribeProjectsInput) SetProjectNames(v []*string) *DescribeProjectsInput {
+	s.ProjectNames = v
 	return s
 }
 
@@ -10349,6 +12020,139 @@ func (s *DetectionFilter) SetMinConfidence(v float64) *DetectionFilter {
 	return s
 }
 
+// A training dataset or a test dataset used in a dataset distribution operation.
+// For more information, see DistributeDatasetEntries.
+type DistributeDataset struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset that you want to use.
+	//
+	// Arn is a required field
+	Arn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DistributeDataset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DistributeDataset) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DistributeDataset) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DistributeDataset"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DistributeDataset) SetArn(v string) *DistributeDataset {
+	s.Arn = &v
+	return s
+}
+
+type DistributeDatasetEntriesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARNS for the training dataset and test dataset that you want to use.
+	// The datasets must belong to the same project. The test dataset must be empty.
+	//
+	// Datasets is a required field
+	Datasets []*DistributeDataset `min:"2" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DistributeDatasetEntriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DistributeDatasetEntriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DistributeDatasetEntriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DistributeDatasetEntriesInput"}
+	if s.Datasets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Datasets"))
+	}
+	if s.Datasets != nil && len(s.Datasets) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Datasets", 2))
+	}
+	if s.Datasets != nil {
+		for i, v := range s.Datasets {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Datasets", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasets sets the Datasets field's value.
+func (s *DistributeDatasetEntriesInput) SetDatasets(v []*DistributeDataset) *DistributeDatasetEntriesInput {
+	s.Datasets = v
+	return s
+}
+
+type DistributeDatasetEntriesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DistributeDatasetEntriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DistributeDatasetEntriesOutput) GoString() string {
+	return s.String()
+}
+
 // The emotions that appear to be expressed on the face, and the confidence
 // level in the determination. The API is only making a determination of the
 // physical appearance of a person's face. It is not a determination of the
@@ -10984,8 +12788,9 @@ type FaceSearchSettings struct {
 	CollectionId *string `min:"1" type:"string"`
 
 	// Minimum face match confidence score that must be met to return a result for
-	// a recognized face. Default is 80. 0 is the lowest confidence. 100 is the
-	// highest confidence.
+	// a recognized face. The default is 80. 0 is the lowest confidence. 100 is
+	// the highest confidence. Values between 0 and 100 are accepted, and values
+	// lower than 80 are set to 80.
 	FaceMatchThreshold *float64 `type:"float"`
 }
 
@@ -14085,6 +15890,293 @@ func (s *ListCollectionsOutput) SetNextToken(v string) *ListCollectionsOutput {
 	return s
 }
 
+type ListDatasetEntriesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a label filter for the response. The response includes an entry
+	// only if one or more of the labels in ContainsLabels exist in the entry.
+	ContainsLabels []*string `min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) for the dataset that you want to use.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `min:"20" type:"string" required:"true"`
+
+	// Specifies an error filter for the response. Specify True to only include
+	// entries that have errors.
+	HasErrors *bool `type:"boolean"`
+
+	// Specify true to get only the JSON Lines where the image is labeled. Specify
+	// false to get only the JSON Lines where the image isn't labeled. If you don't
+	// specify Labeled, ListDatasetEntries returns JSON Lines for labeled and unlabeled
+	// images.
+	Labeled *bool `type:"boolean"`
+
+	// The maximum number of results to return per paginated call. The largest value
+	// you can specify is 100. If you specify a value greater than 100, a ValidationException
+	// error occurs. The default value is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there is more results to
+	// retrieve), Amazon Rekognition Custom Labels returns a pagination token in
+	// the response. You can use this pagination token to retrieve the next set
+	// of results.
+	NextToken *string `type:"string"`
+
+	// If specified, ListDatasetEntries only returns JSON Lines where the value
+	// of SourceRefContains is part of the source-ref field. The source-ref field
+	// contains the Amazon S3 location of the image. You can use SouceRefContains
+	// for tasks such as getting the JSON Line for a single image, or gettting JSON
+	// Lines for all images within a specific folder.
+	SourceRefContains *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetEntriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetEntriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDatasetEntriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDatasetEntriesInput"}
+	if s.ContainsLabels != nil && len(s.ContainsLabels) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContainsLabels", 1))
+	}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.DatasetArn != nil && len(*s.DatasetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetArn", 20))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SourceRefContains != nil && len(*s.SourceRefContains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceRefContains", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainsLabels sets the ContainsLabels field's value.
+func (s *ListDatasetEntriesInput) SetContainsLabels(v []*string) *ListDatasetEntriesInput {
+	s.ContainsLabels = v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *ListDatasetEntriesInput) SetDatasetArn(v string) *ListDatasetEntriesInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetHasErrors sets the HasErrors field's value.
+func (s *ListDatasetEntriesInput) SetHasErrors(v bool) *ListDatasetEntriesInput {
+	s.HasErrors = &v
+	return s
+}
+
+// SetLabeled sets the Labeled field's value.
+func (s *ListDatasetEntriesInput) SetLabeled(v bool) *ListDatasetEntriesInput {
+	s.Labeled = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDatasetEntriesInput) SetMaxResults(v int64) *ListDatasetEntriesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetEntriesInput) SetNextToken(v string) *ListDatasetEntriesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSourceRefContains sets the SourceRefContains field's value.
+func (s *ListDatasetEntriesInput) SetSourceRefContains(v string) *ListDatasetEntriesInput {
+	s.SourceRefContains = &v
+	return s
+}
+
+type ListDatasetEntriesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of entries (images) in the dataset.
+	DatasetEntries []*string `type:"list"`
+
+	// If the previous response was incomplete (because there is more results to
+	// retrieve), Amazon Rekognition Custom Labels returns a pagination token in
+	// the response. You can use this pagination token to retrieve the next set
+	// of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetEntriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetEntriesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetEntries sets the DatasetEntries field's value.
+func (s *ListDatasetEntriesOutput) SetDatasetEntries(v []*string) *ListDatasetEntriesOutput {
+	s.DatasetEntries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetEntriesOutput) SetNextToken(v string) *ListDatasetEntriesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDatasetLabelsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset that you want to use.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `min:"20" type:"string" required:"true"`
+
+	// The maximum number of results to return per paginated call. The largest value
+	// you can specify is 100. If you specify a value greater than 100, a ValidationException
+	// error occurs. The default value is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there is more results to
+	// retrieve), Amazon Rekognition Custom Labels returns a pagination token in
+	// the response. You can use this pagination token to retrieve the next set
+	// of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetLabelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetLabelsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDatasetLabelsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDatasetLabelsInput"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.DatasetArn != nil && len(*s.DatasetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetArn", 20))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *ListDatasetLabelsInput) SetDatasetArn(v string) *ListDatasetLabelsInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDatasetLabelsInput) SetMaxResults(v int64) *ListDatasetLabelsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetLabelsInput) SetNextToken(v string) *ListDatasetLabelsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDatasetLabelsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the labels in the dataset.
+	DatasetLabelDescriptions []*DatasetLabelDescription `type:"list"`
+
+	// If the previous response was incomplete (because there is more results to
+	// retrieve), Amazon Rekognition Custom Labels returns a pagination token in
+	// the response. You can use this pagination token to retrieve the next set
+	// of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetLabelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetLabelsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetLabelDescriptions sets the DatasetLabelDescriptions field's value.
+func (s *ListDatasetLabelsOutput) SetDatasetLabelDescriptions(v []*DatasetLabelDescription) *ListDatasetLabelsOutput {
+	s.DatasetLabelDescriptions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetLabelsOutput) SetNextToken(v string) *ListDatasetLabelsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListFacesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14936,12 +17028,16 @@ func (s *Pose) SetYaw(v float64) *Pose {
 	return s
 }
 
-// A description of a Amazon Rekognition Custom Labels project.
+// A description of an Amazon Rekognition Custom Labels project. For more information,
+// see DescribeProjects.
 type ProjectDescription struct {
 	_ struct{} `type:"structure"`
 
 	// The Unix timestamp for the date and time that the project was created.
 	CreationTimestamp *time.Time `type:"timestamp"`
+
+	// Information about the training and test datasets in the project.
+	Datasets []*DatasetMetadata `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the project.
 	ProjectArn *string `min:"20" type:"string"`
@@ -14974,6 +17070,12 @@ func (s *ProjectDescription) SetCreationTimestamp(v time.Time) *ProjectDescripti
 	return s
 }
 
+// SetDatasets sets the Datasets field's value.
+func (s *ProjectDescription) SetDatasets(v []*DatasetMetadata) *ProjectDescription {
+	s.Datasets = v
+	return s
+}
+
 // SetProjectArn sets the ProjectArn field's value.
 func (s *ProjectDescription) SetProjectArn(v string) *ProjectDescription {
 	s.ProjectArn = &v
@@ -14986,12 +17088,13 @@ func (s *ProjectDescription) SetStatus(v string) *ProjectDescription {
 	return s
 }
 
-// The description of a version of a model.
+// A description of a version of an Amazon Rekognition Custom Labels model.
 type ProjectVersionDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The duration, in seconds, that the model version has been billed for training.
-	// This value is only returned if the model version has been successfully trained.
+	// The duration, in seconds, that you were billed for a successful training
+	// of the model version. This value is only returned if the model version has
+	// been successfully trained.
 	BillableTrainingTimeInSeconds *int64 `type:"long"`
 
 	// The Unix datetime for the date and time that training started.
@@ -15000,8 +17103,8 @@ type ProjectVersionDescription struct {
 	// The training results. EvaluationResult is only returned if training is successful.
 	EvaluationResult *EvaluationResult `type:"structure"`
 
-	// The identifer for the AWS Key Management Service (AWS KMS) customer master
-	// key that was used to encrypt the model during training.
+	// The identifer for the AWS Key Management Service key (AWS KMS key) that was
+	// used to encrypt the model during training.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The location of the summary manifest. The summary manifest provides aggregate
@@ -18697,16 +20800,18 @@ func (s *TechnicalCueSegment) SetType(v string) *TechnicalCueSegment {
 }
 
 // The dataset used for testing. Optionally, if AutoCreate is set, Amazon Rekognition
-// Custom Labels creates a testing dataset using an 80/20 split of the training
-// dataset.
+// Custom Labels uses the training dataset to create a test dataset with a temporary
+// split of the training dataset.
 type TestingData struct {
 	_ struct{} `type:"structure"`
 
 	// The assets used for testing.
 	Assets []*Asset `type:"list"`
 
-	// If specified, Amazon Rekognition Custom Labels creates a testing dataset
-	// with an 80/20 split of the training dataset.
+	// If specified, Amazon Rekognition Custom Labels temporarily splits the training
+	// dataset (80%) to create a test dataset (20%) for the training job. After
+	// training completes, the test dataset is not stored and the training dataset
+	// reverts to its previous size.
 	AutoCreate *bool `type:"boolean"`
 }
 
@@ -19263,10 +21368,100 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateDatasetEntriesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The changes that you want to make to the dataset.
+	//
+	// Changes is a required field
+	Changes *DatasetChanges `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the dataset that you want to update.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetEntriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetEntriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDatasetEntriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDatasetEntriesInput"}
+	if s.Changes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Changes"))
+	}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.DatasetArn != nil && len(*s.DatasetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetArn", 20))
+	}
+	if s.Changes != nil {
+		if err := s.Changes.Validate(); err != nil {
+			invalidParams.AddNested("Changes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChanges sets the Changes field's value.
+func (s *UpdateDatasetEntriesInput) SetChanges(v *DatasetChanges) *UpdateDatasetEntriesInput {
+	s.Changes = v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *UpdateDatasetEntriesInput) SetDatasetArn(v string) *UpdateDatasetEntriesInput {
+	s.DatasetArn = &v
+	return s
+}
+
+type UpdateDatasetEntriesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetEntriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetEntriesOutput) GoString() string {
+	return s.String()
+}
+
 // Contains the Amazon S3 bucket location of the validation data for a model
 // training job.
 //
-// The validation data includes error information for individual JSON lines
+// The validation data includes error information for individual JSON Lines
 // in the dataset. For more information, see Debugging a Failed Model Training
 // in the Amazon Rekognition Custom Labels Developer Guide.
 //
@@ -19595,6 +21790,78 @@ func ContentModerationSortBy_Values() []string {
 	return []string{
 		ContentModerationSortByName,
 		ContentModerationSortByTimestamp,
+	}
+}
+
+const (
+	// DatasetStatusCreateInProgress is a DatasetStatus enum value
+	DatasetStatusCreateInProgress = "CREATE_IN_PROGRESS"
+
+	// DatasetStatusCreateComplete is a DatasetStatus enum value
+	DatasetStatusCreateComplete = "CREATE_COMPLETE"
+
+	// DatasetStatusCreateFailed is a DatasetStatus enum value
+	DatasetStatusCreateFailed = "CREATE_FAILED"
+
+	// DatasetStatusUpdateInProgress is a DatasetStatus enum value
+	DatasetStatusUpdateInProgress = "UPDATE_IN_PROGRESS"
+
+	// DatasetStatusUpdateComplete is a DatasetStatus enum value
+	DatasetStatusUpdateComplete = "UPDATE_COMPLETE"
+
+	// DatasetStatusUpdateFailed is a DatasetStatus enum value
+	DatasetStatusUpdateFailed = "UPDATE_FAILED"
+
+	// DatasetStatusDeleteInProgress is a DatasetStatus enum value
+	DatasetStatusDeleteInProgress = "DELETE_IN_PROGRESS"
+)
+
+// DatasetStatus_Values returns all elements of the DatasetStatus enum
+func DatasetStatus_Values() []string {
+	return []string{
+		DatasetStatusCreateInProgress,
+		DatasetStatusCreateComplete,
+		DatasetStatusCreateFailed,
+		DatasetStatusUpdateInProgress,
+		DatasetStatusUpdateComplete,
+		DatasetStatusUpdateFailed,
+		DatasetStatusDeleteInProgress,
+	}
+}
+
+const (
+	// DatasetStatusMessageCodeSuccess is a DatasetStatusMessageCode enum value
+	DatasetStatusMessageCodeSuccess = "SUCCESS"
+
+	// DatasetStatusMessageCodeServiceError is a DatasetStatusMessageCode enum value
+	DatasetStatusMessageCodeServiceError = "SERVICE_ERROR"
+
+	// DatasetStatusMessageCodeClientError is a DatasetStatusMessageCode enum value
+	DatasetStatusMessageCodeClientError = "CLIENT_ERROR"
+)
+
+// DatasetStatusMessageCode_Values returns all elements of the DatasetStatusMessageCode enum
+func DatasetStatusMessageCode_Values() []string {
+	return []string{
+		DatasetStatusMessageCodeSuccess,
+		DatasetStatusMessageCodeServiceError,
+		DatasetStatusMessageCodeClientError,
+	}
+}
+
+const (
+	// DatasetTypeTrain is a DatasetType enum value
+	DatasetTypeTrain = "TRAIN"
+
+	// DatasetTypeTest is a DatasetType enum value
+	DatasetTypeTest = "TEST"
+)
+
+// DatasetType_Values returns all elements of the DatasetType enum
+func DatasetType_Values() []string {
+	return []string{
+		DatasetTypeTrain,
+		DatasetTypeTest,
 	}
 }
 

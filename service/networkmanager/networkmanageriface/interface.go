@@ -170,6 +170,42 @@ type NetworkManagerAPI interface {
 	GetLinksPages(*networkmanager.GetLinksInput, func(*networkmanager.GetLinksOutput, bool) bool) error
 	GetLinksPagesWithContext(aws.Context, *networkmanager.GetLinksInput, func(*networkmanager.GetLinksOutput, bool) bool, ...request.Option) error
 
+	GetNetworkResourceCounts(*networkmanager.GetNetworkResourceCountsInput) (*networkmanager.GetNetworkResourceCountsOutput, error)
+	GetNetworkResourceCountsWithContext(aws.Context, *networkmanager.GetNetworkResourceCountsInput, ...request.Option) (*networkmanager.GetNetworkResourceCountsOutput, error)
+	GetNetworkResourceCountsRequest(*networkmanager.GetNetworkResourceCountsInput) (*request.Request, *networkmanager.GetNetworkResourceCountsOutput)
+
+	GetNetworkResourceCountsPages(*networkmanager.GetNetworkResourceCountsInput, func(*networkmanager.GetNetworkResourceCountsOutput, bool) bool) error
+	GetNetworkResourceCountsPagesWithContext(aws.Context, *networkmanager.GetNetworkResourceCountsInput, func(*networkmanager.GetNetworkResourceCountsOutput, bool) bool, ...request.Option) error
+
+	GetNetworkResourceRelationships(*networkmanager.GetNetworkResourceRelationshipsInput) (*networkmanager.GetNetworkResourceRelationshipsOutput, error)
+	GetNetworkResourceRelationshipsWithContext(aws.Context, *networkmanager.GetNetworkResourceRelationshipsInput, ...request.Option) (*networkmanager.GetNetworkResourceRelationshipsOutput, error)
+	GetNetworkResourceRelationshipsRequest(*networkmanager.GetNetworkResourceRelationshipsInput) (*request.Request, *networkmanager.GetNetworkResourceRelationshipsOutput)
+
+	GetNetworkResourceRelationshipsPages(*networkmanager.GetNetworkResourceRelationshipsInput, func(*networkmanager.GetNetworkResourceRelationshipsOutput, bool) bool) error
+	GetNetworkResourceRelationshipsPagesWithContext(aws.Context, *networkmanager.GetNetworkResourceRelationshipsInput, func(*networkmanager.GetNetworkResourceRelationshipsOutput, bool) bool, ...request.Option) error
+
+	GetNetworkResources(*networkmanager.GetNetworkResourcesInput) (*networkmanager.GetNetworkResourcesOutput, error)
+	GetNetworkResourcesWithContext(aws.Context, *networkmanager.GetNetworkResourcesInput, ...request.Option) (*networkmanager.GetNetworkResourcesOutput, error)
+	GetNetworkResourcesRequest(*networkmanager.GetNetworkResourcesInput) (*request.Request, *networkmanager.GetNetworkResourcesOutput)
+
+	GetNetworkResourcesPages(*networkmanager.GetNetworkResourcesInput, func(*networkmanager.GetNetworkResourcesOutput, bool) bool) error
+	GetNetworkResourcesPagesWithContext(aws.Context, *networkmanager.GetNetworkResourcesInput, func(*networkmanager.GetNetworkResourcesOutput, bool) bool, ...request.Option) error
+
+	GetNetworkRoutes(*networkmanager.GetNetworkRoutesInput) (*networkmanager.GetNetworkRoutesOutput, error)
+	GetNetworkRoutesWithContext(aws.Context, *networkmanager.GetNetworkRoutesInput, ...request.Option) (*networkmanager.GetNetworkRoutesOutput, error)
+	GetNetworkRoutesRequest(*networkmanager.GetNetworkRoutesInput) (*request.Request, *networkmanager.GetNetworkRoutesOutput)
+
+	GetNetworkTelemetry(*networkmanager.GetNetworkTelemetryInput) (*networkmanager.GetNetworkTelemetryOutput, error)
+	GetNetworkTelemetryWithContext(aws.Context, *networkmanager.GetNetworkTelemetryInput, ...request.Option) (*networkmanager.GetNetworkTelemetryOutput, error)
+	GetNetworkTelemetryRequest(*networkmanager.GetNetworkTelemetryInput) (*request.Request, *networkmanager.GetNetworkTelemetryOutput)
+
+	GetNetworkTelemetryPages(*networkmanager.GetNetworkTelemetryInput, func(*networkmanager.GetNetworkTelemetryOutput, bool) bool) error
+	GetNetworkTelemetryPagesWithContext(aws.Context, *networkmanager.GetNetworkTelemetryInput, func(*networkmanager.GetNetworkTelemetryOutput, bool) bool, ...request.Option) error
+
+	GetRouteAnalysis(*networkmanager.GetRouteAnalysisInput) (*networkmanager.GetRouteAnalysisOutput, error)
+	GetRouteAnalysisWithContext(aws.Context, *networkmanager.GetRouteAnalysisInput, ...request.Option) (*networkmanager.GetRouteAnalysisOutput, error)
+	GetRouteAnalysisRequest(*networkmanager.GetRouteAnalysisInput) (*request.Request, *networkmanager.GetRouteAnalysisOutput)
+
 	GetSites(*networkmanager.GetSitesInput) (*networkmanager.GetSitesOutput, error)
 	GetSitesWithContext(aws.Context, *networkmanager.GetSitesInput, ...request.Option) (*networkmanager.GetSitesOutput, error)
 	GetSitesRequest(*networkmanager.GetSitesInput) (*request.Request, *networkmanager.GetSitesOutput)
@@ -199,6 +235,10 @@ type NetworkManagerAPI interface {
 	RegisterTransitGatewayWithContext(aws.Context, *networkmanager.RegisterTransitGatewayInput, ...request.Option) (*networkmanager.RegisterTransitGatewayOutput, error)
 	RegisterTransitGatewayRequest(*networkmanager.RegisterTransitGatewayInput) (*request.Request, *networkmanager.RegisterTransitGatewayOutput)
 
+	StartRouteAnalysis(*networkmanager.StartRouteAnalysisInput) (*networkmanager.StartRouteAnalysisOutput, error)
+	StartRouteAnalysisWithContext(aws.Context, *networkmanager.StartRouteAnalysisInput, ...request.Option) (*networkmanager.StartRouteAnalysisOutput, error)
+	StartRouteAnalysisRequest(*networkmanager.StartRouteAnalysisInput) (*request.Request, *networkmanager.StartRouteAnalysisOutput)
+
 	TagResource(*networkmanager.TagResourceInput) (*networkmanager.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *networkmanager.TagResourceInput, ...request.Option) (*networkmanager.TagResourceOutput, error)
 	TagResourceRequest(*networkmanager.TagResourceInput) (*request.Request, *networkmanager.TagResourceOutput)
@@ -222,6 +262,10 @@ type NetworkManagerAPI interface {
 	UpdateLink(*networkmanager.UpdateLinkInput) (*networkmanager.UpdateLinkOutput, error)
 	UpdateLinkWithContext(aws.Context, *networkmanager.UpdateLinkInput, ...request.Option) (*networkmanager.UpdateLinkOutput, error)
 	UpdateLinkRequest(*networkmanager.UpdateLinkInput) (*request.Request, *networkmanager.UpdateLinkOutput)
+
+	UpdateNetworkResourceMetadata(*networkmanager.UpdateNetworkResourceMetadataInput) (*networkmanager.UpdateNetworkResourceMetadataOutput, error)
+	UpdateNetworkResourceMetadataWithContext(aws.Context, *networkmanager.UpdateNetworkResourceMetadataInput, ...request.Option) (*networkmanager.UpdateNetworkResourceMetadataOutput, error)
+	UpdateNetworkResourceMetadataRequest(*networkmanager.UpdateNetworkResourceMetadataInput) (*request.Request, *networkmanager.UpdateNetworkResourceMetadataOutput)
 
 	UpdateSite(*networkmanager.UpdateSiteInput) (*networkmanager.UpdateSiteOutput, error)
 	UpdateSiteWithContext(aws.Context, *networkmanager.UpdateSiteInput, ...request.Option) (*networkmanager.UpdateSiteOutput, error)

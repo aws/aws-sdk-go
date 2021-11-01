@@ -432,6 +432,19 @@
         "UpdateBucketResult$bucket": "<p>An object that describes the bucket that is updated.</p>"
       }
     },
+    "BucketAccessLogConfig": {
+      "base": "<p>Describes the access log configuration for a bucket in the Amazon Lightsail object storage service.</p> <p>For more information about bucket access logs, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-bucket-access-logs\">Logging bucket requests using access logging in Amazon Lightsail</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
+      "refs": {
+        "Bucket$accessLogConfig": "<p>An object that describes the access log configuration for the bucket.</p>",
+        "UpdateBucketRequest$accessLogConfig": "<p>An object that describes the access log configuration for the bucket.</p>"
+      }
+    },
+    "BucketAccessLogPrefix": {
+      "base": null,
+      "refs": {
+        "BucketAccessLogConfig$prefix": "<p>The optional object prefix for the bucket access log.</p> <p>The prefix is an optional addition to the object key that organizes your access log files in the destination bucket. For example, if you specify a <code>logs/</code> prefix, then each log object will begin with the <code>logs/</code> prefix in its key (for example, <code>logs/2021-11-01-21-32-16-E568B2907131C0C0</code>).</p> <note> <p>This parameter can be optionally specified when enabling the access log for a bucket, and should be omitted when disabling the access log.</p> </note>"
+      }
+    },
     "BucketBundle": {
       "base": "<p>Describes the specifications of a bundle that can be applied to an Amazon Lightsail bucket.</p> <p>A bucket bundle specifies the monthly cost, storage space, and data transfer quota for a bucket.</p>",
       "refs": {
@@ -461,6 +474,7 @@
       "base": null,
       "refs": {
         "Bucket$name": "<p>The name of the bucket.</p>",
+        "BucketAccessLogConfig$destination": "<p>The name of the bucket where the access is saved. The destination can be a Lightsail bucket in the same account, and in the same AWS Region as the source bucket.</p> <note> <p>This parameter is required when enabling the access log for a bucket, and should be omitted when disabling the access log.</p> </note>",
         "CreateBucketAccessKeyRequest$bucketName": "<p>The name of the bucket that the new access key will belong to, and grant access to.</p>",
         "CreateBucketRequest$bucketName": "<p>The name for the bucket.</p> <p>For more information about bucket names, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/bucket-naming-rules-in-amazon-lightsail\">Bucket naming rules in Amazon Lightsail</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
         "DeleteBucketAccessKeyRequest$bucketName": "<p>The name of the bucket that the access key belongs to.</p>",
@@ -3856,7 +3870,7 @@
         "ContainerService$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-tags\">Amazon Lightsail Developer Guide</a>.</p>",
         "CreateBucketRequest$tags": "<p>The tag keys and optional values to add to the bucket during creation.</p> <p>Use the <a>TagResource</a> action to tag the bucket after it's created.</p>",
         "CreateCertificateRequest$tags": "<p>The tag keys and optional values to add to the certificate during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
-        "CreateContainerServiceRequest$tags": "<p>The tag keys and optional values to add to the certificate during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p> <p>For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-tags\">Amazon Lightsail Developer Guide</a>.</p>",
+        "CreateContainerServiceRequest$tags": "<p>The tag keys and optional values to add to the container service during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p> <p>For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-tags\">Amazon Lightsail Developer Guide</a>.</p>",
         "CreateDiskFromSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
         "CreateDiskRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
         "CreateDiskSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
@@ -4048,6 +4062,7 @@
         "Alarm$notificationEnabled": "<p>Indicates whether the alarm is enabled.</p>",
         "Blueprint$isActive": "<p>A Boolean value indicating whether the blueprint is active. Inactive blueprints are listed to support customers with existing instances but are not necessarily available for launch of new instances. Blueprints are marked inactive when they become outdated due to operating system updates or new application releases.</p>",
         "Bucket$ableToUpdateBundle": "<p>Indicates whether the bundle that is currently applied to a bucket can be changed to another bundle.</p> <p>You can update a bucket's bundle only one time within a monthly AWS billing cycle.</p> <p>Use the <a>UpdateBucketBundle</a> action to change a bucket's bundle.</p>",
+        "BucketAccessLogConfig$enabled": "<p>A Boolean value that indicates whether bucket access logging is enabled for the bucket.</p>",
         "BucketBundle$isActive": "<p>Indicates whether the bundle is active. Use for a new or existing bucket.</p>",
         "Bundle$isActive": "<p>A Boolean value indicating whether the bundle is active.</p>",
         "ContainerService$isDisabled": "<p>A Boolean value indicating whether the container service is disabled.</p>",
@@ -4216,7 +4231,7 @@
         "CacheBehaviorPerPath$path": "<p>The path to a directory or file to cached, or not cache. Use an asterisk symbol to specify wildcard directories (<code>path/to/assets/*</code>), and file types (<code>*.html, *jpg, *js</code>). Directories and file paths are case-sensitive.</p> <p>Examples:</p> <ul> <li> <p>Specify the following to cache all files in the document root of an Apache web server running on a Lightsail instance.</p> <p> <code>var/www/html/</code> </p> </li> <li> <p>Specify the following file to cache only the index page in the document root of an Apache web server.</p> <p> <code>var/www/html/index.html</code> </p> </li> <li> <p>Specify the following to cache only the .html files in the document root of an Apache web server.</p> <p> <code>var/www/html/*.html</code> </p> </li> <li> <p>Specify the following to cache only the .jpg, .png, and .gif files in the images sub-directory of the document root of an Apache web server.</p> <p> <code>var/www/html/images/*.jpg</code> </p> <p> <code>var/www/html/images/*.png</code> </p> <p> <code>var/www/html/images/*.gif</code> </p> <p>Specify the following to cache all files in the images sub-directory of the document root of an Apache web server.</p> <p> <code>var/www/html/images/</code> </p> </li> </ul>",
         "Certificate$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail certificate. This code enables our support team to look up your Lightsail information more easily.</p>",
         "ContactMethod$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail contact method. This code enables our support team to look up your Lightsail information more easily.</p>",
-        "Container$image": "<p>The name of the image used for the container.</p> <p>Container images sourced from your Lightsail container service, that are registered and stored on your service, start with a colon (<code>:</code>). For example, <code>:container-service-1.mystaticwebsite.1</code>. Container images sourced from a public registry like Docker Hub don't start with a colon. For example, <code>nginx:latest</code> or <code>nginx</code>.</p>",
+        "Container$image": "<p>The name of the image used for the container.</p> <p>Container images sourced from your Lightsail container service, that are registered and stored on your service, start with a colon (<code>:</code>). For example, if your container service name is <code>container-service-1</code>, the container image label is <code>mystaticsite</code>, and you want to use the third (<code>3</code>) version of the registered container image, then you should specify <code>:container-service-1.mystaticsite.3</code>. To use the latest version of a container image, specify <code>latest</code> instead of a version number (for example, <code>:container-service-1.mystaticsite.latest</code>). Lightsail will automatically use the highest numbered version of the registered container image.</p> <p>Container images sourced from a public registry like Docker Hub don't start with a colon. For example, <code>nginx:latest</code> or <code>nginx</code>.</p>",
         "ContainerImage$image": "<p>The name of the container image.</p>",
         "ContainerImage$digest": "<p>The digest of the container image.</p>",
         "ContainerService$powerId": "<p>The ID of the power of the container service.</p>",

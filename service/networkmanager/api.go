@@ -2585,6 +2585,785 @@ func (c *NetworkManager) GetLinksPagesWithContext(ctx aws.Context, input *GetLin
 	return p.Err()
 }
 
+const opGetNetworkResourceCounts = "GetNetworkResourceCounts"
+
+// GetNetworkResourceCountsRequest generates a "aws/request.Request" representing the
+// client's request for the GetNetworkResourceCounts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetNetworkResourceCounts for more information on using the GetNetworkResourceCounts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetNetworkResourceCountsRequest method.
+//    req, resp := client.GetNetworkResourceCountsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkResourceCounts
+func (c *NetworkManager) GetNetworkResourceCountsRequest(input *GetNetworkResourceCountsInput) (req *request.Request, output *GetNetworkResourceCountsOutput) {
+	op := &request.Operation{
+		Name:       opGetNetworkResourceCounts,
+		HTTPMethod: "GET",
+		HTTPPath:   "/global-networks/{globalNetworkId}/network-resource-count",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetNetworkResourceCountsInput{}
+	}
+
+	output = &GetNetworkResourceCountsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetNetworkResourceCounts API operation for AWS Network Manager.
+//
+// Gets the count of network resources, by resource type, for the specified
+// global network.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation GetNetworkResourceCounts for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request has failed due to an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkResourceCounts
+func (c *NetworkManager) GetNetworkResourceCounts(input *GetNetworkResourceCountsInput) (*GetNetworkResourceCountsOutput, error) {
+	req, out := c.GetNetworkResourceCountsRequest(input)
+	return out, req.Send()
+}
+
+// GetNetworkResourceCountsWithContext is the same as GetNetworkResourceCounts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNetworkResourceCounts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetNetworkResourceCountsWithContext(ctx aws.Context, input *GetNetworkResourceCountsInput, opts ...request.Option) (*GetNetworkResourceCountsOutput, error) {
+	req, out := c.GetNetworkResourceCountsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetNetworkResourceCountsPages iterates over the pages of a GetNetworkResourceCounts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetNetworkResourceCounts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetNetworkResourceCounts operation.
+//    pageNum := 0
+//    err := client.GetNetworkResourceCountsPages(params,
+//        func(page *networkmanager.GetNetworkResourceCountsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *NetworkManager) GetNetworkResourceCountsPages(input *GetNetworkResourceCountsInput, fn func(*GetNetworkResourceCountsOutput, bool) bool) error {
+	return c.GetNetworkResourceCountsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetNetworkResourceCountsPagesWithContext same as GetNetworkResourceCountsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetNetworkResourceCountsPagesWithContext(ctx aws.Context, input *GetNetworkResourceCountsInput, fn func(*GetNetworkResourceCountsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetNetworkResourceCountsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetNetworkResourceCountsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetNetworkResourceCountsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetNetworkResourceRelationships = "GetNetworkResourceRelationships"
+
+// GetNetworkResourceRelationshipsRequest generates a "aws/request.Request" representing the
+// client's request for the GetNetworkResourceRelationships operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetNetworkResourceRelationships for more information on using the GetNetworkResourceRelationships
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetNetworkResourceRelationshipsRequest method.
+//    req, resp := client.GetNetworkResourceRelationshipsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkResourceRelationships
+func (c *NetworkManager) GetNetworkResourceRelationshipsRequest(input *GetNetworkResourceRelationshipsInput) (req *request.Request, output *GetNetworkResourceRelationshipsOutput) {
+	op := &request.Operation{
+		Name:       opGetNetworkResourceRelationships,
+		HTTPMethod: "GET",
+		HTTPPath:   "/global-networks/{globalNetworkId}/network-resource-relationships",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetNetworkResourceRelationshipsInput{}
+	}
+
+	output = &GetNetworkResourceRelationshipsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetNetworkResourceRelationships API operation for AWS Network Manager.
+//
+// Gets the network resource relationships for the specified global network.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation GetNetworkResourceRelationships for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request has failed due to an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkResourceRelationships
+func (c *NetworkManager) GetNetworkResourceRelationships(input *GetNetworkResourceRelationshipsInput) (*GetNetworkResourceRelationshipsOutput, error) {
+	req, out := c.GetNetworkResourceRelationshipsRequest(input)
+	return out, req.Send()
+}
+
+// GetNetworkResourceRelationshipsWithContext is the same as GetNetworkResourceRelationships with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNetworkResourceRelationships for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetNetworkResourceRelationshipsWithContext(ctx aws.Context, input *GetNetworkResourceRelationshipsInput, opts ...request.Option) (*GetNetworkResourceRelationshipsOutput, error) {
+	req, out := c.GetNetworkResourceRelationshipsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetNetworkResourceRelationshipsPages iterates over the pages of a GetNetworkResourceRelationships operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetNetworkResourceRelationships method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetNetworkResourceRelationships operation.
+//    pageNum := 0
+//    err := client.GetNetworkResourceRelationshipsPages(params,
+//        func(page *networkmanager.GetNetworkResourceRelationshipsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *NetworkManager) GetNetworkResourceRelationshipsPages(input *GetNetworkResourceRelationshipsInput, fn func(*GetNetworkResourceRelationshipsOutput, bool) bool) error {
+	return c.GetNetworkResourceRelationshipsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetNetworkResourceRelationshipsPagesWithContext same as GetNetworkResourceRelationshipsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetNetworkResourceRelationshipsPagesWithContext(ctx aws.Context, input *GetNetworkResourceRelationshipsInput, fn func(*GetNetworkResourceRelationshipsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetNetworkResourceRelationshipsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetNetworkResourceRelationshipsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetNetworkResourceRelationshipsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetNetworkResources = "GetNetworkResources"
+
+// GetNetworkResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the GetNetworkResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetNetworkResources for more information on using the GetNetworkResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetNetworkResourcesRequest method.
+//    req, resp := client.GetNetworkResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkResources
+func (c *NetworkManager) GetNetworkResourcesRequest(input *GetNetworkResourcesInput) (req *request.Request, output *GetNetworkResourcesOutput) {
+	op := &request.Operation{
+		Name:       opGetNetworkResources,
+		HTTPMethod: "GET",
+		HTTPPath:   "/global-networks/{globalNetworkId}/network-resources",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetNetworkResourcesInput{}
+	}
+
+	output = &GetNetworkResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetNetworkResources API operation for AWS Network Manager.
+//
+// Describes the network resources for the specified global network.
+//
+// The results include information from the corresponding Describe call for
+// the resource, minus any sensitive information such as pre-shared keys.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation GetNetworkResources for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request has failed due to an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkResources
+func (c *NetworkManager) GetNetworkResources(input *GetNetworkResourcesInput) (*GetNetworkResourcesOutput, error) {
+	req, out := c.GetNetworkResourcesRequest(input)
+	return out, req.Send()
+}
+
+// GetNetworkResourcesWithContext is the same as GetNetworkResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNetworkResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetNetworkResourcesWithContext(ctx aws.Context, input *GetNetworkResourcesInput, opts ...request.Option) (*GetNetworkResourcesOutput, error) {
+	req, out := c.GetNetworkResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetNetworkResourcesPages iterates over the pages of a GetNetworkResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetNetworkResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetNetworkResources operation.
+//    pageNum := 0
+//    err := client.GetNetworkResourcesPages(params,
+//        func(page *networkmanager.GetNetworkResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *NetworkManager) GetNetworkResourcesPages(input *GetNetworkResourcesInput, fn func(*GetNetworkResourcesOutput, bool) bool) error {
+	return c.GetNetworkResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetNetworkResourcesPagesWithContext same as GetNetworkResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetNetworkResourcesPagesWithContext(ctx aws.Context, input *GetNetworkResourcesInput, fn func(*GetNetworkResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetNetworkResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetNetworkResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetNetworkResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetNetworkRoutes = "GetNetworkRoutes"
+
+// GetNetworkRoutesRequest generates a "aws/request.Request" representing the
+// client's request for the GetNetworkRoutes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetNetworkRoutes for more information on using the GetNetworkRoutes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetNetworkRoutesRequest method.
+//    req, resp := client.GetNetworkRoutesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkRoutes
+func (c *NetworkManager) GetNetworkRoutesRequest(input *GetNetworkRoutesInput) (req *request.Request, output *GetNetworkRoutesOutput) {
+	op := &request.Operation{
+		Name:       opGetNetworkRoutes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/global-networks/{globalNetworkId}/network-routes",
+	}
+
+	if input == nil {
+		input = &GetNetworkRoutesInput{}
+	}
+
+	output = &GetNetworkRoutesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetNetworkRoutes API operation for AWS Network Manager.
+//
+// Gets the network routes of the specified global network.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation GetNetworkRoutes for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request has failed due to an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkRoutes
+func (c *NetworkManager) GetNetworkRoutes(input *GetNetworkRoutesInput) (*GetNetworkRoutesOutput, error) {
+	req, out := c.GetNetworkRoutesRequest(input)
+	return out, req.Send()
+}
+
+// GetNetworkRoutesWithContext is the same as GetNetworkRoutes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNetworkRoutes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetNetworkRoutesWithContext(ctx aws.Context, input *GetNetworkRoutesInput, opts ...request.Option) (*GetNetworkRoutesOutput, error) {
+	req, out := c.GetNetworkRoutesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetNetworkTelemetry = "GetNetworkTelemetry"
+
+// GetNetworkTelemetryRequest generates a "aws/request.Request" representing the
+// client's request for the GetNetworkTelemetry operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetNetworkTelemetry for more information on using the GetNetworkTelemetry
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetNetworkTelemetryRequest method.
+//    req, resp := client.GetNetworkTelemetryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkTelemetry
+func (c *NetworkManager) GetNetworkTelemetryRequest(input *GetNetworkTelemetryInput) (req *request.Request, output *GetNetworkTelemetryOutput) {
+	op := &request.Operation{
+		Name:       opGetNetworkTelemetry,
+		HTTPMethod: "GET",
+		HTTPPath:   "/global-networks/{globalNetworkId}/network-telemetry",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetNetworkTelemetryInput{}
+	}
+
+	output = &GetNetworkTelemetryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetNetworkTelemetry API operation for AWS Network Manager.
+//
+// Gets the network telemetry of the specified global network.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation GetNetworkTelemetry for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request has failed due to an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetNetworkTelemetry
+func (c *NetworkManager) GetNetworkTelemetry(input *GetNetworkTelemetryInput) (*GetNetworkTelemetryOutput, error) {
+	req, out := c.GetNetworkTelemetryRequest(input)
+	return out, req.Send()
+}
+
+// GetNetworkTelemetryWithContext is the same as GetNetworkTelemetry with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNetworkTelemetry for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetNetworkTelemetryWithContext(ctx aws.Context, input *GetNetworkTelemetryInput, opts ...request.Option) (*GetNetworkTelemetryOutput, error) {
+	req, out := c.GetNetworkTelemetryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetNetworkTelemetryPages iterates over the pages of a GetNetworkTelemetry operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetNetworkTelemetry method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetNetworkTelemetry operation.
+//    pageNum := 0
+//    err := client.GetNetworkTelemetryPages(params,
+//        func(page *networkmanager.GetNetworkTelemetryOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *NetworkManager) GetNetworkTelemetryPages(input *GetNetworkTelemetryInput, fn func(*GetNetworkTelemetryOutput, bool) bool) error {
+	return c.GetNetworkTelemetryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetNetworkTelemetryPagesWithContext same as GetNetworkTelemetryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetNetworkTelemetryPagesWithContext(ctx aws.Context, input *GetNetworkTelemetryInput, fn func(*GetNetworkTelemetryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetNetworkTelemetryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetNetworkTelemetryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetNetworkTelemetryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetRouteAnalysis = "GetRouteAnalysis"
+
+// GetRouteAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the GetRouteAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRouteAnalysis for more information on using the GetRouteAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRouteAnalysisRequest method.
+//    req, resp := client.GetRouteAnalysisRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetRouteAnalysis
+func (c *NetworkManager) GetRouteAnalysisRequest(input *GetRouteAnalysisInput) (req *request.Request, output *GetRouteAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opGetRouteAnalysis,
+		HTTPMethod: "GET",
+		HTTPPath:   "/global-networks/{globalNetworkId}/route-analyses/{routeAnalysisId}",
+	}
+
+	if input == nil {
+		input = &GetRouteAnalysisInput{}
+	}
+
+	output = &GetRouteAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRouteAnalysis API operation for AWS Network Manager.
+//
+// Gets information about the specified route analysis.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation GetRouteAnalysis for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request has failed due to an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/GetRouteAnalysis
+func (c *NetworkManager) GetRouteAnalysis(input *GetRouteAnalysisInput) (*GetRouteAnalysisOutput, error) {
+	req, out := c.GetRouteAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// GetRouteAnalysisWithContext is the same as GetRouteAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRouteAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) GetRouteAnalysisWithContext(ctx aws.Context, input *GetRouteAnalysisInput, opts ...request.Option) (*GetRouteAnalysisOutput, error) {
+	req, out := c.GetRouteAnalysisRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetSites = "GetSites"
 
 // GetSitesRequest generates a "aws/request.Request" representing the
@@ -3174,9 +3953,9 @@ func (c *NetworkManager) RegisterTransitGatewayRequest(input *RegisterTransitGat
 // RegisterTransitGateway API operation for AWS Network Manager.
 //
 // Registers a transit gateway in your global network. The transit gateway can
-// be in any AWS Region, but it must be owned by the same AWS account that owns
-// the global network. You cannot register a transit gateway in more than one
-// global network.
+// be in any Amazon Web Services Region, but it must be owned by the same Amazon
+// Web Services account that owns the global network. You cannot register a
+// transit gateway in more than one global network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3222,6 +4001,102 @@ func (c *NetworkManager) RegisterTransitGateway(input *RegisterTransitGatewayInp
 // for more information on using Contexts.
 func (c *NetworkManager) RegisterTransitGatewayWithContext(ctx aws.Context, input *RegisterTransitGatewayInput, opts ...request.Option) (*RegisterTransitGatewayOutput, error) {
 	req, out := c.RegisterTransitGatewayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartRouteAnalysis = "StartRouteAnalysis"
+
+// StartRouteAnalysisRequest generates a "aws/request.Request" representing the
+// client's request for the StartRouteAnalysis operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartRouteAnalysis for more information on using the StartRouteAnalysis
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartRouteAnalysisRequest method.
+//    req, resp := client.StartRouteAnalysisRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/StartRouteAnalysis
+func (c *NetworkManager) StartRouteAnalysisRequest(input *StartRouteAnalysisInput) (req *request.Request, output *StartRouteAnalysisOutput) {
+	op := &request.Operation{
+		Name:       opStartRouteAnalysis,
+		HTTPMethod: "POST",
+		HTTPPath:   "/global-networks/{globalNetworkId}/route-analyses",
+	}
+
+	if input == nil {
+		input = &StartRouteAnalysisInput{}
+	}
+
+	output = &StartRouteAnalysisOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartRouteAnalysis API operation for AWS Network Manager.
+//
+// Starts analyzing the routing path between the specified source and destination.
+// For more information, see Route Analyzer (https://docs.aws.amazon.com/vpc/latest/tgw/route-analyzer.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation StartRouteAnalysis for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ConflictException
+//   There was a conflict processing the request. Updating or deleting the resource
+//   can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request has failed due to an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/StartRouteAnalysis
+func (c *NetworkManager) StartRouteAnalysis(input *StartRouteAnalysisInput) (*StartRouteAnalysisOutput, error) {
+	req, out := c.StartRouteAnalysisRequest(input)
+	return out, req.Send()
+}
+
+// StartRouteAnalysisWithContext is the same as StartRouteAnalysis with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartRouteAnalysis for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) StartRouteAnalysisWithContext(ctx aws.Context, input *StartRouteAnalysisInput, opts ...request.Option) (*StartRouteAnalysisOutput, error) {
+	req, out := c.StartRouteAnalysisRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3809,6 +4684,101 @@ func (c *NetworkManager) UpdateLinkWithContext(ctx aws.Context, input *UpdateLin
 	return out, req.Send()
 }
 
+const opUpdateNetworkResourceMetadata = "UpdateNetworkResourceMetadata"
+
+// UpdateNetworkResourceMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateNetworkResourceMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateNetworkResourceMetadata for more information on using the UpdateNetworkResourceMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateNetworkResourceMetadataRequest method.
+//    req, resp := client.UpdateNetworkResourceMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/UpdateNetworkResourceMetadata
+func (c *NetworkManager) UpdateNetworkResourceMetadataRequest(input *UpdateNetworkResourceMetadataInput) (req *request.Request, output *UpdateNetworkResourceMetadataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateNetworkResourceMetadata,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/global-networks/{globalNetworkId}/network-resources/{resourceArn}/metadata",
+	}
+
+	if input == nil {
+		input = &UpdateNetworkResourceMetadataInput{}
+	}
+
+	output = &UpdateNetworkResourceMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateNetworkResourceMetadata API operation for AWS Network Manager.
+//
+// Updates the resource metadata for the specified global network.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Network Manager's
+// API operation UpdateNetworkResourceMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input fails to satisfy the constraints.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ConflictException
+//   There was a conflict processing the request. Updating or deleting the resource
+//   can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request has failed due to an internal error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/networkmanager-2019-07-05/UpdateNetworkResourceMetadata
+func (c *NetworkManager) UpdateNetworkResourceMetadata(input *UpdateNetworkResourceMetadataInput) (*UpdateNetworkResourceMetadataOutput, error) {
+	req, out := c.UpdateNetworkResourceMetadataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateNetworkResourceMetadataWithContext is the same as UpdateNetworkResourceMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateNetworkResourceMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NetworkManager) UpdateNetworkResourceMetadataWithContext(ctx aws.Context, input *UpdateNetworkResourceMetadataInput, opts ...request.Option) (*UpdateNetworkResourceMetadataOutput, error) {
+	req, out := c.UpdateNetworkResourceMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSite = "UpdateSite"
 
 // UpdateSiteRequest generates a "aws/request.Request" representing the
@@ -3905,14 +4875,14 @@ func (c *NetworkManager) UpdateSiteWithContext(ctx aws.Context, input *UpdateSit
 	return out, req.Send()
 }
 
-// Specifies a location in AWS.
+// Specifies a location in Amazon Web Services.
 type AWSLocation struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the subnet the device is located in.
+	// The Amazon Resource Name (ARN) of the subnet that the device is located in.
 	SubnetArn *string `type:"string"`
 
-	// The Zone the device is located in. This can be the ID of an Availability
+	// The Zone that the device is located in. Specify the ID of an Availability
 	// Zone, Local Zone, Wavelength Zone, or an Outpost.
 	Zone *string `type:"string"`
 }
@@ -4014,8 +4984,7 @@ func (s *AccessDeniedException) RequestID() string {
 type AssociateCustomerGatewayInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the customer gateway. For more information,
-	// see Resources Defined by Amazon EC2 (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies).
+	// The Amazon Resource Name (ARN) of the customer gateway.
 	//
 	// CustomerGatewayArn is a required field
 	CustomerGatewayArn *string `type:"string" required:"true"`
@@ -4592,6 +5561,56 @@ func (s *Connection) SetTags(v []*Tag) *Connection {
 	return s
 }
 
+// Describes connection health.
+type ConnectionHealth struct {
+	_ struct{} `type:"structure"`
+
+	// The connection status.
+	Status *string `type:"string" enum:"ConnectionStatus"`
+
+	// The time the status was last updated.
+	Timestamp *time.Time `type:"timestamp"`
+
+	// The connection type.
+	Type *string `type:"string" enum:"ConnectionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectionHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectionHealth) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *ConnectionHealth) SetStatus(v string) *ConnectionHealth {
+	s.Status = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *ConnectionHealth) SetTimestamp(v time.Time) *ConnectionHealth {
+	s.Timestamp = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ConnectionHealth) SetType(v string) *ConnectionHealth {
+	s.Type = &v
+	return s
+}
+
 type CreateConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4741,12 +5760,13 @@ func (s *CreateConnectionOutput) SetConnection(v *Connection) *CreateConnectionO
 type CreateDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS location of the device.
+	// The Amazon Web Services location of the device, if applicable. For an on-premises
+	// device, you can omit this parameter.
 	AWSLocation *AWSLocation `type:"structure"`
 
 	// A description of the device.
 	//
-	// Length Constraints: Maximum length of 256 characters.
+	// Constraints: Maximum length of 256 characters.
 	Description *string `type:"string"`
 
 	// The ID of the global network.
@@ -4763,12 +5783,12 @@ type CreateDeviceInput struct {
 
 	// The model of the device.
 	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters.
 	Model *string `type:"string"`
 
 	// The serial number of the device.
 	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters.
 	SerialNumber *string `type:"string"`
 
 	// The ID of the site.
@@ -4782,7 +5802,7 @@ type CreateDeviceInput struct {
 
 	// The vendor of the device.
 	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters.
 	Vendor *string `type:"string"`
 }
 
@@ -4916,7 +5936,7 @@ type CreateGlobalNetworkInput struct {
 
 	// A description of the global network.
 	//
-	// Length Constraints: Maximum length of 256 characters.
+	// Constraints: Maximum length of 256 characters.
 	Description *string `type:"string"`
 
 	// The tags to apply to the resource during creation.
@@ -4994,7 +6014,7 @@ type CreateLinkInput struct {
 
 	// A description of the link.
 	//
-	// Length Constraints: Maximum length of 256 characters.
+	// Constraints: Maximum length of 256 characters.
 	Description *string `type:"string"`
 
 	// The ID of the global network.
@@ -5004,9 +6024,8 @@ type CreateLinkInput struct {
 
 	// The provider of the link.
 	//
-	// Constraints: Cannot include the following characters: | \ ^
-	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters. Cannot include the following
+	// characters: | \ ^
 	Provider *string `type:"string"`
 
 	// The ID of the site.
@@ -5019,9 +6038,8 @@ type CreateLinkInput struct {
 
 	// The type of the link.
 	//
-	// Constraints: Cannot include the following characters: | \ ^
-	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters. Cannot include the following
+	// characters: | \ ^
 	Type *string `type:"string"`
 }
 
@@ -5143,7 +6161,7 @@ type CreateSiteInput struct {
 
 	// A description of your site.
 	//
-	// Length Constraints: Maximum length of 256 characters.
+	// Constraints: Maximum length of 256 characters.
 	Description *string `type:"string"`
 
 	// The ID of the global network.
@@ -5998,7 +7016,7 @@ func (s *DescribeGlobalNetworksOutput) SetNextToken(v string) *DescribeGlobalNet
 type Device struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS location of the device.
+	// The Amazon Web Services location of the device.
 	AWSLocation *AWSLocation `type:"structure"`
 
 	// The date and time that the site was created.
@@ -6150,8 +7168,7 @@ func (s *Device) SetVendor(v string) *Device {
 type DisassociateCustomerGatewayInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The Amazon Resource Name (ARN) of the customer gateway. For more information,
-	// see Resources Defined by Amazon EC2 (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies).
+	// The Amazon Resource Name (ARN) of the customer gateway.
 	//
 	// CustomerGatewayArn is a required field
 	CustomerGatewayArn *string `location:"uri" locationName:"customerGatewayArn" type:"string" required:"true"`
@@ -6581,9 +7598,8 @@ func (s *GetConnectionsOutput) SetNextToken(v string) *GetConnectionsOutput {
 type GetCustomerGatewayAssociationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// One or more customer gateway Amazon Resource Names (ARNs). For more information,
-	// see Resources Defined by Amazon EC2 (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies).
-	// The maximum is 10.
+	// One or more customer gateway Amazon Resource Names (ARNs). The maximum is
+	// 10.
 	CustomerGatewayArns []*string `location:"querystring" locationName:"customerGatewayArns" type:"list"`
 
 	// The ID of the global network.
@@ -7098,6 +8114,1013 @@ func (s *GetLinksOutput) SetLinks(v []*Link) *GetLinksOutput {
 // SetNextToken sets the NextToken field's value.
 func (s *GetLinksOutput) SetNextToken(v string) *GetLinksOutput {
 	s.NextToken = &v
+	return s
+}
+
+type GetNetworkResourceCountsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the global network.
+	//
+	// GlobalNetworkId is a required field
+	GlobalNetworkId *string `location:"uri" locationName:"globalNetworkId" type:"string" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The resource type.
+	//
+	// The following are the supported resource types for Direct Connect:
+	//
+	//    * dxcon
+	//
+	//    * dx-gateway
+	//
+	//    * dx-vif
+	//
+	// The following are the supported resource types for Network Manager:
+	//
+	//    * connection
+	//
+	//    * device
+	//
+	//    * link
+	//
+	//    * site
+	//
+	// The following are the supported resource types for Amazon VPC:
+	//
+	//    * customer-gateway
+	//
+	//    * transit-gateway
+	//
+	//    * transit-gateway-attachment
+	//
+	//    * transit-gateway-connect-peer
+	//
+	//    * transit-gateway-route-table
+	//
+	//    * vpn-connection
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourceCountsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourceCountsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetNetworkResourceCountsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetNetworkResourceCountsInput"}
+	if s.GlobalNetworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalNetworkId"))
+	}
+	if s.GlobalNetworkId != nil && len(*s.GlobalNetworkId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalNetworkId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlobalNetworkId sets the GlobalNetworkId field's value.
+func (s *GetNetworkResourceCountsInput) SetGlobalNetworkId(v string) *GetNetworkResourceCountsInput {
+	s.GlobalNetworkId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetNetworkResourceCountsInput) SetMaxResults(v int64) *GetNetworkResourceCountsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetNetworkResourceCountsInput) SetNextToken(v string) *GetNetworkResourceCountsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetNetworkResourceCountsInput) SetResourceType(v string) *GetNetworkResourceCountsInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetNetworkResourceCountsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The count of resources.
+	NetworkResourceCounts []*NetworkResourceCount `type:"list"`
+
+	// The token for the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourceCountsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourceCountsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNetworkResourceCounts sets the NetworkResourceCounts field's value.
+func (s *GetNetworkResourceCountsOutput) SetNetworkResourceCounts(v []*NetworkResourceCount) *GetNetworkResourceCountsOutput {
+	s.NetworkResourceCounts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetNetworkResourceCountsOutput) SetNextToken(v string) *GetNetworkResourceCountsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetNetworkResourceRelationshipsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	AccountId *string `location:"querystring" locationName:"accountId" type:"string"`
+
+	// The Amazon Web Services Region.
+	AwsRegion *string `location:"querystring" locationName:"awsRegion" type:"string"`
+
+	// The ID of the global network.
+	//
+	// GlobalNetworkId is a required field
+	GlobalNetworkId *string `location:"uri" locationName:"globalNetworkId" type:"string" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The ARN of the registered gateway.
+	RegisteredGatewayArn *string `location:"querystring" locationName:"registeredGatewayArn" type:"string"`
+
+	// The ARN of the gateway.
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string"`
+
+	// The resource type.
+	//
+	// The following are the supported resource types for Direct Connect:
+	//
+	//    * dxcon
+	//
+	//    * dx-gateway
+	//
+	//    * dx-vif
+	//
+	// The following are the supported resource types for Network Manager:
+	//
+	//    * connection
+	//
+	//    * device
+	//
+	//    * link
+	//
+	//    * site
+	//
+	// The following are the supported resource types for Amazon VPC:
+	//
+	//    * customer-gateway
+	//
+	//    * transit-gateway
+	//
+	//    * transit-gateway-attachment
+	//
+	//    * transit-gateway-connect-peer
+	//
+	//    * transit-gateway-route-table
+	//
+	//    * vpn-connection
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourceRelationshipsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourceRelationshipsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetNetworkResourceRelationshipsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetNetworkResourceRelationshipsInput"}
+	if s.GlobalNetworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalNetworkId"))
+	}
+	if s.GlobalNetworkId != nil && len(*s.GlobalNetworkId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalNetworkId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetNetworkResourceRelationshipsInput) SetAccountId(v string) *GetNetworkResourceRelationshipsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *GetNetworkResourceRelationshipsInput) SetAwsRegion(v string) *GetNetworkResourceRelationshipsInput {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetGlobalNetworkId sets the GlobalNetworkId field's value.
+func (s *GetNetworkResourceRelationshipsInput) SetGlobalNetworkId(v string) *GetNetworkResourceRelationshipsInput {
+	s.GlobalNetworkId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetNetworkResourceRelationshipsInput) SetMaxResults(v int64) *GetNetworkResourceRelationshipsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetNetworkResourceRelationshipsInput) SetNextToken(v string) *GetNetworkResourceRelationshipsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegisteredGatewayArn sets the RegisteredGatewayArn field's value.
+func (s *GetNetworkResourceRelationshipsInput) SetRegisteredGatewayArn(v string) *GetNetworkResourceRelationshipsInput {
+	s.RegisteredGatewayArn = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetNetworkResourceRelationshipsInput) SetResourceArn(v string) *GetNetworkResourceRelationshipsInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetNetworkResourceRelationshipsInput) SetResourceType(v string) *GetNetworkResourceRelationshipsInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetNetworkResourceRelationshipsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next page of results.
+	NextToken *string `type:"string"`
+
+	// The resource relationships.
+	Relationships []*Relationship `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourceRelationshipsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourceRelationshipsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetNetworkResourceRelationshipsOutput) SetNextToken(v string) *GetNetworkResourceRelationshipsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRelationships sets the Relationships field's value.
+func (s *GetNetworkResourceRelationshipsOutput) SetRelationships(v []*Relationship) *GetNetworkResourceRelationshipsOutput {
+	s.Relationships = v
+	return s
+}
+
+type GetNetworkResourcesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	AccountId *string `location:"querystring" locationName:"accountId" type:"string"`
+
+	// The Amazon Web Services Region.
+	AwsRegion *string `location:"querystring" locationName:"awsRegion" type:"string"`
+
+	// The ID of the global network.
+	//
+	// GlobalNetworkId is a required field
+	GlobalNetworkId *string `location:"uri" locationName:"globalNetworkId" type:"string" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The ARN of the gateway.
+	RegisteredGatewayArn *string `location:"querystring" locationName:"registeredGatewayArn" type:"string"`
+
+	// The ARN of the resource.
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string"`
+
+	// The resource type.
+	//
+	// The following are the supported resource types for Direct Connect:
+	//
+	//    * dxcon - The definition model is Connection (https://docs.aws.amazon.com/directconnect/latest/APIReference/API_Connection.html).
+	//
+	//    * dx-gateway - The definition model is DirectConnectGateway (https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DirectConnectGateway.html).
+	//
+	//    * dx-vif - The definition model is VirtualInterface (https://docs.aws.amazon.com/directconnect/latest/APIReference/API_VirtualInterface.html).
+	//
+	// The following are the supported resource types for Network Manager:
+	//
+	//    * connection - The definition model is Connection (https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Connection.html).
+	//
+	//    * device - The definition model is Device (https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Device.html).
+	//
+	//    * link - The definition model is Link (https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Link.html).
+	//
+	//    * site - The definition model is Site (https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Site.html).
+	//
+	// The following are the supported resource types for Amazon VPC:
+	//
+	//    * customer-gateway - The definition model is CustomerGateway (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CustomerGateway.html).
+	//
+	//    * transit-gateway - The definition model is TransitGateway (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGateway.html).
+	//
+	//    * transit-gateway-attachment - The definition model is TransitGatewayAttachment
+	//    (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayAttachment.html).
+	//
+	//    * transit-gateway-connect-peer - The definition model is TransitGatewayConnectPeer
+	//    (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayConnectPeer.html).
+	//
+	//    * transit-gateway-route-table - The definition model is TransitGatewayRouteTable
+	//    (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayRouteTable.html).
+	//
+	//    * vpn-connection - The definition model is VpnConnection (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_VpnConnection.html).
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetNetworkResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetNetworkResourcesInput"}
+	if s.GlobalNetworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalNetworkId"))
+	}
+	if s.GlobalNetworkId != nil && len(*s.GlobalNetworkId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalNetworkId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetNetworkResourcesInput) SetAccountId(v string) *GetNetworkResourcesInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *GetNetworkResourcesInput) SetAwsRegion(v string) *GetNetworkResourcesInput {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetGlobalNetworkId sets the GlobalNetworkId field's value.
+func (s *GetNetworkResourcesInput) SetGlobalNetworkId(v string) *GetNetworkResourcesInput {
+	s.GlobalNetworkId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetNetworkResourcesInput) SetMaxResults(v int64) *GetNetworkResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetNetworkResourcesInput) SetNextToken(v string) *GetNetworkResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegisteredGatewayArn sets the RegisteredGatewayArn field's value.
+func (s *GetNetworkResourcesInput) SetRegisteredGatewayArn(v string) *GetNetworkResourcesInput {
+	s.RegisteredGatewayArn = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetNetworkResourcesInput) SetResourceArn(v string) *GetNetworkResourcesInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetNetworkResourcesInput) SetResourceType(v string) *GetNetworkResourcesInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetNetworkResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The network resources.
+	NetworkResources []*NetworkResource `type:"list"`
+
+	// The token for the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNetworkResources sets the NetworkResources field's value.
+func (s *GetNetworkResourcesOutput) SetNetworkResources(v []*NetworkResource) *GetNetworkResourcesOutput {
+	s.NetworkResources = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetNetworkResourcesOutput) SetNextToken(v string) *GetNetworkResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetNetworkRoutesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filter by route table destination. Possible Values: TRANSIT_GATEWAY_ATTACHMENT_ID,
+	// RESOURCE_ID, or RESOURCE_TYPE.
+	DestinationFilters map[string][]*string `type:"map"`
+
+	// An exact CIDR block.
+	ExactCidrMatches []*string `type:"list"`
+
+	// The ID of the global network.
+	//
+	// GlobalNetworkId is a required field
+	GlobalNetworkId *string `location:"uri" locationName:"globalNetworkId" type:"string" required:"true"`
+
+	// The most specific route that matches the traffic (longest prefix match).
+	LongestPrefixMatches []*string `type:"list"`
+
+	// The IDs of the prefix lists.
+	PrefixListIds []*string `type:"list"`
+
+	// The ID of the route table.
+	//
+	// RouteTableIdentifier is a required field
+	RouteTableIdentifier *RouteTableIdentifier `type:"structure" required:"true"`
+
+	// The route states.
+	States []*string `type:"list"`
+
+	// The routes with a subnet that match the specified CIDR filter.
+	SubnetOfMatches []*string `type:"list"`
+
+	// The routes with a CIDR that encompasses the CIDR filter. Example: If you
+	// specify 10.0.1.0/30, then the result returns 10.0.1.0/29.
+	SupernetOfMatches []*string `type:"list"`
+
+	// The route types.
+	Types []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkRoutesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkRoutesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetNetworkRoutesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetNetworkRoutesInput"}
+	if s.GlobalNetworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalNetworkId"))
+	}
+	if s.GlobalNetworkId != nil && len(*s.GlobalNetworkId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalNetworkId", 1))
+	}
+	if s.RouteTableIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("RouteTableIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationFilters sets the DestinationFilters field's value.
+func (s *GetNetworkRoutesInput) SetDestinationFilters(v map[string][]*string) *GetNetworkRoutesInput {
+	s.DestinationFilters = v
+	return s
+}
+
+// SetExactCidrMatches sets the ExactCidrMatches field's value.
+func (s *GetNetworkRoutesInput) SetExactCidrMatches(v []*string) *GetNetworkRoutesInput {
+	s.ExactCidrMatches = v
+	return s
+}
+
+// SetGlobalNetworkId sets the GlobalNetworkId field's value.
+func (s *GetNetworkRoutesInput) SetGlobalNetworkId(v string) *GetNetworkRoutesInput {
+	s.GlobalNetworkId = &v
+	return s
+}
+
+// SetLongestPrefixMatches sets the LongestPrefixMatches field's value.
+func (s *GetNetworkRoutesInput) SetLongestPrefixMatches(v []*string) *GetNetworkRoutesInput {
+	s.LongestPrefixMatches = v
+	return s
+}
+
+// SetPrefixListIds sets the PrefixListIds field's value.
+func (s *GetNetworkRoutesInput) SetPrefixListIds(v []*string) *GetNetworkRoutesInput {
+	s.PrefixListIds = v
+	return s
+}
+
+// SetRouteTableIdentifier sets the RouteTableIdentifier field's value.
+func (s *GetNetworkRoutesInput) SetRouteTableIdentifier(v *RouteTableIdentifier) *GetNetworkRoutesInput {
+	s.RouteTableIdentifier = v
+	return s
+}
+
+// SetStates sets the States field's value.
+func (s *GetNetworkRoutesInput) SetStates(v []*string) *GetNetworkRoutesInput {
+	s.States = v
+	return s
+}
+
+// SetSubnetOfMatches sets the SubnetOfMatches field's value.
+func (s *GetNetworkRoutesInput) SetSubnetOfMatches(v []*string) *GetNetworkRoutesInput {
+	s.SubnetOfMatches = v
+	return s
+}
+
+// SetSupernetOfMatches sets the SupernetOfMatches field's value.
+func (s *GetNetworkRoutesInput) SetSupernetOfMatches(v []*string) *GetNetworkRoutesInput {
+	s.SupernetOfMatches = v
+	return s
+}
+
+// SetTypes sets the Types field's value.
+func (s *GetNetworkRoutesInput) SetTypes(v []*string) *GetNetworkRoutesInput {
+	s.Types = v
+	return s
+}
+
+type GetNetworkRoutesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The network routes.
+	NetworkRoutes []*NetworkRoute `type:"list"`
+
+	// The ARN of the route table.
+	RouteTableArn *string `type:"string"`
+
+	// The route table creation time.
+	RouteTableTimestamp *time.Time `type:"timestamp"`
+
+	// The route table type.
+	RouteTableType *string `type:"string" enum:"RouteTableType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkRoutesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkRoutesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNetworkRoutes sets the NetworkRoutes field's value.
+func (s *GetNetworkRoutesOutput) SetNetworkRoutes(v []*NetworkRoute) *GetNetworkRoutesOutput {
+	s.NetworkRoutes = v
+	return s
+}
+
+// SetRouteTableArn sets the RouteTableArn field's value.
+func (s *GetNetworkRoutesOutput) SetRouteTableArn(v string) *GetNetworkRoutesOutput {
+	s.RouteTableArn = &v
+	return s
+}
+
+// SetRouteTableTimestamp sets the RouteTableTimestamp field's value.
+func (s *GetNetworkRoutesOutput) SetRouteTableTimestamp(v time.Time) *GetNetworkRoutesOutput {
+	s.RouteTableTimestamp = &v
+	return s
+}
+
+// SetRouteTableType sets the RouteTableType field's value.
+func (s *GetNetworkRoutesOutput) SetRouteTableType(v string) *GetNetworkRoutesOutput {
+	s.RouteTableType = &v
+	return s
+}
+
+type GetNetworkTelemetryInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The Amazon Web Services account ID.
+	AccountId *string `location:"querystring" locationName:"accountId" type:"string"`
+
+	// The Amazon Web Services Region.
+	AwsRegion *string `location:"querystring" locationName:"awsRegion" type:"string"`
+
+	// The ID of the global network.
+	//
+	// GlobalNetworkId is a required field
+	GlobalNetworkId *string `location:"uri" locationName:"globalNetworkId" type:"string" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The ARN of the gateway.
+	RegisteredGatewayArn *string `location:"querystring" locationName:"registeredGatewayArn" type:"string"`
+
+	// The ARN of the resource.
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string"`
+
+	// The resource type.
+	//
+	// The following are the supported resource types for Direct Connect:
+	//
+	//    * dxcon
+	//
+	//    * dx-gateway
+	//
+	//    * dx-vif
+	//
+	// The following are the supported resource types for Network Manager:
+	//
+	//    * connection
+	//
+	//    * device
+	//
+	//    * link
+	//
+	//    * site
+	//
+	// The following are the supported resource types for Amazon VPC:
+	//
+	//    * customer-gateway
+	//
+	//    * transit-gateway
+	//
+	//    * transit-gateway-attachment
+	//
+	//    * transit-gateway-connect-peer
+	//
+	//    * transit-gateway-route-table
+	//
+	//    * vpn-connection
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkTelemetryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkTelemetryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetNetworkTelemetryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetNetworkTelemetryInput"}
+	if s.GlobalNetworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalNetworkId"))
+	}
+	if s.GlobalNetworkId != nil && len(*s.GlobalNetworkId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalNetworkId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetNetworkTelemetryInput) SetAccountId(v string) *GetNetworkTelemetryInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *GetNetworkTelemetryInput) SetAwsRegion(v string) *GetNetworkTelemetryInput {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetGlobalNetworkId sets the GlobalNetworkId field's value.
+func (s *GetNetworkTelemetryInput) SetGlobalNetworkId(v string) *GetNetworkTelemetryInput {
+	s.GlobalNetworkId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetNetworkTelemetryInput) SetMaxResults(v int64) *GetNetworkTelemetryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetNetworkTelemetryInput) SetNextToken(v string) *GetNetworkTelemetryInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegisteredGatewayArn sets the RegisteredGatewayArn field's value.
+func (s *GetNetworkTelemetryInput) SetRegisteredGatewayArn(v string) *GetNetworkTelemetryInput {
+	s.RegisteredGatewayArn = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetNetworkTelemetryInput) SetResourceArn(v string) *GetNetworkTelemetryInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetNetworkTelemetryInput) SetResourceType(v string) *GetNetworkTelemetryInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetNetworkTelemetryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The network telemetry.
+	NetworkTelemetry []*NetworkTelemetry `type:"list"`
+
+	// The token for the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkTelemetryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkTelemetryOutput) GoString() string {
+	return s.String()
+}
+
+// SetNetworkTelemetry sets the NetworkTelemetry field's value.
+func (s *GetNetworkTelemetryOutput) SetNetworkTelemetry(v []*NetworkTelemetry) *GetNetworkTelemetryOutput {
+	s.NetworkTelemetry = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetNetworkTelemetryOutput) SetNextToken(v string) *GetNetworkTelemetryOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetRouteAnalysisInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the global network.
+	//
+	// GlobalNetworkId is a required field
+	GlobalNetworkId *string `location:"uri" locationName:"globalNetworkId" type:"string" required:"true"`
+
+	// The ID of the route analysis.
+	//
+	// RouteAnalysisId is a required field
+	RouteAnalysisId *string `location:"uri" locationName:"routeAnalysisId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRouteAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRouteAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRouteAnalysisInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRouteAnalysisInput"}
+	if s.GlobalNetworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalNetworkId"))
+	}
+	if s.GlobalNetworkId != nil && len(*s.GlobalNetworkId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalNetworkId", 1))
+	}
+	if s.RouteAnalysisId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RouteAnalysisId"))
+	}
+	if s.RouteAnalysisId != nil && len(*s.RouteAnalysisId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RouteAnalysisId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlobalNetworkId sets the GlobalNetworkId field's value.
+func (s *GetRouteAnalysisInput) SetGlobalNetworkId(v string) *GetRouteAnalysisInput {
+	s.GlobalNetworkId = &v
+	return s
+}
+
+// SetRouteAnalysisId sets the RouteAnalysisId field's value.
+func (s *GetRouteAnalysisInput) SetRouteAnalysisId(v string) *GetRouteAnalysisInput {
+	s.RouteAnalysisId = &v
+	return s
+}
+
+type GetRouteAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The route analysis.
+	RouteAnalysis *RouteAnalysis `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRouteAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRouteAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetRouteAnalysis sets the RouteAnalysis field's value.
+func (s *GetRouteAnalysisOutput) SetRouteAnalysis(v *RouteAnalysis) *GetRouteAnalysisOutput {
+	s.RouteAnalysis = v
 	return s
 }
 
@@ -7914,6 +9937,534 @@ func (s *Location) SetLongitude(v string) *Location {
 	return s
 }
 
+// Describes a network resource.
+type NetworkResource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID.
+	AccountId *string `type:"string"`
+
+	// The Amazon Web Services Region.
+	AwsRegion *string `type:"string"`
+
+	// Information about the resource, in JSON format. Network Manager gets this
+	// information by describing the resource using its Describe API call.
+	Definition *string `type:"string"`
+
+	// The time that the resource definition was retrieved.
+	DefinitionTimestamp *time.Time `type:"timestamp"`
+
+	// The resource metadata.
+	Metadata map[string]*string `type:"map"`
+
+	// The ARN of the gateway.
+	RegisteredGatewayArn *string `type:"string"`
+
+	// The ARN of the resource.
+	ResourceArn *string `type:"string"`
+
+	// The ID of the resource.
+	ResourceId *string `type:"string"`
+
+	// The resource type.
+	//
+	// The following are the supported resource types for Direct Connect:
+	//
+	//    * dxcon
+	//
+	//    * dx-gateway
+	//
+	//    * dx-vif
+	//
+	// The following are the supported resource types for Network Manager:
+	//
+	//    * connection
+	//
+	//    * device
+	//
+	//    * link
+	//
+	//    * site
+	//
+	// The following are the supported resource types for Amazon VPC:
+	//
+	//    * customer-gateway
+	//
+	//    * transit-gateway
+	//
+	//    * transit-gateway-attachment
+	//
+	//    * transit-gateway-connect-peer
+	//
+	//    * transit-gateway-route-table
+	//
+	//    * vpn-connection
+	ResourceType *string `type:"string"`
+
+	// The tags.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkResource) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *NetworkResource) SetAccountId(v string) *NetworkResource {
+	s.AccountId = &v
+	return s
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *NetworkResource) SetAwsRegion(v string) *NetworkResource {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *NetworkResource) SetDefinition(v string) *NetworkResource {
+	s.Definition = &v
+	return s
+}
+
+// SetDefinitionTimestamp sets the DefinitionTimestamp field's value.
+func (s *NetworkResource) SetDefinitionTimestamp(v time.Time) *NetworkResource {
+	s.DefinitionTimestamp = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *NetworkResource) SetMetadata(v map[string]*string) *NetworkResource {
+	s.Metadata = v
+	return s
+}
+
+// SetRegisteredGatewayArn sets the RegisteredGatewayArn field's value.
+func (s *NetworkResource) SetRegisteredGatewayArn(v string) *NetworkResource {
+	s.RegisteredGatewayArn = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *NetworkResource) SetResourceArn(v string) *NetworkResource {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *NetworkResource) SetResourceId(v string) *NetworkResource {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *NetworkResource) SetResourceType(v string) *NetworkResource {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *NetworkResource) SetTags(v []*Tag) *NetworkResource {
+	s.Tags = v
+	return s
+}
+
+// Describes a resource count.
+type NetworkResourceCount struct {
+	_ struct{} `type:"structure"`
+
+	// The resource count.
+	Count *int64 `type:"integer"`
+
+	// The resource type.
+	ResourceType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkResourceCount) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkResourceCount) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *NetworkResourceCount) SetCount(v int64) *NetworkResourceCount {
+	s.Count = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *NetworkResourceCount) SetResourceType(v string) *NetworkResourceCount {
+	s.ResourceType = &v
+	return s
+}
+
+// Describes a network resource.
+type NetworkResourceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the resource, in JSON format. Network Manager gets this
+	// information by describing the resource using its Describe API call.
+	Definition *string `type:"string"`
+
+	// Indicates whether this is a middlebox appliance.
+	IsMiddlebox *bool `type:"boolean"`
+
+	// The value for the Name tag.
+	NameTag *string `type:"string"`
+
+	// The ARN of the gateway.
+	RegisteredGatewayArn *string `type:"string"`
+
+	// The ARN of the resource.
+	ResourceArn *string `type:"string"`
+
+	// The resource type.
+	ResourceType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkResourceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkResourceSummary) GoString() string {
+	return s.String()
+}
+
+// SetDefinition sets the Definition field's value.
+func (s *NetworkResourceSummary) SetDefinition(v string) *NetworkResourceSummary {
+	s.Definition = &v
+	return s
+}
+
+// SetIsMiddlebox sets the IsMiddlebox field's value.
+func (s *NetworkResourceSummary) SetIsMiddlebox(v bool) *NetworkResourceSummary {
+	s.IsMiddlebox = &v
+	return s
+}
+
+// SetNameTag sets the NameTag field's value.
+func (s *NetworkResourceSummary) SetNameTag(v string) *NetworkResourceSummary {
+	s.NameTag = &v
+	return s
+}
+
+// SetRegisteredGatewayArn sets the RegisteredGatewayArn field's value.
+func (s *NetworkResourceSummary) SetRegisteredGatewayArn(v string) *NetworkResourceSummary {
+	s.RegisteredGatewayArn = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *NetworkResourceSummary) SetResourceArn(v string) *NetworkResourceSummary {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *NetworkResourceSummary) SetResourceType(v string) *NetworkResourceSummary {
+	s.ResourceType = &v
+	return s
+}
+
+// Describes a network route.
+type NetworkRoute struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the route, such as a CIDR block.
+	DestinationCidrBlock *string `type:"string"`
+
+	// The destinations.
+	Destinations []*NetworkRouteDestination `type:"list"`
+
+	// The ID of the prefix list.
+	PrefixListId *string `type:"string"`
+
+	// The route state. The possible values are active and blackhole.
+	State *string `type:"string" enum:"RouteState"`
+
+	// The route type. The possible values are propagated and static.
+	Type *string `type:"string" enum:"RouteType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkRoute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkRoute) GoString() string {
+	return s.String()
+}
+
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *NetworkRoute) SetDestinationCidrBlock(v string) *NetworkRoute {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetDestinations sets the Destinations field's value.
+func (s *NetworkRoute) SetDestinations(v []*NetworkRouteDestination) *NetworkRoute {
+	s.Destinations = v
+	return s
+}
+
+// SetPrefixListId sets the PrefixListId field's value.
+func (s *NetworkRoute) SetPrefixListId(v string) *NetworkRoute {
+	s.PrefixListId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *NetworkRoute) SetState(v string) *NetworkRoute {
+	s.State = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *NetworkRoute) SetType(v string) *NetworkRoute {
+	s.Type = &v
+	return s
+}
+
+// Describes the destination of a network route.
+type NetworkRouteDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the resource.
+	ResourceId *string `type:"string"`
+
+	// The resource type.
+	ResourceType *string `type:"string"`
+
+	// The ID of the transit gateway attachment.
+	TransitGatewayAttachmentId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkRouteDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkRouteDestination) GoString() string {
+	return s.String()
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *NetworkRouteDestination) SetResourceId(v string) *NetworkRouteDestination {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *NetworkRouteDestination) SetResourceType(v string) *NetworkRouteDestination {
+	s.ResourceType = &v
+	return s
+}
+
+// SetTransitGatewayAttachmentId sets the TransitGatewayAttachmentId field's value.
+func (s *NetworkRouteDestination) SetTransitGatewayAttachmentId(v string) *NetworkRouteDestination {
+	s.TransitGatewayAttachmentId = &v
+	return s
+}
+
+// Describes the telemetry information for a resource.
+type NetworkTelemetry struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID.
+	AccountId *string `type:"string"`
+
+	// The address.
+	Address *string `type:"string"`
+
+	// The Amazon Web Services Region.
+	AwsRegion *string `type:"string"`
+
+	// The connection health.
+	Health *ConnectionHealth `type:"structure"`
+
+	// The ARN of the gateway.
+	RegisteredGatewayArn *string `type:"string"`
+
+	// The ARN of the resource.
+	ResourceArn *string `type:"string"`
+
+	// The ID of the resource.
+	ResourceId *string `type:"string"`
+
+	// The resource type.
+	ResourceType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkTelemetry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NetworkTelemetry) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *NetworkTelemetry) SetAccountId(v string) *NetworkTelemetry {
+	s.AccountId = &v
+	return s
+}
+
+// SetAddress sets the Address field's value.
+func (s *NetworkTelemetry) SetAddress(v string) *NetworkTelemetry {
+	s.Address = &v
+	return s
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *NetworkTelemetry) SetAwsRegion(v string) *NetworkTelemetry {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetHealth sets the Health field's value.
+func (s *NetworkTelemetry) SetHealth(v *ConnectionHealth) *NetworkTelemetry {
+	s.Health = v
+	return s
+}
+
+// SetRegisteredGatewayArn sets the RegisteredGatewayArn field's value.
+func (s *NetworkTelemetry) SetRegisteredGatewayArn(v string) *NetworkTelemetry {
+	s.RegisteredGatewayArn = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *NetworkTelemetry) SetResourceArn(v string) *NetworkTelemetry {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *NetworkTelemetry) SetResourceId(v string) *NetworkTelemetry {
+	s.ResourceId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *NetworkTelemetry) SetResourceType(v string) *NetworkTelemetry {
+	s.ResourceType = &v
+	return s
+}
+
+// Describes a path component.
+type PathComponent struct {
+	_ struct{} `type:"structure"`
+
+	// The destination CIDR block in the route table.
+	DestinationCidrBlock *string `type:"string"`
+
+	// The resource.
+	Resource *NetworkResourceSummary `type:"structure"`
+
+	// The sequence number in the path. The destination is 0.
+	Sequence *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PathComponent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PathComponent) GoString() string {
+	return s.String()
+}
+
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *PathComponent) SetDestinationCidrBlock(v string) *PathComponent {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *PathComponent) SetResource(v *NetworkResourceSummary) *PathComponent {
+	s.Resource = v
+	return s
+}
+
+// SetSequence sets the Sequence field's value.
+func (s *PathComponent) SetSequence(v int64) *PathComponent {
+	s.Sequence = &v
+	return s
+}
+
 type RegisterTransitGatewayInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7922,8 +10473,7 @@ type RegisterTransitGatewayInput struct {
 	// GlobalNetworkId is a required field
 	GlobalNetworkId *string `location:"uri" locationName:"globalNetworkId" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the transit gateway. For more information,
-	// see Resources Defined by Amazon EC2 (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies).
+	// The Amazon Resource Name (ARN) of the transit gateway.
 	//
 	// TransitGatewayArn is a required field
 	TransitGatewayArn *string `type:"string" required:"true"`
@@ -8009,10 +10559,53 @@ func (s *RegisterTransitGatewayOutput) SetTransitGatewayRegistration(v *TransitG
 	return s
 }
 
+// Describes a resource relationship.
+type Relationship struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource.
+	From *string `type:"string"`
+
+	// The ARN of the resource.
+	To *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Relationship) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Relationship) GoString() string {
+	return s.String()
+}
+
+// SetFrom sets the From field's value.
+func (s *Relationship) SetFrom(v string) *Relationship {
+	s.From = &v
+	return s
+}
+
+// SetTo sets the To field's value.
+func (s *Relationship) SetTo(v string) *Relationship {
+	s.To = &v
+	return s
+}
+
 // The specified resource could not be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Context map[string]*string `type:"map"`
 
 	Message_ *string `locationName:"Message" type:"string"`
 
@@ -8081,6 +10674,371 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Describes a route analysis.
+type RouteAnalysis struct {
+	_ struct{} `type:"structure"`
+
+	// The destination.
+	Destination *RouteAnalysisEndpointOptions `type:"structure"`
+
+	// The forward path.
+	ForwardPath *RouteAnalysisPath `type:"structure"`
+
+	// The ID of the global network.
+	GlobalNetworkId *string `type:"string"`
+
+	// Indicates whether to analyze the return path. The return path is not analyzed
+	// if the forward path analysis does not succeed.
+	IncludeReturnPath *bool `type:"boolean"`
+
+	// The ID of the AWS account that created the route analysis.
+	OwnerAccountId *string `type:"string"`
+
+	// The return path.
+	ReturnPath *RouteAnalysisPath `type:"structure"`
+
+	// The ID of the route analysis.
+	RouteAnalysisId *string `type:"string"`
+
+	// The source.
+	Source *RouteAnalysisEndpointOptions `type:"structure"`
+
+	// The time that the analysis started.
+	StartTimestamp *time.Time `type:"timestamp"`
+
+	// The status of the route analysis.
+	Status *string `type:"string" enum:"RouteAnalysisStatus"`
+
+	// Indicates whether to include the location of middlebox appliances in the
+	// route analysis.
+	UseMiddleboxes *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysis) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysis) GoString() string {
+	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *RouteAnalysis) SetDestination(v *RouteAnalysisEndpointOptions) *RouteAnalysis {
+	s.Destination = v
+	return s
+}
+
+// SetForwardPath sets the ForwardPath field's value.
+func (s *RouteAnalysis) SetForwardPath(v *RouteAnalysisPath) *RouteAnalysis {
+	s.ForwardPath = v
+	return s
+}
+
+// SetGlobalNetworkId sets the GlobalNetworkId field's value.
+func (s *RouteAnalysis) SetGlobalNetworkId(v string) *RouteAnalysis {
+	s.GlobalNetworkId = &v
+	return s
+}
+
+// SetIncludeReturnPath sets the IncludeReturnPath field's value.
+func (s *RouteAnalysis) SetIncludeReturnPath(v bool) *RouteAnalysis {
+	s.IncludeReturnPath = &v
+	return s
+}
+
+// SetOwnerAccountId sets the OwnerAccountId field's value.
+func (s *RouteAnalysis) SetOwnerAccountId(v string) *RouteAnalysis {
+	s.OwnerAccountId = &v
+	return s
+}
+
+// SetReturnPath sets the ReturnPath field's value.
+func (s *RouteAnalysis) SetReturnPath(v *RouteAnalysisPath) *RouteAnalysis {
+	s.ReturnPath = v
+	return s
+}
+
+// SetRouteAnalysisId sets the RouteAnalysisId field's value.
+func (s *RouteAnalysis) SetRouteAnalysisId(v string) *RouteAnalysis {
+	s.RouteAnalysisId = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *RouteAnalysis) SetSource(v *RouteAnalysisEndpointOptions) *RouteAnalysis {
+	s.Source = v
+	return s
+}
+
+// SetStartTimestamp sets the StartTimestamp field's value.
+func (s *RouteAnalysis) SetStartTimestamp(v time.Time) *RouteAnalysis {
+	s.StartTimestamp = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RouteAnalysis) SetStatus(v string) *RouteAnalysis {
+	s.Status = &v
+	return s
+}
+
+// SetUseMiddleboxes sets the UseMiddleboxes field's value.
+func (s *RouteAnalysis) SetUseMiddleboxes(v bool) *RouteAnalysis {
+	s.UseMiddleboxes = &v
+	return s
+}
+
+// Describes the status of an analysis at completion.
+type RouteAnalysisCompletion struct {
+	_ struct{} `type:"structure"`
+
+	// The reason code. Available only if a connection is not found.
+	//
+	//    * BLACKHOLE_ROUTE_FOR_DESTINATION_FOUND - Found a black hole route with
+	//    the destination CIDR block.
+	//
+	//    * CYCLIC_PATH_DETECTED - Found the same resource multiple times while
+	//    traversing the path.
+	//
+	//    * INACTIVE_ROUTE_FOR_DESTINATION_FOUND - Found an inactive route with
+	//    the destination CIDR block.
+	//
+	//    * MAX_HOPS_EXCEEDED - Analysis exceeded 64 hops without finding the destination.
+	//
+	//    * ROUTE_NOT_FOUND - Cannot find a route table with the destination CIDR
+	//    block.
+	//
+	//    * TGW_ATTACH_ARN_NO_MATCH - Found an attachment, but not with the correct
+	//    destination ARN.
+	//
+	//    * TGW_ATTACH_NOT_FOUND - Cannot find an attachment.
+	//
+	//    * TGW_ATTACH_NOT_IN_TGW - Found an attachment, but not to the correct
+	//    transit gateway.
+	//
+	//    * TGW_ATTACH_STABLE_ROUTE_TABLE_NOT_FOUND - The state of the route table
+	//    association is not associated.
+	ReasonCode *string `type:"string" enum:"RouteAnalysisCompletionReasonCode"`
+
+	// Additional information about the path. Available only if a connection is
+	// not found.
+	ReasonContext map[string]*string `type:"map"`
+
+	// The result of the analysis. If the status is NOT_CONNECTED, check the reason
+	// code.
+	ResultCode *string `type:"string" enum:"RouteAnalysisCompletionResultCode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysisCompletion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysisCompletion) GoString() string {
+	return s.String()
+}
+
+// SetReasonCode sets the ReasonCode field's value.
+func (s *RouteAnalysisCompletion) SetReasonCode(v string) *RouteAnalysisCompletion {
+	s.ReasonCode = &v
+	return s
+}
+
+// SetReasonContext sets the ReasonContext field's value.
+func (s *RouteAnalysisCompletion) SetReasonContext(v map[string]*string) *RouteAnalysisCompletion {
+	s.ReasonContext = v
+	return s
+}
+
+// SetResultCode sets the ResultCode field's value.
+func (s *RouteAnalysisCompletion) SetResultCode(v string) *RouteAnalysisCompletion {
+	s.ResultCode = &v
+	return s
+}
+
+// Describes a source or a destination.
+type RouteAnalysisEndpointOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address.
+	IpAddress *string `type:"string"`
+
+	// The ARN of the transit gateway.
+	TransitGatewayArn *string `type:"string"`
+
+	// The ARN of the transit gateway attachment.
+	TransitGatewayAttachmentArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysisEndpointOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysisEndpointOptions) GoString() string {
+	return s.String()
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *RouteAnalysisEndpointOptions) SetIpAddress(v string) *RouteAnalysisEndpointOptions {
+	s.IpAddress = &v
+	return s
+}
+
+// SetTransitGatewayArn sets the TransitGatewayArn field's value.
+func (s *RouteAnalysisEndpointOptions) SetTransitGatewayArn(v string) *RouteAnalysisEndpointOptions {
+	s.TransitGatewayArn = &v
+	return s
+}
+
+// SetTransitGatewayAttachmentArn sets the TransitGatewayAttachmentArn field's value.
+func (s *RouteAnalysisEndpointOptions) SetTransitGatewayAttachmentArn(v string) *RouteAnalysisEndpointOptions {
+	s.TransitGatewayAttachmentArn = &v
+	return s
+}
+
+// Describes a source or a destination.
+type RouteAnalysisEndpointOptionsSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address.
+	IpAddress *string `type:"string"`
+
+	// The ARN of the transit gateway attachment.
+	TransitGatewayAttachmentArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysisEndpointOptionsSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysisEndpointOptionsSpecification) GoString() string {
+	return s.String()
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *RouteAnalysisEndpointOptionsSpecification) SetIpAddress(v string) *RouteAnalysisEndpointOptionsSpecification {
+	s.IpAddress = &v
+	return s
+}
+
+// SetTransitGatewayAttachmentArn sets the TransitGatewayAttachmentArn field's value.
+func (s *RouteAnalysisEndpointOptionsSpecification) SetTransitGatewayAttachmentArn(v string) *RouteAnalysisEndpointOptionsSpecification {
+	s.TransitGatewayAttachmentArn = &v
+	return s
+}
+
+// Describes a route analysis path.
+type RouteAnalysisPath struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the analysis at completion.
+	CompletionStatus *RouteAnalysisCompletion `type:"structure"`
+
+	// The route analysis path.
+	Path []*PathComponent `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysisPath) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteAnalysisPath) GoString() string {
+	return s.String()
+}
+
+// SetCompletionStatus sets the CompletionStatus field's value.
+func (s *RouteAnalysisPath) SetCompletionStatus(v *RouteAnalysisCompletion) *RouteAnalysisPath {
+	s.CompletionStatus = v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *RouteAnalysisPath) SetPath(v []*PathComponent) *RouteAnalysisPath {
+	s.Path = v
+	return s
+}
+
+// Describes a route table.
+type RouteTableIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the transit gateway route table.
+	TransitGatewayRouteTableArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteTableIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RouteTableIdentifier) GoString() string {
+	return s.String()
+}
+
+// SetTransitGatewayRouteTableArn sets the TransitGatewayRouteTableArn field's value.
+func (s *RouteTableIdentifier) SetTransitGatewayRouteTableArn(v string) *RouteTableIdentifier {
+	s.TransitGatewayRouteTableArn = &v
+	return s
 }
 
 // A service limit was exceeded.
@@ -8263,18 +11221,145 @@ func (s *Site) SetTags(v []*Tag) *Site {
 	return s
 }
 
+type StartRouteAnalysisInput struct {
+	_ struct{} `type:"structure"`
+
+	// The destination.
+	//
+	// Destination is a required field
+	Destination *RouteAnalysisEndpointOptionsSpecification `type:"structure" required:"true"`
+
+	// The ID of the global network.
+	//
+	// GlobalNetworkId is a required field
+	GlobalNetworkId *string `location:"uri" locationName:"globalNetworkId" type:"string" required:"true"`
+
+	// Indicates whether to analyze the return path. The default is false.
+	IncludeReturnPath *bool `type:"boolean"`
+
+	// The source from which traffic originates.
+	//
+	// Source is a required field
+	Source *RouteAnalysisEndpointOptionsSpecification `type:"structure" required:"true"`
+
+	// Indicates whether to include the location of middlebox appliances in the
+	// route analysis. The default is false.
+	UseMiddleboxes *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRouteAnalysisInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRouteAnalysisInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartRouteAnalysisInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartRouteAnalysisInput"}
+	if s.Destination == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destination"))
+	}
+	if s.GlobalNetworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalNetworkId"))
+	}
+	if s.GlobalNetworkId != nil && len(*s.GlobalNetworkId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalNetworkId", 1))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestination sets the Destination field's value.
+func (s *StartRouteAnalysisInput) SetDestination(v *RouteAnalysisEndpointOptionsSpecification) *StartRouteAnalysisInput {
+	s.Destination = v
+	return s
+}
+
+// SetGlobalNetworkId sets the GlobalNetworkId field's value.
+func (s *StartRouteAnalysisInput) SetGlobalNetworkId(v string) *StartRouteAnalysisInput {
+	s.GlobalNetworkId = &v
+	return s
+}
+
+// SetIncludeReturnPath sets the IncludeReturnPath field's value.
+func (s *StartRouteAnalysisInput) SetIncludeReturnPath(v bool) *StartRouteAnalysisInput {
+	s.IncludeReturnPath = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *StartRouteAnalysisInput) SetSource(v *RouteAnalysisEndpointOptionsSpecification) *StartRouteAnalysisInput {
+	s.Source = v
+	return s
+}
+
+// SetUseMiddleboxes sets the UseMiddleboxes field's value.
+func (s *StartRouteAnalysisInput) SetUseMiddleboxes(v bool) *StartRouteAnalysisInput {
+	s.UseMiddleboxes = &v
+	return s
+}
+
+type StartRouteAnalysisOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The route analysis.
+	RouteAnalysis *RouteAnalysis `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRouteAnalysisOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartRouteAnalysisOutput) GoString() string {
+	return s.String()
+}
+
+// SetRouteAnalysis sets the RouteAnalysis field's value.
+func (s *StartRouteAnalysisOutput) SetRouteAnalysis(v *RouteAnalysis) *StartRouteAnalysisOutput {
+	s.RouteAnalysis = v
+	return s
+}
+
 // Describes a tag.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// The tag key.
 	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters.
 	Key *string `type:"string"`
 
 	// The tag value.
 	//
-	// Length Constraints: Maximum length of 256 characters.
+	// Constraints: Maximum length of 256 characters.
 	Value *string `type:"string"`
 }
 
@@ -8833,12 +11918,13 @@ func (s *UpdateConnectionOutput) SetConnection(v *Connection) *UpdateConnectionO
 type UpdateDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS location of the device.
+	// The Amazon Web Services location of the device, if applicable. For an on-premises
+	// device, you can omit this parameter.
 	AWSLocation *AWSLocation `type:"structure"`
 
 	// A description of the device.
 	//
-	// Length Constraints: Maximum length of 256 characters.
+	// Constraints: Maximum length of 256 characters.
 	Description *string `type:"string"`
 
 	// The ID of the device.
@@ -8860,12 +11946,12 @@ type UpdateDeviceInput struct {
 
 	// The model of the device.
 	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters.
 	Model *string `type:"string"`
 
 	// The serial number of the device.
 	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters.
 	SerialNumber *string `type:"string"`
 
 	// The ID of the site.
@@ -8876,7 +11962,7 @@ type UpdateDeviceInput struct {
 
 	// The vendor of the device.
 	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters.
 	Vendor *string `type:"string"`
 }
 
@@ -9016,7 +12102,7 @@ type UpdateGlobalNetworkInput struct {
 
 	// A description of the global network.
 	//
-	// Length Constraints: Maximum length of 256 characters.
+	// Constraints: Maximum length of 256 characters.
 	Description *string `type:"string"`
 
 	// The ID of your global network.
@@ -9110,7 +12196,7 @@ type UpdateLinkInput struct {
 
 	// A description of the link.
 	//
-	// Length Constraints: Maximum length of 256 characters.
+	// Constraints: Maximum length of 256 characters.
 	Description *string `type:"string"`
 
 	// The ID of the global network.
@@ -9125,12 +12211,12 @@ type UpdateLinkInput struct {
 
 	// The provider of the link.
 	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters.
 	Provider *string `type:"string"`
 
 	// The type of the link.
 	//
-	// Length Constraints: Maximum length of 128 characters.
+	// Constraints: Maximum length of 128 characters.
 	Type *string `type:"string"`
 }
 
@@ -9241,12 +12327,132 @@ func (s *UpdateLinkOutput) SetLink(v *Link) *UpdateLinkOutput {
 	return s
 }
 
+type UpdateNetworkResourceMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the global network.
+	//
+	// GlobalNetworkId is a required field
+	GlobalNetworkId *string `location:"uri" locationName:"globalNetworkId" type:"string" required:"true"`
+
+	// The resource metadata.
+	//
+	// Metadata is a required field
+	Metadata map[string]*string `type:"map" required:"true"`
+
+	// The ARN of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNetworkResourceMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNetworkResourceMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateNetworkResourceMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateNetworkResourceMetadataInput"}
+	if s.GlobalNetworkId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalNetworkId"))
+	}
+	if s.GlobalNetworkId != nil && len(*s.GlobalNetworkId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalNetworkId", 1))
+	}
+	if s.Metadata == nil {
+		invalidParams.Add(request.NewErrParamRequired("Metadata"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlobalNetworkId sets the GlobalNetworkId field's value.
+func (s *UpdateNetworkResourceMetadataInput) SetGlobalNetworkId(v string) *UpdateNetworkResourceMetadataInput {
+	s.GlobalNetworkId = &v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *UpdateNetworkResourceMetadataInput) SetMetadata(v map[string]*string) *UpdateNetworkResourceMetadataInput {
+	s.Metadata = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UpdateNetworkResourceMetadataInput) SetResourceArn(v string) *UpdateNetworkResourceMetadataInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type UpdateNetworkResourceMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated resource metadata.
+	Metadata map[string]*string `type:"map"`
+
+	// The ARN of the resource.
+	ResourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNetworkResourceMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNetworkResourceMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *UpdateNetworkResourceMetadataOutput) SetMetadata(v map[string]*string) *UpdateNetworkResourceMetadataOutput {
+	s.Metadata = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UpdateNetworkResourceMetadataOutput) SetResourceArn(v string) *UpdateNetworkResourceMetadataOutput {
+	s.ResourceArn = &v
+	return s
+}
+
 type UpdateSiteInput struct {
 	_ struct{} `type:"structure"`
 
 	// A description of your site.
 	//
-	// Length Constraints: Maximum length of 256 characters.
+	// Constraints: Maximum length of 256 characters.
 	Description *string `type:"string"`
 
 	// The ID of the global network.
@@ -9508,6 +12714,38 @@ func ConnectionState_Values() []string {
 }
 
 const (
+	// ConnectionStatusUp is a ConnectionStatus enum value
+	ConnectionStatusUp = "UP"
+
+	// ConnectionStatusDown is a ConnectionStatus enum value
+	ConnectionStatusDown = "DOWN"
+)
+
+// ConnectionStatus_Values returns all elements of the ConnectionStatus enum
+func ConnectionStatus_Values() []string {
+	return []string{
+		ConnectionStatusUp,
+		ConnectionStatusDown,
+	}
+}
+
+const (
+	// ConnectionTypeBgp is a ConnectionType enum value
+	ConnectionTypeBgp = "BGP"
+
+	// ConnectionTypeIpsec is a ConnectionType enum value
+	ConnectionTypeIpsec = "IPSEC"
+)
+
+// ConnectionType_Values returns all elements of the ConnectionType enum
+func ConnectionType_Values() []string {
+	return []string{
+		ConnectionTypeBgp,
+		ConnectionTypeIpsec,
+	}
+}
+
+const (
 	// CustomerGatewayAssociationStatePending is a CustomerGatewayAssociationState enum value
 	CustomerGatewayAssociationStatePending = "PENDING"
 
@@ -9624,6 +12862,138 @@ func LinkState_Values() []string {
 		LinkStateAvailable,
 		LinkStateDeleting,
 		LinkStateUpdating,
+	}
+}
+
+const (
+	// RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentNotFound is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentNotFound = "TRANSIT_GATEWAY_ATTACHMENT_NOT_FOUND"
+
+	// RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentNotInTransitGateway is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentNotInTransitGateway = "TRANSIT_GATEWAY_ATTACHMENT_NOT_IN_TRANSIT_GATEWAY"
+
+	// RouteAnalysisCompletionReasonCodeCyclicPathDetected is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeCyclicPathDetected = "CYCLIC_PATH_DETECTED"
+
+	// RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentStableRouteTableNotFound is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentStableRouteTableNotFound = "TRANSIT_GATEWAY_ATTACHMENT_STABLE_ROUTE_TABLE_NOT_FOUND"
+
+	// RouteAnalysisCompletionReasonCodeRouteNotFound is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeRouteNotFound = "ROUTE_NOT_FOUND"
+
+	// RouteAnalysisCompletionReasonCodeBlackholeRouteForDestinationFound is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeBlackholeRouteForDestinationFound = "BLACKHOLE_ROUTE_FOR_DESTINATION_FOUND"
+
+	// RouteAnalysisCompletionReasonCodeInactiveRouteForDestinationFound is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeInactiveRouteForDestinationFound = "INACTIVE_ROUTE_FOR_DESTINATION_FOUND"
+
+	// RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentAttachArnNoMatch is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentAttachArnNoMatch = "TRANSIT_GATEWAY_ATTACHMENT_ATTACH_ARN_NO_MATCH"
+
+	// RouteAnalysisCompletionReasonCodeMaxHopsExceeded is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeMaxHopsExceeded = "MAX_HOPS_EXCEEDED"
+
+	// RouteAnalysisCompletionReasonCodePossibleMiddlebox is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodePossibleMiddlebox = "POSSIBLE_MIDDLEBOX"
+
+	// RouteAnalysisCompletionReasonCodeNoDestinationArnProvided is a RouteAnalysisCompletionReasonCode enum value
+	RouteAnalysisCompletionReasonCodeNoDestinationArnProvided = "NO_DESTINATION_ARN_PROVIDED"
+)
+
+// RouteAnalysisCompletionReasonCode_Values returns all elements of the RouteAnalysisCompletionReasonCode enum
+func RouteAnalysisCompletionReasonCode_Values() []string {
+	return []string{
+		RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentNotFound,
+		RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentNotInTransitGateway,
+		RouteAnalysisCompletionReasonCodeCyclicPathDetected,
+		RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentStableRouteTableNotFound,
+		RouteAnalysisCompletionReasonCodeRouteNotFound,
+		RouteAnalysisCompletionReasonCodeBlackholeRouteForDestinationFound,
+		RouteAnalysisCompletionReasonCodeInactiveRouteForDestinationFound,
+		RouteAnalysisCompletionReasonCodeTransitGatewayAttachmentAttachArnNoMatch,
+		RouteAnalysisCompletionReasonCodeMaxHopsExceeded,
+		RouteAnalysisCompletionReasonCodePossibleMiddlebox,
+		RouteAnalysisCompletionReasonCodeNoDestinationArnProvided,
+	}
+}
+
+const (
+	// RouteAnalysisCompletionResultCodeConnected is a RouteAnalysisCompletionResultCode enum value
+	RouteAnalysisCompletionResultCodeConnected = "CONNECTED"
+
+	// RouteAnalysisCompletionResultCodeNotConnected is a RouteAnalysisCompletionResultCode enum value
+	RouteAnalysisCompletionResultCodeNotConnected = "NOT_CONNECTED"
+)
+
+// RouteAnalysisCompletionResultCode_Values returns all elements of the RouteAnalysisCompletionResultCode enum
+func RouteAnalysisCompletionResultCode_Values() []string {
+	return []string{
+		RouteAnalysisCompletionResultCodeConnected,
+		RouteAnalysisCompletionResultCodeNotConnected,
+	}
+}
+
+const (
+	// RouteAnalysisStatusRunning is a RouteAnalysisStatus enum value
+	RouteAnalysisStatusRunning = "RUNNING"
+
+	// RouteAnalysisStatusCompleted is a RouteAnalysisStatus enum value
+	RouteAnalysisStatusCompleted = "COMPLETED"
+
+	// RouteAnalysisStatusFailed is a RouteAnalysisStatus enum value
+	RouteAnalysisStatusFailed = "FAILED"
+)
+
+// RouteAnalysisStatus_Values returns all elements of the RouteAnalysisStatus enum
+func RouteAnalysisStatus_Values() []string {
+	return []string{
+		RouteAnalysisStatusRunning,
+		RouteAnalysisStatusCompleted,
+		RouteAnalysisStatusFailed,
+	}
+}
+
+const (
+	// RouteStateActive is a RouteState enum value
+	RouteStateActive = "ACTIVE"
+
+	// RouteStateBlackhole is a RouteState enum value
+	RouteStateBlackhole = "BLACKHOLE"
+)
+
+// RouteState_Values returns all elements of the RouteState enum
+func RouteState_Values() []string {
+	return []string{
+		RouteStateActive,
+		RouteStateBlackhole,
+	}
+}
+
+const (
+	// RouteTableTypeTransitGatewayRouteTable is a RouteTableType enum value
+	RouteTableTypeTransitGatewayRouteTable = "TRANSIT_GATEWAY_ROUTE_TABLE"
+)
+
+// RouteTableType_Values returns all elements of the RouteTableType enum
+func RouteTableType_Values() []string {
+	return []string{
+		RouteTableTypeTransitGatewayRouteTable,
+	}
+}
+
+const (
+	// RouteTypePropagated is a RouteType enum value
+	RouteTypePropagated = "PROPAGATED"
+
+	// RouteTypeStatic is a RouteType enum value
+	RouteTypeStatic = "STATIC"
+)
+
+// RouteType_Values returns all elements of the RouteType enum
+func RouteType_Values() []string {
+	return []string{
+		RouteTypePropagated,
+		RouteTypeStatic,
 	}
 }
 

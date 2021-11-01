@@ -3022,6 +3022,8 @@
         "EnableIAMDatabaseAuthentication":{"shape":"BooleanOptional"},
         "CloudwatchLogsExportConfiguration":{"shape":"CloudwatchLogsExportConfiguration"},
         "EngineVersion":{"shape":"String"},
+        "AllowMajorVersionUpgrade":{"shape":"Boolean"},
+        "DBInstanceParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"}
       }

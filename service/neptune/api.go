@@ -58,7 +58,7 @@ func (c *Neptune) AddRoleToDBClusterRequest(input *AddRoleToDBClusterInput) (req
 
 // AddRoleToDBCluster API operation for Amazon Neptune.
 //
-// Associates an Identity and Access Management (IAM) role from an Neptune DB
+// Associates an Identity and Access Management (IAM) role with an Neptune DB
 // cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6575,7 +6575,7 @@ func (c *Neptune) StartDBClusterRequest(input *StartDBClusterInput) (req *reques
 
 // StartDBCluster API operation for Amazon Neptune.
 //
-// Starts an Amazon Neptune DB cluster that was stopped using the AWS console,
+// Starts an Amazon Neptune DB cluster that was stopped using the Amazon console,
 // the Amazon CLI stop-db-cluster command, or the StopDBCluster API.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6715,7 +6715,8 @@ type AddRoleToDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the feature for the Neptune DB cluster that the IAM role is to
-	// be associated with. For the list of supported feature names, see DBEngineVersion.
+	// be associated with. For the list of supported feature names, see DBEngineVersion
+	// (neptune/latest/userguide/api-other-apis.html#DBEngineVersion).
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to associate with the Neptune
@@ -10341,7 +10342,8 @@ type DBClusterRole struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the feature associated with the Amazon Identity and Access Management
-	// (IAM) role. For the list of supported feature names, see DBEngineVersion.
+	// (IAM) role. For the list of supported feature names, see DescribeDBEngineVersions
+	// (https://docs.aws.amazon.com/neptune/latest/userguide/api-other-apis.html#DescribeDBEngineVersions).
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that is associated with the
@@ -13056,8 +13058,8 @@ type DescribeDBClusterSnapshotsInput struct {
 	IncludePublic *bool `type:"boolean"`
 
 	// True to include shared manual DB cluster snapshots from other Amazon accounts
-	// that this AWS account has been given permission to copy or restore, and otherwise
-	// false. The default is false.
+	// that this Amazon account has been given permission to copy or restore, and
+	// otherwise false. The default is false.
 	//
 	// You can give an Amazon account permission to restore a manual DB cluster
 	// snapshot from another Amazon account by the ModifyDBClusterSnapshotAttribute
@@ -13085,7 +13087,7 @@ type DescribeDBClusterSnapshotsInput struct {
 	//    taken by Amazon Neptune for my Amazon account.
 	//
 	//    * manual - Return all DB cluster snapshots that have been taken by my
-	//    AWS account.
+	//    Amazon account.
 	//
 	//    * shared - Return all manual DB cluster snapshots that have been shared
 	//    to my Amazon account.
@@ -16084,6 +16086,14 @@ func (s *ModifyDBClusterEndpointOutput) SetStatus(v string) *ModifyDBClusterEndp
 type ModifyDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
+	// A value that indicates whether upgrades between different major versions
+	// are allowed.
+	//
+	// Constraints: You must set the allow-major-version-upgrade flag when providing
+	// an EngineVersion parameter that uses a different major version than the DB
+	// cluster's current version.
+	AllowMajorVersionUpgrade *bool `type:"boolean"`
+
 	// A value that specifies whether the modifications in this request and any
 	// pending modifications are asynchronously applied as soon as possible, regardless
 	// of the PreferredMaintenanceWindow setting for the DB cluster. If this parameter
@@ -16129,6 +16139,23 @@ type ModifyDBClusterInput struct {
 
 	// The name of the DB cluster parameter group to use for the DB cluster.
 	DBClusterParameterGroupName *string `type:"string"`
+
+	// The name of the DB parameter group to apply to all instances of the DB cluster.
+	//
+	// When you apply a parameter group using DBInstanceParameterGroupName, parameter
+	// changes aren't applied during the next maintenance window but instead are
+	// applied immediately.
+	//
+	// Default: The existing name setting
+	//
+	// Constraints:
+	//
+	//    * The DB parameter group must be in the same DB parameter group family
+	//    as the target DB cluster version.
+	//
+	//    * The DBInstanceParameterGroupName parameter is only valid in combination
+	//    with the AllowMajorVersionUpgrade parameter.
+	DBInstanceParameterGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB cluster has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
@@ -16242,6 +16269,12 @@ func (s *ModifyDBClusterInput) Validate() error {
 	return nil
 }
 
+// SetAllowMajorVersionUpgrade sets the AllowMajorVersionUpgrade field's value.
+func (s *ModifyDBClusterInput) SetAllowMajorVersionUpgrade(v bool) *ModifyDBClusterInput {
+	s.AllowMajorVersionUpgrade = &v
+	return s
+}
+
 // SetApplyImmediately sets the ApplyImmediately field's value.
 func (s *ModifyDBClusterInput) SetApplyImmediately(v bool) *ModifyDBClusterInput {
 	s.ApplyImmediately = &v
@@ -16275,6 +16308,12 @@ func (s *ModifyDBClusterInput) SetDBClusterIdentifier(v string) *ModifyDBCluster
 // SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
 func (s *ModifyDBClusterInput) SetDBClusterParameterGroupName(v string) *ModifyDBClusterInput {
 	s.DBClusterParameterGroupName = &v
+	return s
+}
+
+// SetDBInstanceParameterGroupName sets the DBInstanceParameterGroupName field's value.
+func (s *ModifyDBClusterInput) SetDBInstanceParameterGroupName(v string) *ModifyDBClusterInput {
+	s.DBInstanceParameterGroupName = &v
 	return s
 }
 
@@ -16454,7 +16493,7 @@ type ModifyDBClusterSnapshotAttributeInput struct {
 	// snapshot, set this list to include one or more Amazon account IDs, or all
 	// to make the manual DB cluster snapshot restorable by any Amazon account.
 	// Do not add the all value for any manual DB cluster snapshots that contain
-	// private information that you don't want available to all AWS accounts.
+	// private information that you don't want available to all Amazon accounts.
 	ValuesToAdd []*string `locationNameList:"AttributeValue" type:"list"`
 
 	// A list of DB cluster snapshot attributes to remove from the attribute specified
@@ -16612,7 +16651,7 @@ type ModifyDBInstanceInput struct {
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The new compute and memory capacity of the DB instance, for example, db.m4.large.
-	// Not all DB instance classes are available in all AWS Regions.
+	// Not all DB instance classes are available in all Amazon Regions.
 	//
 	// If you modify the DB instance class, an outage occurs during the change.
 	// The change is applied during the next maintenance window, unless ApplyImmediately
@@ -18309,7 +18348,8 @@ type RemoveRoleFromDBClusterInput struct {
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the feature for the DB cluster that the IAM role is to be disassociated
-	// from. For the list of supported feature names, see DBEngineVersion.
+	// from. For the list of supported feature names, see DescribeDBEngineVersions
+	// (https://docs.aws.amazon.com/neptune/latest/userguide/api-other-apis.html#DescribeDBEngineVersions).
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to disassociate from the DB
@@ -19632,15 +19672,15 @@ type Tag struct {
 	_ struct{} `type:"structure"`
 
 	// A key is the required name of the tag. The string value can be from 1 to
-	// 128 Unicode characters in length and can't be prefixed with "aws:" or "rds:".
-	// The string can only contain only the set of Unicode letters, digits, white-space,
+	// 128 Unicode characters in length and can't be prefixed with aws: or rds:.
+	// The string can only contain the set of Unicode letters, digits, white-space,
 	// '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
 	Key *string `type:"string"`
 
 	// A value is the optional value of the tag. The string value can be from 1
-	// to 256 Unicode characters in length and can't be prefixed with "aws:" or
-	// "rds:". The string can only contain only the set of Unicode letters, digits,
-	// white-space, '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
+	// to 256 Unicode characters in length and can't be prefixed with aws: or rds:.
+	// The string can only contain the set of Unicode letters, digits, white-space,
+	// '_', '.', '/', '=', '+', '-' (Java regex: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
 	Value *string `type:"string"`
 }
 

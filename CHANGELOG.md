@@ -1,3 +1,15 @@
+Release v1.41.15 (2021-11-01)
+===
+
+### Service Client Updates
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support to enable access logging for buckets in the Lightsail object storage service.
+* `service/neptune`: Updates service API and documentation
+  * Adds support for major version upgrades to ModifyDbCluster API
+* `service/networkmanager`: Updates service API, documentation, and paginators
+* `service/rekognition`: Updates service API, documentation, and paginators
+  * This Amazon Rekognition Custom Labels release introduces the management of datasets with  projects
+
 Release v1.41.14 (2021-10-29)
 ===
 
