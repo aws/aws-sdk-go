@@ -68,6 +68,10 @@ type RekognitionAPI interface {
 	CreateCollectionWithContext(aws.Context, *rekognition.CreateCollectionInput, ...request.Option) (*rekognition.CreateCollectionOutput, error)
 	CreateCollectionRequest(*rekognition.CreateCollectionInput) (*request.Request, *rekognition.CreateCollectionOutput)
 
+	CreateDataset(*rekognition.CreateDatasetInput) (*rekognition.CreateDatasetOutput, error)
+	CreateDatasetWithContext(aws.Context, *rekognition.CreateDatasetInput, ...request.Option) (*rekognition.CreateDatasetOutput, error)
+	CreateDatasetRequest(*rekognition.CreateDatasetInput) (*request.Request, *rekognition.CreateDatasetOutput)
+
 	CreateProject(*rekognition.CreateProjectInput) (*rekognition.CreateProjectOutput, error)
 	CreateProjectWithContext(aws.Context, *rekognition.CreateProjectInput, ...request.Option) (*rekognition.CreateProjectOutput, error)
 	CreateProjectRequest(*rekognition.CreateProjectInput) (*request.Request, *rekognition.CreateProjectOutput)
@@ -83,6 +87,10 @@ type RekognitionAPI interface {
 	DeleteCollection(*rekognition.DeleteCollectionInput) (*rekognition.DeleteCollectionOutput, error)
 	DeleteCollectionWithContext(aws.Context, *rekognition.DeleteCollectionInput, ...request.Option) (*rekognition.DeleteCollectionOutput, error)
 	DeleteCollectionRequest(*rekognition.DeleteCollectionInput) (*request.Request, *rekognition.DeleteCollectionOutput)
+
+	DeleteDataset(*rekognition.DeleteDatasetInput) (*rekognition.DeleteDatasetOutput, error)
+	DeleteDatasetWithContext(aws.Context, *rekognition.DeleteDatasetInput, ...request.Option) (*rekognition.DeleteDatasetOutput, error)
+	DeleteDatasetRequest(*rekognition.DeleteDatasetInput) (*request.Request, *rekognition.DeleteDatasetOutput)
 
 	DeleteFaces(*rekognition.DeleteFacesInput) (*rekognition.DeleteFacesOutput, error)
 	DeleteFacesWithContext(aws.Context, *rekognition.DeleteFacesInput, ...request.Option) (*rekognition.DeleteFacesOutput, error)
@@ -103,6 +111,10 @@ type RekognitionAPI interface {
 	DescribeCollection(*rekognition.DescribeCollectionInput) (*rekognition.DescribeCollectionOutput, error)
 	DescribeCollectionWithContext(aws.Context, *rekognition.DescribeCollectionInput, ...request.Option) (*rekognition.DescribeCollectionOutput, error)
 	DescribeCollectionRequest(*rekognition.DescribeCollectionInput) (*request.Request, *rekognition.DescribeCollectionOutput)
+
+	DescribeDataset(*rekognition.DescribeDatasetInput) (*rekognition.DescribeDatasetOutput, error)
+	DescribeDatasetWithContext(aws.Context, *rekognition.DescribeDatasetInput, ...request.Option) (*rekognition.DescribeDatasetOutput, error)
+	DescribeDatasetRequest(*rekognition.DescribeDatasetInput) (*request.Request, *rekognition.DescribeDatasetOutput)
 
 	DescribeProjectVersions(*rekognition.DescribeProjectVersionsInput) (*rekognition.DescribeProjectVersionsOutput, error)
 	DescribeProjectVersionsWithContext(aws.Context, *rekognition.DescribeProjectVersionsInput, ...request.Option) (*rekognition.DescribeProjectVersionsOutput, error)
@@ -145,6 +157,10 @@ type RekognitionAPI interface {
 	DetectText(*rekognition.DetectTextInput) (*rekognition.DetectTextOutput, error)
 	DetectTextWithContext(aws.Context, *rekognition.DetectTextInput, ...request.Option) (*rekognition.DetectTextOutput, error)
 	DetectTextRequest(*rekognition.DetectTextInput) (*request.Request, *rekognition.DetectTextOutput)
+
+	DistributeDatasetEntries(*rekognition.DistributeDatasetEntriesInput) (*rekognition.DistributeDatasetEntriesOutput, error)
+	DistributeDatasetEntriesWithContext(aws.Context, *rekognition.DistributeDatasetEntriesInput, ...request.Option) (*rekognition.DistributeDatasetEntriesOutput, error)
+	DistributeDatasetEntriesRequest(*rekognition.DistributeDatasetEntriesInput) (*request.Request, *rekognition.DistributeDatasetEntriesOutput)
 
 	GetCelebrityInfo(*rekognition.GetCelebrityInfoInput) (*rekognition.GetCelebrityInfoOutput, error)
 	GetCelebrityInfoWithContext(aws.Context, *rekognition.GetCelebrityInfoInput, ...request.Option) (*rekognition.GetCelebrityInfoOutput, error)
@@ -216,6 +232,20 @@ type RekognitionAPI interface {
 
 	ListCollectionsPages(*rekognition.ListCollectionsInput, func(*rekognition.ListCollectionsOutput, bool) bool) error
 	ListCollectionsPagesWithContext(aws.Context, *rekognition.ListCollectionsInput, func(*rekognition.ListCollectionsOutput, bool) bool, ...request.Option) error
+
+	ListDatasetEntries(*rekognition.ListDatasetEntriesInput) (*rekognition.ListDatasetEntriesOutput, error)
+	ListDatasetEntriesWithContext(aws.Context, *rekognition.ListDatasetEntriesInput, ...request.Option) (*rekognition.ListDatasetEntriesOutput, error)
+	ListDatasetEntriesRequest(*rekognition.ListDatasetEntriesInput) (*request.Request, *rekognition.ListDatasetEntriesOutput)
+
+	ListDatasetEntriesPages(*rekognition.ListDatasetEntriesInput, func(*rekognition.ListDatasetEntriesOutput, bool) bool) error
+	ListDatasetEntriesPagesWithContext(aws.Context, *rekognition.ListDatasetEntriesInput, func(*rekognition.ListDatasetEntriesOutput, bool) bool, ...request.Option) error
+
+	ListDatasetLabels(*rekognition.ListDatasetLabelsInput) (*rekognition.ListDatasetLabelsOutput, error)
+	ListDatasetLabelsWithContext(aws.Context, *rekognition.ListDatasetLabelsInput, ...request.Option) (*rekognition.ListDatasetLabelsOutput, error)
+	ListDatasetLabelsRequest(*rekognition.ListDatasetLabelsInput) (*request.Request, *rekognition.ListDatasetLabelsOutput)
+
+	ListDatasetLabelsPages(*rekognition.ListDatasetLabelsInput, func(*rekognition.ListDatasetLabelsOutput, bool) bool) error
+	ListDatasetLabelsPagesWithContext(aws.Context, *rekognition.ListDatasetLabelsInput, func(*rekognition.ListDatasetLabelsOutput, bool) bool, ...request.Option) error
 
 	ListFaces(*rekognition.ListFacesInput) (*rekognition.ListFacesOutput, error)
 	ListFacesWithContext(aws.Context, *rekognition.ListFacesInput, ...request.Option) (*rekognition.ListFacesOutput, error)
@@ -302,6 +332,10 @@ type RekognitionAPI interface {
 	UntagResource(*rekognition.UntagResourceInput) (*rekognition.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *rekognition.UntagResourceInput, ...request.Option) (*rekognition.UntagResourceOutput, error)
 	UntagResourceRequest(*rekognition.UntagResourceInput) (*request.Request, *rekognition.UntagResourceOutput)
+
+	UpdateDatasetEntries(*rekognition.UpdateDatasetEntriesInput) (*rekognition.UpdateDatasetEntriesOutput, error)
+	UpdateDatasetEntriesWithContext(aws.Context, *rekognition.UpdateDatasetEntriesInput, ...request.Option) (*rekognition.UpdateDatasetEntriesOutput, error)
+	UpdateDatasetEntriesRequest(*rekognition.UpdateDatasetEntriesInput) (*request.Request, *rekognition.UpdateDatasetEntriesOutput)
 
 	WaitUntilProjectVersionRunning(*rekognition.DescribeProjectVersionsInput) error
 	WaitUntilProjectVersionRunningWithContext(aws.Context, *rekognition.DescribeProjectVersionsInput, ...request.WaiterOption) error

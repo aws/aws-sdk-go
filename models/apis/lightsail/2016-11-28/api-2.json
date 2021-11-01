@@ -3030,8 +3030,24 @@
         "ableToUpdateBundle":{"shape":"boolean"},
         "readonlyAccessAccounts":{"shape":"PartnerIdList"},
         "resourcesReceivingAccess":{"shape":"AccessReceiverList"},
-        "state":{"shape":"BucketState"}
+        "state":{"shape":"BucketState"},
+        "accessLogConfig":{"shape":"BucketAccessLogConfig"}
       }
+    },
+    "BucketAccessLogConfig":{
+      "type":"structure",
+      "required":["enabled"],
+      "members":{
+        "enabled":{"shape":"boolean"},
+        "destination":{"shape":"BucketName"},
+        "prefix":{"shape":"BucketAccessLogPrefix"}
+      }
+    },
+    "BucketAccessLogPrefix":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[\\w/!.*')(-]+$"
     },
     "BucketBundle":{
       "type":"structure",
@@ -7312,7 +7328,8 @@
         "bucketName":{"shape":"BucketName"},
         "accessRules":{"shape":"AccessRules"},
         "versioning":{"shape":"NonEmptyString"},
-        "readonlyAccessAccounts":{"shape":"PartnerIdList"}
+        "readonlyAccessAccounts":{"shape":"PartnerIdList"},
+        "accessLogConfig":{"shape":"BucketAccessLogConfig"}
       }
     },
     "UpdateBucketResult":{

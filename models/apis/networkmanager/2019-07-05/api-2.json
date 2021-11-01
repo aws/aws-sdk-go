@@ -405,6 +405,101 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetNetworkResourceCounts":{
+      "name":"GetNetworkResourceCounts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/global-networks/{globalNetworkId}/network-resource-count"
+      },
+      "input":{"shape":"GetNetworkResourceCountsRequest"},
+      "output":{"shape":"GetNetworkResourceCountsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetNetworkResourceRelationships":{
+      "name":"GetNetworkResourceRelationships",
+      "http":{
+        "method":"GET",
+        "requestUri":"/global-networks/{globalNetworkId}/network-resource-relationships"
+      },
+      "input":{"shape":"GetNetworkResourceRelationshipsRequest"},
+      "output":{"shape":"GetNetworkResourceRelationshipsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetNetworkResources":{
+      "name":"GetNetworkResources",
+      "http":{
+        "method":"GET",
+        "requestUri":"/global-networks/{globalNetworkId}/network-resources"
+      },
+      "input":{"shape":"GetNetworkResourcesRequest"},
+      "output":{"shape":"GetNetworkResourcesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetNetworkRoutes":{
+      "name":"GetNetworkRoutes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/global-networks/{globalNetworkId}/network-routes"
+      },
+      "input":{"shape":"GetNetworkRoutesRequest"},
+      "output":{"shape":"GetNetworkRoutesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetNetworkTelemetry":{
+      "name":"GetNetworkTelemetry",
+      "http":{
+        "method":"GET",
+        "requestUri":"/global-networks/{globalNetworkId}/network-telemetry"
+      },
+      "input":{"shape":"GetNetworkTelemetryRequest"},
+      "output":{"shape":"GetNetworkTelemetryResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetRouteAnalysis":{
+      "name":"GetRouteAnalysis",
+      "http":{
+        "method":"GET",
+        "requestUri":"/global-networks/{globalNetworkId}/route-analyses/{routeAnalysisId}"
+      },
+      "input":{"shape":"GetRouteAnalysisRequest"},
+      "output":{"shape":"GetRouteAnalysisResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetSites":{
       "name":"GetSites",
       "http":{
@@ -478,6 +573,23 @@
       },
       "input":{"shape":"RegisterTransitGatewayRequest"},
       "output":{"shape":"RegisterTransitGatewayResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartRouteAnalysis":{
+      "name":"StartRouteAnalysis",
+      "http":{
+        "method":"POST",
+        "requestUri":"/global-networks/{globalNetworkId}/route-analyses"
+      },
+      "input":{"shape":"StartRouteAnalysisRequest"},
+      "output":{"shape":"StartRouteAnalysisResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
@@ -584,6 +696,23 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateNetworkResourceMetadata":{
+      "name":"UpdateNetworkResourceMetadata",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/global-networks/{globalNetworkId}/network-resources/{resourceArn}/metadata"
+      },
+      "input":{"shape":"UpdateNetworkResourceMetadataRequest"},
+      "output":{"shape":"UpdateNetworkResourceMetadataResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
@@ -704,6 +833,7 @@
         "DownloadSpeed":{"shape":"Integer"}
       }
     },
+    "Boolean":{"type":"boolean"},
     "ConflictException":{
       "type":"structure",
       "required":[
@@ -735,6 +865,14 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "ConnectionHealth":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ConnectionType"},
+        "Status":{"shape":"ConnectionStatus"},
+        "Timestamp":{"shape":"DateTime"}
+      }
+    },
     "ConnectionList":{
       "type":"list",
       "member":{"shape":"Connection"}
@@ -746,6 +884,20 @@
         "AVAILABLE",
         "DELETING",
         "UPDATING"
+      ]
+    },
+    "ConnectionStatus":{
+      "type":"string",
+      "enum":[
+        "UP",
+        "DOWN"
+      ]
+    },
+    "ConnectionType":{
+      "type":"string",
+      "enum":[
+        "BGP",
+        "IPSEC"
       ]
     },
     "CreateConnectionRequest":{
@@ -1167,6 +1319,32 @@
         "TransitGatewayConnectPeerAssociation":{"shape":"TransitGatewayConnectPeerAssociation"}
       }
     },
+    "ExceptionContextKey":{"type":"string"},
+    "ExceptionContextMap":{
+      "type":"map",
+      "key":{"shape":"ExceptionContextKey"},
+      "value":{"shape":"ExceptionContextValue"}
+    },
+    "ExceptionContextValue":{"type":"string"},
+    "FilterMap":{
+      "type":"map",
+      "key":{"shape":"FilterName"},
+      "value":{"shape":"FilterValues"}
+    },
+    "FilterName":{
+      "type":"string",
+      "max":128,
+      "pattern":"^[0-9a-zA-Z\\.-]*$"
+    },
+    "FilterValue":{
+      "type":"string",
+      "max":255,
+      "pattern":"^[0-9a-zA-Z\\*\\.\\\\/\\?-]*$"
+    },
+    "FilterValues":{
+      "type":"list",
+      "member":{"shape":"FilterValue"}
+    },
     "GetConnectionsRequest":{
       "type":"structure",
       "required":["GlobalNetworkId"],
@@ -1360,6 +1538,255 @@
       "members":{
         "Links":{"shape":"LinkList"},
         "NextToken":{"shape":"String"}
+      }
+    },
+    "GetNetworkResourceCountsRequest":{
+      "type":"structure",
+      "required":["GlobalNetworkId"],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "ResourceType":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetNetworkResourceCountsResponse":{
+      "type":"structure",
+      "members":{
+        "NetworkResourceCounts":{"shape":"NetworkResourceCountList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "GetNetworkResourceRelationshipsRequest":{
+      "type":"structure",
+      "required":["GlobalNetworkId"],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "RegisteredGatewayArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"registeredGatewayArn"
+        },
+        "AwsRegion":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"awsRegion"
+        },
+        "AccountId":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"accountId"
+        },
+        "ResourceType":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "ResourceArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"resourceArn"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetNetworkResourceRelationshipsResponse":{
+      "type":"structure",
+      "members":{
+        "Relationships":{"shape":"RelationshipList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "GetNetworkResourcesRequest":{
+      "type":"structure",
+      "required":["GlobalNetworkId"],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "RegisteredGatewayArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"registeredGatewayArn"
+        },
+        "AwsRegion":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"awsRegion"
+        },
+        "AccountId":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"accountId"
+        },
+        "ResourceType":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "ResourceArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"resourceArn"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetNetworkResourcesResponse":{
+      "type":"structure",
+      "members":{
+        "NetworkResources":{"shape":"NetworkResourceList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "GetNetworkRoutesRequest":{
+      "type":"structure",
+      "required":[
+        "GlobalNetworkId",
+        "RouteTableIdentifier"
+      ],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "RouteTableIdentifier":{"shape":"RouteTableIdentifier"},
+        "ExactCidrMatches":{"shape":"StringList"},
+        "LongestPrefixMatches":{"shape":"StringList"},
+        "SubnetOfMatches":{"shape":"StringList"},
+        "SupernetOfMatches":{"shape":"StringList"},
+        "PrefixListIds":{"shape":"StringList"},
+        "States":{"shape":"RouteStateList"},
+        "Types":{"shape":"RouteTypeList"},
+        "DestinationFilters":{"shape":"FilterMap"}
+      }
+    },
+    "GetNetworkRoutesResponse":{
+      "type":"structure",
+      "members":{
+        "RouteTableArn":{"shape":"String"},
+        "RouteTableType":{"shape":"RouteTableType"},
+        "RouteTableTimestamp":{"shape":"DateTime"},
+        "NetworkRoutes":{"shape":"NetworkRouteList"}
+      }
+    },
+    "GetNetworkTelemetryRequest":{
+      "type":"structure",
+      "required":["GlobalNetworkId"],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "RegisteredGatewayArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"registeredGatewayArn"
+        },
+        "AwsRegion":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"awsRegion"
+        },
+        "AccountId":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"accountId"
+        },
+        "ResourceType":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "ResourceArn":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"resourceArn"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetNetworkTelemetryResponse":{
+      "type":"structure",
+      "members":{
+        "NetworkTelemetry":{"shape":"NetworkTelemetryList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "GetRouteAnalysisRequest":{
+      "type":"structure",
+      "required":[
+        "GlobalNetworkId",
+        "RouteAnalysisId"
+      ],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "RouteAnalysisId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"routeAnalysisId"
+        }
+      }
+    },
+    "GetRouteAnalysisResponse":{
+      "type":"structure",
+      "members":{
+        "RouteAnalysis":{"shape":"RouteAnalysis"}
       }
     },
     "GetSitesRequest":{
@@ -1583,6 +2010,116 @@
       "max":500,
       "min":1
     },
+    "NetworkResource":{
+      "type":"structure",
+      "members":{
+        "RegisteredGatewayArn":{"shape":"String"},
+        "AwsRegion":{"shape":"String"},
+        "AccountId":{"shape":"String"},
+        "ResourceType":{"shape":"String"},
+        "ResourceId":{"shape":"String"},
+        "ResourceArn":{"shape":"String"},
+        "Definition":{"shape":"String"},
+        "DefinitionTimestamp":{"shape":"DateTime"},
+        "Tags":{"shape":"TagList"},
+        "Metadata":{"shape":"NetworkResourceMetadataMap"}
+      }
+    },
+    "NetworkResourceCount":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"String"},
+        "Count":{"shape":"Integer"}
+      }
+    },
+    "NetworkResourceCountList":{
+      "type":"list",
+      "member":{"shape":"NetworkResourceCount"}
+    },
+    "NetworkResourceList":{
+      "type":"list",
+      "member":{"shape":"NetworkResource"}
+    },
+    "NetworkResourceMetadataKey":{"type":"string"},
+    "NetworkResourceMetadataMap":{
+      "type":"map",
+      "key":{"shape":"NetworkResourceMetadataKey"},
+      "value":{"shape":"NetworkResourceMetadataValue"}
+    },
+    "NetworkResourceMetadataValue":{"type":"string"},
+    "NetworkResourceSummary":{
+      "type":"structure",
+      "members":{
+        "RegisteredGatewayArn":{"shape":"String"},
+        "ResourceArn":{"shape":"String"},
+        "ResourceType":{"shape":"String"},
+        "Definition":{"shape":"String"},
+        "NameTag":{"shape":"String"},
+        "IsMiddlebox":{"shape":"Boolean"}
+      }
+    },
+    "NetworkRoute":{
+      "type":"structure",
+      "members":{
+        "DestinationCidrBlock":{"shape":"String"},
+        "Destinations":{"shape":"NetworkRouteDestinationList"},
+        "PrefixListId":{"shape":"String"},
+        "State":{"shape":"RouteState"},
+        "Type":{"shape":"RouteType"}
+      }
+    },
+    "NetworkRouteDestination":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayAttachmentId":{"shape":"String"},
+        "ResourceType":{"shape":"String"},
+        "ResourceId":{"shape":"String"}
+      }
+    },
+    "NetworkRouteDestinationList":{
+      "type":"list",
+      "member":{"shape":"NetworkRouteDestination"}
+    },
+    "NetworkRouteList":{
+      "type":"list",
+      "member":{"shape":"NetworkRoute"}
+    },
+    "NetworkTelemetry":{
+      "type":"structure",
+      "members":{
+        "RegisteredGatewayArn":{"shape":"String"},
+        "AwsRegion":{"shape":"String"},
+        "AccountId":{"shape":"String"},
+        "ResourceType":{"shape":"String"},
+        "ResourceId":{"shape":"String"},
+        "ResourceArn":{"shape":"String"},
+        "Address":{"shape":"String"},
+        "Health":{"shape":"ConnectionHealth"}
+      }
+    },
+    "NetworkTelemetryList":{
+      "type":"list",
+      "member":{"shape":"NetworkTelemetry"}
+    },
+    "PathComponent":{
+      "type":"structure",
+      "members":{
+        "Sequence":{"shape":"Integer"},
+        "Resource":{"shape":"NetworkResourceSummary"},
+        "DestinationCidrBlock":{"shape":"String"}
+      }
+    },
+    "PathComponentList":{
+      "type":"list",
+      "member":{"shape":"PathComponent"}
+    },
+    "ReasonContextKey":{"type":"string"},
+    "ReasonContextMap":{
+      "type":"map",
+      "key":{"shape":"ReasonContextKey"},
+      "value":{"shape":"ReasonContextValue"}
+    },
+    "ReasonContextValue":{"type":"string"},
     "RegisterTransitGatewayRequest":{
       "type":"structure",
       "required":[
@@ -1604,6 +2141,17 @@
         "TransitGatewayRegistration":{"shape":"TransitGatewayRegistration"}
       }
     },
+    "Relationship":{
+      "type":"structure",
+      "members":{
+        "From":{"shape":"String"},
+        "To":{"shape":"String"}
+      }
+    },
+    "RelationshipList":{
+      "type":"list",
+      "member":{"shape":"Relationship"}
+    },
     "ResourceARN":{"type":"string"},
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1615,12 +2163,122 @@
       "members":{
         "Message":{"shape":"String"},
         "ResourceId":{"shape":"String"},
-        "ResourceType":{"shape":"String"}
+        "ResourceType":{"shape":"String"},
+        "Context":{"shape":"ExceptionContextMap"}
       },
       "error":{"httpStatusCode":404},
       "exception":true
     },
     "RetryAfterSeconds":{"type":"integer"},
+    "RouteAnalysis":{
+      "type":"structure",
+      "members":{
+        "GlobalNetworkId":{"shape":"String"},
+        "OwnerAccountId":{"shape":"String"},
+        "RouteAnalysisId":{"shape":"String"},
+        "StartTimestamp":{"shape":"DateTime"},
+        "Status":{"shape":"RouteAnalysisStatus"},
+        "Source":{"shape":"RouteAnalysisEndpointOptions"},
+        "Destination":{"shape":"RouteAnalysisEndpointOptions"},
+        "IncludeReturnPath":{"shape":"Boolean"},
+        "UseMiddleboxes":{"shape":"Boolean"},
+        "ForwardPath":{"shape":"RouteAnalysisPath"},
+        "ReturnPath":{"shape":"RouteAnalysisPath"}
+      }
+    },
+    "RouteAnalysisCompletion":{
+      "type":"structure",
+      "members":{
+        "ResultCode":{"shape":"RouteAnalysisCompletionResultCode"},
+        "ReasonCode":{"shape":"RouteAnalysisCompletionReasonCode"},
+        "ReasonContext":{"shape":"ReasonContextMap"}
+      }
+    },
+    "RouteAnalysisCompletionReasonCode":{
+      "type":"string",
+      "enum":[
+        "TRANSIT_GATEWAY_ATTACHMENT_NOT_FOUND",
+        "TRANSIT_GATEWAY_ATTACHMENT_NOT_IN_TRANSIT_GATEWAY",
+        "CYCLIC_PATH_DETECTED",
+        "TRANSIT_GATEWAY_ATTACHMENT_STABLE_ROUTE_TABLE_NOT_FOUND",
+        "ROUTE_NOT_FOUND",
+        "BLACKHOLE_ROUTE_FOR_DESTINATION_FOUND",
+        "INACTIVE_ROUTE_FOR_DESTINATION_FOUND",
+        "TRANSIT_GATEWAY_ATTACHMENT_ATTACH_ARN_NO_MATCH",
+        "MAX_HOPS_EXCEEDED",
+        "POSSIBLE_MIDDLEBOX",
+        "NO_DESTINATION_ARN_PROVIDED"
+      ]
+    },
+    "RouteAnalysisCompletionResultCode":{
+      "type":"string",
+      "enum":[
+        "CONNECTED",
+        "NOT_CONNECTED"
+      ]
+    },
+    "RouteAnalysisEndpointOptions":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayAttachmentArn":{"shape":"String"},
+        "TransitGatewayArn":{"shape":"String"},
+        "IpAddress":{"shape":"String"}
+      }
+    },
+    "RouteAnalysisEndpointOptionsSpecification":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayAttachmentArn":{"shape":"String"},
+        "IpAddress":{"shape":"String"}
+      }
+    },
+    "RouteAnalysisPath":{
+      "type":"structure",
+      "members":{
+        "CompletionStatus":{"shape":"RouteAnalysisCompletion"},
+        "Path":{"shape":"PathComponentList"}
+      }
+    },
+    "RouteAnalysisStatus":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "RouteState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "BLACKHOLE"
+      ]
+    },
+    "RouteStateList":{
+      "type":"list",
+      "member":{"shape":"RouteState"}
+    },
+    "RouteTableIdentifier":{
+      "type":"structure",
+      "members":{
+        "TransitGatewayRouteTableArn":{"shape":"String"}
+      }
+    },
+    "RouteTableType":{
+      "type":"string",
+      "enum":["TRANSIT_GATEWAY_ROUTE_TABLE"]
+    },
+    "RouteType":{
+      "type":"string",
+      "enum":[
+        "PROPAGATED",
+        "STATIC"
+      ]
+    },
+    "RouteTypeList":{
+      "type":"list",
+      "member":{"shape":"RouteType"}
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "required":[
@@ -1663,6 +2321,31 @@
         "DELETING",
         "UPDATING"
       ]
+    },
+    "StartRouteAnalysisRequest":{
+      "type":"structure",
+      "required":[
+        "GlobalNetworkId",
+        "Source",
+        "Destination"
+      ],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "Source":{"shape":"RouteAnalysisEndpointOptionsSpecification"},
+        "Destination":{"shape":"RouteAnalysisEndpointOptionsSpecification"},
+        "IncludeReturnPath":{"shape":"Boolean"},
+        "UseMiddleboxes":{"shape":"Boolean"}
+      }
+    },
+    "StartRouteAnalysisResponse":{
+      "type":"structure",
+      "members":{
+        "RouteAnalysis":{"shape":"RouteAnalysis"}
+      }
     },
     "String":{"type":"string"},
     "StringList":{
@@ -1902,6 +2585,34 @@
       "type":"structure",
       "members":{
         "Link":{"shape":"Link"}
+      }
+    },
+    "UpdateNetworkResourceMetadataRequest":{
+      "type":"structure",
+      "required":[
+        "GlobalNetworkId",
+        "ResourceArn",
+        "Metadata"
+      ],
+      "members":{
+        "GlobalNetworkId":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"globalNetworkId"
+        },
+        "ResourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "Metadata":{"shape":"NetworkResourceMetadataMap"}
+      }
+    },
+    "UpdateNetworkResourceMetadataResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"String"},
+        "Metadata":{"shape":"NetworkResourceMetadataMap"}
       }
     },
     "UpdateSiteRequest":{

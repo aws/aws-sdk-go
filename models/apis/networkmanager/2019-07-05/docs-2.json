@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Transit Gateway Network Manager (Network Manager) enables you to create a global network, in which you can monitor your AWS and on-premises networks that are built around transit gateways.</p> <p>The Network Manager APIs are supported in the US West (Oregon) Region only. You must specify the <code>us-west-2</code> Region in all requests made to Network Manager.</p>",
+  "service": "<p>Transit Gateway Network Manager (Network Manager) enables you to create a global network, in which you can monitor your Amazon Web Services and on-premises networks that are built around transit gateways.</p>",
   "operations": {
     "AssociateCustomerGateway": "<p>Associates a customer gateway with a device and optionally, with a link. If you specify a link, it must be associated with the specified device. </p> <p>You can only associate customer gateways that are connected to a VPN attachment on a transit gateway. The transit gateway must be registered in your global network. When you register a transit gateway, customer gateways that are connected to the transit gateway are automatically included in the global network. To list customer gateways that are connected to a transit gateway, use the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeVpnConnections.html\">DescribeVpnConnections</a> EC2 API and filter by <code>transit-gateway-id</code>.</p> <p>You cannot associate a customer gateway with more than one device and link. </p>",
     "AssociateLink": "<p>Associates a link to a device. A device can be associated to multiple links and a link can be associated to multiple devices. The device and link must be in the same global network and the same site.</p>",
@@ -25,26 +25,34 @@
     "GetDevices": "<p>Gets information about one or more of your devices in a global network.</p>",
     "GetLinkAssociations": "<p>Gets the link associations for a device or a link. Either the device ID or the link ID must be specified.</p>",
     "GetLinks": "<p>Gets information about one or more links in a specified global network.</p> <p>If you specify the site ID, you cannot specify the type or provider in the same request. You can specify the type and provider in the same request.</p>",
+    "GetNetworkResourceCounts": "<p>Gets the count of network resources, by resource type, for the specified global network.</p>",
+    "GetNetworkResourceRelationships": "<p>Gets the network resource relationships for the specified global network.</p>",
+    "GetNetworkResources": "<p>Describes the network resources for the specified global network.</p> <p>The results include information from the corresponding Describe call for the resource, minus any sensitive information such as pre-shared keys.</p>",
+    "GetNetworkRoutes": "<p>Gets the network routes of the specified global network.</p>",
+    "GetNetworkTelemetry": "<p>Gets the network telemetry of the specified global network.</p>",
+    "GetRouteAnalysis": "<p>Gets information about the specified route analysis.</p>",
     "GetSites": "<p>Gets information about one or more of your sites in a global network.</p>",
     "GetTransitGatewayConnectPeerAssociations": "<p>Gets information about one or more of your transit gateway Connect peer associations in a global network.</p>",
     "GetTransitGatewayRegistrations": "<p>Gets information about the transit gateway registrations in a specified global network.</p>",
     "ListTagsForResource": "<p>Lists the tags for a specified resource.</p>",
-    "RegisterTransitGateway": "<p>Registers a transit gateway in your global network. The transit gateway can be in any AWS Region, but it must be owned by the same AWS account that owns the global network. You cannot register a transit gateway in more than one global network.</p>",
+    "RegisterTransitGateway": "<p>Registers a transit gateway in your global network. The transit gateway can be in any Amazon Web Services Region, but it must be owned by the same Amazon Web Services account that owns the global network. You cannot register a transit gateway in more than one global network.</p>",
+    "StartRouteAnalysis": "<p>Starts analyzing the routing path between the specified source and destination. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/tgw/route-analyzer.html\">Route Analyzer</a>.</p>",
     "TagResource": "<p>Tags a specified resource.</p>",
     "UntagResource": "<p>Removes tags from a specified resource.</p>",
     "UpdateConnection": "<p>Updates the information for an existing connection. To remove information for any of the parameters, specify an empty string.</p>",
     "UpdateDevice": "<p>Updates the details for an existing device. To remove information for any of the parameters, specify an empty string.</p>",
     "UpdateGlobalNetwork": "<p>Updates an existing global network. To remove information for any of the parameters, specify an empty string.</p>",
     "UpdateLink": "<p>Updates the details for an existing link. To remove information for any of the parameters, specify an empty string.</p>",
+    "UpdateNetworkResourceMetadata": "<p>Updates the resource metadata for the specified global network.</p>",
     "UpdateSite": "<p>Updates the information for an existing site. To remove information for any of the parameters, specify an empty string.</p>"
   },
   "shapes": {
     "AWSLocation": {
-      "base": "<p>Specifies a location in AWS.</p>",
+      "base": "<p>Specifies a location in Amazon Web Services.</p>",
       "refs": {
-        "CreateDeviceRequest$AWSLocation": "<p>The AWS location of the device.</p>",
-        "Device$AWSLocation": "<p>The AWS location of the device.</p>",
-        "UpdateDeviceRequest$AWSLocation": "<p>The AWS location of the device.</p>"
+        "CreateDeviceRequest$AWSLocation": "<p>The Amazon Web Services location of the device, if applicable. For an on-premises device, you can omit this parameter.</p>",
+        "Device$AWSLocation": "<p>The Amazon Web Services location of the device.</p>",
+        "UpdateDeviceRequest$AWSLocation": "<p>The Amazon Web Services location of the device, if applicable. For an on-premises device, you can omit this parameter.</p>"
       }
     },
     "AccessDeniedException": {
@@ -90,6 +98,16 @@
         "UpdateLinkRequest$Bandwidth": "<p>The upload and download speed in Mbps. </p>"
       }
     },
+    "Boolean": {
+      "base": null,
+      "refs": {
+        "NetworkResourceSummary$IsMiddlebox": "<p>Indicates whether this is a middlebox appliance.</p>",
+        "RouteAnalysis$IncludeReturnPath": "<p>Indicates whether to analyze the return path. The return path is not analyzed if the forward path analysis does not succeed.</p>",
+        "RouteAnalysis$UseMiddleboxes": "<p>Indicates whether to include the location of middlebox appliances in the route analysis.</p>",
+        "StartRouteAnalysisRequest$IncludeReturnPath": "<p>Indicates whether to analyze the return path. The default is <code>false</code>.</p>",
+        "StartRouteAnalysisRequest$UseMiddleboxes": "<p>Indicates whether to include the location of middlebox appliances in the route analysis. The default is <code>false</code>.</p>"
+      }
+    },
     "ConflictException": {
       "base": "<p>There was a conflict processing the request. Updating or deleting the resource can cause an inconsistent state.</p>",
       "refs": {
@@ -104,6 +122,12 @@
         "UpdateConnectionResponse$Connection": "<p>Information about the connection.</p>"
       }
     },
+    "ConnectionHealth": {
+      "base": "<p>Describes connection health.</p>",
+      "refs": {
+        "NetworkTelemetry$Health": "<p>The connection health.</p>"
+      }
+    },
     "ConnectionList": {
       "base": null,
       "refs": {
@@ -114,6 +138,18 @@
       "base": null,
       "refs": {
         "Connection$State": "<p>The state of the connection.</p>"
+      }
+    },
+    "ConnectionStatus": {
+      "base": null,
+      "refs": {
+        "ConnectionHealth$Status": "<p>The connection status.</p>"
+      }
+    },
+    "ConnectionType": {
+      "base": null,
+      "refs": {
+        "ConnectionHealth$Type": "<p>The connection type.</p>"
       }
     },
     "CreateConnectionRequest": {
@@ -190,9 +226,13 @@
       "base": null,
       "refs": {
         "Connection$CreatedAt": "<p>The date and time that the connection was created.</p>",
+        "ConnectionHealth$Timestamp": "<p>The time the status was last updated.</p>",
         "Device$CreatedAt": "<p>The date and time that the site was created.</p>",
+        "GetNetworkRoutesResponse$RouteTableTimestamp": "<p>The route table creation time.</p>",
         "GlobalNetwork$CreatedAt": "<p>The date and time that the global network was created.</p>",
         "Link$CreatedAt": "<p>The date and time that the link was created.</p>",
+        "NetworkResource$DefinitionTimestamp": "<p>The time that the resource definition was retrieved.</p>",
+        "RouteAnalysis$StartTimestamp": "<p>The time that the analysis started.</p>",
         "Site$CreatedAt": "<p>The date and time that the site was created.</p>"
       }
     },
@@ -317,6 +357,48 @@
       "refs": {
       }
     },
+    "ExceptionContextKey": {
+      "base": null,
+      "refs": {
+        "ExceptionContextMap$key": null
+      }
+    },
+    "ExceptionContextMap": {
+      "base": null,
+      "refs": {
+        "ResourceNotFoundException$Context": null
+      }
+    },
+    "ExceptionContextValue": {
+      "base": null,
+      "refs": {
+        "ExceptionContextMap$value": null
+      }
+    },
+    "FilterMap": {
+      "base": null,
+      "refs": {
+        "GetNetworkRoutesRequest$DestinationFilters": "<p>Filter by route table destination. Possible Values: TRANSIT_GATEWAY_ATTACHMENT_ID, RESOURCE_ID, or RESOURCE_TYPE.</p>"
+      }
+    },
+    "FilterName": {
+      "base": null,
+      "refs": {
+        "FilterMap$key": null
+      }
+    },
+    "FilterValue": {
+      "base": null,
+      "refs": {
+        "FilterValues$member": null
+      }
+    },
+    "FilterValues": {
+      "base": null,
+      "refs": {
+        "FilterMap$value": null
+      }
+    },
     "GetConnectionsRequest": {
       "base": null,
       "refs": {
@@ -363,6 +445,66 @@
       }
     },
     "GetLinksResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkResourceCountsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkResourceCountsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkResourceRelationshipsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkResourceRelationshipsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkResourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkRoutesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkRoutesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkTelemetryRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkTelemetryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRouteAnalysisRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRouteAnalysisResponse": {
       "base": null,
       "refs": {
       }
@@ -422,7 +564,9 @@
       "base": null,
       "refs": {
         "Bandwidth$UploadSpeed": "<p>Upload speed in Mbps.</p>",
-        "Bandwidth$DownloadSpeed": "<p>Download speed in Mbps.</p>"
+        "Bandwidth$DownloadSpeed": "<p>Download speed in Mbps.</p>",
+        "NetworkResourceCount$Count": "<p>The resource count.</p>",
+        "PathComponent$Sequence": "<p>The sequence number in the path. The destination is 0.</p>"
       }
     },
     "InternalServerException": {
@@ -501,9 +645,129 @@
         "GetDevicesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetLinkAssociationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetLinksRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "GetNetworkResourceCountsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "GetNetworkResourceRelationshipsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "GetNetworkResourcesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "GetNetworkTelemetryRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetSitesRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetTransitGatewayConnectPeerAssociationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetTransitGatewayRegistrationsRequest$MaxResults": "<p>The maximum number of results to return.</p>"
+      }
+    },
+    "NetworkResource": {
+      "base": "<p>Describes a network resource.</p>",
+      "refs": {
+        "NetworkResourceList$member": null
+      }
+    },
+    "NetworkResourceCount": {
+      "base": "<p>Describes a resource count.</p>",
+      "refs": {
+        "NetworkResourceCountList$member": null
+      }
+    },
+    "NetworkResourceCountList": {
+      "base": null,
+      "refs": {
+        "GetNetworkResourceCountsResponse$NetworkResourceCounts": "<p>The count of resources.</p>"
+      }
+    },
+    "NetworkResourceList": {
+      "base": null,
+      "refs": {
+        "GetNetworkResourcesResponse$NetworkResources": "<p>The network resources.</p>"
+      }
+    },
+    "NetworkResourceMetadataKey": {
+      "base": null,
+      "refs": {
+        "NetworkResourceMetadataMap$key": null
+      }
+    },
+    "NetworkResourceMetadataMap": {
+      "base": null,
+      "refs": {
+        "NetworkResource$Metadata": "<p>The resource metadata.</p>",
+        "UpdateNetworkResourceMetadataRequest$Metadata": "<p>The resource metadata.</p>",
+        "UpdateNetworkResourceMetadataResponse$Metadata": "<p>The updated resource metadata.</p>"
+      }
+    },
+    "NetworkResourceMetadataValue": {
+      "base": null,
+      "refs": {
+        "NetworkResourceMetadataMap$value": null
+      }
+    },
+    "NetworkResourceSummary": {
+      "base": "<p>Describes a network resource.</p>",
+      "refs": {
+        "PathComponent$Resource": "<p>The resource.</p>"
+      }
+    },
+    "NetworkRoute": {
+      "base": "<p>Describes a network route.</p>",
+      "refs": {
+        "NetworkRouteList$member": null
+      }
+    },
+    "NetworkRouteDestination": {
+      "base": "<p>Describes the destination of a network route.</p>",
+      "refs": {
+        "NetworkRouteDestinationList$member": null
+      }
+    },
+    "NetworkRouteDestinationList": {
+      "base": null,
+      "refs": {
+        "NetworkRoute$Destinations": "<p>The destinations.</p>"
+      }
+    },
+    "NetworkRouteList": {
+      "base": null,
+      "refs": {
+        "GetNetworkRoutesResponse$NetworkRoutes": "<p>The network routes.</p>"
+      }
+    },
+    "NetworkTelemetry": {
+      "base": "<p>Describes the telemetry information for a resource.</p>",
+      "refs": {
+        "NetworkTelemetryList$member": null
+      }
+    },
+    "NetworkTelemetryList": {
+      "base": null,
+      "refs": {
+        "GetNetworkTelemetryResponse$NetworkTelemetry": "<p>The network telemetry.</p>"
+      }
+    },
+    "PathComponent": {
+      "base": "<p>Describes a path component.</p>",
+      "refs": {
+        "PathComponentList$member": null
+      }
+    },
+    "PathComponentList": {
+      "base": null,
+      "refs": {
+        "RouteAnalysisPath$Path": "<p>The route analysis path.</p>"
+      }
+    },
+    "ReasonContextKey": {
+      "base": null,
+      "refs": {
+        "ReasonContextMap$key": null
+      }
+    },
+    "ReasonContextMap": {
+      "base": null,
+      "refs": {
+        "RouteAnalysisCompletion$ReasonContext": "<p>Additional information about the path. Available only if a connection is not found.</p>"
+      }
+    },
+    "ReasonContextValue": {
+      "base": null,
+      "refs": {
+        "ReasonContextMap$value": null
       }
     },
     "RegisterTransitGatewayRequest": {
@@ -514,6 +778,18 @@
     "RegisterTransitGatewayResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Relationship": {
+      "base": "<p>Describes a resource relationship.</p>",
+      "refs": {
+        "RelationshipList$member": null
+      }
+    },
+    "RelationshipList": {
+      "base": null,
+      "refs": {
+        "GetNetworkResourceRelationshipsResponse$Relationships": "<p>The resource relationships.</p>"
       }
     },
     "ResourceARN": {
@@ -534,6 +810,96 @@
       "refs": {
         "InternalServerException$RetryAfterSeconds": "<p>Indicates when to retry the request.</p>",
         "ThrottlingException$RetryAfterSeconds": "<p>Indicates when to retry the request.</p>"
+      }
+    },
+    "RouteAnalysis": {
+      "base": "<p>Describes a route analysis.</p>",
+      "refs": {
+        "GetRouteAnalysisResponse$RouteAnalysis": "<p>The route analysis.</p>",
+        "StartRouteAnalysisResponse$RouteAnalysis": "<p>The route analysis.</p>"
+      }
+    },
+    "RouteAnalysisCompletion": {
+      "base": "<p>Describes the status of an analysis at completion.</p>",
+      "refs": {
+        "RouteAnalysisPath$CompletionStatus": "<p>The status of the analysis at completion.</p>"
+      }
+    },
+    "RouteAnalysisCompletionReasonCode": {
+      "base": null,
+      "refs": {
+        "RouteAnalysisCompletion$ReasonCode": "<p>The reason code. Available only if a connection is not found.</p> <ul> <li> <p> <code>BLACKHOLE_ROUTE_FOR_DESTINATION_FOUND</code> - Found a black hole route with the destination CIDR block.</p> </li> <li> <p> <code>CYCLIC_PATH_DETECTED</code> - Found the same resource multiple times while traversing the path.</p> </li> <li> <p> <code>INACTIVE_ROUTE_FOR_DESTINATION_FOUND</code> - Found an inactive route with the destination CIDR block.</p> </li> <li> <p> <code>MAX_HOPS_EXCEEDED</code> - Analysis exceeded 64 hops without finding the destination.</p> </li> <li> <p> <code>ROUTE_NOT_FOUND</code> - Cannot find a route table with the destination CIDR block.</p> </li> <li> <p> <code>TGW_ATTACH_ARN_NO_MATCH</code> - Found an attachment, but not with the correct destination ARN.</p> </li> <li> <p> <code>TGW_ATTACH_NOT_FOUND</code> - Cannot find an attachment.</p> </li> <li> <p> <code>TGW_ATTACH_NOT_IN_TGW</code> - Found an attachment, but not to the correct transit gateway.</p> </li> <li> <p> <code>TGW_ATTACH_STABLE_ROUTE_TABLE_NOT_FOUND</code> - The state of the route table association is not associated.</p> </li> </ul>"
+      }
+    },
+    "RouteAnalysisCompletionResultCode": {
+      "base": null,
+      "refs": {
+        "RouteAnalysisCompletion$ResultCode": "<p>The result of the analysis. If the status is <code>NOT_CONNECTED</code>, check the reason code.</p>"
+      }
+    },
+    "RouteAnalysisEndpointOptions": {
+      "base": "<p>Describes a source or a destination.</p>",
+      "refs": {
+        "RouteAnalysis$Source": "<p>The source.</p>",
+        "RouteAnalysis$Destination": "<p>The destination.</p>"
+      }
+    },
+    "RouteAnalysisEndpointOptionsSpecification": {
+      "base": "<p>Describes a source or a destination.</p>",
+      "refs": {
+        "StartRouteAnalysisRequest$Source": "<p>The source from which traffic originates.</p>",
+        "StartRouteAnalysisRequest$Destination": "<p>The destination.</p>"
+      }
+    },
+    "RouteAnalysisPath": {
+      "base": "<p>Describes a route analysis path.</p>",
+      "refs": {
+        "RouteAnalysis$ForwardPath": "<p>The forward path.</p>",
+        "RouteAnalysis$ReturnPath": "<p>The return path.</p>"
+      }
+    },
+    "RouteAnalysisStatus": {
+      "base": null,
+      "refs": {
+        "RouteAnalysis$Status": "<p>The status of the route analysis.</p>"
+      }
+    },
+    "RouteState": {
+      "base": null,
+      "refs": {
+        "NetworkRoute$State": "<p>The route state. The possible values are <code>active</code> and <code>blackhole</code>.</p>",
+        "RouteStateList$member": null
+      }
+    },
+    "RouteStateList": {
+      "base": null,
+      "refs": {
+        "GetNetworkRoutesRequest$States": "<p>The route states.</p>"
+      }
+    },
+    "RouteTableIdentifier": {
+      "base": "<p>Describes a route table.</p>",
+      "refs": {
+        "GetNetworkRoutesRequest$RouteTableIdentifier": "<p>The ID of the route table.</p>"
+      }
+    },
+    "RouteTableType": {
+      "base": null,
+      "refs": {
+        "GetNetworkRoutesResponse$RouteTableType": "<p>The route table type.</p>"
+      }
+    },
+    "RouteType": {
+      "base": null,
+      "refs": {
+        "NetworkRoute$Type": "<p>The route type. The possible values are <code>propagated</code> and <code>static</code>.</p>",
+        "RouteTypeList$member": null
+      }
+    },
+    "RouteTypeList": {
+      "base": null,
+      "refs": {
+        "GetNetworkRoutesRequest$Types": "<p>The route types.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -562,13 +928,23 @@
         "Site$State": "<p>The state of the site.</p>"
       }
     },
+    "StartRouteAnalysisRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartRouteAnalysisResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "String": {
       "base": null,
       "refs": {
-        "AWSLocation$Zone": "<p>The Zone the device is located in. This can be the ID of an Availability Zone, Local Zone, Wavelength Zone, or an Outpost.</p>",
-        "AWSLocation$SubnetArn": "<p>The Amazon Resource Name (ARN) of the subnet the device is located in.</p>",
+        "AWSLocation$Zone": "<p>The Zone that the device is located in. Specify the ID of an Availability Zone, Local Zone, Wavelength Zone, or an Outpost.</p>",
+        "AWSLocation$SubnetArn": "<p>The Amazon Resource Name (ARN) of the subnet that the device is located in.</p>",
         "AccessDeniedException$Message": null,
-        "AssociateCustomerGatewayRequest$CustomerGatewayArn": "<p>The Amazon Resource Name (ARN) of the customer gateway. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies\">Resources Defined by Amazon EC2</a>.</p>",
+        "AssociateCustomerGatewayRequest$CustomerGatewayArn": "<p>The Amazon Resource Name (ARN) of the customer gateway.</p>",
         "AssociateCustomerGatewayRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "AssociateCustomerGatewayRequest$DeviceId": "<p>The ID of the device.</p>",
         "AssociateCustomerGatewayRequest$LinkId": "<p>The ID of the link.</p>",
@@ -597,20 +973,20 @@
         "CreateConnectionRequest$ConnectedLinkId": "<p>The ID of the link for the second device.</p>",
         "CreateConnectionRequest$Description": "<p>A description of the connection.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
         "CreateDeviceRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
-        "CreateDeviceRequest$Description": "<p>A description of the device.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
+        "CreateDeviceRequest$Description": "<p>A description of the device.</p> <p>Constraints: Maximum length of 256 characters.</p>",
         "CreateDeviceRequest$Type": "<p>The type of the device.</p>",
-        "CreateDeviceRequest$Vendor": "<p>The vendor of the device.</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
-        "CreateDeviceRequest$Model": "<p>The model of the device.</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
-        "CreateDeviceRequest$SerialNumber": "<p>The serial number of the device.</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
+        "CreateDeviceRequest$Vendor": "<p>The vendor of the device.</p> <p>Constraints: Maximum length of 128 characters.</p>",
+        "CreateDeviceRequest$Model": "<p>The model of the device.</p> <p>Constraints: Maximum length of 128 characters.</p>",
+        "CreateDeviceRequest$SerialNumber": "<p>The serial number of the device.</p> <p>Constraints: Maximum length of 128 characters.</p>",
         "CreateDeviceRequest$SiteId": "<p>The ID of the site.</p>",
-        "CreateGlobalNetworkRequest$Description": "<p>A description of the global network.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
+        "CreateGlobalNetworkRequest$Description": "<p>A description of the global network.</p> <p>Constraints: Maximum length of 256 characters.</p>",
         "CreateLinkRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
-        "CreateLinkRequest$Description": "<p>A description of the link.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
-        "CreateLinkRequest$Type": "<p>The type of the link.</p> <p>Constraints: Cannot include the following characters: | \\ ^</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
-        "CreateLinkRequest$Provider": "<p>The provider of the link.</p> <p>Constraints: Cannot include the following characters: | \\ ^</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
+        "CreateLinkRequest$Description": "<p>A description of the link.</p> <p>Constraints: Maximum length of 256 characters.</p>",
+        "CreateLinkRequest$Type": "<p>The type of the link.</p> <p>Constraints: Maximum length of 128 characters. Cannot include the following characters: | \\ ^</p>",
+        "CreateLinkRequest$Provider": "<p>The provider of the link.</p> <p>Constraints: Maximum length of 128 characters. Cannot include the following characters: | \\ ^</p>",
         "CreateLinkRequest$SiteId": "<p>The ID of the site.</p>",
         "CreateSiteRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
-        "CreateSiteRequest$Description": "<p>A description of your site.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
+        "CreateSiteRequest$Description": "<p>A description of your site.</p> <p>Constraints: Maximum length of 256 characters.</p>",
         "CustomerGatewayAssociation$CustomerGatewayArn": "<p>The Amazon Resource Name (ARN) of the customer gateway.</p>",
         "CustomerGatewayAssociation$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "CustomerGatewayAssociation$DeviceId": "<p>The ID of the device.</p>",
@@ -638,7 +1014,7 @@
         "Device$SerialNumber": "<p>The device serial number.</p>",
         "Device$SiteId": "<p>The site ID.</p>",
         "DisassociateCustomerGatewayRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
-        "DisassociateCustomerGatewayRequest$CustomerGatewayArn": "<p>The Amazon Resource Name (ARN) of the customer gateway. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies\">Resources Defined by Amazon EC2</a>.</p>",
+        "DisassociateCustomerGatewayRequest$CustomerGatewayArn": "<p>The Amazon Resource Name (ARN) of the customer gateway.</p>",
         "DisassociateLinkRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "DisassociateLinkRequest$DeviceId": "<p>The ID of the device.</p>",
         "DisassociateLinkRequest$LinkId": "<p>The ID of the link.</p>",
@@ -666,6 +1042,38 @@
         "GetLinksRequest$Provider": "<p>The link provider.</p>",
         "GetLinksRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetLinksResponse$NextToken": "<p>The token for the next page of results.</p>",
+        "GetNetworkResourceCountsRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "GetNetworkResourceCountsRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
+        "GetNetworkResourceCountsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "GetNetworkResourceCountsResponse$NextToken": "<p>The token for the next page of results.</p>",
+        "GetNetworkResourceRelationshipsRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "GetNetworkResourceRelationshipsRequest$RegisteredGatewayArn": "<p>The ARN of the registered gateway.</p>",
+        "GetNetworkResourceRelationshipsRequest$AwsRegion": "<p>The Amazon Web Services Region.</p>",
+        "GetNetworkResourceRelationshipsRequest$AccountId": "<p>The Amazon Web Services account ID.</p>",
+        "GetNetworkResourceRelationshipsRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
+        "GetNetworkResourceRelationshipsRequest$ResourceArn": "<p>The ARN of the gateway.</p>",
+        "GetNetworkResourceRelationshipsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "GetNetworkResourceRelationshipsResponse$NextToken": "<p>The token for the next page of results.</p>",
+        "GetNetworkResourcesRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "GetNetworkResourcesRequest$RegisteredGatewayArn": "<p>The ARN of the gateway.</p>",
+        "GetNetworkResourcesRequest$AwsRegion": "<p>The Amazon Web Services Region.</p>",
+        "GetNetworkResourcesRequest$AccountId": "<p>The Amazon Web Services account ID.</p>",
+        "GetNetworkResourcesRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> - The definition model is <a href=\"https://docs.aws.amazon.com/directconnect/latest/APIReference/API_Connection.html\">Connection</a>.</p> </li> <li> <p> <code>dx-gateway</code> - The definition model is <a href=\"https://docs.aws.amazon.com/directconnect/latest/APIReference/API_DirectConnectGateway.html\">DirectConnectGateway</a>.</p> </li> <li> <p> <code>dx-vif</code> - The definition model is <a href=\"https://docs.aws.amazon.com/directconnect/latest/APIReference/API_VirtualInterface.html\">VirtualInterface</a>.</p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> - The definition model is <a href=\"https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Connection.html\">Connection</a>.</p> </li> <li> <p> <code>device</code> - The definition model is <a href=\"https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Device.html\">Device</a>.</p> </li> <li> <p> <code>link</code> - The definition model is <a href=\"https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Link.html\">Link</a>.</p> </li> <li> <p> <code>site</code> - The definition model is <a href=\"https://docs.aws.amazon.com/networkmanager/latest/APIReference/API_Site.html\">Site</a>.</p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CustomerGateway.html\">CustomerGateway</a>.</p> </li> <li> <p> <code>transit-gateway</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGateway.html\">TransitGateway</a>.</p> </li> <li> <p> <code>transit-gateway-attachment</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayAttachment.html\">TransitGatewayAttachment</a>.</p> </li> <li> <p> <code>transit-gateway-connect-peer</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayConnectPeer.html\">TransitGatewayConnectPeer</a>.</p> </li> <li> <p> <code>transit-gateway-route-table</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TransitGatewayRouteTable.html\">TransitGatewayRouteTable</a>.</p> </li> <li> <p> <code>vpn-connection</code> - The definition model is <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_VpnConnection.html\">VpnConnection</a>.</p> </li> </ul>",
+        "GetNetworkResourcesRequest$ResourceArn": "<p>The ARN of the resource.</p>",
+        "GetNetworkResourcesRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "GetNetworkResourcesResponse$NextToken": "<p>The token for the next page of results.</p>",
+        "GetNetworkRoutesRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "GetNetworkRoutesResponse$RouteTableArn": "<p>The ARN of the route table.</p>",
+        "GetNetworkTelemetryRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "GetNetworkTelemetryRequest$RegisteredGatewayArn": "<p>The ARN of the gateway.</p>",
+        "GetNetworkTelemetryRequest$AwsRegion": "<p>The Amazon Web Services Region.</p>",
+        "GetNetworkTelemetryRequest$AccountId": "<p>The Amazon Web Services account ID.</p>",
+        "GetNetworkTelemetryRequest$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
+        "GetNetworkTelemetryRequest$ResourceArn": "<p>The ARN of the resource.</p>",
+        "GetNetworkTelemetryRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "GetNetworkTelemetryResponse$NextToken": "<p>The token for the next page of results.</p>",
+        "GetRouteAnalysisRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "GetRouteAnalysisRequest$RouteAnalysisId": "<p>The ID of the route analysis.</p>",
         "GetSitesRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "GetSitesRequest$NextToken": "<p>The token for the next page of results.</p>",
         "GetSitesResponse$NextToken": "<p>The token for the next page of results.</p>",
@@ -692,11 +1100,48 @@
         "Location$Address": "<p>The physical address.</p>",
         "Location$Latitude": "<p>The latitude.</p>",
         "Location$Longitude": "<p>The longitude.</p>",
+        "NetworkResource$RegisteredGatewayArn": "<p>The ARN of the gateway.</p>",
+        "NetworkResource$AwsRegion": "<p>The Amazon Web Services Region.</p>",
+        "NetworkResource$AccountId": "<p>The Amazon Web Services account ID.</p>",
+        "NetworkResource$ResourceType": "<p>The resource type.</p> <p>The following are the supported resource types for Direct Connect:</p> <ul> <li> <p> <code>dxcon</code> </p> </li> <li> <p> <code>dx-gateway</code> </p> </li> <li> <p> <code>dx-vif</code> </p> </li> </ul> <p>The following are the supported resource types for Network Manager:</p> <ul> <li> <p> <code>connection</code> </p> </li> <li> <p> <code>device</code> </p> </li> <li> <p> <code>link</code> </p> </li> <li> <p> <code>site</code> </p> </li> </ul> <p>The following are the supported resource types for Amazon VPC:</p> <ul> <li> <p> <code>customer-gateway</code> </p> </li> <li> <p> <code>transit-gateway</code> </p> </li> <li> <p> <code>transit-gateway-attachment</code> </p> </li> <li> <p> <code>transit-gateway-connect-peer</code> </p> </li> <li> <p> <code>transit-gateway-route-table</code> </p> </li> <li> <p> <code>vpn-connection</code> </p> </li> </ul>",
+        "NetworkResource$ResourceId": "<p>The ID of the resource.</p>",
+        "NetworkResource$ResourceArn": "<p>The ARN of the resource.</p>",
+        "NetworkResource$Definition": "<p>Information about the resource, in JSON format. Network Manager gets this information by describing the resource using its Describe API call.</p>",
+        "NetworkResourceCount$ResourceType": "<p>The resource type.</p>",
+        "NetworkResourceSummary$RegisteredGatewayArn": "<p>The ARN of the gateway.</p>",
+        "NetworkResourceSummary$ResourceArn": "<p>The ARN of the resource.</p>",
+        "NetworkResourceSummary$ResourceType": "<p>The resource type.</p>",
+        "NetworkResourceSummary$Definition": "<p>Information about the resource, in JSON format. Network Manager gets this information by describing the resource using its Describe API call.</p>",
+        "NetworkResourceSummary$NameTag": "<p>The value for the Name tag.</p>",
+        "NetworkRoute$DestinationCidrBlock": "<p>A unique identifier for the route, such as a CIDR block.</p>",
+        "NetworkRoute$PrefixListId": "<p>The ID of the prefix list.</p>",
+        "NetworkRouteDestination$TransitGatewayAttachmentId": "<p>The ID of the transit gateway attachment.</p>",
+        "NetworkRouteDestination$ResourceType": "<p>The resource type.</p>",
+        "NetworkRouteDestination$ResourceId": "<p>The ID of the resource.</p>",
+        "NetworkTelemetry$RegisteredGatewayArn": "<p>The ARN of the gateway.</p>",
+        "NetworkTelemetry$AwsRegion": "<p>The Amazon Web Services Region.</p>",
+        "NetworkTelemetry$AccountId": "<p>The Amazon Web Services account ID.</p>",
+        "NetworkTelemetry$ResourceType": "<p>The resource type.</p>",
+        "NetworkTelemetry$ResourceId": "<p>The ID of the resource.</p>",
+        "NetworkTelemetry$ResourceArn": "<p>The ARN of the resource.</p>",
+        "NetworkTelemetry$Address": "<p>The address.</p>",
+        "PathComponent$DestinationCidrBlock": "<p>The destination CIDR block in the route table.</p>",
         "RegisterTransitGatewayRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
-        "RegisterTransitGatewayRequest$TransitGatewayArn": "<p>The Amazon Resource Name (ARN) of the transit gateway. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies\">Resources Defined by Amazon EC2</a>.</p>",
+        "RegisterTransitGatewayRequest$TransitGatewayArn": "<p>The Amazon Resource Name (ARN) of the transit gateway.</p>",
+        "Relationship$From": "<p>The ARN of the resource.</p>",
+        "Relationship$To": "<p>The ARN of the resource.</p>",
         "ResourceNotFoundException$Message": null,
         "ResourceNotFoundException$ResourceId": "<p>The ID of the resource.</p>",
         "ResourceNotFoundException$ResourceType": "<p>The resource type.</p>",
+        "RouteAnalysis$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "RouteAnalysis$OwnerAccountId": "<p>The ID of the AWS account that created the route analysis.</p>",
+        "RouteAnalysis$RouteAnalysisId": "<p>The ID of the route analysis.</p>",
+        "RouteAnalysisEndpointOptions$TransitGatewayAttachmentArn": "<p>The ARN of the transit gateway attachment.</p>",
+        "RouteAnalysisEndpointOptions$TransitGatewayArn": "<p>The ARN of the transit gateway.</p>",
+        "RouteAnalysisEndpointOptions$IpAddress": "<p>The IP address.</p>",
+        "RouteAnalysisEndpointOptionsSpecification$TransitGatewayAttachmentArn": "<p>The ARN of the transit gateway attachment.</p>",
+        "RouteAnalysisEndpointOptionsSpecification$IpAddress": "<p>The IP address.</p>",
+        "RouteTableIdentifier$TransitGatewayRouteTableArn": "<p>The ARN of the transit gateway route table.</p>",
         "ServiceQuotaExceededException$Message": "<p>The error message.</p>",
         "ServiceQuotaExceededException$ResourceId": "<p>The ID of the resource.</p>",
         "ServiceQuotaExceededException$ResourceType": "<p>The resource type.</p>",
@@ -706,6 +1151,7 @@
         "Site$SiteArn": "<p>The Amazon Resource Name (ARN) of the site.</p>",
         "Site$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "Site$Description": "<p>The description of the site.</p>",
+        "StartRouteAnalysisRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "StringList$member": null,
         "ThrottlingException$Message": null,
         "TransitGatewayConnectPeerAssociation$TransitGatewayConnectPeerArn": "<p>The Amazon Resource Name (ARN) of the transit gateway Connect peer.</p>",
@@ -722,22 +1168,25 @@
         "UpdateConnectionRequest$Description": "<p>A description of the connection.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
         "UpdateDeviceRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "UpdateDeviceRequest$DeviceId": "<p>The ID of the device.</p>",
-        "UpdateDeviceRequest$Description": "<p>A description of the device.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
+        "UpdateDeviceRequest$Description": "<p>A description of the device.</p> <p>Constraints: Maximum length of 256 characters.</p>",
         "UpdateDeviceRequest$Type": "<p>The type of the device.</p>",
-        "UpdateDeviceRequest$Vendor": "<p>The vendor of the device.</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
-        "UpdateDeviceRequest$Model": "<p>The model of the device.</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
-        "UpdateDeviceRequest$SerialNumber": "<p>The serial number of the device.</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
+        "UpdateDeviceRequest$Vendor": "<p>The vendor of the device.</p> <p>Constraints: Maximum length of 128 characters.</p>",
+        "UpdateDeviceRequest$Model": "<p>The model of the device.</p> <p>Constraints: Maximum length of 128 characters.</p>",
+        "UpdateDeviceRequest$SerialNumber": "<p>The serial number of the device.</p> <p>Constraints: Maximum length of 128 characters.</p>",
         "UpdateDeviceRequest$SiteId": "<p>The ID of the site.</p>",
         "UpdateGlobalNetworkRequest$GlobalNetworkId": "<p>The ID of your global network.</p>",
-        "UpdateGlobalNetworkRequest$Description": "<p>A description of the global network.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
+        "UpdateGlobalNetworkRequest$Description": "<p>A description of the global network.</p> <p>Constraints: Maximum length of 256 characters.</p>",
         "UpdateLinkRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "UpdateLinkRequest$LinkId": "<p>The ID of the link.</p>",
-        "UpdateLinkRequest$Description": "<p>A description of the link.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
-        "UpdateLinkRequest$Type": "<p>The type of the link.</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
-        "UpdateLinkRequest$Provider": "<p>The provider of the link.</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
+        "UpdateLinkRequest$Description": "<p>A description of the link.</p> <p>Constraints: Maximum length of 256 characters.</p>",
+        "UpdateLinkRequest$Type": "<p>The type of the link.</p> <p>Constraints: Maximum length of 128 characters.</p>",
+        "UpdateLinkRequest$Provider": "<p>The provider of the link.</p> <p>Constraints: Maximum length of 128 characters.</p>",
+        "UpdateNetworkResourceMetadataRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
+        "UpdateNetworkResourceMetadataRequest$ResourceArn": "<p>The ARN of the resource.</p>",
+        "UpdateNetworkResourceMetadataResponse$ResourceArn": "<p>The ARN of the resource.</p>",
         "UpdateSiteRequest$GlobalNetworkId": "<p>The ID of the global network.</p>",
         "UpdateSiteRequest$SiteId": "<p>The ID of your site.</p>",
-        "UpdateSiteRequest$Description": "<p>A description of your site.</p> <p>Length Constraints: Maximum length of 256 characters.</p>",
+        "UpdateSiteRequest$Description": "<p>A description of your site.</p> <p>Constraints: Maximum length of 256 characters.</p>",
         "ValidationException$Message": null,
         "ValidationExceptionField$Name": "<p>The name of the field.</p>",
         "ValidationExceptionField$Message": "<p>The message for the field.</p>"
@@ -748,9 +1197,14 @@
       "refs": {
         "DescribeGlobalNetworksRequest$GlobalNetworkIds": "<p>The IDs of one or more global networks. The maximum is 10.</p>",
         "GetConnectionsRequest$ConnectionIds": "<p>One or more connection IDs.</p>",
-        "GetCustomerGatewayAssociationsRequest$CustomerGatewayArns": "<p>One or more customer gateway Amazon Resource Names (ARNs). For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonec2.html#amazonec2-resources-for-iam-policies\">Resources Defined by Amazon EC2</a>. The maximum is 10.</p>",
+        "GetCustomerGatewayAssociationsRequest$CustomerGatewayArns": "<p>One or more customer gateway Amazon Resource Names (ARNs). The maximum is 10.</p>",
         "GetDevicesRequest$DeviceIds": "<p>One or more device IDs. The maximum is 10.</p>",
         "GetLinksRequest$LinkIds": "<p>One or more link IDs. The maximum is 10.</p>",
+        "GetNetworkRoutesRequest$ExactCidrMatches": "<p>An exact CIDR block.</p>",
+        "GetNetworkRoutesRequest$LongestPrefixMatches": "<p>The most specific route that matches the traffic (longest prefix match).</p>",
+        "GetNetworkRoutesRequest$SubnetOfMatches": "<p>The routes with a subnet that match the specified CIDR filter.</p>",
+        "GetNetworkRoutesRequest$SupernetOfMatches": "<p>The routes with a CIDR that encompasses the CIDR filter. Example: If you specify 10.0.1.0/30, then the result returns 10.0.1.0/29.</p>",
+        "GetNetworkRoutesRequest$PrefixListIds": "<p>The IDs of the prefix lists.</p>",
         "GetSitesRequest$SiteIds": "<p>One or more site IDs. The maximum is 10.</p>",
         "GetTransitGatewayConnectPeerAssociationsRequest$TransitGatewayConnectPeerArns": "<p>One or more transit gateway Connect peer Amazon Resource Names (ARNs).</p>",
         "GetTransitGatewayRegistrationsRequest$TransitGatewayArns": "<p>The Amazon Resource Names (ARNs) of one or more transit gateways. The maximum is 10.</p>"
@@ -765,7 +1219,7 @@
     "TagKey": {
       "base": null,
       "refs": {
-        "Tag$Key": "<p>The tag key.</p> <p>Length Constraints: Maximum length of 128 characters.</p>",
+        "Tag$Key": "<p>The tag key.</p> <p>Constraints: Maximum length of 128 characters.</p>",
         "TagKeyList$member": null
       }
     },
@@ -788,6 +1242,7 @@
         "GlobalNetwork$Tags": "<p>The tags for the global network.</p>",
         "Link$Tags": "<p>The tags for the link.</p>",
         "ListTagsForResourceResponse$TagList": "<p>The list of tags.</p>",
+        "NetworkResource$Tags": "<p>The tags.</p>",
         "Site$Tags": "<p>The tags for the site.</p>",
         "TagResourceRequest$Tags": "<p>The tags to apply to the specified resource.</p>"
       }
@@ -805,7 +1260,7 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": "<p>The tag value.</p> <p>Length Constraints: Maximum length of 256 characters.</p>"
+        "Tag$Value": "<p>The tag value.</p> <p>Constraints: Maximum length of 256 characters.</p>"
       }
     },
     "ThrottlingException": {
@@ -905,6 +1360,16 @@
       }
     },
     "UpdateLinkResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateNetworkResourceMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateNetworkResourceMetadataResponse": {
       "base": null,
       "refs": {
       }
