@@ -2010,9 +2010,8 @@ func detectConnectionType(awsCredentials map[string]string) (credsType, key, val
 	if awsCredentials[awsAccessKeyId] == "" || awsCredentials[awsSecretAccessKey] == "" {
 		if awsCredentials[roleArn] == "" {
 			return "", "", ""
-		} else {
-			return "roleBased", awsCredentials[roleArn], awsCredentials[externalID]
 		}
+		return "roleBased", awsCredentials[roleArn], awsCredentials[externalID]
 	}
 	return "userBased", awsCredentials[awsAccessKeyId], awsCredentials[awsSecretAccessKey]
 }
