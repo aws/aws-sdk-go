@@ -1,1215 +1,1670 @@
 {
-  "version" : "2.0",
-  "service" : null,
-  "operations" : {
-    "AcceptEulas" : "<p>Accept EULAs.</p>",
-    "CreateLaunchProfile" : "<p>Create a launch profile.</p>",
-    "CreateStreamingImage" : "<p>Creates a streaming image resource in a studio.</p>",
-    "CreateStreamingSession" : "<p>Creates a streaming session in a studio.</p> <p>After invoking this operation, you must poll GetStreamingSession until the streaming session is in state READY.</p>",
-    "CreateStreamingSessionStream" : "<p>Creates a streaming session stream for a streaming session.</p> <p>After invoking this API, invoke GetStreamingSessionStream with the returned streamId to poll the resource until it is in state READY.</p>",
-    "CreateStudio" : "<p>Create a new Studio.</p> <p>When creating a Studio, two IAM roles must be provided: the admin role and the user Role. These roles are assumed by your users when they log in to the Nimble Studio portal.</p> <p>The user role must have the AmazonNimbleStudio-StudioUser managed policy attached for the portal to function properly.</p> <p>The Admin Role must have the AmazonNimbleStudio-StudioAdmin managed policy attached for the portal to function properly.</p> <p>You may optionally specify a KMS key in the StudioEncryptionConfiguration.</p> <p>In Nimble Studio, resource names, descriptions, initialization scripts, and other data you provide are always encrypted at rest using an KMS key. By default, this key is owned by Amazon Web Services and managed on your behalf. You may provide your own KMS key when calling CreateStudio to encrypt this data using a key you own and manage.</p> <p>When providing an KMS key during studio creation, Nimble Studio creates KMS grants in your account to provide your studio user and admin roles access to these KMS keys.</p> <p>If you delete this grant, the studio will no longer be accessible to your portal users.</p> <p>If you delete the studio KMS key, your studio will no longer be accessible.</p>",
-    "CreateStudioComponent" : "<p>Creates a studio component resource.</p>",
-    "DeleteLaunchProfile" : "<p>Permanently delete a launch profile.</p>",
-    "DeleteLaunchProfileMember" : "<p>Delete a user from launch profile membership.</p>",
-    "DeleteStreamingImage" : "<p>Delete streaming image.</p>",
-    "DeleteStreamingSession" : "<p>Deletes streaming session resource.</p> <p>After invoking this operation, use GetStreamingSession to poll the resource until it transitions to a DELETED state.</p> <p>A streaming session will count against your streaming session quota until it is marked DELETED.</p>",
-    "DeleteStudio" : "<p>Delete a studio resource.</p>",
-    "DeleteStudioComponent" : "<p>Deletes a studio component resource.</p>",
-    "DeleteStudioMember" : "<p>Delete a user from studio membership.</p>",
-    "GetEula" : "<p>Get Eula.</p>",
-    "GetLaunchProfile" : "<p>Get a launch profile.</p>",
-    "GetLaunchProfileDetails" : "<p>Launch profile details include the launch profile resource and summary information of resources that are used by, or available to, the launch profile. This includes the name and description of all studio components used by the launch profiles, and the name and description of streaming images that can be used with this launch profile.</p>",
-    "GetLaunchProfileInitialization" : "<p>Get a launch profile initialization.</p>",
-    "GetLaunchProfileMember" : "<p>Get a user persona in launch profile membership.</p>",
-    "GetStreamingImage" : "<p>Get streaming image.</p>",
-    "GetStreamingSession" : "<p>Gets StreamingSession resource.</p> <p>Invoke this operation to poll for a streaming session state while creating or deleting a session.</p>",
-    "GetStreamingSessionStream" : "<p>Gets a StreamingSessionStream for a streaming session.</p> <p>Invoke this operation to poll the resource after invoking CreateStreamingSessionStream.</p> <p>After the StreamingSessionStream changes to the state READY, the url property will contain a stream to be used with the DCV streaming client.</p>",
-    "GetStudio" : "<p>Get a Studio resource.</p>",
-    "GetStudioComponent" : "<p>Gets a studio component resource.</p>",
-    "GetStudioMember" : "<p>Get a user's membership in a studio.</p>",
-    "ListEulaAcceptances" : "<p>List Eula Acceptances.</p>",
-    "ListEulas" : "<p>List Eulas.</p>",
-    "ListLaunchProfileMembers" : "<p>Get all users in a given launch profile membership.</p>",
-    "ListLaunchProfiles" : "<p>List all the launch profiles a studio.</p>",
-    "ListStreamingImages" : "<p>List the streaming image resources available to this studio.</p> <p>This list will contain both images provided by Amazon Web Services, as well as streaming images that you have created in your studio.</p>",
-    "ListStreamingSessions" : "<p>Lists the streaming image resources in a studio.</p>",
-    "ListStudioComponents" : "<p>Lists the StudioComponents in a studio.</p>",
-    "ListStudioMembers" : "<p>Get all users in a given studio membership.</p>",
-    "ListStudios" : "<p>List studios in your Amazon Web Services account in the requested Amazon Web Services Region.</p>",
-    "ListTagsForResource" : "<p>Gets the tags for a resource, given its Amazon Resource Names (ARN).</p> <p>This operation supports ARNs for all resource types in Nimble Studio that support tags, including studio, studio component, launch profile, streaming image, and streaming session. All resources that can be tagged will contain an ARN property, so you do not have to create this ARN yourself.</p>",
-    "PutLaunchProfileMembers" : "<p>Add/update users with given persona to launch profile membership.</p>",
-    "PutStudioMembers" : "<p>Add/update users with given persona to studio membership.</p>",
-    "StartStudioSSOConfigurationRepair" : "<p>Repairs the SSO configuration for a given studio.</p> <p>If the studio has a valid Amazon Web Services SSO configuration currently associated with it, this operation will fail with a validation error.</p> <p>If the studio does not have a valid Amazon Web Services SSO configuration currently associated with it, then a new Amazon Web Services SSO application is created for the studio and the studio is changed to the READY state.</p> <p>After the Amazon Web Services SSO application is repaired, you must use the Amazon Nimble Studio console to add administrators and users to your studio.</p>",
-    "TagResource" : "<p>Creates tags for a resource, given its ARN.</p>",
-    "UntagResource" : "<p>Deletes the tags for a resource.</p>",
-    "UpdateLaunchProfile" : "<p>Update a launch profile.</p>",
-    "UpdateLaunchProfileMember" : "<p>Update a user persona in launch profile membership.</p>",
-    "UpdateStreamingImage" : "<p>Update streaming image.</p>",
-    "UpdateStudio" : "<p>Update a Studio resource.</p> <p>Currently, this operation only supports updating the displayName of your studio.</p>",
-    "UpdateStudioComponent" : "<p>Updates a studio component resource.</p>"
+  "version": "2.0",
+  "service": "<p>Welcome to the Amazon Nimble Studio API reference. This API reference provides methods, schema, resources, parameters, and more to help you get the most out of Nimble Studio.</p> <p>Nimble Studio is a virtual studio that empowers visual effects, animation, and interactive content teams to create content securely within a scalable, private cloud service.</p>",
+  "operations": {
+    "AcceptEulas": "<p>Accept EULAs.</p>",
+    "CreateLaunchProfile": "<p>Create a launch profile.</p>",
+    "CreateStreamingImage": "<p>Creates a streaming image resource in a studio.</p>",
+    "CreateStreamingSession": "<p>Creates a streaming session in a studio.</p> <p>After invoking this operation, you must poll GetStreamingSession until the streaming session is in state READY.</p>",
+    "CreateStreamingSessionStream": "<p>Creates a streaming session stream for a streaming session.</p> <p>After invoking this API, invoke GetStreamingSessionStream with the returned streamId to poll the resource until it is in state READY.</p>",
+    "CreateStudio": "<p>Create a new Studio.</p> <p>When creating a Studio, two IAM roles must be provided: the admin role and the user Role. These roles are assumed by your users when they log in to the Nimble Studio portal.</p> <p>The user role must have the AmazonNimbleStudio-StudioUser managed policy attached for the portal to function properly.</p> <p>The Admin Role must have the AmazonNimbleStudio-StudioAdmin managed policy attached for the portal to function properly.</p> <p>You may optionally specify a KMS key in the StudioEncryptionConfiguration.</p> <p>In Nimble Studio, resource names, descriptions, initialization scripts, and other data you provide are always encrypted at rest using an KMS key. By default, this key is owned by Amazon Web Services and managed on your behalf. You may provide your own KMS key when calling CreateStudio to encrypt this data using a key you own and manage.</p> <p>When providing an KMS key during studio creation, Nimble Studio creates KMS grants in your account to provide your studio user and admin roles access to these KMS keys.</p> <p>If you delete this grant, the studio will no longer be accessible to your portal users.</p> <p>If you delete the studio KMS key, your studio will no longer be accessible.</p>",
+    "CreateStudioComponent": "<p>Creates a studio component resource.</p>",
+    "DeleteLaunchProfile": "<p>Permanently delete a launch profile.</p>",
+    "DeleteLaunchProfileMember": "<p>Delete a user from launch profile membership.</p>",
+    "DeleteStreamingImage": "<p>Delete streaming image.</p>",
+    "DeleteStreamingSession": "<p>Deletes streaming session resource.</p> <p>After invoking this operation, use GetStreamingSession to poll the resource until it transitions to a DELETED state.</p> <p>A streaming session will count against your streaming session quota until it is marked DELETED.</p>",
+    "DeleteStudio": "<p>Delete a studio resource.</p>",
+    "DeleteStudioComponent": "<p>Deletes a studio component resource.</p>",
+    "DeleteStudioMember": "<p>Delete a user from studio membership.</p>",
+    "GetEula": "<p>Get Eula.</p>",
+    "GetLaunchProfile": "<p>Get a launch profile.</p>",
+    "GetLaunchProfileDetails": "<p>Launch profile details include the launch profile resource and summary information of resources that are used by, or available to, the launch profile. This includes the name and description of all studio components used by the launch profiles, and the name and description of streaming images that can be used with this launch profile.</p>",
+    "GetLaunchProfileInitialization": "<p>Get a launch profile initialization.</p>",
+    "GetLaunchProfileMember": "<p>Get a user persona in launch profile membership.</p>",
+    "GetStreamingImage": "<p>Get streaming image.</p>",
+    "GetStreamingSession": "<p>Gets StreamingSession resource.</p> <p>anvoke this operation to poll for a streaming session state while creating or deleting a session.</p>",
+    "GetStreamingSessionStream": "<p>Gets a StreamingSessionStream for a streaming session.</p> <p>Invoke this operation to poll the resource after invoking CreateStreamingSessionStream.</p> <p>After the StreamingSessionStream changes to the state READY, the url property will contain a stream to be used with the DCV streaming client.</p>",
+    "GetStudio": "<p>Get a Studio resource.</p>",
+    "GetStudioComponent": "<p>Gets a studio component resource.</p>",
+    "GetStudioMember": "<p>Get a user's membership in a studio.</p>",
+    "ListEulaAcceptances": "<p>List Eula Acceptances.</p>",
+    "ListEulas": "<p>List Eulas.</p>",
+    "ListLaunchProfileMembers": "<p>Get all users in a given launch profile membership.</p>",
+    "ListLaunchProfiles": "<p>List all the launch profiles a studio.</p>",
+    "ListStreamingImages": "<p>List the streaming image resources available to this studio.</p> <p>This list will contain both images provided by Amazon Web Services, as well as streaming images that you have created in your studio.</p>",
+    "ListStreamingSessions": "<p>Lists the streaming image resources in a studio.</p>",
+    "ListStudioComponents": "<p>Lists the StudioComponents in a studio.</p>",
+    "ListStudioMembers": "<p>Get all users in a given studio membership.</p>",
+    "ListStudios": "<p>List studios in your Amazon Web Services account in the requested Amazon Web Services Region.</p>",
+    "ListTagsForResource": "<p>Gets the tags for a resource, given its Amazon Resource Names (ARN).</p> <p>This operation supports ARNs for all resource types in Nimble Studio that support tags, including studio, studio component, launch profile, streaming image, and streaming session. All resources that can be tagged will contain an ARN property, so you do not have to create this ARN yourself.</p>",
+    "PutLaunchProfileMembers": "<p>Add/update users with given persona to launch profile membership.</p>",
+    "PutStudioMembers": "<p>Add/update users with given persona to studio membership.</p>",
+    "StartStreamingSession": "<p> Transitions sessions from the STOPPED state into the READY state. The START_IN_PROGRESS state is the intermediate state between the STOPPED and READY states.</p>",
+    "StartStudioSSOConfigurationRepair": "<p>Repairs the Amazon Web Services SSO configuration for a given studio.</p> <p>If the studio has a valid Amazon Web Services SSO configuration currently associated with it, this operation will fail with a validation error.</p> <p>If the studio does not have a valid Amazon Web Services SSO configuration currently associated with it, then a new Amazon Web Services SSO application is created for the studio and the studio is changed to the READY state.</p> <p>After the Amazon Web Services SSO application is repaired, you must use the Amazon Nimble Studio console to add administrators and users to your studio.</p>",
+    "StopStreamingSession": "<p>Transitions sessions from the READY state into the STOPPED state. The STOP_IN_PROGRESS state is the intermediate state between the READY and STOPPED states.</p>",
+    "TagResource": "<p>Creates tags for a resource, given its ARN.</p>",
+    "UntagResource": "<p>Deletes the tags for a resource.</p>",
+    "UpdateLaunchProfile": "<p>Update a launch profile.</p>",
+    "UpdateLaunchProfileMember": "<p>Update a user persona in launch profile membership.</p>",
+    "UpdateStreamingImage": "<p>Update streaming image.</p>",
+    "UpdateStudio": "<p>Update a Studio resource.</p> <p>Currently, this operation only supports updating the displayName of your studio.</p>",
+    "UpdateStudioComponent": "<p>Updates a studio component resource.</p>"
   },
-  "shapes" : {
-    "AcceptEulasInput" : {
-      "base" : "",
-      "refs" : { }
+  "shapes": {
+    "AcceptEulasRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "AcceptEulasResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "AccessDeniedException": {
+      "base": "<p>You are not authorized to perform this operation. Check your IAM policies, and ensure that you are using the correct access keys.</p>",
+      "refs": {
+      }
+    },
+    "ActiveDirectoryComputerAttribute": {
+      "base": "<p>An LDAP attribute of an Active Directory computer account, in the form of a name:value pair.</p>",
+      "refs": {
+        "ActiveDirectoryComputerAttributeList$member": null
+      }
+    },
+    "ActiveDirectoryComputerAttributeList": {
+      "base": "<p>A collection of LDAP attributes to apply to Active Directory computer accounts that are created for streaming sessions.</p>",
+      "refs": {
+        "ActiveDirectoryConfiguration$computerAttributes": "<p>A collection of custom attributes for an Active Directory computer.</p>",
+        "LaunchProfileInitializationActiveDirectory$computerAttributes": "<p>A collection of custom attributes for an Active Directory computer.</p>"
+      }
+    },
+    "ActiveDirectoryComputerAttributeName": {
+      "base": "<p>The name for the LDAP attribute.</p>",
+      "refs": {
+        "ActiveDirectoryComputerAttribute$name": "<p>The name for the LDAP attribute.</p>"
+      }
+    },
+    "ActiveDirectoryComputerAttributeValue": {
+      "base": "<p>The value for the LDAP attribute.</p>",
+      "refs": {
+        "ActiveDirectoryComputerAttribute$value": "<p>The value for the LDAP attribute.</p>"
+      }
+    },
+    "ActiveDirectoryConfiguration": {
+      "base": "<p>The configuration for a Microsoft Active Directory (Microsoft AD) studio resource.</p>",
+      "refs": {
+        "StudioComponentConfiguration$activeDirectoryConfiguration": "<p>The configuration for a Microsoft Active Directory (Microsoft AD) studio resource.</p>"
+      }
+    },
+    "ActiveDirectoryDnsIpAddress": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "ActiveDirectoryDnsIpAddressList$member": null
+      }
+    },
+    "ActiveDirectoryDnsIpAddressList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfileInitializationActiveDirectory$dnsIpAddresses": "<p>The DNS IP address.</p>"
+      }
+    },
+    "ActiveDirectoryOrganizationalUnitDistinguishedName": {
+      "base": "<p>The fully-qualified distinguished name of the organizational unit to place the computer account in.</p>",
+      "refs": {
+        "ActiveDirectoryConfiguration$organizationalUnitDistinguishedName": "<p>The distinguished name (DN) and organizational unit (OU) of an Active Directory computer.</p>",
+        "LaunchProfileInitializationActiveDirectory$organizationalUnitDistinguishedName": "<p>The name for the organizational unit distinguished name.</p>"
+      }
+    },
+    "ClientToken": {
+      "base": null,
+      "refs": {
+        "AcceptEulasRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "CreateLaunchProfileRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "CreateStreamingImageRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "CreateStreamingSessionRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "CreateStreamingSessionStreamRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "CreateStudioComponentRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "CreateStudioRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "DeleteLaunchProfileMemberRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "DeleteLaunchProfileRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "DeleteStreamingImageRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "DeleteStreamingSessionRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "DeleteStudioComponentRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "DeleteStudioMemberRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "DeleteStudioRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "PutLaunchProfileMembersRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "PutStudioMembersRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "StartStreamingSessionRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "StartStudioSSOConfigurationRepairRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "StopStreamingSessionRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "UpdateLaunchProfileMemberRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "UpdateLaunchProfileRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "UpdateStreamingImageRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "UpdateStudioComponentRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>",
+        "UpdateStudioRequest$clientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don’t specify a client token, the AWS SDK automatically generates a client token and uses it for the request to ensure idempotency.</p>"
+      }
+    },
+    "ComputeFarmConfiguration": {
+      "base": "<p>The configuration for a render farm that is associated with a studio resource.</p>",
+      "refs": {
+        "StudioComponentConfiguration$computeFarmConfiguration": "<p>The configuration for a render farm that is associated with a studio resource.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Another operation is in progress. </p>",
+      "refs": {
+      }
+    },
+    "CreateLaunchProfileRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateLaunchProfileResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateStreamingImageRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateStreamingImageResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateStreamingSessionRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateStreamingSessionResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateStreamingSessionStreamRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateStreamingSessionStreamResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateStudioComponentRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateStudioComponentResponse": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "CreateStudioRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "CreateStudioResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "DeleteLaunchProfileMemberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLaunchProfileMemberResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "DeleteLaunchProfileRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLaunchProfileResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "DeleteStreamingImageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteStreamingImageResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "DeleteStreamingSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteStreamingSessionResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "DeleteStudioComponentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteStudioComponentResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "DeleteStudioMemberRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteStudioMemberResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "DeleteStudioRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteStudioResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
+    },
+    "DirectoryId": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "ActiveDirectoryConfiguration$directoryId": "<p>The directory ID of the Directory Service for Microsoft Active Directory to access using this studio component.</p>",
+        "LaunchProfileInitializationActiveDirectory$directoryId": "<p>The directory ID of the Directory Service for Microsoft Active Directory to access using this launch profile.</p>"
+      }
+    },
+    "EC2ImageId": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStreamingImageRequest$ec2ImageId": "<p>The ID of an EC2 machine image with which to create this streaming image.</p>",
+        "StreamingImage$ec2ImageId": "<p>The ID of an EC2 machine image with which to create the streaming image.</p>"
+      }
+    },
+    "EC2SubnetId": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "EC2SubnetIdList$member": null
+      }
+    },
+    "EC2SubnetIdList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateLaunchProfileRequest$ec2SubnetIds": "<p>Specifies the IDs of the EC2 subnets where streaming sessions will be accessible from. These subnets must support the specified instance types. </p>",
+        "LaunchProfile$ec2SubnetIds": "<p>Unique identifiers for a collection of EC2 subnets.</p>"
+      }
+    },
+    "Eula": {
+      "base": "<p>Represents a EULA resource.</p>",
+      "refs": {
+        "EulaList$member": null,
+        "GetEulaResponse$eula": "<p>The EULA.</p>"
+      }
+    },
+    "EulaAcceptance": {
+      "base": "<p>The acceptance of a EULA, required to use Amazon-provided streaming images.</p>",
+      "refs": {
+        "EulaAcceptanceList$member": null
+      }
+    },
+    "EulaAcceptanceId": {
+      "base": "<p>The EULA acceptance ID.</p>",
+      "refs": {
+        "EulaAcceptance$eulaAcceptanceId": "<p>The EULA acceptance ID.</p>"
+      }
+    },
+    "EulaAcceptanceList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "AcceptEulasResponse$eulaAcceptances": "<p>A collection of EULA acceptances.</p>",
+        "ListEulaAcceptancesResponse$eulaAcceptances": "<p>A collection of EULA acceptances.</p>"
+      }
+    },
+    "EulaId": {
+      "base": "<p>Represents a EULA resource.</p>",
+      "refs": {
+        "Eula$eulaId": "<p>The EULA ID.</p>",
+        "EulaAcceptance$eulaId": "<p>The EULA ID.</p>"
+      }
     },
-    "AcceptEulasOutput" : {
-      "base" : "",
-      "refs" : { }
+    "EulaIdList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "AcceptEulasRequest$eulaIds": "<p>The EULA ID.</p>",
+        "StreamingImage$eulaIds": "<p>The list of EULAs that must be accepted before a Streaming Session can be started using this streaming image.</p>"
+      }
+    },
+    "EulaList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "ListEulasResponse$eulas": "<p>A collection of EULA resources.</p>"
+      }
+    },
+    "EulaName": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "Eula$name": "<p>The name for the EULA.</p>"
+      }
     },
-    "AccessDeniedException" : {
-      "base" : "",
-      "refs" : { }
+    "ExceptionContext": {
+      "base": "<p>ExceptionContext is a set of key-value pairs that provide you with more information about the error that occurred. For example, when the service returns a 404 ResourceNotFound error, ExceptionContext will contain the key `resourceId` with the value of resource that was not found.</p> <p>ExceptionContext enables scripts and other programmatic clients to provide for better error handling.</p>",
+      "refs": {
+        "AccessDeniedException$context": "<p>The exception context.</p>",
+        "ConflictException$context": "<p>The exception context.</p>",
+        "InternalServerErrorException$context": "<p>The exception context.</p>",
+        "ResourceNotFoundException$context": "<p>The exception context.</p>",
+        "ServiceQuotaExceededException$context": "<p>The exception context.</p>",
+        "ThrottlingException$context": "<p>The exception context.</p>",
+        "ValidationException$context": "<p>The exception context.</p>"
+      }
     },
-    "ActiveDirectoryComputerAttribute" : {
-      "base" : "<p>An LDAP attribute of an Active Directory computer account, in the form of a name:value pair.</p>",
-      "refs" : {
-        "ActiveDirectoryComputerAttributeList$member" : null
+    "GetEulaRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "ActiveDirectoryComputerAttributeList" : {
-      "base" : "<p>A collection of LDAP attributes to apply to Active Directory computer accounts that are created for streaming sessions.</p>",
-      "refs" : {
-        "ActiveDirectoryConfiguration$ComputerAttributes" : "<p>A collection of custom attributes for an Active Directory computer.</p>",
-        "LaunchProfileInitializationActiveDirectory$ComputerAttributes" : "<p>A collection of custom attributes for an Active Directory computer.</p>"
+    "GetEulaResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "ActiveDirectoryComputerAttributeName" : {
-      "base" : "<p>The name for the LDAP attribute.</p>",
-      "refs" : {
-        "ActiveDirectoryComputerAttribute$Name" : "<p>The name for the LDAP attribute.</p>"
+    "GetLaunchProfileDetailsRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "ActiveDirectoryComputerAttributeValue" : {
-      "base" : "<p>The value for the LDAP attribute.</p>",
-      "refs" : {
-        "ActiveDirectoryComputerAttribute$Value" : "<p>The value for the LDAP attribute.</p>"
+    "GetLaunchProfileDetailsResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "ActiveDirectoryConfiguration" : {
-      "base" : "<p>The configuration for a Microsoft Active Directory (Microsoft AD) studio resource.</p>",
-      "refs" : {
-        "StudioComponentConfiguration$ActiveDirectoryConfiguration" : "<p>The configuration for a Microsoft Active Directory (Microsoft AD) studio resource.</p>"
+    "GetLaunchProfileInitializationRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "ActiveDirectoryDnsIpAddress" : {
-      "base" : null,
-      "refs" : {
-        "ActiveDirectoryDnsIpAddressList$member" : null
+    "GetLaunchProfileInitializationResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "ActiveDirectoryDnsIpAddressList" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfileInitializationActiveDirectory$DnsIpAddresses" : "<p>The DNS IP address.</p>"
+    "GetLaunchProfileMemberRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "ActiveDirectoryOrganizationalUnitDistinguishedName" : {
-      "base" : "<p>The fully-qualified distinguished name of the organizational unit to place the computer account in.</p>",
-      "refs" : {
-        "ActiveDirectoryConfiguration$OrganizationalUnitDistinguishedName" : "<p>The distinguished name (DN) and organizational unit (OU) of an Active Directory computer.</p>",
-        "LaunchProfileInitializationActiveDirectory$OrganizationalUnitDistinguishedName" : "<p>The name for the organizational unit distinguished name.</p>"
+    "GetLaunchProfileMemberResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "ComputeFarmConfiguration" : {
-      "base" : "<p>The configuration for a render farm that is associated with a studio resource.</p>",
-      "refs" : {
-        "StudioComponentConfiguration$ComputeFarmConfiguration" : "<p>The configuration for a render farm that is associated with a studio resource.</p>"
+    "GetLaunchProfileRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "ConflictException" : {
-      "base" : "",
-      "refs" : { }
+    "GetLaunchProfileResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "CreateLaunchProfileInput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStreamingImageRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "CreateLaunchProfileOutput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStreamingImageResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "CreateStreamingImageInput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStreamingSessionRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "CreateStreamingImageOutput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStreamingSessionResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "CreateStreamingSessionInput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStreamingSessionStreamRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "CreateStreamingSessionOutput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStreamingSessionStreamResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "CreateStreamingSessionStreamInput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStudioComponentRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "CreateStreamingSessionStreamOutput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStudioComponentResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "CreateStudioComponentInput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStudioMemberRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "CreateStudioComponentOutput" : {
-      "base" : "<p></p>",
-      "refs" : { }
+    "GetStudioMemberResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "CreateStudioInput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStudioRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "CreateStudioOutput" : {
-      "base" : "",
-      "refs" : { }
+    "GetStudioResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "DeleteLaunchProfileMemberOutput" : {
-      "base" : "",
-      "refs" : { }
+    "InternalServerErrorException": {
+      "base": "<p>An internal error has occurred. Please retry your request.</p>",
+      "refs": {
+      }
     },
-    "DeleteLaunchProfileOutput" : {
-      "base" : "",
-      "refs" : { }
+    "LaunchProfile": {
+      "base": "<p>A launch profile controls your artist workforce’s access to studio components, like compute farms, shared file systems, managed file systems, and license server configurations, as well as instance types and Amazon Machine Images (AMIs). </p> <pre><code> &lt;p&gt;Studio administrators create launch profiles in the Nimble Studio console. Artists can use their launch profiles to launch an instance from the Nimble Studio portal. Each user’s launch profile defines how they can launch a streaming session. By default, studio admins can use all launch profiles.&lt;/p&gt; </code></pre>",
+      "refs": {
+        "CreateLaunchProfileResponse$launchProfile": "<p>The launch profile.</p>",
+        "DeleteLaunchProfileResponse$launchProfile": "<p>The launch profile.</p>",
+        "GetLaunchProfileDetailsResponse$launchProfile": "<p>The launch profile.</p>",
+        "GetLaunchProfileResponse$launchProfile": "<p>The launch profile.</p>",
+        "LaunchProfileList$member": null,
+        "UpdateLaunchProfileResponse$launchProfile": "<p>The launch profile.</p>"
+      }
     },
-    "DeleteStreamingImageOutput" : {
-      "base" : "",
-      "refs" : { }
+    "LaunchProfileDescription": {
+      "base": "<p>A human-readable description of the launch profile.</p>",
+      "refs": {
+        "CreateLaunchProfileRequest$description": "<p>The description.</p>",
+        "LaunchProfile$description": "<p>A human-readable description of the launch profile.</p>",
+        "UpdateLaunchProfileRequest$description": "<p>The description.</p>"
+      }
     },
-    "DeleteStreamingSessionOutput" : {
-      "base" : "",
-      "refs" : { }
+    "LaunchProfileId": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfile$launchProfileId": "<p>The launch profile ID.</p>",
+        "LaunchProfileInitialization$launchProfileId": "<p>The launch profile ID.</p>"
+      }
     },
-    "DeleteStudioComponentOutput" : {
-      "base" : "",
-      "refs" : { }
+    "LaunchProfileInitialization": {
+      "base": "<p>A Launch Profile Initialization contains information required for a workstation or server to connect to a launch profile</p> <p>This includes scripts, endpoints, security groups, subnets, and other configuration.</p>",
+      "refs": {
+        "GetLaunchProfileInitializationResponse$launchProfileInitialization": "<p>The launch profile initialization.</p>"
+      }
     },
-    "DeleteStudioMemberOutput" : {
-      "base" : "",
-      "refs" : { }
+    "LaunchProfileInitializationActiveDirectory": {
+      "base": "<p/>",
+      "refs": {
+        "LaunchProfileInitialization$activeDirectory": "<p>A LaunchProfileInitializationActiveDirectory resource.</p>"
+      }
     },
-    "DeleteStudioOutput" : {
-      "base" : "",
-      "refs" : { }
+    "LaunchProfileInitializationScript": {
+      "base": "<p/>",
+      "refs": {
+        "LaunchProfileInitializationScriptList$member": null
+      }
     },
-    "DirectoryId" : {
-      "base" : null,
-      "refs" : {
-        "ActiveDirectoryConfiguration$DirectoryId" : "<p>The directory ID of the Directory Service for Microsoft Active Directory to access using this studio component.</p>",
-        "LaunchProfileInitializationActiveDirectory$DirectoryId" : "<p>The directory ID of the Directory Service for Microsoft Active Directory to access using this launch profile.</p>"
+    "LaunchProfileInitializationScriptList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfileInitialization$systemInitializationScripts": "<p>The system initializtion scripts.</p>",
+        "LaunchProfileInitialization$userInitializationScripts": "<p>The user initializtion scripts.</p>"
       }
     },
-    "EC2ImageId" : {
-      "base" : "",
-      "refs" : {
-        "CreateStreamingImageInput$Ec2ImageId" : "<p>The ID of an EC2 machine image with which to create this streaming image.</p>",
-        "StreamingImage$Ec2ImageId" : "<p>The ID of an EC2 machine image with which to create the streaming image.</p>"
+    "LaunchProfileList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "ListLaunchProfilesResponse$launchProfiles": "<p>A collection of launch profiles.</p>"
       }
     },
-    "EC2SubnetId" : {
-      "base" : null,
-      "refs" : {
-        "EC2SubnetIdList$member" : null
+    "LaunchProfileMembership": {
+      "base": "<p/>",
+      "refs": {
+        "GetLaunchProfileMemberResponse$member": "<p>The member.</p>",
+        "LaunchProfileMembershipList$member": null,
+        "UpdateLaunchProfileMemberResponse$member": "<p>The updated member. </p>"
       }
     },
-    "EC2SubnetIdList" : {
-      "base" : "",
-      "refs" : {
-        "CreateLaunchProfileInput$Ec2SubnetIds" : "",
-        "LaunchProfile$Ec2SubnetIds" : "<p>Unique identifiers for a collection of EC2 subnets.</p>"
+    "LaunchProfileMembershipList": {
+      "base": "<p/>",
+      "refs": {
+        "ListLaunchProfileMembersResponse$members": "<p>A list of members.</p>"
       }
     },
-    "Empty" : {
-      "base" : "",
-      "refs" : { }
+    "LaunchProfileName": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateLaunchProfileRequest$name": "<p>The name for the launch profile.</p>",
+        "LaunchProfile$name": "<p>A friendly name for the launch profile.</p>",
+        "LaunchProfileInitialization$name": "<p>The name for the launch profile.</p>",
+        "UpdateLaunchProfileRequest$name": "<p>The name for the launch profile.</p>"
+      }
     },
-    "Eula" : {
-      "base" : "<p>Represents a EULA resource.</p>",
-      "refs" : {
-        "EulaList$member" : null,
-        "GetEulaOutput$Eula" : "<p>The EULA.</p>"
+    "LaunchProfilePersona": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfileMembership$persona": "<p>The persona.</p>",
+        "NewLaunchProfileMember$persona": "<p>The persona.</p>",
+        "UpdateLaunchProfileMemberRequest$persona": "<p>The persona.</p>"
       }
     },
-    "EulaAcceptance" : {
-      "base" : "",
-      "refs" : {
-        "EulaAcceptanceList$member" : null
+    "LaunchProfilePlatform": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfileInitialization$platform": "<p>The platform of the launch platform, either WINDOWS or LINUX.</p>",
+        "StudioComponentInitializationScript$platform": "<p>The platform of the initialization script, either WINDOWS or LINUX.</p>"
       }
     },
-    "EulaAcceptanceId" : {
-      "base" : "<p>The EULA acceptance ID.</p>",
-      "refs" : {
-        "EulaAcceptance$EulaAcceptanceId" : "<p>The EULA acceptance ID.</p>"
+    "LaunchProfileProtocolVersion": {
+      "base": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
+      "refs": {
+        "LaunchProfileInitialization$launchProfileProtocolVersion": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
+        "LaunchProfileProtocolVersionList$member": null,
+        "StudioComponentInitializationScript$launchProfileProtocolVersion": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>"
       }
     },
-    "EulaAcceptanceList" : {
-      "base" : "",
-      "refs" : {
-        "AcceptEulasOutput$EulaAcceptances" : "<p>A collection of EULA acceptances.</p>",
-        "ListEulaAcceptancesOutput$EulaAcceptances" : "<p>A collection of EULA acceptances.</p>"
+    "LaunchProfileProtocolVersionList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateLaunchProfileRequest$launchProfileProtocolVersions": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
+        "LaunchProfile$launchProfileProtocolVersions": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
+        "UpdateLaunchProfileRequest$launchProfileProtocolVersions": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>"
       }
     },
-    "EulaId" : {
-      "base" : "<p>Represents a EULA resource.</p>",
-      "refs" : {
-        "Eula$EulaId" : "<p>The EULA ID.</p>",
-        "EulaAcceptance$EulaId" : "<p>The EULA ID.</p>"
+    "LaunchProfileSecurityGroupIdList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfileInitialization$ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>"
       }
     },
-    "EulaIdList" : {
-      "base" : "",
-      "refs" : {
-        "AcceptEulasInput$EulaIds" : "<p>The EULA ID.</p>",
-        "StreamingImage$EulaIds" : "<p>The list of EULAs that must be accepted before a Streaming Session can be started using this streaming image.</p>"
+    "LaunchProfileState": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfile$state": "<p>The current state.</p>"
       }
     },
-    "EulaList" : {
-      "base" : "",
-      "refs" : {
-        "ListEulasOutput$Eulas" : "<p>A collection of EULA resources.</p>"
+    "LaunchProfileStatusCode": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfile$statusCode": "<p>The status code.</p>"
       }
     },
-    "EulaName" : {
-      "base" : null,
-      "refs" : {
-        "Eula$Name" : "<p>The name for the EULA.</p>"
+    "LaunchProfileStudioComponentIdList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateLaunchProfileRequest$studioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
+        "LaunchProfile$studioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
+        "UpdateLaunchProfileRequest$studioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>"
       }
     },
-    "ExceptionContext" : {
-      "base" : "<p>ExceptionContext is a set of key-value pairs that provide you with more information about the error that occurred. For example, when the service returns a 404 ResourceNotFound error, ExceptionContext will contain the key `resourceId` with the value of resource that was not found.</p> <p>ExceptionContext enables scripts and other programmatic clients to provide for better error handling.</p>",
-      "refs" : {
-        "AccessDeniedException$Context" : "<p>The exception context.</p>",
-        "ConflictException$Context" : "<p>The exception context.</p>",
-        "InternalServerException$Context" : "<p>The exception context.</p>",
-        "ResourceNotFoundException$Context" : "<p>The exception context.</p>",
-        "ServiceQuotaExceededException$Context" : "<p>The exception context.</p>",
-        "ThrottlingException$Context" : "<p>The exception context.</p>",
-        "ValidationException$Context" : "<p>The exception context.</p>"
+    "LaunchPurpose": {
+      "base": "<p>The launch purpose.</p>",
+      "refs": {
+        "LaunchProfileInitialization$launchPurpose": "<p>The launch purpose.</p>"
       }
     },
-    "GetEulaOutput" : {
-      "base" : "",
-      "refs" : { }
+    "LicenseServiceConfiguration": {
+      "base": "<p>The configuration for a license service that is associated with a studio resource.</p>",
+      "refs": {
+        "StudioComponentConfiguration$licenseServiceConfiguration": "<p>The configuration for a license service that is associated with a studio resource.</p>"
+      }
     },
-    "GetLaunchProfileDetailsOutput" : {
-      "base" : "",
-      "refs" : { }
+    "LinuxMountPoint": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "SharedFileSystemConfiguration$linuxMountPoint": "<p>The mount location for a shared file system on a Linux virtual workstation.</p>"
+      }
     },
-    "GetLaunchProfileInitializationOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ListEulaAcceptancesRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "GetLaunchProfileMemberOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ListEulaAcceptancesResponse": {
+      "base": "<p/>",
+      "refs": {
+      }
     },
-    "GetLaunchProfileOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ListEulasRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "GetStreamingImageOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ListEulasResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "GetStreamingSessionOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ListLaunchProfileMembersRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "GetStreamingSessionStreamOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ListLaunchProfileMembersResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "GetStudioComponentOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ListLaunchProfilesRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "GetStudioMemberOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ListLaunchProfilesResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "GetStudioOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ListStreamingImagesRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "InternalServerErrorException" : {
-      "base" : "",
-      "refs" : { }
+    "ListStreamingImagesResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "InternalServerException" : {
-      "base" : "",
-      "refs" : { }
+    "ListStreamingSessionsRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "LaunchProfile" : {
-      "base" : "",
-      "refs" : {
-        "CreateLaunchProfileOutput$LaunchProfile" : "<p>The launch profile.</p>",
-        "DeleteLaunchProfileOutput$LaunchProfile" : "<p>The launch profile.</p>",
-        "GetLaunchProfileDetailsOutput$LaunchProfile" : "<p>The launch profile.</p>",
-        "GetLaunchProfileOutput$LaunchProfile" : "<p>The launch profile.</p>",
-        "LaunchProfileList$member" : null,
-        "UpdateLaunchProfileOutput$LaunchProfile" : "<p>The launch profile.</p>"
+    "ListStreamingSessionsResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "LaunchProfileDescription" : {
-      "base" : null,
-      "refs" : {
-        "CreateLaunchProfileInput$Description" : "<p>The description.</p>",
-        "LaunchProfile$Description" : "<p>A human-readable description of the launch profile.</p>",
-        "UpdateLaunchProfileInput$Description" : "<p>The description.</p>"
+    "ListStudioComponentsRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "LaunchProfileId" : {
-      "base" : null,
-      "refs" : {
-        "LaunchProfile$LaunchProfileId" : "<p>The launch profile ID.</p>",
-        "LaunchProfileInitialization$LaunchProfileId" : "<p>The launch profile ID.</p>"
+    "ListStudioComponentsResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "LaunchProfileInitialization" : {
-      "base" : "",
-      "refs" : {
-        "GetLaunchProfileInitializationOutput$LaunchProfileInitialization" : "<p>The launch profile initialization.</p>"
+    "ListStudioMembersRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "LaunchProfileInitializationActiveDirectory" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfileInitialization$ActiveDirectory" : "<p>A LaunchProfileInitializationActiveDirectory resource.</p>"
+    "ListStudioMembersResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "LaunchProfileInitializationScript" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfileInitializationScriptList$member" : null
+    "ListStudiosRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "LaunchProfileInitializationScriptList" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfileInitialization$SystemInitializationScripts" : "<p>The system initializtion scripts.</p>",
-        "LaunchProfileInitialization$UserInitializationScripts" : "<p>The user initializtion scripts.</p>"
+    "ListStudiosResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "LaunchProfileList" : {
-      "base" : "",
-      "refs" : {
-        "ListLaunchProfilesOutput$LaunchProfiles" : "<p>A collection of launch profiles.</p>"
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
       }
     },
-    "LaunchProfileMembership" : {
-      "base" : "",
-      "refs" : {
-        "GetLaunchProfileMemberOutput$Member" : "<p>The member.</p>",
-        "LaunchProfileMembershipList$member" : null
+    "ListTagsForResourceResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "LaunchProfileMembershipList" : {
-      "base" : "<p></p>",
-      "refs" : {
-        "ListLaunchProfileMembersOutput$Members" : "<p>A list of members.</p>"
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListLaunchProfileMembersRequest$maxResults": "<p>The max number of results to return in the response.</p>",
+        "ListLaunchProfilesRequest$maxResults": "<p>The max number of results to return in the response.</p>",
+        "ListStudioComponentsRequest$maxResults": "<p>The max number of results to return in the response.</p>",
+        "ListStudioMembersRequest$maxResults": "<p>The max number of results to return in the response.</p>"
       }
     },
-    "LaunchProfileName" : {
-      "base" : null,
-      "refs" : {
-        "CreateLaunchProfileInput$Name" : "<p>The name for the launch profile.</p>",
-        "LaunchProfile$Name" : "<p>A friendly name for the launch profile.</p>",
-        "LaunchProfileInitialization$Name" : "<p>The name for the launch profile.</p>",
-        "UpdateLaunchProfileInput$Name" : "<p>The name for the launch profile.</p>"
+    "NewLaunchProfileMember": {
+      "base": "<p/>",
+      "refs": {
+        "NewLaunchProfileMemberList$member": null
       }
     },
-    "LaunchProfilePersona" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfileMembership$Persona" : "<p>The persona.</p>",
-        "NewLaunchProfileMember$Persona" : "<p>The persona.</p>",
-        "UpdateLaunchProfileMemberInput$Persona" : "<p>The persona.</p>"
+    "NewLaunchProfileMemberList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "PutLaunchProfileMembersRequest$members": "<p>A list of members.</p>"
       }
     },
-    "LaunchProfilePlatform" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfileInitialization$Platform" : "<p>The platform of the launch platform, either WINDOWS or LINUX.</p>",
-        "StudioComponentInitializationScript$Platform" : "<p>The platform of the initialization script, either WINDOWS or LINUX.</p>"
+    "NewStudioMember": {
+      "base": "<p/>",
+      "refs": {
+        "NewStudioMemberList$member": null
       }
     },
-    "LaunchProfileProtocolVersion" : {
-      "base" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
-      "refs" : {
-        "LaunchProfileInitialization$LaunchProfileProtocolVersion" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
-        "LaunchProfileProtocolVersionList$member" : null,
-        "StudioComponentInitializationScript$LaunchProfileProtocolVersion" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>"
+    "NewStudioMemberList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "PutStudioMembersRequest$members": "<p>A list of members.</p>"
       }
     },
-    "LaunchProfileProtocolVersionList" : {
-      "base" : "",
-      "refs" : {
-        "CreateLaunchProfileInput$LaunchProfileProtocolVersions" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
-        "LaunchProfile$LaunchProfileProtocolVersions" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
-        "UpdateLaunchProfileInput$LaunchProfileProtocolVersions" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>"
+    "PutLaunchProfileMembersRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "LaunchProfileSecurityGroupIdList" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfileInitialization$Ec2SecurityGroupIds" : "<p>The EC2 security groups that control access to the studio component.</p>"
+    "PutLaunchProfileMembersResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "LaunchProfileState" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfile$State" : "<p>The current state.</p>"
+    "PutStudioMembersRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "LaunchProfileStatusCode" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfile$StatusCode" : "<p>The status code.</p>"
+    "PutStudioMembersResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
       }
     },
-    "LaunchProfileStudioComponentIdList" : {
-      "base" : "",
-      "refs" : {
-        "CreateLaunchProfileInput$StudioComponentIds" : "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
-        "LaunchProfile$StudioComponentIds" : "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
-        "UpdateLaunchProfileInput$StudioComponentIds" : "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>"
+    "Region": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "Studio$homeRegion": "<p>The Amazon Web Services Region where the studio resource is located.</p>"
       }
     },
-    "LaunchPurpose" : {
-      "base" : "<p>The launch purpose.</p>",
-      "refs" : {
-        "LaunchProfileInitialization$LaunchPurpose" : "<p>The launch purpose.</p>"
+    "ResourceNotFoundException": {
+      "base": "<p>The specified resource could not be found.</p>",
+      "refs": {
       }
     },
-    "LicenseServiceConfiguration" : {
-      "base" : "<p>The configuration for a license service that is associated with a studio resource.</p>",
-      "refs" : {
-        "StudioComponentConfiguration$LicenseServiceConfiguration" : "<p>The configuration for a license service that is associated with a studio resource.</p>"
+    "ScriptParameterKey": {
+      "base": "<p>A script parameter key.</p>",
+      "refs": {
+        "ScriptParameterKeyValue$key": "<p>A script parameter key.</p>"
       }
     },
-    "LinuxMountPoint" : {
-      "base" : "",
-      "refs" : {
-        "SharedFileSystemConfiguration$LinuxMountPoint" : "<p>The mount location for a shared file system on a Linux virtual workstation.</p>"
+    "ScriptParameterKeyValue": {
+      "base": "<p>A parameter for a studio component script, in the form of a key:value pair.</p>",
+      "refs": {
+        "StudioComponentScriptParameterKeyValueList$member": null
       }
     },
-    "ListEulaAcceptancesOutput" : {
-      "base" : "<p></p>",
-      "refs" : { }
+    "ScriptParameterValue": {
+      "base": "<p>A script parameter value.</p>",
+      "refs": {
+        "ScriptParameterKeyValue$value": "<p>A script parameter value.</p>"
+      }
     },
-    "ListEulasOutput" : {
-      "base" : "",
-      "refs" : { }
+    "SecurityGroupId": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfileSecurityGroupIdList$member": null,
+        "StudioComponentSecurityGroupIdList$member": null
+      }
     },
-    "ListLaunchProfileMembersOutput" : {
-      "base" : "",
-      "refs" : { }
+    "ServiceQuotaExceededException": {
+      "base": "<p>Your current quota does not allow you to perform the request action. You can request increases for some quotas, and other quotas cannot be increased.</p> <p>Please use AWS Service Quotas to request an increase. </p>",
+      "refs": {
+      }
     },
-    "ListLaunchProfilesOutput" : {
-      "base" : "",
-      "refs" : { }
+    "SharedFileSystemConfiguration": {
+      "base": "<p>The configuration for a shared file storage system that is associated with a studio resource.</p>",
+      "refs": {
+        "StudioComponentConfiguration$sharedFileSystemConfiguration": "<p>The configuration for a shared file storage system that is associated with a studio resource.</p>"
+      }
     },
-    "ListStreamingImagesOutput" : {
-      "base" : "",
-      "refs" : { }
+    "StartStreamingSessionRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "ListStreamingSessionsOutput" : {
-      "base" : "",
-      "refs" : { }
+    "StartStreamingSessionResponse": {
+      "base": null,
+      "refs": {
+      }
     },
-    "ListStudioComponentsOutput" : {
-      "base" : "",
-      "refs" : { }
+    "StartStudioSSOConfigurationRepairRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "ListStudioMembersOutput" : {
-      "base" : "",
-      "refs" : { }
+    "StartStudioSSOConfigurationRepairResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "ListStudiosOutput" : {
-      "base" : "",
-      "refs" : { }
+    "StopStreamingSessionRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "ListTagsOutput" : {
-      "base" : "",
-      "refs" : { }
+    "StopStreamingSessionResponse": {
+      "base": null,
+      "refs": {
+      }
     },
-    "NewLaunchProfileMember" : {
-      "base" : "",
-      "refs" : {
-        "NewLaunchProfileMemberList$member" : null
+    "StreamConfiguration": {
+      "base": "<p>A configuration for a streaming session.</p>",
+      "refs": {
+        "LaunchProfile$streamConfiguration": "<p>A configuration for a streaming session.</p>"
       }
     },
-    "NewLaunchProfileMemberList" : {
-      "base" : "",
-      "refs" : {
-        "PutLaunchProfileMembersInput$Members" : "<p>A list of members.</p>"
+    "StreamConfigurationCreate": {
+      "base": "<p>Configuration for streaming workstations created using this launch profile.</p>",
+      "refs": {
+        "CreateLaunchProfileRequest$streamConfiguration": "<p>A configuration for a streaming session.</p>",
+        "UpdateLaunchProfileRequest$streamConfiguration": "<p>A configuration for a streaming session.</p>"
       }
     },
-    "NewStudioMember" : {
-      "base" : "",
-      "refs" : {
-        "NewStudioMemberList$member" : null
+    "StreamConfigurationMaxSessionLengthInMinutes": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "StreamConfiguration$maxSessionLengthInMinutes": "<p>The length of time, in minutes, that a streaming session can be active before it is stopped or terminated. After this point, Nimble Studio automatically terminates or stops the session. The default length of time is 690 minutes, and the maximum length of time is 30 days.</p>",
+        "StreamConfigurationCreate$maxSessionLengthInMinutes": "<p>The length of time, in minutes, that a streaming session can be active before it is stopped or terminated. After this point, Nimble Studio automatically terminates or stops the session. The default length of time is 690 minutes, and the maximum length of time is 30 days.</p>"
       }
     },
-    "NewStudioMemberList" : {
-      "base" : "",
-      "refs" : {
-        "PutStudioMembersInput$Members" : "<p>A list of members.</p>"
+    "StreamConfigurationMaxStoppedSessionLengthInMinutes": {
+      "base": null,
+      "refs": {
+        "StreamConfiguration$maxStoppedSessionLengthInMinutes": "<p>Integer that determines if you can start and stop your sessions and how long a session can stay in the STOPPED state. The default value is 0. The maximum value is 5760.</p> <p>If the value is missing or set to 0, your sessions can’t be stopped. If you then call StopStreamingSession, the session fails. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be terminated by AWS (instead of stopped).</p> <p>If the value is set to a positive number, the session can be stopped. You can call StopStreamingSession to stop sessions in the READY state. If the time that a session stays in the READY state exceeds the maxSessionLengthInMinutes value, the session will automatically be stopped by AWS (instead of terminated).</p>",
+        "StreamConfigurationCreate$maxStoppedSessionLengthInMinutes": "<p>The length of time, in minutes, that a streaming session can be active before it is stopped or terminated. After this point, Nimble Studio automatically terminates or stops the session. The default length of time is 690 minutes, and the maximum length of time is 30 days.</p>"
       }
     },
-    "PutLaunchProfileMembersInput" : {
-      "base" : "",
-      "refs" : { }
+    "StreamingClipboardMode": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "StreamConfiguration$clipboardMode": "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>",
+        "StreamConfigurationCreate$clipboardMode": "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>"
+      }
     },
-    "PutStudioMembersInput" : {
-      "base" : "",
-      "refs" : { }
+    "StreamingImage": {
+      "base": "<p>Represents a streaming image resource.</p> <p>Streaming images are used by studio users to select which operating system and software they want to use in a Nimble Studio streaming session.</p> <p>Amazon provides a number of streaming images that include popular 3rd-party software.</p> <p>You can create your own streaming images using an Amazon Elastic Compute Cloud (Amazon EC2) machine image that you create for this purpose. You can also include software that your users require.</p>",
+      "refs": {
+        "CreateStreamingImageResponse$streamingImage": "<p>The streaming image.</p>",
+        "DeleteStreamingImageResponse$streamingImage": "<p>The streaming image.</p>",
+        "GetStreamingImageResponse$streamingImage": "<p>The streaming image.</p>",
+        "StreamingImageList$member": null,
+        "UpdateStreamingImageResponse$streamingImage": "<p/>"
+      }
     },
-    "PutStudioMembersOutput" : {
-      "base" : "",
-      "refs" : { }
+    "StreamingImageEncryptionConfiguration": {
+      "base": "<p>Specifies how a streaming image is encrypted.</p>",
+      "refs": {
+        "StreamingImage$encryptionConfiguration": "<p>The encryption configuration.</p>"
+      }
     },
-    "Region" : {
-      "base" : "",
-      "refs" : {
-        "Studio$HomeRegion" : "<p>The Amazon Web Services Region where the studio resource is located.</p>"
+    "StreamingImageEncryptionConfigurationKeyArn": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "StreamingImageEncryptionConfiguration$keyArn": "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
       }
     },
-    "ResourceNotFoundException" : {
-      "base" : "",
-      "refs" : { }
+    "StreamingImageEncryptionConfigurationKeyType": {
+      "base": "<p/>",
+      "refs": {
+        "StreamingImageEncryptionConfiguration$keyType": "<p>The type of KMS key that is used to encrypt studio data.</p>"
+      }
     },
-    "ScriptParameterKey" : {
-      "base" : "<p>A script parameter key.</p>",
-      "refs" : {
-        "ScriptParameterKeyValue$Key" : "<p>A script parameter key.</p>"
+    "StreamingImageId": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStreamingSessionRequest$streamingImageId": "<p>The ID of the streaming image.</p>",
+        "StreamingImage$streamingImageId": "<p>The ID of the streaming image.</p>",
+        "StreamingImageIdList$member": null,
+        "StreamingSession$streamingImageId": "<p>The ID of the streaming image.</p>"
       }
     },
-    "ScriptParameterKeyValue" : {
-      "base" : "<p>A parameter for a studio component script, in the form of a key:value pair.</p>",
-      "refs" : {
-        "StudioComponentScriptParameterKeyValueList$member" : null
+    "StreamingImageIdList": {
+      "base": "<p>A list of streaming image IDs that users can select from when launching a streaming session with this launch profile.</p>",
+      "refs": {
+        "StreamConfiguration$streamingImageIds": "<p>The streaming images that users can select from when launching a streaming session with this launch profile.</p>",
+        "StreamConfigurationCreate$streamingImageIds": "<p>The streaming images that users can select from when launching a streaming session with this launch profile.</p>"
       }
     },
-    "ScriptParameterValue" : {
-      "base" : "<p>A script parameter value.</p>",
-      "refs" : {
-        "ScriptParameterKeyValue$Value" : "<p>A script parameter value.</p>"
+    "StreamingImageList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "GetLaunchProfileDetailsResponse$streamingImages": "<p>A collection of streaming images.</p>",
+        "ListStreamingImagesResponse$streamingImages": "<p>A collection of streaming images.</p>"
       }
     },
-    "SecurityGroupId" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfileSecurityGroupIdList$member" : null,
-        "StudioComponentSecurityGroupIdList$member" : null
+    "StreamingImageOwner": {
+      "base": "<p>StreamingImageOwner is the owner of a particular streaming image.</p> <p>This string is either the studioId that contains the streaming image, or the word 'AMAZON' for images provided by Nimble Studio.</p>",
+      "refs": {
+        "StreamingImage$owner": "<p>The owner of the streaming image, either the studioId that contains the streaming image, or 'amazon' for images that are provided by Amazon Nimble Studio.</p>"
       }
     },
-    "ServiceQuotaExceededException" : {
-      "base" : "",
-      "refs" : { }
+    "StreamingImagePlatform": {
+      "base": "<p>The platform of this Streaming Image, either WINDOWS or LINUX.</p>",
+      "refs": {
+        "StreamingImage$platform": "<p>The platform of the streaming image, either WINDOWS or LINUX.</p>"
+      }
     },
-    "SharedFileSystemConfiguration" : {
-      "base" : "<p>The configuration for a shared file storage system that is associated with a studio resource.</p>",
-      "refs" : {
-        "StudioComponentConfiguration$SharedFileSystemConfiguration" : "<p>The configuration for a shared file storage system that is associated with a studio resource.</p>"
+    "StreamingImageState": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "StreamingImage$state": "<p>The current state.</p>"
       }
     },
-    "StartStudioSSOConfigurationRepairOutput" : {
-      "base" : "",
-      "refs" : { }
+    "StreamingImageStatusCode": {
+      "base": "<p>The status code.</p>",
+      "refs": {
+        "StreamingImage$statusCode": "<p>The status code.</p>"
+      }
     },
-    "StreamConfiguration" : {
-      "base" : "<p>A configuration for a streaming session.</p>",
-      "refs" : {
-        "LaunchProfile$StreamConfiguration" : "<p>A configuration for a streaming session.</p>"
+    "StreamingInstanceType": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStreamingSessionRequest$ec2InstanceType": "<p>The EC2 Instance type used for the streaming session.</p>",
+        "StreamingInstanceTypeList$member": null
       }
     },
-    "StreamConfigurationCreate" : {
-      "base" : "",
-      "refs" : {
-        "CreateLaunchProfileInput$StreamConfiguration" : "<p>A configuration for a streaming session.</p>",
-        "UpdateLaunchProfileInput$StreamConfiguration" : "<p>A configuration for a streaming session.</p>"
+    "StreamingInstanceTypeList": {
+      "base": "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>",
+      "refs": {
+        "StreamConfiguration$ec2InstanceTypes": "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>",
+        "StreamConfigurationCreate$ec2InstanceTypes": "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>"
       }
     },
-    "StreamConfigurationMaxSessionLengthInMinutes" : {
-      "base" : "",
-      "refs" : {
-        "StreamConfiguration$MaxSessionLengthInMinutes" : "<p>The length of time, in minutes, that a streaming session can run. After this point, Nimble Studio automatically terminates the session.</p>",
-        "StreamConfigurationCreate$MaxSessionLengthInMinutes" : "<p>The length of time, in minutes, that a streaming session can run. After this point, Nimble Studio automatically terminates the session.</p>"
+    "StreamingSession": {
+      "base": "<p>A streaming session is a virtual workstation created using a particular launch profile.</p>",
+      "refs": {
+        "CreateStreamingSessionResponse$session": "<p>The session.</p>",
+        "DeleteStreamingSessionResponse$session": "<p>The session.</p>",
+        "GetStreamingSessionResponse$session": "<p>The session.</p>",
+        "StartStreamingSessionResponse$session": null,
+        "StopStreamingSessionResponse$session": null,
+        "StreamingSessionList$member": null
       }
     },
-    "StreamingClipboardMode" : {
-      "base" : "",
-      "refs" : {
-        "StreamConfiguration$ClipboardMode" : "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>",
-        "StreamConfigurationCreate$ClipboardMode" : "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>"
+    "StreamingSessionId": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "StreamingSession$sessionId": "<p>The session ID.</p>"
       }
     },
-    "StreamingImage" : {
-      "base" : "",
-      "refs" : {
-        "CreateStreamingImageOutput$StreamingImage" : "",
-        "DeleteStreamingImageOutput$StreamingImage" : "<p>The streaming image.</p>",
-        "GetStreamingImageOutput$StreamingImage" : "<p>The streaming image.</p>",
-        "StreamingImageList$member" : null,
-        "UpdateStreamingImageOutput$StreamingImage" : "<p></p>"
+    "StreamingSessionList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "ListStreamingSessionsResponse$sessions": "<p>A collection of streaming sessions.</p>"
       }
     },
-    "StreamingImageDescription" : {
-      "base" : "<p>The description.</p>",
-      "refs" : {
-        "CreateStreamingImageInput$Description" : "<p>A human-readable description of the streaming image.</p>",
-        "StreamingImage$Description" : "<p>A human-readable description of the streaming image.</p>",
-        "UpdateStreamingImageInput$Description" : "<p>The description.</p>"
+    "StreamingSessionState": {
+      "base": "<p>The streaming session state.</p>",
+      "refs": {
+        "StreamingSession$state": "<p>The current state.</p>"
       }
     },
-    "StreamingImageEncryptionConfiguration" : {
-      "base" : "",
-      "refs" : {
-        "StreamingImage$EncryptionConfiguration" : "<p>The encryption configuration.</p>"
+    "StreamingSessionStatusCode": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "StreamingSession$statusCode": "<p>The status code.</p>"
       }
     },
-    "StreamingImageEncryptionConfigurationKeyArn" : {
-      "base" : "",
-      "refs" : {
-        "StreamingImageEncryptionConfiguration$KeyArn" : "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
+    "StreamingSessionStream": {
+      "base": "<p>A stream is an active connection to a streaming session, enabling a studio user to control the streaming session using a compatible client. Streaming session streams are compatible with the NICE DCV web client, included in the Nimble Studio portal, or the NICE DCV desktop client.</p>",
+      "refs": {
+        "CreateStreamingSessionStreamResponse$stream": "<p>The stream.</p>",
+        "GetStreamingSessionStreamResponse$stream": "<p>The stream.</p>"
       }
     },
-    "StreamingImageEncryptionConfigurationKeyType" : {
-      "base" : "<p></p>",
-      "refs" : {
-        "StreamingImageEncryptionConfiguration$KeyType" : "<p>The type of KMS key that is used to encrypt studio data.</p>"
+    "StreamingSessionStreamExpirationInSeconds": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStreamingSessionStreamRequest$expirationInSeconds": "<p>The expiration time in seconds.</p>"
       }
     },
-    "StreamingImageId" : {
-      "base" : "",
-      "refs" : {
-        "CreateStreamingSessionInput$StreamingImageId" : "<p>The ID of the streaming image.</p>",
-        "StreamingImage$StreamingImageId" : "<p>The ID of the streaming image.</p>",
-        "StreamingImageIdList$member" : null,
-        "StreamingSession$StreamingImageId" : "<p>The ID of the streaming image.</p>"
+    "StreamingSessionStreamState": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "StreamingSessionStream$state": "<p>The current state.</p>"
       }
     },
-    "StreamingImageIdList" : {
-      "base" : "<p>A list of streaming image IDs that users can select from when launching a streaming session with this launch profile.</p>",
-      "refs" : {
-        "StreamConfiguration$StreamingImageIds" : "<p>The streaming images that users can select from when launching a streaming session with this launch profile.</p>",
-        "StreamConfigurationCreate$StreamingImageIds" : "<p>The streaming images that users can select from when launching a streaming session with this launch profile.</p>"
+    "StreamingSessionStreamStatusCode": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "StreamingSessionStream$statusCode": "<p>The streaming session stream status code.</p>"
       }
     },
-    "StreamingImageList" : {
-      "base" : "",
-      "refs" : {
-        "GetLaunchProfileDetailsOutput$StreamingImages" : "<p>A collection of streaming images.</p>",
-        "ListStreamingImagesOutput$StreamingImages" : "<p>A collection of streaming images.</p>"
+    "String": {
+      "base": null,
+      "refs": {
+        "AcceptEulasRequest$studioId": "<p>A collection of EULA IDs.</p>",
+        "AccessDeniedException$code": "<p>A more specific error code.</p>",
+        "AccessDeniedException$message": "<p>A human-readable description of the error.</p>",
+        "ComputeFarmConfiguration$activeDirectoryUser": "<p>The name of an Active Directory user that is used on ComputeFarm worker instances.</p>",
+        "ConflictException$code": "<p>A more specific error code.</p>",
+        "ConflictException$message": "<p>A human-readable description of the error.</p>",
+        "CreateLaunchProfileRequest$studioId": "<p>The studio ID. </p>",
+        "CreateStreamingImageRequest$studioId": "<p>The studio ID. </p>",
+        "CreateStreamingSessionRequest$launchProfileId": "<p>The launch profile ID.</p>",
+        "CreateStreamingSessionRequest$ownedBy": "<p>The user ID of the user that owns the streaming session.</p>",
+        "CreateStreamingSessionRequest$studioId": "<p>The studio ID. </p>",
+        "CreateStreamingSessionStreamRequest$sessionId": "<p>The streaming session ID.</p>",
+        "CreateStreamingSessionStreamRequest$studioId": "<p>The studio ID. </p>",
+        "CreateStudioComponentRequest$studioId": "<p>The studio ID. </p>",
+        "CreateStudioRequest$adminRoleArn": "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
+        "CreateStudioRequest$userRoleArn": "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
+        "DeleteLaunchProfileMemberRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "DeleteLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "DeleteLaunchProfileMemberRequest$studioId": "<p>The studio ID. </p>",
+        "DeleteLaunchProfileRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "DeleteLaunchProfileRequest$studioId": "<p>The studio ID. </p>",
+        "DeleteStreamingImageRequest$streamingImageId": "<p>The streaming image ID.</p>",
+        "DeleteStreamingImageRequest$studioId": "<p>The studio ID. </p>",
+        "DeleteStreamingSessionRequest$sessionId": "<p>The streaming session ID.</p>",
+        "DeleteStreamingSessionRequest$studioId": "<p>The studio ID. </p>",
+        "DeleteStudioComponentRequest$studioComponentId": "<p>The studio component ID.</p>",
+        "DeleteStudioComponentRequest$studioId": "<p>The studio ID. </p>",
+        "DeleteStudioMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "DeleteStudioMemberRequest$studioId": "<p>The studio ID. </p>",
+        "DeleteStudioRequest$studioId": "<p>The studio ID. </p>",
+        "Eula$content": "<p>The EULA content.</p>",
+        "EulaAcceptance$acceptedBy": "<p>The ID of the person who accepted the EULA.</p>",
+        "EulaAcceptance$accepteeId": "<p>The ID of the acceptee.</p>",
+        "EulaIdList$member": null,
+        "ExceptionContext$key": null,
+        "ExceptionContext$value": null,
+        "GetEulaRequest$eulaId": "<p>The EULA ID.</p>",
+        "GetLaunchProfileDetailsRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "GetLaunchProfileDetailsRequest$studioId": "<p>The studio ID. </p>",
+        "GetLaunchProfileInitializationRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "GetLaunchProfileInitializationRequest$launchPurpose": "<p>The launch purpose.</p>",
+        "GetLaunchProfileInitializationRequest$platform": "<p>The platform where this Launch Profile will be used, either WINDOWS or LINUX.</p>",
+        "GetLaunchProfileInitializationRequest$studioId": "<p>The studio ID. </p>",
+        "GetLaunchProfileMemberRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "GetLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "GetLaunchProfileMemberRequest$studioId": "<p>The studio ID. </p>",
+        "GetLaunchProfileRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "GetLaunchProfileRequest$studioId": "<p>The studio ID. </p>",
+        "GetStreamingImageRequest$streamingImageId": "<p>The streaming image ID.</p>",
+        "GetStreamingImageRequest$studioId": "<p>The studio ID. </p>",
+        "GetStreamingSessionRequest$sessionId": "<p>The streaming session ID.</p>",
+        "GetStreamingSessionRequest$studioId": "<p>The studio ID. </p>",
+        "GetStreamingSessionStreamRequest$sessionId": "<p>The streaming session ID.</p>",
+        "GetStreamingSessionStreamRequest$streamId": "<p>The streaming session stream ID.</p>",
+        "GetStreamingSessionStreamRequest$studioId": "<p>The studio ID. </p>",
+        "GetStudioComponentRequest$studioComponentId": "<p>The studio component ID.</p>",
+        "GetStudioComponentRequest$studioId": "<p>The studio ID. </p>",
+        "GetStudioMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "GetStudioMemberRequest$studioId": "<p>The studio ID. </p>",
+        "GetStudioRequest$studioId": "<p>The studio ID. </p>",
+        "InternalServerErrorException$code": "<p>A more specific error code.</p>",
+        "InternalServerErrorException$message": "<p>A human-readable description of the error.</p>",
+        "LaunchProfile$arn": "<p>The ARN of the resource.</p>",
+        "LaunchProfile$createdBy": "<p>The user ID of the user that created the launch profile.</p>",
+        "LaunchProfile$statusMessage": "<p>The status message for the launch profile.</p>",
+        "LaunchProfile$updatedBy": "<p>The user ID of the user that most recently updated the resource.</p>",
+        "LaunchProfileInitializationActiveDirectory$directoryName": "<p>The directory name.</p>",
+        "LaunchProfileMembership$identityStoreId": "<p>The ID of the identity store.</p>",
+        "LaunchProfileMembership$principalId": "<p>The principal ID.</p>",
+        "LaunchProfileMembership$sid": "<p>The Active Directory Security Identifier for this user, if available.</p>",
+        "LaunchProfileStudioComponentIdList$member": null,
+        "ListEulaAcceptancesRequest$nextToken": "<p>The token to request the next page of results. </p>",
+        "ListEulaAcceptancesRequest$studioId": "<p>The studio ID. </p>",
+        "ListEulaAcceptancesResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListEulasRequest$nextToken": "<p>The token to request the next page of results. </p>",
+        "ListEulasResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListLaunchProfileMembersRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "ListLaunchProfileMembersRequest$nextToken": "<p>The token to request the next page of results. </p>",
+        "ListLaunchProfileMembersRequest$studioId": "<p>The studio ID. </p>",
+        "ListLaunchProfileMembersResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListLaunchProfilesRequest$nextToken": "<p>The token to request the next page of results. </p>",
+        "ListLaunchProfilesRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "ListLaunchProfilesRequest$studioId": "<p>The studio ID. </p>",
+        "ListLaunchProfilesResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStreamingImagesRequest$nextToken": "<p>The token to request the next page of results. </p>",
+        "ListStreamingImagesRequest$owner": "<p>Filter this request to streaming images with the given owner</p>",
+        "ListStreamingImagesRequest$studioId": "<p>The studio ID. </p>",
+        "ListStreamingImagesResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStreamingSessionsRequest$createdBy": "<p>Filters the request to streaming sessions created by the given user.</p>",
+        "ListStreamingSessionsRequest$nextToken": "<p>The token to request the next page of results. </p>",
+        "ListStreamingSessionsRequest$ownedBy": "<p>Filters the request to streaming session owned by the given user</p>",
+        "ListStreamingSessionsRequest$sessionIds": "<p>Filters the request to only the provided session IDs.</p>",
+        "ListStreamingSessionsRequest$studioId": "<p>The studio ID. </p>",
+        "ListStreamingSessionsResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStudioComponentsRequest$nextToken": "<p>The token to request the next page of results. </p>",
+        "ListStudioComponentsRequest$studioId": "<p>The studio ID. </p>",
+        "ListStudioComponentsResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStudioMembersRequest$nextToken": "<p>The token to request the next page of results. </p>",
+        "ListStudioMembersRequest$studioId": "<p>The studio ID. </p>",
+        "ListStudioMembersResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStudiosRequest$nextToken": "<p>The token to request the next page of results. </p>",
+        "ListStudiosResponse$nextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which you want to list tags.</p>",
+        "NewLaunchProfileMember$principalId": "<p>The principal ID.</p>",
+        "NewStudioMember$principalId": "<p>The principal ID.</p>",
+        "PutLaunchProfileMembersRequest$identityStoreId": "<p>The ID of the identity store.</p>",
+        "PutLaunchProfileMembersRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "PutLaunchProfileMembersRequest$studioId": "<p>The studio ID. </p>",
+        "PutStudioMembersRequest$identityStoreId": "<p>The ID of the identity store.</p>",
+        "PutStudioMembersRequest$studioId": "<p>The studio ID. </p>",
+        "ResourceNotFoundException$code": "<p>A more specific error code.</p>",
+        "ResourceNotFoundException$message": "<p>A human-readable description of the error.</p>",
+        "ServiceQuotaExceededException$code": "<p>A more specific error code.</p>",
+        "ServiceQuotaExceededException$message": "<p>A human-readable description of the error.</p>",
+        "SharedFileSystemConfiguration$fileSystemId": "<p>The unique identifier for a file system.</p>",
+        "StartStreamingSessionRequest$sessionId": "<p>The streaming session ID for the StartStreamingSessionRequest.</p>",
+        "StartStreamingSessionRequest$studioId": "<p>The studio ID for the StartStreamingSessionRequest.</p>",
+        "StartStudioSSOConfigurationRepairRequest$studioId": "<p>The studio ID. </p>",
+        "StopStreamingSessionRequest$sessionId": "<p>The streaming session ID for the StopStreamingSessionRequest.</p>",
+        "StopStreamingSessionRequest$studioId": "<p>The studioId for the StopStreamingSessionRequest.</p>",
+        "StreamingImage$arn": "<p>The ARN of the resource.</p>",
+        "StreamingImage$statusMessage": "<p>The status message for the streaming image.</p>",
+        "StreamingSession$arn": "<p>The ARN of the resource.</p>",
+        "StreamingSession$createdBy": "<p>The user ID of the user that created the streaming session.</p>",
+        "StreamingSession$ec2InstanceType": "<p>The EC2 Instance type used for the streaming session.</p>",
+        "StreamingSession$launchProfileId": "<p>The ID of the launch profile used to control access from the streaming session.</p>",
+        "StreamingSession$ownedBy": "<p>The user ID of the user that owns the streaming session.</p>",
+        "StreamingSession$startedBy": "<p>The user ID of the user that started the streaming session.</p>",
+        "StreamingSession$statusMessage": "<p>The status message for the streaming session.</p>",
+        "StreamingSession$stoppedBy": "<p>The user ID of the user that stopped the streaming session.</p>",
+        "StreamingSession$updatedBy": "<p>The user ID of the user that most recently updated the resource.</p>",
+        "StreamingSessionStream$createdBy": "<p>The user ID of the user that created the streaming session stream.</p>",
+        "StreamingSessionStream$ownedBy": "<p>The user ID of the user that owns the streaming session.</p>",
+        "StreamingSessionStream$streamId": "<p>The stream ID.</p>",
+        "StringList$member": null,
+        "Studio$adminRoleArn": "<p>The IAM role that studio admins assume when logging in to the Nimble Studio portal.</p>",
+        "Studio$arn": "<p>The Amazon Resource Name (ARN) that is assigned to a studio resource and uniquely identifies it. ARNs are unique across all Regions.</p>",
+        "Studio$ssoClientId": "<p>The Amazon Web Services SSO application client ID used to integrate with Amazon Web Services SSO to enable Amazon Web Services SSO users to log in to Nimble Studio portal.</p>",
+        "Studio$statusMessage": "<p>Additional detail on the studio state.</p>",
+        "Studio$studioId": "<p>The unique identifier for a studio resource. In Nimble Studio, all other resources are contained in a studio resource.</p>",
+        "Studio$studioUrl": "<p>The address of the web page for the studio.</p>",
+        "Studio$userRoleArn": "<p>The IAM role that studio users assume when logging in to the Nimble Studio portal.</p>",
+        "StudioComponent$arn": "<p>The ARN of the resource.</p>",
+        "StudioComponent$createdBy": "<p>The user ID of the user that created the studio component.</p>",
+        "StudioComponent$statusMessage": "<p>The status message for the studio component.</p>",
+        "StudioComponent$updatedBy": "<p>The user ID of the user that most recently updated the resource.</p>",
+        "StudioComponentSummary$createdBy": "<p>The user ID of the user that created the studio component.</p>",
+        "StudioComponentSummary$updatedBy": "<p>The user ID of the user that most recently updated the resource.</p>",
+        "StudioMembership$identityStoreId": "<p>The ID of the identity store.</p>",
+        "StudioMembership$principalId": "<p>The principal ID.</p>",
+        "StudioMembership$sid": "<p>The Active Directory Security Identifier for this user, if available.</p>",
+        "TagResourceRequest$resourceArn": "<p> The Amazon Resource Name (ARN) of the resource you want to add tags to. </p>",
+        "Tags$key": null,
+        "Tags$value": null,
+        "ThrottlingException$code": "<p>A more specific error code.</p>",
+        "ThrottlingException$message": "<p>A human-readable description of the error.</p>",
+        "UntagResourceRequest$resourceArn": "<p>Identifies the Amazon Resource Name(ARN) key from which you are removing tags. </p>",
+        "UpdateLaunchProfileMemberRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "UpdateLaunchProfileMemberRequest$principalId": "<p>The principal ID. This currently supports a Amazon Web Services SSO UserId. </p>",
+        "UpdateLaunchProfileMemberRequest$studioId": "<p>The studio ID. </p>",
+        "UpdateLaunchProfileRequest$launchProfileId": "<p>The Launch Profile ID.</p>",
+        "UpdateLaunchProfileRequest$studioId": "<p>The studio ID. </p>",
+        "UpdateStreamingImageRequest$streamingImageId": "<p>The streaming image ID.</p>",
+        "UpdateStreamingImageRequest$studioId": "<p>The studio ID. </p>",
+        "UpdateStudioComponentRequest$studioComponentId": "<p>The studio component ID.</p>",
+        "UpdateStudioComponentRequest$studioId": "<p>The studio ID. </p>",
+        "UpdateStudioRequest$adminRoleArn": "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
+        "UpdateStudioRequest$studioId": "<p>The studio ID. </p>",
+        "UpdateStudioRequest$userRoleArn": "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
+        "ValidationException$code": "<p>A more specific error code.</p>",
+        "ValidationException$message": "<p>A human-readable description of the error.</p>"
       }
     },
-    "StreamingImageName" : {
-      "base" : "<p>A friendly name for a streaming image resource.</p>",
-      "refs" : {
-        "CreateStreamingImageInput$Name" : "<p>A friendly name for a streaming image resource.</p>",
-        "StreamingImage$Name" : "<p>A friendly name for a streaming image resource.</p>",
-        "UpdateStreamingImageInput$Name" : "<p>The name for the streaming image.</p>"
+    "StringList": {
+      "base": null,
+      "refs": {
+        "GetLaunchProfileInitializationRequest$launchProfileProtocolVersions": "<p>The launch profile protocol versions supported by the client.</p>",
+        "ListEulaAcceptancesRequest$eulaIds": "<p>The list of EULA IDs that have been previously accepted.</p>",
+        "ListEulasRequest$eulaIds": "<p>The list of EULA IDs that should be returned</p>",
+        "ListLaunchProfilesRequest$states": "<p>Filter this request to launch profiles in any of the given states.</p>",
+        "ListStudioComponentsRequest$states": "<p>Filters the request to studio components that are in one of the given states. </p>",
+        "ListStudioComponentsRequest$types": "<p>Filters the request to studio components that are of one of the given types.</p>",
+        "UntagResourceRequest$tagKeys": "<p>One or more tag keys. Specify only the tag keys, not the tag values.</p>"
       }
     },
-    "StreamingImageOwner" : {
-      "base" : "<p>StreamingImageOwner is the owner of a particular streaming image.</p> <p>This string is either the studioId that contains the streaming image, or the word 'AMAZON' for images provided by Nimble Studio.</p>",
-      "refs" : {
-        "StreamingImage$Owner" : "<p>The owner of the streaming image, either the studioId that contains the streaming image, or 'amazon' for images that are provided by Amazon Nimble Studio.</p>"
+    "Studio": {
+      "base": "<p>Represents a studio resource.</p> <p>A studio is the core resource used with Nimble Studio. You must create a studio first, before any other resource type can be created. All other resources you create and manage in Nimble Studio are contained within a studio.</p> <p>When creating a studio, you must provides two IAM roles for use with the Nimble Studio portal. These roles are assumed by your users when they log in to the Nimble Studio portal via Amazon Web Services SSO and your identity source.</p> <p>The user role must have the AmazonNimbleStudio-StudioUser managed policy attached for the portal to function properly.</p> <p>The admin role must have the AmazonNimbleStudio-StudioAdmin managed policy attached for the portal to function properly.</p> <p>Your studio roles must trust the identity.nimble.amazonaws.com service principal to function properly.</p>",
+      "refs": {
+        "CreateStudioResponse$studio": "<p>Information about a studio.</p>",
+        "DeleteStudioResponse$studio": "<p>Information about a studio.</p>",
+        "GetStudioResponse$studio": "<p>Information about a studio.</p>",
+        "StartStudioSSOConfigurationRepairResponse$studio": "<p>Information about a studio.</p>",
+        "StudioList$member": null,
+        "UpdateStudioResponse$studio": "<p>Information about a studio.</p>"
       }
     },
-    "StreamingImagePlatform" : {
-      "base" : "<p>The platform of this Streaming Image, either WINDOWS or LINUX.</p>",
-      "refs" : {
-        "StreamingImage$Platform" : "<p>The platform of the streaming image, either WINDOWS or LINUX.</p>"
+    "StudioComponent": {
+      "base": "<p>A studio component represents a network resource to be used by a studio's users and workflows. A typical studio contains studio components for each of the following: render farm, Active Directory, licensing, and file system.</p> <p>Access to a studio component is managed by specifying security groups for the resource, as well as its endpoint.</p> <p>A studio component also has a set of initialization scripts that are returned by <code>GetLaunchProfileInitialization</code>. These initialization scripts run on streaming sessions when they start. They provide users with flexibility in controlling how the studio resources are configured on a streaming session.</p>",
+      "refs": {
+        "CreateStudioComponentResponse$studioComponent": "<p>Information about the studio component.</p>",
+        "DeleteStudioComponentResponse$studioComponent": "<p>Information about the studio component.</p>",
+        "GetStudioComponentResponse$studioComponent": "<p>Information about the studio component.</p>",
+        "StudioComponentList$member": null,
+        "UpdateStudioComponentResponse$studioComponent": "<p>Information about the studio component.</p>"
       }
     },
-    "StreamingImageState" : {
-      "base" : "",
-      "refs" : {
-        "StreamingImage$State" : "<p>The current state.</p>"
+    "StudioComponentConfiguration": {
+      "base": "<p>The configuration of the studio component, based on component type.</p>",
+      "refs": {
+        "CreateStudioComponentRequest$configuration": "<p>The configuration of the studio component, based on component type.</p>",
+        "StudioComponent$configuration": "<p>The configuration of the studio component, based on component type.</p>",
+        "UpdateStudioComponentRequest$configuration": "<p>The configuration of the studio component, based on component type.</p>"
       }
     },
-    "StreamingImageStatusCode" : {
-      "base" : "<p>The status code.</p>",
-      "refs" : {
-        "StreamingImage$StatusCode" : "<p>The status code.</p>"
+    "StudioComponentDescription": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStudioComponentRequest$description": "<p>The description.</p>",
+        "StudioComponent$description": "<p>A human-readable description for the studio component resource.</p>",
+        "StudioComponentSummary$description": "<p>The description.</p>",
+        "UpdateStudioComponentRequest$description": "<p>The description.</p>"
       }
     },
-    "StreamingInstanceType" : {
-      "base" : "",
-      "refs" : {
-        "CreateStreamingSessionInput$Ec2InstanceType" : "<p>The EC2 Instance type used for the streaming session.</p>",
-        "StreamingInstanceTypeList$member" : null
+    "StudioComponentId": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfileInitializationActiveDirectory$studioComponentId": "<p>The unique identifier for a studio component resource.</p>",
+        "LaunchProfileInitializationScript$studioComponentId": "<p>The unique identifier for a studio component resource.</p>",
+        "StudioComponent$studioComponentId": "<p>The unique identifier for a studio component resource.</p>",
+        "StudioComponentSummary$studioComponentId": "<p>The unique identifier for a studio component resource.</p>"
       }
     },
-    "StreamingInstanceTypeList" : {
-      "base" : "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>",
-      "refs" : {
-        "StreamConfiguration$Ec2InstanceTypes" : "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>",
-        "StreamConfigurationCreate$Ec2InstanceTypes" : "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>"
+    "StudioComponentInitializationScript": {
+      "base": "<p>Initialization scripts for studio components.</p>",
+      "refs": {
+        "StudioComponentInitializationScriptList$member": null
       }
     },
-    "StreamingSession" : {
-      "base" : "",
-      "refs" : {
-        "CreateStreamingSessionOutput$Session" : "<p>The session.</p>",
-        "DeleteStreamingSessionOutput$Session" : "<p>The session.</p>",
-        "GetStreamingSessionOutput$Session" : "<p>The session.</p>",
-        "StreamingSessionList$member" : null
+    "StudioComponentInitializationScriptContent": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "LaunchProfileInitializationScript$script": "<p>The initialization script.</p>",
+        "StudioComponentInitializationScript$script": "<p>The initialization script.</p>"
       }
     },
-    "StreamingSessionId" : {
-      "base" : null,
-      "refs" : {
-        "StreamingSession$SessionId" : "<p>The session ID.</p>"
+    "StudioComponentInitializationScriptList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStudioComponentRequest$initializationScripts": "<p>Initialization scripts for studio components.</p>",
+        "StudioComponent$initializationScripts": "<p>Initialization scripts for studio components.</p>",
+        "UpdateStudioComponentRequest$initializationScripts": "<p>Initialization scripts for studio components.</p>"
       }
     },
-    "StreamingSessionList" : {
-      "base" : "",
-      "refs" : {
-        "ListStreamingSessionsOutput$Sessions" : "<p>A collection of streaming sessions.</p>"
+    "StudioComponentInitializationScriptRunContext": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "StudioComponentInitializationScript$runContext": "<p>The method to use when running the initialization script.</p>"
       }
     },
-    "StreamingSessionState" : {
-      "base" : "<p>The streaming session state.</p>",
-      "refs" : {
-        "StreamingSession$State" : "<p>The current state.</p>"
+    "StudioComponentList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "ListStudioComponentsResponse$studioComponents": "<p>A collection of studio components.</p>"
       }
     },
-    "StreamingSessionStatusCode" : {
-      "base" : "",
-      "refs" : {
-        "StreamingSession$StatusCode" : "<p>The status code.</p>"
+    "StudioComponentName": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStudioComponentRequest$name": "<p>The name for the studio component.</p>",
+        "LaunchProfileInitializationActiveDirectory$studioComponentName": "<p>The name for the studio component.</p>",
+        "LaunchProfileInitializationScript$studioComponentName": "<p>The name for the studio component.</p>",
+        "StudioComponent$name": "<p>A friendly name for the studio component resource.</p>",
+        "StudioComponentSummary$name": "<p>The name for the studio component.</p>",
+        "UpdateStudioComponentRequest$name": "<p>The name for the studio component.</p>"
       }
     },
-    "StreamingSessionStream" : {
-      "base" : "",
-      "refs" : {
-        "CreateStreamingSessionStreamOutput$Stream" : "<p>The stream.</p>",
-        "GetStreamingSessionStreamOutput$Stream" : "<p>The stream.</p>"
+    "StudioComponentScriptParameterKeyValueList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStudioComponentRequest$scriptParameters": "<p>Parameters for the studio component scripts.</p>",
+        "StudioComponent$scriptParameters": "<p>Parameters for the studio component scripts.</p>",
+        "UpdateStudioComponentRequest$scriptParameters": "<p>Parameters for the studio component scripts.</p>"
       }
     },
-    "StreamingSessionStreamExpirationInSeconds" : {
-      "base" : "",
-      "refs" : {
-        "CreateStreamingSessionStreamInput$ExpirationInSeconds" : "<p>The expiration time in seconds.</p>"
+    "StudioComponentSecurityGroupIdList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStudioComponentRequest$ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>",
+        "StudioComponent$ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>",
+        "UpdateStudioComponentRequest$ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>"
       }
     },
-    "StreamingSessionStreamState" : {
-      "base" : "",
-      "refs" : {
-        "StreamingSessionStream$State" : "<p>The current state.</p>"
+    "StudioComponentState": {
+      "base": "<p>The current state of the studio component resource.</p> <p>While a studio component is being created, modified, or deleted, its state will equal \"CREATE_IN_PROGRESS\", \"UPDATE_IN_PROGRESS\", or \"DELETE_IN_PROGRESS\"</p> <p>These are called 'transition states'.</p> <p>No modifications may be made to the studio component while it is in a transition state.</p> <p>If creation of the resource fails, the state will change to `CREATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why creation failed. The resource in this state will automatically be deleted from your account after a period of time.</p> <p>If updating the resource fails, the state will change to `UPDATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked.</p> <p>If deleting the resource fails, the state will change to `DELETE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked. After the resource is deleted successfully, it will change to the \"DELETED\" state. The resource will no longer count against service quotas and cannot be used or acted upon any futher. It will be removed from your account after a period of time.</p>",
+      "refs": {
+        "StudioComponent$state": "<p>The current state.</p>"
       }
     },
-    "StreamingSessionStreamStatusCode" : {
-      "base" : null,
-      "refs" : {
-        "StreamingSessionStream$StatusCode" : "<p>The streaming session stream status code.</p>"
+    "StudioComponentStatusCode": {
+      "base": "<p>The current status of the studio component resource.</p> <p>When the resource is in the 'READY' state, the status code signals what the last mutation made to the resource was.</p> <p>When the resource is in a CREATE_FAILED/UPDATE_FAILED/DELETE_FAILED state, the status code signals what went wrong and why the mutation failed.</p>",
+      "refs": {
+        "StudioComponent$statusCode": "<p>The status code.</p>"
       }
     },
-    "Studio" : {
-      "base" : "",
-      "refs" : {
-        "CreateStudioOutput$Studio" : "<p>Information about a studio.</p>",
-        "DeleteStudioOutput$Studio" : "<p>Information about a studio.</p>",
-        "GetStudioOutput$Studio" : "<p>Information about a studio.</p>",
-        "StartStudioSSOConfigurationRepairOutput$Studio" : "<p>Information about a studio.</p>",
-        "StudioList$member" : null,
-        "UpdateStudioOutput$Studio" : "<p>Information about a studio.</p>"
+    "StudioComponentSubtype": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStudioComponentRequest$subtype": "<p>The specific subtype of a studio component.</p>",
+        "StudioComponent$subtype": "<p>The specific subtype of a studio component.</p>",
+        "StudioComponentSummary$subtype": "<p>The specific subtype of a studio component.</p>",
+        "UpdateStudioComponentRequest$subtype": "<p>The specific subtype of a studio component.</p>"
       }
     },
-    "StudioComponent" : {
-      "base" : "<p>A network that is used by a studio’s users and workflows, including render farm, Active Directory, licensing, and file system.</p>",
-      "refs" : {
-        "CreateStudioComponentOutput$StudioComponent" : "<p>Information about the studio component.</p>",
-        "DeleteStudioComponentOutput$StudioComponent" : "<p>Information about the studio component.</p>",
-        "GetStudioComponentOutput$StudioComponent" : "<p>Information about the studio component.</p>",
-        "StudioComponentList$member" : null,
-        "UpdateStudioComponentOutput$StudioComponent" : "<p>Information about the studio component.</p>"
+    "StudioComponentSummary": {
+      "base": "<p/>",
+      "refs": {
+        "StudioComponentSummaryList$member": null
       }
     },
-    "StudioComponentConfiguration" : {
-      "base" : "<p>The configuration of the studio component, based on component type.</p>",
-      "refs" : {
-        "CreateStudioComponentInput$Configuration" : "<p>The configuration of the studio component, based on component type.</p>",
-        "StudioComponent$Configuration" : "<p>The configuration of the studio component, based on component type.</p>",
-        "UpdateStudioComponentInput$Configuration" : "<p>The configuration of the studio component, based on component type.</p>"
+    "StudioComponentSummaryList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "GetLaunchProfileDetailsResponse$studioComponentSummaries": "<p>A collection of studio component summaries.</p>"
       }
     },
-    "StudioComponentDescription" : {
-      "base" : "",
-      "refs" : {
-        "CreateStudioComponentInput$Description" : "<p>The description.</p>",
-        "StudioComponent$Description" : "<p>A human-readable description for the studio component resource.</p>",
-        "StudioComponentSummary$Description" : "<p>The description.</p>",
-        "UpdateStudioComponentInput$Description" : "<p>The description.</p>"
+    "StudioComponentType": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStudioComponentRequest$type": "<p>The type of the studio component.</p>",
+        "StudioComponent$type": "<p>The type of the studio component.</p>",
+        "StudioComponentSummary$type": "<p>The type of the studio component.</p>",
+        "UpdateStudioComponentRequest$type": "<p>The type of the studio component.</p>"
       }
     },
-    "StudioComponentId" : {
-      "base" : null,
-      "refs" : {
-        "LaunchProfileInitializationActiveDirectory$StudioComponentId" : "<p>The unique identifier for a studio component resource.</p>",
-        "LaunchProfileInitializationScript$StudioComponentId" : "<p>The unique identifier for a studio component resource.</p>",
-        "StudioComponent$StudioComponentId" : "<p>The unique identifier for a studio component resource.</p>",
-        "StudioComponentSummary$StudioComponentId" : "<p>The unique identifier for a studio component resource.</p>"
+    "StudioEncryptionConfiguration": {
+      "base": "<p>Configuration of the encryption method that is used for the studio.</p>",
+      "refs": {
+        "CreateStudioRequest$studioEncryptionConfiguration": "<p>The studio encryption configuration.</p>",
+        "Studio$studioEncryptionConfiguration": "<p>Configuration of the encryption method that is used for the studio.</p>"
       }
     },
-    "StudioComponentInitializationScript" : {
-      "base" : "<p>Initialization scripts for studio components.</p>",
-      "refs" : {
-        "StudioComponentInitializationScriptList$member" : null
+    "StudioEncryptionConfigurationKeyArn": {
+      "base": "<p>The Amazon Resource Name (ARN) for a KMS key that is used to encrypt studio data.</p>",
+      "refs": {
+        "StudioEncryptionConfiguration$keyArn": "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
       }
     },
-    "StudioComponentInitializationScriptContent" : {
-      "base" : "",
-      "refs" : {
-        "LaunchProfileInitializationScript$Script" : "<p>The initialization script.</p>",
-        "StudioComponentInitializationScript$Script" : "<p>The initialization script.</p>"
+    "StudioEncryptionConfigurationKeyType": {
+      "base": "<p>The type of KMS key that is used to encrypt studio data.</p>",
+      "refs": {
+        "StudioEncryptionConfiguration$keyType": "<p>The type of KMS key that is used to encrypt studio data.</p>"
       }
     },
-    "StudioComponentInitializationScriptList" : {
-      "base" : "",
-      "refs" : {
-        "CreateStudioComponentInput$InitializationScripts" : "<p>Initialization scripts for studio components.</p>",
-        "StudioComponent$InitializationScripts" : "<p>Initialization scripts for studio components.</p>",
-        "UpdateStudioComponentInput$InitializationScripts" : "<p>Initialization scripts for studio components.</p>"
+    "StudioList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "ListStudiosResponse$studios": "<p>A collection of studios.</p>"
       }
     },
-    "StudioComponentInitializationScriptRunContext" : {
-      "base" : "",
-      "refs" : {
-        "StudioComponentInitializationScript$RunContext" : "<p>The method to use when running the initialization script.</p>"
+    "StudioMembership": {
+      "base": "<p>A studio member is an association of a user from your studio identity source to elevated permissions that they are granted in the studio.</p> <p>When you add a user to your studio using the Nimble Studio console, they are given access to the studio's AWS SSO application and are given access to log in to the Nimble Studio portal. These users have the permissions provided by the studio's user IAM role and do not appear in the studio membership collection. Only studio admins appear in studio membership.</p> <p>When you add a user to studio membership with the persona ADMIN, upon logging in to the Nimble Studio portal, they are granted permissions specified by the Studio's Admin IAM role.</p>",
+      "refs": {
+        "GetStudioMemberResponse$member": "<p>The member.</p>",
+        "StudioMembershipList$member": null
       }
     },
-    "StudioComponentList" : {
-      "base" : "",
-      "refs" : {
-        "ListStudioComponentsOutput$StudioComponents" : "<p>A collection of studio components.</p>"
+    "StudioMembershipList": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "ListStudioMembersResponse$members": "<p>A list of members.</p>"
       }
     },
-    "StudioComponentName" : {
-      "base" : "",
-      "refs" : {
-        "CreateStudioComponentInput$Name" : "<p>The name for the studio component.</p>",
-        "LaunchProfileInitializationActiveDirectory$StudioComponentName" : "<p>The name for the studio component.</p>",
-        "LaunchProfileInitializationScript$StudioComponentName" : "<p>The name for the studio component.</p>",
-        "StudioComponent$Name" : "<p>A friendly name for the studio component resource.</p>",
-        "StudioComponentSummary$Name" : "<p>The name for the studio component.</p>",
-        "UpdateStudioComponentInput$Name" : "<p>The name for the studio component.</p>"
+    "StudioName": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStudioRequest$studioName": "<p>The studio name that is used in the URL of the Nimble Studio portal when accessed by Nimble Studio users.</p>",
+        "Studio$studioName": "<p>The name of the studio, as included in the URL when accessing it in the Nimble Studio portal.</p>"
       }
     },
-    "StudioComponentScriptParameterKeyValueList" : {
-      "base" : "",
-      "refs" : {
-        "CreateStudioComponentInput$ScriptParameters" : "<p>Parameters for the studio component scripts.</p>",
-        "StudioComponent$ScriptParameters" : "<p>Parameters for the studio component scripts.</p>",
-        "UpdateStudioComponentInput$ScriptParameters" : "<p>Parameters for the studio component scripts.</p>"
+    "StudioPersona": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "NewStudioMember$persona": "<p>The persona.</p>",
+        "StudioMembership$persona": "<p>The persona.</p>"
       }
     },
-    "StudioComponentSecurityGroupIdList" : {
-      "base" : "",
-      "refs" : {
-        "CreateStudioComponentInput$Ec2SecurityGroupIds" : "<p>The EC2 security groups that control access to the studio component.</p>",
-        "StudioComponent$Ec2SecurityGroupIds" : "<p>The EC2 security groups that control access to the studio component.</p>",
-        "UpdateStudioComponentInput$Ec2SecurityGroupIds" : "<p>The EC2 security groups that control access to the studio component.</p>"
+    "StudioState": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "Studio$state": "<p>The current state of the studio resource.</p>"
       }
     },
-    "StudioComponentState" : {
-      "base" : "<p>The current state of the studio component resource.</p> <p>While a studio component is being created, modified, or deleted, its state will equal \"CREATE_IN_PROGRESS\", \"UPDATE_IN_PROGRESS\", or \"DELETE_IN_PROGRESS\"</p> <p>These are called 'transition states'.</p> <p>No modifications may be made to the studio component while it is in a transition state.</p> <p>If creation of the resource fails, the state will change to `CREATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why creation failed. The resource in this state will automatically be deleted from your account after a period of time.</p> <p>If updating the resource fails, the state will change to `UPDATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked.</p> <p>If deleting the resource fails, the state will change to `DELETE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked. After the resource is deleted successfully, it will change to the \"DELETED\" state. The resource will no longer count against service quotas and cannot be used or acted upon any futher. It will be removed from your account after a period of time.</p>",
-      "refs" : {
-        "StudioComponent$State" : "<p>The current state.</p>"
+    "StudioStatusCode": {
+      "base": "<p>The status code.</p>",
+      "refs": {
+        "Studio$statusCode": "<p>Status codes that provide additional detail on the studio state.</p>"
       }
     },
-    "StudioComponentStatusCode" : {
-      "base" : "<p>The current status of the studio component resource.</p> <p>When the resource is in the 'READY' state, the status code signals what the last mutation made to the resource was.</p> <p>When the resource is in a CREATE_FAILED/UPDATE_FAILED/DELETE_FAILED state, the status code signals what went wrong and why the mutation failed.</p>",
-      "refs" : {
-        "StudioComponent$StatusCode" : "<p>The status code.</p>"
+    "SyntheticComputeFarmConfigurationString": {
+      "base": null,
+      "refs": {
+        "ComputeFarmConfiguration$endpoint": "<p>The endpoint of the ComputeFarm that is accessed by the studio component resource.</p>"
       }
     },
-    "StudioComponentSubtype" : {
-      "base" : "",
-      "refs" : {
-        "CreateStudioComponentInput$Subtype" : "<p>The specific subtype of a studio component.</p>",
-        "StudioComponent$Subtype" : "<p>The specific subtype of a studio component.</p>",
-        "StudioComponentSummary$Subtype" : "<p>The specific subtype of a studio component.</p>",
-        "UpdateStudioComponentInput$Subtype" : "<p>The specific subtype of a studio component.</p>"
+    "SyntheticCreateStreamingImageRequestStreamingImageDescription": {
+      "base": "<p>The description.</p>",
+      "refs": {
+        "CreateStreamingImageRequest$description": "<p>A human-readable description of the streaming image.</p>"
       }
     },
-    "StudioComponentSummary" : {
-      "base" : "<p></p>",
-      "refs" : {
-        "StudioComponentSummaryList$member" : null
+    "SyntheticCreateStreamingImageRequestStreamingImageName": {
+      "base": "<p>A friendly name for a streaming image resource.</p>",
+      "refs": {
+        "CreateStreamingImageRequest$name": "<p>A friendly name for a streaming image resource.</p>"
       }
     },
-    "StudioComponentSummaryList" : {
-      "base" : "",
-      "refs" : {
-        "GetLaunchProfileDetailsOutput$StudioComponentSummaries" : "<p>A collection of studio component summaries.</p>"
+    "SyntheticCreateStudioRequestStudioDisplayName": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateStudioRequest$displayName": "<p>A friendly name for the studio.</p>"
       }
     },
-    "StudioComponentType" : {
-      "base" : "",
-      "refs" : {
-        "CreateStudioComponentInput$Type" : "<p>The type of the studio component.</p>",
-        "StudioComponent$Type" : "<p>The type of the studio component.</p>",
-        "StudioComponentSummary$Type" : "<p>The type of the studio component.</p>",
-        "UpdateStudioComponentInput$Type" : "<p>The type of the studio component.</p>"
+    "SyntheticLicenseServiceConfigurationString": {
+      "base": null,
+      "refs": {
+        "LicenseServiceConfiguration$endpoint": "<p>The endpoint of the license service that is accessed by the studio component resource.</p>"
       }
     },
-    "StudioDisplayName" : {
-      "base" : null,
-      "refs" : {
-        "CreateStudioInput$DisplayName" : "<p>A friendly name for the studio.</p>",
-        "Studio$DisplayName" : "<p>A friendly name for the studio.</p>",
-        "UpdateStudioInput$DisplayName" : "<p>A friendly name for the studio.</p>"
+    "SyntheticSharedFileSystemConfigurationString": {
+      "base": null,
+      "refs": {
+        "SharedFileSystemConfiguration$endpoint": "<p>The endpoint of the shared file system that is accessed by the studio component resource.</p>",
+        "SharedFileSystemConfiguration$shareName": "<p>The name of the file share.</p>"
       }
     },
-    "StudioEncryptionConfiguration" : {
-      "base" : "<p>Configuration of the encryption method that is used for the studio.</p>",
-      "refs" : {
-        "CreateStudioInput$StudioEncryptionConfiguration" : "<p>The studio encryption configuration.</p>",
-        "Studio$StudioEncryptionConfiguration" : "<p>Configuration of the encryption method that is used for the studio.</p>"
+    "SyntheticStreamingImageStreamingImageDescription": {
+      "base": "<p>The description.</p>",
+      "refs": {
+        "StreamingImage$description": "<p>A human-readable description of the streaming image.</p>"
       }
     },
-    "StudioEncryptionConfigurationKeyArn" : {
-      "base" : "<p>The Amazon Resource Name (ARN) for a KMS key that is used to encrypt studio data.</p>",
-      "refs" : {
-        "StudioEncryptionConfiguration$KeyArn" : "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
+    "SyntheticStreamingImageStreamingImageName": {
+      "base": "<p>A friendly name for a streaming image resource.</p>",
+      "refs": {
+        "StreamingImage$name": "<p>A friendly name for a streaming image resource.</p>"
       }
     },
-    "StudioEncryptionConfigurationKeyType" : {
-      "base" : "<p>The type of KMS key that is used to encrypt studio data.</p>",
-      "refs" : {
-        "StudioEncryptionConfiguration$KeyType" : "<p>The type of KMS key that is used to encrypt studio data.</p>"
+    "SyntheticStreamingSessionStreamString": {
+      "base": null,
+      "refs": {
+        "StreamingSessionStream$url": "<p>The URL to connect to this stream using the DCV client.</p>"
       }
     },
-    "StudioList" : {
-      "base" : "",
-      "refs" : {
-        "ListStudiosOutput$Studios" : "<p>A collection of studios.</p>"
+    "SyntheticStudioStudioDisplayName": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "Studio$displayName": "<p>A friendly name for the studio.</p>"
       }
     },
-    "StudioMembership" : {
-      "base" : "",
-      "refs" : {
-        "GetStudioMemberOutput$Member" : "<p>The member.</p>",
-        "StudioMembershipList$member" : null
+    "SyntheticUpdateStreamingImageRequestStreamingImageDescription": {
+      "base": "<p>The description.</p>",
+      "refs": {
+        "UpdateStreamingImageRequest$description": "<p>The description.</p>"
       }
     },
-    "StudioMembershipList" : {
-      "base" : "",
-      "refs" : {
-        "ListStudioMembersOutput$Members" : "<p>A list of members.</p>"
+    "SyntheticUpdateStreamingImageRequestStreamingImageName": {
+      "base": "<p>A friendly name for a streaming image resource.</p>",
+      "refs": {
+        "UpdateStreamingImageRequest$name": "<p>The name for the streaming image.</p>"
       }
     },
-    "StudioName" : {
-      "base" : "",
-      "refs" : {
-        "CreateStudioInput$StudioName" : "<p>The studio name that is used in the URL of the Nimble Studio portal when accessed by Nimble Studio users.</p>",
-        "Studio$StudioName" : "<p>The name of the studio, as included in the URL when accessing it in the Nimble Studio portal.</p>"
+    "SyntheticUpdateStudioRequestStudioDisplayName": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "UpdateStudioRequest$displayName": "<p>A friendly name for the studio.</p>"
       }
     },
-    "StudioPersona" : {
-      "base" : "",
-      "refs" : {
-        "NewStudioMember$Persona" : "<p>The persona.</p>",
-        "StudioMembership$Persona" : "<p>The persona.</p>"
+    "TagResourceRequest": {
+      "base": "<p/>",
+      "refs": {
       }
     },
-    "StudioState" : {
-      "base" : "",
-      "refs" : {
-        "Studio$State" : "<p>The current state of the studio resource.</p>"
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "StudioStatusCode" : {
-      "base" : "<p>The status code.</p>",
-      "refs" : {
-        "Studio$StatusCode" : "<p>Status codes that provide additional detail on the studio state.</p>"
+    "Tags": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "CreateLaunchProfileRequest$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "CreateStreamingImageRequest$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "CreateStreamingSessionRequest$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "CreateStudioComponentRequest$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "CreateStudioRequest$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "LaunchProfile$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "ListTagsForResourceResponse$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "StreamingImage$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "StreamingSession$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "Studio$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "StudioComponent$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "TagResourceRequest$tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>"
       }
     },
-    "TagResourceInput" : {
-      "base" : "<p></p>",
-      "refs" : { }
+    "ThrottlingException": {
+      "base": "<p>The request throughput limit was exceeded.</p>",
+      "refs": {
+      }
     },
-    "Tags" : {
-      "base" : "",
-      "refs" : {
-        "CreateLaunchProfileInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "CreateStreamingImageInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "CreateStreamingSessionInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "CreateStudioComponentInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "CreateStudioInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "LaunchProfile$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "ListTagsOutput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "StreamingImage$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "StreamingSession$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "Studio$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "StudioComponent$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "TagResourceInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>"
+    "Timestamp": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "Eula$createdAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "Eula$updatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "EulaAcceptance$acceptedAt": "<p>The Unix epoch timestamp in seconds for when the EULA was accepted.</p>",
+        "LaunchProfile$createdAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "LaunchProfile$updatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "StreamingSession$createdAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "StreamingSession$startedAt": "<p>The time the session entered START_IN_PROGRESS state.</p>",
+        "StreamingSession$stopAt": "<p>The time the streaming session will automatically be stopped if the user doesn’t stop the session themselves. </p>",
+        "StreamingSession$stoppedAt": "<p>The time the session entered STOP_IN_PROGRESS state.</p>",
+        "StreamingSession$terminateAt": "<p>The time the streaming session will automatically terminate if not terminated by the user.</p>",
+        "StreamingSession$updatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "StreamingSessionStream$createdAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "StreamingSessionStream$expiresAt": "<p>The Unix epoch timestamp in seconds for when the resource expires.</p>",
+        "Studio$createdAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "Studio$updatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "StudioComponent$createdAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "StudioComponent$updatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "StudioComponentSummary$createdAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "StudioComponentSummary$updatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>"
       }
     },
-    "ThrottlingException" : {
-      "base" : "",
-      "refs" : { }
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
     },
-    "Timestamp" : {
-      "base" : "",
-      "refs" : {
-        "Eula$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "Eula$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "EulaAcceptance$AcceptedAt" : "<p>The Unix epoch timestamp in seconds for when the EULA was accepted.</p>",
-        "LaunchProfile$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "LaunchProfile$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "StreamingSession$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "StreamingSession$TerminateAt" : "<p>The time the streaming session will automatically terminate if not terminated by the user.</p>",
-        "StreamingSession$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "StreamingSessionStream$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "StreamingSessionStream$ExpiresAt" : "<p>The Unix epoch timestamp in seconds for when the resource expires.</p>",
-        "Studio$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "Studio$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "StudioComponent$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "StudioComponent$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "StudioComponentSummary$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "StudioComponentSummary$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>"
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
-    "UpdateLaunchProfileInput" : {
-      "base" : "",
-      "refs" : { }
+    "UpdateLaunchProfileMemberRequest": {
+      "base": "<p/>",
+      "refs": {
+      }
     },
-    "UpdateLaunchProfileMemberInput" : {
-      "base" : "<p></p>",
-      "refs" : { }
+    "UpdateLaunchProfileMemberResponse": {
+      "base": null,
+      "refs": {
+      }
     },
-    "UpdateLaunchProfileOutput" : {
-      "base" : "",
-      "refs" : { }
+    "UpdateLaunchProfileRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "UpdateStreamingImageInput" : {
-      "base" : "",
-      "refs" : { }
+    "UpdateLaunchProfileResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "UpdateStreamingImageOutput" : {
-      "base" : "<p></p>",
-      "refs" : { }
+    "UpdateStreamingImageRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "UpdateStudioComponentInput" : {
-      "base" : "",
-      "refs" : { }
+    "UpdateStreamingImageResponse": {
+      "base": "<p/>",
+      "refs": {
+      }
     },
-    "UpdateStudioComponentOutput" : {
-      "base" : "",
-      "refs" : { }
+    "UpdateStudioComponentRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "UpdateStudioInput" : {
-      "base" : "",
-      "refs" : { }
+    "UpdateStudioComponentResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "UpdateStudioOutput" : {
-      "base" : "",
-      "refs" : { }
+    "UpdateStudioRequest": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "ValidationException" : {
-      "base" : "",
-      "refs" : { }
+    "UpdateStudioResponse": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+      }
     },
-    "WindowsMountDrive" : {
-      "base" : "",
-      "refs" : {
-        "SharedFileSystemConfiguration$WindowsMountDrive" : "<p>The mount location for a shared file system on a Windows virtual workstation.</p>"
+    "ValidationException": {
+      "base": "<p>One of the parameters in the request is invalid.</p>",
+      "refs": {
       }
     },
-    "__string" : {
-      "base" : null,
-      "refs" : {
-        "AccessDeniedException$Code" : "<p>A more specific error code.</p>",
-        "AccessDeniedException$Message" : "<p>A human-readable description of the error.</p>",
-        "ComputeFarmConfiguration$ActiveDirectoryUser" : "<p>The name of an Active Directory user that is used on ComputeFarm worker instances.</p>",
-        "ComputeFarmConfiguration$Endpoint" : "<p>The endpoint of the ComputeFarm that is accessed by the studio component resource.</p>",
-        "ConflictException$Code" : "<p>A more specific error code.</p>",
-        "ConflictException$Message" : "<p>A human-readable description of the error.</p>",
-        "CreateStreamingSessionInput$LaunchProfileId" : "<p>The launch profile ID.</p>",
-        "CreateStreamingSessionInput$OwnedBy" : "<p>The user ID of the user that owns the streaming session.</p>",
-        "CreateStudioInput$AdminRoleArn" : "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
-        "CreateStudioInput$UserRoleArn" : "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
-        "Eula$Content" : "<p>The EULA content.</p>",
-        "EulaAcceptance$AcceptedBy" : "<p>The ID of the person who accepted the EULA.</p>",
-        "EulaAcceptance$AccepteeId" : "<p>The ID of the acceptee.</p>",
-        "EulaIdList$member" : null,
-        "ExceptionContext$member" : null,
-        "InternalServerException$Code" : "<p>A more specific error code.</p>",
-        "InternalServerException$Message" : "<p>A human-readable description of the error.</p>",
-        "LaunchProfile$Arn" : "<p>The ARN of the resource.</p>",
-        "LaunchProfile$CreatedBy" : "<p>The user ID of the user that created the launch profile.</p>",
-        "LaunchProfile$StatusMessage" : "<p>The status message for the launch profile.</p>",
-        "LaunchProfile$UpdatedBy" : "<p>The user ID of the user that most recently updated the resource.</p>",
-        "LaunchProfileInitializationActiveDirectory$DirectoryName" : "<p>The directory name.</p>",
-        "LaunchProfileMembership$IdentityStoreId" : "<p>The ID of the identity store.</p>",
-        "LaunchProfileMembership$PrincipalId" : "<p>The principal ID.</p>",
-        "LaunchProfileStudioComponentIdList$member" : null,
-        "LicenseServiceConfiguration$Endpoint" : "<p>The endpoint of the license service that is accessed by the studio component resource.</p>",
-        "ListEulaAcceptancesOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListEulasOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListLaunchProfileMembersOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListLaunchProfilesOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStreamingImagesOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStreamingSessionsOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStudioComponentsOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStudioMembersOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStudiosOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "NewLaunchProfileMember$PrincipalId" : "<p>The principal ID.</p>",
-        "NewStudioMember$PrincipalId" : "<p>The principal ID.</p>",
-        "PutLaunchProfileMembersInput$IdentityStoreId" : "<p>The ID of the identity store.</p>",
-        "PutStudioMembersInput$IdentityStoreId" : "<p>The ID of the identity store.</p>",
-        "ResourceNotFoundException$Code" : "<p>A more specific error code.</p>",
-        "ResourceNotFoundException$Message" : "<p>A human-readable description of the error.</p>",
-        "ServiceQuotaExceededException$Code" : "<p>A more specific error code.</p>",
-        "ServiceQuotaExceededException$Message" : "<p>A human-readable description of the error.</p>",
-        "SharedFileSystemConfiguration$Endpoint" : "<p>The endpoint of the shared file system that is accessed by the studio component resource.</p>",
-        "SharedFileSystemConfiguration$FileSystemId" : "<p>The unique identifier for a file system.</p>",
-        "SharedFileSystemConfiguration$ShareName" : "<p>The name of the file share.</p>",
-        "StreamingImage$Arn" : "<p>The ARN of the resource.</p>",
-        "StreamingImage$StatusMessage" : "<p>The status message for the streaming image.</p>",
-        "StreamingSession$Arn" : "<p>The ARN of the resource.</p>",
-        "StreamingSession$CreatedBy" : "<p>The user ID of the user that created the streaming session.</p>",
-        "StreamingSession$Ec2InstanceType" : "<p>The EC2 Instance type used for the streaming session.</p>",
-        "StreamingSession$LaunchProfileId" : "<p>The ID of the launch profile used to control access from the streaming session.</p>",
-        "StreamingSession$OwnedBy" : "<p>The user ID of the user that owns the streaming session.</p>",
-        "StreamingSession$StatusMessage" : "<p>The status message for the streaming session.</p>",
-        "StreamingSession$UpdatedBy" : "<p>The user ID of the user that most recently updated the resource.</p>",
-        "StreamingSessionStream$CreatedBy" : "<p>The user ID of the user that created the streaming session stream.</p>",
-        "StreamingSessionStream$OwnedBy" : "<p>The user ID of the user that owns the streaming session.</p>",
-        "StreamingSessionStream$StreamId" : "<p>The stream ID.</p>",
-        "StreamingSessionStream$Url" : "<p>The URL to connect to this stream using the DCV client.</p>",
-        "Studio$AdminRoleArn" : "<p>The IAM role that studio admins assume when logging in to the Nimble Studio portal.</p>",
-        "Studio$Arn" : "<p>The Amazon Resource Name (ARN) that is assigned to a studio resource and uniquely identifies it. ARNs are unique across all Regions.</p>",
-        "Studio$SsoClientId" : "<p>The Amazon Web Services SSO application client ID used to integrate with Amazon Web Services SSO to enable Amazon Web Services SSO users to log in to Nimble portal.</p>",
-        "Studio$StatusMessage" : "<p>Additional detail on the studio state.</p>",
-        "Studio$StudioId" : "<p>The unique identifier for a studio resource. In Nimble Studio, all other resources are contained in a studio resource.</p>",
-        "Studio$StudioUrl" : "<p>The address of the web page for the studio.</p>",
-        "Studio$UserRoleArn" : "<p>The IAM role that studio users assume when logging in to the Nimble Studio portal.</p>",
-        "StudioComponent$Arn" : "<p>The ARN of the resource.</p>",
-        "StudioComponent$CreatedBy" : "<p>The user ID of the user that created the studio component.</p>",
-        "StudioComponent$StatusMessage" : "<p>The status message for the studio component.</p>",
-        "StudioComponent$UpdatedBy" : "<p>The user ID of the user that most recently updated the resource.</p>",
-        "StudioComponentSummary$CreatedBy" : "<p>The user ID of the user that created the studio component.</p>",
-        "StudioComponentSummary$UpdatedBy" : "<p>The user ID of the user that most recently updated the resource.</p>",
-        "StudioMembership$IdentityStoreId" : "<p>The ID of the identity store.</p>",
-        "StudioMembership$PrincipalId" : "<p>The principal ID.</p>",
-        "Tags$member" : null,
-        "ThrottlingException$Code" : "<p>A more specific error code.</p>",
-        "ThrottlingException$Message" : "<p>A human-readable description of the error.</p>",
-        "UpdateStudioInput$AdminRoleArn" : "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
-        "UpdateStudioInput$UserRoleArn" : "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
-        "ValidationException$Code" : "<p>A more specific error code.</p>",
-        "ValidationException$Message" : "<p>A human-readable description of the error.</p>"
+    "WindowsMountDrive": {
+      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "refs": {
+        "SharedFileSystemConfiguration$windowsMountDrive": "<p>The mount location for a shared file system on a Windows virtual workstation.</p>"
       }
     }
   }

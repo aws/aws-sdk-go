@@ -208,8 +208,8 @@ func (c *CloudFront) CreateCachePolicyRequest(input *CreateCachePolicyInput) (re
 //   To modify an existing cache policy, use UpdateCachePolicy.
 //
 //   * ErrCodeTooManyCachePolicies "TooManyCachePolicies"
-//   You have reached the maximum number of cache policies for this account. For
-//   more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   You have reached the maximum number of cache policies for this Amazon Web
+//   Services account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeTooManyHeadersInCachePolicy "TooManyHeadersInCachePolicy"
@@ -593,6 +593,16 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   cache policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
+//   * ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//   The response headers policy does not exist.
+//
+//   * ErrCodeTooManyDistributionsAssociatedToResponseHeadersPolicy "TooManyDistributionsAssociatedToResponseHeadersPolicy"
+//   The maximum number of distributions have been associated with the specified
+//   response headers policy.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
 //   * ErrCodeNoSuchOriginRequestPolicy "NoSuchOriginRequestPolicy"
 //   The origin request policy does not exist.
 //
@@ -618,7 +628,8 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   The real-time log configuration does not exist.
 //
 //   * ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
-//   The specified real-time log configuration belongs to a different account.
+//   The specified real-time log configuration belongs to a different Amazon Web
+//   Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistribution
 func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*CreateDistributionOutput, error) {
@@ -876,6 +887,16 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   cache policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
+//   * ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//   The response headers policy does not exist.
+//
+//   * ErrCodeTooManyDistributionsAssociatedToResponseHeadersPolicy "TooManyDistributionsAssociatedToResponseHeadersPolicy"
+//   The maximum number of distributions have been associated with the specified
+//   response headers policy.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
 //   * ErrCodeNoSuchOriginRequestPolicy "NoSuchOriginRequestPolicy"
 //   The origin request policy does not exist.
 //
@@ -901,7 +922,8 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   The real-time log configuration does not exist.
 //
 //   * ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
-//   The specified real-time log configuration belongs to a different account.
+//   The specified real-time log configuration belongs to a different Amazon Web
+//   Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistributionWithTags
 func (c *CloudFront) CreateDistributionWithTags(input *CreateDistributionWithTagsInput) (*CreateDistributionWithTagsOutput, error) {
@@ -1197,14 +1219,14 @@ func (c *CloudFront) CreateFunctionRequest(input *CreateFunctionInput) (req *req
 //
 // Returned Error Codes:
 //   * ErrCodeTooManyFunctions "TooManyFunctions"
-//   You have reached the maximum number of CloudFront functions for this account.
-//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   You have reached the maximum number of CloudFront functions for this Amazon
+//   Web Services account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeFunctionAlreadyExists "FunctionAlreadyExists"
-//   A function with the same name already exists in this account. To create a
-//   function, you must provide a unique name. To update an existing function,
-//   use UpdateFunction.
+//   A function with the same name already exists in this Amazon Web Services
+//   account. To create a function, you must provide a unique name. To update
+//   an existing function, use UpdateFunction.
 //
 //   * ErrCodeFunctionSizeLimitExceeded "FunctionSizeLimitExceeded"
 //   The function is too large. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
@@ -1410,8 +1432,8 @@ func (c *CloudFront) CreateKeyGroupRequest(input *CreateKeyGroupInput) (req *req
 //   To modify an existing key group, use UpdateKeyGroup.
 //
 //   * ErrCodeTooManyKeyGroups "TooManyKeyGroups"
-//   You have reached the maximum number of key groups for this account. For more
-//   information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   You have reached the maximum number of key groups for this Amazon Web Services
+//   account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeTooManyPublicKeysInKeyGroup "TooManyPublicKeysInKeyGroup"
@@ -1624,8 +1646,8 @@ func (c *CloudFront) CreateOriginRequestPolicyRequest(input *CreateOriginRequest
 //   a unique name. To modify an existing origin request policy, use UpdateOriginRequestPolicy.
 //
 //   * ErrCodeTooManyOriginRequestPolicies "TooManyOriginRequestPolicies"
-//   You have reached the maximum number of origin request policies for this account.
-//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   You have reached the maximum number of origin request policies for this Amazon
+//   Web Services account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeTooManyHeadersInOriginRequestPolicy "TooManyHeadersInOriginRequestPolicy"
@@ -1821,7 +1843,7 @@ func (c *CloudFront) CreateRealtimeLogConfigRequest(input *CreateRealtimeLogConf
 //
 //   * ErrCodeTooManyRealtimeLogConfigs "TooManyRealtimeLogConfigs"
 //   You have reached the maximum number of real-time log configurations for this
-//   account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   Amazon Web Services account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
@@ -1847,6 +1869,118 @@ func (c *CloudFront) CreateRealtimeLogConfig(input *CreateRealtimeLogConfigInput
 // for more information on using Contexts.
 func (c *CloudFront) CreateRealtimeLogConfigWithContext(ctx aws.Context, input *CreateRealtimeLogConfigInput, opts ...request.Option) (*CreateRealtimeLogConfigOutput, error) {
 	req, out := c.CreateRealtimeLogConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateResponseHeadersPolicy = "CreateResponseHeadersPolicy2020_05_31"
+
+// CreateResponseHeadersPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateResponseHeadersPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateResponseHeadersPolicy for more information on using the CreateResponseHeadersPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateResponseHeadersPolicyRequest method.
+//    req, resp := client.CreateResponseHeadersPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateResponseHeadersPolicy
+func (c *CloudFront) CreateResponseHeadersPolicyRequest(input *CreateResponseHeadersPolicyInput) (req *request.Request, output *CreateResponseHeadersPolicyOutput) {
+	op := &request.Operation{
+		Name:       opCreateResponseHeadersPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-05-31/response-headers-policy",
+	}
+
+	if input == nil {
+		input = &CreateResponseHeadersPolicyInput{}
+	}
+
+	output = &CreateResponseHeadersPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateResponseHeadersPolicy API operation for Amazon CloudFront.
+//
+// Creates a response headers policy.
+//
+// A response headers policy contains information about a set of HTTP response
+// headers and their values. To create a response headers policy, you provide
+// some metadata about the policy, and a set of configurations that specify
+// the response headers.
+//
+// After you create a response headers policy, you can use its ID to attach
+// it to one or more cache behaviors in a CloudFront distribution. When it’s
+// attached to a cache behavior, CloudFront adds the headers in the policy to
+// HTTP responses that it sends for requests that match the cache behavior.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateResponseHeadersPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
+//   * ErrCodeInconsistentQuantities "InconsistentQuantities"
+//   The value of Quantity and the size of Items don't match.
+//
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeResponseHeadersPolicyAlreadyExists "ResponseHeadersPolicyAlreadyExists"
+//   A response headers policy with this name already exists. You must provide
+//   a unique name. To modify an existing response headers policy, use UpdateResponseHeadersPolicy.
+//
+//   * ErrCodeTooManyResponseHeadersPolicies "TooManyResponseHeadersPolicies"
+//   You have reached the maximum number of response headers policies for this
+//   Amazon Web Services account.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooManyCustomHeadersInResponseHeadersPolicy "TooManyCustomHeadersInResponseHeadersPolicy"
+//   The number of custom headers in the response headers policy exceeds the maximum.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateResponseHeadersPolicy
+func (c *CloudFront) CreateResponseHeadersPolicy(input *CreateResponseHeadersPolicyInput) (*CreateResponseHeadersPolicyOutput, error) {
+	req, out := c.CreateResponseHeadersPolicyRequest(input)
+	return out, req.Send()
+}
+
+// CreateResponseHeadersPolicyWithContext is the same as CreateResponseHeadersPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateResponseHeadersPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) CreateResponseHeadersPolicyWithContext(ctx aws.Context, input *CreateResponseHeadersPolicyInput, opts ...request.Option) (*CreateResponseHeadersPolicyOutput, error) {
+	req, out := c.CreateResponseHeadersPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3137,6 +3271,110 @@ func (c *CloudFront) DeleteRealtimeLogConfig(input *DeleteRealtimeLogConfigInput
 // for more information on using Contexts.
 func (c *CloudFront) DeleteRealtimeLogConfigWithContext(ctx aws.Context, input *DeleteRealtimeLogConfigInput, opts ...request.Option) (*DeleteRealtimeLogConfigOutput, error) {
 	req, out := c.DeleteRealtimeLogConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteResponseHeadersPolicy = "DeleteResponseHeadersPolicy2020_05_31"
+
+// DeleteResponseHeadersPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResponseHeadersPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResponseHeadersPolicy for more information on using the DeleteResponseHeadersPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteResponseHeadersPolicyRequest method.
+//    req, resp := client.DeleteResponseHeadersPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteResponseHeadersPolicy
+func (c *CloudFront) DeleteResponseHeadersPolicyRequest(input *DeleteResponseHeadersPolicyInput) (req *request.Request, output *DeleteResponseHeadersPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResponseHeadersPolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2020-05-31/response-headers-policy/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteResponseHeadersPolicyInput{}
+	}
+
+	output = &DeleteResponseHeadersPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteResponseHeadersPolicy API operation for Amazon CloudFront.
+//
+// Deletes a response headers policy.
+//
+// You cannot delete a response headers policy if it’s attached to a cache
+// behavior. First update your distributions to remove the response headers
+// policy from all cache behaviors, then delete the response headers policy.
+//
+// To delete a response headers policy, you must provide the policy’s identifier
+// and version. To get these values, you can use ListResponseHeadersPolicies
+// or GetResponseHeadersPolicy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation DeleteResponseHeadersPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
+//   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//   The If-Match version is missing or not valid.
+//
+//   * ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//   The response headers policy does not exist.
+//
+//   * ErrCodePreconditionFailed "PreconditionFailed"
+//   The precondition in one or more of the request fields evaluated to false.
+//
+//   * ErrCodeIllegalDelete "IllegalDelete"
+//   You cannot delete a managed policy.
+//
+//   * ErrCodeResponseHeadersPolicyInUse "ResponseHeadersPolicyInUse"
+//   Cannot delete the response headers policy because it is attached to one or
+//   more cache behaviors in a CloudFront distribution.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteResponseHeadersPolicy
+func (c *CloudFront) DeleteResponseHeadersPolicy(input *DeleteResponseHeadersPolicyInput) (*DeleteResponseHeadersPolicyOutput, error) {
+	req, out := c.DeleteResponseHeadersPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResponseHeadersPolicyWithContext is the same as DeleteResponseHeadersPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResponseHeadersPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) DeleteResponseHeadersPolicyWithContext(ctx aws.Context, input *DeleteResponseHeadersPolicyInput, opts ...request.Option) (*DeleteResponseHeadersPolicyOutput, error) {
+	req, out := c.DeleteResponseHeadersPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5055,6 +5293,183 @@ func (c *CloudFront) GetRealtimeLogConfigWithContext(ctx aws.Context, input *Get
 	return out, req.Send()
 }
 
+const opGetResponseHeadersPolicy = "GetResponseHeadersPolicy2020_05_31"
+
+// GetResponseHeadersPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetResponseHeadersPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResponseHeadersPolicy for more information on using the GetResponseHeadersPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResponseHeadersPolicyRequest method.
+//    req, resp := client.GetResponseHeadersPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetResponseHeadersPolicy
+func (c *CloudFront) GetResponseHeadersPolicyRequest(input *GetResponseHeadersPolicyInput) (req *request.Request, output *GetResponseHeadersPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetResponseHeadersPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/response-headers-policy/{Id}",
+	}
+
+	if input == nil {
+		input = &GetResponseHeadersPolicyInput{}
+	}
+
+	output = &GetResponseHeadersPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResponseHeadersPolicy API operation for Amazon CloudFront.
+//
+// Gets a response headers policy, including metadata (the policy’s identifier
+// and the date and time when the policy was last modified).
+//
+// To get a response headers policy, you must provide the policy’s identifier.
+// If the response headers policy is attached to a distribution’s cache behavior,
+// you can get the policy’s identifier using ListDistributions or GetDistribution.
+// If the response headers policy is not attached to a cache behavior, you can
+// get the identifier using ListResponseHeadersPolicies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetResponseHeadersPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
+//   * ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//   The response headers policy does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetResponseHeadersPolicy
+func (c *CloudFront) GetResponseHeadersPolicy(input *GetResponseHeadersPolicyInput) (*GetResponseHeadersPolicyOutput, error) {
+	req, out := c.GetResponseHeadersPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetResponseHeadersPolicyWithContext is the same as GetResponseHeadersPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResponseHeadersPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) GetResponseHeadersPolicyWithContext(ctx aws.Context, input *GetResponseHeadersPolicyInput, opts ...request.Option) (*GetResponseHeadersPolicyOutput, error) {
+	req, out := c.GetResponseHeadersPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetResponseHeadersPolicyConfig = "GetResponseHeadersPolicyConfig2020_05_31"
+
+// GetResponseHeadersPolicyConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetResponseHeadersPolicyConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResponseHeadersPolicyConfig for more information on using the GetResponseHeadersPolicyConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResponseHeadersPolicyConfigRequest method.
+//    req, resp := client.GetResponseHeadersPolicyConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetResponseHeadersPolicyConfig
+func (c *CloudFront) GetResponseHeadersPolicyConfigRequest(input *GetResponseHeadersPolicyConfigInput) (req *request.Request, output *GetResponseHeadersPolicyConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetResponseHeadersPolicyConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/response-headers-policy/{Id}/config",
+	}
+
+	if input == nil {
+		input = &GetResponseHeadersPolicyConfigInput{}
+	}
+
+	output = &GetResponseHeadersPolicyConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResponseHeadersPolicyConfig API operation for Amazon CloudFront.
+//
+// Gets a response headers policy configuration.
+//
+// To get a response headers policy configuration, you must provide the policy’s
+// identifier. If the response headers policy is attached to a distribution’s
+// cache behavior, you can get the policy’s identifier using ListDistributions
+// or GetDistribution. If the response headers policy is not attached to a cache
+// behavior, you can get the identifier using ListResponseHeadersPolicies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetResponseHeadersPolicyConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
+//   * ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//   The response headers policy does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetResponseHeadersPolicyConfig
+func (c *CloudFront) GetResponseHeadersPolicyConfig(input *GetResponseHeadersPolicyConfigInput) (*GetResponseHeadersPolicyConfigOutput, error) {
+	req, out := c.GetResponseHeadersPolicyConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetResponseHeadersPolicyConfigWithContext is the same as GetResponseHeadersPolicyConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResponseHeadersPolicyConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) GetResponseHeadersPolicyConfigWithContext(ctx aws.Context, input *GetResponseHeadersPolicyConfigInput, opts ...request.Option) (*GetResponseHeadersPolicyConfigOutput, error) {
+	req, out := c.GetResponseHeadersPolicyConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetStreamingDistribution = "GetStreamingDistribution2020_05_31"
 
 // GetStreamingDistributionRequest generates a "aws/request.Request" representing the
@@ -5267,7 +5682,8 @@ func (c *CloudFront) ListCachePoliciesRequest(input *ListCachePoliciesInput) (re
 // Gets a list of cache policies.
 //
 // You can optionally apply a filter to return only the managed policies created
-// by Amazon Web Services, or only the custom policies created in your account.
+// by Amazon Web Services, or only the custom policies created in your Amazon
+// Web Services account.
 //
 // You can optionally specify the maximum number of items to receive in the
 // response. If the total number of items in the list exceeds the maximum that
@@ -6060,6 +6476,98 @@ func (c *CloudFront) ListDistributionsByRealtimeLogConfigWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opListDistributionsByResponseHeadersPolicyId = "ListDistributionsByResponseHeadersPolicyId2020_05_31"
+
+// ListDistributionsByResponseHeadersPolicyIdRequest generates a "aws/request.Request" representing the
+// client's request for the ListDistributionsByResponseHeadersPolicyId operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDistributionsByResponseHeadersPolicyId for more information on using the ListDistributionsByResponseHeadersPolicyId
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDistributionsByResponseHeadersPolicyIdRequest method.
+//    req, resp := client.ListDistributionsByResponseHeadersPolicyIdRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListDistributionsByResponseHeadersPolicyId
+func (c *CloudFront) ListDistributionsByResponseHeadersPolicyIdRequest(input *ListDistributionsByResponseHeadersPolicyIdInput) (req *request.Request, output *ListDistributionsByResponseHeadersPolicyIdOutput) {
+	op := &request.Operation{
+		Name:       opListDistributionsByResponseHeadersPolicyId,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/distributionsByResponseHeadersPolicyId/{ResponseHeadersPolicyId}",
+	}
+
+	if input == nil {
+		input = &ListDistributionsByResponseHeadersPolicyIdInput{}
+	}
+
+	output = &ListDistributionsByResponseHeadersPolicyIdOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDistributionsByResponseHeadersPolicyId API operation for Amazon CloudFront.
+//
+// Gets a list of distribution IDs for distributions that have a cache behavior
+// that’s associated with the specified response headers policy.
+//
+// You can optionally specify the maximum number of items to receive in the
+// response. If the total number of items in the list exceeds the maximum that
+// you specify, or the default maximum, the response is paginated. To get the
+// next page of items, send a subsequent request that specifies the NextMarker
+// value from the current response as the Marker value in the subsequent request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListDistributionsByResponseHeadersPolicyId for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//   The response headers policy does not exist.
+//
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListDistributionsByResponseHeadersPolicyId
+func (c *CloudFront) ListDistributionsByResponseHeadersPolicyId(input *ListDistributionsByResponseHeadersPolicyIdInput) (*ListDistributionsByResponseHeadersPolicyIdOutput, error) {
+	req, out := c.ListDistributionsByResponseHeadersPolicyIdRequest(input)
+	return out, req.Send()
+}
+
+// ListDistributionsByResponseHeadersPolicyIdWithContext is the same as ListDistributionsByResponseHeadersPolicyId with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDistributionsByResponseHeadersPolicyId for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) ListDistributionsByResponseHeadersPolicyIdWithContext(ctx aws.Context, input *ListDistributionsByResponseHeadersPolicyIdInput, opts ...request.Option) (*ListDistributionsByResponseHeadersPolicyIdOutput, error) {
+	req, out := c.ListDistributionsByResponseHeadersPolicyIdRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListDistributionsByWebACLId = "ListDistributionsByWebACLId2020_05_31"
 
 // ListDistributionsByWebACLIdRequest generates a "aws/request.Request" representing the
@@ -6349,7 +6857,7 @@ func (c *CloudFront) ListFunctionsRequest(input *ListFunctionsInput) (req *reque
 
 // ListFunctions API operation for Amazon CloudFront.
 //
-// Gets a list of all CloudFront functions in your account.
+// Gets a list of all CloudFront functions in your Amazon Web Services account.
 //
 // You can optionally apply a filter to return only the functions that are in
 // the specified stage, either DEVELOPMENT or LIVE.
@@ -6671,7 +7179,8 @@ func (c *CloudFront) ListOriginRequestPoliciesRequest(input *ListOriginRequestPo
 // Gets a list of origin request policies.
 //
 // You can optionally apply a filter to return only the managed policies created
-// by Amazon Web Services, or only the custom policies created in your account.
+// by Amazon Web Services, or only the custom policies created in your Amazon
+// Web Services account.
 //
 // You can optionally specify the maximum number of items to receive in the
 // response. If the total number of items in the list exceeds the maximum that
@@ -6883,6 +7392,101 @@ func (c *CloudFront) ListRealtimeLogConfigs(input *ListRealtimeLogConfigsInput) 
 // for more information on using Contexts.
 func (c *CloudFront) ListRealtimeLogConfigsWithContext(ctx aws.Context, input *ListRealtimeLogConfigsInput, opts ...request.Option) (*ListRealtimeLogConfigsOutput, error) {
 	req, out := c.ListRealtimeLogConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListResponseHeadersPolicies = "ListResponseHeadersPolicies2020_05_31"
+
+// ListResponseHeadersPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListResponseHeadersPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListResponseHeadersPolicies for more information on using the ListResponseHeadersPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListResponseHeadersPoliciesRequest method.
+//    req, resp := client.ListResponseHeadersPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListResponseHeadersPolicies
+func (c *CloudFront) ListResponseHeadersPoliciesRequest(input *ListResponseHeadersPoliciesInput) (req *request.Request, output *ListResponseHeadersPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListResponseHeadersPolicies,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/response-headers-policy",
+	}
+
+	if input == nil {
+		input = &ListResponseHeadersPoliciesInput{}
+	}
+
+	output = &ListResponseHeadersPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListResponseHeadersPolicies API operation for Amazon CloudFront.
+//
+// Gets a list of response headers policies.
+//
+// You can optionally apply a filter to get only the managed policies created
+// by Amazon Web Services, or only the custom policies created in your Amazon
+// Web Services account.
+//
+// You can optionally specify the maximum number of items to receive in the
+// response. If the total number of items in the list exceeds the maximum that
+// you specify, or the default maximum, the response is paginated. To get the
+// next page of items, send a subsequent request that specifies the NextMarker
+// value from the current response as the Marker value in the subsequent request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListResponseHeadersPolicies for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
+//   * ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//   The response headers policy does not exist.
+//
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListResponseHeadersPolicies
+func (c *CloudFront) ListResponseHeadersPolicies(input *ListResponseHeadersPoliciesInput) (*ListResponseHeadersPoliciesOutput, error) {
+	req, out := c.ListResponseHeadersPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// ListResponseHeadersPoliciesWithContext is the same as ListResponseHeadersPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListResponseHeadersPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) ListResponseHeadersPoliciesWithContext(ctx aws.Context, input *ListResponseHeadersPoliciesInput, opts ...request.Option) (*ListResponseHeadersPoliciesOutput, error) {
+	req, out := c.ListResponseHeadersPoliciesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8013,6 +8617,16 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   cache policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
+//   * ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//   The response headers policy does not exist.
+//
+//   * ErrCodeTooManyDistributionsAssociatedToResponseHeadersPolicy "TooManyDistributionsAssociatedToResponseHeadersPolicy"
+//   The maximum number of distributions have been associated with the specified
+//   response headers policy.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
 //   * ErrCodeNoSuchOriginRequestPolicy "NoSuchOriginRequestPolicy"
 //   The origin request policy does not exist.
 //
@@ -8038,7 +8652,8 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   The real-time log configuration does not exist.
 //
 //   * ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
-//   The specified real-time log configuration belongs to a different account.
+//   The specified real-time log configuration belongs to a different Amazon Web
+//   Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateDistribution
 func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*UpdateDistributionOutput, error) {
@@ -8825,6 +9440,126 @@ func (c *CloudFront) UpdateRealtimeLogConfigWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opUpdateResponseHeadersPolicy = "UpdateResponseHeadersPolicy2020_05_31"
+
+// UpdateResponseHeadersPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResponseHeadersPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResponseHeadersPolicy for more information on using the UpdateResponseHeadersPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateResponseHeadersPolicyRequest method.
+//    req, resp := client.UpdateResponseHeadersPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateResponseHeadersPolicy
+func (c *CloudFront) UpdateResponseHeadersPolicyRequest(input *UpdateResponseHeadersPolicyInput) (req *request.Request, output *UpdateResponseHeadersPolicyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResponseHeadersPolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2020-05-31/response-headers-policy/{Id}",
+	}
+
+	if input == nil {
+		input = &UpdateResponseHeadersPolicyInput{}
+	}
+
+	output = &UpdateResponseHeadersPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateResponseHeadersPolicy API operation for Amazon CloudFront.
+//
+// Updates a response headers policy.
+//
+// When you update a response headers policy, the entire policy is replaced.
+// You cannot update some policy fields independent of others. To update a response
+// headers policy configuration:
+//
+// Use GetResponseHeadersPolicyConfig to get the current policy’s configuration.
+//
+// Modify the fields in the response headers policy configuration that you want
+// to update.
+//
+// Call UpdateResponseHeadersPolicy, providing the entire response headers policy
+// configuration, including the fields that you modified and those that you
+// didn’t.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UpdateResponseHeadersPolicy for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
+//   * ErrCodeIllegalUpdate "IllegalUpdate"
+//   The update contains modifications that are not allowed.
+//
+//   * ErrCodeInconsistentQuantities "InconsistentQuantities"
+//   The value of Quantity and the size of Items don't match.
+//
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//   The If-Match version is missing or not valid.
+//
+//   * ErrCodeNoSuchResponseHeadersPolicy "NoSuchResponseHeadersPolicy"
+//   The response headers policy does not exist.
+//
+//   * ErrCodePreconditionFailed "PreconditionFailed"
+//   The precondition in one or more of the request fields evaluated to false.
+//
+//   * ErrCodeResponseHeadersPolicyAlreadyExists "ResponseHeadersPolicyAlreadyExists"
+//   A response headers policy with this name already exists. You must provide
+//   a unique name. To modify an existing response headers policy, use UpdateResponseHeadersPolicy.
+//
+//   * ErrCodeTooManyCustomHeadersInResponseHeadersPolicy "TooManyCustomHeadersInResponseHeadersPolicy"
+//   The number of custom headers in the response headers policy exceeds the maximum.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateResponseHeadersPolicy
+func (c *CloudFront) UpdateResponseHeadersPolicy(input *UpdateResponseHeadersPolicyInput) (*UpdateResponseHeadersPolicyOutput, error) {
+	req, out := c.UpdateResponseHeadersPolicyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResponseHeadersPolicyWithContext is the same as UpdateResponseHeadersPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResponseHeadersPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) UpdateResponseHeadersPolicyWithContext(ctx aws.Context, input *UpdateResponseHeadersPolicyInput, opts ...request.Option) (*UpdateResponseHeadersPolicyOutput, error) {
+	req, out := c.UpdateResponseHeadersPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateStreamingDistribution = "UpdateStreamingDistribution2020_05_31"
 
 // UpdateStreamingDistributionRequest generates a "aws/request.Request" representing the
@@ -9000,24 +9735,25 @@ func (s *ActiveTrustedKeyGroups) SetQuantity(v int64) *ActiveTrustedKeyGroups {
 	return s
 }
 
-// A list of accounts and the active CloudFront key pairs in each account that
-// CloudFront can use to verify the signatures of signed URLs and signed cookies.
+// A list of Amazon Web Services accounts and the active CloudFront key pairs
+// in each account that CloudFront can use to verify the signatures of signed
+// URLs and signed cookies.
 type ActiveTrustedSigners struct {
 	_ struct{} `type:"structure"`
 
-	// This field is true if any of the accounts in the list have active CloudFront
-	// key pairs that CloudFront can use to verify the signatures of signed URLs
-	// and signed cookies. If not, this field is false.
+	// This field is true if any of the Amazon Web Services accounts in the list
+	// have active CloudFront key pairs that CloudFront can use to verify the signatures
+	// of signed URLs and signed cookies. If not, this field is false.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// A list of accounts and the identifiers of active CloudFront key pairs in
-	// each account that CloudFront can use to verify the signatures of signed URLs
-	// and signed cookies.
+	// A list of Amazon Web Services accounts and the identifiers of active CloudFront
+	// key pairs in each account that CloudFront can use to verify the signatures
+	// of signed URLs and signed cookies.
 	Items []*Signer `locationNameList:"Signer" type:"list"`
 
-	// The number of accounts in the list.
+	// The number of Amazon Web Services accounts in the list.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -9556,6 +10292,9 @@ type CacheBehavior struct {
 	// in the Amazon CloudFront Developer Guide.
 	RealtimeLogConfigArn *string `type:"string"`
 
+	// The identifier for a response headers policy.
+	ResponseHeadersPolicyId *string `type:"string"`
+
 	// Indicates whether you want to distribute media files in the Microsoft Smooth
 	// Streaming format using the origin that is associated with this cache behavior.
 	// If so, specify true; if not, specify false. If you specify true for SmoothStreaming,
@@ -9584,15 +10323,16 @@ type CacheBehavior struct {
 	//
 	// We recommend using TrustedKeyGroups instead of TrustedSigners.
 	//
-	// A list of account IDs whose public keys CloudFront can use to validate signed
-	// URLs or signed cookies.
+	// A list of Amazon Web Services account IDs whose public keys CloudFront can
+	// use to validate signed URLs or signed cookies.
 	//
 	// When a cache behavior contains trusted signers, CloudFront requires signed
 	// URLs or signed cookies for all requests that match the cache behavior. The
 	// URLs or cookies must be signed with the private key of a CloudFront key pair
-	// in the trusted signer’s account. The signed URL or cookie contains information
-	// about which public key CloudFront should use to verify the signature. For
-	// more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// in the trusted signer’s Amazon Web Services account. The signed URL or
+	// cookie contains information about which public key CloudFront should use
+	// to verify the signature. For more information, see Serving private content
+	// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
 	TrustedSigners *TrustedSigners `type:"structure"`
 
@@ -9768,6 +10508,12 @@ func (s *CacheBehavior) SetPathPattern(v string) *CacheBehavior {
 // SetRealtimeLogConfigArn sets the RealtimeLogConfigArn field's value.
 func (s *CacheBehavior) SetRealtimeLogConfigArn(v string) *CacheBehavior {
 	s.RealtimeLogConfigArn = &v
+	return s
+}
+
+// SetResponseHeadersPolicyId sets the ResponseHeadersPolicyId field's value.
+func (s *CacheBehavior) SetResponseHeadersPolicyId(v string) *CacheBehavior {
+	s.ResponseHeadersPolicyId = &v
 	return s
 }
 
@@ -10403,7 +11149,7 @@ type CachePolicySummary struct {
 	CachePolicy *CachePolicy `type:"structure" required:"true"`
 
 	// The type of cache policy, either managed (created by Amazon Web Services)
-	// or custom (created in this account).
+	// or custom (created in this Amazon Web Services account).
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"CachePolicyType"`
@@ -12409,6 +13155,107 @@ func (s *CreateRealtimeLogConfigOutput) SetRealtimeLogConfig(v *RealtimeLogConfi
 	return s
 }
 
+type CreateResponseHeadersPolicyInput struct {
+	_ struct{} `locationName:"CreateResponseHeadersPolicyRequest" type:"structure" payload:"ResponseHeadersPolicyConfig"`
+
+	// Contains metadata about the response headers policy, and a set of configurations
+	// that specify the response headers.
+	//
+	// ResponseHeadersPolicyConfig is a required field
+	ResponseHeadersPolicyConfig *ResponseHeadersPolicyConfig `locationName:"ResponseHeadersPolicyConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateResponseHeadersPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateResponseHeadersPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateResponseHeadersPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateResponseHeadersPolicyInput"}
+	if s.ResponseHeadersPolicyConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResponseHeadersPolicyConfig"))
+	}
+	if s.ResponseHeadersPolicyConfig != nil {
+		if err := s.ResponseHeadersPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("ResponseHeadersPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResponseHeadersPolicyConfig sets the ResponseHeadersPolicyConfig field's value.
+func (s *CreateResponseHeadersPolicyInput) SetResponseHeadersPolicyConfig(v *ResponseHeadersPolicyConfig) *CreateResponseHeadersPolicyInput {
+	s.ResponseHeadersPolicyConfig = v
+	return s
+}
+
+type CreateResponseHeadersPolicyOutput struct {
+	_ struct{} `type:"structure" payload:"ResponseHeadersPolicy"`
+
+	// The version identifier for the current version of the response headers policy.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The URL of the response headers policy.
+	Location *string `location:"header" locationName:"Location" type:"string"`
+
+	// Contains a response headers policy.
+	ResponseHeadersPolicy *ResponseHeadersPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateResponseHeadersPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateResponseHeadersPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateResponseHeadersPolicyOutput) SetETag(v string) *CreateResponseHeadersPolicyOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateResponseHeadersPolicyOutput) SetLocation(v string) *CreateResponseHeadersPolicyOutput {
+	s.Location = &v
+	return s
+}
+
+// SetResponseHeadersPolicy sets the ResponseHeadersPolicy field's value.
+func (s *CreateResponseHeadersPolicyOutput) SetResponseHeadersPolicy(v *ResponseHeadersPolicy) *CreateResponseHeadersPolicyOutput {
+	s.ResponseHeadersPolicy = v
+	return s
+}
+
 // The request to create a new streaming distribution.
 type CreateStreamingDistributionInput struct {
 	_ struct{} `locationName:"CreateStreamingDistributionRequest" type:"structure" payload:"StreamingDistributionConfig"`
@@ -13168,6 +14015,9 @@ type DefaultCacheBehavior struct {
 	// in the Amazon CloudFront Developer Guide.
 	RealtimeLogConfigArn *string `type:"string"`
 
+	// The identifier for a response headers policy.
+	ResponseHeadersPolicyId *string `type:"string"`
+
 	// Indicates whether you want to distribute media files in the Microsoft Smooth
 	// Streaming format using the origin that is associated with this cache behavior.
 	// If so, specify true; if not, specify false. If you specify true for SmoothStreaming,
@@ -13196,15 +14046,15 @@ type DefaultCacheBehavior struct {
 	//
 	// We recommend using TrustedKeyGroups instead of TrustedSigners.
 	//
-	// A list of account IDs whose public keys CloudFront can use to validate signed
-	// URLs or signed cookies.
+	// A list of Amazon Web Services account IDs whose public keys CloudFront can
+	// use to validate signed URLs or signed cookies.
 	//
 	// When a cache behavior contains trusted signers, CloudFront requires signed
 	// URLs or signed cookies for all requests that match the cache behavior. The
 	// URLs or cookies must be signed with the private key of a CloudFront key pair
-	// in a trusted signer’s account. The signed URL or cookie contains information
-	// about which public key CloudFront should use to verify the signature. For
-	// more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// in a trusted signer’s Amazon Web Services account. The signed URL or cookie
+	// contains information about which public key CloudFront should use to verify
+	// the signature. For more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
 	TrustedSigners *TrustedSigners `type:"structure"`
 
@@ -13371,6 +14221,12 @@ func (s *DefaultCacheBehavior) SetOriginRequestPolicyId(v string) *DefaultCacheB
 // SetRealtimeLogConfigArn sets the RealtimeLogConfigArn field's value.
 func (s *DefaultCacheBehavior) SetRealtimeLogConfigArn(v string) *DefaultCacheBehavior {
 	s.RealtimeLogConfigArn = &v
+	return s
+}
+
+// SetResponseHeadersPolicyId sets the ResponseHeadersPolicyId field's value.
+func (s *DefaultCacheBehavior) SetResponseHeadersPolicyId(v string) *DefaultCacheBehavior {
+	s.ResponseHeadersPolicyId = &v
 	return s
 }
 
@@ -14312,6 +15168,91 @@ func (s DeleteRealtimeLogConfigOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteResponseHeadersPolicyInput struct {
+	_ struct{} `locationName:"DeleteResponseHeadersPolicyRequest" type:"structure"`
+
+	// The identifier for the response headers policy that you are deleting.
+	//
+	// To get the identifier, you can use ListResponseHeadersPolicies.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The version of the response headers policy that you are deleting.
+	//
+	// The version is the response headers policy’s ETag value, which you can
+	// get using ListResponseHeadersPolicies, GetResponseHeadersPolicy, or GetResponseHeadersPolicyConfig.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResponseHeadersPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResponseHeadersPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResponseHeadersPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResponseHeadersPolicyInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteResponseHeadersPolicyInput) SetId(v string) *DeleteResponseHeadersPolicyInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *DeleteResponseHeadersPolicyInput) SetIfMatch(v string) *DeleteResponseHeadersPolicyInput {
+	s.IfMatch = &v
+	return s
+}
+
+type DeleteResponseHeadersPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResponseHeadersPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteResponseHeadersPolicyOutput) GoString() string {
+	return s.String()
+}
+
 // The request to delete a streaming distribution.
 type DeleteStreamingDistributionInput struct {
 	_ struct{} `locationName:"DeleteStreamingDistributionRequest" type:"structure"`
@@ -14498,7 +15439,7 @@ type Distribution struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN (Amazon Resource Name) for the distribution. For example: arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5,
-	// where 123456789012 is your account ID.
+	// where 123456789012 is your Amazon Web Services account ID.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
@@ -14515,9 +15456,9 @@ type Distribution struct {
 	//
 	// CloudFront automatically adds this field to the response if you’ve configured
 	// a cache behavior in this distribution to serve private content using trusted
-	// signers. This field contains a list of account IDs and the active CloudFront
-	// key pairs in each account that CloudFront can use to verify the signatures
-	// of signed URLs or signed cookies.
+	// signers. This field contains a list of Amazon Web Services account IDs and
+	// the active CloudFront key pairs in each account that CloudFront can use to
+	// verify the signatures of signed URLs or signed cookies.
 	ActiveTrustedSigners *ActiveTrustedSigners `type:"structure"`
 
 	// Amazon Web Services services in China customers must file for an Internet
@@ -15185,7 +16126,7 @@ type DistributionList struct {
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// A complex type that contains one DistributionSummary element for each distribution
-	// that was created by the current account.
+	// that was created by the current Amazon Web Services account.
 	Items []*DistributionSummary `locationNameList:"DistributionSummary" type:"list"`
 
 	// The value you provided for the Marker request parameter.
@@ -15203,7 +16144,8 @@ type DistributionList struct {
 	// where they left off.
 	NextMarker *string `type:"string"`
 
-	// The number of distributions that were created by the current account.
+	// The number of distributions that were created by the current Amazon Web Services
+	// account.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -15268,7 +16210,7 @@ type DistributionSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN (Amazon Resource Name) for the distribution. For example: arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5,
-	// where 123456789012 is your account ID.
+	// where 123456789012 is your Amazon Web Services account ID.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
@@ -18878,6 +19820,194 @@ func (s *GetRealtimeLogConfigOutput) SetRealtimeLogConfig(v *RealtimeLogConfig) 
 	return s
 }
 
+type GetResponseHeadersPolicyConfigInput struct {
+	_ struct{} `locationName:"GetResponseHeadersPolicyConfigRequest" type:"structure"`
+
+	// The identifier for the response headers policy.
+	//
+	// If the response headers policy is attached to a distribution’s cache behavior,
+	// you can get the policy’s identifier using ListDistributions or GetDistribution.
+	// If the response headers policy is not attached to a cache behavior, you can
+	// get the identifier using ListResponseHeadersPolicies.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResponseHeadersPolicyConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResponseHeadersPolicyConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResponseHeadersPolicyConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResponseHeadersPolicyConfigInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetResponseHeadersPolicyConfigInput) SetId(v string) *GetResponseHeadersPolicyConfigInput {
+	s.Id = &v
+	return s
+}
+
+type GetResponseHeadersPolicyConfigOutput struct {
+	_ struct{} `type:"structure" payload:"ResponseHeadersPolicyConfig"`
+
+	// The version identifier for the current version of the response headers policy.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// Contains a response headers policy.
+	ResponseHeadersPolicyConfig *ResponseHeadersPolicyConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResponseHeadersPolicyConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResponseHeadersPolicyConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetResponseHeadersPolicyConfigOutput) SetETag(v string) *GetResponseHeadersPolicyConfigOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetResponseHeadersPolicyConfig sets the ResponseHeadersPolicyConfig field's value.
+func (s *GetResponseHeadersPolicyConfigOutput) SetResponseHeadersPolicyConfig(v *ResponseHeadersPolicyConfig) *GetResponseHeadersPolicyConfigOutput {
+	s.ResponseHeadersPolicyConfig = v
+	return s
+}
+
+type GetResponseHeadersPolicyInput struct {
+	_ struct{} `locationName:"GetResponseHeadersPolicyRequest" type:"structure"`
+
+	// The identifier for the response headers policy.
+	//
+	// If the response headers policy is attached to a distribution’s cache behavior,
+	// you can get the policy’s identifier using ListDistributions or GetDistribution.
+	// If the response headers policy is not attached to a cache behavior, you can
+	// get the identifier using ListResponseHeadersPolicies.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResponseHeadersPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResponseHeadersPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResponseHeadersPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResponseHeadersPolicyInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetResponseHeadersPolicyInput) SetId(v string) *GetResponseHeadersPolicyInput {
+	s.Id = &v
+	return s
+}
+
+type GetResponseHeadersPolicyOutput struct {
+	_ struct{} `type:"structure" payload:"ResponseHeadersPolicy"`
+
+	// The version identifier for the current version of the response headers policy.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// Contains a response headers policy.
+	ResponseHeadersPolicy *ResponseHeadersPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResponseHeadersPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResponseHeadersPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetResponseHeadersPolicyOutput) SetETag(v string) *GetResponseHeadersPolicyOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetResponseHeadersPolicy sets the ResponseHeadersPolicy field's value.
+func (s *GetResponseHeadersPolicyOutput) SetResponseHeadersPolicy(v *ResponseHeadersPolicy) *GetResponseHeadersPolicyOutput {
+	s.ResponseHeadersPolicy = v
+	return s
+}
+
 // To request to get a streaming distribution configuration.
 type GetStreamingDistributionConfigInput struct {
 	_ struct{} `locationName:"GetStreamingDistributionConfigRequest" type:"structure"`
@@ -19284,7 +20414,7 @@ type InvalidationList struct {
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// A complex type that contains one InvalidationSummary element for each invalidation
-	// batch created by the current account.
+	// batch created by the current Amazon Web Services account.
 	Items []*InvalidationSummary `locationNameList:"InvalidationSummary" type:"list"`
 
 	// The value that you provided for the Marker request parameter.
@@ -19302,7 +20432,8 @@ type InvalidationList struct {
 	// batches where they left off.
 	NextMarker *string `type:"string"`
 
-	// The number of invalidation batches that were created by the current account.
+	// The number of invalidation batches that were created by the current Amazon
+	// Web Services account.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -19991,7 +21122,8 @@ type ListCachePoliciesInput struct {
 	//    * managed – Returns only the managed policies created by Amazon Web
 	//    Services.
 	//
-	//    * custom – Returns only the custom policies created in your account.
+	//    * custom – Returns only the custom policies created in your Amazon Web
+	//    Services account.
 	Type *string `location:"querystring" locationName:"Type" type:"string" enum:"CachePolicyType"`
 }
 
@@ -20652,6 +21784,108 @@ func (s *ListDistributionsByRealtimeLogConfigOutput) SetDistributionList(v *Dist
 	return s
 }
 
+type ListDistributionsByResponseHeadersPolicyIdInput struct {
+	_ struct{} `locationName:"ListDistributionsByResponseHeadersPolicyIdRequest" type:"structure"`
+
+	// Use this field when paginating results to indicate where to begin in your
+	// list of distribution IDs. The response includes distribution IDs in the list
+	// that occur after the marker. To get the next page of the list, set this field’s
+	// value to the value of NextMarker from the current page’s response.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of distribution IDs that you want to get in the response.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+
+	// The ID of the response headers policy whose associated distribution IDs you
+	// want to list.
+	//
+	// ResponseHeadersPolicyId is a required field
+	ResponseHeadersPolicyId *string `location:"uri" locationName:"ResponseHeadersPolicyId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDistributionsByResponseHeadersPolicyIdInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDistributionsByResponseHeadersPolicyIdInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDistributionsByResponseHeadersPolicyIdInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDistributionsByResponseHeadersPolicyIdInput"}
+	if s.ResponseHeadersPolicyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResponseHeadersPolicyId"))
+	}
+	if s.ResponseHeadersPolicyId != nil && len(*s.ResponseHeadersPolicyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResponseHeadersPolicyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListDistributionsByResponseHeadersPolicyIdInput) SetMarker(v string) *ListDistributionsByResponseHeadersPolicyIdInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListDistributionsByResponseHeadersPolicyIdInput) SetMaxItems(v int64) *ListDistributionsByResponseHeadersPolicyIdInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetResponseHeadersPolicyId sets the ResponseHeadersPolicyId field's value.
+func (s *ListDistributionsByResponseHeadersPolicyIdInput) SetResponseHeadersPolicyId(v string) *ListDistributionsByResponseHeadersPolicyIdInput {
+	s.ResponseHeadersPolicyId = &v
+	return s
+}
+
+type ListDistributionsByResponseHeadersPolicyIdOutput struct {
+	_ struct{} `type:"structure" payload:"DistributionIdList"`
+
+	// A list of distribution IDs.
+	DistributionIdList *DistributionIdList `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDistributionsByResponseHeadersPolicyIdOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDistributionsByResponseHeadersPolicyIdOutput) GoString() string {
+	return s.String()
+}
+
+// SetDistributionIdList sets the DistributionIdList field's value.
+func (s *ListDistributionsByResponseHeadersPolicyIdOutput) SetDistributionIdList(v *DistributionIdList) *ListDistributionsByResponseHeadersPolicyIdOutput {
+	s.DistributionIdList = v
+	return s
+}
+
 // The request to list distributions that are associated with a specified WAF
 // web ACL.
 type ListDistributionsByWebACLIdInput struct {
@@ -21276,7 +22510,8 @@ type ListOriginRequestPoliciesInput struct {
 	//    * managed – Returns only the managed policies created by Amazon Web
 	//    Services.
 	//
-	//    * custom – Returns only the custom policies created in your account.
+	//    * custom – Returns only the custom policies created in your Amazon Web
+	//    Services account.
 	Type *string `location:"querystring" locationName:"Type" type:"string" enum:"OriginRequestPolicyType"`
 }
 
@@ -21495,6 +22730,97 @@ func (s ListRealtimeLogConfigsOutput) GoString() string {
 // SetRealtimeLogConfigs sets the RealtimeLogConfigs field's value.
 func (s *ListRealtimeLogConfigsOutput) SetRealtimeLogConfigs(v *RealtimeLogConfigs) *ListRealtimeLogConfigsOutput {
 	s.RealtimeLogConfigs = v
+	return s
+}
+
+type ListResponseHeadersPoliciesInput struct {
+	_ struct{} `locationName:"ListResponseHeadersPoliciesRequest" type:"structure"`
+
+	// Use this field when paginating results to indicate where to begin in your
+	// list of response headers policies. The response includes response headers
+	// policies in the list that occur after the marker. To get the next page of
+	// the list, set this field’s value to the value of NextMarker from the current
+	// page’s response.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of response headers policies that you want to get in the
+	// response.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+
+	// A filter to get only the specified kind of response headers policies. Valid
+	// values are:
+	//
+	//    * managed – Gets only the managed policies created by Amazon Web Services.
+	//
+	//    * custom – Gets only the custom policies created in your Amazon Web
+	//    Services account.
+	Type *string `location:"querystring" locationName:"Type" type:"string" enum:"ResponseHeadersPolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResponseHeadersPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResponseHeadersPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListResponseHeadersPoliciesInput) SetMarker(v string) *ListResponseHeadersPoliciesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListResponseHeadersPoliciesInput) SetMaxItems(v int64) *ListResponseHeadersPoliciesInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListResponseHeadersPoliciesInput) SetType(v string) *ListResponseHeadersPoliciesInput {
+	s.Type = &v
+	return s
+}
+
+type ListResponseHeadersPoliciesOutput struct {
+	_ struct{} `type:"structure" payload:"ResponseHeadersPolicyList"`
+
+	// A list of response headers policies.
+	ResponseHeadersPolicyList *ResponseHeadersPolicyList `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResponseHeadersPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListResponseHeadersPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetResponseHeadersPolicyList sets the ResponseHeadersPolicyList field's value.
+func (s *ListResponseHeadersPoliciesOutput) SetResponseHeadersPolicyList(v *ResponseHeadersPolicyList) *ListResponseHeadersPoliciesOutput {
+	s.ResponseHeadersPolicyList = v
 	return s
 }
 
@@ -22154,7 +23480,8 @@ type OriginAccessIdentityList struct {
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// A complex type that contains one CloudFrontOriginAccessIdentitySummary element
-	// for each origin access identity that was created by the current account.
+	// for each origin access identity that was created by the current Amazon Web
+	// Services account.
 	Items []*OriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
 
 	// Use this when paginating results to indicate where to begin in your list
@@ -22177,7 +23504,7 @@ type OriginAccessIdentityList struct {
 	NextMarker *string `type:"string"`
 
 	// The number of CloudFront origin access identities that were created by the
-	// current account.
+	// current Amazon Web Services account.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -22310,8 +23637,12 @@ type OriginCustomHeader struct {
 
 	// The value for the header that you specified in the HeaderName field.
 	//
+	// HeaderValue is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by OriginCustomHeader's
+	// String and GoString methods.
+	//
 	// HeaderValue is a required field
-	HeaderValue *string `type:"string" required:"true"`
+	HeaderValue *string `type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -23208,7 +24539,7 @@ type OriginRequestPolicySummary struct {
 	OriginRequestPolicy *OriginRequestPolicy `type:"structure" required:"true"`
 
 	// The type of origin request policy, either managed (created by Amazon Web
-	// Services) or custom (created in this account).
+	// Services) or custom (created in this Amazon Web Services account).
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"OriginRequestPolicyType"`
@@ -23262,16 +24593,16 @@ type OriginShield struct {
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// The Region for Origin Shield.
+	// The Amazon Web Services Region for Origin Shield.
 	//
-	// Specify the Region that has the lowest latency to your origin. To specify
-	// a region, use the region code, not the region name. For example, specify
-	// the US East (Ohio) region as us-east-2.
+	// Specify the Amazon Web Services Region that has the lowest latency to your
+	// origin. To specify a region, use the region code, not the region name. For
+	// example, specify the US East (Ohio) region as us-east-2.
 	//
-	// When you enable CloudFront Origin Shield, you must specify the Region for
-	// Origin Shield. For the list of Regions that you can specify, and for help
-	// choosing the best Region for your origin, see Choosing the Region for Origin
-	// Shield (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#choose-origin-shield-region)
+	// When you enable CloudFront Origin Shield, you must specify the Amazon Web
+	// Services Region for Origin Shield. For the list of Amazon Web Services Regions
+	// that you can specify, and for help choosing the best Region for your origin,
+	// see Choosing the Amazon Web Services Region for Origin Shield (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#choose-origin-shield-region)
 	// in the Amazon CloudFront Developer Guide.
 	OriginShieldRegion *string `min:"1" type:"string"`
 }
@@ -24617,6 +25948,1524 @@ func (s *RealtimeMetricsSubscriptionConfig) SetRealtimeMetricsSubscriptionStatus
 	return s
 }
 
+// A response headers policy.
+//
+// A response headers policy contains information about a set of HTTP response
+// headers and their values.
+//
+// After you create a response headers policy, you can use its ID to attach
+// it to one or more cache behaviors in a CloudFront distribution. When it’s
+// attached to a cache behavior, CloudFront adds the headers in the policy to
+// HTTP responses that it sends for requests that match the cache behavior.
+//
+// For more information, see Adding HTTP headers to CloudFront responses (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/adding-response-headers.html)
+// in the Amazon CloudFront Developer Guide.
+type ResponseHeadersPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the response headers policy.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// The date and time when the response headers policy was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// A response headers policy configuration.
+	//
+	// A response headers policy contains information about a set of HTTP response
+	// headers and their values. CloudFront adds the headers in the policy to HTTP
+	// responses that it sends for requests that match a cache behavior that’s
+	// associated with the policy.
+	//
+	// ResponseHeadersPolicyConfig is a required field
+	ResponseHeadersPolicyConfig *ResponseHeadersPolicyConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicy) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ResponseHeadersPolicy) SetId(v string) *ResponseHeadersPolicy {
+	s.Id = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ResponseHeadersPolicy) SetLastModifiedTime(v time.Time) *ResponseHeadersPolicy {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetResponseHeadersPolicyConfig sets the ResponseHeadersPolicyConfig field's value.
+func (s *ResponseHeadersPolicy) SetResponseHeadersPolicyConfig(v *ResponseHeadersPolicyConfig) *ResponseHeadersPolicy {
+	s.ResponseHeadersPolicyConfig = v
+	return s
+}
+
+// A list of HTTP header names that CloudFront includes as values for the Access-Control-Allow-Headers
+// HTTP response header.
+//
+// For more information about the Access-Control-Allow-Headers HTTP response
+// header, see Access-Control-Allow-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyAccessControlAllowHeaders struct {
+	_ struct{} `type:"structure"`
+
+	// The list of HTTP header names. You can specify * to allow all headers.
+	//
+	// Items is a required field
+	Items []*string `locationNameList:"Header" type:"list" required:"true"`
+
+	// The number of HTTP header names in the list.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyAccessControlAllowHeaders) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyAccessControlAllowHeaders) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyAccessControlAllowHeaders) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyAccessControlAllowHeaders"}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *ResponseHeadersPolicyAccessControlAllowHeaders) SetItems(v []*string) *ResponseHeadersPolicyAccessControlAllowHeaders {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ResponseHeadersPolicyAccessControlAllowHeaders) SetQuantity(v int64) *ResponseHeadersPolicyAccessControlAllowHeaders {
+	s.Quantity = &v
+	return s
+}
+
+// A list of HTTP methods that CloudFront includes as values for the Access-Control-Allow-Methods
+// HTTP response header.
+//
+// For more information about the Access-Control-Allow-Methods HTTP response
+// header, see Access-Control-Allow-Methods (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyAccessControlAllowMethods struct {
+	_ struct{} `type:"structure"`
+
+	// The list of HTTP methods. Valid values are:
+	//
+	//    * GET
+	//
+	//    * DELETE
+	//
+	//    * HEAD
+	//
+	//    * OPTIONS
+	//
+	//    * PATCH
+	//
+	//    * POST
+	//
+	//    * PUT
+	//
+	//    * ALL
+	//
+	// ALL is a special value that includes all of the listed HTTP methods.
+	//
+	// Items is a required field
+	Items []*string `locationNameList:"Method" type:"list" required:"true"`
+
+	// The number of HTTP methods in the list.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyAccessControlAllowMethods) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyAccessControlAllowMethods) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyAccessControlAllowMethods) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyAccessControlAllowMethods"}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *ResponseHeadersPolicyAccessControlAllowMethods) SetItems(v []*string) *ResponseHeadersPolicyAccessControlAllowMethods {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ResponseHeadersPolicyAccessControlAllowMethods) SetQuantity(v int64) *ResponseHeadersPolicyAccessControlAllowMethods {
+	s.Quantity = &v
+	return s
+}
+
+// A list of origins (domain names) that CloudFront can use as the value for
+// the Access-Control-Allow-Origin HTTP response header.
+//
+// For more information about the Access-Control-Allow-Origin HTTP response
+// header, see Access-Control-Allow-Origin (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyAccessControlAllowOrigins struct {
+	_ struct{} `type:"structure"`
+
+	// The list of origins (domain names). You can specify * to allow all origins.
+	//
+	// Items is a required field
+	Items []*string `locationNameList:"Origin" type:"list" required:"true"`
+
+	// The number of origins in the list.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyAccessControlAllowOrigins) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyAccessControlAllowOrigins) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyAccessControlAllowOrigins) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyAccessControlAllowOrigins"}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *ResponseHeadersPolicyAccessControlAllowOrigins) SetItems(v []*string) *ResponseHeadersPolicyAccessControlAllowOrigins {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ResponseHeadersPolicyAccessControlAllowOrigins) SetQuantity(v int64) *ResponseHeadersPolicyAccessControlAllowOrigins {
+	s.Quantity = &v
+	return s
+}
+
+// A list of HTTP headers that CloudFront includes as values for the Access-Control-Expose-Headers
+// HTTP response header.
+//
+// For more information about the Access-Control-Expose-Headers HTTP response
+// header, see Access-Control-Expose-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyAccessControlExposeHeaders struct {
+	_ struct{} `type:"structure"`
+
+	// The list of HTTP headers. You can specify * to expose all headers.
+	Items []*string `locationNameList:"Header" type:"list"`
+
+	// The number of HTTP headers in the list.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyAccessControlExposeHeaders) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyAccessControlExposeHeaders) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyAccessControlExposeHeaders) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyAccessControlExposeHeaders"}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *ResponseHeadersPolicyAccessControlExposeHeaders) SetItems(v []*string) *ResponseHeadersPolicyAccessControlExposeHeaders {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ResponseHeadersPolicyAccessControlExposeHeaders) SetQuantity(v int64) *ResponseHeadersPolicyAccessControlExposeHeaders {
+	s.Quantity = &v
+	return s
+}
+
+// A response headers policy configuration.
+//
+// A response headers policy configuration contains metadata about the response
+// headers policy, and configurations for sets of HTTP response headers and
+// their values. CloudFront adds the headers in the policy to HTTP responses
+// that it sends for requests that match a cache behavior associated with the
+// policy.
+type ResponseHeadersPolicyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A comment to describe the response headers policy.
+	//
+	// The comment cannot be longer than 128 characters.
+	Comment *string `type:"string"`
+
+	// A configuration for a set of HTTP response headers that are used for cross-origin
+	// resource sharing (CORS).
+	CorsConfig *ResponseHeadersPolicyCorsConfig `type:"structure"`
+
+	// A configuration for a set of custom HTTP response headers.
+	CustomHeadersConfig *ResponseHeadersPolicyCustomHeadersConfig `type:"structure"`
+
+	// A name to identify the response headers policy.
+	//
+	// The name must be unique for response headers policies in this Amazon Web
+	// Services account.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// A configuration for a set of security-related HTTP response headers.
+	SecurityHeadersConfig *ResponseHeadersPolicySecurityHeadersConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyConfig"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.CorsConfig != nil {
+		if err := s.CorsConfig.Validate(); err != nil {
+			invalidParams.AddNested("CorsConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomHeadersConfig != nil {
+		if err := s.CustomHeadersConfig.Validate(); err != nil {
+			invalidParams.AddNested("CustomHeadersConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecurityHeadersConfig != nil {
+		if err := s.SecurityHeadersConfig.Validate(); err != nil {
+			invalidParams.AddNested("SecurityHeadersConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComment sets the Comment field's value.
+func (s *ResponseHeadersPolicyConfig) SetComment(v string) *ResponseHeadersPolicyConfig {
+	s.Comment = &v
+	return s
+}
+
+// SetCorsConfig sets the CorsConfig field's value.
+func (s *ResponseHeadersPolicyConfig) SetCorsConfig(v *ResponseHeadersPolicyCorsConfig) *ResponseHeadersPolicyConfig {
+	s.CorsConfig = v
+	return s
+}
+
+// SetCustomHeadersConfig sets the CustomHeadersConfig field's value.
+func (s *ResponseHeadersPolicyConfig) SetCustomHeadersConfig(v *ResponseHeadersPolicyCustomHeadersConfig) *ResponseHeadersPolicyConfig {
+	s.CustomHeadersConfig = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ResponseHeadersPolicyConfig) SetName(v string) *ResponseHeadersPolicyConfig {
+	s.Name = &v
+	return s
+}
+
+// SetSecurityHeadersConfig sets the SecurityHeadersConfig field's value.
+func (s *ResponseHeadersPolicyConfig) SetSecurityHeadersConfig(v *ResponseHeadersPolicySecurityHeadersConfig) *ResponseHeadersPolicyConfig {
+	s.SecurityHeadersConfig = v
+	return s
+}
+
+// The policy directives and their values that CloudFront includes as values
+// for the Content-Security-Policy HTTP response header.
+//
+// For more information about the Content-Security-Policy HTTP response header,
+// see Content-Security-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyContentSecurityPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The policy directives and their values that CloudFront includes as values
+	// for the Content-Security-Policy HTTP response header.
+	//
+	// ContentSecurityPolicy is a required field
+	ContentSecurityPolicy *string `type:"string" required:"true"`
+
+	// A Boolean that determines whether CloudFront overrides the Content-Security-Policy
+	// HTTP response header received from the origin with the one specified in this
+	// response headers policy.
+	//
+	// Override is a required field
+	Override *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyContentSecurityPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyContentSecurityPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyContentSecurityPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyContentSecurityPolicy"}
+	if s.ContentSecurityPolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentSecurityPolicy"))
+	}
+	if s.Override == nil {
+		invalidParams.Add(request.NewErrParamRequired("Override"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentSecurityPolicy sets the ContentSecurityPolicy field's value.
+func (s *ResponseHeadersPolicyContentSecurityPolicy) SetContentSecurityPolicy(v string) *ResponseHeadersPolicyContentSecurityPolicy {
+	s.ContentSecurityPolicy = &v
+	return s
+}
+
+// SetOverride sets the Override field's value.
+func (s *ResponseHeadersPolicyContentSecurityPolicy) SetOverride(v bool) *ResponseHeadersPolicyContentSecurityPolicy {
+	s.Override = &v
+	return s
+}
+
+// Determines whether CloudFront includes the X-Content-Type-Options HTTP response
+// header with its value set to nosniff.
+//
+// For more information about the X-Content-Type-Options HTTP response header,
+// see X-Content-Type-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyContentTypeOptions struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean that determines whether CloudFront overrides the X-Content-Type-Options
+	// HTTP response header received from the origin with the one specified in this
+	// response headers policy.
+	//
+	// Override is a required field
+	Override *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyContentTypeOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyContentTypeOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyContentTypeOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyContentTypeOptions"}
+	if s.Override == nil {
+		invalidParams.Add(request.NewErrParamRequired("Override"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOverride sets the Override field's value.
+func (s *ResponseHeadersPolicyContentTypeOptions) SetOverride(v bool) *ResponseHeadersPolicyContentTypeOptions {
+	s.Override = &v
+	return s
+}
+
+// A configuration for a set of HTTP response headers that are used for cross-origin
+// resource sharing (CORS). CloudFront adds these headers to HTTP responses
+// that it sends for CORS requests that match a cache behavior associated with
+// this response headers policy.
+//
+// For more information about CORS, see Cross-Origin Resource Sharing (CORS)
+// (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) in the MDN Web Docs.
+type ResponseHeadersPolicyCorsConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean that CloudFront uses as the value for the Access-Control-Allow-Credentials
+	// HTTP response header.
+	//
+	// For more information about the Access-Control-Allow-Credentials HTTP response
+	// header, see Access-Control-Allow-Credentials (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials)
+	// in the MDN Web Docs.
+	//
+	// AccessControlAllowCredentials is a required field
+	AccessControlAllowCredentials *bool `type:"boolean" required:"true"`
+
+	// A list of HTTP header names that CloudFront includes as values for the Access-Control-Allow-Headers
+	// HTTP response header.
+	//
+	// For more information about the Access-Control-Allow-Headers HTTP response
+	// header, see Access-Control-Allow-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers)
+	// in the MDN Web Docs.
+	//
+	// AccessControlAllowHeaders is a required field
+	AccessControlAllowHeaders *ResponseHeadersPolicyAccessControlAllowHeaders `type:"structure" required:"true"`
+
+	// A list of HTTP methods that CloudFront includes as values for the Access-Control-Allow-Methods
+	// HTTP response header.
+	//
+	// For more information about the Access-Control-Allow-Methods HTTP response
+	// header, see Access-Control-Allow-Methods (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods)
+	// in the MDN Web Docs.
+	//
+	// AccessControlAllowMethods is a required field
+	AccessControlAllowMethods *ResponseHeadersPolicyAccessControlAllowMethods `type:"structure" required:"true"`
+
+	// A list of origins (domain names) that CloudFront can use as the value for
+	// the Access-Control-Allow-Origin HTTP response header.
+	//
+	// For more information about the Access-Control-Allow-Origin HTTP response
+	// header, see Access-Control-Allow-Origin (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin)
+	// in the MDN Web Docs.
+	//
+	// AccessControlAllowOrigins is a required field
+	AccessControlAllowOrigins *ResponseHeadersPolicyAccessControlAllowOrigins `type:"structure" required:"true"`
+
+	// A list of HTTP headers that CloudFront includes as values for the Access-Control-Expose-Headers
+	// HTTP response header.
+	//
+	// For more information about the Access-Control-Expose-Headers HTTP response
+	// header, see Access-Control-Expose-Headers (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers)
+	// in the MDN Web Docs.
+	AccessControlExposeHeaders *ResponseHeadersPolicyAccessControlExposeHeaders `type:"structure"`
+
+	// A number that CloudFront uses as the value for the Access-Control-Max-Age
+	// HTTP response header.
+	//
+	// For more information about the Access-Control-Max-Age HTTP response header,
+	// see Access-Control-Max-Age (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age)
+	// in the MDN Web Docs.
+	AccessControlMaxAgeSec *int64 `type:"integer"`
+
+	// A Boolean that determines whether CloudFront overrides HTTP response headers
+	// received from the origin with the ones specified in this response headers
+	// policy.
+	//
+	// OriginOverride is a required field
+	OriginOverride *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyCorsConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyCorsConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyCorsConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyCorsConfig"}
+	if s.AccessControlAllowCredentials == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessControlAllowCredentials"))
+	}
+	if s.AccessControlAllowHeaders == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessControlAllowHeaders"))
+	}
+	if s.AccessControlAllowMethods == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessControlAllowMethods"))
+	}
+	if s.AccessControlAllowOrigins == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessControlAllowOrigins"))
+	}
+	if s.OriginOverride == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginOverride"))
+	}
+	if s.AccessControlAllowHeaders != nil {
+		if err := s.AccessControlAllowHeaders.Validate(); err != nil {
+			invalidParams.AddNested("AccessControlAllowHeaders", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AccessControlAllowMethods != nil {
+		if err := s.AccessControlAllowMethods.Validate(); err != nil {
+			invalidParams.AddNested("AccessControlAllowMethods", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AccessControlAllowOrigins != nil {
+		if err := s.AccessControlAllowOrigins.Validate(); err != nil {
+			invalidParams.AddNested("AccessControlAllowOrigins", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AccessControlExposeHeaders != nil {
+		if err := s.AccessControlExposeHeaders.Validate(); err != nil {
+			invalidParams.AddNested("AccessControlExposeHeaders", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessControlAllowCredentials sets the AccessControlAllowCredentials field's value.
+func (s *ResponseHeadersPolicyCorsConfig) SetAccessControlAllowCredentials(v bool) *ResponseHeadersPolicyCorsConfig {
+	s.AccessControlAllowCredentials = &v
+	return s
+}
+
+// SetAccessControlAllowHeaders sets the AccessControlAllowHeaders field's value.
+func (s *ResponseHeadersPolicyCorsConfig) SetAccessControlAllowHeaders(v *ResponseHeadersPolicyAccessControlAllowHeaders) *ResponseHeadersPolicyCorsConfig {
+	s.AccessControlAllowHeaders = v
+	return s
+}
+
+// SetAccessControlAllowMethods sets the AccessControlAllowMethods field's value.
+func (s *ResponseHeadersPolicyCorsConfig) SetAccessControlAllowMethods(v *ResponseHeadersPolicyAccessControlAllowMethods) *ResponseHeadersPolicyCorsConfig {
+	s.AccessControlAllowMethods = v
+	return s
+}
+
+// SetAccessControlAllowOrigins sets the AccessControlAllowOrigins field's value.
+func (s *ResponseHeadersPolicyCorsConfig) SetAccessControlAllowOrigins(v *ResponseHeadersPolicyAccessControlAllowOrigins) *ResponseHeadersPolicyCorsConfig {
+	s.AccessControlAllowOrigins = v
+	return s
+}
+
+// SetAccessControlExposeHeaders sets the AccessControlExposeHeaders field's value.
+func (s *ResponseHeadersPolicyCorsConfig) SetAccessControlExposeHeaders(v *ResponseHeadersPolicyAccessControlExposeHeaders) *ResponseHeadersPolicyCorsConfig {
+	s.AccessControlExposeHeaders = v
+	return s
+}
+
+// SetAccessControlMaxAgeSec sets the AccessControlMaxAgeSec field's value.
+func (s *ResponseHeadersPolicyCorsConfig) SetAccessControlMaxAgeSec(v int64) *ResponseHeadersPolicyCorsConfig {
+	s.AccessControlMaxAgeSec = &v
+	return s
+}
+
+// SetOriginOverride sets the OriginOverride field's value.
+func (s *ResponseHeadersPolicyCorsConfig) SetOriginOverride(v bool) *ResponseHeadersPolicyCorsConfig {
+	s.OriginOverride = &v
+	return s
+}
+
+// An HTTP response header name and its value. CloudFront includes this header
+// in HTTP responses that it sends for requests that match a cache behavior
+// that’s associated with this response headers policy.
+type ResponseHeadersPolicyCustomHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The HTTP response header name.
+	//
+	// Header is a required field
+	Header *string `type:"string" required:"true"`
+
+	// A Boolean that determines whether CloudFront overrides a response header
+	// with the same name received from the origin with the header specified here.
+	//
+	// Override is a required field
+	Override *bool `type:"boolean" required:"true"`
+
+	// The value for the HTTP response header.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyCustomHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyCustomHeader) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyCustomHeader) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyCustomHeader"}
+	if s.Header == nil {
+		invalidParams.Add(request.NewErrParamRequired("Header"))
+	}
+	if s.Override == nil {
+		invalidParams.Add(request.NewErrParamRequired("Override"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHeader sets the Header field's value.
+func (s *ResponseHeadersPolicyCustomHeader) SetHeader(v string) *ResponseHeadersPolicyCustomHeader {
+	s.Header = &v
+	return s
+}
+
+// SetOverride sets the Override field's value.
+func (s *ResponseHeadersPolicyCustomHeader) SetOverride(v bool) *ResponseHeadersPolicyCustomHeader {
+	s.Override = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ResponseHeadersPolicyCustomHeader) SetValue(v string) *ResponseHeadersPolicyCustomHeader {
+	s.Value = &v
+	return s
+}
+
+// A list of HTTP response header names and their values. CloudFront includes
+// these headers in HTTP responses that it sends for requests that match a cache
+// behavior that’s associated with this response headers policy.
+type ResponseHeadersPolicyCustomHeadersConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The list of HTTP response headers and their values.
+	Items []*ResponseHeadersPolicyCustomHeader `locationNameList:"ResponseHeadersPolicyCustomHeader" type:"list"`
+
+	// The number of HTTP response headers in the list.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyCustomHeadersConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyCustomHeadersConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyCustomHeadersConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyCustomHeadersConfig"}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
+	}
+	if s.Items != nil {
+		for i, v := range s.Items {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Items", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *ResponseHeadersPolicyCustomHeadersConfig) SetItems(v []*ResponseHeadersPolicyCustomHeader) *ResponseHeadersPolicyCustomHeadersConfig {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ResponseHeadersPolicyCustomHeadersConfig) SetQuantity(v int64) *ResponseHeadersPolicyCustomHeadersConfig {
+	s.Quantity = &v
+	return s
+}
+
+// Determines whether CloudFront includes the X-Frame-Options HTTP response
+// header and the header’s value.
+//
+// For more information about the X-Frame-Options HTTP response header, see
+// X-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyFrameOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the X-Frame-Options HTTP response header. Valid values are DENY
+	// and SAMEORIGIN.
+	//
+	// For more information about these values, see X-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)
+	// in the MDN Web Docs.
+	//
+	// FrameOption is a required field
+	FrameOption *string `type:"string" required:"true" enum:"FrameOptionsList"`
+
+	// A Boolean that determines whether CloudFront overrides the X-Frame-Options
+	// HTTP response header received from the origin with the one specified in this
+	// response headers policy.
+	//
+	// Override is a required field
+	Override *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyFrameOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyFrameOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyFrameOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyFrameOptions"}
+	if s.FrameOption == nil {
+		invalidParams.Add(request.NewErrParamRequired("FrameOption"))
+	}
+	if s.Override == nil {
+		invalidParams.Add(request.NewErrParamRequired("Override"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFrameOption sets the FrameOption field's value.
+func (s *ResponseHeadersPolicyFrameOptions) SetFrameOption(v string) *ResponseHeadersPolicyFrameOptions {
+	s.FrameOption = &v
+	return s
+}
+
+// SetOverride sets the Override field's value.
+func (s *ResponseHeadersPolicyFrameOptions) SetOverride(v bool) *ResponseHeadersPolicyFrameOptions {
+	s.Override = &v
+	return s
+}
+
+// A list of response headers policies.
+type ResponseHeadersPolicyList struct {
+	_ struct{} `type:"structure"`
+
+	// The response headers policies in the list.
+	Items []*ResponseHeadersPolicySummary `locationNameList:"ResponseHeadersPolicySummary" type:"list"`
+
+	// The maximum number of response headers policies requested.
+	//
+	// MaxItems is a required field
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If there are more items in the list than are in this response, this element
+	// is present. It contains the value that you should use in the Marker field
+	// of a subsequent request to continue listing response headers policies where
+	// you left off.
+	NextMarker *string `type:"string"`
+
+	// The number of response headers policies returned.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyList) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ResponseHeadersPolicyList) SetItems(v []*ResponseHeadersPolicySummary) *ResponseHeadersPolicyList {
+	s.Items = v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ResponseHeadersPolicyList) SetMaxItems(v int64) *ResponseHeadersPolicyList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ResponseHeadersPolicyList) SetNextMarker(v string) *ResponseHeadersPolicyList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ResponseHeadersPolicyList) SetQuantity(v int64) *ResponseHeadersPolicyList {
+	s.Quantity = &v
+	return s
+}
+
+// Determines whether CloudFront includes the Referrer-Policy HTTP response
+// header and the header’s value.
+//
+// For more information about the Referrer-Policy HTTP response header, see
+// Referrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyReferrerPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean that determines whether CloudFront overrides the Referrer-Policy
+	// HTTP response header received from the origin with the one specified in this
+	// response headers policy.
+	//
+	// Override is a required field
+	Override *bool `type:"boolean" required:"true"`
+
+	// The value of the Referrer-Policy HTTP response header. Valid values are:
+	//
+	//    * no-referrer
+	//
+	//    * no-referrer-when-downgrade
+	//
+	//    * origin
+	//
+	//    * origin-when-cross-origin
+	//
+	//    * same-origin
+	//
+	//    * strict-origin
+	//
+	//    * strict-origin-when-cross-origin
+	//
+	//    * unsafe-url
+	//
+	// For more information about these values, see Referrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)
+	// in the MDN Web Docs.
+	//
+	// ReferrerPolicy is a required field
+	ReferrerPolicy *string `type:"string" required:"true" enum:"ReferrerPolicyList"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyReferrerPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyReferrerPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyReferrerPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyReferrerPolicy"}
+	if s.Override == nil {
+		invalidParams.Add(request.NewErrParamRequired("Override"))
+	}
+	if s.ReferrerPolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReferrerPolicy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOverride sets the Override field's value.
+func (s *ResponseHeadersPolicyReferrerPolicy) SetOverride(v bool) *ResponseHeadersPolicyReferrerPolicy {
+	s.Override = &v
+	return s
+}
+
+// SetReferrerPolicy sets the ReferrerPolicy field's value.
+func (s *ResponseHeadersPolicyReferrerPolicy) SetReferrerPolicy(v string) *ResponseHeadersPolicyReferrerPolicy {
+	s.ReferrerPolicy = &v
+	return s
+}
+
+// A configuration for a set of security-related HTTP response headers. CloudFront
+// adds these headers to HTTP responses that it sends for requests that match
+// a cache behavior associated with this response headers policy.
+type ResponseHeadersPolicySecurityHeadersConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The policy directives and their values that CloudFront includes as values
+	// for the Content-Security-Policy HTTP response header.
+	//
+	// For more information about the Content-Security-Policy HTTP response header,
+	// see Content-Security-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+	// in the MDN Web Docs.
+	ContentSecurityPolicy *ResponseHeadersPolicyContentSecurityPolicy `type:"structure"`
+
+	// Determines whether CloudFront includes the X-Content-Type-Options HTTP response
+	// header with its value set to nosniff.
+	//
+	// For more information about the X-Content-Type-Options HTTP response header,
+	// see X-Content-Type-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options)
+	// in the MDN Web Docs.
+	ContentTypeOptions *ResponseHeadersPolicyContentTypeOptions `type:"structure"`
+
+	// Determines whether CloudFront includes the X-Frame-Options HTTP response
+	// header and the header’s value.
+	//
+	// For more information about the X-Frame-Options HTTP response header, see
+	// X-Frame-Options (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options)
+	// in the MDN Web Docs.
+	FrameOptions *ResponseHeadersPolicyFrameOptions `type:"structure"`
+
+	// Determines whether CloudFront includes the Referrer-Policy HTTP response
+	// header and the header’s value.
+	//
+	// For more information about the Referrer-Policy HTTP response header, see
+	// Referrer-Policy (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy)
+	// in the MDN Web Docs.
+	ReferrerPolicy *ResponseHeadersPolicyReferrerPolicy `type:"structure"`
+
+	// Determines whether CloudFront includes the Strict-Transport-Security HTTP
+	// response header and the header’s value.
+	//
+	// For more information about the Strict-Transport-Security HTTP response header,
+	// see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
+	// in the MDN Web Docs.
+	StrictTransportSecurity *ResponseHeadersPolicyStrictTransportSecurity `type:"structure"`
+
+	// Determines whether CloudFront includes the X-XSS-Protection HTTP response
+	// header and the header’s value.
+	//
+	// For more information about the X-XSS-Protection HTTP response header, see
+	// X-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)
+	// in the MDN Web Docs.
+	XSSProtection *ResponseHeadersPolicyXSSProtection `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicySecurityHeadersConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicySecurityHeadersConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicySecurityHeadersConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicySecurityHeadersConfig"}
+	if s.ContentSecurityPolicy != nil {
+		if err := s.ContentSecurityPolicy.Validate(); err != nil {
+			invalidParams.AddNested("ContentSecurityPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ContentTypeOptions != nil {
+		if err := s.ContentTypeOptions.Validate(); err != nil {
+			invalidParams.AddNested("ContentTypeOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.FrameOptions != nil {
+		if err := s.FrameOptions.Validate(); err != nil {
+			invalidParams.AddNested("FrameOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ReferrerPolicy != nil {
+		if err := s.ReferrerPolicy.Validate(); err != nil {
+			invalidParams.AddNested("ReferrerPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StrictTransportSecurity != nil {
+		if err := s.StrictTransportSecurity.Validate(); err != nil {
+			invalidParams.AddNested("StrictTransportSecurity", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.XSSProtection != nil {
+		if err := s.XSSProtection.Validate(); err != nil {
+			invalidParams.AddNested("XSSProtection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentSecurityPolicy sets the ContentSecurityPolicy field's value.
+func (s *ResponseHeadersPolicySecurityHeadersConfig) SetContentSecurityPolicy(v *ResponseHeadersPolicyContentSecurityPolicy) *ResponseHeadersPolicySecurityHeadersConfig {
+	s.ContentSecurityPolicy = v
+	return s
+}
+
+// SetContentTypeOptions sets the ContentTypeOptions field's value.
+func (s *ResponseHeadersPolicySecurityHeadersConfig) SetContentTypeOptions(v *ResponseHeadersPolicyContentTypeOptions) *ResponseHeadersPolicySecurityHeadersConfig {
+	s.ContentTypeOptions = v
+	return s
+}
+
+// SetFrameOptions sets the FrameOptions field's value.
+func (s *ResponseHeadersPolicySecurityHeadersConfig) SetFrameOptions(v *ResponseHeadersPolicyFrameOptions) *ResponseHeadersPolicySecurityHeadersConfig {
+	s.FrameOptions = v
+	return s
+}
+
+// SetReferrerPolicy sets the ReferrerPolicy field's value.
+func (s *ResponseHeadersPolicySecurityHeadersConfig) SetReferrerPolicy(v *ResponseHeadersPolicyReferrerPolicy) *ResponseHeadersPolicySecurityHeadersConfig {
+	s.ReferrerPolicy = v
+	return s
+}
+
+// SetStrictTransportSecurity sets the StrictTransportSecurity field's value.
+func (s *ResponseHeadersPolicySecurityHeadersConfig) SetStrictTransportSecurity(v *ResponseHeadersPolicyStrictTransportSecurity) *ResponseHeadersPolicySecurityHeadersConfig {
+	s.StrictTransportSecurity = v
+	return s
+}
+
+// SetXSSProtection sets the XSSProtection field's value.
+func (s *ResponseHeadersPolicySecurityHeadersConfig) SetXSSProtection(v *ResponseHeadersPolicyXSSProtection) *ResponseHeadersPolicySecurityHeadersConfig {
+	s.XSSProtection = v
+	return s
+}
+
+// Determines whether CloudFront includes the Strict-Transport-Security HTTP
+// response header and the header’s value.
+//
+// For more information about the Strict-Transport-Security HTTP response header,
+// see Strict-Transport-Security (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyStrictTransportSecurity struct {
+	_ struct{} `type:"structure"`
+
+	// A number that CloudFront uses as the value for the max-age directive in the
+	// Strict-Transport-Security HTTP response header.
+	//
+	// AccessControlMaxAgeSec is a required field
+	AccessControlMaxAgeSec *int64 `type:"integer" required:"true"`
+
+	// A Boolean that determines whether CloudFront includes the includeSubDomains
+	// directive in the Strict-Transport-Security HTTP response header.
+	IncludeSubdomains *bool `type:"boolean"`
+
+	// A Boolean that determines whether CloudFront overrides the Strict-Transport-Security
+	// HTTP response header received from the origin with the one specified in this
+	// response headers policy.
+	//
+	// Override is a required field
+	Override *bool `type:"boolean" required:"true"`
+
+	// A Boolean that determines whether CloudFront includes the preload directive
+	// in the Strict-Transport-Security HTTP response header.
+	Preload *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyStrictTransportSecurity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyStrictTransportSecurity) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyStrictTransportSecurity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyStrictTransportSecurity"}
+	if s.AccessControlMaxAgeSec == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessControlMaxAgeSec"))
+	}
+	if s.Override == nil {
+		invalidParams.Add(request.NewErrParamRequired("Override"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessControlMaxAgeSec sets the AccessControlMaxAgeSec field's value.
+func (s *ResponseHeadersPolicyStrictTransportSecurity) SetAccessControlMaxAgeSec(v int64) *ResponseHeadersPolicyStrictTransportSecurity {
+	s.AccessControlMaxAgeSec = &v
+	return s
+}
+
+// SetIncludeSubdomains sets the IncludeSubdomains field's value.
+func (s *ResponseHeadersPolicyStrictTransportSecurity) SetIncludeSubdomains(v bool) *ResponseHeadersPolicyStrictTransportSecurity {
+	s.IncludeSubdomains = &v
+	return s
+}
+
+// SetOverride sets the Override field's value.
+func (s *ResponseHeadersPolicyStrictTransportSecurity) SetOverride(v bool) *ResponseHeadersPolicyStrictTransportSecurity {
+	s.Override = &v
+	return s
+}
+
+// SetPreload sets the Preload field's value.
+func (s *ResponseHeadersPolicyStrictTransportSecurity) SetPreload(v bool) *ResponseHeadersPolicyStrictTransportSecurity {
+	s.Preload = &v
+	return s
+}
+
+// Contains a response headers policy.
+type ResponseHeadersPolicySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The response headers policy.
+	//
+	// ResponseHeadersPolicy is a required field
+	ResponseHeadersPolicy *ResponseHeadersPolicy `type:"structure" required:"true"`
+
+	// The type of response headers policy, either managed (created by Amazon Web
+	// Services) or custom (created in this Amazon Web Services account).
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ResponseHeadersPolicyType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicySummary) GoString() string {
+	return s.String()
+}
+
+// SetResponseHeadersPolicy sets the ResponseHeadersPolicy field's value.
+func (s *ResponseHeadersPolicySummary) SetResponseHeadersPolicy(v *ResponseHeadersPolicy) *ResponseHeadersPolicySummary {
+	s.ResponseHeadersPolicy = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ResponseHeadersPolicySummary) SetType(v string) *ResponseHeadersPolicySummary {
+	s.Type = &v
+	return s
+}
+
+// Determines whether CloudFront includes the X-XSS-Protection HTTP response
+// header and the header’s value.
+//
+// For more information about the X-XSS-Protection HTTP response header, see
+// X-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)
+// in the MDN Web Docs.
+type ResponseHeadersPolicyXSSProtection struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean that determines whether CloudFront includes the mode=block directive
+	// in the X-XSS-Protection header.
+	//
+	// For more information about this directive, see X-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)
+	// in the MDN Web Docs.
+	ModeBlock *bool `type:"boolean"`
+
+	// A Boolean that determines whether CloudFront overrides the X-XSS-Protection
+	// HTTP response header received from the origin with the one specified in this
+	// response headers policy.
+	//
+	// Override is a required field
+	Override *bool `type:"boolean" required:"true"`
+
+	// A Boolean that determines the value of the X-XSS-Protection HTTP response
+	// header. When this setting is true, the value of the X-XSS-Protection header
+	// is 1. When this setting is false, the value of the X-XSS-Protection header
+	// is 0.
+	//
+	// For more information about these settings, see X-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)
+	// in the MDN Web Docs.
+	//
+	// Protection is a required field
+	Protection *bool `type:"boolean" required:"true"`
+
+	// A reporting URI, which CloudFront uses as the value of the report directive
+	// in the X-XSS-Protection header.
+	//
+	// You cannot specify a ReportUri when ModeBlock is true.
+	//
+	// For more information about using a reporting URL, see X-XSS-Protection (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection)
+	// in the MDN Web Docs.
+	ReportUri *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyXSSProtection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResponseHeadersPolicyXSSProtection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResponseHeadersPolicyXSSProtection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResponseHeadersPolicyXSSProtection"}
+	if s.Override == nil {
+		invalidParams.Add(request.NewErrParamRequired("Override"))
+	}
+	if s.Protection == nil {
+		invalidParams.Add(request.NewErrParamRequired("Protection"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModeBlock sets the ModeBlock field's value.
+func (s *ResponseHeadersPolicyXSSProtection) SetModeBlock(v bool) *ResponseHeadersPolicyXSSProtection {
+	s.ModeBlock = &v
+	return s
+}
+
+// SetOverride sets the Override field's value.
+func (s *ResponseHeadersPolicyXSSProtection) SetOverride(v bool) *ResponseHeadersPolicyXSSProtection {
+	s.Override = &v
+	return s
+}
+
+// SetProtection sets the Protection field's value.
+func (s *ResponseHeadersPolicyXSSProtection) SetProtection(v bool) *ResponseHeadersPolicyXSSProtection {
+	s.Protection = &v
+	return s
+}
+
+// SetReportUri sets the ReportUri field's value.
+func (s *ResponseHeadersPolicyXSSProtection) SetReportUri(v string) *ResponseHeadersPolicyXSSProtection {
+	s.ReportUri = &v
+	return s
+}
+
 // A complex type that identifies ways in which you want to restrict distribution
 // of your content.
 type Restrictions struct {
@@ -24820,15 +27669,17 @@ func (s *S3OriginConfig) SetOriginAccessIdentity(v string) *S3OriginConfig {
 	return s
 }
 
-// A list of accounts and the active CloudFront key pairs in each account that
-// CloudFront can use to verify the signatures of signed URLs and signed cookies.
+// A list of Amazon Web Services accounts and the active CloudFront key pairs
+// in each account that CloudFront can use to verify the signatures of signed
+// URLs and signed cookies.
 type Signer struct {
 	_ struct{} `type:"structure"`
 
-	// An account number that contains active CloudFront key pairs that CloudFront
-	// can use to verify the signatures of signed URLs and signed cookies. If the
-	// account that owns the key pairs is the same account that owns the CloudFront
-	// distribution, the value of this field is self.
+	// An Amazon Web Services account number that contains active CloudFront key
+	// pairs that CloudFront can use to verify the signatures of signed URLs and
+	// signed cookies. If the Amazon Web Services account that owns the key pairs
+	// is the same account that owns the CloudFront distribution, the value of this
+	// field is self.
 	AwsAccountNumber *string `type:"string"`
 
 	// A list of CloudFront key pair identifiers.
@@ -24937,20 +27788,22 @@ type StreamingDistribution struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN (Amazon Resource Name) for the distribution. For example: arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5,
-	// where 123456789012 is your account ID.
+	// where 123456789012 is your Amazon Web Services account ID.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
 
-	// A complex type that lists the accounts, if any, that you included in the
-	// TrustedSigners complex type for this distribution. These are the accounts
-	// that you want to allow to create signed URLs for private content.
+	// A complex type that lists the Amazon Web Services accounts, if any, that
+	// you included in the TrustedSigners complex type for this distribution. These
+	// are the accounts that you want to allow to create signed URLs for private
+	// content.
 	//
-	// The Signer complex type lists the account number of the trusted signer or
-	// self if the signer is the account that created the distribution. The Signer
-	// element also includes the IDs of any active CloudFront key pairs that are
-	// associated with the trusted signer's account. If no KeyPairId element appears
-	// for a Signer, that signer can't create signed URLs.
+	// The Signer complex type lists the Amazon Web Services account number of the
+	// trusted signer or self if the signer is the Amazon Web Services account that
+	// created the distribution. The Signer element also includes the IDs of any
+	// active CloudFront key pairs that are associated with the trusted signer's
+	// Amazon Web Services account. If no KeyPairId element appears for a Signer,
+	// that signer can't create signed URLs.
 	//
 	// For more information, see Serving Private Content through CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
@@ -25090,11 +27943,11 @@ type StreamingDistributionConfig struct {
 	// S3Origin is a required field
 	S3Origin *S3Origin `type:"structure" required:"true"`
 
-	// A complex type that specifies any accounts that you want to permit to create
-	// signed URLs for private content. If you want the distribution to use signed
-	// URLs, include this element; if you want the distribution to use public URLs,
-	// remove this element. For more information, see Serving Private Content through
-	// CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// A complex type that specifies any Amazon Web Services accounts that you want
+	// to permit to create signed URLs for private content. If you want the distribution
+	// to use signed URLs, include this element; if you want the distribution to
+	// use public URLs, remove this element. For more information, see Serving Private
+	// Content through CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
 	//
 	// TrustedSigners is a required field
@@ -25297,7 +28150,7 @@ type StreamingDistributionList struct {
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// A complex type that contains one StreamingDistributionSummary element for
-	// each distribution that was created by the current account.
+	// each distribution that was created by the current Amazon Web Services account.
 	Items []*StreamingDistributionSummary `locationNameList:"StreamingDistributionSummary" type:"list"`
 
 	// The value you provided for the Marker request parameter.
@@ -25315,7 +28168,8 @@ type StreamingDistributionList struct {
 	// where they left off.
 	NextMarker *string `type:"string"`
 
-	// The number of streaming distributions that were created by the current account.
+	// The number of streaming distributions that were created by the current Amazon
+	// Web Services account.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -25381,7 +28235,7 @@ type StreamingDistributionSummary struct {
 
 	// The ARN (Amazon Resource Name) for the streaming distribution. For example:
 	// arn:aws:cloudfront::123456789012:streaming-distribution/EDFDVBD632BHDS5,
-	// where 123456789012 is your account ID.
+	// where 123456789012 is your Amazon Web Services account ID.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
@@ -25436,16 +28290,16 @@ type StreamingDistributionSummary struct {
 	// Status is a required field
 	Status *string `type:"string" required:"true"`
 
-	// A complex type that specifies the accounts, if any, that you want to allow
-	// to create signed URLs for private content. If you want to require signed
-	// URLs in requests for objects in the target origin that match the PathPattern
-	// for this cache behavior, specify true for Enabled, and specify the applicable
-	// values for Quantity and Items.If you don't want to require signed URLs in
-	// requests for objects that match PathPattern, specify false for Enabled and
-	// 0 for Quantity. Omit Items. To add, change, or remove one or more trusted
-	// signers, change Enabled to true (if it's currently false), change Quantity
-	// as applicable, and specify all of the trusted signers that you want to include
-	// in the updated distribution.
+	// A complex type that specifies the Amazon Web Services accounts, if any, that
+	// you want to allow to create signed URLs for private content. If you want
+	// to require signed URLs in requests for objects in the target origin that
+	// match the PathPattern for this cache behavior, specify true for Enabled,
+	// and specify the applicable values for Quantity and Items.If you don't want
+	// to require signed URLs in requests for objects that match PathPattern, specify
+	// false for Enabled and 0 for Quantity. Omit Items. To add, change, or remove
+	// one or more trusted signers, change Enabled to true (if it's currently false),
+	// change Quantity as applicable, and specify all of the trusted signers that
+	// you want to include in the updated distribution.
 	//
 	// For more information, see Serving Private Content through CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
@@ -25997,16 +28851,28 @@ type TestResult struct {
 
 	// If the result of testing the function was an error, this field contains the
 	// error message.
-	FunctionErrorMessage *string `type:"string"`
+	//
+	// FunctionErrorMessage is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestResult's
+	// String and GoString methods.
+	FunctionErrorMessage *string `type:"string" sensitive:"true"`
 
 	// Contains the log lines that the function wrote (if any) when running the
 	// test.
-	FunctionExecutionLogs []*string `type:"list"`
+	//
+	// FunctionExecutionLogs is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestResult's
+	// String and GoString methods.
+	FunctionExecutionLogs []*string `type:"list" sensitive:"true"`
 
 	// The event object returned by the function. For more information about the
 	// structure of the event object, see Event object structure (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/functions-event-structure.html)
 	// in the Amazon CloudFront Developer Guide.
-	FunctionOutput *string `type:"string"`
+	//
+	// FunctionOutput is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by TestResult's
+	// String and GoString methods.
+	FunctionOutput *string `type:"string" sensitive:"true"`
 
 	// Contains configuration information and metadata about the CloudFront function
 	// that was tested.
@@ -26134,22 +29000,22 @@ func (s *TrustedKeyGroups) SetQuantity(v int64) *TrustedKeyGroups {
 	return s
 }
 
-// A list of accounts whose public keys CloudFront can use to verify the signatures
-// of signed URLs and signed cookies.
+// A list of Amazon Web Services accounts whose public keys CloudFront can use
+// to verify the signatures of signed URLs and signed cookies.
 type TrustedSigners struct {
 	_ struct{} `type:"structure"`
 
-	// This field is true if any of the accounts have public keys that CloudFront
-	// can use to verify the signatures of signed URLs and signed cookies. If not,
-	// this field is false.
+	// This field is true if any of the Amazon Web Services accounts have public
+	// keys that CloudFront can use to verify the signatures of signed URLs and
+	// signed cookies. If not, this field is false.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// A list of account identifiers.
+	// A list of Amazon Web Services account identifiers.
 	Items []*string `locationNameList:"AwsAccountNumber" type:"list"`
 
-	// The number of accounts in the list.
+	// The number of Amazon Web Services accounts in the list.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -27517,6 +30383,126 @@ func (s *UpdateRealtimeLogConfigOutput) SetRealtimeLogConfig(v *RealtimeLogConfi
 	return s
 }
 
+type UpdateResponseHeadersPolicyInput struct {
+	_ struct{} `locationName:"UpdateResponseHeadersPolicyRequest" type:"structure" payload:"ResponseHeadersPolicyConfig"`
+
+	// The identifier for the response headers policy that you are updating.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The version of the response headers policy that you are updating.
+	//
+	// The version is returned in the cache policy’s ETag field in the response
+	// to GetResponseHeadersPolicyConfig.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+
+	// A response headers policy configuration.
+	//
+	// ResponseHeadersPolicyConfig is a required field
+	ResponseHeadersPolicyConfig *ResponseHeadersPolicyConfig `locationName:"ResponseHeadersPolicyConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResponseHeadersPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResponseHeadersPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResponseHeadersPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResponseHeadersPolicyInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.ResponseHeadersPolicyConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResponseHeadersPolicyConfig"))
+	}
+	if s.ResponseHeadersPolicyConfig != nil {
+		if err := s.ResponseHeadersPolicyConfig.Validate(); err != nil {
+			invalidParams.AddNested("ResponseHeadersPolicyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateResponseHeadersPolicyInput) SetId(v string) *UpdateResponseHeadersPolicyInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *UpdateResponseHeadersPolicyInput) SetIfMatch(v string) *UpdateResponseHeadersPolicyInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetResponseHeadersPolicyConfig sets the ResponseHeadersPolicyConfig field's value.
+func (s *UpdateResponseHeadersPolicyInput) SetResponseHeadersPolicyConfig(v *ResponseHeadersPolicyConfig) *UpdateResponseHeadersPolicyInput {
+	s.ResponseHeadersPolicyConfig = v
+	return s
+}
+
+type UpdateResponseHeadersPolicyOutput struct {
+	_ struct{} `type:"structure" payload:"ResponseHeadersPolicy"`
+
+	// The current version of the response headers policy.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// A response headers policy.
+	ResponseHeadersPolicy *ResponseHeadersPolicy `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResponseHeadersPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResponseHeadersPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateResponseHeadersPolicyOutput) SetETag(v string) *UpdateResponseHeadersPolicyOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetResponseHeadersPolicy sets the ResponseHeadersPolicy field's value.
+func (s *UpdateResponseHeadersPolicyOutput) SetResponseHeadersPolicy(v *ResponseHeadersPolicy) *UpdateResponseHeadersPolicyOutput {
+	s.ResponseHeadersPolicy = v
+	return s
+}
+
 // The request to update a streaming distribution.
 type UpdateStreamingDistributionInput struct {
 	_ struct{} `locationName:"UpdateStreamingDistributionRequest" type:"structure" payload:"StreamingDistributionConfig"`
@@ -27974,6 +30960,22 @@ func Format_Values() []string {
 }
 
 const (
+	// FrameOptionsListDeny is a FrameOptionsList enum value
+	FrameOptionsListDeny = "DENY"
+
+	// FrameOptionsListSameorigin is a FrameOptionsList enum value
+	FrameOptionsListSameorigin = "SAMEORIGIN"
+)
+
+// FrameOptionsList_Values returns all elements of the FrameOptionsList enum
+func FrameOptionsList_Values() []string {
+	return []string{
+		FrameOptionsListDeny,
+		FrameOptionsListSameorigin,
+	}
+}
+
+const (
 	// FunctionRuntimeCloudfrontJs10 is a FunctionRuntime enum value
 	FunctionRuntimeCloudfrontJs10 = "cloudfront-js-1.0"
 )
@@ -28282,6 +31284,102 @@ func RealtimeMetricsSubscriptionStatus_Values() []string {
 	return []string{
 		RealtimeMetricsSubscriptionStatusEnabled,
 		RealtimeMetricsSubscriptionStatusDisabled,
+	}
+}
+
+const (
+	// ReferrerPolicyListNoReferrer is a ReferrerPolicyList enum value
+	ReferrerPolicyListNoReferrer = "no-referrer"
+
+	// ReferrerPolicyListNoReferrerWhenDowngrade is a ReferrerPolicyList enum value
+	ReferrerPolicyListNoReferrerWhenDowngrade = "no-referrer-when-downgrade"
+
+	// ReferrerPolicyListOrigin is a ReferrerPolicyList enum value
+	ReferrerPolicyListOrigin = "origin"
+
+	// ReferrerPolicyListOriginWhenCrossOrigin is a ReferrerPolicyList enum value
+	ReferrerPolicyListOriginWhenCrossOrigin = "origin-when-cross-origin"
+
+	// ReferrerPolicyListSameOrigin is a ReferrerPolicyList enum value
+	ReferrerPolicyListSameOrigin = "same-origin"
+
+	// ReferrerPolicyListStrictOrigin is a ReferrerPolicyList enum value
+	ReferrerPolicyListStrictOrigin = "strict-origin"
+
+	// ReferrerPolicyListStrictOriginWhenCrossOrigin is a ReferrerPolicyList enum value
+	ReferrerPolicyListStrictOriginWhenCrossOrigin = "strict-origin-when-cross-origin"
+
+	// ReferrerPolicyListUnsafeUrl is a ReferrerPolicyList enum value
+	ReferrerPolicyListUnsafeUrl = "unsafe-url"
+)
+
+// ReferrerPolicyList_Values returns all elements of the ReferrerPolicyList enum
+func ReferrerPolicyList_Values() []string {
+	return []string{
+		ReferrerPolicyListNoReferrer,
+		ReferrerPolicyListNoReferrerWhenDowngrade,
+		ReferrerPolicyListOrigin,
+		ReferrerPolicyListOriginWhenCrossOrigin,
+		ReferrerPolicyListSameOrigin,
+		ReferrerPolicyListStrictOrigin,
+		ReferrerPolicyListStrictOriginWhenCrossOrigin,
+		ReferrerPolicyListUnsafeUrl,
+	}
+}
+
+const (
+	// ResponseHeadersPolicyAccessControlAllowMethodsValuesGet is a ResponseHeadersPolicyAccessControlAllowMethodsValues enum value
+	ResponseHeadersPolicyAccessControlAllowMethodsValuesGet = "GET"
+
+	// ResponseHeadersPolicyAccessControlAllowMethodsValuesPost is a ResponseHeadersPolicyAccessControlAllowMethodsValues enum value
+	ResponseHeadersPolicyAccessControlAllowMethodsValuesPost = "POST"
+
+	// ResponseHeadersPolicyAccessControlAllowMethodsValuesOptions is a ResponseHeadersPolicyAccessControlAllowMethodsValues enum value
+	ResponseHeadersPolicyAccessControlAllowMethodsValuesOptions = "OPTIONS"
+
+	// ResponseHeadersPolicyAccessControlAllowMethodsValuesPut is a ResponseHeadersPolicyAccessControlAllowMethodsValues enum value
+	ResponseHeadersPolicyAccessControlAllowMethodsValuesPut = "PUT"
+
+	// ResponseHeadersPolicyAccessControlAllowMethodsValuesDelete is a ResponseHeadersPolicyAccessControlAllowMethodsValues enum value
+	ResponseHeadersPolicyAccessControlAllowMethodsValuesDelete = "DELETE"
+
+	// ResponseHeadersPolicyAccessControlAllowMethodsValuesPatch is a ResponseHeadersPolicyAccessControlAllowMethodsValues enum value
+	ResponseHeadersPolicyAccessControlAllowMethodsValuesPatch = "PATCH"
+
+	// ResponseHeadersPolicyAccessControlAllowMethodsValuesHead is a ResponseHeadersPolicyAccessControlAllowMethodsValues enum value
+	ResponseHeadersPolicyAccessControlAllowMethodsValuesHead = "HEAD"
+
+	// ResponseHeadersPolicyAccessControlAllowMethodsValuesAll is a ResponseHeadersPolicyAccessControlAllowMethodsValues enum value
+	ResponseHeadersPolicyAccessControlAllowMethodsValuesAll = "ALL"
+)
+
+// ResponseHeadersPolicyAccessControlAllowMethodsValues_Values returns all elements of the ResponseHeadersPolicyAccessControlAllowMethodsValues enum
+func ResponseHeadersPolicyAccessControlAllowMethodsValues_Values() []string {
+	return []string{
+		ResponseHeadersPolicyAccessControlAllowMethodsValuesGet,
+		ResponseHeadersPolicyAccessControlAllowMethodsValuesPost,
+		ResponseHeadersPolicyAccessControlAllowMethodsValuesOptions,
+		ResponseHeadersPolicyAccessControlAllowMethodsValuesPut,
+		ResponseHeadersPolicyAccessControlAllowMethodsValuesDelete,
+		ResponseHeadersPolicyAccessControlAllowMethodsValuesPatch,
+		ResponseHeadersPolicyAccessControlAllowMethodsValuesHead,
+		ResponseHeadersPolicyAccessControlAllowMethodsValuesAll,
+	}
+}
+
+const (
+	// ResponseHeadersPolicyTypeManaged is a ResponseHeadersPolicyType enum value
+	ResponseHeadersPolicyTypeManaged = "managed"
+
+	// ResponseHeadersPolicyTypeCustom is a ResponseHeadersPolicyType enum value
+	ResponseHeadersPolicyTypeCustom = "custom"
+)
+
+// ResponseHeadersPolicyType_Values returns all elements of the ResponseHeadersPolicyType enum
+func ResponseHeadersPolicyType_Values() []string {
+	return []string{
+		ResponseHeadersPolicyTypeManaged,
+		ResponseHeadersPolicyTypeCustom,
 	}
 }
 

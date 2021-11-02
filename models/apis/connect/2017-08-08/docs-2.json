@@ -141,7 +141,6 @@
         "HoursOfOperationSummary$Arn": "<p>The Amazon Resource Name (ARN) of the hours of operation.</p>",
         "Instance$Arn": "<p>The Amazon Resource Name (ARN) of the instance.</p>",
         "Instance$ServiceRole": "<p>The service role of the instance.</p>",
-        "InstanceReference$Arn": "<p>The Amazon Resource Name (ARN) of the instance reference.</p>",
         "InstanceSummary$Arn": "<p>The Amazon Resource Name (ARN) of the instance.</p>",
         "InstanceSummary$ServiceRole": "<p>The service role of the instance.</p>",
         "IntegrationAssociationSummary$IntegrationAssociationArn": "<p>The Amazon Resource Name (ARN) for the AppIntegration association.</p>",
@@ -159,7 +158,6 @@
         "ResourceInUseException$ResourceId": "<p>The identifier for the resource.</p>",
         "RoutingProfile$RoutingProfileArn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
         "RoutingProfileQueueConfigSummary$QueueArn": "<p>The Amazon Resource Name (ARN) of the queue.</p>",
-        "RoutingProfileReference$Arn": "<p>The Amazon Resource Name (ARN) of the routing profile reference.</p>",
         "RoutingProfileSummary$Arn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
         "SecurityProfileSummary$Arn": "<p>The Amazon Resource Name (ARN) of the security profile.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
@@ -1425,7 +1423,6 @@
         "GetFederationTokenRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "GetMetricDataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "Instance$Id": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
-        "InstanceReference$Id": "<p>The identifier of the instance reference.</p>",
         "InstanceSummary$Id": "<p>The identifier of the instance.</p>",
         "IntegrationAssociationSummary$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -1486,12 +1483,6 @@
         "UpdateUserPhoneConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateUserRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateUserSecurityProfilesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>"
-      }
-    },
-    "InstanceReference": {
-      "base": "<p>The instance reference.</p>",
-      "refs": {
-        "Dimensions$InstanceReference": "<p>The instance reference.</p>"
       }
     },
     "InstanceStatus": {
@@ -2353,7 +2344,6 @@
     "QueueType": {
       "base": null,
       "refs": {
-        "QueueReference$QueueType": "<p>The type of queue.</p>",
         "QueueSummary$QueueType": "<p>The type of queue.</p>",
         "QueueTypes$member": null
       }
@@ -2527,9 +2517,7 @@
         "DisassociateRoutingProfileQueuesRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "ListRoutingProfileQueuesRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "RoutingProfile$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
-        "RoutingProfileReference$Id": "<p>The identifier of the routing profile reference.</p>",
         "RoutingProfileSummary$Id": "<p>The identifier of the routing profile.</p>",
-        "RoutingProfiles$member": null,
         "UpdateRoutingProfileConcurrencyRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "UpdateRoutingProfileDefaultOutboundQueueRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
         "UpdateRoutingProfileNameRequest$RoutingProfileId": "<p>The identifier of the routing profile.</p>",
@@ -2586,12 +2574,6 @@
         "DisassociateRoutingProfileQueuesRequest$QueueReferences": "<p>The queues to disassociate from this routing profile.</p>"
       }
     },
-    "RoutingProfileReference": {
-      "base": "<p>The routing profile reference.</p>",
-      "refs": {
-        "Dimensions$RoutingProfile": "<p>The routing profile.</p>"
-      }
-    },
     "RoutingProfileSummary": {
       "base": "<p>Contains summary information about a routing profile.</p>",
       "refs": {
@@ -2602,12 +2584,6 @@
       "base": null,
       "refs": {
         "ListRoutingProfilesResponse$RoutingProfileSummaryList": "<p>Information about the routing profiles.</p>"
-      }
-    },
-    "RoutingProfiles": {
-      "base": null,
-      "refs": {
-        "Filters$RoutingProfiles": "<p>The filters used to sort routing profiles. </p>"
       }
     },
     "S3Config": {

@@ -1,3 +1,12 @@
+Release v1.41.16 (2021-11-02)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront now supports response headers policies to add HTTP headers to the responses that CloudFront sends to viewers. You can use these policies to add CORS headers, control browser caching, and more, without modifying your origin or writing any code.
+* `service/connect`: Updates service API and documentation
+* `service/nimble`: Updates service API, documentation, waiters, paginators, and examples
+
 Release v1.41.15 (2021-11-01)
 ===
 

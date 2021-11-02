@@ -89,9 +89,9 @@ const (
 	// ErrCodeFunctionAlreadyExists for service response error code
 	// "FunctionAlreadyExists".
 	//
-	// A function with the same name already exists in this account. To create a
-	// function, you must provide a unique name. To update an existing function,
-	// use UpdateFunction.
+	// A function with the same name already exists in this Amazon Web Services
+	// account. To create a function, you must provide a unique name. To update
+	// an existing function, use UpdateFunction.
 	ErrCodeFunctionAlreadyExists = "FunctionAlreadyExists"
 
 	// ErrCodeFunctionInUse for service response error code
@@ -373,6 +373,12 @@ const (
 	// A resource that was specified is not valid.
 	ErrCodeNoSuchResource = "NoSuchResource"
 
+	// ErrCodeNoSuchResponseHeadersPolicy for service response error code
+	// "NoSuchResponseHeadersPolicy".
+	//
+	// The response headers policy does not exist.
+	ErrCodeNoSuchResponseHeadersPolicy = "NoSuchResponseHeadersPolicy"
+
 	// ErrCodeNoSuchStreamingDistribution for service response error code
 	// "NoSuchStreamingDistribution".
 	//
@@ -449,7 +455,8 @@ const (
 	// ErrCodeRealtimeLogConfigOwnerMismatch for service response error code
 	// "RealtimeLogConfigOwnerMismatch".
 	//
-	// The specified real-time log configuration belongs to a different account.
+	// The specified real-time log configuration belongs to a different Amazon Web
+	// Services account.
 	ErrCodeRealtimeLogConfigOwnerMismatch = "RealtimeLogConfigOwnerMismatch"
 
 	// ErrCodeResourceInUse for service response error code
@@ -457,6 +464,20 @@ const (
 	//
 	// Cannot delete this resource because it is in use.
 	ErrCodeResourceInUse = "ResourceInUse"
+
+	// ErrCodeResponseHeadersPolicyAlreadyExists for service response error code
+	// "ResponseHeadersPolicyAlreadyExists".
+	//
+	// A response headers policy with this name already exists. You must provide
+	// a unique name. To modify an existing response headers policy, use UpdateResponseHeadersPolicy.
+	ErrCodeResponseHeadersPolicyAlreadyExists = "ResponseHeadersPolicyAlreadyExists"
+
+	// ErrCodeResponseHeadersPolicyInUse for service response error code
+	// "ResponseHeadersPolicyInUse".
+	//
+	// Cannot delete the response headers policy because it is attached to one or
+	// more cache behaviors in a CloudFront distribution.
+	ErrCodeResponseHeadersPolicyInUse = "ResponseHeadersPolicyInUse"
 
 	// ErrCodeStreamingDistributionAlreadyExists for service response error code
 	// "StreamingDistributionAlreadyExists".
@@ -487,8 +508,8 @@ const (
 	// ErrCodeTooManyCachePolicies for service response error code
 	// "TooManyCachePolicies".
 	//
-	// You have reached the maximum number of cache policies for this account. For
-	// more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// You have reached the maximum number of cache policies for this Amazon Web
+	// Services account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
 	ErrCodeTooManyCachePolicies = "TooManyCachePolicies"
 
@@ -527,6 +548,15 @@ const (
 	// more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
 	ErrCodeTooManyCookiesInOriginRequestPolicy = "TooManyCookiesInOriginRequestPolicy"
+
+	// ErrCodeTooManyCustomHeadersInResponseHeadersPolicy for service response error code
+	// "TooManyCustomHeadersInResponseHeadersPolicy".
+	//
+	// The number of custom headers in the response headers policy exceeds the maximum.
+	//
+	// For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
+	ErrCodeTooManyCustomHeadersInResponseHeadersPolicy = "TooManyCustomHeadersInResponseHeadersPolicy"
 
 	// ErrCodeTooManyDistributionCNAMEs for service response error code
 	// "TooManyDistributionCNAMEs".
@@ -571,6 +601,16 @@ const (
 	// origin request policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
 	ErrCodeTooManyDistributionsAssociatedToOriginRequestPolicy = "TooManyDistributionsAssociatedToOriginRequestPolicy"
+
+	// ErrCodeTooManyDistributionsAssociatedToResponseHeadersPolicy for service response error code
+	// "TooManyDistributionsAssociatedToResponseHeadersPolicy".
+	//
+	// The maximum number of distributions have been associated with the specified
+	// response headers policy.
+	//
+	// For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
+	ErrCodeTooManyDistributionsAssociatedToResponseHeadersPolicy = "TooManyDistributionsAssociatedToResponseHeadersPolicy"
 
 	// ErrCodeTooManyDistributionsWithFunctionAssociations for service response error code
 	// "TooManyDistributionsWithFunctionAssociations".
@@ -646,8 +686,8 @@ const (
 	// ErrCodeTooManyFunctions for service response error code
 	// "TooManyFunctions".
 	//
-	// You have reached the maximum number of CloudFront functions for this account.
-	// For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// You have reached the maximum number of CloudFront functions for this Amazon
+	// Web Services account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
 	ErrCodeTooManyFunctions = "TooManyFunctions"
 
@@ -683,8 +723,8 @@ const (
 	// ErrCodeTooManyKeyGroups for service response error code
 	// "TooManyKeyGroups".
 	//
-	// You have reached the maximum number of key groups for this account. For more
-	// information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// You have reached the maximum number of key groups for this Amazon Web Services
+	// account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
 	ErrCodeTooManyKeyGroups = "TooManyKeyGroups"
 
@@ -719,8 +759,8 @@ const (
 	// ErrCodeTooManyOriginRequestPolicies for service response error code
 	// "TooManyOriginRequestPolicies".
 	//
-	// You have reached the maximum number of origin request policies for this account.
-	// For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// You have reached the maximum number of origin request policies for this Amazon
+	// Web Services account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
 	ErrCodeTooManyOriginRequestPolicies = "TooManyOriginRequestPolicies"
 
@@ -771,9 +811,19 @@ const (
 	// "TooManyRealtimeLogConfigs".
 	//
 	// You have reached the maximum number of real-time log configurations for this
-	// account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// Amazon Web Services account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
 	ErrCodeTooManyRealtimeLogConfigs = "TooManyRealtimeLogConfigs"
+
+	// ErrCodeTooManyResponseHeadersPolicies for service response error code
+	// "TooManyResponseHeadersPolicies".
+	//
+	// You have reached the maximum number of response headers policies for this
+	// Amazon Web Services account.
+	//
+	// For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+	// (formerly known as limits) in the Amazon CloudFront Developer Guide.
+	ErrCodeTooManyResponseHeadersPolicies = "TooManyResponseHeadersPolicies"
 
 	// ErrCodeTooManyStreamingDistributionCNAMEs for service response error code
 	// "TooManyStreamingDistributionCNAMEs".

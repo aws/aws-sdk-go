@@ -2060,7 +2060,7 @@
     "Channels":{
       "type":"list",
       "member":{"shape":"Channel"},
-      "max":3
+      "max":1
     },
     "ChatContent":{
       "type":"string",
@@ -2074,6 +2074,10 @@
     },
     "ChatMessage":{
       "type":"structure",
+      "required":[
+        "ContentType",
+        "Content"
+      ],
       "members":{
         "ContentType":{"shape":"ChatContentType"},
         "Content":{"shape":"ChatContent"}
@@ -3005,9 +3009,7 @@
       "type":"structure",
       "members":{
         "Queue":{"shape":"QueueReference"},
-        "Channel":{"shape":"Channel"},
-        "RoutingProfile":{"shape":"RoutingProfileReference"},
-        "InstanceReference":{"shape":"InstanceReference"}
+        "Channel":{"shape":"Channel"}
       }
     },
     "DirectoryAlias":{
@@ -3227,7 +3229,6 @@
       "type":"structure",
       "members":{
         "Queues":{"shape":"Queues"},
-        "RoutingProfiles":{"shape":"RoutingProfiles"},
         "Channels":{"shape":"Channels"}
       }
     },
@@ -3351,9 +3352,7 @@
       "type":"string",
       "enum":[
         "QUEUE",
-        "CHANNEL",
-        "ROUTING_PROFILE",
-        "INSTANCE"
+        "CHANNEL"
       ]
     },
     "Groupings":{
@@ -3473,8 +3472,6 @@
         "CONTACTS_TRANSFERRED_OUT",
         "CONTACTS_TRANSFERRED_IN_FROM_QUEUE",
         "CONTACTS_TRANSFERRED_OUT_FROM_QUEUE",
-        "CONTACTS_TRANSFERRED_IN_BY_AGENT",
-        "CONTACTS_TRANSFERRED_OUT_BY_AGENT",
         "CONTACTS_MISSED",
         "CALLBACK_CONTACTS_HANDLED",
         "API_CONTACTS_HANDLED",
@@ -3629,15 +3626,8 @@
     },
     "InstanceId":{
       "type":"string",
-      "max":256,
+      "max":100,
       "min":1
-    },
-    "InstanceReference":{
-      "type":"structure",
-      "members":{
-        "Id":{"shape":"InstanceId"},
-        "Arn":{"shape":"ARN"}
-      }
     },
     "InstanceStatus":{
       "type":"string",
@@ -4701,8 +4691,7 @@
     },
     "Password":{
       "type":"string",
-      "pattern":"/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\S]{8,64}$/",
-      "sensitive":true
+      "pattern":"/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d\\S]{8,64}$/"
     },
     "PhoneNumber":{"type":"string"},
     "PhoneNumberCountryCode":{
@@ -5089,8 +5078,7 @@
       "type":"structure",
       "members":{
         "Id":{"shape":"QueueId"},
-        "Arn":{"shape":"ARN"},
-        "QueueType":{"shape":"QueueType"}
+        "Arn":{"shape":"ARN"}
       }
     },
     "QueueStatus":{
@@ -5213,14 +5201,7 @@
     },
     "ReferenceType":{
       "type":"string",
-      "enum":[
-        "URL",
-        "ATTACHMENT",
-        "NUMBER",
-        "STRING",
-        "DATE",
-        "EMAIL"
-      ]
+      "enum":["URL"]
     },
     "ReferenceValue":{
       "type":"string",
@@ -5370,13 +5351,6 @@
       "type":"list",
       "member":{"shape":"RoutingProfileQueueReference"}
     },
-    "RoutingProfileReference":{
-      "type":"structure",
-      "members":{
-        "Id":{"shape":"RoutingProfileId"},
-        "Arn":{"shape":"ARN"}
-      }
-    },
     "RoutingProfileSummary":{
       "type":"structure",
       "members":{
@@ -5388,12 +5362,6 @@
     "RoutingProfileSummaryList":{
       "type":"list",
       "member":{"shape":"RoutingProfileSummary"}
-    },
-    "RoutingProfiles":{
-      "type":"list",
-      "member":{"shape":"RoutingProfileId"},
-      "max":100,
-      "min":1
     },
     "S3Config":{
       "type":"structure",
@@ -5760,7 +5728,6 @@
       "type":"string",
       "enum":[
         "SECONDS",
-        "MILLISECONDS",
         "COUNT",
         "PERCENT"
       ]
