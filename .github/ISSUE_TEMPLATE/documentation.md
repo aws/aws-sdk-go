@@ -2,7 +2,7 @@
 name: "\U0001F4DDDocumentation"
 about: Suggest incorrect/improvement in documentation
 title: ''
-labels: needs-triage, documentation
+labels: documentation
 assignees: ''
 
 ---
