@@ -2,7 +2,7 @@
 name: "\U0001F4AC Questions / Help"
 about: If you have questions, please check AWS Forums or StackOverflow
 title: ''
-labels: needs-triage, guidance
+labels: ''
 assignees: ''
 
 ---
