@@ -67,19 +67,30 @@ func (c *NimbleStudio) AcceptEulasRequest(input *AcceptEulasInput) (req *request
 // API operation AcceptEulas for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/AcceptEulas
 func (c *NimbleStudio) AcceptEulas(input *AcceptEulasInput) (*AcceptEulasOutput, error) {
@@ -157,19 +168,30 @@ func (c *NimbleStudio) CreateLaunchProfileRequest(input *CreateLaunchProfileInpu
 // API operation CreateLaunchProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/CreateLaunchProfile
 func (c *NimbleStudio) CreateLaunchProfile(input *CreateLaunchProfileInput) (*CreateLaunchProfileOutput, error) {
@@ -247,19 +269,30 @@ func (c *NimbleStudio) CreateStreamingImageRequest(input *CreateStreamingImageIn
 // API operation CreateStreamingImage for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/CreateStreamingImage
 func (c *NimbleStudio) CreateStreamingImage(input *CreateStreamingImageInput) (*CreateStreamingImageOutput, error) {
@@ -340,19 +373,30 @@ func (c *NimbleStudio) CreateStreamingSessionRequest(input *CreateStreamingSessi
 // API operation CreateStreamingSession for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/CreateStreamingSession
 func (c *NimbleStudio) CreateStreamingSession(input *CreateStreamingSessionInput) (*CreateStreamingSessionOutput, error) {
@@ -433,19 +477,30 @@ func (c *NimbleStudio) CreateStreamingSessionStreamRequest(input *CreateStreamin
 // API operation CreateStreamingSessionStream for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/CreateStreamingSessionStream
 func (c *NimbleStudio) CreateStreamingSessionStream(input *CreateStreamingSessionStreamInput) (*CreateStreamingSessionStreamOutput, error) {
@@ -550,19 +605,30 @@ func (c *NimbleStudio) CreateStudioRequest(input *CreateStudioInput) (req *reque
 // API operation CreateStudio for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/CreateStudio
 func (c *NimbleStudio) CreateStudio(input *CreateStudioInput) (*CreateStudioOutput, error) {
@@ -640,19 +706,30 @@ func (c *NimbleStudio) CreateStudioComponentRequest(input *CreateStudioComponent
 // API operation CreateStudioComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/CreateStudioComponent
 func (c *NimbleStudio) CreateStudioComponent(input *CreateStudioComponentInput) (*CreateStudioComponentOutput, error) {
@@ -730,19 +807,30 @@ func (c *NimbleStudio) DeleteLaunchProfileRequest(input *DeleteLaunchProfileInpu
 // API operation DeleteLaunchProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/DeleteLaunchProfile
 func (c *NimbleStudio) DeleteLaunchProfile(input *DeleteLaunchProfileInput) (*DeleteLaunchProfileOutput, error) {
@@ -821,19 +909,30 @@ func (c *NimbleStudio) DeleteLaunchProfileMemberRequest(input *DeleteLaunchProfi
 // API operation DeleteLaunchProfileMember for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/DeleteLaunchProfileMember
 func (c *NimbleStudio) DeleteLaunchProfileMember(input *DeleteLaunchProfileMemberInput) (*DeleteLaunchProfileMemberOutput, error) {
@@ -911,19 +1010,30 @@ func (c *NimbleStudio) DeleteStreamingImageRequest(input *DeleteStreamingImageIn
 // API operation DeleteStreamingImage for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/DeleteStreamingImage
 func (c *NimbleStudio) DeleteStreamingImage(input *DeleteStreamingImageInput) (*DeleteStreamingImageOutput, error) {
@@ -1007,19 +1117,30 @@ func (c *NimbleStudio) DeleteStreamingSessionRequest(input *DeleteStreamingSessi
 // API operation DeleteStreamingSession for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/DeleteStreamingSession
 func (c *NimbleStudio) DeleteStreamingSession(input *DeleteStreamingSessionInput) (*DeleteStreamingSessionOutput, error) {
@@ -1097,19 +1218,30 @@ func (c *NimbleStudio) DeleteStudioRequest(input *DeleteStudioInput) (req *reque
 // API operation DeleteStudio for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/DeleteStudio
 func (c *NimbleStudio) DeleteStudio(input *DeleteStudioInput) (*DeleteStudioOutput, error) {
@@ -1187,19 +1319,30 @@ func (c *NimbleStudio) DeleteStudioComponentRequest(input *DeleteStudioComponent
 // API operation DeleteStudioComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/DeleteStudioComponent
 func (c *NimbleStudio) DeleteStudioComponent(input *DeleteStudioComponentInput) (*DeleteStudioComponentOutput, error) {
@@ -1278,19 +1421,30 @@ func (c *NimbleStudio) DeleteStudioMemberRequest(input *DeleteStudioMemberInput)
 // API operation DeleteStudioMember for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/DeleteStudioMember
 func (c *NimbleStudio) DeleteStudioMember(input *DeleteStudioMemberInput) (*DeleteStudioMemberOutput, error) {
@@ -1368,19 +1522,30 @@ func (c *NimbleStudio) GetEulaRequest(input *GetEulaInput) (req *request.Request
 // API operation GetEula for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetEula
 func (c *NimbleStudio) GetEula(input *GetEulaInput) (*GetEulaOutput, error) {
@@ -1458,19 +1623,30 @@ func (c *NimbleStudio) GetLaunchProfileRequest(input *GetLaunchProfileInput) (re
 // API operation GetLaunchProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetLaunchProfile
 func (c *NimbleStudio) GetLaunchProfile(input *GetLaunchProfileInput) (*GetLaunchProfileOutput, error) {
@@ -1552,19 +1728,30 @@ func (c *NimbleStudio) GetLaunchProfileDetailsRequest(input *GetLaunchProfileDet
 // API operation GetLaunchProfileDetails for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetLaunchProfileDetails
 func (c *NimbleStudio) GetLaunchProfileDetails(input *GetLaunchProfileDetailsInput) (*GetLaunchProfileDetailsOutput, error) {
@@ -1642,19 +1829,30 @@ func (c *NimbleStudio) GetLaunchProfileInitializationRequest(input *GetLaunchPro
 // API operation GetLaunchProfileInitialization for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetLaunchProfileInitialization
 func (c *NimbleStudio) GetLaunchProfileInitialization(input *GetLaunchProfileInitializationInput) (*GetLaunchProfileInitializationOutput, error) {
@@ -1732,19 +1930,30 @@ func (c *NimbleStudio) GetLaunchProfileMemberRequest(input *GetLaunchProfileMemb
 // API operation GetLaunchProfileMember for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetLaunchProfileMember
 func (c *NimbleStudio) GetLaunchProfileMember(input *GetLaunchProfileMemberInput) (*GetLaunchProfileMemberOutput, error) {
@@ -1822,19 +2031,30 @@ func (c *NimbleStudio) GetStreamingImageRequest(input *GetStreamingImageInput) (
 // API operation GetStreamingImage for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetStreamingImage
 func (c *NimbleStudio) GetStreamingImage(input *GetStreamingImageInput) (*GetStreamingImageOutput, error) {
@@ -1904,7 +2124,7 @@ func (c *NimbleStudio) GetStreamingSessionRequest(input *GetStreamingSessionInpu
 //
 // Gets StreamingSession resource.
 //
-// Invoke this operation to poll for a streaming session state while creating
+// anvoke this operation to poll for a streaming session state while creating
 // or deleting a session.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1915,19 +2135,30 @@ func (c *NimbleStudio) GetStreamingSessionRequest(input *GetStreamingSessionInpu
 // API operation GetStreamingSession for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetStreamingSession
 func (c *NimbleStudio) GetStreamingSession(input *GetStreamingSessionInput) (*GetStreamingSessionOutput, error) {
@@ -2010,19 +2241,30 @@ func (c *NimbleStudio) GetStreamingSessionStreamRequest(input *GetStreamingSessi
 // API operation GetStreamingSessionStream for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetStreamingSessionStream
 func (c *NimbleStudio) GetStreamingSessionStream(input *GetStreamingSessionStreamInput) (*GetStreamingSessionStreamOutput, error) {
@@ -2100,19 +2342,30 @@ func (c *NimbleStudio) GetStudioRequest(input *GetStudioInput) (req *request.Req
 // API operation GetStudio for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetStudio
 func (c *NimbleStudio) GetStudio(input *GetStudioInput) (*GetStudioOutput, error) {
@@ -2190,19 +2443,30 @@ func (c *NimbleStudio) GetStudioComponentRequest(input *GetStudioComponentInput)
 // API operation GetStudioComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetStudioComponent
 func (c *NimbleStudio) GetStudioComponent(input *GetStudioComponentInput) (*GetStudioComponentOutput, error) {
@@ -2280,19 +2544,30 @@ func (c *NimbleStudio) GetStudioMemberRequest(input *GetStudioMemberInput) (req 
 // API operation GetStudioMember for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/GetStudioMember
 func (c *NimbleStudio) GetStudioMember(input *GetStudioMemberInput) (*GetStudioMemberOutput, error) {
@@ -2376,19 +2651,30 @@ func (c *NimbleStudio) ListEulaAcceptancesRequest(input *ListEulaAcceptancesInpu
 // API operation ListEulaAcceptances for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListEulaAcceptances
 func (c *NimbleStudio) ListEulaAcceptances(input *ListEulaAcceptancesInput) (*ListEulaAcceptancesOutput, error) {
@@ -2524,19 +2810,30 @@ func (c *NimbleStudio) ListEulasRequest(input *ListEulasInput) (req *request.Req
 // API operation ListEulas for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListEulas
 func (c *NimbleStudio) ListEulas(input *ListEulasInput) (*ListEulasOutput, error) {
@@ -2672,19 +2969,30 @@ func (c *NimbleStudio) ListLaunchProfileMembersRequest(input *ListLaunchProfileM
 // API operation ListLaunchProfileMembers for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListLaunchProfileMembers
 func (c *NimbleStudio) ListLaunchProfileMembers(input *ListLaunchProfileMembersInput) (*ListLaunchProfileMembersOutput, error) {
@@ -2820,19 +3128,30 @@ func (c *NimbleStudio) ListLaunchProfilesRequest(input *ListLaunchProfilesInput)
 // API operation ListLaunchProfiles for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListLaunchProfiles
 func (c *NimbleStudio) ListLaunchProfiles(input *ListLaunchProfilesInput) (*ListLaunchProfilesOutput, error) {
@@ -2971,19 +3290,30 @@ func (c *NimbleStudio) ListStreamingImagesRequest(input *ListStreamingImagesInpu
 // API operation ListStreamingImages for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListStreamingImages
 func (c *NimbleStudio) ListStreamingImages(input *ListStreamingImagesInput) (*ListStreamingImagesOutput, error) {
@@ -3119,19 +3449,30 @@ func (c *NimbleStudio) ListStreamingSessionsRequest(input *ListStreamingSessions
 // API operation ListStreamingSessions for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListStreamingSessions
 func (c *NimbleStudio) ListStreamingSessions(input *ListStreamingSessionsInput) (*ListStreamingSessionsOutput, error) {
@@ -3267,19 +3608,30 @@ func (c *NimbleStudio) ListStudioComponentsRequest(input *ListStudioComponentsIn
 // API operation ListStudioComponents for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListStudioComponents
 func (c *NimbleStudio) ListStudioComponents(input *ListStudioComponentsInput) (*ListStudioComponentsOutput, error) {
@@ -3415,19 +3767,30 @@ func (c *NimbleStudio) ListStudioMembersRequest(input *ListStudioMembersInput) (
 // API operation ListStudioMembers for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListStudioMembers
 func (c *NimbleStudio) ListStudioMembers(input *ListStudioMembersInput) (*ListStudioMembersOutput, error) {
@@ -3564,19 +3927,30 @@ func (c *NimbleStudio) ListStudiosRequest(input *ListStudiosInput) (req *request
 // API operation ListStudios for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListStudios
 func (c *NimbleStudio) ListStudios(input *ListStudiosInput) (*ListStudiosOutput, error) {
@@ -3711,19 +4085,30 @@ func (c *NimbleStudio) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 // API operation ListTagsForResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/ListTagsForResource
 func (c *NimbleStudio) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -3802,19 +4187,30 @@ func (c *NimbleStudio) PutLaunchProfileMembersRequest(input *PutLaunchProfileMem
 // API operation PutLaunchProfileMembers for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/PutLaunchProfileMembers
 func (c *NimbleStudio) PutLaunchProfileMembers(input *PutLaunchProfileMembersInput) (*PutLaunchProfileMembersOutput, error) {
@@ -3893,19 +4289,30 @@ func (c *NimbleStudio) PutStudioMembersRequest(input *PutStudioMembersInput) (re
 // API operation PutStudioMembers for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/PutStudioMembers
 func (c *NimbleStudio) PutStudioMembers(input *PutStudioMembersInput) (*PutStudioMembersOutput, error) {
@@ -3924,6 +4331,108 @@ func (c *NimbleStudio) PutStudioMembers(input *PutStudioMembersInput) (*PutStudi
 // for more information on using Contexts.
 func (c *NimbleStudio) PutStudioMembersWithContext(ctx aws.Context, input *PutStudioMembersInput, opts ...request.Option) (*PutStudioMembersOutput, error) {
 	req, out := c.PutStudioMembersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartStreamingSession = "StartStreamingSession"
+
+// StartStreamingSessionRequest generates a "aws/request.Request" representing the
+// client's request for the StartStreamingSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartStreamingSession for more information on using the StartStreamingSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartStreamingSessionRequest method.
+//    req, resp := client.StartStreamingSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/StartStreamingSession
+func (c *NimbleStudio) StartStreamingSessionRequest(input *StartStreamingSessionInput) (req *request.Request, output *StartStreamingSessionOutput) {
+	op := &request.Operation{
+		Name:       opStartStreamingSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-08-01/studios/{studioId}/streaming-sessions/{sessionId}/start",
+	}
+
+	if input == nil {
+		input = &StartStreamingSessionInput{}
+	}
+
+	output = &StartStreamingSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartStreamingSession API operation for AmazonNimbleStudio.
+//
+// Transitions sessions from the STOPPED state into the READY state. The START_IN_PROGRESS
+// state is the intermediate state between the STOPPED and READY states.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AmazonNimbleStudio's
+// API operation StartStreamingSession for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/StartStreamingSession
+func (c *NimbleStudio) StartStreamingSession(input *StartStreamingSessionInput) (*StartStreamingSessionOutput, error) {
+	req, out := c.StartStreamingSessionRequest(input)
+	return out, req.Send()
+}
+
+// StartStreamingSessionWithContext is the same as StartStreamingSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartStreamingSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NimbleStudio) StartStreamingSessionWithContext(ctx aws.Context, input *StartStreamingSessionInput, opts ...request.Option) (*StartStreamingSessionOutput, error) {
+	req, out := c.StartStreamingSessionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3973,7 +4482,7 @@ func (c *NimbleStudio) StartStudioSSOConfigurationRepairRequest(input *StartStud
 
 // StartStudioSSOConfigurationRepair API operation for AmazonNimbleStudio.
 //
-// Repairs the SSO configuration for a given studio.
+// Repairs the Amazon Web Services SSO configuration for a given studio.
 //
 // If the studio has a valid Amazon Web Services SSO configuration currently
 // associated with it, this operation will fail with a validation error.
@@ -3993,19 +4502,30 @@ func (c *NimbleStudio) StartStudioSSOConfigurationRepairRequest(input *StartStud
 // API operation StartStudioSSOConfigurationRepair for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/StartStudioSSOConfigurationRepair
 func (c *NimbleStudio) StartStudioSSOConfigurationRepair(input *StartStudioSSOConfigurationRepairInput) (*StartStudioSSOConfigurationRepairOutput, error) {
@@ -4024,6 +4544,108 @@ func (c *NimbleStudio) StartStudioSSOConfigurationRepair(input *StartStudioSSOCo
 // for more information on using Contexts.
 func (c *NimbleStudio) StartStudioSSOConfigurationRepairWithContext(ctx aws.Context, input *StartStudioSSOConfigurationRepairInput, opts ...request.Option) (*StartStudioSSOConfigurationRepairOutput, error) {
 	req, out := c.StartStudioSSOConfigurationRepairRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopStreamingSession = "StopStreamingSession"
+
+// StopStreamingSessionRequest generates a "aws/request.Request" representing the
+// client's request for the StopStreamingSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopStreamingSession for more information on using the StopStreamingSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopStreamingSessionRequest method.
+//    req, resp := client.StopStreamingSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/StopStreamingSession
+func (c *NimbleStudio) StopStreamingSessionRequest(input *StopStreamingSessionInput) (req *request.Request, output *StopStreamingSessionOutput) {
+	op := &request.Operation{
+		Name:       opStopStreamingSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-08-01/studios/{studioId}/streaming-sessions/{sessionId}/stop",
+	}
+
+	if input == nil {
+		input = &StopStreamingSessionInput{}
+	}
+
+	output = &StopStreamingSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopStreamingSession API operation for AmazonNimbleStudio.
+//
+// Transitions sessions from the READY state into the STOPPED state. The STOP_IN_PROGRESS
+// state is the intermediate state between the READY and STOPPED states.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AmazonNimbleStudio's
+// API operation StopStreamingSession for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/StopStreamingSession
+func (c *NimbleStudio) StopStreamingSession(input *StopStreamingSessionInput) (*StopStreamingSessionOutput, error) {
+	req, out := c.StopStreamingSessionRequest(input)
+	return out, req.Send()
+}
+
+// StopStreamingSessionWithContext is the same as StopStreamingSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopStreamingSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *NimbleStudio) StopStreamingSessionWithContext(ctx aws.Context, input *StopStreamingSessionInput, opts ...request.Option) (*StopStreamingSessionOutput, error) {
+	req, out := c.StopStreamingSessionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4084,19 +4706,30 @@ func (c *NimbleStudio) TagResourceRequest(input *TagResourceInput) (req *request
 // API operation TagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/TagResource
 func (c *NimbleStudio) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -4175,19 +4808,30 @@ func (c *NimbleStudio) UntagResourceRequest(input *UntagResourceInput) (req *req
 // API operation UntagResource for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/UntagResource
 func (c *NimbleStudio) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -4265,19 +4909,30 @@ func (c *NimbleStudio) UpdateLaunchProfileRequest(input *UpdateLaunchProfileInpu
 // API operation UpdateLaunchProfile for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/UpdateLaunchProfile
 func (c *NimbleStudio) UpdateLaunchProfile(input *UpdateLaunchProfileInput) (*UpdateLaunchProfileOutput, error) {
@@ -4355,19 +5010,30 @@ func (c *NimbleStudio) UpdateLaunchProfileMemberRequest(input *UpdateLaunchProfi
 // API operation UpdateLaunchProfileMember for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/UpdateLaunchProfileMember
 func (c *NimbleStudio) UpdateLaunchProfileMember(input *UpdateLaunchProfileMemberInput) (*UpdateLaunchProfileMemberOutput, error) {
@@ -4445,19 +5111,30 @@ func (c *NimbleStudio) UpdateStreamingImageRequest(input *UpdateStreamingImageIn
 // API operation UpdateStreamingImage for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/UpdateStreamingImage
 func (c *NimbleStudio) UpdateStreamingImage(input *UpdateStreamingImageInput) (*UpdateStreamingImageOutput, error) {
@@ -4538,19 +5215,30 @@ func (c *NimbleStudio) UpdateStudioRequest(input *UpdateStudioInput) (req *reque
 // API operation UpdateStudio for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/UpdateStudio
 func (c *NimbleStudio) UpdateStudio(input *UpdateStudioInput) (*UpdateStudioOutput, error) {
@@ -4628,19 +5316,30 @@ func (c *NimbleStudio) UpdateStudioComponentRequest(input *UpdateStudioComponent
 // API operation UpdateStudioComponent for usage and error information.
 //
 // Returned Error Types:
-//   * ValidationException
-//
-//   * InternalServerErrorException
-//
-//   * ServiceQuotaExceededException
-//
-//   * AccessDeniedException
-//
 //   * ResourceNotFoundException
-//
-//   * ThrottlingException
+//   The specified resource could not be found.
 //
 //   * ConflictException
+//   Another operation is in progress.
+//
+//   * ThrottlingException
+//   The request throughput limit was exceeded.
+//
+//   * ValidationException
+//   One of the parameters in the request is invalid.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform this operation. Check your IAM policies,
+//   and ensure that you are using the correct access keys.
+//
+//   * InternalServerErrorException
+//   An internal error has occurred. Please retry your request.
+//
+//   * ServiceQuotaExceededException
+//   Your current quota does not allow you to perform the request action. You
+//   can request increases for some quotas, and other quotas cannot be increased.
+//
+//   Please use AWS Service Quotas to request an increase.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/nimble-2020-08-01/UpdateStudioComponent
 func (c *NimbleStudio) UpdateStudioComponent(input *UpdateStudioComponentInput) (*UpdateStudioComponentOutput, error) {
@@ -4667,10 +5366,16 @@ func (c *NimbleStudio) UpdateStudioComponentWithContext(ctx aws.Context, input *
 type AcceptEulasInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The EULA ID.
 	EulaIds []*string `locationName:"eulaIds" type:"list"`
 
+	// A collection of EULA IDs.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -4733,6 +5438,7 @@ func (s *AcceptEulasInput) SetStudioId(v string) *AcceptEulasInput {
 type AcceptEulasOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A collection of EULA acceptances.
 	EulaAcceptances []*EulaAcceptance `locationName:"eulaAcceptances" type:"list"`
 }
 
@@ -4760,21 +5466,19 @@ func (s *AcceptEulasOutput) SetEulaAcceptances(v []*EulaAcceptance) *AcceptEulas
 	return s
 }
 
+// You are not authorized to perform this operation. Check your IAM policies,
+// and ensure that you are using the correct access keys.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A more specific error code.
 	Code_ *string `locationName:"code" type:"string"`
 
-	// ExceptionContext is a set of key-value pairs that provide you with more information
-	// about the error that occurred. For example, when the service returns a 404
-	// ResourceNotFound error, ExceptionContext will contain the key `resourceId`
-	// with the value of resource that was not found.
-	//
-	// ExceptionContext enables scripts and other programmatic clients to provide
-	// for better error handling.
+	// The exception context.
 	Context map[string]*string `locationName:"context" type:"map"`
 
+	// A human-readable description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -4897,14 +5601,19 @@ func (s *ActiveDirectoryComputerAttribute) SetValue(v string) *ActiveDirectoryCo
 type ActiveDirectoryConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A collection of LDAP attributes to apply to Active Directory computer accounts
-	// that are created for streaming sessions.
-	ComputerAttributes []*ActiveDirectoryComputerAttribute `locationName:"computerAttributes" type:"list"`
+	// A collection of custom attributes for an Active Directory computer.
+	//
+	// ComputerAttributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ActiveDirectoryConfiguration's
+	// String and GoString methods.
+	ComputerAttributes []*ActiveDirectoryComputerAttribute `locationName:"computerAttributes" type:"list" sensitive:"true"`
 
+	// The directory ID of the Directory Service for Microsoft Active Directory
+	// to access using this studio component.
 	DirectoryId *string `locationName:"directoryId" type:"string"`
 
-	// The fully-qualified distinguished name of the organizational unit to place
-	// the computer account in.
+	// The distinguished name (DN) and organizational unit (OU) of an Active Directory
+	// computer.
 	OrganizationalUnitDistinguishedName *string `locationName:"organizationalUnitDistinguishedName" min:"1" type:"string"`
 }
 
@@ -4971,9 +5680,16 @@ func (s *ActiveDirectoryConfiguration) SetOrganizationalUnitDistinguishedName(v 
 type ComputeFarmConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The name of an Active Directory user that is used on ComputeFarm worker instances.
 	ActiveDirectoryUser *string `locationName:"activeDirectoryUser" type:"string"`
 
-	Endpoint *string `locationName:"endpoint" type:"string"`
+	// The endpoint of the ComputeFarm that is accessed by the studio component
+	// resource.
+	//
+	// Endpoint is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by ComputeFarmConfiguration's
+	// String and GoString methods.
+	Endpoint *string `locationName:"endpoint" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -5006,21 +5722,18 @@ func (s *ComputeFarmConfiguration) SetEndpoint(v string) *ComputeFarmConfigurati
 	return s
 }
 
+// Another operation is in progress.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A more specific error code.
 	Code_ *string `locationName:"code" type:"string"`
 
-	// ExceptionContext is a set of key-value pairs that provide you with more information
-	// about the error that occurred. For example, when the service returns a 404
-	// ResourceNotFound error, ExceptionContext will contain the key `resourceId`
-	// with the value of resource that was not found.
-	//
-	// ExceptionContext enables scripts and other programmatic clients to provide
-	// for better error handling.
+	// The exception context.
 	Context map[string]*string `locationName:"context" type:"map"`
 
+	// A human-readable description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -5083,28 +5796,57 @@ func (s *ConflictException) RequestID() string {
 type CreateLaunchProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
-	Description *string `locationName:"description" type:"string"`
+	// The description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLaunchProfileInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// Specifies the IDs of the EC2 subnets where streaming sessions will be accessible
+	// from. These subnets must support the specified instance types.
+	//
 	// Ec2SubnetIds is a required field
 	Ec2SubnetIds []*string `locationName:"ec2SubnetIds" type:"list" required:"true"`
 
+	// The version number of the protocol that is used by the launch profile. The
+	// only valid version is "2021-03-31".
+	//
 	// LaunchProfileProtocolVersions is a required field
 	LaunchProfileProtocolVersions []*string `locationName:"launchProfileProtocolVersions" type:"list" required:"true"`
 
+	// The name for the launch profile.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateLaunchProfileInput's
+	// String and GoString methods.
+	//
 	// Name is a required field
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" min:"1" type:"string" required:"true" sensitive:"true"`
 
+	// A configuration for a streaming session.
+	//
 	// StreamConfiguration is a required field
 	StreamConfiguration *StreamConfigurationCreate `locationName:"streamConfiguration" type:"structure" required:"true"`
 
+	// Unique identifiers for a collection of studio components that can be used
+	// with this launch profile.
+	//
 	// StudioComponentIds is a required field
 	StudioComponentIds []*string `locationName:"studioComponentIds" min:"1" type:"list" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5140,6 +5882,9 @@ func (s *CreateLaunchProfileInput) Validate() error {
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 	if s.StreamConfiguration == nil {
 		invalidParams.Add(request.NewErrParamRequired("StreamConfiguration"))
@@ -5225,6 +5970,7 @@ func (s *CreateLaunchProfileInput) SetTags(v map[string]*string) *CreateLaunchPr
 type CreateLaunchProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The launch profile.
 	LaunchProfile *LaunchProfile `locationName:"launchProfile" type:"structure"`
 }
 
@@ -5255,22 +6001,39 @@ func (s *CreateLaunchProfileOutput) SetLaunchProfile(v *LaunchProfile) *CreateLa
 type CreateStreamingImageInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
-	// The description.
-	Description *string `locationName:"description" type:"string"`
+	// A human-readable description of the streaming image.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateStreamingImageInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// The ID of an EC2 machine image with which to create this streaming image.
+	//
 	// Ec2ImageId is a required field
 	Ec2ImageId *string `locationName:"ec2ImageId" type:"string" required:"true"`
 
 	// A friendly name for a streaming image resource.
 	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateStreamingImageInput's
+	// String and GoString methods.
+	//
 	// Name is a required field
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" type:"string" required:"true" sensitive:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5356,6 +6119,7 @@ func (s *CreateStreamingImageInput) SetTags(v map[string]*string) *CreateStreami
 type CreateStreamingImageOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The streaming image.
 	StreamingImage *StreamingImage `locationName:"streamingImage" type:"structure"`
 }
 
@@ -5386,19 +6150,30 @@ func (s *CreateStreamingImageOutput) SetStreamingImage(v *StreamingImage) *Creat
 type CreateStreamingSessionInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The EC2 Instance type used for the streaming session.
 	Ec2InstanceType *string `locationName:"ec2InstanceType" type:"string" enum:"StreamingInstanceType"`
 
+	// The launch profile ID.
 	LaunchProfileId *string `locationName:"launchProfileId" type:"string"`
 
+	// The user ID of the user that owns the streaming session.
 	OwnedBy *string `locationName:"ownedBy" type:"string"`
 
+	// The ID of the streaming image.
 	StreamingImageId *string `locationName:"streamingImageId" type:"string"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -5484,6 +6259,7 @@ func (s *CreateStreamingSessionInput) SetTags(v map[string]*string) *CreateStrea
 type CreateStreamingSessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The session.
 	Session *StreamingSession `locationName:"session" type:"structure"`
 }
 
@@ -5514,13 +6290,21 @@ func (s *CreateStreamingSessionOutput) SetSession(v *StreamingSession) *CreateSt
 type CreateStreamingSessionStreamInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The expiration time in seconds.
 	ExpirationInSeconds *int64 `locationName:"expirationInSeconds" min:"60" type:"integer"`
 
+	// The streaming session ID.
+	//
 	// SessionId is a required field
 	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -5598,6 +6382,7 @@ func (s *CreateStreamingSessionStreamInput) SetStudioId(v string) *CreateStreami
 type CreateStreamingSessionStreamOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The stream.
 	Stream *StreamingSessionStream `locationName:"stream" type:"structure"`
 }
 
@@ -5628,29 +6413,57 @@ func (s *CreateStreamingSessionStreamOutput) SetStream(v *StreamingSessionStream
 type CreateStudioComponentInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The configuration of the studio component, based on component type.
 	Configuration *StudioComponentConfiguration `locationName:"configuration" type:"structure"`
 
-	Description *string `locationName:"description" type:"string"`
+	// The description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateStudioComponentInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// The EC2 security groups that control access to the studio component.
 	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" min:"1" type:"list"`
 
+	// Initialization scripts for studio components.
 	InitializationScripts []*StudioComponentInitializationScript `locationName:"initializationScripts" type:"list"`
 
+	// The name for the studio component.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateStudioComponentInput's
+	// String and GoString methods.
+	//
 	// Name is a required field
-	Name *string `locationName:"name" type:"string" required:"true"`
+	Name *string `locationName:"name" type:"string" required:"true" sensitive:"true"`
 
-	ScriptParameters []*ScriptParameterKeyValue `locationName:"scriptParameters" type:"list"`
+	// Parameters for the studio component scripts.
+	//
+	// ScriptParameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateStudioComponentInput's
+	// String and GoString methods.
+	ScriptParameters []*ScriptParameterKeyValue `locationName:"scriptParameters" type:"list" sensitive:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 
+	// The specific subtype of a studio component.
 	Subtype *string `locationName:"subtype" type:"string" enum:"StudioComponentSubtype"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The type of the studio component.
+	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"StudioComponentType"`
 }
@@ -5795,8 +6608,7 @@ func (s *CreateStudioComponentInput) SetType(v string) *CreateStudioComponentInp
 type CreateStudioComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A network that is used by a studio’s users and workflows, including render
-	// farm, Active Directory, licensing, and file system.
+	// Information about the studio component.
 	StudioComponent *StudioComponent `locationName:"studioComponent" type:"structure"`
 }
 
@@ -5827,22 +6639,42 @@ func (s *CreateStudioComponentOutput) SetStudioComponent(v *StudioComponent) *Cr
 type CreateStudioInput struct {
 	_ struct{} `type:"structure"`
 
+	// The IAM role that Studio Admins will assume when logging in to the Nimble
+	// Studio portal.
+	//
 	// AdminRoleArn is a required field
 	AdminRoleArn *string `locationName:"adminRoleArn" type:"string" required:"true"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// A friendly name for the studio.
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateStudioInput's
+	// String and GoString methods.
+	//
 	// DisplayName is a required field
-	DisplayName *string `locationName:"displayName" type:"string" required:"true"`
+	DisplayName *string `locationName:"displayName" type:"string" required:"true" sensitive:"true"`
 
-	// Configuration of the encryption method that is used for the studio.
+	// The studio encryption configuration.
 	StudioEncryptionConfiguration *StudioEncryptionConfiguration `locationName:"studioEncryptionConfiguration" type:"structure"`
 
+	// The studio name that is used in the URL of the Nimble Studio portal when
+	// accessed by Nimble Studio users.
+	//
 	// StudioName is a required field
 	StudioName *string `locationName:"studioName" min:"3" type:"string" required:"true"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The IAM role that Studio Users will assume when logging in to the Nimble
+	// Studio portal.
+	//
 	// UserRoleArn is a required field
 	UserRoleArn *string `locationName:"userRoleArn" type:"string" required:"true"`
 }
@@ -5943,6 +6775,7 @@ func (s *CreateStudioInput) SetUserRoleArn(v string) *CreateStudioInput {
 type CreateStudioOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Information about a studio.
 	Studio *Studio `locationName:"studio" type:"structure"`
 }
 
@@ -5973,11 +6806,18 @@ func (s *CreateStudioOutput) SetStudio(v *Studio) *CreateStudioOutput {
 type DeleteLaunchProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -6046,14 +6886,23 @@ func (s *DeleteLaunchProfileInput) SetStudioId(v string) *DeleteLaunchProfileInp
 type DeleteLaunchProfileMemberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -6156,6 +7005,7 @@ func (s DeleteLaunchProfileMemberOutput) GoString() string {
 type DeleteLaunchProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The launch profile.
 	LaunchProfile *LaunchProfile `locationName:"launchProfile" type:"structure"`
 }
 
@@ -6186,11 +7036,18 @@ func (s *DeleteLaunchProfileOutput) SetLaunchProfile(v *LaunchProfile) *DeleteLa
 type DeleteStreamingImageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The streaming image ID.
+	//
 	// StreamingImageId is a required field
 	StreamingImageId *string `location:"uri" locationName:"streamingImageId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -6259,6 +7116,7 @@ func (s *DeleteStreamingImageInput) SetStudioId(v string) *DeleteStreamingImageI
 type DeleteStreamingImageOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The streaming image.
 	StreamingImage *StreamingImage `locationName:"streamingImage" type:"structure"`
 }
 
@@ -6289,11 +7147,18 @@ func (s *DeleteStreamingImageOutput) SetStreamingImage(v *StreamingImage) *Delet
 type DeleteStreamingSessionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The streaming session ID.
+	//
 	// SessionId is a required field
 	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -6362,6 +7227,7 @@ func (s *DeleteStreamingSessionInput) SetStudioId(v string) *DeleteStreamingSess
 type DeleteStreamingSessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The session.
 	Session *StreamingSession `locationName:"session" type:"structure"`
 }
 
@@ -6392,11 +7258,18 @@ func (s *DeleteStreamingSessionOutput) SetSession(v *StreamingSession) *DeleteSt
 type DeleteStudioComponentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The studio component ID.
+	//
 	// StudioComponentId is a required field
 	StudioComponentId *string `location:"uri" locationName:"studioComponentId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -6465,8 +7338,7 @@ func (s *DeleteStudioComponentInput) SetStudioId(v string) *DeleteStudioComponen
 type DeleteStudioComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A network that is used by a studio’s users and workflows, including render
-	// farm, Active Directory, licensing, and file system.
+	// Information about the studio component.
 	StudioComponent *StudioComponent `locationName:"studioComponent" type:"structure"`
 }
 
@@ -6497,8 +7369,13 @@ func (s *DeleteStudioComponentOutput) SetStudioComponent(v *StudioComponent) *De
 type DeleteStudioInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -6555,11 +7432,18 @@ func (s *DeleteStudioInput) SetStudioId(v string) *DeleteStudioInput {
 type DeleteStudioMemberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -6650,7 +7534,10 @@ func (s DeleteStudioMemberOutput) GoString() string {
 type DeleteStudioOutput struct {
 	_ struct{} `type:"structure"`
 
-	Studio *Studio `locationName:"studio" type:"structure"`
+	// Information about a studio.
+	//
+	// Studio is a required field
+	Studio *Studio `locationName:"studio" type:"structure" required:"true"`
 }
 
 // String returns the string representation.
@@ -6681,15 +7568,19 @@ func (s *DeleteStudioOutput) SetStudio(v *Studio) *DeleteStudioOutput {
 type Eula struct {
 	_ struct{} `type:"structure"`
 
+	// The EULA content.
 	Content *string `locationName:"content" type:"string"`
 
+	// The Unix epoch timestamp in seconds for when the resource was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Represents a EULA resource.
+	// The EULA ID.
 	EulaId *string `locationName:"eulaId" type:"string"`
 
+	// The name for the EULA.
 	Name *string `locationName:"name" type:"string"`
 
+	// The Unix epoch timestamp in seconds for when the resource was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 }
 
@@ -6741,19 +7632,23 @@ func (s *Eula) SetUpdatedAt(v time.Time) *Eula {
 	return s
 }
 
+// The acceptance of a EULA, required to use Amazon-provided streaming images.
 type EulaAcceptance struct {
 	_ struct{} `type:"structure"`
 
+	// The Unix epoch timestamp in seconds for when the EULA was accepted.
 	AcceptedAt *time.Time `locationName:"acceptedAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The ID of the person who accepted the EULA.
 	AcceptedBy *string `locationName:"acceptedBy" type:"string"`
 
+	// The ID of the acceptee.
 	AccepteeId *string `locationName:"accepteeId" type:"string"`
 
 	// The EULA acceptance ID.
 	EulaAcceptanceId *string `locationName:"eulaAcceptanceId" type:"string"`
 
-	// Represents a EULA resource.
+	// The EULA ID.
 	EulaId *string `locationName:"eulaId" type:"string"`
 }
 
@@ -6808,6 +7703,8 @@ func (s *EulaAcceptance) SetEulaId(v string) *EulaAcceptance {
 type GetEulaInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The EULA ID.
+	//
 	// EulaId is a required field
 	EulaId *string `location:"uri" locationName:"eulaId" type:"string" required:"true"`
 }
@@ -6855,7 +7752,7 @@ func (s *GetEulaInput) SetEulaId(v string) *GetEulaInput {
 type GetEulaOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Represents a EULA resource.
+	// The EULA.
 	Eula *Eula `locationName:"eula" type:"structure"`
 }
 
@@ -6886,9 +7783,13 @@ func (s *GetEulaOutput) SetEula(v *Eula) *GetEulaOutput {
 type GetLaunchProfileDetailsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -6948,10 +7849,13 @@ func (s *GetLaunchProfileDetailsInput) SetStudioId(v string) *GetLaunchProfileDe
 type GetLaunchProfileDetailsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The launch profile.
 	LaunchProfile *LaunchProfile `locationName:"launchProfile" type:"structure"`
 
+	// A collection of streaming images.
 	StreamingImages []*StreamingImage `locationName:"streamingImages" type:"list"`
 
+	// A collection of studio component summaries.
 	StudioComponentSummaries []*StudioComponentSummary `locationName:"studioComponentSummaries" type:"list"`
 }
 
@@ -6994,18 +7898,28 @@ func (s *GetLaunchProfileDetailsOutput) SetStudioComponentSummaries(v []*StudioC
 type GetLaunchProfileInitializationInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// The launch profile protocol versions supported by the client.
+	//
 	// LaunchProfileProtocolVersions is a required field
 	LaunchProfileProtocolVersions []*string `location:"querystring" locationName:"launchProfileProtocolVersions" type:"list" required:"true"`
 
+	// The launch purpose.
+	//
 	// LaunchPurpose is a required field
 	LaunchPurpose *string `location:"querystring" locationName:"launchPurpose" type:"string" required:"true"`
 
+	// The platform where this Launch Profile will be used, either WINDOWS or LINUX.
+	//
 	// Platform is a required field
 	Platform *string `location:"querystring" locationName:"platform" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -7092,6 +8006,7 @@ func (s *GetLaunchProfileInitializationInput) SetStudioId(v string) *GetLaunchPr
 type GetLaunchProfileInitializationOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The launch profile initialization.
 	LaunchProfileInitialization *LaunchProfileInitialization `locationName:"launchProfileInitialization" type:"structure"`
 }
 
@@ -7122,9 +8037,13 @@ func (s *GetLaunchProfileInitializationOutput) SetLaunchProfileInitialization(v 
 type GetLaunchProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -7184,12 +8103,18 @@ func (s *GetLaunchProfileInput) SetStudioId(v string) *GetLaunchProfileInput {
 type GetLaunchProfileMemberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -7261,6 +8186,7 @@ func (s *GetLaunchProfileMemberInput) SetStudioId(v string) *GetLaunchProfileMem
 type GetLaunchProfileMemberOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The member.
 	Member *LaunchProfileMembership `locationName:"member" type:"structure"`
 }
 
@@ -7291,6 +8217,7 @@ func (s *GetLaunchProfileMemberOutput) SetMember(v *LaunchProfileMembership) *Ge
 type GetLaunchProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The launch profile.
 	LaunchProfile *LaunchProfile `locationName:"launchProfile" type:"structure"`
 }
 
@@ -7321,9 +8248,13 @@ func (s *GetLaunchProfileOutput) SetLaunchProfile(v *LaunchProfile) *GetLaunchPr
 type GetStreamingImageInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The streaming image ID.
+	//
 	// StreamingImageId is a required field
 	StreamingImageId *string `location:"uri" locationName:"streamingImageId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -7383,6 +8314,7 @@ func (s *GetStreamingImageInput) SetStudioId(v string) *GetStreamingImageInput {
 type GetStreamingImageOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The streaming image.
 	StreamingImage *StreamingImage `locationName:"streamingImage" type:"structure"`
 }
 
@@ -7413,9 +8345,13 @@ func (s *GetStreamingImageOutput) SetStreamingImage(v *StreamingImage) *GetStrea
 type GetStreamingSessionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The streaming session ID.
+	//
 	// SessionId is a required field
 	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -7475,6 +8411,7 @@ func (s *GetStreamingSessionInput) SetStudioId(v string) *GetStreamingSessionInp
 type GetStreamingSessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The session.
 	Session *StreamingSession `locationName:"session" type:"structure"`
 }
 
@@ -7505,12 +8442,18 @@ func (s *GetStreamingSessionOutput) SetSession(v *StreamingSession) *GetStreamin
 type GetStreamingSessionStreamInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The streaming session ID.
+	//
 	// SessionId is a required field
 	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
 
+	// The streaming session stream ID.
+	//
 	// StreamId is a required field
 	StreamId *string `location:"uri" locationName:"streamId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -7582,6 +8525,7 @@ func (s *GetStreamingSessionStreamInput) SetStudioId(v string) *GetStreamingSess
 type GetStreamingSessionStreamOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The stream.
 	Stream *StreamingSessionStream `locationName:"stream" type:"structure"`
 }
 
@@ -7612,9 +8556,13 @@ func (s *GetStreamingSessionStreamOutput) SetStream(v *StreamingSessionStream) *
 type GetStudioComponentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The studio component ID.
+	//
 	// StudioComponentId is a required field
 	StudioComponentId *string `location:"uri" locationName:"studioComponentId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -7674,8 +8622,7 @@ func (s *GetStudioComponentInput) SetStudioId(v string) *GetStudioComponentInput
 type GetStudioComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A network that is used by a studio’s users and workflows, including render
-	// farm, Active Directory, licensing, and file system.
+	// Information about the studio component.
 	StudioComponent *StudioComponent `locationName:"studioComponent" type:"structure"`
 }
 
@@ -7706,6 +8653,8 @@ func (s *GetStudioComponentOutput) SetStudioComponent(v *StudioComponent) *GetSt
 type GetStudioInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -7753,9 +8702,13 @@ func (s *GetStudioInput) SetStudioId(v string) *GetStudioInput {
 type GetStudioMemberInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -7815,6 +8768,7 @@ func (s *GetStudioMemberInput) SetStudioId(v string) *GetStudioMemberInput {
 type GetStudioMemberOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The member.
 	Member *StudioMembership `locationName:"member" type:"structure"`
 }
 
@@ -7845,7 +8799,10 @@ func (s *GetStudioMemberOutput) SetMember(v *StudioMembership) *GetStudioMemberO
 type GetStudioOutput struct {
 	_ struct{} `type:"structure"`
 
-	Studio *Studio `locationName:"studio" type:"structure"`
+	// Information about a studio.
+	//
+	// Studio is a required field
+	Studio *Studio `locationName:"studio" type:"structure" required:"true"`
 }
 
 // String returns the string representation.
@@ -7872,21 +8829,18 @@ func (s *GetStudioOutput) SetStudio(v *Studio) *GetStudioOutput {
 	return s
 }
 
+// An internal error has occurred. Please retry your request.
 type InternalServerErrorException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A more specific error code.
 	Code_ *string `locationName:"code" type:"string"`
 
-	// ExceptionContext is a set of key-value pairs that provide you with more information
-	// about the error that occurred. For example, when the service returns a 404
-	// ResourceNotFound error, ExceptionContext will contain the key `resourceId`
-	// with the value of resource that was not found.
-	//
-	// ExceptionContext enables scripts and other programmatic clients to provide
-	// for better error handling.
+	// The exception context.
 	Context map[string]*string `locationName:"context" type:"map"`
 
+	// A human-readable description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -7946,40 +8900,75 @@ func (s *InternalServerErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A launch profile controls your artist workforce’s access to studio components,
+// like compute farms, shared file systems, managed file systems, and license
+// server configurations, as well as instance types and Amazon Machine Images
+// (AMIs).
+//
+//    <p>Studio administrators create launch profiles in the Nimble Studio console.
+//    Artists can use their launch profiles to launch an instance from the Nimble
+//    Studio portal. Each user’s launch profile defines how they can launch
+//    a streaming session. By default, studio admins can use all launch profiles.</p>
 type LaunchProfile struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the resource.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The Unix epoch timestamp in seconds for when the resource was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that created the launch profile.
 	CreatedBy *string `locationName:"createdBy" type:"string"`
 
-	Description *string `locationName:"description" type:"string"`
+	// A human-readable description of the launch profile.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LaunchProfile's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// Unique identifiers for a collection of EC2 subnets.
 	Ec2SubnetIds []*string `locationName:"ec2SubnetIds" type:"list"`
 
+	// The launch profile ID.
 	LaunchProfileId *string `locationName:"launchProfileId" type:"string"`
 
+	// The version number of the protocol that is used by the launch profile. The
+	// only valid version is "2021-03-31".
 	LaunchProfileProtocolVersions []*string `locationName:"launchProfileProtocolVersions" type:"list"`
 
-	Name *string `locationName:"name" type:"string"`
+	// A friendly name for the launch profile.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LaunchProfile's
+	// String and GoString methods.
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
 
+	// The current state.
 	State *string `locationName:"state" type:"string" enum:"LaunchProfileState"`
 
+	// The status code.
 	StatusCode *string `locationName:"statusCode" type:"string" enum:"LaunchProfileStatusCode"`
 
+	// The status message for the launch profile.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
 	// A configuration for a streaming session.
 	StreamConfiguration *StreamConfiguration `locationName:"streamConfiguration" type:"structure"`
 
+	// Unique identifiers for a collection of studio components that can be used
+	// with this launch profile.
 	StudioComponentIds []*string `locationName:"studioComponentIds" min:"1" type:"list"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The Unix epoch timestamp in seconds for when the resource was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that most recently updated the resource.
 	UpdatedBy *string `locationName:"updatedBy" type:"string"`
 }
 
@@ -8097,13 +9086,20 @@ func (s *LaunchProfile) SetUpdatedBy(v string) *LaunchProfile {
 	return s
 }
 
+// A Launch Profile Initialization contains information required for a workstation
+// or server to connect to a launch profile
+//
+// This includes scripts, endpoints, security groups, subnets, and other configuration.
 type LaunchProfileInitialization struct {
 	_ struct{} `type:"structure"`
 
+	// A LaunchProfileInitializationActiveDirectory resource.
 	ActiveDirectory *LaunchProfileInitializationActiveDirectory `locationName:"activeDirectory" type:"structure"`
 
+	// The EC2 security groups that control access to the studio component.
 	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" min:"1" type:"list"`
 
+	// The launch profile ID.
 	LaunchProfileId *string `locationName:"launchProfileId" type:"string"`
 
 	// The version number of the protocol that is used by the launch profile. The
@@ -8113,12 +9109,20 @@ type LaunchProfileInitialization struct {
 	// The launch purpose.
 	LaunchPurpose *string `locationName:"launchPurpose" type:"string"`
 
-	Name *string `locationName:"name" type:"string"`
+	// The name for the launch profile.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LaunchProfileInitialization's
+	// String and GoString methods.
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
 
+	// The platform of the launch platform, either WINDOWS or LINUX.
 	Platform *string `locationName:"platform" type:"string" enum:"LaunchProfilePlatform"`
 
+	// The system initializtion scripts.
 	SystemInitializationScripts []*LaunchProfileInitializationScript `locationName:"systemInitializationScripts" type:"list"`
 
+	// The user initializtion scripts.
 	UserInitializationScripts []*LaunchProfileInitializationScript `locationName:"userInitializationScripts" type:"list"`
 }
 
@@ -8197,23 +9201,35 @@ func (s *LaunchProfileInitialization) SetUserInitializationScripts(v []*LaunchPr
 type LaunchProfileInitializationActiveDirectory struct {
 	_ struct{} `type:"structure"`
 
-	// A collection of LDAP attributes to apply to Active Directory computer accounts
-	// that are created for streaming sessions.
-	ComputerAttributes []*ActiveDirectoryComputerAttribute `locationName:"computerAttributes" type:"list"`
+	// A collection of custom attributes for an Active Directory computer.
+	//
+	// ComputerAttributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LaunchProfileInitializationActiveDirectory's
+	// String and GoString methods.
+	ComputerAttributes []*ActiveDirectoryComputerAttribute `locationName:"computerAttributes" type:"list" sensitive:"true"`
 
+	// The directory ID of the Directory Service for Microsoft Active Directory
+	// to access using this launch profile.
 	DirectoryId *string `locationName:"directoryId" type:"string"`
 
+	// The directory name.
 	DirectoryName *string `locationName:"directoryName" type:"string"`
 
+	// The DNS IP address.
 	DnsIpAddresses []*string `locationName:"dnsIpAddresses" type:"list"`
 
-	// The fully-qualified distinguished name of the organizational unit to place
-	// the computer account in.
+	// The name for the organizational unit distinguished name.
 	OrganizationalUnitDistinguishedName *string `locationName:"organizationalUnitDistinguishedName" min:"1" type:"string"`
 
+	// The unique identifier for a studio component resource.
 	StudioComponentId *string `locationName:"studioComponentId" type:"string"`
 
-	StudioComponentName *string `locationName:"studioComponentName" type:"string"`
+	// The name for the studio component.
+	//
+	// StudioComponentName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LaunchProfileInitializationActiveDirectory's
+	// String and GoString methods.
+	StudioComponentName *string `locationName:"studioComponentName" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8279,11 +9295,22 @@ func (s *LaunchProfileInitializationActiveDirectory) SetStudioComponentName(v st
 type LaunchProfileInitializationScript struct {
 	_ struct{} `type:"structure"`
 
-	Script *string `locationName:"script" min:"1" type:"string"`
+	// The initialization script.
+	//
+	// Script is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LaunchProfileInitializationScript's
+	// String and GoString methods.
+	Script *string `locationName:"script" min:"1" type:"string" sensitive:"true"`
 
+	// The unique identifier for a studio component resource.
 	StudioComponentId *string `locationName:"studioComponentId" type:"string"`
 
-	StudioComponentName *string `locationName:"studioComponentName" type:"string"`
+	// The name for the studio component.
+	//
+	// StudioComponentName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LaunchProfileInitializationScript's
+	// String and GoString methods.
+	StudioComponentName *string `locationName:"studioComponentName" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8325,11 +9352,17 @@ func (s *LaunchProfileInitializationScript) SetStudioComponentName(v string) *La
 type LaunchProfileMembership struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the identity store.
 	IdentityStoreId *string `locationName:"identityStoreId" type:"string"`
 
+	// The persona.
 	Persona *string `locationName:"persona" type:"string" enum:"LaunchProfilePersona"`
 
+	// The principal ID.
 	PrincipalId *string `locationName:"principalId" type:"string"`
+
+	// The Active Directory Security Identifier for this user, if available.
+	Sid *string `locationName:"sid" type:"string"`
 }
 
 // String returns the string representation.
@@ -8368,12 +9401,24 @@ func (s *LaunchProfileMembership) SetPrincipalId(v string) *LaunchProfileMembers
 	return s
 }
 
+// SetSid sets the Sid field's value.
+func (s *LaunchProfileMembership) SetSid(v string) *LaunchProfileMembership {
+	s.Sid = &v
+	return s
+}
+
 // The configuration for a license service that is associated with a studio
 // resource.
 type LicenseServiceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	Endpoint *string `locationName:"endpoint" type:"string"`
+	// The endpoint of the license service that is accessed by the studio component
+	// resource.
+	//
+	// Endpoint is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by LicenseServiceConfiguration's
+	// String and GoString methods.
+	Endpoint *string `locationName:"endpoint" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -8403,10 +9448,14 @@ func (s *LicenseServiceConfiguration) SetEndpoint(v string) *LicenseServiceConfi
 type ListEulaAcceptancesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The list of EULA IDs that have been previously accepted.
 	EulaIds []*string `location:"querystring" locationName:"eulaIds" type:"list"`
 
+	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -8466,8 +9515,10 @@ func (s *ListEulaAcceptancesInput) SetStudioId(v string) *ListEulaAcceptancesInp
 type ListEulaAcceptancesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A collection of EULA acceptances.
 	EulaAcceptances []*EulaAcceptance `locationName:"eulaAcceptances" type:"list"`
 
+	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -8504,8 +9555,10 @@ func (s *ListEulaAcceptancesOutput) SetNextToken(v string) *ListEulaAcceptancesO
 type ListEulasInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The list of EULA IDs that should be returned
 	EulaIds []*string `location:"querystring" locationName:"eulaIds" type:"list"`
 
+	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -8542,8 +9595,10 @@ func (s *ListEulasInput) SetNextToken(v string) *ListEulasInput {
 type ListEulasOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A collection of EULA resources.
 	Eulas []*Eula `locationName:"eulas" type:"list"`
 
+	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -8580,13 +9635,19 @@ func (s *ListEulasOutput) SetNextToken(v string) *ListEulasOutput {
 type ListLaunchProfileMembersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// The max number of results to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -8661,8 +9722,10 @@ func (s *ListLaunchProfileMembersInput) SetStudioId(v string) *ListLaunchProfile
 type ListLaunchProfileMembersOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of members.
 	Members []*LaunchProfileMembership `locationName:"members" type:"list"`
 
+	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -8699,14 +9762,20 @@ func (s *ListLaunchProfileMembersOutput) SetNextToken(v string) *ListLaunchProfi
 type ListLaunchProfilesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The max number of results to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
 	PrincipalId *string `location:"querystring" locationName:"principalId" type:"string"`
 
+	// Filter this request to launch profiles in any of the given states.
 	States []*string `location:"querystring" locationName:"states" type:"list"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -8781,8 +9850,10 @@ func (s *ListLaunchProfilesInput) SetStudioId(v string) *ListLaunchProfilesInput
 type ListLaunchProfilesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A collection of launch profiles.
 	LaunchProfiles []*LaunchProfile `locationName:"launchProfiles" type:"list"`
 
+	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -8819,10 +9890,14 @@ func (s *ListLaunchProfilesOutput) SetNextToken(v string) *ListLaunchProfilesOut
 type ListStreamingImagesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// Filter this request to streaming images with the given owner
 	Owner *string `location:"querystring" locationName:"owner" type:"string"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -8882,8 +9957,10 @@ func (s *ListStreamingImagesInput) SetStudioId(v string) *ListStreamingImagesInp
 type ListStreamingImagesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
+	// A collection of streaming images.
 	StreamingImages []*StreamingImage `locationName:"streamingImages" type:"list"`
 }
 
@@ -8920,14 +9997,20 @@ func (s *ListStreamingImagesOutput) SetStreamingImages(v []*StreamingImage) *Lis
 type ListStreamingSessionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Filters the request to streaming sessions created by the given user.
 	CreatedBy *string `location:"querystring" locationName:"createdBy" type:"string"`
 
+	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// Filters the request to streaming session owned by the given user
 	OwnedBy *string `location:"querystring" locationName:"ownedBy" type:"string"`
 
+	// Filters the request to only the provided session IDs.
 	SessionIds *string `location:"querystring" locationName:"sessionIds" type:"string"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -8999,8 +10082,10 @@ func (s *ListStreamingSessionsInput) SetStudioId(v string) *ListStreamingSession
 type ListStreamingSessionsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
+	// A collection of streaming sessions.
 	Sessions []*StreamingSession `locationName:"sessions" type:"list"`
 }
 
@@ -9037,15 +10122,21 @@ func (s *ListStreamingSessionsOutput) SetSessions(v []*StreamingSession) *ListSt
 type ListStudioComponentsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The max number of results to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// Filters the request to studio components that are in one of the given states.
 	States []*string `location:"querystring" locationName:"states" type:"list"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 
+	// Filters the request to studio components that are of one of the given types.
 	Types []*string `location:"querystring" locationName:"types" type:"list"`
 }
 
@@ -9119,8 +10210,10 @@ func (s *ListStudioComponentsInput) SetTypes(v []*string) *ListStudioComponentsI
 type ListStudioComponentsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
+	// A collection of studio components.
 	StudioComponents []*StudioComponent `locationName:"studioComponents" type:"list"`
 }
 
@@ -9157,10 +10250,14 @@ func (s *ListStudioComponentsOutput) SetStudioComponents(v []*StudioComponent) *
 type ListStudioMembersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The max number of results to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -9223,8 +10320,10 @@ func (s *ListStudioMembersInput) SetStudioId(v string) *ListStudioMembersInput {
 type ListStudioMembersOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of members.
 	Members []*StudioMembership `locationName:"members" type:"list"`
 
+	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -9261,6 +10360,7 @@ func (s *ListStudioMembersOutput) SetNextToken(v string) *ListStudioMembersOutpu
 type ListStudiosInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The token to request the next page of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -9291,9 +10391,13 @@ func (s *ListStudiosInput) SetNextToken(v string) *ListStudiosInput {
 type ListStudiosOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	Studios []*Studio `locationName:"studios" type:"list"`
+	// A collection of studios.
+	//
+	// Studios is a required field
+	Studios []*Studio `locationName:"studios" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -9329,6 +10433,9 @@ func (s *ListStudiosOutput) SetStudios(v []*Studio) *ListStudiosOutput {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The Amazon Resource Name (ARN) of the resource for which you want to list
+	// tags.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 }
@@ -9376,6 +10483,8 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -9406,9 +10515,13 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type NewLaunchProfileMember struct {
 	_ struct{} `type:"structure"`
 
+	// The persona.
+	//
 	// Persona is a required field
 	Persona *string `locationName:"persona" type:"string" required:"true" enum:"LaunchProfilePersona"`
 
+	// The principal ID.
+	//
 	// PrincipalId is a required field
 	PrincipalId *string `locationName:"principalId" type:"string" required:"true"`
 }
@@ -9462,9 +10575,13 @@ func (s *NewLaunchProfileMember) SetPrincipalId(v string) *NewLaunchProfileMembe
 type NewStudioMember struct {
 	_ struct{} `type:"structure"`
 
+	// The persona.
+	//
 	// Persona is a required field
 	Persona *string `locationName:"persona" type:"string" required:"true" enum:"StudioPersona"`
 
+	// The principal ID.
+	//
 	// PrincipalId is a required field
 	PrincipalId *string `locationName:"principalId" type:"string" required:"true"`
 }
@@ -9518,17 +10635,28 @@ func (s *NewStudioMember) SetPrincipalId(v string) *NewStudioMember {
 type PutLaunchProfileMembersInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The ID of the identity store.
+	//
 	// IdentityStoreId is a required field
 	IdentityStoreId *string `locationName:"identityStoreId" type:"string" required:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// A list of members.
+	//
 	// Members is a required field
 	Members []*NewLaunchProfileMember `locationName:"members" min:"1" type:"list" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -9650,14 +10778,23 @@ func (s PutLaunchProfileMembersOutput) GoString() string {
 type PutStudioMembersInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The ID of the identity store.
+	//
 	// IdentityStoreId is a required field
 	IdentityStoreId *string `locationName:"identityStoreId" type:"string" required:"true"`
 
+	// A list of members.
+	//
 	// Members is a required field
 	Members []*NewStudioMember `locationName:"members" min:"1" type:"list" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -9764,21 +10901,18 @@ func (s PutStudioMembersOutput) GoString() string {
 	return s.String()
 }
 
+// The specified resource could not be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A more specific error code.
 	Code_ *string `locationName:"code" type:"string"`
 
-	// ExceptionContext is a set of key-value pairs that provide you with more information
-	// about the error that occurred. For example, when the service returns a 404
-	// ResourceNotFound error, ExceptionContext will contain the key `resourceId`
-	// with the value of resource that was not found.
-	//
-	// ExceptionContext enables scripts and other programmatic clients to provide
-	// for better error handling.
+	// The exception context.
 	Context map[string]*string `locationName:"context" type:"map"`
 
+	// A human-readable description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -9895,21 +11029,21 @@ func (s *ScriptParameterKeyValue) SetValue(v string) *ScriptParameterKeyValue {
 	return s
 }
 
+// Your current quota does not allow you to perform the request action. You
+// can request increases for some quotas, and other quotas cannot be increased.
+//
+// Please use AWS Service Quotas to request an increase.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A more specific error code.
 	Code_ *string `locationName:"code" type:"string"`
 
-	// ExceptionContext is a set of key-value pairs that provide you with more information
-	// about the error that occurred. For example, when the service returns a 404
-	// ResourceNotFound error, ExceptionContext will contain the key `resourceId`
-	// with the value of resource that was not found.
-	//
-	// ExceptionContext enables scripts and other programmatic clients to provide
-	// for better error handling.
+	// The exception context.
 	Context map[string]*string `locationName:"context" type:"map"`
 
+	// A human-readable description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -9974,14 +11108,32 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type SharedFileSystemConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	Endpoint *string `locationName:"endpoint" type:"string"`
+	// The endpoint of the shared file system that is accessed by the studio component
+	// resource.
+	//
+	// Endpoint is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SharedFileSystemConfiguration's
+	// String and GoString methods.
+	Endpoint *string `locationName:"endpoint" type:"string" sensitive:"true"`
 
+	// The unique identifier for a file system.
 	FileSystemId *string `locationName:"fileSystemId" type:"string"`
 
-	LinuxMountPoint *string `locationName:"linuxMountPoint" type:"string"`
+	// The mount location for a shared file system on a Linux virtual workstation.
+	//
+	// LinuxMountPoint is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SharedFileSystemConfiguration's
+	// String and GoString methods.
+	LinuxMountPoint *string `locationName:"linuxMountPoint" type:"string" sensitive:"true"`
 
-	ShareName *string `locationName:"shareName" type:"string"`
+	// The name of the file share.
+	//
+	// ShareName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SharedFileSystemConfiguration's
+	// String and GoString methods.
+	ShareName *string `locationName:"shareName" type:"string" sensitive:"true"`
 
+	// The mount location for a shared file system on a Windows virtual workstation.
 	WindowsMountDrive *string `locationName:"windowsMountDrive" type:"string"`
 }
 
@@ -10033,11 +11185,128 @@ func (s *SharedFileSystemConfiguration) SetWindowsMountDrive(v string) *SharedFi
 	return s
 }
 
+type StartStreamingSessionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
+	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The streaming session ID for the StartStreamingSessionRequest.
+	//
+	// SessionId is a required field
+	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
+
+	// The studio ID for the StartStreamingSessionRequest.
+	//
+	// StudioId is a required field
+	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartStreamingSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartStreamingSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartStreamingSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartStreamingSessionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+	if s.StudioId != nil && len(*s.StudioId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StudioId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartStreamingSessionInput) SetClientToken(v string) *StartStreamingSessionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *StartStreamingSessionInput) SetSessionId(v string) *StartStreamingSessionInput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *StartStreamingSessionInput) SetStudioId(v string) *StartStreamingSessionInput {
+	s.StudioId = &v
+	return s
+}
+
+type StartStreamingSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A streaming session is a virtual workstation created using a particular launch
+	// profile.
+	Session *StreamingSession `locationName:"session" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartStreamingSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartStreamingSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetSession sets the Session field's value.
+func (s *StartStreamingSessionOutput) SetSession(v *StreamingSession) *StartStreamingSessionOutput {
+	s.Session = v
+	return s
+}
+
 type StartStudioSSOConfigurationRepairInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -10094,7 +11363,10 @@ func (s *StartStudioSSOConfigurationRepairInput) SetStudioId(v string) *StartStu
 type StartStudioSSOConfigurationRepairOutput struct {
 	_ struct{} `type:"structure"`
 
-	Studio *Studio `locationName:"studio" type:"structure"`
+	// Information about a studio.
+	//
+	// Studio is a required field
+	Studio *Studio `locationName:"studio" type:"structure" required:"true"`
 }
 
 // String returns the string representation.
@@ -10121,21 +11393,160 @@ func (s *StartStudioSSOConfigurationRepairOutput) SetStudio(v *Studio) *StartStu
 	return s
 }
 
+type StopStreamingSessionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
+	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The streaming session ID for the StopStreamingSessionRequest.
+	//
+	// SessionId is a required field
+	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
+
+	// The studioId for the StopStreamingSessionRequest.
+	//
+	// StudioId is a required field
+	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopStreamingSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopStreamingSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopStreamingSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopStreamingSessionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.SessionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SessionId"))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 1))
+	}
+	if s.StudioId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioId"))
+	}
+	if s.StudioId != nil && len(*s.StudioId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StudioId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StopStreamingSessionInput) SetClientToken(v string) *StopStreamingSessionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *StopStreamingSessionInput) SetSessionId(v string) *StopStreamingSessionInput {
+	s.SessionId = &v
+	return s
+}
+
+// SetStudioId sets the StudioId field's value.
+func (s *StopStreamingSessionInput) SetStudioId(v string) *StopStreamingSessionInput {
+	s.StudioId = &v
+	return s
+}
+
+type StopStreamingSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A streaming session is a virtual workstation created using a particular launch
+	// profile.
+	Session *StreamingSession `locationName:"session" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopStreamingSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopStreamingSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetSession sets the Session field's value.
+func (s *StopStreamingSessionOutput) SetSession(v *StreamingSession) *StopStreamingSessionOutput {
+	s.Session = v
+	return s
+}
+
 // A configuration for a streaming session.
 type StreamConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	ClipboardMode *string `locationName:"clipboardMode" type:"string" enum:"StreamingClipboardMode"`
+	// Enable or disable the use of the system clipboard to copy and paste between
+	// the streaming session and streaming client.
+	//
+	// ClipboardMode is a required field
+	ClipboardMode *string `locationName:"clipboardMode" type:"string" required:"true" enum:"StreamingClipboardMode"`
 
 	// The EC2 instance types that users can select from when launching a streaming
 	// session with this launch profile.
-	Ec2InstanceTypes []*string `locationName:"ec2InstanceTypes" min:"1" type:"list"`
+	//
+	// Ec2InstanceTypes is a required field
+	Ec2InstanceTypes []*string `locationName:"ec2InstanceTypes" min:"1" type:"list" required:"true"`
 
+	// The length of time, in minutes, that a streaming session can be active before
+	// it is stopped or terminated. After this point, Nimble Studio automatically
+	// terminates or stops the session. The default length of time is 690 minutes,
+	// and the maximum length of time is 30 days.
 	MaxSessionLengthInMinutes *int64 `locationName:"maxSessionLengthInMinutes" min:"1" type:"integer"`
 
-	// A list of streaming image IDs that users can select from when launching a
-	// streaming session with this launch profile.
-	StreamingImageIds []*string `locationName:"streamingImageIds" type:"list"`
+	// Integer that determines if you can start and stop your sessions and how long
+	// a session can stay in the STOPPED state. The default value is 0. The maximum
+	// value is 5760.
+	//
+	// If the value is missing or set to 0, your sessions can’t be stopped. If
+	// you then call StopStreamingSession, the session fails. If the time that a
+	// session stays in the READY state exceeds the maxSessionLengthInMinutes value,
+	// the session will automatically be terminated by AWS (instead of stopped).
+	//
+	// If the value is set to a positive number, the session can be stopped. You
+	// can call StopStreamingSession to stop sessions in the READY state. If the
+	// time that a session stays in the READY state exceeds the maxSessionLengthInMinutes
+	// value, the session will automatically be stopped by AWS (instead of terminated).
+	MaxStoppedSessionLengthInMinutes *int64 `locationName:"maxStoppedSessionLengthInMinutes" type:"integer"`
+
+	// The streaming images that users can select from when launching a streaming
+	// session with this launch profile.
+	//
+	// StreamingImageIds is a required field
+	StreamingImageIds []*string `locationName:"streamingImageIds" min:"1" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -10174,15 +11585,25 @@ func (s *StreamConfiguration) SetMaxSessionLengthInMinutes(v int64) *StreamConfi
 	return s
 }
 
+// SetMaxStoppedSessionLengthInMinutes sets the MaxStoppedSessionLengthInMinutes field's value.
+func (s *StreamConfiguration) SetMaxStoppedSessionLengthInMinutes(v int64) *StreamConfiguration {
+	s.MaxStoppedSessionLengthInMinutes = &v
+	return s
+}
+
 // SetStreamingImageIds sets the StreamingImageIds field's value.
 func (s *StreamConfiguration) SetStreamingImageIds(v []*string) *StreamConfiguration {
 	s.StreamingImageIds = v
 	return s
 }
 
+// Configuration for streaming workstations created using this launch profile.
 type StreamConfigurationCreate struct {
 	_ struct{} `type:"structure"`
 
+	// Enable or disable the use of the system clipboard to copy and paste between
+	// the streaming session and streaming client.
+	//
 	// ClipboardMode is a required field
 	ClipboardMode *string `locationName:"clipboardMode" type:"string" required:"true" enum:"StreamingClipboardMode"`
 
@@ -10192,13 +11613,23 @@ type StreamConfigurationCreate struct {
 	// Ec2InstanceTypes is a required field
 	Ec2InstanceTypes []*string `locationName:"ec2InstanceTypes" min:"1" type:"list" required:"true"`
 
+	// The length of time, in minutes, that a streaming session can be active before
+	// it is stopped or terminated. After this point, Nimble Studio automatically
+	// terminates or stops the session. The default length of time is 690 minutes,
+	// and the maximum length of time is 30 days.
 	MaxSessionLengthInMinutes *int64 `locationName:"maxSessionLengthInMinutes" min:"1" type:"integer"`
 
-	// A list of streaming image IDs that users can select from when launching a
-	// streaming session with this launch profile.
+	// The length of time, in minutes, that a streaming session can be active before
+	// it is stopped or terminated. After this point, Nimble Studio automatically
+	// terminates or stops the session. The default length of time is 690 minutes,
+	// and the maximum length of time is 30 days.
+	MaxStoppedSessionLengthInMinutes *int64 `locationName:"maxStoppedSessionLengthInMinutes" type:"integer"`
+
+	// The streaming images that users can select from when launching a streaming
+	// session with this launch profile.
 	//
 	// StreamingImageIds is a required field
-	StreamingImageIds []*string `locationName:"streamingImageIds" type:"list" required:"true"`
+	StreamingImageIds []*string `locationName:"streamingImageIds" min:"1" type:"list" required:"true"`
 }
 
 // String returns the string representation.
@@ -10237,6 +11668,9 @@ func (s *StreamConfigurationCreate) Validate() error {
 	if s.StreamingImageIds == nil {
 		invalidParams.Add(request.NewErrParamRequired("StreamingImageIds"))
 	}
+	if s.StreamingImageIds != nil && len(s.StreamingImageIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamingImageIds", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10262,47 +11696,80 @@ func (s *StreamConfigurationCreate) SetMaxSessionLengthInMinutes(v int64) *Strea
 	return s
 }
 
+// SetMaxStoppedSessionLengthInMinutes sets the MaxStoppedSessionLengthInMinutes field's value.
+func (s *StreamConfigurationCreate) SetMaxStoppedSessionLengthInMinutes(v int64) *StreamConfigurationCreate {
+	s.MaxStoppedSessionLengthInMinutes = &v
+	return s
+}
+
 // SetStreamingImageIds sets the StreamingImageIds field's value.
 func (s *StreamConfigurationCreate) SetStreamingImageIds(v []*string) *StreamConfigurationCreate {
 	s.StreamingImageIds = v
 	return s
 }
 
+// Represents a streaming image resource.
+//
+// Streaming images are used by studio users to select which operating system
+// and software they want to use in a Nimble Studio streaming session.
+//
+// Amazon provides a number of streaming images that include popular 3rd-party
+// software.
+//
+// You can create your own streaming images using an Amazon Elastic Compute
+// Cloud (Amazon EC2) machine image that you create for this purpose. You can
+// also include software that your users require.
 type StreamingImage struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the resource.
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The description.
-	Description *string `locationName:"description" type:"string"`
+	// A human-readable description of the streaming image.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StreamingImage's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// The ID of an EC2 machine image with which to create the streaming image.
 	Ec2ImageId *string `locationName:"ec2ImageId" type:"string"`
 
+	// The encryption configuration.
 	EncryptionConfiguration *StreamingImageEncryptionConfiguration `locationName:"encryptionConfiguration" type:"structure"`
 
+	// The list of EULAs that must be accepted before a Streaming Session can be
+	// started using this streaming image.
 	EulaIds []*string `locationName:"eulaIds" type:"list"`
 
 	// A friendly name for a streaming image resource.
-	Name *string `locationName:"name" type:"string"`
-
-	// StreamingImageOwner is the owner of a particular streaming image.
 	//
-	// This string is either the studioId that contains the streaming image, or
-	// the word 'AMAZON' for images provided by Nimble Studio.
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StreamingImage's
+	// String and GoString methods.
+	Name *string `locationName:"name" type:"string" sensitive:"true"`
+
+	// The owner of the streaming image, either the studioId that contains the streaming
+	// image, or 'amazon' for images that are provided by Amazon Nimble Studio.
 	Owner *string `locationName:"owner" type:"string"`
 
-	// The platform of this Streaming Image, either WINDOWS or LINUX.
+	// The platform of the streaming image, either WINDOWS or LINUX.
 	Platform *string `locationName:"platform" type:"string"`
 
+	// The current state.
 	State *string `locationName:"state" type:"string" enum:"StreamingImageState"`
 
 	// The status code.
 	StatusCode *string `locationName:"statusCode" type:"string" enum:"StreamingImageStatusCode"`
 
+	// The status message for the streaming image.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
+	// The ID of the streaming image.
 	StreamingImageId *string `locationName:"streamingImageId" type:"string"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -10402,11 +11869,15 @@ func (s *StreamingImage) SetTags(v map[string]*string) *StreamingImage {
 	return s
 }
 
+// Specifies how a streaming image is encrypted.
 type StreamingImageEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN for a KMS key that is used to encrypt studio data.
 	KeyArn *string `locationName:"keyArn" min:"4" type:"string"`
 
+	// The type of KMS key that is used to encrypt studio data.
+	//
 	// KeyType is a required field
 	KeyType *string `locationName:"keyType" type:"string" required:"true" enum:"StreamingImageEncryptionConfigurationKeyType"`
 }
@@ -10441,38 +11912,72 @@ func (s *StreamingImageEncryptionConfiguration) SetKeyType(v string) *StreamingI
 	return s
 }
 
+// A streaming session is a virtual workstation created using a particular launch
+// profile.
 type StreamingSession struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the resource.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The Unix epoch timestamp in seconds for when the resource was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that created the streaming session.
 	CreatedBy *string `locationName:"createdBy" type:"string"`
 
+	// The EC2 Instance type used for the streaming session.
 	Ec2InstanceType *string `locationName:"ec2InstanceType" type:"string"`
 
+	// The ID of the launch profile used to control access from the streaming session.
 	LaunchProfileId *string `locationName:"launchProfileId" type:"string"`
 
+	// The user ID of the user that owns the streaming session.
 	OwnedBy *string `locationName:"ownedBy" type:"string"`
 
+	// The session ID.
 	SessionId *string `locationName:"sessionId" type:"string"`
 
-	// The streaming session state.
+	// The time the session entered START_IN_PROGRESS state.
+	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The user ID of the user that started the streaming session.
+	StartedBy *string `locationName:"startedBy" type:"string"`
+
+	// The current state.
 	State *string `locationName:"state" type:"string" enum:"StreamingSessionState"`
 
+	// The status code.
 	StatusCode *string `locationName:"statusCode" type:"string" enum:"StreamingSessionStatusCode"`
 
+	// The status message for the streaming session.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
+	// The time the streaming session will automatically be stopped if the user
+	// doesn’t stop the session themselves.
+	StopAt *time.Time `locationName:"stopAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The time the session entered STOP_IN_PROGRESS state.
+	StoppedAt *time.Time `locationName:"stoppedAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The user ID of the user that stopped the streaming session.
+	StoppedBy *string `locationName:"stoppedBy" type:"string"`
+
+	// The ID of the streaming image.
 	StreamingImageId *string `locationName:"streamingImageId" type:"string"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The time the streaming session will automatically terminate if not terminated
+	// by the user.
 	TerminateAt *time.Time `locationName:"terminateAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The Unix epoch timestamp in seconds for when the resource was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that most recently updated the resource.
 	UpdatedBy *string `locationName:"updatedBy" type:"string"`
 }
 
@@ -10536,6 +12041,18 @@ func (s *StreamingSession) SetSessionId(v string) *StreamingSession {
 	return s
 }
 
+// SetStartedAt sets the StartedAt field's value.
+func (s *StreamingSession) SetStartedAt(v time.Time) *StreamingSession {
+	s.StartedAt = &v
+	return s
+}
+
+// SetStartedBy sets the StartedBy field's value.
+func (s *StreamingSession) SetStartedBy(v string) *StreamingSession {
+	s.StartedBy = &v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *StreamingSession) SetState(v string) *StreamingSession {
 	s.State = &v
@@ -10551,6 +12068,24 @@ func (s *StreamingSession) SetStatusCode(v string) *StreamingSession {
 // SetStatusMessage sets the StatusMessage field's value.
 func (s *StreamingSession) SetStatusMessage(v string) *StreamingSession {
 	s.StatusMessage = &v
+	return s
+}
+
+// SetStopAt sets the StopAt field's value.
+func (s *StreamingSession) SetStopAt(v time.Time) *StreamingSession {
+	s.StopAt = &v
+	return s
+}
+
+// SetStoppedAt sets the StoppedAt field's value.
+func (s *StreamingSession) SetStoppedAt(v time.Time) *StreamingSession {
+	s.StoppedAt = &v
+	return s
+}
+
+// SetStoppedBy sets the StoppedBy field's value.
+func (s *StreamingSession) SetStoppedBy(v string) *StreamingSession {
+	s.StoppedBy = &v
 	return s
 }
 
@@ -10584,24 +12119,40 @@ func (s *StreamingSession) SetUpdatedBy(v string) *StreamingSession {
 	return s
 }
 
+// A stream is an active connection to a streaming session, enabling a studio
+// user to control the streaming session using a compatible client. Streaming
+// session streams are compatible with the NICE DCV web client, included in
+// the Nimble Studio portal, or the NICE DCV desktop client.
 type StreamingSessionStream struct {
 	_ struct{} `type:"structure"`
 
+	// The Unix epoch timestamp in seconds for when the resource was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that created the streaming session stream.
 	CreatedBy *string `locationName:"createdBy" type:"string"`
 
+	// The Unix epoch timestamp in seconds for when the resource expires.
 	ExpiresAt *time.Time `locationName:"expiresAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that owns the streaming session.
 	OwnedBy *string `locationName:"ownedBy" type:"string"`
 
+	// The current state.
 	State *string `locationName:"state" type:"string" enum:"StreamingSessionStreamState"`
 
+	// The streaming session stream status code.
 	StatusCode *string `locationName:"statusCode" type:"string" enum:"StreamingSessionStreamStatusCode"`
 
+	// The stream ID.
 	StreamId *string `locationName:"streamId" type:"string"`
 
-	Url *string `locationName:"url" type:"string"`
+	// The URL to connect to this stream using the DCV client.
+	//
+	// Url is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StreamingSessionStream's
+	// String and GoString methods.
+	Url *string `locationName:"url" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -10670,41 +12221,86 @@ func (s *StreamingSessionStream) SetUrl(v string) *StreamingSessionStream {
 	return s
 }
 
+// Represents a studio resource.
+//
+// A studio is the core resource used with Nimble Studio. You must create a
+// studio first, before any other resource type can be created. All other resources
+// you create and manage in Nimble Studio are contained within a studio.
+//
+// When creating a studio, you must provides two IAM roles for use with the
+// Nimble Studio portal. These roles are assumed by your users when they log
+// in to the Nimble Studio portal via Amazon Web Services SSO and your identity
+// source.
+//
+// The user role must have the AmazonNimbleStudio-StudioUser managed policy
+// attached for the portal to function properly.
+//
+// The admin role must have the AmazonNimbleStudio-StudioAdmin managed policy
+// attached for the portal to function properly.
+//
+// Your studio roles must trust the identity.nimble.amazonaws.com service principal
+// to function properly.
 type Studio struct {
 	_ struct{} `type:"structure"`
 
+	// The IAM role that studio admins assume when logging in to the Nimble Studio
+	// portal.
 	AdminRoleArn *string `locationName:"adminRoleArn" type:"string"`
 
+	// The Amazon Resource Name (ARN) that is assigned to a studio resource and
+	// uniquely identifies it. ARNs are unique across all Regions.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// The Unix epoch timestamp in seconds for when the resource was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
-	DisplayName *string `locationName:"displayName" type:"string"`
+	// A friendly name for the studio.
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Studio's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" type:"string" sensitive:"true"`
 
+	// The Amazon Web Services Region where the studio resource is located.
 	HomeRegion *string `locationName:"homeRegion" type:"string"`
 
+	// The Amazon Web Services SSO application client ID used to integrate with
+	// Amazon Web Services SSO to enable Amazon Web Services SSO users to log in
+	// to Nimble Studio portal.
 	SsoClientId *string `locationName:"ssoClientId" type:"string"`
 
+	// The current state of the studio resource.
 	State *string `locationName:"state" type:"string" enum:"StudioState"`
 
-	// The status code.
+	// Status codes that provide additional detail on the studio state.
 	StatusCode *string `locationName:"statusCode" type:"string" enum:"StudioStatusCode"`
 
+	// Additional detail on the studio state.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
 	// Configuration of the encryption method that is used for the studio.
 	StudioEncryptionConfiguration *StudioEncryptionConfiguration `locationName:"studioEncryptionConfiguration" type:"structure"`
 
+	// The unique identifier for a studio resource. In Nimble Studio, all other
+	// resources are contained in a studio resource.
 	StudioId *string `locationName:"studioId" type:"string"`
 
+	// The name of the studio, as included in the URL when accessing it in the Nimble
+	// Studio portal.
 	StudioName *string `locationName:"studioName" min:"3" type:"string"`
 
+	// The address of the web page for the studio.
 	StudioUrl *string `locationName:"studioUrl" type:"string"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The Unix epoch timestamp in seconds for when the resource was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The IAM role that studio users assume when logging in to the Nimble Studio
+	// portal.
 	UserRoleArn *string `locationName:"userRoleArn" type:"string"`
 }
 
@@ -10822,80 +12418,85 @@ func (s *Studio) SetUserRoleArn(v string) *Studio {
 	return s
 }
 
-// A network that is used by a studio’s users and workflows, including render
-// farm, Active Directory, licensing, and file system.
+// A studio component represents a network resource to be used by a studio's
+// users and workflows. A typical studio contains studio components for each
+// of the following: render farm, Active Directory, licensing, and file system.
+//
+// Access to a studio component is managed by specifying security groups for
+// the resource, as well as its endpoint.
+//
+// A studio component also has a set of initialization scripts that are returned
+// by GetLaunchProfileInitialization. These initialization scripts run on streaming
+// sessions when they start. They provide users with flexibility in controlling
+// how the studio resources are configured on a streaming session.
 type StudioComponent struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the resource.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The configuration of the studio component, based on component type.
 	Configuration *StudioComponentConfiguration `locationName:"configuration" type:"structure"`
 
+	// The Unix epoch timestamp in seconds for when the resource was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that created the studio component.
 	CreatedBy *string `locationName:"createdBy" type:"string"`
 
-	Description *string `locationName:"description" type:"string"`
+	// A human-readable description for the studio component resource.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StudioComponent's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// The EC2 security groups that control access to the studio component.
 	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" min:"1" type:"list"`
 
+	// Initialization scripts for studio components.
 	InitializationScripts []*StudioComponentInitializationScript `locationName:"initializationScripts" type:"list"`
 
-	Name *string `locationName:"name" type:"string"`
+	// A friendly name for the studio component resource.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StudioComponent's
+	// String and GoString methods.
+	Name *string `locationName:"name" type:"string" sensitive:"true"`
 
-	ScriptParameters []*ScriptParameterKeyValue `locationName:"scriptParameters" type:"list"`
+	// Parameters for the studio component scripts.
+	//
+	// ScriptParameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StudioComponent's
+	// String and GoString methods.
+	ScriptParameters []*ScriptParameterKeyValue `locationName:"scriptParameters" type:"list" sensitive:"true"`
 
-	// The current state of the studio component resource.
-	//
-	// While a studio component is being created, modified, or deleted, its state
-	// will equal "CREATE_IN_PROGRESS", "UPDATE_IN_PROGRESS", or "DELETE_IN_PROGRESS"
-	//
-	// These are called 'transition states'.
-	//
-	// No modifications may be made to the studio component while it is in a transition
-	// state.
-	//
-	// If creation of the resource fails, the state will change to `CREATE_FAILED`.
-	// The resource StatusCode and StatusMessage will provide more information of
-	// why creation failed. The resource in this state will automatically be deleted
-	// from your account after a period of time.
-	//
-	// If updating the resource fails, the state will change to `UPDATE_FAILED`.
-	// The resource StatusCode and StatusMessage will provide more information of
-	// why the update failed. The resource will be returned to the state it was
-	// in when the update request was invoked.
-	//
-	// If deleting the resource fails, the state will change to `DELETE_FAILED`.
-	// The resource StatusCode and StatusMessage will provide more information of
-	// why the update failed. The resource will be returned to the state it was
-	// in when the update request was invoked. After the resource is deleted successfully,
-	// it will change to the "DELETED" state. The resource will no longer count
-	// against service quotas and cannot be used or acted upon any futher. It will
-	// be removed from your account after a period of time.
+	// The current state.
 	State *string `locationName:"state" type:"string" enum:"StudioComponentState"`
 
-	// The current status of the studio component resource.
-	//
-	// When the resource is in the 'READY' state, the status code signals what the
-	// last mutation made to the resource was.
-	//
-	// When the resource is in a CREATE_FAILED/UPDATE_FAILED/DELETE_FAILED state,
-	// the status code signals what went wrong and why the mutation failed.
+	// The status code.
 	StatusCode *string `locationName:"statusCode" type:"string" enum:"StudioComponentStatusCode"`
 
+	// The status message for the studio component.
 	StatusMessage *string `locationName:"statusMessage" type:"string"`
 
+	// The unique identifier for a studio component resource.
 	StudioComponentId *string `locationName:"studioComponentId" type:"string"`
 
+	// The specific subtype of a studio component.
 	Subtype *string `locationName:"subtype" type:"string" enum:"StudioComponentSubtype"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
+	// The type of the studio component.
 	Type *string `locationName:"type" type:"string" enum:"StudioComponentType"`
 
+	// The Unix epoch timestamp in seconds for when the resource was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that most recently updated the resource.
 	UpdatedBy *string `locationName:"updatedBy" type:"string"`
 }
 
@@ -11110,11 +12711,18 @@ type StudioComponentInitializationScript struct {
 	// only valid version is "2021-03-31".
 	LaunchProfileProtocolVersion *string `locationName:"launchProfileProtocolVersion" type:"string"`
 
+	// The platform of the initialization script, either WINDOWS or LINUX.
 	Platform *string `locationName:"platform" type:"string" enum:"LaunchProfilePlatform"`
 
+	// The method to use when running the initialization script.
 	RunContext *string `locationName:"runContext" type:"string" enum:"StudioComponentInitializationScriptRunContext"`
 
-	Script *string `locationName:"script" min:"1" type:"string"`
+	// The initialization script.
+	//
+	// Script is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StudioComponentInitializationScript's
+	// String and GoString methods.
+	Script *string `locationName:"script" min:"1" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation.
@@ -11175,22 +12783,39 @@ func (s *StudioComponentInitializationScript) SetScript(v string) *StudioCompone
 type StudioComponentSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Unix epoch timestamp in seconds for when the resource was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that created the studio component.
 	CreatedBy *string `locationName:"createdBy" type:"string"`
 
-	Description *string `locationName:"description" type:"string"`
+	// The description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StudioComponentSummary's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	Name *string `locationName:"name" type:"string"`
+	// The name for the studio component.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StudioComponentSummary's
+	// String and GoString methods.
+	Name *string `locationName:"name" type:"string" sensitive:"true"`
 
+	// The unique identifier for a studio component resource.
 	StudioComponentId *string `locationName:"studioComponentId" type:"string"`
 
+	// The specific subtype of a studio component.
 	Subtype *string `locationName:"subtype" type:"string" enum:"StudioComponentSubtype"`
 
+	// The type of the studio component.
 	Type *string `locationName:"type" type:"string" enum:"StudioComponentType"`
 
+	// The Unix epoch timestamp in seconds for when the resource was updated.
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	// The user ID of the user that most recently updated the resource.
 	UpdatedBy *string `locationName:"updatedBy" type:"string"`
 }
 
@@ -11270,8 +12895,7 @@ func (s *StudioComponentSummary) SetUpdatedBy(v string) *StudioComponentSummary 
 type StudioEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for a KMS key that is used to encrypt studio
-	// data.
+	// The ARN for a KMS key that is used to encrypt studio data.
 	KeyArn *string `locationName:"keyArn" min:"4" type:"string"`
 
 	// The type of KMS key that is used to encrypt studio data.
@@ -11326,14 +12950,32 @@ func (s *StudioEncryptionConfiguration) SetKeyType(v string) *StudioEncryptionCo
 	return s
 }
 
+// A studio member is an association of a user from your studio identity source
+// to elevated permissions that they are granted in the studio.
+//
+// When you add a user to your studio using the Nimble Studio console, they
+// are given access to the studio's AWS SSO application and are given access
+// to log in to the Nimble Studio portal. These users have the permissions provided
+// by the studio's user IAM role and do not appear in the studio membership
+// collection. Only studio admins appear in studio membership.
+//
+// When you add a user to studio membership with the persona ADMIN, upon logging
+// in to the Nimble Studio portal, they are granted permissions specified by
+// the Studio's Admin IAM role.
 type StudioMembership struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the identity store.
 	IdentityStoreId *string `locationName:"identityStoreId" type:"string"`
 
+	// The persona.
 	Persona *string `locationName:"persona" type:"string" enum:"StudioPersona"`
 
+	// The principal ID.
 	PrincipalId *string `locationName:"principalId" type:"string"`
+
+	// The Active Directory Security Identifier for this user, if available.
+	Sid *string `locationName:"sid" type:"string"`
 }
 
 // String returns the string representation.
@@ -11372,12 +13014,22 @@ func (s *StudioMembership) SetPrincipalId(v string) *StudioMembership {
 	return s
 }
 
+// SetSid sets the Sid field's value.
+func (s *StudioMembership) SetSid(v string) *StudioMembership {
+	s.Sid = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the resource you want to add tags to.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
+	// A collection of labels, in the form of key:value pairs, that apply to this
+	// resource.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -11449,21 +13101,18 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The request throughput limit was exceeded.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A more specific error code.
 	Code_ *string `locationName:"code" type:"string"`
 
-	// ExceptionContext is a set of key-value pairs that provide you with more information
-	// about the error that occurred. For example, when the service returns a 404
-	// ResourceNotFound error, ExceptionContext will contain the key `resourceId`
-	// with the value of resource that was not found.
-	//
-	// ExceptionContext enables scripts and other programmatic clients to provide
-	// for better error handling.
+	// The exception context.
 	Context map[string]*string `locationName:"context" type:"map"`
 
+	// A human-readable description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -11526,9 +13175,14 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// Identifies the Amazon Resource Name(ARN) key from which you are removing
+	// tags.
+	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
+	// One or more tag keys. Specify only the tag keys, not the tag values.
+	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
 }
@@ -11607,21 +13261,43 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateLaunchProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
-	Description *string `locationName:"description" type:"string"`
+	// The description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateLaunchProfileInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// The version number of the protocol that is used by the launch profile. The
+	// only valid version is "2021-03-31".
 	LaunchProfileProtocolVersions []*string `locationName:"launchProfileProtocolVersions" type:"list"`
 
-	Name *string `locationName:"name" type:"string"`
+	// The name for the launch profile.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateLaunchProfileInput's
+	// String and GoString methods.
+	Name *string `locationName:"name" min:"1" type:"string" sensitive:"true"`
 
+	// A configuration for a streaming session.
 	StreamConfiguration *StreamConfigurationCreate `locationName:"streamConfiguration" type:"structure"`
 
+	// Unique identifiers for a collection of studio components that can be used
+	// with this launch profile.
 	StudioComponentIds []*string `locationName:"studioComponentIds" min:"1" type:"list"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -11655,6 +13331,9 @@ func (s *UpdateLaunchProfileInput) Validate() error {
 	}
 	if s.LaunchProfileId != nil && len(*s.LaunchProfileId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LaunchProfileId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
 	if s.StudioComponentIds != nil && len(s.StudioComponentIds) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StudioComponentIds", 1))
@@ -11728,17 +13407,28 @@ func (s *UpdateLaunchProfileInput) SetStudioId(v string) *UpdateLaunchProfileInp
 type UpdateLaunchProfileMemberInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
+	// The Launch Profile ID.
+	//
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
+	// The persona.
+	//
 	// Persona is a required field
 	Persona *string `locationName:"persona" type:"string" required:"true" enum:"LaunchProfilePersona"`
 
+	// The principal ID. This currently supports a Amazon Web Services SSO UserId.
+	//
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -11828,6 +13518,7 @@ func (s *UpdateLaunchProfileMemberInput) SetStudioId(v string) *UpdateLaunchProf
 type UpdateLaunchProfileMemberOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The updated member.
 	Member *LaunchProfileMembership `locationName:"member" type:"structure"`
 }
 
@@ -11858,6 +13549,7 @@ func (s *UpdateLaunchProfileMemberOutput) SetMember(v *LaunchProfileMembership) 
 type UpdateLaunchProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The launch profile.
 	LaunchProfile *LaunchProfile `locationName:"launchProfile" type:"structure"`
 }
 
@@ -11888,17 +13580,32 @@ func (s *UpdateLaunchProfileOutput) SetLaunchProfile(v *LaunchProfile) *UpdateLa
 type UpdateStreamingImageInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStreamingImageInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// A friendly name for a streaming image resource.
-	Name *string `locationName:"name" type:"string"`
+	// The name for the streaming image.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStreamingImageInput's
+	// String and GoString methods.
+	Name *string `locationName:"name" type:"string" sensitive:"true"`
 
+	// The streaming image ID.
+	//
 	// StreamingImageId is a required field
 	StreamingImageId *string `location:"uri" locationName:"streamingImageId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 }
@@ -11979,6 +13686,17 @@ func (s *UpdateStreamingImageInput) SetStudioId(v string) *UpdateStreamingImageI
 type UpdateStreamingImageOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Represents a streaming image resource.
+	//
+	// Streaming images are used by studio users to select which operating system
+	// and software they want to use in a Nimble Studio streaming session.
+	//
+	// Amazon provides a number of streaming images that include popular 3rd-party
+	// software.
+	//
+	// You can create your own streaming images using an Amazon Elastic Compute
+	// Cloud (Amazon EC2) machine image that you create for this purpose. You can
+	// also include software that your users require.
 	StreamingImage *StreamingImage `locationName:"streamingImage" type:"structure"`
 }
 
@@ -12009,29 +13727,55 @@ func (s *UpdateStreamingImageOutput) SetStreamingImage(v *StreamingImage) *Updat
 type UpdateStudioComponentInput struct {
 	_ struct{} `type:"structure"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The configuration of the studio component, based on component type.
 	Configuration *StudioComponentConfiguration `locationName:"configuration" type:"structure"`
 
-	Description *string `locationName:"description" type:"string"`
+	// The description.
+	//
+	// Description is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStudioComponentInput's
+	// String and GoString methods.
+	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// The EC2 security groups that control access to the studio component.
 	Ec2SecurityGroupIds []*string `locationName:"ec2SecurityGroupIds" min:"1" type:"list"`
 
+	// Initialization scripts for studio components.
 	InitializationScripts []*StudioComponentInitializationScript `locationName:"initializationScripts" type:"list"`
 
-	Name *string `locationName:"name" type:"string"`
+	// The name for the studio component.
+	//
+	// Name is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStudioComponentInput's
+	// String and GoString methods.
+	Name *string `locationName:"name" type:"string" sensitive:"true"`
 
-	ScriptParameters []*ScriptParameterKeyValue `locationName:"scriptParameters" type:"list"`
+	// Parameters for the studio component scripts.
+	//
+	// ScriptParameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStudioComponentInput's
+	// String and GoString methods.
+	ScriptParameters []*ScriptParameterKeyValue `locationName:"scriptParameters" type:"list" sensitive:"true"`
 
+	// The studio component ID.
+	//
 	// StudioComponentId is a required field
 	StudioComponentId *string `location:"uri" locationName:"studioComponentId" type:"string" required:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 
+	// The specific subtype of a studio component.
 	Subtype *string `locationName:"subtype" type:"string" enum:"StudioComponentSubtype"`
 
+	// The type of the studio component.
 	Type *string `locationName:"type" type:"string" enum:"StudioComponentType"`
 }
 
@@ -12175,8 +13919,7 @@ func (s *UpdateStudioComponentInput) SetType(v string) *UpdateStudioComponentInp
 type UpdateStudioComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A network that is used by a studio’s users and workflows, including render
-	// farm, Active Directory, licensing, and file system.
+	// Information about the studio component.
 	StudioComponent *StudioComponent `locationName:"studioComponent" type:"structure"`
 }
 
@@ -12207,15 +13950,29 @@ func (s *UpdateStudioComponentOutput) SetStudioComponent(v *StudioComponent) *Up
 type UpdateStudioInput struct {
 	_ struct{} `type:"structure"`
 
+	// The IAM role that Studio Admins will assume when logging in to the Nimble
+	// Studio portal.
 	AdminRoleArn *string `locationName:"adminRoleArn" type:"string"`
 
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. If you don’t specify a client token, the AWS SDK automatically
+	// generates a client token and uses it for the request to ensure idempotency.
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
-	DisplayName *string `locationName:"displayName" type:"string"`
+	// A friendly name for the studio.
+	//
+	// DisplayName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateStudioInput's
+	// String and GoString methods.
+	DisplayName *string `locationName:"displayName" type:"string" sensitive:"true"`
 
+	// The studio ID.
+	//
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
 
+	// The IAM role that Studio Users will assume when logging in to the Nimble
+	// Studio portal.
 	UserRoleArn *string `locationName:"userRoleArn" type:"string"`
 }
 
@@ -12289,7 +14046,10 @@ func (s *UpdateStudioInput) SetUserRoleArn(v string) *UpdateStudioInput {
 type UpdateStudioOutput struct {
 	_ struct{} `type:"structure"`
 
-	Studio *Studio `locationName:"studio" type:"structure"`
+	// Information about a studio.
+	//
+	// Studio is a required field
+	Studio *Studio `locationName:"studio" type:"structure" required:"true"`
 }
 
 // String returns the string representation.
@@ -12316,21 +14076,18 @@ func (s *UpdateStudioOutput) SetStudio(v *Studio) *UpdateStudioOutput {
 	return s
 }
 
+// One of the parameters in the request is invalid.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// A more specific error code.
 	Code_ *string `locationName:"code" type:"string"`
 
-	// ExceptionContext is a set of key-value pairs that provide you with more information
-	// about the error that occurred. For example, when the service returns a 404
-	// ResourceNotFound error, ExceptionContext will contain the key `resourceId`
-	// with the value of resource that was not found.
-	//
-	// ExceptionContext enables scripts and other programmatic clients to provide
-	// for better error handling.
+	// The exception context.
 	Context map[string]*string `locationName:"context" type:"map"`
 
+	// A human-readable description of the error.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -12670,6 +14427,21 @@ const (
 
 	// StreamingSessionStateDeleteFailed is a StreamingSessionState enum value
 	StreamingSessionStateDeleteFailed = "DELETE_FAILED"
+
+	// StreamingSessionStateStopInProgress is a StreamingSessionState enum value
+	StreamingSessionStateStopInProgress = "STOP_IN_PROGRESS"
+
+	// StreamingSessionStateStartInProgress is a StreamingSessionState enum value
+	StreamingSessionStateStartInProgress = "START_IN_PROGRESS"
+
+	// StreamingSessionStateStopped is a StreamingSessionState enum value
+	StreamingSessionStateStopped = "STOPPED"
+
+	// StreamingSessionStateStopFailed is a StreamingSessionState enum value
+	StreamingSessionStateStopFailed = "STOP_FAILED"
+
+	// StreamingSessionStateStartFailed is a StreamingSessionState enum value
+	StreamingSessionStateStartFailed = "START_FAILED"
 )
 
 // StreamingSessionState_Values returns all elements of the StreamingSessionState enum
@@ -12681,6 +14453,11 @@ func StreamingSessionState_Values() []string {
 		StreamingSessionStateDeleted,
 		StreamingSessionStateCreateFailed,
 		StreamingSessionStateDeleteFailed,
+		StreamingSessionStateStopInProgress,
+		StreamingSessionStateStartInProgress,
+		StreamingSessionStateStopped,
+		StreamingSessionStateStopFailed,
+		StreamingSessionStateStartFailed,
 	}
 }
 
@@ -12717,6 +14494,18 @@ const (
 
 	// StreamingSessionStatusCodeNetworkInterfaceError is a StreamingSessionStatusCode enum value
 	StreamingSessionStatusCodeNetworkInterfaceError = "NETWORK_INTERFACE_ERROR"
+
+	// StreamingSessionStatusCodeStreamingSessionStopped is a StreamingSessionStatusCode enum value
+	StreamingSessionStatusCodeStreamingSessionStopped = "STREAMING_SESSION_STOPPED"
+
+	// StreamingSessionStatusCodeStreamingSessionStarted is a StreamingSessionStatusCode enum value
+	StreamingSessionStatusCodeStreamingSessionStarted = "STREAMING_SESSION_STARTED"
+
+	// StreamingSessionStatusCodeStreamingSessionStopInProgress is a StreamingSessionStatusCode enum value
+	StreamingSessionStatusCodeStreamingSessionStopInProgress = "STREAMING_SESSION_STOP_IN_PROGRESS"
+
+	// StreamingSessionStatusCodeStreamingSessionStartInProgress is a StreamingSessionStatusCode enum value
+	StreamingSessionStatusCodeStreamingSessionStartInProgress = "STREAMING_SESSION_START_IN_PROGRESS"
 )
 
 // StreamingSessionStatusCode_Values returns all elements of the StreamingSessionStatusCode enum
@@ -12733,6 +14522,10 @@ func StreamingSessionStatusCode_Values() []string {
 		StreamingSessionStatusCodeInitializationScriptError,
 		StreamingSessionStatusCodeDecryptStreamingImageError,
 		StreamingSessionStatusCodeNetworkInterfaceError,
+		StreamingSessionStatusCodeStreamingSessionStopped,
+		StreamingSessionStatusCodeStreamingSessionStarted,
+		StreamingSessionStatusCodeStreamingSessionStopInProgress,
+		StreamingSessionStatusCodeStreamingSessionStartInProgress,
 	}
 }
 

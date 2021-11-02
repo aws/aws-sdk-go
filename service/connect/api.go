@@ -13038,10 +13038,14 @@ type ChatMessage struct {
 	_ struct{} `type:"structure"`
 
 	// The content of the chat message.
-	Content *string `min:"1" type:"string"`
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
 
 	// The type of the content. Supported types are text and plain.
-	ContentType *string `min:"1" type:"string"`
+	//
+	// ContentType is a required field
+	ContentType *string `min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -13065,8 +13069,14 @@ func (s ChatMessage) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ChatMessage) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ChatMessage"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
 	if s.Content != nil && len(*s.Content) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
 	}
 	if s.ContentType != nil && len(*s.ContentType) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ContentType", 1))
@@ -15029,11 +15039,7 @@ type CreateUserInput struct {
 	// The password for the user account. A password is required if you are using
 	// Amazon Connect for identity management. Otherwise, it is an error to include
 	// a password.
-	//
-	// Password is a sensitive parameter and its value will be
-	// replaced with "sensitive" in string returned by CreateUserInput's
-	// String and GoString methods.
-	Password *string `type:"string" sensitive:"true"`
+	Password *string `type:"string"`
 
 	// The phone settings for the user.
 	//
@@ -17271,14 +17277,8 @@ type Dimensions struct {
 	// The channel used for grouping and filters.
 	Channel *string `type:"string" enum:"Channel"`
 
-	// The instance reference.
-	InstanceReference *InstanceReference `type:"structure"`
-
 	// Information about the queue for which metrics are returned.
 	Queue *QueueReference `type:"structure"`
-
-	// The routing profile.
-	RoutingProfile *RoutingProfileReference `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17305,21 +17305,9 @@ func (s *Dimensions) SetChannel(v string) *Dimensions {
 	return s
 }
 
-// SetInstanceReference sets the InstanceReference field's value.
-func (s *Dimensions) SetInstanceReference(v *InstanceReference) *Dimensions {
-	s.InstanceReference = v
-	return s
-}
-
 // SetQueue sets the Queue field's value.
 func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 	s.Queue = v
-	return s
-}
-
-// SetRoutingProfile sets the RoutingProfile field's value.
-func (s *Dimensions) SetRoutingProfile(v *RoutingProfileReference) *Dimensions {
-	s.RoutingProfile = v
 	return s
 }
 
@@ -18246,9 +18234,6 @@ type Filters struct {
 	// The queues to use to filter the metrics. You can specify up to 100 queues
 	// per request.
 	Queues []*string `min:"1" type:"list"`
-
-	// The filters used to sort routing profiles.
-	RoutingProfiles []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -18275,9 +18260,6 @@ func (s *Filters) Validate() error {
 	if s.Queues != nil && len(s.Queues) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Queues", 1))
 	}
-	if s.RoutingProfiles != nil && len(s.RoutingProfiles) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoutingProfiles", 1))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -18294,12 +18276,6 @@ func (s *Filters) SetChannels(v []*string) *Filters {
 // SetQueues sets the Queues field's value.
 func (s *Filters) SetQueues(v []*string) *Filters {
 	s.Queues = v
-	return s
-}
-
-// SetRoutingProfiles sets the RoutingProfiles field's value.
-func (s *Filters) SetRoutingProfiles(v []*string) *Filters {
-	s.RoutingProfiles = v
 	return s
 }
 
@@ -20113,47 +20089,6 @@ func (s *Instance) SetServiceRole(v string) *Instance {
 // SetStatusReason sets the StatusReason field's value.
 func (s *Instance) SetStatusReason(v *InstanceStatusReason) *Instance {
 	s.StatusReason = v
-	return s
-}
-
-// The instance reference.
-type InstanceReference struct {
-	_ struct{} `type:"structure"`
-
-	// The Amazon Resource Name (ARN) of the instance reference.
-	Arn *string `type:"string"`
-
-	// The identifier of the instance reference.
-	Id *string `min:"1" type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s InstanceReference) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s InstanceReference) GoString() string {
-	return s.String()
-}
-
-// SetArn sets the Arn field's value.
-func (s *InstanceReference) SetArn(v string) *InstanceReference {
-	s.Arn = &v
-	return s
-}
-
-// SetId sets the Id field's value.
-func (s *InstanceReference) SetId(v string) *InstanceReference {
-	s.Id = &v
 	return s
 }
 
@@ -24550,9 +24485,6 @@ type QueueReference struct {
 
 	// The identifier of the queue.
 	Id *string `type:"string"`
-
-	// The type of queue.
-	QueueType *string `type:"string" enum:"QueueType"`
 }
 
 // String returns the string representation.
@@ -24582,12 +24514,6 @@ func (s *QueueReference) SetArn(v string) *QueueReference {
 // SetId sets the Id field's value.
 func (s *QueueReference) SetId(v string) *QueueReference {
 	s.Id = &v
-	return s
-}
-
-// SetQueueType sets the QueueType field's value.
-func (s *QueueReference) SetQueueType(v string) *QueueReference {
-	s.QueueType = &v
 	return s
 }
 
@@ -25584,47 +25510,6 @@ func (s *RoutingProfileQueueReference) SetChannel(v string) *RoutingProfileQueue
 // SetQueueId sets the QueueId field's value.
 func (s *RoutingProfileQueueReference) SetQueueId(v string) *RoutingProfileQueueReference {
 	s.QueueId = &v
-	return s
-}
-
-// The routing profile reference.
-type RoutingProfileReference struct {
-	_ struct{} `type:"structure"`
-
-	// The Amazon Resource Name (ARN) of the routing profile reference.
-	Arn *string `type:"string"`
-
-	// The identifier of the routing profile reference.
-	Id *string `type:"string"`
-}
-
-// String returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s RoutingProfileReference) String() string {
-	return awsutil.Prettify(s)
-}
-
-// GoString returns the string representation.
-//
-// API parameter values that are decorated as "sensitive" in the API will not
-// be included in the string output. The member name will be present, but the
-// value will be replaced with "sensitive".
-func (s RoutingProfileReference) GoString() string {
-	return s.String()
-}
-
-// SetArn sets the Arn field's value.
-func (s *RoutingProfileReference) SetArn(v string) *RoutingProfileReference {
-	s.Arn = &v
-	return s
-}
-
-// SetId sets the Id field's value.
-func (s *RoutingProfileReference) SetId(v string) *RoutingProfileReference {
-	s.Id = &v
 	return s
 }
 
@@ -30886,12 +30771,6 @@ const (
 
 	// GroupingChannel is a Grouping enum value
 	GroupingChannel = "CHANNEL"
-
-	// GroupingRoutingProfile is a Grouping enum value
-	GroupingRoutingProfile = "ROUTING_PROFILE"
-
-	// GroupingInstance is a Grouping enum value
-	GroupingInstance = "INSTANCE"
 )
 
 // Grouping_Values returns all elements of the Grouping enum
@@ -30899,8 +30778,6 @@ func Grouping_Values() []string {
 	return []string{
 		GroupingQueue,
 		GroupingChannel,
-		GroupingRoutingProfile,
-		GroupingInstance,
 	}
 }
 
@@ -30941,12 +30818,6 @@ const (
 
 	// HistoricalMetricNameContactsTransferredOutFromQueue is a HistoricalMetricName enum value
 	HistoricalMetricNameContactsTransferredOutFromQueue = "CONTACTS_TRANSFERRED_OUT_FROM_QUEUE"
-
-	// HistoricalMetricNameContactsTransferredInByAgent is a HistoricalMetricName enum value
-	HistoricalMetricNameContactsTransferredInByAgent = "CONTACTS_TRANSFERRED_IN_BY_AGENT"
-
-	// HistoricalMetricNameContactsTransferredOutByAgent is a HistoricalMetricName enum value
-	HistoricalMetricNameContactsTransferredOutByAgent = "CONTACTS_TRANSFERRED_OUT_BY_AGENT"
 
 	// HistoricalMetricNameContactsMissed is a HistoricalMetricName enum value
 	HistoricalMetricNameContactsMissed = "CONTACTS_MISSED"
@@ -31003,8 +30874,6 @@ func HistoricalMetricName_Values() []string {
 		HistoricalMetricNameContactsTransferredOut,
 		HistoricalMetricNameContactsTransferredInFromQueue,
 		HistoricalMetricNameContactsTransferredOutFromQueue,
-		HistoricalMetricNameContactsTransferredInByAgent,
-		HistoricalMetricNameContactsTransferredOutByAgent,
 		HistoricalMetricNameContactsMissed,
 		HistoricalMetricNameCallbackContactsHandled,
 		HistoricalMetricNameApiContactsHandled,
@@ -32232,32 +32101,12 @@ func QuickConnectType_Values() []string {
 const (
 	// ReferenceTypeUrl is a ReferenceType enum value
 	ReferenceTypeUrl = "URL"
-
-	// ReferenceTypeAttachment is a ReferenceType enum value
-	ReferenceTypeAttachment = "ATTACHMENT"
-
-	// ReferenceTypeNumber is a ReferenceType enum value
-	ReferenceTypeNumber = "NUMBER"
-
-	// ReferenceTypeString is a ReferenceType enum value
-	ReferenceTypeString = "STRING"
-
-	// ReferenceTypeDate is a ReferenceType enum value
-	ReferenceTypeDate = "DATE"
-
-	// ReferenceTypeEmail is a ReferenceType enum value
-	ReferenceTypeEmail = "EMAIL"
 )
 
 // ReferenceType_Values returns all elements of the ReferenceType enum
 func ReferenceType_Values() []string {
 	return []string{
 		ReferenceTypeUrl,
-		ReferenceTypeAttachment,
-		ReferenceTypeNumber,
-		ReferenceTypeString,
-		ReferenceTypeDate,
-		ReferenceTypeEmail,
 	}
 }
 
@@ -32377,9 +32226,6 @@ const (
 	// UnitSeconds is a Unit enum value
 	UnitSeconds = "SECONDS"
 
-	// UnitMilliseconds is a Unit enum value
-	UnitMilliseconds = "MILLISECONDS"
-
 	// UnitCount is a Unit enum value
 	UnitCount = "COUNT"
 
@@ -32391,7 +32237,6 @@ const (
 func Unit_Values() []string {
 	return []string{
 		UnitSeconds,
-		UnitMilliseconds,
 		UnitCount,
 		UnitPercent,
 	}

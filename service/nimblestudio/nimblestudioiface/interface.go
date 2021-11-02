@@ -235,9 +235,17 @@ type NimbleStudioAPI interface {
 	PutStudioMembersWithContext(aws.Context, *nimblestudio.PutStudioMembersInput, ...request.Option) (*nimblestudio.PutStudioMembersOutput, error)
 	PutStudioMembersRequest(*nimblestudio.PutStudioMembersInput) (*request.Request, *nimblestudio.PutStudioMembersOutput)
 
+	StartStreamingSession(*nimblestudio.StartStreamingSessionInput) (*nimblestudio.StartStreamingSessionOutput, error)
+	StartStreamingSessionWithContext(aws.Context, *nimblestudio.StartStreamingSessionInput, ...request.Option) (*nimblestudio.StartStreamingSessionOutput, error)
+	StartStreamingSessionRequest(*nimblestudio.StartStreamingSessionInput) (*request.Request, *nimblestudio.StartStreamingSessionOutput)
+
 	StartStudioSSOConfigurationRepair(*nimblestudio.StartStudioSSOConfigurationRepairInput) (*nimblestudio.StartStudioSSOConfigurationRepairOutput, error)
 	StartStudioSSOConfigurationRepairWithContext(aws.Context, *nimblestudio.StartStudioSSOConfigurationRepairInput, ...request.Option) (*nimblestudio.StartStudioSSOConfigurationRepairOutput, error)
 	StartStudioSSOConfigurationRepairRequest(*nimblestudio.StartStudioSSOConfigurationRepairInput) (*request.Request, *nimblestudio.StartStudioSSOConfigurationRepairOutput)
+
+	StopStreamingSession(*nimblestudio.StopStreamingSessionInput) (*nimblestudio.StopStreamingSessionOutput, error)
+	StopStreamingSessionWithContext(aws.Context, *nimblestudio.StopStreamingSessionInput, ...request.Option) (*nimblestudio.StopStreamingSessionOutput, error)
+	StopStreamingSessionRequest(*nimblestudio.StopStreamingSessionInput) (*request.Request, *nimblestudio.StopStreamingSessionOutput)
 
 	TagResource(*nimblestudio.TagResourceInput) (*nimblestudio.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *nimblestudio.TagResourceInput, ...request.Option) (*nimblestudio.TagResourceOutput, error)
@@ -266,6 +274,42 @@ type NimbleStudioAPI interface {
 	UpdateStudioComponent(*nimblestudio.UpdateStudioComponentInput) (*nimblestudio.UpdateStudioComponentOutput, error)
 	UpdateStudioComponentWithContext(aws.Context, *nimblestudio.UpdateStudioComponentInput, ...request.Option) (*nimblestudio.UpdateStudioComponentOutput, error)
 	UpdateStudioComponentRequest(*nimblestudio.UpdateStudioComponentInput) (*request.Request, *nimblestudio.UpdateStudioComponentOutput)
+
+	WaitUntilLaunchProfileDeleted(*nimblestudio.GetLaunchProfileInput) error
+	WaitUntilLaunchProfileDeletedWithContext(aws.Context, *nimblestudio.GetLaunchProfileInput, ...request.WaiterOption) error
+
+	WaitUntilLaunchProfileReady(*nimblestudio.GetLaunchProfileInput) error
+	WaitUntilLaunchProfileReadyWithContext(aws.Context, *nimblestudio.GetLaunchProfileInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingImageDeleted(*nimblestudio.GetStreamingImageInput) error
+	WaitUntilStreamingImageDeletedWithContext(aws.Context, *nimblestudio.GetStreamingImageInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingImageReady(*nimblestudio.GetStreamingImageInput) error
+	WaitUntilStreamingImageReadyWithContext(aws.Context, *nimblestudio.GetStreamingImageInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingSessionDeleted(*nimblestudio.GetStreamingSessionInput) error
+	WaitUntilStreamingSessionDeletedWithContext(aws.Context, *nimblestudio.GetStreamingSessionInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingSessionReady(*nimblestudio.GetStreamingSessionInput) error
+	WaitUntilStreamingSessionReadyWithContext(aws.Context, *nimblestudio.GetStreamingSessionInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingSessionStopped(*nimblestudio.GetStreamingSessionInput) error
+	WaitUntilStreamingSessionStoppedWithContext(aws.Context, *nimblestudio.GetStreamingSessionInput, ...request.WaiterOption) error
+
+	WaitUntilStreamingSessionStreamReady(*nimblestudio.GetStreamingSessionStreamInput) error
+	WaitUntilStreamingSessionStreamReadyWithContext(aws.Context, *nimblestudio.GetStreamingSessionStreamInput, ...request.WaiterOption) error
+
+	WaitUntilStudioComponentDeleted(*nimblestudio.GetStudioComponentInput) error
+	WaitUntilStudioComponentDeletedWithContext(aws.Context, *nimblestudio.GetStudioComponentInput, ...request.WaiterOption) error
+
+	WaitUntilStudioComponentReady(*nimblestudio.GetStudioComponentInput) error
+	WaitUntilStudioComponentReadyWithContext(aws.Context, *nimblestudio.GetStudioComponentInput, ...request.WaiterOption) error
+
+	WaitUntilStudioDeleted(*nimblestudio.GetStudioInput) error
+	WaitUntilStudioDeletedWithContext(aws.Context, *nimblestudio.GetStudioInput, ...request.WaiterOption) error
+
+	WaitUntilStudioReady(*nimblestudio.GetStudioInput) error
+	WaitUntilStudioReadyWithContext(aws.Context, *nimblestudio.GetStudioInput, ...request.WaiterOption) error
 }
 
 var _ NimbleStudioAPI = (*nimblestudio.NimbleStudio)(nil)

@@ -16,6 +16,7 @@
     "CreateOriginRequestPolicy": "<p>Creates an origin request policy.</p> <p>After you create an origin request policy, you can attach it to one or more cache behaviors. When it’s attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following:</p> <ul> <li> <p>The request body and the URL path (without the domain name) from the viewer request.</p> </li> <li> <p>The headers that CloudFront automatically includes in every origin request, including <code>Host</code>, <code>User-Agent</code>, and <code>X-Amz-Cf-Id</code>.</p> </li> <li> <p>All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront.</p> </li> </ul> <p>CloudFront sends a request when it can’t find a valid object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use <code>CachePolicy</code>.</p> <p>For more information about origin request policies, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html\">Controlling origin requests</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreatePublicKey": "<p>Uploads a public key to CloudFront that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
     "CreateRealtimeLogConfig": "<p>Creates a real-time log configuration.</p> <p>After you create a real-time log configuration, you can attach it to one or more cache behaviors to send real-time log data to the specified Amazon Kinesis data stream.</p> <p>For more information about real-time log configurations, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+    "CreateResponseHeadersPolicy": "<p>Creates a response headers policy.</p> <p>A response headers policy contains information about a set of HTTP response headers and their values. To create a response headers policy, you provide some metadata about the policy, and a set of configurations that specify the response headers.</p> <p>After you create a response headers policy, you can use its ID to attach it to one or more cache behaviors in a CloudFront distribution. When it’s attached to a cache behavior, CloudFront adds the headers in the policy to HTTP responses that it sends for requests that match the cache behavior.</p>",
     "CreateStreamingDistribution": "<p>This API is deprecated. Amazon CloudFront is deprecating real-time messaging protocol (RTMP) distributions on December 31, 2020. For more information, <a href=\"http://forums.aws.amazon.com/ann.jspa?annID=7356\">read the announcement</a> on the Amazon CloudFront discussion forum.</p>",
     "CreateStreamingDistributionWithTags": "<p>This API is deprecated. Amazon CloudFront is deprecating real-time messaging protocol (RTMP) distributions on December 31, 2020. For more information, <a href=\"http://forums.aws.amazon.com/ann.jspa?annID=7356\">read the announcement</a> on the Amazon CloudFront discussion forum.</p>",
     "DeleteCachePolicy": "<p>Deletes a cache policy.</p> <p>You cannot delete a cache policy if it’s attached to a cache behavior. First update your distributions to remove the cache policy from all cache behaviors, then delete the cache policy.</p> <p>To delete a cache policy, you must provide the policy’s identifier and version. To get these values, you can use <code>ListCachePolicies</code> or <code>GetCachePolicy</code>.</p>",
@@ -29,6 +30,7 @@
     "DeleteOriginRequestPolicy": "<p>Deletes an origin request policy.</p> <p>You cannot delete an origin request policy if it’s attached to any cache behaviors. First update your distributions to remove the origin request policy from all cache behaviors, then delete the origin request policy.</p> <p>To delete an origin request policy, you must provide the policy’s identifier and version. To get the identifier, you can use <code>ListOriginRequestPolicies</code> or <code>GetOriginRequestPolicy</code>.</p>",
     "DeletePublicKey": "<p>Remove a public key you previously added to CloudFront.</p>",
     "DeleteRealtimeLogConfig": "<p>Deletes a real-time log configuration.</p> <p>You cannot delete a real-time log configuration if it’s attached to a cache behavior. First update your distributions to remove the real-time log configuration from all cache behaviors, then delete the real-time log configuration.</p> <p>To delete a real-time log configuration, you can provide the configuration’s name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to delete.</p>",
+    "DeleteResponseHeadersPolicy": "<p>Deletes a response headers policy.</p> <p>You cannot delete a response headers policy if it’s attached to a cache behavior. First update your distributions to remove the response headers policy from all cache behaviors, then delete the response headers policy.</p> <p>To delete a response headers policy, you must provide the policy’s identifier and version. To get these values, you can use <code>ListResponseHeadersPolicies</code> or <code>GetResponseHeadersPolicy</code>. </p>",
     "DeleteStreamingDistribution": "<p>Delete a streaming distribution. To delete an RTMP distribution using the CloudFront API, perform the following steps.</p> <p> <b>To delete an RTMP distribution using the CloudFront API</b>:</p> <ol> <li> <p>Disable the RTMP distribution.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to get the current configuration and the <code>Etag</code> header for the distribution. </p> </li> <li> <p>Update the XML document that was returned in the response to your <code>GET Streaming Distribution Config</code> request to change the value of <code>Enabled</code> to <code>false</code>.</p> </li> <li> <p>Submit a <code>PUT Streaming Distribution Config</code> request to update the configuration for your distribution. In the request body, include the XML document that you updated in Step 3. Then set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to the <code>PUT Streaming Distribution Config</code> request to confirm that the distribution was successfully disabled.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to confirm that your changes have propagated. When propagation is complete, the value of <code>Status</code> is <code>Deployed</code>.</p> </li> <li> <p>Submit a <code>DELETE Streaming Distribution</code> request. Set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to your <code>DELETE Streaming Distribution</code> request to confirm that the distribution was successfully deleted.</p> </li> </ol> <p>For information about deleting a distribution using the CloudFront console, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowToDeleteDistribution.html\">Deleting a Distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "DescribeFunction": "<p>Gets configuration information and metadata about a CloudFront function, but not the function’s code. To get a function’s code, use <code>GetFunction</code>.</p> <p>To get configuration information and metadata about a function, you must provide the function’s name and stage. To get these values, you can use <code>ListFunctions</code>.</p>",
     "GetCachePolicy": "<p>Gets a cache policy, including the following metadata:</p> <ul> <li> <p>The policy’s identifier.</p> </li> <li> <p>The date and time when the policy was last modified.</p> </li> </ul> <p>To get a cache policy, you must provide the policy’s identifier. If the cache policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
@@ -51,9 +53,11 @@
     "GetPublicKey": "<p>Gets a public key.</p>",
     "GetPublicKeyConfig": "<p>Gets a public key configuration.</p>",
     "GetRealtimeLogConfig": "<p>Gets a real-time log configuration.</p> <p>To get a real-time log configuration, you can provide the configuration’s name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to get.</p>",
+    "GetResponseHeadersPolicy": "<p>Gets a response headers policy, including metadata (the policy’s identifier and the date and time when the policy was last modified).</p> <p>To get a response headers policy, you must provide the policy’s identifier. If the response headers policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the response headers policy is not attached to a cache behavior, you can get the identifier using <code>ListResponseHeadersPolicies</code>.</p>",
+    "GetResponseHeadersPolicyConfig": "<p>Gets a response headers policy configuration.</p> <p>To get a response headers policy configuration, you must provide the policy’s identifier. If the response headers policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the response headers policy is not attached to a cache behavior, you can get the identifier using <code>ListResponseHeadersPolicies</code>.</p>",
     "GetStreamingDistribution": "<p>Gets information about a specified RTMP distribution, including the distribution configuration.</p>",
     "GetStreamingDistributionConfig": "<p>Get the configuration information about a streaming distribution. </p>",
-    "ListCachePolicies": "<p>Gets a list of cache policies.</p> <p>You can optionally apply a filter to return only the managed policies created by Amazon Web Services, or only the custom policies created in your account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
+    "ListCachePolicies": "<p>Gets a list of cache policies.</p> <p>You can optionally apply a filter to return only the managed policies created by Amazon Web Services, or only the custom policies created in your Amazon Web Services account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListCloudFrontOriginAccessIdentities": "<p>Lists origin access identities.</p>",
     "ListConflictingAliases": "<p>Gets a list of aliases (also called CNAMEs or alternate domain names) that conflict or overlap with the provided alias, and the associated CloudFront distributions and Amazon Web Services accounts for each conflicting alias. In the returned list, the distribution and account IDs are partially hidden, which allows you to identify the distributions and accounts that you own, but helps to protect the information of ones that you don’t own.</p> <p>Use this operation to find aliases that are in use in CloudFront that conflict or overlap with the provided alias. For example, if you provide <code>www.example.com</code> as input, the returned list can include <code>www.example.com</code> and the overlapping wildcard alternate domain name (<code>*.example.com</code>), if they exist. If you provide <code>*.example.com</code> as input, the returned list can include <code>*.example.com</code> and any alternate domain names covered by that wildcard (for example, <code>www.example.com</code>, <code>test.example.com</code>, <code>dev.example.com</code>, and so on), if they exist.</p> <p>To list conflicting aliases, you provide the alias to search and the ID of a distribution in your account that has an attached SSL/TLS certificate that includes the provided alias. For more information, including how to set up the distribution and certificate, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html#alternate-domain-names-move\">Moving an alternate domain name to a different distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListDistributions": "<p>List CloudFront distributions.</p>",
@@ -61,15 +65,17 @@
     "ListDistributionsByKeyGroup": "<p>Gets a list of distribution IDs for distributions that have a cache behavior that references the specified key group.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListDistributionsByOriginRequestPolicyId": "<p>Gets a list of distribution IDs for distributions that have a cache behavior that’s associated with the specified origin request policy.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListDistributionsByRealtimeLogConfig": "<p>Gets a list of distributions that have a cache behavior that’s associated with the specified real-time log configuration.</p> <p>You can specify the real-time log configuration by its name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to list distributions for.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request. </p>",
+    "ListDistributionsByResponseHeadersPolicyId": "<p>Gets a list of distribution IDs for distributions that have a cache behavior that’s associated with the specified response headers policy.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListDistributionsByWebACLId": "<p>List the distributions that are associated with a specified WAF web ACL.</p>",
     "ListFieldLevelEncryptionConfigs": "<p>List all field-level encryption configurations that have been created in CloudFront for this account.</p>",
     "ListFieldLevelEncryptionProfiles": "<p>Request a list of field-level encryption profiles that have been created in CloudFront for this account.</p>",
-    "ListFunctions": "<p>Gets a list of all CloudFront functions in your account.</p> <p>You can optionally apply a filter to return only the functions that are in the specified stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
+    "ListFunctions": "<p>Gets a list of all CloudFront functions in your Amazon Web Services account.</p> <p>You can optionally apply a filter to return only the functions that are in the specified stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListInvalidations": "<p>Lists invalidation batches. </p>",
     "ListKeyGroups": "<p>Gets a list of key groups.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
-    "ListOriginRequestPolicies": "<p>Gets a list of origin request policies.</p> <p>You can optionally apply a filter to return only the managed policies created by Amazon Web Services, or only the custom policies created in your account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
+    "ListOriginRequestPolicies": "<p>Gets a list of origin request policies.</p> <p>You can optionally apply a filter to return only the managed policies created by Amazon Web Services, or only the custom policies created in your Amazon Web Services account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListPublicKeys": "<p>List all public keys that have been added to CloudFront for this account.</p>",
     "ListRealtimeLogConfigs": "<p>Gets a list of real-time log configurations.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request. </p>",
+    "ListResponseHeadersPolicies": "<p>Gets a list of response headers policies.</p> <p>You can optionally apply a filter to get only the managed policies created by Amazon Web Services, or only the custom policies created in your Amazon Web Services account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListStreamingDistributions": "<p>List streaming distributions. </p>",
     "ListTagsForResource": "<p>List tags for a CloudFront resource.</p>",
     "PublishFunction": "<p>Publishes a CloudFront function by copying the function code from the <code>DEVELOPMENT</code> stage to <code>LIVE</code>. This automatically updates all cache behaviors that are using this function to use the newly published copy in the <code>LIVE</code> stage.</p> <p>When a function is published to the <code>LIVE</code> stage, you can attach the function to a distribution’s cache behavior, using the function’s Amazon Resource Name (ARN).</p> <p>To publish a function, you must provide the function’s name and version (<code>ETag</code> value). To get these values, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
@@ -86,9 +92,34 @@
     "UpdateOriginRequestPolicy": "<p>Updates an origin request policy configuration.</p> <p>When you update an origin request policy configuration, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update an origin request policy configuration:</p> <ol> <li> <p>Use <code>GetOriginRequestPolicyConfig</code> to get the current configuration.</p> </li> <li> <p>Locally modify the fields in the origin request policy configuration that you want to update.</p> </li> <li> <p>Call <code>UpdateOriginRequestPolicy</code> by providing the entire origin request policy configuration, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdatePublicKey": "<p>Update public key information. Note that the only value you can change is the comment.</p>",
     "UpdateRealtimeLogConfig": "<p>Updates a real-time log configuration.</p> <p>When you update a real-time log configuration, all the parameters are updated with the values provided in the request. You cannot update some parameters independent of others. To update a real-time log configuration:</p> <ol> <li> <p>Call <code>GetRealtimeLogConfig</code> to get the current real-time log configuration.</p> </li> <li> <p>Locally modify the parameters in the real-time log configuration that you want to update.</p> </li> <li> <p>Call this API (<code>UpdateRealtimeLogConfig</code>) by providing the entire real-time log configuration, including the parameters that you modified and those that you didn’t.</p> </li> </ol> <p>You cannot update a real-time log configuration’s <code>Name</code> or <code>ARN</code>.</p>",
+    "UpdateResponseHeadersPolicy": "<p>Updates a response headers policy.</p> <p>When you update a response headers policy, the entire policy is replaced. You cannot update some policy fields independent of others. To update a response headers policy configuration:</p> <ol> <li> <p>Use <code>GetResponseHeadersPolicyConfig</code> to get the current policy’s configuration.</p> </li> <li> <p>Modify the fields in the response headers policy configuration that you want to update.</p> </li> <li> <p>Call <code>UpdateResponseHeadersPolicy</code>, providing the entire response headers policy configuration, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdateStreamingDistribution": "<p>Update a streaming distribution. </p>"
   },
   "shapes": {
+    "AccessControlAllowHeadersList": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyAccessControlAllowHeaders$Items": "<p>The list of HTTP header names. You can specify <code>*</code> to allow all headers.</p>"
+      }
+    },
+    "AccessControlAllowMethodsList": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyAccessControlAllowMethods$Items": "<p>The list of HTTP methods. Valid values are:</p> <ul> <li> <p> <code>GET</code> </p> </li> <li> <p> <code>DELETE</code> </p> </li> <li> <p> <code>HEAD</code> </p> </li> <li> <p> <code>OPTIONS</code> </p> </li> <li> <p> <code>PATCH</code> </p> </li> <li> <p> <code>POST</code> </p> </li> <li> <p> <code>PUT</code> </p> </li> <li> <p> <code>ALL</code> </p> </li> </ul> <p> <code>ALL</code> is a special value that includes all of the listed HTTP methods.</p>"
+      }
+    },
+    "AccessControlAllowOriginsList": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyAccessControlAllowOrigins$Items": "<p>The list of origins (domain names). You can specify <code>*</code> to allow all origins.</p>"
+      }
+    },
+    "AccessControlExposeHeadersList": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyAccessControlExposeHeaders$Items": "<p>The list of HTTP headers. You can specify <code>*</code> to expose all headers.</p>"
+      }
+    },
     "AccessDenied": {
       "base": "<p>Access denied.</p>",
       "refs": {
@@ -101,10 +132,10 @@
       }
     },
     "ActiveTrustedSigners": {
-      "base": "<p>A list of accounts and the active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
+      "base": "<p>A list of Amazon Web Services accounts and the active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
       "refs": {
-        "Distribution$ActiveTrustedSigners": "<important> <p>We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.</p> </important> <p>CloudFront automatically adds this field to the response if you’ve configured a cache behavior in this distribution to serve private content using trusted signers. This field contains a list of account IDs and the active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs or signed cookies.</p>",
-        "StreamingDistribution$ActiveTrustedSigners": "<p>A complex type that lists the accounts, if any, that you included in the <code>TrustedSigners</code> complex type for this distribution. These are the accounts that you want to allow to create signed URLs for private content.</p> <p>The <code>Signer</code> complex type lists the account number of the trusted signer or <code>self</code> if the signer is the account that created the distribution. The <code>Signer</code> element also includes the IDs of any active CloudFront key pairs that are associated with the trusted signer's account. If no <code>KeyPairId</code> element appears for a <code>Signer</code>, that signer can't create signed URLs.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>"
+        "Distribution$ActiveTrustedSigners": "<important> <p>We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.</p> </important> <p>CloudFront automatically adds this field to the response if you’ve configured a cache behavior in this distribution to serve private content using trusted signers. This field contains a list of Amazon Web Services account IDs and the active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs or signed cookies.</p>",
+        "StreamingDistribution$ActiveTrustedSigners": "<p>A complex type that lists the Amazon Web Services accounts, if any, that you included in the <code>TrustedSigners</code> complex type for this distribution. These are the accounts that you want to allow to create signed URLs for private content.</p> <p>The <code>Signer</code> complex type lists the Amazon Web Services account number of the trusted signer or <code>self</code> if the signer is the Amazon Web Services account that created the distribution. The <code>Signer</code> element also includes the IDs of any active CloudFront key pairs that are associated with the trusted signer's Amazon Web Services account. If no <code>KeyPairId</code> element appears for a <code>Signer</code>, that signer can't create signed URLs.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>"
       }
     },
     "AliasICPRecordal": {
@@ -150,7 +181,7 @@
     "AwsAccountNumberList": {
       "base": null,
       "refs": {
-        "TrustedSigners$Items": "<p>A list of account identifiers.</p>"
+        "TrustedSigners$Items": "<p>A list of Amazon Web Services account identifiers.</p>"
       }
     },
     "BatchTooLarge": {
@@ -267,8 +298,8 @@
     "CachePolicyType": {
       "base": null,
       "refs": {
-        "CachePolicySummary$Type": "<p>The type of cache policy, either <code>managed</code> (created by Amazon Web Services) or <code>custom</code> (created in this account).</p>",
-        "ListCachePoliciesRequest$Type": "<p>A filter to return only the specified kinds of cache policies. Valid values are:</p> <ul> <li> <p> <code>managed</code> – Returns only the managed policies created by Amazon Web Services.</p> </li> <li> <p> <code>custom</code> – Returns only the custom policies created in your account.</p> </li> </ul>"
+        "CachePolicySummary$Type": "<p>The type of cache policy, either <code>managed</code> (created by Amazon Web Services) or <code>custom</code> (created in this Amazon Web Services account).</p>",
+        "ListCachePoliciesRequest$Type": "<p>A filter to return only the specified kinds of cache policies. Valid values are:</p> <ul> <li> <p> <code>managed</code> – Returns only the managed policies created by Amazon Web Services.</p> </li> <li> <p> <code>custom</code> – Returns only the custom policies created in your Amazon Web Services account.</p> </li> </ul>"
       }
     },
     "CachedMethods": {
@@ -330,7 +361,7 @@
     "CloudFrontOriginAccessIdentitySummaryList": {
       "base": null,
       "refs": {
-        "CloudFrontOriginAccessIdentityList$Items": "<p>A complex type that contains one <code>CloudFrontOriginAccessIdentitySummary</code> element for each origin access identity that was created by the current account.</p>"
+        "CloudFrontOriginAccessIdentityList$Items": "<p>A complex type that contains one <code>CloudFrontOriginAccessIdentitySummary</code> element for each origin access identity that was created by the current Amazon Web Services account.</p>"
       }
     },
     "CommentType": {
@@ -532,6 +563,16 @@
       "refs": {
       }
     },
+    "CreateResponseHeadersPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateResponseHeadersPolicyResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateStreamingDistributionRequest": {
       "base": "<p>The request to create a new streaming distribution.</p>",
       "refs": {
@@ -650,6 +691,11 @@
       "refs": {
       }
     },
+    "DeleteResponseHeadersPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteStreamingDistributionRequest": {
       "base": "<p>The request to delete a streaming distribution.</p>",
       "refs": {
@@ -700,7 +746,8 @@
       "refs": {
         "ListDistributionsByCachePolicyIdResult$DistributionIdList": "<p>A list of distribution IDs.</p>",
         "ListDistributionsByKeyGroupResult$DistributionIdList": null,
-        "ListDistributionsByOriginRequestPolicyIdResult$DistributionIdList": "<p>A list of distribution IDs.</p>"
+        "ListDistributionsByOriginRequestPolicyIdResult$DistributionIdList": "<p>A list of distribution IDs.</p>",
+        "ListDistributionsByResponseHeadersPolicyIdResult$DistributionIdList": null
       }
     },
     "DistributionIdListSummary": {
@@ -731,7 +778,7 @@
     "DistributionSummaryList": {
       "base": null,
       "refs": {
-        "DistributionList$Items": "<p>A complex type that contains one <code>DistributionSummary</code> element for each distribution that was created by the current account.</p>"
+        "DistributionList$Items": "<p>A complex type that contains one <code>DistributionSummary</code> element for each distribution that was created by the current Amazon Web Services account.</p>"
       }
     },
     "EncryptionEntities": {
@@ -902,6 +949,12 @@
         "DefaultCacheBehavior$ForwardedValues": "<p>This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html\">Working with policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to include values in the cache key, use a cache policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to send values to the origin but not include them in the cache key, use an origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A <code>DefaultCacheBehavior</code> must include either a <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend that you use a <code>CachePolicyId</code>.</p> <p>A complex type that specifies how CloudFront handles query strings, cookies, and HTTP headers.</p>"
       }
     },
+    "FrameOptionsList": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyFrameOptions$FrameOption": "<p>The value of the <code>X-Frame-Options</code> HTTP response header. Valid values are <code>DENY</code> and <code>SAMEORIGIN</code>. </p> <p>For more information about these values, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options\">X-Frame-Options</a> in the MDN Web Docs.</p>"
+      }
+    },
     "FunctionARN": {
       "base": null,
       "refs": {
@@ -909,7 +962,7 @@
       }
     },
     "FunctionAlreadyExists": {
-      "base": "<p>A function with the same name already exists in this account. To create a function, you must provide a unique name. To update an existing function, use <code>UpdateFunction</code>.</p>",
+      "base": "<p>A function with the same name already exists in this Amazon Web Services account. To create a function, you must provide a unique name. To update an existing function, use <code>UpdateFunction</code>.</p>",
       "refs": {
       }
     },
@@ -1234,6 +1287,26 @@
       "refs": {
       }
     },
+    "GetResponseHeadersPolicyConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResponseHeadersPolicyConfigResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResponseHeadersPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetResponseHeadersPolicyResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetStreamingDistributionConfigRequest": {
       "base": "<p>To request to get a streaming distribution configuration.</p>",
       "refs": {
@@ -1450,7 +1523,7 @@
     "InvalidationSummaryList": {
       "base": null,
       "refs": {
-        "InvalidationList$Items": "<p>A complex type that contains one <code>InvalidationSummary</code> element for each invalidation batch created by the current account.</p>"
+        "InvalidationList$Items": "<p>A complex type that contains one <code>InvalidationSummary</code> element for each invalidation batch created by the current Amazon Web Services account.</p>"
       }
     },
     "ItemSelection": {
@@ -1626,6 +1699,16 @@
       "refs": {
       }
     },
+    "ListDistributionsByResponseHeadersPolicyIdRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDistributionsByResponseHeadersPolicyIdResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListDistributionsByWebACLIdRequest": {
       "base": "<p>The request to list distributions that are associated with a specified WAF web ACL.</p>",
       "refs": {
@@ -1722,6 +1805,16 @@
       }
     },
     "ListRealtimeLogConfigsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResponseHeadersPoliciesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResponseHeadersPoliciesResult": {
       "base": null,
       "refs": {
       }
@@ -1847,6 +1940,11 @@
     },
     "NoSuchResource": {
       "base": "<p>A resource that was specified is not valid.</p>",
+      "refs": {
+      }
+    },
+    "NoSuchResponseHeadersPolicy": {
+      "base": "<p>The response headers policy does not exist.</p>",
       "refs": {
       }
     },
@@ -2013,8 +2111,8 @@
     "OriginRequestPolicyType": {
       "base": null,
       "refs": {
-        "ListOriginRequestPoliciesRequest$Type": "<p>A filter to return only the specified kinds of origin request policies. Valid values are:</p> <ul> <li> <p> <code>managed</code> – Returns only the managed policies created by Amazon Web Services.</p> </li> <li> <p> <code>custom</code> – Returns only the custom policies created in your account.</p> </li> </ul>",
-        "OriginRequestPolicySummary$Type": "<p>The type of origin request policy, either <code>managed</code> (created by Amazon Web Services) or <code>custom</code> (created in this account).</p>"
+        "ListOriginRequestPoliciesRequest$Type": "<p>A filter to return only the specified kinds of origin request policies. Valid values are:</p> <ul> <li> <p> <code>managed</code> – Returns only the managed policies created by Amazon Web Services.</p> </li> <li> <p> <code>custom</code> – Returns only the custom policies created in your Amazon Web Services account.</p> </li> </ul>",
+        "OriginRequestPolicySummary$Type": "<p>The type of origin request policy, either <code>managed</code> (created by Amazon Web Services) or <code>custom</code> (created in this Amazon Web Services account).</p>"
       }
     },
     "OriginShield": {
@@ -2026,7 +2124,7 @@
     "OriginShieldRegion": {
       "base": null,
       "refs": {
-        "OriginShield$OriginShieldRegion": "<p>The Region for Origin Shield.</p> <p>Specify the Region that has the lowest latency to your origin. To specify a region, use the region code, not the region name. For example, specify the US East (Ohio) region as <code>us-east-2</code>.</p> <p>When you enable CloudFront Origin Shield, you must specify the Region for Origin Shield. For the list of Regions that you can specify, and for help choosing the best Region for your origin, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#choose-origin-shield-region\">Choosing the Region for Origin Shield</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>"
+        "OriginShield$OriginShieldRegion": "<p>The Amazon Web Services Region for Origin Shield.</p> <p>Specify the Amazon Web Services Region that has the lowest latency to your origin. To specify a region, use the region code, not the region name. For example, specify the US East (Ohio) region as <code>us-east-2</code>.</p> <p>When you enable CloudFront Origin Shield, you must specify the Amazon Web Services Region for Origin Shield. For the list of Amazon Web Services Regions that you can specify, and for help choosing the best Region for your origin, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#choose-origin-shield-region\">Choosing the Amazon Web Services Region for Origin Shield</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>"
       }
     },
     "OriginSslProtocols": {
@@ -2216,7 +2314,7 @@
       }
     },
     "RealtimeLogConfigOwnerMismatch": {
-      "base": "<p>The specified real-time log configuration belongs to a different account.</p>",
+      "base": "<p>The specified real-time log configuration belongs to a different Amazon Web Services account.</p>",
       "refs": {
       }
     },
@@ -2238,6 +2336,12 @@
         "RealtimeMetricsSubscriptionConfig$RealtimeMetricsSubscriptionStatus": "<p>A flag that indicates whether additional CloudWatch metrics are enabled for a given CloudFront distribution.</p>"
       }
     },
+    "ReferrerPolicyList": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyReferrerPolicy$ReferrerPolicy": "<p>The value of the <code>Referrer-Policy</code> HTTP response header. Valid values are:</p> <ul> <li> <p> <code>no-referrer</code> </p> </li> <li> <p> <code>no-referrer-when-downgrade</code> </p> </li> <li> <p> <code>origin</code> </p> </li> <li> <p> <code>origin-when-cross-origin</code> </p> </li> <li> <p> <code>same-origin</code> </p> </li> <li> <p> <code>strict-origin</code> </p> </li> <li> <p> <code>strict-origin-when-cross-origin</code> </p> </li> <li> <p> <code>unsafe-url</code> </p> </li> </ul> <p>For more information about these values, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\">Referrer-Policy</a> in the MDN Web Docs.</p>"
+      }
+    },
     "ResourceARN": {
       "base": null,
       "refs": {
@@ -2249,6 +2353,155 @@
     "ResourceInUse": {
       "base": "<p>Cannot delete this resource because it is in use.</p>",
       "refs": {
+      }
+    },
+    "ResponseHeadersPolicy": {
+      "base": "<p>A response headers policy.</p> <p>A response headers policy contains information about a set of HTTP response headers and their values.</p> <p>After you create a response headers policy, you can use its ID to attach it to one or more cache behaviors in a CloudFront distribution. When it’s attached to a cache behavior, CloudFront adds the headers in the policy to HTTP responses that it sends for requests that match the cache behavior.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/adding-response-headers.html\">Adding HTTP headers to CloudFront responses</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+        "CreateResponseHeadersPolicyResult$ResponseHeadersPolicy": "<p>Contains a response headers policy.</p>",
+        "GetResponseHeadersPolicyResult$ResponseHeadersPolicy": "<p>Contains a response headers policy.</p>",
+        "ResponseHeadersPolicySummary$ResponseHeadersPolicy": "<p>The response headers policy.</p>",
+        "UpdateResponseHeadersPolicyResult$ResponseHeadersPolicy": "<p>A response headers policy.</p>"
+      }
+    },
+    "ResponseHeadersPolicyAccessControlAllowHeaders": {
+      "base": "<p>A list of HTTP header names that CloudFront includes as values for the <code>Access-Control-Allow-Headers</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Allow-Headers</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers\">Access-Control-Allow-Headers</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicyCorsConfig$AccessControlAllowHeaders": "<p>A list of HTTP header names that CloudFront includes as values for the <code>Access-Control-Allow-Headers</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Allow-Headers</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers\">Access-Control-Allow-Headers</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicyAccessControlAllowMethods": {
+      "base": "<p>A list of HTTP methods that CloudFront includes as values for the <code>Access-Control-Allow-Methods</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Allow-Methods</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods\">Access-Control-Allow-Methods</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicyCorsConfig$AccessControlAllowMethods": "<p>A list of HTTP methods that CloudFront includes as values for the <code>Access-Control-Allow-Methods</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Allow-Methods</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods\">Access-Control-Allow-Methods</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicyAccessControlAllowMethodsValues": {
+      "base": null,
+      "refs": {
+        "AccessControlAllowMethodsList$member": null
+      }
+    },
+    "ResponseHeadersPolicyAccessControlAllowOrigins": {
+      "base": "<p>A list of origins (domain names) that CloudFront can use as the value for the <code>Access-Control-Allow-Origin</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Allow-Origin</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin\">Access-Control-Allow-Origin</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicyCorsConfig$AccessControlAllowOrigins": "<p>A list of origins (domain names) that CloudFront can use as the value for the <code>Access-Control-Allow-Origin</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Allow-Origin</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin\">Access-Control-Allow-Origin</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicyAccessControlExposeHeaders": {
+      "base": "<p>A list of HTTP headers that CloudFront includes as values for the <code>Access-Control-Expose-Headers</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Expose-Headers</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers\">Access-Control-Expose-Headers</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicyCorsConfig$AccessControlExposeHeaders": "<p>A list of HTTP headers that CloudFront includes as values for the <code>Access-Control-Expose-Headers</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Expose-Headers</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Expose-Headers\">Access-Control-Expose-Headers</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicyAlreadyExists": {
+      "base": "<p>A response headers policy with this name already exists. You must provide a unique name. To modify an existing response headers policy, use <code>UpdateResponseHeadersPolicy</code>.</p>",
+      "refs": {
+      }
+    },
+    "ResponseHeadersPolicyConfig": {
+      "base": "<p>A response headers policy configuration.</p> <p>A response headers policy configuration contains metadata about the response headers policy, and configurations for sets of HTTP response headers and their values. CloudFront adds the headers in the policy to HTTP responses that it sends for requests that match a cache behavior associated with the policy.</p>",
+      "refs": {
+        "CreateResponseHeadersPolicyRequest$ResponseHeadersPolicyConfig": "<p>Contains metadata about the response headers policy, and a set of configurations that specify the response headers.</p>",
+        "GetResponseHeadersPolicyConfigResult$ResponseHeadersPolicyConfig": "<p>Contains a response headers policy.</p>",
+        "ResponseHeadersPolicy$ResponseHeadersPolicyConfig": "<p>A response headers policy configuration.</p> <p>A response headers policy contains information about a set of HTTP response headers and their values. CloudFront adds the headers in the policy to HTTP responses that it sends for requests that match a cache behavior that’s associated with the policy.</p>",
+        "UpdateResponseHeadersPolicyRequest$ResponseHeadersPolicyConfig": "<p>A response headers policy configuration.</p>"
+      }
+    },
+    "ResponseHeadersPolicyContentSecurityPolicy": {
+      "base": "<p>The policy directives and their values that CloudFront includes as values for the <code>Content-Security-Policy</code> HTTP response header.</p> <p>For more information about the <code>Content-Security-Policy</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy\">Content-Security-Policy</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicySecurityHeadersConfig$ContentSecurityPolicy": "<p>The policy directives and their values that CloudFront includes as values for the <code>Content-Security-Policy</code> HTTP response header.</p> <p>For more information about the <code>Content-Security-Policy</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy\">Content-Security-Policy</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicyContentTypeOptions": {
+      "base": "<p>Determines whether CloudFront includes the <code>X-Content-Type-Options</code> HTTP response header with its value set to <code>nosniff</code>.</p> <p>For more information about the <code>X-Content-Type-Options</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\">X-Content-Type-Options</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicySecurityHeadersConfig$ContentTypeOptions": "<p>Determines whether CloudFront includes the <code>X-Content-Type-Options</code> HTTP response header with its value set to <code>nosniff</code>.</p> <p>For more information about the <code>X-Content-Type-Options</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\">X-Content-Type-Options</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicyCorsConfig": {
+      "base": "<p>A configuration for a set of HTTP response headers that are used for cross-origin resource sharing (CORS). CloudFront adds these headers to HTTP responses that it sends for CORS requests that match a cache behavior associated with this response headers policy.</p> <p>For more information about CORS, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS\">Cross-Origin Resource Sharing (CORS)</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicyConfig$CorsConfig": "<p>A configuration for a set of HTTP response headers that are used for cross-origin resource sharing (CORS).</p>"
+      }
+    },
+    "ResponseHeadersPolicyCustomHeader": {
+      "base": "<p>An HTTP response header name and its value. CloudFront includes this header in HTTP responses that it sends for requests that match a cache behavior that’s associated with this response headers policy.</p>",
+      "refs": {
+        "ResponseHeadersPolicyCustomHeaderList$member": null
+      }
+    },
+    "ResponseHeadersPolicyCustomHeaderList": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyCustomHeadersConfig$Items": "<p>The list of HTTP response headers and their values.</p>"
+      }
+    },
+    "ResponseHeadersPolicyCustomHeadersConfig": {
+      "base": "<p>A list of HTTP response header names and their values. CloudFront includes these headers in HTTP responses that it sends for requests that match a cache behavior that’s associated with this response headers policy.</p>",
+      "refs": {
+        "ResponseHeadersPolicyConfig$CustomHeadersConfig": "<p>A configuration for a set of custom HTTP response headers.</p>"
+      }
+    },
+    "ResponseHeadersPolicyFrameOptions": {
+      "base": "<p>Determines whether CloudFront includes the <code>X-Frame-Options</code> HTTP response header and the header’s value.</p> <p>For more information about the <code>X-Frame-Options</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options\">X-Frame-Options</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicySecurityHeadersConfig$FrameOptions": "<p>Determines whether CloudFront includes the <code>X-Frame-Options</code> HTTP response header and the header’s value.</p> <p>For more information about the <code>X-Frame-Options</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options\">X-Frame-Options</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicyInUse": {
+      "base": "<p>Cannot delete the response headers policy because it is attached to one or more cache behaviors in a CloudFront distribution. </p>",
+      "refs": {
+      }
+    },
+    "ResponseHeadersPolicyList": {
+      "base": "<p>A list of response headers policies.</p>",
+      "refs": {
+        "ListResponseHeadersPoliciesResult$ResponseHeadersPolicyList": "<p>A list of response headers policies.</p>"
+      }
+    },
+    "ResponseHeadersPolicyReferrerPolicy": {
+      "base": "<p>Determines whether CloudFront includes the <code>Referrer-Policy</code> HTTP response header and the header’s value.</p> <p>For more information about the <code>Referrer-Policy</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\">Referrer-Policy</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicySecurityHeadersConfig$ReferrerPolicy": "<p>Determines whether CloudFront includes the <code>Referrer-Policy</code> HTTP response header and the header’s value.</p> <p>For more information about the <code>Referrer-Policy</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\">Referrer-Policy</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicySecurityHeadersConfig": {
+      "base": "<p>A configuration for a set of security-related HTTP response headers. CloudFront adds these headers to HTTP responses that it sends for requests that match a cache behavior associated with this response headers policy.</p>",
+      "refs": {
+        "ResponseHeadersPolicyConfig$SecurityHeadersConfig": "<p>A configuration for a set of security-related HTTP response headers.</p>"
+      }
+    },
+    "ResponseHeadersPolicyStrictTransportSecurity": {
+      "base": "<p>Determines whether CloudFront includes the <code>Strict-Transport-Security</code> HTTP response header and the header’s value.</p> <p>For more information about the <code>Strict-Transport-Security</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\">Strict-Transport-Security</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicySecurityHeadersConfig$StrictTransportSecurity": "<p>Determines whether CloudFront includes the <code>Strict-Transport-Security</code> HTTP response header and the header’s value.</p> <p>For more information about the <code>Strict-Transport-Security</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\">Strict-Transport-Security</a> in the MDN Web Docs.</p>"
+      }
+    },
+    "ResponseHeadersPolicySummary": {
+      "base": "<p>Contains a response headers policy.</p>",
+      "refs": {
+        "ResponseHeadersPolicySummaryList$member": null
+      }
+    },
+    "ResponseHeadersPolicySummaryList": {
+      "base": null,
+      "refs": {
+        "ResponseHeadersPolicyList$Items": "<p>The response headers policies in the list.</p>"
+      }
+    },
+    "ResponseHeadersPolicyType": {
+      "base": null,
+      "refs": {
+        "ListResponseHeadersPoliciesRequest$Type": "<p>A filter to get only the specified kind of response headers policies. Valid values are:</p> <ul> <li> <p> <code>managed</code> – Gets only the managed policies created by Amazon Web Services.</p> </li> <li> <p> <code>custom</code> – Gets only the custom policies created in your Amazon Web Services account.</p> </li> </ul>",
+        "ResponseHeadersPolicySummary$Type": "<p>The type of response headers policy, either <code>managed</code> (created by Amazon Web Services) or <code>custom</code> (created in this Amazon Web Services account).</p>"
+      }
+    },
+    "ResponseHeadersPolicyXSSProtection": {
+      "base": "<p>Determines whether CloudFront includes the <code>X-XSS-Protection</code> HTTP response header and the header’s value.</p> <p>For more information about the <code>X-XSS-Protection</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection\">X-XSS-Protection</a> in the MDN Web Docs.</p>",
+      "refs": {
+        "ResponseHeadersPolicySecurityHeadersConfig$XSSProtection": "<p>Determines whether CloudFront includes the <code>X-XSS-Protection</code> HTTP response header and the header’s value.</p> <p>For more information about the <code>X-XSS-Protection</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection\">X-XSS-Protection</a> in the MDN Web Docs.</p>"
       }
     },
     "Restrictions": {
@@ -2278,7 +2531,7 @@
       }
     },
     "Signer": {
-      "base": "<p>A list of accounts and the active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
+      "base": "<p>A list of Amazon Web Services accounts and the active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
       "refs": {
         "SignerList$member": null
       }
@@ -2286,7 +2539,7 @@
     "SignerList": {
       "base": null,
       "refs": {
-        "ActiveTrustedSigners$Items": "<p>A list of accounts and the identifiers of active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>"
+        "ActiveTrustedSigners$Items": "<p>A list of Amazon Web Services accounts and the identifiers of active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>"
       }
     },
     "SslProtocol": {
@@ -2363,7 +2616,7 @@
     "StreamingDistributionSummaryList": {
       "base": null,
       "refs": {
-        "StreamingDistributionList$Items": "<p>A complex type that contains one <code>StreamingDistributionSummary</code> element for each distribution that was created by the current account.</p>"
+        "StreamingDistributionList$Items": "<p>A complex type that contains one <code>StreamingDistributionSummary</code> element for each distribution that was created by the current Amazon Web Services account.</p>"
       }
     },
     "StreamingLoggingConfig": {
@@ -2450,7 +2703,7 @@
       }
     },
     "TooManyCachePolicies": {
-      "base": "<p>You have reached the maximum number of cache policies for this account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "base": "<p>You have reached the maximum number of cache policies for this Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -2476,6 +2729,11 @@
     },
     "TooManyCookiesInOriginRequestPolicy": {
       "base": "<p>The number of cookies in the origin request policy exceeds the maximum. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
+    "TooManyCustomHeadersInResponseHeadersPolicy": {
+      "base": "<p>The number of custom headers in the response headers policy exceeds the maximum.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -2506,6 +2764,11 @@
     },
     "TooManyDistributionsAssociatedToOriginRequestPolicy": {
       "base": "<p>The maximum number of distributions have been associated with the specified origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
+    "TooManyDistributionsAssociatedToResponseHeadersPolicy": {
+      "base": "<p>The maximum number of distributions have been associated with the specified response headers policy.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -2560,7 +2823,7 @@
       }
     },
     "TooManyFunctions": {
-      "base": "<p>You have reached the maximum number of CloudFront functions for this account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "base": "<p>You have reached the maximum number of CloudFront functions for this Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -2585,7 +2848,7 @@
       }
     },
     "TooManyKeyGroups": {
-      "base": "<p>You have reached the maximum number of key groups for this account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "base": "<p>You have reached the maximum number of key groups for this Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -2610,7 +2873,7 @@
       }
     },
     "TooManyOriginRequestPolicies": {
-      "base": "<p>You have reached the maximum number of origin request policies for this account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "base": "<p>You have reached the maximum number of origin request policies for this Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -2645,7 +2908,12 @@
       }
     },
     "TooManyRealtimeLogConfigs": {
-      "base": "<p>You have reached the maximum number of real-time log configurations for this account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "base": "<p>You have reached the maximum number of real-time log configurations for this Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
+    "TooManyResponseHeadersPolicies": {
+      "base": "<p>You have reached the maximum number of response headers policies for this Amazon Web Services account.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -2688,12 +2956,12 @@
       }
     },
     "TrustedSigners": {
-      "base": "<p>A list of accounts whose public keys CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
+      "base": "<p>A list of Amazon Web Services accounts whose public keys CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
       "refs": {
-        "CacheBehavior$TrustedSigners": "<important> <p>We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.</p> </important> <p>A list of account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.</p> <p>When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in the trusted signer’s account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
-        "DefaultCacheBehavior$TrustedSigners": "<important> <p>We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.</p> </important> <p>A list of account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.</p> <p>When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in a trusted signer’s account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
-        "StreamingDistributionConfig$TrustedSigners": "<p>A complex type that specifies any accounts that you want to permit to create signed URLs for private content. If you want the distribution to use signed URLs, include this element; if you want the distribution to use public URLs, remove this element. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>",
-        "StreamingDistributionSummary$TrustedSigners": "<p>A complex type that specifies the accounts, if any, that you want to allow to create signed URLs for private content. If you want to require signed URLs in requests for objects in the target origin that match the <code>PathPattern</code> for this cache behavior, specify <code>true</code> for <code>Enabled</code>, and specify the applicable values for <code>Quantity</code> and <code>Items</code>.If you don't want to require signed URLs in requests for objects that match <code>PathPattern</code>, specify <code>false</code> for <code>Enabled</code> and <code>0</code> for <code>Quantity</code>. Omit <code>Items</code>. To add, change, or remove one or more trusted signers, change <code>Enabled</code> to <code>true</code> (if it's currently <code>false</code>), change <code>Quantity</code> as applicable, and specify all of the trusted signers that you want to include in the updated distribution.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>"
+        "CacheBehavior$TrustedSigners": "<important> <p>We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.</p> </important> <p>A list of Amazon Web Services account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.</p> <p>When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in the trusted signer’s Amazon Web Services account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "DefaultCacheBehavior$TrustedSigners": "<important> <p>We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.</p> </important> <p>A list of Amazon Web Services account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.</p> <p>When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in a trusted signer’s Amazon Web Services account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "StreamingDistributionConfig$TrustedSigners": "<p>A complex type that specifies any Amazon Web Services accounts that you want to permit to create signed URLs for private content. If you want the distribution to use signed URLs, include this element; if you want the distribution to use public URLs, remove this element. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>",
+        "StreamingDistributionSummary$TrustedSigners": "<p>A complex type that specifies the Amazon Web Services accounts, if any, that you want to allow to create signed URLs for private content. If you want to require signed URLs in requests for objects in the target origin that match the <code>PathPattern</code> for this cache behavior, specify <code>true</code> for <code>Enabled</code>, and specify the applicable values for <code>Quantity</code> and <code>Items</code>.If you don't want to require signed URLs in requests for objects that match <code>PathPattern</code>, specify <code>false</code> for <code>Enabled</code> and <code>0</code> for <code>Quantity</code>. Omit <code>Items</code>. To add, change, or remove one or more trusted signers, change <code>Enabled</code> to <code>true</code> (if it's currently <code>false</code>), change <code>Quantity</code> as applicable, and specify all of the trusted signers that you want to include in the updated distribution.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>"
       }
     },
     "UnsupportedOperation": {
@@ -2806,6 +3074,16 @@
       "refs": {
       }
     },
+    "UpdateResponseHeadersPolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateResponseHeadersPolicyResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateStreamingDistributionRequest": {
       "base": "<p>The request to update a streaming distribution.</p>",
       "refs": {
@@ -2840,7 +3118,7 @@
       "base": null,
       "refs": {
         "ActiveTrustedKeyGroups$Enabled": "<p>This field is <code>true</code> if any of the key groups have public keys that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
-        "ActiveTrustedSigners$Enabled": "<p>This field is <code>true</code> if any of the accounts in the list have active CloudFront key pairs that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
+        "ActiveTrustedSigners$Enabled": "<p>This field is <code>true</code> if any of the Amazon Web Services accounts in the list have active CloudFront key pairs that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
         "CacheBehavior$SmoothStreaming": "<p>Indicates whether you want to distribute media files in the Microsoft Smooth Streaming format using the origin that is associated with this cache behavior. If so, specify <code>true</code>; if not, specify <code>false</code>. If you specify <code>true</code> for <code>SmoothStreaming</code>, you can still distribute other content using this cache behavior if the content matches the value of <code>PathPattern</code>. </p>",
         "CacheBehavior$Compress": "<p>Whether you want CloudFront to automatically compress certain files for this cache behavior. If so, specify true; if not, specify false. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/ServingCompressedFiles.html\">Serving Compressed Files</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "CloudFrontOriginAccessIdentityList$IsTruncated": "<p>A flag that indicates whether more origin access identities remain to be listed. If your results were truncated, you can make a follow-up pagination request using the <code>Marker</code> request parameter to retrieve more items in the list.</p>",
@@ -2848,7 +3126,7 @@
         "DefaultCacheBehavior$SmoothStreaming": "<p>Indicates whether you want to distribute media files in the Microsoft Smooth Streaming format using the origin that is associated with this cache behavior. If so, specify <code>true</code>; if not, specify <code>false</code>. If you specify <code>true</code> for <code>SmoothStreaming</code>, you can still distribute other content using this cache behavior if the content matches the value of <code>PathPattern</code>. </p>",
         "DefaultCacheBehavior$Compress": "<p>Whether you want CloudFront to automatically compress certain files for this cache behavior. If so, specify <code>true</code>; if not, specify <code>false</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/ServingCompressedFiles.html\">Serving Compressed Files</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "DistributionConfig$Enabled": "<p>From this field, you can enable or disable the selected distribution.</p>",
-        "DistributionConfig$IsIPV6Enabled": "<p>If you want CloudFront to respond to IPv6 DNS requests with an IPv6 address for your distribution, specify <code>true</code>. If you specify <code>false</code>, CloudFront responds to IPv6 DNS requests with the DNS response code <code>NOERROR</code> and with no IP addresses. This allows viewers to submit a second request, for an IPv4 address for your distribution. </p> <p>In general, you should enable IPv6 if you have users on IPv6 networks who want to access your content. However, if you're using signed URLs or signed cookies to restrict access to your content, and if you're using a custom policy that includes the <code>IpAddress</code> parameter to restrict the IP addresses that can access your content, don't enable IPv6. If you want to restrict access to some content by IP address and not restrict access to other content (or restrict access but not by IP address), you can create two distributions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-custom-policy.html\">Creating a Signed URL Using a Custom Policy</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you're using an Route 53 Amazon Web Services Integration alias resource record set to route traffic to your CloudFront distribution, you need to create a second alias resource record set when both of the following are true:</p> <ul> <li> <p>You enable IPv6 for the distribution</p> </li> <li> <p>You're using alternate domain names in the URLs for your objects</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html\">Routing Traffic to an Amazon CloudFront Web Distribution by Using Your Domain Name</a> in the <i>Route 53 Amazon Web Services Integration Developer Guide</i>.</p> <p>If you created a CNAME resource record set, either with Route 53 Amazon Web Services Integration or with another DNS service, you don't need to make any changes. A CNAME record will route traffic to your distribution regardless of the IP address format of the viewer request.</p>",
+        "DistributionConfig$IsIPV6Enabled": "<p>If you want CloudFront to respond to IPv6 DNS requests with an IPv6 address for your distribution, specify <code>true</code>. If you specify <code>false</code>, CloudFront responds to IPv6 DNS requests with the DNS response code <code>NOERROR</code> and with no IP addresses. This allows viewers to submit a second request, for an IPv4 address for your distribution. </p> <p>In general, you should enable IPv6 if you have users on IPv6 networks who want to access your content. However, if you're using signed URLs or signed cookies to restrict access to your content, and if you're using a custom policy that includes the <code>IpAddress</code> parameter to restrict the IP addresses that can access your content, don't enable IPv6. If you want to restrict access to some content by IP address and not restrict access to other content (or restrict access but not by IP address), you can create two distributions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-custom-policy.html\">Creating a Signed URL Using a Custom Policy</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you're using an Route 53 Amazon Web Services Integration alias resource record set to route traffic to your CloudFront distribution, you need to create a second alias resource record set when both of the following are true:</p> <ul> <li> <p>You enable IPv6 for the distribution</p> </li> <li> <p>You're using alternate domain names in the URLs for your objects</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html\">Routing Traffic to an Amazon CloudFront Web Distribution by Using Your Domain Name</a> in the <i>Route 53 Amazon Web Services Integration Developer Guide</i>.</p> <p>If you created a CNAME resource record set, either with Route 53 Amazon Web Services Integration or with another DNS service, you don't need to make any changes. A CNAME record will route traffic to your distribution regardless of the IP address format of the viewer request.</p>",
         "DistributionIdList$IsTruncated": "<p>A flag that indicates whether more distribution IDs remain to be listed. If your results were truncated, you can make a subsequent request using the <code>Marker</code> request field to retrieve more distribution IDs in the list.</p>",
         "DistributionList$IsTruncated": "<p>A flag that indicates whether more distributions remain to be listed. If your results were truncated, you can make a follow-up pagination request using the <code>Marker</code> request parameter to retrieve more distributions in the list.</p>",
         "DistributionSummary$Enabled": "<p>Whether the distribution is enabled to accept user requests for content.</p>",
@@ -2863,12 +3141,25 @@
         "ParametersInCacheKeyAndForwardedToOrigin$EnableAcceptEncodingBrotli": "<p>A flag that can affect whether the <code>Accept-Encoding</code> HTTP header is included in the cache key and included in requests that CloudFront sends to the origin.</p> <p>This field is related to the <code>EnableAcceptEncodingGzip</code> field. If one or both of these fields is <code>true</code> <i>and</i> the viewer request includes the <code>Accept-Encoding</code> header, then CloudFront does the following:</p> <ul> <li> <p>Normalizes the value of the viewer’s <code>Accept-Encoding</code> header</p> </li> <li> <p>Includes the normalized header in the cache key</p> </li> <li> <p>Includes the normalized header in the request to the origin, if a request is necessary</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-policy-compressed-objects\">Compression support</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you set this value to <code>true</code>, and this cache behavior also has an origin request policy attached, do not include the <code>Accept-Encoding</code> header in the origin request policy. CloudFront always includes the <code>Accept-Encoding</code> header in origin requests when the value of this field is <code>true</code>, so including this header in an origin request policy has no effect.</p> <p>If both of these fields are <code>false</code>, then CloudFront treats the <code>Accept-Encoding</code> header the same as any other HTTP header in the viewer request. By default, it’s not included in the cache key and it’s not included in origin requests. In this case, you can manually add <code>Accept-Encoding</code> to the headers whitelist like any other HTTP header.</p>",
         "QueryArgProfileConfig$ForwardWhenQueryArgProfileIsUnknown": "<p>Flag to set if you want a request to be forwarded to the origin even if the profile specified by the field-level encryption query argument, fle-profile, is unknown.</p>",
         "RealtimeLogConfigs$IsTruncated": "<p>A flag that indicates whether there are more real-time log configurations than are contained in this list.</p>",
+        "ResponseHeadersPolicyContentSecurityPolicy$Override": "<p>A Boolean that determines whether CloudFront overrides the <code>Content-Security-Policy</code> HTTP response header received from the origin with the one specified in this response headers policy.</p>",
+        "ResponseHeadersPolicyContentTypeOptions$Override": "<p>A Boolean that determines whether CloudFront overrides the <code>X-Content-Type-Options</code> HTTP response header received from the origin with the one specified in this response headers policy.</p>",
+        "ResponseHeadersPolicyCorsConfig$AccessControlAllowCredentials": "<p>A Boolean that CloudFront uses as the value for the <code>Access-Control-Allow-Credentials</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Allow-Credentials</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials\">Access-Control-Allow-Credentials</a> in the MDN Web Docs.</p>",
+        "ResponseHeadersPolicyCorsConfig$OriginOverride": "<p>A Boolean that determines whether CloudFront overrides HTTP response headers received from the origin with the ones specified in this response headers policy.</p>",
+        "ResponseHeadersPolicyCustomHeader$Override": "<p>A Boolean that determines whether CloudFront overrides a response header with the same name received from the origin with the header specified here.</p>",
+        "ResponseHeadersPolicyFrameOptions$Override": "<p>A Boolean that determines whether CloudFront overrides the <code>X-Frame-Options</code> HTTP response header received from the origin with the one specified in this response headers policy.</p>",
+        "ResponseHeadersPolicyReferrerPolicy$Override": "<p>A Boolean that determines whether CloudFront overrides the <code>Referrer-Policy</code> HTTP response header received from the origin with the one specified in this response headers policy.</p>",
+        "ResponseHeadersPolicyStrictTransportSecurity$Override": "<p>A Boolean that determines whether CloudFront overrides the <code>Strict-Transport-Security</code> HTTP response header received from the origin with the one specified in this response headers policy.</p>",
+        "ResponseHeadersPolicyStrictTransportSecurity$IncludeSubdomains": "<p>A Boolean that determines whether CloudFront includes the <code>includeSubDomains</code> directive in the <code>Strict-Transport-Security</code> HTTP response header.</p>",
+        "ResponseHeadersPolicyStrictTransportSecurity$Preload": "<p>A Boolean that determines whether CloudFront includes the <code>preload</code> directive in the <code>Strict-Transport-Security</code> HTTP response header.</p>",
+        "ResponseHeadersPolicyXSSProtection$Override": "<p>A Boolean that determines whether CloudFront overrides the <code>X-XSS-Protection</code> HTTP response header received from the origin with the one specified in this response headers policy.</p>",
+        "ResponseHeadersPolicyXSSProtection$Protection": "<p>A Boolean that determines the value of the <code>X-XSS-Protection</code> HTTP response header. When this setting is <code>true</code>, the value of the <code>X-XSS-Protection</code> header is <code>1</code>. When this setting is <code>false</code>, the value of the <code>X-XSS-Protection</code> header is <code>0</code>.</p> <p>For more information about these settings, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection\">X-XSS-Protection</a> in the MDN Web Docs.</p>",
+        "ResponseHeadersPolicyXSSProtection$ModeBlock": "<p>A Boolean that determines whether CloudFront includes the <code>mode=block</code> directive in the <code>X-XSS-Protection</code> header.</p> <p>For more information about this directive, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection\">X-XSS-Protection</a> in the MDN Web Docs.</p>",
         "StreamingDistributionConfig$Enabled": "<p>Whether the streaming distribution is enabled to accept user requests for content.</p>",
         "StreamingDistributionList$IsTruncated": "<p>A flag that indicates whether more streaming distributions remain to be listed. If your results were truncated, you can make a follow-up pagination request using the <code>Marker</code> request parameter to retrieve more distributions in the list. </p>",
         "StreamingDistributionSummary$Enabled": "<p>Whether the distribution is enabled to accept end user requests for content.</p>",
         "StreamingLoggingConfig$Enabled": "<p>Specifies whether you want CloudFront to save access logs to an Amazon S3 bucket. If you don't want to enable logging when you create a streaming distribution or if you want to disable logging for an existing streaming distribution, specify <code>false</code> for <code>Enabled</code>, and specify <code>empty Bucket</code> and <code>Prefix</code> elements. If you specify <code>false</code> for <code>Enabled</code> but you specify values for <code>Bucket</code> and <code>Prefix</code>, the values are automatically deleted. </p>",
         "TrustedKeyGroups$Enabled": "<p>This field is <code>true</code> if any of the key groups in the list have public keys that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
-        "TrustedSigners$Enabled": "<p>This field is <code>true</code> if any of the accounts have public keys that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
+        "TrustedSigners$Enabled": "<p>This field is <code>true</code> if any of the Amazon Web Services accounts have public keys that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
         "ViewerCertificate$CloudFrontDefaultCertificate": "<p>If the distribution uses the CloudFront domain name such as <code>d111111abcdef8.cloudfront.net</code>, set this field to <code>true</code>.</p> <p>If the distribution uses <code>Aliases</code> (alternate domain names or CNAMEs), set this field to <code>false</code> and specify values for the following fields:</p> <ul> <li> <p> <code>ACMCertificateArn</code> or <code>IAMCertificateId</code> (specify a value for one, not both)</p> </li> <li> <p> <code>MinimumProtocolVersion</code> </p> </li> <li> <p> <code>SSLSupportMethod</code> </p> </li> </ul>"
       }
     },
@@ -2882,7 +3173,7 @@
       "base": null,
       "refs": {
         "ActiveTrustedKeyGroups$Quantity": "<p>The number of key groups in the list.</p>",
-        "ActiveTrustedSigners$Quantity": "<p>The number of accounts in the list.</p>",
+        "ActiveTrustedSigners$Quantity": "<p>The number of Amazon Web Services accounts in the list.</p>",
         "Aliases$Quantity": "<p>The number of CNAME aliases, if any, that you want to associate with this distribution.</p>",
         "AllowedMethods$Quantity": "<p>The number of HTTP methods that you want CloudFront to forward to your origin. Valid values are 2 (for <code>GET</code> and <code>HEAD</code> requests), 3 (for <code>GET</code>, <code>HEAD</code>, and <code>OPTIONS</code> requests) and 7 (for <code>GET, HEAD, OPTIONS, PUT, PATCH, POST</code>, and <code>DELETE</code> requests).</p>",
         "CacheBehaviors$Quantity": "<p>The number of cache behaviors for this distribution. </p>",
@@ -2890,7 +3181,7 @@
         "CachePolicyList$Quantity": "<p>The total number of cache policies returned in the response.</p>",
         "CachedMethods$Quantity": "<p>The number of HTTP methods for which you want CloudFront to cache responses. Valid values are <code>2</code> (for caching responses to <code>GET</code> and <code>HEAD</code> requests) and <code>3</code> (for caching responses to <code>GET</code>, <code>HEAD</code>, and <code>OPTIONS</code> requests).</p>",
         "CloudFrontOriginAccessIdentityList$MaxItems": "<p>The maximum number of origin access identities you want in the response body. </p>",
-        "CloudFrontOriginAccessIdentityList$Quantity": "<p>The number of CloudFront origin access identities that were created by the current account.</p>",
+        "CloudFrontOriginAccessIdentityList$Quantity": "<p>The number of CloudFront origin access identities that were created by the current Amazon Web Services account.</p>",
         "ConflictingAliasesList$MaxItems": "<p>The maximum number of conflicting aliases requested.</p>",
         "ConflictingAliasesList$Quantity": "<p>The number of conflicting aliases returned in the response.</p>",
         "ContentTypeProfiles$Quantity": "<p>The number of field-level encryption content type-profile mappings. </p>",
@@ -2906,7 +3197,7 @@
         "DistributionIdList$MaxItems": "<p>The maximum number of distribution IDs requested.</p>",
         "DistributionIdList$Quantity": "<p>The total number of distribution IDs returned in the response.</p>",
         "DistributionList$MaxItems": "<p>The value you provided for the <code>MaxItems</code> request parameter.</p>",
-        "DistributionList$Quantity": "<p>The number of distributions that were created by the current account.</p>",
+        "DistributionList$Quantity": "<p>The number of distributions that were created by the current Amazon Web Services account.</p>",
         "EncryptionEntities$Quantity": "<p>Number of field pattern items in a field-level encryption content type-profile mapping. </p>",
         "FieldLevelEncryptionList$MaxItems": "<p>The maximum number of elements you want in the response body. </p>",
         "FieldLevelEncryptionList$Quantity": "<p>The number of field-level encryption items.</p>",
@@ -2919,7 +3210,7 @@
         "GeoRestriction$Quantity": "<p>When geo restriction is <code>enabled</code>, this is the number of countries in your <code>whitelist</code> or <code>blacklist</code>. Otherwise, when it is not enabled, <code>Quantity</code> is <code>0</code>, and you can omit <code>Items</code>.</p>",
         "Headers$Quantity": "<p>The number of header names in the <code>Items</code> list.</p>",
         "InvalidationList$MaxItems": "<p>The value that you provided for the <code>MaxItems</code> request parameter.</p>",
-        "InvalidationList$Quantity": "<p>The number of invalidation batches that were created by the current account. </p>",
+        "InvalidationList$Quantity": "<p>The number of invalidation batches that were created by the current Amazon Web Services account. </p>",
         "KeyGroupList$MaxItems": "<p>The maximum number of key groups requested.</p>",
         "KeyGroupList$Quantity": "<p>The number of key groups returned in the response.</p>",
         "KeyPairIds$Quantity": "<p>The number of key pair identifiers in the list.</p>",
@@ -2939,12 +3230,21 @@
         "QueryStringCacheKeys$Quantity": "<p>The number of <code>whitelisted</code> query string parameters for a cache behavior.</p>",
         "QueryStringNames$Quantity": "<p>The number of query string names in the <code>Items</code> list.</p>",
         "RealtimeLogConfigs$MaxItems": "<p>The maximum number of real-time log configurations requested.</p>",
+        "ResponseHeadersPolicyAccessControlAllowHeaders$Quantity": "<p>The number of HTTP header names in the list.</p>",
+        "ResponseHeadersPolicyAccessControlAllowMethods$Quantity": "<p>The number of HTTP methods in the list.</p>",
+        "ResponseHeadersPolicyAccessControlAllowOrigins$Quantity": "<p>The number of origins in the list.</p>",
+        "ResponseHeadersPolicyAccessControlExposeHeaders$Quantity": "<p>The number of HTTP headers in the list.</p>",
+        "ResponseHeadersPolicyCorsConfig$AccessControlMaxAgeSec": "<p>A number that CloudFront uses as the value for the <code>Access-Control-Max-Age</code> HTTP response header.</p> <p>For more information about the <code>Access-Control-Max-Age</code> HTTP response header, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age\">Access-Control-Max-Age</a> in the MDN Web Docs.</p>",
+        "ResponseHeadersPolicyCustomHeadersConfig$Quantity": "<p>The number of HTTP response headers in the list.</p>",
+        "ResponseHeadersPolicyList$MaxItems": "<p>The maximum number of response headers policies requested.</p>",
+        "ResponseHeadersPolicyList$Quantity": "<p>The number of response headers policies returned.</p>",
+        "ResponseHeadersPolicyStrictTransportSecurity$AccessControlMaxAgeSec": "<p>A number that CloudFront uses as the value for the <code>max-age</code> directive in the <code>Strict-Transport-Security</code> HTTP response header.</p>",
         "StatusCodeList$member": null,
         "StatusCodes$Quantity": "<p>The number of status codes.</p>",
         "StreamingDistributionList$MaxItems": "<p>The value you provided for the <code>MaxItems</code> request parameter. </p>",
-        "StreamingDistributionList$Quantity": "<p>The number of streaming distributions that were created by the current account. </p>",
+        "StreamingDistributionList$Quantity": "<p>The number of streaming distributions that were created by the current Amazon Web Services account. </p>",
         "TrustedKeyGroups$Quantity": "<p>The number of key groups in the list.</p>",
-        "TrustedSigners$Quantity": "<p>The number of accounts in the list.</p>"
+        "TrustedSigners$Quantity": "<p>The number of Amazon Web Services accounts in the list.</p>"
       }
     },
     "listConflictingAliasesMaxItemsInteger": {
@@ -2971,9 +3271,20 @@
         "UpdateRealtimeLogConfigRequest$SamplingRate": "<p>The sampling rate for this real-time log configuration. The sampling rate determines the percentage of viewer requests that are represented in the real-time log data. You must provide an integer between 1 and 100, inclusive.</p>"
       }
     },
+    "sensitiveStringType": {
+      "base": null,
+      "refs": {
+        "OriginCustomHeader$HeaderValue": "<p>The value for the header that you specified in the <code>HeaderName</code> field.</p>",
+        "TestResult$FunctionErrorMessage": "<p>If the result of testing the function was an error, this field contains the error message.</p>",
+        "TestResult$FunctionOutput": "<p>The event object returned by the function. For more information about the structure of the event object, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/functions-event-structure.html\">Event object structure</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>"
+      }
+    },
     "string": {
       "base": null,
       "refs": {
+        "AccessControlAllowHeadersList$member": null,
+        "AccessControlAllowOriginsList$member": null,
+        "AccessControlExposeHeadersList$member": null,
         "AccessDenied$Message": null,
         "AliasICPRecordal$CNAME": "<p>A domain name associated with a distribution. </p>",
         "AliasList$member": null,
@@ -2988,6 +3299,7 @@
         "CacheBehavior$RealtimeLogConfigArn": "<p>The Amazon Resource Name (ARN) of the real-time log configuration that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "CacheBehavior$CachePolicyId": "<p>The unique identifier of the cache policy that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A <code>CacheBehavior</code> must include either a <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend that you use a <code>CachePolicyId</code>.</p>",
         "CacheBehavior$OriginRequestPolicyId": "<p>The unique identifier of the origin request policy that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "CacheBehavior$ResponseHeadersPolicyId": "<p>The identifier for a response headers policy.</p>",
         "CachePolicy$Id": "<p>The unique identifier for the cache policy.</p>",
         "CachePolicyAlreadyExists$Message": null,
         "CachePolicyConfig$Comment": "<p>A comment to describe the cache policy. The comment cannot be longer than 128 characters.</p>",
@@ -3037,6 +3349,8 @@
         "CreatePublicKeyResult$Location": "<p>The URL of the public key.</p>",
         "CreatePublicKeyResult$ETag": "<p>The identifier for this version of the public key.</p>",
         "CreateRealtimeLogConfigRequest$Name": "<p>A unique name to identify this real-time log configuration.</p>",
+        "CreateResponseHeadersPolicyResult$Location": "<p>The URL of the response headers policy.</p>",
+        "CreateResponseHeadersPolicyResult$ETag": "<p>The version identifier for the current version of the response headers policy.</p>",
         "CreateStreamingDistributionResult$Location": "<p>The fully qualified URI of the new streaming distribution resource just created.</p>",
         "CreateStreamingDistributionResult$ETag": "<p>The current version of the streaming distribution created.</p>",
         "CreateStreamingDistributionWithTagsResult$Location": "<p>The fully qualified URI of the new streaming distribution resource just created.</p>",
@@ -3048,6 +3362,7 @@
         "DefaultCacheBehavior$RealtimeLogConfigArn": "<p>The Amazon Resource Name (ARN) of the real-time log configuration that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "DefaultCacheBehavior$CachePolicyId": "<p>The unique identifier of the cache policy that is attached to the default cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A <code>DefaultCacheBehavior</code> must include either a <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend that you use a <code>CachePolicyId</code>.</p>",
         "DefaultCacheBehavior$OriginRequestPolicyId": "<p>The unique identifier of the origin request policy that is attached to the default cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "DefaultCacheBehavior$ResponseHeadersPolicyId": "<p>The identifier for a response headers policy.</p>",
         "DeleteCachePolicyRequest$Id": "<p>The unique identifier for the cache policy that you are deleting. To get the identifier, you can use <code>ListCachePolicies</code>.</p>",
         "DeleteCachePolicyRequest$IfMatch": "<p>The version of the cache policy that you are deleting. The version is the cache policy’s <code>ETag</code> value, which you can get using <code>ListCachePolicies</code>, <code>GetCachePolicy</code>, or <code>GetCachePolicyConfig</code>.</p>",
         "DeleteCloudFrontOriginAccessIdentityRequest$Id": "<p>The origin access identity's ID.</p>",
@@ -3069,12 +3384,14 @@
         "DeletePublicKeyRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the public key identity to delete. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "DeleteRealtimeLogConfigRequest$Name": "<p>The name of the real-time log configuration to delete.</p>",
         "DeleteRealtimeLogConfigRequest$ARN": "<p>The Amazon Resource Name (ARN) of the real-time log configuration to delete.</p>",
+        "DeleteResponseHeadersPolicyRequest$Id": "<p>The identifier for the response headers policy that you are deleting.</p> <p>To get the identifier, you can use <code>ListResponseHeadersPolicies</code>.</p>",
+        "DeleteResponseHeadersPolicyRequest$IfMatch": "<p>The version of the response headers policy that you are deleting.</p> <p>The version is the response headers policy’s <code>ETag</code> value, which you can get using <code>ListResponseHeadersPolicies</code>, <code>GetResponseHeadersPolicy</code>, or <code>GetResponseHeadersPolicyConfig</code>.</p>",
         "DeleteStreamingDistributionRequest$Id": "<p>The distribution ID. </p>",
         "DeleteStreamingDistributionRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when you disabled the streaming distribution. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "DescribeFunctionRequest$Name": "<p>The name of the function that you are getting information about.</p>",
         "DescribeFunctionResult$ETag": "<p>The version identifier for the current version of the CloudFront function.</p>",
         "Distribution$Id": "<p>The identifier for the distribution. For example: <code>EDFDVBD632BHDS5</code>. </p>",
-        "Distribution$ARN": "<p>The ARN (Amazon Resource Name) for the distribution. For example: <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your account ID.</p>",
+        "Distribution$ARN": "<p>The ARN (Amazon Resource Name) for the distribution. For example: <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your Amazon Web Services account ID.</p>",
         "Distribution$Status": "<p>This response element indicates the current status of the distribution. When the status is <code>Deployed</code>, the distribution's information is fully propagated to all CloudFront edge locations. </p>",
         "Distribution$DomainName": "<p>The domain name corresponding to the distribution, for example, <code>d111111abcdef8.cloudfront.net</code>. </p>",
         "DistributionAlreadyExists$Message": null,
@@ -3088,7 +3405,7 @@
         "DistributionList$NextMarker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value you can use for the <code>Marker</code> request parameter to continue listing your distributions where they left off. </p>",
         "DistributionNotDisabled$Message": null,
         "DistributionSummary$Id": "<p>The identifier for the distribution. For example: <code>EDFDVBD632BHDS5</code>.</p>",
-        "DistributionSummary$ARN": "<p>The ARN (Amazon Resource Name) for the distribution. For example: <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your account ID.</p>",
+        "DistributionSummary$ARN": "<p>The ARN (Amazon Resource Name) for the distribution. For example: <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your Amazon Web Services account ID.</p>",
         "DistributionSummary$Status": "<p>The current status of the distribution. When the status is <code>Deployed</code>, the distribution's information is propagated to all CloudFront edge locations.</p>",
         "DistributionSummary$DomainName": "<p>The domain name that corresponds to the distribution, for example, <code>d111111abcdef8.cloudfront.net</code>.</p>",
         "DistributionSummary$Comment": "<p>The comment originally specified when this distribution was created.</p>",
@@ -3165,6 +3482,10 @@
         "GetPublicKeyResult$ETag": "<p>The identifier for this version of the public key.</p>",
         "GetRealtimeLogConfigRequest$Name": "<p>The name of the real-time log configuration to get.</p>",
         "GetRealtimeLogConfigRequest$ARN": "<p>The Amazon Resource Name (ARN) of the real-time log configuration to get.</p>",
+        "GetResponseHeadersPolicyConfigRequest$Id": "<p>The identifier for the response headers policy.</p> <p>If the response headers policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the response headers policy is not attached to a cache behavior, you can get the identifier using <code>ListResponseHeadersPolicies</code>.</p>",
+        "GetResponseHeadersPolicyConfigResult$ETag": "<p>The version identifier for the current version of the response headers policy.</p>",
+        "GetResponseHeadersPolicyRequest$Id": "<p>The identifier for the response headers policy.</p> <p>If the response headers policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the response headers policy is not attached to a cache behavior, you can get the identifier using <code>ListResponseHeadersPolicies</code>.</p>",
+        "GetResponseHeadersPolicyResult$ETag": "<p>The version identifier for the current version of the response headers policy.</p>",
         "GetStreamingDistributionConfigRequest$Id": "<p>The streaming distribution's ID.</p>",
         "GetStreamingDistributionConfigResult$ETag": "<p>The current version of the configuration. For example: <code>E2QWRUHAPOMQZL</code>. </p>",
         "GetStreamingDistributionRequest$Id": "<p>The streaming distribution's ID.</p>",
@@ -3232,6 +3553,9 @@
         "ListDistributionsByRealtimeLogConfigRequest$MaxItems": "<p>The maximum number of distributions that you want in the response.</p>",
         "ListDistributionsByRealtimeLogConfigRequest$RealtimeLogConfigName": "<p>The name of the real-time log configuration whose associated distributions you want to list.</p>",
         "ListDistributionsByRealtimeLogConfigRequest$RealtimeLogConfigArn": "<p>The Amazon Resource Name (ARN) of the real-time log configuration whose associated distributions you want to list.</p>",
+        "ListDistributionsByResponseHeadersPolicyIdRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of distribution IDs. The response includes distribution IDs in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
+        "ListDistributionsByResponseHeadersPolicyIdRequest$MaxItems": "<p>The maximum number of distribution IDs that you want to get in the response.</p>",
+        "ListDistributionsByResponseHeadersPolicyIdRequest$ResponseHeadersPolicyId": "<p>The ID of the response headers policy whose associated distribution IDs you want to list.</p>",
         "ListDistributionsByWebACLIdRequest$Marker": "<p>Use <code>Marker</code> and <code>MaxItems</code> to control pagination of results. If you have more than <code>MaxItems</code> distributions that satisfy the request, the response includes a <code>NextMarker</code> element. To get the next page of results, submit another request. For the value of <code>Marker</code>, specify the value of <code>NextMarker</code> from the last response. (For the first request, omit <code>Marker</code>.) </p>",
         "ListDistributionsByWebACLIdRequest$MaxItems": "<p>The maximum number of distributions that you want CloudFront to return in the response body. The maximum and default values are both 100.</p>",
         "ListDistributionsByWebACLIdRequest$WebACLId": "<p>The ID of the WAF web ACL that you want to list the associated distributions. If you specify \"null\" for the ID, the request returns a list of the distributions that aren't associated with a web ACL.</p>",
@@ -3254,6 +3578,8 @@
         "ListPublicKeysRequest$MaxItems": "<p>The maximum number of public keys you want in the response body. </p>",
         "ListRealtimeLogConfigsRequest$MaxItems": "<p>The maximum number of real-time log configurations that you want in the response.</p>",
         "ListRealtimeLogConfigsRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of real-time log configurations. The response includes real-time log configurations in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
+        "ListResponseHeadersPoliciesRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of response headers policies. The response includes response headers policies in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response. </p>",
+        "ListResponseHeadersPoliciesRequest$MaxItems": "<p>The maximum number of response headers policies that you want to get in the response.</p>",
         "ListStreamingDistributionsRequest$Marker": "<p>The value that you provided for the <code>Marker</code> request parameter.</p>",
         "ListStreamingDistributionsRequest$MaxItems": "<p>The value that you provided for the <code>MaxItems</code> request parameter.</p>",
         "LocationList$member": null,
@@ -3272,12 +3598,12 @@
         "NoSuchPublicKey$Message": null,
         "NoSuchRealtimeLogConfig$Message": null,
         "NoSuchResource$Message": null,
+        "NoSuchResponseHeadersPolicy$Message": null,
         "NoSuchStreamingDistribution$Message": null,
         "Origin$Id": "<p>A unique identifier for the origin. This value must be unique within the distribution.</p> <p>Use this value to specify the <code>TargetOriginId</code> in a <code>CacheBehavior</code> or <code>DefaultCacheBehavior</code>.</p>",
         "Origin$DomainName": "<p>The domain name for the origin.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesDomainName\">Origin Domain Name</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "Origin$OriginPath": "<p>An optional path that CloudFront appends to the origin domain name when CloudFront requests content from the origin.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginPath\">Origin Path</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "OriginCustomHeader$HeaderName": "<p>The name of a header that you want CloudFront to send to your origin. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/forward-custom-headers.html\">Adding Custom Headers to Origin Requests</a> in the <i> Amazon CloudFront Developer Guide</i>.</p>",
-        "OriginCustomHeader$HeaderValue": "<p>The value for the header that you specified in the <code>HeaderName</code> field.</p>",
         "OriginGroup$Id": "<p>The origin group's ID.</p>",
         "OriginGroupMember$OriginId": "<p>The ID for an origin in an origin group.</p>",
         "OriginRequestPolicy$Id": "<p>The unique identifier for the origin request policy.</p>",
@@ -3316,12 +3642,22 @@
         "RealtimeLogConfigs$Marker": "<p>This parameter indicates where this list of real-time log configurations begins. This list includes real-time log configurations that occur after the marker.</p>",
         "RealtimeLogConfigs$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing real-time log configurations where you left off. </p>",
         "ResourceInUse$Message": null,
+        "ResponseHeadersPolicy$Id": "<p>The identifier for the response headers policy.</p>",
+        "ResponseHeadersPolicyAlreadyExists$Message": null,
+        "ResponseHeadersPolicyConfig$Comment": "<p>A comment to describe the response headers policy.</p> <p>The comment cannot be longer than 128 characters.</p>",
+        "ResponseHeadersPolicyConfig$Name": "<p>A name to identify the response headers policy.</p> <p>The name must be unique for response headers policies in this Amazon Web Services account.</p>",
+        "ResponseHeadersPolicyContentSecurityPolicy$ContentSecurityPolicy": "<p>The policy directives and their values that CloudFront includes as values for the <code>Content-Security-Policy</code> HTTP response header.</p>",
+        "ResponseHeadersPolicyCustomHeader$Header": "<p>The HTTP response header name.</p>",
+        "ResponseHeadersPolicyCustomHeader$Value": "<p>The value for the HTTP response header.</p>",
+        "ResponseHeadersPolicyInUse$Message": null,
+        "ResponseHeadersPolicyList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing response headers policies where you left off.</p>",
+        "ResponseHeadersPolicyXSSProtection$ReportUri": "<p>A reporting URI, which CloudFront uses as the value of the <code>report</code> directive in the <code>X-XSS-Protection</code> header.</p> <p>You cannot specify a <code>ReportUri</code> when <code>ModeBlock</code> is <code>true</code>.</p> <p>For more information about using a reporting URL, see <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection\">X-XSS-Protection</a> in the MDN Web Docs.</p>",
         "S3Origin$DomainName": "<p>The DNS name of the Amazon S3 origin. </p>",
         "S3Origin$OriginAccessIdentity": "<p>The CloudFront origin access identity to associate with the distribution. Use an origin access identity to configure the distribution so that end users can only access objects in an Amazon S3 bucket through CloudFront.</p> <p>If you want end users to be able to access objects using either the CloudFront URL or the Amazon S3 URL, specify an empty <code>OriginAccessIdentity</code> element.</p> <p>To delete the origin access identity from an existing distribution, update the distribution configuration and include an empty <code>OriginAccessIdentity</code> element.</p> <p>To replace the origin access identity, update the distribution configuration and specify the new origin access identity.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html\">Using an Origin Access Identity to Restrict Access to Your Amazon S3 Content</a> in the <i> Amazon CloudFront Developer Guide</i>.</p>",
         "S3OriginConfig$OriginAccessIdentity": "<p>The CloudFront origin access identity to associate with the origin. Use an origin access identity to configure the origin so that viewers can <i>only</i> access objects in an Amazon S3 bucket through CloudFront. The format of the value is:</p> <p>origin-access-identity/cloudfront/<i>ID-of-origin-access-identity</i> </p> <p>where <code> <i>ID-of-origin-access-identity</i> </code> is the value that CloudFront returned in the <code>ID</code> element when you created the origin access identity.</p> <p>If you want viewers to be able to access objects using either the CloudFront URL or the Amazon S3 URL, specify an empty <code>OriginAccessIdentity</code> element.</p> <p>To delete the origin access identity from an existing distribution, update the distribution configuration and include an empty <code>OriginAccessIdentity</code> element.</p> <p>To replace the origin access identity, update the distribution configuration and specify the new origin access identity.</p> <p>For more information about the origin access identity, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
-        "Signer$AwsAccountNumber": "<p>An account number that contains active CloudFront key pairs that CloudFront can use to verify the signatures of signed URLs and signed cookies. If the account that owns the key pairs is the same account that owns the CloudFront distribution, the value of this field is <code>self</code>.</p>",
+        "Signer$AwsAccountNumber": "<p>An Amazon Web Services account number that contains active CloudFront key pairs that CloudFront can use to verify the signatures of signed URLs and signed cookies. If the Amazon Web Services account that owns the key pairs is the same account that owns the CloudFront distribution, the value of this field is <code>self</code>.</p>",
         "StreamingDistribution$Id": "<p>The identifier for the RTMP distribution. For example: <code>EGTXBD79EXAMPLE</code>.</p>",
-        "StreamingDistribution$ARN": "<p>The ARN (Amazon Resource Name) for the distribution. For example: <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your account ID.</p>",
+        "StreamingDistribution$ARN": "<p>The ARN (Amazon Resource Name) for the distribution. For example: <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your Amazon Web Services account ID.</p>",
         "StreamingDistribution$Status": "<p>The current status of the RTMP distribution. When the status is <code>Deployed</code>, the distribution's information is propagated to all CloudFront edge locations.</p>",
         "StreamingDistribution$DomainName": "<p>The domain name that corresponds to the streaming distribution, for example, <code>s5c39gqb8ow64r.cloudfront.net</code>. </p>",
         "StreamingDistributionAlreadyExists$Message": null,
@@ -3331,7 +3667,7 @@
         "StreamingDistributionList$NextMarker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value you can use for the <code>Marker</code> request parameter to continue listing your RTMP distributions where they left off. </p>",
         "StreamingDistributionNotDisabled$Message": null,
         "StreamingDistributionSummary$Id": "<p>The identifier for the distribution, for example, <code>EDFDVBD632BHDS5</code>.</p>",
-        "StreamingDistributionSummary$ARN": "<p> The ARN (Amazon Resource Name) for the streaming distribution. For example: <code>arn:aws:cloudfront::123456789012:streaming-distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your account ID.</p>",
+        "StreamingDistributionSummary$ARN": "<p> The ARN (Amazon Resource Name) for the streaming distribution. For example: <code>arn:aws:cloudfront::123456789012:streaming-distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your Amazon Web Services account ID.</p>",
         "StreamingDistributionSummary$Status": "<p> Indicates the current status of the distribution. When the status is <code>Deployed</code>, the distribution's information is fully propagated throughout the Amazon CloudFront system.</p>",
         "StreamingDistributionSummary$DomainName": "<p>The domain name corresponding to the distribution, for example, <code>d111111abcdef8.cloudfront.net</code>.</p>",
         "StreamingDistributionSummary$Comment": "<p>The comment originally specified when this distribution was created.</p>",
@@ -3341,8 +3677,6 @@
         "TestFunctionRequest$Name": "<p>The name of the function that you are testing.</p>",
         "TestFunctionRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the function that you are testing, which you can get using <code>DescribeFunction</code>.</p>",
         "TestResult$ComputeUtilization": "<p>The amount of time that the function took to run as a percentage of the maximum allowed time. For example, a compute utilization of 35 means that the function completed in 35% of the maximum allowed time.</p>",
-        "TestResult$FunctionErrorMessage": "<p>If the result of testing the function was an error, this field contains the error message.</p>",
-        "TestResult$FunctionOutput": "<p>The event object returned by the function. For more information about the structure of the event object, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/functions-event-structure.html\">Event object structure</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "TooManyCacheBehaviors$Message": null,
         "TooManyCachePolicies$Message": null,
         "TooManyCertificates$Message": null,
@@ -3350,12 +3684,14 @@
         "TooManyCookieNamesInWhiteList$Message": null,
         "TooManyCookiesInCachePolicy$Message": null,
         "TooManyCookiesInOriginRequestPolicy$Message": null,
+        "TooManyCustomHeadersInResponseHeadersPolicy$Message": null,
         "TooManyDistributionCNAMEs$Message": null,
         "TooManyDistributions$Message": null,
         "TooManyDistributionsAssociatedToCachePolicy$Message": null,
         "TooManyDistributionsAssociatedToFieldLevelEncryptionConfig$Message": null,
         "TooManyDistributionsAssociatedToKeyGroup$Message": null,
         "TooManyDistributionsAssociatedToOriginRequestPolicy$Message": null,
+        "TooManyDistributionsAssociatedToResponseHeadersPolicy$Message": null,
         "TooManyDistributionsWithFunctionAssociations$Message": null,
         "TooManyDistributionsWithLambdaAssociations$Message": null,
         "TooManyDistributionsWithSingleFunctionARN$Message": null,
@@ -3384,6 +3720,7 @@
         "TooManyQueryStringsInCachePolicy$Message": null,
         "TooManyQueryStringsInOriginRequestPolicy$Message": null,
         "TooManyRealtimeLogConfigs$Message": null,
+        "TooManyResponseHeadersPolicies$Message": null,
         "TooManyStreamingDistributionCNAMEs$Message": null,
         "TooManyStreamingDistributions$Message": null,
         "TooManyTrustedSigners$Message": null,
@@ -3420,6 +3757,9 @@
         "UpdatePublicKeyResult$ETag": "<p>The identifier of the current version of the public key.</p>",
         "UpdateRealtimeLogConfigRequest$Name": "<p>The name for this real-time log configuration.</p>",
         "UpdateRealtimeLogConfigRequest$ARN": "<p>The Amazon Resource Name (ARN) for this real-time log configuration.</p>",
+        "UpdateResponseHeadersPolicyRequest$Id": "<p>The identifier for the response headers policy that you are updating.</p>",
+        "UpdateResponseHeadersPolicyRequest$IfMatch": "<p>The version of the response headers policy that you are updating.</p> <p>The version is returned in the cache policy’s <code>ETag</code> field in the response to <code>GetResponseHeadersPolicyConfig</code>.</p>",
+        "UpdateResponseHeadersPolicyResult$ETag": "<p>The current version of the response headers policy.</p>",
         "UpdateStreamingDistributionRequest$Id": "<p>The streaming distribution's id.</p>",
         "UpdateStreamingDistributionRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the streaming distribution's configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "UpdateStreamingDistributionResult$ETag": "<p>The current version of the configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
@@ -3446,6 +3786,7 @@
         "OriginRequestPolicy$LastModifiedTime": "<p>The date and time when the origin request policy was last modified.</p>",
         "PublicKey$CreatedTime": "<p>The date and time when the public key was uploaded.</p>",
         "PublicKeySummary$CreatedTime": "<p>The date and time when the public key was uploaded.</p>",
+        "ResponseHeadersPolicy$LastModifiedTime": "<p>The date and time when the response headers policy was last modified.</p>",
         "StreamingDistribution$LastModifiedTime": "<p>The date and time that the distribution was last modified. </p>",
         "StreamingDistributionSummary$LastModifiedTime": "<p>The date and time the distribution was last modified.</p>"
       }
