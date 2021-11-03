@@ -375,13 +375,9 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 		}
 		updateString(&cfg.EC2IMDSEndpoint, section, ec2MetadataServiceEndpointKey)
 
-		if err := updateUseDualStackEndpoint(&cfg.UseDualStackEndpoint, section, useDualStackEndpoint); err != nil {
-			return fmt.Errorf("failed to load %s from shared config, %v", useDualStackEndpoint, err)
-		}
+		updateUseDualStackEndpoint(&cfg.UseDualStackEndpoint, section, useDualStackEndpoint)
 
-		if err := updateUseFIPSEndpoint(&cfg.UseFIPSEndpoint, section, useFIPSEndpointKey); err != nil {
-			return fmt.Errorf("failed to load %s from shared config, %v", useFIPSEndpointKey, err)
-		}
+		updateUseFIPSEndpoint(&cfg.UseFIPSEndpoint, section, useFIPSEndpointKey)
 	}
 
 	updateString(&cfg.CredentialProcess, section, credentialProcessKey)
@@ -702,14 +698,9 @@ func (e CredentialRequiresARNError) Error() string {
 
 // updateEndpointDiscoveryType will only update the dst with the value in the section, if
 // a valid key and corresponding EndpointDiscoveryType is found.
-func updateUseDualStackEndpoint(dst *endpoints.DualStackEndpointState, section ini.Section, key string) error {
+func updateUseDualStackEndpoint(dst *endpoints.DualStackEndpointState, section ini.Section, key string) {
 	if !section.Has(key) {
-		return nil
-	}
-
-	valueType, _ := section.ValueType(key)
-	if valueType != ini.BoolType {
-		return fmt.Errorf("expected true or false, got %v", section.String(key))
+		return
 	}
 
 	if section.Bool(key) {
@@ -718,19 +709,14 @@ func updateUseDualStackEndpoint(dst *endpoints.DualStackEndpointState, section i
 		*dst = endpoints.DualStackEndpointStateDisabled
 	}
 
-	return nil
+	return
 }
 
 // updateEndpointDiscoveryType will only update the dst with the value in the section, if
 // a valid key and corresponding EndpointDiscoveryType is found.
-func updateUseFIPSEndpoint(dst *endpoints.FIPSEndpointState, section ini.Section, key string) error {
+func updateUseFIPSEndpoint(dst *endpoints.FIPSEndpointState, section ini.Section, key string) {
 	if !section.Has(key) {
-		return nil
-	}
-
-	valueType, _ := section.ValueType(key)
-	if valueType != ini.BoolType {
-		return fmt.Errorf("expected true or false, got %v", section.String(key))
+		return
 	}
 
 	if section.Bool(key) {
@@ -739,5 +725,5 @@ func updateUseFIPSEndpoint(dst *endpoints.FIPSEndpointState, section ini.Section
 		*dst = endpoints.FIPSEndpointStateDisabled
 	}
 
-	return nil
+	return
 }

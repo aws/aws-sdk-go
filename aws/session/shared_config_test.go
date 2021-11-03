@@ -357,7 +357,11 @@ func TestLoadSharedConfig(t *testing.T) {
 		{
 			Filenames: []string{testConfigFilename},
 			Profile:   "UseDualStackEndpointInvalid",
-			Err:       fmt.Errorf("failed to load use_dualstack_endpoint from shared config, expected true or false, got invalid"),
+			Expected: sharedConfig{
+				Profile:              "UseDualStackEndpointInvalid",
+				Region:               "us-west-2",
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateDisabled,
+			},
 		},
 		{
 			Filenames: []string{testConfigFilename},
@@ -380,7 +384,11 @@ func TestLoadSharedConfig(t *testing.T) {
 		{
 			Filenames: []string{testConfigFilename},
 			Profile:   "UseFIPSEndpointInvalid",
-			Err:       fmt.Errorf("failed to load use_fips_endpoint from shared config, expected true or false, got invalid"),
+			Expected: sharedConfig{
+				Profile:         "UseFIPSEndpointInvalid",
+				Region:          "us-west-2",
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateDisabled,
+			},
 		},
 	}
 
