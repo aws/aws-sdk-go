@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>The FinSpace management service provides the APIs for managing the FinSpace environments. </p>",
+  "service": "<p>The FinSpace management service provides the APIs for managing FinSpace environments.</p>",
   "operations": {
     "CreateEnvironment": "<p>Create a new FinSpace environment.</p>",
     "DeleteEnvironment": "<p>Delete an FinSpace environment.</p>",
@@ -33,6 +33,18 @@
       "refs": {
       }
     },
+    "DataBundleArn": {
+      "base": "<p>The Amazon Resource Name (ARN) of the data bundle.</p>",
+      "refs": {
+        "DataBundleArns$member": null
+      }
+    },
+    "DataBundleArns": {
+      "base": null,
+      "refs": {
+        "CreateEnvironmentRequest$dataBundles": "<p>The list of Amazon Resource Names (ARN) of the data bundles to install. Currently supported data bundle ARNs:</p> <ul> <li> <p> <code>arn:aws:finspace:${Region}::data-bundle/capital-markets-sample</code> - Contains sample Capital Markets datasets, categories and controlled vocabularies.</p> </li> <li> <p> <code>arn:aws:finspace:${Region}::data-bundle/taq</code> (default) - Contains trades and quotes data in addition to sample Capital Markets data.</p> </li> </ul>"
+      }
+    },
     "DeleteEnvironmentRequest": {
       "base": null,
       "refs": {
@@ -49,6 +61,12 @@
         "CreateEnvironmentRequest$description": "<p>The description of the FinSpace environment to be created.</p>",
         "Environment$description": "<p>The description of the FinSpace environment.</p>",
         "UpdateEnvironmentRequest$description": "<p>The description of the environment.</p>"
+      }
+    },
+    "EmailId": {
+      "base": null,
+      "refs": {
+        "SuperuserParameters$emailAddress": "<p>The email address of the superuser.</p>"
       }
     },
     "Environment": {
@@ -181,6 +199,13 @@
       "refs": {
       }
     },
+    "NameString": {
+      "base": null,
+      "refs": {
+        "SuperuserParameters$firstName": "<p>The first name of the superuser.</p>",
+        "SuperuserParameters$lastName": "<p>The last name of the superuser.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
@@ -214,6 +239,12 @@
       "base": null,
       "refs": {
         "Environment$sageMakerStudioDomainUrl": "<p>The url of the integrated FinSpace notebook environment in your web application.</p>"
+      }
+    },
+    "SuperuserParameters": {
+      "base": "<p>Configuration information for the superuser.</p>",
+      "refs": {
+        "CreateEnvironmentRequest$superuserParameters": "<p>Configuration information for the superuser.</p>"
       }
     },
     "TagKey": {

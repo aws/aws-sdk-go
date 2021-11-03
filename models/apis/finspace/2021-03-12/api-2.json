@@ -155,7 +155,9 @@
         "kmsKeyId":{"shape":"KmsKeyId"},
         "tags":{"shape":"TagMap"},
         "federationMode":{"shape":"FederationMode"},
-        "federationParameters":{"shape":"FederationParameters"}
+        "federationParameters":{"shape":"FederationParameters"},
+        "superuserParameters":{"shape":"SuperuserParameters"},
+        "dataBundles":{"shape":"DataBundleArns"}
       }
     },
     "CreateEnvironmentResponse":{
@@ -165,6 +167,16 @@
         "environmentArn":{"shape":"EnvironmentArn"},
         "environmentUrl":{"shape":"url"}
       }
+    },
+    "DataBundleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws:finspace:[A-Za-z0-9_/.-]{0,63}:\\d*:data-bundle/[0-9A-Za-z_-]{1,128}$"
+    },
+    "DataBundleArns":{
+      "type":"list",
+      "member":{"shape":"DataBundleArn"}
     },
     "DeleteEnvironmentRequest":{
       "type":"structure",
@@ -187,6 +199,13 @@
       "max":1000,
       "min":1,
       "pattern":"^[a-zA-Z0-9. ]{1,1000}$"
+    },
+    "EmailId":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+[.]+[A-Za-z]+",
+      "sensitive":true
     },
     "Environment":{
       "type":"structure",
@@ -358,6 +377,12 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "NameString":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]{1,50}$"
+    },
     "PaginationToken":{
       "type":"string",
       "max":1000,
@@ -396,6 +421,19 @@
       "max":1000,
       "min":1,
       "pattern":"^[a-zA-Z-0-9-:\\/.]*$"
+    },
+    "SuperuserParameters":{
+      "type":"structure",
+      "required":[
+        "emailAddress",
+        "firstName",
+        "lastName"
+      ],
+      "members":{
+        "emailAddress":{"shape":"EmailId"},
+        "firstName":{"shape":"NameString"},
+        "lastName":{"shape":"NameString"}
+      }
     },
     "TagKey":{
       "type":"string",

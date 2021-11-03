@@ -793,6 +793,16 @@ func (s *AccessDeniedException) RequestID() string {
 type CreateEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
+	// The list of Amazon Resource Names (ARN) of the data bundles to install. Currently
+	// supported data bundle ARNs:
+	//
+	//    * arn:aws:finspace:${Region}::data-bundle/capital-markets-sample - Contains
+	//    sample Capital Markets datasets, categories and controlled vocabularies.
+	//
+	//    * arn:aws:finspace:${Region}::data-bundle/taq (default) - Contains trades
+	//    and quotes data in addition to sample Capital Markets data.
+	DataBundles []*string `locationName:"dataBundles" type:"list"`
+
 	// The description of the FinSpace environment to be created.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
@@ -815,6 +825,9 @@ type CreateEnvironmentInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Configuration information for the superuser.
+	SuperuserParameters *SuperuserParameters `locationName:"superuserParameters" type:"structure"`
 
 	// Add tags to your FinSpace environment.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
@@ -861,11 +874,22 @@ func (s *CreateEnvironmentInput) Validate() error {
 			invalidParams.AddNested("FederationParameters", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.SuperuserParameters != nil {
+		if err := s.SuperuserParameters.Validate(); err != nil {
+			invalidParams.AddNested("SuperuserParameters", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataBundles sets the DataBundles field's value.
+func (s *CreateEnvironmentInput) SetDataBundles(v []*string) *CreateEnvironmentInput {
+	s.DataBundles = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -895,6 +919,12 @@ func (s *CreateEnvironmentInput) SetKmsKeyId(v string) *CreateEnvironmentInput {
 // SetName sets the Name field's value.
 func (s *CreateEnvironmentInput) SetName(v string) *CreateEnvironmentInput {
 	s.Name = &v
+	return s
+}
+
+// SetSuperuserParameters sets the SuperuserParameters field's value.
+func (s *CreateEnvironmentInput) SetSuperuserParameters(v *SuperuserParameters) *CreateEnvironmentInput {
+	s.SuperuserParameters = v
 	return s
 }
 
@@ -1841,6 +1871,94 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Configuration information for the superuser.
+type SuperuserParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The email address of the superuser.
+	//
+	// EmailAddress is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SuperuserParameters's
+	// String and GoString methods.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `locationName:"emailAddress" min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The first name of the superuser.
+	//
+	// FirstName is a required field
+	FirstName *string `locationName:"firstName" min:"1" type:"string" required:"true"`
+
+	// The last name of the superuser.
+	//
+	// LastName is a required field
+	LastName *string `locationName:"lastName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuperuserParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SuperuserParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SuperuserParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SuperuserParameters"}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+	if s.EmailAddress != nil && len(*s.EmailAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailAddress", 1))
+	}
+	if s.FirstName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirstName"))
+	}
+	if s.FirstName != nil && len(*s.FirstName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirstName", 1))
+	}
+	if s.LastName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LastName"))
+	}
+	if s.LastName != nil && len(*s.LastName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LastName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *SuperuserParameters) SetEmailAddress(v string) *SuperuserParameters {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *SuperuserParameters) SetFirstName(v string) *SuperuserParameters {
+	s.FirstName = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *SuperuserParameters) SetLastName(v string) *SuperuserParameters {
+	s.LastName = &v
+	return s
 }
 
 type TagResourceInput struct {

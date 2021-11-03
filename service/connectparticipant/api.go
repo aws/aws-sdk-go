@@ -2669,18 +2669,6 @@ const (
 
 	// ChatItemTypeConnectionAck is a ChatItemType enum value
 	ChatItemTypeConnectionAck = "CONNECTION_ACK"
-
-	// ChatItemTypeParticipantActive is a ChatItemType enum value
-	ChatItemTypeParticipantActive = "PARTICIPANT_ACTIVE"
-
-	// ChatItemTypeParticipantInactive is a ChatItemType enum value
-	ChatItemTypeParticipantInactive = "PARTICIPANT_INACTIVE"
-
-	// ChatItemTypeParticipantEngaged is a ChatItemType enum value
-	ChatItemTypeParticipantEngaged = "PARTICIPANT_ENGAGED"
-
-	// ChatItemTypeParticipantDisengaged is a ChatItemType enum value
-	ChatItemTypeParticipantDisengaged = "PARTICIPANT_DISENGAGED"
 )
 
 // ChatItemType_Values returns all elements of the ChatItemType enum
@@ -2696,10 +2684,6 @@ func ChatItemType_Values() []string {
 		ChatItemTypeEvent,
 		ChatItemTypeAttachment,
 		ChatItemTypeConnectionAck,
-		ChatItemTypeParticipantActive,
-		ChatItemTypeParticipantInactive,
-		ChatItemTypeParticipantEngaged,
-		ChatItemTypeParticipantDisengaged,
 	}
 }
 

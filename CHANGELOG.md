@@ -1,3 +1,12 @@
+Release v1.41.17 (2021-11-03)
+===
+
+### Service Client Updates
+* `service/connectparticipant`: Updates service API
+* `service/datasync`: Updates service API and documentation
+* `service/finspace`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+
 Release v1.41.16 (2021-11-02)
 ===
 
