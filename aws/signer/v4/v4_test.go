@@ -708,6 +708,53 @@ func TestRequestHost(t *testing.T) {
 	}
 }
 
+func TestSign_buildCanonicalHeaders(t *testing.T) {
+	serviceName := "mockAPI"
+	region := "mock-region"
+	endpoint := "https://" + serviceName + "." + region + ".amazonaws.com"
+
+	req, err := http.NewRequest("POST", endpoint, nil)
+	if err != nil {
+		t.Fatalf("failed to create request, %v", err)
+	}
+
+	req.Header.Set("FooInnerSpace", "   inner      space    ")
+	req.Header.Set("FooLeadingSpace", "    leading-space")
+	req.Header.Add("FooMultipleSpace", "no-space")
+	req.Header.Add("FooMultipleSpace", "\ttab-space")
+	req.Header.Add("FooMultipleSpace", "trailing-space    ")
+	req.Header.Set("FooNoSpace", "no-space")
+	req.Header.Set("FooTabSpace", "\ttab-space\t")
+	req.Header.Set("FooTrailingSpace", "trailing-space    ")
+	req.Header.Set("FooWrappedSpace", "   wrapped-space    ")
+
+	ctx := &signingCtx{
+		ServiceName: serviceName,
+		Region:      region,
+		Request:     req,
+		Body:        nil,
+		Query:       req.URL.Query(),
+		Time:        time.Now(),
+		ExpireTime:  5 * time.Second,
+	}
+
+	ctx.buildCanonicalHeaders(ignoredHeaders, ctx.Request.Header)
+
+	expectCanonicalHeaders := strings.Join([]string{
+		`fooinnerspace:inner space`,
+		`fooleadingspace:leading-space`,
+		`foomultiplespace:no-space,tab-space,trailing-space`,
+		`foonospace:no-space`,
+		`footabspace:tab-space`,
+		`footrailingspace:trailing-space`,
+		`foowrappedspace:wrapped-space`,
+		`host:mockAPI.mock-region.amazonaws.com`,
+	}, "\n")
+	if e, a := expectCanonicalHeaders, ctx.canonicalHeaders; e != a {
+		t.Errorf("expect:\n%s\n\nactual:\n%s", e, a)
+	}
+}
+
 func BenchmarkPresignRequest(b *testing.B) {
 	signer := buildSigner()
 	req, body := buildRequestReaderSeeker("dynamodb", "us-east-1", "{}")
