@@ -3,8 +3,7 @@
 // Package finspace provides the client and types for making API
 // requests to FinSpace User Environment Management service.
 //
-// The FinSpace management service provides the APIs for managing the FinSpace
-// environments.
+// The FinSpace management service provides the APIs for managing FinSpace environments.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/finspace-2021-03-12 for more information on this service.
 //

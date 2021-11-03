@@ -2806,6 +2806,10 @@
           "shape": "__string",
           "locationName": "regex"
         },
+        "severityLevels": {
+          "shape": "SeverityLevelList",
+          "locationName": "severityLevels"
+        },
         "tags": {
           "shape": "TagMap",
           "locationName": "tags"
@@ -3078,6 +3082,14 @@
     "DailySchedule": {
       "type": "structure",
       "members": {}
+    },
+    "DataIdentifierSeverity": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ]
     },
     "DayOfWeek": {
       "type": "string",
@@ -3871,6 +3883,10 @@
         "regex": {
           "shape": "__string",
           "locationName": "regex"
+        },
+        "severityLevels": {
+          "shape": "SeverityLevelList",
+          "locationName": "severityLevels"
         },
         "tags": {
           "shape": "TagMap",
@@ -5735,6 +5751,29 @@
         "Medium",
         "High"
       ]
+    },
+    "SeverityLevel": {
+      "type": "structure",
+      "members": {
+        "occurrencesThreshold": {
+          "shape": "__long",
+          "locationName": "occurrencesThreshold"
+        },
+        "severity": {
+          "shape": "DataIdentifierSeverity",
+          "locationName": "severity"
+        }
+      },
+      "required": [
+        "occurrencesThreshold",
+        "severity"
+      ]
+    },
+    "SeverityLevelList": {
+      "type": "list",
+      "member": {
+        "shape": "SeverityLevel"
+      }
     },
     "SharedAccess": {
       "type": "string",

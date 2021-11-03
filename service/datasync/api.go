@@ -368,6 +368,88 @@ func (c *DataSync) CreateLocationFsxWindowsWithContext(ctx aws.Context, input *C
 	return out, req.Send()
 }
 
+const opCreateLocationHdfs = "CreateLocationHdfs"
+
+// CreateLocationHdfsRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLocationHdfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLocationHdfs for more information on using the CreateLocationHdfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLocationHdfsRequest method.
+//    req, resp := client.CreateLocationHdfsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationHdfs
+func (c *DataSync) CreateLocationHdfsRequest(input *CreateLocationHdfsInput) (req *request.Request, output *CreateLocationHdfsOutput) {
+	op := &request.Operation{
+		Name:       opCreateLocationHdfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLocationHdfsInput{}
+	}
+
+	output = &CreateLocationHdfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLocationHdfs API operation for AWS DataSync.
+//
+// Creates an endpoint for a Hadoop Distributed File System (HDFS).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation CreateLocationHdfs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/CreateLocationHdfs
+func (c *DataSync) CreateLocationHdfs(input *CreateLocationHdfsInput) (*CreateLocationHdfsOutput, error) {
+	req, out := c.CreateLocationHdfsRequest(input)
+	return out, req.Send()
+}
+
+// CreateLocationHdfsWithContext is the same as CreateLocationHdfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLocationHdfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) CreateLocationHdfsWithContext(ctx aws.Context, input *CreateLocationHdfsInput, opts ...request.Option) (*CreateLocationHdfsOutput, error) {
+	req, out := c.CreateLocationHdfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLocationNfs = "CreateLocationNfs"
 
 // CreateLocationNfsRequest generates a "aws/request.Request" representing the
@@ -1301,6 +1383,89 @@ func (c *DataSync) DescribeLocationFsxWindows(input *DescribeLocationFsxWindowsI
 // for more information on using Contexts.
 func (c *DataSync) DescribeLocationFsxWindowsWithContext(ctx aws.Context, input *DescribeLocationFsxWindowsInput, opts ...request.Option) (*DescribeLocationFsxWindowsOutput, error) {
 	req, out := c.DescribeLocationFsxWindowsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLocationHdfs = "DescribeLocationHdfs"
+
+// DescribeLocationHdfsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLocationHdfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLocationHdfs for more information on using the DescribeLocationHdfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeLocationHdfsRequest method.
+//    req, resp := client.DescribeLocationHdfsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationHdfs
+func (c *DataSync) DescribeLocationHdfsRequest(input *DescribeLocationHdfsInput) (req *request.Request, output *DescribeLocationHdfsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLocationHdfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLocationHdfsInput{}
+	}
+
+	output = &DescribeLocationHdfsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLocationHdfs API operation for AWS DataSync.
+//
+// Returns metadata, such as the authentication information about the Hadoop
+// Distributed File System (HDFS) location.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation DescribeLocationHdfs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/DescribeLocationHdfs
+func (c *DataSync) DescribeLocationHdfs(input *DescribeLocationHdfsInput) (*DescribeLocationHdfsOutput, error) {
+	req, out := c.DescribeLocationHdfsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLocationHdfsWithContext is the same as DescribeLocationHdfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLocationHdfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) DescribeLocationHdfsWithContext(ctx aws.Context, input *DescribeLocationHdfsInput, opts ...request.Option) (*DescribeLocationHdfsOutput, error) {
+	req, out := c.DescribeLocationHdfsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2854,6 +3019,90 @@ func (c *DataSync) UpdateAgentWithContext(ctx aws.Context, input *UpdateAgentInp
 	return out, req.Send()
 }
 
+const opUpdateLocationHdfs = "UpdateLocationHdfs"
+
+// UpdateLocationHdfsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLocationHdfs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLocationHdfs for more information on using the UpdateLocationHdfs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLocationHdfsRequest method.
+//    req, resp := client.UpdateLocationHdfsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationHdfs
+func (c *DataSync) UpdateLocationHdfsRequest(input *UpdateLocationHdfsInput) (req *request.Request, output *UpdateLocationHdfsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLocationHdfs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLocationHdfsInput{}
+	}
+
+	output = &UpdateLocationHdfsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLocationHdfs API operation for AWS DataSync.
+//
+// Updates some parameters of a previously created location for a Hadoop Distributed
+// File System cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateLocationHdfs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateLocationHdfs
+func (c *DataSync) UpdateLocationHdfs(input *UpdateLocationHdfsInput) (*UpdateLocationHdfsOutput, error) {
+	req, out := c.UpdateLocationHdfsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLocationHdfsWithContext is the same as UpdateLocationHdfs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLocationHdfs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateLocationHdfsWithContext(ctx aws.Context, input *UpdateLocationHdfsInput, opts ...request.Option) (*UpdateLocationHdfsOutput, error) {
+	req, out := c.UpdateLocationHdfsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateLocationNfs = "UpdateLocationNfs"
 
 // UpdateLocationNfsRequest generates a "aws/request.Request" representing the
@@ -3905,6 +4154,271 @@ func (s *CreateLocationFsxWindowsOutput) SetLocationArn(v string) *CreateLocatio
 	return s
 }
 
+type CreateLocationHdfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Names (ARNs) of the agents that are used to connect to
+	// the HDFS cluster.
+	//
+	// AgentArns is a required field
+	AgentArns []*string `min:"1" type:"list" required:"true"`
+
+	// The type of authentication used to determine the identity of the user.
+	//
+	// AuthenticationType is a required field
+	AuthenticationType *string `type:"string" required:"true" enum:"HdfsAuthenticationType"`
+
+	// The size of data blocks to write into the HDFS cluster. The block size must
+	// be a multiple of 512 bytes. The default block size is 128 mebibytes (MiB).
+	BlockSize *int64 `min:"1.048576e+06" type:"integer"`
+
+	// The Kerberos key table (keytab) that contains mappings between the defined
+	// Kerberos principal and the encrypted keys. You can load the keytab from a
+	// file by providing the file's address. If you're using the CLI, it performs
+	// base64 encoding for you. Otherwise, provide the base64-encoded text.
+	//
+	// If KERBEROS is specified for AuthenticationType, this parameter is required.
+	// KerberosKeytab is automatically base64 encoded/decoded by the SDK.
+	KerberosKeytab []byte `type:"blob"`
+
+	// The krb5.conf file that contains the Kerberos configuration information.
+	// You can load the krb5.conf file by providing the file's address. If you're
+	// using the CLI, it performs the base64 encoding for you. Otherwise, provide
+	// the base64-encoded text.
+	//
+	// If KERBEROS is specified for AuthenticationType, this parameter is required.
+	// KerberosKrb5Conf is automatically base64 encoded/decoded by the SDK.
+	KerberosKrb5Conf []byte `type:"blob"`
+
+	// The Kerberos principal with access to the files and folders on the HDFS cluster.
+	//
+	// If KERBEROS is specified for AuthenticationType, this parameter is required.
+	KerberosPrincipal *string `min:"1" type:"string"`
+
+	// The URI of the HDFS cluster's Key Management Server (KMS).
+	KmsKeyProviderUri *string `min:"1" type:"string"`
+
+	// The NameNode that manages the HDFS namespace. The NameNode performs operations
+	// such as opening, closing, and renaming files and directories. The NameNode
+	// contains the information to map blocks of data to the DataNodes. You can
+	// use only one NameNode.
+	//
+	// NameNodes is a required field
+	NameNodes []*HdfsNameNode `min:"1" type:"list" required:"true"`
+
+	// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+	// Call (RPC) and data transfer protection settings configured on the Hadoop
+	// Distributed File System (HDFS) cluster. If QopConfiguration isn't specified,
+	// RpcProtection and DataTransferProtection default to PRIVACY. If you set RpcProtection
+	// or DataTransferProtection, the other parameter assumes the same value.
+	QopConfiguration *QopConfiguration `type:"structure"`
+
+	// The number of DataNodes to replicate the data to when writing to the HDFS
+	// cluster. By default, data is replicated to three DataNodes.
+	ReplicationFactor *int64 `min:"1" type:"integer"`
+
+	// The user name used to identify the client on the host operating system.
+	//
+	// If SIMPLE is specified for AuthenticationType, this parameter is required.
+	SimpleUser *string `min:"1" type:"string"`
+
+	// A subdirectory in the HDFS cluster. This subdirectory is used to read data
+	// from or write data to the HDFS cluster. If the subdirectory isn't specified,
+	// it will default to /.
+	Subdirectory *string `type:"string"`
+
+	// The key-value pair that represents the tag that you want to add to the location.
+	// The value can be an empty string. We recommend using tags to name your resources.
+	Tags []*TagListEntry `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLocationHdfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLocationHdfsInput"}
+	if s.AgentArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentArns"))
+	}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.AuthenticationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthenticationType"))
+	}
+	if s.BlockSize != nil && *s.BlockSize < 1.048576e+06 {
+		invalidParams.Add(request.NewErrParamMinValue("BlockSize", 1.048576e+06))
+	}
+	if s.KerberosPrincipal != nil && len(*s.KerberosPrincipal) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KerberosPrincipal", 1))
+	}
+	if s.KmsKeyProviderUri != nil && len(*s.KmsKeyProviderUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyProviderUri", 1))
+	}
+	if s.NameNodes == nil {
+		invalidParams.Add(request.NewErrParamRequired("NameNodes"))
+	}
+	if s.NameNodes != nil && len(s.NameNodes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameNodes", 1))
+	}
+	if s.ReplicationFactor != nil && *s.ReplicationFactor < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ReplicationFactor", 1))
+	}
+	if s.SimpleUser != nil && len(*s.SimpleUser) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SimpleUser", 1))
+	}
+	if s.NameNodes != nil {
+		for i, v := range s.NameNodes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NameNodes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *CreateLocationHdfsInput) SetAgentArns(v []*string) *CreateLocationHdfsInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *CreateLocationHdfsInput) SetAuthenticationType(v string) *CreateLocationHdfsInput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *CreateLocationHdfsInput) SetBlockSize(v int64) *CreateLocationHdfsInput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetKerberosKeytab sets the KerberosKeytab field's value.
+func (s *CreateLocationHdfsInput) SetKerberosKeytab(v []byte) *CreateLocationHdfsInput {
+	s.KerberosKeytab = v
+	return s
+}
+
+// SetKerberosKrb5Conf sets the KerberosKrb5Conf field's value.
+func (s *CreateLocationHdfsInput) SetKerberosKrb5Conf(v []byte) *CreateLocationHdfsInput {
+	s.KerberosKrb5Conf = v
+	return s
+}
+
+// SetKerberosPrincipal sets the KerberosPrincipal field's value.
+func (s *CreateLocationHdfsInput) SetKerberosPrincipal(v string) *CreateLocationHdfsInput {
+	s.KerberosPrincipal = &v
+	return s
+}
+
+// SetKmsKeyProviderUri sets the KmsKeyProviderUri field's value.
+func (s *CreateLocationHdfsInput) SetKmsKeyProviderUri(v string) *CreateLocationHdfsInput {
+	s.KmsKeyProviderUri = &v
+	return s
+}
+
+// SetNameNodes sets the NameNodes field's value.
+func (s *CreateLocationHdfsInput) SetNameNodes(v []*HdfsNameNode) *CreateLocationHdfsInput {
+	s.NameNodes = v
+	return s
+}
+
+// SetQopConfiguration sets the QopConfiguration field's value.
+func (s *CreateLocationHdfsInput) SetQopConfiguration(v *QopConfiguration) *CreateLocationHdfsInput {
+	s.QopConfiguration = v
+	return s
+}
+
+// SetReplicationFactor sets the ReplicationFactor field's value.
+func (s *CreateLocationHdfsInput) SetReplicationFactor(v int64) *CreateLocationHdfsInput {
+	s.ReplicationFactor = &v
+	return s
+}
+
+// SetSimpleUser sets the SimpleUser field's value.
+func (s *CreateLocationHdfsInput) SetSimpleUser(v string) *CreateLocationHdfsInput {
+	s.SimpleUser = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateLocationHdfsInput) SetSubdirectory(v string) *CreateLocationHdfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLocationHdfsInput) SetTags(v []*TagListEntry) *CreateLocationHdfsInput {
+	s.Tags = v
+	return s
+}
+
+type CreateLocationHdfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the source HDFS cluster location that's created.
+	LocationArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLocationHdfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *CreateLocationHdfsOutput) SetLocationArn(v string) *CreateLocationHdfsOutput {
+	s.LocationArn = &v
+	return s
+}
+
 // CreateLocationNfsRequest
 type CreateLocationNfsInput struct {
 	_ struct{} `type:"structure"`
@@ -4685,9 +5199,9 @@ type CreateTaskInput struct {
 	Excludes []*FilterRule `type:"list"`
 
 	// A list of filter rules that determines which files to include when running
-	// a task. The pattern should contain a single filter string that consists of
-	// the patterns to include. The patterns are delimited by "|" (that is, a pipe).
-	// For example: "/folder1|/folder2"
+	// a task. The pattern contains a single filter string that consists of the
+	// patterns to include. The patterns are delimited by "|" (that is, a pipe),
+	// for example, "/folder1|/folder2".
 	Includes []*FilterRule `type:"list"`
 
 	// The name of a task. This value is a text reference that is used to identify
@@ -5443,6 +5957,187 @@ func (s *DescribeLocationFsxWindowsOutput) SetSecurityGroupArns(v []*string) *De
 // SetUser sets the User field's value.
 func (s *DescribeLocationFsxWindowsOutput) SetUser(v string) *DescribeLocationFsxWindowsOutput {
 	s.User = &v
+	return s
+}
+
+type DescribeLocationHdfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the HDFS cluster location to describe.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLocationHdfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLocationHdfsInput"}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationHdfsInput) SetLocationArn(v string) *DescribeLocationHdfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+type DescribeLocationHdfsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARNs of the agents that are used to connect to the HDFS cluster.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The type of authentication used to determine the identity of the user.
+	AuthenticationType *string `type:"string" enum:"HdfsAuthenticationType"`
+
+	// The size of the data blocks to write into the HDFS cluster.
+	BlockSize *int64 `min:"1.048576e+06" type:"integer"`
+
+	// The time that the HDFS location was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Kerberos principal with access to the files and folders on the HDFS cluster.
+	// This parameter is used if the AuthenticationType is defined as KERBEROS.
+	KerberosPrincipal *string `min:"1" type:"string"`
+
+	// The URI of the HDFS cluster's Key Management Server (KMS).
+	KmsKeyProviderUri *string `min:"1" type:"string"`
+
+	// The ARN of the HDFS cluster location.
+	LocationArn *string `type:"string"`
+
+	// The URI of the HDFS cluster location.
+	LocationUri *string `type:"string"`
+
+	// The NameNode that manage the HDFS namespace.
+	NameNodes []*HdfsNameNode `min:"1" type:"list"`
+
+	// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+	// Call (RPC) and data transfer protection settings configured on the Hadoop
+	// Distributed File System (HDFS) cluster.
+	QopConfiguration *QopConfiguration `type:"structure"`
+
+	// The number of DataNodes to replicate the data to when writing to the HDFS
+	// cluster.
+	ReplicationFactor *int64 `min:"1" type:"integer"`
+
+	// The user name used to identify the client on the host operating system. This
+	// parameter is used if the AuthenticationType is defined as SIMPLE.
+	SimpleUser *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLocationHdfsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *DescribeLocationHdfsOutput) SetAgentArns(v []*string) *DescribeLocationHdfsOutput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *DescribeLocationHdfsOutput) SetAuthenticationType(v string) *DescribeLocationHdfsOutput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *DescribeLocationHdfsOutput) SetBlockSize(v int64) *DescribeLocationHdfsOutput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLocationHdfsOutput) SetCreationTime(v time.Time) *DescribeLocationHdfsOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetKerberosPrincipal sets the KerberosPrincipal field's value.
+func (s *DescribeLocationHdfsOutput) SetKerberosPrincipal(v string) *DescribeLocationHdfsOutput {
+	s.KerberosPrincipal = &v
+	return s
+}
+
+// SetKmsKeyProviderUri sets the KmsKeyProviderUri field's value.
+func (s *DescribeLocationHdfsOutput) SetKmsKeyProviderUri(v string) *DescribeLocationHdfsOutput {
+	s.KmsKeyProviderUri = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *DescribeLocationHdfsOutput) SetLocationArn(v string) *DescribeLocationHdfsOutput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetLocationUri sets the LocationUri field's value.
+func (s *DescribeLocationHdfsOutput) SetLocationUri(v string) *DescribeLocationHdfsOutput {
+	s.LocationUri = &v
+	return s
+}
+
+// SetNameNodes sets the NameNodes field's value.
+func (s *DescribeLocationHdfsOutput) SetNameNodes(v []*HdfsNameNode) *DescribeLocationHdfsOutput {
+	s.NameNodes = v
+	return s
+}
+
+// SetQopConfiguration sets the QopConfiguration field's value.
+func (s *DescribeLocationHdfsOutput) SetQopConfiguration(v *QopConfiguration) *DescribeLocationHdfsOutput {
+	s.QopConfiguration = v
+	return s
+}
+
+// SetReplicationFactor sets the ReplicationFactor field's value.
+func (s *DescribeLocationHdfsOutput) SetReplicationFactor(v int64) *DescribeLocationHdfsOutput {
+	s.ReplicationFactor = &v
+	return s
+}
+
+// SetSimpleUser sets the SimpleUser field's value.
+func (s *DescribeLocationHdfsOutput) SetSimpleUser(v string) *DescribeLocationHdfsOutput {
+	s.SimpleUser = &v
 	return s
 }
 
@@ -6262,8 +6957,8 @@ type DescribeTaskOutput struct {
 	// location.
 	DestinationLocationArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the destination ENIs (Elastic Network Interface)
-	// that was created for your subnet.
+	// The Amazon Resource Names (ARNs) of the destination elastic network interfaces
+	// (ENIs) that were created for your subnet.
 	DestinationNetworkInterfaceArns []*string `type:"list"`
 
 	// Errors that DataSync encountered during execution of the task. You can use
@@ -6276,14 +6971,14 @@ type DescribeTaskOutput struct {
 
 	// A list of filter rules that determines which files to exclude from a task.
 	// The list should contain a single filter string that consists of the patterns
-	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example:
-	// "/folder1|/folder2"
+	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example,
+	// "/folder1|/folder2".
 	Excludes []*FilterRule `type:"list"`
 
 	// A list of filter rules that determines which files to include when running
-	// a task. The pattern should contain a single filter string that consists of
-	// the patterns to include. The patterns are delimited by "|" (that is, a pipe).
-	// For example: "/folder1|/folder2"
+	// a task. The pattern contains a single filter string that consists of the
+	// patterns to include. The patterns are delimited by "|" (that is, a pipe),
+	// for example, "/folder1|/folder2".
 	Includes []*FilterRule `type:"list"`
 
 	// The name of the task that was described.
@@ -6306,8 +7001,8 @@ type DescribeTaskOutput struct {
 	// The Amazon Resource Name (ARN) of the source file system's location.
 	SourceLocationArn *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the source ENIs (Elastic Network Interface)
-	// that was created for your subnet.
+	// The Amazon Resource Names (ARNs) of the source elastic network interfaces
+	// (ENIs) that were created for your subnet.
 	SourceNetworkInterfaceArns []*string `type:"list"`
 
 	// The status of the task that was described.
@@ -6544,6 +7239,78 @@ func (s *FilterRule) SetFilterType(v string) *FilterRule {
 // SetValue sets the Value field's value.
 func (s *FilterRule) SetValue(v string) *FilterRule {
 	s.Value = &v
+	return s
+}
+
+// The NameNode of the Hadoop Distributed File System (HDFS). The NameNode manages
+// the file system's namespace. The NameNode performs operations such as opening,
+// closing, and renaming files and directories. The NameNode contains the information
+// to map blocks of data to the DataNodes.
+type HdfsNameNode struct {
+	_ struct{} `type:"structure"`
+
+	// The hostname of the NameNode in the HDFS cluster. This value is the IP address
+	// or Domain Name Service (DNS) name of the NameNode. An agent that's installed
+	// on-premises uses this hostname to communicate with the NameNode in the network.
+	//
+	// Hostname is a required field
+	Hostname *string `min:"1" type:"string" required:"true"`
+
+	// The port that the NameNode uses to listen to client requests.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HdfsNameNode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HdfsNameNode) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HdfsNameNode) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HdfsNameNode"}
+	if s.Hostname == nil {
+		invalidParams.Add(request.NewErrParamRequired("Hostname"))
+	}
+	if s.Hostname != nil && len(*s.Hostname) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Hostname", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *HdfsNameNode) SetHostname(v string) *HdfsNameNode {
+	s.Hostname = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *HdfsNameNode) SetPort(v int64) *HdfsNameNode {
+	s.Port = &v
 	return s
 }
 
@@ -7354,7 +8121,7 @@ type NfsMountOptions struct {
 	//    that allows for asynchronous writes on the server.
 	//
 	//    * NFSv4.0 (https://tools.ietf.org/html/rfc3530) - stateful, firewall-friendly
-	//    protocol version that supports delegations and pseudo filesystems.
+	//    protocol version that supports delegations and pseudo file systems.
 	//
 	//    * NFSv4.1 (https://tools.ietf.org/html/rfc5661) - stateful protocol version
 	//    that supports sessions, directory delegations, and parallel data processing.
@@ -7837,6 +8604,53 @@ func (s *PrivateLinkConfig) SetVpcEndpointId(v string) *PrivateLinkConfig {
 	return s
 }
 
+// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+// Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed
+// File System (HDFS) cluster.
+type QopConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The data transfer protection setting configured on the HDFS cluster. This
+	// setting corresponds to your dfs.data.transfer.protection setting in the hdfs-site.xml
+	// file on your Hadoop cluster.
+	DataTransferProtection *string `type:"string" enum:"HdfsDataTransferProtection"`
+
+	// The RPC protection setting configured on the HDFS cluster. This setting corresponds
+	// to your hadoop.rpc.protection setting in your core-site.xml file on your
+	// Hadoop cluster.
+	RpcProtection *string `type:"string" enum:"HdfsRpcProtection"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QopConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QopConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDataTransferProtection sets the DataTransferProtection field's value.
+func (s *QopConfiguration) SetDataTransferProtection(v string) *QopConfiguration {
+	s.DataTransferProtection = &v
+	return s
+}
+
+// SetRpcProtection sets the RpcProtection field's value.
+func (s *QopConfiguration) SetRpcProtection(v string) *QopConfiguration {
+	s.RpcProtection = &v
+	return s
+}
+
 // The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
 // role that is used to access an Amazon S3 bucket.
 //
@@ -7931,15 +8745,15 @@ type StartTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of filter rules that determines which files to exclude from a task.
-	// The list should contain a single filter string that consists of the patterns
-	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example,
+	// The list contains a single filter string that consists of the patterns to
+	// exclude. The patterns are delimited by "|" (that is, a pipe), for example,
 	// "/folder1|/folder2".
 	Excludes []*FilterRule `type:"list"`
 
 	// A list of filter rules that determines which files to include when running
 	// a task. The pattern should contain a single filter string that consists of
-	// the patterns to include. The patterns are delimited by "|" (that is, a pipe).
-	// For example: "/folder1|/folder2"
+	// the patterns to include. The patterns are delimited by "|" (that is, a pipe),
+	// for example, "/folder1|/folder2".
 	Includes []*FilterRule `type:"list"`
 
 	// Represents the options that are available to control the behavior of a StartTaskExecution
@@ -8053,8 +8867,9 @@ func (s *StartTaskExecutionOutput) SetTaskExecutionArn(v string) *StartTaskExecu
 	return s
 }
 
-// Represents a single entry in a list of AWS resource tags. TagListEntry returns
-// an array that contains a list of tasks when the ListTagsForResource (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTagsForResource.html)
+// Represents a single entry in a list of Amazon Web Services resource tags.
+// TagListEntry returns an array that contains a list of tasks when the ListTagsForResource
+// (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTagsForResource.html)
 // operation is called.
 type TagListEntry struct {
 	_ struct{} `type:"structure"`
@@ -8714,6 +9529,228 @@ func (s UpdateAgentOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateLocationHdfsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARNs of the agents that are used to connect to the HDFS cluster.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The type of authentication used to determine the identity of the user.
+	AuthenticationType *string `type:"string" enum:"HdfsAuthenticationType"`
+
+	// The size of the data blocks to write into the HDFS cluster.
+	BlockSize *int64 `min:"1.048576e+06" type:"integer"`
+
+	// The Kerberos key table (keytab) that contains mappings between the defined
+	// Kerberos principal and the encrypted keys. You can load the keytab from a
+	// file by providing the file's address. If you use the AWS CLI, it performs
+	// base64 encoding for you. Otherwise, provide the base64-encoded text.
+	// KerberosKeytab is automatically base64 encoded/decoded by the SDK.
+	KerberosKeytab []byte `type:"blob"`
+
+	// The krb5.conf file that contains the Kerberos configuration information.
+	// You can load the krb5.conf file by providing the file's address. If you're
+	// using the AWS CLI, it performs the base64 encoding for you. Otherwise, provide
+	// the base64-encoded text.
+	// KerberosKrb5Conf is automatically base64 encoded/decoded by the SDK.
+	KerberosKrb5Conf []byte `type:"blob"`
+
+	// The Kerberos principal with access to the files and folders on the HDFS cluster.
+	KerberosPrincipal *string `min:"1" type:"string"`
+
+	// The URI of the HDFS cluster's Key Management Server (KMS).
+	KmsKeyProviderUri *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the source HDFS cluster location.
+	//
+	// LocationArn is a required field
+	LocationArn *string `type:"string" required:"true"`
+
+	// The NameNode that manages the HDFS namespace. The NameNode performs operations
+	// such as opening, closing, and renaming files and directories. The NameNode
+	// contains the information to map blocks of data to the DataNodes. You can
+	// use only one NameNode.
+	NameNodes []*HdfsNameNode `min:"1" type:"list"`
+
+	// The Quality of Protection (QOP) configuration specifies the Remote Procedure
+	// Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed
+	// File System (HDFS) cluster.
+	QopConfiguration *QopConfiguration `type:"structure"`
+
+	// The number of DataNodes to replicate the data to when writing to the HDFS
+	// cluster.
+	ReplicationFactor *int64 `min:"1" type:"integer"`
+
+	// The user name used to identify the client on the host operating system.
+	SimpleUser *string `min:"1" type:"string"`
+
+	// A subdirectory in the HDFS cluster. This subdirectory is used to read data
+	// from or write data to the HDFS cluster.
+	Subdirectory *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLocationHdfsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLocationHdfsInput"}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
+	if s.BlockSize != nil && *s.BlockSize < 1.048576e+06 {
+		invalidParams.Add(request.NewErrParamMinValue("BlockSize", 1.048576e+06))
+	}
+	if s.KerberosPrincipal != nil && len(*s.KerberosPrincipal) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KerberosPrincipal", 1))
+	}
+	if s.KmsKeyProviderUri != nil && len(*s.KmsKeyProviderUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyProviderUri", 1))
+	}
+	if s.LocationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationArn"))
+	}
+	if s.NameNodes != nil && len(s.NameNodes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NameNodes", 1))
+	}
+	if s.ReplicationFactor != nil && *s.ReplicationFactor < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ReplicationFactor", 1))
+	}
+	if s.SimpleUser != nil && len(*s.SimpleUser) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SimpleUser", 1))
+	}
+	if s.NameNodes != nil {
+		for i, v := range s.NameNodes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "NameNodes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *UpdateLocationHdfsInput) SetAgentArns(v []*string) *UpdateLocationHdfsInput {
+	s.AgentArns = v
+	return s
+}
+
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *UpdateLocationHdfsInput) SetAuthenticationType(v string) *UpdateLocationHdfsInput {
+	s.AuthenticationType = &v
+	return s
+}
+
+// SetBlockSize sets the BlockSize field's value.
+func (s *UpdateLocationHdfsInput) SetBlockSize(v int64) *UpdateLocationHdfsInput {
+	s.BlockSize = &v
+	return s
+}
+
+// SetKerberosKeytab sets the KerberosKeytab field's value.
+func (s *UpdateLocationHdfsInput) SetKerberosKeytab(v []byte) *UpdateLocationHdfsInput {
+	s.KerberosKeytab = v
+	return s
+}
+
+// SetKerberosKrb5Conf sets the KerberosKrb5Conf field's value.
+func (s *UpdateLocationHdfsInput) SetKerberosKrb5Conf(v []byte) *UpdateLocationHdfsInput {
+	s.KerberosKrb5Conf = v
+	return s
+}
+
+// SetKerberosPrincipal sets the KerberosPrincipal field's value.
+func (s *UpdateLocationHdfsInput) SetKerberosPrincipal(v string) *UpdateLocationHdfsInput {
+	s.KerberosPrincipal = &v
+	return s
+}
+
+// SetKmsKeyProviderUri sets the KmsKeyProviderUri field's value.
+func (s *UpdateLocationHdfsInput) SetKmsKeyProviderUri(v string) *UpdateLocationHdfsInput {
+	s.KmsKeyProviderUri = &v
+	return s
+}
+
+// SetLocationArn sets the LocationArn field's value.
+func (s *UpdateLocationHdfsInput) SetLocationArn(v string) *UpdateLocationHdfsInput {
+	s.LocationArn = &v
+	return s
+}
+
+// SetNameNodes sets the NameNodes field's value.
+func (s *UpdateLocationHdfsInput) SetNameNodes(v []*HdfsNameNode) *UpdateLocationHdfsInput {
+	s.NameNodes = v
+	return s
+}
+
+// SetQopConfiguration sets the QopConfiguration field's value.
+func (s *UpdateLocationHdfsInput) SetQopConfiguration(v *QopConfiguration) *UpdateLocationHdfsInput {
+	s.QopConfiguration = v
+	return s
+}
+
+// SetReplicationFactor sets the ReplicationFactor field's value.
+func (s *UpdateLocationHdfsInput) SetReplicationFactor(v int64) *UpdateLocationHdfsInput {
+	s.ReplicationFactor = &v
+	return s
+}
+
+// SetSimpleUser sets the SimpleUser field's value.
+func (s *UpdateLocationHdfsInput) SetSimpleUser(v string) *UpdateLocationHdfsInput {
+	s.SimpleUser = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateLocationHdfsInput) SetSubdirectory(v string) *UpdateLocationHdfsInput {
+	s.Subdirectory = &v
+	return s
+}
+
+type UpdateLocationHdfsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateLocationHdfsOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateLocationNfsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9245,19 +10282,20 @@ func (s UpdateTaskExecutionOutput) GoString() string {
 type UpdateTaskInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource name of the CloudWatch LogGroup.
+	// The Amazon Resource Name (ARN) of the resource name of the Amazon CloudWatch
+	// log group.
 	CloudWatchLogGroupArn *string `type:"string"`
 
 	// A list of filter rules that determines which files to exclude from a task.
 	// The list should contain a single filter string that consists of the patterns
-	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example:
-	// "/folder1|/folder2"
+	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example,
+	// "/folder1|/folder2".
 	Excludes []*FilterRule `type:"list"`
 
 	// A list of filter rules that determines which files to include when running
-	// a task. The pattern should contain a single filter string that consists of
-	// the patterns to include. The patterns are delimited by "|" (that is, a pipe).
-	// For example: "/folder1|/folder2"
+	// a task. The pattern contains a single filter string that consists of the
+	// patterns to include. The patterns are delimited by "|" (that is, a pipe),
+	// for example, "/folder1|/folder2".
 	Includes []*FilterRule `type:"list"`
 
 	// The name of the task to update.
@@ -9482,6 +10520,70 @@ func Gid_Values() []string {
 		GidIntValue,
 		GidName,
 		GidBoth,
+	}
+}
+
+const (
+	// HdfsAuthenticationTypeSimple is a HdfsAuthenticationType enum value
+	HdfsAuthenticationTypeSimple = "SIMPLE"
+
+	// HdfsAuthenticationTypeKerberos is a HdfsAuthenticationType enum value
+	HdfsAuthenticationTypeKerberos = "KERBEROS"
+)
+
+// HdfsAuthenticationType_Values returns all elements of the HdfsAuthenticationType enum
+func HdfsAuthenticationType_Values() []string {
+	return []string{
+		HdfsAuthenticationTypeSimple,
+		HdfsAuthenticationTypeKerberos,
+	}
+}
+
+const (
+	// HdfsDataTransferProtectionDisabled is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionDisabled = "DISABLED"
+
+	// HdfsDataTransferProtectionAuthentication is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionAuthentication = "AUTHENTICATION"
+
+	// HdfsDataTransferProtectionIntegrity is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionIntegrity = "INTEGRITY"
+
+	// HdfsDataTransferProtectionPrivacy is a HdfsDataTransferProtection enum value
+	HdfsDataTransferProtectionPrivacy = "PRIVACY"
+)
+
+// HdfsDataTransferProtection_Values returns all elements of the HdfsDataTransferProtection enum
+func HdfsDataTransferProtection_Values() []string {
+	return []string{
+		HdfsDataTransferProtectionDisabled,
+		HdfsDataTransferProtectionAuthentication,
+		HdfsDataTransferProtectionIntegrity,
+		HdfsDataTransferProtectionPrivacy,
+	}
+}
+
+const (
+	// HdfsRpcProtectionDisabled is a HdfsRpcProtection enum value
+	HdfsRpcProtectionDisabled = "DISABLED"
+
+	// HdfsRpcProtectionAuthentication is a HdfsRpcProtection enum value
+	HdfsRpcProtectionAuthentication = "AUTHENTICATION"
+
+	// HdfsRpcProtectionIntegrity is a HdfsRpcProtection enum value
+	HdfsRpcProtectionIntegrity = "INTEGRITY"
+
+	// HdfsRpcProtectionPrivacy is a HdfsRpcProtection enum value
+	HdfsRpcProtectionPrivacy = "PRIVACY"
+)
+
+// HdfsRpcProtection_Values returns all elements of the HdfsRpcProtection enum
+func HdfsRpcProtection_Values() []string {
+	return []string{
+		HdfsRpcProtectionDisabled,
+		HdfsRpcProtectionAuthentication,
+		HdfsRpcProtectionIntegrity,
+		HdfsRpcProtectionPrivacy,
 	}
 }
 

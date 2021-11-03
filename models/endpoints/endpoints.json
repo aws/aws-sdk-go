@@ -16362,7 +16362,12 @@
     "defaults" : {
       "hostname" : "{service}.{region}.{dnsSuffix}",
       "protocols" : [ "https" ],
-      "signatureVersions" : [ "v4" ]
+      "signatureVersions" : [ "v4" ],
+      "variants" : [ {
+        "dnsSuffix" : "c2s.ic.gov",
+        "hostname" : "{service}-fips.{region}.{dnsSuffix}",
+        "tags" : [ "fips" ]
+      } ]
     },
     "dnsSuffix" : "c2s.ic.gov",
     "partition" : "aws-iso",
@@ -16849,7 +16854,12 @@
     "defaults" : {
       "hostname" : "{service}.{region}.{dnsSuffix}",
       "protocols" : [ "https" ],
-      "signatureVersions" : [ "v4" ]
+      "signatureVersions" : [ "v4" ],
+      "variants" : [ {
+        "dnsSuffix" : "sc2s.sgov.gov",
+        "hostname" : "{service}-fips.{region}.{dnsSuffix}",
+        "tags" : [ "fips" ]
+      } ]
     },
     "dnsSuffix" : "sc2s.sgov.gov",
     "partition" : "aws-iso-b",

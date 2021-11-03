@@ -66,6 +66,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "CreateLocationHdfs":{
+      "name":"CreateLocationHdfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLocationHdfsRequest"},
+      "output":{"shape":"CreateLocationHdfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "CreateLocationNfs":{
       "name":"CreateLocationNfs",
       "http":{
@@ -204,6 +217,19 @@
       },
       "input":{"shape":"DescribeLocationFsxWindowsRequest"},
       "output":{"shape":"DescribeLocationFsxWindowsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "DescribeLocationHdfs":{
+      "name":"DescribeLocationHdfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeLocationHdfsRequest"},
+      "output":{"shape":"DescribeLocationHdfsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -404,6 +430,19 @@
         {"shape":"InternalException"}
       ]
     },
+    "UpdateLocationHdfs":{
+      "name":"UpdateLocationHdfs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLocationHdfsRequest"},
+      "output":{"shape":"UpdateLocationHdfsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "UpdateLocationNfs":{
       "name":"UpdateLocationNfs",
       "http":{
@@ -585,6 +624,35 @@
       }
     },
     "CreateLocationFsxWindowsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "CreateLocationHdfsRequest":{
+      "type":"structure",
+      "required":[
+        "NameNodes",
+        "AuthenticationType",
+        "AgentArns"
+      ],
+      "members":{
+        "Subdirectory":{"shape":"HdfsSubdirectory"},
+        "NameNodes":{"shape":"HdfsNameNodeList"},
+        "BlockSize":{"shape":"HdfsBlockSize"},
+        "ReplicationFactor":{"shape":"HdfsReplicationFactor"},
+        "KmsKeyProviderUri":{"shape":"KmsKeyProviderUri"},
+        "QopConfiguration":{"shape":"QopConfiguration"},
+        "AuthenticationType":{"shape":"HdfsAuthenticationType"},
+        "SimpleUser":{"shape":"HdfsUser"},
+        "KerberosPrincipal":{"shape":"KerberosPrincipal"},
+        "KerberosKeytab":{"shape":"KerberosKeytabFile"},
+        "KerberosKrb5Conf":{"shape":"KerberosKrb5ConfFile"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "Tags":{"shape":"InputTagList"}
+      }
+    },
+    "CreateLocationHdfsResponse":{
       "type":"structure",
       "members":{
         "LocationArn":{"shape":"LocationArn"}
@@ -794,6 +862,30 @@
         "CreationTime":{"shape":"Time"},
         "User":{"shape":"SmbUser"},
         "Domain":{"shape":"SmbDomain"}
+      }
+    },
+    "DescribeLocationHdfsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"}
+      }
+    },
+    "DescribeLocationHdfsResponse":{
+      "type":"structure",
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "LocationUri":{"shape":"LocationUri"},
+        "NameNodes":{"shape":"HdfsNameNodeList"},
+        "BlockSize":{"shape":"HdfsBlockSize"},
+        "ReplicationFactor":{"shape":"HdfsReplicationFactor"},
+        "KmsKeyProviderUri":{"shape":"KmsKeyProviderUri"},
+        "QopConfiguration":{"shape":"QopConfiguration"},
+        "AuthenticationType":{"shape":"HdfsAuthenticationType"},
+        "SimpleUser":{"shape":"HdfsUser"},
+        "KerberosPrincipal":{"shape":"KerberosPrincipal"},
+        "AgentArns":{"shape":"AgentArnList"},
+        "CreationTime":{"shape":"Time"}
       }
     },
     "DescribeLocationNfsRequest":{
@@ -1033,6 +1125,82 @@
         "BOTH"
       ]
     },
+    "HdfsAuthenticationType":{
+      "type":"string",
+      "enum":[
+        "SIMPLE",
+        "KERBEROS"
+      ]
+    },
+    "HdfsBlockSize":{
+      "type":"integer",
+      "box":true,
+      "max":1073741824,
+      "min":1048576
+    },
+    "HdfsDataTransferProtection":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "AUTHENTICATION",
+        "INTEGRITY",
+        "PRIVACY"
+      ]
+    },
+    "HdfsNameNode":{
+      "type":"structure",
+      "required":[
+        "Hostname",
+        "Port"
+      ],
+      "members":{
+        "Hostname":{"shape":"HdfsServerHostname"},
+        "Port":{"shape":"HdfsServerPort"}
+      }
+    },
+    "HdfsNameNodeList":{
+      "type":"list",
+      "member":{"shape":"HdfsNameNode"},
+      "min":1
+    },
+    "HdfsReplicationFactor":{
+      "type":"integer",
+      "box":true,
+      "max":512,
+      "min":1
+    },
+    "HdfsRpcProtection":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "AUTHENTICATION",
+        "INTEGRITY",
+        "PRIVACY"
+      ]
+    },
+    "HdfsServerHostname":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$"
+    },
+    "HdfsServerPort":{
+      "type":"integer",
+      "box":true,
+      "max":65536,
+      "min":1
+    },
+    "HdfsSubdirectory":{
+      "type":"string",
+      "max":4096,
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
+    },
+    "HdfsUser":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[_.A-Za-z0-9][-_.A-Za-z0-9]*$"
+    },
     "IamRoleArn":{
       "type":"string",
       "max":2048,
@@ -1060,6 +1228,26 @@
         "errorCode":{"shape":"string"}
       },
       "exception":true
+    },
+    "KerberosKeytabFile":{
+      "type":"blob",
+      "max":65536
+    },
+    "KerberosKrb5ConfFile":{
+      "type":"blob",
+      "max":131072
+    },
+    "KerberosPrincipal":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^.+$"
+    },
+    "KmsKeyProviderUri":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^kms:\\/\\/http[s]?@(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])(;(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9]))*:[0-9]{1,5}\\/kms$"
     },
     "ListAgentsRequest":{
       "type":"structure",
@@ -1373,6 +1561,13 @@
         "SecurityGroupArns":{"shape":"PLSecurityGroupArnList"}
       }
     },
+    "QopConfiguration":{
+      "type":"structure",
+      "members":{
+        "RpcProtection":{"shape":"HdfsRpcProtection"},
+        "DataTransferProtection":{"shape":"HdfsDataTransferProtection"}
+      }
+    },
     "S3BucketArn":{
       "type":"string",
       "max":156,
@@ -1671,6 +1866,30 @@
       }
     },
     "UpdateAgentResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLocationHdfsRequest":{
+      "type":"structure",
+      "required":["LocationArn"],
+      "members":{
+        "LocationArn":{"shape":"LocationArn"},
+        "Subdirectory":{"shape":"HdfsSubdirectory"},
+        "NameNodes":{"shape":"HdfsNameNodeList"},
+        "BlockSize":{"shape":"HdfsBlockSize"},
+        "ReplicationFactor":{"shape":"HdfsReplicationFactor"},
+        "KmsKeyProviderUri":{"shape":"KmsKeyProviderUri"},
+        "QopConfiguration":{"shape":"QopConfiguration"},
+        "AuthenticationType":{"shape":"HdfsAuthenticationType"},
+        "SimpleUser":{"shape":"HdfsUser"},
+        "KerberosPrincipal":{"shape":"KerberosPrincipal"},
+        "KerberosKeytab":{"shape":"KerberosKeytabFile"},
+        "KerberosKrb5Conf":{"shape":"KerberosKrb5ConfFile"},
+        "AgentArns":{"shape":"AgentArnList"}
+      }
+    },
+    "UpdateLocationHdfsResponse":{
       "type":"structure",
       "members":{
       }

@@ -6,6 +6,7 @@
     "CreateAgent": "<p>Activates an DataSync agent that you have deployed on your host. The activation process associates your agent with your account. In the activation process, you specify information such as the Amazon Web Services Region that you want to activate the agent in. You activate the agent in the Amazon Web Services Region where your target locations (in Amazon S3 or Amazon EFS) reside. Your tasks are created in this Amazon Web Services Region.</p> <p>You can activate the agent in a VPC (virtual private cloud) or provide the agent access to a VPC endpoint so you can run tasks without going over the public internet.</p> <p>You can use an agent for more than one location. If a task uses multiple agents, all of them need to have status AVAILABLE for the task to run. If you use multiple agents for a source location, the status of all the agents must be AVAILABLE for the task to run. </p> <p>Agents are automatically updated by Amazon Web Services on a regular basis, using a mechanism that ensures minimal interruption to your tasks.</p> <p/>",
     "CreateLocationEfs": "<p>Creates an endpoint for an Amazon EFS file system.</p>",
     "CreateLocationFsxWindows": "<p>Creates an endpoint for an Amazon FSx for Windows File Server file system.</p>",
+    "CreateLocationHdfs": "<p>Creates an endpoint for a Hadoop Distributed File System (HDFS). </p>",
     "CreateLocationNfs": "<p>Defines a file system on a Network File System (NFS) server that can be read from or written to.</p>",
     "CreateLocationObjectStorage": "<p>Creates an endpoint for a self-managed object storage bucket. For more information about self-managed object storage locations, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
     "CreateLocationS3": "<p>Creates an endpoint for an Amazon S3 bucket.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli\">Create an Amazon S3 location</a> in the <i>DataSync User Guide</i>.</p>",
@@ -17,6 +18,7 @@
     "DescribeAgent": "<p>Returns metadata such as the name, the network interfaces, and the status (that is, whether the agent is running or not) for an agent. To specify which agent to describe, use the Amazon Resource Name (ARN) of the agent in your request. </p>",
     "DescribeLocationEfs": "<p>Returns metadata, such as the path information about an Amazon EFS location.</p>",
     "DescribeLocationFsxWindows": "<p>Returns metadata, such as the path information about an Amazon FSx for Windows File Server location.</p>",
+    "DescribeLocationHdfs": "<p>Returns metadata, such as the authentication information about the Hadoop Distributed File System (HDFS) location. </p>",
     "DescribeLocationNfs": "<p>Returns metadata, such as the path information, about an NFS location.</p>",
     "DescribeLocationObjectStorage": "<p>Returns metadata about a self-managed object storage server location. For more information about self-managed object storage locations, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
     "DescribeLocationS3": "<p>Returns metadata, such as bucket name, about an Amazon S3 bucket location.</p>",
@@ -32,6 +34,7 @@
     "TagResource": "<p>Applies a key-value pair to an Amazon Web Services resource.</p>",
     "UntagResource": "<p>Removes a tag from an Amazon Web Services resource.</p>",
     "UpdateAgent": "<p>Updates the name of an agent.</p>",
+    "UpdateLocationHdfs": "<p>Updates some parameters of a previously created location for a Hadoop Distributed File System cluster.</p>",
     "UpdateLocationNfs": "<p>Updates some of the parameters of a previously created location for Network File System (NFS) access. For information about creating an NFS location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html\">Creating a location for NFS</a>.</p>",
     "UpdateLocationObjectStorage": "<p>Updates some of the parameters of a previously created location for self-managed object storage server access. For information about creating a self-managed object storage location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html\">Creating a location for object storage</a>.</p>",
     "UpdateLocationSmb": "<p>Updates some of the parameters of a previously created location for Server Message Block (SMB) file system access. For information about creating an SMB location, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html\">Creating a location for SMB</a>.</p>",
@@ -60,13 +63,16 @@
     "AgentArnList": {
       "base": null,
       "refs": {
+        "CreateLocationHdfsRequest$AgentArns": "<p>The Amazon Resource Names (ARNs) of the agents that are used to connect to the HDFS cluster.</p>",
         "CreateLocationObjectStorageRequest$AgentArns": "<p>The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.</p>",
         "CreateLocationS3Request$AgentArns": "<p>If you are using DataSync on an Amazon Web Services Outpost, specify the Amazon Resource Names (ARNs) of the DataSync agents deployed on your Outpost. For more information about launching a DataSync agent on an Amazon Web Services Outpost, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent\">Deploy your DataSync agent on Outposts</a>.</p>",
         "CreateLocationSmbRequest$AgentArns": "<p>The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location. </p>",
+        "DescribeLocationHdfsResponse$AgentArns": "<p>The ARNs of the agents that are used to connect to the HDFS cluster. </p>",
         "DescribeLocationObjectStorageResponse$AgentArns": "<p>The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.</p>",
         "DescribeLocationS3Response$AgentArns": "<p>If you are using DataSync on an Amazon Web Services Outpost, the Amazon Resource Name (ARNs) of the EC2 agents deployed on your Outpost. For more information about launching a DataSync agent on an Amazon Web Services Outpost, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent\">Deploy your DataSync agent on Outposts</a>.</p>",
         "DescribeLocationSmbResponse$AgentArns": "<p>The Amazon Resource Name (ARN) of the source SMB file system location that is created.</p>",
         "OnPremConfig$AgentArns": "<p>ARNs of the agents to use for an NFS location.</p>",
+        "UpdateLocationHdfsRequest$AgentArns": "<p>The ARNs of the agents that are used to connect to the HDFS cluster. </p>",
         "UpdateLocationObjectStorageRequest$AgentArns": "<p>The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.</p>",
         "UpdateLocationSmbRequest$AgentArns": "<p>The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location.</p>"
       }
@@ -138,6 +144,16 @@
       }
     },
     "CreateLocationFsxWindowsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLocationHdfsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLocationHdfsResponse": {
       "base": null,
       "refs": {
       }
@@ -252,6 +268,16 @@
       "refs": {
       }
     },
+    "DescribeLocationHdfsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeLocationHdfsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeLocationNfsRequest": {
       "base": "<p>DescribeLocationNfsRequest</p>",
       "refs": {
@@ -315,7 +341,7 @@
     "DestinationNetworkInterfaceArns": {
       "base": null,
       "refs": {
-        "DescribeTaskResponse$DestinationNetworkInterfaceArns": "<p>The Amazon Resource Name (ARN) of the destination ENIs (Elastic Network Interface) that was created for your subnet.</p>"
+        "DescribeTaskResponse$DestinationNetworkInterfaceArns": "<p>The Amazon Resource Names (ARNs) of the destination elastic network interfaces (ENIs) that were created for your subnet.</p>"
       }
     },
     "Duration": {
@@ -390,15 +416,15 @@
       "base": null,
       "refs": {
         "CreateTaskRequest$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p> <p> </p>",
-        "CreateTaskRequest$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe). For example: <code>\"/folder1|/folder2</code>\"</p>",
+        "CreateTaskRequest$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern contains a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>.</p>",
         "DescribeTaskExecutionResponse$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example: <code>\"/folder1|/folder2\"</code> </p> <p> </p>",
         "DescribeTaskExecutionResponse$Includes": "<p>A list of filter rules that determines which files to include when running a task. The list should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example: <code>\"/folder1|/folder2\"</code> </p> <p> </p>",
-        "DescribeTaskResponse$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example: <code>\"/folder1|/folder2\"</code> </p> <p> </p>",
-        "DescribeTaskResponse$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe). For example: <code>\"/folder1|/folder2</code>\"</p>",
-        "StartTaskExecutionRequest$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe). For example: <code>\"/folder1|/folder2\"</code> </p> <p> </p>",
-        "StartTaskExecutionRequest$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p>",
-        "UpdateTaskRequest$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example: <code>\"/folder1|/folder2\"</code> </p> <p> </p>",
-        "UpdateTaskRequest$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe). For example: <code>\"/folder1|/folder2</code>\"</p>"
+        "DescribeTaskResponse$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p> <p> </p>",
+        "DescribeTaskResponse$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern contains a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2</code>\".</p>",
+        "StartTaskExecutionRequest$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p> <p> </p>",
+        "StartTaskExecutionRequest$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list contains a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>. </p>",
+        "UpdateTaskRequest$Excludes": "<p>A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>.</p> <p> </p>",
+        "UpdateTaskRequest$Includes": "<p>A list of filter rules that determines which files to include when running a task. The pattern contains a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, <code>\"/folder1|/folder2\"</code>.</p>"
       }
     },
     "FilterRule": {
@@ -444,6 +470,83 @@
         "Options$Gid": "<p>The POSIX group ID (GID) of the file's owners. This option should only be set for NFS, EFS, and S3 locations. For more information about what metadata is copied by DataSync, see <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied\">Metadata Copied by DataSync</a>. </p> <p>Default value: INT_VALUE. This preserves the integer value of the ID.</p> <p>INT_VALUE: Preserve the integer value of user ID (UID) and GID (recommended).</p> <p>NONE: Ignore UID and GID. </p>"
       }
     },
+    "HdfsAuthenticationType": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$AuthenticationType": "<p>The type of authentication used to determine the identity of the user. </p>",
+        "DescribeLocationHdfsResponse$AuthenticationType": "<p>The type of authentication used to determine the identity of the user. </p>",
+        "UpdateLocationHdfsRequest$AuthenticationType": "<p>The type of authentication used to determine the identity of the user. </p>"
+      }
+    },
+    "HdfsBlockSize": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$BlockSize": "<p>The size of data blocks to write into the HDFS cluster. The block size must be a multiple of 512 bytes. The default block size is 128 mebibytes (MiB).</p>",
+        "DescribeLocationHdfsResponse$BlockSize": "<p>The size of the data blocks to write into the HDFS cluster. </p>",
+        "UpdateLocationHdfsRequest$BlockSize": "<p>The size of the data blocks to write into the HDFS cluster. </p>"
+      }
+    },
+    "HdfsDataTransferProtection": {
+      "base": null,
+      "refs": {
+        "QopConfiguration$DataTransferProtection": "<p>The data transfer protection setting configured on the HDFS cluster. This setting corresponds to your <code>dfs.data.transfer.protection</code> setting in the <code>hdfs-site.xml</code> file on your Hadoop cluster.</p>"
+      }
+    },
+    "HdfsNameNode": {
+      "base": "<p>The NameNode of the Hadoop Distributed File System (HDFS). The NameNode manages the file system's namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes.</p>",
+      "refs": {
+        "HdfsNameNodeList$member": null
+      }
+    },
+    "HdfsNameNodeList": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$NameNodes": "<p>The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes. You can use only one NameNode.</p>",
+        "DescribeLocationHdfsResponse$NameNodes": "<p>The NameNode that manage the HDFS namespace. </p>",
+        "UpdateLocationHdfsRequest$NameNodes": "<p>The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes. You can use only one NameNode.</p>"
+      }
+    },
+    "HdfsReplicationFactor": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$ReplicationFactor": "<p>The number of DataNodes to replicate the data to when writing to the HDFS cluster. By default, data is replicated to three DataNodes.</p>",
+        "DescribeLocationHdfsResponse$ReplicationFactor": "<p>The number of DataNodes to replicate the data to when writing to the HDFS cluster. </p>",
+        "UpdateLocationHdfsRequest$ReplicationFactor": "<p>The number of DataNodes to replicate the data to when writing to the HDFS cluster. </p>"
+      }
+    },
+    "HdfsRpcProtection": {
+      "base": null,
+      "refs": {
+        "QopConfiguration$RpcProtection": "<p>The RPC protection setting configured on the HDFS cluster. This setting corresponds to your <code>hadoop.rpc.protection</code> setting in your <code>core-site.xml</code> file on your Hadoop cluster.</p>"
+      }
+    },
+    "HdfsServerHostname": {
+      "base": null,
+      "refs": {
+        "HdfsNameNode$Hostname": "<p>The hostname of the NameNode in the HDFS cluster. This value is the IP address or Domain Name Service (DNS) name of the NameNode. An agent that's installed on-premises uses this hostname to communicate with the NameNode in the network.</p>"
+      }
+    },
+    "HdfsServerPort": {
+      "base": null,
+      "refs": {
+        "HdfsNameNode$Port": "<p>The port that the NameNode uses to listen to client requests.</p>"
+      }
+    },
+    "HdfsSubdirectory": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$Subdirectory": "<p>A subdirectory in the HDFS cluster. This subdirectory is used to read data from or write data to the HDFS cluster. If the subdirectory isn't specified, it will default to <code>/</code>.</p>",
+        "UpdateLocationHdfsRequest$Subdirectory": "<p>A subdirectory in the HDFS cluster. This subdirectory is used to read data from or write data to the HDFS cluster.</p>"
+      }
+    },
+    "HdfsUser": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$SimpleUser": "<p>The user name used to identify the client on the host operating system. </p> <note> <p>If <code>SIMPLE</code> is specified for <code>AuthenticationType</code>, this parameter is required. </p> </note>",
+        "DescribeLocationHdfsResponse$SimpleUser": "<p>The user name used to identify the client on the host operating system. This parameter is used if the <code>AuthenticationType</code> is defined as <code>SIMPLE</code>.</p>",
+        "UpdateLocationHdfsRequest$SimpleUser": "<p>The user name used to identify the client on the host operating system.</p>"
+      }
+    },
     "IamRoleArn": {
       "base": null,
       "refs": {
@@ -456,6 +559,7 @@
         "CreateAgentRequest$Tags": "<p>The key-value pair that represents the tag that you want to associate with the agent. The value can be an empty string. This value helps you manage, filter, and search for your agents.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @. </p> </note>",
         "CreateLocationEfsRequest$Tags": "<p>The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.</p>",
         "CreateLocationFsxWindowsRequest$Tags": "<p>The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.</p>",
+        "CreateLocationHdfsRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources. </p>",
         "CreateLocationNfsRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
         "CreateLocationObjectStorageRequest$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
         "CreateLocationS3Request$Tags": "<p>The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.</p>",
@@ -472,6 +576,36 @@
     "InvalidRequestException": {
       "base": "<p>This exception is thrown when the client submits a malformed request.</p>",
       "refs": {
+      }
+    },
+    "KerberosKeytabFile": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$KerberosKeytab": "<p>The Kerberos key table (keytab) that contains mappings between the defined Kerberos principal and the encrypted keys. You can load the keytab from a file by providing the file's address. If you're using the CLI, it performs base64 encoding for you. Otherwise, provide the base64-encoded text. </p> <note> <p>If <code>KERBEROS</code> is specified for <code>AuthenticationType</code>, this parameter is required. </p> </note>",
+        "UpdateLocationHdfsRequest$KerberosKeytab": "<p>The Kerberos key table (keytab) that contains mappings between the defined Kerberos principal and the encrypted keys. You can load the keytab from a file by providing the file's address. If you use the AWS CLI, it performs base64 encoding for you. Otherwise, provide the base64-encoded text.</p>"
+      }
+    },
+    "KerberosKrb5ConfFile": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$KerberosKrb5Conf": "<p>The <code>krb5.conf</code> file that contains the Kerberos configuration information. You can load the <code>krb5.conf</code> file by providing the file's address. If you're using the CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded text. </p> <note> <p>If <code>KERBEROS</code> is specified for <code>AuthenticationType</code>, this parameter is required.</p> </note>",
+        "UpdateLocationHdfsRequest$KerberosKrb5Conf": "<p>The <code>krb5.conf</code> file that contains the Kerberos configuration information. You can load the <code>krb5.conf</code> file by providing the file's address. If you're using the AWS CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded text.</p>"
+      }
+    },
+    "KerberosPrincipal": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$KerberosPrincipal": "<p>The Kerberos principal with access to the files and folders on the HDFS cluster. </p> <note> <p>If <code>KERBEROS</code> is specified for <code>AuthenticationType</code>, this parameter is required.</p> </note>",
+        "DescribeLocationHdfsResponse$KerberosPrincipal": "<p>The Kerberos principal with access to the files and folders on the HDFS cluster. This parameter is used if the <code>AuthenticationType</code> is defined as <code>KERBEROS</code>.</p>",
+        "UpdateLocationHdfsRequest$KerberosPrincipal": "<p>The Kerberos principal with access to the files and folders on the HDFS cluster. </p>"
+      }
+    },
+    "KmsKeyProviderUri": {
+      "base": null,
+      "refs": {
+        "CreateLocationHdfsRequest$KmsKeyProviderUri": "<p>The URI of the HDFS cluster's Key Management Server (KMS). </p>",
+        "DescribeLocationHdfsResponse$KmsKeyProviderUri": "<p> The URI of the HDFS cluster's Key Management Server (KMS). </p>",
+        "UpdateLocationHdfsRequest$KmsKeyProviderUri": "<p>The URI of the HDFS cluster's Key Management Server (KMS). </p>"
       }
     },
     "ListAgentsRequest": {
@@ -529,6 +663,7 @@
       "refs": {
         "CreateLocationEfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon EFS file system location that is created.</p>",
         "CreateLocationFsxWindowsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the FSx for Windows File Server file system location that is created.</p>",
+        "CreateLocationHdfsResponse$LocationArn": "<p>The ARN of the source HDFS cluster location that's created. </p>",
         "CreateLocationNfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the source NFS file system location that is created.</p>",
         "CreateLocationObjectStorageResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.</p>",
         "CreateLocationS3Response$LocationArn": "<p>The Amazon Resource Name (ARN) of the source Amazon S3 bucket location that is created.</p>",
@@ -540,6 +675,8 @@
         "DescribeLocationEfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the EFS location that was described.</p>",
         "DescribeLocationFsxWindowsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the FSx for Windows File Server location to describe.</p>",
         "DescribeLocationFsxWindowsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the FSx for Windows File Server location that was described.</p>",
+        "DescribeLocationHdfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the HDFS cluster location to describe.</p>",
+        "DescribeLocationHdfsResponse$LocationArn": "<p>The ARN of the HDFS cluster location.</p>",
         "DescribeLocationNfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the NFS location to describe.</p>",
         "DescribeLocationNfsResponse$LocationArn": "<p>The Amazon Resource Name (ARN) of the NFS location that was described.</p>",
         "DescribeLocationObjectStorageRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the self-managed object storage server location that was described.</p>",
@@ -551,6 +688,7 @@
         "DescribeTaskResponse$SourceLocationArn": "<p>The Amazon Resource Name (ARN) of the source file system's location.</p>",
         "DescribeTaskResponse$DestinationLocationArn": "<p>The Amazon Resource Name (ARN) of the Amazon Web Services storage resource's location.</p>",
         "LocationListEntry$LocationArn": "<p>The Amazon Resource Name (ARN) of the location. For Network File System (NFS) or Amazon EFS, the location is the export path. For Amazon S3, the location is the prefix path that you want to mount and use as the root of the location.</p>",
+        "UpdateLocationHdfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the source HDFS cluster location.</p>",
         "UpdateLocationNfsRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the NFS location to update.</p>",
         "UpdateLocationObjectStorageRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the self-managed object storage server location to be updated.</p>",
         "UpdateLocationSmbRequest$LocationArn": "<p>The Amazon Resource Name (ARN) of the SMB location to update.</p>"
@@ -591,6 +729,7 @@
       "refs": {
         "DescribeLocationEfsResponse$LocationUri": "<p>The URL of the EFS location that was described.</p>",
         "DescribeLocationFsxWindowsResponse$LocationUri": "<p>The URL of the FSx for Windows File Server location that was described.</p>",
+        "DescribeLocationHdfsResponse$LocationUri": "<p>The URI of the HDFS cluster location.</p>",
         "DescribeLocationNfsResponse$LocationUri": "<p>The URL of the source NFS location that was described.</p>",
         "DescribeLocationObjectStorageResponse$LocationUri": "<p>The URL of the source self-managed object storage server location that was described.</p>",
         "DescribeLocationS3Response$LocationUri": "<p>The URL of the Amazon S3 location that was described.</p>",
@@ -603,7 +742,7 @@
       "refs": {
         "CreateTaskRequest$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that is used to monitor and log events in the task. </p>",
         "DescribeTaskResponse$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that was used to monitor and log events in the task.</p> <p>For more information on these groups, see Working with Log Groups and Log Streams in the <i>Amazon CloudWatch User Guide</i>.</p>",
-        "UpdateTaskRequest$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the resource name of the CloudWatch LogGroup.</p>"
+        "UpdateTaskRequest$CloudWatchLogGroupArn": "<p>The Amazon Resource Name (ARN) of the resource name of the Amazon CloudWatch log group.</p>"
       }
     },
     "LogLevel": {
@@ -668,7 +807,7 @@
     "NfsVersion": {
       "base": null,
       "refs": {
-        "NfsMountOptions$Version": "<p>The specific NFS version that you want DataSync to use to mount your NFS share. If the server refuses to use the version specified, the sync will fail. If you don't specify a version, DataSync defaults to <code>AUTOMATIC</code>. That is, DataSync automatically selects a version based on negotiation with the NFS server.</p> <p>You can specify the following NFS versions:</p> <ul> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc1813\">NFSv3</a> </b> - stateless protocol version that allows for asynchronous writes on the server.</p> </li> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc3530\">NFSv4.0</a> </b> - stateful, firewall-friendly protocol version that supports delegations and pseudo filesystems.</p> </li> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc5661\">NFSv4.1</a> </b> - stateful protocol version that supports sessions, directory delegations, and parallel data processing. Version 4.1 also includes all features available in version 4.0.</p> </li> </ul>"
+        "NfsMountOptions$Version": "<p>The specific NFS version that you want DataSync to use to mount your NFS share. If the server refuses to use the version specified, the sync will fail. If you don't specify a version, DataSync defaults to <code>AUTOMATIC</code>. That is, DataSync automatically selects a version based on negotiation with the NFS server.</p> <p>You can specify the following NFS versions:</p> <ul> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc1813\">NFSv3</a> </b> - stateless protocol version that allows for asynchronous writes on the server.</p> </li> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc3530\">NFSv4.0</a> </b> - stateful, firewall-friendly protocol version that supports delegations and pseudo file systems.</p> </li> <li> <p> <b> <a href=\"https://tools.ietf.org/html/rfc5661\">NFSv4.1</a> </b> - stateful protocol version that supports sessions, directory delegations, and parallel data processing. Version 4.1 also includes all features available in version 4.0.</p> </li> </ul>"
       }
     },
     "ObjectStorageAccessKey": {
@@ -792,6 +931,14 @@
         "DescribeAgentResponse$PrivateLinkConfig": "<p>The subnet and the security group that DataSync used to access a VPC endpoint.</p>"
       }
     },
+    "QopConfiguration": {
+      "base": "<p>The Quality of Protection (QOP) configuration specifies the Remote Procedure Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed File System (HDFS) cluster.</p>",
+      "refs": {
+        "CreateLocationHdfsRequest$QopConfiguration": "<p>The Quality of Protection (QOP) configuration specifies the Remote Procedure Call (RPC) and data transfer protection settings configured on the Hadoop Distributed File System (HDFS) cluster. If <code>QopConfiguration</code> isn't specified, <code>RpcProtection</code> and <code>DataTransferProtection</code> default to <code>PRIVACY</code>. If you set <code>RpcProtection</code> or <code>DataTransferProtection</code>, the other parameter assumes the same value. </p>",
+        "DescribeLocationHdfsResponse$QopConfiguration": "<p>The Quality of Protection (QOP) configuration specifies the Remote Procedure Call (RPC) and data transfer protection settings configured on the Hadoop Distributed File System (HDFS) cluster. </p>",
+        "UpdateLocationHdfsRequest$QopConfiguration": "<p>The Quality of Protection (QOP) configuration specifies the Remote Procedure Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed File System (HDFS) cluster. </p>"
+      }
+    },
     "S3BucketArn": {
       "base": null,
       "refs": {
@@ -892,7 +1039,7 @@
     "SourceNetworkInterfaceArns": {
       "base": null,
       "refs": {
-        "DescribeTaskResponse$SourceNetworkInterfaceArns": "<p>The Amazon Resource Name (ARN) of the source ENIs (Elastic Network Interface) that was created for your subnet.</p>"
+        "DescribeTaskResponse$SourceNetworkInterfaceArns": "<p>The Amazon Resource Names (ARNs) of the source elastic network interfaces (ENIs) that were created for your subnet.</p>"
       }
     },
     "StartTaskExecutionRequest": {
@@ -919,7 +1066,7 @@
       }
     },
     "TagListEntry": {
-      "base": "<p>Represents a single entry in a list of AWS resource tags. <code>TagListEntry</code> returns an array that contains a list of tasks when the <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTagsForResource.html\">ListTagsForResource</a> operation is called.</p>",
+      "base": "<p>Represents a single entry in a list of Amazon Web Services resource tags. <code>TagListEntry</code> returns an array that contains a list of tasks when the <a href=\"https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTagsForResource.html\">ListTagsForResource</a> operation is called.</p>",
       "refs": {
         "InputTagList$member": null,
         "OutputTagList$member": null
@@ -1065,6 +1212,7 @@
         "DescribeAgentResponse$CreationTime": "<p>The time that the agent was activated (that is, created in your account).</p>",
         "DescribeLocationEfsResponse$CreationTime": "<p>The time that the EFS location was created.</p>",
         "DescribeLocationFsxWindowsResponse$CreationTime": "<p>The time that the FSx for Windows File Server location was created.</p>",
+        "DescribeLocationHdfsResponse$CreationTime": "<p>The time that the HDFS location was created.</p>",
         "DescribeLocationNfsResponse$CreationTime": "<p>The time that the NFS location was created.</p>",
         "DescribeLocationObjectStorageResponse$CreationTime": "<p>The time that the self-managed object storage server agent was created.</p>",
         "DescribeLocationS3Response$CreationTime": "<p>The time that the Amazon S3 bucket location was created.</p>",
@@ -1101,6 +1249,16 @@
       }
     },
     "UpdateAgentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLocationHdfsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLocationHdfsResponse": {
       "base": null,
       "refs": {
       }

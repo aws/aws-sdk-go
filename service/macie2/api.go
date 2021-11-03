@@ -6286,7 +6286,8 @@ func (c *Macie2) UpdateMemberSessionRequest(input *UpdateMemberSessionInput) (re
 
 // UpdateMemberSession API operation for Amazon Macie 2.
 //
-// Enables an Amazon Macie administrator to suspend or re-enable a member account.
+// Enables an Amazon Macie administrator to suspend or re-enable Macie for a
+// member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7538,9 +7539,10 @@ func (s *BucketLevelPermissions) SetBucketPolicy(v *BucketPolicy) *BucketLevelPe
 // Provides statistical data and other information about an S3 bucket that Amazon
 // Macie monitors and analyzes for your account. If an error occurs when Macie
 // attempts to retrieve and process information about the bucket or the bucket's
-// objects, the value for most of these properties is null. Exceptions are accountId,
-// bucketArn, bucketCreatedAt, bucketName, lastUpdated, and region. To identify
-// the cause of the error, refer to the errorCode and errorMessage values.
+// objects, the value for the versioning property is false and the value for
+// most other properties is null. Exceptions are accountId, bucketArn, bucketCreatedAt,
+// bucketName, lastUpdated, and region. To identify the cause of the error,
+// refer to the errorCode and errorMessage values.
 type BucketMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -8542,10 +8544,10 @@ func (s *CreateClassificationJobOutput) SetJobId(v string) *CreateClassification
 	return s
 }
 
-// Specifies the criteria and other settings for a custom data identifier. You
-// can't change a custom data identifier after you create it. This helps ensure
-// that you have an immutable history of sensitive data findings and discovery
-// results for data privacy and protection audits or investigations.
+// Specifies the detection criteria and other settings for a custom data identifier.
+// You can't change a custom data identifier after you create it. This helps
+// ensure that you have an immutable history of sensitive data findings and
+// discovery results for data privacy and protection audits or investigations.
 type CreateCustomDataIdentifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8562,6 +8564,21 @@ type CreateCustomDataIdentifierInput struct {
 	Name *string `locationName:"name" type:"string"`
 
 	Regex *string `locationName:"regex" type:"string"`
+
+	// The severity to assign to findings that the custom data identifier produces,
+	// based on the number of occurrences of text that matches the custom data identifier's
+	// detection criteria. You can specify as many as three SeverityLevel objects
+	// in this array, one for each severity: LOW, MEDIUM, or HIGH. If you specify
+	// more than one, the occurrences thresholds must be in ascending order by severity,
+	// moving from LOW to HIGH. For example, 1 for LOW, 50 for MEDIUM, and 100 for
+	// HIGH. If an S3 object contains fewer occurrences than the lowest specified
+	// threshold, Amazon Macie doesn't create a finding.
+	//
+	// If you don't specify any values for this array, Macie creates findings for
+	// S3 objects that contain at least one occurrence of text that matches the
+	// detection criteria, and Macie automatically assigns the MEDIUM severity to
+	// those findings.
+	SeverityLevels []*SeverityLevel `locationName:"severityLevels" type:"list"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
 	// values) for a classification job, custom data identifier, findings filter,
@@ -8585,6 +8602,26 @@ func (s CreateCustomDataIdentifierInput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateCustomDataIdentifierInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCustomDataIdentifierInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCustomDataIdentifierInput"}
+	if s.SeverityLevels != nil {
+		for i, v := range s.SeverityLevels {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SeverityLevels", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetClientToken sets the ClientToken field's value.
@@ -8626,6 +8663,12 @@ func (s *CreateCustomDataIdentifierInput) SetName(v string) *CreateCustomDataIde
 // SetRegex sets the Regex field's value.
 func (s *CreateCustomDataIdentifierInput) SetRegex(v string) *CreateCustomDataIdentifierInput {
 	s.Regex = &v
+	return s
+}
+
+// SetSeverityLevels sets the SeverityLevels field's value.
+func (s *CreateCustomDataIdentifierInput) SetSeverityLevels(v []*SeverityLevel) *CreateCustomDataIdentifierInput {
+	s.SeverityLevels = v
 	return s
 }
 
@@ -9008,8 +9051,7 @@ func (s *CreateMemberOutput) SetArn(v string) *CreateMemberOutput {
 	return s
 }
 
-// Specifies the types of findings to include in a set of sample findings that
-// Amazon Macie creates.
+// Specifies the types of sample findings to create.
 type CreateSampleFindingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11532,8 +11574,8 @@ func (s *GetCustomDataIdentifierInput) SetId(v string) *GetCustomDataIdentifierI
 	return s
 }
 
-// Provides information about the criteria and other settings for a custom data
-// identifier.
+// Provides information about the detection criteria and other settings for
+// a custom data identifier.
 type GetCustomDataIdentifierOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11556,6 +11598,21 @@ type GetCustomDataIdentifierOutput struct {
 	Name *string `locationName:"name" type:"string"`
 
 	Regex *string `locationName:"regex" type:"string"`
+
+	// The severity to assign to findings that the custom data identifier produces,
+	// based on the number of occurrences of text that matches the custom data identifier's
+	// detection criteria. You can specify as many as three SeverityLevel objects
+	// in this array, one for each severity: LOW, MEDIUM, or HIGH. If you specify
+	// more than one, the occurrences thresholds must be in ascending order by severity,
+	// moving from LOW to HIGH. For example, 1 for LOW, 50 for MEDIUM, and 100 for
+	// HIGH. If an S3 object contains fewer occurrences than the lowest specified
+	// threshold, Amazon Macie doesn't create a finding.
+	//
+	// If you don't specify any values for this array, Macie creates findings for
+	// S3 objects that contain at least one occurrence of text that matches the
+	// detection criteria, and Macie automatically assigns the MEDIUM severity to
+	// those findings.
+	SeverityLevels []*SeverityLevel `locationName:"severityLevels" type:"list"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
 	// values) for a classification job, custom data identifier, findings filter,
@@ -11638,6 +11695,12 @@ func (s *GetCustomDataIdentifierOutput) SetName(v string) *GetCustomDataIdentifi
 // SetRegex sets the Regex field's value.
 func (s *GetCustomDataIdentifierOutput) SetRegex(v string) *GetCustomDataIdentifierOutput {
 	s.Regex = &v
+	return s
+}
+
+// SetSeverityLevels sets the SeverityLevels field's value.
+func (s *GetCustomDataIdentifierOutput) SetSeverityLevels(v []*SeverityLevel) *GetCustomDataIdentifierOutput {
+	s.SeverityLevels = v
 	return s
 }
 
@@ -16820,6 +16883,69 @@ func (s *Severity) SetScore(v int64) *Severity {
 	return s
 }
 
+// Specifies a severity level for findings that a custom data identifier produces.
+// A severity level determines which severity is assigned to the findings, based
+// on the number of occurrences of text that matches the custom data identifier's
+// detection criteria.
+type SeverityLevel struct {
+	_ struct{} `type:"structure"`
+
+	// OccurrencesThreshold is a required field
+	OccurrencesThreshold *int64 `locationName:"occurrencesThreshold" type:"long" required:"true"`
+
+	// The severity of a finding, ranging from LOW, for least severe, to HIGH, for
+	// most severe. Valid values are:
+	//
+	// Severity is a required field
+	Severity *string `locationName:"severity" type:"string" required:"true" enum:"DataIdentifierSeverity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SeverityLevel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SeverityLevel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SeverityLevel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SeverityLevel"}
+	if s.OccurrencesThreshold == nil {
+		invalidParams.Add(request.NewErrParamRequired("OccurrencesThreshold"))
+	}
+	if s.Severity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Severity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOccurrencesThreshold sets the OccurrencesThreshold field's value.
+func (s *SeverityLevel) SetOccurrencesThreshold(v int64) *SeverityLevel {
+	s.OccurrencesThreshold = &v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *SeverityLevel) SetSeverity(v string) *SeverityLevel {
+	s.Severity = &v
+	return s
+}
+
 // Specifies a property-based condition that determines whether an S3 bucket
 // is included or excluded from a classification job.
 type SimpleCriterionForJob struct {
@@ -17874,7 +18000,7 @@ func (s UpdateMacieSessionOutput) GoString() string {
 	return s.String()
 }
 
-// Suspends (pauses) or re-enables an Amazon Macie member account.
+// Suspends (pauses) or re-enables Amazon Macie for a member account.
 type UpdateMemberSessionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18642,6 +18768,28 @@ const (
 func Currency_Values() []string {
 	return []string{
 		CurrencyUsd,
+	}
+}
+
+// The severity of a finding, ranging from LOW, for least severe, to HIGH, for
+// most severe. Valid values are:
+const (
+	// DataIdentifierSeverityLow is a DataIdentifierSeverity enum value
+	DataIdentifierSeverityLow = "LOW"
+
+	// DataIdentifierSeverityMedium is a DataIdentifierSeverity enum value
+	DataIdentifierSeverityMedium = "MEDIUM"
+
+	// DataIdentifierSeverityHigh is a DataIdentifierSeverity enum value
+	DataIdentifierSeverityHigh = "HIGH"
+)
+
+// DataIdentifierSeverity_Values returns all elements of the DataIdentifierSeverity enum
+func DataIdentifierSeverity_Values() []string {
+	return []string{
+		DataIdentifierSeverityLow,
+		DataIdentifierSeverityMedium,
+		DataIdentifierSeverityHigh,
 	}
 }
 
