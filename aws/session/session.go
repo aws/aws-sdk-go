@@ -983,8 +983,8 @@ func normalizeRegion(cfg *aws.Config) (resolved string) {
 	if strings.Contains(region, fipsInfix) ||
 		strings.Contains(region, fipsPrefix) ||
 		strings.Contains(region, fipsSuffix) {
-		resolved = strings.ReplaceAll(strings.ReplaceAll(strings.ReplaceAll(
-			region, fipsInfix, "-"), fipsPrefix, ""), fipsSuffix, "")
+		resolved = strings.Replace(strings.Replace(strings.Replace(
+			region, fipsInfix, "-", -1), fipsPrefix, "", -1), fipsSuffix, "", -1)
 		cfg.UseFIPSEndpoint = endpoints.FIPSEndpointStateEnabled
 	}
 
