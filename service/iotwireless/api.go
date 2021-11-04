@@ -4,6 +4,7 @@ package iotwireless
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -101,6 +102,291 @@ func (c *IoTWireless) AssociateAwsAccountWithPartnerAccount(input *AssociateAwsA
 // for more information on using Contexts.
 func (c *IoTWireless) AssociateAwsAccountWithPartnerAccountWithContext(ctx aws.Context, input *AssociateAwsAccountWithPartnerAccountInput, opts ...request.Option) (*AssociateAwsAccountWithPartnerAccountOutput, error) {
 	req, out := c.AssociateAwsAccountWithPartnerAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateMulticastGroupWithFuotaTask = "AssociateMulticastGroupWithFuotaTask"
+
+// AssociateMulticastGroupWithFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateMulticastGroupWithFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateMulticastGroupWithFuotaTask for more information on using the AssociateMulticastGroupWithFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateMulticastGroupWithFuotaTaskRequest method.
+//    req, resp := client.AssociateMulticastGroupWithFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/AssociateMulticastGroupWithFuotaTask
+func (c *IoTWireless) AssociateMulticastGroupWithFuotaTaskRequest(input *AssociateMulticastGroupWithFuotaTaskInput) (req *request.Request, output *AssociateMulticastGroupWithFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opAssociateMulticastGroupWithFuotaTask,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/fuota-tasks/{Id}/multicast-group",
+	}
+
+	if input == nil {
+		input = &AssociateMulticastGroupWithFuotaTaskInput{}
+	}
+
+	output = &AssociateMulticastGroupWithFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateMulticastGroupWithFuotaTask API operation for AWS IoT Wireless.
+//
+// Associate a multicast group with a FUOTA task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation AssociateMulticastGroupWithFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/AssociateMulticastGroupWithFuotaTask
+func (c *IoTWireless) AssociateMulticastGroupWithFuotaTask(input *AssociateMulticastGroupWithFuotaTaskInput) (*AssociateMulticastGroupWithFuotaTaskOutput, error) {
+	req, out := c.AssociateMulticastGroupWithFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// AssociateMulticastGroupWithFuotaTaskWithContext is the same as AssociateMulticastGroupWithFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateMulticastGroupWithFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) AssociateMulticastGroupWithFuotaTaskWithContext(ctx aws.Context, input *AssociateMulticastGroupWithFuotaTaskInput, opts ...request.Option) (*AssociateMulticastGroupWithFuotaTaskOutput, error) {
+	req, out := c.AssociateMulticastGroupWithFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateWirelessDeviceWithFuotaTask = "AssociateWirelessDeviceWithFuotaTask"
+
+// AssociateWirelessDeviceWithFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateWirelessDeviceWithFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateWirelessDeviceWithFuotaTask for more information on using the AssociateWirelessDeviceWithFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateWirelessDeviceWithFuotaTaskRequest method.
+//    req, resp := client.AssociateWirelessDeviceWithFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/AssociateWirelessDeviceWithFuotaTask
+func (c *IoTWireless) AssociateWirelessDeviceWithFuotaTaskRequest(input *AssociateWirelessDeviceWithFuotaTaskInput) (req *request.Request, output *AssociateWirelessDeviceWithFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opAssociateWirelessDeviceWithFuotaTask,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/fuota-tasks/{Id}/wireless-device",
+	}
+
+	if input == nil {
+		input = &AssociateWirelessDeviceWithFuotaTaskInput{}
+	}
+
+	output = &AssociateWirelessDeviceWithFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateWirelessDeviceWithFuotaTask API operation for AWS IoT Wireless.
+//
+// Associate a wireless device with a FUOTA task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation AssociateWirelessDeviceWithFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/AssociateWirelessDeviceWithFuotaTask
+func (c *IoTWireless) AssociateWirelessDeviceWithFuotaTask(input *AssociateWirelessDeviceWithFuotaTaskInput) (*AssociateWirelessDeviceWithFuotaTaskOutput, error) {
+	req, out := c.AssociateWirelessDeviceWithFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// AssociateWirelessDeviceWithFuotaTaskWithContext is the same as AssociateWirelessDeviceWithFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateWirelessDeviceWithFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) AssociateWirelessDeviceWithFuotaTaskWithContext(ctx aws.Context, input *AssociateWirelessDeviceWithFuotaTaskInput, opts ...request.Option) (*AssociateWirelessDeviceWithFuotaTaskOutput, error) {
+	req, out := c.AssociateWirelessDeviceWithFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateWirelessDeviceWithMulticastGroup = "AssociateWirelessDeviceWithMulticastGroup"
+
+// AssociateWirelessDeviceWithMulticastGroupRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateWirelessDeviceWithMulticastGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateWirelessDeviceWithMulticastGroup for more information on using the AssociateWirelessDeviceWithMulticastGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateWirelessDeviceWithMulticastGroupRequest method.
+//    req, resp := client.AssociateWirelessDeviceWithMulticastGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/AssociateWirelessDeviceWithMulticastGroup
+func (c *IoTWireless) AssociateWirelessDeviceWithMulticastGroupRequest(input *AssociateWirelessDeviceWithMulticastGroupInput) (req *request.Request, output *AssociateWirelessDeviceWithMulticastGroupOutput) {
+	op := &request.Operation{
+		Name:       opAssociateWirelessDeviceWithMulticastGroup,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/multicast-groups/{Id}/wireless-device",
+	}
+
+	if input == nil {
+		input = &AssociateWirelessDeviceWithMulticastGroupInput{}
+	}
+
+	output = &AssociateWirelessDeviceWithMulticastGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateWirelessDeviceWithMulticastGroup API operation for AWS IoT Wireless.
+//
+// Associates a wireless device with a multicast group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation AssociateWirelessDeviceWithMulticastGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/AssociateWirelessDeviceWithMulticastGroup
+func (c *IoTWireless) AssociateWirelessDeviceWithMulticastGroup(input *AssociateWirelessDeviceWithMulticastGroupInput) (*AssociateWirelessDeviceWithMulticastGroupOutput, error) {
+	req, out := c.AssociateWirelessDeviceWithMulticastGroupRequest(input)
+	return out, req.Send()
+}
+
+// AssociateWirelessDeviceWithMulticastGroupWithContext is the same as AssociateWirelessDeviceWithMulticastGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateWirelessDeviceWithMulticastGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) AssociateWirelessDeviceWithMulticastGroupWithContext(ctx aws.Context, input *AssociateWirelessDeviceWithMulticastGroupInput, opts ...request.Option) (*AssociateWirelessDeviceWithMulticastGroupOutput, error) {
+	req, out := c.AssociateWirelessDeviceWithMulticastGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -390,6 +676,101 @@ func (c *IoTWireless) AssociateWirelessGatewayWithThingWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opCancelMulticastGroupSession = "CancelMulticastGroupSession"
+
+// CancelMulticastGroupSessionRequest generates a "aws/request.Request" representing the
+// client's request for the CancelMulticastGroupSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelMulticastGroupSession for more information on using the CancelMulticastGroupSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelMulticastGroupSessionRequest method.
+//    req, resp := client.CancelMulticastGroupSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/CancelMulticastGroupSession
+func (c *IoTWireless) CancelMulticastGroupSessionRequest(input *CancelMulticastGroupSessionInput) (req *request.Request, output *CancelMulticastGroupSessionOutput) {
+	op := &request.Operation{
+		Name:       opCancelMulticastGroupSession,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/multicast-groups/{Id}/session",
+	}
+
+	if input == nil {
+		input = &CancelMulticastGroupSessionInput{}
+	}
+
+	output = &CancelMulticastGroupSessionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelMulticastGroupSession API operation for AWS IoT Wireless.
+//
+// Cancels an existing multicast group session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation CancelMulticastGroupSession for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/CancelMulticastGroupSession
+func (c *IoTWireless) CancelMulticastGroupSession(input *CancelMulticastGroupSessionInput) (*CancelMulticastGroupSessionOutput, error) {
+	req, out := c.CancelMulticastGroupSessionRequest(input)
+	return out, req.Send()
+}
+
+// CancelMulticastGroupSessionWithContext is the same as CancelMulticastGroupSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelMulticastGroupSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) CancelMulticastGroupSessionWithContext(ctx aws.Context, input *CancelMulticastGroupSessionInput, opts ...request.Option) (*CancelMulticastGroupSessionOutput, error) {
+	req, out := c.CancelMulticastGroupSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDestination = "CreateDestination"
 
 // CreateDestinationRequest generates a "aws/request.Request" representing the
@@ -570,6 +951,194 @@ func (c *IoTWireless) CreateDeviceProfile(input *CreateDeviceProfileInput) (*Cre
 // for more information on using Contexts.
 func (c *IoTWireless) CreateDeviceProfileWithContext(ctx aws.Context, input *CreateDeviceProfileInput, opts ...request.Option) (*CreateDeviceProfileOutput, error) {
 	req, out := c.CreateDeviceProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFuotaTask = "CreateFuotaTask"
+
+// CreateFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFuotaTask for more information on using the CreateFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFuotaTaskRequest method.
+//    req, resp := client.CreateFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/CreateFuotaTask
+func (c *IoTWireless) CreateFuotaTaskRequest(input *CreateFuotaTaskInput) (req *request.Request, output *CreateFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opCreateFuotaTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/fuota-tasks",
+	}
+
+	if input == nil {
+		input = &CreateFuotaTaskInput{}
+	}
+
+	output = &CreateFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFuotaTask API operation for AWS IoT Wireless.
+//
+// Creates a FUOTA task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation CreateFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/CreateFuotaTask
+func (c *IoTWireless) CreateFuotaTask(input *CreateFuotaTaskInput) (*CreateFuotaTaskOutput, error) {
+	req, out := c.CreateFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// CreateFuotaTaskWithContext is the same as CreateFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) CreateFuotaTaskWithContext(ctx aws.Context, input *CreateFuotaTaskInput, opts ...request.Option) (*CreateFuotaTaskOutput, error) {
+	req, out := c.CreateFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateMulticastGroup = "CreateMulticastGroup"
+
+// CreateMulticastGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMulticastGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMulticastGroup for more information on using the CreateMulticastGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMulticastGroupRequest method.
+//    req, resp := client.CreateMulticastGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/CreateMulticastGroup
+func (c *IoTWireless) CreateMulticastGroupRequest(input *CreateMulticastGroupInput) (req *request.Request, output *CreateMulticastGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateMulticastGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/multicast-groups",
+	}
+
+	if input == nil {
+		input = &CreateMulticastGroupInput{}
+	}
+
+	output = &CreateMulticastGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMulticastGroup API operation for AWS IoT Wireless.
+//
+// Creates a multicast group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation CreateMulticastGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/CreateMulticastGroup
+func (c *IoTWireless) CreateMulticastGroup(input *CreateMulticastGroupInput) (*CreateMulticastGroupOutput, error) {
+	req, out := c.CreateMulticastGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateMulticastGroupWithContext is the same as CreateMulticastGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMulticastGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) CreateMulticastGroupWithContext(ctx aws.Context, input *CreateMulticastGroupInput, opts ...request.Option) (*CreateMulticastGroupOutput, error) {
+	req, out := c.CreateMulticastGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1229,6 +1798,193 @@ func (c *IoTWireless) DeleteDeviceProfileWithContext(ctx aws.Context, input *Del
 	return out, req.Send()
 }
 
+const opDeleteFuotaTask = "DeleteFuotaTask"
+
+// DeleteFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFuotaTask for more information on using the DeleteFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFuotaTaskRequest method.
+//    req, resp := client.DeleteFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeleteFuotaTask
+func (c *IoTWireless) DeleteFuotaTaskRequest(input *DeleteFuotaTaskInput) (req *request.Request, output *DeleteFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFuotaTask,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/fuota-tasks/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteFuotaTaskInput{}
+	}
+
+	output = &DeleteFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFuotaTask API operation for AWS IoT Wireless.
+//
+// Deletes a FUOTA task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation DeleteFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeleteFuotaTask
+func (c *IoTWireless) DeleteFuotaTask(input *DeleteFuotaTaskInput) (*DeleteFuotaTaskOutput, error) {
+	req, out := c.DeleteFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFuotaTaskWithContext is the same as DeleteFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) DeleteFuotaTaskWithContext(ctx aws.Context, input *DeleteFuotaTaskInput, opts ...request.Option) (*DeleteFuotaTaskOutput, error) {
+	req, out := c.DeleteFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteMulticastGroup = "DeleteMulticastGroup"
+
+// DeleteMulticastGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMulticastGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMulticastGroup for more information on using the DeleteMulticastGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMulticastGroupRequest method.
+//    req, resp := client.DeleteMulticastGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeleteMulticastGroup
+func (c *IoTWireless) DeleteMulticastGroupRequest(input *DeleteMulticastGroupInput) (req *request.Request, output *DeleteMulticastGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMulticastGroup,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/multicast-groups/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteMulticastGroupInput{}
+	}
+
+	output = &DeleteMulticastGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMulticastGroup API operation for AWS IoT Wireless.
+//
+// Deletes a multicast group if it is not in use by a fuota task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation DeleteMulticastGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DeleteMulticastGroup
+func (c *IoTWireless) DeleteMulticastGroup(input *DeleteMulticastGroupInput) (*DeleteMulticastGroupOutput, error) {
+	req, out := c.DeleteMulticastGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMulticastGroupWithContext is the same as DeleteMulticastGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMulticastGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) DeleteMulticastGroupWithContext(ctx aws.Context, input *DeleteMulticastGroupInput, opts ...request.Option) (*DeleteMulticastGroupOutput, error) {
+	req, out := c.DeleteMulticastGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteServiceProfile = "DeleteServiceProfile"
 
 // DeleteServiceProfileRequest generates a "aws/request.Request" representing the
@@ -1784,6 +2540,285 @@ func (c *IoTWireless) DisassociateAwsAccountFromPartnerAccountWithContext(ctx aw
 	return out, req.Send()
 }
 
+const opDisassociateMulticastGroupFromFuotaTask = "DisassociateMulticastGroupFromFuotaTask"
+
+// DisassociateMulticastGroupFromFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateMulticastGroupFromFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateMulticastGroupFromFuotaTask for more information on using the DisassociateMulticastGroupFromFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateMulticastGroupFromFuotaTaskRequest method.
+//    req, resp := client.DisassociateMulticastGroupFromFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DisassociateMulticastGroupFromFuotaTask
+func (c *IoTWireless) DisassociateMulticastGroupFromFuotaTaskRequest(input *DisassociateMulticastGroupFromFuotaTaskInput) (req *request.Request, output *DisassociateMulticastGroupFromFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateMulticastGroupFromFuotaTask,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/fuota-tasks/{Id}/multicast-groups/{MulticastGroupId}",
+	}
+
+	if input == nil {
+		input = &DisassociateMulticastGroupFromFuotaTaskInput{}
+	}
+
+	output = &DisassociateMulticastGroupFromFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateMulticastGroupFromFuotaTask API operation for AWS IoT Wireless.
+//
+// Disassociates a multicast group from a fuota task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation DisassociateMulticastGroupFromFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DisassociateMulticastGroupFromFuotaTask
+func (c *IoTWireless) DisassociateMulticastGroupFromFuotaTask(input *DisassociateMulticastGroupFromFuotaTaskInput) (*DisassociateMulticastGroupFromFuotaTaskOutput, error) {
+	req, out := c.DisassociateMulticastGroupFromFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateMulticastGroupFromFuotaTaskWithContext is the same as DisassociateMulticastGroupFromFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateMulticastGroupFromFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) DisassociateMulticastGroupFromFuotaTaskWithContext(ctx aws.Context, input *DisassociateMulticastGroupFromFuotaTaskInput, opts ...request.Option) (*DisassociateMulticastGroupFromFuotaTaskOutput, error) {
+	req, out := c.DisassociateMulticastGroupFromFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateWirelessDeviceFromFuotaTask = "DisassociateWirelessDeviceFromFuotaTask"
+
+// DisassociateWirelessDeviceFromFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateWirelessDeviceFromFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateWirelessDeviceFromFuotaTask for more information on using the DisassociateWirelessDeviceFromFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateWirelessDeviceFromFuotaTaskRequest method.
+//    req, resp := client.DisassociateWirelessDeviceFromFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DisassociateWirelessDeviceFromFuotaTask
+func (c *IoTWireless) DisassociateWirelessDeviceFromFuotaTaskRequest(input *DisassociateWirelessDeviceFromFuotaTaskInput) (req *request.Request, output *DisassociateWirelessDeviceFromFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateWirelessDeviceFromFuotaTask,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/fuota-tasks/{Id}/wireless-devices/{WirelessDeviceId}",
+	}
+
+	if input == nil {
+		input = &DisassociateWirelessDeviceFromFuotaTaskInput{}
+	}
+
+	output = &DisassociateWirelessDeviceFromFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateWirelessDeviceFromFuotaTask API operation for AWS IoT Wireless.
+//
+// Disassociates a wireless device from a FUOTA task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation DisassociateWirelessDeviceFromFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DisassociateWirelessDeviceFromFuotaTask
+func (c *IoTWireless) DisassociateWirelessDeviceFromFuotaTask(input *DisassociateWirelessDeviceFromFuotaTaskInput) (*DisassociateWirelessDeviceFromFuotaTaskOutput, error) {
+	req, out := c.DisassociateWirelessDeviceFromFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateWirelessDeviceFromFuotaTaskWithContext is the same as DisassociateWirelessDeviceFromFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateWirelessDeviceFromFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) DisassociateWirelessDeviceFromFuotaTaskWithContext(ctx aws.Context, input *DisassociateWirelessDeviceFromFuotaTaskInput, opts ...request.Option) (*DisassociateWirelessDeviceFromFuotaTaskOutput, error) {
+	req, out := c.DisassociateWirelessDeviceFromFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateWirelessDeviceFromMulticastGroup = "DisassociateWirelessDeviceFromMulticastGroup"
+
+// DisassociateWirelessDeviceFromMulticastGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateWirelessDeviceFromMulticastGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateWirelessDeviceFromMulticastGroup for more information on using the DisassociateWirelessDeviceFromMulticastGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateWirelessDeviceFromMulticastGroupRequest method.
+//    req, resp := client.DisassociateWirelessDeviceFromMulticastGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DisassociateWirelessDeviceFromMulticastGroup
+func (c *IoTWireless) DisassociateWirelessDeviceFromMulticastGroupRequest(input *DisassociateWirelessDeviceFromMulticastGroupInput) (req *request.Request, output *DisassociateWirelessDeviceFromMulticastGroupOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateWirelessDeviceFromMulticastGroup,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/multicast-groups/{Id}/wireless-devices/{WirelessDeviceId}",
+	}
+
+	if input == nil {
+		input = &DisassociateWirelessDeviceFromMulticastGroupInput{}
+	}
+
+	output = &DisassociateWirelessDeviceFromMulticastGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateWirelessDeviceFromMulticastGroup API operation for AWS IoT Wireless.
+//
+// Disassociates a wireless device from a multicast group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation DisassociateWirelessDeviceFromMulticastGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/DisassociateWirelessDeviceFromMulticastGroup
+func (c *IoTWireless) DisassociateWirelessDeviceFromMulticastGroup(input *DisassociateWirelessDeviceFromMulticastGroupInput) (*DisassociateWirelessDeviceFromMulticastGroupOutput, error) {
+	req, out := c.DisassociateWirelessDeviceFromMulticastGroupRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateWirelessDeviceFromMulticastGroupWithContext is the same as DisassociateWirelessDeviceFromMulticastGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateWirelessDeviceFromMulticastGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) DisassociateWirelessDeviceFromMulticastGroupWithContext(ctx aws.Context, input *DisassociateWirelessDeviceFromMulticastGroupInput, opts ...request.Option) (*DisassociateWirelessDeviceFromMulticastGroupOutput, error) {
+	req, out := c.DisassociateWirelessDeviceFromMulticastGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateWirelessDeviceFromThing = "DisassociateWirelessDeviceFromThing"
 
 // DisassociateWirelessDeviceFromThingRequest generates a "aws/request.Request" representing the
@@ -2248,6 +3283,97 @@ func (c *IoTWireless) GetDeviceProfileWithContext(ctx aws.Context, input *GetDev
 	return out, req.Send()
 }
 
+const opGetFuotaTask = "GetFuotaTask"
+
+// GetFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the GetFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFuotaTask for more information on using the GetFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFuotaTaskRequest method.
+//    req, resp := client.GetFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetFuotaTask
+func (c *IoTWireless) GetFuotaTaskRequest(input *GetFuotaTaskInput) (req *request.Request, output *GetFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opGetFuotaTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/fuota-tasks/{Id}",
+	}
+
+	if input == nil {
+		input = &GetFuotaTaskInput{}
+	}
+
+	output = &GetFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFuotaTask API operation for AWS IoT Wireless.
+//
+// Gets information about a FUOTA task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetFuotaTask
+func (c *IoTWireless) GetFuotaTask(input *GetFuotaTaskInput) (*GetFuotaTaskOutput, error) {
+	req, out := c.GetFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// GetFuotaTaskWithContext is the same as GetFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetFuotaTaskWithContext(ctx aws.Context, input *GetFuotaTaskInput, opts ...request.Option) (*GetFuotaTaskOutput, error) {
+	req, out := c.GetFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetLogLevelsByResourceTypes = "GetLogLevelsByResourceTypes"
 
 // GetLogLevelsByResourceTypesRequest generates a "aws/request.Request" representing the
@@ -2341,6 +3467,188 @@ func (c *IoTWireless) GetLogLevelsByResourceTypesWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opGetMulticastGroup = "GetMulticastGroup"
+
+// GetMulticastGroupRequest generates a "aws/request.Request" representing the
+// client's request for the GetMulticastGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMulticastGroup for more information on using the GetMulticastGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMulticastGroupRequest method.
+//    req, resp := client.GetMulticastGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMulticastGroup
+func (c *IoTWireless) GetMulticastGroupRequest(input *GetMulticastGroupInput) (req *request.Request, output *GetMulticastGroupOutput) {
+	op := &request.Operation{
+		Name:       opGetMulticastGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/multicast-groups/{Id}",
+	}
+
+	if input == nil {
+		input = &GetMulticastGroupInput{}
+	}
+
+	output = &GetMulticastGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMulticastGroup API operation for AWS IoT Wireless.
+//
+// Gets information about a multicast group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetMulticastGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMulticastGroup
+func (c *IoTWireless) GetMulticastGroup(input *GetMulticastGroupInput) (*GetMulticastGroupOutput, error) {
+	req, out := c.GetMulticastGroupRequest(input)
+	return out, req.Send()
+}
+
+// GetMulticastGroupWithContext is the same as GetMulticastGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMulticastGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetMulticastGroupWithContext(ctx aws.Context, input *GetMulticastGroupInput, opts ...request.Option) (*GetMulticastGroupOutput, error) {
+	req, out := c.GetMulticastGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMulticastGroupSession = "GetMulticastGroupSession"
+
+// GetMulticastGroupSessionRequest generates a "aws/request.Request" representing the
+// client's request for the GetMulticastGroupSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMulticastGroupSession for more information on using the GetMulticastGroupSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMulticastGroupSessionRequest method.
+//    req, resp := client.GetMulticastGroupSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMulticastGroupSession
+func (c *IoTWireless) GetMulticastGroupSessionRequest(input *GetMulticastGroupSessionInput) (req *request.Request, output *GetMulticastGroupSessionOutput) {
+	op := &request.Operation{
+		Name:       opGetMulticastGroupSession,
+		HTTPMethod: "GET",
+		HTTPPath:   "/multicast-groups/{Id}/session",
+	}
+
+	if input == nil {
+		input = &GetMulticastGroupSessionInput{}
+	}
+
+	output = &GetMulticastGroupSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMulticastGroupSession API operation for AWS IoT Wireless.
+//
+// Gets information about a multicast group session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetMulticastGroupSession for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetMulticastGroupSession
+func (c *IoTWireless) GetMulticastGroupSession(input *GetMulticastGroupSessionInput) (*GetMulticastGroupSessionOutput, error) {
+	req, out := c.GetMulticastGroupSessionRequest(input)
+	return out, req.Send()
+}
+
+// GetMulticastGroupSessionWithContext is the same as GetMulticastGroupSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMulticastGroupSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetMulticastGroupSessionWithContext(ctx aws.Context, input *GetMulticastGroupSessionInput, opts ...request.Option) (*GetMulticastGroupSessionOutput, error) {
+	req, out := c.GetMulticastGroupSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPartnerAccount = "GetPartnerAccount"
 
 // GetPartnerAccountRequest generates a "aws/request.Request" representing the
@@ -2425,6 +3733,97 @@ func (c *IoTWireless) GetPartnerAccount(input *GetPartnerAccountInput) (*GetPart
 // for more information on using Contexts.
 func (c *IoTWireless) GetPartnerAccountWithContext(ctx aws.Context, input *GetPartnerAccountInput, opts ...request.Option) (*GetPartnerAccountOutput, error) {
 	req, out := c.GetPartnerAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetResourceEventConfiguration = "GetResourceEventConfiguration"
+
+// GetResourceEventConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourceEventConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourceEventConfiguration for more information on using the GetResourceEventConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResourceEventConfigurationRequest method.
+//    req, resp := client.GetResourceEventConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetResourceEventConfiguration
+func (c *IoTWireless) GetResourceEventConfigurationRequest(input *GetResourceEventConfigurationInput) (req *request.Request, output *GetResourceEventConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetResourceEventConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/event-configurations/{Identifier}",
+	}
+
+	if input == nil {
+		input = &GetResourceEventConfigurationInput{}
+	}
+
+	output = &GetResourceEventConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourceEventConfiguration API operation for AWS IoT Wireless.
+//
+// Get the event configuration for a particular resource identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetResourceEventConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetResourceEventConfiguration
+func (c *IoTWireless) GetResourceEventConfiguration(input *GetResourceEventConfigurationInput) (*GetResourceEventConfigurationOutput, error) {
+	req, out := c.GetResourceEventConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetResourceEventConfigurationWithContext is the same as GetResourceEventConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourceEventConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetResourceEventConfigurationWithContext(ctx aws.Context, input *GetResourceEventConfigurationInput, opts ...request.Option) (*GetResourceEventConfigurationOutput, error) {
+	req, out := c.GetResourceEventConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3723,6 +5122,447 @@ func (c *IoTWireless) ListDeviceProfilesPagesWithContext(ctx aws.Context, input 
 	return p.Err()
 }
 
+const opListFuotaTasks = "ListFuotaTasks"
+
+// ListFuotaTasksRequest generates a "aws/request.Request" representing the
+// client's request for the ListFuotaTasks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFuotaTasks for more information on using the ListFuotaTasks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFuotaTasksRequest method.
+//    req, resp := client.ListFuotaTasksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListFuotaTasks
+func (c *IoTWireless) ListFuotaTasksRequest(input *ListFuotaTasksInput) (req *request.Request, output *ListFuotaTasksOutput) {
+	op := &request.Operation{
+		Name:       opListFuotaTasks,
+		HTTPMethod: "GET",
+		HTTPPath:   "/fuota-tasks",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFuotaTasksInput{}
+	}
+
+	output = &ListFuotaTasksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFuotaTasks API operation for AWS IoT Wireless.
+//
+// Lists the FUOTA tasks registered to your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation ListFuotaTasks for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListFuotaTasks
+func (c *IoTWireless) ListFuotaTasks(input *ListFuotaTasksInput) (*ListFuotaTasksOutput, error) {
+	req, out := c.ListFuotaTasksRequest(input)
+	return out, req.Send()
+}
+
+// ListFuotaTasksWithContext is the same as ListFuotaTasks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFuotaTasks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListFuotaTasksWithContext(ctx aws.Context, input *ListFuotaTasksInput, opts ...request.Option) (*ListFuotaTasksOutput, error) {
+	req, out := c.ListFuotaTasksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFuotaTasksPages iterates over the pages of a ListFuotaTasks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFuotaTasks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFuotaTasks operation.
+//    pageNum := 0
+//    err := client.ListFuotaTasksPages(params,
+//        func(page *iotwireless.ListFuotaTasksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTWireless) ListFuotaTasksPages(input *ListFuotaTasksInput, fn func(*ListFuotaTasksOutput, bool) bool) error {
+	return c.ListFuotaTasksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFuotaTasksPagesWithContext same as ListFuotaTasksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListFuotaTasksPagesWithContext(ctx aws.Context, input *ListFuotaTasksInput, fn func(*ListFuotaTasksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFuotaTasksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFuotaTasksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFuotaTasksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMulticastGroups = "ListMulticastGroups"
+
+// ListMulticastGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMulticastGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMulticastGroups for more information on using the ListMulticastGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMulticastGroupsRequest method.
+//    req, resp := client.ListMulticastGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListMulticastGroups
+func (c *IoTWireless) ListMulticastGroupsRequest(input *ListMulticastGroupsInput) (req *request.Request, output *ListMulticastGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListMulticastGroups,
+		HTTPMethod: "GET",
+		HTTPPath:   "/multicast-groups",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMulticastGroupsInput{}
+	}
+
+	output = &ListMulticastGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMulticastGroups API operation for AWS IoT Wireless.
+//
+// Lists the multicast groups registered to your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation ListMulticastGroups for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListMulticastGroups
+func (c *IoTWireless) ListMulticastGroups(input *ListMulticastGroupsInput) (*ListMulticastGroupsOutput, error) {
+	req, out := c.ListMulticastGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListMulticastGroupsWithContext is the same as ListMulticastGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMulticastGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListMulticastGroupsWithContext(ctx aws.Context, input *ListMulticastGroupsInput, opts ...request.Option) (*ListMulticastGroupsOutput, error) {
+	req, out := c.ListMulticastGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMulticastGroupsPages iterates over the pages of a ListMulticastGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMulticastGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMulticastGroups operation.
+//    pageNum := 0
+//    err := client.ListMulticastGroupsPages(params,
+//        func(page *iotwireless.ListMulticastGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTWireless) ListMulticastGroupsPages(input *ListMulticastGroupsInput, fn func(*ListMulticastGroupsOutput, bool) bool) error {
+	return c.ListMulticastGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMulticastGroupsPagesWithContext same as ListMulticastGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListMulticastGroupsPagesWithContext(ctx aws.Context, input *ListMulticastGroupsInput, fn func(*ListMulticastGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMulticastGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMulticastGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMulticastGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMulticastGroupsByFuotaTask = "ListMulticastGroupsByFuotaTask"
+
+// ListMulticastGroupsByFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the ListMulticastGroupsByFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMulticastGroupsByFuotaTask for more information on using the ListMulticastGroupsByFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMulticastGroupsByFuotaTaskRequest method.
+//    req, resp := client.ListMulticastGroupsByFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListMulticastGroupsByFuotaTask
+func (c *IoTWireless) ListMulticastGroupsByFuotaTaskRequest(input *ListMulticastGroupsByFuotaTaskInput) (req *request.Request, output *ListMulticastGroupsByFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opListMulticastGroupsByFuotaTask,
+		HTTPMethod: "GET",
+		HTTPPath:   "/fuota-tasks/{Id}/multicast-groups",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMulticastGroupsByFuotaTaskInput{}
+	}
+
+	output = &ListMulticastGroupsByFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMulticastGroupsByFuotaTask API operation for AWS IoT Wireless.
+//
+// List all multicast groups associated with a fuota task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation ListMulticastGroupsByFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ListMulticastGroupsByFuotaTask
+func (c *IoTWireless) ListMulticastGroupsByFuotaTask(input *ListMulticastGroupsByFuotaTaskInput) (*ListMulticastGroupsByFuotaTaskOutput, error) {
+	req, out := c.ListMulticastGroupsByFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// ListMulticastGroupsByFuotaTaskWithContext is the same as ListMulticastGroupsByFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMulticastGroupsByFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListMulticastGroupsByFuotaTaskWithContext(ctx aws.Context, input *ListMulticastGroupsByFuotaTaskInput, opts ...request.Option) (*ListMulticastGroupsByFuotaTaskOutput, error) {
+	req, out := c.ListMulticastGroupsByFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMulticastGroupsByFuotaTaskPages iterates over the pages of a ListMulticastGroupsByFuotaTask operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMulticastGroupsByFuotaTask method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMulticastGroupsByFuotaTask operation.
+//    pageNum := 0
+//    err := client.ListMulticastGroupsByFuotaTaskPages(params,
+//        func(page *iotwireless.ListMulticastGroupsByFuotaTaskOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTWireless) ListMulticastGroupsByFuotaTaskPages(input *ListMulticastGroupsByFuotaTaskInput, fn func(*ListMulticastGroupsByFuotaTaskOutput, bool) bool) error {
+	return c.ListMulticastGroupsByFuotaTaskPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMulticastGroupsByFuotaTaskPagesWithContext same as ListMulticastGroupsByFuotaTaskPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ListMulticastGroupsByFuotaTaskPagesWithContext(ctx aws.Context, input *ListMulticastGroupsByFuotaTaskInput, fn func(*ListMulticastGroupsByFuotaTaskOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMulticastGroupsByFuotaTaskInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMulticastGroupsByFuotaTaskRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMulticastGroupsByFuotaTaskOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListPartnerAccounts = "ListPartnerAccounts"
 
 // ListPartnerAccountsRequest generates a "aws/request.Request" representing the
@@ -4708,6 +6548,100 @@ func (c *IoTWireless) ResetResourceLogLevelWithContext(ctx aws.Context, input *R
 	return out, req.Send()
 }
 
+const opSendDataToMulticastGroup = "SendDataToMulticastGroup"
+
+// SendDataToMulticastGroupRequest generates a "aws/request.Request" representing the
+// client's request for the SendDataToMulticastGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendDataToMulticastGroup for more information on using the SendDataToMulticastGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SendDataToMulticastGroupRequest method.
+//    req, resp := client.SendDataToMulticastGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/SendDataToMulticastGroup
+func (c *IoTWireless) SendDataToMulticastGroupRequest(input *SendDataToMulticastGroupInput) (req *request.Request, output *SendDataToMulticastGroupOutput) {
+	op := &request.Operation{
+		Name:       opSendDataToMulticastGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/multicast-groups/{Id}/data",
+	}
+
+	if input == nil {
+		input = &SendDataToMulticastGroupInput{}
+	}
+
+	output = &SendDataToMulticastGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SendDataToMulticastGroup API operation for AWS IoT Wireless.
+//
+// Sends the specified data to a multicast group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation SendDataToMulticastGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/SendDataToMulticastGroup
+func (c *IoTWireless) SendDataToMulticastGroup(input *SendDataToMulticastGroupInput) (*SendDataToMulticastGroupOutput, error) {
+	req, out := c.SendDataToMulticastGroupRequest(input)
+	return out, req.Send()
+}
+
+// SendDataToMulticastGroupWithContext is the same as SendDataToMulticastGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendDataToMulticastGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) SendDataToMulticastGroupWithContext(ctx aws.Context, input *SendDataToMulticastGroupInput, opts ...request.Option) (*SendDataToMulticastGroupOutput, error) {
+	req, out := c.SendDataToMulticastGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSendDataToWirelessDevice = "SendDataToWirelessDevice"
 
 // SendDataToWirelessDeviceRequest generates a "aws/request.Request" representing the
@@ -4791,6 +6725,382 @@ func (c *IoTWireless) SendDataToWirelessDevice(input *SendDataToWirelessDeviceIn
 // for more information on using Contexts.
 func (c *IoTWireless) SendDataToWirelessDeviceWithContext(ctx aws.Context, input *SendDataToWirelessDeviceInput, opts ...request.Option) (*SendDataToWirelessDeviceOutput, error) {
 	req, out := c.SendDataToWirelessDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartBulkAssociateWirelessDeviceWithMulticastGroup = "StartBulkAssociateWirelessDeviceWithMulticastGroup"
+
+// StartBulkAssociateWirelessDeviceWithMulticastGroupRequest generates a "aws/request.Request" representing the
+// client's request for the StartBulkAssociateWirelessDeviceWithMulticastGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartBulkAssociateWirelessDeviceWithMulticastGroup for more information on using the StartBulkAssociateWirelessDeviceWithMulticastGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartBulkAssociateWirelessDeviceWithMulticastGroupRequest method.
+//    req, resp := client.StartBulkAssociateWirelessDeviceWithMulticastGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartBulkAssociateWirelessDeviceWithMulticastGroup
+func (c *IoTWireless) StartBulkAssociateWirelessDeviceWithMulticastGroupRequest(input *StartBulkAssociateWirelessDeviceWithMulticastGroupInput) (req *request.Request, output *StartBulkAssociateWirelessDeviceWithMulticastGroupOutput) {
+	op := &request.Operation{
+		Name:       opStartBulkAssociateWirelessDeviceWithMulticastGroup,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/multicast-groups/{Id}/bulk",
+	}
+
+	if input == nil {
+		input = &StartBulkAssociateWirelessDeviceWithMulticastGroupInput{}
+	}
+
+	output = &StartBulkAssociateWirelessDeviceWithMulticastGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartBulkAssociateWirelessDeviceWithMulticastGroup API operation for AWS IoT Wireless.
+//
+// Starts a bulk association of all qualifying wireless devices with a multicast
+// group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation StartBulkAssociateWirelessDeviceWithMulticastGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartBulkAssociateWirelessDeviceWithMulticastGroup
+func (c *IoTWireless) StartBulkAssociateWirelessDeviceWithMulticastGroup(input *StartBulkAssociateWirelessDeviceWithMulticastGroupInput) (*StartBulkAssociateWirelessDeviceWithMulticastGroupOutput, error) {
+	req, out := c.StartBulkAssociateWirelessDeviceWithMulticastGroupRequest(input)
+	return out, req.Send()
+}
+
+// StartBulkAssociateWirelessDeviceWithMulticastGroupWithContext is the same as StartBulkAssociateWirelessDeviceWithMulticastGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartBulkAssociateWirelessDeviceWithMulticastGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) StartBulkAssociateWirelessDeviceWithMulticastGroupWithContext(ctx aws.Context, input *StartBulkAssociateWirelessDeviceWithMulticastGroupInput, opts ...request.Option) (*StartBulkAssociateWirelessDeviceWithMulticastGroupOutput, error) {
+	req, out := c.StartBulkAssociateWirelessDeviceWithMulticastGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartBulkDisassociateWirelessDeviceFromMulticastGroup = "StartBulkDisassociateWirelessDeviceFromMulticastGroup"
+
+// StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest generates a "aws/request.Request" representing the
+// client's request for the StartBulkDisassociateWirelessDeviceFromMulticastGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartBulkDisassociateWirelessDeviceFromMulticastGroup for more information on using the StartBulkDisassociateWirelessDeviceFromMulticastGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest method.
+//    req, resp := client.StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartBulkDisassociateWirelessDeviceFromMulticastGroup
+func (c *IoTWireless) StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest(input *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput) (req *request.Request, output *StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput) {
+	op := &request.Operation{
+		Name:       opStartBulkDisassociateWirelessDeviceFromMulticastGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/multicast-groups/{Id}/bulk",
+	}
+
+	if input == nil {
+		input = &StartBulkDisassociateWirelessDeviceFromMulticastGroupInput{}
+	}
+
+	output = &StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartBulkDisassociateWirelessDeviceFromMulticastGroup API operation for AWS IoT Wireless.
+//
+// Starts a bulk disassociatin of all qualifying wireless devices from a multicast
+// group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation StartBulkDisassociateWirelessDeviceFromMulticastGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartBulkDisassociateWirelessDeviceFromMulticastGroup
+func (c *IoTWireless) StartBulkDisassociateWirelessDeviceFromMulticastGroup(input *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput) (*StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput, error) {
+	req, out := c.StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest(input)
+	return out, req.Send()
+}
+
+// StartBulkDisassociateWirelessDeviceFromMulticastGroupWithContext is the same as StartBulkDisassociateWirelessDeviceFromMulticastGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartBulkDisassociateWirelessDeviceFromMulticastGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) StartBulkDisassociateWirelessDeviceFromMulticastGroupWithContext(ctx aws.Context, input *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput, opts ...request.Option) (*StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput, error) {
+	req, out := c.StartBulkDisassociateWirelessDeviceFromMulticastGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartFuotaTask = "StartFuotaTask"
+
+// StartFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the StartFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartFuotaTask for more information on using the StartFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartFuotaTaskRequest method.
+//    req, resp := client.StartFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartFuotaTask
+func (c *IoTWireless) StartFuotaTaskRequest(input *StartFuotaTaskInput) (req *request.Request, output *StartFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opStartFuotaTask,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/fuota-tasks/{Id}",
+	}
+
+	if input == nil {
+		input = &StartFuotaTaskInput{}
+	}
+
+	output = &StartFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartFuotaTask API operation for AWS IoT Wireless.
+//
+// Starts a FUOTA task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation StartFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartFuotaTask
+func (c *IoTWireless) StartFuotaTask(input *StartFuotaTaskInput) (*StartFuotaTaskOutput, error) {
+	req, out := c.StartFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// StartFuotaTaskWithContext is the same as StartFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) StartFuotaTaskWithContext(ctx aws.Context, input *StartFuotaTaskInput, opts ...request.Option) (*StartFuotaTaskOutput, error) {
+	req, out := c.StartFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartMulticastGroupSession = "StartMulticastGroupSession"
+
+// StartMulticastGroupSessionRequest generates a "aws/request.Request" representing the
+// client's request for the StartMulticastGroupSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMulticastGroupSession for more information on using the StartMulticastGroupSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartMulticastGroupSessionRequest method.
+//    req, resp := client.StartMulticastGroupSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartMulticastGroupSession
+func (c *IoTWireless) StartMulticastGroupSessionRequest(input *StartMulticastGroupSessionInput) (req *request.Request, output *StartMulticastGroupSessionOutput) {
+	op := &request.Operation{
+		Name:       opStartMulticastGroupSession,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/multicast-groups/{Id}/session",
+	}
+
+	if input == nil {
+		input = &StartMulticastGroupSessionInput{}
+	}
+
+	output = &StartMulticastGroupSessionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartMulticastGroupSession API operation for AWS IoT Wireless.
+//
+// Starts a multicast group session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation StartMulticastGroupSession for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/StartMulticastGroupSession
+func (c *IoTWireless) StartMulticastGroupSession(input *StartMulticastGroupSessionInput) (*StartMulticastGroupSessionOutput, error) {
+	req, out := c.StartMulticastGroupSessionRequest(input)
+	return out, req.Send()
+}
+
+// StartMulticastGroupSessionWithContext is the same as StartMulticastGroupSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMulticastGroupSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) StartMulticastGroupSessionWithContext(ctx aws.Context, input *StartMulticastGroupSessionInput, opts ...request.Option) (*StartMulticastGroupSessionOutput, error) {
+	req, out := c.StartMulticastGroupSessionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5163,6 +7473,101 @@ func (c *IoTWireless) UpdateDestinationWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
+const opUpdateFuotaTask = "UpdateFuotaTask"
+
+// UpdateFuotaTaskRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFuotaTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFuotaTask for more information on using the UpdateFuotaTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFuotaTaskRequest method.
+//    req, resp := client.UpdateFuotaTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateFuotaTask
+func (c *IoTWireless) UpdateFuotaTaskRequest(input *UpdateFuotaTaskInput) (req *request.Request, output *UpdateFuotaTaskOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFuotaTask,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/fuota-tasks/{Id}",
+	}
+
+	if input == nil {
+		input = &UpdateFuotaTaskInput{}
+	}
+
+	output = &UpdateFuotaTaskOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateFuotaTask API operation for AWS IoT Wireless.
+//
+// Updates properties of a FUOTA task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation UpdateFuotaTask for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateFuotaTask
+func (c *IoTWireless) UpdateFuotaTask(input *UpdateFuotaTaskInput) (*UpdateFuotaTaskOutput, error) {
+	req, out := c.UpdateFuotaTaskRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFuotaTaskWithContext is the same as UpdateFuotaTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFuotaTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) UpdateFuotaTaskWithContext(ctx aws.Context, input *UpdateFuotaTaskInput, opts ...request.Option) (*UpdateFuotaTaskOutput, error) {
+	req, out := c.UpdateFuotaTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateLogLevelsByResourceTypes = "UpdateLogLevelsByResourceTypes"
 
 // UpdateLogLevelsByResourceTypesRequest generates a "aws/request.Request" representing the
@@ -5260,6 +7665,101 @@ func (c *IoTWireless) UpdateLogLevelsByResourceTypesWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opUpdateMulticastGroup = "UpdateMulticastGroup"
+
+// UpdateMulticastGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMulticastGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMulticastGroup for more information on using the UpdateMulticastGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateMulticastGroupRequest method.
+//    req, resp := client.UpdateMulticastGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateMulticastGroup
+func (c *IoTWireless) UpdateMulticastGroupRequest(input *UpdateMulticastGroupInput) (req *request.Request, output *UpdateMulticastGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMulticastGroup,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/multicast-groups/{Id}",
+	}
+
+	if input == nil {
+		input = &UpdateMulticastGroupInput{}
+	}
+
+	output = &UpdateMulticastGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateMulticastGroup API operation for AWS IoT Wireless.
+//
+// Updates properties of a multicast group session.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation UpdateMulticastGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateMulticastGroup
+func (c *IoTWireless) UpdateMulticastGroup(input *UpdateMulticastGroupInput) (*UpdateMulticastGroupOutput, error) {
+	req, out := c.UpdateMulticastGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMulticastGroupWithContext is the same as UpdateMulticastGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMulticastGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) UpdateMulticastGroupWithContext(ctx aws.Context, input *UpdateMulticastGroupInput, opts ...request.Option) (*UpdateMulticastGroupOutput, error) {
+	req, out := c.UpdateMulticastGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdatePartnerAccount = "UpdatePartnerAccount"
 
 // UpdatePartnerAccountRequest generates a "aws/request.Request" representing the
@@ -5344,6 +7844,101 @@ func (c *IoTWireless) UpdatePartnerAccount(input *UpdatePartnerAccountInput) (*U
 // for more information on using Contexts.
 func (c *IoTWireless) UpdatePartnerAccountWithContext(ctx aws.Context, input *UpdatePartnerAccountInput, opts ...request.Option) (*UpdatePartnerAccountOutput, error) {
 	req, out := c.UpdatePartnerAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateResourceEventConfiguration = "UpdateResourceEventConfiguration"
+
+// UpdateResourceEventConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResourceEventConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResourceEventConfiguration for more information on using the UpdateResourceEventConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateResourceEventConfigurationRequest method.
+//    req, resp := client.UpdateResourceEventConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateResourceEventConfiguration
+func (c *IoTWireless) UpdateResourceEventConfigurationRequest(input *UpdateResourceEventConfigurationInput) (req *request.Request, output *UpdateResourceEventConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResourceEventConfiguration,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/event-configurations/{Identifier}",
+	}
+
+	if input == nil {
+		input = &UpdateResourceEventConfigurationInput{}
+	}
+
+	output = &UpdateResourceEventConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateResourceEventConfiguration API operation for AWS IoT Wireless.
+//
+// Update the event configuration for a particular resource identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation UpdateResourceEventConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateResourceEventConfiguration
+func (c *IoTWireless) UpdateResourceEventConfiguration(input *UpdateResourceEventConfigurationInput) (*UpdateResourceEventConfigurationOutput, error) {
+	req, out := c.UpdateResourceEventConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResourceEventConfigurationWithContext is the same as UpdateResourceEventConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResourceEventConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) UpdateResourceEventConfigurationWithContext(ctx aws.Context, input *UpdateResourceEventConfigurationInput, opts ...request.Option) (*UpdateResourceEventConfigurationOutput, error) {
+	req, out := c.UpdateResourceEventConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5805,6 +8400,261 @@ func (s *AssociateAwsAccountWithPartnerAccountOutput) SetSidewalk(v *SidewalkAcc
 	return s
 }
 
+type AssociateMulticastGroupWithFuotaTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a FUOTA task.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The ID of the multicast group.
+	//
+	// MulticastGroupId is a required field
+	MulticastGroupId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateMulticastGroupWithFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateMulticastGroupWithFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateMulticastGroupWithFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateMulticastGroupWithFuotaTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.MulticastGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MulticastGroupId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *AssociateMulticastGroupWithFuotaTaskInput) SetId(v string) *AssociateMulticastGroupWithFuotaTaskInput {
+	s.Id = &v
+	return s
+}
+
+// SetMulticastGroupId sets the MulticastGroupId field's value.
+func (s *AssociateMulticastGroupWithFuotaTaskInput) SetMulticastGroupId(v string) *AssociateMulticastGroupWithFuotaTaskInput {
+	s.MulticastGroupId = &v
+	return s
+}
+
+type AssociateMulticastGroupWithFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateMulticastGroupWithFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateMulticastGroupWithFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
+type AssociateWirelessDeviceWithFuotaTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a FUOTA task.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The ID of the wireless device.
+	//
+	// WirelessDeviceId is a required field
+	WirelessDeviceId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateWirelessDeviceWithFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateWirelessDeviceWithFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateWirelessDeviceWithFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateWirelessDeviceWithFuotaTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.WirelessDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WirelessDeviceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *AssociateWirelessDeviceWithFuotaTaskInput) SetId(v string) *AssociateWirelessDeviceWithFuotaTaskInput {
+	s.Id = &v
+	return s
+}
+
+// SetWirelessDeviceId sets the WirelessDeviceId field's value.
+func (s *AssociateWirelessDeviceWithFuotaTaskInput) SetWirelessDeviceId(v string) *AssociateWirelessDeviceWithFuotaTaskInput {
+	s.WirelessDeviceId = &v
+	return s
+}
+
+type AssociateWirelessDeviceWithFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateWirelessDeviceWithFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateWirelessDeviceWithFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
+type AssociateWirelessDeviceWithMulticastGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The ID of the wireless device.
+	//
+	// WirelessDeviceId is a required field
+	WirelessDeviceId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateWirelessDeviceWithMulticastGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateWirelessDeviceWithMulticastGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateWirelessDeviceWithMulticastGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateWirelessDeviceWithMulticastGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.WirelessDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WirelessDeviceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *AssociateWirelessDeviceWithMulticastGroupInput) SetId(v string) *AssociateWirelessDeviceWithMulticastGroupInput {
+	s.Id = &v
+	return s
+}
+
+// SetWirelessDeviceId sets the WirelessDeviceId field's value.
+func (s *AssociateWirelessDeviceWithMulticastGroupInput) SetWirelessDeviceId(v string) *AssociateWirelessDeviceWithMulticastGroupInput {
+	s.WirelessDeviceId = &v
+	return s
+}
+
+type AssociateWirelessDeviceWithMulticastGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateWirelessDeviceWithMulticastGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateWirelessDeviceWithMulticastGroupOutput) GoString() string {
+	return s.String()
+}
+
 type AssociateWirelessDeviceWithThingInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6069,6 +8919,77 @@ func (s AssociateWirelessGatewayWithThingOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s AssociateWirelessGatewayWithThingOutput) GoString() string {
+	return s.String()
+}
+
+type CancelMulticastGroupSessionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelMulticastGroupSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelMulticastGroupSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelMulticastGroupSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelMulticastGroupSessionInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *CancelMulticastGroupSessionInput) SetId(v string) *CancelMulticastGroupSessionInput {
+	s.Id = &v
+	return s
+}
+
+type CancelMulticastGroupSessionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelMulticastGroupSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelMulticastGroupSessionOutput) GoString() string {
 	return s.String()
 }
 
@@ -6492,6 +9413,314 @@ func (s *CreateDeviceProfileOutput) SetId(v string) *CreateDeviceProfileOutput {
 	return s
 }
 
+type CreateFuotaTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// Each resource must have a unique client request token. If you try to create
+	// a new resource with the same token as a resource that already exists, an
+	// exception occurs. If you omit this value, AWS SDKs will automatically generate
+	// a unique client request.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The description of the new resource.
+	Description *string `type:"string"`
+
+	// The S3 URI points to a firmware update image that is to be used with a FUOTA
+	// task.
+	//
+	// FirmwareUpdateImage is a required field
+	FirmwareUpdateImage *string `min:"1" type:"string" required:"true"`
+
+	// The firmware update role that is to be used with a FUOTA task.
+	//
+	// FirmwareUpdateRole is a required field
+	FirmwareUpdateRole *string `min:"1" type:"string" required:"true"`
+
+	// The LoRaWAN information used with a FUOTA task.
+	LoRaWAN *LoRaWANFuotaTask `type:"structure"`
+
+	// The name of a FUOTA task.
+	Name *string `type:"string"`
+
+	// The tag to attach to the specified resource. Tags are metadata that you can
+	// use to manage a resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFuotaTaskInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FirmwareUpdateImage == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirmwareUpdateImage"))
+	}
+	if s.FirmwareUpdateImage != nil && len(*s.FirmwareUpdateImage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirmwareUpdateImage", 1))
+	}
+	if s.FirmwareUpdateRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirmwareUpdateRole"))
+	}
+	if s.FirmwareUpdateRole != nil && len(*s.FirmwareUpdateRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirmwareUpdateRole", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateFuotaTaskInput) SetClientRequestToken(v string) *CreateFuotaTaskInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFuotaTaskInput) SetDescription(v string) *CreateFuotaTaskInput {
+	s.Description = &v
+	return s
+}
+
+// SetFirmwareUpdateImage sets the FirmwareUpdateImage field's value.
+func (s *CreateFuotaTaskInput) SetFirmwareUpdateImage(v string) *CreateFuotaTaskInput {
+	s.FirmwareUpdateImage = &v
+	return s
+}
+
+// SetFirmwareUpdateRole sets the FirmwareUpdateRole field's value.
+func (s *CreateFuotaTaskInput) SetFirmwareUpdateRole(v string) *CreateFuotaTaskInput {
+	s.FirmwareUpdateRole = &v
+	return s
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *CreateFuotaTaskInput) SetLoRaWAN(v *LoRaWANFuotaTask) *CreateFuotaTaskInput {
+	s.LoRaWAN = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFuotaTaskInput) SetName(v string) *CreateFuotaTaskInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFuotaTaskInput) SetTags(v []*Tag) *CreateFuotaTaskInput {
+	s.Tags = v
+	return s
+}
+
+type CreateFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The arn of a FUOTA task.
+	Arn *string `type:"string"`
+
+	// The ID of a FUOTA task.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateFuotaTaskOutput) SetArn(v string) *CreateFuotaTaskOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateFuotaTaskOutput) SetId(v string) *CreateFuotaTaskOutput {
+	s.Id = &v
+	return s
+}
+
+type CreateMulticastGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// Each resource must have a unique client request token. If you try to create
+	// a new resource with the same token as a resource that already exists, an
+	// exception occurs. If you omit this value, AWS SDKs will automatically generate
+	// a unique client request.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The description of the multicast group.
+	Description *string `type:"string"`
+
+	// The LoRaWAN information that is to be used with the multicast group.
+	//
+	// LoRaWAN is a required field
+	LoRaWAN *LoRaWANMulticast `type:"structure" required:"true"`
+
+	// The name of the multicast group.
+	Name *string `type:"string"`
+
+	// The tag to attach to the specified resource. Tags are metadata that you can
+	// use to manage a resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMulticastGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMulticastGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMulticastGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMulticastGroupInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.LoRaWAN == nil {
+		invalidParams.Add(request.NewErrParamRequired("LoRaWAN"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateMulticastGroupInput) SetClientRequestToken(v string) *CreateMulticastGroupInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateMulticastGroupInput) SetDescription(v string) *CreateMulticastGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *CreateMulticastGroupInput) SetLoRaWAN(v *LoRaWANMulticast) *CreateMulticastGroupInput {
+	s.LoRaWAN = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateMulticastGroupInput) SetName(v string) *CreateMulticastGroupInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMulticastGroupInput) SetTags(v []*Tag) *CreateMulticastGroupInput {
+	s.Tags = v
+	return s
+}
+
+type CreateMulticastGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The arn of the multicast group.
+	Arn *string `type:"string"`
+
+	// The ID of the multicast group.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMulticastGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateMulticastGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateMulticastGroupOutput) SetArn(v string) *CreateMulticastGroupOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateMulticastGroupOutput) SetId(v string) *CreateMulticastGroupOutput {
+	s.Id = &v
+	return s
+}
+
 type CreateServiceProfileInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6679,6 +9908,11 @@ func (s *CreateWirelessDeviceInput) Validate() error {
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.LoRaWAN != nil {
+		if err := s.LoRaWAN.Validate(); err != nil {
+			invalidParams.AddNested("LoRaWAN", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -7312,6 +10546,148 @@ func (s DeleteDeviceProfileOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteFuotaTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of a FUOTA task.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFuotaTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteFuotaTaskInput) SetId(v string) *DeleteFuotaTaskInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteMulticastGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMulticastGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMulticastGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMulticastGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMulticastGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteMulticastGroupInput) SetId(v string) *DeleteMulticastGroupInput {
+	s.Id = &v
+	return s
+}
+
+type DeleteMulticastGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMulticastGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMulticastGroupOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteServiceProfileInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7794,6 +11170,40 @@ func (s *DeviceProfile) SetName(v string) *DeviceProfile {
 	return s
 }
 
+// Device registration state event configuration object for enabling and disabling
+// relevant topics.
+type DeviceRegistrationStateEventConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Device registration state event configuration object for enabling or disabling
+	// Sidewalk related event topics.
+	Sidewalk *SidewalkEventNotificationConfigurations `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceRegistrationStateEventConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeviceRegistrationStateEventConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *DeviceRegistrationStateEventConfiguration) SetSidewalk(v *SidewalkEventNotificationConfigurations) *DeviceRegistrationStateEventConfiguration {
+	s.Sidewalk = v
+	return s
+}
+
 type DisassociateAwsAccountFromPartnerAccountInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7876,6 +11286,270 @@ func (s DisassociateAwsAccountFromPartnerAccountOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DisassociateAwsAccountFromPartnerAccountOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateMulticastGroupFromFuotaTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of a FUOTA task.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The ID of the multicast group.
+	//
+	// MulticastGroupId is a required field
+	MulticastGroupId *string `location:"uri" locationName:"MulticastGroupId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateMulticastGroupFromFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateMulticastGroupFromFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateMulticastGroupFromFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateMulticastGroupFromFuotaTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.MulticastGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MulticastGroupId"))
+	}
+	if s.MulticastGroupId != nil && len(*s.MulticastGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MulticastGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DisassociateMulticastGroupFromFuotaTaskInput) SetId(v string) *DisassociateMulticastGroupFromFuotaTaskInput {
+	s.Id = &v
+	return s
+}
+
+// SetMulticastGroupId sets the MulticastGroupId field's value.
+func (s *DisassociateMulticastGroupFromFuotaTaskInput) SetMulticastGroupId(v string) *DisassociateMulticastGroupFromFuotaTaskInput {
+	s.MulticastGroupId = &v
+	return s
+}
+
+type DisassociateMulticastGroupFromFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateMulticastGroupFromFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateMulticastGroupFromFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateWirelessDeviceFromFuotaTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of a FUOTA task.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The ID of the wireless device.
+	//
+	// WirelessDeviceId is a required field
+	WirelessDeviceId *string `location:"uri" locationName:"WirelessDeviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateWirelessDeviceFromFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateWirelessDeviceFromFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateWirelessDeviceFromFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateWirelessDeviceFromFuotaTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.WirelessDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WirelessDeviceId"))
+	}
+	if s.WirelessDeviceId != nil && len(*s.WirelessDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WirelessDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DisassociateWirelessDeviceFromFuotaTaskInput) SetId(v string) *DisassociateWirelessDeviceFromFuotaTaskInput {
+	s.Id = &v
+	return s
+}
+
+// SetWirelessDeviceId sets the WirelessDeviceId field's value.
+func (s *DisassociateWirelessDeviceFromFuotaTaskInput) SetWirelessDeviceId(v string) *DisassociateWirelessDeviceFromFuotaTaskInput {
+	s.WirelessDeviceId = &v
+	return s
+}
+
+type DisassociateWirelessDeviceFromFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateWirelessDeviceFromFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateWirelessDeviceFromFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateWirelessDeviceFromMulticastGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The ID of the wireless device.
+	//
+	// WirelessDeviceId is a required field
+	WirelessDeviceId *string `location:"uri" locationName:"WirelessDeviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateWirelessDeviceFromMulticastGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateWirelessDeviceFromMulticastGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateWirelessDeviceFromMulticastGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateWirelessDeviceFromMulticastGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.WirelessDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WirelessDeviceId"))
+	}
+	if s.WirelessDeviceId != nil && len(*s.WirelessDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WirelessDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DisassociateWirelessDeviceFromMulticastGroupInput) SetId(v string) *DisassociateWirelessDeviceFromMulticastGroupInput {
+	s.Id = &v
+	return s
+}
+
+// SetWirelessDeviceId sets the WirelessDeviceId field's value.
+func (s *DisassociateWirelessDeviceFromMulticastGroupInput) SetWirelessDeviceId(v string) *DisassociateWirelessDeviceFromMulticastGroupInput {
+	s.WirelessDeviceId = &v
+	return s
+}
+
+type DisassociateWirelessDeviceFromMulticastGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateWirelessDeviceFromMulticastGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateWirelessDeviceFromMulticastGroupOutput) GoString() string {
 	return s.String()
 }
 
@@ -8090,6 +11764,125 @@ func (s DisassociateWirelessGatewayFromThingOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DisassociateWirelessGatewayFromThingOutput) GoString() string {
 	return s.String()
+}
+
+// List of FPort assigned for different LoRaWAN application packages to use
+type FPorts struct {
+	_ struct{} `type:"structure"`
+
+	// The Fport value.
+	ClockSync *int64 `min:"1" type:"integer"`
+
+	// The Fport value.
+	Fuota *int64 `min:"1" type:"integer"`
+
+	// The Fport value.
+	Multicast *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FPorts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FPorts) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FPorts) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FPorts"}
+	if s.ClockSync != nil && *s.ClockSync < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ClockSync", 1))
+	}
+	if s.Fuota != nil && *s.Fuota < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Fuota", 1))
+	}
+	if s.Multicast != nil && *s.Multicast < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Multicast", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClockSync sets the ClockSync field's value.
+func (s *FPorts) SetClockSync(v int64) *FPorts {
+	s.ClockSync = &v
+	return s
+}
+
+// SetFuota sets the Fuota field's value.
+func (s *FPorts) SetFuota(v int64) *FPorts {
+	s.Fuota = &v
+	return s
+}
+
+// SetMulticast sets the Multicast field's value.
+func (s *FPorts) SetMulticast(v int64) *FPorts {
+	s.Multicast = &v
+	return s
+}
+
+// A FUOTA task.
+type FuotaTask struct {
+	_ struct{} `type:"structure"`
+
+	// The arn of a FUOTA task.
+	Arn *string `type:"string"`
+
+	// The ID of a FUOTA task.
+	Id *string `type:"string"`
+
+	// The name of a FUOTA task.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FuotaTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FuotaTask) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FuotaTask) SetArn(v string) *FuotaTask {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FuotaTask) SetId(v string) *FuotaTask {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FuotaTask) SetName(v string) *FuotaTask {
+	s.Name = &v
+	return s
 }
 
 type GetDestinationInput struct {
@@ -8324,6 +12117,159 @@ func (s *GetDeviceProfileOutput) SetName(v string) *GetDeviceProfileOutput {
 	return s
 }
 
+type GetFuotaTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of a FUOTA task.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFuotaTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetFuotaTaskInput) SetId(v string) *GetFuotaTaskInput {
+	s.Id = &v
+	return s
+}
+
+type GetFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The arn of a FUOTA task.
+	Arn *string `type:"string"`
+
+	// Created at timestamp for the resource.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The description of the new resource.
+	Description *string `type:"string"`
+
+	// The S3 URI points to a firmware update image that is to be used with a FUOTA
+	// task.
+	FirmwareUpdateImage *string `min:"1" type:"string"`
+
+	// The firmware update role that is to be used with a FUOTA task.
+	FirmwareUpdateRole *string `min:"1" type:"string"`
+
+	// The ID of a FUOTA task.
+	Id *string `type:"string"`
+
+	// The LoRaWAN information returned from getting a FUOTA task.
+	LoRaWAN *LoRaWANFuotaTaskGetInfo `type:"structure"`
+
+	// The name of a FUOTA task.
+	Name *string `type:"string"`
+
+	// The status of a FUOTA task.
+	Status *string `type:"string" enum:"FuotaTaskStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetFuotaTaskOutput) SetArn(v string) *GetFuotaTaskOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetFuotaTaskOutput) SetCreatedAt(v time.Time) *GetFuotaTaskOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetFuotaTaskOutput) SetDescription(v string) *GetFuotaTaskOutput {
+	s.Description = &v
+	return s
+}
+
+// SetFirmwareUpdateImage sets the FirmwareUpdateImage field's value.
+func (s *GetFuotaTaskOutput) SetFirmwareUpdateImage(v string) *GetFuotaTaskOutput {
+	s.FirmwareUpdateImage = &v
+	return s
+}
+
+// SetFirmwareUpdateRole sets the FirmwareUpdateRole field's value.
+func (s *GetFuotaTaskOutput) SetFirmwareUpdateRole(v string) *GetFuotaTaskOutput {
+	s.FirmwareUpdateRole = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetFuotaTaskOutput) SetId(v string) *GetFuotaTaskOutput {
+	s.Id = &v
+	return s
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *GetFuotaTaskOutput) SetLoRaWAN(v *LoRaWANFuotaTaskGetInfo) *GetFuotaTaskOutput {
+	s.LoRaWAN = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetFuotaTaskOutput) SetName(v string) *GetFuotaTaskOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetFuotaTaskOutput) SetStatus(v string) *GetFuotaTaskOutput {
+	s.Status = &v
+	return s
+}
+
 type GetLogLevelsByResourceTypesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -8392,6 +12338,221 @@ func (s *GetLogLevelsByResourceTypesOutput) SetWirelessDeviceLogOptions(v []*Wir
 // SetWirelessGatewayLogOptions sets the WirelessGatewayLogOptions field's value.
 func (s *GetLogLevelsByResourceTypesOutput) SetWirelessGatewayLogOptions(v []*WirelessGatewayLogOption) *GetLogLevelsByResourceTypesOutput {
 	s.WirelessGatewayLogOptions = v
+	return s
+}
+
+type GetMulticastGroupInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMulticastGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMulticastGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMulticastGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMulticastGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetMulticastGroupInput) SetId(v string) *GetMulticastGroupInput {
+	s.Id = &v
+	return s
+}
+
+type GetMulticastGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The arn of the multicast group.
+	Arn *string `type:"string"`
+
+	// Created at timestamp for the resource.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The description of the new resource.
+	Description *string `type:"string"`
+
+	// The ID of the multicast group.
+	Id *string `type:"string"`
+
+	// The LoRaWAN information that is to be returned from getting multicast group
+	// information.
+	LoRaWAN *LoRaWANMulticastGet `type:"structure"`
+
+	// The name of the multicast group.
+	Name *string `type:"string"`
+
+	// The status of the multicast group.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMulticastGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMulticastGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetMulticastGroupOutput) SetArn(v string) *GetMulticastGroupOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetMulticastGroupOutput) SetCreatedAt(v time.Time) *GetMulticastGroupOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetMulticastGroupOutput) SetDescription(v string) *GetMulticastGroupOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetMulticastGroupOutput) SetId(v string) *GetMulticastGroupOutput {
+	s.Id = &v
+	return s
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *GetMulticastGroupOutput) SetLoRaWAN(v *LoRaWANMulticastGet) *GetMulticastGroupOutput {
+	s.LoRaWAN = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetMulticastGroupOutput) SetName(v string) *GetMulticastGroupOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetMulticastGroupOutput) SetStatus(v string) *GetMulticastGroupOutput {
+	s.Status = &v
+	return s
+}
+
+type GetMulticastGroupSessionInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMulticastGroupSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMulticastGroupSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMulticastGroupSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMulticastGroupSessionInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetMulticastGroupSessionInput) SetId(v string) *GetMulticastGroupSessionInput {
+	s.Id = &v
+	return s
+}
+
+type GetMulticastGroupSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The LoRaWAN information used with the multicast session.
+	LoRaWAN *LoRaWANMulticastSession `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMulticastGroupSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMulticastGroupSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *GetMulticastGroupSessionOutput) SetLoRaWAN(v *LoRaWANMulticastSession) *GetMulticastGroupSessionOutput {
+	s.LoRaWAN = v
 	return s
 }
 
@@ -8495,6 +12656,118 @@ func (s *GetPartnerAccountOutput) SetAccountLinked(v bool) *GetPartnerAccountOut
 // SetSidewalk sets the Sidewalk field's value.
 func (s *GetPartnerAccountOutput) SetSidewalk(v *SidewalkAccountInfoWithFingerprint) *GetPartnerAccountOutput {
 	s.Sidewalk = v
+	return s
+}
+
+type GetResourceEventConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Resource identifier to opt in for event messaging.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"Identifier" type:"string" required:"true"`
+
+	// Identifier type of the particular resource identifier for event configuration.
+	//
+	// IdentifierType is a required field
+	IdentifierType *string `location:"querystring" locationName:"identifierType" type:"string" required:"true" enum:"IdentifierType"`
+
+	// Partner type of the resource if the identifier type is PartnerAccountId.
+	PartnerType *string `location:"querystring" locationName:"partnerType" type:"string" enum:"EventNotificationPartnerType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceEventConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceEventConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourceEventConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourceEventConfigurationInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.IdentifierType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentifierType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetResourceEventConfigurationInput) SetIdentifier(v string) *GetResourceEventConfigurationInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetIdentifierType sets the IdentifierType field's value.
+func (s *GetResourceEventConfigurationInput) SetIdentifierType(v string) *GetResourceEventConfigurationInput {
+	s.IdentifierType = &v
+	return s
+}
+
+// SetPartnerType sets the PartnerType field's value.
+func (s *GetResourceEventConfigurationInput) SetPartnerType(v string) *GetResourceEventConfigurationInput {
+	s.PartnerType = &v
+	return s
+}
+
+type GetResourceEventConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Event configuration for the device registration state event
+	DeviceRegistrationState *DeviceRegistrationStateEventConfiguration `type:"structure"`
+
+	// Event configuration for the Proximity event
+	Proximity *ProximityEventConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceEventConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetResourceEventConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeviceRegistrationState sets the DeviceRegistrationState field's value.
+func (s *GetResourceEventConfigurationOutput) SetDeviceRegistrationState(v *DeviceRegistrationStateEventConfiguration) *GetResourceEventConfigurationOutput {
+	s.DeviceRegistrationState = v
+	return s
+}
+
+// SetProximity sets the Proximity field's value.
+func (s *GetResourceEventConfigurationOutput) SetProximity(v *ProximityEventConfiguration) *GetResourceEventConfigurationOutput {
+	s.Proximity = v
 	return s
 }
 
@@ -9935,6 +14208,279 @@ func (s *ListDeviceProfilesOutput) SetNextToken(v string) *ListDeviceProfilesOut
 	return s
 }
 
+type ListFuotaTasksInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFuotaTasksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFuotaTasksInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFuotaTasksInput) SetMaxResults(v int64) *ListFuotaTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFuotaTasksInput) SetNextToken(v string) *ListFuotaTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFuotaTasksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the FUOTA tasks registered to your AWS account.
+	FuotaTaskList []*FuotaTask `type:"list"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFuotaTasksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFuotaTasksOutput) GoString() string {
+	return s.String()
+}
+
+// SetFuotaTaskList sets the FuotaTaskList field's value.
+func (s *ListFuotaTasksOutput) SetFuotaTaskList(v []*FuotaTask) *ListFuotaTasksOutput {
+	s.FuotaTaskList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFuotaTasksOutput) SetNextToken(v string) *ListFuotaTasksOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMulticastGroupsByFuotaTaskInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of a FUOTA task.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMulticastGroupsByFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMulticastGroupsByFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMulticastGroupsByFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMulticastGroupsByFuotaTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *ListMulticastGroupsByFuotaTaskInput) SetId(v string) *ListMulticastGroupsByFuotaTaskInput {
+	s.Id = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMulticastGroupsByFuotaTaskInput) SetMaxResults(v int64) *ListMulticastGroupsByFuotaTaskInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMulticastGroupsByFuotaTaskInput) SetNextToken(v string) *ListMulticastGroupsByFuotaTaskInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMulticastGroupsByFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of multicast groups associated with a FUOTA task.
+	MulticastGroupList []*MulticastGroupByFuotaTask `type:"list"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMulticastGroupsByFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMulticastGroupsByFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetMulticastGroupList sets the MulticastGroupList field's value.
+func (s *ListMulticastGroupsByFuotaTaskOutput) SetMulticastGroupList(v []*MulticastGroupByFuotaTask) *ListMulticastGroupsByFuotaTaskOutput {
+	s.MulticastGroupList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMulticastGroupsByFuotaTaskOutput) SetNextToken(v string) *ListMulticastGroupsByFuotaTaskOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMulticastGroupsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMulticastGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMulticastGroupsInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMulticastGroupsInput) SetMaxResults(v int64) *ListMulticastGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMulticastGroupsInput) SetNextToken(v string) *ListMulticastGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMulticastGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of multicast groups.
+	MulticastGroupList []*MulticastGroup `type:"list"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMulticastGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMulticastGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMulticastGroupList sets the MulticastGroupList field's value.
+func (s *ListMulticastGroupsOutput) SetMulticastGroupList(v []*MulticastGroup) *ListMulticastGroupsOutput {
+	s.MulticastGroupList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMulticastGroupsOutput) SetNextToken(v string) *ListMulticastGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListPartnerAccountsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -10189,8 +14735,14 @@ type ListWirelessDevicesInput struct {
 	// A filter to list only the wireless devices that use this device profile.
 	DeviceProfileId *string `location:"querystring" locationName:"deviceProfileId" type:"string"`
 
+	// The ID of a FUOTA task.
+	FuotaTaskId *string `location:"querystring" locationName:"fuotaTaskId" type:"string"`
+
 	// The maximum number of results to return in this operation.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// The ID of the multicast group.
+	MulticastGroupId *string `location:"querystring" locationName:"multicastGroupId" type:"string"`
 
 	// To retrieve the next set of results, the nextToken value from a previous
 	// response; otherwise null to receive the first set of results.
@@ -10234,9 +14786,21 @@ func (s *ListWirelessDevicesInput) SetDeviceProfileId(v string) *ListWirelessDev
 	return s
 }
 
+// SetFuotaTaskId sets the FuotaTaskId field's value.
+func (s *ListWirelessDevicesInput) SetFuotaTaskId(v string) *ListWirelessDevicesInput {
+	s.FuotaTaskId = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListWirelessDevicesInput) SetMaxResults(v int64) *ListWirelessDevicesInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetMulticastGroupId sets the MulticastGroupId field's value.
+func (s *ListWirelessDevicesInput) SetMulticastGroupId(v string) *ListWirelessDevicesInput {
+	s.MulticastGroupId = &v
 	return s
 }
 
@@ -10489,6 +15053,9 @@ type LoRaWANDevice struct {
 	// The ID of the device profile for the new wireless device.
 	DeviceProfileId *string `type:"string"`
 
+	// List of FPort assigned for different LoRaWAN application packages to use
+	FPorts *FPorts `type:"structure"`
+
 	// OTAA device object for create APIs for v1.0.x
 	OtaaV1_0_x *OtaaV10X `type:"structure"`
 
@@ -10517,6 +15084,21 @@ func (s LoRaWANDevice) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoRaWANDevice) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoRaWANDevice"}
+	if s.FPorts != nil {
+		if err := s.FPorts.Validate(); err != nil {
+			invalidParams.AddNested("FPorts", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetAbpV1_0_x sets the AbpV1_0_x field's value.
 func (s *LoRaWANDevice) SetAbpV1_0_x(v *AbpV10X) *LoRaWANDevice {
 	s.AbpV1_0_x = v
@@ -10538,6 +15120,12 @@ func (s *LoRaWANDevice) SetDevEui(v string) *LoRaWANDevice {
 // SetDeviceProfileId sets the DeviceProfileId field's value.
 func (s *LoRaWANDevice) SetDeviceProfileId(v string) *LoRaWANDevice {
 	s.DeviceProfileId = &v
+	return s
+}
+
+// SetFPorts sets the FPorts field's value.
+func (s *LoRaWANDevice) SetFPorts(v *FPorts) *LoRaWANDevice {
+	s.FPorts = v
 	return s
 }
 
@@ -10847,6 +15435,79 @@ func (s *LoRaWANDeviceProfile) SetSupportsClassC(v bool) *LoRaWANDeviceProfile {
 // SetSupportsJoin sets the SupportsJoin field's value.
 func (s *LoRaWANDeviceProfile) SetSupportsJoin(v bool) *LoRaWANDeviceProfile {
 	s.SupportsJoin = &v
+	return s
+}
+
+// The LoRaWAN information used with a FUOTA task.
+type LoRaWANFuotaTask struct {
+	_ struct{} `type:"structure"`
+
+	// Supported RfRegions
+	RfRegion *string `type:"string" enum:"SupportedRfRegion"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANFuotaTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANFuotaTask) GoString() string {
+	return s.String()
+}
+
+// SetRfRegion sets the RfRegion field's value.
+func (s *LoRaWANFuotaTask) SetRfRegion(v string) *LoRaWANFuotaTask {
+	s.RfRegion = &v
+	return s
+}
+
+// The LoRaWAN information returned from getting a FUOTA task.
+type LoRaWANFuotaTaskGetInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The frequency band (RFRegion) value.
+	RfRegion *string `type:"string"`
+
+	// Start time of a FUOTA task.
+	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANFuotaTaskGetInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANFuotaTaskGetInfo) GoString() string {
+	return s.String()
+}
+
+// SetRfRegion sets the RfRegion field's value.
+func (s *LoRaWANFuotaTaskGetInfo) SetRfRegion(v string) *LoRaWANFuotaTaskGetInfo {
+	s.RfRegion = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *LoRaWANFuotaTaskGetInfo) SetStartTime(v time.Time) *LoRaWANFuotaTaskGetInfo {
+	s.StartTime = &v
 	return s
 }
 
@@ -11296,6 +15957,228 @@ func (s *LoRaWANListDevice) SetDevEui(v string) *LoRaWANListDevice {
 	return s
 }
 
+// The LoRaWAN information that is to be used with the multicast group.
+type LoRaWANMulticast struct {
+	_ struct{} `type:"structure"`
+
+	// DlClass for LoRaWAM, valid values are ClassB and ClassC.
+	DlClass *string `type:"string" enum:"DlClass"`
+
+	// Supported RfRegions
+	RfRegion *string `type:"string" enum:"SupportedRfRegion"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANMulticast) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANMulticast) GoString() string {
+	return s.String()
+}
+
+// SetDlClass sets the DlClass field's value.
+func (s *LoRaWANMulticast) SetDlClass(v string) *LoRaWANMulticast {
+	s.DlClass = &v
+	return s
+}
+
+// SetRfRegion sets the RfRegion field's value.
+func (s *LoRaWANMulticast) SetRfRegion(v string) *LoRaWANMulticast {
+	s.RfRegion = &v
+	return s
+}
+
+// The LoRaWAN information that is to be returned from getting multicast group
+// information.
+type LoRaWANMulticastGet struct {
+	_ struct{} `type:"structure"`
+
+	// DlClass for LoRaWAM, valid values are ClassB and ClassC.
+	DlClass *string `type:"string" enum:"DlClass"`
+
+	// Number of devices that are associated to the multicast group.
+	NumberOfDevicesInGroup *int64 `type:"integer"`
+
+	// Number of devices that are requested to be associated with the multicast
+	// group.
+	NumberOfDevicesRequested *int64 `type:"integer"`
+
+	// Supported RfRegions
+	RfRegion *string `type:"string" enum:"SupportedRfRegion"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANMulticastGet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANMulticastGet) GoString() string {
+	return s.String()
+}
+
+// SetDlClass sets the DlClass field's value.
+func (s *LoRaWANMulticastGet) SetDlClass(v string) *LoRaWANMulticastGet {
+	s.DlClass = &v
+	return s
+}
+
+// SetNumberOfDevicesInGroup sets the NumberOfDevicesInGroup field's value.
+func (s *LoRaWANMulticastGet) SetNumberOfDevicesInGroup(v int64) *LoRaWANMulticastGet {
+	s.NumberOfDevicesInGroup = &v
+	return s
+}
+
+// SetNumberOfDevicesRequested sets the NumberOfDevicesRequested field's value.
+func (s *LoRaWANMulticastGet) SetNumberOfDevicesRequested(v int64) *LoRaWANMulticastGet {
+	s.NumberOfDevicesRequested = &v
+	return s
+}
+
+// SetRfRegion sets the RfRegion field's value.
+func (s *LoRaWANMulticastGet) SetRfRegion(v string) *LoRaWANMulticastGet {
+	s.RfRegion = &v
+	return s
+}
+
+// The metadata information of the LoRaWAN multicast group.
+type LoRaWANMulticastMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Fport value.
+	FPort *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANMulticastMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANMulticastMetadata) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoRaWANMulticastMetadata) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoRaWANMulticastMetadata"}
+	if s.FPort != nil && *s.FPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FPort", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFPort sets the FPort field's value.
+func (s *LoRaWANMulticastMetadata) SetFPort(v int64) *LoRaWANMulticastMetadata {
+	s.FPort = &v
+	return s
+}
+
+// The LoRaWAN information used with the multicast session.
+type LoRaWANMulticastSession struct {
+	_ struct{} `type:"structure"`
+
+	// Downlink data rate.
+	DlDr *int64 `type:"integer"`
+
+	// Downlink frequency.
+	DlFreq *int64 `min:"1e+08" type:"integer"`
+
+	// Timestamp of when the multicast group session is to start.
+	SessionStartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// How long before a multicast group session is to timeout.
+	SessionTimeout *int64 `min:"60" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANMulticastSession) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANMulticastSession) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoRaWANMulticastSession) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoRaWANMulticastSession"}
+	if s.DlFreq != nil && *s.DlFreq < 1e+08 {
+		invalidParams.Add(request.NewErrParamMinValue("DlFreq", 1e+08))
+	}
+	if s.SessionTimeout != nil && *s.SessionTimeout < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("SessionTimeout", 60))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDlDr sets the DlDr field's value.
+func (s *LoRaWANMulticastSession) SetDlDr(v int64) *LoRaWANMulticastSession {
+	s.DlDr = &v
+	return s
+}
+
+// SetDlFreq sets the DlFreq field's value.
+func (s *LoRaWANMulticastSession) SetDlFreq(v int64) *LoRaWANMulticastSession {
+	s.DlFreq = &v
+	return s
+}
+
+// SetSessionStartTime sets the SessionStartTime field's value.
+func (s *LoRaWANMulticastSession) SetSessionStartTime(v time.Time) *LoRaWANMulticastSession {
+	s.SessionStartTime = &v
+	return s
+}
+
+// SetSessionTimeout sets the SessionTimeout field's value.
+func (s *LoRaWANMulticastSession) SetSessionTimeout(v int64) *LoRaWANMulticastSession {
+	s.SessionTimeout = &v
+	return s
+}
+
 // LoRaWAN router info.
 type LoRaWANSendDataToDevice struct {
 	_ struct{} `type:"structure"`
@@ -11370,6 +16253,38 @@ func (s LoRaWANServiceProfile) GoString() string {
 // SetAddGwMetadata sets the AddGwMetadata field's value.
 func (s *LoRaWANServiceProfile) SetAddGwMetadata(v bool) *LoRaWANServiceProfile {
 	s.AddGwMetadata = &v
+	return s
+}
+
+// The LoRaWAN information used to start a FUOTA task.
+type LoRaWANStartFuotaTask struct {
+	_ struct{} `type:"structure"`
+
+	// Start time of a FUOTA task.
+	StartTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANStartFuotaTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LoRaWANStartFuotaTask) GoString() string {
+	return s.String()
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *LoRaWANStartFuotaTask) SetStartTime(v time.Time) *LoRaWANStartFuotaTask {
+	s.StartTime = &v
 	return s
 }
 
@@ -11540,6 +16455,135 @@ func (s *LoRaWANUpdateGatewayTaskEntry) SetUpdateVersion(v *LoRaWANGatewayVersio
 	return s
 }
 
+// A multicast group.
+type MulticastGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The arn of the multicast group.
+	Arn *string `type:"string"`
+
+	// The ID of the multicast group.
+	Id *string `type:"string"`
+
+	// The name of the multicast group.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MulticastGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MulticastGroup) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *MulticastGroup) SetArn(v string) *MulticastGroup {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *MulticastGroup) SetId(v string) *MulticastGroup {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MulticastGroup) SetName(v string) *MulticastGroup {
+	s.Name = &v
+	return s
+}
+
+// A multicast group that is associated with a FUOTA task.
+type MulticastGroupByFuotaTask struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the multicast group.
+	Id *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MulticastGroupByFuotaTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MulticastGroupByFuotaTask) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *MulticastGroupByFuotaTask) SetId(v string) *MulticastGroupByFuotaTask {
+	s.Id = &v
+	return s
+}
+
+// Wireless metadata that is to be sent to multicast group.
+type MulticastWirelessMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The metadata information of the LoRaWAN multicast group.
+	LoRaWAN *LoRaWANMulticastMetadata `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MulticastWirelessMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MulticastWirelessMetadata) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MulticastWirelessMetadata) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MulticastWirelessMetadata"}
+	if s.LoRaWAN != nil {
+		if err := s.LoRaWAN.Validate(); err != nil {
+			invalidParams.AddNested("LoRaWAN", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *MulticastWirelessMetadata) SetLoRaWAN(v *LoRaWANMulticastMetadata) *MulticastWirelessMetadata {
+	s.LoRaWAN = v
+	return s
+}
+
 // OTAA device object for v1.0.x
 type OtaaV10X struct {
 	_ struct{} `type:"structure"`
@@ -11549,6 +16593,9 @@ type OtaaV10X struct {
 
 	// The AppKey value.
 	AppKey *string `type:"string"`
+
+	// The GenAppKey value.
+	GenAppKey *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -11578,6 +16625,12 @@ func (s *OtaaV10X) SetAppEui(v string) *OtaaV10X {
 // SetAppKey sets the AppKey field's value.
 func (s *OtaaV10X) SetAppKey(v string) *OtaaV10X {
 	s.AppKey = &v
+	return s
+}
+
+// SetGenAppKey sets the GenAppKey field's value.
+func (s *OtaaV10X) SetGenAppKey(v string) *OtaaV10X {
+	s.GenAppKey = &v
 	return s
 }
 
@@ -11628,6 +16681,40 @@ func (s *OtaaV11) SetJoinEui(v string) *OtaaV11 {
 // SetNwkKey sets the NwkKey field's value.
 func (s *OtaaV11) SetNwkKey(v string) *OtaaV11 {
 	s.NwkKey = &v
+	return s
+}
+
+// Proximity event configuration object for enabling and disabling relevant
+// topics.
+type ProximityEventConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Proximity event configuration object for enabling or disabling Sidewalk related
+	// event topics.
+	Sidewalk *SidewalkEventNotificationConfigurations `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProximityEventConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProximityEventConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *ProximityEventConfiguration) SetSidewalk(v *SidewalkEventNotificationConfigurations) *ProximityEventConfiguration {
+	s.Sidewalk = v
 	return s
 }
 
@@ -11929,6 +17016,119 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type SendDataToMulticastGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The binary to be sent to the end device, encoded in base64.
+	//
+	// PayloadData is a required field
+	PayloadData *string `type:"string" required:"true"`
+
+	// Wireless metadata that is to be sent to multicast group.
+	//
+	// WirelessMetadata is a required field
+	WirelessMetadata *MulticastWirelessMetadata `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataToMulticastGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataToMulticastGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendDataToMulticastGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendDataToMulticastGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.PayloadData == nil {
+		invalidParams.Add(request.NewErrParamRequired("PayloadData"))
+	}
+	if s.WirelessMetadata == nil {
+		invalidParams.Add(request.NewErrParamRequired("WirelessMetadata"))
+	}
+	if s.WirelessMetadata != nil {
+		if err := s.WirelessMetadata.Validate(); err != nil {
+			invalidParams.AddNested("WirelessMetadata", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *SendDataToMulticastGroupInput) SetId(v string) *SendDataToMulticastGroupInput {
+	s.Id = &v
+	return s
+}
+
+// SetPayloadData sets the PayloadData field's value.
+func (s *SendDataToMulticastGroupInput) SetPayloadData(v string) *SendDataToMulticastGroupInput {
+	s.PayloadData = &v
+	return s
+}
+
+// SetWirelessMetadata sets the WirelessMetadata field's value.
+func (s *SendDataToMulticastGroupInput) SetWirelessMetadata(v *MulticastWirelessMetadata) *SendDataToMulticastGroupInput {
+	s.WirelessMetadata = v
+	return s
+}
+
+type SendDataToMulticastGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of a multicast group message.
+	MessageId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataToMulticastGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendDataToMulticastGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessageId sets the MessageId field's value.
+func (s *SendDataToMulticastGroupOutput) SetMessageId(v string) *SendDataToMulticastGroupOutput {
+	s.MessageId = &v
+	return s
 }
 
 type SendDataToWirelessDeviceInput struct {
@@ -12434,6 +17634,39 @@ func (s *SidewalkDeviceMetadata) SetRssi(v int64) *SidewalkDeviceMetadata {
 	return s
 }
 
+// SidewalkEventNotificationConfigurations object Event configuration object
+// for Sidewalk related event topics.
+type SidewalkEventNotificationConfigurations struct {
+	_ struct{} `type:"structure"`
+
+	// Enum to denote whether amazon id event topic is enabled or disabled.
+	AmazonIdEventTopic *string `type:"string" enum:"EventNotificationTopicStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkEventNotificationConfigurations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SidewalkEventNotificationConfigurations) GoString() string {
+	return s.String()
+}
+
+// SetAmazonIdEventTopic sets the AmazonIdEventTopic field's value.
+func (s *SidewalkEventNotificationConfigurations) SetAmazonIdEventTopic(v string) *SidewalkEventNotificationConfigurations {
+	s.AmazonIdEventTopic = &v
+	return s
+}
+
 // Sidewalk object used by list functions.
 type SidewalkListDevice struct {
 	_ struct{} `type:"structure"`
@@ -12581,6 +17814,378 @@ func (s *SidewalkUpdateAccount) Validate() error {
 func (s *SidewalkUpdateAccount) SetAppServerPrivateKey(v string) *SidewalkUpdateAccount {
 	s.AppServerPrivateKey = &v
 	return s
+}
+
+type StartBulkAssociateWirelessDeviceWithMulticastGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// Query string used to search for wireless devices as part of the bulk associate
+	// and disassociate process.
+	QueryString *string `type:"string"`
+
+	// The tag to attach to the specified resource. Tags are metadata that you can
+	// use to manage a resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBulkAssociateWirelessDeviceWithMulticastGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBulkAssociateWirelessDeviceWithMulticastGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartBulkAssociateWirelessDeviceWithMulticastGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartBulkAssociateWirelessDeviceWithMulticastGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *StartBulkAssociateWirelessDeviceWithMulticastGroupInput) SetId(v string) *StartBulkAssociateWirelessDeviceWithMulticastGroupInput {
+	s.Id = &v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *StartBulkAssociateWirelessDeviceWithMulticastGroupInput) SetQueryString(v string) *StartBulkAssociateWirelessDeviceWithMulticastGroupInput {
+	s.QueryString = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartBulkAssociateWirelessDeviceWithMulticastGroupInput) SetTags(v []*Tag) *StartBulkAssociateWirelessDeviceWithMulticastGroupInput {
+	s.Tags = v
+	return s
+}
+
+type StartBulkAssociateWirelessDeviceWithMulticastGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBulkAssociateWirelessDeviceWithMulticastGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBulkAssociateWirelessDeviceWithMulticastGroupOutput) GoString() string {
+	return s.String()
+}
+
+type StartBulkDisassociateWirelessDeviceFromMulticastGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// Query string used to search for wireless devices as part of the bulk associate
+	// and disassociate process.
+	QueryString *string `type:"string"`
+
+	// The tag to attach to the specified resource. Tags are metadata that you can
+	// use to manage a resource.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBulkDisassociateWirelessDeviceFromMulticastGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBulkDisassociateWirelessDeviceFromMulticastGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartBulkDisassociateWirelessDeviceFromMulticastGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput) SetId(v string) *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput {
+	s.Id = &v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput) SetQueryString(v string) *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput {
+	s.QueryString = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput) SetTags(v []*Tag) *StartBulkDisassociateWirelessDeviceFromMulticastGroupInput {
+	s.Tags = v
+	return s
+}
+
+type StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartBulkDisassociateWirelessDeviceFromMulticastGroupOutput) GoString() string {
+	return s.String()
+}
+
+type StartFuotaTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a FUOTA task.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The LoRaWAN information used to start a FUOTA task.
+	LoRaWAN *LoRaWANStartFuotaTask `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartFuotaTaskInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *StartFuotaTaskInput) SetId(v string) *StartFuotaTaskInput {
+	s.Id = &v
+	return s
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *StartFuotaTaskInput) SetLoRaWAN(v *LoRaWANStartFuotaTask) *StartFuotaTaskInput {
+	s.LoRaWAN = v
+	return s
+}
+
+type StartFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
+type StartMulticastGroupSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The LoRaWAN information used with the multicast session.
+	//
+	// LoRaWAN is a required field
+	LoRaWAN *LoRaWANMulticastSession `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMulticastGroupSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMulticastGroupSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMulticastGroupSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMulticastGroupSessionInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.LoRaWAN == nil {
+		invalidParams.Add(request.NewErrParamRequired("LoRaWAN"))
+	}
+	if s.LoRaWAN != nil {
+		if err := s.LoRaWAN.Validate(); err != nil {
+			invalidParams.AddNested("LoRaWAN", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *StartMulticastGroupSessionInput) SetId(v string) *StartMulticastGroupSessionInput {
+	s.Id = &v
+	return s
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *StartMulticastGroupSessionInput) SetLoRaWAN(v *LoRaWANMulticastSession) *StartMulticastGroupSessionInput {
+	s.LoRaWAN = v
+	return s
+}
+
+type StartMulticastGroupSessionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMulticastGroupSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartMulticastGroupSessionOutput) GoString() string {
+	return s.String()
 }
 
 // A simple label consisting of a customer-defined key-value pair
@@ -13149,6 +18754,129 @@ func (s UpdateDestinationOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateFuotaTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the new resource.
+	Description *string `type:"string"`
+
+	// The S3 URI points to a firmware update image that is to be used with a FUOTA
+	// task.
+	FirmwareUpdateImage *string `min:"1" type:"string"`
+
+	// The firmware update role that is to be used with a FUOTA task.
+	FirmwareUpdateRole *string `min:"1" type:"string"`
+
+	// The ID of a FUOTA task.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The LoRaWAN information used with a FUOTA task.
+	LoRaWAN *LoRaWANFuotaTask `type:"structure"`
+
+	// The name of a FUOTA task.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFuotaTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFuotaTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFuotaTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFuotaTaskInput"}
+	if s.FirmwareUpdateImage != nil && len(*s.FirmwareUpdateImage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirmwareUpdateImage", 1))
+	}
+	if s.FirmwareUpdateRole != nil && len(*s.FirmwareUpdateRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirmwareUpdateRole", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateFuotaTaskInput) SetDescription(v string) *UpdateFuotaTaskInput {
+	s.Description = &v
+	return s
+}
+
+// SetFirmwareUpdateImage sets the FirmwareUpdateImage field's value.
+func (s *UpdateFuotaTaskInput) SetFirmwareUpdateImage(v string) *UpdateFuotaTaskInput {
+	s.FirmwareUpdateImage = &v
+	return s
+}
+
+// SetFirmwareUpdateRole sets the FirmwareUpdateRole field's value.
+func (s *UpdateFuotaTaskInput) SetFirmwareUpdateRole(v string) *UpdateFuotaTaskInput {
+	s.FirmwareUpdateRole = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateFuotaTaskInput) SetId(v string) *UpdateFuotaTaskInput {
+	s.Id = &v
+	return s
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *UpdateFuotaTaskInput) SetLoRaWAN(v *LoRaWANFuotaTask) *UpdateFuotaTaskInput {
+	s.LoRaWAN = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFuotaTaskInput) SetName(v string) *UpdateFuotaTaskInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateFuotaTaskOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFuotaTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFuotaTaskOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateLogLevelsByResourceTypesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13247,6 +18975,104 @@ func (s UpdateLogLevelsByResourceTypesOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateLogLevelsByResourceTypesOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateMulticastGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the new resource.
+	Description *string `type:"string"`
+
+	// The ID of the multicast group.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The LoRaWAN information that is to be used with the multicast group.
+	LoRaWAN *LoRaWANMulticast `type:"structure"`
+
+	// The name of the multicast group.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMulticastGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMulticastGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMulticastGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMulticastGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateMulticastGroupInput) SetDescription(v string) *UpdateMulticastGroupInput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateMulticastGroupInput) SetId(v string) *UpdateMulticastGroupInput {
+	s.Id = &v
+	return s
+}
+
+// SetLoRaWAN sets the LoRaWAN field's value.
+func (s *UpdateMulticastGroupInput) SetLoRaWAN(v *LoRaWANMulticast) *UpdateMulticastGroupInput {
+	s.LoRaWAN = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateMulticastGroupInput) SetName(v string) *UpdateMulticastGroupInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateMulticastGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMulticastGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateMulticastGroupOutput) GoString() string {
 	return s.String()
 }
 
@@ -13351,6 +19177,118 @@ func (s UpdatePartnerAccountOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdatePartnerAccountOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateResourceEventConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Event configuration for the device registration state event
+	DeviceRegistrationState *DeviceRegistrationStateEventConfiguration `type:"structure"`
+
+	// Resource identifier to opt in for event messaging.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"Identifier" type:"string" required:"true"`
+
+	// Identifier type of the particular resource identifier for event configuration.
+	//
+	// IdentifierType is a required field
+	IdentifierType *string `location:"querystring" locationName:"identifierType" type:"string" required:"true" enum:"IdentifierType"`
+
+	// Partner type of the resource if the identifier type is PartnerAccountId
+	PartnerType *string `location:"querystring" locationName:"partnerType" type:"string" enum:"EventNotificationPartnerType"`
+
+	// Event configuration for the Proximity event
+	Proximity *ProximityEventConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceEventConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceEventConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResourceEventConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResourceEventConfigurationInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.IdentifierType == nil {
+		invalidParams.Add(request.NewErrParamRequired("IdentifierType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceRegistrationState sets the DeviceRegistrationState field's value.
+func (s *UpdateResourceEventConfigurationInput) SetDeviceRegistrationState(v *DeviceRegistrationStateEventConfiguration) *UpdateResourceEventConfigurationInput {
+	s.DeviceRegistrationState = v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UpdateResourceEventConfigurationInput) SetIdentifier(v string) *UpdateResourceEventConfigurationInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetIdentifierType sets the IdentifierType field's value.
+func (s *UpdateResourceEventConfigurationInput) SetIdentifierType(v string) *UpdateResourceEventConfigurationInput {
+	s.IdentifierType = &v
+	return s
+}
+
+// SetPartnerType sets the PartnerType field's value.
+func (s *UpdateResourceEventConfigurationInput) SetPartnerType(v string) *UpdateResourceEventConfigurationInput {
+	s.PartnerType = &v
+	return s
+}
+
+// SetProximity sets the Proximity field's value.
+func (s *UpdateResourceEventConfigurationInput) SetProximity(v *ProximityEventConfiguration) *UpdateResourceEventConfigurationInput {
+	s.Proximity = v
+	return s
+}
+
+type UpdateResourceEventConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceEventConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResourceEventConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -13911,6 +19849,9 @@ type WirelessDeviceStatistics struct {
 	// The name of the destination to which the device is assigned.
 	DestinationName *string `type:"string"`
 
+	// The status of a wireless device in a FUOTA task.
+	FuotaDeviceStatus *string `type:"string" enum:"FuotaDeviceStatus"`
+
 	// The ID of the wireless device reporting the data.
 	Id *string `type:"string"`
 
@@ -13919,6 +19860,12 @@ type WirelessDeviceStatistics struct {
 
 	// LoRaWAN device info.
 	LoRaWAN *LoRaWANListDevice `type:"structure"`
+
+	// Id of the multicast group.
+	McGroupId *int64 `min:"1" type:"integer"`
+
+	// The status of the wireless device in the multicast group.
+	MulticastDeviceStatus *string `type:"string"`
 
 	// The name of the resource.
 	Name *string `type:"string"`
@@ -13960,6 +19907,12 @@ func (s *WirelessDeviceStatistics) SetDestinationName(v string) *WirelessDeviceS
 	return s
 }
 
+// SetFuotaDeviceStatus sets the FuotaDeviceStatus field's value.
+func (s *WirelessDeviceStatistics) SetFuotaDeviceStatus(v string) *WirelessDeviceStatistics {
+	s.FuotaDeviceStatus = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *WirelessDeviceStatistics) SetId(v string) *WirelessDeviceStatistics {
 	s.Id = &v
@@ -13975,6 +19928,18 @@ func (s *WirelessDeviceStatistics) SetLastUplinkReceivedAt(v string) *WirelessDe
 // SetLoRaWAN sets the LoRaWAN field's value.
 func (s *WirelessDeviceStatistics) SetLoRaWAN(v *LoRaWANListDevice) *WirelessDeviceStatistics {
 	s.LoRaWAN = v
+	return s
+}
+
+// SetMcGroupId sets the McGroupId field's value.
+func (s *WirelessDeviceStatistics) SetMcGroupId(v int64) *WirelessDeviceStatistics {
+	s.McGroupId = &v
+	return s
+}
+
+// SetMulticastDeviceStatus sets the MulticastDeviceStatus field's value.
+func (s *WirelessDeviceStatistics) SetMulticastDeviceStatus(v string) *WirelessDeviceStatistics {
+	s.MulticastDeviceStatus = &v
 	return s
 }
 
@@ -14337,6 +20302,23 @@ func DeviceState_Values() []string {
 	}
 }
 
+// DlClass for LoRaWAM, valid values are ClassB and ClassC.
+const (
+	// DlClassClassB is a DlClass enum value
+	DlClassClassB = "ClassB"
+
+	// DlClassClassC is a DlClass enum value
+	DlClassClassC = "ClassC"
+)
+
+// DlClass_Values returns all elements of the DlClass enum
+func DlClass_Values() []string {
+	return []string{
+		DlClassClassB,
+		DlClassClassC,
+	}
+}
+
 // Sidewalk device status notification.
 const (
 	// EventDiscovered is a Event enum value
@@ -14367,6 +20349,34 @@ func Event_Values() []string {
 }
 
 const (
+	// EventNotificationPartnerTypeSidewalk is a EventNotificationPartnerType enum value
+	EventNotificationPartnerTypeSidewalk = "Sidewalk"
+)
+
+// EventNotificationPartnerType_Values returns all elements of the EventNotificationPartnerType enum
+func EventNotificationPartnerType_Values() []string {
+	return []string{
+		EventNotificationPartnerTypeSidewalk,
+	}
+}
+
+const (
+	// EventNotificationTopicStatusEnabled is a EventNotificationTopicStatus enum value
+	EventNotificationTopicStatusEnabled = "Enabled"
+
+	// EventNotificationTopicStatusDisabled is a EventNotificationTopicStatus enum value
+	EventNotificationTopicStatusDisabled = "Disabled"
+)
+
+// EventNotificationTopicStatus_Values returns all elements of the EventNotificationTopicStatus enum
+func EventNotificationTopicStatus_Values() []string {
+	return []string{
+		EventNotificationTopicStatusEnabled,
+		EventNotificationTopicStatusDisabled,
+	}
+}
+
+const (
 	// ExpressionTypeRuleName is a ExpressionType enum value
 	ExpressionTypeRuleName = "RuleName"
 
@@ -14379,6 +20389,100 @@ func ExpressionType_Values() []string {
 	return []string{
 		ExpressionTypeRuleName,
 		ExpressionTypeMqttTopic,
+	}
+}
+
+// The status of a wireless device in a FUOTA task.
+const (
+	// FuotaDeviceStatusInitial is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusInitial = "Initial"
+
+	// FuotaDeviceStatusPackageNotSupported is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusPackageNotSupported = "Package_Not_Supported"
+
+	// FuotaDeviceStatusFragAlgoUnsupported is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusFragAlgoUnsupported = "FragAlgo_unsupported"
+
+	// FuotaDeviceStatusNotEnoughMemory is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusNotEnoughMemory = "Not_enough_memory"
+
+	// FuotaDeviceStatusFragIndexUnsupported is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusFragIndexUnsupported = "FragIndex_unsupported"
+
+	// FuotaDeviceStatusWrongDescriptor is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusWrongDescriptor = "Wrong_descriptor"
+
+	// FuotaDeviceStatusSessionCntReplay is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusSessionCntReplay = "SessionCnt_replay"
+
+	// FuotaDeviceStatusMissingFrag is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusMissingFrag = "MissingFrag"
+
+	// FuotaDeviceStatusMemoryError is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusMemoryError = "MemoryError"
+
+	// FuotaDeviceStatusMicerror is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusMicerror = "MICError"
+
+	// FuotaDeviceStatusSuccessful is a FuotaDeviceStatus enum value
+	FuotaDeviceStatusSuccessful = "Successful"
+)
+
+// FuotaDeviceStatus_Values returns all elements of the FuotaDeviceStatus enum
+func FuotaDeviceStatus_Values() []string {
+	return []string{
+		FuotaDeviceStatusInitial,
+		FuotaDeviceStatusPackageNotSupported,
+		FuotaDeviceStatusFragAlgoUnsupported,
+		FuotaDeviceStatusNotEnoughMemory,
+		FuotaDeviceStatusFragIndexUnsupported,
+		FuotaDeviceStatusWrongDescriptor,
+		FuotaDeviceStatusSessionCntReplay,
+		FuotaDeviceStatusMissingFrag,
+		FuotaDeviceStatusMemoryError,
+		FuotaDeviceStatusMicerror,
+		FuotaDeviceStatusSuccessful,
+	}
+}
+
+// The status of a FUOTA task.
+const (
+	// FuotaTaskStatusPending is a FuotaTaskStatus enum value
+	FuotaTaskStatusPending = "Pending"
+
+	// FuotaTaskStatusFuotaSessionWaiting is a FuotaTaskStatus enum value
+	FuotaTaskStatusFuotaSessionWaiting = "FuotaSession_Waiting"
+
+	// FuotaTaskStatusInFuotaSession is a FuotaTaskStatus enum value
+	FuotaTaskStatusInFuotaSession = "In_FuotaSession"
+
+	// FuotaTaskStatusFuotaDone is a FuotaTaskStatus enum value
+	FuotaTaskStatusFuotaDone = "FuotaDone"
+
+	// FuotaTaskStatusDeleteWaiting is a FuotaTaskStatus enum value
+	FuotaTaskStatusDeleteWaiting = "Delete_Waiting"
+)
+
+// FuotaTaskStatus_Values returns all elements of the FuotaTaskStatus enum
+func FuotaTaskStatus_Values() []string {
+	return []string{
+		FuotaTaskStatusPending,
+		FuotaTaskStatusFuotaSessionWaiting,
+		FuotaTaskStatusInFuotaSession,
+		FuotaTaskStatusFuotaDone,
+		FuotaTaskStatusDeleteWaiting,
+	}
+}
+
+const (
+	// IdentifierTypePartnerAccountId is a IdentifierType enum value
+	IdentifierTypePartnerAccountId = "PartnerAccountId"
+)
+
+// IdentifierType_Values returns all elements of the IdentifierType enum
+func IdentifierType_Values() []string {
+	return []string{
+		IdentifierTypePartnerAccountId,
 	}
 }
 
@@ -14454,6 +20558,31 @@ func SigningAlg_Values() []string {
 	return []string{
 		SigningAlgEd25519,
 		SigningAlgP256r1,
+	}
+}
+
+// Supported RfRegions
+const (
+	// SupportedRfRegionEu868 is a SupportedRfRegion enum value
+	SupportedRfRegionEu868 = "EU868"
+
+	// SupportedRfRegionUs915 is a SupportedRfRegion enum value
+	SupportedRfRegionUs915 = "US915"
+
+	// SupportedRfRegionAu915 is a SupportedRfRegion enum value
+	SupportedRfRegionAu915 = "AU915"
+
+	// SupportedRfRegionAs9231 is a SupportedRfRegion enum value
+	SupportedRfRegionAs9231 = "AS923-1"
+)
+
+// SupportedRfRegion_Values returns all elements of the SupportedRfRegion enum
+func SupportedRfRegion_Values() []string {
+	return []string{
+		SupportedRfRegionEu868,
+		SupportedRfRegionUs915,
+		SupportedRfRegionAu915,
+		SupportedRfRegionAs9231,
 	}
 }
 

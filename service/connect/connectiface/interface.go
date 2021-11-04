@@ -124,6 +124,10 @@ type ConnectAPI interface {
 	CreateRoutingProfileWithContext(aws.Context, *connect.CreateRoutingProfileInput, ...request.Option) (*connect.CreateRoutingProfileOutput, error)
 	CreateRoutingProfileRequest(*connect.CreateRoutingProfileInput) (*request.Request, *connect.CreateRoutingProfileOutput)
 
+	CreateSecurityProfile(*connect.CreateSecurityProfileInput) (*connect.CreateSecurityProfileOutput, error)
+	CreateSecurityProfileWithContext(aws.Context, *connect.CreateSecurityProfileInput, ...request.Option) (*connect.CreateSecurityProfileOutput, error)
+	CreateSecurityProfileRequest(*connect.CreateSecurityProfileInput) (*request.Request, *connect.CreateSecurityProfileOutput)
+
 	CreateUseCase(*connect.CreateUseCaseInput) (*connect.CreateUseCaseOutput, error)
 	CreateUseCaseWithContext(aws.Context, *connect.CreateUseCaseInput, ...request.Option) (*connect.CreateUseCaseOutput, error)
 	CreateUseCaseRequest(*connect.CreateUseCaseInput) (*request.Request, *connect.CreateUseCaseOutput)
@@ -151,6 +155,10 @@ type ConnectAPI interface {
 	DeleteQuickConnect(*connect.DeleteQuickConnectInput) (*connect.DeleteQuickConnectOutput, error)
 	DeleteQuickConnectWithContext(aws.Context, *connect.DeleteQuickConnectInput, ...request.Option) (*connect.DeleteQuickConnectOutput, error)
 	DeleteQuickConnectRequest(*connect.DeleteQuickConnectInput) (*request.Request, *connect.DeleteQuickConnectOutput)
+
+	DeleteSecurityProfile(*connect.DeleteSecurityProfileInput) (*connect.DeleteSecurityProfileOutput, error)
+	DeleteSecurityProfileWithContext(aws.Context, *connect.DeleteSecurityProfileInput, ...request.Option) (*connect.DeleteSecurityProfileOutput, error)
+	DeleteSecurityProfileRequest(*connect.DeleteSecurityProfileInput) (*request.Request, *connect.DeleteSecurityProfileOutput)
 
 	DeleteUseCase(*connect.DeleteUseCaseInput) (*connect.DeleteUseCaseOutput, error)
 	DeleteUseCaseWithContext(aws.Context, *connect.DeleteUseCaseInput, ...request.Option) (*connect.DeleteUseCaseOutput, error)
@@ -199,6 +207,10 @@ type ConnectAPI interface {
 	DescribeRoutingProfile(*connect.DescribeRoutingProfileInput) (*connect.DescribeRoutingProfileOutput, error)
 	DescribeRoutingProfileWithContext(aws.Context, *connect.DescribeRoutingProfileInput, ...request.Option) (*connect.DescribeRoutingProfileOutput, error)
 	DescribeRoutingProfileRequest(*connect.DescribeRoutingProfileInput) (*request.Request, *connect.DescribeRoutingProfileOutput)
+
+	DescribeSecurityProfile(*connect.DescribeSecurityProfileInput) (*connect.DescribeSecurityProfileOutput, error)
+	DescribeSecurityProfileWithContext(aws.Context, *connect.DescribeSecurityProfileInput, ...request.Option) (*connect.DescribeSecurityProfileOutput, error)
+	DescribeSecurityProfileRequest(*connect.DescribeSecurityProfileInput) (*request.Request, *connect.DescribeSecurityProfileOutput)
 
 	DescribeUser(*connect.DescribeUserInput) (*connect.DescribeUserOutput, error)
 	DescribeUserWithContext(aws.Context, *connect.DescribeUserInput, ...request.Option) (*connect.DescribeUserOutput, error)
@@ -399,6 +411,13 @@ type ConnectAPI interface {
 	ListSecurityKeysPages(*connect.ListSecurityKeysInput, func(*connect.ListSecurityKeysOutput, bool) bool) error
 	ListSecurityKeysPagesWithContext(aws.Context, *connect.ListSecurityKeysInput, func(*connect.ListSecurityKeysOutput, bool) bool, ...request.Option) error
 
+	ListSecurityProfilePermissions(*connect.ListSecurityProfilePermissionsInput) (*connect.ListSecurityProfilePermissionsOutput, error)
+	ListSecurityProfilePermissionsWithContext(aws.Context, *connect.ListSecurityProfilePermissionsInput, ...request.Option) (*connect.ListSecurityProfilePermissionsOutput, error)
+	ListSecurityProfilePermissionsRequest(*connect.ListSecurityProfilePermissionsInput) (*request.Request, *connect.ListSecurityProfilePermissionsOutput)
+
+	ListSecurityProfilePermissionsPages(*connect.ListSecurityProfilePermissionsInput, func(*connect.ListSecurityProfilePermissionsOutput, bool) bool) error
+	ListSecurityProfilePermissionsPagesWithContext(aws.Context, *connect.ListSecurityProfilePermissionsInput, func(*connect.ListSecurityProfilePermissionsOutput, bool) bool, ...request.Option) error
+
 	ListSecurityProfiles(*connect.ListSecurityProfilesInput) (*connect.ListSecurityProfilesOutput, error)
 	ListSecurityProfilesWithContext(aws.Context, *connect.ListSecurityProfilesInput, ...request.Option) (*connect.ListSecurityProfilesOutput, error)
 	ListSecurityProfilesRequest(*connect.ListSecurityProfilesInput) (*request.Request, *connect.ListSecurityProfilesOutput)
@@ -550,6 +569,10 @@ type ConnectAPI interface {
 	UpdateRoutingProfileQueues(*connect.UpdateRoutingProfileQueuesInput) (*connect.UpdateRoutingProfileQueuesOutput, error)
 	UpdateRoutingProfileQueuesWithContext(aws.Context, *connect.UpdateRoutingProfileQueuesInput, ...request.Option) (*connect.UpdateRoutingProfileQueuesOutput, error)
 	UpdateRoutingProfileQueuesRequest(*connect.UpdateRoutingProfileQueuesInput) (*request.Request, *connect.UpdateRoutingProfileQueuesOutput)
+
+	UpdateSecurityProfile(*connect.UpdateSecurityProfileInput) (*connect.UpdateSecurityProfileOutput, error)
+	UpdateSecurityProfileWithContext(aws.Context, *connect.UpdateSecurityProfileInput, ...request.Option) (*connect.UpdateSecurityProfileOutput, error)
+	UpdateSecurityProfileRequest(*connect.UpdateSecurityProfileInput) (*request.Request, *connect.UpdateSecurityProfileOutput)
 
 	UpdateUserHierarchy(*connect.UpdateUserHierarchyInput) (*connect.UpdateUserHierarchyOutput, error)
 	UpdateUserHierarchyWithContext(aws.Context, *connect.UpdateUserHierarchyInput, ...request.Option) (*connect.UpdateUserHierarchyOutput, error)

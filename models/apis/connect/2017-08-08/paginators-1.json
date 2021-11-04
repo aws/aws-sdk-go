@@ -124,6 +124,12 @@
       "output_token": "NextToken",
       "result_key": "SecurityKeys"
     },
+    "ListSecurityProfilePermissions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Permissions"
+    },
     "ListSecurityProfiles": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

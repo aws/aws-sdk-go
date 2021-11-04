@@ -3535,7 +3535,9 @@
       "refs": {
         "AgentVersion$Version": "<p>Version of the agent.</p>",
         "CreateEdgePackagingJobRequest$ModelVersion": "<p>The version of the model.</p>",
+        "DescribeDeviceResponse$AgentVersion": "<p>Edge Manager agent version.</p>",
         "DescribeEdgePackagingJobResponse$ModelVersion": "<p>The version of the model.</p>",
+        "DeviceSummary$AgentVersion": "<p>Edge Manager agent version.</p>",
         "EdgeModel$ModelVersion": "<p>The model version.</p>",
         "EdgeModelStat$ModelVersion": "<p>The model version.</p>",
         "EdgeModelSummary$ModelVersion": "<p>The version model.</p>",

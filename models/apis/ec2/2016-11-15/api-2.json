@@ -17970,7 +17970,10 @@
     },
     "FleetReplacementStrategy":{
       "type":"string",
-      "enum":["launch"]
+      "enum":[
+        "launch",
+        "launch-before-terminate"
+      ]
     },
     "FleetSet":{
       "type":"list",
@@ -17985,13 +17988,18 @@
         "ReplacementStrategy":{
           "shape":"FleetReplacementStrategy",
           "locationName":"replacementStrategy"
+        },
+        "TerminationDelay":{
+          "shape":"Integer",
+          "locationName":"terminationDelay"
         }
       }
     },
     "FleetSpotCapacityRebalanceRequest":{
       "type":"structure",
       "members":{
-        "ReplacementStrategy":{"shape":"FleetReplacementStrategy"}
+        "ReplacementStrategy":{"shape":"FleetReplacementStrategy"},
+        "TerminationDelay":{"shape":"Integer"}
       }
     },
     "FleetSpotMaintenanceStrategies":{
@@ -28668,7 +28676,10 @@
     },
     "ReplacementStrategy":{
       "type":"string",
-      "enum":["launch"]
+      "enum":[
+        "launch",
+        "launch-before-terminate"
+      ]
     },
     "ReportInstanceReasonCodes":{
       "type":"string",
@@ -31454,6 +31465,10 @@
         "ReplacementStrategy":{
           "shape":"ReplacementStrategy",
           "locationName":"replacementStrategy"
+        },
+        "TerminationDelay":{
+          "shape":"Integer",
+          "locationName":"terminationDelay"
         }
       }
     },

@@ -6353,7 +6353,8 @@
         "LatestHeartbeat":{"shape":"Timestamp"},
         "Models":{"shape":"EdgeModels"},
         "MaxModels":{"shape":"Integer"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "AgentVersion":{"shape":"EdgeVersion"}
       }
     },
     "DescribeDomainRequest":{
@@ -7486,7 +7487,8 @@
         "IotThingName":{"shape":"ThingName"},
         "RegistrationTime":{"shape":"Timestamp"},
         "LatestHeartbeat":{"shape":"Timestamp"},
-        "Models":{"shape":"EdgeModelSummaries"}
+        "Models":{"shape":"EdgeModelSummaries"},
+        "AgentVersion":{"shape":"EdgeVersion"}
       }
     },
     "Devices":{
