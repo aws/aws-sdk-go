@@ -1,3 +1,19 @@
+Release v1.41.18 (2021-11-04)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Adds new service
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new instance replacement strategy for EC2 Fleet, Spot Fleet. Now you can select an action to perform when your instance gets a rebalance notification. EC2 Fleet, Spot Fleet can launch a replacement then terminate the instance that received notification after a termination delay
+* `service/iotwireless`: Updates service API, documentation, and paginators
+* `service/sagemaker`: Updates service API and documentation
+  * ListDevices and DescribeDevice now show Edge Manager agent version.
+
+### SDK Bugs
+* `aws/signer/v4`: Fix Signer not trimming header value spaces
+  * Fixes the AWS Sigv4 signer to trim header value's whitespace when computing the canonical headers block of the string to sign.
+
 Release v1.41.17 (2021-11-03)
 ===
 

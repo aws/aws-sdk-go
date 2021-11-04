@@ -1252,7 +1252,8 @@ func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAs
 
 // CreateIntegrationAssociation API operation for Amazon Connect Service.
 //
-// Creates an AWS resource association with an Amazon Connect instance.
+// Creates an Amazon Web Services resource association with an Amazon Connect
+// instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1587,6 +1588,105 @@ func (c *Connect) CreateRoutingProfile(input *CreateRoutingProfileInput) (*Creat
 // for more information on using Contexts.
 func (c *Connect) CreateRoutingProfileWithContext(ctx aws.Context, input *CreateRoutingProfileInput, opts ...request.Option) (*CreateRoutingProfileOutput, error) {
 	req, out := c.CreateRoutingProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateSecurityProfile = "CreateSecurityProfile"
+
+// CreateSecurityProfileRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSecurityProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSecurityProfile for more information on using the CreateSecurityProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSecurityProfileRequest method.
+//    req, resp := client.CreateSecurityProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateSecurityProfile
+func (c *Connect) CreateSecurityProfileRequest(input *CreateSecurityProfileInput) (req *request.Request, output *CreateSecurityProfileOutput) {
+	op := &request.Operation{
+		Name:       opCreateSecurityProfile,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/security-profiles/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateSecurityProfileInput{}
+	}
+
+	output = &CreateSecurityProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSecurityProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Creates a security profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateSecurityProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateSecurityProfile
+func (c *Connect) CreateSecurityProfile(input *CreateSecurityProfileInput) (*CreateSecurityProfileOutput, error) {
+	req, out := c.CreateSecurityProfileRequest(input)
+	return out, req.Send()
+}
+
+// CreateSecurityProfileWithContext is the same as CreateSecurityProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSecurityProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateSecurityProfileWithContext(ctx aws.Context, input *CreateSecurityProfileInput, opts ...request.Option) (*CreateSecurityProfileOutput, error) {
+	req, out := c.CreateSecurityProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2112,8 +2212,8 @@ func (c *Connect) DeleteIntegrationAssociationRequest(input *DeleteIntegrationAs
 
 // DeleteIntegrationAssociation API operation for Amazon Connect Service.
 //
-// Deletes an AWS resource association from an Amazon Connect instance. The
-// association must not have any use cases associated with it.
+// Deletes an Amazon Web Services resource association from an Amazon Connect
+// instance. The association must not have any use cases associated with it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2244,6 +2344,106 @@ func (c *Connect) DeleteQuickConnect(input *DeleteQuickConnectInput) (*DeleteQui
 // for more information on using Contexts.
 func (c *Connect) DeleteQuickConnectWithContext(ctx aws.Context, input *DeleteQuickConnectInput, opts ...request.Option) (*DeleteQuickConnectOutput, error) {
 	req, out := c.DeleteQuickConnectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSecurityProfile = "DeleteSecurityProfile"
+
+// DeleteSecurityProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSecurityProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSecurityProfile for more information on using the DeleteSecurityProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSecurityProfileRequest method.
+//    req, resp := client.DeleteSecurityProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteSecurityProfile
+func (c *Connect) DeleteSecurityProfileRequest(input *DeleteSecurityProfileInput) (req *request.Request, output *DeleteSecurityProfileOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSecurityProfile,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/security-profiles/{InstanceId}/{SecurityProfileId}",
+	}
+
+	if input == nil {
+		input = &DeleteSecurityProfileInput{}
+	}
+
+	output = &DeleteSecurityProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSecurityProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Deletes a security profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteSecurityProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceInUseException
+//   That resource is already in use. Please try another.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteSecurityProfile
+func (c *Connect) DeleteSecurityProfile(input *DeleteSecurityProfileInput) (*DeleteSecurityProfileOutput, error) {
+	req, out := c.DeleteSecurityProfileRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSecurityProfileWithContext is the same as DeleteSecurityProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSecurityProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteSecurityProfileWithContext(ctx aws.Context, input *DeleteSecurityProfileInput, opts ...request.Option) (*DeleteSecurityProfileOutput, error) {
+	req, out := c.DeleteSecurityProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3360,6 +3560,99 @@ func (c *Connect) DescribeRoutingProfile(input *DescribeRoutingProfileInput) (*D
 // for more information on using Contexts.
 func (c *Connect) DescribeRoutingProfileWithContext(ctx aws.Context, input *DescribeRoutingProfileInput, opts ...request.Option) (*DescribeRoutingProfileOutput, error) {
 	req, out := c.DescribeRoutingProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeSecurityProfile = "DescribeSecurityProfile"
+
+// DescribeSecurityProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSecurityProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSecurityProfile for more information on using the DescribeSecurityProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeSecurityProfileRequest method.
+//    req, resp := client.DescribeSecurityProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeSecurityProfile
+func (c *Connect) DescribeSecurityProfileRequest(input *DescribeSecurityProfileInput) (req *request.Request, output *DescribeSecurityProfileOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSecurityProfile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/security-profiles/{InstanceId}/{SecurityProfileId}",
+	}
+
+	if input == nil {
+		input = &DescribeSecurityProfileInput{}
+	}
+
+	output = &DescribeSecurityProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSecurityProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Gets basic information about the security profle.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeSecurityProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeSecurityProfile
+func (c *Connect) DescribeSecurityProfile(input *DescribeSecurityProfileInput) (*DescribeSecurityProfileOutput, error) {
+	req, out := c.DescribeSecurityProfileRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSecurityProfileWithContext is the same as DescribeSecurityProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSecurityProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeSecurityProfileWithContext(ctx aws.Context, input *DescribeSecurityProfileInput, opts ...request.Option) (*DescribeSecurityProfileOutput, error) {
+	req, out := c.DescribeSecurityProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6140,8 +6433,8 @@ func (c *Connect) ListIntegrationAssociationsRequest(input *ListIntegrationAssoc
 
 // ListIntegrationAssociations API operation for Amazon Connect Service.
 //
-// Provides summary information about the AWS resource associations for the
-// specified Amazon Connect instance.
+// Provides summary information about the Amazon Web Services resource associations
+// for the specified Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7756,6 +8049,157 @@ func (c *Connect) ListSecurityKeysPagesWithContext(ctx aws.Context, input *ListS
 	return p.Err()
 }
 
+const opListSecurityProfilePermissions = "ListSecurityProfilePermissions"
+
+// ListSecurityProfilePermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSecurityProfilePermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSecurityProfilePermissions for more information on using the ListSecurityProfilePermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSecurityProfilePermissionsRequest method.
+//    req, resp := client.ListSecurityProfilePermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfilePermissions
+func (c *Connect) ListSecurityProfilePermissionsRequest(input *ListSecurityProfilePermissionsInput) (req *request.Request, output *ListSecurityProfilePermissionsOutput) {
+	op := &request.Operation{
+		Name:       opListSecurityProfilePermissions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/security-profiles-permissions/{InstanceId}/{SecurityProfileId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSecurityProfilePermissionsInput{}
+	}
+
+	output = &ListSecurityProfilePermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSecurityProfilePermissions API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Lists the permissions granted to a security profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListSecurityProfilePermissions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListSecurityProfilePermissions
+func (c *Connect) ListSecurityProfilePermissions(input *ListSecurityProfilePermissionsInput) (*ListSecurityProfilePermissionsOutput, error) {
+	req, out := c.ListSecurityProfilePermissionsRequest(input)
+	return out, req.Send()
+}
+
+// ListSecurityProfilePermissionsWithContext is the same as ListSecurityProfilePermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSecurityProfilePermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListSecurityProfilePermissionsWithContext(ctx aws.Context, input *ListSecurityProfilePermissionsInput, opts ...request.Option) (*ListSecurityProfilePermissionsOutput, error) {
+	req, out := c.ListSecurityProfilePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSecurityProfilePermissionsPages iterates over the pages of a ListSecurityProfilePermissions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSecurityProfilePermissions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSecurityProfilePermissions operation.
+//    pageNum := 0
+//    err := client.ListSecurityProfilePermissionsPages(params,
+//        func(page *connect.ListSecurityProfilePermissionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListSecurityProfilePermissionsPages(input *ListSecurityProfilePermissionsInput, fn func(*ListSecurityProfilePermissionsOutput, bool) bool) error {
+	return c.ListSecurityProfilePermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSecurityProfilePermissionsPagesWithContext same as ListSecurityProfilePermissionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListSecurityProfilePermissionsPagesWithContext(ctx aws.Context, input *ListSecurityProfilePermissionsInput, fn func(*ListSecurityProfilePermissionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSecurityProfilePermissionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSecurityProfilePermissionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSecurityProfilePermissionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSecurityProfiles = "ListSecurityProfiles"
 
 // ListSecurityProfilesRequest generates a "aws/request.Request" representing the
@@ -7805,6 +8249,8 @@ func (c *Connect) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) 
 }
 
 // ListSecurityProfiles API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Provides summary information about the security profiles for the specified
 // Amazon Connect instance.
@@ -11344,6 +11790,100 @@ func (c *Connect) UpdateRoutingProfileQueuesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opUpdateSecurityProfile = "UpdateSecurityProfile"
+
+// UpdateSecurityProfileRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSecurityProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSecurityProfile for more information on using the UpdateSecurityProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSecurityProfileRequest method.
+//    req, resp := client.UpdateSecurityProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateSecurityProfile
+func (c *Connect) UpdateSecurityProfileRequest(input *UpdateSecurityProfileInput) (req *request.Request, output *UpdateSecurityProfileOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSecurityProfile,
+		HTTPMethod: "POST",
+		HTTPPath:   "/security-profiles/{InstanceId}/{SecurityProfileId}",
+	}
+
+	if input == nil {
+		input = &UpdateSecurityProfileInput{}
+	}
+
+	output = &UpdateSecurityProfileOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateSecurityProfile API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates a security profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateSecurityProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateSecurityProfile
+func (c *Connect) UpdateSecurityProfile(input *UpdateSecurityProfileInput) (*UpdateSecurityProfileOutput, error) {
+	req, out := c.UpdateSecurityProfileRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSecurityProfileWithContext is the same as UpdateSecurityProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSecurityProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateSecurityProfileWithContext(ctx aws.Context, input *UpdateSecurityProfileInput, opts ...request.Option) (*UpdateSecurityProfileOutput, error) {
+	req, out := c.UpdateSecurityProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateUserHierarchy = "UpdateUserHierarchy"
 
 // UpdateUserHierarchyRequest generates a "aws/request.Request" representing the
@@ -12003,6 +12543,70 @@ func (c *Connect) UpdateUserSecurityProfilesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// You do not have sufficient access to perform this action.
+type AccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Contains information about an agent status.
 type AgentStatus struct {
 	_ struct{} `type:"structure"`
@@ -12025,7 +12629,7 @@ type AgentStatus struct {
 	// The state of the agent status.
 	State *string `type:"string" enum:"AgentStatusState"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of agent status.
@@ -13456,7 +14060,7 @@ type CreateAgentStatusInput struct {
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"AgentStatusState"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -13768,7 +14372,7 @@ type CreateHoursOfOperationInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone of the hours of operation.
@@ -14097,7 +14701,7 @@ type CreateIntegrationAssociationInput struct {
 	// type.
 	SourceType *string `type:"string" enum:"SourceType"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -14264,7 +14868,7 @@ type CreateQueueInput struct {
 	// The quick connects available to agents who are working the queue.
 	QuickConnectIds []*string `min:"1" type:"list"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -14435,7 +15039,7 @@ type CreateQuickConnectInput struct {
 	// QuickConnectConfig is a required field
 	QuickConnectConfig *QuickConnectConfig `type:"structure" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -14761,6 +15365,140 @@ func (s *CreateRoutingProfileOutput) SetRoutingProfileId(v string) *CreateRoutin
 	return s
 }
 
+type CreateSecurityProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the security profile.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Permissions assigned to the security profile.
+	Permissions []*string `type:"list"`
+
+	// The name of the security profile.
+	//
+	// SecurityProfileName is a required field
+	SecurityProfileName *string `type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSecurityProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSecurityProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.SecurityProfileName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileName"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateSecurityProfileInput) SetDescription(v string) *CreateSecurityProfileInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateSecurityProfileInput) SetInstanceId(v string) *CreateSecurityProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *CreateSecurityProfileInput) SetPermissions(v []*string) *CreateSecurityProfileInput {
+	s.Permissions = v
+	return s
+}
+
+// SetSecurityProfileName sets the SecurityProfileName field's value.
+func (s *CreateSecurityProfileInput) SetSecurityProfileName(v string) *CreateSecurityProfileInput {
+	s.SecurityProfileName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSecurityProfileInput) SetTags(v map[string]*string) *CreateSecurityProfileInput {
+	s.Tags = v
+	return s
+}
+
+type CreateSecurityProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the security profile.
+	SecurityProfileArn *string `type:"string"`
+
+	// The identifier for the security profle.
+	SecurityProfileId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSecurityProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetSecurityProfileArn sets the SecurityProfileArn field's value.
+func (s *CreateSecurityProfileOutput) SetSecurityProfileArn(v string) *CreateSecurityProfileOutput {
+	s.SecurityProfileArn = &v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *CreateSecurityProfileOutput) SetSecurityProfileId(v string) *CreateSecurityProfileOutput {
+	s.SecurityProfileId = &v
+	return s
+}
+
 type CreateUseCaseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14775,7 +15513,7 @@ type CreateUseCaseInput struct {
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of use case to associate to the integration association. Each integration
@@ -15762,6 +16500,95 @@ func (s DeleteQuickConnectOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteQuickConnectOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteSecurityProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the security profle.
+	//
+	// SecurityProfileId is a required field
+	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSecurityProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSecurityProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSecurityProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSecurityProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.SecurityProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileId"))
+	}
+	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteSecurityProfileInput) SetInstanceId(v string) *DeleteSecurityProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *DeleteSecurityProfileInput) SetSecurityProfileId(v string) *DeleteSecurityProfileInput {
+	s.SecurityProfileId = &v
+	return s
+}
+
+type DeleteSecurityProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSecurityProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSecurityProfileOutput) GoString() string {
 	return s.String()
 }
 
@@ -16925,6 +17752,104 @@ func (s DescribeRoutingProfileOutput) GoString() string {
 // SetRoutingProfile sets the RoutingProfile field's value.
 func (s *DescribeRoutingProfileOutput) SetRoutingProfile(v *RoutingProfile) *DescribeRoutingProfileOutput {
 	s.RoutingProfile = v
+	return s
+}
+
+type DescribeSecurityProfileInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier for the security profle.
+	//
+	// SecurityProfileId is a required field
+	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSecurityProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSecurityProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.SecurityProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileId"))
+	}
+	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeSecurityProfileInput) SetInstanceId(v string) *DescribeSecurityProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *DescribeSecurityProfileInput) SetSecurityProfileId(v string) *DescribeSecurityProfileInput {
+	s.SecurityProfileId = &v
+	return s
+}
+
+type DescribeSecurityProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The security profile.
+	SecurityProfile *SecurityProfile `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSecurityProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetSecurityProfile sets the SecurityProfile field's value.
+func (s *DescribeSecurityProfileOutput) SetSecurityProfile(v *SecurityProfile) *DescribeSecurityProfileOutput {
+	s.SecurityProfile = v
 	return s
 }
 
@@ -19711,7 +20636,7 @@ type HoursOfOperation struct {
 	// The name for the hours of operation.
 	Name *string `min:"1" type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone for the hours of operation.
@@ -22012,6 +22937,7 @@ type ListIntegrationAssociationsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
+	// The type of integration.
 	IntegrationType *string `location:"querystring" locationName:"integrationType" type:"string" enum:"IntegrationType"`
 
 	// The maximum number of results to return per page.
@@ -22198,7 +23124,7 @@ func (s *ListLambdaFunctionsInput) SetNextToken(v string) *ListLambdaFunctionsIn
 type ListLambdaFunctionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Lambdafunction ARNs associated with the specified instance.
+	// The Lambda function ARNs associated with the specified instance.
 	LambdaFunctions []*string `type:"list"`
 
 	// If there are additional results, this is the token for the next set of results.
@@ -23316,6 +24242,135 @@ func (s *ListSecurityKeysOutput) SetSecurityKeys(v []*SecurityKey) *ListSecurity
 	return s
 }
 
+type ListSecurityProfilePermissionsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The identifier for the security profle.
+	//
+	// SecurityProfileId is a required field
+	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfilePermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfilePermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSecurityProfilePermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSecurityProfilePermissionsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SecurityProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileId"))
+	}
+	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListSecurityProfilePermissionsInput) SetInstanceId(v string) *ListSecurityProfilePermissionsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSecurityProfilePermissionsInput) SetMaxResults(v int64) *ListSecurityProfilePermissionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityProfilePermissionsInput) SetNextToken(v string) *ListSecurityProfilePermissionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *ListSecurityProfilePermissionsInput) SetSecurityProfileId(v string) *ListSecurityProfilePermissionsInput {
+	s.SecurityProfileId = &v
+	return s
+}
+
+type ListSecurityProfilePermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// The permissions granted to the security profile.
+	Permissions []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfilePermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSecurityProfilePermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSecurityProfilePermissionsOutput) SetNextToken(v string) *ListSecurityProfilePermissionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *ListSecurityProfilePermissionsOutput) SetPermissions(v []*string) *ListSecurityProfilePermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
 type ListSecurityProfilesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -24338,7 +25393,7 @@ type Queue struct {
 	// The status of the queue.
 	Status *string `type:"string" enum:"QueueStatus"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -24595,7 +25650,7 @@ type QuickConnect struct {
 	// The identifier for the quick connect.
 	QuickConnectId *string `type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -25692,6 +26747,83 @@ func (s *SecurityKey) SetCreationTime(v time.Time) *SecurityKey {
 // SetKey sets the Key field's value.
 func (s *SecurityKey) SetKey(v string) *SecurityKey {
 	s.Key = &v
+	return s
+}
+
+// Contains information about a security profile.
+type SecurityProfile struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the secruity profile.
+	Arn *string `type:"string"`
+
+	// The description of the security profile.
+	Description *string `type:"string"`
+
+	// The identifier for the security profile.
+	Id *string `type:"string"`
+
+	// The organization resource identifier for the security profile.
+	OrganizationResourceId *string `min:"1" type:"string"`
+
+	// The name for the security profile.
+	SecurityProfileName *string `type:"string"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SecurityProfile) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SecurityProfile) SetArn(v string) *SecurityProfile {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *SecurityProfile) SetDescription(v string) *SecurityProfile {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SecurityProfile) SetId(v string) *SecurityProfile {
+	s.Id = &v
+	return s
+}
+
+// SetOrganizationResourceId sets the OrganizationResourceId field's value.
+func (s *SecurityProfile) SetOrganizationResourceId(v string) *SecurityProfile {
+	s.OrganizationResourceId = &v
+	return s
+}
+
+// SetSecurityProfileName sets the SecurityProfileName field's value.
+func (s *SecurityProfile) SetSecurityProfileName(v string) *SecurityProfile {
+	s.SecurityProfileName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SecurityProfile) SetTags(v map[string]*string) *SecurityProfile {
+	s.Tags = v
 	return s
 }
 
@@ -27912,7 +29044,7 @@ type UpdateInstanceAttributeInput struct {
 	// The type of attribute.
 	//
 	// Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access this
-	// feature, contact AWS Support for allowlisting.
+	// feature, contact Amazon Web Services Support for allowlisting.
 	//
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
@@ -29325,6 +30457,113 @@ func (s UpdateRoutingProfileQueuesOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateRoutingProfileQueuesOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateSecurityProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the security profile.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The permissions granted to a security profile.
+	Permissions []*string `type:"list"`
+
+	// The identifier for the security profle.
+	//
+	// SecurityProfileId is a required field
+	SecurityProfileId *string `location:"uri" locationName:"SecurityProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSecurityProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSecurityProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSecurityProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSecurityProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.SecurityProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityProfileId"))
+	}
+	if s.SecurityProfileId != nil && len(*s.SecurityProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateSecurityProfileInput) SetDescription(v string) *UpdateSecurityProfileInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateSecurityProfileInput) SetInstanceId(v string) *UpdateSecurityProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *UpdateSecurityProfileInput) SetPermissions(v []*string) *UpdateSecurityProfileInput {
+	s.Permissions = v
+	return s
+}
+
+// SetSecurityProfileId sets the SecurityProfileId field's value.
+func (s *UpdateSecurityProfileInput) SetSecurityProfileId(v string) *UpdateSecurityProfileInput {
+	s.SecurityProfileId = &v
+	return s
+}
+
+type UpdateSecurityProfileOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSecurityProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSecurityProfileOutput) GoString() string {
 	return s.String()
 }
 

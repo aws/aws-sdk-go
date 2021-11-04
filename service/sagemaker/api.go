@@ -43605,6 +43605,9 @@ func (s *DescribeDeviceInput) SetNextToken(v string) *DescribeDeviceInput {
 type DescribeDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Edge Manager agent version.
+	AgentVersion *string `min:"1" type:"string"`
+
 	// A description of the device.
 	Description *string `min:"1" type:"string"`
 
@@ -43660,6 +43663,12 @@ func (s DescribeDeviceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeDeviceOutput) GoString() string {
 	return s.String()
+}
+
+// SetAgentVersion sets the AgentVersion field's value.
+func (s *DescribeDeviceOutput) SetAgentVersion(v string) *DescribeDeviceOutput {
+	s.AgentVersion = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -50792,6 +50801,9 @@ func (s *DeviceStats) SetRegisteredDeviceCount(v int64) *DeviceStats {
 type DeviceSummary struct {
 	_ struct{} `type:"structure"`
 
+	// Edge Manager agent version.
+	AgentVersion *string `min:"1" type:"string"`
+
 	// A description of the device.
 	Description *string `min:"1" type:"string"`
 
@@ -50838,6 +50850,12 @@ func (s DeviceSummary) String() string {
 // value will be replaced with "sensitive".
 func (s DeviceSummary) GoString() string {
 	return s.String()
+}
+
+// SetAgentVersion sets the AgentVersion field's value.
+func (s *DeviceSummary) SetAgentVersion(v string) *DeviceSummary {
+	s.AgentVersion = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
