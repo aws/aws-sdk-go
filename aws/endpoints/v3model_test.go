@@ -1,5 +1,5 @@
-//go:build go1.7
-// +build go1.7
+//go:build go1.9
+// +build go1.9
 
 package endpoints
 
