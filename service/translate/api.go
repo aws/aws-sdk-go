@@ -58,9 +58,9 @@ func (c *Translate) CreateParallelDataRequest(input *CreateParallelDataInput) (r
 // CreateParallelData API operation for Amazon Translate.
 //
 // Creates a parallel data resource in Amazon Translate by importing an input
-// file from Amazon S3. Parallel data files contain examples of source phrases
-// and their translations from your translation memory. By adding parallel data,
-// you can influence the style, tone, and word choice in your translation output.
+// file from Amazon S3. Parallel data files contain examples that show how you
+// want segments of text to be translated. By adding parallel data, you can
+// influence the style, tone, and word choice in your translation output.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -343,7 +343,7 @@ func (c *Translate) DescribeTextTranslationJobRequest(input *DescribeTextTransla
 
 // DescribeTextTranslationJob API operation for Amazon Translate.
 //
-// Gets the properties associated with an asycnhronous batch translation job
+// Gets the properties associated with an asynchronous batch translation job
 // including name, ID, status, source and target languages, input/output S3
 // buckets, and so on.
 //
@@ -1190,6 +1190,10 @@ func (c *Translate) StartTextTranslationJobRequest(input *StartTextTranslationJo
 //   The resource you are looking for has not been found. Review the resource
 //   you're looking for and see if a different resource will accomplish your needs
 //   before retrying the revised request.
+//
+//   * InvalidParameterValueException
+//   The value of the parameter is invalid. Review the value of the parameter
+//   you are using to correct it, and then retry your operation.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -2292,9 +2296,20 @@ type GetParallelDataOutput struct {
 	// a presigned URL to that has a 30 minute expiration.
 	AuxiliaryDataLocation *ParallelDataDataLocation `type:"structure"`
 
-	// The location of the most recent parallel data input file that was successfully
-	// imported into Amazon Translate. The location is returned as a presigned URL
-	// that has a 30 minute expiration.
+	// The Amazon S3 location of the most recent parallel data input file that was
+	// successfully imported into Amazon Translate. The location is returned as
+	// a presigned URL that has a 30 minute expiration.
+	//
+	// Amazon Translate doesn't scan parallel data input files for the risk of CSV
+	// injection attacks.
+	//
+	// CSV injection occurs when a .csv or .tsv file is altered so that a record
+	// contains malicious code. The record begins with a special character, such
+	// as =, +, -, or @. When the file is opened in a spreadsheet program, the program
+	// might interpret the record as a formula and run the code within it.
+	//
+	// Before you download a parallel data input file from Amazon S3, ensure that
+	// you recognize the file and trust its creator.
 	DataLocation *ParallelDataDataLocation `type:"structure"`
 
 	// The Amazon S3 location of a file that provides any errors or warnings that
@@ -2615,6 +2630,10 @@ type InputDataConfig struct {
 	//
 	//    * application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: The
 	//    input data consists of one or more Excel Workbook files (.xlsx).
+	//
+	//    * application/x-xliff+xml: The input data consists of one or more XML
+	//    Localization Interchange File Format (XLIFF) files (.xlf). Amazon Translate
+	//    supports only XLIFF version 1.2.
 	//
 	// If you structure your input data as HTML, ensure that you set this parameter
 	// to text/html. By doing so, you cut costs by limiting the translation to the
@@ -3315,7 +3334,7 @@ func (s *ListTextTranslationJobsInput) SetNextToken(v string) *ListTextTranslati
 type ListTextTranslationJobsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to use to retreive the next page of results. This value is null
+	// The token to use to retrieve the next page of results. This value is null
 	// when there are no more results to return.
 	NextToken *string `type:"string"`
 
@@ -3357,6 +3376,9 @@ func (s *ListTextTranslationJobsOutput) SetTextTranslationJobPropertiesList(v []
 type OutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The encryption key used to encrypt this object.
+	EncryptionKey *EncryptionKey `type:"structure"`
+
 	// The URI of the S3 folder that contains a translation job's output file. The
 	// folder must be in the same Region as the API endpoint that you are calling.
 	//
@@ -3388,11 +3410,22 @@ func (s *OutputDataConfig) Validate() error {
 	if s.S3Uri == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
 	}
+	if s.EncryptionKey != nil {
+		if err := s.EncryptionKey.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionKey", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEncryptionKey sets the EncryptionKey field's value.
+func (s *OutputDataConfig) SetEncryptionKey(v *EncryptionKey) *OutputDataConfig {
+	s.EncryptionKey = v
+	return s
 }
 
 // SetS3Uri sets the S3Uri field's value.
@@ -3470,6 +3503,17 @@ type ParallelDataDataLocation struct {
 
 	// The Amazon S3 location of the parallel data input file. The location is returned
 	// as a presigned URL to that has a 30 minute expiration.
+	//
+	// Amazon Translate doesn't scan parallel data input files for the risk of CSV
+	// injection attacks.
+	//
+	// CSV injection occurs when a .csv or .tsv file is altered so that a record
+	// contains malicious code. The record begins with a special character, such
+	// as =, +, -, or @. When the file is opened in a spreadsheet program, the program
+	// might interpret the record as a formula and run the code within it.
+	//
+	// Before you download a parallel data input file from Amazon S3, ensure that
+	// you recognize the file and trust its creator.
 	//
 	// Location is a required field
 	Location *string `type:"string" required:"true"`
@@ -3836,7 +3880,7 @@ type StartTextTranslationJobInput struct {
 
 	// The Amazon Resource Name (ARN) of an AWS Identity Access and Management (IAM)
 	// role that grants Amazon Translate read access to your input data. For more
-	// nformation, see identity-and-access-management.
+	// information, see identity-and-access-management.
 	//
 	// DataAccessRoleArn is a required field
 	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
@@ -3855,9 +3899,21 @@ type StartTextTranslationJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
-	// The names of the parallel data resources to use in the batch translation
-	// job. For a list of available parallel data resources, use the ListParallelData
+	// The name of a parallel data resource to add to the translation job. This
+	// resource consists of examples that show how you want segments of text to
+	// be translated. When you add parallel data to a translation job, you create
+	// an Active Custom Translation job.
+	//
+	// This parameter accepts only one parallel data resource.
+	//
+	// Active Custom Translation jobs are priced at a higher rate than other jobs
+	// that don't use parallel data. For more information, see Amazon Translate
+	// pricing (http://aws.amazon.com/translate/pricing/).
+	//
+	// For a list of available parallel data resources, use the ListParallelData
 	// operation.
+	//
+	// For more information, see customizing-translations-parallel-data.
 	ParallelDataNames []*string `type:"list"`
 
 	// The language code of the input language. For a list of language codes, see
@@ -3874,8 +3930,16 @@ type StartTextTranslationJobInput struct {
 	// TargetLanguageCodes is a required field
 	TargetLanguageCodes []*string `min:"1" type:"list" required:"true"`
 
-	// The name of the terminology to use in the batch translation job. For a list
-	// of available terminologies, use the ListTerminologies operation.
+	// The name of a custom terminology resource to add to the translation job.
+	// This resource lists examples source terms and the desired translation for
+	// each term.
+	//
+	// This parameter accepts only one custom terminology resource.
+	//
+	// For a list of available custom terminology resources, use the ListTerminologies
+	// operation.
+	//
+	// For more information, see how-custom-terminology.
 	TerminologyNames []*string `type:"list"`
 }
 
@@ -4756,7 +4820,7 @@ type TextTranslationJobProperties struct {
 	// The status of the translation job.
 	JobStatus *string `type:"string" enum:"JobStatus"`
 
-	// An explanation of any errors that may have occured during the translation
+	// An explanation of any errors that may have occurred during the translation
 	// job.
 	Message *string `type:"string"`
 

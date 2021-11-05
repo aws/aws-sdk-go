@@ -1,3 +1,13 @@
+Release v1.41.19 (2021-11-05)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * DescribeInstances now returns customer-owned IP addresses for instances running on an AWS Outpost.
+* `service/resourcegroupstaggingapi`: Updates service documentation
+  * Documentation updates and improvements.
+* `service/translate`: Updates service API and documentation
+
 Release v1.41.18 (2021-11-04)
 ===
 

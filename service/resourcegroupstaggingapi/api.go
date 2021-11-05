@@ -76,12 +76,12 @@ func (c *ResourceGroupsTaggingAPI) DescribeReportCreationRequest(input *Describe
 //   operation.
 //
 //      * You must meet the prerequisites for using tag policies. For information,
-//      see Prerequisites and Permissions for Using Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html)
-//      in the AWS Organizations User Guide.
+//      see Prerequisites and Permissions for Using Tag Policies (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html)
+//      in the Organizations User Guide.
 //
 //      * You must enable the tag policies service principal (tagpolicies.tag.amazonaws.com)
-//      to integrate with AWS Organizations For information, see EnableAWSServiceAccess
-//      (http://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html).
+//      to integrate with Organizations For information, see EnableAWSServiceAccess
+//      (https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html).
 //
 //      * You must have a tag policy attached to the organization root, an OU,
 //      or an account.
@@ -103,8 +103,8 @@ func (c *ResourceGroupsTaggingAPI) DescribeReportCreationRequest(input *Describe
 //
 //      * You can't access the Amazon S3 bucket for report storage. For more information,
 //      see Additional Requirements for Organization-wide Tag Compliance Reports
-//      (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
-//      in the AWS Organizations User Guide.
+//      (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
+//      in the Organizations User Guide.
 //
 //   * ThrottledException
 //   The request was denied to limit the frequency of submitted requests.
@@ -185,7 +185,7 @@ func (c *ResourceGroupsTaggingAPI) GetComplianceSummaryRequest(input *GetComplia
 // their tag policies.
 //
 // For more information on tag policies, see Tag Policies (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
-// in the AWS Organizations User Guide.
+// in the Organizations User Guide.
 //
 // You can call this operation only from the organization's management account
 // and from the us-east-1 Region.
@@ -212,12 +212,12 @@ func (c *ResourceGroupsTaggingAPI) GetComplianceSummaryRequest(input *GetComplia
 //   operation.
 //
 //      * You must meet the prerequisites for using tag policies. For information,
-//      see Prerequisites and Permissions for Using Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html)
-//      in the AWS Organizations User Guide.
+//      see Prerequisites and Permissions for Using Tag Policies (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html)
+//      in the Organizations User Guide.
 //
 //      * You must enable the tag policies service principal (tagpolicies.tag.amazonaws.com)
-//      to integrate with AWS Organizations For information, see EnableAWSServiceAccess
-//      (http://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html).
+//      to integrate with Organizations For information, see EnableAWSServiceAccess
+//      (https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html).
 //
 //      * You must have a tag policy attached to the organization root, an OU,
 //      or an account.
@@ -239,8 +239,8 @@ func (c *ResourceGroupsTaggingAPI) GetComplianceSummaryRequest(input *GetComplia
 //
 //      * You can't access the Amazon S3 bucket for report storage. For more information,
 //      see Additional Requirements for Organization-wide Tag Compliance Reports
-//      (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
-//      in the AWS Organizations User Guide.
+//      (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
+//      in the Organizations User Guide.
 //
 //   * ThrottledException
 //   The request was denied to limit the frequency of submitted requests.
@@ -370,7 +370,7 @@ func (c *ResourceGroupsTaggingAPI) GetResourcesRequest(input *GetResourcesInput)
 // GetResources API operation for AWS Resource Groups Tagging API.
 //
 // Returns all the tagged or previously tagged resources that are located in
-// the specified Region for the AWS account.
+// the specified Amazon Web Services Region for the account.
 //
 // Depending on what information you want returned, you can also specify the
 // following:
@@ -381,7 +381,7 @@ func (c *ResourceGroupsTaggingAPI) GetResourcesRequest(input *GetResourcesInput)
 //
 //    * Information about compliance with the account's effective tag policy.
 //    For more information on tag policies, see Tag Policies (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
-//    in the AWS Organizations User Guide.
+//    in the Organizations User Guide.
 //
 // This operation supports pagination, where the response can be sent in multiple
 // pages. You should check the PaginationToken response parameter to determine
@@ -411,8 +411,8 @@ func (c *ResourceGroupsTaggingAPI) GetResourcesRequest(input *GetResourcesInput)
 //
 //      * You can't access the Amazon S3 bucket for report storage. For more information,
 //      see Additional Requirements for Organization-wide Tag Compliance Reports
-//      (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
-//      in the AWS Organizations User Guide.
+//      (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
+//      in the Organizations User Guide.
 //
 //   * ThrottledException
 //   The request was denied to limit the frequency of submitted requests.
@@ -549,8 +549,8 @@ func (c *ResourceGroupsTaggingAPI) GetTagKeysRequest(input *GetTagKeysInput) (re
 
 // GetTagKeys API operation for AWS Resource Groups Tagging API.
 //
-// Returns all tag keys currently in use in the specified Region for the calling
-// AWS account.
+// Returns all tag keys currently in use in the specified Amazon Web Services
+// Region for the calling account.
 //
 // This operation supports pagination, where the response can be sent in multiple
 // pages. You should check the PaginationToken response parameter to determine
@@ -580,8 +580,8 @@ func (c *ResourceGroupsTaggingAPI) GetTagKeysRequest(input *GetTagKeysInput) (re
 //
 //      * You can't access the Amazon S3 bucket for report storage. For more information,
 //      see Additional Requirements for Organization-wide Tag Compliance Reports
-//      (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
-//      in the AWS Organizations User Guide.
+//      (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
+//      in the Organizations User Guide.
 //
 //   * ThrottledException
 //   The request was denied to limit the frequency of submitted requests.
@@ -719,7 +719,7 @@ func (c *ResourceGroupsTaggingAPI) GetTagValuesRequest(input *GetTagValuesInput)
 // GetTagValues API operation for AWS Resource Groups Tagging API.
 //
 // Returns all tag values for the specified key that are used in the specified
-// AWS Region for the calling AWS account.
+// Amazon Web Services Region for the calling account.
 //
 // This operation supports pagination, where the response can be sent in multiple
 // pages. You should check the PaginationToken response parameter to determine
@@ -749,8 +749,8 @@ func (c *ResourceGroupsTaggingAPI) GetTagValuesRequest(input *GetTagValuesInput)
 //
 //      * You can't access the Amazon S3 bucket for report storage. For more information,
 //      see Additional Requirements for Organization-wide Tag Compliance Reports
-//      (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
-//      in the AWS Organizations User Guide.
+//      (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
+//      in the Organizations User Guide.
 //
 //   * ThrottledException
 //   The request was denied to limit the frequency of submitted requests.
@@ -912,12 +912,12 @@ func (c *ResourceGroupsTaggingAPI) StartReportCreationRequest(input *StartReport
 //   operation.
 //
 //      * You must meet the prerequisites for using tag policies. For information,
-//      see Prerequisites and Permissions for Using Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html)
-//      in the AWS Organizations User Guide.
+//      see Prerequisites and Permissions for Using Tag Policies (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html)
+//      in the Organizations User Guide.
 //
 //      * You must enable the tag policies service principal (tagpolicies.tag.amazonaws.com)
-//      to integrate with AWS Organizations For information, see EnableAWSServiceAccess
-//      (http://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html).
+//      to integrate with Organizations For information, see EnableAWSServiceAccess
+//      (https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html).
 //
 //      * You must have a tag policy attached to the organization root, an OU,
 //      or an account.
@@ -939,8 +939,8 @@ func (c *ResourceGroupsTaggingAPI) StartReportCreationRequest(input *StartReport
 //
 //      * You can't access the Amazon S3 bucket for report storage. For more information,
 //      see Additional Requirements for Organization-wide Tag Compliance Reports
-//      (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
-//      in the AWS Organizations User Guide.
+//      (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
+//      in the Organizations User Guide.
 //
 //   * ThrottledException
 //   The request was denied to limit the frequency of submitted requests.
@@ -1016,13 +1016,16 @@ func (c *ResourceGroupsTaggingAPI) TagResourcesRequest(input *TagResourcesInput)
 //    * Not all resources can have tags. For a list of services with resources
 //    that support tagging using this operation, see Services that support the
 //    Resource Groups Tagging API (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/supported-services.html).
+//    If the resource doesn't yet support this operation, the resource's service
+//    might support tagging using its own API operations. For more information,
+//    refer to the documentation for that service.
 //
 //    * Each resource can have up to 50 tags. For other limits, see Tag Naming
 //    and Usage Conventions (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html#tag-conventions)
-//    in the AWS General Reference.
+//    in the Amazon Web Services General Reference.
 //
-//    * You can only tag resources that are located in the specified AWS Region
-//    for the AWS account.
+//    * You can only tag resources that are located in the specified Amazon
+//    Web Services Region for the Amazon Web Services account.
 //
 //    * To add tags to a resource, you need the necessary permissions for the
 //    service that the resource belongs to as well as permissions for adding
@@ -1032,6 +1035,17 @@ func (c *ResourceGroupsTaggingAPI) TagResourcesRequest(input *TagResourcesInput)
 // or sensitive information in tags. We use tags to provide you with billing
 // and administration services. Tags are not intended to be used for private
 // or sensitive data.
+//
+// Minimum permissions
+//
+// In addition to the tag:TagResources permission required by this operation,
+// you must also have the tagging permission defined by the service that created
+// the resource. For example, to tag an Amazon EC2 instance using the TagResources
+// operation, you must have both of the following permissions:
+//
+//    * tag:TagResource
+//
+//    * ec2:CreateTags
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1054,8 +1068,8 @@ func (c *ResourceGroupsTaggingAPI) TagResourcesRequest(input *TagResourcesInput)
 //
 //      * You can't access the Amazon S3 bucket for report storage. For more information,
 //      see Additional Requirements for Organization-wide Tag Compliance Reports
-//      (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
-//      in the AWS Organizations User Guide.
+//      (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
+//      in the Organizations User Guide.
 //
 //   * ThrottledException
 //   The request was denied to limit the frequency of submitted requests.
@@ -1140,8 +1154,20 @@ func (c *ResourceGroupsTaggingAPI) UntagResourcesRequest(input *UntagResourcesIn
 //    tags. For more information, see the documentation for the service whose
 //    resource you want to untag.
 //
-//    * You can only tag resources that are located in the specified AWS Region
-//    for the calling AWS account.
+//    * You can only tag resources that are located in the specified Amazon
+//    Web Services Region for the calling Amazon Web Services account.
+//
+// Minimum permissions
+//
+// In addition to the tag:UntagResources permission required by this operation,
+// you must also have the remove tags permission defined by the service that
+// created the resource. For example, to remove the tags from an Amazon EC2
+// instance using the UntagResources operation, you must have both of the following
+// permissions:
+//
+//    * tag:UntagResource
+//
+//    * ec2:DeleteTags
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1164,8 +1190,8 @@ func (c *ResourceGroupsTaggingAPI) UntagResourcesRequest(input *UntagResourcesIn
 //
 //      * You can't access the Amazon S3 bucket for report storage. For more information,
 //      see Additional Requirements for Organization-wide Tag Compliance Reports
-//      (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
-//      in the AWS Organizations User Guide.
+//      (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
+//      in the Organizations User Guide.
 //
 //   * ThrottledException
 //   The request was denied to limit the frequency of submitted requests.
@@ -1319,12 +1345,12 @@ func (s *ConcurrentModificationException) RequestID() string {
 // operation.
 //
 //    * You must meet the prerequisites for using tag policies. For information,
-//    see Prerequisites and Permissions for Using Tag Policies (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html)
-//    in the AWS Organizations User Guide.
+//    see Prerequisites and Permissions for Using Tag Policies (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html)
+//    in the Organizations User Guide.
 //
 //    * You must enable the tag policies service principal (tagpolicies.tag.amazonaws.com)
-//    to integrate with AWS Organizations For information, see EnableAWSServiceAccess
-//    (http://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html).
+//    to integrate with Organizations For information, see EnableAWSServiceAccess
+//    (https://docs.aws.amazon.com/organizations/latest/APIReference/API_EnableAWSServiceAccess.html).
 //
 //    * You must have a tag policy attached to the organization root, an OU,
 //    or an account.
@@ -1475,34 +1501,35 @@ func (s *DescribeReportCreationOutput) SetStatus(v string) *DescribeReportCreati
 
 // Information about the errors that are returned for each failed resource.
 // This information can include InternalServiceException and InvalidParameterException
-// errors. It can also include any valid error code returned by the AWS service
-// that hosts the resource that the ARN key represents.
+// errors. It can also include any valid error code returned by the Amazon Web
+// Services service that hosts the resource that the ARN key represents.
 //
-// The following are common error codes that you might receive from other AWS
-// services:
+// The following are common error codes that you might receive from other Amazon
+// Web Services services:
 //
 //    * InternalServiceException – This can mean that the Resource Groups
-//    Tagging API didn't receive a response from another AWS service. It can
-//    also mean the the resource type in the request is not supported by the
-//    Resource Groups Tagging API. In these cases, it's safe to retry the request
-//    and then call GetResources (http://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html)
+//    Tagging API didn't receive a response from another Amazon Web Services
+//    service. It can also mean that the resource type in the request is not
+//    supported by the Resource Groups Tagging API. In these cases, it's safe
+//    to retry the request and then call GetResources (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_GetResources.html)
 //    to verify the changes.
 //
 //    * AccessDeniedException – This can mean that you need permission to
-//    calling tagging operations in the AWS service that contains the resource.
-//    For example, to use the Resource Groups Tagging API to tag a CloudWatch
-//    alarm resource, you need permission to call TagResources (http://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_TagResources.html)
-//    and TagResource (http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_TagResource.html)
+//    call the tagging operations in the Amazon Web Services service that contains
+//    the resource. For example, to use the Resource Groups Tagging API to tag
+//    a Amazon CloudWatch alarm resource, you need permission to call both TagResources
+//    (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/API_TagResources.html)
+//    and TagResource (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_TagResource.html)
 //    in the CloudWatch API.
 //
-// For more information on errors that are generated from other AWS services,
-// see the documentation for that service.
+// For more information on errors that are generated from other Amazon Web Services
+// services, see the documentation for that service.
 type FailureInfo struct {
 	_ struct{} `type:"structure"`
 
 	// The code of the common error. Valid values include InternalServiceException,
-	// InvalidParameterException, and any valid error code returned by the AWS service
-	// that hosts the resource that you want to tag.
+	// InvalidParameterException, and any valid error code returned by the Amazon
+	// Web Services service that hosts the resource that you want to tag.
 	ErrorCode *string `type:"string" enum:"ErrorCode"`
 
 	// The message of the common error.
@@ -1567,9 +1594,9 @@ type GetComplianceSummaryInput struct {
 	// initial request.
 	PaginationToken *string `type:"string"`
 
-	// Specifies a list of AWS Regions to limit the output by. If you use this parameter,
-	// the count of returned noncompliant resources includes only resources in the
-	// specified Regions.
+	// Specifies a list of Amazon Web Services Regions to limit the output to. If
+	// you use this parameter, the count of returned noncompliant resources includes
+	// only resources in the specified Regions.
 	RegionFilters []*string `min:"1" type:"list"`
 
 	// Specifies that you want the response to include information for only resources
@@ -1579,15 +1606,17 @@ type GetComplianceSummaryInput struct {
 	// returns only EC2 instances.
 	//
 	// The string for each service name and resource type is the same as that embedded
-	// in a resource's Amazon Resource Name (ARN). Consult the AWS General Reference
-	// for the following:
+	// in a resource's Amazon Resource Name (ARN). Consult the Amazon Web Services
+	// General Reference (https://docs.aws.amazon.com/general/latest/gr/) for the
+	// following:
 	//
-	//    * For a list of service name strings, see AWS Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces).
+	//    * For a list of service name strings, see Amazon Web Services Service
+	//    Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces).
 	//
 	//    * For resource type strings, see Example ARNs (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arns-syntax).
 	//
 	//    * For more information about ARNs, see Amazon Resource Names (ARNs) and
-	//    AWS Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	//    Amazon Web Services Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// You can specify multiple resource types by using a comma separated array.
 	// The array can include up to 100 items. Note that the length constraint requirement
@@ -1760,8 +1789,9 @@ type GetResourcesInput struct {
 	// an error; it simply isn't included in the response.
 	//
 	// An ARN (Amazon Resource Name) uniquely identifies a resource. For more information,
-	// see Amazon Resource Names (ARNs) and AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces
+	// (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	ResourceARNList []*string `min:"1" type:"list"`
 
 	// Specifies the resource types that you want included in the response. The
@@ -1770,15 +1800,17 @@ type GetResourcesInput struct {
 	// instances). Specifying a resource type of ec2:instance returns only EC2 instances.
 	//
 	// The string for each service name and resource type is the same as that embedded
-	// in a resource's Amazon Resource Name (ARN). Consult the AWS General Reference
-	// for the following:
-	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// in a resource's Amazon Resource Name (ARN). For the list of services whose
+	// resources you can use in this parameter, see Services that support the Resource
+	// Groups Tagging API (https://docs.aws.amazon.com/resourcegroupstagging/latest/APIReference/supported-services.html).
 	//
 	// You can specify multiple resource types by using an array. The array can
 	// include up to 100 items. Note that the length constraint requirement applies
-	// to each resource type filter.
+	// to each resource type filter. For example, the following string would limit
+	// the response to only Amazon EC2 instances, Amazon S3 buckets, or any Audit
+	// Manager resource:
+	//
+	// ec2:instance,s3:bucket,auditmanager
 	ResourceTypeFilters []*string `type:"list"`
 
 	// Specifies the maximum number of results to be returned in each page. A query
@@ -1789,9 +1821,9 @@ type GetResourcesInput struct {
 	ResourcesPerPage *int64 `type:"integer"`
 
 	// Specifies a list of TagFilters (keys and values) to restrict the output to
-	// only those resources that have the specified tag and, if included, the specified
-	// value. Each TagFilter must contain a key with values optional. A request
-	// can include up to 50 keys, and each key can include up to 20 values.
+	// only those resources that have tags with the specified keys and, if included,
+	// the specified values. Each TagFilter must contain a key with values optional.
+	// A request can include up to 50 keys, and each key can include up to 20 values.
 	//
 	// Note the following when deciding how to use TagFilters:
 	//
@@ -1806,9 +1838,9 @@ type GetResourcesInput struct {
 	//    the response returns resources that match any of the specified values
 	//    for that key.
 	//
-	//    * If you don't specify any values for a key, the response returns resources
-	//    that are tagged with that key and any or no value. For example, for the
-	//    following filters: filter1= {keyA,{value1}}, filter2={keyB,{value2,value3,value4}},
+	//    * If you don't specify a value for a key, the response returns all resources
+	//    that are tagged with that key, with any or no value. For example, for
+	//    the following filters: filter1= {keyA,{value1}}, filter2={keyB,{value2,value3,value4}},
 	//    filter3= {keyC}: GetResources({filter1}) returns resources tagged with
 	//    key1=value1 GetResources({filter2}) returns resources tagged with key2=value2
 	//    or key2=value3 or key2=value4 GetResources({filter3}) returns resources
@@ -1817,7 +1849,7 @@ type GetResourcesInput struct {
 	//    or key2=value4) and (key3, any or no value)
 	TagFilters []*TagFilter `type:"list"`
 
-	// AWS recommends using ResourcesPerPage instead of this parameter.
+	// Amazon Web Services recommends using ResourcesPerPage instead of this parameter.
 	//
 	// A limit that restricts the number of tags (key and value pairs) returned
 	// by GetResources in paginated output. A resource with no tags is counted as
@@ -1936,8 +1968,7 @@ type GetResourcesOutput struct {
 	// value as the PaginationToken value in the request for the next page.
 	PaginationToken *string `type:"string"`
 
-	// A list of resource ARNs and the tags (keys and values) associated with those
-	// ARNs.
+	// A list of resource ARNs and the tags (keys and values) associated with each.
 	ResourceTagMappingList []*ResourceTagMapping `type:"list"`
 }
 
@@ -2012,7 +2043,7 @@ type GetTagKeysOutput struct {
 	// value as the PaginationToken value in the request for the next page.
 	PaginationToken *string `type:"string"`
 
-	// A list of all tag keys in the AWS account.
+	// A list of all tag keys in the Amazon Web Services account.
 	TagKeys []*string `type:"list"`
 }
 
@@ -2050,7 +2081,8 @@ type GetTagValuesInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the tag key for which you want to list all existing values that
-	// are currently used in the specified AWS Region for the calling AWS account.
+	// are currently used in the specified Amazon Web Services Region for the calling
+	// account.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
@@ -2116,7 +2148,7 @@ type GetTagValuesOutput struct {
 	PaginationToken *string `type:"string"`
 
 	// A list of all tag values for the specified key currently used in the specified
-	// AWS Region for the calling AWS account.
+	// Amazon Web Services Region for the calling account.
 	TagValues []*string `type:"list"`
 }
 
@@ -2227,8 +2259,8 @@ func (s *InternalServiceException) RequestID() string {
 //
 //    * You can't access the Amazon S3 bucket for report storage. For more information,
 //    see Additional Requirements for Organization-wide Tag Compliance Reports
-//    (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
-//    in the AWS Organizations User Guide.
+//    (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies-prereqs.html#bucket-policies-org-report)
+//    in the Organizations User Guide.
 type InvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2369,7 +2401,7 @@ type ResourceTagMapping struct {
 	// The ARN of the resource.
 	ResourceARN *string `min:"1" type:"string"`
 
-	// The tags that have been applied to one or more AWS resources.
+	// The tags that have been applied to one or more Amazon Web Services resources.
 	Tags []*Tag `type:"list"`
 }
 
@@ -2495,14 +2527,14 @@ type Summary struct {
 	// The count of noncompliant resources.
 	NonCompliantResources *int64 `type:"long"`
 
-	// The AWS Region that the summary applies to.
+	// The Amazon Web Services Region that the summary applies to.
 	Region *string `min:"1" type:"string"`
 
-	// The AWS resource type.
+	// The Amazon Web Services resource type.
 	ResourceType *string `type:"string"`
 
 	// The account identifier or the root identifier of the organization. If you
-	// don't know the root ID, you can call the AWS Organizations ListRoots (http://docs.aws.amazon.com/organizations/latest/APIReference/API_ListRoots.html)
+	// don't know the root ID, you can call the Organizations ListRoots (https://docs.aws.amazon.com/organizations/latest/APIReference/API_ListRoots.html)
 	// API.
 	TargetId *string `min:"6" type:"string"`
 
@@ -2564,10 +2596,11 @@ func (s *Summary) SetTargetIdType(v string) *Summary {
 	return s
 }
 
-// The metadata that you apply to AWS resources to help you categorize and organize
-// them. Each tag consists of a key and a value, both of which you define. For
-// more information, see Tagging AWS Resources (http://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-// in the AWS General Reference.
+// The metadata that you apply to Amazon Web Services resources to help you
+// categorize and organize them. Each tag consists of a key and a value, both
+// of which you define. For more information, see Tagging Amazon Web Services
+// Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -2677,8 +2710,9 @@ type TagResourcesInput struct {
 	// Specifies the list of ARNs of the resources that you want to apply tags to.
 	//
 	// An ARN (Amazon Resource Name) uniquely identifies a resource. For more information,
-	// see Amazon Resource Names (ARNs) and AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces
+	// (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// ResourceARNList is a required field
 	ResourceARNList []*string `min:"1" type:"list" required:"true"`
@@ -2846,8 +2880,9 @@ type UntagResourcesInput struct {
 	// Specifies a list of ARNs of the resources that you want to remove tags from.
 	//
 	// An ARN (Amazon Resource Name) uniquely identifies a resource. For more information,
-	// see Amazon Resource Names (ARNs) and AWS Service Namespaces (http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces
+	// (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// ResourceARNList is a required field
 	ResourceARNList []*string `min:"1" type:"list" required:"true"`
