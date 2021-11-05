@@ -21430,6 +21430,10 @@
           "shape":"String",
           "locationName":"carrierIp"
         },
+        "CustomerOwnedIp":{
+          "shape":"String",
+          "locationName":"customerOwnedIp"
+        },
         "IpOwnerId":{
           "shape":"String",
           "locationName":"ipOwnerId"

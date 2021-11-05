@@ -15625,6 +15625,7 @@
         "InstanceNetworkInterface$VpcId": "<p>The ID of the VPC.</p>",
         "InstanceNetworkInterface$InterfaceType": "<p>Describes the type of network interface.</p> <p>Valid values: <code>interface</code> | <code>efa</code> | <code>trunk</code> </p>",
         "InstanceNetworkInterfaceAssociation$CarrierIp": "<p>The carrier IP address associated with the network interface.</p>",
+        "InstanceNetworkInterfaceAssociation$CustomerOwnedIp": "<p>The customer-owned IP address associated with the network interface.</p>",
         "InstanceNetworkInterfaceAssociation$IpOwnerId": "<p>The ID of the owner of the Elastic IP address.</p>",
         "InstanceNetworkInterfaceAssociation$PublicDnsName": "<p>The public DNS name.</p>",
         "InstanceNetworkInterfaceAssociation$PublicIp": "<p>The public IP address or Elastic IP address bound to the network interface.</p>",
