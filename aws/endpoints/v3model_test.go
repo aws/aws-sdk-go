@@ -6,6 +6,7 @@ package endpoints
 import (
 	"bytes"
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/url"
 	"os"
@@ -877,7 +878,7 @@ func TestEndpointVariants(t *testing.T) {
 		Endpoint  string `json:"Endpoint"`
 	}
 
-	casesBytes, err := os.ReadFile(filepath.Join("testdata", "variants_cases.json"))
+	casesBytes, err := ioutil.ReadFile(filepath.Join("testdata", "variants_cases.json"))
 	if err != nil {
 		t.Fatal(err)
 	}
