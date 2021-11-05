@@ -1,10 +1,16 @@
-//go:build go1.7
-// +build go1.7
+//go:build go1.9
+// +build go1.9
 
 package endpoints
 
 import (
+	"bytes"
 	"encoding/json"
+	"io/ioutil"
+	"log"
+	"net/url"
+	"os"
+	"path/filepath"
 	"reflect"
 	"regexp"
 	"strconv"
@@ -157,7 +163,7 @@ func TestUnmarshalEndpoints(t *testing.T) {
 	"us-east-1": {}
 }`)
 
-	es := endpoints{}
+	es := serviceEndpoints{}
 	err := json.Unmarshal(inputs, &es)
 	if err != nil {
 		t.Fatalf("expect no error, got %v", err)
@@ -166,7 +172,7 @@ func TestUnmarshalEndpoints(t *testing.T) {
 	if e, a := 2, len(es); e != a {
 		t.Errorf("expect %v len, got %v", e, a)
 	}
-	s, ok := es["aws-global"]
+	s, ok := es[endpointKey{Region: "aws-global"}]
 	if !ok {
 		t.Errorf("expect found, was not")
 	}
@@ -211,7 +217,7 @@ func TestEndpointResolve(t *testing.T) {
 		SSLCommonName:     "new sslCommonName",
 	}
 
-	resolved, err := e.resolve("service", "partitionID", "region", "dnsSuffix",
+	resolved, err := e.resolve("service", "partitionID", "region", dnsSuffixTemplateKey, "dnsSuffix",
 		defs, Options{},
 	)
 	if err != nil {
@@ -232,7 +238,7 @@ func TestEndpointResolve(t *testing.T) {
 	}
 
 	// Check Invalid Region Identifier Format
-	_, err = e.resolve("service", "partitionID", "notvalid.com", "dnsSuffix",
+	_, err = e.resolve("service", "partitionID", "notvalid.com", dnsSuffixTemplateKey, "dnsSuffix",
 		defs, Options{},
 	)
 	if err == nil {
@@ -309,23 +315,123 @@ func TestResolveEndpoint_DisableSSL(t *testing.T) {
 	}
 }
 
-func TestResolveEndpoint_UseDualStack(t *testing.T) {
-	resolved, err := testPartitions.EndpointFor("service1", "us-west-2", UseDualStackOption)
+func TestResolveEndpoint_UseDualStack_UseDualStackEndpoint(t *testing.T) {
+	cases := map[string]struct {
+		Service string
+		Region  string
 
-	if err != nil {
-		t.Fatalf("expect no error, got %v", err)
+		Options func(*Options)
+
+		ExpectedURL              string
+		ExpectedSigningName      string
+		ExpectedSigningRegion    string
+		ExpectSigningNameDerived bool
+
+		ExpectErr bool
+	}{
+		"deprecated UseDualStack does not apply to services that are not s3 or s3-control": {
+			Service:                  "ec2",
+			Region:                   "us-west-2",
+			Options:                  UseDualStackOption,
+			ExpectedURL:              "https://ec2.us-west-2.amazonaws.com",
+			ExpectedSigningName:      "ec2",
+			ExpectedSigningRegion:    "us-west-2",
+			ExpectSigningNameDerived: true,
+		},
+		"deprecated UseDualStack allowed for s3": {
+			Service:                  "s3",
+			Region:                   "us-west-2",
+			Options:                  UseDualStackOption,
+			ExpectedURL:              "https://s3.dualstack.us-west-2.amazonaws.com",
+			ExpectedSigningName:      "s3",
+			ExpectedSigningRegion:    "us-west-2",
+			ExpectSigningNameDerived: true,
+		},
+		"deprecated UseDualStack allowed for s3-control": {
+			Service:                  "s3-control",
+			Region:                   "us-west-2",
+			Options:                  UseDualStackOption,
+			ExpectedURL:              "https://s3-control.dualstack.us-west-2.amazonaws.com",
+			ExpectedSigningName:      "s3-control",
+			ExpectedSigningRegion:    "us-west-2",
+			ExpectSigningNameDerived: true,
+		},
+		"UseDualStackEndpoint applies to all services": {
+			Service:                  "ec2",
+			Region:                   "us-west-2",
+			Options:                  UseDualStackEndpointOption,
+			ExpectedURL:              "https://api.ec2.us-west-2.aws",
+			ExpectedSigningName:      "ec2",
+			ExpectedSigningRegion:    "us-west-2",
+			ExpectSigningNameDerived: true,
+		},
+		"UseDualStackEndpoint applies to s3": {
+			Service:                  "s3",
+			Region:                   "us-west-2",
+			Options:                  UseDualStackEndpointOption,
+			ExpectedURL:              "https://s3.dualstack.us-west-2.amazonaws.com",
+			ExpectedSigningName:      "s3",
+			ExpectedSigningRegion:    "us-west-2",
+			ExpectSigningNameDerived: true,
+		},
+		"UseDualStackEndpoint applies to s3-control": {
+			Service:                  "s3-control",
+			Region:                   "us-west-2",
+			Options:                  UseDualStackEndpointOption,
+			ExpectedURL:              "https://s3-control.dualstack.us-west-2.amazonaws.com",
+			ExpectedSigningName:      "s3-control",
+			ExpectedSigningRegion:    "us-west-2",
+			ExpectSigningNameDerived: true,
+		},
+		"UseDualStackEndpoint (disabled) setting has higher precedence then UseDualStack for s3": {
+			Service: "s3",
+			Region:  "us-west-2",
+			Options: func(options *Options) {
+				options.UseDualStack = true
+				options.UseDualStackEndpoint = DualStackEndpointStateDisabled
+			},
+			ExpectedURL:              "https://s3.us-west-2.amazonaws.com",
+			ExpectedSigningName:      "s3",
+			ExpectedSigningRegion:    "us-west-2",
+			ExpectSigningNameDerived: true,
+		},
+		"UseDualStackEndpoint (disabled) setting has higher precedence then UseDualStack for s3-control": {
+			Service: "s3-control",
+			Region:  "us-west-2",
+			Options: func(options *Options) {
+				options.UseDualStack = true
+				options.UseDualStackEndpoint = DualStackEndpointStateDisabled
+			},
+			ExpectedURL:              "https://s3-control.us-west-2.amazonaws.com",
+			ExpectedSigningName:      "s3-control",
+			ExpectedSigningRegion:    "us-west-2",
+			ExpectSigningNameDerived: true,
+		},
+		"UseDualStackEndpoint in partition with no partition or service defaults": {
+			Service:   "service1",
+			Region:    "cn-north-2",
+			Options:   UseDualStackEndpointOption,
+			ExpectErr: true,
+		},
 	}
-	if e, a := "https://service1.dualstack.us-west-2.amazonaws.com", resolved.URL; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := "us-west-2", resolved.SigningRegion; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := "service1", resolved.SigningName; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if resolved.SigningNameDerived {
-		t.Errorf("expect the signing name not to be derived, but was")
+
+	for name, tt := range cases {
+		t.Run(name, func(t *testing.T) {
+			if tt.Options == nil {
+				tt.Options = func(options *Options) {}
+			}
+
+			resolved, err := AwsPartition().EndpointFor(tt.Service, tt.Region, tt.Options)
+			if tt.ExpectErr != (err != nil) {
+				t.Fatalf("ExpectErr=%v, got err=%v", tt.ExpectErr, err)
+			}
+
+			assertEndpoint(t, resolved, tt.ExpectedURL, tt.ExpectedSigningName, tt.ExpectedSigningRegion)
+
+			if e, a := tt.ExpectSigningNameDerived, resolved.SigningNameDerived; e != a {
+				t.Errorf("ExpectSigningNameDerived(%v) != SigningNameDerived(%v)", e, a)
+			}
+		})
 	}
 }
 
@@ -385,47 +491,41 @@ func TestResolveEndpoint_ResolveUnknownService(t *testing.T) {
 }
 
 func TestResolveEndpoint_UnknownMatchedRegion(t *testing.T) {
-	resolved, err := testPartitions.EndpointFor("service2", "us-region-1")
+	resolved, err := testPartitions.EndpointFor("s3", "us-region-1")
 
 	if err != nil {
 		t.Fatalf("expect no error, got %v", err)
 	}
-	if e, a := "https://service2.us-region-1.amazonaws.com", resolved.URL; e != a {
+	if e, a := "https://s3.us-region-1.amazonaws.com", resolved.URL; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "us-region-1", resolved.SigningRegion; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := "service2", resolved.SigningName; e != a {
+	if e, a := "s3", resolved.SigningName; e != a {
 		t.Errorf("expect %v, got %v", e, a)
-	}
-	if resolved.SigningNameDerived {
-		t.Errorf("expect the signing name not to be derived, but was")
 	}
 }
 
 func TestResolveEndpoint_UnknownRegion(t *testing.T) {
-	resolved, err := testPartitions.EndpointFor("service2", "unknownregion")
+	resolved, err := testPartitions.EndpointFor("s3", "unknownregion")
 
 	if err != nil {
 		t.Fatalf("expect no error, got %v", err)
 	}
-	if e, a := "https://service2.unknownregion.amazonaws.com", resolved.URL; e != a {
+	if e, a := "https://s3.unknownregion.amazonaws.com", resolved.URL; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "unknownregion", resolved.SigningRegion; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := "service2", resolved.SigningName; e != a {
+	if e, a := "s3", resolved.SigningName; e != a {
 		t.Errorf("expect %v, got %v", e, a)
-	}
-	if resolved.SigningNameDerived {
-		t.Errorf("expect the signing name not to be derived, but was")
 	}
 }
 
 func TestResolveEndpoint_StrictPartitionUnknownEndpoint(t *testing.T) {
-	_, err := testPartitions[0].EndpointFor("service2", "unknownregion", StrictMatchingOption)
+	_, err := testPartitions[0].EndpointFor("s3", "unknownregion", StrictMatchingOption)
 
 	if err == nil {
 		t.Errorf("expect error, got none")
@@ -438,7 +538,7 @@ func TestResolveEndpoint_StrictPartitionUnknownEndpoint(t *testing.T) {
 }
 
 func TestResolveEndpoint_StrictPartitionsUnknownEndpoint(t *testing.T) {
-	_, err := testPartitions.EndpointFor("service2", "us-region-1", StrictMatchingOption)
+	_, err := testPartitions.EndpointFor("s3", "us-region-1", StrictMatchingOption)
 
 	if err == nil {
 		t.Errorf("expect error, got none")
@@ -649,18 +749,18 @@ func TestRegionValidator(t *testing.T) {
 }
 
 func TestResolveEndpoint_FipsAwsGlobal(t *testing.T) {
-	resolved, err := testPartitions.EndpointFor("globalService", "fips-aws-global")
+	resolved, err := AwsPartition().EndpointFor("route53", "fips-aws-global")
 
 	if err != nil {
 		t.Fatalf("expect no error, got %v", err)
 	}
-	if e, a := "https://globalService-fips.amazonaws.com", resolved.URL; e != a {
+	if e, a := "https://route53-fips.amazonaws.com", resolved.URL; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if e, a := "us-east-1", resolved.SigningRegion; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
-	if e, a := "globalService", resolved.SigningName; e != a {
+	if e, a := "route53", resolved.SigningName; e != a {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 	if !resolved.SigningNameDerived {
@@ -674,8 +774,8 @@ func TestEC2MetadataService(t *testing.T) {
 		Name: "partition with unmodelled ec2metadata",
 		Services: map[string]service{
 			"foo": {
-				Endpoints: endpoints{
-					"us-west-2": endpoint{
+				Endpoints: serviceEndpoints{
+					endpointKey{Region: "us-west-2"}: endpoint{
 						Hostname:          "foo.us-west-2.amazonaws.com",
 						Protocols:         []string{"http"},
 						SignatureVersions: []string{"v4"},
@@ -693,8 +793,8 @@ func TestEC2MetadataService(t *testing.T) {
 		Name: "partition with modelled ec2metadata",
 		Services: map[string]service{
 			"ec2metadata": {
-				Endpoints: endpoints{
-					"us-west-2": endpoint{
+				Endpoints: serviceEndpoints{
+					endpointKey{Region: "us-west-2"}: endpoint{
 						Hostname:          "custom.localhost/latest",
 						Protocols:         []string{"http"},
 						SignatureVersions: []string{"v4"},
@@ -702,8 +802,8 @@ func TestEC2MetadataService(t *testing.T) {
 				},
 			},
 			"foo": {
-				Endpoints: endpoints{
-					"us-west-2": endpoint{
+				Endpoints: serviceEndpoints{
+					endpointKey{Region: "us-west-2"}: endpoint{
 						Hostname:          "foo.us-west-2.amazonaws.com",
 						Protocols:         []string{"http"},
 						SignatureVersions: []string{"v4"},
@@ -756,4 +856,377 @@ func TestEC2MetadataService(t *testing.T) {
 	} else if regions := s.Regions(); len(regions) == 0 {
 		t.Errorf("expect region endpoints for foo, got none")
 	}
+}
+
+func TestEndpointVariants(t *testing.T) {
+	modelFile, err := os.Open(filepath.Join("testdata", "variants_model.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer modelFile.Close()
+
+	resolver, err := DecodeModel(modelFile)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	type testCase struct {
+		Service   string `json:"service"`
+		Region    string `json:"region"`
+		FIPS      bool   `json:"FIPS"`
+		DualStack bool   `json:"DualStack"`
+		Endpoint  string `json:"Endpoint"`
+	}
+
+	casesBytes, err := ioutil.ReadFile(filepath.Join("testdata", "variants_cases.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var cases []testCase
+	if err := json.Unmarshal(casesBytes, &cases); err != nil {
+		panic(err)
+	}
+
+	for i, tt := range cases {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
+			options := Options{}
+
+			if tt.FIPS {
+				options.UseFIPSEndpoint = FIPSEndpointStateEnabled
+			}
+			if tt.DualStack {
+				options.UseDualStackEndpoint = DualStackEndpointStateEnabled
+			}
+
+			resolvedEndpoint, err := resolver.EndpointFor(tt.Service, tt.Region, func(o *Options) {
+				*o = options
+			})
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+				return
+			}
+
+			parsed, err := url.Parse(resolvedEndpoint.URL)
+			if err != nil {
+				t.Errorf("expect no error, got %v", err)
+				return
+			}
+
+			if e, a := parsed.Host, tt.Endpoint; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestLogDeprecated(t *testing.T) {
+	partitions := partitions{
+		partition{
+			ID: "aws",
+			RegionRegex: regionRegex{
+				Regexp: regexp.MustCompile("^(us|eu|ap|sa|ca)\\-\\w+\\-\\d+$"),
+			},
+			Defaults: map[defaultKey]endpoint{
+				{}: {
+					Hostname:  "foo.{region}.bar.tld",
+					Protocols: []string{"https", "http"},
+				},
+				{
+					Variant: fipsVariant,
+				}: {
+					Hostname: "foo-fips.{region}.bar.tld",
+				},
+			},
+			Services: map[string]service{
+				"service": {
+					Endpoints: map[endpointKey]endpoint{
+						{
+							Region: "foo",
+						}: {},
+						{
+							Region: "bar",
+						}: {
+							Deprecated: boxedTrue,
+						},
+						{
+							Region:  "bar",
+							Variant: fipsVariant,
+						}: {
+							Deprecated: boxedTrue,
+						},
+					},
+				},
+			},
+		},
+	}
+
+	cases := []struct {
+		Region      string
+		Options     Options
+		Expected    ResolvedEndpoint
+		SetupLogger func() (Logger, func(*testing.T))
+		WantErr     bool
+	}{
+		{
+			Region: "foo",
+			Expected: ResolvedEndpoint{
+				URL:                "https://foo.foo.bar.tld",
+				PartitionID:        "aws",
+				SigningName:        "service",
+				SigningRegion:      "foo",
+				SigningMethod:      "v4",
+				SigningNameDerived: true,
+			},
+		},
+		{
+			Region: "bar",
+			Options: Options{
+				LogDeprecated: true,
+			},
+			Expected: ResolvedEndpoint{
+				URL:                "https://foo.bar.bar.tld",
+				PartitionID:        "aws",
+				SigningName:        "service",
+				SigningRegion:      "bar",
+				SigningMethod:      "v4",
+				SigningNameDerived: true,
+			},
+		},
+		{
+			Region: "bar",
+			Options: Options{
+				LogDeprecated:   true,
+				UseFIPSEndpoint: FIPSEndpointStateEnabled,
+			},
+			Expected: ResolvedEndpoint{
+				URL:                "https://foo-fips.bar.bar.tld",
+				PartitionID:        "aws",
+				SigningName:        "service",
+				SigningRegion:      "bar",
+				SigningMethod:      "v4",
+				SigningNameDerived: true,
+			},
+		},
+		{
+			Region: "bar",
+			Options: Options{
+				LogDeprecated: true,
+			},
+			SetupLogger: func() (Logger, func(*testing.T)) {
+				buffer := bytes.NewBuffer(nil)
+				logger := log.New(buffer, "", 0)
+				return LoggerFunc(func(i ...interface{}) {
+						logger.Println(i...)
+					}), func(t *testing.T) {
+						if e, a := "endpoint identifier \"bar\", url \"https://foo.bar.bar.tld\" marked as deprecated\n", buffer.String(); e != a {
+							t.Errorf("expect %v, got %v", e, a)
+						}
+					}
+			},
+			Expected: ResolvedEndpoint{
+				URL:                "https://foo.bar.bar.tld",
+				PartitionID:        "aws",
+				SigningName:        "service",
+				SigningRegion:      "bar",
+				SigningMethod:      "v4",
+				SigningNameDerived: true,
+			},
+		},
+		{
+			Region: "bar",
+			Options: Options{
+				LogDeprecated:   true,
+				UseFIPSEndpoint: FIPSEndpointStateEnabled,
+			},
+			SetupLogger: func() (Logger, func(*testing.T)) {
+				buffer := bytes.NewBuffer(nil)
+				logger := log.New(buffer, "", 0)
+				return LoggerFunc(func(i ...interface{}) {
+						logger.Println(i...)
+					}), func(t *testing.T) {
+						if e, a := "endpoint identifier \"bar\", url \"https://foo-fips.bar.bar.tld\" marked as deprecated\n", buffer.String(); e != a {
+							t.Errorf("expect %v, got %v", e, a)
+						}
+					}
+			},
+			Expected: ResolvedEndpoint{
+				URL:                "https://foo-fips.bar.bar.tld",
+				PartitionID:        "aws",
+				SigningName:        "service",
+				SigningRegion:      "bar",
+				SigningMethod:      "v4",
+				SigningNameDerived: true,
+			},
+		},
+	}
+
+	for i, tt := range cases {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
+			var verifyLog func(*testing.T)
+			if tt.SetupLogger != nil {
+				tt.Options.Logger, verifyLog = tt.SetupLogger()
+			}
+
+			endpoint, err := partitions.EndpointFor("service", tt.Region, func(options *Options) {
+				*options = tt.Options
+			})
+			if (err != nil) != tt.WantErr {
+				t.Errorf("WantErr(%v), got error %v", tt.WantErr, err)
+			}
+
+			if !reflect.DeepEqual(tt.Expected, endpoint) {
+				t.Errorf("expect %v, got %v", tt.Expected, endpoint)
+			}
+
+			if verifyLog != nil {
+				verifyLog(t)
+			}
+		})
+	}
+}
+
+func TestPartitionVariantMerging(t *testing.T) {
+	partition := partition{
+		ID:        "aws-iso",
+		Name:      "AWS ISO (US)",
+		DNSSuffix: "c2s.ic.gov",
+		RegionRegex: regionRegex{
+			Regexp: func() *regexp.Regexp {
+				reg, _ := regexp.Compile("^us\\-iso\\-\\w+\\-\\d+$")
+				return reg
+			}(),
+		},
+		Defaults: endpointDefaults{
+			{}: {
+				Hostname:          "{service}.{region}.{dnsSuffix}",
+				Protocols:         []string{"https"},
+				SignatureVersions: []string{"v4"},
+			},
+			{Variant: dualStackVariant}: {
+				DNSSuffix:         "dualstack.foo.bar",
+				Hostname:          "{service}.{region}.{dnsSuffix}",
+				Protocols:         []string{"https"},
+				SignatureVersions: []string{"v4"},
+			},
+		},
+		Regions: regions{
+			"us-iso-east-1": region{
+				Description: "US ISO East",
+			},
+			"us-iso-west-1": region{
+				Description: "US ISO WEST",
+			},
+		},
+		Services: services{
+			"service1": {},
+			"service2": {
+				Defaults: map[defaultKey]endpoint{
+					{}: {
+						CredentialScope: credentialScope{
+							Service: "service-two",
+						},
+					},
+					{Variant: fipsVariant}: {
+						Hostname:  "{service}-fips.{region}.{dnsSuffix}",
+						DNSSuffix: "foo.bar",
+						CredentialScope: credentialScope{
+							Service: "service-two",
+						},
+					},
+				},
+			},
+		},
+	}
+
+	cases := []struct {
+		Service          string
+		Region           string
+		Options          Options
+		WantErr          bool
+		ExpectedEndpoint ResolvedEndpoint
+	}{
+		{
+			Service: "service1",
+			Region:  "us-iso-east-1",
+			Options: Options{
+				UseFIPSEndpoint: FIPSEndpointStateEnabled,
+			},
+			WantErr: true,
+		},
+		{
+			Service: "service1",
+			Region:  "us-iso-east-1",
+			Options: Options{
+				UseDualStackEndpoint: DualStackEndpointStateEnabled,
+			},
+			ExpectedEndpoint: ResolvedEndpoint{
+				URL:                "https://service1.us-iso-east-1.dualstack.foo.bar",
+				PartitionID:        "aws-iso",
+				SigningRegion:      "us-iso-east-1",
+				SigningName:        "service1",
+				SigningNameDerived: true,
+				SigningMethod:      "v4",
+			},
+		},
+		{
+			Service: "service1",
+			Region:  "us-iso-east-1",
+			ExpectedEndpoint: ResolvedEndpoint{
+				URL:                "https://service1.us-iso-east-1.c2s.ic.gov",
+				PartitionID:        "aws-iso",
+				SigningRegion:      "us-iso-east-1",
+				SigningName:        "service1",
+				SigningNameDerived: true,
+				SigningMethod:      "v4",
+			},
+		},
+		{
+			Service: "service2",
+			Region:  "us-iso-east-1",
+			Options: Options{
+				UseFIPSEndpoint: FIPSEndpointStateEnabled,
+			},
+			ExpectedEndpoint: ResolvedEndpoint{
+				URL:           "https://service2-fips.us-iso-east-1.foo.bar",
+				PartitionID:   "aws-iso",
+				SigningRegion: "us-iso-east-1",
+				SigningName:   "service-two",
+				SigningMethod: "v4",
+			},
+		},
+		{
+			Service: "service2",
+			Region:  "us-iso-east-1",
+			Options: Options{
+				UseDualStackEndpoint: DualStackEndpointStateEnabled,
+			},
+			ExpectedEndpoint: ResolvedEndpoint{
+				URL:           "https://service2.us-iso-east-1.dualstack.foo.bar",
+				PartitionID:   "aws-iso",
+				SigningRegion: "us-iso-east-1",
+				SigningName:   "service-two",
+				SigningMethod: "v4",
+			},
+		},
+	}
+
+	for i, tt := range cases {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
+			resolved, err := partition.EndpointFor(tt.Service, tt.Region, func(options *Options) {
+				*options = tt.Options
+			})
+			if (err != nil) != tt.WantErr {
+				t.Errorf("WantErr(%v) got Err(%v)", tt.WantErr, err)
+				return
+			}
+			if tt.WantErr {
+				return
+			}
+			if e, a := tt.ExpectedEndpoint, resolved; !reflect.DeepEqual(e, a) {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+
 }

@@ -52,24 +52,25 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *VoiceID {
 	if c.SigningNameDerived || len(c.SigningName) == 0 {
 		c.SigningName = "voiceid"
 	}
-	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName)
+	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
 // newClient creates, initializes and returns a new service client instance.
-func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName string) *VoiceID {
+func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint, signingRegion, signingName, resolvedRegion string) *VoiceID {
 	svc := &VoiceID{
 		Client: client.New(
 			cfg,
 			metadata.ClientInfo{
-				ServiceName:   ServiceName,
-				ServiceID:     ServiceID,
-				SigningName:   signingName,
-				SigningRegion: signingRegion,
-				PartitionID:   partitionID,
-				Endpoint:      endpoint,
-				APIVersion:    "2021-09-27",
-				JSONVersion:   "1.0",
-				TargetPrefix:  "VoiceID",
+				ServiceName:    ServiceName,
+				ServiceID:      ServiceID,
+				SigningName:    signingName,
+				SigningRegion:  signingRegion,
+				PartitionID:    partitionID,
+				Endpoint:       endpoint,
+				APIVersion:     "2021-09-27",
+				ResolvedRegion: resolvedRegion,
+				JSONVersion:    "1.0",
+				TargetPrefix:   "VoiceID",
 			},
 			handlers,
 		),

@@ -1,6 +1,15 @@
+//go:build go1.9
+// +build go1.9
+
 package endpoints
 
 import "regexp"
+
+type LoggerFunc func(...interface{})
+
+func (l LoggerFunc) Log(i ...interface{}) {
+	l(i...)
+}
 
 var testPartitions = partitions{
 	partition{
@@ -13,10 +22,12 @@ var testPartitions = partitions{
 				return reg
 			}(),
 		},
-		Defaults: endpoint{
-			Hostname:          "{service}.{region}.{dnsSuffix}",
-			Protocols:         []string{"https"},
-			SignatureVersions: []string{"v4"},
+		Defaults: endpointDefaults{
+			{}: {
+				Hostname:          "{service}.{region}.{dnsSuffix}",
+				Protocols:         []string{"https"},
+				SignatureVersions: []string{"v4"},
+			},
 		},
 		Regions: regions{
 			"us-east-1": region{
@@ -27,42 +38,55 @@ var testPartitions = partitions{
 		Services: services{
 			"s3": service{},
 			"service1": service{
-				Defaults: endpoint{
-					CredentialScope: credentialScope{
-						Service: "service1",
+				Defaults: endpointDefaults{
+					{}: {
+						CredentialScope: credentialScope{
+							Service: "service1",
+						},
 					},
 				},
-				Endpoints: endpoints{
-					"us-east-1": {},
-					"us-west-2": {
-						HasDualStack:      boxedTrue,
-						DualStackHostname: "{service}.dualstack.{region}.{dnsSuffix}",
+				Endpoints: serviceEndpoints{
+					{Region: "us-east-1"}: {},
+					{Region: "us-west-2"}: {},
+					{
+						Region:  "us-west-2",
+						Variant: dualStackVariant,
+					}: {
+						Hostname: "{service}.dualstack.{region}.{dnsSuffix}",
 					},
 				},
 			},
 			"service2": service{
-				Defaults: endpoint{
-					CredentialScope: credentialScope{
-						Service: "service2",
+				Defaults: endpointDefaults{
+					{}: {
+						CredentialScope: credentialScope{
+							Service: "service2",
+						},
 					},
 				},
 			},
 			"httpService": service{
-				Defaults: endpoint{
-					Protocols: []string{"http"},
+				Defaults: endpointDefaults{
+					{}: {
+						Protocols: []string{"http"},
+					},
 				},
 			},
 			"globalService": service{
 				IsRegionalized:    boxedFalse,
 				PartitionEndpoint: "aws-global",
-				Endpoints: endpoints{
-					"aws-global": endpoint{
+				Endpoints: serviceEndpoints{
+					{
+						Region: "aws-global",
+					}: {
 						CredentialScope: credentialScope{
 							Region: "us-east-1",
 						},
 						Hostname: "globalService.amazonaws.com",
 					},
-					"fips-aws-global": endpoint{
+					{
+						Region: "fips-aws-global",
+					}: {
 						CredentialScope: credentialScope{
 							Region: "us-east-1",
 						},

@@ -9,6 +9,8 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"reflect"
+	"strconv"
 	"strings"
 	"testing"
 
@@ -822,6 +824,88 @@ func TestSession_ClientConfig_ResolveEndpoint(t *testing.T) {
 			})
 
 			if e, a := c.ExpectEndpoint, clientCfg.Endpoint; e != a {
+				t.Errorf("expect %v, got %v", e, a)
+			}
+		})
+	}
+}
+
+func TestNormalizeRegion(t *testing.T) {
+	cases := []struct {
+		Config                 aws.Config
+		ExpectedConfig         aws.Config
+		ExpectedResolvedRegion string
+	}{
+		{
+			Config: aws.Config{
+				Region: aws.String("us-west-2"),
+			},
+			ExpectedConfig: aws.Config{
+				Region: aws.String("us-west-2"),
+			},
+			ExpectedResolvedRegion: "",
+		},
+		{
+			Config: aws.Config{
+				Region:          aws.String("us-west-2"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			ExpectedConfig: aws.Config{
+				Region:          aws.String("us-west-2"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			ExpectedResolvedRegion: "",
+		},
+		{
+			Config: aws.Config{
+				Region:          aws.String("fips-us-west-2"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateDisabled,
+			},
+			ExpectedConfig: aws.Config{
+				Region:          aws.String("fips-us-west-2"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			ExpectedResolvedRegion: "us-west-2",
+		},
+		{
+			Config: aws.Config{
+				Region: aws.String("fips-us-west-2"),
+			},
+			ExpectedConfig: aws.Config{
+				Region:          aws.String("fips-us-west-2"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			ExpectedResolvedRegion: "us-west-2",
+		},
+		{
+			Config: aws.Config{
+				Region: aws.String("us-west-2-fips"),
+			},
+			ExpectedConfig: aws.Config{
+				Region:          aws.String("us-west-2-fips"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			ExpectedResolvedRegion: "us-west-2",
+		},
+		{
+			Config: aws.Config{
+				Region: aws.String("us-west-2-fips-thing"),
+			},
+			ExpectedConfig: aws.Config{
+				Region:          aws.String("us-west-2-fips-thing"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			ExpectedResolvedRegion: "us-west-2-thing",
+		},
+	}
+
+	for i, tt := range cases {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
+			resolved := normalizeRegion(&tt.Config)
+			if !reflect.DeepEqual(tt.ExpectedConfig, tt.Config) {
+				t.Errorf("expect %v, got %v", tt.ExpectedConfig, tt.Config)
+			}
+			if e, a := tt.ExpectedResolvedRegion, resolved; e != a {
 				t.Errorf("expect %v, got %v", e, a)
 			}
 		})

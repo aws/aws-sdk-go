@@ -1,5 +1,5 @@
-//go:build go1.7
-// +build go1.7
+//go:build go1.9
+// +build go1.9
 
 package endpoints
 
@@ -21,10 +21,12 @@ func TestEndpointFor_STSRegionalFlag(t *testing.T) {
 				return reg
 			}(),
 		},
-		Defaults: endpoint{
-			Hostname:          "{service}.{region}.{dnsSuffix}",
-			Protocols:         []string{"https"},
-			SignatureVersions: []string{"v4"},
+		Defaults: endpointDefaults{
+			{}: {
+				Hostname:          "{service}.{region}.{dnsSuffix}",
+				Protocols:         []string{"https"},
+				SignatureVersions: []string{"v4"},
+			},
 		},
 		Regions: regions{
 			"ap-east-1": region{
@@ -85,51 +87,51 @@ func TestEndpointFor_STSRegionalFlag(t *testing.T) {
 		Services: services{
 			"sts": service{
 				PartitionEndpoint: "aws-global",
-				Defaults:          endpoint{},
-				Endpoints: endpoints{
-					"ap-east-1":      endpoint{},
-					"ap-northeast-1": endpoint{},
-					"ap-northeast-2": endpoint{},
-					"ap-south-1":     endpoint{},
-					"ap-southeast-1": endpoint{},
-					"ap-southeast-2": endpoint{},
-					"aws-global": endpoint{
+				Defaults:          endpointDefaults{},
+				Endpoints: serviceEndpoints{
+					{Region: "ap-east-1"}:      {},
+					{Region: "ap-northeast-1"}: endpoint{},
+					{Region: "ap-northeast-2"}: endpoint{},
+					{Region: "ap-south-1"}:     endpoint{},
+					{Region: "ap-southeast-1"}: endpoint{},
+					{Region: "ap-southeast-2"}: endpoint{},
+					{Region: "aws-global"}: endpoint{
 						Hostname: "sts.amazonaws.com",
 						CredentialScope: credentialScope{
 							Region: "us-east-1",
 						},
 					},
-					"ca-central-1": endpoint{},
-					"eu-central-1": endpoint{},
-					"eu-north-1":   endpoint{},
-					"eu-west-1":    endpoint{},
-					"eu-west-2":    endpoint{},
-					"eu-west-3":    endpoint{},
-					"me-south-1":   endpoint{},
-					"sa-east-1":    endpoint{},
-					"us-east-1":    endpoint{},
-					"us-east-1-fips": endpoint{
+					{Region: "ca-central-1"}: endpoint{},
+					{Region: "eu-central-1"}: endpoint{},
+					{Region: "eu-north-1"}:   endpoint{},
+					{Region: "eu-west-1"}:    endpoint{},
+					{Region: "eu-west-2"}:    endpoint{},
+					{Region: "eu-west-3"}:    endpoint{},
+					{Region: "me-south-1"}:   endpoint{},
+					{Region: "sa-east-1"}:    endpoint{},
+					{Region: "us-east-1"}:    endpoint{},
+					{Region: "us-east-1-fips"}: endpoint{
 						Hostname: "sts-fips.us-east-1.amazonaws.com",
 						CredentialScope: credentialScope{
 							Region: "us-east-1",
 						},
 					},
-					"us-east-2": endpoint{},
-					"us-east-2-fips": endpoint{
+					{Region: "us-east-2"}: endpoint{},
+					{Region: "us-east-2-fips"}: endpoint{
 						Hostname: "sts-fips.us-east-2.amazonaws.com",
 						CredentialScope: credentialScope{
 							Region: "us-east-2",
 						},
 					},
-					"us-west-1": endpoint{},
-					"us-west-1-fips": endpoint{
+					{Region: "us-west-1"}: endpoint{},
+					{Region: "us-west-1-fips"}: endpoint{
 						Hostname: "sts-fips.us-west-1.amazonaws.com",
 						CredentialScope: credentialScope{
 							Region: "us-west-1",
 						},
 					},
-					"us-west-2": endpoint{},
-					"us-west-2-fips": endpoint{
+					{Region: "us-west-2"}: endpoint{},
+					{Region: "us-west-2-fips"}: endpoint{
 						Hostname: "sts-fips.us-west-2.amazonaws.com",
 						CredentialScope: credentialScope{
 							Region: "us-west-2",
@@ -505,10 +507,12 @@ func TestEndpointFor_S3UsEast1RegionalFlag(t *testing.T) {
 				return reg
 			}(),
 		},
-		Defaults: endpoint{
-			Hostname:          "{service}.{region}.{dnsSuffix}",
-			Protocols:         []string{"https"},
-			SignatureVersions: []string{"v4"},
+		Defaults: endpointDefaults{
+			{}: {
+				Hostname:          "{service}.{region}.{dnsSuffix}",
+				Protocols:         []string{"https"},
+				SignatureVersions: []string{"v4"},
+			},
 		},
 		Regions: regions{
 			"ap-east-1": region{
@@ -570,67 +574,66 @@ func TestEndpointFor_S3UsEast1RegionalFlag(t *testing.T) {
 			"s3": service{
 				PartitionEndpoint: "aws-global",
 				IsRegionalized:    boxedTrue,
-				Defaults: endpoint{
-					Protocols:         []string{"http", "https"},
-					SignatureVersions: []string{"s3v4"},
-
-					HasDualStack:      boxedTrue,
-					DualStackHostname: "{service}.dualstack.{region}.{dnsSuffix}",
+				Defaults: endpointDefaults{
+					{}: {
+						Protocols:         []string{"http", "https"},
+						SignatureVersions: []string{"s3v4"},
+					},
 				},
-				Endpoints: endpoints{
-					"ap-east-1": endpoint{},
-					"ap-northeast-1": endpoint{
+				Endpoints: serviceEndpoints{
+					{Region: "ap-east-1"}: endpoint{},
+					{Region: "ap-northeast-1"}: endpoint{
 						Hostname:          "s3.ap-northeast-1.amazonaws.com",
 						SignatureVersions: []string{"s3", "s3v4"},
 					},
-					"ap-northeast-2": endpoint{},
-					"ap-northeast-3": endpoint{},
-					"ap-south-1":     endpoint{},
-					"ap-southeast-1": endpoint{
+					{Region: "ap-northeast-2"}: endpoint{},
+					{Region: "ap-northeast-3"}: endpoint{},
+					{Region: "ap-south-1"}:     endpoint{},
+					{Region: "ap-southeast-1"}: endpoint{
 						Hostname:          "s3.ap-southeast-1.amazonaws.com",
 						SignatureVersions: []string{"s3", "s3v4"},
 					},
-					"ap-southeast-2": endpoint{
+					{Region: "ap-southeast-2"}: endpoint{
 						Hostname:          "s3.ap-southeast-2.amazonaws.com",
 						SignatureVersions: []string{"s3", "s3v4"},
 					},
-					"aws-global": endpoint{
+					{Region: "aws-global"}: endpoint{
 						Hostname: "s3.amazonaws.com",
 						CredentialScope: credentialScope{
 							Region: "us-east-1",
 						},
 					},
-					"ca-central-1": endpoint{},
-					"eu-central-1": endpoint{},
-					"eu-north-1":   endpoint{},
-					"eu-west-1": endpoint{
+					{Region: "ca-central-1"}: endpoint{},
+					{Region: "eu-central-1"}: endpoint{},
+					{Region: "eu-north-1"}:   endpoint{},
+					{Region: "eu-west-1"}: endpoint{
 						Hostname:          "s3.eu-west-1.amazonaws.com",
 						SignatureVersions: []string{"s3", "s3v4"},
 					},
-					"eu-west-2":  endpoint{},
-					"eu-west-3":  endpoint{},
-					"me-south-1": endpoint{},
-					"s3-external-1": endpoint{
+					{Region: "eu-west-2"}:  endpoint{},
+					{Region: "eu-west-3"}:  endpoint{},
+					{Region: "me-south-1"}: endpoint{},
+					{Region: "s3-external-1"}: endpoint{
 						Hostname:          "s3-external-1.amazonaws.com",
 						SignatureVersions: []string{"s3", "s3v4"},
 						CredentialScope: credentialScope{
 							Region: "us-east-1",
 						},
 					},
-					"sa-east-1": endpoint{
+					{Region: "sa-east-1"}: endpoint{
 						Hostname:          "s3.sa-east-1.amazonaws.com",
 						SignatureVersions: []string{"s3", "s3v4"},
 					},
-					"us-east-1": endpoint{
+					{Region: "us-east-1"}: endpoint{
 						Hostname:          "s3.us-east-1.amazonaws.com",
 						SignatureVersions: []string{"s3", "s3v4"},
 					},
-					"us-east-2": endpoint{},
-					"us-west-1": endpoint{
+					{Region: "us-east-2"}: endpoint{},
+					{Region: "us-west-1"}: endpoint{
 						Hostname:          "s3.us-west-1.amazonaws.com",
 						SignatureVersions: []string{"s3", "s3v4"},
 					},
-					"us-west-2": endpoint{
+					{Region: "us-west-2"}: endpoint{
 						Hostname:          "s3.us-west-2.amazonaws.com",
 						SignatureVersions: []string{"s3", "s3v4"},
 					},
@@ -713,10 +716,12 @@ func TestSTSRegionalEndpoint_CNPartition(t *testing.T) {
 				return reg
 			}(),
 		},
-		Defaults: endpoint{
-			Hostname:          "{service}.{region}.{dnsSuffix}",
-			Protocols:         []string{"https"},
-			SignatureVersions: []string{"v4"},
+		Defaults: endpointDefaults{
+			{}: {
+				Hostname:          "{service}.{region}.{dnsSuffix}",
+				Protocols:         []string{"https"},
+				SignatureVersions: []string{"v4"},
+			},
 		},
 		Regions: regions{
 			"cn-north-1": region{
@@ -728,9 +733,9 @@ func TestSTSRegionalEndpoint_CNPartition(t *testing.T) {
 		},
 		Services: services{
 			"sts": service{
-				Endpoints: endpoints{
-					"cn-north-1":     endpoint{},
-					"cn-northwest-1": endpoint{},
+				Endpoints: serviceEndpoints{
+					{Region: "cn-north-1"}:     endpoint{},
+					{Region: "cn-northwest-1"}: endpoint{},
 				},
 			},
 		},

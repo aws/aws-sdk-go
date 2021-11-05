@@ -72,6 +72,16 @@ func TestBoolValue(t *testing.T) {
 			b:             []rune(`"false"`),
 			expectedError: true,
 		},
+		{
+			b:             []rune(`True`),
+			expectedRead:  4,
+			expectedValue: "True",
+		},
+		{
+			b:             []rune(`False`),
+			expectedRead:  5,
+			expectedValue: "False",
+		},
 	}
 
 	for _, c := range cases {

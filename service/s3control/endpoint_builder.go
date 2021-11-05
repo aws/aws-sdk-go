@@ -45,7 +45,7 @@ func (o outpostAccessPointEndpointBuilder) build(req *request.Request) error {
 		endpointsID = "s3"
 	}
 
-	endpoint, err := resolveRegionalEndpoint(req, resolveRegion, endpointsID)
+	endpoint, err := resolveRegionalEndpoint(req, resolveRegion, "", endpointsID)
 	if err != nil {
 		return s3shared.NewFailedToResolveEndpointError(o,
 			req.ClientInfo.PartitionID, resolveRegion, err)
@@ -97,15 +97,14 @@ type outpostBucketResourceEndpointBuilder arn.OutpostBucketARN
 func (o outpostBucketResourceEndpointBuilder) build(req *request.Request) error {
 	resolveService := arn.OutpostBucketARN(o).Service
 	resolveRegion := arn.OutpostBucketARN(o).Region
-	cfgRegion := aws.StringValue(req.Config.Region)
 
 	// Outpost bucket resource uses `s3-control` as serviceEndpointLabel
 	endpointsID := "s3-control"
 
-	endpoint, err := resolveRegionalEndpoint(req, resolveRegion, endpointsID)
+	endpoint, err := resolveRegionalEndpoint(req, resolveRegion, "", endpointsID)
 	if err != nil {
 		return s3shared.NewFailedToResolveEndpointError(arn.OutpostBucketARN(o),
-			req.ClientInfo.PartitionID, cfgRegion, err)
+			req.ClientInfo.PartitionID, resolveRegion, err)
 	}
 
 	endpoint.URL = endpoints.AddScheme(endpoint.URL, aws.BoolValue(req.Config.DisableSSL))
@@ -132,11 +131,16 @@ func (o outpostBucketResourceEndpointBuilder) build(req *request.Request) error 
 	return nil
 }
 
-func resolveRegionalEndpoint(r *request.Request, region string, endpointsID string) (endpoints.ResolvedEndpoint, error) {
+func resolveRegionalEndpoint(r *request.Request, region, resolvedRegion, endpointsID string) (endpoints.ResolvedEndpoint, error) {
 	return r.Config.EndpointResolver.EndpointFor(endpointsID, region, func(opts *endpoints.Options) {
 		opts.DisableSSL = aws.BoolValue(r.Config.DisableSSL)
 		opts.UseDualStack = aws.BoolValue(r.Config.UseDualStack)
+		opts.UseDualStackEndpoint = r.Config.UseDualStackEndpoint
+		opts.UseFIPSEndpoint = r.Config.UseFIPSEndpoint
 		opts.S3UsEast1RegionalEndpoint = endpoints.RegionalS3UsEast1Endpoint
+		opts.ResolvedRegion = resolvedRegion
+		opts.Logger = r.Config.Logger
+		opts.LogDeprecated = r.Config.LogLevel.Matches(aws.LogDebugWithDeprecated)
 	})
 }
 

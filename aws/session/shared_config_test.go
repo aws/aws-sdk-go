@@ -336,6 +336,60 @@ func TestLoadSharedConfig(t *testing.T) {
 				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeStateIPv6,
 			},
 		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseDualStackEndpointEnabled",
+			Expected: sharedConfig{
+				Profile:              "UseDualStackEndpointEnabled",
+				Region:               "us-west-2",
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateEnabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseDualStackEndpointDisabled",
+			Expected: sharedConfig{
+				Profile:              "UseDualStackEndpointDisabled",
+				Region:               "us-west-2",
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateDisabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseDualStackEndpointInvalid",
+			Expected: sharedConfig{
+				Profile:              "UseDualStackEndpointInvalid",
+				Region:               "us-west-2",
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateDisabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseFIPSEndpointEnabled",
+			Expected: sharedConfig{
+				Profile:         "UseFIPSEndpointEnabled",
+				Region:          "us-west-2",
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseFIPSEndpointDisabled",
+			Expected: sharedConfig{
+				Profile:         "UseFIPSEndpointDisabled",
+				Region:          "us-west-2",
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateDisabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseFIPSEndpointInvalid",
+			Expected: sharedConfig{
+				Profile:         "UseFIPSEndpointInvalid",
+				Region:          "us-west-2",
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateDisabled,
+			},
+		},
 	}
 
 	for i, c := range cases {
