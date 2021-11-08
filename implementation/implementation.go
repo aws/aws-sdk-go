@@ -1912,32 +1912,33 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 			}, fmt.Errorf("failed to get service regions to test connection with")
 		}
 
+		region := serviceRegions[0]
 		awsActionParameters := map[string]interface{}{
-			awsRegionKey: serviceRegions[0],
+			awsRegionKey: region,
 		}
 
 		if err := appendServiceToParametersByCredentials(serviceName, awsCredentials, awsActionParameters); err != nil {
 			return &plugin.CredentialsValidationResponse{
 				AreCredentialsValid:   false,
 				RawValidationResponse: []byte(err.Error()),
-			}, fmt.Errorf("failed to append service to parameters, error: %v", err)
+			}, fmt.Errorf("failed to append service to parameters, region: %v, error: %v", region, err)
 		}
 
-		output, err := sts.ExecuteGetCallerIdentity(awsActionParameters)
+		_, err = sts.ExecuteGetCallerIdentity(awsActionParameters)
 		if err != nil {
-			if awserr, ok := err.(awserr.RequestFailure); ok {
-				if awserr.Code() == "AccessDenied" { // This means that the credentials are actually truthy, but do not have permissions to perform the specific action
+			if awsErr, ok := err.(awserr.RequestFailure); ok {
+				if awsErr.Code() == "AccessDenied" { // This means that the credentials are actually truthy, but do not have permissions to perform the specific action
 					return &plugin.CredentialsValidationResponse{
 						AreCredentialsValid:   true,
 						RawValidationResponse: []byte("Credentials are valid!"),
 					}, nil
 				}
 			}
-			log.Debugf("failed on credentials validation, got: %v", output)
+			log.Debugf("failed on credentials validation, region: %v error: %v", region, err)
 			return &plugin.CredentialsValidationResponse{
 				AreCredentialsValid:   false,
 				RawValidationResponse: []byte("failed on credentials validation"),
-			}, fmt.Errorf("failed on credentials validation, got: %v and error: %w", output, err)
+			}, fmt.Errorf("failed on credentials validation, region: %v error: %v", region, err)
 		}
 
 		log.Debugf("Credentials are valid, continue to the next instnace")
