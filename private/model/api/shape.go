@@ -567,6 +567,8 @@ func (ref *ShapeRef) GoTags(toplevel bool, isRequired bool) string {
 	}
 	if ref.Shape.IsEnum() {
 		tags = append(tags, ShapeTag{"enum", ref.ShapeName})
+	} else if ref.Shape.Type == "list" && ref.Shape.MemberRef.Shape.IsEnum() {
+		tags = append(tags, ShapeTag{"enum", ref.Shape.MemberRef.ShapeName})
 	}
 
 	if toplevel {
