@@ -1,3 +1,21 @@
+Release v1.42.0 (2021-11-08)
+===
+
+### Service Client Updates
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds internal validation on the GatewayAssociationState field
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker CreateEndpoint and UpdateEndpoint APIs now support additional deployment configuration to manage traffic shifting options and automatic rollback monitoring. DescribeEndpoint now shows new in-progress deployment details with stage status.
+* `service/wafv2`: Updates service API and documentation
+
+### SDK Features
+* Support has been added for configuring endpoints with requirements such as FIPS and DualStack. ([#3938](https://github.com/aws/aws-sdk-go/pull/3938))
+  * `AWS_USE_FIPS_ENDPOINT` and `AWS_USE_DUALSTACK_ENDPOINT` can be set to `true` or `false` in the environment to indicate an endpoint with the respective characteristic must be resolved.
+  * `use_fips_endpoint` and `use_dualstack_endpoint` can be set to `true` or `false` in the shared config file to indicate an endpoint with the respective characteristic must be resolved.
+  * Programmatic configuration of FIPS and DualStack endpoint resolution.
+  * For more information see the `aws/session` package documentation.
+
 Release v1.41.19 (2021-11-05)
 ===
 

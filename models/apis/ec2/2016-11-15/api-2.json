@@ -18329,6 +18329,15 @@
       "max":1000,
       "min":200
     },
+    "GatewayAssociationState":{
+      "type":"string",
+      "enum":[
+        "associated",
+        "not-associated",
+        "associating",
+        "disassociating"
+      ]
+    },
     "GatewayType":{
       "type":"string",
       "enum":["ipsec.1"]
@@ -35968,7 +35977,7 @@
           "locationName":"coreNetworkAttachmentArn"
         },
         "GatewayAssociationState":{
-          "shape":"String",
+          "shape":"GatewayAssociationState",
           "locationName":"gatewayAssociationState"
         },
         "Options":{

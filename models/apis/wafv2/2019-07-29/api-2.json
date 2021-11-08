@@ -771,7 +771,9 @@
       "enum":[
         "ALLOW",
         "BLOCK",
-        "COUNT"
+        "COUNT",
+        "CAPTCHA",
+        "EXCLUDED_AS_COUNT"
       ]
     },
     "All":{
@@ -851,6 +853,26 @@
     "CapacityUnit":{
       "type":"long",
       "min":1
+    },
+    "CaptchaAction":{
+      "type":"structure",
+      "members":{
+        "CustomRequestHandling":{"shape":"CustomRequestHandling"}
+      }
+    },
+    "CaptchaConfig":{
+      "type":"structure",
+      "members":{
+        "ImmunityTimeProperty":{"shape":"ImmunityTimeProperty"}
+      }
+    },
+    "CaptchaResponse":{
+      "type":"structure",
+      "members":{
+        "ResponseCode":{"shape":"ResponseCode"},
+        "SolveTimestamp":{"shape":"SolveTimestamp"},
+        "FailureReason":{"shape":"FailureReason"}
+      }
     },
     "CheckCapacityRequest":{
       "type":"structure",
@@ -1247,7 +1269,8 @@
         "Rules":{"shape":"Rules"},
         "VisibilityConfig":{"shape":"VisibilityConfig"},
         "Tags":{"shape":"TagList"},
-        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"},
+        "CaptchaConfig":{"shape":"CaptchaConfig"}
       }
     },
     "CreateWebACLResponse":{
@@ -1513,6 +1536,13 @@
     "ExcludedRules":{
       "type":"list",
       "member":{"shape":"ExcludedRule"}
+    },
+    "FailureReason":{
+      "type":"string",
+      "enum":[
+        "TOKEN_MISSING",
+        "TOKEN_EXPIRED"
+      ]
     },
     "FallbackBehavior":{
       "type":"string",
@@ -1856,7 +1886,8 @@
     },
     "IPAddresses":{
       "type":"list",
-      "member":{"shape":"IPAddress"}
+      "member":{"shape":"IPAddress"},
+      "min":1
     },
     "IPSet":{
       "type":"structure",
@@ -1912,6 +1943,13 @@
       }
     },
     "IPString":{"type":"string"},
+    "ImmunityTimeProperty":{
+      "type":"structure",
+      "required":["ImmunityTime"],
+      "members":{
+        "ImmunityTime":{"shape":"TimeWindowSecond"}
+      }
+    },
     "JsonBody":{
       "type":"structure",
       "required":[
@@ -2064,6 +2102,7 @@
     },
     "ListLoggingConfigurationsRequest":{
       "type":"structure",
+      "required":["Scope"],
       "members":{
         "Scope":{"shape":"Scope"},
         "NextMarker":{"shape":"NextMarker"},
@@ -2610,6 +2649,7 @@
         "APPSYNC"
       ]
     },
+    "ResponseCode":{"type":"integer"},
     "ResponseContent":{
       "type":"string",
       "max":10240,
@@ -2626,7 +2666,7 @@
     },
     "ResponseStatusCode":{
       "type":"integer",
-      "max":600,
+      "max":599,
       "min":200
     },
     "Rule":{
@@ -2644,7 +2684,8 @@
         "Action":{"shape":"RuleAction"},
         "OverrideAction":{"shape":"OverrideAction"},
         "RuleLabels":{"shape":"Labels"},
-        "VisibilityConfig":{"shape":"VisibilityConfig"}
+        "VisibilityConfig":{"shape":"VisibilityConfig"},
+        "CaptchaConfig":{"shape":"CaptchaConfig"}
       }
     },
     "RuleAction":{
@@ -2652,7 +2693,8 @@
       "members":{
         "Block":{"shape":"BlockAction"},
         "Allow":{"shape":"AllowAction"},
-        "Count":{"shape":"CountAction"}
+        "Count":{"shape":"CountAction"},
+        "Captcha":{"shape":"CaptchaAction"}
       }
     },
     "RuleGroup":{
@@ -2737,7 +2779,8 @@
         "RuleNameWithinRuleGroup":{"shape":"EntityName"},
         "RequestHeadersInserted":{"shape":"HTTPHeaders"},
         "ResponseCodeSent":{"shape":"ResponseStatusCode"},
-        "Labels":{"shape":"Labels"}
+        "Labels":{"shape":"Labels"},
+        "CaptchaResponse":{"shape":"CaptchaResponse"}
       }
     },
     "SampledHTTPRequests":{
@@ -2786,6 +2829,7 @@
         "TextTransformations":{"shape":"TextTransformations"}
       }
     },
+    "SolveTimestamp":{"type":"long"},
     "SqliMatchStatement":{
       "type":"structure",
       "required":[
@@ -2938,6 +2982,11 @@
       "type":"integer",
       "min":1
     },
+    "TimeWindowSecond":{
+      "type":"long",
+      "max":259200,
+      "min":60
+    },
     "Timestamp":{"type":"timestamp"},
     "URIString":{"type":"string"},
     "UntagResourceRequest":{
@@ -3076,7 +3125,8 @@
         "Rules":{"shape":"Rules"},
         "VisibilityConfig":{"shape":"VisibilityConfig"},
         "LockToken":{"shape":"LockToken"},
-        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"},
+        "CaptchaConfig":{"shape":"CaptchaConfig"}
       }
     },
     "UpdateWebACLResponse":{
@@ -3266,7 +3316,8 @@
         "PostProcessFirewallManagerRuleGroups":{"shape":"FirewallManagerRuleGroups"},
         "ManagedByFirewallManager":{"shape":"Boolean"},
         "LabelNamespace":{"shape":"LabelName"},
-        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"},
+        "CaptchaConfig":{"shape":"CaptchaConfig"}
       }
     },
     "WebACLSummaries":{

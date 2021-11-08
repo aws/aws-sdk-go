@@ -193,7 +193,7 @@
       "type":"structure",
       "members":{
         "ExternalUserId":{"shape":"ExternalUserId"},
-        "AttendeeId":{"shape":"String"},
+        "AttendeeId":{"shape":"GuidString"},
         "JoinToken":{"shape":"JoinTokenString"}
       }
     },
@@ -223,7 +223,7 @@
       ],
       "members":{
         "MeetingId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"MeetingId"
         },
@@ -260,7 +260,7 @@
       ],
       "members":{
         "MeetingId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"MeetingId"
         },
@@ -298,7 +298,7 @@
           "shape":"ClientRequestToken",
           "idempotencyToken":true
         },
-        "MediaRegion":{"shape":"String"},
+        "MediaRegion":{"shape":"MediaRegion"},
         "MeetingHostId":{"shape":"ExternalUserId"},
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
         "NotificationsConfiguration":{"shape":"NotificationsConfiguration"}
@@ -323,7 +323,7 @@
           "shape":"ClientRequestToken",
           "idempotencyToken":true
         },
-        "MediaRegion":{"shape":"String"},
+        "MediaRegion":{"shape":"MediaRegion"},
         "MeetingHostId":{"shape":"ExternalUserId"},
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
         "NotificationsConfiguration":{"shape":"NotificationsConfiguration"},
@@ -352,12 +352,12 @@
       ],
       "members":{
         "MeetingId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"MeetingId"
         },
         "AttendeeId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"AttendeeId"
         }
@@ -368,7 +368,7 @@
       "required":["MeetingId"],
       "members":{
         "MeetingId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"MeetingId"
         }
@@ -430,12 +430,12 @@
       ],
       "members":{
         "MeetingId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"MeetingId"
         },
         "AttendeeId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"AttendeeId"
         }
@@ -452,7 +452,7 @@
       "required":["MeetingId"],
       "members":{
         "MeetingId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"MeetingId"
         }
@@ -470,7 +470,7 @@
     },
     "JoinTokenString":{
       "type":"string",
-      "max":4096,
+      "max":2048,
       "min":2,
       "sensitive":true
     },
@@ -489,7 +489,7 @@
       "required":["MeetingId"],
       "members":{
         "MeetingId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"MeetingId"
         },
@@ -525,13 +525,18 @@
         "EventIngestionUrl":{"shape":"String"}
       }
     },
+    "MediaRegion":{
+      "type":"string",
+      "max":64,
+      "min":2
+    },
     "Meeting":{
       "type":"structure",
       "members":{
         "MeetingId":{"shape":"GuidString"},
         "MeetingHostId":{"shape":"ExternalUserId"},
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
-        "MediaRegion":{"shape":"String"},
+        "MediaRegion":{"shape":"MediaRegion"},
         "MediaPlacement":{"shape":"MediaPlacement"}
       }
     },
@@ -583,7 +588,7 @@
       ],
       "members":{
         "MeetingId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"MeetingId"
         },
@@ -595,7 +600,7 @@
       "required":["MeetingId"],
       "members":{
         "MeetingId":{
-          "shape":"String",
+          "shape":"GuidString",
           "location":"uri",
           "locationName":"MeetingId"
         }
