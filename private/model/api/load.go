@@ -208,6 +208,7 @@ func (a *API) Setup() error {
 	a.writeShapeNames()
 	a.resolveReferences()
 	a.backfillErrorMembers()
+	a.backfillSigningName()
 
 	if !a.NoRemoveUnusedShapes {
 		a.removeUnusedShapes()

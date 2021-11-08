@@ -561,12 +561,16 @@ func New(p client.ConfigProvider, cfgs ...*aws.Config) *{{ .StructName }} {
 	{{- else -}}
 		c := p.ClientConfig({{ EndpointsIDValue . }}, cfgs...)
 	{{- end }}
-
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
 	{{- if .Metadata.SigningName }}
-		if c.SigningNameDerived || len(c.SigningName) == 0{
-			c.SigningName = "{{ .Metadata.SigningName }}"
-		}
+		c.SigningName = "{{ .Metadata.SigningName }}"
+    {{- else }}
+		{{- if not .NoConstServiceNames -}}
+		c.SigningName = {{ EndpointsIDValue . }}
+		// No Fallback
+		{{- end }}
 	{{- end }}
+	}
 	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -1037,6 +1041,18 @@ func (a *API) validateNoDocumentShapes() error {
 	}
 
 	return fmt.Errorf("model contains document shapes: %s", strings.Join(shapes, ", "))
+}
+
+func (a *API) backfillSigningName() {
+	backfill := map[string]string{
+		"kinesisvideo": "kinesisvideo",
+	}
+
+	if value, ok := backfill[a.PackageName()]; ok && len(a.Metadata.SigningName) == 0 {
+		a.Metadata.SigningName = value
+	} else if ok && len(a.Metadata.SigningName) > 0 {
+		debugLogger.Logf("%s no longer requires signingName backfill", a.PackageName())
+	}
 }
 
 func getDeprecatedMessage(msg string, name string) string {
