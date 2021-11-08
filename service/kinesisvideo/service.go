@@ -49,6 +49,9 @@ const (
 //     svc := kinesisvideo.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func New(p client.ConfigProvider, cfgs ...*aws.Config) *KinesisVideo {
 	c := p.ClientConfig(EndpointsID, cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+		c.SigningName = "kinesisvideo"
+	}
 	return newClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 

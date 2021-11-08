@@ -70,6 +70,8 @@ type InputService1ProtocolTest struct {
 //     svc := inputservice1protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService1ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService1ProtocolTest {
 	c := p.ClientConfig("inputservice1protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService1ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -212,6 +214,8 @@ type InputService2ProtocolTest struct {
 //     svc := inputservice2protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService2ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService2ProtocolTest {
 	c := p.ClientConfig("inputservice2protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService2ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -379,6 +383,8 @@ type InputService3ProtocolTest struct {
 //     svc := inputservice3protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService3ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService3ProtocolTest {
 	c := p.ClientConfig("inputservice3protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService3ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -546,6 +552,8 @@ type InputService4ProtocolTest struct {
 //     svc := inputservice4protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService4ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService4ProtocolTest {
 	c := p.ClientConfig("inputservice4protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService4ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -696,6 +704,8 @@ type InputService5ProtocolTest struct {
 //     svc := inputservice5protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService5ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService5ProtocolTest {
 	c := p.ClientConfig("inputservice5protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService5ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -871,6 +881,8 @@ type InputService6ProtocolTest struct {
 //     svc := inputservice6protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService6ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService6ProtocolTest {
 	c := p.ClientConfig("inputservice6protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService6ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -1046,6 +1058,8 @@ type InputService7ProtocolTest struct {
 //     svc := inputservice7protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService7ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService7ProtocolTest {
 	c := p.ClientConfig("inputservice7protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService7ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -1282,6 +1296,8 @@ type InputService8ProtocolTest struct {
 //     svc := inputservice8protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService8ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService8ProtocolTest {
 	c := p.ClientConfig("inputservice8protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService8ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -1465,6 +1481,8 @@ type InputService9ProtocolTest struct {
 //     svc := inputservice9protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService9ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService9ProtocolTest {
 	c := p.ClientConfig("inputservice9protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService9ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -1676,6 +1694,8 @@ type InputService10ProtocolTest struct {
 //     svc := inputservice10protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService10ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService10ProtocolTest {
 	c := p.ClientConfig("inputservice10protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService10ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -1895,6 +1915,8 @@ type InputService11ProtocolTest struct {
 //     svc := inputservice11protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService11ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService11ProtocolTest {
 	c := p.ClientConfig("inputservice11protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService11ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -2078,6 +2100,8 @@ type InputService12ProtocolTest struct {
 //     svc := inputservice12protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService12ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService12ProtocolTest {
 	c := p.ClientConfig("inputservice12protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService12ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -2254,6 +2278,8 @@ type InputService13ProtocolTest struct {
 //     svc := inputservice13protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService13ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService13ProtocolTest {
 	c := p.ClientConfig("inputservice13protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService13ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -2490,6 +2516,8 @@ type InputService14ProtocolTest struct {
 //     svc := inputservice14protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService14ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService14ProtocolTest {
 	c := p.ClientConfig("inputservice14protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService14ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -2738,6 +2766,8 @@ type InputService15ProtocolTest struct {
 //     svc := inputservice15protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService15ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService15ProtocolTest {
 	c := p.ClientConfig("inputservice15protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService15ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -2974,6 +3004,8 @@ type InputService16ProtocolTest struct {
 //     svc := inputservice16protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService16ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService16ProtocolTest {
 	c := p.ClientConfig("inputservice16protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService16ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -3590,6 +3622,8 @@ type InputService17ProtocolTest struct {
 //     svc := inputservice17protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService17ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService17ProtocolTest {
 	c := p.ClientConfig("inputservice17protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService17ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -3804,6 +3838,8 @@ type InputService18ProtocolTest struct {
 //     svc := inputservice18protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService18ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService18ProtocolTest {
 	c := p.ClientConfig("inputservice18protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService18ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -3954,6 +3990,8 @@ type InputService19ProtocolTest struct {
 //     svc := inputservice19protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService19ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService19ProtocolTest {
 	c := p.ClientConfig("inputservice19protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService19ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -4104,6 +4142,8 @@ type InputService20ProtocolTest struct {
 //     svc := inputservice20protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService20ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService20ProtocolTest {
 	c := p.ClientConfig("inputservice20protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService20ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -4340,6 +4380,8 @@ type InputService21ProtocolTest struct {
 //     svc := inputservice21protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService21ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService21ProtocolTest {
 	c := p.ClientConfig("inputservice21protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService21ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -4730,6 +4772,8 @@ type InputService22ProtocolTest struct {
 //     svc := inputservice22protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService22ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService22ProtocolTest {
 	c := p.ClientConfig("inputservice22protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService22ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -5054,6 +5098,8 @@ type InputService23ProtocolTest struct {
 //     svc := inputservice23protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService23ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService23ProtocolTest {
 	c := p.ClientConfig("inputservice23protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService23ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -5317,6 +5363,8 @@ type InputService24ProtocolTest struct {
 //     svc := inputservice24protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService24ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService24ProtocolTest {
 	c := p.ClientConfig("inputservice24protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService24ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
@@ -5867,6 +5915,8 @@ type InputService25ProtocolTest struct {
 //     svc := inputservice25protocoltest.New(mySession, aws.NewConfig().WithRegion("us-west-2"))
 func NewInputService25ProtocolTest(p client.ConfigProvider, cfgs ...*aws.Config) *InputService25ProtocolTest {
 	c := p.ClientConfig("inputservice25protocoltest", cfgs...)
+	if c.SigningNameDerived || len(c.SigningName) == 0 {
+	}
 	return newInputService25ProtocolTestClient(*c.Config, c.Handlers, c.PartitionID, c.Endpoint, c.SigningRegion, c.SigningName, c.ResolvedRegion)
 }
 
