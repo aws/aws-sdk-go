@@ -1569,7 +1569,7 @@ type CreateMeetingInput struct {
 	// ExternalMeetingId is a required field
 	ExternalMeetingId *string `min:"2" type:"string" required:"true" sensitive:"true"`
 
-	// The Region in which to create the meeting. Default: us-east-1.
+	// The Region in which to create the meeting.
 	//
 	// Available values: af-south-1 , ap-northeast-1 , ap-northeast-2 , ap-south-1
 	// , ap-southeast-1 , ap-southeast-2 , ca-central-1 , eu-central-1 , eu-north-1
@@ -1577,7 +1577,7 @@ type CreateMeetingInput struct {
 	// , us-east-2 , us-west-1 , us-west-2 .
 	//
 	// MediaRegion is a required field
-	MediaRegion *string `type:"string" required:"true"`
+	MediaRegion *string `min:"2" type:"string" required:"true"`
 
 	// Reserved.
 	//
@@ -1623,6 +1623,9 @@ func (s *CreateMeetingInput) Validate() error {
 	}
 	if s.MediaRegion == nil {
 		invalidParams.Add(request.NewErrParamRequired("MediaRegion"))
+	}
+	if s.MediaRegion != nil && len(*s.MediaRegion) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaRegion", 2))
 	}
 	if s.MeetingHostId != nil && len(*s.MeetingHostId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("MeetingHostId", 2))
@@ -1725,10 +1728,10 @@ type CreateMeetingWithAttendeesInput struct {
 	// ExternalMeetingId is a required field
 	ExternalMeetingId *string `min:"2" type:"string" required:"true" sensitive:"true"`
 
-	// The Region in which to create the meeting. Default: us-east-1.
+	// The Region in which to create the meeting.
 	//
 	// MediaRegion is a required field
-	MediaRegion *string `type:"string" required:"true"`
+	MediaRegion *string `min:"2" type:"string" required:"true"`
 
 	// Reserved.
 	//
@@ -1780,6 +1783,9 @@ func (s *CreateMeetingWithAttendeesInput) Validate() error {
 	}
 	if s.MediaRegion == nil {
 		invalidParams.Add(request.NewErrParamRequired("MediaRegion"))
+	}
+	if s.MediaRegion != nil && len(*s.MediaRegion) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaRegion", 2))
 	}
 	if s.MeetingHostId != nil && len(*s.MeetingHostId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("MeetingHostId", 2))
@@ -2768,7 +2774,7 @@ type Meeting struct {
 	// ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2,
 	// ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2,
 	// eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
-	MediaRegion *string `type:"string"`
+	MediaRegion *string `min:"2" type:"string"`
 
 	// Reserved.
 	//

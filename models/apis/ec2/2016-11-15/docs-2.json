@@ -7812,6 +7812,12 @@
         "GetVpnConnectionDeviceTypesRequest$MaxResults": "<p>The maximum number of results returned by <code>GetVpnConnectionDeviceTypes</code> in paginated output. When this parameter is used, <code>GetVpnConnectionDeviceTypes</code> only returns <code>MaxResults</code> results in a single page along with a <code>NextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>GetVpnConnectionDeviceTypes</code> request with the returned <code>NextToken</code> value. This value can be between 200 and 1000. If this parameter is not used, then <code>GetVpnConnectionDeviceTypes</code> returns all results.</p>"
       }
     },
+    "GatewayAssociationState": {
+      "base": null,
+      "refs": {
+        "VpnConnection$GatewayAssociationState": "<p>The current state of the gateway association.</p>"
+      }
+    },
     "GatewayType": {
       "base": null,
       "refs": {
@@ -16408,7 +16414,6 @@
         "VpnConnection$TransitGatewayId": "<p>The ID of the transit gateway associated with the VPN connection.</p>",
         "VpnConnection$CoreNetworkArn": "<p>The ARN of the core network.</p>",
         "VpnConnection$CoreNetworkAttachmentArn": "<p>The ARN of the core network attachment.</p>",
-        "VpnConnection$GatewayAssociationState": "<p>The current state of the gateway association.</p>",
         "VpnConnectionDeviceType$VpnConnectionDeviceTypeId": "<p>Customer gateway device identifier.</p>",
         "VpnConnectionDeviceType$Vendor": "<p>Customer gateway device vendor.</p>",
         "VpnConnectionDeviceType$Platform": "<p>Customer gateway device platform.</p>",

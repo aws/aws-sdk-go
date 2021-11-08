@@ -23475,10 +23475,11 @@ func (s *AgentVersion) SetVersion(v string) *AgentVersion {
 	return s
 }
 
-// This API is not supported.
+// An Amazon CloudWatch alarm configured to monitor metrics on an endpoint.
 type Alarm struct {
 	_ struct{} `type:"structure"`
 
+	// The name of a CloudWatch alarm in your account.
 	AlarmName *string `min:"1" type:"string"`
 }
 
@@ -26707,10 +26708,14 @@ func (s *AutoMLSecurityConfig) SetVpcConfig(v *VpcConfig) *AutoMLSecurityConfig 
 	return s
 }
 
-// Currently, the AutoRollbackConfig API is not supported.
+// Automatic rollback configuration for handling endpoint deployment failures
+// and recovery.
 type AutoRollbackConfig struct {
 	_ struct{} `type:"structure"`
 
+	// List of CloudWatch alarms in your account that are configured to monitor
+	// metrics on an endpoint. If any alarms are tripped during a deployment, SageMaker
+	// rolls back the deployment.
 	Alarms []*Alarm `min:"1" type:"list"`
 }
 
@@ -27044,15 +27049,26 @@ func (s *Bias) SetReport(v *MetricsSource) *Bias {
 	return s
 }
 
-// Currently, the BlueGreenUpdatePolicy API is not supported.
+// Update policy for a blue/green deployment. If this update policy is specified,
+// SageMaker creates a new fleet during the deployment while maintaining the
+// old fleet. SageMaker flips traffic to the new fleet according to the specified
+// traffic routing configuration. Only one update policy should be used in the
+// deployment configuration. If no update policy is specified, SageMaker uses
+// a blue/green deployment strategy with all at once traffic shifting by default.
 type BlueGreenUpdatePolicy struct {
 	_ struct{} `type:"structure"`
 
+	// Maximum execution timeout for the deployment. Note that the timeout value
+	// should be larger than the total waiting time specified in TerminationWaitInSeconds
+	// and WaitIntervalInSeconds.
 	MaximumExecutionTimeoutInSeconds *int64 `min:"600" type:"integer"`
 
+	// Additional waiting time in seconds after the completion of an endpoint deployment
+	// before terminating the old endpoint fleet. Default is 0.
 	TerminationWaitInSeconds *int64 `type:"integer"`
 
-	// Currently, the TrafficRoutingConfig API is not supported.
+	// Defines the traffic routing strategy to shift traffic from the old fleet
+	// to the new fleet during an endpoint deployment.
 	//
 	// TrafficRoutingConfiguration is a required field
 	TrafficRoutingConfiguration *TrafficRoutingConfig `type:"structure" required:"true"`
@@ -27274,15 +27290,23 @@ func (s *CandidateProperties) SetCandidateMetrics(v []*MetricDatum) *CandidatePr
 	return s
 }
 
-// Currently, the CapacitySize API is not supported.
+// Specifies the endpoint capacity to activate for production.
 type CapacitySize struct {
 	_ struct{} `type:"structure"`
 
-	// This API is not supported.
+	// Specifies the endpoint capacity type.
+	//
+	//    * INSTANCE_COUNT: The endpoint activates based on the number of instances.
+	//
+	//    * CAPACITY_PERCENT: The endpoint activates based on the specified percentage
+	//    of capacity.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"CapacitySizeType"`
 
+	// Defines the capacity size, either as a number of instances or a capacity
+	// percentage.
+	//
 	// Value is a required field
 	Value *int64 `min:"1" type:"integer" required:"true"`
 }
@@ -31392,6 +31416,10 @@ func (s *CreateEndpointConfigOutput) SetEndpointConfigArn(v string) *CreateEndpo
 type CreateEndpointInput struct {
 	_ struct{} `type:"structure"`
 
+	// The deployment configuration for an endpoint, which contains the desired
+	// deployment strategy and rollback configurations.
+	DeploymentConfig *DeploymentConfig `type:"structure"`
+
 	// The name of an endpoint configuration. For more information, see CreateEndpointConfig.
 	//
 	// EndpointConfigName is a required field
@@ -31438,6 +31466,11 @@ func (s *CreateEndpointInput) Validate() error {
 	if s.EndpointName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
 	}
+	if s.DeploymentConfig != nil {
+		if err := s.DeploymentConfig.Validate(); err != nil {
+			invalidParams.AddNested("DeploymentConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -31453,6 +31486,12 @@ func (s *CreateEndpointInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDeploymentConfig sets the DeploymentConfig field's value.
+func (s *CreateEndpointInput) SetDeploymentConfig(v *DeploymentConfig) *CreateEndpointInput {
+	s.DeploymentConfig = v
+	return s
 }
 
 // SetEndpointConfigName sets the EndpointConfigName field's value.
@@ -41352,14 +41391,21 @@ func (s *DeployedImage) SetSpecifiedImage(v string) *DeployedImage {
 	return s
 }
 
-// Currently, the DeploymentConfig API is not supported.
+// The deployment configuration for an endpoint, which contains the desired
+// deployment strategy and rollback configurations.
 type DeploymentConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Currently, the AutoRollbackConfig API is not supported.
+	// Automatic rollback configuration for handling endpoint deployment failures
+	// and recovery.
 	AutoRollbackConfiguration *AutoRollbackConfig `type:"structure"`
 
-	// Currently, the BlueGreenUpdatePolicy API is not supported.
+	// Update policy for a blue/green deployment. If this update policy is specified,
+	// SageMaker creates a new fleet during the deployment while maintaining the
+	// old fleet. SageMaker flips traffic to the new fleet according to the specified
+	// traffic routing configuration. Only one update policy should be used in the
+	// deployment configuration. If no update policy is specified, SageMaker uses
+	// a blue/green deployment strategy with all at once traffic shifting by default.
 	//
 	// BlueGreenUpdatePolicy is a required field
 	BlueGreenUpdatePolicy *BlueGreenUpdatePolicy `type:"structure" required:"true"`
@@ -44468,6 +44514,10 @@ type DescribeEndpointOutput struct {
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
+	// Returns the summary of an in-progress deployment. This field is only returned
+	// when the endpoint is creating or updating with a new endpoint configuration.
+	PendingDeploymentSummary *PendingDeploymentSummary `type:"structure"`
+
 	// An array of ProductionVariantSummary objects, one for each model hosted behind
 	// this endpoint.
 	ProductionVariants []*ProductionVariantSummary `min:"1" type:"list"`
@@ -44548,6 +44598,12 @@ func (s *DescribeEndpointOutput) SetLastDeploymentConfig(v *DeploymentConfig) *D
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DescribeEndpointOutput) SetLastModifiedTime(v time.Time) *DescribeEndpointOutput {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetPendingDeploymentSummary sets the PendingDeploymentSummary field's value.
+func (s *DescribeEndpointOutput) SetPendingDeploymentSummary(v *PendingDeploymentSummary) *DescribeEndpointOutput {
+	s.PendingDeploymentSummary = v
 	return s
 }
 
@@ -55162,9 +55218,10 @@ type HumanTaskConfig struct {
 	//    * If you choose the Amazon Mechanical Turk workforce, the maximum is 12
 	//    hours (43,200 seconds). The default is 6 hours (21,600 seconds).
 	//
-	//    * If you choose a private or vendor workforce, the default value is 10
-	//    days (864,000 seconds). For most users, the maximum is also 10 days. If
-	//    you want to change this limit, contact Amazon Web Services Support.
+	//    * If you choose a private or vendor workforce, the default value is 30
+	//    days (2592,000 seconds) for non-AL mode. For most users, the maximum is
+	//    also 30 days. If you want to change this limit, contact Amazon Web Services
+	//    Support.
 	TaskAvailabilityLifetimeInSeconds *int64 `min:"60" type:"integer"`
 
 	// A description of the task for your human workers.
@@ -55190,8 +55247,9 @@ type HumanTaskConfig struct {
 	//
 	//    * For 3D point cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud.html)
 	//    and video frame (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-video.html)
-	//    labeling jobs, the maximum is 7 days (604,800 seconds). If you want to
-	//    change these limits, contact Amazon Web Services Support.
+	//    labeling jobs, the maximum is 30 days (2952,000 seconds) for non-AL mode.
+	//    For most users, the maximum is also 30 days. If you want to change these
+	//    limits, contact Amazon Web Services Support.
 	//
 	// TaskTimeLimitInSeconds is a required field
 	TaskTimeLimitInSeconds *int64 `min:"30" type:"integer" required:"true"`
@@ -72657,6 +72715,176 @@ func (s *ParentHyperParameterTuningJob) SetHyperParameterTuningJobName(v string)
 	return s
 }
 
+// The summary of an in-progress deployment when an endpoint is creating or
+// updating with a new endpoint configuration.
+type PendingDeploymentSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the endpoint configuration used in the deployment.
+	//
+	// EndpointConfigName is a required field
+	EndpointConfigName *string `type:"string" required:"true"`
+
+	// List of PendingProductionVariantSummary objects.
+	ProductionVariants []*PendingProductionVariantSummary `min:"1" type:"list"`
+
+	// The start time of the deployment.
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PendingDeploymentSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PendingDeploymentSummary) GoString() string {
+	return s.String()
+}
+
+// SetEndpointConfigName sets the EndpointConfigName field's value.
+func (s *PendingDeploymentSummary) SetEndpointConfigName(v string) *PendingDeploymentSummary {
+	s.EndpointConfigName = &v
+	return s
+}
+
+// SetProductionVariants sets the ProductionVariants field's value.
+func (s *PendingDeploymentSummary) SetProductionVariants(v []*PendingProductionVariantSummary) *PendingDeploymentSummary {
+	s.ProductionVariants = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *PendingDeploymentSummary) SetStartTime(v time.Time) *PendingDeploymentSummary {
+	s.StartTime = &v
+	return s
+}
+
+// The production variant summary for a deployment when an endpoint is creating
+// or updating with the CreateEndpoint or UpdateEndpoint operations. Describes
+// the VariantStatus , weight and capacity for a production variant associated
+// with an endpoint.
+type PendingProductionVariantSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The size of the Elastic Inference (EI) instance to use for the production
+	// variant. EI instances provide on-demand GPU computing for inference. For
+	// more information, see Using Elastic Inference in Amazon SageMaker (https://docs.aws.amazon.com/sagemaker/latest/dg/ei.html).
+	AcceleratorType *string `type:"string" enum:"ProductionVariantAcceleratorType"`
+
+	// The number of instances associated with the variant.
+	CurrentInstanceCount *int64 `type:"integer"`
+
+	// The weight associated with the variant.
+	CurrentWeight *float64 `type:"float"`
+
+	// An array of DeployedImage objects that specify the Amazon EC2 Container Registry
+	// paths of the inference images deployed on instances of this ProductionVariant.
+	DeployedImages []*DeployedImage `type:"list"`
+
+	// The number of instances requested in this deployment, as specified in the
+	// endpoint configuration for the endpoint. The value is taken from the request
+	// to the CreateEndpointConfig operation.
+	DesiredInstanceCount *int64 `type:"integer"`
+
+	// The requested weight for the variant in this deployment, as specified in
+	// the endpoint configuration for the endpoint. The value is taken from the
+	// request to the CreateEndpointConfig operation.
+	DesiredWeight *float64 `type:"float"`
+
+	// The type of instances associated with the variant.
+	InstanceType *string `type:"string" enum:"ProductionVariantInstanceType"`
+
+	// The name of the variant.
+	//
+	// VariantName is a required field
+	VariantName *string `type:"string" required:"true"`
+
+	// The endpoint variant status which describes the current deployment stage
+	// status or operational status.
+	VariantStatus []*ProductionVariantStatus `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PendingProductionVariantSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PendingProductionVariantSummary) GoString() string {
+	return s.String()
+}
+
+// SetAcceleratorType sets the AcceleratorType field's value.
+func (s *PendingProductionVariantSummary) SetAcceleratorType(v string) *PendingProductionVariantSummary {
+	s.AcceleratorType = &v
+	return s
+}
+
+// SetCurrentInstanceCount sets the CurrentInstanceCount field's value.
+func (s *PendingProductionVariantSummary) SetCurrentInstanceCount(v int64) *PendingProductionVariantSummary {
+	s.CurrentInstanceCount = &v
+	return s
+}
+
+// SetCurrentWeight sets the CurrentWeight field's value.
+func (s *PendingProductionVariantSummary) SetCurrentWeight(v float64) *PendingProductionVariantSummary {
+	s.CurrentWeight = &v
+	return s
+}
+
+// SetDeployedImages sets the DeployedImages field's value.
+func (s *PendingProductionVariantSummary) SetDeployedImages(v []*DeployedImage) *PendingProductionVariantSummary {
+	s.DeployedImages = v
+	return s
+}
+
+// SetDesiredInstanceCount sets the DesiredInstanceCount field's value.
+func (s *PendingProductionVariantSummary) SetDesiredInstanceCount(v int64) *PendingProductionVariantSummary {
+	s.DesiredInstanceCount = &v
+	return s
+}
+
+// SetDesiredWeight sets the DesiredWeight field's value.
+func (s *PendingProductionVariantSummary) SetDesiredWeight(v float64) *PendingProductionVariantSummary {
+	s.DesiredWeight = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *PendingProductionVariantSummary) SetInstanceType(v string) *PendingProductionVariantSummary {
+	s.InstanceType = &v
+	return s
+}
+
+// SetVariantName sets the VariantName field's value.
+func (s *PendingProductionVariantSummary) SetVariantName(v string) *PendingProductionVariantSummary {
+	s.VariantName = &v
+	return s
+}
+
+// SetVariantStatus sets the VariantStatus field's value.
+func (s *PendingProductionVariantSummary) SetVariantStatus(v []*ProductionVariantStatus) *PendingProductionVariantSummary {
+	s.VariantStatus = v
+	return s
+}
+
 // A SageMaker Model Building Pipeline instance.
 type Pipeline struct {
 	_ struct{} `type:"structure"`
@@ -74636,6 +74864,70 @@ func (s *ProductionVariantCoreDumpConfig) SetKmsKeyId(v string) *ProductionVaria
 	return s
 }
 
+// Describes the status of the production variant.
+type ProductionVariantStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The start time of the current status change.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The endpoint variant status which describes the current deployment stage
+	// status or operational status.
+	//
+	//    * Creating: Creating inference resources for the production variant.
+	//
+	//    * Deleting: Terminating inference resources for the production variant.
+	//
+	//    * Updating: Updating capacity for the production variant.
+	//
+	//    * ActivatingTraffic: Turning on traffic for the production variant.
+	//
+	//    * Baking: Waiting period to monitor the CloudWatch alarms in the automatic
+	//    rollback configuration.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"VariantStatus"`
+
+	// A message that describes the status of the production variant.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProductionVariantStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProductionVariantStatus) GoString() string {
+	return s.String()
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *ProductionVariantStatus) SetStartTime(v time.Time) *ProductionVariantStatus {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ProductionVariantStatus) SetStatus(v string) *ProductionVariantStatus {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ProductionVariantStatus) SetStatusMessage(v string) *ProductionVariantStatus {
+	s.StatusMessage = &v
+	return s
+}
+
 // Describes weight and capacities for a production variant associated with
 // an endpoint. If you sent a request to the UpdateEndpointWeightsAndCapacities
 // API and the endpoint status is Updating, you get different desired and current
@@ -74665,6 +74957,10 @@ type ProductionVariantSummary struct {
 	//
 	// VariantName is a required field
 	VariantName *string `type:"string" required:"true"`
+
+	// The endpoint variant status which describes the current deployment stage
+	// status or operational status.
+	VariantStatus []*ProductionVariantStatus `type:"list"`
 }
 
 // String returns the string representation.
@@ -74718,6 +75014,12 @@ func (s *ProductionVariantSummary) SetDesiredWeight(v float64) *ProductionVarian
 // SetVariantName sets the VariantName field's value.
 func (s *ProductionVariantSummary) SetVariantName(v string) *ProductionVariantSummary {
 	s.VariantName = &v
+	return s
+}
+
+// SetVariantStatus sets the VariantStatus field's value.
+func (s *ProductionVariantSummary) SetVariantStatus(v []*ProductionVariantStatus) *ProductionVariantSummary {
+	s.VariantStatus = v
 	return s
 }
 
@@ -80423,16 +80725,36 @@ func (s *TensorBoardOutputConfig) SetS3OutputPath(v string) *TensorBoardOutputCo
 	return s
 }
 
-// Currently, the TrafficRoutingConfig API is not supported.
+// Defines the traffic routing strategy during an endpoint deployment to shift
+// traffic from the old fleet to the new fleet.
 type TrafficRoutingConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Currently, the CapacitySize API is not supported.
+	// Batch size for the first step to turn on traffic on the new endpoint fleet.
+	// Value must be less than or equal to 50% of the variant's total instance count.
 	CanarySize *CapacitySize `type:"structure"`
 
+	// Batch size for each step to turn on traffic on the new endpoint fleet. Value
+	// must be 10-50% of the variant's total instance count.
+	LinearStepSize *CapacitySize `type:"structure"`
+
+	// Traffic routing strategy type.
+	//
+	//    * ALL_AT_ONCE: Endpoint traffic shifts to the new fleet in a single step.
+	//
+	//    * CANARY: Endpoint traffic shifts to the new fleet in two steps. The first
+	//    step is the canary, which is a small portion of the traffic. The second
+	//    step is the remainder of the traffic.
+	//
+	//    * LINEAR: Endpoint traffic shifts to the new fleet in n steps of a configurable
+	//    size.
+	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"TrafficRoutingConfigType"`
 
+	// The waiting time (in seconds) between incremental steps to turn on traffic
+	// on the new endpoint fleet.
+	//
 	// WaitIntervalInSeconds is a required field
 	WaitIntervalInSeconds *int64 `type:"integer" required:"true"`
 }
@@ -80469,6 +80791,11 @@ func (s *TrafficRoutingConfig) Validate() error {
 			invalidParams.AddNested("CanarySize", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.LinearStepSize != nil {
+		if err := s.LinearStepSize.Validate(); err != nil {
+			invalidParams.AddNested("LinearStepSize", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -80479,6 +80806,12 @@ func (s *TrafficRoutingConfig) Validate() error {
 // SetCanarySize sets the CanarySize field's value.
 func (s *TrafficRoutingConfig) SetCanarySize(v *CapacitySize) *TrafficRoutingConfig {
 	s.CanarySize = v
+	return s
+}
+
+// SetLinearStepSize sets the LinearStepSize field's value.
+func (s *TrafficRoutingConfig) SetLinearStepSize(v *CapacitySize) *TrafficRoutingConfig {
+	s.LinearStepSize = v
 	return s
 }
 
@@ -84682,7 +85015,8 @@ func (s *UpdateDomainOutput) SetDomainArn(v string) *UpdateDomainOutput {
 type UpdateEndpointInput struct {
 	_ struct{} `type:"structure"`
 
-	// The deployment configuration for the endpoint to be updated.
+	// The deployment configuration for an endpoint, which contains the desired
+	// deployment strategy and rollback configurations.
 	DeploymentConfig *DeploymentConfig `type:"structure"`
 
 	// The name of the new endpoint configuration.
@@ -84710,6 +85044,10 @@ type UpdateEndpointInput struct {
 	// updating an endpoint, set RetainAllVariantProperties to false. The default
 	// is false.
 	RetainAllVariantProperties *bool `type:"boolean"`
+
+	// Specifies whether to reuse the last deployment configuration. The default
+	// value is false (the configuration is not reused).
+	RetainDeploymentConfig *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -84788,6 +85126,12 @@ func (s *UpdateEndpointInput) SetExcludeRetainedVariantProperties(v []*VariantPr
 // SetRetainAllVariantProperties sets the RetainAllVariantProperties field's value.
 func (s *UpdateEndpointInput) SetRetainAllVariantProperties(v bool) *UpdateEndpointInput {
 	s.RetainAllVariantProperties = &v
+	return s
+}
+
+// SetRetainDeploymentConfig sets the RetainDeploymentConfig field's value.
+func (s *UpdateEndpointInput) SetRetainDeploymentConfig(v bool) *UpdateEndpointInput {
+	s.RetainDeploymentConfig = &v
 	return s
 }
 
@@ -91865,6 +92209,9 @@ const (
 
 	// TrafficRoutingConfigTypeCanary is a TrafficRoutingConfigType enum value
 	TrafficRoutingConfigTypeCanary = "CANARY"
+
+	// TrafficRoutingConfigTypeLinear is a TrafficRoutingConfigType enum value
+	TrafficRoutingConfigTypeLinear = "LINEAR"
 )
 
 // TrafficRoutingConfigType_Values returns all elements of the TrafficRoutingConfigType enum
@@ -91872,6 +92219,7 @@ func TrafficRoutingConfigType_Values() []string {
 	return []string{
 		TrafficRoutingConfigTypeAllAtOnce,
 		TrafficRoutingConfigTypeCanary,
+		TrafficRoutingConfigTypeLinear,
 	}
 }
 
@@ -92424,5 +92772,33 @@ func VariantPropertyType_Values() []string {
 		VariantPropertyTypeDesiredInstanceCount,
 		VariantPropertyTypeDesiredWeight,
 		VariantPropertyTypeDataCaptureConfig,
+	}
+}
+
+const (
+	// VariantStatusCreating is a VariantStatus enum value
+	VariantStatusCreating = "Creating"
+
+	// VariantStatusUpdating is a VariantStatus enum value
+	VariantStatusUpdating = "Updating"
+
+	// VariantStatusDeleting is a VariantStatus enum value
+	VariantStatusDeleting = "Deleting"
+
+	// VariantStatusActivatingTraffic is a VariantStatus enum value
+	VariantStatusActivatingTraffic = "ActivatingTraffic"
+
+	// VariantStatusBaking is a VariantStatus enum value
+	VariantStatusBaking = "Baking"
+)
+
+// VariantStatus_Values returns all elements of the VariantStatus enum
+func VariantStatus_Values() []string {
+	return []string{
+		VariantStatusCreating,
+		VariantStatusUpdating,
+		VariantStatusDeleting,
+		VariantStatusActivatingTraffic,
+		VariantStatusBaking,
 	}
 }

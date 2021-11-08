@@ -5705,6 +5705,179 @@ func (s *ByteMatchStatement) SetTextTransformations(v []*TextTransformation) *By
 	return s
 }
 
+// Specifies that WAF should run a CAPTCHA check against the request:
+//
+//    * If the request includes a valid, unexpired CAPTCHA token, WAF allows
+//    the web request inspection to proceed to the next rule, similar to a CountAction.
+//
+//    * If the request doesn't include a valid, unexpired CAPTCHA token, WAF
+//    discontinues the web ACL evaluation of the request and blocks it from
+//    going to its intended destination. WAF generates a response that it sends
+//    back to the client, which includes the following: The header x-amzn-waf-action
+//    with a value of captcha. The HTTP status code 405 Method Not Allowed.
+//    If the request contains an Accept header with a value of text/html, the
+//    response includes a CAPTCHA challenge.
+//
+// You can configure the expiration time in the CaptchaConfig ImmunityTimeProperty
+// setting at the rule and web ACL level. The rule setting overrides the web
+// ACL setting.
+//
+// This action option is available for rules. It isn't available for web ACL
+// default actions.
+//
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
+type CaptchaAction struct {
+	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomRequestHandling *CustomRequestHandling `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CaptchaAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CaptchaAction"}
+	if s.CustomRequestHandling != nil {
+		if err := s.CustomRequestHandling.Validate(); err != nil {
+			invalidParams.AddNested("CustomRequestHandling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *CaptchaAction) SetCustomRequestHandling(v *CustomRequestHandling) *CaptchaAction {
+	s.CustomRequestHandling = v
+	return s
+}
+
+// Specifies how WAF should handle CAPTCHA evaluations. This is available at
+// the web ACL level and in each rule.
+type CaptchaConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Determines how long a CAPTCHA token remains valid after the client successfully
+	// solves a CAPTCHA puzzle.
+	ImmunityTimeProperty *ImmunityTimeProperty `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CaptchaConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CaptchaConfig"}
+	if s.ImmunityTimeProperty != nil {
+		if err := s.ImmunityTimeProperty.Validate(); err != nil {
+			invalidParams.AddNested("ImmunityTimeProperty", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImmunityTimeProperty sets the ImmunityTimeProperty field's value.
+func (s *CaptchaConfig) SetImmunityTimeProperty(v *ImmunityTimeProperty) *CaptchaConfig {
+	s.ImmunityTimeProperty = v
+	return s
+}
+
+// The result from the inspection of the web request for a valid CAPTCHA token.
+type CaptchaResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The reason for failure, populated when the evaluation of the token fails.
+	FailureReason *string `type:"string" enum:"FailureReason"`
+
+	// The HTTP response code indicating the status of the CAPTCHA token in the
+	// web request. If the token is missing, invalid, or expired, this code is 405
+	// Method Not Allowed.
+	ResponseCode *int64 `type:"integer"`
+
+	// The time that the CAPTCHA puzzle was solved for the supplied token.
+	SolveTimestamp *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CaptchaResponse) GoString() string {
+	return s.String()
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *CaptchaResponse) SetFailureReason(v string) *CaptchaResponse {
+	s.FailureReason = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *CaptchaResponse) SetResponseCode(v int64) *CaptchaResponse {
+	s.ResponseCode = &v
+	return s
+}
+
+// SetSolveTimestamp sets the SolveTimestamp field's value.
+func (s *CaptchaResponse) SetSolveTimestamp(v int64) *CaptchaResponse {
+	s.SolveTimestamp = &v
+	return s
+}
+
 type CheckCapacityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5958,7 +6131,7 @@ type CreateIPSetInput struct {
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
 	// Addresses is a required field
-	Addresses []*string `type:"list" required:"true"`
+	Addresses []*string `min:"1" type:"list" required:"true"`
 
 	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
@@ -6016,6 +6189,9 @@ func (s *CreateIPSetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateIPSetInput"}
 	if s.Addresses == nil {
 		invalidParams.Add(request.NewErrParamRequired("Addresses"))
+	}
+	if s.Addresses != nil && len(s.Addresses) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Addresses", 1))
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
@@ -6536,6 +6712,11 @@ func (s *CreateRuleGroupOutput) SetSummary(v *RuleGroupSummary) *CreateRuleGroup
 type CreateWebACLInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings. If you don't specify this, WAF uses
+	// its default settings for CaptchaConfig.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
+
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
 	// define these for the web ACL, and then use them in the rules and default
@@ -6639,6 +6820,11 @@ func (s *CreateWebACLInput) Validate() error {
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
 	}
+	if s.CaptchaConfig != nil {
+		if err := s.CaptchaConfig.Validate(); err != nil {
+			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CustomResponseBodies != nil {
 		for i, v := range s.CustomResponseBodies {
 			if v == nil {
@@ -6684,6 +6870,12 @@ func (s *CreateWebACLInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *CreateWebACLInput) SetCaptchaConfig(v *CaptchaConfig) *CreateWebACLInput {
+	s.CaptchaConfig = v
+	return s
 }
 
 // SetCustomResponseBodies sets the CustomResponseBodies field's value.
@@ -8250,13 +8442,14 @@ func (s DisassociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies a single rule to exclude from the rule group. Excluding a rule
-// overrides its action setting for the rule group in the web ACL, setting it
-// to COUNT. This effectively excludes the rule from acting on web requests.
+// Specifies a single rule in a rule group whose action you want to override
+// to Count. When you exclude a rule, WAF evaluates it exactly as it would if
+// the rule action setting were Count. This is a useful option for testing the
+// rules in a rule group without modifying how they handle your web traffic.
 type ExcludedRule struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the rule to exclude.
+	// The name of the rule whose action you want to override to Count.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -8578,21 +8771,17 @@ type FirewallManagerRuleGroup struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The override action to apply to the rules in a rule group. Used only for
-	// rule statements that reference a rule group, like RuleGroupReferenceStatement
-	// and ManagedRuleGroupStatement.
+	// The action to use in the place of the action that results from the rule group
+	// evaluation. Set the override action to none to leave the result of the rule
+	// group alone. Set it to count to override the result to count only.
 	//
-	// Set the override action to none to leave the rule actions in effect. Set
-	// it to count to only count matches, regardless of the rule action settings.
+	// You can only use this for rule statements that reference a rule group, like
+	// RuleGroupReferenceStatement and ManagedRuleGroupStatement.
 	//
-	// In a Rule, you must specify either this OverrideAction setting or the rule
-	// Action setting, but not both:
-	//
-	//    * If the rule statement references a rule group, use this override action
-	//    setting and not the action setting.
-	//
-	//    * If the rule statement does not reference a rule group, use the rule
-	//    action setting and not this rule override action setting.
+	// This option is usually set to none. It does not affect how the rules in the
+	// rule group are evaluated. If you want the rules in the rule group to only
+	// count matches, do not use this and instead exclude those rules in your rule
+	// group reference statement settings.
 	//
 	// OverrideAction is a required field
 	OverrideAction *OverrideAction `type:"structure" required:"true"`
@@ -10352,7 +10541,7 @@ type IPSet struct {
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
 	// Addresses is a required field
-	Addresses []*string `type:"list" required:"true"`
+	Addresses []*string `min:"1" type:"list" required:"true"`
 
 	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
@@ -10701,6 +10890,58 @@ func (s *IPSetSummary) SetLockToken(v string) *IPSetSummary {
 // SetName sets the Name field's value.
 func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 	s.Name = &v
+	return s
+}
+
+// Determines how long a CAPTCHA token remains valid after the client successfully
+// solves a CAPTCHA puzzle.
+type ImmunityTimeProperty struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time, in seconds, that a CAPTCHA token is valid. The default
+	// setting is 300.
+	//
+	// ImmunityTime is a required field
+	ImmunityTime *int64 `min:"60" type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImmunityTimeProperty) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImmunityTimeProperty) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImmunityTimeProperty) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImmunityTimeProperty"}
+	if s.ImmunityTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImmunityTime"))
+	}
+	if s.ImmunityTime != nil && *s.ImmunityTime < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("ImmunityTime", 60))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImmunityTime sets the ImmunityTime field's value.
+func (s *ImmunityTimeProperty) SetImmunityTime(v int64) *ImmunityTimeProperty {
+	s.ImmunityTime = &v
 	return s
 }
 
@@ -11560,7 +11801,9 @@ type ListLoggingConfigurationsInput struct {
 	//    --region=us-east-1.
 	//
 	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
-	Scope *string `type:"string" enum:"Scope"`
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
 }
 
 // String returns the string representation.
@@ -11589,6 +11832,9 @@ func (s *ListLoggingConfigurationsInput) Validate() error {
 	}
 	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -12591,9 +12837,10 @@ func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
 type ManagedRuleGroupStatement struct {
 	_ struct{} `type:"structure"`
 
-	// The rules whose actions are set to COUNT by the web ACL, regardless of the
-	// action that is set on the rule. This effectively excludes the rule from acting
-	// on web requests.
+	// The rules in the referenced rule group whose actions are set to Count. When
+	// you exclude a rule, WAF evaluates it exactly as it would if the rule action
+	// setting were Count. This is a useful option for testing the rules in a rule
+	// group without modifying how they handle your web traffic.
 	ExcludedRules []*ExcludedRule `type:"list"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
@@ -13169,8 +13416,8 @@ func (s Method) GoString() string {
 	return s.String()
 }
 
-// Specifies that WAF should do nothing. This is generally used to try out a
-// rule without performing any actions. You set the OverrideAction on the Rule.
+// Specifies that WAF should do nothing. This is used for the OverrideAction
+// setting on a Rule when the rule uses a rule group reference statement.
 //
 // This is used in the context of other settings, for example to specify values
 // for RuleAction and web ACL DefaultAction.
@@ -13310,28 +13557,30 @@ func (s *OrStatement) SetStatements(v []*Statement) *OrStatement {
 	return s
 }
 
-// The override action to apply to the rules in a rule group. Used only for
-// rule statements that reference a rule group, like RuleGroupReferenceStatement
-// and ManagedRuleGroupStatement.
+// The action to use in the place of the action that results from the rule group
+// evaluation. Set the override action to none to leave the result of the rule
+// group alone. Set it to count to override the result to count only.
 //
-// Set the override action to none to leave the rule actions in effect. Set
-// it to count to only count matches, regardless of the rule action settings.
+// You can only use this for rule statements that reference a rule group, like
+// RuleGroupReferenceStatement and ManagedRuleGroupStatement.
 //
-// In a Rule, you must specify either this OverrideAction setting or the rule
-// Action setting, but not both:
-//
-//    * If the rule statement references a rule group, use this override action
-//    setting and not the action setting.
-//
-//    * If the rule statement does not reference a rule group, use the rule
-//    action setting and not this rule override action setting.
+// This option is usually set to none. It does not affect how the rules in the
+// rule group are evaluated. If you want the rules in the rule group to only
+// count matches, do not use this and instead exclude those rules in your rule
+// group reference statement settings.
 type OverrideAction struct {
 	_ struct{} `type:"structure"`
 
-	// Override the rule action setting to count.
+	// Override the rule group evaluation result to count only.
+	//
+	// This option is usually set to none. It does not affect how the rules in the
+	// rule group are evaluated. If you want the rules in the rule group to only
+	// count matches, do not use this and instead exclude those rules in your rule
+	// group reference statement settings.
 	Count *CountAction `type:"structure"`
 
-	// Don't override the rule action setting.
+	// Don't override the rule group evaluation result. This is the most common
+	// setting.
 	None *NoneAction `type:"structure"`
 }
 
@@ -13949,7 +14198,7 @@ type RateBasedStatementManagedKeysIPSet struct {
 	_ struct{} `type:"structure"`
 
 	// The IP addresses that are currently blocked.
-	Addresses []*string `type:"list"`
+	Addresses []*string `min:"1" type:"list"`
 
 	// The version of the IP addresses, either IPV4 or IPV6.
 	IPAddressVersion *string `type:"string" enum:"IPAddressVersion"`
@@ -14420,27 +14669,27 @@ type Rule struct {
 	//    setting and not this action setting.
 	Action *RuleAction `type:"structure"`
 
+	// Specifies how WAF should handle CAPTCHA evaluations. If you don't specify
+	// this, WAF uses the CAPTCHA configuration that's defined for the web ACL.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
+
 	// The name of the rule. You can't change the name of a Rule after you create
 	// it.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The override action to apply to the rules in a rule group. Used only for
-	// rule statements that reference a rule group, like RuleGroupReferenceStatement
-	// and ManagedRuleGroupStatement.
+	// The action to use in the place of the action that results from the rule group
+	// evaluation. Set the override action to none to leave the result of the rule
+	// group alone. Set it to count to override the result to count only.
 	//
-	// Set the override action to none to leave the rule actions in effect. Set
-	// it to count to only count matches, regardless of the rule action settings.
+	// You can only use this for rule statements that reference a rule group, like
+	// RuleGroupReferenceStatement and ManagedRuleGroupStatement.
 	//
-	// In a Rule, you must specify either this OverrideAction setting or the rule
-	// Action setting, but not both:
-	//
-	//    * If the rule statement references a rule group, use this override action
-	//    setting and not the action setting.
-	//
-	//    * If the rule statement does not reference a rule group, use the rule
-	//    action setting and not this rule override action setting.
+	// This option is usually set to none. It does not affect how the rules in the
+	// rule group are evaluated. If you want the rules in the rule group to only
+	// count matches, do not use this and instead exclude those rules in your rule
+	// group reference statement settings.
 	OverrideAction *OverrideAction `type:"structure"`
 
 	// If you define more than one Rule in a WebACL, WAF evaluates each request
@@ -14527,6 +14776,11 @@ func (s *Rule) Validate() error {
 			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.CaptchaConfig != nil {
+		if err := s.CaptchaConfig.Validate(); err != nil {
+			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.OverrideAction != nil {
 		if err := s.OverrideAction.Validate(); err != nil {
 			invalidParams.AddNested("OverrideAction", err.(request.ErrInvalidParams))
@@ -14562,6 +14816,12 @@ func (s *Rule) Validate() error {
 // SetAction sets the Action field's value.
 func (s *Rule) SetAction(v *RuleAction) *Rule {
 	s.Action = v
+	return s
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *Rule) SetCaptchaConfig(v *CaptchaConfig) *Rule {
+	s.CaptchaConfig = v
 	return s
 }
 
@@ -14612,6 +14872,9 @@ type RuleAction struct {
 	// Instructs WAF to block the web request.
 	Block *BlockAction `type:"structure"`
 
+	// Instructs WAF to run a CAPTCHA check against the web request.
+	Captcha *CaptchaAction `type:"structure"`
+
 	// Instructs WAF to count the web request and allow it.
 	Count *CountAction `type:"structure"`
 }
@@ -14647,6 +14910,11 @@ func (s *RuleAction) Validate() error {
 			invalidParams.AddNested("Block", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Captcha != nil {
+		if err := s.Captcha.Validate(); err != nil {
+			invalidParams.AddNested("Captcha", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Count != nil {
 		if err := s.Count.Validate(); err != nil {
 			invalidParams.AddNested("Count", err.(request.ErrInvalidParams))
@@ -14668,6 +14936,12 @@ func (s *RuleAction) SetAllow(v *AllowAction) *RuleAction {
 // SetBlock sets the Block field's value.
 func (s *RuleAction) SetBlock(v *BlockAction) *RuleAction {
 	s.Block = v
+	return s
+}
+
+// SetCaptcha sets the Captcha field's value.
+func (s *RuleAction) SetCaptcha(v *CaptchaAction) *RuleAction {
+	s.Captcha = v
 	return s
 }
 
@@ -14871,8 +15145,10 @@ type RuleGroupReferenceStatement struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
-	// The names of rules that are in the referenced rule group, but that you want
-	// WAF to exclude from processing for this rule statement.
+	// The rules in the referenced rule group whose actions are set to Count. When
+	// you exclude a rule, WAF evaluates it exactly as it would if the rule action
+	// setting were Count. This is a useful option for testing the rules in a rule
+	// group without modifying how they handle your web traffic.
 	ExcludedRules []*ExcludedRule `type:"list"`
 }
 
@@ -15065,8 +15341,11 @@ func (s *RuleSummary) SetName(v string) *RuleSummary {
 type SampledHTTPRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The action for the Rule that the request matched: ALLOW, BLOCK, or COUNT.
+	// The action for the Rule that the request matched: Allow, Block, or Count.
 	Action *string `type:"string"`
+
+	// The CAPTCHA response for the request.
+	CaptchaResponse *CaptchaResponse `type:"structure"`
 
 	// Labels applied to the web request by matching rules. WAF applies fully qualified
 	// labels to matching web requests. A fully qualified label is the concatenation
@@ -15129,6 +15408,12 @@ func (s SampledHTTPRequest) GoString() string {
 // SetAction sets the Action field's value.
 func (s *SampledHTTPRequest) SetAction(v string) *SampledHTTPRequest {
 	s.Action = &v
+	return s
+}
+
+// SetCaptchaResponse sets the CaptchaResponse field's value.
+func (s *SampledHTTPRequest) SetCaptchaResponse(v *CaptchaResponse) *SampledHTTPRequest {
+	s.CaptchaResponse = v
 	return s
 }
 
@@ -16448,7 +16733,7 @@ type UpdateIPSetInput struct {
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
 	// Addresses is a required field
-	Addresses []*string `type:"list" required:"true"`
+	Addresses []*string `min:"1" type:"list" required:"true"`
 
 	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
@@ -16516,6 +16801,9 @@ func (s *UpdateIPSetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateIPSetInput"}
 	if s.Addresses == nil {
 		invalidParams.Add(request.NewErrParamRequired("Addresses"))
+	}
+	if s.Addresses != nil && len(s.Addresses) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Addresses", 1))
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
@@ -17248,6 +17536,11 @@ func (s *UpdateRuleGroupOutput) SetNextLockToken(v string) *UpdateRuleGroupOutpu
 type UpdateWebACLInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings. If you don't specify this, WAF uses
+	// its default settings for CaptchaConfig.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
+
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
 	// define these for the web ACL, and then use them in the rules and default
@@ -17376,6 +17669,11 @@ func (s *UpdateWebACLInput) Validate() error {
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
 	}
+	if s.CaptchaConfig != nil {
+		if err := s.CaptchaConfig.Validate(); err != nil {
+			invalidParams.AddNested("CaptchaConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.CustomResponseBodies != nil {
 		for i, v := range s.CustomResponseBodies {
 			if v == nil {
@@ -17411,6 +17709,12 @@ func (s *UpdateWebACLInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *UpdateWebACLInput) SetCaptchaConfig(v *CaptchaConfig) *UpdateWebACLInput {
+	s.CaptchaConfig = v
+	return s
 }
 
 // SetCustomResponseBodies sets the CustomResponseBodies field's value.
@@ -18789,6 +19093,11 @@ type WebACL struct {
 	// web ACLs is 1,500.
 	Capacity *int64 `type:"long"`
 
+	// Specifies how WAF should handle CAPTCHA evaluations for rules that don't
+	// have their own CaptchaConfig settings. If you don't specify this, WAF uses
+	// its default settings for CaptchaConfig.
+	CaptchaConfig *CaptchaConfig `type:"structure"`
+
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
 	// define these for the web ACL, and then use them in the rules and default
@@ -18903,6 +19212,12 @@ func (s *WebACL) SetARN(v string) *WebACL {
 // SetCapacity sets the Capacity field's value.
 func (s *WebACL) SetCapacity(v int64) *WebACL {
 	s.Capacity = &v
+	return s
+}
+
+// SetCaptchaConfig sets the CaptchaConfig field's value.
+func (s *WebACL) SetCaptchaConfig(v *CaptchaConfig) *WebACL {
+	s.CaptchaConfig = v
 	return s
 }
 
@@ -19151,6 +19466,12 @@ const (
 
 	// ActionValueCount is a ActionValue enum value
 	ActionValueCount = "COUNT"
+
+	// ActionValueCaptcha is a ActionValue enum value
+	ActionValueCaptcha = "CAPTCHA"
+
+	// ActionValueExcludedAsCount is a ActionValue enum value
+	ActionValueExcludedAsCount = "EXCLUDED_AS_COUNT"
 )
 
 // ActionValue_Values returns all elements of the ActionValue enum
@@ -19159,6 +19480,8 @@ func ActionValue_Values() []string {
 		ActionValueAllow,
 		ActionValueBlock,
 		ActionValueCount,
+		ActionValueCaptcha,
+		ActionValueExcludedAsCount,
 	}
 }
 
@@ -20215,6 +20538,22 @@ func CountryCode_Values() []string {
 		CountryCodeYe,
 		CountryCodeZm,
 		CountryCodeZw,
+	}
+}
+
+const (
+	// FailureReasonTokenMissing is a FailureReason enum value
+	FailureReasonTokenMissing = "TOKEN_MISSING"
+
+	// FailureReasonTokenExpired is a FailureReason enum value
+	FailureReasonTokenExpired = "TOKEN_EXPIRED"
+)
+
+// FailureReason_Values returns all elements of the FailureReason enum
+func FailureReason_Values() []string {
+	return []string{
+		FailureReasonTokenMissing,
+		FailureReasonTokenExpired,
 	}
 }
 
