@@ -51,6 +51,19 @@
         {"shape":"ServerException"}
       ]
     },
+    "CreateSchedulingPolicy":{
+      "name":"CreateSchedulingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/createschedulingpolicy"
+      },
+      "input":{"shape":"CreateSchedulingPolicyRequest"},
+      "output":{"shape":"CreateSchedulingPolicyResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
     "DeleteComputeEnvironment":{
       "name":"DeleteComputeEnvironment",
       "http":{
@@ -72,6 +85,19 @@
       },
       "input":{"shape":"DeleteJobQueueRequest"},
       "output":{"shape":"DeleteJobQueueResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
+    "DeleteSchedulingPolicy":{
+      "name":"DeleteSchedulingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/deleteschedulingpolicy"
+      },
+      "input":{"shape":"DeleteSchedulingPolicyRequest"},
+      "output":{"shape":"DeleteSchedulingPolicyResponse"},
       "errors":[
         {"shape":"ClientException"},
         {"shape":"ServerException"}
@@ -142,6 +168,19 @@
         {"shape":"ServerException"}
       ]
     },
+    "DescribeSchedulingPolicies":{
+      "name":"DescribeSchedulingPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/describeschedulingpolicies"
+      },
+      "input":{"shape":"DescribeSchedulingPoliciesRequest"},
+      "output":{"shape":"DescribeSchedulingPoliciesResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
     "ListJobs":{
       "name":"ListJobs",
       "http":{
@@ -150,6 +189,19 @@
       },
       "input":{"shape":"ListJobsRequest"},
       "output":{"shape":"ListJobsResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
+    "ListSchedulingPolicies":{
+      "name":"ListSchedulingPolicies",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/listschedulingpolicies"
+      },
+      "input":{"shape":"ListSchedulingPoliciesRequest"},
+      "output":{"shape":"ListSchedulingPoliciesResponse"},
       "errors":[
         {"shape":"ClientException"},
         {"shape":"ServerException"}
@@ -254,6 +306,19 @@
       },
       "input":{"shape":"UpdateJobQueueRequest"},
       "output":{"shape":"UpdateJobQueueResponse"},
+      "errors":[
+        {"shape":"ClientException"},
+        {"shape":"ServerException"}
+      ]
+    },
+    "UpdateSchedulingPolicy":{
+      "name":"UpdateSchedulingPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/updateschedulingpolicy"
+      },
+      "input":{"shape":"UpdateSchedulingPolicyRequest"},
+      "output":{"shape":"UpdateSchedulingPolicyResponse"},
       "errors":[
         {"shape":"ClientException"},
         {"shape":"ServerException"}
@@ -402,6 +467,7 @@
       "members":{
         "computeEnvironmentName":{"shape":"String"},
         "computeEnvironmentArn":{"shape":"String"},
+        "unmanagedvCpus":{"shape":"Integer"},
         "ecsClusterArn":{"shape":"String"},
         "tags":{"shape":"TagrisTagsMap"},
         "type":{"shape":"CEType"},
@@ -572,6 +638,7 @@
         "computeEnvironmentName":{"shape":"String"},
         "type":{"shape":"CEType"},
         "state":{"shape":"CEState"},
+        "unmanagedvCpus":{"shape":"Integer"},
         "computeResources":{"shape":"ComputeResource"},
         "serviceRole":{"shape":"String"},
         "tags":{"shape":"TagrisTagsMap"}
@@ -594,6 +661,7 @@
       "members":{
         "jobQueueName":{"shape":"String"},
         "state":{"shape":"JQState"},
+        "schedulingPolicyArn":{"shape":"String"},
         "priority":{"shape":"Integer"},
         "computeEnvironmentOrder":{"shape":"ComputeEnvironmentOrders"},
         "tags":{"shape":"TagrisTagsMap"}
@@ -608,6 +676,26 @@
       "members":{
         "jobQueueName":{"shape":"String"},
         "jobQueueArn":{"shape":"String"}
+      }
+    },
+    "CreateSchedulingPolicyRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"String"},
+        "fairsharePolicy":{"shape":"FairsharePolicy"},
+        "tags":{"shape":"TagrisTagsMap"}
+      }
+    },
+    "CreateSchedulingPolicyResponse":{
+      "type":"structure",
+      "required":[
+        "name",
+        "arn"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "arn":{"shape":"String"}
       }
     },
     "DeleteComputeEnvironmentRequest":{
@@ -630,6 +718,18 @@
       }
     },
     "DeleteJobQueueResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteSchedulingPolicyRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"String"}
+      }
+    },
+    "DeleteSchedulingPolicyResponse":{
       "type":"structure",
       "members":{
       }
@@ -704,6 +804,19 @@
       "type":"structure",
       "members":{
         "jobs":{"shape":"JobDetailList"}
+      }
+    },
+    "DescribeSchedulingPoliciesRequest":{
+      "type":"structure",
+      "required":["arns"],
+      "members":{
+        "arns":{"shape":"StringList"}
+      }
+    },
+    "DescribeSchedulingPoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "schedulingPolicies":{"shape":"SchedulingPolicyDetailList"}
       }
     },
     "Device":{
@@ -793,12 +906,21 @@
       "type":"list",
       "member":{"shape":"EvaluateOnExit"}
     },
+    "FairsharePolicy":{
+      "type":"structure",
+      "members":{
+        "shareDecaySeconds":{"shape":"Integer"},
+        "computeReservation":{"shape":"Integer"},
+        "shareDistribution":{"shape":"ShareAttributesList"}
+      }
+    },
     "FargatePlatformConfiguration":{
       "type":"structure",
       "members":{
         "platformVersion":{"shape":"String"}
       }
     },
+    "Float":{"type":"float"},
     "Host":{
       "type":"structure",
       "members":{
@@ -848,6 +970,7 @@
         "revision":{"shape":"Integer"},
         "status":{"shape":"String"},
         "type":{"shape":"String"},
+        "schedulingPriority":{"shape":"Integer"},
         "parameters":{"shape":"ParametersMap"},
         "retryStrategy":{"shape":"RetryStrategy"},
         "containerProperties":{"shape":"ContainerProperties"},
@@ -896,6 +1019,8 @@
         "jobId":{"shape":"String"},
         "jobQueue":{"shape":"String"},
         "status":{"shape":"JobStatus"},
+        "shareIdentifier":{"shape":"String"},
+        "schedulingPriority":{"shape":"Integer"},
         "attempts":{"shape":"AttemptDetails"},
         "statusReason":{"shape":"String"},
         "createdAt":{"shape":"Long"},
@@ -932,6 +1057,7 @@
         "jobQueueName":{"shape":"String"},
         "jobQueueArn":{"shape":"String"},
         "state":{"shape":"JQState"},
+        "schedulingPolicyArn":{"shape":"String"},
         "status":{"shape":"JQStatus"},
         "statusReason":{"shape":"String"},
         "priority":{"shape":"Integer"},
@@ -1040,6 +1166,20 @@
       "required":["jobSummaryList"],
       "members":{
         "jobSummaryList":{"shape":"JobSummaryList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListSchedulingPoliciesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{"shape":"Integer"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListSchedulingPoliciesResponse":{
+      "type":"structure",
+      "members":{
+        "schedulingPolicies":{"shape":"SchedulingPolicyListingDetailList"},
         "nextToken":{"shape":"String"}
       }
     },
@@ -1202,6 +1342,7 @@
         "jobDefinitionName":{"shape":"String"},
         "type":{"shape":"JobDefinitionType"},
         "parameters":{"shape":"ParametersMap"},
+        "schedulingPriority":{"shape":"Integer"},
         "containerProperties":{"shape":"ContainerProperties"},
         "nodeProperties":{"shape":"NodeProperties"},
         "retryStrategy":{"shape":"RetryStrategy"},
@@ -1261,6 +1402,34 @@
         "evaluateOnExit":{"shape":"EvaluateOnExitList"}
       }
     },
+    "SchedulingPolicyDetail":{
+      "type":"structure",
+      "required":[
+        "name",
+        "arn"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "arn":{"shape":"String"},
+        "fairsharePolicy":{"shape":"FairsharePolicy"},
+        "tags":{"shape":"TagrisTagsMap"}
+      }
+    },
+    "SchedulingPolicyDetailList":{
+      "type":"list",
+      "member":{"shape":"SchedulingPolicyDetail"}
+    },
+    "SchedulingPolicyListingDetail":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"String"}
+      }
+    },
+    "SchedulingPolicyListingDetailList":{
+      "type":"list",
+      "member":{"shape":"SchedulingPolicyListingDetail"}
+    },
     "Secret":{
       "type":"structure",
       "required":[
@@ -1285,6 +1454,18 @@
       "exception":true,
       "fault":true
     },
+    "ShareAttributes":{
+      "type":"structure",
+      "required":["shareIdentifier"],
+      "members":{
+        "shareIdentifier":{"shape":"String"},
+        "weightFactor":{"shape":"Float"}
+      }
+    },
+    "ShareAttributesList":{
+      "type":"list",
+      "member":{"shape":"ShareAttributes"}
+    },
     "String":{"type":"string"},
     "StringList":{
       "type":"list",
@@ -1300,6 +1481,8 @@
       "members":{
         "jobName":{"shape":"String"},
         "jobQueue":{"shape":"String"},
+        "shareIdentifier":{"shape":"String"},
+        "schedulingPriorityOverride":{"shape":"Integer"},
         "arrayProperties":{"shape":"ArrayProperties"},
         "dependsOn":{"shape":"JobDependencyList"},
         "jobDefinition":{"shape":"String"},
@@ -1450,6 +1633,7 @@
       "members":{
         "computeEnvironment":{"shape":"String"},
         "state":{"shape":"CEState"},
+        "unmanagedvCpus":{"shape":"Integer"},
         "computeResources":{"shape":"ComputeResourceUpdate"},
         "serviceRole":{"shape":"String"}
       }
@@ -1467,6 +1651,7 @@
       "members":{
         "jobQueue":{"shape":"String"},
         "state":{"shape":"JQState"},
+        "schedulingPolicyArn":{"shape":"String"},
         "priority":{"shape":"Integer"},
         "computeEnvironmentOrder":{"shape":"ComputeEnvironmentOrders"}
       }
@@ -1476,6 +1661,19 @@
       "members":{
         "jobQueueName":{"shape":"String"},
         "jobQueueArn":{"shape":"String"}
+      }
+    },
+    "UpdateSchedulingPolicyRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"String"},
+        "fairsharePolicy":{"shape":"FairsharePolicy"}
+      }
+    },
+    "UpdateSchedulingPolicyResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "Volume":{

@@ -382,7 +382,8 @@ func (c *GreengrassV2) CreateComponentVersionRequest(input *CreateComponentVersi
 //    Python 2.7 – python2.7 Python 3.7 – python3.7 Python 3.8 – python3.8
 //    Java 8 – java8 Node.js 10 – nodejs10.x Node.js 12 – nodejs12.x To
 //    create a component from a Lambda function, specify lambdaFunction when
-//    you call this operation.
+//    you call this operation. IoT Greengrass currently supports Lambda functions
+//    on only Linux core devices.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3707,10 +3708,11 @@ func (s *ComponentPlatform) SetName(v string) *ComponentPlatform {
 type ComponentRunWith struct {
 	_ struct{} `type:"structure"`
 
-	// The POSIX system user and (optional) group to use to run this component.
-	// Specify the user and group separated by a colon (:) in the following format:
-	// user:group. The group is optional. If you don't specify a group, the IoT
-	// Greengrass Core software uses the primary user for the group.
+	// The POSIX system user and, optionally, group to use to run this component
+	// on Linux core devices. The user, and group if specified, must exist on each
+	// Linux core device. Specify the user and group separated by a colon (:) in
+	// the following format: user:group. The group is optional. If you don't specify
+	// a group, the IoT Greengrass Core software uses the primary user for the group.
 	//
 	// If you omit this parameter, the IoT Greengrass Core software uses the default
 	// system user and group that you configure on the Greengrass nucleus component.
@@ -3719,13 +3721,23 @@ type ComponentRunWith struct {
 	PosixUser *string `locationName:"posixUser" min:"1" type:"string"`
 
 	// The system resource limits to apply to this component's process on the core
-	// device.
+	// device. IoT Greengrass currently supports this feature on only Linux core
+	// devices.
 	//
 	// If you omit this parameter, the IoT Greengrass Core software uses the default
 	// system resource limits that you configure on the Greengrass nucleus component.
 	// For more information, see Configure system resource limits for components
 	// (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-greengrass-core-v2.html#configure-component-system-resource-limits).
 	SystemResourceLimits *SystemResourceLimits `locationName:"systemResourceLimits" type:"structure"`
+
+	// The Windows user to use to run this component on Windows core devices. The
+	// user must exist on each Windows core device, and its name and password must
+	// be in the LocalSystem account's Credentials Manager instance.
+	//
+	// If you omit this parameter, the IoT Greengrass Core software uses the default
+	// Windows user that you configure on the Greengrass nucleus component. For
+	// more information, see Configure the user and group that run components (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-greengrass-core-v2.html#configure-component-user).
+	WindowsUser *string `locationName:"windowsUser" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -3752,6 +3764,9 @@ func (s *ComponentRunWith) Validate() error {
 	if s.PosixUser != nil && len(*s.PosixUser) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("PosixUser", 1))
 	}
+	if s.WindowsUser != nil && len(*s.WindowsUser) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WindowsUser", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3768,6 +3783,12 @@ func (s *ComponentRunWith) SetPosixUser(v string) *ComponentRunWith {
 // SetSystemResourceLimits sets the SystemResourceLimits field's value.
 func (s *ComponentRunWith) SetSystemResourceLimits(v *SystemResourceLimits) *ComponentRunWith {
 	s.SystemResourceLimits = v
+	return s
+}
+
+// SetWindowsUser sets the WindowsUser field's value.
+func (s *ComponentRunWith) SetWindowsUser(v string) *ComponentRunWith {
+	s.WindowsUser = &v
 	return s
 }
 

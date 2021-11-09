@@ -592,9 +592,17 @@ func ExampleBatch_RegisterJobDefinition_shared00() {
 				aws.String("sleep"),
 				aws.String("10"),
 			},
-			Image:  aws.String("busybox"),
-			Memory: aws.Int64(128),
-			Vcpus:  aws.Int64(1),
+			Image: aws.String("busybox"),
+			ResourceRequirements: []*batch.ResourceRequirement{
+				{
+					Type:  aws.String("MEMORY"),
+					Value: aws.String("128"),
+				},
+				{
+					Type:  aws.String("VCPU"),
+					Value: aws.String("1"),
+				},
+			},
 		},
 		JobDefinitionName: aws.String("sleep10"),
 		Type:              aws.String("container"),
@@ -633,9 +641,17 @@ func ExampleBatch_RegisterJobDefinition_shared01() {
 				aws.String("sleep"),
 				aws.String("30"),
 			},
-			Image:  aws.String("busybox"),
-			Memory: aws.Int64(128),
-			Vcpus:  aws.Int64(1),
+			Image: aws.String("busybox"),
+			ResourceRequirements: []*batch.ResourceRequirement{
+				{
+					Type:  aws.String("MEMORY"),
+					Value: aws.String("128"),
+				},
+				{
+					Type:  aws.String("VCPU"),
+					Value: aws.String("1"),
+				},
+			},
 		},
 		JobDefinitionName: aws.String("sleep30"),
 		Tags: map[string]*string{
