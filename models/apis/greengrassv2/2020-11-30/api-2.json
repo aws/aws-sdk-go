@@ -628,7 +628,8 @@
       "type":"structure",
       "members":{
         "posixUser":{"shape":"NonEmptyString"},
-        "systemResourceLimits":{"shape":"SystemResourceLimits"}
+        "systemResourceLimits":{"shape":"SystemResourceLimits"},
+        "windowsUser":{"shape":"NonEmptyString"}
       }
     },
     "ComponentVersionARN":{

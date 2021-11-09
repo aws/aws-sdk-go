@@ -298,14 +298,22 @@
 
                 ],
                 "image": "busybox",
-                "memory": 128,
                 "mountPoints": [
 
+                ],
+                "resourceRequirements": [
+                  {
+                    "type": "MEMORY",
+                    "value": "128"
+                  },
+                  {
+                    "type": "VCPU",
+                    "value": "1"
+                  }
                 ],
                 "ulimits": [
 
                 ],
-                "vcpus": 1,
                 "volumes": [
 
                 ]
@@ -504,8 +512,16 @@
               "10"
             ],
             "image": "busybox",
-            "memory": 128,
-            "vcpus": 1
+            "resourceRequirements": [
+              {
+                "type": "MEMORY",
+                "value": "128"
+              },
+              {
+                "type": "VCPU",
+                "value": "1"
+              }
+            ]
           },
           "jobDefinitionName": "sleep10"
         },
@@ -533,8 +549,16 @@
               "30"
             ],
             "image": "busybox",
-            "memory": 128,
-            "vcpus": 1
+            "resourceRequirements": [
+              {
+                "type": "MEMORY",
+                "value": "128"
+              },
+              {
+                "type": "VCPU",
+                "value": "1"
+              }
+            ]
           },
           "jobDefinitionName": "sleep30",
           "tags": {

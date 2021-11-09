@@ -1,3 +1,13 @@
+Release v1.42.1 (2021-11-09)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API, documentation, paginators, and examples
+  * Adds support for scheduling policy APIs.
+* `service/greengrassv2`: Updates service API and documentation
+* `service/health`: Updates service documentation
+  * Documentation updates for AWS Health.
+
 Release v1.42.0 (2021-11-08)
 ===
 

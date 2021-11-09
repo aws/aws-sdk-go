@@ -318,6 +318,90 @@ func (c *Batch) CreateJobQueueWithContext(ctx aws.Context, input *CreateJobQueue
 	return out, req.Send()
 }
 
+const opCreateSchedulingPolicy = "CreateSchedulingPolicy"
+
+// CreateSchedulingPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSchedulingPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSchedulingPolicy for more information on using the CreateSchedulingPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSchedulingPolicyRequest method.
+//    req, resp := client.CreateSchedulingPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateSchedulingPolicy
+func (c *Batch) CreateSchedulingPolicyRequest(input *CreateSchedulingPolicyInput) (req *request.Request, output *CreateSchedulingPolicyOutput) {
+	op := &request.Operation{
+		Name:       opCreateSchedulingPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/createschedulingpolicy",
+	}
+
+	if input == nil {
+		input = &CreateSchedulingPolicyInput{}
+	}
+
+	output = &CreateSchedulingPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSchedulingPolicy API operation for AWS Batch.
+//
+// Creates an Batch scheduling policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Batch's
+// API operation CreateSchedulingPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an identifier that's not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/CreateSchedulingPolicy
+func (c *Batch) CreateSchedulingPolicy(input *CreateSchedulingPolicyInput) (*CreateSchedulingPolicyOutput, error) {
+	req, out := c.CreateSchedulingPolicyRequest(input)
+	return out, req.Send()
+}
+
+// CreateSchedulingPolicyWithContext is the same as CreateSchedulingPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSchedulingPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) CreateSchedulingPolicyWithContext(ctx aws.Context, input *CreateSchedulingPolicyInput, opts ...request.Option) (*CreateSchedulingPolicyOutput, error) {
+	req, out := c.CreateSchedulingPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteComputeEnvironment = "DeleteComputeEnvironment"
 
 // DeleteComputeEnvironmentRequest generates a "aws/request.Request" representing the
@@ -496,6 +580,93 @@ func (c *Batch) DeleteJobQueue(input *DeleteJobQueueInput) (*DeleteJobQueueOutpu
 // for more information on using Contexts.
 func (c *Batch) DeleteJobQueueWithContext(ctx aws.Context, input *DeleteJobQueueInput, opts ...request.Option) (*DeleteJobQueueOutput, error) {
 	req, out := c.DeleteJobQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSchedulingPolicy = "DeleteSchedulingPolicy"
+
+// DeleteSchedulingPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSchedulingPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSchedulingPolicy for more information on using the DeleteSchedulingPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSchedulingPolicyRequest method.
+//    req, resp := client.DeleteSchedulingPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteSchedulingPolicy
+func (c *Batch) DeleteSchedulingPolicyRequest(input *DeleteSchedulingPolicyInput) (req *request.Request, output *DeleteSchedulingPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSchedulingPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/deleteschedulingpolicy",
+	}
+
+	if input == nil {
+		input = &DeleteSchedulingPolicyInput{}
+	}
+
+	output = &DeleteSchedulingPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSchedulingPolicy API operation for AWS Batch.
+//
+// Deletes the specified scheduling policy.
+//
+// You can't delete a scheduling policy that is used in any job queues.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Batch's
+// API operation DeleteSchedulingPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an identifier that's not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DeleteSchedulingPolicy
+func (c *Batch) DeleteSchedulingPolicy(input *DeleteSchedulingPolicyInput) (*DeleteSchedulingPolicyOutput, error) {
+	req, out := c.DeleteSchedulingPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSchedulingPolicyWithContext is the same as DeleteSchedulingPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSchedulingPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DeleteSchedulingPolicyWithContext(ctx aws.Context, input *DeleteSchedulingPolicyInput, opts ...request.Option) (*DeleteSchedulingPolicyOutput, error) {
+	req, out := c.DeleteSchedulingPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1102,6 +1273,90 @@ func (c *Batch) DescribeJobsWithContext(ctx aws.Context, input *DescribeJobsInpu
 	return out, req.Send()
 }
 
+const opDescribeSchedulingPolicies = "DescribeSchedulingPolicies"
+
+// DescribeSchedulingPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeSchedulingPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeSchedulingPolicies for more information on using the DescribeSchedulingPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeSchedulingPoliciesRequest method.
+//    req, resp := client.DescribeSchedulingPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeSchedulingPolicies
+func (c *Batch) DescribeSchedulingPoliciesRequest(input *DescribeSchedulingPoliciesInput) (req *request.Request, output *DescribeSchedulingPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeSchedulingPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/describeschedulingpolicies",
+	}
+
+	if input == nil {
+		input = &DescribeSchedulingPoliciesInput{}
+	}
+
+	output = &DescribeSchedulingPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeSchedulingPolicies API operation for AWS Batch.
+//
+// Describes one or more of your scheduling policies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Batch's
+// API operation DescribeSchedulingPolicies for usage and error information.
+//
+// Returned Error Types:
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an identifier that's not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/DescribeSchedulingPolicies
+func (c *Batch) DescribeSchedulingPolicies(input *DescribeSchedulingPoliciesInput) (*DescribeSchedulingPoliciesOutput, error) {
+	req, out := c.DescribeSchedulingPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeSchedulingPoliciesWithContext is the same as DescribeSchedulingPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeSchedulingPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) DescribeSchedulingPoliciesWithContext(ctx aws.Context, input *DescribeSchedulingPoliciesInput, opts ...request.Option) (*DescribeSchedulingPoliciesOutput, error) {
+	req, out := c.DescribeSchedulingPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListJobs = "ListJobs"
 
 // ListJobsRequest generates a "aws/request.Request" representing the
@@ -1255,6 +1510,148 @@ func (c *Batch) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInput, 
 	return p.Err()
 }
 
+const opListSchedulingPolicies = "ListSchedulingPolicies"
+
+// ListSchedulingPoliciesRequest generates a "aws/request.Request" representing the
+// client's request for the ListSchedulingPolicies operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSchedulingPolicies for more information on using the ListSchedulingPolicies
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSchedulingPoliciesRequest method.
+//    req, resp := client.ListSchedulingPoliciesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListSchedulingPolicies
+func (c *Batch) ListSchedulingPoliciesRequest(input *ListSchedulingPoliciesInput) (req *request.Request, output *ListSchedulingPoliciesOutput) {
+	op := &request.Operation{
+		Name:       opListSchedulingPolicies,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/listschedulingpolicies",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSchedulingPoliciesInput{}
+	}
+
+	output = &ListSchedulingPoliciesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSchedulingPolicies API operation for AWS Batch.
+//
+// Returns a list of Batch scheduling policies.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Batch's
+// API operation ListSchedulingPolicies for usage and error information.
+//
+// Returned Error Types:
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an identifier that's not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/ListSchedulingPolicies
+func (c *Batch) ListSchedulingPolicies(input *ListSchedulingPoliciesInput) (*ListSchedulingPoliciesOutput, error) {
+	req, out := c.ListSchedulingPoliciesRequest(input)
+	return out, req.Send()
+}
+
+// ListSchedulingPoliciesWithContext is the same as ListSchedulingPolicies with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSchedulingPolicies for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) ListSchedulingPoliciesWithContext(ctx aws.Context, input *ListSchedulingPoliciesInput, opts ...request.Option) (*ListSchedulingPoliciesOutput, error) {
+	req, out := c.ListSchedulingPoliciesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSchedulingPoliciesPages iterates over the pages of a ListSchedulingPolicies operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSchedulingPolicies method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSchedulingPolicies operation.
+//    pageNum := 0
+//    err := client.ListSchedulingPoliciesPages(params,
+//        func(page *batch.ListSchedulingPoliciesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Batch) ListSchedulingPoliciesPages(input *ListSchedulingPoliciesInput, fn func(*ListSchedulingPoliciesOutput, bool) bool) error {
+	return c.ListSchedulingPoliciesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSchedulingPoliciesPagesWithContext same as ListSchedulingPoliciesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) ListSchedulingPoliciesPagesWithContext(ctx aws.Context, input *ListSchedulingPoliciesInput, fn func(*ListSchedulingPoliciesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSchedulingPoliciesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSchedulingPoliciesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSchedulingPoliciesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -1300,8 +1697,8 @@ func (c *Batch) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req
 // ListTagsForResource API operation for AWS Batch.
 //
 // Lists the tags for an Batch resource. Batch resources that support tags are
-// compute environments, jobs, job definitions, and job queues. ARNs for child
-// jobs of array and multi-node parallel (MNP) jobs are not supported.
+// compute environments, jobs, job definitions, job queues, and scheduling policies.
+// ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1471,11 +1868,14 @@ func (c *Batch) SubmitJobRequest(input *SubmitJobInput) (req *request.Request, o
 //
 // Submits an Batch job from a job definition. Parameters that are specified
 // during SubmitJob override parameters defined in the job definition. vCPU
-// and memory requirements that are specified in the ResourceRequirements objects
+// and memory requirements that are specified in the resourceRequirements objects
 // in the job definition are the exception. They can't be overridden this way
 // using the memory and vcpus parameters. Rather, you must specify updates to
 // job definition parameters in a ResourceRequirements object that's included
 // in the containerOverrides parameter.
+//
+// Job queues with a scheduling policy are limited to 500 active fair share
+// identifiers at a time.
 //
 // Jobs that run on Fargate resources can't be guaranteed to run for more than
 // 14 days. This is because, after 14 days, Fargate resources might become unavailable
@@ -1568,8 +1968,9 @@ func (c *Batch) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 // If existing tags on a resource aren't specified in the request parameters,
 // they aren't changed. When a resource is deleted, the tags that are associated
 // with that resource are deleted as well. Batch resources that support tags
-// are compute environments, jobs, job definitions, and job queues. ARNs for
-// child jobs of array and multi-node parallel (MNP) jobs are not supported.
+// are compute environments, jobs, job definitions, job queues, and scheduling
+// policies. ARNs for child jobs of array and multi-node parallel (MNP) jobs
+// are not supported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1944,6 +2345,91 @@ func (c *Batch) UpdateJobQueue(input *UpdateJobQueueInput) (*UpdateJobQueueOutpu
 // for more information on using Contexts.
 func (c *Batch) UpdateJobQueueWithContext(ctx aws.Context, input *UpdateJobQueueInput, opts ...request.Option) (*UpdateJobQueueOutput, error) {
 	req, out := c.UpdateJobQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSchedulingPolicy = "UpdateSchedulingPolicy"
+
+// UpdateSchedulingPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSchedulingPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSchedulingPolicy for more information on using the UpdateSchedulingPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSchedulingPolicyRequest method.
+//    req, resp := client.UpdateSchedulingPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateSchedulingPolicy
+func (c *Batch) UpdateSchedulingPolicyRequest(input *UpdateSchedulingPolicyInput) (req *request.Request, output *UpdateSchedulingPolicyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSchedulingPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/updateschedulingpolicy",
+	}
+
+	if input == nil {
+		input = &UpdateSchedulingPolicyInput{}
+	}
+
+	output = &UpdateSchedulingPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateSchedulingPolicy API operation for AWS Batch.
+//
+// Updates a scheduling policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Batch's
+// API operation UpdateSchedulingPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ClientException
+//   These errors are usually caused by a client action, such as using an action
+//   or resource on behalf of a user that doesn't have permissions to use the
+//   action or resource, or specifying an identifier that's not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server issue.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/batch-2016-08-10/UpdateSchedulingPolicy
+func (c *Batch) UpdateSchedulingPolicy(input *UpdateSchedulingPolicyInput) (*UpdateSchedulingPolicyOutput, error) {
+	req, out := c.UpdateSchedulingPolicyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSchedulingPolicyWithContext is the same as UpdateSchedulingPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSchedulingPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Batch) UpdateSchedulingPolicyWithContext(ctx aws.Context, input *UpdateSchedulingPolicyInput, opts ...request.Option) (*UpdateSchedulingPolicyOutput, error) {
+	req, out := c.UpdateSchedulingPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2432,6 +2918,10 @@ type ComputeEnvironmentDetail struct {
 	// see Compute Environments (https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html)
 	// in the Batch User Guide.
 	Type *string `locationName:"type" type:"string" enum:"CEType"`
+
+	// The maximum number of VCPUs expected to be used for an unmanaged compute
+	// environment.
+	UnmanagedvCpus *int64 `locationName:"unmanagedvCpus" type:"integer"`
 }
 
 // String returns the string representation.
@@ -2509,6 +2999,12 @@ func (s *ComputeEnvironmentDetail) SetTags(v map[string]*string) *ComputeEnviron
 // SetType sets the Type field's value.
 func (s *ComputeEnvironmentDetail) SetType(v string) *ComputeEnvironmentDetail {
 	s.Type = &v
+	return s
+}
+
+// SetUnmanagedvCpus sets the UnmanagedvCpus field's value.
+func (s *ComputeEnvironmentDetail) SetUnmanagedvCpus(v int64) *ComputeEnvironmentDetail {
+	s.UnmanagedvCpus = &v
 	return s
 }
 
@@ -2657,7 +3153,9 @@ type ComputeResource struct {
 
 	// Provides information used to select Amazon Machine Images (AMIs) for EC2
 	// instances in the compute environment. If Ec2Configuration isn't specified,
-	// the default is ECS_AL1.
+	// the default is ECS_AL2.
+	//
+	// One or two values can be provided.
 	//
 	// This parameter isn't applicable to jobs that are running on Fargate resources,
 	// and shouldn't be specified.
@@ -2796,7 +3294,7 @@ type ComputeResource struct {
 	// where String1 is the tag key and String2 is the tag value−for example,
 	// { "Name": "Batch Instance - C4OnDemand" }. This is helpful for recognizing
 	// your Batch instances in the Amazon EC2 console. These tags can't be updated
-	// or removed after the compute environment is created.Aany changes to these
+	// or removed after the compute environment is created. Any changes to these
 	// tags require that you create a new compute environment and remove the old
 	// compute environment. These tags aren't seen when using the Batch ListTagsForResource
 	// API operation.
@@ -3141,7 +3639,7 @@ type ContainerDetail struct {
 	LogStreamName *string `locationName:"logStreamName" type:"string"`
 
 	// For jobs run on EC2 resources that didn't specify memory requirements using
-	// ResourceRequirement, the number of MiB of memory reserved for the job. For
+	// resourceRequirements, the number of MiB of memory reserved for the job. For
 	// other jobs, including all run on Fargate resources, see resourceRequirements.
 	Memory *int64 `locationName:"memory" type:"integer"`
 
@@ -3204,7 +3702,7 @@ type ContainerDetail struct {
 
 	// The number of vCPUs reserved for the container. For jobs that run on EC2
 	// resources, you can specify the vCPU requirement for the job using resourceRequirements,
-	// but you can't specify the vCPU requirements in both the vcpus and resourceRequirement
+	// but you can't specify the vCPU requirements in both the vcpus and resourceRequirements
 	// object. This parameter maps to CpuShares in the Create a container (https://docs.docker.com/engine/api/v1.23/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.23/)
 	// and the --cpu-shares option to docker run (https://docs.docker.com/engine/reference/run/).
@@ -3417,17 +3915,17 @@ type ContainerOverrides struct {
 	// run on Fargate resources, and shouldn't be provided.
 	InstanceType *string `locationName:"instanceType" type:"string"`
 
-	// This parameter indicates the amount of memory (in MiB) that's reserved for
-	// the job. It overrides the memory parameter set in the job definition, but
-	// doesn't override any memory requirement specified in the ResourceRequirement
-	// structure in the job definition. To override memory requirements that are
-	// specified in the ResourceRequirement structure in the job definition, ResourceRequirement
+	// This parameter is deprecated, use resourceRequirements to override the memory
+	// requirements specified in the job definition. It's not supported for jobs
+	// that run on Fargate resources. For jobs run on EC2 resources, it overrides
+	// the memory parameter set in the job definition, but doesn't override any
+	// memory requirement specified in the resourceRequirements structure in the
+	// job definition. To override memory requirements that are specified in the
+	// resourceRequirements structure in the job definition, resourceRequirements
 	// must be specified in the SubmitJob request, with type set to MEMORY and value
-	// set to the new value.
-	//
-	// This parameter is supported for jobs that run on EC2 resources, but isn't
-	// supported for jobs that run on Fargate resources. For these resources, use
-	// resourceRequirement instead.
+	// set to the new value. For more information, see Can't override job definition
+	// resource requirements (https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#override-resource-requirements)
+	// in the Batch User Guide.
 	//
 	// Deprecated: This field is deprecated, use resourceRequirements instead.
 	Memory *int64 `locationName:"memory" deprecated:"true" type:"integer"`
@@ -3437,24 +3935,17 @@ type ContainerOverrides struct {
 	// MEMORY, and VCPU.
 	ResourceRequirements []*ResourceRequirement `locationName:"resourceRequirements" type:"list"`
 
-	// This parameter indicates the number of vCPUs reserved for the container.It
-	// overrides the vcpus parameter that's set in the job definition, but doesn't
-	// override any vCPU requirement specified in the resourceRequirement structure
-	// in the job definition. To override vCPU requirements that are specified in
-	// the ResourceRequirement structure in the job definition, ResourceRequirement
-	// must be specified in the SubmitJob request, with type set to VCPU and value
-	// set to the new value.
-	//
-	// This parameter maps to CpuShares in the Create a container (https://docs.docker.com/engine/api/v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.23/)
-	// and the --cpu-shares option to docker run (https://docs.docker.com/engine/reference/run/).
-	// Each vCPU is equivalent to 1,024 CPU shares. You must specify at least one
-	// vCPU.
-	//
-	// This parameter is supported for jobs that run on EC2 resources, but isn't
-	// supported for jobs that run on Fargate resources. For Fargate resources,
-	// you can only use resourceRequirement. For EC2 resources, you can use either
-	// this parameter or resourceRequirement but not both.
+	// This parameter is deprecated, use resourceRequirements to override the vcpus
+	// parameter that's set in the job definition. It's not supported for jobs that
+	// run on Fargate resources. For jobs run on EC2 resources, it overrides the
+	// vcpus parameter set in the job definition, but doesn't override any vCPU
+	// requirement specified in the resourceRequirements structure in the job definition.
+	// To override vCPU requirements that are specified in the resourceRequirements
+	// structure in the job definition, resourceRequirements must be specified in
+	// the SubmitJob request, with type set to VCPU and value set to the new value.
+	// For more information, see Can't override job definition resource requirements
+	// (https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#override-resource-requirements)
+	// in the Batch User Guide.
 	//
 	// Deprecated: This field is deprecated, use resourceRequirements instead.
 	Vcpus *int64 `locationName:"vcpus" deprecated:"true" type:"integer"`
@@ -3642,24 +4133,13 @@ type ContainerProperties struct {
 	// in the Amazon Elastic Container Service Developer Guide.
 	LogConfiguration *LogConfiguration `locationName:"logConfiguration" type:"structure"`
 
-	// This parameter indicates the memory hard limit (in MiB) for a container.
-	// If your container attempts to exceed the specified number, it's terminated.
-	// You must specify at least 4 MiB of memory for a job using this parameter.
-	// The memory hard limit can be specified in several places. It must be specified
-	// for each node at least once.
-	//
-	// This parameter maps to Memory in the Create a container (https://docs.docker.com/engine/api/v1.23/#create-a-container)
-	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.23/)
-	// and the --memory option to docker run (https://docs.docker.com/engine/reference/run/).
-	//
-	// This parameter is supported on EC2 resources but isn't supported on Fargate
-	// resources. For Fargate resources, you should specify the memory requirement
-	// using resourceRequirement. You can also do this for EC2 resources.
-	//
-	// If you're trying to maximize your resource utilization by providing your
-	// jobs as much memory as possible for a particular instance type, see Memory
-	// Management (https://docs.aws.amazon.com/batch/latest/userguide/memory-management.html)
-	// in the Batch User Guide.
+	// This parameter is deprecated, use resourceRequirements to specify the memory
+	// requirements for the job definition. It's not supported for jobs that run
+	// on Fargate resources. For jobs run on EC2 resources, it specifies the memory
+	// hard limit (in MiB) for a container. If your container attempts to exceed
+	// the specified number, it's terminated. You must specify at least 4 MiB of
+	// memory for a job using this parameter. The memory hard limit can be specified
+	// in several places. It must be specified for each node at least once.
 	//
 	// Deprecated: This field is deprecated, use resourceRequirements instead.
 	Memory *int64 `locationName:"memory" deprecated:"true" type:"integer"`
@@ -3716,21 +4196,17 @@ type ContainerProperties struct {
 	// and the --user option to docker run (https://docs.docker.com/engine/reference/run/).
 	User *string `locationName:"user" type:"string"`
 
-	// The number of vCPUs reserved for the job. Each vCPU is equivalent to 1,024
-	// CPU shares. This parameter maps to CpuShares in the Create a container (https://docs.docker.com/engine/api/v1.23/#create-a-container)
+	// This parameter is deprecated, use resourceRequirements to specify the vCPU
+	// requirements for the job definition. It's not supported for jobs that run
+	// on Fargate resources. For jobs run on EC2 resources, it specifies the number
+	// of vCPUs reserved for the job.
+	//
+	// Each vCPU is equivalent to 1,024 CPU shares. This parameter maps to CpuShares
+	// in the Create a container (https://docs.docker.com/engine/api/v1.23/#create-a-container)
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.23/)
 	// and the --cpu-shares option to docker run (https://docs.docker.com/engine/reference/run/).
 	// The number of vCPUs must be specified but can be specified in several places.
 	// You must specify it at least once for each node.
-	//
-	// This parameter is supported on EC2 resources but isn't supported for jobs
-	// that run on Fargate resources. For these resources, use resourceRequirement
-	// instead. You can use this parameter or resourceRequirements structure but
-	// not both.
-	//
-	// This parameter isn't applicable to jobs that are running on Fargate resources
-	// and shouldn't be provided. For jobs that run on Fargate resources, you must
-	// specify the vCPU requirement for the job using resourceRequirements.
 	//
 	// Deprecated: This field is deprecated, use resourceRequirements instead.
 	Vcpus *int64 `locationName:"vcpus" deprecated:"true" type:"integer"`
@@ -4052,6 +4528,14 @@ type CreateComputeEnvironmentInput struct {
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"CEType"`
+
+	// The maximum number of vCPUs for an unmanaged compute environment. This parameter
+	// is only used for fair share scheduling to reserve vCPU capacity for new share
+	// identifiers. If this parameter is not provided for a fair share job queue,
+	// no vCPU capacity will be reserved.
+	//
+	// This parameter is only supported when the type parameter is set to UNMANAGED/
+	UnmanagedvCpus *int64 `locationName:"unmanagedvCpus" type:"integer"`
 }
 
 // String returns the string representation.
@@ -4132,6 +4616,12 @@ func (s *CreateComputeEnvironmentInput) SetType(v string) *CreateComputeEnvironm
 	return s
 }
 
+// SetUnmanagedvCpus sets the UnmanagedvCpus field's value.
+func (s *CreateComputeEnvironmentInput) SetUnmanagedvCpus(v int64) *CreateComputeEnvironmentInput {
+	s.UnmanagedvCpus = &v
+	return s
+}
+
 type CreateComputeEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4208,6 +4698,14 @@ type CreateJobQueueInput struct {
 	//
 	// Priority is a required field
 	Priority *int64 `locationName:"priority" type:"integer" required:"true"`
+
+	// Amazon Resource Name (ARN) of the fair share scheduling policy. If this parameter
+	// is specified, the job queue will use a fair share scheduling policy. If this
+	// parameter is not specified, the job queue will use a first in, first out
+	// (FIFO) scheduling policy. Once a job queue is created, the fair share scheduling
+	// policy can be replaced but not removed. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name
+	// . For example, aws:aws:batch:us-west-2:012345678910:scheduling-policy/MySchedulingPolicy.
+	SchedulingPolicyArn *string `locationName:"schedulingPolicyArn" type:"string"`
 
 	// The state of the job queue. If the job queue state is ENABLED, it is able
 	// to accept jobs. If the job queue state is DISABLED, new jobs can't be added
@@ -4289,6 +4787,12 @@ func (s *CreateJobQueueInput) SetPriority(v int64) *CreateJobQueueInput {
 	return s
 }
 
+// SetSchedulingPolicyArn sets the SchedulingPolicyArn field's value.
+func (s *CreateJobQueueInput) SetSchedulingPolicyArn(v string) *CreateJobQueueInput {
+	s.SchedulingPolicyArn = &v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *CreateJobQueueInput) SetState(v string) *CreateJobQueueInput {
 	s.State = &v
@@ -4342,6 +4846,131 @@ func (s *CreateJobQueueOutput) SetJobQueueArn(v string) *CreateJobQueueOutput {
 // SetJobQueueName sets the JobQueueName field's value.
 func (s *CreateJobQueueOutput) SetJobQueueName(v string) *CreateJobQueueOutput {
 	s.JobQueueName = &v
+	return s
+}
+
+type CreateSchedulingPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The fair share policy of the scheduling policy.
+	FairsharePolicy *FairsharePolicy `locationName:"fairsharePolicy" type:"structure"`
+
+	// The name of the scheduling policy. Up to 128 letters (uppercase and lowercase),
+	// numbers, hyphens, and underscores are allowed.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The tags that you apply to the scheduling policy to help you categorize and
+	// organize your resources. Each tag consists of a key and an optional value.
+	// For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in Amazon Web Services General Reference.
+	//
+	// These tags can be updated or removed using the TagResource (https://docs.aws.amazon.com/batch/latest/APIReference/API_TagResource.html)
+	// and UntagResource (https://docs.aws.amazon.com/batch/latest/APIReference/API_UntagResource.html)
+	// API operations.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSchedulingPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSchedulingPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSchedulingPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSchedulingPolicyInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.FairsharePolicy != nil {
+		if err := s.FairsharePolicy.Validate(); err != nil {
+			invalidParams.AddNested("FairsharePolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFairsharePolicy sets the FairsharePolicy field's value.
+func (s *CreateSchedulingPolicyInput) SetFairsharePolicy(v *FairsharePolicy) *CreateSchedulingPolicyInput {
+	s.FairsharePolicy = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSchedulingPolicyInput) SetName(v string) *CreateSchedulingPolicyInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSchedulingPolicyInput) SetTags(v map[string]*string) *CreateSchedulingPolicyInput {
+	s.Tags = v
+	return s
+}
+
+type CreateSchedulingPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the scheduling policy. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name
+	// . For example, aws:aws:batch:us-west-2:012345678910:scheduling-policy/MySchedulingPolicy.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The name of the scheduling policy.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSchedulingPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSchedulingPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateSchedulingPolicyOutput) SetArn(v string) *CreateSchedulingPolicyOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSchedulingPolicyOutput) SetName(v string) *CreateSchedulingPolicyOutput {
+	s.Name = &v
 	return s
 }
 
@@ -4480,6 +5109,74 @@ func (s DeleteJobQueueOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteJobQueueOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteSchedulingPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the scheduling policy to delete.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSchedulingPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSchedulingPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSchedulingPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSchedulingPolicyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteSchedulingPolicyInput) SetArn(v string) *DeleteSchedulingPolicyInput {
+	s.Arn = &v
+	return s
+}
+
+type DeleteSchedulingPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSchedulingPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteSchedulingPolicyOutput) GoString() string {
 	return s.String()
 }
 
@@ -4623,9 +5320,9 @@ type DescribeComputeEnvironmentsOutput struct {
 	ComputeEnvironments []*ComputeEnvironmentDetail `locationName:"computeEnvironments" type:"list"`
 
 	// The nextToken value to include in a future DescribeComputeEnvironments request.
-	// When the results of a DescribeJobDefinitions request exceed maxResults, this
-	// value can be used to retrieve the next page of results. This value is null
-	// when there are no more results to return.
+	// When the results of a DescribeComputeEnvironments request exceed maxResults,
+	// this value can be used to retrieve the next page of results. This value is
+	// null when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -4970,6 +5667,83 @@ func (s *DescribeJobsOutput) SetJobs(v []*JobDetail) *DescribeJobsOutput {
 	return s
 }
 
+type DescribeSchedulingPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of up to 100 scheduling policy Amazon Resource Name (ARN) entries.
+	//
+	// Arns is a required field
+	Arns []*string `locationName:"arns" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSchedulingPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSchedulingPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeSchedulingPoliciesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeSchedulingPoliciesInput"}
+	if s.Arns == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arns"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArns sets the Arns field's value.
+func (s *DescribeSchedulingPoliciesInput) SetArns(v []*string) *DescribeSchedulingPoliciesInput {
+	s.Arns = v
+	return s
+}
+
+type DescribeSchedulingPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of scheduling policies.
+	SchedulingPolicies []*SchedulingPolicyDetail `locationName:"schedulingPolicies" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSchedulingPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeSchedulingPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetSchedulingPolicies sets the SchedulingPolicies field's value.
+func (s *DescribeSchedulingPoliciesOutput) SetSchedulingPolicies(v []*SchedulingPolicyDetail) *DescribeSchedulingPoliciesOutput {
+	s.SchedulingPolicies = v
+	return s
+}
+
 // An object representing a container instance host device.
 //
 // This object isn't applicable to jobs that are running on Fargate resources
@@ -5197,9 +5971,7 @@ func (s *EFSVolumeConfiguration) SetTransitEncryptionPort(v int64) *EFSVolumeCon
 
 // Provides information used to select Amazon Machine Images (AMIs) for instances
 // in the compute environment. If Ec2Configuration isn't specified, the default
-// is currently ECS_AL1 (Amazon Linux (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#alami))
-// for non-GPU, non AWSGraviton instances. Starting on March 31, 2021, this
-// default will be changing to ECS_AL2 (Amazon Linux 2 (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#al2ami)).
+// is ECS_AL2 (Amazon Linux 2 (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#al2ami)).
 //
 // This object isn't applicable to jobs that are running on Fargate resources.
 type Ec2Configuration struct {
@@ -5211,16 +5983,14 @@ type Ec2Configuration struct {
 	ImageIdOverride *string `locationName:"imageIdOverride" min:"1" type:"string"`
 
 	// The image type to match with the instance type to select an AMI. If the imageIdOverride
-	// parameter isn't specified, then a recent Amazon ECS-optimized AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
-	// (ECS_AL1) is used. Starting on March 31, 2021, this default will be changing
-	// to ECS_AL2 (Amazon Linux 2 (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#al2ami)).
+	// parameter isn't specified, then a recent Amazon ECS-optimized Amazon Linux
+	// 2 AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#al2ami)
+	// (ECS_AL2) is used.
 	//
 	// ECS_AL2
 	//
 	// Amazon Linux 2 (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#al2ami)−
-	// Default for all Amazon Web Services Graviton-based instance families (for
-	// example, C6g, M6g, R6g, and T4g) and can be used for all non-GPU instance
-	// types.
+	// Default for all non-GPU instance families.
 	//
 	// ECS_AL2_NVIDIA
 	//
@@ -5230,9 +6000,8 @@ type Ec2Configuration struct {
 	//
 	// ECS_AL1
 	//
-	// Amazon Linux (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#alami)−Default
-	// for all non-GPU, non Amazon Web Services Graviton instance families. Amazon
-	// Linux is reaching the end-of-life of standard support. For more information,
+	// Amazon Linux (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#alami).
+	// Amazon Linux is reaching the end-of-life of standard support. For more information,
 	// see Amazon Linux AMI (http://aws.amazon.com/amazon-linux-ami/).
 	//
 	// ImageType is a required field
@@ -5303,6 +6072,8 @@ type EvaluateOnExit struct {
 	// ExitCode returned for a job. The pattern can be up to 512 characters in length.
 	// It can contain only numbers, and can optionally end with an asterisk (*)
 	// so that only the start of the string needs to be an exact match.
+	//
+	// The string can be between 1 and 512 characters in length.
 	OnExitCode *string `locationName:"onExitCode" type:"string"`
 
 	// Contains a glob pattern to match against the Reason returned for a job. The
@@ -5310,6 +6081,8 @@ type EvaluateOnExit struct {
 	// periods (.), colons (:), and white space (including spaces and tabs). It
 	// can optionally end with an asterisk (*) so that only the start of the string
 	// needs to be an exact match.
+	//
+	// The string can be between 1 and 512 characters in length.
 	OnReason *string `locationName:"onReason" type:"string"`
 
 	// Contains a glob pattern to match against the StatusReason returned for a
@@ -5317,6 +6090,8 @@ type EvaluateOnExit struct {
 	// numbers, periods (.), colons (:), and white space (including spaces or tabs).
 	// It can optionally end with an asterisk (*) so that only the start of the
 	// string needs to be an exact match.
+	//
+	// The string can be between 1 and 512 characters in length.
 	OnStatusReason *string `locationName:"onStatusReason" type:"string"`
 }
 
@@ -5372,6 +6147,98 @@ func (s *EvaluateOnExit) SetOnReason(v string) *EvaluateOnExit {
 // SetOnStatusReason sets the OnStatusReason field's value.
 func (s *EvaluateOnExit) SetOnStatusReason(v string) *EvaluateOnExit {
 	s.OnStatusReason = &v
+	return s
+}
+
+// The fair share policy for a scheduling policy.
+type FairsharePolicy struct {
+	_ struct{} `type:"structure"`
+
+	// A value used to reserve some of the available maximum vCPU for fair share
+	// identifiers that have not yet been used.
+	//
+	// The reserved ratio is (computeReservation/100)^ActiveFairShares where ActiveFairShares
+	// is the number of active fair share identifiers.
+	//
+	// For example, a computeReservation value of 50 indicates that Batch should
+	// reserve 50% of the maximum available vCPU if there is only one fair share
+	// identifier, 25% if there are two fair share identifiers, and 12.5% if there
+	// are three fair share identifiers. A computeReservation value of 25 indicates
+	// that Batch should reserve 25% of the maximum available vCPU if there is only
+	// one fair share identifier, 6.25% if there are two fair share identifiers,
+	// and 1.56% if there are three fair share identifiers.
+	//
+	// The minimum value is 0 and the maximum value is 99.
+	ComputeReservation *int64 `locationName:"computeReservation" type:"integer"`
+
+	// The time period to use to calculate a fair share percentage for each fair
+	// share identifier in use, in seconds. A value of zero (0) indicates that only
+	// current usage should be measured; if there are four evenly weighted fair
+	// share identifiers then each can only use up to 25% of the available CPU resources,
+	// even if some of the fair share identifiers have no currently running jobs.
+	// The decay allows for more recently run jobs to have more weight than jobs
+	// that ran earlier. The maximum supported value is 604800 (1 week).
+	ShareDecaySeconds *int64 `locationName:"shareDecaySeconds" type:"integer"`
+
+	// Array of SharedIdentifier objects that contain the weights for the fair share
+	// identifiers for the fair share policy. Fair share identifiers that are not
+	// included have a default weight of 1.0.
+	ShareDistribution []*ShareAttributes `locationName:"shareDistribution" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FairsharePolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FairsharePolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FairsharePolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FairsharePolicy"}
+	if s.ShareDistribution != nil {
+		for i, v := range s.ShareDistribution {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ShareDistribution", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComputeReservation sets the ComputeReservation field's value.
+func (s *FairsharePolicy) SetComputeReservation(v int64) *FairsharePolicy {
+	s.ComputeReservation = &v
+	return s
+}
+
+// SetShareDecaySeconds sets the ShareDecaySeconds field's value.
+func (s *FairsharePolicy) SetShareDecaySeconds(v int64) *FairsharePolicy {
+	s.ShareDecaySeconds = &v
+	return s
+}
+
+// SetShareDistribution sets the ShareDistribution field's value.
+func (s *FairsharePolicy) SetShareDistribution(v []*ShareAttributes) *FairsharePolicy {
+	s.ShareDistribution = v
 	return s
 }
 
@@ -5509,6 +6376,11 @@ type JobDefinition struct {
 	// Revision is a required field
 	Revision *int64 `locationName:"revision" type:"integer" required:"true"`
 
+	// The scheduling priority of the job definition. This will only affect jobs
+	// in job queues with a fair share policy. Jobs with a higher scheduling priority
+	// will be scheduled before jobs with a lower scheduling priority.
+	SchedulingPriority *int64 `locationName:"schedulingPriority" type:"integer"`
+
 	// The status of the job definition.
 	Status *string `locationName:"status" type:"string"`
 
@@ -5520,9 +6392,10 @@ type JobDefinition struct {
 	// if they haven't finished.
 	Timeout *JobTimeout `locationName:"timeout" type:"structure"`
 
-	// The type of job definition. If the job is run on Fargate resources, then
-	// multinode isn't supported. For more information about multi-node parallel
-	// jobs, see Creating a multi-node parallel job definition (https://docs.aws.amazon.com/batch/latest/userguide/multi-node-job-def.html)
+	// The type of job definition, either container or multinode. If the job is
+	// run on Fargate resources, then multinode isn't supported. For more information
+	// about multi-node parallel jobs, see Creating a multi-node parallel job definition
+	// (https://docs.aws.amazon.com/batch/latest/userguide/multi-node-job-def.html)
 	// in the Batch User Guide.
 	//
 	// Type is a required field
@@ -5598,6 +6471,12 @@ func (s *JobDefinition) SetRetryStrategy(v *RetryStrategy) *JobDefinition {
 // SetRevision sets the Revision field's value.
 func (s *JobDefinition) SetRevision(v int64) *JobDefinition {
 	s.Revision = &v
+	return s
+}
+
+// SetSchedulingPriority sets the SchedulingPriority field's value.
+func (s *JobDefinition) SetSchedulingPriority(v int64) *JobDefinition {
+	s.SchedulingPriority = &v
 	return s
 }
 
@@ -5741,6 +6620,14 @@ type JobDetail struct {
 
 	// The retry strategy to use for this job if an attempt fails.
 	RetryStrategy *RetryStrategy `locationName:"retryStrategy" type:"structure"`
+
+	// The scheduling policy of the job definition. This will only affect jobs in
+	// job queues with a fair share policy. Jobs with a higher scheduling priority
+	// will be scheduled before jobs with a lower scheduling priority.
+	SchedulingPriority *int64 `locationName:"schedulingPriority" type:"integer"`
+
+	// The share identifier for the job.
+	ShareIdentifier *string `locationName:"shareIdentifier" type:"string"`
 
 	// The Unix timestamp (in milliseconds) for when the job was started (when the
 	// job transitioned from the STARTING state to the RUNNING state). This parameter
@@ -5888,6 +6775,18 @@ func (s *JobDetail) SetRetryStrategy(v *RetryStrategy) *JobDetail {
 	return s
 }
 
+// SetSchedulingPriority sets the SchedulingPriority field's value.
+func (s *JobDetail) SetSchedulingPriority(v int64) *JobDetail {
+	s.SchedulingPriority = &v
+	return s
+}
+
+// SetShareIdentifier sets the ShareIdentifier field's value.
+func (s *JobDetail) SetShareIdentifier(v string) *JobDetail {
+	s.ShareIdentifier = &v
+	return s
+}
+
 // SetStartedAt sets the StartedAt field's value.
 func (s *JobDetail) SetStartedAt(v int64) *JobDetail {
 	s.StartedAt = &v
@@ -5956,6 +6855,10 @@ type JobQueueDetail struct {
 	// Priority is a required field
 	Priority *int64 `locationName:"priority" type:"integer" required:"true"`
 
+	// Amazon Resource Name (ARN) of the scheduling policy. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name
+	// . For example, aws:aws:batch:us-west-2:012345678910:scheduling-policy/MySchedulingPolicy.
+	SchedulingPolicyArn *string `locationName:"schedulingPolicyArn" type:"string"`
+
 	// Describes the ability of the queue to accept new jobs. If the job queue state
 	// is ENABLED, it's able to accept jobs. If the job queue state is DISABLED,
 	// new jobs can't be added to the queue, but jobs already in the queue can finish.
@@ -6015,6 +6918,12 @@ func (s *JobQueueDetail) SetJobQueueName(v string) *JobQueueDetail {
 // SetPriority sets the Priority field's value.
 func (s *JobQueueDetail) SetPriority(v int64) *JobQueueDetail {
 	s.Priority = &v
+	return s
+}
+
+// SetSchedulingPolicyArn sets the SchedulingPolicyArn field's value.
+func (s *JobQueueDetail) SetSchedulingPolicyArn(v string) *JobQueueDetail {
+	s.SchedulingPolicyArn = &v
 	return s
 }
 
@@ -6730,13 +7639,109 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 	return s
 }
 
+type ListSchedulingPoliciesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results returned by ListSchedulingPolicies in paginated
+	// output. When this parameter is used, ListSchedulingPolicies only returns
+	// maxResults results in a single page and a nextToken response element. The
+	// remaining results of the initial request can be seen by sending another ListSchedulingPolicies
+	// request with the returned nextToken value. This value can be between 1 and
+	// 100. If this parameter isn't used, then ListSchedulingPolicies returns up
+	// to 100 results and a nextToken value if applicable.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The nextToken value returned from a previous paginated ListSchedulingPolicies
+	// request where maxResults was used and the results exceeded the value of that
+	// parameter. Pagination continues from the end of the previous results that
+	// returned the nextToken value. This value is null when there are no more results
+	// to return.
+	//
+	// This token should be treated as an opaque identifier that's only used to
+	// retrieve the next items in a list and not for other programmatic purposes.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSchedulingPoliciesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSchedulingPoliciesInput) GoString() string {
+	return s.String()
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSchedulingPoliciesInput) SetMaxResults(v int64) *ListSchedulingPoliciesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSchedulingPoliciesInput) SetNextToken(v string) *ListSchedulingPoliciesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSchedulingPoliciesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The nextToken value to include in a future ListSchedulingPolicies request.
+	// When the results of a ListSchedulingPolicies request exceed maxResults, this
+	// value can be used to retrieve the next page of results. This value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of scheduling policies that match the request.
+	SchedulingPolicies []*SchedulingPolicyListingDetail `locationName:"schedulingPolicies" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSchedulingPoliciesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListSchedulingPoliciesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSchedulingPoliciesOutput) SetNextToken(v string) *ListSchedulingPoliciesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSchedulingPolicies sets the SchedulingPolicies field's value.
+func (s *ListSchedulingPoliciesOutput) SetSchedulingPolicies(v []*SchedulingPolicyListingDetail) *ListSchedulingPoliciesOutput {
+	s.SchedulingPolicies = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) that identifies the resource that tags are
 	// listed for. Batch resources that support tags are compute environments, jobs,
-	// job definitions, and job queues. ARNs for child jobs of array and multi-node
-	// parallel (MNP) jobs are not supported.
+	// job definitions, job queues, and scheduling policies. ARNs for child jobs
+	// of array and multi-node parallel (MNP) jobs are not supported.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -7546,6 +8551,14 @@ type RegisterJobDefinitionInput struct {
 	// a timeout, it isn't retried.
 	RetryStrategy *RetryStrategy `locationName:"retryStrategy" type:"structure"`
 
+	// The scheduling priority for jobs that are submitted with this job definition.
+	// This will only affect jobs in job queues with a fair share policy. Jobs with
+	// a higher scheduling priority will be scheduled before jobs with a lower scheduling
+	// priority.
+	//
+	// The minimum supported value is 0 and the maximum supported value is 9999.
+	SchedulingPriority *int64 `locationName:"schedulingPriority" type:"integer"`
+
 	// The tags that you apply to the job definition to help you categorize and
 	// organize your resources. Each tag consists of a key and an optional value.
 	// For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/batch/latest/userguide/using-tags.html)
@@ -7662,6 +8675,12 @@ func (s *RegisterJobDefinitionInput) SetPropagateTags(v bool) *RegisterJobDefini
 // SetRetryStrategy sets the RetryStrategy field's value.
 func (s *RegisterJobDefinitionInput) SetRetryStrategy(v *RetryStrategy) *RegisterJobDefinitionInput {
 	s.RetryStrategy = v
+	return s
+}
+
+// SetSchedulingPriority sets the SchedulingPriority field's value.
+func (s *RegisterJobDefinitionInput) SetSchedulingPriority(v int64) *RegisterJobDefinitionInput {
+	s.SchedulingPriority = &v
 	return s
 }
 
@@ -7975,6 +8994,108 @@ func (s *RetryStrategy) SetEvaluateOnExit(v []*EvaluateOnExit) *RetryStrategy {
 	return s
 }
 
+// An object representing a scheduling policy.
+type SchedulingPolicyDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the scheduling policy. An example would be
+	// arn:aws:batch:us-east-1:123456789012:scheduling-policy/HighPriority
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The fair share policy for the scheduling policy.
+	FairsharePolicy *FairsharePolicy `locationName:"fairsharePolicy" type:"structure"`
+
+	// The name of the scheduling policy.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The tags that you apply to the scheduling policy to help you categorize and
+	// organize your resources. Each tag consists of a key and an optional value.
+	// For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in Amazon Web Services General Reference.
+	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchedulingPolicyDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchedulingPolicyDetail) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SchedulingPolicyDetail) SetArn(v string) *SchedulingPolicyDetail {
+	s.Arn = &v
+	return s
+}
+
+// SetFairsharePolicy sets the FairsharePolicy field's value.
+func (s *SchedulingPolicyDetail) SetFairsharePolicy(v *FairsharePolicy) *SchedulingPolicyDetail {
+	s.FairsharePolicy = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SchedulingPolicyDetail) SetName(v string) *SchedulingPolicyDetail {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *SchedulingPolicyDetail) SetTags(v map[string]*string) *SchedulingPolicyDetail {
+	s.Tags = v
+	return s
+}
+
+// An object containing the details of a scheduling policy returned in a ListSchedulingPolicy
+// action.
+type SchedulingPolicyListingDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the scheduling policy.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchedulingPolicyListingDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchedulingPolicyListingDetail) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *SchedulingPolicyListingDetail) SetArn(v string) *SchedulingPolicyListingDetail {
+	s.Arn = &v
+	return s
+}
+
 // An object representing the secret to expose to your container. Secrets can
 // be exposed to a container in the following ways:
 //
@@ -8117,6 +9238,80 @@ func (s *ServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies the weights for the fair share identifiers for the fair share policy.
+// Fair share identifiers that are not included have a default weight of 1.0.
+type ShareAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// A fair share identifier or fair share identifier prefix. If the string ends
+	// with '*' then this entry specifies the weight factor to use for fair share
+	// identifiers that begin with that prefix. The list of fair share identifiers
+	// in a fair share policy cannot overlap. For example you cannot have one that
+	// specifies a shareIdentifier of UserA* and another that specifies a shareIdentifier
+	// of UserA-1.
+	//
+	// There can be no more than 500 fair share identifiers active in a job queue.
+	//
+	// The string is limited to 255 alphanumeric characters, optionally followed
+	// by '*'.
+	//
+	// ShareIdentifier is a required field
+	ShareIdentifier *string `locationName:"shareIdentifier" type:"string" required:"true"`
+
+	// The weight factor for the fair share identifier. The default value is 1.0.
+	// A lower value has a higher priority for compute resources. For example, jobs
+	// using a share identifier with a weight factor of 0.125 (1/8) will get 8 times
+	// the compute resources of jobs using a share identifier with a weight factor
+	// of 1.
+	//
+	// The smallest supported value is 0.0001 and the largest supported value is
+	// 999.9999.
+	WeightFactor *float64 `locationName:"weightFactor" type:"float"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ShareAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ShareAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ShareAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ShareAttributes"}
+	if s.ShareIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ShareIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetShareIdentifier sets the ShareIdentifier field's value.
+func (s *ShareAttributes) SetShareIdentifier(v string) *ShareAttributes {
+	s.ShareIdentifier = &v
+	return s
+}
+
+// SetWeightFactor sets the WeightFactor field's value.
+func (s *ShareAttributes) SetWeightFactor(v float64) *ShareAttributes {
+	s.WeightFactor = &v
+	return s
+}
+
 // Contains the parameters for SubmitJob.
 type SubmitJobInput struct {
 	_ struct{} `type:"structure"`
@@ -8191,6 +9386,17 @@ type SubmitJobInput struct {
 	// When a retry strategy is specified here, it overrides the retry strategy
 	// defined in the job definition.
 	RetryStrategy *RetryStrategy `locationName:"retryStrategy" type:"structure"`
+
+	// The scheduling priority for the job. This will only affect jobs in job queues
+	// with a fair share policy. Jobs with a higher scheduling priority will be
+	// scheduled before jobs with a lower scheduling priority. This will override
+	// any scheduling priority in the job definition.
+	//
+	// The minimum supported value is 0 and the maximum supported value is 9999.
+	SchedulingPriorityOverride *int64 `locationName:"schedulingPriorityOverride" type:"integer"`
+
+	// The share identifier for the job.
+	ShareIdentifier *string `locationName:"shareIdentifier" type:"string"`
 
 	// The tags that you apply to the job request to help you categorize and organize
 	// your resources. Each tag consists of a key and an optional value. For more
@@ -8324,6 +9530,18 @@ func (s *SubmitJobInput) SetRetryStrategy(v *RetryStrategy) *SubmitJobInput {
 	return s
 }
 
+// SetSchedulingPriorityOverride sets the SchedulingPriorityOverride field's value.
+func (s *SubmitJobInput) SetSchedulingPriorityOverride(v int64) *SubmitJobInput {
+	s.SchedulingPriorityOverride = &v
+	return s
+}
+
+// SetShareIdentifier sets the ShareIdentifier field's value.
+func (s *SubmitJobInput) SetShareIdentifier(v string) *SubmitJobInput {
+	s.ShareIdentifier = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *SubmitJobInput) SetTags(v map[string]*string) *SubmitJobInput {
 	s.Tags = v
@@ -8394,8 +9612,8 @@ type TagResourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the resource that tags are added to. Batch
 	// resources that support tags are compute environments, jobs, job definitions,
-	// and job queues. ARNs for child jobs of array and multi-node parallel (MNP)
-	// jobs are not supported.
+	// job queues, and scheduling policies. ARNs for child jobs of array and multi-node
+	// parallel (MNP) jobs are not supported.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -8729,8 +9947,8 @@ type UntagResourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the resource from which to delete tags.
 	// Batch resources that support tags are compute environments, jobs, job definitions,
-	// and job queues. ARNs for child jobs of array and multi-node parallel (MNP)
-	// jobs are not supported.
+	// job queues, and scheduling policies. ARNs for child jobs of array and multi-node
+	// parallel (MNP) jobs are not supported.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -8866,6 +10084,13 @@ type UpdateComputeEnvironmentInput struct {
 	// don't scale out. However, they scale in to minvCpus value after instances
 	// become idle.
 	State *string `locationName:"state" type:"string" enum:"CEState"`
+
+	// The maximum number of vCPUs expected to be used for an unmanaged compute
+	// environment. This parameter should not be specified for a managed compute
+	// environment. This parameter is only used for fair share scheduling to reserve
+	// vCPU capacity for new share identifiers. If this parameter is not provided
+	// for a fair share job queue, no vCPU capacity will be reserved.
+	UnmanagedvCpus *int64 `locationName:"unmanagedvCpus" type:"integer"`
 }
 
 // String returns the string representation.
@@ -8920,6 +10145,12 @@ func (s *UpdateComputeEnvironmentInput) SetServiceRole(v string) *UpdateComputeE
 // SetState sets the State field's value.
 func (s *UpdateComputeEnvironmentInput) SetState(v string) *UpdateComputeEnvironmentInput {
 	s.State = &v
+	return s
+}
+
+// SetUnmanagedvCpus sets the UnmanagedvCpus field's value.
+func (s *UpdateComputeEnvironmentInput) SetUnmanagedvCpus(v int64) *UpdateComputeEnvironmentInput {
+	s.UnmanagedvCpus = &v
 	return s
 }
 
@@ -8995,6 +10226,12 @@ type UpdateJobQueueInput struct {
 	// EC2 and Fargate compute environments can't be mixed.
 	Priority *int64 `locationName:"priority" type:"integer"`
 
+	// Amazon Resource Name (ARN) of the fair share scheduling policy. Once a job
+	// queue is created, the fair share scheduling policy can be replaced but not
+	// removed. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name
+	// . For example, aws:aws:batch:us-west-2:012345678910:scheduling-policy/MySchedulingPolicy.
+	SchedulingPolicyArn *string `locationName:"schedulingPolicyArn" type:"string"`
+
 	// Describes the queue's ability to accept new jobs. If the job queue state
 	// is ENABLED, it can accept jobs. If the job queue state is DISABLED, new jobs
 	// can't be added to the queue, but jobs already in the queue can finish.
@@ -9060,6 +10297,12 @@ func (s *UpdateJobQueueInput) SetPriority(v int64) *UpdateJobQueueInput {
 	return s
 }
 
+// SetSchedulingPolicyArn sets the SchedulingPolicyArn field's value.
+func (s *UpdateJobQueueInput) SetSchedulingPolicyArn(v string) *UpdateJobQueueInput {
+	s.SchedulingPolicyArn = &v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *UpdateJobQueueInput) SetState(v string) *UpdateJobQueueInput {
 	s.State = &v
@@ -9104,6 +10347,88 @@ func (s *UpdateJobQueueOutput) SetJobQueueArn(v string) *UpdateJobQueueOutput {
 func (s *UpdateJobQueueOutput) SetJobQueueName(v string) *UpdateJobQueueOutput {
 	s.JobQueueName = &v
 	return s
+}
+
+type UpdateSchedulingPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the scheduling policy to update.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The fair share policy.
+	FairsharePolicy *FairsharePolicy `locationName:"fairsharePolicy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSchedulingPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSchedulingPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSchedulingPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSchedulingPolicyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.FairsharePolicy != nil {
+		if err := s.FairsharePolicy.Validate(); err != nil {
+			invalidParams.AddNested("FairsharePolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateSchedulingPolicyInput) SetArn(v string) *UpdateSchedulingPolicyInput {
+	s.Arn = &v
+	return s
+}
+
+// SetFairsharePolicy sets the FairsharePolicy field's value.
+func (s *UpdateSchedulingPolicyInput) SetFairsharePolicy(v *FairsharePolicy) *UpdateSchedulingPolicyInput {
+	s.FairsharePolicy = v
+	return s
+}
+
+type UpdateSchedulingPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSchedulingPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSchedulingPolicyOutput) GoString() string {
+	return s.String()
 }
 
 // A data volume used in a job's container properties.

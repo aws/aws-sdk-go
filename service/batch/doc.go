@@ -3,15 +3,15 @@
 // Package batch provides the client and types for making API
 // requests to AWS Batch.
 //
-// Using Batch, you can run batch computing workloads on the Cloud. Batch computing
-// is a common means for developers, scientists, and engineers to access large
-// amounts of compute resources. Batch uses the advantages of this computing
-// workload to remove the undifferentiated heavy lifting of configuring and
-// managing required infrastructure. At the same time, it also adopts a familiar
-// batch computing software approach. Given these advantages, Batch can help
-// you to efficiently provision resources in response to jobs submitted, thus
-// effectively helping you to eliminate capacity constraints, reduce compute
-// costs, and deliver your results more quickly.
+// Using Batch, you can run batch computing workloads on the Amazon Web Services
+// Cloud. Batch computing is a common means for developers, scientists, and
+// engineers to access large amounts of compute resources. Batch uses the advantages
+// of this computing workload to remove the undifferentiated heavy lifting of
+// configuring and managing required infrastructure. At the same time, it also
+// adopts a familiar batch computing software approach. Given these advantages,
+// Batch can help you to efficiently provision resources in response to jobs
+// submitted, thus effectively helping you to eliminate capacity constraints,
+// reduce compute costs, and deliver your results more quickly.
 //
 // As a fully managed service, Batch can run batch computing workloads of any
 // scale. Batch automatically provisions compute resources and optimizes workload
