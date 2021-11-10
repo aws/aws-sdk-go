@@ -1235,7 +1235,9 @@
         "SelectionName":{"shape":"BackupSelectionName"},
         "IamRoleArn":{"shape":"IAMRoleArn"},
         "Resources":{"shape":"ResourceArns"},
-        "ListOfTags":{"shape":"ListOfTags"}
+        "ListOfTags":{"shape":"ListOfTags"},
+        "NotResources":{"shape":"ResourceArns"},
+        "Conditions":{"shape":"Conditions"}
       }
     },
     "BackupSelectionName":{
@@ -1332,11 +1334,31 @@
       }
     },
     "ConditionKey":{"type":"string"},
+    "ConditionParameter":{
+      "type":"structure",
+      "members":{
+        "ConditionKey":{"shape":"ConditionKey"},
+        "ConditionValue":{"shape":"ConditionValue"}
+      }
+    },
+    "ConditionParameters":{
+      "type":"list",
+      "member":{"shape":"ConditionParameter"}
+    },
     "ConditionType":{
       "type":"string",
       "enum":["STRINGEQUALS"]
     },
     "ConditionValue":{"type":"string"},
+    "Conditions":{
+      "type":"structure",
+      "members":{
+        "StringEquals":{"shape":"ConditionParameters"},
+        "StringNotEquals":{"shape":"ConditionParameters"},
+        "StringLike":{"shape":"ConditionParameters"},
+        "StringNotLike":{"shape":"ConditionParameters"}
+      }
+    },
     "ConflictException":{
       "type":"structure",
       "members":{

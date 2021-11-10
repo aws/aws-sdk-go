@@ -432,7 +432,23 @@
     "ConditionKey": {
       "base": null,
       "refs": {
-        "Condition$ConditionKey": "<p>The key in a key-value pair. For example, in <code>\"ec2:ResourceTag/Department\": \"accounting\"</code>, <code>\"ec2:ResourceTag/Department\"</code> is the key.</p>"
+        "Condition$ConditionKey": "<p>The key in a key-value pair. For example, in <code>\"ec2:ResourceTag/Department\": \"accounting\"</code>, <code>\"ec2:ResourceTag/Department\"</code> is the key.</p>",
+        "ConditionParameter$ConditionKey": null
+      }
+    },
+    "ConditionParameter": {
+      "base": null,
+      "refs": {
+        "ConditionParameters$member": null
+      }
+    },
+    "ConditionParameters": {
+      "base": null,
+      "refs": {
+        "Conditions$StringEquals": null,
+        "Conditions$StringNotEquals": null,
+        "Conditions$StringLike": null,
+        "Conditions$StringNotLike": null
       }
     },
     "ConditionType": {
@@ -444,7 +460,14 @@
     "ConditionValue": {
       "base": null,
       "refs": {
-        "Condition$ConditionValue": "<p>The value in a key-value pair. For example, in <code>\"ec2:ResourceTag/Department\": \"accounting\"</code>, <code>\"accounting\"</code> is the value.</p>"
+        "Condition$ConditionValue": "<p>The value in a key-value pair. For example, in <code>\"ec2:ResourceTag/Department\": \"accounting\"</code>, <code>\"accounting\"</code> is the value.</p>",
+        "ConditionParameter$ConditionValue": null
+      }
+    },
+    "Conditions": {
+      "base": null,
+      "refs": {
+        "BackupSelection$Conditions": null
       }
     },
     "ConflictException": {
@@ -1351,7 +1374,8 @@
     "ResourceArns": {
       "base": null,
       "refs": {
-        "BackupSelection$Resources": "<p>An array of strings that contain Amazon Resource Names (ARNs) of resources to assign to a backup plan.</p>"
+        "BackupSelection$Resources": "<p>An array of strings that contain Amazon Resource Names (ARNs) of resources to assign to a backup plan.</p>",
+        "BackupSelection$NotResources": null
       }
     },
     "ResourceNotFoundException": {

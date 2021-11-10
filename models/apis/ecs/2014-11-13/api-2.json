@@ -1238,16 +1238,27 @@
         "attributes":{"shape":"Attributes"},
         "registeredAt":{"shape":"Timestamp"},
         "attachments":{"shape":"Attachments"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "healthStatus":{"shape":"ContainerInstanceHealthStatus"}
       }
     },
     "ContainerInstanceField":{
       "type":"string",
-      "enum":["TAGS"]
+      "enum":[
+        "TAGS",
+        "CONTAINER_INSTANCE_HEALTH"
+      ]
     },
     "ContainerInstanceFieldList":{
       "type":"list",
       "member":{"shape":"ContainerInstanceField"}
+    },
+    "ContainerInstanceHealthStatus":{
+      "type":"structure",
+      "members":{
+        "overallStatus":{"shape":"InstanceHealthCheckState"},
+        "details":{"shape":"InstanceHealthCheckResultList"}
+      }
     },
     "ContainerInstanceStatus":{
       "type":"string",
@@ -1998,6 +2009,32 @@
     "InferenceAccelerators":{
       "type":"list",
       "member":{"shape":"InferenceAccelerator"}
+    },
+    "InstanceHealthCheckResult":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"InstanceHealthCheckType"},
+        "status":{"shape":"InstanceHealthCheckState"},
+        "lastUpdated":{"shape":"Timestamp"},
+        "lastStatusChange":{"shape":"Timestamp"}
+      }
+    },
+    "InstanceHealthCheckResultList":{
+      "type":"list",
+      "member":{"shape":"InstanceHealthCheckResult"}
+    },
+    "InstanceHealthCheckState":{
+      "type":"string",
+      "enum":[
+        "OK",
+        "IMPAIRED",
+        "INSUFFICIENT_DATA",
+        "INITIALIZING"
+      ]
+    },
+    "InstanceHealthCheckType":{
+      "type":"string",
+      "enum":["CONTAINER_RUNTIME"]
     },
     "Integer":{"type":"integer"},
     "InvalidParameterException":{
