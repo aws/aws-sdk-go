@@ -1,3 +1,12 @@
+Release v1.42.2 (2021-11-10)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/ecs`: Updates service API and documentation
+  * This release adds support for container instance health.
+* `service/resiliencehub`: Adds new service
+
 Release v1.42.1 (2021-11-09)
 ===
 

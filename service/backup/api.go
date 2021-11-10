@@ -7218,6 +7218,98 @@ func (s *Condition) SetConditionValue(v string) *Condition {
 	return s
 }
 
+type ConditionParameter struct {
+	_ struct{} `type:"structure"`
+
+	ConditionKey *string `type:"string"`
+
+	ConditionValue *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConditionParameter) GoString() string {
+	return s.String()
+}
+
+// SetConditionKey sets the ConditionKey field's value.
+func (s *ConditionParameter) SetConditionKey(v string) *ConditionParameter {
+	s.ConditionKey = &v
+	return s
+}
+
+// SetConditionValue sets the ConditionValue field's value.
+func (s *ConditionParameter) SetConditionValue(v string) *ConditionParameter {
+	s.ConditionValue = &v
+	return s
+}
+
+type Conditions struct {
+	_ struct{} `type:"structure"`
+
+	StringEquals []*ConditionParameter `type:"list"`
+
+	StringLike []*ConditionParameter `type:"list"`
+
+	StringNotEquals []*ConditionParameter `type:"list"`
+
+	StringNotLike []*ConditionParameter `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Conditions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Conditions) GoString() string {
+	return s.String()
+}
+
+// SetStringEquals sets the StringEquals field's value.
+func (s *Conditions) SetStringEquals(v []*ConditionParameter) *Conditions {
+	s.StringEquals = v
+	return s
+}
+
+// SetStringLike sets the StringLike field's value.
+func (s *Conditions) SetStringLike(v []*ConditionParameter) *Conditions {
+	s.StringLike = v
+	return s
+}
+
+// SetStringNotEquals sets the StringNotEquals field's value.
+func (s *Conditions) SetStringNotEquals(v []*ConditionParameter) *Conditions {
+	s.StringNotEquals = v
+	return s
+}
+
+// SetStringNotLike sets the StringNotLike field's value.
+func (s *Conditions) SetStringNotLike(v []*ConditionParameter) *Conditions {
+	s.StringNotLike = v
+	return s
+}
+
 // Backup can't perform the action that you requested until it finishes performing
 // a previous action. Try again later.
 type ConflictException struct {
@@ -16631,6 +16723,8 @@ func (s *RuleInput) SetTargetBackupVaultName(v string) *RuleInput {
 type Selection struct {
 	_ struct{} `type:"structure"`
 
+	Conditions *Conditions `type:"structure"`
+
 	// The ARN of the IAM role that Backup uses to authenticate when backing up
 	// the target resource; for example, arn:aws:iam::123456789012:role/S3Access.
 	//
@@ -16642,6 +16736,8 @@ type Selection struct {
 	// "accounting". Assigns the backup plan to every resource with at least one
 	// matching tag.
 	ListOfTags []*Condition `type:"list"`
+
+	NotResources []*string `type:"list"`
 
 	// An array of strings that contain Amazon Resource Names (ARNs) of resources
 	// to assign to a backup plan.
@@ -16697,6 +16793,12 @@ func (s *Selection) Validate() error {
 	return nil
 }
 
+// SetConditions sets the Conditions field's value.
+func (s *Selection) SetConditions(v *Conditions) *Selection {
+	s.Conditions = v
+	return s
+}
+
 // SetIamRoleArn sets the IamRoleArn field's value.
 func (s *Selection) SetIamRoleArn(v string) *Selection {
 	s.IamRoleArn = &v
@@ -16706,6 +16808,12 @@ func (s *Selection) SetIamRoleArn(v string) *Selection {
 // SetListOfTags sets the ListOfTags field's value.
 func (s *Selection) SetListOfTags(v []*Condition) *Selection {
 	s.ListOfTags = v
+	return s
+}
+
+// SetNotResources sets the NotResources field's value.
+func (s *Selection) SetNotResources(v []*string) *Selection {
+	s.NotResources = v
 	return s
 }
 
