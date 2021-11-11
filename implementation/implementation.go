@@ -1912,7 +1912,7 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 			}, fmt.Errorf("failed to get service regions to test connection with")
 		}
 
-		region := serviceRegions[0]
+		region := "us-east-1"
 		awsActionParameters := map[string]interface{}{
 			awsRegionKey: region,
 		}
