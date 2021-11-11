@@ -1,3 +1,13 @@
+Release v1.42.3 (2021-11-11)
+===
+
+### Service Client Updates
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Updated Help section for "dynamodb update-contributor-insights" API
+* `service/ec2`: Updates service API and documentation
+  * This release provides an additional route target for the VPC route table.
+* `service/translate`: Updates service API and documentation
+
 Release v1.42.2 (2021-11-10)
 ===
 

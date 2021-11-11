@@ -346,6 +346,13 @@
       },
       "exception":true
     },
+    "Directionality":{
+      "type":"string",
+      "enum":[
+        "UNI",
+        "MULTI"
+      ]
+    },
     "EncryptionKey":{
       "type":"structure",
       "required":[
@@ -385,10 +392,7 @@
     },
     "GetTerminologyRequest":{
       "type":"structure",
-      "required":[
-        "Name",
-        "TerminologyDataFormat"
-      ],
+      "required":["Name"],
       "members":{
         "Name":{"shape":"ResourceName"},
         "TerminologyDataFormat":{"shape":"TerminologyDataFormat"}
@@ -398,7 +402,8 @@
       "type":"structure",
       "members":{
         "TerminologyProperties":{"shape":"TerminologyProperties"},
-        "TerminologyDataLocation":{"shape":"TerminologyDataLocation"}
+        "TerminologyDataLocation":{"shape":"TerminologyDataLocation"},
+        "AuxiliaryDataLocation":{"shape":"TerminologyDataLocation"}
       }
     },
     "IamRoleArn":{
@@ -425,7 +430,8 @@
     "ImportTerminologyResponse":{
       "type":"structure",
       "members":{
-        "TerminologyProperties":{"shape":"TerminologyProperties"}
+        "TerminologyProperties":{"shape":"TerminologyProperties"},
+        "AuxiliaryDataLocation":{"shape":"TerminologyDataLocation"}
       }
     },
     "InputDataConfig":{
@@ -765,14 +771,16 @@
       ],
       "members":{
         "File":{"shape":"TerminologyFile"},
-        "Format":{"shape":"TerminologyDataFormat"}
+        "Format":{"shape":"TerminologyDataFormat"},
+        "Directionality":{"shape":"Directionality"}
       }
     },
     "TerminologyDataFormat":{
       "type":"string",
       "enum":[
         "CSV",
-        "TMX"
+        "TMX",
+        "TSV"
       ]
     },
     "TerminologyDataLocation":{
@@ -803,7 +811,11 @@
         "SizeBytes":{"shape":"Integer"},
         "TermCount":{"shape":"Integer"},
         "CreatedAt":{"shape":"Timestamp"},
-        "LastUpdatedAt":{"shape":"Timestamp"}
+        "LastUpdatedAt":{"shape":"Timestamp"},
+        "Directionality":{"shape":"Directionality"},
+        "Message":{"shape":"UnboundedLengthString"},
+        "SkippedTermCount":{"shape":"Integer"},
+        "Format":{"shape":"TerminologyDataFormat"}
       }
     },
     "TerminologyPropertiesList":{

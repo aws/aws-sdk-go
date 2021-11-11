@@ -2053,7 +2053,7 @@
         "PrivateIpAddressSpecification$Primary": "<p>Indicates whether the private IPv4 address is the primary private IPv4 address. Only one IPv4 address can be designated as primary.</p>",
         "ProvisionByoipCidrRequest$PubliclyAdvertisable": "<p>(IPv6 only) Indicate whether the address range will be publicly advertised to the internet.</p> <p>Default: true</p>",
         "ProvisionByoipCidrRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
-        "ProvisionByoipCidrRequest$MultiRegion": "<para>Reserved.</para>",
+        "ProvisionByoipCidrRequest$MultiRegion": "<p>Reserved.</p>",
         "PurchaseReservedInstancesOfferingRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "PurchaseScheduledInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RebootInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -3125,6 +3125,14 @@
       "base": null,
       "refs": {
         "VCpuInfo$ValidCores": "<p>The valid number of cores that can be configured for the instance type.</p>"
+      }
+    },
+    "CoreNetworkArn": {
+      "base": null,
+      "refs": {
+        "CreateRouteRequest$CoreNetworkArn": null,
+        "ReplaceRouteRequest$CoreNetworkArn": null,
+        "Route$CoreNetworkArn": null
       }
     },
     "CpuManufacturer": {

@@ -7931,6 +7931,7 @@
         "locationName":"item"
       }
     },
+    "CoreNetworkArn":{"type":"string"},
     "CpuManufacturer":{
       "type":"string",
       "enum":[
@@ -9179,7 +9180,8 @@
         "VpcPeeringConnectionId":{
           "shape":"VpcPeeringConnectionId",
           "locationName":"vpcPeeringConnectionId"
-        }
+        },
+        "CoreNetworkArn":{"shape":"CoreNetworkArn"}
       }
     },
     "CreateRouteResult":{
@@ -28627,7 +28629,8 @@
         "VpcPeeringConnectionId":{
           "shape":"VpcPeeringConnectionId",
           "locationName":"vpcPeeringConnectionId"
-        }
+        },
+        "CoreNetworkArn":{"shape":"CoreNetworkArn"}
       }
     },
     "ReplaceRouteTableAssociationRequest":{
@@ -30078,6 +30081,10 @@
         "VpcPeeringConnectionId":{
           "shape":"String",
           "locationName":"vpcPeeringConnectionId"
+        },
+        "CoreNetworkArn":{
+          "shape":"CoreNetworkArn",
+          "locationName":"coreNetworkArn"
         }
       }
     },

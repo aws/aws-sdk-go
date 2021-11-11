@@ -2372,11 +2372,15 @@ type GetTerminologyInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The data format of the custom terminology being retrieved, either CSV or
-	// TMX.
+	// The data format of the custom terminology being retrieved.
 	//
-	// TerminologyDataFormat is a required field
-	TerminologyDataFormat *string `type:"string" required:"true" enum:"TerminologyDataFormat"`
+	// If you don't specify this parameter, Amazon Translate returns a file that
+	// has the same format as the file that was imported to create the terminology.
+	//
+	// If you specify this parameter when you retrieve a multi-directional terminology
+	// resource, you must specify the same format as that of the input file that
+	// was imported to create it. Otherwise, Amazon Translate throws an error.
+	TerminologyDataFormat *string `type:"string" enum:"TerminologyDataFormat"`
 }
 
 // String returns the string representation.
@@ -2406,9 +2410,6 @@ func (s *GetTerminologyInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
-	if s.TerminologyDataFormat == nil {
-		invalidParams.Add(request.NewErrParamRequired("TerminologyDataFormat"))
-	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2430,6 +2431,12 @@ func (s *GetTerminologyInput) SetTerminologyDataFormat(v string) *GetTerminology
 
 type GetTerminologyOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon S3 location of a file that provides any errors or warnings that
+	// were produced by your input file. This file was created when Amazon Translate
+	// attempted to create a terminology resource. The location is returned as a
+	// presigned URL to that has a 30 minute expiration.
+	AuxiliaryDataLocation *TerminologyDataLocation `type:"structure"`
 
 	// The data location of the custom terminology being retrieved. The custom terminology
 	// file is returned in a presigned url that has a 30 minute expiration.
@@ -2455,6 +2462,12 @@ func (s GetTerminologyOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetTerminologyOutput) GoString() string {
 	return s.String()
+}
+
+// SetAuxiliaryDataLocation sets the AuxiliaryDataLocation field's value.
+func (s *GetTerminologyOutput) SetAuxiliaryDataLocation(v *TerminologyDataLocation) *GetTerminologyOutput {
+	s.AuxiliaryDataLocation = v
+	return s
 }
 
 // SetTerminologyDataLocation sets the TerminologyDataLocation field's value.
@@ -2579,6 +2592,12 @@ func (s *ImportTerminologyInput) SetTerminologyData(v *TerminologyData) *ImportT
 type ImportTerminologyOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon S3 location of a file that provides any errors or warnings that
+	// were produced by your input file. This file was created when Amazon Translate
+	// attempted to create a terminology resource. The location is returned as a
+	// presigned URL to that has a 30 minute expiration.
+	AuxiliaryDataLocation *TerminologyDataLocation `type:"structure"`
+
 	// The properties of the custom terminology being imported.
 	TerminologyProperties *TerminologyProperties `type:"structure"`
 }
@@ -2599,6 +2618,12 @@ func (s ImportTerminologyOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ImportTerminologyOutput) GoString() string {
 	return s.String()
+}
+
+// SetAuxiliaryDataLocation sets the AuxiliaryDataLocation field's value.
+func (s *ImportTerminologyOutput) SetAuxiliaryDataLocation(v *TerminologyDataLocation) *ImportTerminologyOutput {
+	s.AuxiliaryDataLocation = v
+	return s
 }
 
 // SetTerminologyProperties sets the TerminologyProperties field's value.
@@ -4258,6 +4283,27 @@ func (s *Term) SetTargetText(v string) *Term {
 type TerminologyData struct {
 	_ struct{} `type:"structure"`
 
+	// The directionality of your terminology resource indicates whether it has
+	// one source language (uni-directional) or multiple (multi-directional).
+	//
+	// UNI
+	//
+	// The terminology resource has one source language (for example, the first
+	// column in a CSV file), and all of its other languages are target languages.
+	//
+	// MULTI
+	//
+	// Any language in the terminology resource can be the source language or a
+	// target language. A single multi-directional terminology resource can be used
+	// for jobs that translate different language pairs. For example, if the terminology
+	// contains terms in English and Spanish, then it can be used for jobs that
+	// translate English to Spanish and jobs that translate Spanish to English.
+	//
+	// When you create a custom terminology resource without specifying the directionality,
+	// it behaves as uni-directional terminology, although this parameter will have
+	// a null value.
+	Directionality *string `type:"string" enum:"Directionality"`
+
 	// The file containing the custom terminology data. Your version of the AWS
 	// SDK performs a Base64-encoding on this field before sending a request to
 	// the AWS service. Users of the SDK should not perform Base64-encoding themselves.
@@ -4271,7 +4317,7 @@ type TerminologyData struct {
 	// File is a required field
 	File []byte `type:"blob" required:"true" sensitive:"true"`
 
-	// The data format of the custom terminology. Either CSV or TMX.
+	// The data format of the custom terminology.
 	//
 	// Format is a required field
 	Format *string `type:"string" required:"true" enum:"TerminologyDataFormat"`
@@ -4309,6 +4355,12 @@ func (s *TerminologyData) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDirectionality sets the Directionality field's value.
+func (s *TerminologyData) SetDirectionality(v string) *TerminologyData {
+	s.Directionality = &v
+	return s
 }
 
 // SetFile sets the File field's value.
@@ -4381,11 +4433,30 @@ type TerminologyProperties struct {
 	// The description of the custom terminology properties.
 	Description *string `type:"string"`
 
+	// The directionality of your terminology resource indicates whether it has
+	// one source language (uni-directional) or multiple (multi-directional).
+	//
+	// UNI
+	//
+	// The terminology resource has one source language (the first column in a CSV
+	// file), and all of its other languages are target languages.
+	//
+	// MULTI
+	//
+	// Any language in the terminology resource can be the source language.
+	Directionality *string `type:"string" enum:"Directionality"`
+
 	// The encryption key for the custom terminology.
 	EncryptionKey *EncryptionKey `type:"structure"`
 
+	// The format of the custom terminology input file.
+	Format *string `type:"string" enum:"TerminologyDataFormat"`
+
 	// The time at which the custom terminology was last update, based on the timestamp.
 	LastUpdatedAt *time.Time `type:"timestamp"`
+
+	// Additional information from Amazon Translate about the terminology resource.
+	Message *string `type:"string"`
 
 	// The name of the custom terminology.
 	Name *string `min:"1" type:"string"`
@@ -4393,12 +4464,16 @@ type TerminologyProperties struct {
 	// The size of the file used when importing a custom terminology.
 	SizeBytes *int64 `type:"integer"`
 
+	// The number of terms in the input file that Amazon Translate skipped when
+	// you created or updated the terminology resource.
+	SkippedTermCount *int64 `type:"integer"`
+
 	// The language code for the source text of the translation request for which
 	// the custom terminology is being used.
 	SourceLanguageCode *string `min:"2" type:"string"`
 
 	// The language codes for the target languages available with the custom terminology
-	// file. All possible target languages are returned in array.
+	// resource. All possible target languages are returned in array.
 	TargetLanguageCodes []*string `type:"list"`
 
 	// The number of terms included in the custom terminology.
@@ -4441,15 +4516,33 @@ func (s *TerminologyProperties) SetDescription(v string) *TerminologyProperties 
 	return s
 }
 
+// SetDirectionality sets the Directionality field's value.
+func (s *TerminologyProperties) SetDirectionality(v string) *TerminologyProperties {
+	s.Directionality = &v
+	return s
+}
+
 // SetEncryptionKey sets the EncryptionKey field's value.
 func (s *TerminologyProperties) SetEncryptionKey(v *EncryptionKey) *TerminologyProperties {
 	s.EncryptionKey = v
 	return s
 }
 
+// SetFormat sets the Format field's value.
+func (s *TerminologyProperties) SetFormat(v string) *TerminologyProperties {
+	s.Format = &v
+	return s
+}
+
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *TerminologyProperties) SetLastUpdatedAt(v time.Time) *TerminologyProperties {
 	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *TerminologyProperties) SetMessage(v string) *TerminologyProperties {
+	s.Message = &v
 	return s
 }
 
@@ -4462,6 +4555,12 @@ func (s *TerminologyProperties) SetName(v string) *TerminologyProperties {
 // SetSizeBytes sets the SizeBytes field's value.
 func (s *TerminologyProperties) SetSizeBytes(v int64) *TerminologyProperties {
 	s.SizeBytes = &v
+	return s
+}
+
+// SetSkippedTermCount sets the SkippedTermCount field's value.
+func (s *TerminologyProperties) SetSkippedTermCount(v int64) *TerminologyProperties {
+	s.SkippedTermCount = &v
 	return s
 }
 
@@ -5238,6 +5337,22 @@ func (s *UpdateParallelDataOutput) SetStatus(v string) *UpdateParallelDataOutput
 }
 
 const (
+	// DirectionalityUni is a Directionality enum value
+	DirectionalityUni = "UNI"
+
+	// DirectionalityMulti is a Directionality enum value
+	DirectionalityMulti = "MULTI"
+)
+
+// Directionality_Values returns all elements of the Directionality enum
+func Directionality_Values() []string {
+	return []string{
+		DirectionalityUni,
+		DirectionalityMulti,
+	}
+}
+
+const (
 	// EncryptionKeyTypeKms is a EncryptionKeyType enum value
 	EncryptionKeyTypeKms = "KMS"
 )
@@ -5351,6 +5466,9 @@ const (
 
 	// TerminologyDataFormatTmx is a TerminologyDataFormat enum value
 	TerminologyDataFormatTmx = "TMX"
+
+	// TerminologyDataFormatTsv is a TerminologyDataFormat enum value
+	TerminologyDataFormatTsv = "TSV"
 )
 
 // TerminologyDataFormat_Values returns all elements of the TerminologyDataFormat enum
@@ -5358,5 +5476,6 @@ func TerminologyDataFormat_Values() []string {
 	return []string{
 		TerminologyDataFormatCsv,
 		TerminologyDataFormatTmx,
+		TerminologyDataFormatTsv,
 	}
 }
