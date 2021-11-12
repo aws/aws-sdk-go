@@ -4473,7 +4473,8 @@
       "type": "string",
       "enum": [
         "FRAMES",
-        "SECONDS"
+        "SECONDS",
+        "AUTO"
       ]
     },
     "H264InterlaceMode": {
@@ -4846,7 +4847,8 @@
       "type": "string",
       "enum": [
         "FRAMES",
-        "SECONDS"
+        "SECONDS",
+        "AUTO"
       ]
     },
     "H265InterlaceMode": {

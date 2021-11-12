@@ -67,10 +67,10 @@ func (c *DevOpsGuru) AddNotificationChannelRequest(input *AddNotificationChannel
 // SNS in your account. For more information, see Permissions for cross account
 // Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 //
-// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
-// Service customer-managed key (CMK), then you must add permissions to the
-// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
-// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
+// Key Management Service customer-managed key (CMK), then you must add permissions
+// to the CMK. For more information, see Permissions for Amazon Web Services
+// KMS–encrypted Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -173,8 +173,9 @@ func (c *DevOpsGuru) DescribeAccountHealthRequest(input *DescribeAccountHealthIn
 // DescribeAccountHealth API operation for Amazon DevOps Guru.
 //
 // Returns the number of open reactive insights, the number of open proactive
-// insights, and the number of metrics analyzed in your AWS account. Use these
-// numbers to gauge the health of operations in your AWS account.
+// insights, and the number of metrics analyzed in your Amazon Web Services
+// account. Use these numbers to gauge the health of operations in your Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -458,8 +459,8 @@ func (c *DevOpsGuru) DescribeFeedbackRequest(input *DescribeFeedbackInput) (req 
 
 // DescribeFeedback API operation for Amazon DevOps Guru.
 //
-// Returns the most recent feedback submitted in the current AWS account and
-// Region.
+// Returns the most recent feedback submitted in the current Amazon Web Services
+// account and Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -607,6 +608,347 @@ func (c *DevOpsGuru) DescribeInsightWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+const opDescribeOrganizationHealth = "DescribeOrganizationHealth"
+
+// DescribeOrganizationHealthRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOrganizationHealth operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeOrganizationHealth for more information on using the DescribeOrganizationHealth
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeOrganizationHealthRequest method.
+//    req, resp := client.DescribeOrganizationHealthRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationHealth
+func (c *DevOpsGuru) DescribeOrganizationHealthRequest(input *DescribeOrganizationHealthInput) (req *request.Request, output *DescribeOrganizationHealthOutput) {
+	op := &request.Operation{
+		Name:       opDescribeOrganizationHealth,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/health",
+	}
+
+	if input == nil {
+		input = &DescribeOrganizationHealthInput{}
+	}
+
+	output = &DescribeOrganizationHealthOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeOrganizationHealth API operation for Amazon DevOps Guru.
+//
+// Returns active insights, predictive insights, and resource hours analyzed
+// in last hour.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DescribeOrganizationHealth for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationHealth
+func (c *DevOpsGuru) DescribeOrganizationHealth(input *DescribeOrganizationHealthInput) (*DescribeOrganizationHealthOutput, error) {
+	req, out := c.DescribeOrganizationHealthRequest(input)
+	return out, req.Send()
+}
+
+// DescribeOrganizationHealthWithContext is the same as DescribeOrganizationHealth with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeOrganizationHealth for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeOrganizationHealthWithContext(ctx aws.Context, input *DescribeOrganizationHealthInput, opts ...request.Option) (*DescribeOrganizationHealthOutput, error) {
+	req, out := c.DescribeOrganizationHealthRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeOrganizationOverview = "DescribeOrganizationOverview"
+
+// DescribeOrganizationOverviewRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOrganizationOverview operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeOrganizationOverview for more information on using the DescribeOrganizationOverview
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeOrganizationOverviewRequest method.
+//    req, resp := client.DescribeOrganizationOverviewRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationOverview
+func (c *DevOpsGuru) DescribeOrganizationOverviewRequest(input *DescribeOrganizationOverviewInput) (req *request.Request, output *DescribeOrganizationOverviewOutput) {
+	op := &request.Operation{
+		Name:       opDescribeOrganizationOverview,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/overview",
+	}
+
+	if input == nil {
+		input = &DescribeOrganizationOverviewInput{}
+	}
+
+	output = &DescribeOrganizationOverviewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeOrganizationOverview API operation for Amazon DevOps Guru.
+//
+// Returns an overview of your organization's history based on the specified
+// time range. The overview includes the total reactive and proactive insights.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DescribeOrganizationOverview for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationOverview
+func (c *DevOpsGuru) DescribeOrganizationOverview(input *DescribeOrganizationOverviewInput) (*DescribeOrganizationOverviewOutput, error) {
+	req, out := c.DescribeOrganizationOverviewRequest(input)
+	return out, req.Send()
+}
+
+// DescribeOrganizationOverviewWithContext is the same as DescribeOrganizationOverview with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeOrganizationOverview for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeOrganizationOverviewWithContext(ctx aws.Context, input *DescribeOrganizationOverviewInput, opts ...request.Option) (*DescribeOrganizationOverviewOutput, error) {
+	req, out := c.DescribeOrganizationOverviewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeOrganizationResourceCollectionHealth = "DescribeOrganizationResourceCollectionHealth"
+
+// DescribeOrganizationResourceCollectionHealthRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOrganizationResourceCollectionHealth operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeOrganizationResourceCollectionHealth for more information on using the DescribeOrganizationResourceCollectionHealth
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeOrganizationResourceCollectionHealthRequest method.
+//    req, resp := client.DescribeOrganizationResourceCollectionHealthRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationResourceCollectionHealth
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealthRequest(input *DescribeOrganizationResourceCollectionHealthInput) (req *request.Request, output *DescribeOrganizationResourceCollectionHealthOutput) {
+	op := &request.Operation{
+		Name:       opDescribeOrganizationResourceCollectionHealth,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/health/resource-collection/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeOrganizationResourceCollectionHealthInput{}
+	}
+
+	output = &DescribeOrganizationResourceCollectionHealthOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeOrganizationResourceCollectionHealth API operation for Amazon DevOps Guru.
+//
+// Provides an overview of your system's health. If additional member accounts
+// are part of your organization, you can filter those accounts using the AccountIds
+// field.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation DescribeOrganizationResourceCollectionHealth for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/DescribeOrganizationResourceCollectionHealth
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealth(input *DescribeOrganizationResourceCollectionHealthInput) (*DescribeOrganizationResourceCollectionHealthOutput, error) {
+	req, out := c.DescribeOrganizationResourceCollectionHealthRequest(input)
+	return out, req.Send()
+}
+
+// DescribeOrganizationResourceCollectionHealthWithContext is the same as DescribeOrganizationResourceCollectionHealth with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeOrganizationResourceCollectionHealth for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealthWithContext(ctx aws.Context, input *DescribeOrganizationResourceCollectionHealthInput, opts ...request.Option) (*DescribeOrganizationResourceCollectionHealthOutput, error) {
+	req, out := c.DescribeOrganizationResourceCollectionHealthRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeOrganizationResourceCollectionHealthPages iterates over the pages of a DescribeOrganizationResourceCollectionHealth operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeOrganizationResourceCollectionHealth method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeOrganizationResourceCollectionHealth operation.
+//    pageNum := 0
+//    err := client.DescribeOrganizationResourceCollectionHealthPages(params,
+//        func(page *devopsguru.DescribeOrganizationResourceCollectionHealthOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealthPages(input *DescribeOrganizationResourceCollectionHealthInput, fn func(*DescribeOrganizationResourceCollectionHealthOutput, bool) bool) error {
+	return c.DescribeOrganizationResourceCollectionHealthPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeOrganizationResourceCollectionHealthPagesWithContext same as DescribeOrganizationResourceCollectionHealthPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealthPagesWithContext(ctx aws.Context, input *DescribeOrganizationResourceCollectionHealthInput, fn func(*DescribeOrganizationResourceCollectionHealthOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeOrganizationResourceCollectionHealthInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeOrganizationResourceCollectionHealthRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeOrganizationResourceCollectionHealthOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeResourceCollectionHealth = "DescribeResourceCollectionHealth"
 
 // DescribeResourceCollectionHealthRequest generates a "aws/request.Request" representing the
@@ -659,10 +1001,11 @@ func (c *DevOpsGuru) DescribeResourceCollectionHealthRequest(input *DescribeReso
 //
 // Returns the number of open proactive insights, open reactive insights, and
 // the Mean Time to Recover (MTTR) for all closed insights in resource collections
-// in your account. You specify the type of AWS resources collection. The one
-// type of AWS resource collection supported is AWS CloudFormation stacks. DevOps
-// Guru can be configured to analyze only the AWS resources that are defined
-// in the stacks. You can specify up to 500 AWS CloudFormation stacks.
+// in your account. You specify the type of Amazon Web Services resources collection.
+// The one type of Amazon Web Services resource collection supported is Amazon
+// Web Services CloudFormation stacks. DevOps Guru can be configured to analyze
+// only the Amazon Web Services resources that are defined in the stacks. You
+// can specify up to 500 Amazon Web Services CloudFormation stacks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -808,8 +1151,9 @@ func (c *DevOpsGuru) DescribeServiceIntegrationRequest(input *DescribeServiceInt
 // DescribeServiceIntegration API operation for Amazon DevOps Guru.
 //
 // Returns the integration status of services that are integrated with DevOps
-// Guru. The one service that can be integrated with DevOps Guru is AWS Systems
-// Manager, which can be used to create an OpsItem for each generated insight.
+// Guru. The one service that can be integrated with DevOps Guru is Amazon Web
+// Services Systems Manager, which can be used to create an OpsItem for each
+// generated insight.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -908,9 +1252,9 @@ func (c *DevOpsGuru) GetCostEstimationRequest(input *GetCostEstimationInput) (re
 
 // GetCostEstimation API operation for Amazon DevOps Guru.
 //
-// Returns an estimate of the monthly cost for DevOps Guru to analyze your AWS
-// resources. For more information, see Estimate your Amazon DevOps Guru costs
-// (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+// Returns an estimate of the monthly cost for DevOps Guru to analyze your Amazon
+// Web Services resources. For more information, see Estimate your Amazon DevOps
+// Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
 // and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1065,10 +1409,12 @@ func (c *DevOpsGuru) GetResourceCollectionRequest(input *GetResourceCollectionIn
 
 // GetResourceCollection API operation for Amazon DevOps Guru.
 //
-// Returns lists AWS resources that are of the specified resource collection
-// type. The one type of AWS resource collection supported is AWS CloudFormation
-// stacks. DevOps Guru can be configured to analyze only the AWS resources that
-// are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks.
+// Returns lists Amazon Web Services resources that are of the specified resource
+// collection type. The one type of Amazon Web Services resource collection
+// supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be
+// configured to analyze only the Amazon Web Services resources that are defined
+// in the stacks. You can specify up to 500 Amazon Web Services CloudFormation
+// stacks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1532,8 +1878,9 @@ func (c *DevOpsGuru) ListInsightsRequest(input *ListInsightsInput) (req *request
 
 // ListInsights API operation for Amazon DevOps Guru.
 //
-// Returns a list of insights in your AWS account. You can specify which insights
-// are returned by their start time and status (ONGOING, CLOSED, or ANY).
+// Returns a list of insights in your Amazon Web Services account. You can specify
+// which insights are returned by their start time and status (ONGOING, CLOSED,
+// or ANY).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1782,6 +2129,157 @@ func (c *DevOpsGuru) ListNotificationChannelsPagesWithContext(ctx aws.Context, i
 
 	for p.Next() {
 		if !fn(p.Page().(*ListNotificationChannelsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListOrganizationInsights = "ListOrganizationInsights"
+
+// ListOrganizationInsightsRequest generates a "aws/request.Request" representing the
+// client's request for the ListOrganizationInsights operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOrganizationInsights for more information on using the ListOrganizationInsights
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListOrganizationInsightsRequest method.
+//    req, resp := client.ListOrganizationInsightsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListOrganizationInsights
+func (c *DevOpsGuru) ListOrganizationInsightsRequest(input *ListOrganizationInsightsInput) (req *request.Request, output *ListOrganizationInsightsOutput) {
+	op := &request.Operation{
+		Name:       opListOrganizationInsights,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/insights",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOrganizationInsightsInput{}
+	}
+
+	output = &ListOrganizationInsightsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOrganizationInsights API operation for Amazon DevOps Guru.
+//
+// Returns a list of insights associated with the account or OU Id.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation ListOrganizationInsights for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/ListOrganizationInsights
+func (c *DevOpsGuru) ListOrganizationInsights(input *ListOrganizationInsightsInput) (*ListOrganizationInsightsOutput, error) {
+	req, out := c.ListOrganizationInsightsRequest(input)
+	return out, req.Send()
+}
+
+// ListOrganizationInsightsWithContext is the same as ListOrganizationInsights with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOrganizationInsights for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListOrganizationInsightsWithContext(ctx aws.Context, input *ListOrganizationInsightsInput, opts ...request.Option) (*ListOrganizationInsightsOutput, error) {
+	req, out := c.ListOrganizationInsightsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOrganizationInsightsPages iterates over the pages of a ListOrganizationInsights operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOrganizationInsights method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListOrganizationInsights operation.
+//    pageNum := 0
+//    err := client.ListOrganizationInsightsPages(params,
+//        func(page *devopsguru.ListOrganizationInsightsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DevOpsGuru) ListOrganizationInsightsPages(input *ListOrganizationInsightsInput, fn func(*ListOrganizationInsightsOutput, bool) bool) error {
+	return c.ListOrganizationInsightsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOrganizationInsightsPagesWithContext same as ListOrganizationInsightsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) ListOrganizationInsightsPagesWithContext(ctx aws.Context, input *ListOrganizationInsightsInput, fn func(*ListOrganizationInsightsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOrganizationInsightsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOrganizationInsightsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOrganizationInsightsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2196,10 +2694,10 @@ func (c *DevOpsGuru) SearchInsightsRequest(input *SearchInsightsInput) (req *req
 
 // SearchInsights API operation for Amazon DevOps Guru.
 //
-// Returns a list of insights in your AWS account. You can specify which insights
-// are returned by their start time, one or more statuses (ONGOING, CLOSED,
-// and CLOSED), one or more severities (LOW, MEDIUM, and HIGH), and type (REACTIVE
-// or PROACTIVE).
+// Returns a list of insights in your Amazon Web Services account. You can specify
+// which insights are returned by their start time, one or more statuses (ONGOING,
+// CLOSED, and CLOSED), one or more severities (LOW, MEDIUM, and HIGH), and
+// type (REACTIVE or PROACTIVE).
 //
 // Use the Filters parameter to specify status and severity search parameters.
 // Use the Type parameter to specify REACTIVE or PROACTIVE in your search.
@@ -2303,6 +2801,163 @@ func (c *DevOpsGuru) SearchInsightsPagesWithContext(ctx aws.Context, input *Sear
 	return p.Err()
 }
 
+const opSearchOrganizationInsights = "SearchOrganizationInsights"
+
+// SearchOrganizationInsightsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchOrganizationInsights operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchOrganizationInsights for more information on using the SearchOrganizationInsights
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchOrganizationInsightsRequest method.
+//    req, resp := client.SearchOrganizationInsightsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/SearchOrganizationInsights
+func (c *DevOpsGuru) SearchOrganizationInsightsRequest(input *SearchOrganizationInsightsInput) (req *request.Request, output *SearchOrganizationInsightsOutput) {
+	op := &request.Operation{
+		Name:       opSearchOrganizationInsights,
+		HTTPMethod: "POST",
+		HTTPPath:   "/organization/insights/search",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchOrganizationInsightsInput{}
+	}
+
+	output = &SearchOrganizationInsightsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchOrganizationInsights API operation for Amazon DevOps Guru.
+//
+// Returns a list of insights in your organization. You can specify which insights
+// are returned by their start time, one or more statuses (ONGOING, CLOSED,
+// and CLOSED), one or more severities (LOW, MEDIUM, and HIGH), and type (REACTIVE
+// or PROACTIVE).
+//
+// Use the Filters parameter to specify status and severity search parameters.
+// Use the Type parameter to specify REACTIVE or PROACTIVE in your search.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation SearchOrganizationInsights for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/SearchOrganizationInsights
+func (c *DevOpsGuru) SearchOrganizationInsights(input *SearchOrganizationInsightsInput) (*SearchOrganizationInsightsOutput, error) {
+	req, out := c.SearchOrganizationInsightsRequest(input)
+	return out, req.Send()
+}
+
+// SearchOrganizationInsightsWithContext is the same as SearchOrganizationInsights with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchOrganizationInsights for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) SearchOrganizationInsightsWithContext(ctx aws.Context, input *SearchOrganizationInsightsInput, opts ...request.Option) (*SearchOrganizationInsightsOutput, error) {
+	req, out := c.SearchOrganizationInsightsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchOrganizationInsightsPages iterates over the pages of a SearchOrganizationInsights operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchOrganizationInsights method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchOrganizationInsights operation.
+//    pageNum := 0
+//    err := client.SearchOrganizationInsightsPages(params,
+//        func(page *devopsguru.SearchOrganizationInsightsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DevOpsGuru) SearchOrganizationInsightsPages(input *SearchOrganizationInsightsInput, fn func(*SearchOrganizationInsightsOutput, bool) bool) error {
+	return c.SearchOrganizationInsightsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchOrganizationInsightsPagesWithContext same as SearchOrganizationInsightsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) SearchOrganizationInsightsPagesWithContext(ctx aws.Context, input *SearchOrganizationInsightsInput, fn func(*SearchOrganizationInsightsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchOrganizationInsightsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchOrganizationInsightsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchOrganizationInsightsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opStartCostEstimation = "StartCostEstimation"
 
 // StartCostEstimationRequest generates a "aws/request.Request" representing the
@@ -2348,8 +3003,8 @@ func (c *DevOpsGuru) StartCostEstimationRequest(input *StartCostEstimationInput)
 
 // StartCostEstimation API operation for Amazon DevOps Guru.
 //
-// Starts the creation of an estimate of the monthly cost to analyze your AWS
-// resources.
+// Starts the creation of an estimate of the monthly cost to analyze your Amazon
+// Web Services resources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2450,10 +3105,11 @@ func (c *DevOpsGuru) UpdateResourceCollectionRequest(input *UpdateResourceCollec
 // UpdateResourceCollection API operation for Amazon DevOps Guru.
 //
 // Updates the collection of resources that DevOps Guru analyzes. The one type
-// of AWS resource collection supported is AWS CloudFormation stacks. DevOps
-// Guru can be configured to analyze only the AWS resources that are defined
-// in the stacks. You can specify up to 500 AWS CloudFormation stacks. This
-// method also creates the IAM role required for you to use DevOps Guru.
+// of Amazon Web Services resource collection supported is Amazon Web Services
+// CloudFormation stacks. DevOps Guru can be configured to analyze only the
+// Amazon Web Services resources that are defined in the stacks. You can specify
+// up to 500 Amazon Web Services CloudFormation stacks. This method also creates
+// the IAM role required for you to use DevOps Guru.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2551,9 +3207,9 @@ func (c *DevOpsGuru) UpdateServiceIntegrationRequest(input *UpdateServiceIntegra
 // UpdateServiceIntegration API operation for Amazon DevOps Guru.
 //
 // Enables or disables integration with a service that can be integrated with
-// DevOps Guru. The one service that can be integrated with DevOps Guru is AWS
-// Systems Manager, which can be used to create an OpsItem for each generated
-// insight.
+// DevOps Guru. The one service that can be integrated with DevOps Guru is Amazon
+// Web Services Systems Manager, which can be used to create an OpsItem for
+// each generated insight.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2671,6 +3327,96 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Returns the number of open reactive insights, the number of open proactive
+// insights, and the number of metrics analyzed in your Amazon Web Services
+// account. Use these numbers to gauge the health of operations in your Amazon
+// Web Services account.
+type AccountHealth struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
+	// Information about the health of the Amazon Web Services resources in your
+	// account, including the number of open proactive, open reactive insights,
+	// and the Mean Time to Recover (MTTR) of closed insights.
+	Insight *AccountInsightHealth `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountHealth) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AccountHealth) SetAccountId(v string) *AccountHealth {
+	s.AccountId = &v
+	return s
+}
+
+// SetInsight sets the Insight field's value.
+func (s *AccountHealth) SetInsight(v *AccountInsightHealth) *AccountHealth {
+	s.Insight = v
+	return s
+}
+
+// Information about the number of open reactive and proactive insights that
+// can be used to gauge the health of your system.
+type AccountInsightHealth struct {
+	_ struct{} `type:"structure"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	OpenProactiveInsights *int64 `type:"integer"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	OpenReactiveInsights *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountInsightHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AccountInsightHealth) GoString() string {
+	return s.String()
+}
+
+// SetOpenProactiveInsights sets the OpenProactiveInsights field's value.
+func (s *AccountInsightHealth) SetOpenProactiveInsights(v int64) *AccountInsightHealth {
+	s.OpenProactiveInsights = &v
+	return s
+}
+
+// SetOpenReactiveInsights sets the OpenReactiveInsights field's value.
+func (s *AccountInsightHealth) SetOpenReactiveInsights(v int64) *AccountInsightHealth {
+	s.OpenReactiveInsights = &v
+	return s
 }
 
 type AddNotificationChannelInput struct {
@@ -2883,10 +3629,10 @@ func (s *AnomalyTimeRange) SetStartTime(v time.Time) *AnomalyTimeRange {
 	return s
 }
 
-// Information about AWS CloudFormation stacks. You can use up to 500 stacks
-// to specify which AWS resources in your account to analyze. For more information,
-// see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-// in the AWS CloudFormation User Guide.
+// Information about Amazon Web Services CloudFormation stacks. You can use
+// up to 500 stacks to specify which Amazon Web Services resources in your account
+// to analyze. For more information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the Amazon Web Services CloudFormation User Guide.
 type CloudFormationCollection struct {
 	_ struct{} `type:"structure"`
 
@@ -2918,10 +3664,10 @@ func (s *CloudFormationCollection) SetStackNames(v []*string) *CloudFormationCol
 	return s
 }
 
-// Information about AWS CloudFormation stacks. You can use up to 500 stacks
-// to specify which AWS resources in your account to analyze. For more information,
-// see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-// in the AWS CloudFormation User Guide.
+// Information about Amazon Web Services CloudFormation stacks. You can use
+// up to 500 stacks to specify which Amazon Web Services resources in your account
+// to analyze. For more information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the Amazon Web Services CloudFormation User Guide.
 type CloudFormationCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -2953,12 +3699,12 @@ func (s *CloudFormationCollectionFilter) SetStackNames(v []*string) *CloudFormat
 	return s
 }
 
-// Information about an AWS CloudFormation stack used to create a monthly cost
-// estimate for DevOps Guru to analyze AWS resources. The maximum number of
-// stacks you can specify for a cost estimate is one. The estimate created is
-// for the cost to analyze the AWS resources defined by the stack. For more
-// information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-// in the AWS CloudFormation User Guide.
+// Information about an Amazon Web Services CloudFormation stack used to create
+// a monthly cost estimate for DevOps Guru to analyze Amazon Web Services resources.
+// The maximum number of stacks you can specify for a cost estimate is one.
+// The estimate created is for the cost to analyze the Amazon Web Services resources
+// defined by the stack. For more information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the Amazon Web Services CloudFormation User Guide.
 type CloudFormationCostEstimationResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -3003,14 +3749,15 @@ func (s *CloudFormationCostEstimationResourceCollectionFilter) SetStackNames(v [
 	return s
 }
 
-// Information about the health of AWS resources in your account that are specified
-// by an AWS CloudFormation stack.
+// Information about the health of Amazon Web Services resources in your account
+// that are specified by an Amazon Web Services CloudFormation stack.
 type CloudFormationHealth struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the health of the AWS resources in your account that are
-	// specified by an AWS CloudFormation stack, including the number of open proactive,
-	// open reactive insights, and the Mean Time to Recover (MTTR) of closed insights.
+	// Information about the health of the Amazon Web Services resources in your
+	// account that are specified by an Amazon Web Services CloudFormation stack,
+	// including the number of open proactive, open reactive insights, and the Mean
+	// Time to Recover (MTTR) of closed insights.
 	Insight *InsightHealth `type:"structure"`
 
 	// The name of the CloudFormation stack.
@@ -3047,12 +3794,58 @@ func (s *CloudFormationHealth) SetStackName(v string) *CloudFormationHealth {
 	return s
 }
 
+// Contains information about the analyzed metrics that displayed anomalous
+// behavior.
+type CloudWatchMetricsDataSummary struct {
+	_ struct{} `type:"structure"`
+
+	// This is enum of the status showing whether the metric value pair list has
+	// Partial or Complete data or there was an error.
+	StatusCode *string `type:"string" enum:"CloudWatchMetricDataStatusCode"`
+
+	// This is a list of cloudwatch metric values at given timestamp.
+	TimestampMetricValuePairList []*TimestampMetricValuePair `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchMetricsDataSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchMetricsDataSummary) GoString() string {
+	return s.String()
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *CloudWatchMetricsDataSummary) SetStatusCode(v string) *CloudWatchMetricsDataSummary {
+	s.StatusCode = &v
+	return s
+}
+
+// SetTimestampMetricValuePairList sets the TimestampMetricValuePairList field's value.
+func (s *CloudWatchMetricsDataSummary) SetTimestampMetricValuePairList(v []*TimestampMetricValuePair) *CloudWatchMetricsDataSummary {
+	s.TimestampMetricValuePairList = v
+	return s
+}
+
 // Information about an Amazon CloudWatch metric.
 type CloudWatchMetricsDetail struct {
 	_ struct{} `type:"structure"`
 
 	// An array of CloudWatch dimensions associated with
 	Dimensions []*CloudWatchMetricsDimension `type:"list"`
+
+	// This object returns anomaly metric data.
+	MetricDataSummary *CloudWatchMetricsDataSummary `type:"structure"`
 
 	// The name of the CloudWatch metric.
 	MetricName *string `type:"string"`
@@ -3095,6 +3888,12 @@ func (s CloudWatchMetricsDetail) GoString() string {
 // SetDimensions sets the Dimensions field's value.
 func (s *CloudWatchMetricsDetail) SetDimensions(v []*CloudWatchMetricsDimension) *CloudWatchMetricsDetail {
 	s.Dimensions = v
+	return s
+}
+
+// SetMetricDataSummary sets the MetricDataSummary field's value.
+func (s *CloudWatchMetricsDetail) SetMetricDataSummary(v *CloudWatchMetricsDataSummary) *CloudWatchMetricsDetail {
+	s.MetricDataSummary = v
 	return s
 }
 
@@ -3181,12 +3980,12 @@ type ConflictException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The ID of the AWS resource in which a conflict occurred.
+	// The ID of the Amazon Web Services resource in which a conflict occurred.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// The type of the AWS resource in which a conflict occurred.
+	// The type of the Amazon Web Services resource in which a conflict occurred.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true"`
@@ -3248,15 +4047,15 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about a filter used to specify which AWS resources are analyzed
-// to create a monthly DevOps Guru cost estimate. For more information, see
-// Estimate your Amazon DevOps Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+// Information about a filter used to specify which Amazon Web Services resources
+// are analyzed to create a monthly DevOps Guru cost estimate. For more information,
+// see Estimate your Amazon DevOps Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
 // and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
 type CostEstimationResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// An object that specifies the CloudFormation stack that defines the AWS resources
-	// used to create a monthly estimate for DevOps Guru.
+	// An object that specifies the CloudFormation stack that defines the Amazon
+	// Web Services resources used to create a monthly estimate for DevOps Guru.
 	CloudFormation *CloudFormationCostEstimationResourceCollectionFilter `type:"structure"`
 }
 
@@ -3366,25 +4165,25 @@ type DescribeAccountHealthOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An integer that specifies the number of metrics that have been analyzed in
-	// your AWS account.
+	// your Amazon Web Services account.
 	//
 	// MetricsAnalyzed is a required field
 	MetricsAnalyzed *int64 `type:"integer" required:"true"`
 
-	// An integer that specifies the number of open proactive insights in your AWS
-	// account.
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
 	//
 	// OpenProactiveInsights is a required field
 	OpenProactiveInsights *int64 `type:"integer" required:"true"`
 
-	// An integer that specifies the number of open reactive insights in your AWS
-	// account.
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
 	//
 	// OpenReactiveInsights is a required field
 	OpenReactiveInsights *int64 `type:"integer" required:"true"`
 
 	// The number of Amazon DevOps Guru resource analysis hours billed to the current
-	// AWS account in the last hour.
+	// Amazon Web Services account in the last hour.
 	//
 	// ResourceHours is a required field
 	ResourceHours *int64 `type:"long" required:"true"`
@@ -3500,14 +4299,14 @@ type DescribeAccountOverviewOutput struct {
 	// MeanTimeToRecoverInMilliseconds is a required field
 	MeanTimeToRecoverInMilliseconds *int64 `type:"long" required:"true"`
 
-	// An integer that specifies the number of open proactive insights in your AWS
-	// account that were created during the time range passed in.
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account that were created during the time range passed in.
 	//
 	// ProactiveInsights is a required field
 	ProactiveInsights *int64 `type:"integer" required:"true"`
 
-	// An integer that specifies the number of open reactive insights in your AWS
-	// account that were created during the time range passed in.
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account that were created during the time range passed in.
 	//
 	// ReactiveInsights is a required field
 	ReactiveInsights *int64 `type:"integer" required:"true"`
@@ -3552,6 +4351,9 @@ func (s *DescribeAccountOverviewOutput) SetReactiveInsights(v int64) *DescribeAc
 type DescribeAnomalyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The ID of the member account.
+	AccountId *string `location:"querystring" locationName:"AccountId" min:"12" type:"string"`
+
 	// The ID of the anomaly.
 	//
 	// Id is a required field
@@ -3579,6 +4381,9 @@ func (s DescribeAnomalyInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeAnomalyInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeAnomalyInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
@@ -3590,6 +4395,12 @@ func (s *DescribeAnomalyInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeAnomalyInput) SetAccountId(v string) *DescribeAnomalyInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -3716,6 +4527,9 @@ func (s *DescribeFeedbackOutput) SetInsightFeedback(v *InsightFeedback) *Describ
 type DescribeInsightInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The ID of the member account in the organization.
+	AccountId *string `location:"querystring" locationName:"AccountId" min:"12" type:"string"`
+
 	// The ID of the insight.
 	//
 	// Id is a required field
@@ -3743,6 +4557,9 @@ func (s DescribeInsightInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeInsightInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeInsightInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
@@ -3754,6 +4571,12 @@ func (s *DescribeInsightInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeInsightInput) SetAccountId(v string) *DescribeInsightInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -3802,6 +4625,395 @@ func (s *DescribeInsightOutput) SetReactiveInsight(v *ReactiveInsight) *Describe
 	return s
 }
 
+type DescribeOrganizationHealthInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountIds []*string `type:"list"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationHealthInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationHealthInput) GoString() string {
+	return s.String()
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *DescribeOrganizationHealthInput) SetAccountIds(v []*string) *DescribeOrganizationHealthInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetOrganizationalUnitIds sets the OrganizationalUnitIds field's value.
+func (s *DescribeOrganizationHealthInput) SetOrganizationalUnitIds(v []*string) *DescribeOrganizationHealthInput {
+	s.OrganizationalUnitIds = v
+	return s
+}
+
+type DescribeOrganizationHealthOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An integer that specifies the number of metrics that have been analyzed in
+	// your organization.
+	//
+	// MetricsAnalyzed is a required field
+	MetricsAnalyzed *int64 `type:"integer" required:"true"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	//
+	// OpenProactiveInsights is a required field
+	OpenProactiveInsights *int64 `type:"integer" required:"true"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	//
+	// OpenReactiveInsights is a required field
+	OpenReactiveInsights *int64 `type:"integer" required:"true"`
+
+	// The number of Amazon DevOps Guru resource analysis hours billed to the current
+	// Amazon Web Services account in the last hour.
+	//
+	// ResourceHours is a required field
+	ResourceHours *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationHealthOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationHealthOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricsAnalyzed sets the MetricsAnalyzed field's value.
+func (s *DescribeOrganizationHealthOutput) SetMetricsAnalyzed(v int64) *DescribeOrganizationHealthOutput {
+	s.MetricsAnalyzed = &v
+	return s
+}
+
+// SetOpenProactiveInsights sets the OpenProactiveInsights field's value.
+func (s *DescribeOrganizationHealthOutput) SetOpenProactiveInsights(v int64) *DescribeOrganizationHealthOutput {
+	s.OpenProactiveInsights = &v
+	return s
+}
+
+// SetOpenReactiveInsights sets the OpenReactiveInsights field's value.
+func (s *DescribeOrganizationHealthOutput) SetOpenReactiveInsights(v int64) *DescribeOrganizationHealthOutput {
+	s.OpenReactiveInsights = &v
+	return s
+}
+
+// SetResourceHours sets the ResourceHours field's value.
+func (s *DescribeOrganizationHealthOutput) SetResourceHours(v int64) *DescribeOrganizationHealthOutput {
+	s.ResourceHours = &v
+	return s
+}
+
+type DescribeOrganizationOverviewInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountIds []*string `type:"list"`
+
+	// The start of the time range passed in. The start time granularity is at the
+	// day level. The floor of the start time is used. Returned information occurred
+	// after this day.
+	//
+	// FromTime is a required field
+	FromTime *time.Time `type:"timestamp" required:"true"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitIds []*string `type:"list"`
+
+	// The end of the time range passed in. The start time granularity is at the
+	// day level. The floor of the start time is used. Returned information occurred
+	// before this day. If this is not specified, then the current day is used.
+	ToTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationOverviewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationOverviewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeOrganizationOverviewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeOrganizationOverviewInput"}
+	if s.FromTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *DescribeOrganizationOverviewInput) SetAccountIds(v []*string) *DescribeOrganizationOverviewInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFromTime sets the FromTime field's value.
+func (s *DescribeOrganizationOverviewInput) SetFromTime(v time.Time) *DescribeOrganizationOverviewInput {
+	s.FromTime = &v
+	return s
+}
+
+// SetOrganizationalUnitIds sets the OrganizationalUnitIds field's value.
+func (s *DescribeOrganizationOverviewInput) SetOrganizationalUnitIds(v []*string) *DescribeOrganizationOverviewInput {
+	s.OrganizationalUnitIds = v
+	return s
+}
+
+// SetToTime sets the ToTime field's value.
+func (s *DescribeOrganizationOverviewInput) SetToTime(v time.Time) *DescribeOrganizationOverviewInput {
+	s.ToTime = &v
+	return s
+}
+
+type DescribeOrganizationOverviewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	//
+	// ProactiveInsights is a required field
+	ProactiveInsights *int64 `type:"integer" required:"true"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	//
+	// ReactiveInsights is a required field
+	ReactiveInsights *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationOverviewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationOverviewOutput) GoString() string {
+	return s.String()
+}
+
+// SetProactiveInsights sets the ProactiveInsights field's value.
+func (s *DescribeOrganizationOverviewOutput) SetProactiveInsights(v int64) *DescribeOrganizationOverviewOutput {
+	s.ProactiveInsights = &v
+	return s
+}
+
+// SetReactiveInsights sets the ReactiveInsights field's value.
+func (s *DescribeOrganizationOverviewOutput) SetReactiveInsights(v int64) *DescribeOrganizationOverviewOutput {
+	s.ReactiveInsights = &v
+	return s
+}
+
+type DescribeOrganizationResourceCollectionHealthInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountIds []*string `type:"list"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+
+	// An Amazon Web Services resource collection type. This type specifies how
+	// analyzed Amazon Web Services resources are defined. The one type of Amazon
+	// Web Services resource collection supported is Amazon Web Services CloudFormation
+	// stacks. DevOps Guru can be configured to analyze only the Amazon Web Services
+	// resources that are defined in the stacks. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
+	//
+	// OrganizationResourceCollectionType is a required field
+	OrganizationResourceCollectionType *string `type:"string" required:"true" enum:"OrganizationResourceCollectionType"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationResourceCollectionHealthInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationResourceCollectionHealthInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeOrganizationResourceCollectionHealthInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeOrganizationResourceCollectionHealthInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+	if s.OrganizationResourceCollectionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationResourceCollectionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetAccountIds(v []*string) *DescribeOrganizationResourceCollectionHealthInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetMaxResults(v int64) *DescribeOrganizationResourceCollectionHealthInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetNextToken(v string) *DescribeOrganizationResourceCollectionHealthInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrganizationResourceCollectionType sets the OrganizationResourceCollectionType field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetOrganizationResourceCollectionType(v string) *DescribeOrganizationResourceCollectionHealthInput {
+	s.OrganizationResourceCollectionType = &v
+	return s
+}
+
+// SetOrganizationalUnitIds sets the OrganizationalUnitIds field's value.
+func (s *DescribeOrganizationResourceCollectionHealthInput) SetOrganizationalUnitIds(v []*string) *DescribeOrganizationResourceCollectionHealthInput {
+	s.OrganizationalUnitIds = v
+	return s
+}
+
+type DescribeOrganizationResourceCollectionHealthOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the organization's account.
+	Account []*AccountHealth `type:"list"`
+
+	// The returned CloudFormationHealthOverview object that contains an InsightHealthOverview
+	// object with the requested system health information.
+	CloudFormation []*CloudFormationHealth `type:"list"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+
+	// An array of ServiceHealth objects that describes the health of the Amazon
+	// Web Services services associated with the resources in the collection.
+	Service []*ServiceHealth `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationResourceCollectionHealthOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeOrganizationResourceCollectionHealthOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccount sets the Account field's value.
+func (s *DescribeOrganizationResourceCollectionHealthOutput) SetAccount(v []*AccountHealth) *DescribeOrganizationResourceCollectionHealthOutput {
+	s.Account = v
+	return s
+}
+
+// SetCloudFormation sets the CloudFormation field's value.
+func (s *DescribeOrganizationResourceCollectionHealthOutput) SetCloudFormation(v []*CloudFormationHealth) *DescribeOrganizationResourceCollectionHealthOutput {
+	s.CloudFormation = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeOrganizationResourceCollectionHealthOutput) SetNextToken(v string) *DescribeOrganizationResourceCollectionHealthOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *DescribeOrganizationResourceCollectionHealthOutput) SetService(v []*ServiceHealth) *DescribeOrganizationResourceCollectionHealthOutput {
+	s.Service = v
+	return s
+}
+
 type DescribeResourceCollectionHealthInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -3809,10 +5021,12 @@ type DescribeResourceCollectionHealthInput struct {
 	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"36" type:"string"`
 
-	// An AWS resource collection type. This type specifies how analyzed AWS resources
-	// are defined. The one type of AWS resource collection supported is AWS CloudFormation
-	// stacks. DevOps Guru can be configured to analyze only the AWS resources that
-	// are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks.
+	// An Amazon Web Services resource collection type. This type specifies how
+	// analyzed Amazon Web Services resources are defined. The one type of Amazon
+	// Web Services resource collection supported is Amazon Web Services CloudFormation
+	// stacks. DevOps Guru can be configured to analyze only the Amazon Web Services
+	// resources that are defined in the stacks. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	//
 	// ResourceCollectionType is a required field
 	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true" enum:"ResourceCollectionType"`
@@ -3880,8 +5094,8 @@ type DescribeResourceCollectionHealthOutput struct {
 	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
-	// An array of ServiceHealth objects that describes the health of the AWS services
-	// associated with the resources in the collection.
+	// An array of ServiceHealth objects that describes the health of the Amazon
+	// Web Services services associated with the resources in the collection.
 	Service []*ServiceHealth `type:"list"`
 }
 
@@ -3946,8 +5160,8 @@ func (s DescribeServiceIntegrationInput) GoString() string {
 type DescribeServiceIntegrationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the integration of DevOps Guru with another AWS service,
-	// such as AWS Systems Manager.
+	// Information about the integration of DevOps Guru with another Amazon Web
+	// Services service, such as Amazon Web Services Systems Manager.
 	ServiceIntegration *ServiceIntegrationConfig `type:"structure"`
 }
 
@@ -4017,9 +5231,9 @@ func (s *EndTimeRange) SetToTime(v time.Time) *EndTimeRange {
 	return s
 }
 
-// An AWS resource event. AWS resource events and metrics are analyzed by DevOps
-// Guru to find anomalous behavior and provide recommendations to improve your
-// operational solutions.
+// An Amazon Web Services resource event. Amazon Web Services resource events
+// and metrics are analyzed by DevOps Guru to find anomalous behavior and provide
+// recommendations to improve your operational solutions.
 type Event struct {
 	_ struct{} `type:"structure"`
 
@@ -4031,7 +5245,7 @@ type Event struct {
 	// such as an infrastructure change, a deployment, or a schema change.
 	EventClass *string `type:"string" enum:"EventClass"`
 
-	// The AWS source that emitted the event.
+	// The Amazon Web Services source that emitted the event.
 	EventSource *string `min:"10" type:"string"`
 
 	// The ID of the event.
@@ -4040,10 +5254,11 @@ type Event struct {
 	// The name of the event.
 	Name *string `type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// An EventResource object that contains information about the resource that
@@ -4120,9 +5335,9 @@ func (s *Event) SetTime(v time.Time) *Event {
 	return s
 }
 
-// The AWS resource that emitted an event. AWS resource events and metrics are
-// analyzed by DevOps Guru to find anomalous behavior and provide recommendations
-// to improve your operational solutions.
+// The Amazon Web Services resource that emitted an event. Amazon Web Services
+// resource events and metrics are analyzed by DevOps Guru to find anomalous
+// behavior and provide recommendations to improve your operational solutions.
 type EventResource struct {
 	_ struct{} `type:"structure"`
 
@@ -4172,9 +5387,10 @@ func (s *EventResource) SetType(v string) *EventResource {
 	return s
 }
 
-// The time range during which an AWS event occurred. AWS resource events and
-// metrics are analyzed by DevOps Guru to find anomalous behavior and provide
-// recommendations to improve your operational solutions.
+// The time range during which an Amazon Web Services event occurred. Amazon
+// Web Services resource events and metrics are analyzed by DevOps Guru to find
+// anomalous behavior and provide recommendations to improve your operational
+// solutions.
 type EventTimeRange struct {
 	_ struct{} `type:"structure"`
 
@@ -4284,15 +5500,15 @@ type GetCostEstimationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of ResourceCost objects that each contains details about the monthly
-	// cost estimate to analyze one of your AWS resources.
+	// cost estimate to analyze one of your Amazon Web Services resources.
 	Costs []*ServiceResourceCost `type:"list"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
-	// The collection of the AWS resources used to create your monthly DevOps Guru
-	// cost estimate.
+	// The collection of the Amazon Web Services resources used to create your monthly
+	// DevOps Guru cost estimate.
 	ResourceCollection *CostEstimationResourceCollectionFilter `type:"structure"`
 
 	// The status of creating this cost estimate. If it's still in progress, the
@@ -4302,9 +5518,9 @@ type GetCostEstimationOutput struct {
 	// The start and end time of the cost estimation.
 	TimeRange *CostEstimationTimeRange `type:"structure"`
 
-	// The estimated monthly cost to analyze the AWS resources. This value is the
-	// sum of the estimated costs to analyze each resource in the Costs object in
-	// this response.
+	// The estimated monthly cost to analyze the Amazon Web Services resources.
+	// This value is the sum of the estimated costs to analyze each resource in
+	// the Costs object in this response.
 	TotalCost *float64 `type:"double"`
 }
 
@@ -4369,8 +5585,8 @@ type GetResourceCollectionInput struct {
 	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"36" type:"string"`
 
-	// The type of AWS resource collections to return. The one valid value is CLOUD_FORMATION
-	// for AWS CloudFormation stacks.
+	// The type of Amazon Web Services resource collections to return. The one valid
+	// value is CLOUD_FORMATION for Amazon Web Services CloudFormation stacks.
 	//
 	// ResourceCollectionType is a required field
 	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true" enum:"ResourceCollectionType"`
@@ -4432,10 +5648,11 @@ type GetResourceCollectionOutput struct {
 	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
-	// The requested list of AWS resource collections. The one type of AWS resource
-	// collection supported is AWS CloudFormation stacks. DevOps Guru can be configured
-	// to analyze only the AWS resources that are defined in the stacks. You can
-	// specify up to 500 AWS CloudFormation stacks.
+	// The requested list of Amazon Web Services resource collections. The one type
+	// of Amazon Web Services resource collection supported is Amazon Web Services
+	// CloudFormation stacks. DevOps Guru can be configured to analyze only the
+	// Amazon Web Services resources that are defined in the stacks. You can specify
+	// up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollectionFilter `type:"structure"`
 }
 
@@ -4689,6 +5906,9 @@ func (s *InternalServerException) RequestID() string {
 type ListAnomaliesForInsightInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
 	// The ID of the insight. The returned anomalies belong to this insight.
 	//
 	// InsightId is a required field
@@ -4728,6 +5948,9 @@ func (s ListAnomaliesForInsightInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListAnomaliesForInsightInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListAnomaliesForInsightInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.InsightId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InsightId"))
 	}
@@ -4745,6 +5968,12 @@ func (s *ListAnomaliesForInsightInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListAnomaliesForInsightInput) SetAccountId(v string) *ListAnomaliesForInsightInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetInsightId sets the InsightId field's value.
@@ -4834,7 +6063,8 @@ type ListEventsFilters struct {
 	// change, a deployment, or a schema change.
 	EventClass *string `type:"string" enum:"EventClass"`
 
-	// The AWS source that emitted the events you want to filter for.
+	// The Amazon Web Services source that emitted the events you want to filter
+	// for.
 	EventSource *string `min:"10" type:"string"`
 
 	// A time range during which you want the filtered events to have occurred.
@@ -4843,10 +6073,11 @@ type ListEventsFilters struct {
 	// An ID of an insight that is related to the events you want to filter for.
 	InsightId *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 }
 
@@ -4928,6 +6159,9 @@ func (s *ListEventsFilters) SetResourceCollection(v *ResourceCollection) *ListEv
 type ListEventsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
 	// A ListEventsFilters object used to specify which events to return.
 	//
 	// Filters is a required field
@@ -4963,6 +6197,9 @@ func (s ListEventsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListEventsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListEventsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.Filters == nil {
 		invalidParams.Add(request.NewErrParamRequired("Filters"))
 	}
@@ -4982,6 +6219,12 @@ func (s *ListEventsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListEventsInput) SetAccountId(v string) *ListEventsInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetFilters sets the Filters field's value.
@@ -5506,8 +6749,158 @@ func (s *ListNotificationChannelsOutput) SetNextToken(v string) *ListNotificatio
 	return s
 }
 
+type ListOrganizationInsightsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountIds []*string `type:"list"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitIds []*string `type:"list"`
+
+	// A filter used by ListInsights to specify which insights to return.
+	//
+	// StatusFilter is a required field
+	StatusFilter *ListInsightsStatusFilter `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationInsightsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationInsightsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOrganizationInsightsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOrganizationInsightsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+	if s.StatusFilter == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatusFilter"))
+	}
+	if s.StatusFilter != nil {
+		if err := s.StatusFilter.Validate(); err != nil {
+			invalidParams.AddNested("StatusFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *ListOrganizationInsightsInput) SetAccountIds(v []*string) *ListOrganizationInsightsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOrganizationInsightsInput) SetMaxResults(v int64) *ListOrganizationInsightsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOrganizationInsightsInput) SetNextToken(v string) *ListOrganizationInsightsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrganizationalUnitIds sets the OrganizationalUnitIds field's value.
+func (s *ListOrganizationInsightsInput) SetOrganizationalUnitIds(v []*string) *ListOrganizationInsightsInput {
+	s.OrganizationalUnitIds = v
+	return s
+}
+
+// SetStatusFilter sets the StatusFilter field's value.
+func (s *ListOrganizationInsightsInput) SetStatusFilter(v *ListInsightsStatusFilter) *ListOrganizationInsightsInput {
+	s.StatusFilter = v
+	return s
+}
+
+type ListOrganizationInsightsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	ProactiveInsights []*ProactiveOrganizationInsightSummary `type:"list"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	ReactiveInsights []*ReactiveOrganizationInsightSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationInsightsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrganizationInsightsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOrganizationInsightsOutput) SetNextToken(v string) *ListOrganizationInsightsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProactiveInsights sets the ProactiveInsights field's value.
+func (s *ListOrganizationInsightsOutput) SetProactiveInsights(v []*ProactiveOrganizationInsightSummary) *ListOrganizationInsightsOutput {
+	s.ProactiveInsights = v
+	return s
+}
+
+// SetReactiveInsights sets the ReactiveInsights field's value.
+func (s *ListOrganizationInsightsOutput) SetReactiveInsights(v []*ReactiveOrganizationInsightSummary) *ListOrganizationInsightsOutput {
+	s.ReactiveInsights = v
+	return s
+}
+
 type ListRecommendationsInput struct {
 	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
 
 	// The ID of the requested insight.
 	//
@@ -5543,6 +6936,9 @@ func (s ListRecommendationsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListRecommendationsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListRecommendationsInput"}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
 	if s.InsightId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InsightId"))
 	}
@@ -5557,6 +6953,12 @@ func (s *ListRecommendationsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListRecommendationsInput) SetAccountId(v string) *ListRecommendationsInput {
+	s.AccountId = &v
+	return s
 }
 
 // SetInsightId sets the InsightId field's value.
@@ -5628,10 +7030,10 @@ func (s *ListRecommendationsOutput) SetRecommendations(v []*Recommendation) *Lis
 // SNS in your account. For more information, see Permissions for cross account
 // Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 //
-// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
-// Service customer-managed key (CMK), then you must add permissions to the
-// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
-// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
+// Key Management Service customer-managed key (CMK), then you must add permissions
+// to the CMK. For more information, see Permissions for Amazon Web Services
+// KMS–encrypted Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 type NotificationChannel struct {
 	_ struct{} `type:"structure"`
 
@@ -5688,10 +7090,10 @@ type NotificationChannelConfig struct {
 	// SNS in your account. For more information, see Permissions for cross account
 	// Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 	//
-	// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
-	// Service customer-managed key (CMK), then you must add permissions to the
-	// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
-	// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+	// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
+	// Key Management Service customer-managed key (CMK), then you must add permissions
+	// to the CMK. For more information, see Permissions for Amazon Web Services
+	// KMS–encrypted Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 	//
 	// Sns is a required field
 	Sns *SnsChannelConfig `type:"structure" required:"true"`
@@ -5740,12 +7142,12 @@ func (s *NotificationChannelConfig) SetSns(v *SnsChannelConfig) *NotificationCha
 }
 
 // Information about whether DevOps Guru is configured to create an OpsItem
-// in AWS Systems Manager OpsCenter for each created insight.
+// in Amazon Web Services Systems Manager OpsCenter for each created insight.
 type OpsCenterIntegration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
-	// for each created insight.
+	// Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems
+	// Manager OpsItem for each created insight.
 	OptInStatus *string `type:"string" enum:"OptInStatus"`
 }
 
@@ -5774,12 +7176,12 @@ func (s *OpsCenterIntegration) SetOptInStatus(v string) *OpsCenterIntegration {
 }
 
 // Information about whether DevOps Guru is configured to create an OpsItem
-// in AWS Systems Manager OpsCenter for each created insight.
+// in Amazon Web Services Systems Manager OpsCenter for each created insight.
 type OpsCenterIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
-	// for each created insight.
+	// Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems
+	// Manager OpsItem for each created insight.
 	OptInStatus *string `type:"string" enum:"OptInStatus"`
 }
 
@@ -5880,10 +7282,11 @@ type ProactiveAnomaly struct {
 	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of a proactive anomaly.
@@ -6012,10 +7415,11 @@ type ProactiveAnomalySummary struct {
 	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of the anomaly.
@@ -6134,18 +7538,19 @@ type ProactiveInsight struct {
 	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of the proactive insight.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
-	// The ID of the AWS System Manager OpsItem created for this insight. You must
-	// enable the creation of OpstItems insights before they are created for each
-	// insight.
+	// The ID of the Amazon Web Services System Manager OpsItem created for this
+	// insight. You must enable the creation of OpstItems insights before they are
+	// created for each insight.
 	SsmOpsItemId *string `min:"1" type:"string"`
 
 	// The status of the proactive insight.
@@ -6236,13 +7641,14 @@ type ProactiveInsightSummary struct {
 	// an insight is expected to occur.
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// A collection of the names of AWS services.
+	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
 	// The severity of the proactive insight.
@@ -6314,6 +7720,125 @@ func (s *ProactiveInsightSummary) SetSeverity(v string) *ProactiveInsightSummary
 
 // SetStatus sets the Status field's value.
 func (s *ProactiveInsightSummary) SetStatus(v string) *ProactiveInsightSummary {
+	s.Status = &v
+	return s
+}
+
+// Details about a proactive insight. This object is returned by DescribeInsight.
+type ProactiveOrganizationInsightSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
+	// The ID of the insight summary.
+	Id *string `min:"1" type:"string"`
+
+	// A time ranged that specifies when the observed behavior in an insight started
+	// and ended.
+	InsightTimeRange *InsightTimeRange `type:"structure"`
+
+	// The name of the insight summary.
+	Name *string `min:"1" type:"string"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitId *string `type:"string"`
+
+	// The time range during which anomalous behavior in a proactive anomaly or
+	// an insight is expected to occur.
+	PredictionTimeRange *PredictionTimeRange `type:"structure"`
+
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// A collection of the names of Amazon Web Services services.
+	ServiceCollection *ServiceCollection `type:"structure"`
+
+	// An array of severity values used to search for insights.
+	Severity *string `type:"string" enum:"InsightSeverity"`
+
+	// An array of status values used to search for insights.
+	Status *string `type:"string" enum:"InsightStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProactiveOrganizationInsightSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProactiveOrganizationInsightSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ProactiveOrganizationInsightSummary) SetAccountId(v string) *ProactiveOrganizationInsightSummary {
+	s.AccountId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ProactiveOrganizationInsightSummary) SetId(v string) *ProactiveOrganizationInsightSummary {
+	s.Id = &v
+	return s
+}
+
+// SetInsightTimeRange sets the InsightTimeRange field's value.
+func (s *ProactiveOrganizationInsightSummary) SetInsightTimeRange(v *InsightTimeRange) *ProactiveOrganizationInsightSummary {
+	s.InsightTimeRange = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ProactiveOrganizationInsightSummary) SetName(v string) *ProactiveOrganizationInsightSummary {
+	s.Name = &v
+	return s
+}
+
+// SetOrganizationalUnitId sets the OrganizationalUnitId field's value.
+func (s *ProactiveOrganizationInsightSummary) SetOrganizationalUnitId(v string) *ProactiveOrganizationInsightSummary {
+	s.OrganizationalUnitId = &v
+	return s
+}
+
+// SetPredictionTimeRange sets the PredictionTimeRange field's value.
+func (s *ProactiveOrganizationInsightSummary) SetPredictionTimeRange(v *PredictionTimeRange) *ProactiveOrganizationInsightSummary {
+	s.PredictionTimeRange = v
+	return s
+}
+
+// SetResourceCollection sets the ResourceCollection field's value.
+func (s *ProactiveOrganizationInsightSummary) SetResourceCollection(v *ResourceCollection) *ProactiveOrganizationInsightSummary {
+	s.ResourceCollection = v
+	return s
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *ProactiveOrganizationInsightSummary) SetServiceCollection(v *ServiceCollection) *ProactiveOrganizationInsightSummary {
+	s.ServiceCollection = v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *ProactiveOrganizationInsightSummary) SetSeverity(v string) *ProactiveOrganizationInsightSummary {
+	s.Severity = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ProactiveOrganizationInsightSummary) SetStatus(v string) *ProactiveOrganizationInsightSummary {
 	s.Status = &v
 	return s
 }
@@ -6406,10 +7931,11 @@ type ReactiveAnomaly struct {
 	// The ID of the reactive anomaly.
 	Id *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of the anomaly.
@@ -6509,10 +8035,11 @@ type ReactiveAnomalySummary struct {
 	// The ID of the reactive anomaly.
 	Id *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of the reactive anomaly.
@@ -6606,18 +8133,19 @@ type ReactiveInsight struct {
 	// The name of a reactive insight.
 	Name *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of a reactive insight.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
-	// The ID of the AWS System Manager OpsItem created for this insight. You must
-	// enable the creation of OpstItems insights before they are created for each
-	// insight.
+	// The ID of the Amazon Web Services System Manager OpsItem created for this
+	// insight. You must enable the creation of OpstItems insights before they are
+	// created for each insight.
 	SsmOpsItemId *string `min:"1" type:"string"`
 
 	// The status of a reactive insight.
@@ -6698,13 +8226,14 @@ type ReactiveInsightSummary struct {
 	// The name of a reactive insight.
 	Name *string `min:"1" type:"string"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// A collection of the names of AWS services.
+	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
 	// The severity of a reactive insight.
@@ -6770,6 +8299,115 @@ func (s *ReactiveInsightSummary) SetSeverity(v string) *ReactiveInsightSummary {
 
 // SetStatus sets the Status field's value.
 func (s *ReactiveInsightSummary) SetStatus(v string) *ReactiveInsightSummary {
+	s.Status = &v
+	return s
+}
+
+// Information about a reactive insight. This object is returned by DescribeInsight.
+type ReactiveOrganizationInsightSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	AccountId *string `min:"12" type:"string"`
+
+	// The ID of the insight summary.
+	Id *string `min:"1" type:"string"`
+
+	// A time ranged that specifies when the observed behavior in an insight started
+	// and ended.
+	InsightTimeRange *InsightTimeRange `type:"structure"`
+
+	// The name of the insight summary.
+	Name *string `min:"1" type:"string"`
+
+	// The ID of the organizational unit.
+	OrganizationalUnitId *string `type:"string"`
+
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// A collection of the names of Amazon Web Services services.
+	ServiceCollection *ServiceCollection `type:"structure"`
+
+	// An array of severity values used to search for insights.
+	Severity *string `type:"string" enum:"InsightSeverity"`
+
+	// An array of status values used to search for insights.
+	Status *string `type:"string" enum:"InsightStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReactiveOrganizationInsightSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReactiveOrganizationInsightSummary) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ReactiveOrganizationInsightSummary) SetAccountId(v string) *ReactiveOrganizationInsightSummary {
+	s.AccountId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ReactiveOrganizationInsightSummary) SetId(v string) *ReactiveOrganizationInsightSummary {
+	s.Id = &v
+	return s
+}
+
+// SetInsightTimeRange sets the InsightTimeRange field's value.
+func (s *ReactiveOrganizationInsightSummary) SetInsightTimeRange(v *InsightTimeRange) *ReactiveOrganizationInsightSummary {
+	s.InsightTimeRange = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ReactiveOrganizationInsightSummary) SetName(v string) *ReactiveOrganizationInsightSummary {
+	s.Name = &v
+	return s
+}
+
+// SetOrganizationalUnitId sets the OrganizationalUnitId field's value.
+func (s *ReactiveOrganizationInsightSummary) SetOrganizationalUnitId(v string) *ReactiveOrganizationInsightSummary {
+	s.OrganizationalUnitId = &v
+	return s
+}
+
+// SetResourceCollection sets the ResourceCollection field's value.
+func (s *ReactiveOrganizationInsightSummary) SetResourceCollection(v *ResourceCollection) *ReactiveOrganizationInsightSummary {
+	s.ResourceCollection = v
+	return s
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *ReactiveOrganizationInsightSummary) SetServiceCollection(v *ServiceCollection) *ReactiveOrganizationInsightSummary {
+	s.ServiceCollection = v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *ReactiveOrganizationInsightSummary) SetSeverity(v string) *ReactiveOrganizationInsightSummary {
+	s.Severity = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReactiveOrganizationInsightSummary) SetStatus(v string) *ReactiveOrganizationInsightSummary {
 	s.Status = &v
 	return s
 }
@@ -7022,8 +8660,9 @@ type RecommendationRelatedEvent struct {
 	// The name of the event. This corresponds to the Name field in an Event object.
 	Name *string `type:"string"`
 
-	// A ResourceCollection object that contains arrays of the names of AWS CloudFormation
-	// stacks. You can specify up to 500 AWS CloudFormation stacks.
+	// A ResourceCollection object that contains arrays of the names of Amazon Web
+	// Services CloudFormation stacks. You can specify up to 500 Amazon Web Services
+	// CloudFormation stacks.
 	Resources []*RecommendationRelatedEventResource `type:"list"`
 }
 
@@ -7057,8 +8696,8 @@ func (s *RecommendationRelatedEvent) SetResources(v []*RecommendationRelatedEven
 	return s
 }
 
-// Information about an AWS resource that emitted and event that is related
-// to a recommendation in an insight.
+// Information about an Amazon Web Services resource that emitted and event
+// that is related to a recommendation in an insight.
 type RecommendationRelatedEventResource struct {
 	_ struct{} `type:"structure"`
 
@@ -7172,16 +8811,17 @@ func (s RemoveNotificationChannelOutput) GoString() string {
 	return s.String()
 }
 
-// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-// be configured to analyze only the AWS resources that are defined in the stacks.
-// You can specify up to 500 AWS CloudFormation stacks.
+// A collection of Amazon Web Services resources supported by DevOps Guru. The
+// one type of Amazon Web Services resource collection supported is Amazon Web
+// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+// only the Amazon Web Services resources that are defined in the stacks. You
+// can specify up to 500 Amazon Web Services CloudFormation stacks.
 type ResourceCollection struct {
 	_ struct{} `type:"structure"`
 
-	// An array of the names of AWS CloudFormation stacks. The stacks define AWS
-	// resources that DevOps Guru analyzes. You can specify up to 500 AWS CloudFormation
-	// stacks.
+	// An array of the names of Amazon Web Services CloudFormation stacks. The stacks
+	// define Amazon Web Services resources that DevOps Guru analyzes. You can specify
+	// up to 500 Amazon Web Services CloudFormation stacks.
 	CloudFormation *CloudFormationCollection `type:"structure"`
 }
 
@@ -7209,15 +8849,15 @@ func (s *ResourceCollection) SetCloudFormation(v *CloudFormationCollection) *Res
 	return s
 }
 
-// Information about a filter used to specify which AWS resources are analyzed
-// for anomalous behavior by DevOps Guru.
+// Information about a filter used to specify which Amazon Web Services resources
+// are analyzed for anomalous behavior by DevOps Guru.
 type ResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// Information about AWS CloudFormation stacks. You can use up to 500 stacks
-	// to specify which AWS resources in your account to analyze. For more information,
-	// see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
-	// in the AWS CloudFormation User Guide.
+	// Information about Amazon Web Services CloudFormation stacks. You can use
+	// up to 500 stacks to specify which Amazon Web Services resources in your account
+	// to analyze. For more information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+	// in the Amazon Web Services CloudFormation User Guide.
 	CloudFormation *CloudFormationCollectionFilter `type:"structure"`
 }
 
@@ -7252,12 +8892,12 @@ type ResourceNotFoundException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The ID of the AWS resource that could not be found.
+	// The ID of the Amazon Web Services resource that could not be found.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// The type of the AWS resource that could not be found.
+	// The type of the Amazon Web Services resource that could not be found.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true"`
@@ -7324,13 +8964,14 @@ func (s *ResourceNotFoundException) RequestID() string {
 type SearchInsightsFilters struct {
 	_ struct{} `type:"structure"`
 
-	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
-	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
-	// be configured to analyze only the AWS resources that are defined in the stacks.
-	// You can specify up to 500 AWS CloudFormation stacks.
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// A collection of the names of AWS services.
+	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
 	// An array of severity values used to search for insights.
@@ -7529,11 +9170,241 @@ func (s *SearchInsightsOutput) SetReactiveInsights(v []*ReactiveInsightSummary) 
 	return s
 }
 
-// A collection of the names of AWS services.
+// Filters you can use to specify which events are returned when ListEvents
+// is called.
+type SearchOrganizationInsightsFilters struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of Amazon Web Services resources supported by DevOps Guru. The
+	// one type of Amazon Web Services resource collection supported is Amazon Web
+	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
+	// only the Amazon Web Services resources that are defined in the stacks. You
+	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// A collection of the names of Amazon Web Services services.
+	ServiceCollection *ServiceCollection `type:"structure"`
+
+	// An array of severity values used to search for insights.
+	Severities []*string `type:"list"`
+
+	// An array of status values used to search for insights.
+	Statuses []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsFilters) GoString() string {
+	return s.String()
+}
+
+// SetResourceCollection sets the ResourceCollection field's value.
+func (s *SearchOrganizationInsightsFilters) SetResourceCollection(v *ResourceCollection) *SearchOrganizationInsightsFilters {
+	s.ResourceCollection = v
+	return s
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *SearchOrganizationInsightsFilters) SetServiceCollection(v *ServiceCollection) *SearchOrganizationInsightsFilters {
+	s.ServiceCollection = v
+	return s
+}
+
+// SetSeverities sets the Severities field's value.
+func (s *SearchOrganizationInsightsFilters) SetSeverities(v []*string) *SearchOrganizationInsightsFilters {
+	s.Severities = v
+	return s
+}
+
+// SetStatuses sets the Statuses field's value.
+func (s *SearchOrganizationInsightsFilters) SetStatuses(v []*string) *SearchOrganizationInsightsFilters {
+	s.Statuses = v
+	return s
+}
+
+type SearchOrganizationInsightsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account.
+	//
+	// AccountIds is a required field
+	AccountIds []*string `min:"1" type:"list" required:"true"`
+
+	// A SearchOrganizationInsightsFilters object that is used to set the severity
+	// and status filters on your insight search.
+	Filters *SearchOrganizationInsightsFilters `type:"structure"`
+
+	// The maximum number of results to return with a single call. To retrieve the
+	// remaining results, make another call with the returned nextToken value.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `min:"36" type:"string"`
+
+	// A time range used to specify when the behavior of an insight or anomaly started.
+	//
+	// StartTimeRange is a required field
+	StartTimeRange *StartTimeRange `type:"structure" required:"true"`
+
+	// The type of insights you are searching for (REACTIVE or PROACTIVE).
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"InsightType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchOrganizationInsightsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchOrganizationInsightsInput"}
+	if s.AccountIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountIds"))
+	}
+	if s.AccountIds != nil && len(s.AccountIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountIds", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+	if s.StartTimeRange == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTimeRange"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *SearchOrganizationInsightsInput) SetAccountIds(v []*string) *SearchOrganizationInsightsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *SearchOrganizationInsightsInput) SetFilters(v *SearchOrganizationInsightsFilters) *SearchOrganizationInsightsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchOrganizationInsightsInput) SetMaxResults(v int64) *SearchOrganizationInsightsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchOrganizationInsightsInput) SetNextToken(v string) *SearchOrganizationInsightsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTimeRange sets the StartTimeRange field's value.
+func (s *SearchOrganizationInsightsInput) SetStartTimeRange(v *StartTimeRange) *SearchOrganizationInsightsInput {
+	s.StartTimeRange = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SearchOrganizationInsightsInput) SetType(v string) *SearchOrganizationInsightsInput {
+	s.Type = &v
+	return s
+}
+
+type SearchOrganizationInsightsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+
+	// An integer that specifies the number of open proactive insights in your Amazon
+	// Web Services account.
+	ProactiveInsights []*ProactiveInsightSummary `type:"list"`
+
+	// An integer that specifies the number of open reactive insights in your Amazon
+	// Web Services account.
+	ReactiveInsights []*ReactiveInsightSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SearchOrganizationInsightsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchOrganizationInsightsOutput) SetNextToken(v string) *SearchOrganizationInsightsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProactiveInsights sets the ProactiveInsights field's value.
+func (s *SearchOrganizationInsightsOutput) SetProactiveInsights(v []*ProactiveInsightSummary) *SearchOrganizationInsightsOutput {
+	s.ProactiveInsights = v
+	return s
+}
+
+// SetReactiveInsights sets the ReactiveInsights field's value.
+func (s *SearchOrganizationInsightsOutput) SetReactiveInsights(v []*ReactiveInsightSummary) *SearchOrganizationInsightsOutput {
+	s.ReactiveInsights = v
+	return s
+}
+
+// A collection of the names of Amazon Web Services services.
 type ServiceCollection struct {
 	_ struct{} `type:"structure"`
 
-	// An array of strings that each specifies the name of an AWS service.
+	// An array of strings that each specifies the name of an Amazon Web Services
+	// service.
 	ServiceNames []*string `type:"list"`
 }
 
@@ -7561,15 +9432,16 @@ func (s *ServiceCollection) SetServiceNames(v []*string) *ServiceCollection {
 	return s
 }
 
-// Represents the health of an AWS service.
+// Represents the health of an Amazon Web Services service.
 type ServiceHealth struct {
 	_ struct{} `type:"structure"`
 
-	// Represents the health of an AWS service. This is a ServiceInsightHealth that
-	// contains the number of open proactive and reactive insights for this service.
+	// Represents the health of an Amazon Web Services service. This is a ServiceInsightHealth
+	// that contains the number of open proactive and reactive insights for this
+	// service.
 	Insight *ServiceInsightHealth `type:"structure"`
 
-	// The name of the AWS service.
+	// The name of the Amazon Web Services service.
 	ServiceName *string `type:"string" enum:"ServiceName"`
 }
 
@@ -7604,14 +9476,14 @@ func (s *ServiceHealth) SetServiceName(v string) *ServiceHealth {
 }
 
 // Contains the number of open proactive and reactive insights in an analyzed
-// AWS service.
+// Amazon Web Services service.
 type ServiceInsightHealth struct {
 	_ struct{} `type:"structure"`
 
-	// The number of open proactive insights in the AWS service
+	// The number of open proactive insights in the Amazon Web Services service
 	OpenProactiveInsights *int64 `type:"integer"`
 
-	// The number of open reactive insights in the AWS service
+	// The number of open reactive insights in the Amazon Web Services service
 	OpenReactiveInsights *int64 `type:"integer"`
 }
 
@@ -7645,13 +9517,13 @@ func (s *ServiceInsightHealth) SetOpenReactiveInsights(v int64) *ServiceInsightH
 	return s
 }
 
-// Information about the integration of DevOps Guru with another AWS service,
-// such as AWS Systems Manager.
+// Information about the integration of DevOps Guru with another Amazon Web
+// Services service, such as Amazon Web Services Systems Manager.
 type ServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
 	// Information about whether DevOps Guru is configured to create an OpsItem
-	// in AWS Systems Manager OpsCenter for each created insight.
+	// in Amazon Web Services Systems Manager OpsCenter for each created insight.
 	OpsCenter *OpsCenterIntegration `type:"structure"`
 }
 
@@ -7744,8 +9616,8 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 }
 
 // An object that contains information about the estimated monthly cost to analyze
-// an AWS resource. For more information, see Estimate your Amazon DevOps Guru
-// costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+// an Amazon Web Services resource. For more information, see Estimate your
+// Amazon DevOps Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
 // and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
 type ServiceResourceCost struct {
 	_ struct{} `type:"structure"`
@@ -7760,11 +9632,11 @@ type ServiceResourceCost struct {
 
 	// The state of the resource. The resource is ACTIVE if it produces metrics,
 	// events, or logs within an hour, otherwise it is INACTIVE. You pay for the
-	// number of active AWS resource hours analyzed for each resource. Inactive
-	// resources are not charged.
+	// number of active Amazon Web Services resource hours analyzed for each resource.
+	// Inactive resources are not charged.
 	State *string `type:"string" enum:"CostEstimationServiceResourceState"`
 
-	// The type of the AWS resource.
+	// The type of the Amazon Web Services resource.
 	Type *string `min:"1" type:"string"`
 
 	// The price per hour to analyze the resources in the service. For more information,
@@ -7830,10 +9702,10 @@ func (s *ServiceResourceCost) SetUnitCost(v float64) *ServiceResourceCost {
 // SNS in your account. For more information, see Permissions for cross account
 // Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html).
 //
-// If you use an Amazon SNS topic that is encrypted by an AWS Key Management
-// Service customer-managed key (CMK), then you must add permissions to the
-// CMK. For more information, see Permissions for AWS KMS–encrypted Amazon
-// SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
+// If you use an Amazon SNS topic that is encrypted by an Amazon Web Services
+// Key Management Service customer-managed key (CMK), then you must add permissions
+// to the CMK. For more information, see Permissions for Amazon Web Services
+// KMS–encrypted Amazon SNS topics (https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html).
 type SnsChannelConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7884,8 +9756,8 @@ type StartCostEstimationInput struct {
 	// The idempotency token used to identify each cost estimate request.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The collection of AWS resources used to create a monthly DevOps Guru cost
-	// estimate.
+	// The collection of Amazon Web Services resources used to create a monthly
+	// DevOps Guru cost estimate.
 	//
 	// ResourceCollection is a required field
 	ResourceCollection *CostEstimationResourceCollectionFilter `type:"structure" required:"true"`
@@ -8079,13 +9951,55 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains the names of AWS CloudFormation stacks used to update a collection
-// of stacks. You can specify up to 500 AWS CloudFormation stacks.
+// A pair that contains metric values at the respective timestamp.
+type TimestampMetricValuePair struct {
+	_ struct{} `type:"structure"`
+
+	// Value of the anomalous metric data point at respective Timestamp.
+	MetricValue *float64 `type:"double"`
+
+	// A Timestamp that specifies the time the event occurred.
+	Timestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimestampMetricValuePair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimestampMetricValuePair) GoString() string {
+	return s.String()
+}
+
+// SetMetricValue sets the MetricValue field's value.
+func (s *TimestampMetricValuePair) SetMetricValue(v float64) *TimestampMetricValuePair {
+	s.MetricValue = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *TimestampMetricValuePair) SetTimestamp(v time.Time) *TimestampMetricValuePair {
+	s.Timestamp = &v
+	return s
+}
+
+// Contains the names of Amazon Web Services CloudFormation stacks used to update
+// a collection of stacks. You can specify up to 500 Amazon Web Services CloudFormation
+// stacks.
 type UpdateCloudFormationCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// An array of the names of the AWS CloudFormation stacks to update. You can
-	// specify up to 500 AWS CloudFormation stacks.
+	// An array of the names of the Amazon Web Services CloudFormation stacks to
+	// update. You can specify up to 500 Amazon Web Services CloudFormation stacks.
 	StackNames []*string `type:"list"`
 }
 
@@ -8113,12 +10027,12 @@ func (s *UpdateCloudFormationCollectionFilter) SetStackNames(v []*string) *Updat
 	return s
 }
 
-// Contains information used to update a collection of AWS resources.
+// Contains information used to update a collection of Amazon Web Services resources.
 type UpdateResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// An collection of AWS CloudFormation stacks. You can specify up to 500 AWS
-	// CloudFormation stacks.
+	// An collection of Amazon Web Services CloudFormation stacks. You can specify
+	// up to 500 Amazon Web Services CloudFormation stacks.
 	CloudFormation *UpdateCloudFormationCollectionFilter `type:"structure"`
 }
 
@@ -8155,7 +10069,7 @@ type UpdateResourceCollectionInput struct {
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"UpdateResourceCollectionAction"`
 
-	// Contains information used to update a collection of AWS resources.
+	// Contains information used to update a collection of Amazon Web Services resources.
 	//
 	// ResourceCollection is a required field
 	ResourceCollection *UpdateResourceCollectionFilter `type:"structure" required:"true"`
@@ -8229,13 +10143,13 @@ func (s UpdateResourceCollectionOutput) GoString() string {
 	return s.String()
 }
 
-// Information about updating the integration status of an AWS service, such
-// as AWS Systems Manager, with DevOps Guru.
+// Information about updating the integration status of an Amazon Web Services
+// service, such as Amazon Web Services Systems Manager, with DevOps Guru.
 type UpdateServiceIntegrationConfig struct {
 	_ struct{} `type:"structure"`
 
 	// Information about whether DevOps Guru is configured to create an OpsItem
-	// in AWS Systems Manager OpsCenter for each created insight.
+	// in Amazon Web Services Systems Manager OpsCenter for each created insight.
 	OpsCenter *OpsCenterIntegrationConfig `type:"structure"`
 }
 
@@ -8487,6 +10401,26 @@ func AnomalyStatus_Values() []string {
 }
 
 const (
+	// CloudWatchMetricDataStatusCodeComplete is a CloudWatchMetricDataStatusCode enum value
+	CloudWatchMetricDataStatusCodeComplete = "Complete"
+
+	// CloudWatchMetricDataStatusCodeInternalError is a CloudWatchMetricDataStatusCode enum value
+	CloudWatchMetricDataStatusCodeInternalError = "InternalError"
+
+	// CloudWatchMetricDataStatusCodePartialData is a CloudWatchMetricDataStatusCode enum value
+	CloudWatchMetricDataStatusCodePartialData = "PartialData"
+)
+
+// CloudWatchMetricDataStatusCode_Values returns all elements of the CloudWatchMetricDataStatusCode enum
+func CloudWatchMetricDataStatusCode_Values() []string {
+	return []string{
+		CloudWatchMetricDataStatusCodeComplete,
+		CloudWatchMetricDataStatusCodeInternalError,
+		CloudWatchMetricDataStatusCodePartialData,
+	}
+}
+
+const (
 	// CloudWatchMetricsStatSum is a CloudWatchMetricsStat enum value
 	CloudWatchMetricsStatSum = "Sum"
 
@@ -8734,8 +10668,8 @@ func Locale_Values() []string {
 	}
 }
 
-// Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
-// for each created insight.
+// Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems
+// Manager OpsItem for each created insight.
 const (
 	// OptInStatusEnabled is a OptInStatus enum value
 	OptInStatusEnabled = "ENABLED"
@@ -8749,6 +10683,26 @@ func OptInStatus_Values() []string {
 	return []string{
 		OptInStatusEnabled,
 		OptInStatusDisabled,
+	}
+}
+
+const (
+	// OrganizationResourceCollectionTypeAwsCloudFormation is a OrganizationResourceCollectionType enum value
+	OrganizationResourceCollectionTypeAwsCloudFormation = "AWS_CLOUD_FORMATION"
+
+	// OrganizationResourceCollectionTypeAwsService is a OrganizationResourceCollectionType enum value
+	OrganizationResourceCollectionTypeAwsService = "AWS_SERVICE"
+
+	// OrganizationResourceCollectionTypeAwsAccount is a OrganizationResourceCollectionType enum value
+	OrganizationResourceCollectionTypeAwsAccount = "AWS_ACCOUNT"
+)
+
+// OrganizationResourceCollectionType_Values returns all elements of the OrganizationResourceCollectionType enum
+func OrganizationResourceCollectionType_Values() []string {
+	return []string{
+		OrganizationResourceCollectionTypeAwsCloudFormation,
+		OrganizationResourceCollectionTypeAwsService,
+		OrganizationResourceCollectionTypeAwsAccount,
 	}
 }
 
