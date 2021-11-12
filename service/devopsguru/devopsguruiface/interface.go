@@ -84,6 +84,21 @@ type DevOpsGuruAPI interface {
 	DescribeInsightWithContext(aws.Context, *devopsguru.DescribeInsightInput, ...request.Option) (*devopsguru.DescribeInsightOutput, error)
 	DescribeInsightRequest(*devopsguru.DescribeInsightInput) (*request.Request, *devopsguru.DescribeInsightOutput)
 
+	DescribeOrganizationHealth(*devopsguru.DescribeOrganizationHealthInput) (*devopsguru.DescribeOrganizationHealthOutput, error)
+	DescribeOrganizationHealthWithContext(aws.Context, *devopsguru.DescribeOrganizationHealthInput, ...request.Option) (*devopsguru.DescribeOrganizationHealthOutput, error)
+	DescribeOrganizationHealthRequest(*devopsguru.DescribeOrganizationHealthInput) (*request.Request, *devopsguru.DescribeOrganizationHealthOutput)
+
+	DescribeOrganizationOverview(*devopsguru.DescribeOrganizationOverviewInput) (*devopsguru.DescribeOrganizationOverviewOutput, error)
+	DescribeOrganizationOverviewWithContext(aws.Context, *devopsguru.DescribeOrganizationOverviewInput, ...request.Option) (*devopsguru.DescribeOrganizationOverviewOutput, error)
+	DescribeOrganizationOverviewRequest(*devopsguru.DescribeOrganizationOverviewInput) (*request.Request, *devopsguru.DescribeOrganizationOverviewOutput)
+
+	DescribeOrganizationResourceCollectionHealth(*devopsguru.DescribeOrganizationResourceCollectionHealthInput) (*devopsguru.DescribeOrganizationResourceCollectionHealthOutput, error)
+	DescribeOrganizationResourceCollectionHealthWithContext(aws.Context, *devopsguru.DescribeOrganizationResourceCollectionHealthInput, ...request.Option) (*devopsguru.DescribeOrganizationResourceCollectionHealthOutput, error)
+	DescribeOrganizationResourceCollectionHealthRequest(*devopsguru.DescribeOrganizationResourceCollectionHealthInput) (*request.Request, *devopsguru.DescribeOrganizationResourceCollectionHealthOutput)
+
+	DescribeOrganizationResourceCollectionHealthPages(*devopsguru.DescribeOrganizationResourceCollectionHealthInput, func(*devopsguru.DescribeOrganizationResourceCollectionHealthOutput, bool) bool) error
+	DescribeOrganizationResourceCollectionHealthPagesWithContext(aws.Context, *devopsguru.DescribeOrganizationResourceCollectionHealthInput, func(*devopsguru.DescribeOrganizationResourceCollectionHealthOutput, bool) bool, ...request.Option) error
+
 	DescribeResourceCollectionHealth(*devopsguru.DescribeResourceCollectionHealthInput) (*devopsguru.DescribeResourceCollectionHealthOutput, error)
 	DescribeResourceCollectionHealthWithContext(aws.Context, *devopsguru.DescribeResourceCollectionHealthInput, ...request.Option) (*devopsguru.DescribeResourceCollectionHealthOutput, error)
 	DescribeResourceCollectionHealthRequest(*devopsguru.DescribeResourceCollectionHealthInput) (*request.Request, *devopsguru.DescribeResourceCollectionHealthOutput)
@@ -137,6 +152,13 @@ type DevOpsGuruAPI interface {
 	ListNotificationChannelsPages(*devopsguru.ListNotificationChannelsInput, func(*devopsguru.ListNotificationChannelsOutput, bool) bool) error
 	ListNotificationChannelsPagesWithContext(aws.Context, *devopsguru.ListNotificationChannelsInput, func(*devopsguru.ListNotificationChannelsOutput, bool) bool, ...request.Option) error
 
+	ListOrganizationInsights(*devopsguru.ListOrganizationInsightsInput) (*devopsguru.ListOrganizationInsightsOutput, error)
+	ListOrganizationInsightsWithContext(aws.Context, *devopsguru.ListOrganizationInsightsInput, ...request.Option) (*devopsguru.ListOrganizationInsightsOutput, error)
+	ListOrganizationInsightsRequest(*devopsguru.ListOrganizationInsightsInput) (*request.Request, *devopsguru.ListOrganizationInsightsOutput)
+
+	ListOrganizationInsightsPages(*devopsguru.ListOrganizationInsightsInput, func(*devopsguru.ListOrganizationInsightsOutput, bool) bool) error
+	ListOrganizationInsightsPagesWithContext(aws.Context, *devopsguru.ListOrganizationInsightsInput, func(*devopsguru.ListOrganizationInsightsOutput, bool) bool, ...request.Option) error
+
 	ListRecommendations(*devopsguru.ListRecommendationsInput) (*devopsguru.ListRecommendationsOutput, error)
 	ListRecommendationsWithContext(aws.Context, *devopsguru.ListRecommendationsInput, ...request.Option) (*devopsguru.ListRecommendationsOutput, error)
 	ListRecommendationsRequest(*devopsguru.ListRecommendationsInput) (*request.Request, *devopsguru.ListRecommendationsOutput)
@@ -158,6 +180,13 @@ type DevOpsGuruAPI interface {
 
 	SearchInsightsPages(*devopsguru.SearchInsightsInput, func(*devopsguru.SearchInsightsOutput, bool) bool) error
 	SearchInsightsPagesWithContext(aws.Context, *devopsguru.SearchInsightsInput, func(*devopsguru.SearchInsightsOutput, bool) bool, ...request.Option) error
+
+	SearchOrganizationInsights(*devopsguru.SearchOrganizationInsightsInput) (*devopsguru.SearchOrganizationInsightsOutput, error)
+	SearchOrganizationInsightsWithContext(aws.Context, *devopsguru.SearchOrganizationInsightsInput, ...request.Option) (*devopsguru.SearchOrganizationInsightsOutput, error)
+	SearchOrganizationInsightsRequest(*devopsguru.SearchOrganizationInsightsInput) (*request.Request, *devopsguru.SearchOrganizationInsightsOutput)
+
+	SearchOrganizationInsightsPages(*devopsguru.SearchOrganizationInsightsInput, func(*devopsguru.SearchOrganizationInsightsOutput, bool) bool) error
+	SearchOrganizationInsightsPagesWithContext(aws.Context, *devopsguru.SearchOrganizationInsightsInput, func(*devopsguru.SearchOrganizationInsightsOutput, bool) bool, ...request.Option) error
 
 	StartCostEstimation(*devopsguru.StartCostEstimationInput) (*devopsguru.StartCostEstimationOutput, error)
 	StartCostEstimationWithContext(aws.Context, *devopsguru.StartCostEstimationInput, ...request.Option) (*devopsguru.StartCostEstimationOutput, error)

@@ -114,6 +114,54 @@
         {"shape":"ValidationException"}
       ]
     },
+    "DescribeOrganizationHealth":{
+      "name":"DescribeOrganizationHealth",
+      "http":{
+        "method":"POST",
+        "requestUri":"/organization/health",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeOrganizationHealthRequest"},
+      "output":{"shape":"DescribeOrganizationHealthResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "DescribeOrganizationOverview":{
+      "name":"DescribeOrganizationOverview",
+      "http":{
+        "method":"POST",
+        "requestUri":"/organization/overview",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeOrganizationOverviewRequest"},
+      "output":{"shape":"DescribeOrganizationOverviewResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "DescribeOrganizationResourceCollectionHealth":{
+      "name":"DescribeOrganizationResourceCollectionHealth",
+      "http":{
+        "method":"POST",
+        "requestUri":"/organization/health/resource-collection/",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeOrganizationResourceCollectionHealthRequest"},
+      "output":{"shape":"DescribeOrganizationResourceCollectionHealthResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DescribeResourceCollectionHealth":{
       "name":"DescribeResourceCollectionHealth",
       "http":{
@@ -246,6 +294,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "ListOrganizationInsights":{
+      "name":"ListOrganizationInsights",
+      "http":{
+        "method":"POST",
+        "requestUri":"/organization/insights",
+        "responseCode":200
+      },
+      "input":{"shape":"ListOrganizationInsightsRequest"},
+      "output":{"shape":"ListOrganizationInsightsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "ListRecommendations":{
       "name":"ListRecommendations",
       "http":{
@@ -308,6 +372,22 @@
       },
       "input":{"shape":"SearchInsightsRequest"},
       "output":{"shape":"SearchInsightsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "SearchOrganizationInsights":{
+      "name":"SearchOrganizationInsights",
+      "http":{
+        "method":"POST",
+        "requestUri":"/organization/insights/search",
+        "responseCode":200
+      },
+      "input":{"shape":"SearchOrganizationInsightsRequest"},
+      "output":{"shape":"SearchOrganizationInsightsResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
@@ -378,6 +458,30 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "AccountHealth":{
+      "type":"structure",
+      "members":{
+        "AccountId":{"shape":"AwsAccountId"},
+        "Insight":{"shape":"AccountInsightHealth"}
+      }
+    },
+    "AccountHealths":{
+      "type":"list",
+      "member":{"shape":"AccountHealth"}
+    },
+    "AccountIdList":{
+      "type":"list",
+      "member":{"shape":"AwsAccountId"},
+      "max":5,
+      "min":0
+    },
+    "AccountInsightHealth":{
+      "type":"structure",
+      "members":{
+        "OpenProactiveInsights":{"shape":"NumOpenProactiveInsights"},
+        "OpenReactiveInsights":{"shape":"NumOpenReactiveInsights"}
+      }
+    },
     "AddNotificationChannelRequest":{
       "type":"structure",
       "required":["Config"],
@@ -439,6 +543,12 @@
         "EndTime":{"shape":"Timestamp"}
       }
     },
+    "AwsAccountId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^\\d{12}$"
+    },
     "Channels":{
       "type":"list",
       "member":{"shape":"NotificationChannel"}
@@ -478,6 +588,21 @@
       "type":"list",
       "member":{"shape":"CloudFormationHealth"}
     },
+    "CloudWatchMetricDataStatusCode":{
+      "type":"string",
+      "enum":[
+        "Complete",
+        "InternalError",
+        "PartialData"
+      ]
+    },
+    "CloudWatchMetricsDataSummary":{
+      "type":"structure",
+      "members":{
+        "TimestampMetricValuePairList":{"shape":"TimestampMetricValuePairList"},
+        "StatusCode":{"shape":"CloudWatchMetricDataStatusCode"}
+      }
+    },
     "CloudWatchMetricsDetail":{
       "type":"structure",
       "members":{
@@ -486,7 +611,8 @@
         "Dimensions":{"shape":"CloudWatchMetricsDimensions"},
         "Stat":{"shape":"CloudWatchMetricsStat"},
         "Unit":{"shape":"CloudWatchMetricsUnit"},
-        "Period":{"shape":"CloudWatchMetricsPeriod"}
+        "Period":{"shape":"CloudWatchMetricsPeriod"},
+        "MetricDataSummary":{"shape":"CloudWatchMetricsDataSummary"}
       }
     },
     "CloudWatchMetricsDetails":{
@@ -622,6 +748,11 @@
           "shape":"AnomalyId",
           "location":"uri",
           "locationName":"Id"
+        },
+        "AccountId":{
+          "shape":"AwsAccountId",
+          "location":"querystring",
+          "locationName":"AccountId"
         }
       }
     },
@@ -652,6 +783,11 @@
           "shape":"InsightId",
           "location":"uri",
           "locationName":"Id"
+        },
+        "AccountId":{
+          "shape":"AwsAccountId",
+          "location":"querystring",
+          "locationName":"AccountId"
         }
       }
     },
@@ -660,6 +796,69 @@
       "members":{
         "ProactiveInsight":{"shape":"ProactiveInsight"},
         "ReactiveInsight":{"shape":"ReactiveInsight"}
+      }
+    },
+    "DescribeOrganizationHealthRequest":{
+      "type":"structure",
+      "members":{
+        "AccountIds":{"shape":"AccountIdList"},
+        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"}
+      }
+    },
+    "DescribeOrganizationHealthResponse":{
+      "type":"structure",
+      "required":[
+        "OpenReactiveInsights",
+        "OpenProactiveInsights",
+        "MetricsAnalyzed",
+        "ResourceHours"
+      ],
+      "members":{
+        "OpenReactiveInsights":{"shape":"NumOpenReactiveInsights"},
+        "OpenProactiveInsights":{"shape":"NumOpenProactiveInsights"},
+        "MetricsAnalyzed":{"shape":"NumMetricsAnalyzed"},
+        "ResourceHours":{"shape":"ResourceHours"}
+      }
+    },
+    "DescribeOrganizationOverviewRequest":{
+      "type":"structure",
+      "required":["FromTime"],
+      "members":{
+        "FromTime":{"shape":"Timestamp"},
+        "ToTime":{"shape":"Timestamp"},
+        "AccountIds":{"shape":"AccountIdList"},
+        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"}
+      }
+    },
+    "DescribeOrganizationOverviewResponse":{
+      "type":"structure",
+      "required":[
+        "ReactiveInsights",
+        "ProactiveInsights"
+      ],
+      "members":{
+        "ReactiveInsights":{"shape":"NumReactiveInsights"},
+        "ProactiveInsights":{"shape":"NumProactiveInsights"}
+      }
+    },
+    "DescribeOrganizationResourceCollectionHealthRequest":{
+      "type":"structure",
+      "required":["OrganizationResourceCollectionType"],
+      "members":{
+        "OrganizationResourceCollectionType":{"shape":"OrganizationResourceCollectionType"},
+        "AccountIds":{"shape":"AccountIdList"},
+        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"},
+        "NextToken":{"shape":"UuidNextToken"},
+        "MaxResults":{"shape":"OrganizationResourceCollectionMaxResults"}
+      }
+    },
+    "DescribeOrganizationResourceCollectionHealthResponse":{
+      "type":"structure",
+      "members":{
+        "CloudFormation":{"shape":"CloudFormationHealths"},
+        "Service":{"shape":"ServiceHealths"},
+        "Account":{"shape":"AccountHealths"},
+        "NextToken":{"shape":"UuidNextToken"}
       }
     },
     "DescribeResourceCollectionHealthRequest":{
@@ -950,7 +1149,8 @@
         },
         "StartTimeRange":{"shape":"StartTimeRange"},
         "MaxResults":{"shape":"ListAnomaliesForInsightMaxResults"},
-        "NextToken":{"shape":"UuidNextToken"}
+        "NextToken":{"shape":"UuidNextToken"},
+        "AccountId":{"shape":"AwsAccountId"}
       }
     },
     "ListAnomaliesForInsightResponse":{
@@ -983,7 +1183,8 @@
       "members":{
         "Filters":{"shape":"ListEventsFilters"},
         "MaxResults":{"shape":"ListEventsMaxResults"},
-        "NextToken":{"shape":"UuidNextToken"}
+        "NextToken":{"shape":"UuidNextToken"},
+        "AccountId":{"shape":"AwsAccountId"}
       }
     },
     "ListEventsResponse":{
@@ -993,6 +1194,12 @@
         "Events":{"shape":"Events"},
         "NextToken":{"shape":"UuidNextToken"}
       }
+    },
+    "ListInsightsAccountIdList":{
+      "type":"list",
+      "member":{"shape":"AwsAccountId"},
+      "max":1,
+      "min":0
     },
     "ListInsightsAnyStatusFilter":{
       "type":"structure",
@@ -1027,6 +1234,12 @@
       "members":{
         "Type":{"shape":"InsightType"}
       }
+    },
+    "ListInsightsOrganizationalUnitIdList":{
+      "type":"list",
+      "member":{"shape":"OrganizationalUnitId"},
+      "max":1,
+      "min":0
     },
     "ListInsightsRequest":{
       "type":"structure",
@@ -1066,13 +1279,33 @@
         "NextToken":{"shape":"UuidNextToken"}
       }
     },
+    "ListOrganizationInsightsRequest":{
+      "type":"structure",
+      "required":["StatusFilter"],
+      "members":{
+        "StatusFilter":{"shape":"ListInsightsStatusFilter"},
+        "MaxResults":{"shape":"ListInsightsMaxResults"},
+        "AccountIds":{"shape":"ListInsightsAccountIdList"},
+        "OrganizationalUnitIds":{"shape":"ListInsightsOrganizationalUnitIdList"},
+        "NextToken":{"shape":"UuidNextToken"}
+      }
+    },
+    "ListOrganizationInsightsResponse":{
+      "type":"structure",
+      "members":{
+        "ProactiveInsights":{"shape":"ProactiveOrganizationInsights"},
+        "ReactiveInsights":{"shape":"ReactiveOrganizationInsights"},
+        "NextToken":{"shape":"UuidNextToken"}
+      }
+    },
     "ListRecommendationsRequest":{
       "type":"structure",
       "required":["InsightId"],
       "members":{
         "InsightId":{"shape":"InsightId"},
         "NextToken":{"shape":"UuidNextToken"},
-        "Locale":{"shape":"Locale"}
+        "Locale":{"shape":"Locale"},
+        "AccountId":{"shape":"AwsAccountId"}
       }
     },
     "ListRecommendationsResponse":{
@@ -1099,6 +1332,7 @@
       ]
     },
     "MeanTimeToRecoverInMilliseconds":{"type":"long"},
+    "MetricValue":{"type":"double"},
     "NotificationChannel":{
       "type":"structure",
       "members":{
@@ -1142,6 +1376,30 @@
         "ENABLED",
         "DISABLED"
       ]
+    },
+    "OrganizationResourceCollectionMaxResults":{
+      "type":"integer",
+      "max":500,
+      "min":1
+    },
+    "OrganizationResourceCollectionType":{
+      "type":"string",
+      "enum":[
+        "AWS_CLOUD_FORMATION",
+        "AWS_SERVICE",
+        "AWS_ACCOUNT"
+      ]
+    },
+    "OrganizationalUnitId":{
+      "type":"string",
+      "max":68,
+      "pattern":"^ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$"
+    },
+    "OrganizationalUnitIdList":{
+      "type":"list",
+      "member":{"shape":"OrganizationalUnitId"},
+      "max":5,
+      "min":0
     },
     "PredictionTimeRange":{
       "type":"structure",
@@ -1217,6 +1475,25 @@
       "type":"list",
       "member":{"shape":"ProactiveInsightSummary"}
     },
+    "ProactiveOrganizationInsightSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"InsightId"},
+        "AccountId":{"shape":"AwsAccountId"},
+        "OrganizationalUnitId":{"shape":"OrganizationalUnitId"},
+        "Name":{"shape":"InsightName"},
+        "Severity":{"shape":"InsightSeverity"},
+        "Status":{"shape":"InsightStatus"},
+        "InsightTimeRange":{"shape":"InsightTimeRange"},
+        "PredictionTimeRange":{"shape":"PredictionTimeRange"},
+        "ResourceCollection":{"shape":"ResourceCollection"},
+        "ServiceCollection":{"shape":"ServiceCollection"}
+      }
+    },
+    "ProactiveOrganizationInsights":{
+      "type":"list",
+      "member":{"shape":"ProactiveOrganizationInsightSummary"}
+    },
     "PutFeedbackRequest":{
       "type":"structure",
       "members":{
@@ -1285,6 +1562,24 @@
     "ReactiveInsights":{
       "type":"list",
       "member":{"shape":"ReactiveInsightSummary"}
+    },
+    "ReactiveOrganizationInsightSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"InsightId"},
+        "AccountId":{"shape":"AwsAccountId"},
+        "OrganizationalUnitId":{"shape":"OrganizationalUnitId"},
+        "Name":{"shape":"InsightName"},
+        "Severity":{"shape":"InsightSeverity"},
+        "Status":{"shape":"InsightStatus"},
+        "InsightTimeRange":{"shape":"InsightTimeRange"},
+        "ResourceCollection":{"shape":"ResourceCollection"},
+        "ServiceCollection":{"shape":"ServiceCollection"}
+      }
+    },
+    "ReactiveOrganizationInsights":{
+      "type":"list",
+      "member":{"shape":"ReactiveOrganizationInsightSummary"}
     },
     "Recommendation":{
       "type":"structure",
@@ -1439,6 +1734,12 @@
       "pattern":"^[a-zA-Z]+[a-zA-Z0-9-_:]*$"
     },
     "RetryAfterSeconds":{"type":"integer"},
+    "SearchInsightsAccountIdList":{
+      "type":"list",
+      "member":{"shape":"AwsAccountId"},
+      "max":1,
+      "min":1
+    },
     "SearchInsightsFilters":{
       "type":"structure",
       "members":{
@@ -1468,6 +1769,44 @@
       }
     },
     "SearchInsightsResponse":{
+      "type":"structure",
+      "members":{
+        "ProactiveInsights":{"shape":"ProactiveInsights"},
+        "ReactiveInsights":{"shape":"ReactiveInsights"},
+        "NextToken":{"shape":"UuidNextToken"}
+      }
+    },
+    "SearchOrganizationInsightsFilters":{
+      "type":"structure",
+      "members":{
+        "Severities":{"shape":"InsightSeverities"},
+        "Statuses":{"shape":"InsightStatuses"},
+        "ResourceCollection":{"shape":"ResourceCollection"},
+        "ServiceCollection":{"shape":"ServiceCollection"}
+      }
+    },
+    "SearchOrganizationInsightsMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "SearchOrganizationInsightsRequest":{
+      "type":"structure",
+      "required":[
+        "AccountIds",
+        "StartTimeRange",
+        "Type"
+      ],
+      "members":{
+        "AccountIds":{"shape":"SearchInsightsAccountIdList"},
+        "StartTimeRange":{"shape":"StartTimeRange"},
+        "Filters":{"shape":"SearchOrganizationInsightsFilters"},
+        "MaxResults":{"shape":"SearchOrganizationInsightsMaxResults"},
+        "NextToken":{"shape":"UuidNextToken"},
+        "Type":{"shape":"InsightType"}
+      }
+    },
+    "SearchOrganizationInsightsResponse":{
       "type":"structure",
       "members":{
         "ProactiveInsights":{"shape":"ProactiveInsights"},
@@ -1623,6 +1962,17 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "TimestampMetricValuePair":{
+      "type":"structure",
+      "members":{
+        "Timestamp":{"shape":"Timestamp"},
+        "MetricValue":{"shape":"MetricValue"}
+      }
+    },
+    "TimestampMetricValuePairList":{
+      "type":"list",
+      "member":{"shape":"TimestampMetricValuePair"}
+    },
     "TopicArn":{
       "type":"string",
       "max":1024,

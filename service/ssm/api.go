@@ -16339,9 +16339,10 @@ type AssociationDescription struct {
 	// The association version.
 	AssociationVersion *string `type:"string"`
 
-	// Specify the target for the association. This target is required for associations
-	// that use an Automation runbook and target resources by using rate controls.
-	// Automation is a capability of Amazon Web Services Systems Manager.
+	// Choose the parameter that will define how your automation will branch out.
+	// This target is required for associations that use an Automation runbook and
+	// target resources by using rate controls. Automation is a capability of Amazon
+	// Web Services Systems Manager.
 	AutomationTargetParameterName *string `min:"1" type:"string"`
 
 	// The names or Amazon Resource Names (ARNs) of the Change Calendar type documents
@@ -21139,9 +21140,10 @@ type CreateAssociationInput struct {
 	// Specify a descriptive name for the association.
 	AssociationName *string `type:"string"`
 
-	// Specify the target for the association. This target is required for associations
-	// that use an Automation runbook and target resources by using rate controls.
-	// Automation is a capability of Amazon Web Services Systems Manager.
+	// Choose the parameter that will define how your automation will branch out.
+	// This target is required for associations that use an Automation runbook and
+	// target resources by using rate controls. Automation is a capability of Amazon
+	// Web Services Systems Manager.
 	AutomationTargetParameterName *string `min:"1" type:"string"`
 
 	// The names or Amazon Resource Names (ARNs) of the Change Calendar type documents
@@ -54802,9 +54804,10 @@ type UpdateAssociationInput struct {
 	// this request succeeds, either specify $LATEST, or omit this parameter.
 	AssociationVersion *string `type:"string"`
 
-	// Specify the target for the association. This target is required for associations
-	// that use an Automation runbook and target resources by using rate controls.
-	// Automation is a capability of Amazon Web Services Systems Manager.
+	// Choose the parameter that will define how your automation will branch out.
+	// This target is required for associations that use an Automation runbook and
+	// target resources by using rate controls. Automation is a capability of Amazon
+	// Web Services Systems Manager.
 	AutomationTargetParameterName *string `min:"1" type:"string"`
 
 	// The names or Amazon Resource Names (ARNs) of the Change Calendar type documents
@@ -58870,6 +58873,9 @@ const (
 
 	// OperatingSystemMacos is a OperatingSystem enum value
 	OperatingSystemMacos = "MACOS"
+
+	// OperatingSystemRaspbian is a OperatingSystem enum value
+	OperatingSystemRaspbian = "RASPBIAN"
 )
 
 // OperatingSystem_Values returns all elements of the OperatingSystem enum
@@ -58885,6 +58891,7 @@ func OperatingSystem_Values() []string {
 		OperatingSystemOracleLinux,
 		OperatingSystemDebian,
 		OperatingSystemMacos,
+		OperatingSystemRaspbian,
 	}
 }
 

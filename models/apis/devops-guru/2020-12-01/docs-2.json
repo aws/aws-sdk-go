@@ -1,33 +1,64 @@
 {
   "version": "2.0",
-  "service": "<p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the AWS resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and AWS CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html\">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in AWS Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works\">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html\">Concepts in DevOps Guru</a>. </p>",
+  "service": "<p> Amazon DevOps Guru is a fully managed service that helps you identify anomalous behavior in business critical operational applications. You specify the Amazon Web Services resources that you want DevOps Guru to cover, then the Amazon CloudWatch metrics and Amazon Web Services CloudTrail events related to those resources are analyzed. When anomalous behavior is detected, DevOps Guru creates an <i>insight</i> that includes recommendations, related events, and related metrics that can help you improve your operational applications. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html\">What is Amazon DevOps Guru</a>. </p> <p> You can specify 1 or 2 Amazon Simple Notification Service topics so you are notified every time a new insight is created. You can also enable DevOps Guru to generate an OpsItem in Amazon Web Services Systems Manager for each insight to help you manage and track your work addressing insights. </p> <p> To learn about the DevOps Guru workflow, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html#how-it-works\">How DevOps Guru works</a>. To learn about DevOps Guru concepts, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/concepts.html\">Concepts in DevOps Guru</a>. </p>",
   "operations": {
-    "AddNotificationChannel": "<p> Adds a notification channel to DevOps Guru. A notification channel is used to notify you about important DevOps Guru events, such as when an insight is generated. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an AWS Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for AWS KMS–encrypted Amazon SNS topics</a>.</p>",
-    "DescribeAccountHealth": "<p> Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your AWS account. Use these numbers to gauge the health of operations in your AWS account. </p>",
+    "AddNotificationChannel": "<p> Adds a notification channel to DevOps Guru. A notification channel is used to notify you about important DevOps Guru events, such as when an insight is generated. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an Amazon Web Services Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for Amazon Web Services KMS–encrypted Amazon SNS topics</a>.</p>",
+    "DescribeAccountHealth": "<p> Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your Amazon Web Services account. </p>",
     "DescribeAccountOverview": "<p> For the time range passed in, returns the number of open reactive insight that were created, the number of open proactive insights that were created, and the Mean Time to Recover (MTTR) for all closed reactive insights. </p>",
     "DescribeAnomaly": "<p> Returns details about an anomaly that you specify using its ID. </p>",
-    "DescribeFeedback": "<p> Returns the most recent feedback submitted in the current AWS account and Region. </p>",
+    "DescribeFeedback": "<p> Returns the most recent feedback submitted in the current Amazon Web Services account and Region. </p>",
     "DescribeInsight": "<p> Returns details about an insight that you specify using its ID. </p>",
-    "DescribeResourceCollectionHealth": "<p> Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of AWS resources collection. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks. </p>",
-    "DescribeServiceIntegration": "<p> Returns the integration status of services that are integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is AWS Systems Manager, which can be used to create an OpsItem for each generated insight. </p>",
-    "GetCostEstimation": "<p>Returns an estimate of the monthly cost for DevOps Guru to analyze your AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html\">Estimate your Amazon DevOps Guru costs</a> and <a href=\"http://aws.amazon.com/devops-guru/pricing/\">Amazon DevOps Guru pricing</a>.</p>",
-    "GetResourceCollection": "<p> Returns lists AWS resources that are of the specified resource collection type. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks. </p>",
+    "DescribeOrganizationHealth": "<p>Returns active insights, predictive insights, and resource hours analyzed in last hour.</p>",
+    "DescribeOrganizationOverview": "<p>Returns an overview of your organization's history based on the specified time range. The overview includes the total reactive and proactive insights.</p>",
+    "DescribeOrganizationResourceCollectionHealth": "<p>Provides an overview of your system's health. If additional member accounts are part of your organization, you can filter those accounts using the <code>AccountIds</code> field.</p>",
+    "DescribeResourceCollectionHealth": "<p> Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of Amazon Web Services resources collection. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
+    "DescribeServiceIntegration": "<p> Returns the integration status of services that are integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem for each generated insight. </p>",
+    "GetCostEstimation": "<p>Returns an estimate of the monthly cost for DevOps Guru to analyze your Amazon Web Services resources. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html\">Estimate your Amazon DevOps Guru costs</a> and <a href=\"http://aws.amazon.com/devops-guru/pricing/\">Amazon DevOps Guru pricing</a>.</p>",
+    "GetResourceCollection": "<p> Returns lists Amazon Web Services resources that are of the specified resource collection type. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
     "ListAnomaliesForInsight": "<p> Returns a list of the anomalies that belong to an insight that you specify using its ID. </p>",
     "ListEvents": "<p> Returns a list of the events emitted by the resources that are evaluated by DevOps Guru. You can use filters to specify which events are returned. </p>",
-    "ListInsights": "<p> Returns a list of insights in your AWS account. You can specify which insights are returned by their start time and status (<code>ONGOING</code>, <code>CLOSED</code>, or <code>ANY</code>). </p>",
+    "ListInsights": "<p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned by their start time and status (<code>ONGOING</code>, <code>CLOSED</code>, or <code>ANY</code>). </p>",
     "ListNotificationChannels": "<p> Returns a list of notification channels configured for DevOps Guru. Each notification channel is used to notify you when DevOps Guru generates an insight that contains information about how to improve your operations. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS). </p>",
+    "ListOrganizationInsights": "<p>Returns a list of insights associated with the account or OU Id.</p>",
     "ListRecommendations": "<p> Returns a list of a specified insight's recommendations. Each recommendation includes a list of related metrics and a list of related events. </p>",
     "PutFeedback": "<p> Collects customer feedback about the specified insight. </p>",
     "RemoveNotificationChannel": "<p> Removes a notification channel from DevOps Guru. A notification channel is used to notify you when DevOps Guru generates an insight that contains information about how to improve your operations. </p>",
-    "SearchInsights": "<p> Returns a list of insights in your AWS account. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>",
-    "StartCostEstimation": "<p>Starts the creation of an estimate of the monthly cost to analyze your AWS resources.</p>",
-    "UpdateResourceCollection": "<p> Updates the collection of resources that DevOps Guru analyzes. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks. This method also creates the IAM role required for you to use DevOps Guru. </p>",
-    "UpdateServiceIntegration": "<p> Enables or disables integration with a service that can be integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is AWS Systems Manager, which can be used to create an OpsItem for each generated insight. </p>"
+    "SearchInsights": "<p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>",
+    "SearchOrganizationInsights": "<p> Returns a list of insights in your organization. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>",
+    "StartCostEstimation": "<p>Starts the creation of an estimate of the monthly cost to analyze your Amazon Web Services resources.</p>",
+    "UpdateResourceCollection": "<p> Updates the collection of resources that DevOps Guru analyzes. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. This method also creates the IAM role required for you to use DevOps Guru. </p>",
+    "UpdateServiceIntegration": "<p> Enables or disables integration with a service that can be integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem for each generated insight. </p>"
   },
   "shapes": {
     "AccessDeniedException": {
       "base": "<p> You don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html\">Access Management</a> in the <i>IAM User Guide</i>. </p>",
       "refs": {
+      }
+    },
+    "AccountHealth": {
+      "base": "<p> Returns the number of open reactive insights, the number of open proactive insights, and the number of metrics analyzed in your Amazon Web Services account. Use these numbers to gauge the health of operations in your Amazon Web Services account. </p>",
+      "refs": {
+        "AccountHealths$member": null
+      }
+    },
+    "AccountHealths": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationResourceCollectionHealthResponse$Account": "<p>The name of the organization's account.</p>"
+      }
+    },
+    "AccountIdList": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationHealthRequest$AccountIds": "<p>The ID of the Amazon Web Services account.</p>",
+        "DescribeOrganizationOverviewRequest$AccountIds": "<p>The ID of the Amazon Web Services account.</p>",
+        "DescribeOrganizationResourceCollectionHealthRequest$AccountIds": "<p>The ID of the Amazon Web Services account.</p>"
+      }
+    },
+    "AccountInsightHealth": {
+      "base": "<p> Information about the number of open reactive and proactive insights that can be used to gauge the health of your system. </p>",
+      "refs": {
+        "AccountHealth$Insight": "<p> Information about the health of the Amazon Web Services resources in your account, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. </p>"
       }
     },
     "AddNotificationChannelRequest": {
@@ -102,6 +133,22 @@
         "ReactiveAnomalySummary$AnomalyTimeRange": null
       }
     },
+    "AwsAccountId": {
+      "base": null,
+      "refs": {
+        "AccountHealth$AccountId": "<p>The ID of the Amazon Web Services account. </p>",
+        "AccountIdList$member": null,
+        "DescribeAnomalyRequest$AccountId": "<p>The ID of the member account.</p>",
+        "DescribeInsightRequest$AccountId": "<p>The ID of the member account in the organization.</p>",
+        "ListAnomaliesForInsightRequest$AccountId": "<p>The ID of the Amazon Web Services account. </p>",
+        "ListEventsRequest$AccountId": "<p>The ID of the Amazon Web Services account. </p>",
+        "ListInsightsAccountIdList$member": null,
+        "ListRecommendationsRequest$AccountId": "<p>The ID of the Amazon Web Services account. </p>",
+        "ProactiveOrganizationInsightSummary$AccountId": "<p>The ID of the Amazon Web Services account.</p>",
+        "ReactiveOrganizationInsightSummary$AccountId": "<p>The ID of the Amazon Web Services account.</p>",
+        "SearchInsightsAccountIdList$member": null
+      }
+    },
     "Channels": {
       "base": null,
       "refs": {
@@ -115,25 +162,25 @@
       }
     },
     "CloudFormationCollection": {
-      "base": "<p> Information about AWS CloudFormation stacks. You can use up to 500 stacks to specify which AWS resources in your account to analyze. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>AWS CloudFormation User Guide</i>. </p>",
+      "base": "<p> Information about Amazon Web Services CloudFormation stacks. You can use up to 500 stacks to specify which Amazon Web Services resources in your account to analyze. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>. </p>",
       "refs": {
-        "ResourceCollection$CloudFormation": "<p> An array of the names of AWS CloudFormation stacks. The stacks define AWS resources that DevOps Guru analyzes. You can specify up to 500 AWS CloudFormation stacks. </p>"
+        "ResourceCollection$CloudFormation": "<p> An array of the names of Amazon Web Services CloudFormation stacks. The stacks define Amazon Web Services resources that DevOps Guru analyzes. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
       }
     },
     "CloudFormationCollectionFilter": {
-      "base": "<p> Information about AWS CloudFormation stacks. You can use up to 500 stacks to specify which AWS resources in your account to analyze. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>AWS CloudFormation User Guide</i>. </p>",
+      "base": "<p> Information about Amazon Web Services CloudFormation stacks. You can use up to 500 stacks to specify which Amazon Web Services resources in your account to analyze. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>. </p>",
       "refs": {
-        "ResourceCollectionFilter$CloudFormation": "<p> Information about AWS CloudFormation stacks. You can use up to 500 stacks to specify which AWS resources in your account to analyze. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>AWS CloudFormation User Guide</i>. </p>"
+        "ResourceCollectionFilter$CloudFormation": "<p> Information about Amazon Web Services CloudFormation stacks. You can use up to 500 stacks to specify which Amazon Web Services resources in your account to analyze. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>. </p>"
       }
     },
     "CloudFormationCostEstimationResourceCollectionFilter": {
-      "base": "<p>Information about an AWS CloudFormation stack used to create a monthly cost estimate for DevOps Guru to analyze AWS resources. The maximum number of stacks you can specify for a cost estimate is one. The estimate created is for the cost to analyze the AWS resources defined by the stack. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>AWS CloudFormation User Guide</i>.</p>",
+      "base": "<p>Information about an Amazon Web Services CloudFormation stack used to create a monthly cost estimate for DevOps Guru to analyze Amazon Web Services resources. The maximum number of stacks you can specify for a cost estimate is one. The estimate created is for the cost to analyze the Amazon Web Services resources defined by the stack. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>.</p>",
       "refs": {
-        "CostEstimationResourceCollectionFilter$CloudFormation": "<p>An object that specifies the CloudFormation stack that defines the AWS resources used to create a monthly estimate for DevOps Guru.</p>"
+        "CostEstimationResourceCollectionFilter$CloudFormation": "<p>An object that specifies the CloudFormation stack that defines the Amazon Web Services resources used to create a monthly estimate for DevOps Guru.</p>"
       }
     },
     "CloudFormationHealth": {
-      "base": "<p> Information about the health of AWS resources in your account that are specified by an AWS CloudFormation stack. </p>",
+      "base": "<p> Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack. </p>",
       "refs": {
         "CloudFormationHealths$member": null
       }
@@ -141,7 +188,20 @@
     "CloudFormationHealths": {
       "base": null,
       "refs": {
+        "DescribeOrganizationResourceCollectionHealthResponse$CloudFormation": "<p>The returned <code>CloudFormationHealthOverview</code> object that contains an <code>InsightHealthOverview</code> object with the requested system health information.</p>",
         "DescribeResourceCollectionHealthResponse$CloudFormation": "<p> The returned <code>CloudFormationHealthOverview</code> object that contains an <code>InsightHealthOverview</code> object with the requested system health information. </p>"
+      }
+    },
+    "CloudWatchMetricDataStatusCode": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDataSummary$StatusCode": "<p>This is enum of the status showing whether the metric value pair list has Partial or Complete data or there was an error.</p>"
+      }
+    },
+    "CloudWatchMetricsDataSummary": {
+      "base": "<p>Contains information about the analyzed metrics that displayed anomalous behavior. </p>",
+      "refs": {
+        "CloudWatchMetricsDetail$MetricDataSummary": "<p>This object returns anomaly metric data.</p>"
       }
     },
     "CloudWatchMetricsDetail": {
@@ -218,16 +278,16 @@
     "Cost": {
       "base": null,
       "refs": {
-        "GetCostEstimationResponse$TotalCost": "<p>The estimated monthly cost to analyze the AWS resources. This value is the sum of the estimated costs to analyze each resource in the <code>Costs</code> object in this response.</p>",
+        "GetCostEstimationResponse$TotalCost": "<p>The estimated monthly cost to analyze the Amazon Web Services resources. This value is the sum of the estimated costs to analyze each resource in the <code>Costs</code> object in this response.</p>",
         "ServiceResourceCost$UnitCost": "<p>The price per hour to analyze the resources in the service. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html\">Estimate your Amazon DevOps Guru costs</a> and <a href=\"http://aws.amazon.com/devops-guru/pricing/\">Amazon DevOps Guru pricing</a>.</p>",
         "ServiceResourceCost$Cost": "<p>The total estimated monthly cost to analyze the active resources for this resource.</p>"
       }
     },
     "CostEstimationResourceCollectionFilter": {
-      "base": "<p>Information about a filter used to specify which AWS resources are analyzed to create a monthly DevOps Guru cost estimate. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html\">Estimate your Amazon DevOps Guru costs</a> and <a href=\"http://aws.amazon.com/devops-guru/pricing/\">Amazon DevOps Guru pricing</a>. </p>",
+      "base": "<p>Information about a filter used to specify which Amazon Web Services resources are analyzed to create a monthly DevOps Guru cost estimate. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html\">Estimate your Amazon DevOps Guru costs</a> and <a href=\"http://aws.amazon.com/devops-guru/pricing/\">Amazon DevOps Guru pricing</a>. </p>",
       "refs": {
-        "GetCostEstimationResponse$ResourceCollection": "<p>The collection of the AWS resources used to create your monthly DevOps Guru cost estimate.</p>",
-        "StartCostEstimationRequest$ResourceCollection": "<p>The collection of AWS resources used to create a monthly DevOps Guru cost estimate.</p>"
+        "GetCostEstimationResponse$ResourceCollection": "<p>The collection of the Amazon Web Services resources used to create your monthly DevOps Guru cost estimate.</p>",
+        "StartCostEstimationRequest$ResourceCollection": "<p>The collection of Amazon Web Services resources used to create a monthly DevOps Guru cost estimate.</p>"
       }
     },
     "CostEstimationServiceResourceCount": {
@@ -239,7 +299,7 @@
     "CostEstimationServiceResourceState": {
       "base": null,
       "refs": {
-        "ServiceResourceCost$State": "<p>The state of the resource. The resource is <code>ACTIVE</code> if it produces metrics, events, or logs within an hour, otherwise it is <code>INACTIVE</code>. You pay for the number of active AWS resource hours analyzed for each resource. Inactive resources are not charged. </p>"
+        "ServiceResourceCost$State": "<p>The state of the resource. The resource is <code>ACTIVE</code> if it produces metrics, events, or logs within an hour, otherwise it is <code>INACTIVE</code>. You pay for the number of active Amazon Web Services resource hours analyzed for each resource. Inactive resources are not charged. </p>"
       }
     },
     "CostEstimationStackNames": {
@@ -310,6 +370,36 @@
       "refs": {
       }
     },
+    "DescribeOrganizationHealthRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeOrganizationHealthResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeOrganizationOverviewRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeOrganizationOverviewResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeOrganizationResourceCollectionHealthRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeOrganizationResourceCollectionHealthResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeResourceCollectionHealthRequest": {
       "base": null,
       "refs": {
@@ -368,7 +458,7 @@
       }
     },
     "Event": {
-      "base": "<p> An AWS resource event. AWS resource events and metrics are analyzed by DevOps Guru to find anomalous behavior and provide recommendations to improve your operational solutions. </p>",
+      "base": "<p> An Amazon Web Services resource event. Amazon Web Services resource events and metrics are analyzed by DevOps Guru to find anomalous behavior and provide recommendations to improve your operational solutions. </p>",
       "refs": {
         "Events$member": null
       }
@@ -400,7 +490,7 @@
       }
     },
     "EventResource": {
-      "base": "<p> The AWS resource that emitted an event. AWS resource events and metrics are analyzed by DevOps Guru to find anomalous behavior and provide recommendations to improve your operational solutions. </p>",
+      "base": "<p> The Amazon Web Services resource that emitted an event. Amazon Web Services resource events and metrics are analyzed by DevOps Guru to find anomalous behavior and provide recommendations to improve your operational solutions. </p>",
       "refs": {
         "EventResources$member": null
       }
@@ -432,12 +522,12 @@
     "EventSource": {
       "base": null,
       "refs": {
-        "Event$EventSource": "<p> The AWS source that emitted the event. </p>",
-        "ListEventsFilters$EventSource": "<p> The AWS source that emitted the events you want to filter for. </p>"
+        "Event$EventSource": "<p> The Amazon Web Services source that emitted the event. </p>",
+        "ListEventsFilters$EventSource": "<p> The Amazon Web Services source that emitted the events you want to filter for. </p>"
       }
     },
     "EventTimeRange": {
-      "base": "<p> The time range during which an AWS event occurred. AWS resource events and metrics are analyzed by DevOps Guru to find anomalous behavior and provide recommendations to improve your operational solutions. </p>",
+      "base": "<p> The time range during which an Amazon Web Services event occurred. Amazon Web Services resource events and metrics are analyzed by DevOps Guru to find anomalous behavior and provide recommendations to improve your operational solutions. </p>",
       "refs": {
         "ListEventsFilters$EventTimeRange": "<p> A time range during which you want the filtered events to have occurred. </p>"
       }
@@ -484,7 +574,7 @@
     "InsightHealth": {
       "base": "<p> Information about the number of open reactive and proactive insights that can be used to gauge the health of your system. </p>",
       "refs": {
-        "CloudFormationHealth$Insight": "<p> Information about the health of the AWS resources in your account that are specified by an AWS CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. </p>"
+        "CloudFormationHealth$Insight": "<p> Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. </p>"
       }
     },
     "InsightId": {
@@ -500,10 +590,12 @@
         "ProactiveAnomalySummary$AssociatedInsightId": "<p> The ID of the insight that contains this anomaly. An insight is composed of related anomalies. </p>",
         "ProactiveInsight$Id": "<p>The ID of the proactive insight. </p>",
         "ProactiveInsightSummary$Id": "<p>The ID of the proactive insight. </p>",
+        "ProactiveOrganizationInsightSummary$Id": "<p>The ID of the insight summary.</p>",
         "ReactiveAnomaly$AssociatedInsightId": "<p> The ID of the insight that contains this anomaly. An insight is composed of related anomalies. </p>",
         "ReactiveAnomalySummary$AssociatedInsightId": "<p> The ID of the insight that contains this anomaly. An insight is composed of related anomalies. </p>",
         "ReactiveInsight$Id": "<p> The ID of a reactive insight. </p>",
-        "ReactiveInsightSummary$Id": "<p> The ID of a reactive summary. </p>"
+        "ReactiveInsightSummary$Id": "<p> The ID of a reactive summary. </p>",
+        "ReactiveOrganizationInsightSummary$Id": "<p>The ID of the insight summary.</p>"
       }
     },
     "InsightName": {
@@ -511,14 +603,17 @@
       "refs": {
         "ProactiveInsight$Name": "<p>The name of the proactive insight. </p>",
         "ProactiveInsightSummary$Name": "<p>The name of the proactive insight. </p>",
+        "ProactiveOrganizationInsightSummary$Name": "<p>The name of the insight summary.</p>",
         "ReactiveInsight$Name": "<p> The name of a reactive insight. </p>",
-        "ReactiveInsightSummary$Name": "<p> The name of a reactive insight. </p>"
+        "ReactiveInsightSummary$Name": "<p> The name of a reactive insight. </p>",
+        "ReactiveOrganizationInsightSummary$Name": "<p>The name of the insight summary.</p>"
       }
     },
     "InsightSeverities": {
       "base": null,
       "refs": {
-        "SearchInsightsFilters$Severities": "<p> An array of severity values used to search for insights. </p>"
+        "SearchInsightsFilters$Severities": "<p> An array of severity values used to search for insights. </p>",
+        "SearchOrganizationInsightsFilters$Severities": "<p> An array of severity values used to search for insights. </p>"
       }
     },
     "InsightSeverity": {
@@ -527,8 +622,10 @@
         "InsightSeverities$member": null,
         "ProactiveInsight$Severity": "<p>The severity of the proactive insight. </p>",
         "ProactiveInsightSummary$Severity": "<p>The severity of the proactive insight. </p>",
+        "ProactiveOrganizationInsightSummary$Severity": "<p> An array of severity values used to search for insights. </p>",
         "ReactiveInsight$Severity": "<p> The severity of a reactive insight. </p>",
-        "ReactiveInsightSummary$Severity": "<p> The severity of a reactive insight. </p>"
+        "ReactiveInsightSummary$Severity": "<p> The severity of a reactive insight. </p>",
+        "ReactiveOrganizationInsightSummary$Severity": "<p> An array of severity values used to search for insights. </p>"
       }
     },
     "InsightStatus": {
@@ -537,14 +634,17 @@
         "InsightStatuses$member": null,
         "ProactiveInsight$Status": "<p>The status of the proactive insight. </p>",
         "ProactiveInsightSummary$Status": "<p>The status of the proactive insight. </p>",
+        "ProactiveOrganizationInsightSummary$Status": "<p> An array of status values used to search for insights. </p>",
         "ReactiveInsight$Status": "<p> The status of a reactive insight. </p>",
-        "ReactiveInsightSummary$Status": "<p> The status of a reactive insight. </p>"
+        "ReactiveInsightSummary$Status": "<p> The status of a reactive insight. </p>",
+        "ReactiveOrganizationInsightSummary$Status": "<p> An array of status values used to search for insights. </p>"
       }
     },
     "InsightStatuses": {
       "base": null,
       "refs": {
-        "SearchInsightsFilters$Statuses": "<p> An array of status values used to search for insights. </p>"
+        "SearchInsightsFilters$Statuses": "<p> An array of status values used to search for insights. </p>",
+        "SearchOrganizationInsightsFilters$Statuses": "<p> An array of status values used to search for insights. </p>"
       }
     },
     "InsightTimeRange": {
@@ -552,8 +652,10 @@
       "refs": {
         "ProactiveInsight$InsightTimeRange": null,
         "ProactiveInsightSummary$InsightTimeRange": null,
+        "ProactiveOrganizationInsightSummary$InsightTimeRange": null,
         "ReactiveInsight$InsightTimeRange": null,
-        "ReactiveInsightSummary$InsightTimeRange": null
+        "ReactiveInsightSummary$InsightTimeRange": null,
+        "ReactiveOrganizationInsightSummary$InsightTimeRange": null
       }
     },
     "InsightType": {
@@ -562,7 +664,8 @@
         "ListInsightsAnyStatusFilter$Type": "<p> Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. </p>",
         "ListInsightsClosedStatusFilter$Type": "<p> Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. </p>",
         "ListInsightsOngoingStatusFilter$Type": "<p> Use to filter for either <code>REACTIVE</code> or <code>PROACTIVE</code> insights. </p>",
-        "SearchInsightsRequest$Type": "<p> The type of insights you are searching for (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p>"
+        "SearchInsightsRequest$Type": "<p> The type of insights you are searching for (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p>",
+        "SearchOrganizationInsightsRequest$Type": "<p> The type of insights you are searching for (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p>"
       }
     },
     "InternalServerException": {
@@ -608,6 +711,12 @@
       "refs": {
       }
     },
+    "ListInsightsAccountIdList": {
+      "base": null,
+      "refs": {
+        "ListOrganizationInsightsRequest$AccountIds": "<p>The ID of the Amazon Web Services account. </p>"
+      }
+    },
     "ListInsightsAnyStatusFilter": {
       "base": "<p> Used to filter for insights that have any status. </p>",
       "refs": {
@@ -623,13 +732,20 @@
     "ListInsightsMaxResults": {
       "base": null,
       "refs": {
-        "ListInsightsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+        "ListInsightsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>",
+        "ListOrganizationInsightsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
       }
     },
     "ListInsightsOngoingStatusFilter": {
       "base": "<p> Used to filter for insights that have the status <code>ONGOING</code>. </p>",
       "refs": {
         "ListInsightsStatusFilter$Ongoing": "<p> A <code>ListInsightsAnyStatusFilter</code> that specifies ongoing insights that are either <code>REACTIVE</code> or <code>PROACTIVE</code>. </p>"
+      }
+    },
+    "ListInsightsOrganizationalUnitIdList": {
+      "base": null,
+      "refs": {
+        "ListOrganizationInsightsRequest$OrganizationalUnitIds": "<p>The ID of the organizational unit.</p>"
       }
     },
     "ListInsightsRequest": {
@@ -645,7 +761,8 @@
     "ListInsightsStatusFilter": {
       "base": "<p> A filter used by <code>ListInsights</code> to specify which insights to return. </p>",
       "refs": {
-        "ListInsightsRequest$StatusFilter": "<p> A filter used to filter the returned insights by their status. You can specify one status filter. </p>"
+        "ListInsightsRequest$StatusFilter": "<p> A filter used to filter the returned insights by their status. You can specify one status filter. </p>",
+        "ListOrganizationInsightsRequest$StatusFilter": null
       }
     },
     "ListNotificationChannelsRequest": {
@@ -654,6 +771,16 @@
       }
     },
     "ListNotificationChannelsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOrganizationInsightsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListOrganizationInsightsResponse": {
       "base": null,
       "refs": {
       }
@@ -681,8 +808,14 @@
         "InsightHealth$MeanTimeToRecoverInMilliseconds": "<p> The Meant Time to Recover (MTTR) for the insight. </p>"
       }
     },
+    "MetricValue": {
+      "base": null,
+      "refs": {
+        "TimestampMetricValuePair$MetricValue": "<p>Value of the anomalous metric data point at respective Timestamp.</p>"
+      }
+    },
     "NotificationChannel": {
-      "base": "<p> Information about a notification channel. A notification channel is used to notify you when DevOps Guru creates an insight. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS). </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an AWS Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for AWS KMS–encrypted Amazon SNS topics</a>.</p>",
+      "base": "<p> Information about a notification channel. A notification channel is used to notify you when DevOps Guru creates an insight. The one supported notification channel is Amazon Simple Notification Service (Amazon SNS). </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an Amazon Web Services Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for Amazon Web Services KMS–encrypted Amazon SNS topics</a>.</p>",
       "refs": {
         "Channels$member": null
       }
@@ -705,54 +838,90 @@
     "NumMetricsAnalyzed": {
       "base": null,
       "refs": {
-        "DescribeAccountHealthResponse$MetricsAnalyzed": "<p> An integer that specifies the number of metrics that have been analyzed in your AWS account. </p>"
+        "DescribeAccountHealthResponse$MetricsAnalyzed": "<p> An integer that specifies the number of metrics that have been analyzed in your Amazon Web Services account. </p>",
+        "DescribeOrganizationHealthResponse$MetricsAnalyzed": "<p>An integer that specifies the number of metrics that have been analyzed in your organization.</p>"
       }
     },
     "NumOpenProactiveInsights": {
       "base": null,
       "refs": {
-        "DescribeAccountHealthResponse$OpenProactiveInsights": "<p> An integer that specifies the number of open proactive insights in your AWS account. </p>",
+        "AccountInsightHealth$OpenProactiveInsights": "<p>An integer that specifies the number of open proactive insights in your Amazon Web Services account.</p>",
+        "DescribeAccountHealthResponse$OpenProactiveInsights": "<p> An integer that specifies the number of open proactive insights in your Amazon Web Services account. </p>",
+        "DescribeOrganizationHealthResponse$OpenProactiveInsights": "<p>An integer that specifies the number of open proactive insights in your Amazon Web Services account.</p>",
         "InsightHealth$OpenProactiveInsights": "<p> The number of open proactive insights. </p>",
-        "ServiceInsightHealth$OpenProactiveInsights": "<p>The number of open proactive insights in the AWS service</p>"
+        "ServiceInsightHealth$OpenProactiveInsights": "<p>The number of open proactive insights in the Amazon Web Services service</p>"
       }
     },
     "NumOpenReactiveInsights": {
       "base": null,
       "refs": {
-        "DescribeAccountHealthResponse$OpenReactiveInsights": "<p> An integer that specifies the number of open reactive insights in your AWS account. </p>",
+        "AccountInsightHealth$OpenReactiveInsights": "<p>An integer that specifies the number of open reactive insights in your Amazon Web Services account.</p>",
+        "DescribeAccountHealthResponse$OpenReactiveInsights": "<p> An integer that specifies the number of open reactive insights in your Amazon Web Services account. </p>",
+        "DescribeOrganizationHealthResponse$OpenReactiveInsights": "<p>An integer that specifies the number of open reactive insights in your Amazon Web Services account.</p>",
         "InsightHealth$OpenReactiveInsights": "<p> The number of open reactive insights. </p>",
-        "ServiceInsightHealth$OpenReactiveInsights": "<p>The number of open reactive insights in the AWS service</p>"
+        "ServiceInsightHealth$OpenReactiveInsights": "<p>The number of open reactive insights in the Amazon Web Services service</p>"
       }
     },
     "NumProactiveInsights": {
       "base": null,
       "refs": {
-        "DescribeAccountOverviewResponse$ProactiveInsights": "<p> An integer that specifies the number of open proactive insights in your AWS account that were created during the time range passed in. </p>"
+        "DescribeAccountOverviewResponse$ProactiveInsights": "<p> An integer that specifies the number of open proactive insights in your Amazon Web Services account that were created during the time range passed in. </p>",
+        "DescribeOrganizationOverviewResponse$ProactiveInsights": "<p>An integer that specifies the number of open proactive insights in your Amazon Web Services account.</p>"
       }
     },
     "NumReactiveInsights": {
       "base": null,
       "refs": {
-        "DescribeAccountOverviewResponse$ReactiveInsights": "<p> An integer that specifies the number of open reactive insights in your AWS account that were created during the time range passed in. </p>"
+        "DescribeAccountOverviewResponse$ReactiveInsights": "<p> An integer that specifies the number of open reactive insights in your Amazon Web Services account that were created during the time range passed in. </p>",
+        "DescribeOrganizationOverviewResponse$ReactiveInsights": "<p>An integer that specifies the number of open reactive insights in your Amazon Web Services account.</p>"
       }
     },
     "OpsCenterIntegration": {
-      "base": "<p> Information about whether DevOps Guru is configured to create an OpsItem in AWS Systems Manager OpsCenter for each created insight. </p>",
+      "base": "<p> Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight. </p>",
       "refs": {
-        "ServiceIntegrationConfig$OpsCenter": "<p> Information about whether DevOps Guru is configured to create an OpsItem in AWS Systems Manager OpsCenter for each created insight. </p>"
+        "ServiceIntegrationConfig$OpsCenter": "<p> Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight. </p>"
       }
     },
     "OpsCenterIntegrationConfig": {
-      "base": "<p> Information about whether DevOps Guru is configured to create an OpsItem in AWS Systems Manager OpsCenter for each created insight. </p>",
+      "base": "<p> Information about whether DevOps Guru is configured to create an OpsItem in Amazon Web Services Systems Manager OpsCenter for each created insight. </p>",
       "refs": {
         "UpdateServiceIntegrationConfig$OpsCenter": null
       }
     },
     "OptInStatus": {
-      "base": "<p> Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem for each created insight. </p>",
+      "base": "<p> Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. </p>",
       "refs": {
-        "OpsCenterIntegration$OptInStatus": "<p> Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem for each created insight. </p>",
-        "OpsCenterIntegrationConfig$OptInStatus": "<p> Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem for each created insight. </p>"
+        "OpsCenterIntegration$OptInStatus": "<p> Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. </p>",
+        "OpsCenterIntegrationConfig$OptInStatus": "<p> Specifies if DevOps Guru is enabled to create an Amazon Web Services Systems Manager OpsItem for each created insight. </p>"
+      }
+    },
+    "OrganizationResourceCollectionMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationResourceCollectionHealthRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "OrganizationResourceCollectionType": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationResourceCollectionHealthRequest$OrganizationResourceCollectionType": "<p> An Amazon Web Services resource collection type. This type specifies how analyzed Amazon Web Services resources are defined. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
+      }
+    },
+    "OrganizationalUnitId": {
+      "base": null,
+      "refs": {
+        "ListInsightsOrganizationalUnitIdList$member": null,
+        "OrganizationalUnitIdList$member": null,
+        "ProactiveOrganizationInsightSummary$OrganizationalUnitId": "<p>The ID of the organizational unit.</p>",
+        "ReactiveOrganizationInsightSummary$OrganizationalUnitId": "<p>The ID of the organizational unit.</p>"
+      }
+    },
+    "OrganizationalUnitIdList": {
+      "base": null,
+      "refs": {
+        "DescribeOrganizationHealthRequest$OrganizationalUnitIds": "<p>The ID of the organizational unit.</p>",
+        "DescribeOrganizationOverviewRequest$OrganizationalUnitIds": "<p>The ID of the organizational unit.</p>",
+        "DescribeOrganizationResourceCollectionHealthRequest$OrganizationalUnitIds": "<p>The ID of the organizational unit.</p>"
       }
     },
     "PredictionTimeRange": {
@@ -761,7 +930,8 @@
         "ProactiveAnomaly$PredictionTimeRange": null,
         "ProactiveAnomalySummary$PredictionTimeRange": null,
         "ProactiveInsight$PredictionTimeRange": null,
-        "ProactiveInsightSummary$PredictionTimeRange": null
+        "ProactiveInsightSummary$PredictionTimeRange": null,
+        "ProactiveOrganizationInsightSummary$PredictionTimeRange": null
       }
     },
     "ProactiveAnomalies": {
@@ -798,7 +968,20 @@
       "base": null,
       "refs": {
         "ListInsightsResponse$ProactiveInsights": "<p> The returned list of proactive insights. </p>",
-        "SearchInsightsResponse$ProactiveInsights": "<p> The returned proactive insights. </p>"
+        "SearchInsightsResponse$ProactiveInsights": "<p> The returned proactive insights. </p>",
+        "SearchOrganizationInsightsResponse$ProactiveInsights": "<p>An integer that specifies the number of open proactive insights in your Amazon Web Services account.</p>"
+      }
+    },
+    "ProactiveOrganizationInsightSummary": {
+      "base": "<p>Details about a proactive insight. This object is returned by <code>DescribeInsight</code>.</p>",
+      "refs": {
+        "ProactiveOrganizationInsights$member": null
+      }
+    },
+    "ProactiveOrganizationInsights": {
+      "base": null,
+      "refs": {
+        "ListOrganizationInsightsResponse$ProactiveInsights": "<p>An integer that specifies the number of open proactive insights in your Amazon Web Services account.</p>"
       }
     },
     "PutFeedbackRequest": {
@@ -845,7 +1028,20 @@
       "base": null,
       "refs": {
         "ListInsightsResponse$ReactiveInsights": "<p> The returned list of reactive insights. </p>",
-        "SearchInsightsResponse$ReactiveInsights": "<p> The returned reactive insights. </p>"
+        "SearchInsightsResponse$ReactiveInsights": "<p> The returned reactive insights. </p>",
+        "SearchOrganizationInsightsResponse$ReactiveInsights": "<p>An integer that specifies the number of open reactive insights in your Amazon Web Services account.</p>"
+      }
+    },
+    "ReactiveOrganizationInsightSummary": {
+      "base": "<p>Information about a reactive insight. This object is returned by <code>DescribeInsight</code>.</p>",
+      "refs": {
+        "ReactiveOrganizationInsights$member": null
+      }
+    },
+    "ReactiveOrganizationInsights": {
+      "base": null,
+      "refs": {
+        "ListOrganizationInsightsResponse$ReactiveInsights": "<p>An integer that specifies the number of open reactive insights in your Amazon Web Services account.</p>"
       }
     },
     "Recommendation": {
@@ -957,7 +1153,7 @@
       }
     },
     "RecommendationRelatedEventResource": {
-      "base": "<p> Information about an AWS resource that emitted and event that is related to a recommendation in an insight. </p>",
+      "base": "<p> Information about an Amazon Web Services resource that emitted and event that is related to a recommendation in an insight. </p>",
       "refs": {
         "RecommendationRelatedEventResources$member": null
       }
@@ -977,7 +1173,7 @@
     "RecommendationRelatedEventResources": {
       "base": null,
       "refs": {
-        "RecommendationRelatedEvent$Resources": "<p> A <code>ResourceCollection</code> object that contains arrays of the names of AWS CloudFormation stacks. You can specify up to 500 AWS CloudFormation stacks. </p>"
+        "RecommendationRelatedEvent$Resources": "<p> A <code>ResourceCollection</code> object that contains arrays of the names of Amazon Web Services CloudFormation stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
       }
     },
     "RecommendationRelatedEvents": {
@@ -1009,7 +1205,7 @@
       }
     },
     "ResourceCollection": {
-      "base": "<p> A collection of AWS resources supported by DevOps Guru. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks. </p>",
+      "base": "<p> A collection of Amazon Web Services resources supported by DevOps Guru. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
       "refs": {
         "Event$ResourceCollection": null,
         "ListEventsFilters$ResourceCollection": null,
@@ -1017,44 +1213,48 @@
         "ProactiveAnomalySummary$ResourceCollection": null,
         "ProactiveInsight$ResourceCollection": null,
         "ProactiveInsightSummary$ResourceCollection": null,
+        "ProactiveOrganizationInsightSummary$ResourceCollection": null,
         "ReactiveAnomaly$ResourceCollection": null,
         "ReactiveAnomalySummary$ResourceCollection": null,
         "ReactiveInsight$ResourceCollection": null,
         "ReactiveInsightSummary$ResourceCollection": null,
-        "SearchInsightsFilters$ResourceCollection": null
+        "ReactiveOrganizationInsightSummary$ResourceCollection": null,
+        "SearchInsightsFilters$ResourceCollection": null,
+        "SearchOrganizationInsightsFilters$ResourceCollection": null
       }
     },
     "ResourceCollectionFilter": {
-      "base": "<p> Information about a filter used to specify which AWS resources are analyzed for anomalous behavior by DevOps Guru. </p>",
+      "base": "<p> Information about a filter used to specify which Amazon Web Services resources are analyzed for anomalous behavior by DevOps Guru. </p>",
       "refs": {
-        "GetResourceCollectionResponse$ResourceCollection": "<p> The requested list of AWS resource collections. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks. </p>"
+        "GetResourceCollectionResponse$ResourceCollection": "<p> The requested list of Amazon Web Services resource collections. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
       }
     },
     "ResourceCollectionType": {
       "base": null,
       "refs": {
-        "DescribeResourceCollectionHealthRequest$ResourceCollectionType": "<p> An AWS resource collection type. This type specifies how analyzed AWS resources are defined. The one type of AWS resource collection supported is AWS CloudFormation stacks. DevOps Guru can be configured to analyze only the AWS resources that are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks. </p>",
-        "GetResourceCollectionRequest$ResourceCollectionType": "<p> The type of AWS resource collections to return. The one valid value is <code>CLOUD_FORMATION</code> for AWS CloudFormation stacks. </p>"
+        "DescribeResourceCollectionHealthRequest$ResourceCollectionType": "<p> An Amazon Web Services resource collection type. This type specifies how analyzed Amazon Web Services resources are defined. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
+        "GetResourceCollectionRequest$ResourceCollectionType": "<p> The type of Amazon Web Services resource collections to return. The one valid value is <code>CLOUD_FORMATION</code> for Amazon Web Services CloudFormation stacks. </p>"
       }
     },
     "ResourceHours": {
       "base": null,
       "refs": {
-        "DescribeAccountHealthResponse$ResourceHours": "<p>The number of Amazon DevOps Guru resource analysis hours billed to the current AWS account in the last hour. </p>"
+        "DescribeAccountHealthResponse$ResourceHours": "<p>The number of Amazon DevOps Guru resource analysis hours billed to the current Amazon Web Services account in the last hour. </p>",
+        "DescribeOrganizationHealthResponse$ResourceHours": "<p>The number of Amazon DevOps Guru resource analysis hours billed to the current Amazon Web Services account in the last hour. </p>"
       }
     },
     "ResourceIdString": {
       "base": null,
       "refs": {
-        "ConflictException$ResourceId": "<p> The ID of the AWS resource in which a conflict occurred. </p>",
-        "ResourceNotFoundException$ResourceId": "<p> The ID of the AWS resource that could not be found. </p>"
+        "ConflictException$ResourceId": "<p> The ID of the Amazon Web Services resource in which a conflict occurred. </p>",
+        "ResourceNotFoundException$ResourceId": "<p> The ID of the Amazon Web Services resource that could not be found. </p>"
       }
     },
     "ResourceIdType": {
       "base": null,
       "refs": {
-        "ConflictException$ResourceType": "<p> The type of the AWS resource in which a conflict occurred. </p>",
-        "ResourceNotFoundException$ResourceType": "<p> The type of the AWS resource that could not be found. </p>"
+        "ConflictException$ResourceType": "<p> The type of the Amazon Web Services resource in which a conflict occurred. </p>",
+        "ResourceNotFoundException$ResourceType": "<p> The type of the Amazon Web Services resource that could not be found. </p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1065,7 +1265,7 @@
     "ResourceType": {
       "base": null,
       "refs": {
-        "ServiceResourceCost$Type": "<p>The type of the AWS resource.</p>"
+        "ServiceResourceCost$Type": "<p>The type of the Amazon Web Services resource.</p>"
       }
     },
     "RetryAfterSeconds": {
@@ -1073,6 +1273,12 @@
       "refs": {
         "InternalServerException$RetryAfterSeconds": "<p> The number of seconds after which the action that caused the internal server exception can be retried. </p>",
         "ThrottlingException$RetryAfterSeconds": "<p> The number of seconds after which the action that caused the throttling exception can be retried. </p>"
+      }
+    },
+    "SearchInsightsAccountIdList": {
+      "base": null,
+      "refs": {
+        "SearchOrganizationInsightsRequest$AccountIds": "<p>The ID of the Amazon Web Services account. </p>"
       }
     },
     "SearchInsightsFilters": {
@@ -1097,16 +1303,41 @@
       "refs": {
       }
     },
-    "ServiceCollection": {
-      "base": "<p>A collection of the names of AWS services.</p>",
+    "SearchOrganizationInsightsFilters": {
+      "base": "<p> Filters you can use to specify which events are returned when <code>ListEvents</code> is called. </p>",
       "refs": {
-        "ProactiveInsightSummary$ServiceCollection": "<p>A collection of the names of AWS services.</p>",
-        "ReactiveInsightSummary$ServiceCollection": "<p>A collection of the names of AWS services.</p>",
-        "SearchInsightsFilters$ServiceCollection": "<p>A collection of the names of AWS services.</p>"
+        "SearchOrganizationInsightsRequest$Filters": "<p> A <code>SearchOrganizationInsightsFilters</code> object that is used to set the severity and status filters on your insight search. </p>"
+      }
+    },
+    "SearchOrganizationInsightsMaxResults": {
+      "base": null,
+      "refs": {
+        "SearchOrganizationInsightsRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "SearchOrganizationInsightsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SearchOrganizationInsightsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ServiceCollection": {
+      "base": "<p>A collection of the names of Amazon Web Services services.</p>",
+      "refs": {
+        "ProactiveInsightSummary$ServiceCollection": "<p>A collection of the names of Amazon Web Services services.</p>",
+        "ProactiveOrganizationInsightSummary$ServiceCollection": null,
+        "ReactiveInsightSummary$ServiceCollection": "<p>A collection of the names of Amazon Web Services services.</p>",
+        "ReactiveOrganizationInsightSummary$ServiceCollection": null,
+        "SearchInsightsFilters$ServiceCollection": "<p>A collection of the names of Amazon Web Services services.</p>",
+        "SearchOrganizationInsightsFilters$ServiceCollection": null
       }
     },
     "ServiceHealth": {
-      "base": "<p>Represents the health of an AWS service.</p>",
+      "base": "<p>Represents the health of an Amazon Web Services service.</p>",
       "refs": {
         "ServiceHealths$member": null
       }
@@ -1114,17 +1345,18 @@
     "ServiceHealths": {
       "base": null,
       "refs": {
-        "DescribeResourceCollectionHealthResponse$Service": "<p>An array of <code>ServiceHealth</code> objects that describes the health of the AWS services associated with the resources in the collection.</p>"
+        "DescribeOrganizationResourceCollectionHealthResponse$Service": "<p>An array of <code>ServiceHealth</code> objects that describes the health of the Amazon Web Services services associated with the resources in the collection.</p>",
+        "DescribeResourceCollectionHealthResponse$Service": "<p>An array of <code>ServiceHealth</code> objects that describes the health of the Amazon Web Services services associated with the resources in the collection.</p>"
       }
     },
     "ServiceInsightHealth": {
-      "base": "<p>Contains the number of open proactive and reactive insights in an analyzed AWS service.</p>",
+      "base": "<p>Contains the number of open proactive and reactive insights in an analyzed Amazon Web Services service.</p>",
       "refs": {
-        "ServiceHealth$Insight": "<p>Represents the health of an AWS service. This is a <code>ServiceInsightHealth</code> that contains the number of open proactive and reactive insights for this service.</p>"
+        "ServiceHealth$Insight": "<p>Represents the health of an Amazon Web Services service. This is a <code>ServiceInsightHealth</code> that contains the number of open proactive and reactive insights for this service.</p>"
       }
     },
     "ServiceIntegrationConfig": {
-      "base": "<p> Information about the integration of DevOps Guru with another AWS service, such as AWS Systems Manager. </p>",
+      "base": "<p> Information about the integration of DevOps Guru with another Amazon Web Services service, such as Amazon Web Services Systems Manager. </p>",
       "refs": {
         "DescribeServiceIntegrationResponse$ServiceIntegration": null
       }
@@ -1132,14 +1364,14 @@
     "ServiceName": {
       "base": null,
       "refs": {
-        "ServiceHealth$ServiceName": "<p>The name of the AWS service.</p>",
+        "ServiceHealth$ServiceName": "<p>The name of the Amazon Web Services service.</p>",
         "ServiceNames$member": null
       }
     },
     "ServiceNames": {
       "base": null,
       "refs": {
-        "ServiceCollection$ServiceNames": "<p>An array of strings that each specifies the name of an AWS service.</p>"
+        "ServiceCollection$ServiceNames": "<p>An array of strings that each specifies the name of an Amazon Web Services service.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -1148,7 +1380,7 @@
       }
     },
     "ServiceResourceCost": {
-      "base": "<p>An object that contains information about the estimated monthly cost to analyze an AWS resource. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html\">Estimate your Amazon DevOps Guru costs</a> and <a href=\"http://aws.amazon.com/devops-guru/pricing/\">Amazon DevOps Guru pricing</a>.</p>",
+      "base": "<p>An object that contains information about the estimated monthly cost to analyze an Amazon Web Services resource. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html\">Estimate your Amazon DevOps Guru costs</a> and <a href=\"http://aws.amazon.com/devops-guru/pricing/\">Amazon DevOps Guru pricing</a>.</p>",
       "refs": {
         "ServiceResourceCosts$member": null
       }
@@ -1156,20 +1388,20 @@
     "ServiceResourceCosts": {
       "base": null,
       "refs": {
-        "GetCostEstimationResponse$Costs": "<p>An array of <code>ResourceCost</code> objects that each contains details about the monthly cost estimate to analyze one of your AWS resources.</p>"
+        "GetCostEstimationResponse$Costs": "<p>An array of <code>ResourceCost</code> objects that each contains details about the monthly cost estimate to analyze one of your Amazon Web Services resources.</p>"
       }
     },
     "SnsChannelConfig": {
-      "base": "<p> Contains the Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an AWS Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for AWS KMS–encrypted Amazon SNS topics</a>.</p>",
+      "base": "<p> Contains the Amazon Resource Name (ARN) of an Amazon Simple Notification Service topic. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an Amazon Web Services Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for Amazon Web Services KMS–encrypted Amazon SNS topics</a>.</p>",
       "refs": {
-        "NotificationChannelConfig$Sns": "<p> Information about a notification channel configured in DevOps Guru to send notifications when insights are created. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an AWS Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for AWS KMS–encrypted Amazon SNS topics</a>.</p>"
+        "NotificationChannelConfig$Sns": "<p> Information about a notification channel configured in DevOps Guru to send notifications when insights are created. </p> <p>If you use an Amazon SNS topic in another account, you must attach a policy to it that grants DevOps Guru permission to it notifications. DevOps Guru adds the required policy on your behalf to send notifications using Amazon SNS in your account. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-required-permissions.html\">Permissions for cross account Amazon SNS topics</a>.</p> <p>If you use an Amazon SNS topic that is encrypted by an Amazon Web Services Key Management Service customer-managed key (CMK), then you must add permissions to the CMK. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/sns-kms-permissions.html\">Permissions for Amazon Web Services KMS–encrypted Amazon SNS topics</a>.</p>"
       }
     },
     "SsmOpsItemId": {
       "base": null,
       "refs": {
-        "ProactiveInsight$SsmOpsItemId": "<p> The ID of the AWS System Manager OpsItem created for this insight. You must enable the creation of OpstItems insights before they are created for each insight. </p>",
-        "ReactiveInsight$SsmOpsItemId": "<p> The ID of the AWS System Manager OpsItem created for this insight. You must enable the creation of OpstItems insights before they are created for each insight. </p>"
+        "ProactiveInsight$SsmOpsItemId": "<p> The ID of the Amazon Web Services System Manager OpsItem created for this insight. You must enable the creation of OpstItems insights before they are created for each insight. </p>",
+        "ReactiveInsight$SsmOpsItemId": "<p> The ID of the Amazon Web Services System Manager OpsItem created for this insight. You must enable the creation of OpstItems insights before they are created for each insight. </p>"
       }
     },
     "StackName": {
@@ -1203,7 +1435,8 @@
       "refs": {
         "ListAnomaliesForInsightRequest$StartTimeRange": "<p> A time range used to specify when the requested anomalies started. All returned anomalies started during this time range. </p>",
         "ListInsightsAnyStatusFilter$StartTimeRange": "<p> A time range used to specify when the behavior of the filtered insights started. </p>",
-        "SearchInsightsRequest$StartTimeRange": "<p> The start of the time range passed in. Returned insights occurred after this time. </p>"
+        "SearchInsightsRequest$StartTimeRange": "<p> The start of the time range passed in. Returned insights occurred after this time. </p>",
+        "SearchOrganizationInsightsRequest$StartTimeRange": null
       }
     },
     "ThrottlingException": {
@@ -1222,6 +1455,8 @@
         "CostEstimationTimeRange$EndTime": "<p>The end time of the cost estimation.</p>",
         "DescribeAccountOverviewRequest$FromTime": "<p> The start of the time range passed in. The start time granularity is at the day level. The floor of the start time is used. Returned information occurred after this day. </p>",
         "DescribeAccountOverviewRequest$ToTime": "<p> The end of the time range passed in. The start time granularity is at the day level. The floor of the start time is used. Returned information occurred before this day. If this is not specified, then the current day is used. </p>",
+        "DescribeOrganizationOverviewRequest$FromTime": "<p> The start of the time range passed in. The start time granularity is at the day level. The floor of the start time is used. Returned information occurred after this day. </p>",
+        "DescribeOrganizationOverviewRequest$ToTime": "<p> The end of the time range passed in. The start time granularity is at the day level. The floor of the start time is used. Returned information occurred before this day. If this is not specified, then the current day is used. </p>",
         "EndTimeRange$FromTime": "<p> The earliest end time in the time range. </p>",
         "EndTimeRange$ToTime": "<p> The latest end time in the time range. </p>",
         "Event$Time": "<p> A <code>Timestamp</code> that specifies the time the event occurred. </p>",
@@ -1234,7 +1469,20 @@
         "ProactiveAnomaly$UpdateTime": "<p> The time of the anomaly's most recent update. </p>",
         "ProactiveAnomalySummary$UpdateTime": "<p> The time of the anomaly's most recent update. </p>",
         "StartTimeRange$FromTime": "<p> The start time of the time range. </p>",
-        "StartTimeRange$ToTime": "<p> The end time of the time range. </p>"
+        "StartTimeRange$ToTime": "<p> The end time of the time range. </p>",
+        "TimestampMetricValuePair$Timestamp": "<p>A <code>Timestamp</code> that specifies the time the event occurred. </p>"
+      }
+    },
+    "TimestampMetricValuePair": {
+      "base": "<p>A pair that contains metric values at the respective timestamp.</p>",
+      "refs": {
+        "TimestampMetricValuePairList$member": null
+      }
+    },
+    "TimestampMetricValuePairList": {
+      "base": null,
+      "refs": {
+        "CloudWatchMetricsDataSummary$TimestampMetricValuePairList": "<p>This is a list of cloudwatch metric values at given timestamp.</p>"
       }
     },
     "TopicArn": {
@@ -1244,9 +1492,9 @@
       }
     },
     "UpdateCloudFormationCollectionFilter": {
-      "base": "<p> Contains the names of AWS CloudFormation stacks used to update a collection of stacks. You can specify up to 500 AWS CloudFormation stacks.</p>",
+      "base": "<p> Contains the names of Amazon Web Services CloudFormation stacks used to update a collection of stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks.</p>",
       "refs": {
-        "UpdateResourceCollectionFilter$CloudFormation": "<p> An collection of AWS CloudFormation stacks. You can specify up to 500 AWS CloudFormation stacks. </p>"
+        "UpdateResourceCollectionFilter$CloudFormation": "<p> An collection of Amazon Web Services CloudFormation stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
       }
     },
     "UpdateResourceCollectionAction": {
@@ -1256,7 +1504,7 @@
       }
     },
     "UpdateResourceCollectionFilter": {
-      "base": "<p> Contains information used to update a collection of AWS resources. </p>",
+      "base": "<p> Contains information used to update a collection of Amazon Web Services resources. </p>",
       "refs": {
         "UpdateResourceCollectionRequest$ResourceCollection": null
       }
@@ -1272,7 +1520,7 @@
       }
     },
     "UpdateServiceIntegrationConfig": {
-      "base": "<p> Information about updating the integration status of an AWS service, such as AWS Systems Manager, with DevOps Guru. </p>",
+      "base": "<p> Information about updating the integration status of an Amazon Web Services service, such as Amazon Web Services Systems Manager, with DevOps Guru. </p>",
       "refs": {
         "UpdateServiceIntegrationRequest$ServiceIntegration": "<p> An <code>IntegratedServiceConfig</code> object used to specify the integrated service you want to update, and whether you want to update it to enabled or disabled. </p>"
       }
@@ -1290,12 +1538,14 @@
     "UpdateStackNames": {
       "base": null,
       "refs": {
-        "UpdateCloudFormationCollectionFilter$StackNames": "<p> An array of the names of the AWS CloudFormation stacks to update. You can specify up to 500 AWS CloudFormation stacks. </p>"
+        "UpdateCloudFormationCollectionFilter$StackNames": "<p> An array of the names of the Amazon Web Services CloudFormation stacks to update. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
       }
     },
     "UuidNextToken": {
       "base": null,
       "refs": {
+        "DescribeOrganizationResourceCollectionHealthRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "DescribeOrganizationResourceCollectionHealthResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "DescribeResourceCollectionHealthRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "DescribeResourceCollectionHealthResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "GetCostEstimationRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
@@ -1310,10 +1560,14 @@
         "ListInsightsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "ListNotificationChannelsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "ListNotificationChannelsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "ListOrganizationInsightsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "ListOrganizationInsightsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "ListRecommendationsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
         "ListRecommendationsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
         "SearchInsightsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
-        "SearchInsightsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>"
+        "SearchInsightsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>",
+        "SearchOrganizationInsightsRequest$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.</p>",
+        "SearchOrganizationInsightsResponse$NextToken": "<p>The pagination token to use to retrieve the next page of results for this operation. If there are no more pages, this value is null.</p>"
       }
     },
     "ValidationException": {

@@ -493,6 +493,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "DescribeContact":{
+      "name":"DescribeContact",
+      "http":{
+        "method":"GET",
+        "requestUri":"/contacts/{InstanceId}/{ContactId}"
+      },
+      "input":{"shape":"DescribeContactRequest"},
+      "output":{"shape":"DescribeContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DescribeContactFlow":{
       "name":"DescribeContactFlow",
       "http":{
@@ -927,6 +943,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListContactReferences":{
+      "name":"ListContactReferences",
+      "http":{
+        "method":"GET",
+        "requestUri":"/contact/references/{InstanceId}/{ContactId}"
+      },
+      "input":{"shape":"ListContactReferencesRequest"},
+      "output":{"shape":"ListContactReferencesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListHoursOfOperations":{
@@ -1462,6 +1494,22 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "UpdateContact":{
+      "name":"UpdateContact",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contacts/{InstanceId}/{ContactId}"
+      },
+      "input":{"shape":"UpdateContactRequest"},
+      "output":{"shape":"UpdateContactResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "UpdateContactAttributes":{
       "name":"UpdateContactAttributes",
       "http":{
@@ -1506,6 +1554,23 @@
         {"shape":"DuplicateResourceException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateContactSchedule":{
+      "name":"UpdateContactSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contact/schedule"
+      },
+      "input":{"shape":"UpdateContactScheduleRequest"},
+      "output":{"shape":"UpdateContactScheduleResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"},
         {"shape":"InternalServiceException"}
       ]
     },
@@ -1864,9 +1929,21 @@
       "max":100,
       "min":1
     },
+    "AgentInfo":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"AgentResourceId"},
+        "ConnectedToAgentTimestamp":{"shape":"timestamp"}
+      }
+    },
     "AgentLastName":{
       "type":"string",
       "max":100,
+      "min":1
+    },
+    "AgentResourceId":{
+      "type":"string",
+      "max":256,
       "min":1
     },
     "AgentStatus":{
@@ -2097,6 +2174,14 @@
       "max":100,
       "min":1
     },
+    "AttachmentReference":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ReferenceKey"},
+        "Value":{"shape":"ReferenceValue"},
+        "Status":{"shape":"ReferenceStatus"}
+      }
+    },
     "Attribute":{
       "type":"structure",
       "members":{
@@ -2150,7 +2235,7 @@
     "Channels":{
       "type":"list",
       "member":{"shape":"Channel"},
-      "max":1
+      "max":3
     },
     "ChatContent":{
       "type":"string",
@@ -2202,6 +2287,25 @@
       "type":"integer",
       "max":10,
       "min":1
+    },
+    "Contact":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"ARN"},
+        "Id":{"shape":"ContactId"},
+        "InitialContactId":{"shape":"ContactId"},
+        "PreviousContactId":{"shape":"ContactId"},
+        "InitiationMethod":{"shape":"ContactInitiationMethod"},
+        "Name":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "Channel":{"shape":"Channel"},
+        "QueueInfo":{"shape":"QueueInfo"},
+        "AgentInfo":{"shape":"AgentInfo"},
+        "InitiationTimestamp":{"shape":"timestamp"},
+        "DisconnectTimestamp":{"shape":"timestamp"},
+        "LastUpdateTimestamp":{"shape":"timestamp"},
+        "ScheduledTimestamp":{"shape":"timestamp"}
+      }
     },
     "ContactFlow":{
       "type":"structure",
@@ -2269,6 +2373,17 @@
       "type":"string",
       "max":256,
       "min":1
+    },
+    "ContactInitiationMethod":{
+      "type":"string",
+      "enum":[
+        "INBOUND",
+        "OUTBOUND",
+        "TRANSFER",
+        "QUEUE_TRANSFER",
+        "CALLBACK",
+        "API"
+      ]
     },
     "ContactNotFoundException":{
       "type":"structure",
@@ -2884,6 +2999,31 @@
       "type":"structure",
       "members":{
         "ContactFlow":{"shape":"ContactFlow"}
+      }
+    },
+    "DescribeContactRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{
+          "shape":"ContactId",
+          "location":"uri",
+          "locationName":"ContactId"
+        }
+      }
+    },
+    "DescribeContactResponse":{
+      "type":"structure",
+      "members":{
+        "Contact":{"shape":"Contact"}
       }
     },
     "DescribeHoursOfOperationRequest":{
@@ -4123,6 +4263,43 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListContactReferencesRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "ReferenceTypes"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{
+          "shape":"ContactId",
+          "location":"uri",
+          "locationName":"ContactId"
+        },
+        "ReferenceTypes":{
+          "shape":"ReferenceTypes",
+          "location":"querystring",
+          "locationName":"referenceTypes"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListContactReferencesResponse":{
+      "type":"structure",
+      "members":{
+        "ReferenceSummaryList":{"shape":"ReferenceSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListHoursOfOperationsRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -5255,6 +5432,13 @@
       "min":1
     },
     "QueueId":{"type":"string"},
+    "QueueInfo":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"QueueId"},
+        "EnqueueTimestamp":{"shape":"timestamp"}
+      }
+    },
     "QueueMaxContacts":{
       "type":"integer",
       "min":0
@@ -5400,9 +5584,36 @@
       "max":4096,
       "min":1
     },
+    "ReferenceStatus":{
+      "type":"string",
+      "enum":[
+        "APPROVED",
+        "REJECTED"
+      ]
+    },
+    "ReferenceSummary":{
+      "type":"structure",
+      "members":{
+        "Url":{"shape":"UrlReference"},
+        "Attachment":{"shape":"AttachmentReference"}
+      },
+      "union":true
+    },
+    "ReferenceSummaryList":{
+      "type":"list",
+      "member":{"shape":"ReferenceSummary"}
+    },
     "ReferenceType":{
       "type":"string",
-      "enum":["URL"]
+      "enum":[
+        "URL",
+        "ATTACHMENT"
+      ]
+    },
+    "ReferenceTypes":{
+      "type":"list",
+      "member":{"shape":"ReferenceType"},
+      "max":2
     },
     "ReferenceValue":{
       "type":"string",
@@ -5772,7 +5983,8 @@
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "ScheduledTime":{"shape":"Timestamp"}
       }
     },
     "StartTaskContactResponse":{
@@ -6062,6 +6274,51 @@
         },
         "Name":{"shape":"ContactFlowName"},
         "Description":{"shape":"ContactFlowDescription"}
+      }
+    },
+    "UpdateContactRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{
+          "shape":"ContactId",
+          "location":"uri",
+          "locationName":"ContactId"
+        },
+        "Name":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "References":{"shape":"ContactReferences"}
+      }
+    },
+    "UpdateContactResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateContactScheduleRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "ScheduledTime"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "ContactId":{"shape":"ContactId"},
+        "ScheduledTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateContactScheduleResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "UpdateHoursOfOperationDescription":{
@@ -6537,6 +6794,13 @@
           "location":"uri",
           "locationName":"InstanceId"
         }
+      }
+    },
+    "UrlReference":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ReferenceKey"},
+        "Value":{"shape":"ReferenceValue"}
       }
     },
     "UseCase":{

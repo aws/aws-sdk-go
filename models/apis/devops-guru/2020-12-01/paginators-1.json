@@ -1,21 +1,23 @@
 {
   "pagination": {
-    "DescribeResourceCollectionHealth": {
+    "DescribeOrganizationResourceCollectionHealth": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "result_key": [
         "CloudFormation",
+        "Account",
         "Service"
+      ]
+    },
+    "DescribeResourceCollectionHealth": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "result_key": [
+        "CloudFormation"
       ]
     },
     "GetCostEstimation": {
       "input_token": "NextToken",
-      "non_aggregate_keys": [
-        "Status",
-        "TotalCost",
-        "TimeRange",
-        "ResourceCollection"
-      ],
       "output_token": "NextToken",
       "result_key": [
         "Costs"
@@ -60,12 +62,30 @@
       "output_token": "NextToken",
       "result_key": "Channels"
     },
+    "ListOrganizationInsights": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": [
+        "ProactiveInsights",
+        "ReactiveInsights"
+      ]
+    },
     "ListRecommendations": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "result_key": "Recommendations"
     },
     "SearchInsights": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": [
+        "ProactiveInsights",
+        "ReactiveInsights"
+      ]
+    },
+    "SearchOrganizationInsights": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken",
