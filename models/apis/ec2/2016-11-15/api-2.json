@@ -25315,7 +25315,8 @@
           "locationName":"subnetId"
         },
         "MapCustomerOwnedIpOnLaunch":{"shape":"AttributeBooleanValue"},
-        "CustomerOwnedIpv4Pool":{"shape":"CoipPoolId"}
+        "CustomerOwnedIpv4Pool":{"shape":"CoipPoolId"},
+        "EnableDns64":{"shape":"AttributeBooleanValue"}
       }
     },
     "ModifyTrafficMirrorFilterNetworkServicesRequest":{
@@ -32465,6 +32466,10 @@
         "OutpostArn":{
           "shape":"String",
           "locationName":"outpostArn"
+        },
+        "EnableDns64":{
+          "shape":"Boolean",
+          "locationName":"enableDns64"
         }
       }
     },

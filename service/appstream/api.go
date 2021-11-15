@@ -2853,6 +2853,9 @@ func (c *AppStream) DescribeUsersRequest(input *DescribeUsersInput) (req *reques
 //   * InvalidParameterCombinationException
 //   Indicates an incorrect combination of parameters, or a missing parameter.
 //
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/DescribeUsers
 func (c *AppStream) DescribeUsers(input *DescribeUsersInput) (*DescribeUsersOutput, error) {
 	req, out := c.DescribeUsersRequest(input)
@@ -13774,6 +13777,9 @@ const (
 
 	// PlatformTypeWindowsServer2019 is a PlatformType enum value
 	PlatformTypeWindowsServer2019 = "WINDOWS_SERVER_2019"
+
+	// PlatformTypeAmazonLinux2 is a PlatformType enum value
+	PlatformTypeAmazonLinux2 = "AMAZON_LINUX2"
 )
 
 // PlatformType_Values returns all elements of the PlatformType enum
@@ -13782,6 +13788,7 @@ func PlatformType_Values() []string {
 		PlatformTypeWindows,
 		PlatformTypeWindowsServer2016,
 		PlatformTypeWindowsServer2019,
+		PlatformTypeAmazonLinux2,
 	}
 }
 

@@ -3900,24 +3900,22 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 // You can access information about all traffic that WAF inspects using the
 // following steps:
 //
-// Create an Amazon Kinesis Data Firehose.
+// Create your logging destination. You can use an Amazon CloudWatch Logs log
+// group, an Amazon Simple Storage Service (Amazon S3) bucket, or an Amazon
+// Kinesis Data Firehose. For information about configuring logging destinations
+// and the permissions that are required for each, see Logging web ACL traffic
+// information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
 //
-// Create the data firehose with a PUT source and in the Region that you are
-// operating. If you are capturing logs for Amazon CloudFront, always create
-// the firehose in US East (N. Virginia).
-//
-// Give the data firehose a name that starts with the prefix aws-waf-logs-.
-// For example, aws-waf-logs-us-east-2-analytics.
-//
-// Do not create the data firehose using a Kinesis stream as your source.
-//
-// Associate that firehose to your web ACL using a PutLoggingConfiguration request.
+// Associate your logging destination to your web ACL using a PutLoggingConfiguration
+// request.
 //
 // When you successfully enable logging using a PutLoggingConfiguration request,
-// WAF will create a service linked role with the necessary permissions to write
-// logs to the Amazon Kinesis Data Firehose. For more information, see Logging
-// Web ACL Traffic Information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
-// in the WAF Developer Guide.
+// WAF creates an additional role or policy that is required to write logs to
+// the logging destination. For an Amazon CloudWatch Logs log group, WAF creates
+// a resource policy on the log group. For an Amazon S3 bucket, WAF creates
+// a bucket policy. For an Amazon Kinesis Data Firehose, WAF creates a service-linked
+// role.
 //
 // This operation completely replaces the mutable specifications that you already
 // have for the logging configuration with the ones that you provide to this
@@ -3978,6 +3976,12 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 //   For example, the maximum number of WebACL objects that you can create for
 //   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
+//
+//   * WAFLogDestinationPermissionIssueException
+//   The operation failed because you don't have the permissions that your logging
+//   configuration requires. For information, see Logging web ACL traffic information
+//   (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the
+//   WAF Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutLoggingConfiguration
 func (c *WAFV2) PutLoggingConfiguration(input *PutLoggingConfigurationInput) (*PutLoggingConfigurationOutput, error) {
@@ -6131,7 +6135,7 @@ type CreateIPSetInput struct {
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
 	// Addresses is a required field
-	Addresses []*string `min:"1" type:"list" required:"true"`
+	Addresses []*string `type:"list" required:"true"`
 
 	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
@@ -6189,9 +6193,6 @@ func (s *CreateIPSetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateIPSetInput"}
 	if s.Addresses == nil {
 		invalidParams.Add(request.NewErrParamRequired("Addresses"))
-	}
-	if s.Addresses != nil && len(s.Addresses) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Addresses", 1))
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
@@ -10541,7 +10542,7 @@ type IPSet struct {
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
 	// Addresses is a required field
-	Addresses []*string `min:"1" type:"list" required:"true"`
+	Addresses []*string `type:"list" required:"true"`
 
 	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
@@ -12624,15 +12625,18 @@ func (s *ListWebACLsOutput) SetWebACLs(v []*WebACLSummary) *ListWebACLsOutput {
 	return s
 }
 
-// Defines an association between Amazon Kinesis Data Firehose destinations
-// and a web ACL resource, for logging from WAF. As part of the association,
-// you can specify parts of the standard logging fields to keep out of the logs
-// and you can specify filters so that you log only a subset of the logging
-// records.
+// Defines an association between logging destinations and a web ACL resource,
+// for logging from WAF. As part of the association, you can specify parts of
+// the standard logging fields to keep out of the logs and you can specify filters
+// so that you log only a subset of the logging records.
+//
+// For information about configuring web ACL logging destinations, see Logging
+// web ACL traffic information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+// in the WAF Developer Guide.
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Kinesis Data Firehose Amazon Resource Name (ARNs) that you want
+	// The Amazon Resource Names (ARNs) of the logging destinations that you want
 	// to associate with the web ACL.
 	//
 	// LogDestinationConfigs is a required field
@@ -12649,8 +12653,8 @@ type LoggingConfiguration struct {
 	ManagedByFirewallManager *bool `type:"boolean"`
 
 	// The parts of the request that you want to keep out of the logs. For example,
-	// if you redact the SingleHeader field, the HEADER field in the firehose will
-	// be xxx.
+	// if you redact the SingleHeader field, the HEADER field in the logs will be
+	// xxx.
 	//
 	// You can specify only the following fields for redaction: UriPath, QueryString,
 	// SingleHeader, Method, and JsonBody.
@@ -13632,11 +13636,14 @@ func (s *OverrideAction) SetNone(v *NoneAction) *OverrideAction {
 type PutLoggingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines an association between Amazon Kinesis Data Firehose destinations
-	// and a web ACL resource, for logging from WAF. As part of the association,
-	// you can specify parts of the standard logging fields to keep out of the logs
-	// and you can specify filters so that you log only a subset of the logging
-	// records.
+	// Defines an association between logging destinations and a web ACL resource,
+	// for logging from WAF. As part of the association, you can specify parts of
+	// the standard logging fields to keep out of the logs and you can specify filters
+	// so that you log only a subset of the logging records.
+	//
+	// For information about configuring web ACL logging destinations, see Logging
+	// web ACL traffic information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
 	//
 	// LoggingConfiguration is a required field
 	LoggingConfiguration *LoggingConfiguration `type:"structure" required:"true"`
@@ -13687,11 +13694,14 @@ func (s *PutLoggingConfigurationInput) SetLoggingConfiguration(v *LoggingConfigu
 type PutLoggingConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines an association between Amazon Kinesis Data Firehose destinations
-	// and a web ACL resource, for logging from WAF. As part of the association,
-	// you can specify parts of the standard logging fields to keep out of the logs
-	// and you can specify filters so that you log only a subset of the logging
-	// records.
+	// Defines an association between logging destinations and a web ACL resource,
+	// for logging from WAF. As part of the association, you can specify parts of
+	// the standard logging fields to keep out of the logs and you can specify filters
+	// so that you log only a subset of the logging records.
+	//
+	// For information about configuring web ACL logging destinations, see Logging
+	// web ACL traffic information (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html)
+	// in the WAF Developer Guide.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
@@ -14198,7 +14208,7 @@ type RateBasedStatementManagedKeysIPSet struct {
 	_ struct{} `type:"structure"`
 
 	// The IP addresses that are currently blocked.
-	Addresses []*string `min:"1" type:"list"`
+	Addresses []*string `type:"list"`
 
 	// The version of the IP addresses, either IPV4 or IPV6.
 	IPAddressVersion *string `type:"string" enum:"IPAddressVersion"`
@@ -16733,7 +16743,7 @@ type UpdateIPSetInput struct {
 	// Inter-Domain Routing (https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
 	//
 	// Addresses is a required field
-	Addresses []*string `min:"1" type:"list" required:"true"`
+	Addresses []*string `type:"list" required:"true"`
 
 	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
@@ -16801,9 +16811,6 @@ func (s *UpdateIPSetInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateIPSetInput"}
 	if s.Addresses == nil {
 		invalidParams.Add(request.NewErrParamRequired("Addresses"))
-	}
-	if s.Addresses != nil && len(s.Addresses) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Addresses", 1))
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
@@ -18602,6 +18609,73 @@ func (s *WAFLimitsExceededException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *WAFLimitsExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The operation failed because you don't have the permissions that your logging
+// configuration requires. For information, see Logging web ACL traffic information
+// (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the
+// WAF Developer Guide.
+type WAFLogDestinationPermissionIssueException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFLogDestinationPermissionIssueException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WAFLogDestinationPermissionIssueException) GoString() string {
+	return s.String()
+}
+
+func newErrorWAFLogDestinationPermissionIssueException(v protocol.ResponseMetadata) error {
+	return &WAFLogDestinationPermissionIssueException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *WAFLogDestinationPermissionIssueException) Code() string {
+	return "WAFLogDestinationPermissionIssueException"
+}
+
+// Message returns the exception's message.
+func (s *WAFLogDestinationPermissionIssueException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *WAFLogDestinationPermissionIssueException) OrigErr() error {
+	return nil
+}
+
+func (s *WAFLogDestinationPermissionIssueException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *WAFLogDestinationPermissionIssueException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *WAFLogDestinationPermissionIssueException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -20845,6 +20919,9 @@ const (
 
 	// ParameterExceptionFieldAssociableResource is a ParameterExceptionField enum value
 	ParameterExceptionFieldAssociableResource = "ASSOCIABLE_RESOURCE"
+
+	// ParameterExceptionFieldLogDestination is a ParameterExceptionField enum value
+	ParameterExceptionFieldLogDestination = "LOG_DESTINATION"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -20906,6 +20983,7 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldExpireTimestamp,
 		ParameterExceptionFieldChangePropagationStatus,
 		ParameterExceptionFieldAssociableResource,
+		ParameterExceptionFieldLogDestination,
 	}
 }
 

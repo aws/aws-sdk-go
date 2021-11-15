@@ -46585,7 +46585,7 @@ type ParameterStringFilter struct {
 	// API operations. However, not all of the pattern values listed for Key can
 	// be used with both operations.
 	//
-	// For DescribeActions, all of the listed patterns are valid except Label.
+	// For DescribeParameters, all of the listed patterns are valid except Label.
 	//
 	// For GetParametersByPath, the following patterns listed for Key aren't valid:
 	// tag, DataType, Name, Path, and Tier.
@@ -51992,11 +51992,17 @@ type Session struct {
 	// The date and time, in ISO-8601 Extended format, when the session was terminated.
 	EndDate *time.Time `type:"timestamp"`
 
+	// The maximum duration of a session before it terminates.
+	MaxSessionDuration *string `min:"1" type:"string"`
+
 	// Reserved for future use.
 	OutputUrl *SessionManagerOutputUrl `type:"structure"`
 
 	// The ID of the Amazon Web Services user account that started the session.
 	Owner *string `min:"1" type:"string"`
+
+	// The reason for connecting to the instance.
+	Reason *string `min:"1" type:"string"`
 
 	// The ID of the session.
 	SessionId *string `min:"1" type:"string"`
@@ -52047,6 +52053,12 @@ func (s *Session) SetEndDate(v time.Time) *Session {
 	return s
 }
 
+// SetMaxSessionDuration sets the MaxSessionDuration field's value.
+func (s *Session) SetMaxSessionDuration(v string) *Session {
+	s.MaxSessionDuration = &v
+	return s
+}
+
 // SetOutputUrl sets the OutputUrl field's value.
 func (s *Session) SetOutputUrl(v *SessionManagerOutputUrl) *Session {
 	s.OutputUrl = v
@@ -52056,6 +52068,12 @@ func (s *Session) SetOutputUrl(v *SessionManagerOutputUrl) *Session {
 // SetOwner sets the Owner field's value.
 func (s *Session) SetOwner(v string) *Session {
 	s.Owner = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *Session) SetReason(v string) *Session {
+	s.Reason = &v
 	return s
 }
 
@@ -52886,6 +52904,11 @@ type StartSessionInput struct {
 	// Reserved for future use.
 	Parameters map[string][]*string `type:"map"`
 
+	// The reason for connecting to the instance. This value is included in the
+	// details for the Amazon CloudWatch Events event created when you start the
+	// session.
+	Reason *string `min:"1" type:"string"`
+
 	// The instance to connect to for the session.
 	//
 	// Target is a required field
@@ -52913,6 +52936,9 @@ func (s StartSessionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartSessionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartSessionInput"}
+	if s.Reason != nil && len(*s.Reason) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Reason", 1))
+	}
 	if s.Target == nil {
 		invalidParams.Add(request.NewErrParamRequired("Target"))
 	}
@@ -52935,6 +52961,12 @@ func (s *StartSessionInput) SetDocumentName(v string) *StartSessionInput {
 // SetParameters sets the Parameters field's value.
 func (s *StartSessionInput) SetParameters(v map[string][]*string) *StartSessionInput {
 	s.Parameters = v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *StartSessionInput) SetReason(v string) *StartSessionInput {
+	s.Reason = &v
 	return s
 }
 

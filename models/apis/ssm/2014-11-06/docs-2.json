@@ -4650,6 +4650,12 @@
         "DescribeInstanceInformationRequest$MaxResults": "<p>The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results. </p>"
       }
     },
+    "MaxSessionDuration": {
+      "base": null,
+      "refs": {
+        "Session$MaxSessionDuration": "<p>The maximum duration of a session before it terminates.</p>"
+      }
+    },
     "MetadataKey": {
       "base": null,
       "refs": {
@@ -5696,7 +5702,7 @@
     "ParameterStringFilterKey": {
       "base": null,
       "refs": {
-        "ParameterStringFilter$Key": "<p>The name of the filter.</p> <p>The <code>ParameterStringFilter</code> object is used by the <a>DescribeParameters</a> and <a>GetParametersByPath</a> API operations. However, not all of the pattern values listed for <code>Key</code> can be used with both operations.</p> <p>For <code>DescribeActions</code>, all of the listed patterns are valid except <code>Label</code>.</p> <p>For <code>GetParametersByPath</code>, the following patterns listed for <code>Key</code> aren't valid: <code>tag</code>, <code>DataType</code>, <code>Name</code>, <code>Path</code>, and <code>Tier</code>.</p> <p>For examples of Amazon Web Services CLI commands demonstrating valid parameter filter constructions, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-search.html\">Searching for Systems Manager parameters</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>"
+        "ParameterStringFilter$Key": "<p>The name of the filter.</p> <p>The <code>ParameterStringFilter</code> object is used by the <a>DescribeParameters</a> and <a>GetParametersByPath</a> API operations. However, not all of the pattern values listed for <code>Key</code> can be used with both operations.</p> <p>For <code>DescribeParameters</code>, all of the listed patterns are valid except <code>Label</code>.</p> <p>For <code>GetParametersByPath</code>, the following patterns listed for <code>Key</code> aren't valid: <code>tag</code>, <code>DataType</code>, <code>Name</code>, <code>Path</code>, and <code>Tier</code>.</p> <p>For examples of Amazon Web Services CLI commands demonstrating valid parameter filter constructions, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-search.html\">Searching for Systems Manager parameters</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>"
       }
     },
     "ParameterStringFilterList": {
@@ -7113,6 +7119,13 @@
       "base": null,
       "refs": {
         "Session$Owner": "<p>The ID of the Amazon Web Services user account that started the session.</p>"
+      }
+    },
+    "SessionReason": {
+      "base": null,
+      "refs": {
+        "Session$Reason": "<p>The reason for connecting to the instance.</p>",
+        "StartSessionRequest$Reason": "<p>The reason for connecting to the instance. This value is included in the details for the Amazon CloudWatch Events event created when you start the session.</p>"
       }
     },
     "SessionState": {

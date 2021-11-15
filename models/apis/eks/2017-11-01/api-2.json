@@ -194,7 +194,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ClientException"},
         {"shape":"ServerException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DescribeAddon":{
@@ -440,7 +441,8 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ClientException"},
         {"shape":"ServerException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "TagResource":{
@@ -566,6 +568,14 @@
         "BOTTLEROCKET_ARM_64",
         "BOTTLEROCKET_x86_64"
       ]
+    },
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
     },
     "Addon":{
       "type":"structure",
@@ -1899,7 +1909,8 @@
         "clientRequestToken":{
           "shape":"String",
           "idempotencyToken":true
-        }
+        },
+        "tags":{"shape":"TagMap"}
       }
     },
     "RegisterClusterResponse":{

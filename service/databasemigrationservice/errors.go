@@ -49,7 +49,7 @@ const (
 	// ErrCodeKMSDisabledFault for service response error code
 	// "KMSDisabledFault".
 	//
-	// The specified master key (CMK) isn't enabled.
+	// The specified KMS key isn't enabled.
 	ErrCodeKMSDisabledFault = "KMSDisabledFault"
 
 	// ErrCodeKMSFault for service response error code

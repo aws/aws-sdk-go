@@ -1,3 +1,21 @@
+Release v1.42.5 (2021-11-15)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API
+  * This release includes support for images of AmazonLinux2 platform type.
+* `service/dms`: Updates service API and documentation
+  * Add Settings in JSON format for the source GCP MySQL endpoint
+* `service/ec2`: Updates service API and documentation
+  * Adds a new VPC Subnet attribute "EnableDns64." When enabled on IPv6 Subnets, the Amazon-Provided DNS Resolver returns synthetic IPv6 addresses for IPv4-only destinations.
+* `service/eks`: Updates service API and documentation
+* `service/migrationhubstrategy`: Adds new service
+* `service/ssm`: Updates service API and documentation
+  * Adds support for Session Reason and Max Session Duration for Systems Manager Session Manager.
+* `service/transfer`: Updates service API and documentation
+  * AWS Transfer Family now supports integrating a custom identity provider using AWS Lambda
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.42.4 (2021-11-12)
 ===
 

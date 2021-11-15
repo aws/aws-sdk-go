@@ -463,7 +463,7 @@ func (c *DatabaseMigrationService) CreateEventSubscriptionRequest(input *CreateE
 //   doesn't have access to.
 //
 //   * KMSDisabledFault
-//   The specified master key (CMK) isn't enabled.
+//   The specified KMS key isn't enabled.
 //
 //   * KMSInvalidStateFault
 //   The state of the specified KMS resource isn't valid for this request.
@@ -3587,7 +3587,7 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsReque
 //
 // For more information about DMS task assessments, see Creating a task assessment
 // report (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.AssessmentReport.html)
-// in the Database Migration Service User Guide (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/Welcome.html).
+// in the Database Migration Service User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4720,7 +4720,7 @@ func (c *DatabaseMigrationService) ModifyEventSubscriptionRequest(input *ModifyE
 //   doesn't have access to.
 //
 //   * KMSDisabledFault
-//   The specified master key (CMK) isn't enabled.
+//   The specified KMS key isn't enabled.
 //
 //   * KMSInvalidStateFault
 //   The state of the specified KMS resource isn't valid for this request.
@@ -5734,7 +5734,7 @@ func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRunRequest(inpu
 //   doesn't have access to.
 //
 //   * KMSDisabledFault
-//   The specified master key (CMK) isn't enabled.
+//   The specified KMS key isn't enabled.
 //
 //   * KMSFault
 //   An Key Management Service (KMS) error is preventing access to KMS.
@@ -6409,7 +6409,8 @@ type Certificate struct {
 	// The contents of a .pem file, which contains an X.509 certificate.
 	CertificatePem *string `type:"string"`
 
-	// The location of an imported Oracle Wallet certificate for use with SSL.
+	// The location of an imported Oracle Wallet certificate for use with SSL. Example:
+	// filebase64("${path.root}/rds-ca-2019-root.sso")
 	// CertificateWallet is automatically base64 encoded/decoded by the SDK.
 	CertificateWallet []byte `type:"blob"`
 
@@ -6627,9 +6628,9 @@ type CreateEndpointInput struct {
 	// in the Database Migration Service User Guide.
 	DynamoDbSettings *DynamoDbSettings `type:"structure"`
 
-	// Settings in JSON format for the target Elasticsearch endpoint. For more information
+	// Settings in JSON format for the target OpenSearch endpoint. For more information
 	// about the available settings, see Extra Connection Attributes When Using
-	// Elasticsearch as a Target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration)
+	// OpenSearch as a Target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration)
 	// in the Database Migration Service User Guide.
 	ElasticsearchSettings *ElasticsearchSettings `type:"structure"`
 
@@ -6647,8 +6648,8 @@ type CreateEndpointInput struct {
 
 	// The type of engine for the endpoint. Valid values, depending on the EndpointType
 	// value, include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis",
-	// "kafka", "elasticsearch", "docdb", "sqlserver", and "neptune".
+	// "opensearch", "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb",
+	// "kinesis", "kafka", "elasticsearch", "docdb", "sqlserver", and "neptune".
 	//
 	// EngineName is a required field
 	EngineName *string `type:"string" required:"true"`
@@ -6663,6 +6664,9 @@ type CreateEndpointInput struct {
 	// see Working with DMS Endpoints (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Endpoints.html)
 	// in the Database Migration Service User Guide.
 	ExtraConnectionAttributes *string `type:"string"`
+
+	// Settings in JSON format for the source GCP MySQL endpoint.
+	GcpMySQLSettings *GcpMySQLSettings `type:"structure"`
 
 	// Settings in JSON format for the source IBM Db2 LUW endpoint. For information
 	// about other available settings, see Extra connection attributes when using
@@ -6913,6 +6917,12 @@ func (s *CreateEndpointInput) SetExternalTableDefinition(v string) *CreateEndpoi
 // SetExtraConnectionAttributes sets the ExtraConnectionAttributes field's value.
 func (s *CreateEndpointInput) SetExtraConnectionAttributes(v string) *CreateEndpointInput {
 	s.ExtraConnectionAttributes = &v
+	return s
+}
+
+// SetGcpMySQLSettings sets the GcpMySQLSettings field's value.
+func (s *CreateEndpointInput) SetGcpMySQLSettings(v *GcpMySQLSettings) *CreateEndpointInput {
+	s.GcpMySQLSettings = v
 	return s
 }
 
@@ -7883,7 +7893,7 @@ func (s *CreateReplicationTaskOutput) SetReplicationTask(v *ReplicationTask) *Cr
 type DeleteCertificateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the deleted certificate.
+	// The Amazon Resource Name (ARN) of the certificate.
 	//
 	// CertificateArn is a required field
 	CertificateArn *string `type:"string" required:"true"`
@@ -8718,6 +8728,7 @@ type DescribeCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filters applied to the certificates described in the form of key-value pairs.
+	// Valid values are certificate-arn and certificate-id.
 	Filters []*Filter `type:"list"`
 
 	// An optional pagination token provided by a previous request. If this parameter
@@ -9401,6 +9412,8 @@ type DescribeEventSubscriptionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// Filters applied to event subscriptions.
+	//
+	// Valid filter names: event-subscription-arn | event-subscription-id
 	Filters []*Filter `type:"list"`
 
 	// An optional pagination token provided by a previous request. If this parameter
@@ -9537,7 +9550,7 @@ type DescribeEventsInput struct {
 	// A list of event categories for the source type that you've chosen.
 	EventCategories []*string `type:"list"`
 
-	// Filters applied to events.
+	// Filters applied to events. The only valid filter is replication-instance-id.
 	Filters []*Filter `type:"list"`
 
 	// An optional pagination token provided by a previous request. If this parameter
@@ -11349,25 +11362,25 @@ func (s *DynamoDbSettings) SetServiceAccessRoleArn(v string) *DynamoDbSettings {
 	return s
 }
 
-// Provides information that defines an Elasticsearch endpoint.
+// Provides information that defines an OpenSearch endpoint.
 type ElasticsearchSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The endpoint for the Elasticsearch cluster. DMS uses HTTPS if a transport
-	// protocol (http/https) is not specified.
+	// The endpoint for the OpenSearch cluster. DMS uses HTTPS if a transport protocol
+	// (http/https) is not specified.
 	//
 	// EndpointUri is a required field
 	EndpointUri *string `type:"string" required:"true"`
 
 	// The maximum number of seconds for which DMS retries failed API requests to
-	// the Elasticsearch cluster.
+	// the OpenSearch cluster.
 	ErrorRetryDuration *int64 `type:"integer"`
 
 	// The maximum percentage of records that can fail to be written before a full
 	// load operation stops.
 	//
 	// To avoid early failure, this counter is only effective after 1000 records
-	// are transferred. Elasticsearch also has the concept of error monitoring during
+	// are transferred. OpenSearch also has the concept of error monitoring during
 	// the last 10 minutes of an Observation Window. If transfer of all records
 	// fail in the last 10 minutes, the full load operation stops.
 	FullLoadErrorPercentage *int64 `type:"integer"`
@@ -11454,19 +11467,8 @@ type Endpoint struct {
 	// The name of the database at the endpoint.
 	DatabaseName *string `type:"string"`
 
-	// The settings in JSON format for the DMS transfer type of source endpoint.
-	//
-	// Possible settings include the following:
-	//
-	//    * ServiceAccessRoleArn - - The Amazon Resource Name (ARN) used by the
-	//    service access IAM role. The role must allow the iam:PassRole action.
-	//
-	//    * BucketName - The name of the S3 bucket to use.
-	//
-	// Shorthand syntax for these settings is as follows: ServiceAccessRoleArn=string,BucketName=string,
-	//
-	// JSON syntax for these settings is as follows: { "ServiceAccessRoleArn": "string",
-	// "BucketName": "string"}
+	// The settings for the DMS Transfer type source. For more information, see
+	// the DmsTransferSettings structure.
 	DmsTransferSettings *DmsTransferSettings `type:"structure"`
 
 	// Provides information that defines a DocumentDB endpoint.
@@ -11476,8 +11478,8 @@ type Endpoint struct {
 	// the DynamoDBSettings structure.
 	DynamoDbSettings *DynamoDbSettings `type:"structure"`
 
-	// The settings for the Elasticsearch source endpoint. For more information,
-	// see the ElasticsearchSettings structure.
+	// The settings for the OpenSearch source endpoint. For more information, see
+	// the ElasticsearchSettings structure.
 	ElasticsearchSettings *ElasticsearchSettings `type:"structure"`
 
 	// The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.
@@ -11497,8 +11499,8 @@ type Endpoint struct {
 
 	// The database engine name. Valid values, depending on the EndpointType, include
 	// "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis",
-	// "kafka", "elasticsearch", "documentdb", "sqlserver", and "neptune".
+	// "opensearch", "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb",
+	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", and "neptune".
 	EngineName *string `type:"string"`
 
 	// Value returned by a call to CreateEndpoint that can be used for cross-account
@@ -11511,6 +11513,9 @@ type Endpoint struct {
 
 	// Additional connection attributes used to connect to the endpoint.
 	ExtraConnectionAttributes *string `type:"string"`
+
+	// Settings in JSON format for the source GCP MySQL endpoint.
+	GcpMySQLSettings *GcpMySQLSettings `type:"structure"`
 
 	// The settings for the IBM Db2 LUW source endpoint. For more information, see
 	// the IBMDb2Settings structure.
@@ -11693,6 +11698,12 @@ func (s *Endpoint) SetExternalTableDefinition(v string) *Endpoint {
 // SetExtraConnectionAttributes sets the ExtraConnectionAttributes field's value.
 func (s *Endpoint) SetExtraConnectionAttributes(v string) *Endpoint {
 	s.ExtraConnectionAttributes = &v
+	return s
+}
+
+// SetGcpMySQLSettings sets the GcpMySQLSettings field's value.
+func (s *Endpoint) SetGcpMySQLSettings(v *GcpMySQLSettings) *Endpoint {
+	s.GcpMySQLSettings = v
 	return s
 }
 
@@ -12224,6 +12235,206 @@ func (s *Filter) SetValues(v []*string) *Filter {
 	return s
 }
 
+// Settings in JSON format for the source GCP MySQL endpoint.
+type GcpMySQLSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a script to run immediately after DMS connects to the endpoint.
+	// The migration task continues running regardless if the SQL statement succeeds
+	// or fails.
+	//
+	// For this parameter, provide the code of the script itself, not the name of
+	// a file containing the script.
+	AfterConnectScript *string `type:"string"`
+
+	// Adjusts the behavior of DMS when migrating from an SQL Server source database
+	// that is hosted as part of an Always On availability group cluster. If you
+	// need DMS to poll all the nodes in the Always On cluster for transaction backups,
+	// set this attribute to false.
+	CleanSourceMetadataOnMismatch *bool `type:"boolean"`
+
+	// Database name for the endpoint. For a MySQL source or target endpoint, don't
+	// explicitly specify the database using the DatabaseName request parameter
+	// on either the CreateEndpoint or ModifyEndpoint API call. Specifying DatabaseName
+	// when you create or modify a MySQL endpoint replicates all the task tables
+	// to this single database. For MySQL endpoints, you specify the database only
+	// when you specify the schema in the table-mapping rules of the DMS task.
+	DatabaseName *string `type:"string"`
+
+	// Specifies how often to check the binary log for new changes/events when the
+	// database is idle. The default is five seconds.
+	//
+	// Example: eventsPollInterval=5;
+	//
+	// In the example, DMS checks for changes in the binary logs every five seconds.
+	EventsPollInterval *int64 `type:"integer"`
+
+	// Specifies the maximum size (in KB) of any .csv file used to transfer data
+	// to a MySQL-compatible database.
+	//
+	// Example: maxFileSize=512
+	MaxFileSize *int64 `type:"integer"`
+
+	// Improves performance when loading data into the MySQL-compatible target database.
+	// Specifies how many threads to use to load the data into the MySQL-compatible
+	// target database. Setting a large number of threads can have an adverse effect
+	// on database performance, because a separate connection is required for each
+	// thread. The default is one.
+	//
+	// Example: parallelLoadThreads=1
+	ParallelLoadThreads *int64 `type:"integer"`
+
+	// Endpoint connection password.
+	//
+	// Password is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GcpMySQLSettings's
+	// String and GoString methods.
+	Password *string `type:"string" sensitive:"true"`
+
+	Port *int64 `type:"integer"`
+
+	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
+	// the trusted entity and grants the required permissions to access the value
+	// in SecretsManagerSecret. The role must allow the iam:PassRole action. SecretsManagerSecret
+	// has the value of the Amazon Web Services Secrets Manager secret that allows
+	// access to the MySQL endpoint.
+	//
+	// You can specify one of two sets of values for these permissions. You can
+	// specify the values for this setting and SecretsManagerSecretId. Or you can
+	// specify clear-text values for UserName, Password, ServerName, and Port. You
+	// can't specify both. For more information on creating this SecretsManagerSecret
+	// and the SecretsManagerAccessRoleArn and SecretsManagerSecretId required to
+	// access it, see Using secrets to access Database Migration Service resources
+	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager)
+	// in the Database Migration Service User Guide.
+	SecretsManagerAccessRoleArn *string `type:"string"`
+
+	// The full ARN, partial ARN, or friendly name of the SecretsManagerSecret that
+	// contains the MySQL endpoint connection details.
+	SecretsManagerSecretId *string `type:"string"`
+
+	// Endpoint TCP port.
+	ServerName *string `type:"string"`
+
+	// Specifies the time zone for the source MySQL database.
+	//
+	// Example: serverTimezone=US/Pacific;
+	//
+	// Note: Do not enclose time zones in single quotes.
+	ServerTimezone *string `type:"string"`
+
+	// Specifies where to migrate source tables on the target, either to a single
+	// database or multiple databases.
+	//
+	// Example: targetDbType=MULTIPLE_DATABASES
+	TargetDbType *string `type:"string" enum:"TargetDbType"`
+
+	// Endpoint connection user name.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GcpMySQLSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GcpMySQLSettings) GoString() string {
+	return s.String()
+}
+
+// SetAfterConnectScript sets the AfterConnectScript field's value.
+func (s *GcpMySQLSettings) SetAfterConnectScript(v string) *GcpMySQLSettings {
+	s.AfterConnectScript = &v
+	return s
+}
+
+// SetCleanSourceMetadataOnMismatch sets the CleanSourceMetadataOnMismatch field's value.
+func (s *GcpMySQLSettings) SetCleanSourceMetadataOnMismatch(v bool) *GcpMySQLSettings {
+	s.CleanSourceMetadataOnMismatch = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GcpMySQLSettings) SetDatabaseName(v string) *GcpMySQLSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetEventsPollInterval sets the EventsPollInterval field's value.
+func (s *GcpMySQLSettings) SetEventsPollInterval(v int64) *GcpMySQLSettings {
+	s.EventsPollInterval = &v
+	return s
+}
+
+// SetMaxFileSize sets the MaxFileSize field's value.
+func (s *GcpMySQLSettings) SetMaxFileSize(v int64) *GcpMySQLSettings {
+	s.MaxFileSize = &v
+	return s
+}
+
+// SetParallelLoadThreads sets the ParallelLoadThreads field's value.
+func (s *GcpMySQLSettings) SetParallelLoadThreads(v int64) *GcpMySQLSettings {
+	s.ParallelLoadThreads = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *GcpMySQLSettings) SetPassword(v string) *GcpMySQLSettings {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *GcpMySQLSettings) SetPort(v int64) *GcpMySQLSettings {
+	s.Port = &v
+	return s
+}
+
+// SetSecretsManagerAccessRoleArn sets the SecretsManagerAccessRoleArn field's value.
+func (s *GcpMySQLSettings) SetSecretsManagerAccessRoleArn(v string) *GcpMySQLSettings {
+	s.SecretsManagerAccessRoleArn = &v
+	return s
+}
+
+// SetSecretsManagerSecretId sets the SecretsManagerSecretId field's value.
+func (s *GcpMySQLSettings) SetSecretsManagerSecretId(v string) *GcpMySQLSettings {
+	s.SecretsManagerSecretId = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *GcpMySQLSettings) SetServerName(v string) *GcpMySQLSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetServerTimezone sets the ServerTimezone field's value.
+func (s *GcpMySQLSettings) SetServerTimezone(v string) *GcpMySQLSettings {
+	s.ServerTimezone = &v
+	return s
+}
+
+// SetTargetDbType sets the TargetDbType field's value.
+func (s *GcpMySQLSettings) SetTargetDbType(v string) *GcpMySQLSettings {
+	s.TargetDbType = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *GcpMySQLSettings) SetUsername(v string) *GcpMySQLSettings {
+	s.Username = &v
+	return s
+}
+
 // Provides information that defines an IBM Db2 LUW endpoint.
 type IBMDb2Settings struct {
 	_ struct{} `type:"structure"`
@@ -12376,6 +12587,8 @@ type ImportCertificateInput struct {
 	// The location of an imported Oracle Wallet certificate for use with SSL. Provide
 	// the name of a .sso file using the fileb:// prefix. You can't provide the
 	// certificate inline.
+	//
+	// Example: filebase64("${path.root}/rds-ca-2019-root.sso")
 	// CertificateWallet is automatically base64 encoded/decoded by the SDK.
 	CertificateWallet []byte `type:"blob"`
 
@@ -12791,7 +13004,7 @@ func (s *KMSAccessDeniedFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified master key (CMK) isn't enabled.
+// The specified KMS key isn't enabled.
 type KMSDisabledFault struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13849,9 +14062,9 @@ type ModifyEndpointInput struct {
 	// in the Database Migration Service User Guide.
 	DynamoDbSettings *DynamoDbSettings `type:"structure"`
 
-	// Settings in JSON format for the target Elasticsearch endpoint. For more information
+	// Settings in JSON format for the target OpenSearch endpoint. For more information
 	// about the available settings, see Extra Connection Attributes When Using
-	// Elasticsearch as a Target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration)
+	// OpenSearch as a Target for DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration)
 	// in the Database Migration Service User Guide.
 	ElasticsearchSettings *ElasticsearchSettings `type:"structure"`
 
@@ -13870,8 +14083,8 @@ type ModifyEndpointInput struct {
 
 	// The type of engine for the endpoint. Valid values, depending on the EndpointType,
 	// include "mysql", "oracle", "postgres", "mariadb", "aurora", "aurora-postgresql",
-	// "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb", "kinesis",
-	// "kafka", "elasticsearch", "documentdb", "sqlserver", and "neptune".
+	// "opensearch", "redshift", "s3", "db2", "azuredb", "sybase", "dynamodb", "mongodb",
+	// "kinesis", "kafka", "elasticsearch", "documentdb", "sqlserver", and "neptune".
 	EngineName *string `type:"string"`
 
 	// If this attribute is Y, the current call to ModifyEndpoint replaces all existing
@@ -13901,6 +14114,9 @@ type ModifyEndpointInput struct {
 	// Additional attributes associated with the connection. To reset this parameter,
 	// pass the empty string ("") as an argument.
 	ExtraConnectionAttributes *string `type:"string"`
+
+	// Settings in JSON format for the source GCP MySQL endpoint.
+	GcpMySQLSettings *GcpMySQLSettings `type:"structure"`
 
 	// Settings in JSON format for the source IBM Db2 LUW endpoint. For information
 	// about other available settings, see Extra connection attributes when using
@@ -14133,6 +14349,12 @@ func (s *ModifyEndpointInput) SetExternalTableDefinition(v string) *ModifyEndpoi
 // SetExtraConnectionAttributes sets the ExtraConnectionAttributes field's value.
 func (s *ModifyEndpointInput) SetExtraConnectionAttributes(v string) *ModifyEndpointInput {
 	s.ExtraConnectionAttributes = &v
+	return s
+}
+
+// SetGcpMySQLSettings sets the GcpMySQLSettings field's value.
+func (s *ModifyEndpointInput) SetGcpMySQLSettings(v *GcpMySQLSettings) *ModifyEndpointInput {
+	s.GcpMySQLSettings = v
 	return s
 }
 
@@ -15209,7 +15431,7 @@ type MySQLSettings struct {
 	DatabaseName *string `type:"string"`
 
 	// Specifies how often to check the binary log for new changes/events when the
-	// database is idle.
+	// database is idle. The default is five seconds.
 	//
 	// Example: eventsPollInterval=5;
 	//
@@ -15226,7 +15448,7 @@ type MySQLSettings struct {
 	// Specifies how many threads to use to load the data into the MySQL-compatible
 	// target database. Setting a large number of threads can have an adverse effect
 	// on database performance, because a separate connection is required for each
-	// thread.
+	// thread. The default is one.
 	//
 	// Example: parallelLoadThreads=1
 	ParallelLoadThreads *int64 `type:"integer"`
@@ -16333,7 +16555,7 @@ type PostgreSQLSettings struct {
 	// Specifies the plugin to use to create a replication slot.
 	PluginName *string `type:"string" enum:"PluginNameValue"`
 
-	// Endpoint TCP port.
+	// Endpoint TCP port. The default is 5432.
 	Port *int64 `type:"integer"`
 
 	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as
@@ -19600,6 +19822,17 @@ type S3Settings struct {
 	//
 	// This setting is supported in DMS versions 3.4.1 and later.
 	UseCsvNoSupValue *bool `type:"boolean"`
+
+	// When set to true, this parameter uses the task start time as the timestamp
+	// column value instead of the time data is written to target. For full load,
+	// when useTaskStartTimeForFullLoadTimestamp is set to true, each row of the
+	// timestamp column contains the task start time. For CDC loads, each row of
+	// the timestamp column contains the transaction commit time.
+	//
+	// When useTaskStartTimeForFullLoadTimestamp is set to false, the full load
+	// timestamp in the timestamp column increments with the time data arrives at
+	// the target.
+	UseTaskStartTimeForFullLoadTimestamp *bool `type:"boolean"`
 }
 
 // String returns the string representation.
@@ -19833,6 +20066,12 @@ func (s *S3Settings) SetTimestampColumnName(v string) *S3Settings {
 // SetUseCsvNoSupValue sets the UseCsvNoSupValue field's value.
 func (s *S3Settings) SetUseCsvNoSupValue(v bool) *S3Settings {
 	s.UseCsvNoSupValue = &v
+	return s
+}
+
+// SetUseTaskStartTimeForFullLoadTimestamp sets the UseTaskStartTimeForFullLoadTimestamp field's value.
+func (s *S3Settings) SetUseTaskStartTimeForFullLoadTimestamp(v bool) *S3Settings {
+	s.UseTaskStartTimeForFullLoadTimestamp = &v
 	return s
 }
 
@@ -20282,7 +20521,15 @@ type StartReplicationTaskInput struct {
 	// ReplicationTaskArn is a required field
 	ReplicationTaskArn *string `type:"string" required:"true"`
 
-	// A type of replication task.
+	// The type of replication task to start.
+	//
+	// When the migration type is full-load or full-load-and-cdc, the only valid
+	// value for the first run of the task is start-replication. You use reload-target
+	// to restart the task and resume-processing to resume the task.
+	//
+	// When the migration type is cdc, you use start-replication to start or restart
+	// the task, and resume-processing to resume the task. reload-target is not
+	// a valid value for a task with migration type of cdc.
 	//
 	// StartReplicationTaskType is a required field
 	StartReplicationTaskType *string `type:"string" required:"true" enum:"StartReplicationTaskTypeValue"`
@@ -20731,7 +20978,7 @@ type SybaseSettings struct {
 	// String and GoString methods.
 	Password *string `type:"string" sensitive:"true"`
 
-	// Endpoint TCP port.
+	// Endpoint TCP port. The default is 5000.
 	Port *int64 `type:"integer"`
 
 	// The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as

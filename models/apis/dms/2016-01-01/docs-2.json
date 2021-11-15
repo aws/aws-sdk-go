@@ -34,7 +34,7 @@
     "DescribeReplicationInstanceTaskLogs": "<p>Returns information about the task logs for the specified task.</p>",
     "DescribeReplicationInstances": "<p>Returns information about replication instances for your account in the current region.</p>",
     "DescribeReplicationSubnetGroups": "<p>Returns information about the replication subnet groups.</p>",
-    "DescribeReplicationTaskAssessmentResults": "<p>Returns the task assessment results from the Amazon S3 bucket that DMS creates in your Amazon Web Services account. This action always returns the latest results.</p> <p>For more information about DMS task assessments, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.AssessmentReport.html\">Creating a task assessment report</a> in the <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/Welcome.html\"> Database Migration Service User Guide</a>.</p>",
+    "DescribeReplicationTaskAssessmentResults": "<p>Returns the task assessment results from the Amazon S3 bucket that DMS creates in your Amazon Web Services account. This action always returns the latest results.</p> <p>For more information about DMS task assessments, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.AssessmentReport.html\">Creating a task assessment report</a> in the <i>Database Migration Service User Guide</i>.</p>",
     "DescribeReplicationTaskAssessmentRuns": "<p>Returns a paginated list of premigration assessment runs based on filter settings.</p> <p>These filter settings can specify a combination of premigration assessment runs, migration tasks, replication instances, and assessment run status values.</p> <note> <p>This operation doesn't return information about individual assessments. For this information, see the <code>DescribeReplicationTaskIndividualAssessments</code> operation. </p> </note>",
     "DescribeReplicationTaskIndividualAssessments": "<p>Returns a paginated list of individual assessments based on filter settings.</p> <p>These filter settings can specify a combination of premigration assessment runs, migration tasks, and assessment status values.</p>",
     "DescribeReplicationTasks": "<p>Returns information about replication tasks for your account in the current region.</p>",
@@ -148,6 +148,7 @@
         "DescribeReplicationTasksMessage$WithoutSettings": "<p>An option to set to avoid returning information about settings. Use this to reduce overhead when setting information is too large. To use this option, choose <code>true</code>; otherwise, choose <code>false</code> (the default).</p>",
         "DocDbSettings$ExtractDocId": "<p> Specifies the document ID. Use this setting when <code>NestingLevel</code> is set to <code>\"none\"</code>. </p> <p>Default value is <code>\"false\"</code>. </p>",
         "EndpointSetting$Sensitive": "<p>A value that marks this endpoint setting as sensitive.</p>",
+        "GcpMySQLSettings$CleanSourceMetadataOnMismatch": "<p>Adjusts the behavior of DMS when migrating from an SQL Server source database that is hosted as part of an Always On availability group cluster. If you need DMS to poll all the nodes in the Always On cluster for transaction backups, set this attribute to <code>false</code>. </p>",
         "IBMDb2Settings$SetDataCaptureChanges": "<p>Enables ongoing replication (CDC) as a BOOLEAN value. The default is true.</p>",
         "KafkaSettings$IncludeTransactionDetails": "<p>Provides detailed transaction information from the source database. This information includes a commit timestamp, a log position, and values for <code>transaction_id</code>, previous <code>transaction_id</code>, and <code>transaction_record_id</code> (the record offset within a transaction). The default is <code>false</code>.</p>",
         "KafkaSettings$IncludePartitionValue": "<p>Shows the partition value within the Kafka message output unless the partition type is <code>schema-table-type</code>. The default is <code>false</code>.</p>",
@@ -209,6 +210,7 @@
         "S3Settings$DatePartitionEnabled": "<p>When set to <code>true</code>, this parameter partitions S3 bucket folders based on transaction commit dates. The default value is <code>false</code>. For more information about date-based folder partitioning, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.DatePartitioning\">Using date-based folder partitioning</a>.</p>",
         "S3Settings$UseCsvNoSupValue": "<p>This setting applies if the S3 output files during a change data capture (CDC) load are written in .csv format. If set to <code>true</code> for columns not included in the supplemental log, DMS uses the value specified by <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CsvNoSupValue\"> <code>CsvNoSupValue</code> </a>. If not set or set to <code>false</code>, DMS uses the null value for these columns.</p> <note> <p>This setting is supported in DMS versions 3.4.1 and later.</p> </note>",
         "S3Settings$PreserveTransactions": "<p>If set to <code>true</code>, DMS saves the transaction order for a change data capture (CDC) load on the Amazon S3 target specified by <a href=\"https://docs.aws.amazon.com/dms/latest/APIReference/API_S3Settings.html#DMS-Type-S3Settings-CdcPath\"> <code>CdcPath</code> </a>. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.EndpointSettings.CdcPath\">Capturing data changes (CDC) including transaction order on the S3 target</a>.</p> <note> <p>This setting is supported in DMS versions 3.4.2 and later.</p> </note>",
+        "S3Settings$UseTaskStartTimeForFullLoadTimestamp": "<p>When set to true, this parameter uses the task start time as the timestamp column value instead of the time data is written to target. For full load, when <code>useTaskStartTimeForFullLoadTimestamp</code> is set to <code>true</code>, each row of the timestamp column contains the task start time. For CDC loads, each row of the timestamp column contains the transaction commit time.</p> <p>When <code>useTaskStartTimeForFullLoadTimestamp</code> is set to <code>false</code>, the full load timestamp in the timestamp column increments with the time data arrives at the target. </p>",
         "S3Settings$AddColumnName": "<p>An optional parameter that, when set to <code>true</code> or <code>y</code>, you can use to add column name information to the .csv output file.</p> <p>The default value is <code>false</code>. Valid values are <code>true</code>, <code>false</code>, <code>y</code>, and <code>n</code>.</p>",
         "S3Settings$Rfc4180": "<p>For an S3 source, when this value is set to <code>true</code> or <code>y</code>, each leading double quotation mark has to be followed by an ending double quotation mark. This formatting complies with RFC 4180. When this value is set to <code>false</code> or <code>n</code>, string literals are copied to the target as is. In this case, a delimiter (row or column) signals the end of the field. Thus, you can't use a delimiter as part of the string, because it signals the end of the value.</p> <p>For an S3 target, an optional parameter used to set behavior to comply with RFC 4180 for data migrated to Amazon S3 using .csv file format only. When this value is set to <code>true</code> or <code>y</code> using Amazon S3 as a target, if the data has quotation marks or newline characters in it, DMS encloses the entire column with an additional pair of double quotation marks (\"). Every quotation mark within the data is repeated twice.</p> <p>The default value is <code>true</code>. Valid values include <code>true</code>, <code>false</code>, <code>y</code>, and <code>n</code>.</p>",
         "TableStatistics$FullLoadReloaded": "<p>A value that indicates if the table was reloaded (<code>true</code>) or loaded as part of a new full load operation (<code>false</code>).</p>"
@@ -247,8 +249,8 @@
     "CertificateWallet": {
       "base": null,
       "refs": {
-        "Certificate$CertificateWallet": "<p>The location of an imported Oracle Wallet certificate for use with SSL.</p>",
-        "ImportCertificateMessage$CertificateWallet": "<p>The location of an imported Oracle Wallet certificate for use with SSL. Provide the name of a <code>.sso</code> file using the <code>fileb://</code> prefix. You can't provide the certificate inline. </p>"
+        "Certificate$CertificateWallet": "<p>The location of an imported Oracle Wallet certificate for use with SSL. Example: <code>filebase64(\"${path.root}/rds-ca-2019-root.sso\")</code> </p>",
+        "ImportCertificateMessage$CertificateWallet": "<p>The location of an imported Oracle Wallet certificate for use with SSL. Provide the name of a <code>.sso</code> file using the <code>fileb://</code> prefix. You can't provide the certificate inline.</p> <p>Example: <code>filebase64(\"${path.root}/rds-ca-2019-root.sso\")</code> </p>"
       }
     },
     "CharLengthSemantics": {
@@ -657,7 +659,7 @@
       "base": "<p> The settings in JSON format for the DMS Transfer type source endpoint. </p>",
       "refs": {
         "CreateEndpointMessage$DmsTransferSettings": "<p>The settings in JSON format for the DMS transfer type of source endpoint. </p> <p>Possible settings include the following:</p> <ul> <li> <p> <code>ServiceAccessRoleArn</code> - The Amazon Resource Name (ARN) used by the service access IAM role. The role must allow the <code>iam:PassRole</code> action.</p> </li> <li> <p> <code>BucketName</code> - The name of the S3 bucket to use.</p> </li> </ul> <p>Shorthand syntax for these settings is as follows: <code>ServiceAccessRoleArn=string,BucketName=string</code> </p> <p>JSON syntax for these settings is as follows: <code>{ \"ServiceAccessRoleArn\": \"string\", \"BucketName\": \"string\", } </code> </p>",
-        "Endpoint$DmsTransferSettings": "<p>The settings in JSON format for the DMS transfer type of source endpoint. </p> <p>Possible settings include the following:</p> <ul> <li> <p> <code>ServiceAccessRoleArn</code> - - The Amazon Resource Name (ARN) used by the service access IAM role. The role must allow the <code>iam:PassRole</code> action.</p> </li> <li> <p> <code>BucketName</code> - The name of the S3 bucket to use.</p> </li> </ul> <p>Shorthand syntax for these settings is as follows: <code>ServiceAccessRoleArn=string,BucketName=string,</code> </p> <p>JSON syntax for these settings is as follows: <code>{ \"ServiceAccessRoleArn\": \"string\", \"BucketName\": \"string\"} </code> </p>",
+        "Endpoint$DmsTransferSettings": "<p>The settings for the DMS Transfer type source. For more information, see the DmsTransferSettings structure. </p>",
         "ModifyEndpointMessage$DmsTransferSettings": "<p>The settings in JSON format for the DMS transfer type of source endpoint. </p> <p>Attributes include the following:</p> <ul> <li> <p>serviceAccessRoleArn - The Amazon Resource Name (ARN) used by the service access IAM role. The role must allow the <code>iam:PassRole</code> action.</p> </li> <li> <p>BucketName - The name of the S3 bucket to use.</p> </li> </ul> <p>Shorthand syntax for these settings is as follows: <code>ServiceAccessRoleArn=string ,BucketName=string</code> </p> <p>JSON syntax for these settings is as follows: <code>{ \"ServiceAccessRoleArn\": \"string\", \"BucketName\": \"string\"} </code> </p>"
       }
     },
@@ -678,11 +680,11 @@
       }
     },
     "ElasticsearchSettings": {
-      "base": "<p>Provides information that defines an Elasticsearch endpoint.</p>",
+      "base": "<p>Provides information that defines an OpenSearch endpoint.</p>",
       "refs": {
-        "CreateEndpointMessage$ElasticsearchSettings": "<p>Settings in JSON format for the target Elasticsearch endpoint. For more information about the available settings, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration\">Extra Connection Attributes When Using Elasticsearch as a Target for DMS</a> in the <i>Database Migration Service User Guide</i>.</p>",
-        "Endpoint$ElasticsearchSettings": "<p>The settings for the Elasticsearch source endpoint. For more information, see the <code>ElasticsearchSettings</code> structure.</p>",
-        "ModifyEndpointMessage$ElasticsearchSettings": "<p>Settings in JSON format for the target Elasticsearch endpoint. For more information about the available settings, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration\">Extra Connection Attributes When Using Elasticsearch as a Target for DMS</a> in the <i>Database Migration Service User Guide.</i> </p>"
+        "CreateEndpointMessage$ElasticsearchSettings": "<p>Settings in JSON format for the target OpenSearch endpoint. For more information about the available settings, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration\">Extra Connection Attributes When Using OpenSearch as a Target for DMS</a> in the <i>Database Migration Service User Guide</i>.</p>",
+        "Endpoint$ElasticsearchSettings": "<p>The settings for the OpenSearch source endpoint. For more information, see the <code>ElasticsearchSettings</code> structure.</p>",
+        "ModifyEndpointMessage$ElasticsearchSettings": "<p>Settings in JSON format for the target OpenSearch endpoint. For more information about the available settings, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Elasticsearch.html#CHAP_Target.Elasticsearch.Configuration\">Extra Connection Attributes When Using OpenSearch as a Target for DMS</a> in the <i>Database Migration Service User Guide.</i> </p>"
       }
     },
     "EncodingTypeValue": {
@@ -830,13 +832,13 @@
     "FilterList": {
       "base": null,
       "refs": {
-        "DescribeCertificatesMessage$Filters": "<p>Filters applied to the certificates described in the form of key-value pairs.</p>",
+        "DescribeCertificatesMessage$Filters": "<p>Filters applied to the certificates described in the form of key-value pairs. Valid values are <code>certificate-arn</code> and <code>certificate-id</code>.</p>",
         "DescribeConnectionsMessage$Filters": "<p>The filters applied to the connection.</p> <p>Valid filter names: endpoint-arn | replication-instance-arn</p>",
         "DescribeEndpointTypesMessage$Filters": "<p>Filters applied to the endpoint types.</p> <p>Valid filter names: engine-name | endpoint-type</p>",
         "DescribeEndpointsMessage$Filters": "<p>Filters applied to the endpoints.</p> <p>Valid filter names: endpoint-arn | endpoint-type | endpoint-id | engine-name</p>",
         "DescribeEventCategoriesMessage$Filters": "<p>Filters applied to the event categories.</p>",
-        "DescribeEventSubscriptionsMessage$Filters": "<p>Filters applied to event subscriptions.</p>",
-        "DescribeEventsMessage$Filters": "<p>Filters applied to events.</p>",
+        "DescribeEventSubscriptionsMessage$Filters": "<p>Filters applied to event subscriptions.</p> <p>Valid filter names: event-subscription-arn | event-subscription-id </p>",
+        "DescribeEventsMessage$Filters": "<p>Filters applied to events. The only valid filter is <code>replication-instance-id</code>.</p>",
         "DescribePendingMaintenanceActionsMessage$Filters": "<p/>",
         "DescribeReplicationInstancesMessage$Filters": "<p>Filters applied to replication instances.</p> <p>Valid filter names: replication-instance-arn | replication-instance-id | replication-instance-class | engine-version</p>",
         "DescribeReplicationSubnetGroupsMessage$Filters": "<p>Filters applied to replication subnet groups.</p> <p>Valid filter names: replication-subnet-group-id</p>",
@@ -850,6 +852,14 @@
       "base": null,
       "refs": {
         "Filter$Values": "<p>The filter value, which can specify one or more values used to narrow the returned results.</p>"
+      }
+    },
+    "GcpMySQLSettings": {
+      "base": "<p>Settings in JSON format for the source GCP MySQL endpoint.</p>",
+      "refs": {
+        "CreateEndpointMessage$GcpMySQLSettings": "<p>Settings in JSON format for the source GCP MySQL endpoint.</p>",
+        "Endpoint$GcpMySQLSettings": "<p>Settings in JSON format for the source GCP MySQL endpoint.</p>",
+        "ModifyEndpointMessage$GcpMySQLSettings": "<p>Settings in JSON format for the source GCP MySQL endpoint.</p>"
       }
     },
     "IBMDb2Settings": {
@@ -940,11 +950,15 @@
         "DescribeTableStatisticsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 500.</p>",
         "DocDbSettings$Port": "<p> The port value for the DocumentDB source endpoint. </p>",
         "DocDbSettings$DocsToInvestigate": "<p> Indicates the number of documents to preview to determine the document organization. Use this setting when <code>NestingLevel</code> is set to <code>\"one\"</code>. </p> <p>Must be a positive value greater than <code>0</code>. Default value is <code>1000</code>.</p>",
-        "ElasticsearchSettings$FullLoadErrorPercentage": "<p>The maximum percentage of records that can fail to be written before a full load operation stops.</p> <p>To avoid early failure, this counter is only effective after 1000 records are transferred. Elasticsearch also has the concept of error monitoring during the last 10 minutes of an Observation Window. If transfer of all records fail in the last 10 minutes, the full load operation stops. </p>",
-        "ElasticsearchSettings$ErrorRetryDuration": "<p>The maximum number of seconds for which DMS retries failed API requests to the Elasticsearch cluster.</p>",
+        "ElasticsearchSettings$FullLoadErrorPercentage": "<p>The maximum percentage of records that can fail to be written before a full load operation stops.</p> <p>To avoid early failure, this counter is only effective after 1000 records are transferred. OpenSearch also has the concept of error monitoring during the last 10 minutes of an Observation Window. If transfer of all records fail in the last 10 minutes, the full load operation stops. </p>",
+        "ElasticsearchSettings$ErrorRetryDuration": "<p>The maximum number of seconds for which DMS retries failed API requests to the OpenSearch cluster.</p>",
         "Endpoint$Port": "<p>The port value used to access the endpoint.</p>",
         "EndpointSetting$IntValueMin": "<p>The minimum value of an endpoint setting that is of type <code>int</code>.</p>",
         "EndpointSetting$IntValueMax": "<p>The maximum value of an endpoint setting that is of type <code>int</code>.</p>",
+        "GcpMySQLSettings$EventsPollInterval": "<p>Specifies how often to check the binary log for new changes/events when the database is idle. The default is five seconds.</p> <p>Example: <code>eventsPollInterval=5;</code> </p> <p>In the example, DMS checks for changes in the binary logs every five seconds. </p>",
+        "GcpMySQLSettings$MaxFileSize": "<p>Specifies the maximum size (in KB) of any .csv file used to transfer data to a MySQL-compatible database.</p> <p>Example: <code>maxFileSize=512</code> </p>",
+        "GcpMySQLSettings$ParallelLoadThreads": "<p>Improves performance when loading data into the MySQL-compatible target database. Specifies how many threads to use to load the data into the MySQL-compatible target database. Setting a large number of threads can have an adverse effect on database performance, because a separate connection is required for each thread. The default is one.</p> <p>Example: <code>parallelLoadThreads=1</code> </p>",
+        "GcpMySQLSettings$Port": "<p/>",
         "IBMDb2Settings$Port": "<p>Endpoint TCP port. The default value is 50000.</p>",
         "IBMDb2Settings$MaxKBytesPerRead": "<p>Maximum number of bytes per read, as a NUMBER value. The default is 64 KB.</p>",
         "KafkaSettings$MessageMaxBytes": "<p>The maximum size in bytes for records created on the endpoint The default is 1,000,000.</p>",
@@ -953,9 +967,9 @@
         "ModifyEndpointMessage$Port": "<p>The port used by the endpoint database.</p>",
         "ModifyReplicationInstanceMessage$AllocatedStorage": "<p>The amount of storage (in gigabytes) to be allocated for the replication instance.</p>",
         "MongoDbSettings$Port": "<p> The port value for the MongoDB source endpoint. </p>",
-        "MySQLSettings$EventsPollInterval": "<p>Specifies how often to check the binary log for new changes/events when the database is idle.</p> <p>Example: <code>eventsPollInterval=5;</code> </p> <p>In the example, DMS checks for changes in the binary logs every five seconds.</p>",
+        "MySQLSettings$EventsPollInterval": "<p>Specifies how often to check the binary log for new changes/events when the database is idle. The default is five seconds.</p> <p>Example: <code>eventsPollInterval=5;</code> </p> <p>In the example, DMS checks for changes in the binary logs every five seconds.</p>",
         "MySQLSettings$MaxFileSize": "<p>Specifies the maximum size (in KB) of any .csv file used to transfer data to a MySQL-compatible database.</p> <p>Example: <code>maxFileSize=512</code> </p>",
-        "MySQLSettings$ParallelLoadThreads": "<p>Improves performance when loading data into the MySQL-compatible target database. Specifies how many threads to use to load the data into the MySQL-compatible target database. Setting a large number of threads can have an adverse effect on database performance, because a separate connection is required for each thread.</p> <p>Example: <code>parallelLoadThreads=1</code> </p>",
+        "MySQLSettings$ParallelLoadThreads": "<p>Improves performance when loading data into the MySQL-compatible target database. Specifies how many threads to use to load the data into the MySQL-compatible target database. Setting a large number of threads can have an adverse effect on database performance, because a separate connection is required for each thread. The default is one.</p> <p>Example: <code>parallelLoadThreads=1</code> </p>",
         "MySQLSettings$Port": "<p>Endpoint TCP port.</p>",
         "NeptuneSettings$ErrorRetryDuration": "<p>The number of milliseconds for DMS to wait to retry a bulk-load of migrated graph data to the Neptune target database before raising an error. The default is 250.</p>",
         "NeptuneSettings$MaxFileSize": "<p>The maximum size in kilobytes of migrated graph data stored in a .csv file before DMS bulk-loads the data to the Neptune target database. The default is 1,048,576 KB. If the bulk load is successful, DMS clears the bucket, ready to store the next batch of migrated graph data.</p>",
@@ -971,7 +985,7 @@
         "PostgreSQLSettings$MaxFileSize": "<p>Specifies the maximum size (in KB) of any .csv file used to transfer data to PostgreSQL.</p> <p>Example: <code>maxFileSize=512</code> </p>",
         "PostgreSQLSettings$ExecuteTimeout": "<p>Sets the client statement timeout for the PostgreSQL instance, in seconds. The default value is 60 seconds.</p> <p>Example: <code>executeTimeout=100;</code> </p>",
         "PostgreSQLSettings$HeartbeatFrequency": "<p>Sets the WAL heartbeat frequency (in minutes).</p>",
-        "PostgreSQLSettings$Port": "<p>Endpoint TCP port.</p>",
+        "PostgreSQLSettings$Port": "<p>Endpoint TCP port. The default is 5432.</p>",
         "RedshiftSettings$ConnectionTimeout": "<p>A value that sets the amount of time to wait (in milliseconds) before timing out, beginning from when you initially establish a connection.</p>",
         "RedshiftSettings$FileTransferUploadStreams": "<p>The number of threads used to upload a single file. This parameter accepts a value from 1 through 64. It defaults to 10.</p> <p>The number of parallel streams used to upload a single .csv file to an S3 bucket using S3 Multipart Upload. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html\">Multipart upload overview</a>. </p> <p> <code>FileTransferUploadStreams</code> accepts a value from 1 through 64. It defaults to 10.</p>",
         "RedshiftSettings$LoadTimeout": "<p>The amount of time to wait (in milliseconds) before timing out of operations performed by DMS on a Redshift cluster, such as Redshift COPY, INSERT, DELETE, and UPDATE.</p>",
@@ -986,7 +1000,7 @@
         "S3Settings$CdcMinFileSize": "<p>Minimum file size, defined in megabytes, to reach for a file output to Amazon S3.</p> <p>When <code>CdcMinFileSize</code> and <code>CdcMaxBatchInterval</code> are both specified, the file write is triggered by whichever parameter condition is met first within an DMS CloudFormation template.</p> <p>The default value is 32 MB.</p>",
         "S3Settings$IgnoreHeaderRows": "<p>When this value is set to 1, DMS ignores the first row header in a .csv file. A value of 1 turns on the feature; a value of 0 turns off the feature.</p> <p>The default is 0.</p>",
         "S3Settings$MaxFileSize": "<p>A value that specifies the maximum size (in KB) of any .csv file to be created while migrating to an S3 target during full load.</p> <p>The default value is 1,048,576 KB (1 GB). Valid values include 1 to 1,048,576.</p>",
-        "SybaseSettings$Port": "<p>Endpoint TCP port.</p>"
+        "SybaseSettings$Port": "<p>Endpoint TCP port. The default is 5000.</p>"
       }
     },
     "InvalidCertificateFault": {
@@ -1010,7 +1024,7 @@
       }
     },
     "KMSDisabledFault": {
-      "base": "<p>The specified master key (CMK) isn't enabled.</p>",
+      "base": "<p>The specified KMS key isn't enabled.</p>",
       "refs": {
       }
     },
@@ -1574,6 +1588,7 @@
       "refs": {
         "CreateEndpointMessage$Password": "<p>The password to be used to log in to the endpoint database.</p>",
         "DocDbSettings$Password": "<p> The password for the user account you use to access the DocumentDB source endpoint. </p>",
+        "GcpMySQLSettings$Password": "<p>Endpoint connection password.</p>",
         "IBMDb2Settings$Password": "<p>Endpoint connection password.</p>",
         "ImportCertificateMessage$CertificatePem": "<p>The contents of a <code>.pem</code> file, which contains an X.509 certificate.</p>",
         "KafkaSettings$SslClientKeyPassword": "<p> The password for the client private key used to securely connect to a Kafka target endpoint.</p>",
@@ -1644,7 +1659,7 @@
     "StartReplicationTaskTypeValue": {
       "base": null,
       "refs": {
-        "StartReplicationTaskMessage$StartReplicationTaskType": "<p>A type of replication task.</p>"
+        "StartReplicationTaskMessage$StartReplicationTaskType": "<p>The type of replication task to start.</p> <p>When the migration type is <code>full-load</code> or <code>full-load-and-cdc</code>, the only valid value for the first run of the task is <code>start-replication</code>. You use <code>reload-target</code> to restart the task and <code>resume-processing</code> to resume the task.</p> <p>When the migration type is <code>cdc</code>, you use <code>start-replication</code> to start or restart the task, and <code>resume-processing</code> to resume the task. <code>reload-target</code> is not a valid value for a task with migration type of <code>cdc</code>.</p>"
       }
     },
     "StopReplicationTaskMessage": {
@@ -1686,7 +1701,7 @@
         "Connection$EndpointIdentifier": "<p>The identifier of the endpoint. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen or contain two consecutive hyphens.</p>",
         "Connection$ReplicationInstanceIdentifier": "<p>The replication instance identifier. This parameter is stored as a lowercase string.</p>",
         "CreateEndpointMessage$EndpointIdentifier": "<p>The database endpoint identifier. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.</p>",
-        "CreateEndpointMessage$EngineName": "<p>The type of engine for the endpoint. Valid values, depending on the <code>EndpointType</code> value, include <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"mariadb\"</code>, <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"redshift\"</code>, <code>\"s3\"</code>, <code>\"db2\"</code>, <code>\"azuredb\"</code>, <code>\"sybase\"</code>, <code>\"dynamodb\"</code>, <code>\"mongodb\"</code>, <code>\"kinesis\"</code>, <code>\"kafka\"</code>, <code>\"elasticsearch\"</code>, <code>\"docdb\"</code>, <code>\"sqlserver\"</code>, and <code>\"neptune\"</code>.</p>",
+        "CreateEndpointMessage$EngineName": "<p>The type of engine for the endpoint. Valid values, depending on the <code>EndpointType</code> value, include <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"mariadb\"</code>, <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"opensearch\"</code>, <code>\"redshift\"</code>, <code>\"s3\"</code>, <code>\"db2\"</code>, <code>\"azuredb\"</code>, <code>\"sybase\"</code>, <code>\"dynamodb\"</code>, <code>\"mongodb\"</code>, <code>\"kinesis\"</code>, <code>\"kafka\"</code>, <code>\"elasticsearch\"</code>, <code>\"docdb\"</code>, <code>\"sqlserver\"</code>, and <code>\"neptune\"</code>.</p>",
         "CreateEndpointMessage$Username": "<p>The user name to be used to log in to the endpoint database.</p>",
         "CreateEndpointMessage$ServerName": "<p>The name of the server where the endpoint database resides.</p>",
         "CreateEndpointMessage$DatabaseName": "<p>The name of the endpoint database. For a MySQL source or target endpoint, do not specify DatabaseName.</p>",
@@ -1720,7 +1735,7 @@
         "CreateReplicationTaskMessage$CdcStopPosition": "<p>Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time.</p> <p>Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”</p> <p>Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12 “</p>",
         "CreateReplicationTaskMessage$TaskData": "<p>Supplemental information that the task requires to migrate the data for certain source and target endpoints. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.TaskData.html\">Specifying Supplemental Data for Task Settings</a> in the <i>Database Migration Service User Guide.</i> </p>",
         "CreateReplicationTaskMessage$ResourceIdentifier": "<p>A friendly name for the resource identifier at the end of the <code>EndpointArn</code> response parameter that is returned in the created <code>Endpoint</code> object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as <code>Example-App-ARN1</code>. For example, this value might result in the <code>EndpointArn</code> value <code>arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1</code>. If you don't specify a <code>ResourceIdentifier</code> value, DMS generates a default identifier value for the end of <code>EndpointArn</code>.</p>",
-        "DeleteCertificateMessage$CertificateArn": "<p>The Amazon Resource Name (ARN) of the deleted certificate.</p>",
+        "DeleteCertificateMessage$CertificateArn": "<p>The Amazon Resource Name (ARN) of the certificate.</p>",
         "DeleteConnectionMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "DeleteConnectionMessage$ReplicationInstanceArn": "<p>The Amazon Resource Name (ARN) of the replication instance.</p>",
         "DeleteEndpointMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
@@ -1795,9 +1810,9 @@
         "DocDbSettings$SecretsManagerSecretId": "<p>The full ARN, partial ARN, or friendly name of the <code>SecretsManagerSecret</code> that contains the DocumentDB endpoint connection details.</p>",
         "DynamoDbSettings$ServiceAccessRoleArn": "<p> The Amazon Resource Name (ARN) used by the service to access the IAM role. The role must allow the <code>iam:PassRole</code> action.</p>",
         "ElasticsearchSettings$ServiceAccessRoleArn": "<p>The Amazon Resource Name (ARN) used by the service to access the IAM role. The role must allow the <code>iam:PassRole</code> action.</p>",
-        "ElasticsearchSettings$EndpointUri": "<p>The endpoint for the Elasticsearch cluster. DMS uses HTTPS if a transport protocol (http/https) is not specified.</p>",
+        "ElasticsearchSettings$EndpointUri": "<p>The endpoint for the OpenSearch cluster. DMS uses HTTPS if a transport protocol (http/https) is not specified.</p>",
         "Endpoint$EndpointIdentifier": "<p>The database endpoint identifier. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen or contain two consecutive hyphens.</p>",
-        "Endpoint$EngineName": "<p>The database engine name. Valid values, depending on the EndpointType, include <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"mariadb\"</code>, <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"redshift\"</code>, <code>\"s3\"</code>, <code>\"db2\"</code>, <code>\"azuredb\"</code>, <code>\"sybase\"</code>, <code>\"dynamodb\"</code>, <code>\"mongodb\"</code>, <code>\"kinesis\"</code>, <code>\"kafka\"</code>, <code>\"elasticsearch\"</code>, <code>\"documentdb\"</code>, <code>\"sqlserver\"</code>, and <code>\"neptune\"</code>.</p>",
+        "Endpoint$EngineName": "<p>The database engine name. Valid values, depending on the EndpointType, include <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"mariadb\"</code>, <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"opensearch\"</code>, <code>\"redshift\"</code>, <code>\"s3\"</code>, <code>\"db2\"</code>, <code>\"azuredb\"</code>, <code>\"sybase\"</code>, <code>\"dynamodb\"</code>, <code>\"mongodb\"</code>, <code>\"kinesis\"</code>, <code>\"kafka\"</code>, <code>\"elasticsearch\"</code>, <code>\"documentdb\"</code>, <code>\"sqlserver\"</code>, and <code>\"neptune\"</code>.</p>",
         "Endpoint$EngineDisplayName": "<p>The expanded name for the engine name. For example, if the <code>EngineName</code> parameter is \"aurora,\" this value would be \"Amazon Aurora MySQL.\"</p>",
         "Endpoint$Username": "<p>The user name used to connect to the endpoint.</p>",
         "Endpoint$ServerName": "<p>The name of the server at the endpoint.</p>",
@@ -1828,6 +1843,13 @@
         "ExcludeTestList$member": null,
         "Filter$Name": "<p>The name of the filter as specified for a <code>Describe*</code> or similar operation.</p>",
         "FilterValueList$member": null,
+        "GcpMySQLSettings$AfterConnectScript": "<p>Specifies a script to run immediately after DMS connects to the endpoint. The migration task continues running regardless if the SQL statement succeeds or fails.</p> <p>For this parameter, provide the code of the script itself, not the name of a file containing the script. </p>",
+        "GcpMySQLSettings$DatabaseName": "<p>Database name for the endpoint. For a MySQL source or target endpoint, don't explicitly specify the database using the <code>DatabaseName</code> request parameter on either the <code>CreateEndpoint</code> or <code>ModifyEndpoint</code> API call. Specifying <code>DatabaseName</code> when you create or modify a MySQL endpoint replicates all the task tables to this single database. For MySQL endpoints, you specify the database only when you specify the schema in the table-mapping rules of the DMS task. </p>",
+        "GcpMySQLSettings$ServerName": "<p>Endpoint TCP port.</p>",
+        "GcpMySQLSettings$ServerTimezone": "<p>Specifies the time zone for the source MySQL database.</p> <p>Example: <code>serverTimezone=US/Pacific;</code> </p> <p>Note: Do not enclose time zones in single quotes.</p>",
+        "GcpMySQLSettings$Username": "<p>Endpoint connection user name.</p>",
+        "GcpMySQLSettings$SecretsManagerAccessRoleArn": "<p>The full Amazon Resource Name (ARN) of the IAM role that specifies DMS as the trusted entity and grants the required permissions to access the value in <code>SecretsManagerSecret.</code> The role must allow the <code>iam:PassRole</code> action. <code>SecretsManagerSecret</code> has the value of the Amazon Web Services Secrets Manager secret that allows access to the MySQL endpoint.</p> <note> <p>You can specify one of two sets of values for these permissions. You can specify the values for this setting and <code>SecretsManagerSecretId</code>. Or you can specify clear-text values for <code>UserName</code>, <code>Password</code>, <code>ServerName</code>, and <code>Port</code>. You can't specify both. For more information on creating this <code>SecretsManagerSecret</code> and the <code>SecretsManagerAccessRoleArn</code> and <code>SecretsManagerSecretId</code> required to access it, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager\">Using secrets to access Database Migration Service resources</a> in the Database Migration Service User Guide. </p> </note>",
+        "GcpMySQLSettings$SecretsManagerSecretId": "<p>The full ARN, partial ARN, or friendly name of the <code>SecretsManagerSecret</code> that contains the MySQL endpoint connection details. </p>",
         "IBMDb2Settings$DatabaseName": "<p>Database name for the endpoint.</p>",
         "IBMDb2Settings$ServerName": "<p>Fully qualified domain name of the endpoint.</p>",
         "IBMDb2Settings$CurrentLsn": "<p>For ongoing replication (CDC), use CurrentLSN to specify a log sequence number (LSN) where you want the replication to start.</p>",
@@ -1855,7 +1877,7 @@
         "MicrosoftSQLServerSettings$SecretsManagerSecretId": "<p>The full ARN, partial ARN, or friendly name of the <code>SecretsManagerSecret</code> that contains the SQL Server endpoint connection details.</p>",
         "ModifyEndpointMessage$EndpointArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.</p>",
         "ModifyEndpointMessage$EndpointIdentifier": "<p>The database endpoint identifier. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen or contain two consecutive hyphens.</p>",
-        "ModifyEndpointMessage$EngineName": "<p>The type of engine for the endpoint. Valid values, depending on the EndpointType, include <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"mariadb\"</code>, <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"redshift\"</code>, <code>\"s3\"</code>, <code>\"db2\"</code>, <code>\"azuredb\"</code>, <code>\"sybase\"</code>, <code>\"dynamodb\"</code>, <code>\"mongodb\"</code>, <code>\"kinesis\"</code>, <code>\"kafka\"</code>, <code>\"elasticsearch\"</code>, <code>\"documentdb\"</code>, <code>\"sqlserver\"</code>, and <code>\"neptune\"</code>.</p>",
+        "ModifyEndpointMessage$EngineName": "<p>The type of engine for the endpoint. Valid values, depending on the EndpointType, include <code>\"mysql\"</code>, <code>\"oracle\"</code>, <code>\"postgres\"</code>, <code>\"mariadb\"</code>, <code>\"aurora\"</code>, <code>\"aurora-postgresql\"</code>, <code>\"opensearch\"</code>, <code>\"redshift\"</code>, <code>\"s3\"</code>, <code>\"db2\"</code>, <code>\"azuredb\"</code>, <code>\"sybase\"</code>, <code>\"dynamodb\"</code>, <code>\"mongodb\"</code>, <code>\"kinesis\"</code>, <code>\"kafka\"</code>, <code>\"elasticsearch\"</code>, <code>\"documentdb\"</code>, <code>\"sqlserver\"</code>, and <code>\"neptune\"</code>.</p>",
         "ModifyEndpointMessage$Username": "<p>The user name to be used to login to the endpoint database.</p>",
         "ModifyEndpointMessage$ServerName": "<p>The name of the server where the endpoint database resides.</p>",
         "ModifyEndpointMessage$DatabaseName": "<p>The name of the endpoint database. For a MySQL source or target endpoint, do not specify DatabaseName.</p>",
@@ -2189,6 +2211,7 @@
     "TargetDbType": {
       "base": null,
       "refs": {
+        "GcpMySQLSettings$TargetDbType": "<p>Specifies where to migrate source tables on the target, either to a single database or multiple databases.</p> <p>Example: <code>targetDbType=MULTIPLE_DATABASES</code> </p>",
         "MySQLSettings$TargetDbType": "<p>Specifies where to migrate source tables on the target, either to a single database or multiple databases.</p> <p>Example: <code>targetDbType=MULTIPLE_DATABASES</code> </p>"
       }
     },
