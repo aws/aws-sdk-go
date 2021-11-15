@@ -965,7 +965,8 @@
         "IBMDb2Settings":{"shape":"IBMDb2Settings"},
         "ResourceIdentifier":{"shape":"String"},
         "DocDbSettings":{"shape":"DocDbSettings"},
-        "RedisSettings":{"shape":"RedisSettings"}
+        "RedisSettings":{"shape":"RedisSettings"},
+        "GcpMySQLSettings":{"shape":"GcpMySQLSettings"}
       }
     },
     "CreateEndpointResponse":{
@@ -1657,7 +1658,8 @@
         "MicrosoftSQLServerSettings":{"shape":"MicrosoftSQLServerSettings"},
         "IBMDb2Settings":{"shape":"IBMDb2Settings"},
         "DocDbSettings":{"shape":"DocDbSettings"},
-        "RedisSettings":{"shape":"RedisSettings"}
+        "RedisSettings":{"shape":"RedisSettings"},
+        "GcpMySQLSettings":{"shape":"GcpMySQLSettings"}
       }
     },
     "EndpointList":{
@@ -1765,6 +1767,25 @@
     "FilterValueList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "GcpMySQLSettings":{
+      "type":"structure",
+      "members":{
+        "AfterConnectScript":{"shape":"String"},
+        "CleanSourceMetadataOnMismatch":{"shape":"BooleanOptional"},
+        "DatabaseName":{"shape":"String"},
+        "EventsPollInterval":{"shape":"IntegerOptional"},
+        "TargetDbType":{"shape":"TargetDbType"},
+        "MaxFileSize":{"shape":"IntegerOptional"},
+        "ParallelLoadThreads":{"shape":"IntegerOptional"},
+        "Password":{"shape":"SecretString"},
+        "Port":{"shape":"IntegerOptional"},
+        "ServerName":{"shape":"String"},
+        "ServerTimezone":{"shape":"String"},
+        "Username":{"shape":"String"},
+        "SecretsManagerAccessRoleArn":{"shape":"String"},
+        "SecretsManagerSecretId":{"shape":"String"}
+      }
     },
     "IBMDb2Settings":{
       "type":"structure",
@@ -2022,7 +2043,8 @@
         "IBMDb2Settings":{"shape":"IBMDb2Settings"},
         "DocDbSettings":{"shape":"DocDbSettings"},
         "RedisSettings":{"shape":"RedisSettings"},
-        "ExactSettings":{"shape":"BooleanOptional"}
+        "ExactSettings":{"shape":"BooleanOptional"},
+        "GcpMySQLSettings":{"shape":"GcpMySQLSettings"}
       }
     },
     "ModifyEndpointResponse":{
@@ -2734,6 +2756,7 @@
         "CsvNoSupValue":{"shape":"String"},
         "PreserveTransactions":{"shape":"BooleanOptional"},
         "CdcPath":{"shape":"String"},
+        "UseTaskStartTimeForFullLoadTimestamp":{"shape":"BooleanOptional"},
         "CannedAclForObjects":{"shape":"CannedAclForObjectsValue"},
         "AddColumnName":{"shape":"BooleanOptional"},
         "CdcMaxBatchInterval":{"shape":"IntegerOptional"},

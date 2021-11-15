@@ -1050,6 +1050,12 @@
       }
     },
     "Fips":{"type":"boolean"},
+    "Function":{
+      "type":"string",
+      "max":170,
+      "min":1,
+      "pattern":"^arn:[a-z-]+:lambda:.*$"
+    },
     "HomeDirectory":{
       "type":"string",
       "max":1024,
@@ -1090,7 +1096,8 @@
       "members":{
         "Url":{"shape":"Url"},
         "InvocationRole":{"shape":"Role"},
-        "DirectoryId":{"shape":"DirectoryId"}
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Function":{"shape":"Function"}
       }
     },
     "IdentityProviderType":{
@@ -1098,7 +1105,8 @@
       "enum":[
         "SERVICE_MANAGED",
         "API_GATEWAY",
-        "AWS_DIRECTORY_SERVICE"
+        "AWS_DIRECTORY_SERVICE",
+        "AWS_LAMBDA"
       ]
     },
     "ImportSshPublicKeyRequest":{

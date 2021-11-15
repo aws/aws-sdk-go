@@ -457,7 +457,8 @@
       "output":{"shape":"DescribeUsersResult"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InvalidParameterCombinationException"}
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"OperationNotPermittedException"}
       ]
     },
     "DisableUser":{
@@ -1855,7 +1856,8 @@
       "enum":[
         "WINDOWS",
         "WINDOWS_SERVER_2016",
-        "WINDOWS_SERVER_2019"
+        "WINDOWS_SERVER_2019",
+        "AMAZON_LINUX2"
       ]
     },
     "RedirectURL":{

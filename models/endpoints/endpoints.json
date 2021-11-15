@@ -7396,6 +7396,17 @@
           "us-west-2" : { }
         }
       },
+      "migrationhub-strategy" : {
+        "endpoints" : {
+          "ap-northeast-1" : { },
+          "ap-southeast-2" : { },
+          "eu-central-1" : { },
+          "eu-west-1" : { },
+          "eu-west-2" : { },
+          "us-east-1" : { },
+          "us-west-2" : { }
+        }
+      },
       "mobileanalytics" : {
         "endpoints" : {
           "us-east-1" : { }

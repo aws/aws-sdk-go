@@ -99,6 +99,15 @@ const (
 	// in the WAF Developer Guide.
 	ErrCodeWAFLimitsExceededException = "WAFLimitsExceededException"
 
+	// ErrCodeWAFLogDestinationPermissionIssueException for service response error code
+	// "WAFLogDestinationPermissionIssueException".
+	//
+	// The operation failed because you don't have the permissions that your logging
+	// configuration requires. For information, see Logging web ACL traffic information
+	// (https://docs.aws.amazon.com/waf/latest/developerguide/logging.html) in the
+	// WAF Developer Guide.
+	ErrCodeWAFLogDestinationPermissionIssueException = "WAFLogDestinationPermissionIssueException"
+
 	// ErrCodeWAFNonexistentItemException for service response error code
 	// "WAFNonexistentItemException".
 	//
@@ -163,6 +172,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"WAFInvalidPermissionPolicyException":        newErrorWAFInvalidPermissionPolicyException,
 	"WAFInvalidResourceException":                newErrorWAFInvalidResourceException,
 	"WAFLimitsExceededException":                 newErrorWAFLimitsExceededException,
+	"WAFLogDestinationPermissionIssueException":  newErrorWAFLogDestinationPermissionIssueException,
 	"WAFNonexistentItemException":                newErrorWAFNonexistentItemException,
 	"WAFOptimisticLockException":                 newErrorWAFOptimisticLockException,
 	"WAFServiceLinkedRoleErrorException":         newErrorWAFServiceLinkedRoleErrorException,

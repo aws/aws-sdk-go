@@ -4112,6 +4112,10 @@ type CreateServerInput struct {
 	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
 	// endpoint URL to call for authentication using the IdentityProviderDetails
 	// parameter.
+	//
+	// Use the LAMBDA value to directly use a Lambda function as your identity provider.
+	// If you choose this value, you must specify the ARN for the lambda function
+	// in the Function parameter for the IdentityProviderDetails data type.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
@@ -6268,6 +6272,10 @@ type DescribedServer struct {
 	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
 	// endpoint URL to call for authentication using the IdentityProviderDetails
 	// parameter.
+	//
+	// Use the LAMBDA value to directly use a Lambda function as your identity provider.
+	// If you choose this value, you must specify the ARN for the lambda function
+	// in the Function parameter for the IdentityProviderDetails data type.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
@@ -7123,6 +7131,9 @@ type IdentityProviderDetails struct {
 	// you want to stop sharing.
 	DirectoryId *string `min:"12" type:"string"`
 
+	// The ARN for a lambda function to use for the Identity provider.
+	Function *string `min:"1" type:"string"`
+
 	// Provides the type of InvocationRole used to authenticate the user account.
 	InvocationRole *string `min:"20" type:"string"`
 
@@ -7154,6 +7165,9 @@ func (s *IdentityProviderDetails) Validate() error {
 	if s.DirectoryId != nil && len(*s.DirectoryId) < 12 {
 		invalidParams.Add(request.NewErrParamMinLen("DirectoryId", 12))
 	}
+	if s.Function != nil && len(*s.Function) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Function", 1))
+	}
 	if s.InvocationRole != nil && len(*s.InvocationRole) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("InvocationRole", 20))
 	}
@@ -7167,6 +7181,12 @@ func (s *IdentityProviderDetails) Validate() error {
 // SetDirectoryId sets the DirectoryId field's value.
 func (s *IdentityProviderDetails) SetDirectoryId(v string) *IdentityProviderDetails {
 	s.DirectoryId = &v
+	return s
+}
+
+// SetFunction sets the Function field's value.
+func (s *IdentityProviderDetails) SetFunction(v string) *IdentityProviderDetails {
+	s.Function = &v
 	return s
 }
 
@@ -8616,6 +8636,10 @@ type ListedServer struct {
 	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
 	// endpoint URL to call for authentication using the IdentityProviderDetails
 	// parameter.
+	//
+	// Use the LAMBDA value to directly use a Lambda function as your identity provider.
+	// If you choose this value, you must specify the ARN for the lambda function
+	// in the Function parameter for the IdentityProviderDetails data type.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
@@ -11564,6 +11588,9 @@ const (
 
 	// IdentityProviderTypeAwsDirectoryService is a IdentityProviderType enum value
 	IdentityProviderTypeAwsDirectoryService = "AWS_DIRECTORY_SERVICE"
+
+	// IdentityProviderTypeAwsLambda is a IdentityProviderType enum value
+	IdentityProviderTypeAwsLambda = "AWS_LAMBDA"
 )
 
 // IdentityProviderType_Values returns all elements of the IdentityProviderType enum
@@ -11572,6 +11599,7 @@ func IdentityProviderType_Values() []string {
 		IdentityProviderTypeServiceManaged,
 		IdentityProviderTypeApiGateway,
 		IdentityProviderTypeAwsDirectoryService,
+		IdentityProviderTypeAwsLambda,
 	}
 }
 

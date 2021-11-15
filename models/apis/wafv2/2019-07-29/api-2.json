@@ -593,7 +593,8 @@
         {"shape":"WAFServiceLinkedRoleErrorException"},
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFInvalidOperationException"},
-        {"shape":"WAFLimitsExceededException"}
+        {"shape":"WAFLimitsExceededException"},
+        {"shape":"WAFLogDestinationPermissionIssueException"}
       ]
     },
     "PutManagedRuleSetVersions":{
@@ -1886,8 +1887,7 @@
     },
     "IPAddresses":{
       "type":"list",
-      "member":{"shape":"IPAddress"},
-      "min":1
+      "member":{"shape":"IPAddress"}
     },
     "IPSet":{
       "type":"structure",
@@ -2442,7 +2442,8 @@
         "FILTER_CONDITION",
         "EXPIRE_TIMESTAMP",
         "CHANGE_PROPAGATION_STATUS",
-        "ASSOCIABLE_RESOURCE"
+        "ASSOCIABLE_RESOURCE",
+        "LOG_DESTINATION"
       ]
     },
     "ParameterExceptionParameter":{
@@ -3238,6 +3239,13 @@
       "exception":true
     },
     "WAFLimitsExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "WAFLogDestinationPermissionIssueException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}
