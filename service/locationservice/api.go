@@ -773,7 +773,7 @@ func (c *LocationService) CalculateRouteRequest(input *CalculateRouteInput) (req
 //
 // Calculates a route (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html)
 // given the following required parameters: DeparturePostiton and DestinationPosition.
-// Requires that you first create a route calculator resource (https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html)
+// Requires that you first create a route calculator resource (https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html).
 //
 // By default, a request that doesn't specify a departure time uses the best
 // time of day to travel with the best traffic conditions when calculating the
@@ -785,7 +785,7 @@ func (c *LocationService) CalculateRouteRequest(input *CalculateRouteInput) (req
 //    using either DepartureTime or DepartureNow. This calculates a route based
 //    on predictive traffic data at the given time. You can't specify both DepartureTime
 //    and DepartureNow in a single request. Specifying both parameters returns
-//    an error message.
+//    a validation error.
 //
 //    * Specifying a travel mode (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode)
 //    using TravelMode. This lets you specify an additional route preference
@@ -1076,8 +1076,10 @@ func (c *LocationService) CreatePlaceIndexRequest(input *CreatePlaceIndexInput) 
 
 // CreatePlaceIndex API operation for Amazon Location Service.
 //
-// Creates a place index resource in your AWS account, which supports functions
-// with geospatial data sourced from your chosen data provider.
+// Creates a place index resource in your AWS account. Use a place index resource
+// to geocode addresses and other text queries by using the SearchPlaceIndexForText
+// operation, and reverse geocode coordinates by using the SearchPlaceIndexForPosition
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4676,12 +4678,14 @@ func (c *LocationService) SearchPlaceIndexForTextRequest(input *SearchPlaceIndex
 // Geocodes free-form text, such as an address, name, city, or region to allow
 // you to search for Places or points of interest.
 //
-// Includes the option to apply additional parameters to narrow your list of
-// results.
+// Optional parameters let you narrow your search results by bounding box or
+// country, or bias your search toward a specific position on the globe.
 //
 // You can search for places near a given position using BiasPosition, or filter
 // results within a bounding box using FilterBBox. Providing both parameters
 // simultaneously returns an error.
+//
+// Search results are returned in order of highest to lowest relevance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6743,7 +6747,7 @@ type CalculateRouteInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the route calculator resource that you want to use to calculate
-	// a route.
+	// the route.
 	//
 	// CalculatorName is a required field
 	CalculatorName *string `location:"uri" locationName:"CalculatorName" min:"1" type:"string" required:"true"`
@@ -6783,7 +6787,7 @@ type CalculateRouteInput struct {
 	DeparturePosition []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
 
 	// Specifies the desired time of departure. Uses the given time to calculate
-	// a route. Otherwise, the best time of day to travel with the best traffic
+	// the route. Otherwise, the best time of day to travel with the best traffic
 	// conditions is used to calculate the route.
 	//
 	// Setting a departure time in the past returns a 400 ValidationException error.
@@ -7065,7 +7069,7 @@ type CalculateRouteSummary struct {
 	// Distance is a required field
 	Distance *float64 `type:"double" required:"true"`
 
-	// The unit of measurement for the distance.
+	// The unit of measurement for route distances.
 	//
 	// DistanceUnit is a required field
 	DistanceUnit *string `type:"string" required:"true" enum:"DistanceUnit"`
@@ -7352,6 +7356,8 @@ type CreateGeofenceCollectionInput struct {
 	//
 	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
 	//    characters: + - = . _ : / @.
+	//
+	//    * Cannot use "aws:" as a prefix for a key.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -7540,6 +7546,8 @@ type CreateMapInput struct {
 	//
 	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
 	//    characters: + - = . _ : / @.
+	//
+	//    * Cannot use "aws:" as a prefix for a key.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -7680,7 +7688,7 @@ func (s *CreateMapOutput) SetMapName(v string) *CreateMapOutput {
 type CreatePlaceIndexInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the data provider of geospatial data.
+	// Specifies the geospatial data provider for the new place index.
 	//
 	// This field is case-sensitive. Enter the valid values as shown. For example,
 	// entering HERE returns an error.
@@ -7694,8 +7702,8 @@ type CreatePlaceIndexInput struct {
 	//    * Here – For additional information about HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)'
 	//    coverage in your region of interest, see HERE details on goecoding coverage
 	//    (https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html).
-	//    Place index resources using HERE Technologies as a data provider can't
-	//    store results (https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html)
+	//    If you specify HERE Technologies (Here) as the data provider, you may
+	//    not store results (https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html)
 	//    for locations in Japan. For more information, see the AWS Service Terms
 	//    (https://aws.amazon.com/service-terms/) for Amazon Location Service.
 	//
@@ -7734,23 +7742,24 @@ type CreatePlaceIndexInput struct {
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
 	// Applies one or more tags to the place index resource. A tag is a key-value
-	// pair helps manage, identify, search, and filter your resources by labelling
-	// them.
+	// pair that helps you manage, identify, search, and filter your resources.
 	//
 	// Format: "key" : "value"
 	//
 	// Restrictions:
 	//
-	//    * Maximum 50 tags per resource
+	//    * Maximum 50 tags per resource.
 	//
-	//    * Each resource tag must be unique with a maximum of one value.
+	//    * Each tag key must be unique and must have exactly one associated value.
 	//
-	//    * Maximum key length: 128 Unicode characters in UTF-8
+	//    * Maximum key length: 128 Unicode characters in UTF-8.
 	//
-	//    * Maximum value length: 256 Unicode characters in UTF-8
+	//    * Maximum value length: 256 Unicode characters in UTF-8.
 	//
 	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
-	//    characters: + - = . _ : / @.
+	//    characters: + - = . _ : / @
+	//
+	//    * Cannot use "aws:" as a prefix for a key.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -7959,6 +7968,8 @@ type CreateRouteCalculatorInput struct {
 	//
 	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
 	//    characters: + - = . _ : / @.
+	//
+	//    * Cannot use "aws:" as a prefix for a key.
 	Tags map[string]*string `type:"map"`
 }
 
@@ -8115,11 +8126,11 @@ type CreateTrackerInput struct {
 	//    unique device ID.
 	//
 	//    * DistanceBased - If the device has moved less than 30 m (98.4 ft), location
-	//    updates are ignored. Location updates within this distance are neither
-	//    evaluated against linked geofence collections, nor stored. This helps
-	//    control costs by reducing the number of geofence evaluations and device
-	//    positions to retrieve. Distance-based filtering can also reduce the jitter
-	//    effect when displaying device trajectory on a map.
+	//    updates are ignored. Location updates within this area are neither evaluated
+	//    against linked geofence collections, nor stored. This helps control costs
+	//    by reducing the number of geofence evaluations and historical device positions
+	//    to paginate through. Distance-based filtering can also reduce the effects
+	//    of GPS noise when displaying device trajectories on a map.
 	//
 	// This field is optional. If not specified, the default value is TimeBased.
 	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
@@ -8165,6 +8176,8 @@ type CreateTrackerInput struct {
 	//
 	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
 	//    characters: + - = . _ : / @.
+	//
+	//    * Cannot use "aws:" as a prefix for a key.
 	Tags map[string]*string `type:"map"`
 
 	// The name for the tracker resource.
@@ -9138,13 +9151,13 @@ type DescribePlaceIndexOutput struct {
 	// CreateTime is a required field
 	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The data provider of geospatial data. Indicates one of the available providers:
+	// The data provider of geospatial data. Values can be one of the following:
 	//
 	//    * Esri
 	//
 	//    * Here
 	//
-	// For additional details on data providers, see Amazon Location Service data
+	// For more information about data providers, see Amazon Location Service data
 	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
@@ -11949,8 +11962,8 @@ type ListPlaceIndexesOutput struct {
 	// Entries is a required field
 	Entries []*ListPlaceIndexesResponseEntry `type:"list" required:"true"`
 
-	// A pagination token indicating there are additional pages available. You can
-	// use the token in a following request to fetch the next set of results.
+	// A pagination token indicating that there are additional pages available.
+	// You can use the token in a new request to fetch the next page of results.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -11994,13 +12007,13 @@ type ListPlaceIndexesResponseEntry struct {
 	// CreateTime is a required field
 	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The data provider of geospatial data. Indicates one of the available providers:
+	// The data provider of geospatial data. Values can be one of the following:
 	//
 	//    * Esri
 	//
 	//    * Here
 	//
-	// For additional details on data providers, see Amazon Location Service data
+	// For more information about data providers, see Amazon Location Service data
 	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
@@ -12801,6 +12814,17 @@ type Place struct {
 	// Geometry is a required field
 	Geometry *PlaceGeometry `type:"structure" required:"true"`
 
+	// True if the result is interpolated from other known places.
+	//
+	// False if the Place is a known place.
+	//
+	// Not returned when the partner does not provide the information.
+	//
+	// For example, returns False for an address location that is found in the partner
+	// data, but returns True if an address does not exist in the partner data and
+	// its location is calculated by interpolating between other known addresses.
+	Interpolated *bool `type:"boolean"`
+
 	// The full name and address of the point of interest such as a city, region,
 	// or country. For example, 123 Any Street, Any Town, USA.
 	Label *string `type:"string"`
@@ -12823,9 +12847,13 @@ type Place struct {
 	// Street.
 	Street *string `type:"string"`
 
-	// A country, or an area that's part of a larger region . For example, Metro
+	// A country, or an area that's part of a larger region. For example, Metro
 	// Vancouver.
 	SubRegion *string `type:"string"`
+
+	// The time zone in which the Place is located. Returned only when using Here
+	// as the selected partner.
+	TimeZone *TimeZone `type:"structure"`
 }
 
 // String returns the string representation.
@@ -12861,6 +12889,12 @@ func (s *Place) SetCountry(v string) *Place {
 // SetGeometry sets the Geometry field's value.
 func (s *Place) SetGeometry(v *PlaceGeometry) *Place {
 	s.Geometry = v
+	return s
+}
+
+// SetInterpolated sets the Interpolated field's value.
+func (s *Place) SetInterpolated(v bool) *Place {
+	s.Interpolated = &v
 	return s
 }
 
@@ -12903,6 +12937,12 @@ func (s *Place) SetStreet(v string) *Place {
 // SetSubRegion sets the SubRegion field's value.
 func (s *Place) SetSubRegion(v string) *Place {
 	s.SubRegion = &v
+	return s
+}
+
+// SetTimeZone sets the TimeZone field's value.
+func (s *Place) SetTimeZone(v *TimeZone) *Place {
+	s.TimeZone = v
 	return s
 }
 
@@ -13156,12 +13196,21 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies a single point of interest, or Place as a result of a search query
-// obtained from a dataset configured in the place index resource.
+// Contains a search result from a position search query that is run on a place
+// index resource.
 type SearchForPositionResult struct {
 	_ struct{} `type:"structure"`
 
-	// Contains details about the relevant point of interest.
+	// The distance in meters of a great-circle arc between the query position and
+	// the result.
+	//
+	// A great-circle arc is the shortest path on a sphere, in this case the Earth.
+	// This returns the shortest distance between two locations.
+	//
+	// Distance is a required field
+	Distance *float64 `type:"double" required:"true"`
+
+	// Details about the search result, such as its address and position.
 	//
 	// Place is a required field
 	Place *Place `type:"structure" required:"true"`
@@ -13185,20 +13234,43 @@ func (s SearchForPositionResult) GoString() string {
 	return s.String()
 }
 
+// SetDistance sets the Distance field's value.
+func (s *SearchForPositionResult) SetDistance(v float64) *SearchForPositionResult {
+	s.Distance = &v
+	return s
+}
+
 // SetPlace sets the Place field's value.
 func (s *SearchForPositionResult) SetPlace(v *Place) *SearchForPositionResult {
 	s.Place = v
 	return s
 }
 
-// Contains relevant Places returned by calling SearchPlaceIndexForText.
+// Contains a search result from a text search query that is run on a place
+// index resource.
 type SearchForTextResult struct {
 	_ struct{} `type:"structure"`
 
-	// Contains details about the relevant point of interest.
+	// The distance in meters of a great-circle arc between the bias position specified
+	// and the result. Distance will be returned only if a bias position was specified
+	// in the query.
+	//
+	// A great-circle arc is the shortest path on a sphere, in this case the Earth.
+	// This returns the shortest distance between two locations.
+	Distance *float64 `type:"double"`
+
+	// Details about the search result, such as its address and position.
 	//
 	// Place is a required field
 	Place *Place `type:"structure" required:"true"`
+
+	// The relative confidence in the match for a result among the results returned.
+	// For example, if more fields for an address match (including house number,
+	// street, city, country/region, and postal code), the relevance score is closer
+	// to 1.
+	//
+	// Returned only when the partner selected is Esri.
+	Relevance *float64 `type:"double"`
 }
 
 // String returns the string representation.
@@ -13219,9 +13291,21 @@ func (s SearchForTextResult) GoString() string {
 	return s.String()
 }
 
+// SetDistance sets the Distance field's value.
+func (s *SearchForTextResult) SetDistance(v float64) *SearchForTextResult {
+	s.Distance = &v
+	return s
+}
+
 // SetPlace sets the Place field's value.
 func (s *SearchForTextResult) SetPlace(v *Place) *SearchForTextResult {
 	s.Place = v
+	return s
+}
+
+// SetRelevance sets the Relevance field's value.
+func (s *SearchForTextResult) SetRelevance(v float64) *SearchForTextResult {
+	s.Relevance = &v
 	return s
 }
 
@@ -13233,18 +13317,29 @@ type SearchPlaceIndexForPositionInput struct {
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
 
-	// An optional paramer. The maximum number of results returned per request.
+	// The preferred language used to return results. The value must be a valid
+	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
+	// for English.
+	//
+	// This setting affects the languages used in the results. It does not change
+	// which results are returned. If the language is not specified, or not supported
+	// for a particular result, the partner automatically chooses a language for
+	// the result.
+	Language *string `min:"2" type:"string"`
+
+	// An optional parameter. The maximum number of results returned per request.
 	//
 	// Default value: 50
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Specifies a coordinate for the query defined by a longitude, and latitude.
+	// Specifies the longitude and latitude of the position to query.
 	//
-	//    * The first position is the X coordinate, or longitude.
+	// This parameter must contain a pair of numbers. The first number represents
+	// the X coordinate, or longitude; the second number represents the Y coordinate,
+	// or latitude.
 	//
-	//    * The second position is the Y coordinate, or latitude.
-	//
-	// For example, position=xLongitude&position=yLatitude .
+	// For example, [-123.1174, 49.2847] represents a position with longitude -123.1174
+	// and latitude 49.2847.
 	//
 	// Position is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForPositionInput's
@@ -13281,6 +13376,9 @@ func (s *SearchPlaceIndexForPositionInput) Validate() error {
 	if s.IndexName != nil && len(*s.IndexName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
 	}
+	if s.Language != nil && len(*s.Language) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Language", 2))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -13300,6 +13398,12 @@ func (s *SearchPlaceIndexForPositionInput) Validate() error {
 // SetIndexName sets the IndexName field's value.
 func (s *SearchPlaceIndexForPositionInput) SetIndexName(v string) *SearchPlaceIndexForPositionInput {
 	s.IndexName = &v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *SearchPlaceIndexForPositionInput) SetLanguage(v string) *SearchPlaceIndexForPositionInput {
+	s.Language = &v
 	return s
 }
 
@@ -13324,7 +13428,8 @@ type SearchPlaceIndexForPositionOutput struct {
 	// Results is a required field
 	Results []*SearchForPositionResult `type:"list" required:"true"`
 
-	// Contains a summary of the request.
+	// Contains a summary of the request. Echoes the input values for Position,
+	// Language, MaxResults, and the DataSource of the place index.
 	//
 	// Summary is a required field
 	Summary *SearchPlaceIndexForPositionSummary `type:"structure" required:"true"`
@@ -13360,28 +13465,34 @@ func (s *SearchPlaceIndexForPositionOutput) SetSummary(v *SearchPlaceIndexForPos
 	return s
 }
 
-// A summary of the reverse geocoding request sent using SearchPlaceIndexForPosition.
+// A summary of the request sent by using SearchPlaceIndexForPosition.
 type SearchPlaceIndexForPositionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The data provider of geospatial data. Indicates one of the available providers:
+	// The geospatial data provider attached to the place index resource specified
+	// in the request. Values can be one of the following:
 	//
 	//    * Esri
 	//
-	//    * HERE
+	//    * Here
 	//
-	// For additional details on data providers, see Amazon Location Service data
+	// For more information about data providers, see Amazon Location Service data
 	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
 
-	// An optional parameter. The maximum number of results returned per request.
+	// The preferred language used to return results. Matches the language in the
+	// request. The value is a valid BCP 47 (https://tools.ietf.org/search/bcp47)
+	// language tag, for example, en for English.
+	Language *string `min:"2" type:"string"`
+
+	// Contains the optional result count limit that is specified in the request.
 	//
 	// Default value: 50
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The position given in the reverse geocoding request.
+	// The position specified in the request.
 	//
 	// Position is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForPositionSummary's
@@ -13415,6 +13526,12 @@ func (s *SearchPlaceIndexForPositionSummary) SetDataSource(v string) *SearchPlac
 	return s
 }
 
+// SetLanguage sets the Language field's value.
+func (s *SearchPlaceIndexForPositionSummary) SetLanguage(v string) *SearchPlaceIndexForPositionSummary {
+	s.Language = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *SearchPlaceIndexForPositionSummary) SetMaxResults(v int64) *SearchPlaceIndexForPositionSummary {
 	s.MaxResults = &v
@@ -13430,52 +13547,50 @@ func (s *SearchPlaceIndexForPositionSummary) SetPosition(v []*float64) *SearchPl
 type SearchPlaceIndexForTextInput struct {
 	_ struct{} `type:"structure"`
 
-	// Searches for results closest to the given position. An optional parameter
-	// defined by longitude, and latitude.
+	// An optional parameter that indicates a preference for places that are closer
+	// to a specified position.
 	//
-	//    * The first bias position is the X coordinate, or longitude.
+	// If provided, this parameter must contain a pair of numbers. The first number
+	// represents the X coordinate, or longitude; the second number represents the
+	// Y coordinate, or latitude.
 	//
-	//    * The second bias position is the Y coordinate, or latitude.
+	// For example, [-123.1174, 49.2847] represents the position with longitude
+	// -123.1174 and latitude 49.2847.
 	//
-	// For example, bias=xLongitude&bias=yLatitude.
+	// BiasPosition and FilterBBox are mutually exclusive. Specifying both options
+	// results in an error.
 	//
 	// BiasPosition is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForTextInput's
 	// String and GoString methods.
 	BiasPosition []*float64 `min:"2" type:"list" sensitive:"true"`
 
-	// Filters the results by returning only Places within the provided bounding
-	// box. An optional parameter.
+	// An optional parameter that limits the search results by returning only places
+	// that are within the provided bounding box.
 	//
-	// The first 2 bbox parameters describe the lower southwest corner:
+	// If provided, this parameter must contain a total of four consecutive numbers
+	// in two pairs. The first pair of numbers represents the X and Y coordinates
+	// (longitude and latitude, respectively) of the southwest corner of the bounding
+	// box; the second pair of numbers represents the X and Y coordinates (longitude
+	// and latitude, respectively) of the northeast corner of the bounding box.
 	//
-	//    * The first bbox position is the X coordinate or longitude of the lower
-	//    southwest corner.
+	// For example, [-12.7935, -37.4835, -12.0684, -36.9542] represents a bounding
+	// box where the southwest corner has longitude -12.7935 and latitude -37.4835,
+	// and the northeast corner has longitude -12.0684 and latitude -36.9542.
 	//
-	//    * The second bbox position is the Y coordinate or latitude of the lower
-	//    southwest corner.
-	//
-	// For example, bbox=xLongitudeSW&bbox=yLatitudeSW.
-	//
-	// The next bbox parameters describe the upper northeast corner:
-	//
-	//    * The third bbox position is the X coordinate, or longitude of the upper
-	//    northeast corner.
-	//
-	//    * The fourth bbox position is the Y coordinate, or longitude of the upper
-	//    northeast corner.
-	//
-	// For example, bbox=xLongitudeNE&bbox=yLatitudeNE
+	// FilterBBox and BiasPosition are mutually exclusive. Specifying both options
+	// results in an error.
 	//
 	// FilterBBox is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForTextInput's
 	// String and GoString methods.
 	FilterBBox []*float64 `min:"4" type:"list" sensitive:"true"`
 
-	// Limits the search to the given a list of countries/regions. An optional parameter.
+	// An optional parameter that limits the search results by returning only places
+	// that are in a specified list of countries.
 	//
-	//    * Use the ISO 3166 (https://www.iso.org/iso-3166-country-codes.html) 3-digit
-	//    country code. For example, Australia uses three upper-case characters:
+	//    * Valid values include ISO 3166 (https://www.iso.org/iso-3166-country-codes.html)
+	//    3-digit country codes. For example, Australia uses three upper-case characters:
 	//    AUS.
 	FilterCountries []*string `min:"1" type:"list"`
 
@@ -13484,12 +13599,22 @@ type SearchPlaceIndexForTextInput struct {
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
 
+	// The preferred language used to return results. The value must be a valid
+	// BCP 47 (https://tools.ietf.org/search/bcp47) language tag, for example, en
+	// for English.
+	//
+	// This setting affects the languages used in the results. It does not change
+	// which results are returned. If the language is not specified, or not supported
+	// for a particular result, the partner automatically chooses a language for
+	// the result.
+	Language *string `min:"2" type:"string"`
+
 	// An optional parameter. The maximum number of results returned per request.
 	//
 	// The default: 50
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The address, name, city, or region to be used in the search. In free-form
+	// The address, name, city, or region to be used in the search in free-form
 	// text format. For example, 123 Any Street.
 	//
 	// Text is a sensitive parameter and its value will be
@@ -13536,6 +13661,9 @@ func (s *SearchPlaceIndexForTextInput) Validate() error {
 	if s.IndexName != nil && len(*s.IndexName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
 	}
+	if s.Language != nil && len(*s.Language) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Language", 2))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -13576,6 +13704,12 @@ func (s *SearchPlaceIndexForTextInput) SetIndexName(v string) *SearchPlaceIndexF
 	return s
 }
 
+// SetLanguage sets the Language field's value.
+func (s *SearchPlaceIndexForTextInput) SetLanguage(v string) *SearchPlaceIndexForTextInput {
+	s.Language = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *SearchPlaceIndexForTextInput) SetMaxResults(v int64) *SearchPlaceIndexForTextInput {
 	s.MaxResults = &v
@@ -13591,14 +13725,16 @@ func (s *SearchPlaceIndexForTextInput) SetText(v string) *SearchPlaceIndexForTex
 type SearchPlaceIndexForTextOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of Places closest to the specified position. Each result contains
-	// additional information about the specific point of interest.
+	// A list of Places matching the input text. Each result contains additional
+	// information about the specific point of interest.
 	//
 	// Results is a required field
 	Results []*SearchForTextResult `type:"list" required:"true"`
 
-	// Contains a summary of the request. Contains the BiasPosition, DataSource,
-	// FilterBBox, FilterCountries, MaxResults, ResultBBox, and Text.
+	// Contains a summary of the request. Echoes the input values for BiasPosition,
+	// FilterBBox, FilterCountries, Language, MaxResults, and Text. Also includes
+	// the DataSource of the place index and the bounding box, ResultBBox, which
+	// surrounds the search results.
 	//
 	// Summary is a required field
 	Summary *SearchPlaceIndexForTextSummary `type:"structure" required:"true"`
@@ -13634,53 +13770,60 @@ func (s *SearchPlaceIndexForTextOutput) SetSummary(v *SearchPlaceIndexForTextSum
 	return s
 }
 
-// A summary of the geocoding request sent using SearchPlaceIndexForText.
+// A summary of the request sent by using SearchPlaceIndexForText.
 type SearchPlaceIndexForTextSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the coordinates for the bias position entered in the geocoding request.
+	// Contains the coordinates for the optional bias position specified in the
+	// request.
 	//
 	// BiasPosition is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForTextSummary's
 	// String and GoString methods.
 	BiasPosition []*float64 `min:"2" type:"list" sensitive:"true"`
 
-	// The data provider of geospatial data. Indicates one of the available providers:
+	// The geospatial data provider attached to the place index resource specified
+	// in the request. Values can be one of the following:
 	//
 	//    * Esri
 	//
-	//    * HERE
+	//    * Here
 	//
-	// For additional details on data providers, see Amazon Location Service data
+	// For more information about data providers, see Amazon Location Service data
 	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
 
-	// Contains the coordinates for the optional bounding box coordinated entered
-	// in the geocoding request.
+	// Contains the coordinates for the optional bounding box specified in the request.
 	//
 	// FilterBBox is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForTextSummary's
 	// String and GoString methods.
 	FilterBBox []*float64 `min:"4" type:"list" sensitive:"true"`
 
-	// Contains the country filter entered in the geocoding request.
+	// Contains the optional country filter specified in the request.
 	FilterCountries []*string `min:"1" type:"list"`
 
-	// Contains the maximum number of results indicated for the request.
+	// The preferred language used to return results. Matches the language in the
+	// request. The value is a valid BCP 47 (https://tools.ietf.org/search/bcp47)
+	// language tag, for example, en for English.
+	Language *string `min:"2" type:"string"`
+
+	// Contains the optional result count limit specified in the request.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// A bounding box that contains the search results within the specified area
-	// indicated by FilterBBox. A subset of bounding box specified using FilterBBox.
+	// The bounding box that fully contains all search results.
+	//
+	// If you specified the optional FilterBBox parameter in the request, ResultBBox
+	// is contained within FilterBBox.
 	//
 	// ResultBBox is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForTextSummary's
 	// String and GoString methods.
 	ResultBBox []*float64 `min:"4" type:"list" sensitive:"true"`
 
-	// The address, name, city or region to be used in the geocoding request. In
-	// free-form text format. For example, Vancouver.
+	// The search text specified in the request.
 	//
 	// Text is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SearchPlaceIndexForTextSummary's
@@ -13729,6 +13872,12 @@ func (s *SearchPlaceIndexForTextSummary) SetFilterBBox(v []*float64) *SearchPlac
 // SetFilterCountries sets the FilterCountries field's value.
 func (s *SearchPlaceIndexForTextSummary) SetFilterCountries(v []*string) *SearchPlaceIndexForTextSummary {
 	s.FilterCountries = v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *SearchPlaceIndexForTextSummary) SetLanguage(v string) *SearchPlaceIndexForTextSummary {
+	s.Language = &v
 	return s
 }
 
@@ -13920,10 +14069,25 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
-	// Tags that have been applied to the specified resource. Tags are mapped from
-	// the tag key to the tag value: "TagKey" : "TagValue".
+	// Applies one or more tags to specific resource. A tag is a key-value pair
+	// that helps you manage, identify, search, and filter your resources.
 	//
-	//    * Format example: {"tag1" : "value1", "tag2" : "value2"}
+	// Format: "key" : "value"
+	//
+	// Restrictions:
+	//
+	//    * Maximum 50 tags per resource.
+	//
+	//    * Each tag key must be unique and must have exactly one associated value.
+	//
+	//    * Maximum key length: 128 Unicode characters in UTF-8.
+	//
+	//    * Maximum value length: 256 Unicode characters in UTF-8.
+	//
+	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+	//    characters: + - = . _ : / @
+	//
+	//    * Cannot use "aws:" as a prefix for a key.
 	//
 	// Tags is a required field
 	Tags map[string]*string `type:"map" required:"true"`
@@ -14062,6 +14226,51 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about a time zone. Includes the name of the time zone and the
+// offset from UTC in seconds.
+type TimeZone struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the time zone, following the IANA time zone standard (https://www.iana.org/time-zones).
+	// For example, America/Los_Angeles.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The time zone's offset, in seconds, from UTC.
+	Offset *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeZone) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeZone) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *TimeZone) SetName(v string) *TimeZone {
+	s.Name = &v
+	return s
+}
+
+// SetOffset sets the Offset field's value.
+func (s *TimeZone) SetOffset(v int64) *TimeZone {
+	s.Offset = &v
+	return s
 }
 
 // Contains details about the truck dimensions in the unit of measurement that
@@ -15196,6 +15405,9 @@ const (
 
 	// PositionFilteringDistanceBased is a PositionFiltering enum value
 	PositionFilteringDistanceBased = "DistanceBased"
+
+	// PositionFilteringAccuracyBased is a PositionFiltering enum value
+	PositionFilteringAccuracyBased = "AccuracyBased"
 )
 
 // PositionFiltering_Values returns all elements of the PositionFiltering enum
@@ -15203,6 +15415,7 @@ func PositionFiltering_Values() []string {
 	return []string{
 		PositionFilteringTimeBased,
 		PositionFilteringDistanceBased,
+		PositionFilteringAccuracyBased,
 	}
 }
 

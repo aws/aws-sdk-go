@@ -671,7 +671,10 @@
     },
     "InsightType":{
       "type":"string",
-      "enum":["ApiCallRateInsight"]
+      "enum":[
+        "ApiCallRateInsight",
+        "ApiErrorRateInsight"
+      ]
     },
     "InsufficientDependencyServiceAccessPermissionException":{
       "type":"structure",
