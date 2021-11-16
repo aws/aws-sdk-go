@@ -1,3 +1,11 @@
+Release v1.42.6 (2021-11-16)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service API and documentation
+  * CloudTrail Insights now supports ApiErrorRateInsight, which enables customers to identify unusual activity in their AWS account based on API error codes and their rate.
+* `service/location`: Updates service API and documentation
+
 Release v1.42.5 (2021-11-15)
 ===
 

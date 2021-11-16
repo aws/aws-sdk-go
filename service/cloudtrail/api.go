@@ -2915,11 +2915,12 @@ type AdvancedFieldSelector struct {
 	//    value must be Management or Data.
 	//
 	//    * resources.type - This ﬁeld is required. resources.type can only use
-	//    the Equals operator, and the value can be one of the following: AWS::S3::Object,
-	//    AWS::S3::AccessPoint, AWS::Lambda::Function, AWS::DynamoDB::Table, AWS::S3Outposts::Object,
-	//    AWS::ManagedBlockchain::Node, AWS::S3ObjectLambda::AccessPoint, or AWS::EC2::Snapshot.
-	//    You can have only one resources.type ﬁeld per selector. To log data
-	//    events on more than one resource type, add another selector.
+	//    the Equals operator, and the value can be one of the following: AWS::S3::Object
+	//    AWS::Lambda::Function AWS::DynamoDB::Table AWS::S3Outposts::Object AWS::ManagedBlockchain::Node
+	//    AWS::S3ObjectLambda::AccessPoint AWS::EC2::Snapshot AWS::S3::AccessPoint
+	//    AWS::DynamoDB::Stream You can have only one resources.type ﬁeld per
+	//    selector. To log data events on more than one resource type, add another
+	//    selector.
 	//
 	//    * resources.ARN - You can use any operator with resources.ARN, but if
 	//    you use Equals or NotEquals, the value must exactly match the ARN of a
@@ -2940,7 +2941,7 @@ type AdvancedFieldSelector struct {
 	//    When resources.type equals AWS::Lambda::Function, and the operator is
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:lambda:<region>:<account_ID>:function:<function_name>
 	//    When resources.type equals AWS::DynamoDB::Table, and the operator is set
-	//    to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:dynamodb:<region>:<account_ID>:table:<table_name>
+	//    to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:dynamodb:<region>:<account_ID>:table/<table_name>
 	//    When resources.type equals AWS::S3Outposts::Object, and the operator is
 	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:s3-outposts:<region>:<account_ID>:<object_path>
 	//    When resources.type equals AWS::ManagedBlockchain::Node, and the operator
@@ -2951,6 +2952,8 @@ type AdvancedFieldSelector struct {
 	//    arn:<partition>:s3-object-lambda:<region>:<account_ID>:accesspoint/<access_point_name>
 	//    When resources.type equals AWS::EC2::Snapshot, and the operator is set
 	//    to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:ec2:<region>::snapshot/<snapshot_ID>
+	//    When resources.type equals AWS::DynamoDB::Stream, and the operator is
+	//    set to Equals or NotEquals, the ARN must be in the following format: arn:<partition>:dynamodb:<region>:<account_ID>:table/<table_name>/stream/<date_time>
 	//
 	// Field is a required field
 	Field *string `min:"1" type:"string" required:"true"`
@@ -3688,12 +3691,31 @@ func (s *CreateTrailOutput) SetTrailARN(v string) *CreateTrailOutput {
 type DataResource struct {
 	_ struct{} `type:"structure"`
 
-	// The resource type in which you want to log data events. You can specify AWS::S3::Object,
-	// AWS::Lambda::Function, or AWS::DynamoDB::Table resources.
+	// The resource type in which you want to log data events. You can specify the
+	// following basic event selector resource types:
 	//
-	// The AWS::S3Outposts::Object, AWS::ManagedBlockchain::Node, AWS::S3ObjectLambda::AccessPoint,
-	// and AWS::EC2::Snapshot resource types are not valid in basic event selectors.
-	// To log data events on these resource types, use advanced event selectors.
+	//    * AWS::S3::Object
+	//
+	//    * AWS::Lambda::Function
+	//
+	//    * AWS::DynamoDB::Table
+	//
+	// The following resource types are also availble through advanced event selectors.
+	// Basic event selector resource types are valid in advanced event selectors,
+	// but advanced event selector resource types are not valid in basic event selectors.
+	// For more information, see AdvancedFieldSelector$Field.
+	//
+	//    * AWS::S3Outposts::Object
+	//
+	//    * AWS::ManagedBlockchain::Node
+	//
+	//    * AWS::S3ObjectLambda::AccessPoint
+	//
+	//    * AWS::EC2::Snapshot
+	//
+	//    * AWS::S3::AccessPoint
+	//
+	//    * AWS::DynamoDB::Stream
 	Type *string `type:"string"`
 
 	// An array of Amazon Resource Name (ARN) strings or partial ARN strings for
@@ -9102,12 +9124,16 @@ func EventCategory_Values() []string {
 const (
 	// InsightTypeApiCallRateInsight is a InsightType enum value
 	InsightTypeApiCallRateInsight = "ApiCallRateInsight"
+
+	// InsightTypeApiErrorRateInsight is a InsightType enum value
+	InsightTypeApiErrorRateInsight = "ApiErrorRateInsight"
 )
 
 // InsightType_Values returns all elements of the InsightType enum
 func InsightType_Values() []string {
 	return []string{
 		InsightTypeApiCallRateInsight,
+		InsightTypeApiErrorRateInsight,
 	}
 }
 
