@@ -7,10 +7,12 @@
     "CreateBackendAPI" : "<p>Creates a new backend API resource.</p>",
     "CreateBackendAuth" : "<p>Creates a new backend authentication resource.</p>",
     "CreateBackendConfig" : "<p>Creates a config object for a backend.</p>",
+    "CreateBackendStorage" : "<p>Creates a backend storage resource.</p>",
     "CreateToken" : "<p>Generates a one-time challenge code to authenticate a user into your Amplify Admin UI.</p>",
     "DeleteBackend" : "<p>Removes an existing environment from your Amplify project.</p>",
     "DeleteBackendAPI" : "<p>Deletes an existing backend API resource.</p>",
     "DeleteBackendAuth" : "<p>Deletes an existing backend authentication resource.</p>",
+    "DeleteBackendStorage" : "<p>Removes the specified backend storage resource.</p>",
     "DeleteToken" : "<p>Deletes the challenge token based on the given appId and sessionId.</p>",
     "GenerateBackendAPIModels" : "<p>Generates a model schema for an existing backend API resource.</p>",
     "GetBackend" : "<p>Provides project-level details for your Amplify UI project.</p>",
@@ -18,15 +20,19 @@
     "GetBackendAPIModels" : "<p>Generates a model schema for existing backend API resource.</p>",
     "GetBackendAuth" : "<p>Gets a backend auth details.</p>",
     "GetBackendJob" : "<p>Returns information about a specific job.</p>",
+    "GetBackendStorage" : "<p>Gets details for a backend storage resource.</p>",
     "GetToken" : "<p>Gets the challenge token based on the given appId and sessionId.</p>",
     "ImportBackendAuth" : "<p>Imports an existing backend authentication resource.</p>",
+    "ImportBackendStorage" : "<p>Imports an existing backend storage resource.</p>",
     "ListBackendJobs" : "<p>Lists the jobs for the backend of an Amplify app.</p>",
+    "ListS3Buckets" : "<p>The list of S3 buckets in your account.</p>",
     "RemoveAllBackends" : "<p>Removes all backend environments from your Amplify project.</p>",
     "RemoveBackendConfig" : "<p>Removes the AWS resources required to access the Amplify Admin UI.</p>",
     "UpdateBackendAPI" : "<p>Updates an existing backend API resource.</p>",
     "UpdateBackendAuth" : "<p>Updates an existing backend authentication resource.</p>",
     "UpdateBackendConfig" : "<p>Updates the AWS resources required to access the Amplify Admin UI.</p>",
-    "UpdateBackendJob" : "<p>Updates a specific job.</p>"
+    "UpdateBackendJob" : "<p>Updates a specific job.</p>",
+    "UpdateBackendStorage" : "<p>Updates an existing backend storage resource.</p>"
   },
   "shapes" : {
     "AuthResources" : {
@@ -111,6 +117,18 @@
         "ListOfBackendJobRespObj$member" : null
       }
     },
+    "BackendStoragePermissions" : {
+      "base" : "<p>Describes the read, write, and delete permissions users have against your storage S3 bucket.</p>",
+      "refs" : {
+        "CreateBackendStorageResourceConfig$Permissions" : "<p>The authorization configuration for the storage S3 bucket.</p>",
+        "GetBackendStorageResourceConfig$Permissions" : "<p>The authorization configuration for the storage S3 bucket.</p>",
+        "UpdateBackendStorageResourceConfig$Permissions" : "<p>The authorization configuration for the storage S3 bucket.</p>"
+      }
+    },
+    "BackendStorageRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
     "BadRequestException" : {
       "base" : "<p>An error returned if a request is not formed properly.</p>",
       "refs" : { }
@@ -190,6 +208,16 @@
       "base" : "<p>The response object sent when a backend is created.</p>",
       "refs" : { }
     },
+    "CreateBackendStorageReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "CreateBackendStorageResourceConfig" : {
+      "base" : "<p>The resource configuration for creating backend storage.</p>",
+      "refs" : {
+        "CreateBackendStorageReqObj$ResourceConfig" : "<p>The resource configuration for creating backend storage.</p>"
+      }
+    },
     "CreateTokenRespObj" : {
       "base" : "<p>The response object for this operation.</p>",
       "refs" : { }
@@ -244,11 +272,29 @@
       "base" : "<p>The response object for this operation.</p>",
       "refs" : { }
     },
+    "GetBackendStorageReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "GetBackendStorageResourceConfig" : {
+      "base" : "<p>The details for a backend storage resource.</p>",
+      "refs" : {
+        "GetBackendStorageRespObj$ResourceConfig" : "<p>The resource configuration for the backend storage resource.</p>"
+      }
+    },
+    "GetBackendStorageRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
+      "refs" : { }
+    },
     "GetTokenRespObj" : {
       "base" : "<p>The response object for this operation.</p>",
       "refs" : { }
     },
     "ImportBackendAuthReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "ImportBackendStorageReqObj" : {
       "base" : "<p>The request object for this operation.</p>",
       "refs" : { }
     },
@@ -266,6 +312,14 @@
     },
     "ListBackendJobRespObj" : {
       "base" : "<p>The returned list of backend jobs.</p>",
+      "refs" : { }
+    },
+    "ListS3BucketsReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "ListS3BucketsRespObj" : {
+      "base" : "<p>The response object for this operation.</p>",
       "refs" : { }
     },
     "LoginAuthConfigReqObj" : {
@@ -315,6 +369,10 @@
       "base" : "<p>The response object for this operation.</p>",
       "refs" : { }
     },
+    "RemoveBackendStorageReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
     "ResolutionStrategy" : {
       "base" : null,
       "refs" : {
@@ -324,7 +382,13 @@
     "ResourceConfig" : {
       "base" : null,
       "refs" : {
-        "CreateBackendReqObj$ResourceConfig" : "<p>The resource configuration for the create backend request.</p>"
+        "CreateBackendReqObj$ResourceConfig" : "<p>The resource configuration for creating backend storage.</p>"
+      }
+    },
+    "S3BucketInfo" : {
+      "base" : "<p>Describes the metadata of the S3 bucket.</p>",
+      "refs" : {
+        "ListOfS3BucketInfo$member" : null
       }
     },
     "Service" : {
@@ -332,6 +396,16 @@
       "refs" : {
         "CreateBackendAuthResourceConfig$Service" : "<p>Defines the service name to use when configuring an authentication resource in your Amplify project.</p>",
         "UpdateBackendAuthResourceConfig$Service" : "<p>Defines the service name to use when configuring an authentication resource in your Amplify project.</p>"
+      }
+    },
+    "ServiceName" : {
+      "base" : null,
+      "refs" : {
+        "CreateBackendStorageResourceConfig$ServiceName" : "<p>The name of the storage service.</p>",
+        "GetBackendStorageResourceConfig$ServiceName" : "<p>The name of the storage service.</p>",
+        "ImportBackendStorageReqObj$ServiceName" : "<p>The name of the storage service.</p>",
+        "RemoveBackendStorageReqObj$ServiceName" : "<p>The name of the storage service.</p>",
+        "UpdateBackendStorageResourceConfig$ServiceName" : "<p>The name of the storage service.</p>"
       }
     },
     "Settings" : {
@@ -421,10 +495,26 @@
       "base" : "<p>The request object for this operation.</p>",
       "refs" : { }
     },
+    "UpdateBackendStorageReqObj" : {
+      "base" : "<p>The request object for this operation.</p>",
+      "refs" : { }
+    },
+    "UpdateBackendStorageResourceConfig" : {
+      "base" : "<p>The resource configuration for updating backend storage.</p>",
+      "refs" : {
+        "UpdateBackendStorageReqObj$ResourceConfig" : "<p>The resource configuration for updating backend storage.</p>"
+      }
+    },
     "AdditionalConstraintsElement" : {
       "base" : null,
       "refs" : {
         "ListOfAdditionalConstraintsElement$member" : null
+      }
+    },
+    "AuthenticatedElement" : {
+      "base" : null,
+      "refs" : {
+        "ListOfAuthenticatedElement$member" : null
       }
     },
     "MfaTypesElement" : {
@@ -445,11 +535,18 @@
         "ListOfRequiredSignUpAttributesElement$member" : null
       }
     },
+    "UnAuthenticatedElement" : {
+      "base" : null,
+      "refs" : {
+        "ListOfUnAuthenticatedElement$member" : null
+      }
+    },
     "__boolean" : {
       "base" : null,
       "refs" : {
         "CreateBackendAuthIdentityPoolConfig$UnauthenticatedLogin" : "<p>Set to true or false based on whether you want to enable guest authorization to your Amplify app.</p>",
         "DeleteTokenRespObj$IsSuccess" : "<p>Indicates whether the request succeeded or failed.</p>",
+        "GetBackendStorageResourceConfig$Imported" : "<p>Returns True if the storage resource has been imported.</p>",
         "RemoveAllBackendsReqObj$CleanAmplifyApp" : "<p>Cleans up the Amplify Console app if this value is set to true.</p>",
         "UpdateBackendAuthIdentityPoolConfig$UnauthenticatedLogin" : "<p>A boolean value that can be set to allow or disallow guest-level authorization into your Amplify app.</p>"
       }
@@ -480,11 +577,23 @@
         "ListBackendJobRespObj$Jobs" : "<p>An array of jobs and their properties.</p>"
       }
     },
+    "ListOfS3BucketInfo" : {
+      "base" : null,
+      "refs" : {
+        "ListS3BucketsRespObj$Buckets" : "<p>The list of S3 buckets.</p>"
+      }
+    },
     "ListOfAdditionalConstraintsElement" : {
       "base" : null,
       "refs" : {
         "CreateBackendAuthPasswordPolicyConfig$AdditionalConstraints" : "<p>Additional constraints for the password used to access the backend of your Amplify project.</p>",
         "UpdateBackendAuthPasswordPolicyConfig$AdditionalConstraints" : "<p>Describes additional constraints on password requirements to sign in to the auth resource, configured as a part of your Amplify project.</p>"
+      }
+    },
+    "ListOfAuthenticatedElement" : {
+      "base" : null,
+      "refs" : {
+        "BackendStoragePermissions$Authenticated" : "<p>Lists all authenticated user read, write, and delete permissions for your S3 bucket.</p>"
       }
     },
     "ListOfMfaTypesElement" : {
@@ -504,6 +613,12 @@
       "base" : null,
       "refs" : {
         "CreateBackendAuthUserPoolConfig$RequiredSignUpAttributes" : "<p>The required attributes to sign up new users in the user pool.</p>"
+      }
+    },
+    "ListOfUnAuthenticatedElement" : {
+      "base" : null,
+      "refs" : {
+        "BackendStoragePermissions$UnAuthenticated" : "<p>Lists all unauthenticated user read, write, and delete permissions for your S3 bucket.</p>"
       }
     },
     "ListOf__string" : {
@@ -568,6 +683,10 @@
         "BackendJobRespObj$Operation" : "<p>The name of the operation.</p>",
         "BackendJobRespObj$Status" : "<p>The current status of the request.</p>",
         "BackendJobRespObj$UpdateTime" : "<p>The time when the job was last updated.</p>",
+        "BackendStorageRespObj$AppId" : "<p>The app ID.</p>",
+        "BackendStorageRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "BackendStorageRespObj$JobId" : "<p>The ID for the job.</p>",
+        "BackendStorageRespObj$Status" : "<p>The current status of the request.</p>",
         "BadRequestException$Message" : "<p>An error message to inform that the request failed.</p>",
         "CloneBackendReqObj$TargetEnvironmentName" : "<p>The name of the destination backend environment to be created.</p>",
         "CloneBackendRespObj$AppId" : "<p>The app ID.</p>",
@@ -598,6 +717,9 @@
         "CreateBackendRespObj$JobId" : "<p>The ID for the job.</p>",
         "CreateBackendRespObj$Operation" : "<p>The name of the operation.</p>",
         "CreateBackendRespObj$Status" : "<p>The current status of the request.</p>",
+        "CreateBackendStorageReqObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "CreateBackendStorageReqObj$ResourceName" : "<p>The name of the storage resource.</p>",
+        "CreateBackendStorageResourceConfig$BucketName" : "<p>The name of the S3 bucket.</p>",
         "CreateTokenRespObj$AppId" : "<p>The app ID.</p>",
         "CreateTokenRespObj$ChallengeCode" : "<p>One-time challenge code for authenticating into the Amplify Admin UI.</p>",
         "CreateTokenRespObj$SessionId" : "<p>A unique ID provided when creating a new challenge token.</p>",
@@ -627,6 +749,11 @@
         "GetBackendRespObj$AppName" : "<p>The name of the app.</p>",
         "GetBackendRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
         "GetBackendRespObj$Error" : "<p>If the request failed, this is the returned error.</p>",
+        "GetBackendStorageReqObj$ResourceName" : "<p>The name of the storage resource.</p>",
+        "GetBackendStorageResourceConfig$BucketName" : "<p>The name of the S3 bucket.</p>",
+        "GetBackendStorageRespObj$AppId" : "<p>The app ID.</p>",
+        "GetBackendStorageRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "GetBackendStorageRespObj$ResourceName" : "<p>The name of the storage resource.</p>",
         "GetTokenRespObj$AppId" : "<p>The app ID.</p>",
         "GetTokenRespObj$ChallengeCode" : "<p>The one-time challenge code for authenticating into the Amplify Admin UI.</p>",
         "GetTokenRespObj$SessionId" : "<p>A unique ID provided when creating a new challenge token.</p>",
@@ -635,6 +762,7 @@
         "ImportBackendAuthReqObj$NativeClientId" : "<p>The ID of the Amazon Cognito native client.</p>",
         "ImportBackendAuthReqObj$UserPoolId" : "<p>The ID of the Amazon Cognito user pool.</p>",
         "ImportBackendAuthReqObj$WebClientId" : "<p>The ID of the Amazon Cognito web client.</p>",
+        "ImportBackendStorageReqObj$BucketName" : "<p>The name of the S3 bucket.</p>",
         "InternalServiceException$Message" : "<p>An error message to inform that the request failed.</p>",
         "LimitExceededException$LimitType" : "<p>The type of limit that was exceeded.</p>",
         "LimitExceededException$Message" : "<p>An error message to inform that the request has failed.</p>",
@@ -643,6 +771,8 @@
         "ListBackendJobReqObj$Operation" : "<p>Filters the list of response objects to include only those with the specified operation name.</p>",
         "ListBackendJobReqObj$Status" : "<p>Filters the list of response objects to include only those with the specified status.</p>",
         "ListBackendJobRespObj$NextToken" : "<p>The token for the next set of results.</p>",
+        "ListS3BucketsReqObj$NextToken" : "<p>Reserved for future use.</p>",
+        "ListS3BucketsRespObj$NextToken" : "<p>Reserved for future use.</p>",
         "LoginAuthConfigReqObj$AwsCognitoIdentityPoolId" : "<p>The Amazon Cognito identity pool ID used for the Amplify Admin UI login authorization.</p>",
         "LoginAuthConfigReqObj$AwsCognitoRegion" : "<p>The AWS Region for the Amplify Admin UI login.</p>",
         "LoginAuthConfigReqObj$AwsUserPoolsId" : "<p>The Amazon Cognito user pool ID used for Amplify Admin UI login authentication.</p>",
@@ -656,10 +786,14 @@
         "RemoveAllBackendsRespObj$Status" : "<p>The current status of the request.</p>",
         "RemoveBackendAuthReqObj$ResourceName" : "<p>The name of this resource.</p>",
         "RemoveBackendConfigRespObj$Error" : "<p>If the request fails, this error is returned.</p>",
+        "RemoveBackendStorageReqObj$ResourceName" : "<p>The name of the storage resource.</p>",
+        "S3BucketInfo$CreationDate" : "<p>The creation date of the S3 bucket.</p>",
+        "S3BucketInfo$Name" : "<p>The name of the S3 bucket.</p>",
         "Settings$SmsMessage" : "<p>The body of the SMS message.</p>",
         "SmsSettings$SmsMessage" : "<p>The body of the SMS message.</p>",
         "UpdateBackendAuthOAuthConfig$DomainPrefix" : "<p>The Amazon Cognito domain prefix used to create a hosted UI for authentication.</p>",
         "UpdateBackendAuthReqObj$ResourceName" : "<p>The name of this resource.</p>",
+        "UpdateBackendStorageReqObj$ResourceName" : "<p>The name of the storage resource.</p>",
         "ListOf__string$member" : null
       }
     }

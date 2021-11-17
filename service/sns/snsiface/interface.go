@@ -196,6 +196,10 @@ type SNSAPI interface {
 	PublishWithContext(aws.Context, *sns.PublishInput, ...request.Option) (*sns.PublishOutput, error)
 	PublishRequest(*sns.PublishInput) (*request.Request, *sns.PublishOutput)
 
+	PublishBatch(*sns.PublishBatchInput) (*sns.PublishBatchOutput, error)
+	PublishBatchWithContext(aws.Context, *sns.PublishBatchInput, ...request.Option) (*sns.PublishBatchOutput, error)
+	PublishBatchRequest(*sns.PublishBatchInput) (*request.Request, *sns.PublishBatchOutput)
+
 	RemovePermission(*sns.RemovePermissionInput) (*sns.RemovePermissionOutput, error)
 	RemovePermissionWithContext(aws.Context, *sns.RemovePermissionInput, ...request.Option) (*sns.RemovePermissionOutput, error)
 	RemovePermissionRequest(*sns.RemovePermissionInput) (*request.Request, *sns.RemovePermissionOutput)

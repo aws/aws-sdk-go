@@ -521,6 +521,39 @@
         {"shape":"InvalidSecurityException"}
       ]
     },
+    "PublishBatch":{
+      "name":"PublishBatch",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PublishBatchInput"},
+      "output":{
+        "shape":"PublishBatchResponse",
+        "resultWrapper":"PublishBatchResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"EndpointDisabledException"},
+        {"shape":"PlatformApplicationDisabledException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"BatchEntryIdsNotDistinctException"},
+        {"shape":"BatchRequestTooLongException"},
+        {"shape":"EmptyBatchRequestException"},
+        {"shape":"InvalidBatchEntryIdException"},
+        {"shape":"TooManyEntriesInBatchRequestException"},
+        {"shape":"KMSDisabledException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"KMSNotFoundException"},
+        {"shape":"KMSOptInRequired"},
+        {"shape":"KMSThrottlingException"},
+        {"shape":"KMSAccessDeniedException"},
+        {"shape":"InvalidSecurityException"}
+      ]
+    },
     "RemovePermission":{
       "name":"RemovePermission",
       "http":{
@@ -747,6 +780,48 @@
       },
       "exception":true
     },
+    "BatchEntryIdsNotDistinctException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"BatchEntryIdsNotDistinct",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "BatchRequestTooLongException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"BatchRequestTooLong",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "BatchResultErrorEntry":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Code",
+        "SenderFault"
+      ],
+      "members":{
+        "Id":{"shape":"String"},
+        "Code":{"shape":"String"},
+        "Message":{"shape":"String"},
+        "SenderFault":{"shape":"boolean"}
+      }
+    },
+    "BatchResultErrorEntryList":{
+      "type":"list",
+      "member":{"shape":"BatchResultErrorEntry"}
+    },
     "Binary":{"type":"blob"},
     "CheckIfPhoneNumberIsOptedOutInput":{
       "type":"structure",
@@ -894,6 +969,18 @@
         "TopicArn":{"shape":"topicARN"}
       }
     },
+    "EmptyBatchRequestException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"EmptyBatchRequest",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Endpoint":{
       "type":"structure",
       "members":{
@@ -1012,6 +1099,18 @@
       },
       "exception":true,
       "fault":true
+    },
+    "InvalidBatchEntryIdException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"InvalidBatchEntryId",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "InvalidParameterException":{
       "type":"structure",
@@ -1413,6 +1512,56 @@
       },
       "exception":true
     },
+    "PublishBatchInput":{
+      "type":"structure",
+      "required":[
+        "TopicArn",
+        "PublishBatchRequestEntries"
+      ],
+      "members":{
+        "TopicArn":{"shape":"topicARN"},
+        "PublishBatchRequestEntries":{"shape":"PublishBatchRequestEntryList"}
+      }
+    },
+    "PublishBatchRequestEntry":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Message"
+      ],
+      "members":{
+        "Id":{"shape":"String"},
+        "Message":{"shape":"message"},
+        "Subject":{"shape":"subject"},
+        "MessageStructure":{"shape":"messageStructure"},
+        "MessageAttributes":{"shape":"MessageAttributeMap"},
+        "MessageDeduplicationId":{"shape":"String"},
+        "MessageGroupId":{"shape":"String"}
+      }
+    },
+    "PublishBatchRequestEntryList":{
+      "type":"list",
+      "member":{"shape":"PublishBatchRequestEntry"}
+    },
+    "PublishBatchResponse":{
+      "type":"structure",
+      "members":{
+        "Successful":{"shape":"PublishBatchResultEntryList"},
+        "Failed":{"shape":"BatchResultErrorEntryList"}
+      }
+    },
+    "PublishBatchResultEntry":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"String"},
+        "MessageId":{"shape":"messageId"},
+        "SequenceNumber":{"shape":"String"}
+      }
+    },
+    "PublishBatchResultEntryList":{
+      "type":"list",
+      "member":{"shape":"PublishBatchResultEntry"}
+    },
     "PublishInput":{
       "type":"structure",
       "required":["Message"],
@@ -1688,6 +1837,18 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "TooManyEntriesInBatchRequestException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"TooManyEntriesInBatchRequest",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Topic":{
       "type":"structure",
       "members":{
