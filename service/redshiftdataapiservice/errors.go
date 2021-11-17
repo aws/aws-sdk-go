@@ -20,6 +20,12 @@ const (
 	// An SQL statement encountered an environmental error while running.
 	ErrCodeBatchExecuteStatementException = "BatchExecuteStatementException"
 
+	// ErrCodeDatabaseConnectionException for service response error code
+	// "DatabaseConnectionException".
+	//
+	// Connection to a database failed.
+	ErrCodeDatabaseConnectionException = "DatabaseConnectionException"
+
 	// ErrCodeExecuteStatementException for service response error code
 	// "ExecuteStatementException".
 	//
@@ -48,6 +54,7 @@ const (
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ActiveStatementsExceededException": newErrorActiveStatementsExceededException,
 	"BatchExecuteStatementException":    newErrorBatchExecuteStatementException,
+	"DatabaseConnectionException":       newErrorDatabaseConnectionException,
 	"ExecuteStatementException":         newErrorExecuteStatementException,
 	"InternalServerException":           newErrorInternalServerException,
 	"ResourceNotFoundException":         newErrorResourceNotFoundException,

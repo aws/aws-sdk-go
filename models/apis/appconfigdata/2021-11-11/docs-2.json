@@ -1,0 +1,139 @@
+{
+  "version": "2.0",
+  "service": "<p>Use the AppConfigData API, a capability of AWS AppConfig, to retrieve deployed configuration.</p>",
+  "operations": {
+    "GetLatestConfiguration": "<p>Retrieves the latest deployed configuration. This API may return empty Configuration data if the client already has the latest version. See StartConfigurationSession to obtain an InitialConfigurationToken to call this API.</p> <important> <p>Each call to GetLatestConfiguration returns a new ConfigurationToken (NextPollConfigurationToken in the response). This new token MUST be provided to the next call to GetLatestConfiguration when polling for configuration updates.</p> <p>To avoid excess charges, we recommend that you include the <code>ClientConfigurationVersion</code> value with every call to <code>GetConfiguration</code>. This value must be saved on your client. Subsequent calls to <code>GetConfiguration</code> must pass this value by using the <code>ClientConfigurationVersion</code> parameter. </p> </important>",
+    "StartConfigurationSession": "<p>Starts a configuration session used to retrieve a deployed configuration. See the GetLatestConfiguration API for more details.</p>"
+  },
+  "shapes": {
+    "BadRequestDetails": {
+      "base": "<p>Details describing why the request was invalid</p>",
+      "refs": {
+        "BadRequestException$Details": "<p>Details describing why the request was invalid</p>"
+      }
+    },
+    "BadRequestException": {
+      "base": "<p>The input fails to satisfy the constraints specified by the service.</p>",
+      "refs": {
+      }
+    },
+    "BadRequestReason": {
+      "base": null,
+      "refs": {
+        "BadRequestException$Reason": "<p>Code indicating the reason the request was invalid.</p>"
+      }
+    },
+    "GetLatestConfigurationRequest": {
+      "base": "<p>Request parameters for the GetLatestConfiguration API</p>",
+      "refs": {
+      }
+    },
+    "GetLatestConfigurationResponse": {
+      "base": "<p>Response parameters for the GetLatestConfiguration API</p>",
+      "refs": {
+      }
+    },
+    "Identifier": {
+      "base": null,
+      "refs": {
+        "StartConfigurationSessionRequest$ApplicationIdentifier": "<p>The application ID or the application name.</p>",
+        "StartConfigurationSessionRequest$ConfigurationProfileIdentifier": "<p>The configuration profile ID or the configuration profile name.</p>",
+        "StartConfigurationSessionRequest$EnvironmentIdentifier": "<p>The environment ID or the environment name.</p>"
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "GetLatestConfigurationResponse$NextPollIntervalInSeconds": "<p>The amount of time the client should wait before polling for configuration updates again. See RequiredMinimumPollIntervalInSeconds to set the desired poll interval.</p>"
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>There was an internal failure in the service.</p>",
+      "refs": {
+      }
+    },
+    "InvalidParameterDetail": {
+      "base": "<p>Contains details about an invalid parameter.</p>",
+      "refs": {
+        "InvalidParameterMap$value": null
+      }
+    },
+    "InvalidParameterMap": {
+      "base": null,
+      "refs": {
+        "BadRequestDetails$InvalidParameters": "<p>Present if the Reason for the bad request was 'InvalidParameters'</p>"
+      }
+    },
+    "InvalidParameterProblem": {
+      "base": null,
+      "refs": {
+        "InvalidParameterDetail$Problem": "<p>Detail describing why an individual parameter did not satisfy the constraints specified by the service</p>"
+      }
+    },
+    "OptionalPollSeconds": {
+      "base": null,
+      "refs": {
+        "StartConfigurationSessionRequest$RequiredMinimumPollIntervalInSeconds": "<p>The interval at which your client will poll for configuration. If provided, the service will throw a BadRequestException if the client polls before the specified poll interval. By default, client poll intervals are not enforced.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The requested resource could not be found.</p>",
+      "refs": {
+      }
+    },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "ResourceNotFoundException$ResourceType": "<p>The type of resource that was not found.</p>"
+      }
+    },
+    "StartConfigurationSessionRequest": {
+      "base": "<p>Request parameters for the StartConfigurationSession API.</p>",
+      "refs": {
+      }
+    },
+    "StartConfigurationSessionResponse": {
+      "base": "<p>Response parameters for the StartConfigurationSession API.</p>",
+      "refs": {
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "BadRequestException$Message": null,
+        "GetLatestConfigurationResponse$ContentType": "<p>A standard MIME type describing the format of the configuration content.</p>",
+        "InternalServerException$Message": null,
+        "InvalidParameterMap$key": null,
+        "ResourceNotFoundException$Message": null,
+        "StringMap$key": null,
+        "StringMap$value": null,
+        "ThrottlingException$Message": null
+      }
+    },
+    "StringMap": {
+      "base": null,
+      "refs": {
+        "ResourceNotFoundException$ReferencedBy": "<p>A map indicating which parameters in the request reference the resource that was not found.</p>"
+      }
+    },
+    "SyntheticGetLatestConfigurationResponseBlob": {
+      "base": null,
+      "refs": {
+        "GetLatestConfigurationResponse$Configuration": "<p>The data of the configuration. Note that this may be empty if the client already has the latest version of configuration.</p>"
+      }
+    },
+    "ThrottlingException": {
+      "base": "<p>The request was denied due to request throttling.</p>",
+      "refs": {
+      }
+    },
+    "Token": {
+      "base": null,
+      "refs": {
+        "GetLatestConfigurationRequest$ConfigurationToken": "<p>Token describing the current state of the configuration session. To obtain a token, first call the StartConfigurationSession API. Note that every call to GetLatestConfiguration will return a new ConfigurationToken (NextPollConfigurationToken in the response) and MUST be provided to subsequent GetLatestConfiguration API calls.</p>",
+        "GetLatestConfigurationResponse$NextPollConfigurationToken": "<p>The latest token describing the current state of the configuration session. This MUST be provided to the next call to GetLatestConfiguration.</p>",
+        "StartConfigurationSessionResponse$InitialConfigurationToken": "<p>Token encapsulating state about the configuration session. Provide this token to the GetLatestConfiguration API to retrieve configuration data.</p> <important> <p>This token should only be used once in your first call to GetLatestConfiguration. You MUST use the new token in the GetConfiguration response (NextPollConfigurationToken) in each subsequent call to GetLatestConfiguration.</p> </important>"
+      }
+    }
+  }
+}

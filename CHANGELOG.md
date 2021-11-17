@@ -1,3 +1,17 @@
+Release v1.42.7 (2021-11-17)
+===
+
+### Service Client Updates
+* `service/amplifybackend`: Updates service API and documentation
+* `service/apigateway`: Updates service documentation
+  * Documentation updates for Amazon API Gateway.
+* `service/appconfigdata`: Adds new service
+* `service/devops-guru`: Updates service paginators
+* `service/drs`: Updates service API, documentation, paginators, and examples
+* `service/redshift-data`: Updates service API and documentation
+* `service/sns`: Updates service API and documentation
+  * Amazon SNS introduces the PublishBatch API, which enables customers to publish up to 10 messages per API request. The new API is valid for Standard and FIFO topics.
+
 Release v1.42.6 (2021-11-16)
 ===
 

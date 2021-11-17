@@ -126,6 +126,29 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "CreateBackendStorage" : {
+      "name" : "CreateBackendStorage",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/backend/{appId}/storage",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "CreateBackendStorageRequest"
+      },
+      "output" : {
+        "shape" : "CreateBackendStorageResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "GatewayTimeoutException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "CreateToken" : {
       "name" : "CreateToken",
       "http" : {
@@ -207,6 +230,29 @@
       },
       "output" : {
         "shape" : "DeleteBackendAuthResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "GatewayTimeoutException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "DeleteBackendStorage" : {
+      "name" : "DeleteBackendStorage",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/backend/{appId}/storage/{backendEnvironmentName}/remove",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "DeleteBackendStorageRequest"
+      },
+      "output" : {
+        "shape" : "DeleteBackendStorageResponse"
       },
       "errors" : [ {
         "shape" : "NotFoundException"
@@ -379,6 +425,29 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "GetBackendStorage" : {
+      "name" : "GetBackendStorage",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/backend/{appId}/storage/{backendEnvironmentName}/details",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetBackendStorageRequest"
+      },
+      "output" : {
+        "shape" : "GetBackendStorageResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "GatewayTimeoutException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "GetToken" : {
       "name" : "GetToken",
       "http" : {
@@ -425,6 +494,29 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "ImportBackendStorage" : {
+      "name" : "ImportBackendStorage",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/backend/{appId}/storage/{backendEnvironmentName}/import",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ImportBackendStorageRequest"
+      },
+      "output" : {
+        "shape" : "ImportBackendStorageResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "GatewayTimeoutException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "ListBackendJobs" : {
       "name" : "ListBackendJobs",
       "http" : {
@@ -437,6 +529,29 @@
       },
       "output" : {
         "shape" : "ListBackendJobsResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "GatewayTimeoutException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "ListS3Buckets" : {
+      "name" : "ListS3Buckets",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/s3Buckets",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListS3BucketsRequest"
+      },
+      "output" : {
+        "shape" : "ListS3BucketsResponse"
       },
       "errors" : [ {
         "shape" : "NotFoundException"
@@ -575,6 +690,29 @@
       },
       "output" : {
         "shape" : "UpdateBackendJobResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "GatewayTimeoutException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      } ]
+    },
+    "UpdateBackendStorage" : {
+      "name" : "UpdateBackendStorage",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/backend/{appId}/storage/{backendEnvironmentName}",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "UpdateBackendStorageRequest"
+      },
+      "output" : {
+        "shape" : "UpdateBackendStorageResponse"
       },
       "errors" : [ {
         "shape" : "NotFoundException"
@@ -899,6 +1037,42 @@
         }
       },
       "required" : [ "AppId", "BackendEnvironmentName" ]
+    },
+    "BackendStoragePermissions" : {
+      "type" : "structure",
+      "members" : {
+        "Authenticated" : {
+          "shape" : "ListOfAuthenticatedElement",
+          "locationName" : "authenticated"
+        },
+        "UnAuthenticated" : {
+          "shape" : "ListOfUnAuthenticatedElement",
+          "locationName" : "unAuthenticated"
+        }
+      },
+      "required" : [ "Authenticated" ]
+    },
+    "BackendStorageRespObj" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "JobId" : {
+          "shape" : "__string",
+          "locationName" : "jobId"
+        },
+        "Status" : {
+          "shape" : "__string",
+          "locationName" : "status"
+        }
+      },
+      "required" : [ "Status", "AppId", "BackendEnvironmentName", "JobId" ]
     },
     "BadRequestException" : {
       "type" : "structure",
@@ -1465,6 +1639,86 @@
         }
       }
     },
+    "CreateBackendStorageReqObj" : {
+      "type" : "structure",
+      "members" : {
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "ResourceConfig" : {
+          "shape" : "CreateBackendStorageResourceConfig",
+          "locationName" : "resourceConfig"
+        },
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        }
+      },
+      "required" : [ "ResourceName", "BackendEnvironmentName", "ResourceConfig" ]
+    },
+    "CreateBackendStorageRequest" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "ResourceConfig" : {
+          "shape" : "CreateBackendStorageResourceConfig",
+          "locationName" : "resourceConfig"
+        },
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        }
+      },
+      "required" : [ "AppId", "ResourceName", "BackendEnvironmentName", "ResourceConfig" ]
+    },
+    "CreateBackendStorageResourceConfig" : {
+      "type" : "structure",
+      "members" : {
+        "BucketName" : {
+          "shape" : "__string",
+          "locationName" : "bucketName"
+        },
+        "Permissions" : {
+          "shape" : "BackendStoragePermissions",
+          "locationName" : "permissions"
+        },
+        "ServiceName" : {
+          "shape" : "ServiceName",
+          "locationName" : "serviceName"
+        }
+      },
+      "required" : [ "ServiceName", "Permissions" ]
+    },
+    "CreateBackendStorageResponse" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "JobId" : {
+          "shape" : "__string",
+          "locationName" : "jobId"
+        },
+        "Status" : {
+          "shape" : "__string",
+          "locationName" : "status"
+        }
+      }
+    },
     "CreateTokenRequest" : {
       "type" : "structure",
       "members" : {
@@ -1689,6 +1943,51 @@
         "Operation" : {
           "shape" : "__string",
           "locationName" : "operation"
+        },
+        "Status" : {
+          "shape" : "__string",
+          "locationName" : "status"
+        }
+      }
+    },
+    "DeleteBackendStorageRequest" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "backendEnvironmentName"
+        },
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        },
+        "ServiceName" : {
+          "shape" : "ServiceName",
+          "locationName" : "serviceName"
+        }
+      },
+      "required" : [ "AppId", "BackendEnvironmentName", "ServiceName", "ResourceName" ]
+    },
+    "DeleteBackendStorageResponse" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "JobId" : {
+          "shape" : "__string",
+          "locationName" : "jobId"
         },
         "Status" : {
           "shape" : "__string",
@@ -2161,6 +2460,101 @@
         }
       }
     },
+    "GetBackendStorageReqObj" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        }
+      },
+      "required" : [ "ResourceName" ]
+    },
+    "GetBackendStorageRequest" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "backendEnvironmentName"
+        },
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        }
+      },
+      "required" : [ "AppId", "BackendEnvironmentName", "ResourceName" ]
+    },
+    "GetBackendStorageResourceConfig" : {
+      "type" : "structure",
+      "members" : {
+        "BucketName" : {
+          "shape" : "__string",
+          "locationName" : "bucketName"
+        },
+        "Imported" : {
+          "shape" : "__boolean",
+          "locationName" : "imported"
+        },
+        "Permissions" : {
+          "shape" : "BackendStoragePermissions",
+          "locationName" : "permissions"
+        },
+        "ServiceName" : {
+          "shape" : "ServiceName",
+          "locationName" : "serviceName"
+        }
+      },
+      "required" : [ "ServiceName", "Imported" ]
+    },
+    "GetBackendStorageRespObj" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "ResourceConfig" : {
+          "shape" : "GetBackendStorageResourceConfig",
+          "locationName" : "resourceConfig"
+        },
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        }
+      },
+      "required" : [ "AppId", "BackendEnvironmentName" ]
+    },
+    "GetBackendStorageResponse" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "ResourceConfig" : {
+          "shape" : "GetBackendStorageResourceConfig",
+          "locationName" : "resourceConfig"
+        },
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        }
+      }
+    },
     "GetTokenRequest" : {
       "type" : "structure",
       "members" : {
@@ -2303,6 +2697,65 @@
         }
       }
     },
+    "ImportBackendStorageReqObj" : {
+      "type" : "structure",
+      "members" : {
+        "BucketName" : {
+          "shape" : "__string",
+          "locationName" : "bucketName"
+        },
+        "ServiceName" : {
+          "shape" : "ServiceName",
+          "locationName" : "serviceName"
+        }
+      },
+      "required" : [ "ServiceName" ]
+    },
+    "ImportBackendStorageRequest" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "backendEnvironmentName"
+        },
+        "BucketName" : {
+          "shape" : "__string",
+          "locationName" : "bucketName"
+        },
+        "ServiceName" : {
+          "shape" : "ServiceName",
+          "locationName" : "serviceName"
+        }
+      },
+      "required" : [ "AppId", "BackendEnvironmentName", "ServiceName" ]
+    },
+    "ImportBackendStorageResponse" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "JobId" : {
+          "shape" : "__string",
+          "locationName" : "jobId"
+        },
+        "Status" : {
+          "shape" : "__string",
+          "locationName" : "status"
+        }
+      }
+    },
     "InternalServiceException" : {
       "type" : "structure",
       "members" : {
@@ -2405,6 +2858,51 @@
         "Jobs" : {
           "shape" : "ListOfBackendJobRespObj",
           "locationName" : "jobs"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "locationName" : "nextToken"
+        }
+      }
+    },
+    "ListS3BucketsReqObj" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__string",
+          "locationName" : "nextToken"
+        }
+      }
+    },
+    "ListS3BucketsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__string",
+          "locationName" : "nextToken"
+        }
+      }
+    },
+    "ListS3BucketsRespObj" : {
+      "type" : "structure",
+      "members" : {
+        "Buckets" : {
+          "shape" : "ListOfS3BucketInfo",
+          "locationName" : "buckets"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "locationName" : "nextToken"
+        }
+      },
+      "required" : [ "Buckets" ]
+    },
+    "ListS3BucketsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "Buckets" : {
+          "shape" : "ListOfS3BucketInfo",
+          "locationName" : "buckets"
         },
         "NextToken" : {
           "shape" : "__string",
@@ -2576,6 +3074,20 @@
         }
       }
     },
+    "RemoveBackendStorageReqObj" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        },
+        "ServiceName" : {
+          "shape" : "ServiceName",
+          "locationName" : "serviceName"
+        }
+      },
+      "required" : [ "ServiceName", "ResourceName" ]
+    },
     "ResolutionStrategy" : {
       "type" : "string",
       "enum" : [ "OPTIMISTIC_CONCURRENCY", "LAMBDA", "AUTOMERGE", "NONE" ]
@@ -2584,9 +3096,26 @@
       "type" : "structure",
       "members" : { }
     },
+    "S3BucketInfo" : {
+      "type" : "structure",
+      "members" : {
+        "CreationDate" : {
+          "shape" : "__string",
+          "locationName" : "creationDate"
+        },
+        "Name" : {
+          "shape" : "__string",
+          "locationName" : "name"
+        }
+      }
+    },
     "Service" : {
       "type" : "string",
       "enum" : [ "COGNITO" ]
+    },
+    "ServiceName" : {
+      "type" : "string",
+      "enum" : [ "S3" ]
     },
     "Settings" : {
       "type" : "structure",
@@ -3006,9 +3535,86 @@
         }
       }
     },
+    "UpdateBackendStorageReqObj" : {
+      "type" : "structure",
+      "members" : {
+        "ResourceConfig" : {
+          "shape" : "UpdateBackendStorageResourceConfig",
+          "locationName" : "resourceConfig"
+        },
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        }
+      },
+      "required" : [ "ResourceName", "ResourceConfig" ]
+    },
+    "UpdateBackendStorageRequest" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "backendEnvironmentName"
+        },
+        "ResourceConfig" : {
+          "shape" : "UpdateBackendStorageResourceConfig",
+          "locationName" : "resourceConfig"
+        },
+        "ResourceName" : {
+          "shape" : "__string",
+          "locationName" : "resourceName"
+        }
+      },
+      "required" : [ "AppId", "BackendEnvironmentName", "ResourceName", "ResourceConfig" ]
+    },
+    "UpdateBackendStorageResourceConfig" : {
+      "type" : "structure",
+      "members" : {
+        "Permissions" : {
+          "shape" : "BackendStoragePermissions",
+          "locationName" : "permissions"
+        },
+        "ServiceName" : {
+          "shape" : "ServiceName",
+          "locationName" : "serviceName"
+        }
+      },
+      "required" : [ "ServiceName", "Permissions" ]
+    },
+    "UpdateBackendStorageResponse" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "JobId" : {
+          "shape" : "__string",
+          "locationName" : "jobId"
+        },
+        "Status" : {
+          "shape" : "__string",
+          "locationName" : "status"
+        }
+      }
+    },
     "AdditionalConstraintsElement" : {
       "type" : "string",
       "enum" : [ "REQUIRE_DIGIT", "REQUIRE_LOWERCASE", "REQUIRE_SYMBOL", "REQUIRE_UPPERCASE" ]
+    },
+    "AuthenticatedElement" : {
+      "type" : "string",
+      "enum" : [ "READ", "CREATE_AND_UPDATE", "DELETE" ]
     },
     "MfaTypesElement" : {
       "type" : "string",
@@ -3021,6 +3627,10 @@
     "RequiredSignUpAttributesElement" : {
       "type" : "string",
       "enum" : [ "ADDRESS", "BIRTHDATE", "EMAIL", "FAMILY_NAME", "GENDER", "GIVEN_NAME", "LOCALE", "MIDDLE_NAME", "NAME", "NICKNAME", "PHONE_NUMBER", "PICTURE", "PREFERRED_USERNAME", "PROFILE", "UPDATED_AT", "WEBSITE", "ZONE_INFO" ]
+    },
+    "UnAuthenticatedElement" : {
+      "type" : "string",
+      "enum" : [ "READ", "CREATE_AND_UPDATE", "DELETE" ]
     },
     "__boolean" : {
       "type" : "boolean"
@@ -3048,10 +3658,22 @@
         "shape" : "BackendJobRespObj"
       }
     },
+    "ListOfS3BucketInfo" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "S3BucketInfo"
+      }
+    },
     "ListOfAdditionalConstraintsElement" : {
       "type" : "list",
       "member" : {
         "shape" : "AdditionalConstraintsElement"
+      }
+    },
+    "ListOfAuthenticatedElement" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "AuthenticatedElement"
       }
     },
     "ListOfMfaTypesElement" : {
@@ -3070,6 +3692,12 @@
       "type" : "list",
       "member" : {
         "shape" : "RequiredSignUpAttributesElement"
+      }
+    },
+    "ListOfUnAuthenticatedElement" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "UnAuthenticatedElement"
       }
     },
     "ListOf__string" : {
