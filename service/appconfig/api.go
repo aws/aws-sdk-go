@@ -57,11 +57,11 @@ func (c *AppConfig) CreateApplicationRequest(input *CreateApplicationInput) (req
 
 // CreateApplication API operation for Amazon AppConfig.
 //
-// An application in AppConfig is a logical unit of code that provides capabilities
-// for your customers. For example, an application can be a microservice that
-// runs on Amazon EC2 instances, a mobile application installed by your users,
-// a serverless application using Amazon API Gateway and AWS Lambda, or any
-// system you run on behalf of others.
+// Creates an application. An application in AppConfig is a logical unit of
+// code that provides capabilities for your customers. For example, an application
+// can be a microservice that runs on Amazon EC2 instances, a mobile application
+// installed by your users, a serverless application using Amazon API Gateway
+// and Lambda, or any system you run on behalf of others.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -72,7 +72,8 @@ func (c *AppConfig) CreateApplicationRequest(input *CreateApplicationInput) (req
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * InternalServerException
 //   There was an internal failure in the AppConfig service.
@@ -143,22 +144,25 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 
 // CreateConfigurationProfile API operation for Amazon AppConfig.
 //
-// Information that enables AppConfig to access the configuration source. Valid
-// configuration sources include Systems Manager (SSM) documents, SSM Parameter
-// Store parameters, and Amazon S3 objects. A configuration profile includes
-// the following information.
+// Creates a configuration profile, which is information that enables AppConfig
+// to access the configuration source. Valid configuration sources include the
+// AppConfig hosted configuration store, Amazon Web Services Systems Manager
+// (SSM) documents, SSM Parameter Store parameters, Amazon S3 objects, or any
+// integration source action (http://docs.aws.amazon.com/codepipeline/latest/userguide/integrations-action-type.html#integrations-source)
+// supported by CodePipeline. A configuration profile includes the following
+// information:
 //
-//    * The Uri location of the configuration data.
+//    * The URI location of the configuration data.
 //
-//    * The AWS Identity and Access Management (IAM) role that provides access
-//    to the configuration data.
+//    * The Identity and Access Management (IAM) role that provides access to
+//    the configuration data.
 //
 //    * A validator for the configuration data. Available validators include
-//    either a JSON Schema or an AWS Lambda function.
+//    either a JSON Schema or an Lambda function.
 //
 // For more information, see Create a Configuration and a Configuration Profile
-// (http://docs.aws.amazon.com/systems-manager/latest/userguide/appconfig-creating-configuration-and-profile.html)
-// in the AWS AppConfig User Guide.
+// (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-creating-configuration-and-profile.html)
+// in the AppConfig User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -169,7 +173,8 @@ func (c *AppConfig) CreateConfigurationProfileRequest(input *CreateConfiguration
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -243,10 +248,11 @@ func (c *AppConfig) CreateDeploymentStrategyRequest(input *CreateDeploymentStrat
 
 // CreateDeploymentStrategy API operation for Amazon AppConfig.
 //
-// A deployment strategy defines important criteria for rolling out your configuration
-// to the designated targets. A deployment strategy includes: the overall duration
-// required, a percentage of targets to receive the deployment during each interval,
-// an algorithm that defines how percentage grows, and bake time.
+// Creates a deployment strategy that defines important criteria for rolling
+// out your configuration to the designated targets. A deployment strategy includes
+// the overall duration required, a percentage of targets to receive the deployment
+// during each interval, an algorithm that defines how percentage grows, and
+// bake time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -260,7 +266,8 @@ func (c *AppConfig) CreateDeploymentStrategyRequest(input *CreateDeploymentStrat
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateDeploymentStrategy
 func (c *AppConfig) CreateDeploymentStrategy(input *CreateDeploymentStrategyInput) (*CreateDeploymentStrategyOutput, error) {
@@ -328,10 +335,10 @@ func (c *AppConfig) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req
 
 // CreateEnvironment API operation for Amazon AppConfig.
 //
-// For each application, you define one or more environments. An environment
-// is a logical deployment group of AppConfig targets, such as applications
-// in a Beta or Production environment. You can also define environments for
-// application subcomponents such as the Web, Mobile and Back-end components
+// Creates an environment. For each application, you define one or more environments.
+// An environment is a logical deployment group of AppConfig targets, such as
+// applications in a Beta or Production environment. You can also define environments
+// for application subcomponents such as the Web, Mobile and Back-end components
 // for your application. You can configure Amazon CloudWatch alarms for each
 // environment. The system monitors alarms during a configuration deployment.
 // If an alarm is triggered, the system rolls back the configuration.
@@ -351,7 +358,8 @@ func (c *AppConfig) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req
 //   The requested resource could not be found.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/CreateEnvironment
 func (c *AppConfig) CreateEnvironment(input *CreateEnvironmentInput) (*CreateEnvironmentOutput, error) {
@@ -419,7 +427,7 @@ func (c *AppConfig) CreateHostedConfigurationVersionRequest(input *CreateHostedC
 
 // CreateHostedConfigurationVersion API operation for Amazon AppConfig.
 //
-// Create a new configuration in the AppConfig configuration store.
+// Creates a new configuration in the AppConfig hosted configuration store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -430,11 +438,12 @@ func (c *AppConfig) CreateHostedConfigurationVersionRequest(input *CreateHostedC
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ServiceQuotaExceededException
 //   The number of hosted configuration versions exceeds the limit for the AppConfig
-//   configuration store. Delete one or more versions and try again.
+//   hosted configuration store. Delete one or more versions and try again.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -516,7 +525,7 @@ func (c *AppConfig) DeleteApplicationRequest(input *DeleteApplicationInput) (req
 
 // DeleteApplication API operation for Amazon AppConfig.
 //
-// Delete an application. Deleting an application does not delete a configuration
+// Deletes an application. Deleting an application does not delete a configuration
 // from a host.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -534,7 +543,8 @@ func (c *AppConfig) DeleteApplicationRequest(input *DeleteApplicationInput) (req
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteApplication
 func (c *AppConfig) DeleteApplication(input *DeleteApplicationInput) (*DeleteApplicationOutput, error) {
@@ -603,7 +613,7 @@ func (c *AppConfig) DeleteConfigurationProfileRequest(input *DeleteConfiguration
 
 // DeleteConfigurationProfile API operation for Amazon AppConfig.
 //
-// Delete a configuration profile. Deleting a configuration profile does not
+// Deletes a configuration profile. Deleting a configuration profile does not
 // delete a configuration from a host.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -625,7 +635,8 @@ func (c *AppConfig) DeleteConfigurationProfileRequest(input *DeleteConfiguration
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteConfigurationProfile
 func (c *AppConfig) DeleteConfigurationProfile(input *DeleteConfigurationProfileInput) (*DeleteConfigurationProfileOutput, error) {
@@ -694,7 +705,7 @@ func (c *AppConfig) DeleteDeploymentStrategyRequest(input *DeleteDeploymentStrat
 
 // DeleteDeploymentStrategy API operation for Amazon AppConfig.
 //
-// Delete a deployment strategy. Deleting a deployment strategy does not delete
+// Deletes a deployment strategy. Deleting a deployment strategy does not delete
 // a configuration from a host.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -712,7 +723,8 @@ func (c *AppConfig) DeleteDeploymentStrategyRequest(input *DeleteDeploymentStrat
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteDeploymentStrategy
 func (c *AppConfig) DeleteDeploymentStrategy(input *DeleteDeploymentStrategyInput) (*DeleteDeploymentStrategyOutput, error) {
@@ -781,7 +793,7 @@ func (c *AppConfig) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req
 
 // DeleteEnvironment API operation for Amazon AppConfig.
 //
-// Delete an environment. Deleting an environment does not delete a configuration
+// Deletes an environment. Deleting an environment does not delete a configuration
 // from a host.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -803,7 +815,8 @@ func (c *AppConfig) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/DeleteEnvironment
 func (c *AppConfig) DeleteEnvironment(input *DeleteEnvironmentInput) (*DeleteEnvironmentOutput, error) {
@@ -872,7 +885,8 @@ func (c *AppConfig) DeleteHostedConfigurationVersionRequest(input *DeleteHostedC
 
 // DeleteHostedConfigurationVersion API operation for Amazon AppConfig.
 //
-// Delete a version of a configuration from the AppConfig configuration store.
+// Deletes a version of a configuration from the AppConfig hosted configuration
+// store.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -883,7 +897,8 @@ func (c *AppConfig) DeleteHostedConfigurationVersionRequest(input *DeleteHostedC
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -957,7 +972,7 @@ func (c *AppConfig) GetApplicationRequest(input *GetApplicationInput) (req *requ
 
 // GetApplication API operation for Amazon AppConfig.
 //
-// Retrieve information about an application.
+// Retrieves information about an application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -974,7 +989,8 @@ func (c *AppConfig) GetApplicationRequest(input *GetApplicationInput) (req *requ
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetApplication
 func (c *AppConfig) GetApplication(input *GetApplicationInput) (*GetApplicationOutput, error) {
@@ -1042,13 +1058,12 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 
 // GetConfiguration API operation for Amazon AppConfig.
 //
-// Receive information about a configuration.
+// Retrieves information about a configuration.
 //
-// AWS AppConfig uses the value of the ClientConfigurationVersion parameter
-// to identify the configuration version on your clients. If you don’t send
-// ClientConfigurationVersion with each call to GetConfiguration, your clients
-// receive the current configuration. You are charged each time your clients
-// receive a configuration.
+// AppConfig uses the value of the ClientConfigurationVersion parameter to identify
+// the configuration version on your clients. If you don’t send ClientConfigurationVersion
+// with each call to GetConfiguration, your clients receive the current configuration.
+// You are charged each time your clients receive a configuration.
 //
 // To avoid excess charges, we recommend that you include the ClientConfigurationVersion
 // value with every call to GetConfiguration. This value must be saved on your
@@ -1070,7 +1085,8 @@ func (c *AppConfig) GetConfigurationRequest(input *GetConfigurationInput) (req *
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfiguration
 func (c *AppConfig) GetConfiguration(input *GetConfigurationInput) (*GetConfigurationOutput, error) {
@@ -1138,7 +1154,7 @@ func (c *AppConfig) GetConfigurationProfileRequest(input *GetConfigurationProfil
 
 // GetConfigurationProfile API operation for Amazon AppConfig.
 //
-// Retrieve information about a configuration profile.
+// Retrieves information about a configuration profile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1155,7 +1171,8 @@ func (c *AppConfig) GetConfigurationProfileRequest(input *GetConfigurationProfil
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetConfigurationProfile
 func (c *AppConfig) GetConfigurationProfile(input *GetConfigurationProfileInput) (*GetConfigurationProfileOutput, error) {
@@ -1223,7 +1240,7 @@ func (c *AppConfig) GetDeploymentRequest(input *GetDeploymentInput) (req *reques
 
 // GetDeployment API operation for Amazon AppConfig.
 //
-// Retrieve information about a configuration deployment.
+// Retrieves information about a configuration deployment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1240,7 +1257,8 @@ func (c *AppConfig) GetDeploymentRequest(input *GetDeploymentInput) (req *reques
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetDeployment
 func (c *AppConfig) GetDeployment(input *GetDeploymentInput) (*GetDeploymentOutput, error) {
@@ -1308,11 +1326,11 @@ func (c *AppConfig) GetDeploymentStrategyRequest(input *GetDeploymentStrategyInp
 
 // GetDeploymentStrategy API operation for Amazon AppConfig.
 //
-// Retrieve information about a deployment strategy. A deployment strategy defines
-// important criteria for rolling out your configuration to the designated targets.
-// A deployment strategy includes: the overall duration required, a percentage
-// of targets to receive the deployment during each interval, an algorithm that
-// defines how percentage grows, and bake time.
+// Retrieves information about a deployment strategy. A deployment strategy
+// defines important criteria for rolling out your configuration to the designated
+// targets. A deployment strategy includes the overall duration required, a
+// percentage of targets to receive the deployment during each interval, an
+// algorithm that defines how percentage grows, and bake time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1329,7 +1347,8 @@ func (c *AppConfig) GetDeploymentStrategyRequest(input *GetDeploymentStrategyInp
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetDeploymentStrategy
 func (c *AppConfig) GetDeploymentStrategy(input *GetDeploymentStrategyInput) (*GetDeploymentStrategyOutput, error) {
@@ -1397,7 +1416,7 @@ func (c *AppConfig) GetEnvironmentRequest(input *GetEnvironmentInput) (req *requ
 
 // GetEnvironment API operation for Amazon AppConfig.
 //
-// Retrieve information about an environment. An environment is a logical deployment
+// Retrieves information about an environment. An environment is a logical deployment
 // group of AppConfig applications, such as applications in a Production environment
 // or in an EU_Region environment. Each configuration deployment targets an
 // environment. You can enable one or more Amazon CloudWatch alarms for an environment.
@@ -1418,7 +1437,8 @@ func (c *AppConfig) GetEnvironmentRequest(input *GetEnvironmentInput) (req *requ
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/GetEnvironment
 func (c *AppConfig) GetEnvironment(input *GetEnvironmentInput) (*GetEnvironmentOutput, error) {
@@ -1486,7 +1506,7 @@ func (c *AppConfig) GetHostedConfigurationVersionRequest(input *GetHostedConfigu
 
 // GetHostedConfigurationVersion API operation for Amazon AppConfig.
 //
-// Get information about a specific configuration version.
+// Retrieves information about a specific configuration version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1497,7 +1517,8 @@ func (c *AppConfig) GetHostedConfigurationVersionRequest(input *GetHostedConfigu
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -1577,7 +1598,7 @@ func (c *AppConfig) ListApplicationsRequest(input *ListApplicationsInput) (req *
 
 // ListApplications API operation for Amazon AppConfig.
 //
-// List all applications in your AWS account.
+// Lists all applications in your Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1591,7 +1612,8 @@ func (c *AppConfig) ListApplicationsRequest(input *ListApplicationsInput) (req *
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListApplications
 func (c *AppConfig) ListApplications(input *ListApplicationsInput) (*ListApplicationsOutput, error) {
@@ -1734,7 +1756,8 @@ func (c *AppConfig) ListConfigurationProfilesRequest(input *ListConfigurationPro
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListConfigurationProfiles
 func (c *AppConfig) ListConfigurationProfiles(input *ListConfigurationProfilesInput) (*ListConfigurationProfilesOutput, error) {
@@ -1860,7 +1883,7 @@ func (c *AppConfig) ListDeploymentStrategiesRequest(input *ListDeploymentStrateg
 
 // ListDeploymentStrategies API operation for Amazon AppConfig.
 //
-// List deployment strategies.
+// Lists deployment strategies.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1874,7 +1897,8 @@ func (c *AppConfig) ListDeploymentStrategiesRequest(input *ListDeploymentStrateg
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListDeploymentStrategies
 func (c *AppConfig) ListDeploymentStrategies(input *ListDeploymentStrategiesInput) (*ListDeploymentStrategiesOutput, error) {
@@ -2017,7 +2041,8 @@ func (c *AppConfig) ListDeploymentsRequest(input *ListDeploymentsInput) (req *re
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListDeployments
 func (c *AppConfig) ListDeployments(input *ListDeploymentsInput) (*ListDeploymentsOutput, error) {
@@ -2143,7 +2168,7 @@ func (c *AppConfig) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *
 
 // ListEnvironments API operation for Amazon AppConfig.
 //
-// List the environments for an application.
+// Lists the environments for an application.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2160,7 +2185,8 @@ func (c *AppConfig) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/ListEnvironments
 func (c *AppConfig) ListEnvironments(input *ListEnvironmentsInput) (*ListEnvironmentsOutput, error) {
@@ -2286,8 +2312,8 @@ func (c *AppConfig) ListHostedConfigurationVersionsRequest(input *ListHostedConf
 
 // ListHostedConfigurationVersions API operation for Amazon AppConfig.
 //
-// View a list of configurations stored in the AppConfig configuration store
-// by version.
+// Lists configurations stored in the AppConfig hosted configuration store by
+// version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2298,7 +2324,8 @@ func (c *AppConfig) ListHostedConfigurationVersionsRequest(input *ListHostedConf
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -2438,7 +2465,8 @@ func (c *AppConfig) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 //   The requested resource could not be found.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * InternalServerException
 //   There was an internal failure in the AppConfig service.
@@ -2520,7 +2548,8 @@ func (c *AppConfig) StartDeploymentRequest(input *StartDeploymentInput) (req *re
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -2616,7 +2645,8 @@ func (c *AppConfig) StopDeploymentRequest(input *StopDeploymentInput) (req *requ
 //   There was an internal failure in the AppConfig service.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appconfig-2019-10-09/StopDeployment
 func (c *AppConfig) StopDeployment(input *StopDeploymentInput) (*StopDeploymentOutput, error) {
@@ -2685,7 +2715,7 @@ func (c *AppConfig) TagResourceRequest(input *TagResourceInput) (req *request.Re
 
 // TagResource API operation for Amazon AppConfig.
 //
-// Metadata to assign to an AppConfig resource. Tags help organize and categorize
+// Assigns metadata to an AppConfig resource. Tags help organize and categorize
 // your AppConfig resources. Each tag consists of a key and an optional value,
 // both of which you define. You can specify a maximum of 50 tags for a resource.
 //
@@ -2701,7 +2731,8 @@ func (c *AppConfig) TagResourceRequest(input *TagResourceInput) (req *request.Re
 //   The requested resource could not be found.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * InternalServerException
 //   There was an internal failure in the AppConfig service.
@@ -2787,7 +2818,8 @@ func (c *AppConfig) UntagResourceRequest(input *UntagResourceInput) (req *reques
 //   The requested resource could not be found.
 //
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * InternalServerException
 //   There was an internal failure in the AppConfig service.
@@ -2869,7 +2901,8 @@ func (c *AppConfig) UpdateApplicationRequest(input *UpdateApplicationInput) (req
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -2954,7 +2987,8 @@ func (c *AppConfig) UpdateConfigurationProfileRequest(input *UpdateConfiguration
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -3039,7 +3073,8 @@ func (c *AppConfig) UpdateDeploymentStrategyRequest(input *UpdateDeploymentStrat
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -3124,7 +3159,8 @@ func (c *AppConfig) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -3210,7 +3246,8 @@ func (c *AppConfig) ValidateConfigurationRequest(input *ValidateConfigurationInp
 //
 // Returned Error Types:
 //   * BadRequestException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   The requested resource could not be found.
@@ -3289,12 +3326,53 @@ func (s *Application) SetName(v string) *Application {
 	return s
 }
 
-// The input fails to satisfy the constraints specified by an AWS service.
+// Detailed information about the input that failed to satisfy the constraints
+// specified by an AWS service.
+type BadRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Detailed information about the bad request exception error when creating
+	// a hosted configuration version.
+	InvalidConfiguration []*InvalidConfigurationDetail `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BadRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BadRequestDetails) GoString() string {
+	return s.String()
+}
+
+// SetInvalidConfiguration sets the InvalidConfiguration field's value.
+func (s *BadRequestDetails) SetInvalidConfiguration(v []*InvalidConfigurationDetail) *BadRequestDetails {
+	s.InvalidConfiguration = v
+	return s
+}
+
+// The input fails to satisfy the constraints specified by an Amazon Web Services
+// service.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// Detailed information about the input that failed to satisfy the constraints
+	// specified by an AWS service.
+	Details *BadRequestDetails `type:"structure"`
+
 	Message_ *string `locationName:"Message" type:"string"`
+
+	Reason *string `type:"string" enum:"BadRequestReason"`
 }
 
 // String returns the string representation.
@@ -3340,7 +3418,7 @@ func (s *BadRequestException) OrigErr() error {
 }
 
 func (s *BadRequestException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -3368,6 +3446,11 @@ type ConfigurationProfileSummary struct {
 
 	// The name of the configuration profile.
 	Name *string `min:"1" type:"string"`
+
+	// The type of configurations that the configuration profile contains. A configuration
+	// can be a feature flag used for enabling or disabling new features or a free-form
+	// configuration used to introduce changes to your application.
+	Type *string `type:"string"`
 
 	// The types of validators in the configuration profile.
 	ValidatorTypes []*string `type:"list"`
@@ -3412,6 +3495,12 @@ func (s *ConfigurationProfileSummary) SetLocationUri(v string) *ConfigurationPro
 // SetName sets the Name field's value.
 func (s *ConfigurationProfileSummary) SetName(v string) *ConfigurationProfileSummary {
 	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ConfigurationProfileSummary) SetType(v string) *ConfigurationProfileSummary {
+	s.Type = &v
 	return s
 }
 
@@ -3615,13 +3704,14 @@ type CreateConfigurationProfileInput struct {
 	// A description of the configuration profile.
 	Description *string `type:"string"`
 
-	// A URI to locate the configuration. You can specify a Systems Manager (SSM)
-	// document, an SSM Parameter Store parameter, or an Amazon S3 object. For an
-	// SSM document, specify either the document name in the format ssm-document://<Document_name>
-	// or the Amazon Resource Name (ARN). For a parameter, specify either the parameter
-	// name in the format ssm-parameter://<Parameter_name> or the ARN. For an Amazon
-	// S3 object, specify the URI in the following format: s3://<bucket>/<objectKey>
-	// . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json
+	// A URI to locate the configuration. You can specify the AppConfig hosted configuration
+	// store, Systems Manager (SSM) document, an SSM Parameter Store parameter,
+	// or an Amazon S3 object. For the hosted configuration store and for feature
+	// flags, specify hosted. For an SSM document, specify either the document name
+	// in the format ssm-document://<Document_name> or the Amazon Resource Name
+	// (ARN). For a parameter, specify either the parameter name in the format ssm-parameter://<Parameter_name>
+	// or the ARN. For an Amazon S3 object, specify the URI in the following format:
+	// s3://<bucket>/<objectKey> . Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json
 	//
 	// LocationUri is a required field
 	LocationUri *string `min:"1" type:"string" required:"true"`
@@ -3633,12 +3723,21 @@ type CreateConfigurationProfileInput struct {
 
 	// The ARN of an IAM role with permission to access the configuration at the
 	// specified LocationUri.
+	//
+	// A retrieval role ARN is not required for configurations stored in the AppConfig
+	// hosted configuration store. It is required for all other sources that store
+	// your configuration.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
 	// Metadata to assign to the configuration profile. Tags help organize and categorize
 	// your AppConfig resources. Each tag consists of a key and an optional value,
 	// both of which you define.
 	Tags map[string]*string `type:"map"`
+
+	// The type of configurations that the configuration profile contains. A configuration
+	// can be a feature flag used for enabling or disabling new features or a free-form
+	// configuration used for distributing configurations to your application.
+	Type *string `type:"string"`
 
 	// A list of methods for validating the configuration.
 	Validators []*Validator `type:"list"`
@@ -3739,6 +3838,12 @@ func (s *CreateConfigurationProfileInput) SetTags(v map[string]*string) *CreateC
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *CreateConfigurationProfileInput) SetType(v string) *CreateConfigurationProfileInput {
+	s.Type = &v
+	return s
+}
+
 // SetValidators sets the Validators field's value.
 func (s *CreateConfigurationProfileInput) SetValidators(v []*Validator) *CreateConfigurationProfileInput {
 	s.Validators = v
@@ -3766,6 +3871,11 @@ type CreateConfigurationProfileOutput struct {
 	// The ARN of an IAM role with permission to access the configuration at the
 	// specified LocationUri.
 	RetrievalRoleArn *string `min:"20" type:"string"`
+
+	// The type of configurations that the configuration profile contains. A configuration
+	// can be a feature flag used for enabling or disabling new features or a free-form
+	// configuration used for distributing configurations to your application.
+	Type *string `type:"string"`
 
 	// A list of methods for validating the configuration.
 	Validators []*Validator `type:"list"`
@@ -3825,6 +3935,12 @@ func (s *CreateConfigurationProfileOutput) SetRetrievalRoleArn(v string) *Create
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *CreateConfigurationProfileOutput) SetType(v string) *CreateConfigurationProfileOutput {
+	s.Type = &v
+	return s
+}
+
 // SetValidators sets the Validators field's value.
 func (s *CreateConfigurationProfileOutput) SetValidators(v []*Validator) *CreateConfigurationProfileOutput {
 	s.Validators = v
@@ -3852,8 +3968,8 @@ type CreateDeploymentStrategyInput struct {
 	// GrowthFactor is a required field
 	GrowthFactor *float64 `min:"1" type:"float" required:"true"`
 
-	// The algorithm used to define how percentage grows over time. AWS AppConfig
-	// supports the following growth types:
+	// The algorithm used to define how percentage grows over time. AppConfig supports
+	// the following growth types:
 	//
 	// Linear: For this type, AppConfig processes the deployment by dividing the
 	// total number of targets by the value specified for Step percentage. For example,
@@ -3998,8 +4114,8 @@ type CreateDeploymentStrategyOutput struct {
 	// The description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets that received a deployed configuration during each
@@ -4290,7 +4406,7 @@ type CreateHostedConfigurationVersionInput struct {
 	Content []byte `type:"blob" required:"true" sensitive:"true"`
 
 	// A standard MIME type describing the format of the configuration content.
-	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	// For more information, see Content-Type (https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
 	//
 	// ContentType is a required field
 	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string" required:"true"`
@@ -4301,7 +4417,8 @@ type CreateHostedConfigurationVersionInput struct {
 	// An optional locking token used to prevent race conditions from overwriting
 	// configuration updates when creating a new version. To ensure your data is
 	// not overwritten when creating multiple hosted configuration versions in rapid
-	// succession, specify the version of the latest hosted configuration version.
+	// succession, specify the version number of the latest hosted configuration
+	// version.
 	LatestVersionNumber *int64 `location:"header" locationName:"Latest-Version-Number" type:"integer"`
 }
 
@@ -4407,7 +4524,7 @@ type CreateHostedConfigurationVersionOutput struct {
 	Content []byte `type:"blob" sensitive:"true"`
 
 	// A standard MIME type describing the format of the configuration content.
-	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	// For more information, see Content-Type (https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
 	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string"`
 
 	// A description of the configuration.
@@ -4704,12 +4821,12 @@ func (s DeleteDeploymentStrategyOutput) GoString() string {
 type DeleteEnvironmentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The application ID that includes the environment you want to delete.
+	// The application ID that includes the environment that you want to delete.
 	//
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
 
-	// The ID of the environment you want to delete.
+	// The ID of the environment that you want to delete.
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
@@ -4896,21 +5013,21 @@ type DeploymentEvent struct {
 	_ struct{} `type:"structure"`
 
 	// A description of the deployment event. Descriptions include, but are not
-	// limited to, the user account or the CloudWatch alarm ARN that initiated a
-	// rollback, the percentage of hosts that received the deployment, or in the
+	// limited to, the user account or the Amazon CloudWatch alarm ARN that initiated
+	// a rollback, the percentage of hosts that received the deployment, or in the
 	// case of an internal error, a recommendation to attempt a new deployment.
 	Description *string `type:"string"`
 
 	// The type of deployment event. Deployment event types include the start, stop,
 	// or completion of a deployment; a percentage update; the start or stop of
-	// a bake period; the start or completion of a rollback.
+	// a bake period; and the start or completion of a rollback.
 	EventType *string `type:"string" enum:"DeploymentEventType"`
 
 	// The date and time the event occurred.
 	OccurredAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The entity that triggered the deployment event. Events can be triggered by
-	// a user, AWS AppConfig, an Amazon CloudWatch alarm, or an internal error.
+	// a user, AppConfig, an Amazon CloudWatch alarm, or an internal error.
 	TriggeredBy *string `type:"string" enum:"TriggeredBy"`
 }
 
@@ -4965,8 +5082,8 @@ type DeploymentStrategy struct {
 	// The description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets that received a deployed configuration during each
@@ -5071,8 +5188,8 @@ type DeploymentSummary struct {
 	// The sequence number of the deployment.
 	DeploymentNumber *int64 `type:"integer"`
 
-	// The amount of time AppConfig monitors for alarms before considering the deployment
-	// to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitors for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -5362,11 +5479,10 @@ type GetConfigurationInput struct {
 
 	// The configuration version returned in the most recent GetConfiguration response.
 	//
-	// AWS AppConfig uses the value of the ClientConfigurationVersion parameter
-	// to identify the configuration version on your clients. If you don’t send
-	// ClientConfigurationVersion with each call to GetConfiguration, your clients
-	// receive the current configuration. You are charged each time your clients
-	// receive a configuration.
+	// AppConfig uses the value of the ClientConfigurationVersion parameter to identify
+	// the configuration version on your clients. If you don’t send ClientConfigurationVersion
+	// with each call to GetConfiguration, your clients receive the current configuration.
+	// You are charged each time your clients receive a configuration.
 	//
 	// To avoid excess charges, we recommend that you include the ClientConfigurationVersion
 	// value with every call to GetConfiguration. This value must be saved on your
@@ -5374,13 +5490,13 @@ type GetConfigurationInput struct {
 	// the ClientConfigurationVersion parameter.
 	//
 	// For more information about working with configurations, see Retrieving the
-	// Configuration (https://docs.aws.amazon.com/systems-manager/latest/userguide/appconfig-retrieving-the-configuration.html)
-	// in the AWS AppConfig User Guide.
+	// Configuration (http://docs.aws.amazon.com/appconfig/latest/userguide/appconfig-retrieving-the-configuration.html)
+	// in the AppConfig User Guide.
 	ClientConfigurationVersion *string `location:"querystring" locationName:"client_configuration_version" min:"1" type:"string"`
 
-	// A unique ID to identify the client for the configuration. This ID enables
-	// AppConfig to deploy the configuration in intervals, as defined in the deployment
-	// strategy.
+	// The clientId parameter in the following command is a unique, user-specified
+	// ID to identify the client for the configuration. This ID enables AppConfig
+	// to deploy the configuration in intervals, as defined in the deployment strategy.
 	//
 	// ClientId is a required field
 	ClientId *string `location:"querystring" locationName:"client_id" min:"1" type:"string" required:"true"`
@@ -5491,6 +5607,13 @@ type GetConfigurationOutput struct {
 
 	// The content of the configuration or the configuration data.
 	//
+	// Compare the configuration version numbers of the configuration cached locally
+	// on your machine and the configuration number in the the header. If the configuration
+	// numbers are the same, the content can be ignored. The Content section only
+	// appears if the system finds new or updated configuration data. If the system
+	// doesn't find new or updated configuration data, then the Content section
+	// is not returned.
+	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetConfigurationOutput's
 	// String and GoString methods.
@@ -5546,7 +5669,7 @@ type GetConfigurationProfileInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
 
-	// The ID of the configuration profile you want to get.
+	// The ID of the configuration profile that you want to get.
 	//
 	// ConfigurationProfileId is a required field
 	ConfigurationProfileId *string `location:"uri" locationName:"ConfigurationProfileId" type:"string" required:"true"`
@@ -5626,6 +5749,11 @@ type GetConfigurationProfileOutput struct {
 	// specified LocationUri.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
+	// The type of configurations that the configuration profile contains. A configuration
+	// can be a feature flag used for enabling or disabling new features or a free-form
+	// configuration used for distributing configurations to your application.
+	Type *string `type:"string"`
+
 	// A list of methods for validating the configuration.
 	Validators []*Validator `type:"list"`
 }
@@ -5681,6 +5809,12 @@ func (s *GetConfigurationProfileOutput) SetName(v string) *GetConfigurationProfi
 // SetRetrievalRoleArn sets the RetrievalRoleArn field's value.
 func (s *GetConfigurationProfileOutput) SetRetrievalRoleArn(v string) *GetConfigurationProfileOutput {
 	s.RetrievalRoleArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GetConfigurationProfileOutput) SetType(v string) *GetConfigurationProfileOutput {
+	s.Type = &v
 	return s
 }
 
@@ -5810,8 +5944,8 @@ type GetDeploymentOutput struct {
 	// are displayed first.
 	EventLog []*DeploymentEvent `type:"list"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -6015,8 +6149,8 @@ type GetDeploymentStrategyOutput struct {
 	// The description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets that received a deployed configuration during each
@@ -6110,7 +6244,7 @@ type GetEnvironmentInput struct {
 	// ApplicationId is a required field
 	ApplicationId *string `location:"uri" locationName:"ApplicationId" type:"string" required:"true"`
 
-	// The ID of the environment you wnat to get.
+	// The ID of the environment that you want to get.
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"uri" locationName:"EnvironmentId" type:"string" required:"true"`
@@ -6342,7 +6476,7 @@ type GetHostedConfigurationVersionOutput struct {
 	Content []byte `type:"blob" sensitive:"true"`
 
 	// A standard MIME type describing the format of the configuration content.
-	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	// For more information, see Content-Type (https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
 	ContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string"`
 
 	// A description of the configuration.
@@ -6417,7 +6551,7 @@ type HostedConfigurationVersionSummary struct {
 	ConfigurationProfileId *string `type:"string"`
 
 	// A standard MIME type describing the format of the configuration content.
-	// For more information, see Content-Type (https://docs.aws.amazon.com/https:/www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
+	// For more information, see Content-Type (https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17).
 	ContentType *string `min:"1" type:"string"`
 
 	// A description of the configuration.
@@ -6539,6 +6673,68 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Detailed information about the bad request exception error when creating
+// a hosted configuration version.
+type InvalidConfigurationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The invalid or out-of-range validation constraint in your JSON schema that
+	// failed validation.
+	Constraint *string `type:"string"`
+
+	// Location of the validation constraint in the configuration JSON schema that
+	// failed validation.
+	Location *string `type:"string"`
+
+	// The reason for an invalid configuration error.
+	Reason *string `type:"string"`
+
+	// The type of error for an invalid configuration.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetConstraint sets the Constraint field's value.
+func (s *InvalidConfigurationDetail) SetConstraint(v string) *InvalidConfigurationDetail {
+	s.Constraint = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *InvalidConfigurationDetail) SetLocation(v string) *InvalidConfigurationDetail {
+	s.Location = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *InvalidConfigurationDetail) SetReason(v string) *InvalidConfigurationDetail {
+	s.Reason = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *InvalidConfigurationDetail) SetType(v string) *InvalidConfigurationDetail {
+	s.Type = &v
+	return s
+}
+
 type ListApplicationsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -6547,7 +6743,11 @@ type ListApplicationsInput struct {
 	// results.
 	MaxResults *int64 `location:"querystring" locationName:"max_results" min:"1" type:"integer"`
 
-	// A token to start the list. Use this token to get the next set of results.
+	// A token to start the list. Next token is a pagination token generated by
+	// AppConfig to describe what page the previous List call ended on. For the
+	// first List request, the nextToken should not be set. On subsequent calls,
+	// the nextToken parameter should be set to the previous responses nextToken
+	// value. Use this token to get the next set of results.
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
 }
 
@@ -6653,6 +6853,10 @@ type ListConfigurationProfilesInput struct {
 
 	// A token to start the list. Use this token to get the next set of results.
 	NextToken *string `location:"querystring" locationName:"next_token" min:"1" type:"string"`
+
+	// A filter based on the type of configurations that the configuration profile
+	// contains. A configuration can be a feature flag or a free-form configuration.
+	Type *string `location:"querystring" locationName:"type" type:"string"`
 }
 
 // String returns the string representation.
@@ -6710,6 +6914,12 @@ func (s *ListConfigurationProfilesInput) SetMaxResults(v int64) *ListConfigurati
 // SetNextToken sets the NextToken field's value.
 func (s *ListConfigurationProfilesInput) SetNextToken(v string) *ListConfigurationProfilesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ListConfigurationProfilesInput) SetType(v string) *ListConfigurationProfilesInput {
+	s.Type = &v
 	return s
 }
 
@@ -7321,10 +7531,13 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type Monitor struct {
 	_ struct{} `type:"structure"`
 
-	// ARN of the Amazon CloudWatch alarm.
-	AlarmArn *string `min:"20" type:"string"`
+	// Amazon Resource Name (ARN) of the Amazon CloudWatch alarm.
+	//
+	// AlarmArn is a required field
+	AlarmArn *string `min:"1" type:"string" required:"true"`
 
-	// ARN of an IAM role for AppConfig to monitor AlarmArn.
+	// ARN of an Identity and Access Management (IAM) role for AppConfig to monitor
+	// AlarmArn.
 	AlarmRoleArn *string `min:"20" type:"string"`
 }
 
@@ -7349,8 +7562,11 @@ func (s Monitor) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Monitor) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Monitor"}
-	if s.AlarmArn != nil && len(*s.AlarmArn) < 20 {
-		invalidParams.Add(request.NewErrParamMinLen("AlarmArn", 20))
+	if s.AlarmArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AlarmArn"))
+	}
+	if s.AlarmArn != nil && len(*s.AlarmArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AlarmArn", 1))
 	}
 	if s.AlarmRoleArn != nil && len(*s.AlarmRoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("AlarmRoleArn", 20))
@@ -7511,7 +7727,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 }
 
 // The number of hosted configuration versions exceeds the limit for the AppConfig
-// configuration store. Delete one or more versions and try again.
+// hosted configuration store. Delete one or more versions and try again.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7746,8 +7962,8 @@ type StartDeploymentOutput struct {
 	// are displayed first.
 	EventLog []*DeploymentEvent `type:"list"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -8013,8 +8229,8 @@ type StopDeploymentOutput struct {
 	// are displayed first.
 	EventLog []*DeploymentEvent `type:"list"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
@@ -8592,6 +8808,11 @@ type UpdateConfigurationProfileOutput struct {
 	// specified LocationUri.
 	RetrievalRoleArn *string `min:"20" type:"string"`
 
+	// The type of configurations that the configuration profile contains. A configuration
+	// can be a feature flag used for enabling or disabling new features or a free-form
+	// configuration used for distributing configurations to your application.
+	Type *string `type:"string"`
+
 	// A list of methods for validating the configuration.
 	Validators []*Validator `type:"list"`
 }
@@ -8650,6 +8871,12 @@ func (s *UpdateConfigurationProfileOutput) SetRetrievalRoleArn(v string) *Update
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *UpdateConfigurationProfileOutput) SetType(v string) *UpdateConfigurationProfileOutput {
+	s.Type = &v
+	return s
+}
+
 // SetValidators sets the Validators field's value.
 func (s *UpdateConfigurationProfileOutput) SetValidators(v []*Validator) *UpdateConfigurationProfileOutput {
 	s.Validators = v
@@ -8670,16 +8897,16 @@ type UpdateDeploymentStrategyInput struct {
 	// A description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitors for alarms before considering the deployment
-	// to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitors for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets to receive a deployed configuration during each
 	// interval.
 	GrowthFactor *float64 `min:"1" type:"float"`
 
-	// The algorithm used to define how percentage grows over time. AWS AppConfig
-	// supports the following growth types:
+	// The algorithm used to define how percentage grows over time. AppConfig supports
+	// the following growth types:
 	//
 	// Linear: For this type, AppConfig processes the deployment by increments of
 	// the growth factor evenly distributed over the deployment time. For example,
@@ -8788,8 +9015,8 @@ type UpdateDeploymentStrategyOutput struct {
 	// The description of the deployment strategy.
 	Description *string `type:"string"`
 
-	// The amount of time AppConfig monitored for alarms before considering the
-	// deployment to be complete and no longer eligible for automatic roll back.
+	// The amount of time that AppConfig monitored for alarms before considering
+	// the deployment to be complete and no longer eligible for automatic rollback.
 	FinalBakeTimeInMinutes *int64 `type:"integer"`
 
 	// The percentage of targets that received a deployed configuration during each
@@ -9164,15 +9391,15 @@ func (s ValidateConfigurationOutput) GoString() string {
 }
 
 // A validator provides a syntactic or semantic check to ensure the configuration
-// you want to deploy functions as intended. To validate your application configuration
-// data, you provide a schema or a Lambda function that runs against the configuration.
-// The configuration deployment or update can only proceed when the configuration
-// data is valid.
+// that you want to deploy functions as intended. To validate your application
+// configuration data, you provide a schema or a Lambda function that runs against
+// the configuration. The configuration deployment or update can only proceed
+// when the configuration data is valid.
 type Validator struct {
 	_ struct{} `type:"structure"`
 
-	// Either the JSON Schema content or the Amazon Resource Name (ARN) of an AWS
-	// Lambda function.
+	// Either the JSON Schema content or the Amazon Resource Name (ARN) of an Lambda
+	// function.
 	//
 	// Content is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by Validator's
@@ -9231,6 +9458,18 @@ func (s *Validator) SetContent(v string) *Validator {
 func (s *Validator) SetType(v string) *Validator {
 	s.Type = &v
 	return s
+}
+
+const (
+	// BadRequestReasonInvalidConfiguration is a BadRequestReason enum value
+	BadRequestReasonInvalidConfiguration = "InvalidConfiguration"
+)
+
+// BadRequestReason_Values returns all elements of the BadRequestReason enum
+func BadRequestReason_Values() []string {
+	return []string{
+		BadRequestReasonInvalidConfiguration,
+	}
 }
 
 const (

@@ -84,6 +84,10 @@ type GlueDataBrewAPI interface {
 	CreateRecipeJobWithContext(aws.Context, *gluedatabrew.CreateRecipeJobInput, ...request.Option) (*gluedatabrew.CreateRecipeJobOutput, error)
 	CreateRecipeJobRequest(*gluedatabrew.CreateRecipeJobInput) (*request.Request, *gluedatabrew.CreateRecipeJobOutput)
 
+	CreateRuleset(*gluedatabrew.CreateRulesetInput) (*gluedatabrew.CreateRulesetOutput, error)
+	CreateRulesetWithContext(aws.Context, *gluedatabrew.CreateRulesetInput, ...request.Option) (*gluedatabrew.CreateRulesetOutput, error)
+	CreateRulesetRequest(*gluedatabrew.CreateRulesetInput) (*request.Request, *gluedatabrew.CreateRulesetOutput)
+
 	CreateSchedule(*gluedatabrew.CreateScheduleInput) (*gluedatabrew.CreateScheduleOutput, error)
 	CreateScheduleWithContext(aws.Context, *gluedatabrew.CreateScheduleInput, ...request.Option) (*gluedatabrew.CreateScheduleOutput, error)
 	CreateScheduleRequest(*gluedatabrew.CreateScheduleInput) (*request.Request, *gluedatabrew.CreateScheduleOutput)
@@ -103,6 +107,10 @@ type GlueDataBrewAPI interface {
 	DeleteRecipeVersion(*gluedatabrew.DeleteRecipeVersionInput) (*gluedatabrew.DeleteRecipeVersionOutput, error)
 	DeleteRecipeVersionWithContext(aws.Context, *gluedatabrew.DeleteRecipeVersionInput, ...request.Option) (*gluedatabrew.DeleteRecipeVersionOutput, error)
 	DeleteRecipeVersionRequest(*gluedatabrew.DeleteRecipeVersionInput) (*request.Request, *gluedatabrew.DeleteRecipeVersionOutput)
+
+	DeleteRuleset(*gluedatabrew.DeleteRulesetInput) (*gluedatabrew.DeleteRulesetOutput, error)
+	DeleteRulesetWithContext(aws.Context, *gluedatabrew.DeleteRulesetInput, ...request.Option) (*gluedatabrew.DeleteRulesetOutput, error)
+	DeleteRulesetRequest(*gluedatabrew.DeleteRulesetInput) (*request.Request, *gluedatabrew.DeleteRulesetOutput)
 
 	DeleteSchedule(*gluedatabrew.DeleteScheduleInput) (*gluedatabrew.DeleteScheduleOutput, error)
 	DeleteScheduleWithContext(aws.Context, *gluedatabrew.DeleteScheduleInput, ...request.Option) (*gluedatabrew.DeleteScheduleOutput, error)
@@ -127,6 +135,10 @@ type GlueDataBrewAPI interface {
 	DescribeRecipe(*gluedatabrew.DescribeRecipeInput) (*gluedatabrew.DescribeRecipeOutput, error)
 	DescribeRecipeWithContext(aws.Context, *gluedatabrew.DescribeRecipeInput, ...request.Option) (*gluedatabrew.DescribeRecipeOutput, error)
 	DescribeRecipeRequest(*gluedatabrew.DescribeRecipeInput) (*request.Request, *gluedatabrew.DescribeRecipeOutput)
+
+	DescribeRuleset(*gluedatabrew.DescribeRulesetInput) (*gluedatabrew.DescribeRulesetOutput, error)
+	DescribeRulesetWithContext(aws.Context, *gluedatabrew.DescribeRulesetInput, ...request.Option) (*gluedatabrew.DescribeRulesetOutput, error)
+	DescribeRulesetRequest(*gluedatabrew.DescribeRulesetInput) (*request.Request, *gluedatabrew.DescribeRulesetOutput)
 
 	DescribeSchedule(*gluedatabrew.DescribeScheduleInput) (*gluedatabrew.DescribeScheduleOutput, error)
 	DescribeScheduleWithContext(aws.Context, *gluedatabrew.DescribeScheduleInput, ...request.Option) (*gluedatabrew.DescribeScheduleOutput, error)
@@ -173,6 +185,13 @@ type GlueDataBrewAPI interface {
 
 	ListRecipesPages(*gluedatabrew.ListRecipesInput, func(*gluedatabrew.ListRecipesOutput, bool) bool) error
 	ListRecipesPagesWithContext(aws.Context, *gluedatabrew.ListRecipesInput, func(*gluedatabrew.ListRecipesOutput, bool) bool, ...request.Option) error
+
+	ListRulesets(*gluedatabrew.ListRulesetsInput) (*gluedatabrew.ListRulesetsOutput, error)
+	ListRulesetsWithContext(aws.Context, *gluedatabrew.ListRulesetsInput, ...request.Option) (*gluedatabrew.ListRulesetsOutput, error)
+	ListRulesetsRequest(*gluedatabrew.ListRulesetsInput) (*request.Request, *gluedatabrew.ListRulesetsOutput)
+
+	ListRulesetsPages(*gluedatabrew.ListRulesetsInput, func(*gluedatabrew.ListRulesetsOutput, bool) bool) error
+	ListRulesetsPagesWithContext(aws.Context, *gluedatabrew.ListRulesetsInput, func(*gluedatabrew.ListRulesetsOutput, bool) bool, ...request.Option) error
 
 	ListSchedules(*gluedatabrew.ListSchedulesInput) (*gluedatabrew.ListSchedulesOutput, error)
 	ListSchedulesWithContext(aws.Context, *gluedatabrew.ListSchedulesInput, ...request.Option) (*gluedatabrew.ListSchedulesOutput, error)
@@ -232,6 +251,10 @@ type GlueDataBrewAPI interface {
 	UpdateRecipeJob(*gluedatabrew.UpdateRecipeJobInput) (*gluedatabrew.UpdateRecipeJobOutput, error)
 	UpdateRecipeJobWithContext(aws.Context, *gluedatabrew.UpdateRecipeJobInput, ...request.Option) (*gluedatabrew.UpdateRecipeJobOutput, error)
 	UpdateRecipeJobRequest(*gluedatabrew.UpdateRecipeJobInput) (*request.Request, *gluedatabrew.UpdateRecipeJobOutput)
+
+	UpdateRuleset(*gluedatabrew.UpdateRulesetInput) (*gluedatabrew.UpdateRulesetOutput, error)
+	UpdateRulesetWithContext(aws.Context, *gluedatabrew.UpdateRulesetInput, ...request.Option) (*gluedatabrew.UpdateRulesetOutput, error)
+	UpdateRulesetRequest(*gluedatabrew.UpdateRulesetInput) (*request.Request, *gluedatabrew.UpdateRulesetOutput)
 
 	UpdateSchedule(*gluedatabrew.UpdateScheduleInput) (*gluedatabrew.UpdateScheduleOutput, error)
 	UpdateScheduleWithContext(aws.Context, *gluedatabrew.UpdateScheduleInput, ...request.Option) (*gluedatabrew.UpdateScheduleOutput, error)

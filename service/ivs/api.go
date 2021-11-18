@@ -1216,6 +1216,88 @@ func (c *IVS) GetStreamKeyWithContext(ctx aws.Context, input *GetStreamKeyInput,
 	return out, req.Send()
 }
 
+const opGetStreamSession = "GetStreamSession"
+
+// GetStreamSessionRequest generates a "aws/request.Request" representing the
+// client's request for the GetStreamSession operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetStreamSession for more information on using the GetStreamSession
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetStreamSessionRequest method.
+//    req, resp := client.GetStreamSessionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetStreamSession
+func (c *IVS) GetStreamSessionRequest(input *GetStreamSessionInput) (req *request.Request, output *GetStreamSessionOutput) {
+	op := &request.Operation{
+		Name:       opGetStreamSession,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetStreamSession",
+	}
+
+	if input == nil {
+		input = &GetStreamSessionInput{}
+	}
+
+	output = &GetStreamSessionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetStreamSession API operation for Amazon Interactive Video Service.
+//
+// Gets metadata on a specified stream.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation GetStreamSession for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//
+//   * AccessDeniedException
+//
+//   * ValidationException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetStreamSession
+func (c *IVS) GetStreamSession(input *GetStreamSessionInput) (*GetStreamSessionOutput, error) {
+	req, out := c.GetStreamSessionRequest(input)
+	return out, req.Send()
+}
+
+// GetStreamSessionWithContext is the same as GetStreamSession with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetStreamSession for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) GetStreamSessionWithContext(ctx aws.Context, input *GetStreamSessionInput, opts ...request.Option) (*GetStreamSessionOutput, error) {
+	req, out := c.GetStreamSessionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opImportPlaybackKeyPair = "ImportPlaybackKeyPair"
 
 // ImportPlaybackKeyPairRequest generates a "aws/request.Request" representing the
@@ -1864,6 +1946,147 @@ func (c *IVS) ListStreamKeysPagesWithContext(ctx aws.Context, input *ListStreamK
 
 	for p.Next() {
 		if !fn(p.Page().(*ListStreamKeysOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListStreamSessions = "ListStreamSessions"
+
+// ListStreamSessionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStreamSessions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStreamSessions for more information on using the ListStreamSessions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListStreamSessionsRequest method.
+//    req, resp := client.ListStreamSessionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListStreamSessions
+func (c *IVS) ListStreamSessionsRequest(input *ListStreamSessionsInput) (req *request.Request, output *ListStreamSessionsOutput) {
+	op := &request.Operation{
+		Name:       opListStreamSessions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListStreamSessions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStreamSessionsInput{}
+	}
+
+	output = &ListStreamSessionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStreamSessions API operation for Amazon Interactive Video Service.
+//
+// Gets a summary of current and previous streams for a specified channel in
+// your account, in the AWS region where the API request is processed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation ListStreamSessions for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//
+//   * AccessDeniedException
+//
+//   * ValidationException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListStreamSessions
+func (c *IVS) ListStreamSessions(input *ListStreamSessionsInput) (*ListStreamSessionsOutput, error) {
+	req, out := c.ListStreamSessionsRequest(input)
+	return out, req.Send()
+}
+
+// ListStreamSessionsWithContext is the same as ListStreamSessions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStreamSessions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) ListStreamSessionsWithContext(ctx aws.Context, input *ListStreamSessionsInput, opts ...request.Option) (*ListStreamSessionsOutput, error) {
+	req, out := c.ListStreamSessionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStreamSessionsPages iterates over the pages of a ListStreamSessions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStreamSessions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListStreamSessions operation.
+//    pageNum := 0
+//    err := client.ListStreamSessionsPages(params,
+//        func(page *ivs.ListStreamSessionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IVS) ListStreamSessionsPages(input *ListStreamSessionsInput, fn func(*ListStreamSessionsOutput, bool) bool) error {
+	return c.ListStreamSessionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStreamSessionsPagesWithContext same as ListStreamSessionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) ListStreamSessionsPagesWithContext(ctx aws.Context, input *ListStreamSessionsInput, fn func(*ListStreamSessionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStreamSessionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStreamSessionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStreamSessionsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2593,6 +2816,66 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Object specifying a stream’s audio configuration.
+type AudioConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Number of audio channels.
+	Channels *int64 `locationName:"channels" type:"long"`
+
+	// Codec used for the audio encoding.
+	Codec *string `locationName:"codec" type:"string"`
+
+	// Number of audio samples recorded per second.
+	SampleRate *int64 `locationName:"sampleRate" type:"long"`
+
+	// The expected ingest bitrate (bits per second). This is configured in the
+	// encoder.
+	TargetBitrate *int64 `locationName:"targetBitrate" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetChannels sets the Channels field's value.
+func (s *AudioConfiguration) SetChannels(v int64) *AudioConfiguration {
+	s.Channels = &v
+	return s
+}
+
+// SetCodec sets the Codec field's value.
+func (s *AudioConfiguration) SetCodec(v string) *AudioConfiguration {
+	s.Codec = &v
+	return s
+}
+
+// SetSampleRate sets the SampleRate field's value.
+func (s *AudioConfiguration) SetSampleRate(v int64) *AudioConfiguration {
+	s.SampleRate = &v
+	return s
+}
+
+// SetTargetBitrate sets the TargetBitrate field's value.
+func (s *AudioConfiguration) SetTargetBitrate(v int64) *AudioConfiguration {
+	s.TargetBitrate = &v
+	return s
 }
 
 // Error related to a specific channel, specified by its ARN.
@@ -4205,6 +4488,100 @@ func (s *GetStreamOutput) SetStream(v *Stream) *GetStreamOutput {
 	return s
 }
 
+type GetStreamSessionInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the channel resource
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
+
+	// Unique identifier for a live or previously live stream in the specified channel.
+	// If no streamId is provided, this returns the most recent stream session for
+	// the channel, if it exists.
+	StreamId *string `locationName:"streamId" min:"26" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStreamSessionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStreamSessionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetStreamSessionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetStreamSessionInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 1))
+	}
+	if s.StreamId != nil && len(*s.StreamId) < 26 {
+		invalidParams.Add(request.NewErrParamMinLen("StreamId", 26))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *GetStreamSessionInput) SetChannelArn(v string) *GetStreamSessionInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetStreamId sets the StreamId field's value.
+func (s *GetStreamSessionInput) SetStreamId(v string) *GetStreamSessionInput {
+	s.StreamId = &v
+	return s
+}
+
+type GetStreamSessionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of stream details.
+	StreamSession *StreamSession `locationName:"streamSession" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStreamSessionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetStreamSessionOutput) GoString() string {
+	return s.String()
+}
+
+// SetStreamSession sets the StreamSession field's value.
+func (s *GetStreamSessionOutput) SetStreamSession(v *StreamSession) *GetStreamSessionOutput {
+	s.StreamSession = v
+	return s
+}
+
 type ImportPlaybackKeyPairInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4297,6 +4674,48 @@ func (s ImportPlaybackKeyPairOutput) GoString() string {
 // SetKeyPair sets the KeyPair field's value.
 func (s *ImportPlaybackKeyPairOutput) SetKeyPair(v *PlaybackKeyPair) *ImportPlaybackKeyPairOutput {
 	s.KeyPair = v
+	return s
+}
+
+// Object specifying the ingest configuration set up by the broadcaster, usually
+// in an encoder.
+type IngestConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Encoder settings for audio.
+	Audio *AudioConfiguration `locationName:"audio" type:"structure"`
+
+	// Encoder settings for video.
+	Video *VideoConfiguration `locationName:"video" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IngestConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAudio sets the Audio field's value.
+func (s *IngestConfiguration) SetAudio(v *AudioConfiguration) *IngestConfiguration {
+	s.Audio = v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *IngestConfiguration) SetVideo(v *VideoConfiguration) *IngestConfiguration {
+	s.Video = v
 	return s
 }
 
@@ -4789,8 +5208,123 @@ func (s *ListStreamKeysOutput) SetStreamKeys(v []*StreamKeySummary) *ListStreamK
 	return s
 }
 
+type ListStreamSessionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Channel ARN used to filter the list.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
+
+	// Maximum number of streams to return. Default: 50.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first stream to retrieve. This is used for pagination; see the nextToken
+	// response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStreamSessionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStreamSessionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStreamSessionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStreamSessionsInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *ListStreamSessionsInput) SetChannelArn(v string) *ListStreamSessionsInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStreamSessionsInput) SetMaxResults(v int64) *ListStreamSessionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStreamSessionsInput) SetNextToken(v string) *ListStreamSessionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListStreamSessionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are more streams than maxResults, use nextToken in the request to
+	// get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// StreamSessions is a required field
+	StreamSessions []*StreamSessionSummary `locationName:"streamSessions" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStreamSessionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListStreamSessionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStreamSessionsOutput) SetNextToken(v string) *ListStreamSessionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStreamSessions sets the StreamSessions field's value.
+func (s *ListStreamSessionsOutput) SetStreamSessions(v []*StreamSessionSummary) *ListStreamSessionsOutput {
+	s.StreamSessions = v
+	return s
+}
+
 type ListStreamsInput struct {
 	_ struct{} `type:"structure"`
+
+	// Filters the stream list to match the specified criterion.
+	FilterBy *StreamFilters `locationName:"filterBy" type:"structure"`
 
 	// Maximum number of streams to return. Default: 50.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
@@ -4829,6 +5363,12 @@ func (s *ListStreamsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFilterBy sets the FilterBy field's value.
+func (s *ListStreamsInput) SetFilterBy(v *StreamFilters) *ListStreamsInput {
+	s.FilterBy = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -5661,6 +6201,9 @@ type Stream struct {
 	// The stream’s state.
 	State *string `locationName:"state" type:"string" enum:"StreamState"`
 
+	// Unique identifier for a live or previously live stream in the specified channel.
+	StreamId *string `locationName:"streamId" min:"26" type:"string"`
+
 	// A count of concurrent views of the stream. Typically, a new view appears
 	// in viewerCount within 15 seconds of when video playback starts and a view
 	// is removed from viewerCount within 1 minute of when video playback ends.
@@ -5716,9 +6259,98 @@ func (s *Stream) SetState(v string) *Stream {
 	return s
 }
 
+// SetStreamId sets the StreamId field's value.
+func (s *Stream) SetStreamId(v string) *Stream {
+	s.StreamId = &v
+	return s
+}
+
 // SetViewerCount sets the ViewerCount field's value.
 func (s *Stream) SetViewerCount(v int64) *Stream {
 	s.ViewerCount = &v
+	return s
+}
+
+// Object specifying a stream’s events. For a list of events, see Using Amazon
+// EventBridge with Amazon IVS (https://docs.aws.amazon.com/ivs/latest/userguide/eventbridge.html).
+type StreamEvent struct {
+	_ struct{} `type:"structure"`
+
+	// UTC ISO-8601 formatted timestamp of when the event occurred.
+	EventTime *time.Time `locationName:"eventTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Name that identifies the stream event within a type.
+	Name *string `locationName:"name" type:"string"`
+
+	// Logical group for certain events.
+	Type *string `locationName:"type" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamEvent) GoString() string {
+	return s.String()
+}
+
+// SetEventTime sets the EventTime field's value.
+func (s *StreamEvent) SetEventTime(v time.Time) *StreamEvent {
+	s.EventTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StreamEvent) SetName(v string) *StreamEvent {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *StreamEvent) SetType(v string) *StreamEvent {
+	s.Type = &v
+	return s
+}
+
+// Object specifying the stream attribute on which to filter.
+type StreamFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The stream’s health.
+	Health *string `locationName:"health" type:"string" enum:"StreamHealth"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamFilters) GoString() string {
+	return s.String()
+}
+
+// SetHealth sets the Health field's value.
+func (s *StreamFilters) SetHealth(v string) *StreamFilters {
+	s.Health = &v
 	return s
 }
 
@@ -5835,6 +6467,157 @@ func (s *StreamKeySummary) SetTags(v map[string]*string) *StreamKeySummary {
 	return s
 }
 
+// Object that captures the Amazon IVS configuration that the customer provisioned,
+// the ingest configurations that the broadcaster used, and the most recent
+// Amazon IVS stream events it encountered.
+type StreamSession struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the channel at the time of going live.
+	Channel *Channel `locationName:"channel" type:"structure"`
+
+	// UTC ISO-8601 formatted timestamp of when the channel went offline. For live
+	// streams, this is NULL.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The properties of the incoming RTMP stream for the stream.
+	IngestConfiguration *IngestConfiguration `locationName:"ingestConfiguration" type:"structure"`
+
+	// The properties of recording the live stream.
+	RecordingConfiguration *RecordingConfiguration `locationName:"recordingConfiguration" type:"structure"`
+
+	// UTC ISO-8601 formatted timestamp of when the channel went live.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Unique identifier for a live or previously live stream in the specified channel.
+	StreamId *string `locationName:"streamId" min:"26" type:"string"`
+
+	// List of Amazon IVS events that the stream encountered. The list is sorted
+	// by most recent events and contains up to 500 events. For Amazon IVS events,
+	// see Using Amazon EventBridge with Amazon IVS (https://docs.aws.amazon.com/ivs/latest/userguide/eventbridge.html).
+	TruncatedEvents []*StreamEvent `locationName:"truncatedEvents" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamSession) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamSession) GoString() string {
+	return s.String()
+}
+
+// SetChannel sets the Channel field's value.
+func (s *StreamSession) SetChannel(v *Channel) *StreamSession {
+	s.Channel = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *StreamSession) SetEndTime(v time.Time) *StreamSession {
+	s.EndTime = &v
+	return s
+}
+
+// SetIngestConfiguration sets the IngestConfiguration field's value.
+func (s *StreamSession) SetIngestConfiguration(v *IngestConfiguration) *StreamSession {
+	s.IngestConfiguration = v
+	return s
+}
+
+// SetRecordingConfiguration sets the RecordingConfiguration field's value.
+func (s *StreamSession) SetRecordingConfiguration(v *RecordingConfiguration) *StreamSession {
+	s.RecordingConfiguration = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *StreamSession) SetStartTime(v time.Time) *StreamSession {
+	s.StartTime = &v
+	return s
+}
+
+// SetStreamId sets the StreamId field's value.
+func (s *StreamSession) SetStreamId(v string) *StreamSession {
+	s.StreamId = &v
+	return s
+}
+
+// SetTruncatedEvents sets the TruncatedEvents field's value.
+func (s *StreamSession) SetTruncatedEvents(v []*StreamEvent) *StreamSession {
+	s.TruncatedEvents = v
+	return s
+}
+
+// Summary information about a stream session.
+type StreamSessionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// UTC ISO-8601 formatted timestamp of when the channel went offline. For live
+	// streams, this is NULL.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// If true, this stream encountered a quota breach or failure.
+	HasErrorEvent *bool `locationName:"hasErrorEvent" type:"boolean"`
+
+	// UTC ISO-8601 formatted timestamp of when the channel went live.
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Unique identifier for a live or previously live stream in the specified channel.
+	StreamId *string `locationName:"streamId" min:"26" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamSessionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StreamSessionSummary) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *StreamSessionSummary) SetEndTime(v time.Time) *StreamSessionSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetHasErrorEvent sets the HasErrorEvent field's value.
+func (s *StreamSessionSummary) SetHasErrorEvent(v bool) *StreamSessionSummary {
+	s.HasErrorEvent = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *StreamSessionSummary) SetStartTime(v time.Time) *StreamSessionSummary {
+	s.StartTime = &v
+	return s
+}
+
+// SetStreamId sets the StreamId field's value.
+func (s *StreamSessionSummary) SetStreamId(v string) *StreamSessionSummary {
+	s.StreamId = &v
+	return s
+}
+
 // Summary information about a stream.
 type StreamSummary struct {
 	_ struct{} `type:"structure"`
@@ -5851,6 +6634,9 @@ type StreamSummary struct {
 
 	// The stream’s state.
 	State *string `locationName:"state" type:"string" enum:"StreamState"`
+
+	// Unique identifier for a live or previously live stream in the specified channel.
+	StreamId *string `locationName:"streamId" min:"26" type:"string"`
 
 	// A count of concurrent views of the stream. Typically, a new view appears
 	// in viewerCount within 15 seconds of when video playback starts and a view
@@ -5898,6 +6684,12 @@ func (s *StreamSummary) SetStartTime(v time.Time) *StreamSummary {
 // SetState sets the State field's value.
 func (s *StreamSummary) SetState(v string) *StreamSummary {
 	s.State = &v
+	return s
+}
+
+// SetStreamId sets the StreamId field's value.
+func (s *StreamSummary) SetStreamId(v string) *StreamSummary {
+	s.StreamId = &v
 	return s
 }
 
@@ -6416,6 +7208,104 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Object specifying a stream’s video configuration.
+type VideoConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates the degree of required decoder performance for a profile. Normally
+	// this is set automatically by the encoder. For details, see the H.264 specification.
+	AvcLevel *string `locationName:"avcLevel" type:"string"`
+
+	// Indicates to the decoder the requirements for decoding the stream. For definitions
+	// of the valid values, see the H.264 specification.
+	AvcProfile *string `locationName:"avcProfile" type:"string"`
+
+	// Codec used for the video encoding.
+	Codec *string `locationName:"codec" type:"string"`
+
+	// Software or hardware used to encode the video.
+	Encoder *string `locationName:"encoder" type:"string"`
+
+	// The expected ingest bitrate (bits per second). This is configured in the
+	// encoder.
+	TargetBitrate *int64 `locationName:"targetBitrate" type:"long"`
+
+	// The expected ingest framerate. This is configured in the encoder.
+	TargetFramerate *int64 `locationName:"targetFramerate" type:"long"`
+
+	// Video-resolution height in pixels.
+	VideoHeight *int64 `locationName:"videoHeight" type:"long"`
+
+	// Video-resolution width in pixels.
+	VideoWidth *int64 `locationName:"videoWidth" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAvcLevel sets the AvcLevel field's value.
+func (s *VideoConfiguration) SetAvcLevel(v string) *VideoConfiguration {
+	s.AvcLevel = &v
+	return s
+}
+
+// SetAvcProfile sets the AvcProfile field's value.
+func (s *VideoConfiguration) SetAvcProfile(v string) *VideoConfiguration {
+	s.AvcProfile = &v
+	return s
+}
+
+// SetCodec sets the Codec field's value.
+func (s *VideoConfiguration) SetCodec(v string) *VideoConfiguration {
+	s.Codec = &v
+	return s
+}
+
+// SetEncoder sets the Encoder field's value.
+func (s *VideoConfiguration) SetEncoder(v string) *VideoConfiguration {
+	s.Encoder = &v
+	return s
+}
+
+// SetTargetBitrate sets the TargetBitrate field's value.
+func (s *VideoConfiguration) SetTargetBitrate(v int64) *VideoConfiguration {
+	s.TargetBitrate = &v
+	return s
+}
+
+// SetTargetFramerate sets the TargetFramerate field's value.
+func (s *VideoConfiguration) SetTargetFramerate(v int64) *VideoConfiguration {
+	s.TargetFramerate = &v
+	return s
+}
+
+// SetVideoHeight sets the VideoHeight field's value.
+func (s *VideoConfiguration) SetVideoHeight(v int64) *VideoConfiguration {
+	s.VideoHeight = &v
+	return s
+}
+
+// SetVideoWidth sets the VideoWidth field's value.
+func (s *VideoConfiguration) SetVideoWidth(v int64) *VideoConfiguration {
+	s.VideoWidth = &v
+	return s
 }
 
 const (

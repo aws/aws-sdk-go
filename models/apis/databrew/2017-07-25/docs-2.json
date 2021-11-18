@@ -8,17 +8,20 @@
     "CreateProject": "<p>Creates a new DataBrew project.</p>",
     "CreateRecipe": "<p>Creates a new DataBrew recipe.</p>",
     "CreateRecipeJob": "<p>Creates a new job to transform input data, using steps defined in an existing Glue DataBrew recipe</p>",
+    "CreateRuleset": "<p>Creates a new ruleset that can be used in a profile job to validate the data quality of a dataset.</p>",
     "CreateSchedule": "<p>Creates a new schedule for one or more DataBrew jobs. Jobs can be run at a specific date and time, or at regular intervals.</p>",
     "DeleteDataset": "<p>Deletes a dataset from DataBrew.</p>",
     "DeleteJob": "<p>Deletes the specified DataBrew job.</p>",
     "DeleteProject": "<p>Deletes an existing DataBrew project.</p>",
     "DeleteRecipeVersion": "<p>Deletes a single version of a DataBrew recipe.</p>",
+    "DeleteRuleset": "<p>Deletes a ruleset.</p>",
     "DeleteSchedule": "<p>Deletes the specified DataBrew schedule.</p>",
     "DescribeDataset": "<p>Returns the definition of a specific DataBrew dataset.</p>",
     "DescribeJob": "<p>Returns the definition of a specific DataBrew job.</p>",
     "DescribeJobRun": "<p>Represents one run of a DataBrew job.</p>",
     "DescribeProject": "<p>Returns the definition of a specific DataBrew project.</p>",
     "DescribeRecipe": "<p>Returns the definition of a specific DataBrew recipe corresponding to a particular version.</p>",
+    "DescribeRuleset": "<p>Retrieves detailed information about the ruleset.</p>",
     "DescribeSchedule": "<p>Returns the definition of a specific DataBrew schedule.</p>",
     "ListDatasets": "<p>Lists all of the DataBrew datasets.</p>",
     "ListJobRuns": "<p>Lists all of the previous runs of a particular DataBrew job.</p>",
@@ -26,6 +29,7 @@
     "ListProjects": "<p>Lists all of the DataBrew projects that are defined.</p>",
     "ListRecipeVersions": "<p>Lists the versions of a particular DataBrew recipe, except for <code>LATEST_WORKING</code>.</p>",
     "ListRecipes": "<p>Lists all of the DataBrew recipes that are defined.</p>",
+    "ListRulesets": "<p>List all rulesets available in the current account or rulesets associated with a specific resource (dataset).</p>",
     "ListSchedules": "<p>Lists the DataBrew schedules that are defined.</p>",
     "ListTagsForResource": "<p>Lists all the tags for a DataBrew resource. </p>",
     "PublishRecipe": "<p>Publishes a new version of a DataBrew recipe.</p>",
@@ -40,6 +44,7 @@
     "UpdateProject": "<p>Modifies the definition of an existing DataBrew project.</p>",
     "UpdateRecipe": "<p>Modifies the definition of the <code>LATEST_WORKING</code> version of a DataBrew recipe.</p>",
     "UpdateRecipeJob": "<p>Modifies the definition of an existing DataBrew recipe job.</p>",
+    "UpdateRuleset": "<p>Updates specified ruleset.</p>",
     "UpdateSchedule": "<p>Modifies the definition of an existing DataBrew schedule.</p>"
   },
   "shapes": {
@@ -54,6 +59,7 @@
         "Dataset$AccountId": "<p>The ID of the Amazon Web Services account that owns the dataset.</p>",
         "Job$AccountId": "<p>The ID of the Amazon Web Services account that owns the job.</p>",
         "Project$AccountId": "<p>The ID of the Amazon Web Services account that owns the project.</p>",
+        "RulesetItem$AccountId": "<p>The ID of the Amazon Web Services account that owns the ruleset.</p>",
         "Schedule$AccountId": "<p>The ID of the Amazon Web Services account that owns the schedule.</p>"
       }
     },
@@ -63,12 +69,31 @@
         "SendProjectSessionActionResponse$ActionId": "<p>A unique identifier for the action that was performed.</p>"
       }
     },
+    "AllowedStatisticList": {
+      "base": null,
+      "refs": {
+        "EntityDetectorConfiguration$AllowedStatistics": "<p>Configuration of statistics that are allowed to be run on columns that contain detected entities. When undefined, no statistics will be computed on columns that contain detected entities.</p>"
+      }
+    },
+    "AllowedStatistics": {
+      "base": "<p>Configuration of statistics that are allowed to be run on columns that contain detected entities. When undefined, no statistics will be computed on columns that contain detected entities.</p>",
+      "refs": {
+        "AllowedStatisticList$member": null
+      }
+    },
+    "AnalyticsMode": {
+      "base": null,
+      "refs": {
+        "ViewFrame$Analytics": "<p>Controls if analytics computation is enabled or disabled. Enabled by default.</p>"
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
         "CreateProfileJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role to be assumed when DataBrew runs the job.</p>",
         "CreateProjectRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role to be assumed for this request.</p>",
         "CreateRecipeJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role to be assumed when DataBrew runs the job.</p>",
+        "CreateRulesetRequest$TargetArn": "<p>The Amazon Resource Name (ARN) of a resource (dataset) that the ruleset is associated with.</p>",
         "Dataset$ResourceArn": "<p>The unique Amazon Resource Name (ARN) for the dataset.</p>",
         "DescribeDatasetResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DescribeJobResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the job.</p>",
@@ -76,19 +101,26 @@
         "DescribeProjectResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the project.</p>",
         "DescribeProjectResponse$RoleArn": "<p>The ARN of the Identity and Access Management (IAM) role to be assumed when DataBrew runs the job.</p>",
         "DescribeRecipeResponse$ResourceArn": "<p>The ARN of the recipe.</p>",
+        "DescribeRulesetResponse$TargetArn": "<p>The Amazon Resource Name (ARN) of a resource (dataset) that the ruleset is associated with.</p>",
+        "DescribeRulesetResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) for the ruleset.</p>",
         "DescribeScheduleResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the schedule.</p>",
         "Job$ResourceArn": "<p>The unique Amazon Resource Name (ARN) for the job.</p>",
         "Job$RoleArn": "<p>The Amazon Resource Name (ARN) of the role to be assumed for this job.</p>",
+        "ListRulesetsRequest$TargetArn": "<p>The Amazon Resource Name (ARN) of a resource (dataset). Using this parameter indicates to return only those rulesets that are associated with the specified resource.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the DataBrew resource. </p>",
+        "Metadata$SourceArn": "<p>The Amazon Resource Name (ARN) associated with the dataset. Currently, DataBrew only supports ARNs from Amazon AppFlow.</p>",
         "Project$ResourceArn": "<p>The Amazon Resource Name (ARN) for the project.</p>",
         "Project$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that will be assumed for this project.</p>",
         "Recipe$ResourceArn": "<p>The Amazon Resource Name (ARN) for the recipe.</p>",
+        "RulesetItem$ResourceArn": "<p>The Amazon Resource Name (ARN) for the ruleset.</p>",
+        "RulesetItem$TargetArn": "<p>The Amazon Resource Name (ARN) of a resource (dataset) that the ruleset is associated with.</p>",
         "Schedule$ResourceArn": "<p>The Amazon Resource Name (ARN) of the schedule.</p>",
         "TagResourceRequest$ResourceArn": "<p>The DataBrew resource to which tags should be added. The value for this parameter is an Amazon Resource Name (ARN). For DataBrew, you can tag a dataset, a job, a project, or a recipe.</p>",
         "UntagResourceRequest$ResourceArn": "<p>A DataBrew resource from which you want to remove a tag or tags. The value for this parameter is an Amazon Resource Name (ARN). </p>",
         "UpdateProfileJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role to be assumed when DataBrew runs the job.</p>",
         "UpdateProjectRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to be assumed for this request.</p>",
-        "UpdateRecipeJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role to be assumed when DataBrew runs the job.</p>"
+        "UpdateRecipeJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role to be assumed when DataBrew runs the job.</p>",
+        "ValidationConfiguration$RulesetArn": "<p>The Amazon Resource Name (ARN) for the ruleset to be validated in the profile job. The TargetArn of the selected ruleset should be the same as the Amazon Resource Name (ARN) of the dataset that is associated with the profile job.</p>"
       }
     },
     "AssumeControl": {
@@ -165,7 +197,8 @@
       "base": null,
       "refs": {
         "ColumnStatisticsConfiguration$Selectors": "<p>List of column selectors. Selectors can be used to select columns from the dataset. When selectors are undefined, configuration will be applied to all supported columns. </p>",
-        "ProfileConfiguration$ProfileColumns": "<p>List of column selectors. ProfileColumns can be used to select columns from the dataset. When ProfileColumns is undefined, the profile job will profile all supported columns. </p>"
+        "ProfileConfiguration$ProfileColumns": "<p>List of column selectors. ProfileColumns can be used to select columns from the dataset. When ProfileColumns is undefined, the profile job will profile all supported columns. </p>",
+        "Rule$ColumnSelectors": "<p>List of column selectors. Selectors can be used to select columns using a name or regular expression from the dataset. Rule will be applied to selected columns.</p>"
       }
     },
     "ColumnStatisticsConfiguration": {
@@ -272,6 +305,16 @@
       "refs": {
       }
     },
+    "CreateRulesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRulesetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateScheduleRequest": {
       "base": null,
       "refs": {
@@ -290,10 +333,12 @@
         "DescribeJobResponse$CreatedBy": "<p>The identifier (user name) of the user associated with the creation of the job.</p>",
         "DescribeProjectResponse$CreatedBy": "<p>The identifier (user name) of the user who created the project.</p>",
         "DescribeRecipeResponse$CreatedBy": "<p>The identifier (user name) of the user who created the recipe.</p>",
+        "DescribeRulesetResponse$CreatedBy": "<p>The Amazon Resource Name (ARN) of the user who created the ruleset.</p>",
         "DescribeScheduleResponse$CreatedBy": "<p>The identifier (user name) of the user who created the schedule. </p>",
         "Job$CreatedBy": "<p>The Amazon Resource Name (ARN) of the user who created the job.</p>",
         "Project$CreatedBy": "<p>The Amazon Resource Name (ARN) of the user who crated the project.</p>",
         "Recipe$CreatedBy": "<p>The Amazon Resource Name (ARN) of the user who created the recipe.</p>",
+        "RulesetItem$CreatedBy": "<p>The Amazon Resource Name (ARN) of the user who created the ruleset.</p>",
         "Schedule$CreatedBy": "<p>The Amazon Resource Name (ARN) of the user who created the schedule.</p>"
       }
     },
@@ -450,6 +495,8 @@
         "DescribeRecipeResponse$CreateDate": "<p>The date and time that the recipe was created.</p>",
         "DescribeRecipeResponse$LastModifiedDate": "<p>The date and time that the recipe was last modified.</p>",
         "DescribeRecipeResponse$PublishedDate": "<p>The date and time when the recipe was last published.</p>",
+        "DescribeRulesetResponse$CreateDate": "<p>The date and time that the ruleset was created.</p>",
+        "DescribeRulesetResponse$LastModifiedDate": "<p>The modification date and time of the ruleset.</p>",
         "DescribeScheduleResponse$CreateDate": "<p>The date and time that the schedule was created.</p>",
         "DescribeScheduleResponse$LastModifiedDate": "<p>The date and time that the schedule was last modified.</p>",
         "Job$CreateDate": "<p>The date and time that the job was created.</p>",
@@ -462,6 +509,8 @@
         "Recipe$CreateDate": "<p>The date and time that the recipe was created.</p>",
         "Recipe$LastModifiedDate": "<p>The last modification date and time of the recipe.</p>",
         "Recipe$PublishedDate": "<p>The date and time when the recipe was published.</p>",
+        "RulesetItem$CreateDate": "<p>The date and time that the ruleset was created.</p>",
+        "RulesetItem$LastModifiedDate": "<p>The modification date and time of the ruleset.</p>",
         "Schedule$CreateDate": "<p>The date and time that the schedule was created.</p>",
         "Schedule$LastModifiedDate": "<p>The date and time when the schedule was last modified.</p>",
         "UpdateProjectResponse$LastModifiedDate": "<p>The date and time that the project was last modified.</p>"
@@ -515,6 +564,16 @@
       }
     },
     "DeleteRecipeVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRulesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRulesetResponse": {
       "base": null,
       "refs": {
       }
@@ -586,6 +645,16 @@
       "refs": {
       }
     },
+    "DescribeRulesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRulesetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeScheduleRequest": {
       "base": null,
       "refs": {
@@ -594,6 +663,12 @@
     "DescribeScheduleResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Disabled": {
+      "base": null,
+      "refs": {
+        "Rule$Disabled": "<p>A value that specifies whether the rule is disabled. Once a rule is disabled, a profile job will not validate it during a job run. Default value is false.</p>"
       }
     },
     "EncryptionKeyArn": {
@@ -618,6 +693,24 @@
         "UpdateRecipeJobRequest$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with keys managed by KMS.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>"
       }
     },
+    "EntityDetectorConfiguration": {
+      "base": "<p>Configuration of entity detection for a profile job. When undefined, entity detection is disabled.</p>",
+      "refs": {
+        "ProfileConfiguration$EntityDetectorConfiguration": "<p>Configuration of entity detection for a profile job. When undefined, entity detection is disabled.</p>"
+      }
+    },
+    "EntityType": {
+      "base": null,
+      "refs": {
+        "EntityTypeList$member": null
+      }
+    },
+    "EntityTypeList": {
+      "base": null,
+      "refs": {
+        "EntityDetectorConfiguration$EntityTypes": "<p>Entity types to detect. Can be any of the following:</p> <ul> <li> <p>USA_SSN</p> </li> <li> <p>EMAIL</p> </li> <li> <p>USA_ITIN</p> </li> <li> <p>USA_PASSPORT_NUMBER</p> </li> <li> <p>PHONE_NUMBER</p> </li> <li> <p>USA_DRIVING_LICENSE</p> </li> <li> <p>BANK_ACCOUNT</p> </li> <li> <p>CREDIT_CARD</p> </li> <li> <p>IP_ADDRESS</p> </li> <li> <p>MAC_ADDRESS</p> </li> <li> <p>USA_DEA_NUMBER</p> </li> <li> <p>USA_HCPCS_CODE</p> </li> <li> <p>USA_NATIONAL_PROVIDER_IDENTIFIER</p> </li> <li> <p>USA_NATIONAL_DRUG_CODE</p> </li> <li> <p>USA_HEALTH_INSURANCE_CLAIM_NUMBER</p> </li> <li> <p>USA_MEDICARE_BENEFICIARY_IDENTIFIER</p> </li> <li> <p>USA_CPT_CODE</p> </li> <li> <p>PERSON_NAME</p> </li> <li> <p>DATE</p> </li> </ul> <p>The Entity type group USA_ALL is also supported, and includes all of the above entity types except PERSON_NAME and DATE.</p>"
+      }
+    },
     "ErrorCode": {
       "base": null,
       "refs": {
@@ -640,7 +733,8 @@
     "Expression": {
       "base": null,
       "refs": {
-        "FilterExpression$Expression": "<p>The expression which includes condition names followed by substitution variables, possibly grouped and combined with other conditions. For example, \"(starts_with :prefix1 or starts_with :prefix2) and (ends_with :suffix1 or ends_with :suffix2)\". Substitution variables should start with ':' symbol.</p>"
+        "FilterExpression$Expression": "<p>The expression which includes condition names followed by substitution variables, possibly grouped and combined with other conditions. For example, \"(starts_with :prefix1 or starts_with :prefix2) and (ends_with :suffix1 or ends_with :suffix2)\". Substitution variables should start with ':' symbol.</p>",
+        "Rule$CheckExpression": "<p>The expression which includes column references, condition names followed by variable references, possibly grouped and combined with other conditions. For example, <code>(:col1 starts_with :prefix1 or :col1 starts_with :prefix2) and (:col1 ends_with :suffix1 or :col1 ends_with :suffix2)</code>. Column and value references are substitution variables that should start with the ':' symbol. Depending on the context, substitution variables' values can be either an actual value or a column name. These values are defined in the SubstitutionMap. If a CheckExpression starts with a column reference, then ColumnSelectors in the rule should be null. If ColumnSelectors has been defined, then there should be no columnn reference in the left side of a condition, for example, <code>is_between :val1 and :val2</code>.</p>"
       }
     },
     "FilesLimit": {
@@ -650,7 +744,7 @@
       }
     },
     "FilterExpression": {
-      "base": "<p>Represents a structure for defining parameter conditions. Supported conditions are described here: <a href=\"https://docs-aws.amazon.com/databrew/latest/dg/datasets.multiple-files.html#conditions.for.dynamic.datasets\">Supported conditions for dynamic datasets</a> in the <i>Glue DataBrew Developer Guide</i>.</p>",
+      "base": "<p>Represents a structure for defining parameter conditions. Supported conditions are described here: <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/datasets.multiple-files.html#conditions.for.dynamic.datasets\">Supported conditions for dynamic datasets</a> in the <i>Glue DataBrew Developer Guide</i>.</p>",
       "refs": {
         "DatasetParameter$Filter": "<p>The optional filter expression structure to apply additional matching criteria to the parameter.</p>",
         "PathOptions$LastModifiedDateCondition": "<p>If provided, this structure defines a date range for matching Amazon S3 objects based on their LastModifiedDate attribute in Amazon S3.</p>"
@@ -836,10 +930,12 @@
         "DescribeJobResponse$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the job.</p>",
         "DescribeProjectResponse$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the project.</p>",
         "DescribeRecipeResponse$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the recipe.</p>",
+        "DescribeRulesetResponse$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last modified the ruleset.</p>",
         "DescribeScheduleResponse$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the schedule.</p>",
         "Job$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last modified the job.</p>",
         "Project$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last modified the project.</p>",
         "Recipe$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last modified the recipe.</p>",
+        "RulesetItem$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last modified the ruleset.</p>",
         "Schedule$LastModifiedBy": "<p>The Amazon Resource Name (ARN) of the user who last modified the schedule.</p>"
       }
     },
@@ -899,6 +995,16 @@
       }
     },
     "ListRecipesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRulesetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRulesetsResponse": {
       "base": null,
       "refs": {
       }
@@ -975,6 +1081,7 @@
         "ListProjectsRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>",
         "ListRecipeVersionsRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>",
         "ListRecipesRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>",
+        "ListRulesetsRequest$MaxResults": "<p>The maximum number of results to return in this request.</p>",
         "ListSchedulesRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>"
       }
     },
@@ -1000,6 +1107,12 @@
         "ValidationException$Message": null
       }
     },
+    "Metadata": {
+      "base": "<p>Contains additional resource information needed for specific datasets.</p>",
+      "refs": {
+        "Input$Metadata": "<p>Contains additional resource information needed for specific datasets.</p>"
+      }
+    },
     "MultiLine": {
       "base": null,
       "refs": {
@@ -1021,6 +1134,8 @@
         "ListRecipeVersionsResponse$NextToken": "<p>A token that you can use in a subsequent call to retrieve the next set of results.</p>",
         "ListRecipesRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
         "ListRecipesResponse$NextToken": "<p>A token that you can use in a subsequent call to retrieve the next set of results.</p>",
+        "ListRulesetsRequest$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the NextToken value from the response object of the previous page call.</p>",
+        "ListRulesetsResponse$NextToken": "<p>A token that you can use in a subsequent call to retrieve the next set of results.</p>",
         "ListSchedulesRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
         "ListSchedulesResponse$NextToken": "<p>A token that you can use in a subsequent call to retrieve the next set of results.</p>"
       }
@@ -1201,6 +1316,12 @@
         "Recipe$PublishedBy": "<p>The Amazon Resource Name (ARN) of the user who published the recipe.</p>"
       }
     },
+    "QueryString": {
+      "base": null,
+      "refs": {
+        "DatabaseInputDefinition$QueryString": "<p>Custom SQL to run against the provided Glue connection. This SQL will be used as the input for DataBrew projects and jobs.</p>"
+      }
+    },
     "Recipe": {
       "base": "<p>Represents one or more actions to be performed on a DataBrew dataset.</p>",
       "refs": {
@@ -1326,6 +1447,73 @@
       "base": null,
       "refs": {
         "SendProjectSessionActionResponse$Result": "<p>A message indicating the result of performing the action.</p>"
+      }
+    },
+    "RowRange": {
+      "base": null,
+      "refs": {
+        "ViewFrame$RowRange": "<p>The number of rows to include in the view frame, beginning with the <code>StartRowIndex</code> value.</p>"
+      }
+    },
+    "Rule": {
+      "base": "<p>Represents a single data quality requirement that should be validated in the scope of this dataset.</p>",
+      "refs": {
+        "RuleList$member": null
+      }
+    },
+    "RuleCount": {
+      "base": null,
+      "refs": {
+        "RulesetItem$RuleCount": "<p>The number of rules that are defined in the ruleset.</p>"
+      }
+    },
+    "RuleList": {
+      "base": null,
+      "refs": {
+        "CreateRulesetRequest$Rules": "<p>A list of rules that are defined with the ruleset. A rule includes one or more checks to be validated on a DataBrew dataset.</p>",
+        "DescribeRulesetResponse$Rules": "<p>A list of rules that are defined with the ruleset. A rule includes one or more checks to be validated on a DataBrew dataset.</p>",
+        "UpdateRulesetRequest$Rules": "<p>A list of rules that are defined with the ruleset. A rule includes one or more checks to be validated on a DataBrew dataset.</p>"
+      }
+    },
+    "RuleName": {
+      "base": null,
+      "refs": {
+        "Rule$Name": "<p>The name of the rule.</p>"
+      }
+    },
+    "RulesetDescription": {
+      "base": null,
+      "refs": {
+        "CreateRulesetRequest$Description": "<p>The description of the ruleset.</p>",
+        "DescribeRulesetResponse$Description": "<p>The description of the ruleset.</p>",
+        "RulesetItem$Description": "<p>The description of the ruleset.</p>",
+        "UpdateRulesetRequest$Description": "<p>The description of the ruleset.</p>"
+      }
+    },
+    "RulesetItem": {
+      "base": "<p>Contains metadata about the ruleset.</p>",
+      "refs": {
+        "RulesetItemList$member": null
+      }
+    },
+    "RulesetItemList": {
+      "base": null,
+      "refs": {
+        "ListRulesetsResponse$Rulesets": "<p>A list of RulesetItem. RulesetItem contains meta data of a ruleset.</p>"
+      }
+    },
+    "RulesetName": {
+      "base": null,
+      "refs": {
+        "CreateRulesetRequest$Name": "<p>The name of the ruleset to be created. Valid characters are alphanumeric (A-Z, a-z, 0-9), hyphen (-), period (.), and space.</p>",
+        "CreateRulesetResponse$Name": "<p>The unique name of the created ruleset.</p>",
+        "DeleteRulesetRequest$Name": "<p>The name of the ruleset to be deleted.</p>",
+        "DeleteRulesetResponse$Name": "<p>The name of the deleted ruleset.</p>",
+        "DescribeRulesetRequest$Name": "<p>The name of the ruleset to be described.</p>",
+        "DescribeRulesetResponse$Name": "<p>The name of the ruleset.</p>",
+        "RulesetItem$Name": "<p>The name of the ruleset.</p>",
+        "UpdateRulesetRequest$Name": "<p>The name of the ruleset to be updated.</p>",
+        "UpdateRulesetResponse$Name": "<p>The name of the updated ruleset.</p>"
       }
     },
     "S3Location": {
@@ -1478,6 +1666,12 @@
       "refs": {
       }
     },
+    "StartRowIndex": {
+      "base": null,
+      "refs": {
+        "ViewFrame$StartRowIndex": "<p>The starting index for the range of rows to return in the view frame.</p>"
+      }
+    },
     "StartedBy": {
       "base": null,
       "refs": {
@@ -1495,6 +1689,7 @@
     "StatisticList": {
       "base": null,
       "refs": {
+        "AllowedStatistics$Statistics": "<p>One or more column statistics to allow for columns that contain detected entities.</p>",
         "StatisticsConfiguration$IncludedStatistics": "<p>List of included evaluations. When the list is undefined, all supported evaluations will be included.</p>"
       }
     },
@@ -1561,17 +1756,20 @@
         "CreateProjectRequest$Tags": "<p>Metadata tags to apply to this project.</p>",
         "CreateRecipeJobRequest$Tags": "<p>Metadata tags to apply to this job.</p>",
         "CreateRecipeRequest$Tags": "<p>Metadata tags to apply to this recipe.</p>",
+        "CreateRulesetRequest$Tags": "<p>Metadata tags to apply to the ruleset.</p>",
         "CreateScheduleRequest$Tags": "<p>Metadata tags to apply to this schedule.</p>",
         "Dataset$Tags": "<p>Metadata tags that have been applied to the dataset.</p>",
         "DescribeDatasetResponse$Tags": "<p>Metadata tags associated with this dataset.</p>",
         "DescribeJobResponse$Tags": "<p>Metadata tags associated with this job.</p>",
         "DescribeProjectResponse$Tags": "<p>Metadata tags associated with this project.</p>",
         "DescribeRecipeResponse$Tags": "<p>Metadata tags associated with this project.</p>",
+        "DescribeRulesetResponse$Tags": "<p>Metadata tags that have been applied to the ruleset.</p>",
         "DescribeScheduleResponse$Tags": "<p>Metadata tags associated with this schedule.</p>",
         "Job$Tags": "<p>Metadata tags that have been applied to the job.</p>",
         "ListTagsForResourceResponse$Tags": "<p>A list of tags associated with the DataBrew resource.</p>",
         "Project$Tags": "<p>Metadata tags that have been applied to the project.</p>",
         "Recipe$Tags": "<p>Metadata tags that have been applied to the recipe.</p>",
+        "RulesetItem$Tags": "<p>Metadata tags that have been applied to the ruleset.</p>",
         "Schedule$Tags": "<p>Metadata tags that have been applied to the schedule.</p>",
         "TagResourceRequest$Tags": "<p>One or more tags to be assigned to the resource.</p>"
       }
@@ -1596,6 +1794,30 @@
       "base": null,
       "refs": {
         "ConditionExpression$TargetColumn": "<p>A column to apply this condition to.</p>"
+      }
+    },
+    "Threshold": {
+      "base": "<p>The threshold used with a non-aggregate check expression. The non-aggregate check expression will be applied to each row in a specific column. Then the threshold will be used to determine whether the validation succeeds.</p>",
+      "refs": {
+        "Rule$Threshold": "<p>The threshold used with a non-aggregate check expression. Non-aggregate check expressions will be applied to each row in a specific column, and the threshold will be used to determine whether the validation succeeds.</p>"
+      }
+    },
+    "ThresholdType": {
+      "base": null,
+      "refs": {
+        "Threshold$Type": "<p>The type of a threshold. Used for comparison of an actual count of rows that satisfy the rule to the threshold value.</p>"
+      }
+    },
+    "ThresholdUnit": {
+      "base": null,
+      "refs": {
+        "Threshold$Unit": "<p>Unit of threshold value. Can be either a COUNT or PERCENTAGE of the full sample size used for validation.</p>"
+      }
+    },
+    "ThresholdValue": {
+      "base": null,
+      "refs": {
+        "Threshold$Value": "<p>The value of a threshold.</p>"
       }
     },
     "Timeout": {
@@ -1675,6 +1897,16 @@
       "refs": {
       }
     },
+    "UpdateRulesetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRulesetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateScheduleRequest": {
       "base": null,
       "refs": {
@@ -1685,9 +1917,32 @@
       "refs": {
       }
     },
+    "ValidationConfiguration": {
+      "base": "<p>Configuration for data quality validation. Used to select the Rulesets and Validation Mode to be used in the profile job. When ValidationConfiguration is null, the profile job will run without data quality validation.</p>",
+      "refs": {
+        "ValidationConfigurationList$member": null
+      }
+    },
+    "ValidationConfigurationList": {
+      "base": null,
+      "refs": {
+        "CreateProfileJobRequest$ValidationConfigurations": "<p>List of validation configurations that are applied to the profile job.</p>",
+        "DescribeJobResponse$ValidationConfigurations": "<p>List of validation configurations that are applied to the profile job.</p>",
+        "DescribeJobRunResponse$ValidationConfigurations": "<p>List of validation configurations that are applied to the profile job.</p>",
+        "Job$ValidationConfigurations": "<p>List of validation configurations that are applied to the profile job.</p>",
+        "JobRun$ValidationConfigurations": "<p>List of validation configurations that are applied to the profile job run.</p>",
+        "UpdateProfileJobRequest$ValidationConfigurations": "<p>List of validation configurations that are applied to the profile job.</p>"
+      }
+    },
     "ValidationException": {
       "base": "<p>The input parameters for this request failed validation.</p>",
       "refs": {
+      }
+    },
+    "ValidationMode": {
+      "base": null,
+      "refs": {
+        "ValidationConfiguration$ValidationMode": "<p>Mode of data quality validation. Default mode is “CHECK_ALL” which verifies all rules defined in the selected ruleset.</p>"
       }
     },
     "ValueReference": {
@@ -1699,7 +1954,8 @@
     "ValuesMap": {
       "base": null,
       "refs": {
-        "FilterExpression$ValuesMap": "<p>The map of substitution variable names to their values used in this filter expression.</p>"
+        "FilterExpression$ValuesMap": "<p>The map of substitution variable names to their values used in this filter expression.</p>",
+        "Rule$SubstitutionMap": "<p>The map of substitution variable names to their values used in a check expression. Variable names should start with a ':' (colon). Variable values can either be actual values or column names. To differentiate between the two, column names should be enclosed in backticks, for example, <code>\":col1\": \"`Column A`\".</code> </p>"
       }
     },
     "ViewFrame": {

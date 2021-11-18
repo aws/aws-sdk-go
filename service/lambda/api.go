@@ -464,19 +464,20 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 // Creates a mapping between an event source and an Lambda function. Lambda
 // reads items from the event source and triggers the function.
 //
-// For details about each event source type, see the following topics.
+// For details about how to configure different event sources, see the following
+// topics.
 //
-//    * Configuring a Dynamo DB stream as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping)
+//    * Amazon DynamoDB Streams (https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping)
 //
-//    * Configuring a Kinesis stream as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping)
+//    * Amazon Kinesis (https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping)
 //
-//    * Configuring an Amazon SQS queue as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource)
+//    * Amazon SQS (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource)
 //
-//    * Configuring an MQ broker as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping)
+//    * Amazon MQ and RabbitMQ (https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping)
 //
-//    * Configuring MSK as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
+//    * Amazon MSK (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
 //
-//    * Configuring Self-Managed Apache Kafka as an event source (https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html)
+//    * Apache Kafka (https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html)
 //
 // The following error handling options are only available for stream sources
 // (DynamoDB and Kinesis):
@@ -496,6 +497,21 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 //    failed records are retried until the record expires.
 //
 //    * ParallelizationFactor - Process multiple batches from each shard concurrently.
+//
+// For information about which configuration parameters apply to each event
+// source, see the following topics.
+//
+//    * Amazon DynamoDB Streams (https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params)
+//
+//    * Amazon Kinesis (https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params)
+//
+//    * Amazon SQS (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params)
+//
+//    * Amazon MQ and RabbitMQ (https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params)
+//
+//    * Amazon MSK (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms)
+//
+//    * Apache Kafka (https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5861,6 +5877,21 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 // Updates an event source mapping. You can change the function that Lambda
 // invokes, or pause invocation and resume later from the same location.
 //
+// For details about how to configure different event sources, see the following
+// topics.
+//
+//    * Amazon DynamoDB Streams (https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping)
+//
+//    * Amazon Kinesis (https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping)
+//
+//    * Amazon SQS (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource)
+//
+//    * Amazon MQ and RabbitMQ (https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping)
+//
+//    * Amazon MSK (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
+//
+//    * Apache Kafka (https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html)
+//
 // The following error handling options are only available for stream sources
 // (DynamoDB and Kinesis):
 //
@@ -5879,6 +5910,21 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 //    failed records are retried until the record expires.
 //
 //    * ParallelizationFactor - Process multiple batches from each shard concurrently.
+//
+// For information about which configuration parameters apply to each event
+// source, see the following topics.
+//
+//    * Amazon DynamoDB Streams (https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params)
+//
+//    * Amazon Kinesis (https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params)
+//
+//    * Amazon SQS (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params)
+//
+//    * Amazon MQ and RabbitMQ (https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params)
+//
+//    * Amazon MSK (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms)
+//
+//    * Apache Kafka (https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7477,6 +7523,8 @@ type CreateEventSourceMappingInput struct {
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
 	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
+	//
+	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams only) If the function returns an error, split the batch in two and
@@ -7752,7 +7800,8 @@ type CreateFunctionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instruction set architecture that the function supports. Enter a string
-	// array with one of the valid values. The default value is x86_64.
+	// array with one of the valid values (arm64 or x86_64). The default value is
+	// x86_64.
 	Architectures []*string `min:"1" type:"list"`
 
 	// The code for the function.
@@ -7839,9 +7888,9 @@ type CreateFunctionInput struct {
 	// to apply to the function.
 	Tags map[string]*string `type:"map"`
 
-	// The amount of time that Lambda allows a function to run before stopping it.
-	// The default is 3 seconds. The maximum allowed value is 900 seconds. For additional
-	// information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).
+	// The amount of time (in seconds) that Lambda allows a function to run before
+	// stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.
+	// For additional information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).
 	Timeout *int64 `min:"1" type:"integer"`
 
 	// Set Mode to Active to sample and trace a subset of incoming requests with
@@ -10059,7 +10108,7 @@ type FunctionConfiguration struct {
 	ImageConfigResponse *ImageConfigResponse `type:"structure"`
 
 	// The KMS key that's used to encrypt the function's environment variables.
-	// This key is only returned if you've configured a customer managed CMK.
+	// This key is only returned if you've configured a customer managed key.
 	KMSKeyArn *string `type:"string"`
 
 	// The date and time that the function was last updated, in ISO-8601 format
@@ -10079,7 +10128,7 @@ type FunctionConfiguration struct {
 	// The function's layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 	Layers []*Layer `type:"list"`
 
-	// For Lambda@Edge functions, the ARN of the master function.
+	// For Lambda@Edge functions, the ARN of the main function.
 	MasterArn *string `type:"string"`
 
 	// The amount of memory available to the function at runtime.
@@ -12698,6 +12747,9 @@ type InvokeInput struct {
 	LogType *string `location:"header" locationName:"X-Amz-Log-Type" type:"string" enum:"LogType"`
 
 	// The JSON that you want to provide to your Lambda function as input.
+	//
+	// You can enter the JSON directly. For example, --payload '{ "key": "value"
+	// }'. You can also specify a file path. For example, --payload file://payload.json.
 	//
 	// Payload is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeInput's
@@ -16732,7 +16784,18 @@ type SourceAccessConfiguration struct {
 	//    for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.
 	//
 	//    * VIRTUAL_HOST - (Amazon MQ) The name of the virtual host in your RabbitMQ
-	//    broker. Lambda uses this RabbitMQ host as the event source.
+	//    broker. Lambda uses this RabbitMQ host as the event source. This property
+	//    cannot be specified in an UpdateEventSourceMapping API call.
+	//
+	//    * CLIENT_CERTIFICATE_TLS_AUTH - (Amazon MSK, Self-managed Apache Kafka)
+	//    The Secrets Manager ARN of your secret key containing the certificate
+	//    chain (X.509 PEM), private key (PKCS#8 PEM), and private key password
+	//    (optional) used for mutual TLS authentication of your MSK/Apache Kafka
+	//    brokers.
+	//
+	//    * SERVER_ROOT_CA_CERTIFICATE - (Self-managed Apache Kafka) The Secrets
+	//    Manager ARN of your secret key containing the root CA certificate (X.509
+	//    PEM) used for TLS encryption of your Apache Kafka brokers.
 	Type *string `type:"string" enum:"SourceAccessType"`
 
 	// The value for your chosen configuration in Type. For example: "URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName".
@@ -17473,6 +17536,8 @@ type UpdateEventSourceMappingInput struct {
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
 	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
+	//
+	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams only) If the function returns an error, split the batch in two and
@@ -17685,7 +17750,8 @@ type UpdateFunctionCodeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instruction set architecture that the function supports. Enter a string
-	// array with one of the valid values. The default value is x86_64.
+	// array with one of the valid values (arm64 or x86_64). The default value is
+	// x86_64.
 	Architectures []*string `min:"1" type:"list"`
 
 	// Set to true to validate the request parameters and access permissions without
@@ -17916,9 +17982,9 @@ type UpdateFunctionConfigurationInput struct {
 	// The identifier of the function's runtime (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).
 	Runtime *string `type:"string" enum:"Runtime"`
 
-	// The amount of time that Lambda allows a function to run before stopping it.
-	// The default is 3 seconds. The maximum allowed value is 900 seconds. For additional
-	// information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).
+	// The amount of time (in seconds) that Lambda allows a function to run before
+	// stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds.
+	// For additional information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).
 	Timeout *int64 `min:"1" type:"integer"`
 
 	// Set Mode to Active to sample and trace a subset of incoming requests with
@@ -18714,6 +18780,12 @@ const (
 
 	// SourceAccessTypeVirtualHost is a SourceAccessType enum value
 	SourceAccessTypeVirtualHost = "VIRTUAL_HOST"
+
+	// SourceAccessTypeClientCertificateTlsAuth is a SourceAccessType enum value
+	SourceAccessTypeClientCertificateTlsAuth = "CLIENT_CERTIFICATE_TLS_AUTH"
+
+	// SourceAccessTypeServerRootCaCertificate is a SourceAccessType enum value
+	SourceAccessTypeServerRootCaCertificate = "SERVER_ROOT_CA_CERTIFICATE"
 )
 
 // SourceAccessType_Values returns all elements of the SourceAccessType enum
@@ -18725,6 +18797,8 @@ func SourceAccessType_Values() []string {
 		SourceAccessTypeSaslScram512Auth,
 		SourceAccessTypeSaslScram256Auth,
 		SourceAccessTypeVirtualHost,
+		SourceAccessTypeClientCertificateTlsAuth,
+		SourceAccessTypeServerRootCaCertificate,
 	}
 }
 

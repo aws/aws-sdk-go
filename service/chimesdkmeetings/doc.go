@@ -5,8 +5,7 @@
 //
 // The Amazon Chime SDK meetings APIs in this section allow software developers
 // to create Amazon Chime SDK meetings, set the AWS Regions for meetings, create
-// and manage users, and send and receive meeting notifications. For more information
-// about the meeting APIs, see Amazon Chime SDK meetings (http://amazonaws.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_meetings).
+// and manage users, and send and receive meeting notifications.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/chime-sdk-meetings-2021-07-15 for more information on this service.
 //

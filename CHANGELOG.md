@@ -1,3 +1,23 @@
+Release v1.42.8 (2021-11-18)
+===
+
+### Service Client Updates
+* `service/appconfig`: Updates service API, documentation, and examples
+* `service/auditmanager`: Updates service API, documentation, and paginators
+* `service/chime`: Updates service API and documentation
+  * Adds new Transcribe API parameters to StartMeetingTranscription, including support for content identification and redaction (PII & PHI), partial results stabilization, and custom language models.
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/databrew`: Updates service API, documentation, and paginators
+* `service/forecast`: Updates service API and documentation
+* `service/ivs`: Updates service API, documentation, and paginators
+* `service/kafka`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Added support for CLIENT_CERTIFICATE_TLS_AUTH and SERVER_ROOT_CA_CERTIFICATE as SourceAccessType for MSK and Kafka event source mappings.
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/monitoring`: Updates service API and documentation
+  * CloudWatch Anomaly Detection now supports anomaly detectors that use metric math as input.
+* `service/redshift-data`: Updates service API and documentation
+
 Release v1.42.7 (2021-11-17)
 ===
 

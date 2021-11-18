@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Forecast Service.
 //    func myFunc(svc forecastserviceiface.ForecastServiceAPI) bool {
-//        // Make svc.CreateDataset request
+//        // Make svc.CreateAutoPredictor request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockForecastServiceClient struct {
 //        forecastserviceiface.ForecastServiceAPI
 //    }
-//    func (m *mockForecastServiceClient) CreateDataset(input *forecastservice.CreateDatasetInput) (*forecastservice.CreateDatasetOutput, error) {
+//    func (m *mockForecastServiceClient) CreateAutoPredictor(input *forecastservice.CreateAutoPredictorInput) (*forecastservice.CreateAutoPredictorOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type ForecastServiceAPI interface {
+	CreateAutoPredictor(*forecastservice.CreateAutoPredictorInput) (*forecastservice.CreateAutoPredictorOutput, error)
+	CreateAutoPredictorWithContext(aws.Context, *forecastservice.CreateAutoPredictorInput, ...request.Option) (*forecastservice.CreateAutoPredictorOutput, error)
+	CreateAutoPredictorRequest(*forecastservice.CreateAutoPredictorInput) (*request.Request, *forecastservice.CreateAutoPredictorOutput)
+
 	CreateDataset(*forecastservice.CreateDatasetInput) (*forecastservice.CreateDatasetOutput, error)
 	CreateDatasetWithContext(aws.Context, *forecastservice.CreateDatasetInput, ...request.Option) (*forecastservice.CreateDatasetOutput, error)
 	CreateDatasetRequest(*forecastservice.CreateDatasetInput) (*request.Request, *forecastservice.CreateDatasetOutput)
@@ -71,6 +75,14 @@ type ForecastServiceAPI interface {
 	CreateDatasetImportJob(*forecastservice.CreateDatasetImportJobInput) (*forecastservice.CreateDatasetImportJobOutput, error)
 	CreateDatasetImportJobWithContext(aws.Context, *forecastservice.CreateDatasetImportJobInput, ...request.Option) (*forecastservice.CreateDatasetImportJobOutput, error)
 	CreateDatasetImportJobRequest(*forecastservice.CreateDatasetImportJobInput) (*request.Request, *forecastservice.CreateDatasetImportJobOutput)
+
+	CreateExplainability(*forecastservice.CreateExplainabilityInput) (*forecastservice.CreateExplainabilityOutput, error)
+	CreateExplainabilityWithContext(aws.Context, *forecastservice.CreateExplainabilityInput, ...request.Option) (*forecastservice.CreateExplainabilityOutput, error)
+	CreateExplainabilityRequest(*forecastservice.CreateExplainabilityInput) (*request.Request, *forecastservice.CreateExplainabilityOutput)
+
+	CreateExplainabilityExport(*forecastservice.CreateExplainabilityExportInput) (*forecastservice.CreateExplainabilityExportOutput, error)
+	CreateExplainabilityExportWithContext(aws.Context, *forecastservice.CreateExplainabilityExportInput, ...request.Option) (*forecastservice.CreateExplainabilityExportOutput, error)
+	CreateExplainabilityExportRequest(*forecastservice.CreateExplainabilityExportInput) (*request.Request, *forecastservice.CreateExplainabilityExportOutput)
 
 	CreateForecast(*forecastservice.CreateForecastInput) (*forecastservice.CreateForecastOutput, error)
 	CreateForecastWithContext(aws.Context, *forecastservice.CreateForecastInput, ...request.Option) (*forecastservice.CreateForecastOutput, error)
@@ -100,6 +112,14 @@ type ForecastServiceAPI interface {
 	DeleteDatasetImportJobWithContext(aws.Context, *forecastservice.DeleteDatasetImportJobInput, ...request.Option) (*forecastservice.DeleteDatasetImportJobOutput, error)
 	DeleteDatasetImportJobRequest(*forecastservice.DeleteDatasetImportJobInput) (*request.Request, *forecastservice.DeleteDatasetImportJobOutput)
 
+	DeleteExplainability(*forecastservice.DeleteExplainabilityInput) (*forecastservice.DeleteExplainabilityOutput, error)
+	DeleteExplainabilityWithContext(aws.Context, *forecastservice.DeleteExplainabilityInput, ...request.Option) (*forecastservice.DeleteExplainabilityOutput, error)
+	DeleteExplainabilityRequest(*forecastservice.DeleteExplainabilityInput) (*request.Request, *forecastservice.DeleteExplainabilityOutput)
+
+	DeleteExplainabilityExport(*forecastservice.DeleteExplainabilityExportInput) (*forecastservice.DeleteExplainabilityExportOutput, error)
+	DeleteExplainabilityExportWithContext(aws.Context, *forecastservice.DeleteExplainabilityExportInput, ...request.Option) (*forecastservice.DeleteExplainabilityExportOutput, error)
+	DeleteExplainabilityExportRequest(*forecastservice.DeleteExplainabilityExportInput) (*request.Request, *forecastservice.DeleteExplainabilityExportOutput)
+
 	DeleteForecast(*forecastservice.DeleteForecastInput) (*forecastservice.DeleteForecastOutput, error)
 	DeleteForecastWithContext(aws.Context, *forecastservice.DeleteForecastInput, ...request.Option) (*forecastservice.DeleteForecastOutput, error)
 	DeleteForecastRequest(*forecastservice.DeleteForecastInput) (*request.Request, *forecastservice.DeleteForecastOutput)
@@ -120,6 +140,10 @@ type ForecastServiceAPI interface {
 	DeleteResourceTreeWithContext(aws.Context, *forecastservice.DeleteResourceTreeInput, ...request.Option) (*forecastservice.DeleteResourceTreeOutput, error)
 	DeleteResourceTreeRequest(*forecastservice.DeleteResourceTreeInput) (*request.Request, *forecastservice.DeleteResourceTreeOutput)
 
+	DescribeAutoPredictor(*forecastservice.DescribeAutoPredictorInput) (*forecastservice.DescribeAutoPredictorOutput, error)
+	DescribeAutoPredictorWithContext(aws.Context, *forecastservice.DescribeAutoPredictorInput, ...request.Option) (*forecastservice.DescribeAutoPredictorOutput, error)
+	DescribeAutoPredictorRequest(*forecastservice.DescribeAutoPredictorInput) (*request.Request, *forecastservice.DescribeAutoPredictorOutput)
+
 	DescribeDataset(*forecastservice.DescribeDatasetInput) (*forecastservice.DescribeDatasetOutput, error)
 	DescribeDatasetWithContext(aws.Context, *forecastservice.DescribeDatasetInput, ...request.Option) (*forecastservice.DescribeDatasetOutput, error)
 	DescribeDatasetRequest(*forecastservice.DescribeDatasetInput) (*request.Request, *forecastservice.DescribeDatasetOutput)
@@ -131,6 +155,14 @@ type ForecastServiceAPI interface {
 	DescribeDatasetImportJob(*forecastservice.DescribeDatasetImportJobInput) (*forecastservice.DescribeDatasetImportJobOutput, error)
 	DescribeDatasetImportJobWithContext(aws.Context, *forecastservice.DescribeDatasetImportJobInput, ...request.Option) (*forecastservice.DescribeDatasetImportJobOutput, error)
 	DescribeDatasetImportJobRequest(*forecastservice.DescribeDatasetImportJobInput) (*request.Request, *forecastservice.DescribeDatasetImportJobOutput)
+
+	DescribeExplainability(*forecastservice.DescribeExplainabilityInput) (*forecastservice.DescribeExplainabilityOutput, error)
+	DescribeExplainabilityWithContext(aws.Context, *forecastservice.DescribeExplainabilityInput, ...request.Option) (*forecastservice.DescribeExplainabilityOutput, error)
+	DescribeExplainabilityRequest(*forecastservice.DescribeExplainabilityInput) (*request.Request, *forecastservice.DescribeExplainabilityOutput)
+
+	DescribeExplainabilityExport(*forecastservice.DescribeExplainabilityExportInput) (*forecastservice.DescribeExplainabilityExportOutput, error)
+	DescribeExplainabilityExportWithContext(aws.Context, *forecastservice.DescribeExplainabilityExportInput, ...request.Option) (*forecastservice.DescribeExplainabilityExportOutput, error)
+	DescribeExplainabilityExportRequest(*forecastservice.DescribeExplainabilityExportInput) (*request.Request, *forecastservice.DescribeExplainabilityExportOutput)
 
 	DescribeForecast(*forecastservice.DescribeForecastInput) (*forecastservice.DescribeForecastOutput, error)
 	DescribeForecastWithContext(aws.Context, *forecastservice.DescribeForecastInput, ...request.Option) (*forecastservice.DescribeForecastOutput, error)
@@ -172,6 +204,14 @@ type ForecastServiceAPI interface {
 
 	ListDatasetsPages(*forecastservice.ListDatasetsInput, func(*forecastservice.ListDatasetsOutput, bool) bool) error
 	ListDatasetsPagesWithContext(aws.Context, *forecastservice.ListDatasetsInput, func(*forecastservice.ListDatasetsOutput, bool) bool, ...request.Option) error
+
+	ListExplainabilities(*forecastservice.ListExplainabilitiesInput) (*forecastservice.ListExplainabilitiesOutput, error)
+	ListExplainabilitiesWithContext(aws.Context, *forecastservice.ListExplainabilitiesInput, ...request.Option) (*forecastservice.ListExplainabilitiesOutput, error)
+	ListExplainabilitiesRequest(*forecastservice.ListExplainabilitiesInput) (*request.Request, *forecastservice.ListExplainabilitiesOutput)
+
+	ListExplainabilityExports(*forecastservice.ListExplainabilityExportsInput) (*forecastservice.ListExplainabilityExportsOutput, error)
+	ListExplainabilityExportsWithContext(aws.Context, *forecastservice.ListExplainabilityExportsInput, ...request.Option) (*forecastservice.ListExplainabilityExportsOutput, error)
+	ListExplainabilityExportsRequest(*forecastservice.ListExplainabilityExportsInput) (*request.Request, *forecastservice.ListExplainabilityExportsOutput)
 
 	ListForecastExportJobs(*forecastservice.ListForecastExportJobsInput) (*forecastservice.ListForecastExportJobsOutput, error)
 	ListForecastExportJobsWithContext(aws.Context, *forecastservice.ListForecastExportJobsInput, ...request.Option) (*forecastservice.ListForecastExportJobsOutput, error)

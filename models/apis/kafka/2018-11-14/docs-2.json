@@ -18,7 +18,7 @@
     "ListClusters" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
     "ListConfigurationRevisions" : "<p>Returns a list of all the revisions of an MSK configuration.</p>",
     "ListConfigurations" : "<p>Returns a list of all the MSK configurations in this Region.</p>",
-    "ListKafkaVersions" : "<p>Returns a list of Kafka versions.</p>",
+    "ListKafkaVersions" : "<p>Returns a list of Apache Kafka versions.</p>",
     "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>",
     "ListScramSecrets" : "<p>Returns a list of the Scram Secrets associated with an Amazon MSK cluster.</p>",
     "ListTagsForResource" : "<p>Returns a list of the tags associated with the specified resource.</p>",
@@ -29,6 +29,7 @@
     "UpdateBrokerType": "<p>Updates all the brokers in the cluster to the specified type.</p>",
     "UpdateBrokerStorage" : "<p>Updates the EBS storage associated with MSK brokers.</p>",
     "UpdateConfiguration" : "<p>Updates an existing MSK configuration. The configuration must be in the Active state.</p>",
+    "UpdateConnectivity" : "<p>Updates the connectivity configuration for the cluster.</p>",
     "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>",
     "UpdateClusterKafkaVersion" : "<p>Updates the Apache Kafka version for the cluster.</p>",
     "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>",
@@ -66,7 +67,7 @@
       }
     },
     "BrokerNodeGroupInfo" : {
-      "base" : "<p>Describes the setup to be used for Kafka broker nodes in the cluster.</p>",
+      "base" : "<p>Describes the setup to be used for Apache Kafka broker nodes in the cluster.</p>",
       "refs" : {
         "ClusterInfo$BrokerNodeGroupInfo" : "<p>Information about the brokers.</p>",
         "CreateClusterRequest$BrokerNodeGroupInfo" : "<p>Information about the brokers.</p>"
@@ -81,8 +82,8 @@
     "BrokerSoftwareInfo" : {
       "base" : "<p>Information about the current software installed on the cluster.</p>",
       "refs" : {
-        "BrokerNodeInfo$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Kafka brokers in the cluster.</p>",
-        "ClusterInfo$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Kafka brokers in the cluster.</p>"
+        "BrokerNodeInfo$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Apache Kafka brokers in the cluster.</p>",
+        "ClusterInfo$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Apache Kafka brokers in the cluster.</p>"
       }
     },
     "ClientAuthentication" : {
@@ -133,7 +134,7 @@
       }
     },
     "ClusterState" : {
-      "base" : "<p>The state of a Kafka cluster.</p>",
+      "base" : "<p>The state of an Apache Kafka cluster.</p>",
       "refs" : {
         "ClusterInfo$State" : "<p>The state of the cluster. The possible states are ACTIVE, CREATING, DELETING, FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.</p>",
         "CreateClusterResponse$State" : "<p>The state of the cluster. The possible states are ACTIVE, CREATING, DELETING, FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.</p>",
@@ -141,7 +142,7 @@
       }
     },
     "CompatibleKafkaVersion" : {
-      "base" : "<p>Contains source Kafka versions and compatible target Kafka versions.</p>",
+      "base" : "<p>Contains source Apache Kafka versions and compatible target Apache Kafka versions.</p>",
       "refs" : {
         "__listOfCompatibleKafkaVersion$member" : null
       }
@@ -181,6 +182,14 @@
     "ConflictException" : {
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
+    },
+    "ConnectivityInfo" : {
+      "base" : "<p>Information about the broker access configuration.</p>",
+      "refs" : {
+        "BrokerNodeGroupInfo$ConnectivityInfo" : "<p>Information about the broker access configuration.</p>",
+        "MutableClusterInfo$ConnectivityInfo" : "<p>Information about the broker access configuration.</p>",
+        "UpdateConnectivityRequest$ConnectivityInfo" : "<p>Information about the broker access configuration.</p>"
+      }
     },
     "CreateClusterRequest" : {
       "base" : "<p>Creates a cluster.</p>",
@@ -235,7 +244,7 @@
       "refs" : { }
     },
     "EBSStorageInfo" : {
-      "base" : "<p>Contains information about the EBS storage volumes attached to Kafka broker nodes.</p>",
+      "base" : "<p>Contains information about the EBS storage volumes attached to Apache Kafka broker nodes.</p>",
       "refs" : {
         "StorageInfo$EbsStorageInfo" : "<p>EBS volume information.</p>"
       }
@@ -315,13 +324,13 @@
       }
     },
     "KafkaVersion" : {
-      "base" : "<p>Information about a Kafka version.</p>",
+      "base" : "<p>Information about a Apache Kafka version.</p>",
       "refs" : {
         "__listOfKafkaVersion$member" : null
       }
     },
     "KafkaVersionStatus" : {
-      "base" : "<p>The status of a Kafka version.</p>",
+      "base" : "<p>The status of a Apache Kafka version.</p>",
       "refs" : {
         "KafkaVersion$Status" : "<p>The status of the Apache Kafka version.</p>"
       }
@@ -428,6 +437,12 @@
         "OpenMonitoringInfo$Prometheus" : "<p>Prometheus settings.</p>"
       }
     },
+    "PublicAccess" : {
+      "base" : "<p>Broker public access control.</p>",
+      "refs" : {
+        "ConnectivityInfo$PublicAccess" : "<p>Public access control for brokers.</p>"
+      }
+    },
     "RebootBrokerRequest" : {
       "base" : "<p>Request body for RebootBrokerNode action.</p>",
       "refs" : { }
@@ -514,6 +529,14 @@
       "base" : "<p>Response body for UpdateConfiguration.</p>",
       "refs" : { }
     },
+    "UpdateConnectivityRequest" : {
+      "base" : "<p>Request body for UpdateConnectivity.</p>",
+      "refs" : { }
+    },
+    "UpdateConnectivityResponse" : {
+      "base" : "<p>Response body for UpdateConnectivity.</p>",
+      "refs" : { }
+    },
     "UpdateClusterConfigurationRequest" : {
       "base" : "<p>Request body for UpdateClusterConfiguration.</p>",
       "refs" : { }
@@ -588,7 +611,7 @@
     "__integerMin1Max15" : {
       "base" : null,
       "refs" : {
-        "CreateClusterRequest$NumberOfBrokerNodes": "<p>The number of Kafka broker nodes in the Amazon MSK cluster.</p>",
+        "CreateClusterRequest$NumberOfBrokerNodes": "<p>The number of Apache Kafka broker nodes in the Amazon MSK cluster.</p>",
         "UpdateBrokerCountRequest$TargetNumberOfBrokerNodes" : "<p>The number of broker nodes that you want the cluster to have after this operation completes successfully.</p>"
       }
     },
@@ -644,7 +667,7 @@
     "__listOfKafkaVersion" : {
       "base" : null,
       "refs" : {
-        "ListKafkaVersionsResponse$KafkaVersions" : "<p>An array of Kafka version objects.</p>"
+        "ListKafkaVersionsResponse$KafkaVersions" : "<p>An array of Apache Kafka version objects.</p>"
       }
     },
     "__listOfNodeInfo" : {
@@ -746,10 +769,13 @@
         "ErrorInfo$ErrorString" : "<p>An optional field to provide more details about the error.</p>",
         "Firehose$DeliveryStream" : "<p>The Kinesis Data Firehose delivery stream that is the destination for broker logs.</p>",
         "GetBootstrapBrokersResponse$BootstrapBrokerString" : "<p>A string containing one or more hostname:port pairs.</p>",
-        "GetBootstrapBrokersResponse$BootstrapBrokerStringTls" : "<p>A string containing one or more DNS names (or IP) and TLS port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringTls\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094\"\n}</programlisting>",
-        "GetBootstrapBrokersResponse$BootstrapBrokerStringSaslScram" : "<p>A string containing one or more DNS names (or IP) and SASL SCRAM port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringSaslScram\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096\"\n}</programlisting>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringTls" : "<p>A string containing one or more DNS names (or IP addresses) and TLS port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringTls\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094\"\n}</programlisting>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringSaslScram" : "<p>A string containing one or more DNS names (or IP addresses) and SASL SCRAM port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringSaslScram\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096\"\n}</programlisting>",
         "GetBootstrapBrokersResponse$BootstrapBrokerStringSaslIam" : "<p>A string that contains one or more DNS names (or IP addresses) and SASL IAM port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringSaslIam\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9098,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9098,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9098\"\n}</programlisting>",
-        "KafkaVersion$Version" : "<p>The Kafka version.</p>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringPublicTls" : "<p>A string containing one or more DNS names (or IP addresses) and TLS port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringTls\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9194,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9194,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9194\"\n}</programlisting>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringPublicSaslScram" : "<p>A string containing one or more DNS names (or IP addresses) and SASL SCRAM port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringSaslScram\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9196,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9196,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9196\"\n}</programlisting>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringPublicSaslIam" : "<p>A string that contains one or more DNS names (or IP addresses) and SASL IAM port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringSaslIam\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9198,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9198,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9198\"\n}</programlisting>",
+        "KafkaVersion$Version" : "<p>The Apache Kafka version.</p>",
         "ListClusterOperationsResponse$NextToken" : "<p>If the response of ListClusterOperations is truncated, it returns a NextToken in the response. This Nexttoken should be sent in the subsequent request to ListClusterOperations.</p>",
         "ListClustersResponse$NextToken" : "<p>The paginated results marker. When the result of a ListClusters operation is truncated, the call returns NextToken in the response. To get another batch of clusters, provide this token in your next request.</p>",
         "ListConfigurationRevisionsResponse$NextToken" : "<p>Paginated results marker.</p>",
@@ -760,6 +786,7 @@
         "NodeInfo$AddedToClusterTime" : "<p>The start time.</p>",
         "NodeInfo$InstanceType" : "<p>The instance type.</p>",
         "NodeInfo$NodeARN" : "<p>The Amazon Resource Name (ARN) of the node.</p>",
+        "PublicAccess$Type" : "<p>The value DISABLED indicates that public access is disabled. SERVICE_PROVIDED_EIPS indicates that public access is enabled.</p>",
         "RebootBrokerResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "RebootBrokerResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "S3$Bucket" : "<p>The name of the S3 bucket that is the destination for broker logs.</p>",
@@ -779,11 +806,14 @@
         "UpdateConfigurationRequest$Description" : "<p>The description of the configuration.</p>",
         "UpdateConfigurationRequest$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "UpdateConfigurationResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
+        "UpdateConnectivityRequest$CurrentVersion" : "<p>The current version of the cluster.</p>",
+        "UpdateConnectivityResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "UpdateConnectivityResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "UpdateClusterConfigurationRequest$CurrentVersion" : "<p>The version of the cluster that you want to update.</p>",
         "UpdateClusterConfigurationResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateClusterConfigurationResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "UpdateClusterKafkaVersionRequest$CurrentVersion" : "<p>Current cluster version.</p>",
-        "UpdateClusterKafkaVersionRequest$TargetKafkaVersion" : "<p>Target Kafka version.</p>",
+        "UpdateClusterKafkaVersionRequest$TargetKafkaVersion" : "<p>Target Apache Kafka version.</p>",
         "UpdateClusterKafkaVersionResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateClusterKafkaVersionResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "UpdateMonitoringRequest$CurrentVersion" : "<p>The version of cluster to update from. A successful operation will then generate a new version.</p>",

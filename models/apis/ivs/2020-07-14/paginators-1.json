@@ -20,6 +20,11 @@
       "output_token": "nextToken",
       "limit_key": "maxResults"
     },
+    "ListStreamSessions": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListStreams": {
       "input_token": "nextToken",
       "output_token": "nextToken",
