@@ -458,6 +458,34 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetInsights":{
+      "name":"GetInsights",
+      "http":{
+        "method":"GET",
+        "requestUri":"/insights"
+      },
+      "input":{"shape":"GetInsightsRequest"},
+      "output":{"shape":"GetInsightsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetInsightsByAssessment":{
+      "name":"GetInsightsByAssessment",
+      "http":{
+        "method":"GET",
+        "requestUri":"/insights/assessments/{assessmentId}"
+      },
+      "input":{"shape":"GetInsightsByAssessmentRequest"},
+      "output":{"shape":"GetInsightsByAssessmentResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetOrganizationAdminAccount":{
       "name":"GetOrganizationAdminAccount",
       "http":{
@@ -496,6 +524,21 @@
       "input":{"shape":"GetSettingsRequest"},
       "output":{"shape":"GetSettingsResponse"},
       "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListAssessmentControlInsightsByControlDomain":{
+      "name":"ListAssessmentControlInsightsByControlDomain",
+      "http":{
+        "method":"GET",
+        "requestUri":"/insights/controls-by-assessment"
+      },
+      "input":{"shape":"ListAssessmentControlInsightsByControlDomainRequest"},
+      "output":{"shape":"ListAssessmentControlInsightsByControlDomainResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
@@ -554,6 +597,51 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "ListControlDomainInsights":{
+      "name":"ListControlDomainInsights",
+      "http":{
+        "method":"GET",
+        "requestUri":"/insights/control-domains"
+      },
+      "input":{"shape":"ListControlDomainInsightsRequest"},
+      "output":{"shape":"ListControlDomainInsightsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListControlDomainInsightsByAssessment":{
+      "name":"ListControlDomainInsightsByAssessment",
+      "http":{
+        "method":"GET",
+        "requestUri":"/insights/control-domains-by-assessment"
+      },
+      "input":{"shape":"ListControlDomainInsightsByAssessmentRequest"},
+      "output":{"shape":"ListControlDomainInsightsByAssessmentResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListControlInsightsByControlDomain":{
+      "name":"ListControlInsightsByControlDomain",
+      "http":{
+        "method":"GET",
+        "requestUri":"/insights/controls"
+      },
+      "input":{"shape":"ListControlInsightsByControlDomainRequest"},
+      "output":{"shape":"ListControlInsightsByControlDomainResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListControls":{
@@ -1402,6 +1490,48 @@
       "max":1000,
       "pattern":"^[\\w\\W\\s\\S]*$"
     },
+    "ControlDomainInsights":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "id":{"shape":"UUID"},
+        "controlsCountByNoncompliantEvidence":{"shape":"NullableInteger"},
+        "totalControlsCount":{"shape":"NullableInteger"},
+        "evidenceInsights":{"shape":"EvidenceInsights"},
+        "lastUpdated":{"shape":"Timestamp"}
+      }
+    },
+    "ControlDomainInsightsList":{
+      "type":"list",
+      "member":{"shape":"ControlDomainInsights"}
+    },
+    "ControlInsightsMetadata":{
+      "type":"list",
+      "member":{"shape":"ControlInsightsMetadataItem"}
+    },
+    "ControlInsightsMetadataByAssessment":{
+      "type":"list",
+      "member":{"shape":"ControlInsightsMetadataByAssessmentItem"}
+    },
+    "ControlInsightsMetadataByAssessmentItem":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "id":{"shape":"UUID"},
+        "evidenceInsights":{"shape":"EvidenceInsights"},
+        "controlSetName":{"shape":"NonEmptyString"},
+        "lastUpdated":{"shape":"Timestamp"}
+      }
+    },
+    "ControlInsightsMetadataItem":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "id":{"shape":"UUID"},
+        "evidenceInsights":{"shape":"EvidenceInsights"},
+        "lastUpdated":{"shape":"Timestamp"}
+      }
+    },
     "ControlMappingSource":{
       "type":"structure",
       "members":{
@@ -1918,6 +2048,14 @@
       "max":50,
       "min":0
     },
+    "EvidenceInsights":{
+      "type":"structure",
+      "members":{
+        "noncompliantEvidenceCount":{"shape":"NullableInteger"},
+        "compliantEvidenceCount":{"shape":"NullableInteger"},
+        "inconclusiveEvidenceCount":{"shape":"NullableInteger"}
+      }
+    },
     "EvidenceList":{
       "type":"list",
       "member":{"shape":"Evidence"}
@@ -2317,6 +2455,34 @@
         "evidence":{"shape":"Evidence"}
       }
     },
+    "GetInsightsByAssessmentRequest":{
+      "type":"structure",
+      "required":["assessmentId"],
+      "members":{
+        "assessmentId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"assessmentId"
+        }
+      }
+    },
+    "GetInsightsByAssessmentResponse":{
+      "type":"structure",
+      "members":{
+        "insights":{"shape":"InsightsByAssessment"}
+      }
+    },
+    "GetInsightsRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetInsightsResponse":{
+      "type":"structure",
+      "members":{
+        "insights":{"shape":"Insights"}
+      }
+    },
     "GetOrganizationAdminAccountRequest":{
       "type":"structure",
       "members":{
@@ -2369,6 +2535,29 @@
       "min":20,
       "pattern":"^arn:.*:iam:.*"
     },
+    "Insights":{
+      "type":"structure",
+      "members":{
+        "activeAssessmentsCount":{"shape":"NullableInteger"},
+        "noncompliantEvidenceCount":{"shape":"NullableInteger"},
+        "compliantEvidenceCount":{"shape":"NullableInteger"},
+        "inconclusiveEvidenceCount":{"shape":"NullableInteger"},
+        "assessmentControlsCountByNoncompliantEvidence":{"shape":"NullableInteger"},
+        "totalAssessmentControlsCount":{"shape":"NullableInteger"},
+        "lastUpdated":{"shape":"Timestamp"}
+      }
+    },
+    "InsightsByAssessment":{
+      "type":"structure",
+      "members":{
+        "noncompliantEvidenceCount":{"shape":"NullableInteger"},
+        "compliantEvidenceCount":{"shape":"NullableInteger"},
+        "inconclusiveEvidenceCount":{"shape":"NullableInteger"},
+        "assessmentControlsCountByNoncompliantEvidence":{"shape":"NullableInteger"},
+        "totalAssessmentControlsCount":{"shape":"NullableInteger"},
+        "lastUpdated":{"shape":"Timestamp"}
+      }
+    },
     "Integer":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
@@ -2405,6 +2594,42 @@
       "max":100,
       "min":1,
       "pattern":"^[a-zA-Z0-9\\s-_()\\[\\]]+$"
+    },
+    "ListAssessmentControlInsightsByControlDomainRequest":{
+      "type":"structure",
+      "required":[
+        "controlDomainId",
+        "assessmentId"
+      ],
+      "members":{
+        "controlDomainId":{
+          "shape":"UUID",
+          "location":"querystring",
+          "locationName":"controlDomainId"
+        },
+        "assessmentId":{
+          "shape":"UUID",
+          "location":"querystring",
+          "locationName":"assessmentId"
+        },
+        "nextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAssessmentControlInsightsByControlDomainResponse":{
+      "type":"structure",
+      "members":{
+        "controlInsightsByAssessment":{"shape":"ControlInsightsMetadataByAssessment"},
+        "nextToken":{"shape":"Token"}
+      }
     },
     "ListAssessmentFrameworkShareRequestsRequest":{
       "type":"structure",
@@ -2491,6 +2716,11 @@
     "ListAssessmentsRequest":{
       "type":"structure",
       "members":{
+        "status":{
+          "shape":"AssessmentStatus",
+          "location":"querystring",
+          "locationName":"status"
+        },
         "nextToken":{
           "shape":"Token",
           "location":"querystring",
@@ -2507,6 +2737,84 @@
       "type":"structure",
       "members":{
         "assessmentMetadata":{"shape":"ListAssessmentMetadata"},
+        "nextToken":{"shape":"Token"}
+      }
+    },
+    "ListControlDomainInsightsByAssessmentRequest":{
+      "type":"structure",
+      "required":["assessmentId"],
+      "members":{
+        "assessmentId":{
+          "shape":"UUID",
+          "location":"querystring",
+          "locationName":"assessmentId"
+        },
+        "nextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListControlDomainInsightsByAssessmentResponse":{
+      "type":"structure",
+      "members":{
+        "controlDomainInsights":{"shape":"ControlDomainInsightsList"},
+        "nextToken":{"shape":"Token"}
+      }
+    },
+    "ListControlDomainInsightsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListControlDomainInsightsResponse":{
+      "type":"structure",
+      "members":{
+        "controlDomainInsights":{"shape":"ControlDomainInsightsList"},
+        "nextToken":{"shape":"Token"}
+      }
+    },
+    "ListControlInsightsByControlDomainRequest":{
+      "type":"structure",
+      "required":["controlDomainId"],
+      "members":{
+        "controlDomainId":{
+          "shape":"UUID",
+          "location":"querystring",
+          "locationName":"controlDomainId"
+        },
+        "nextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListControlInsightsByControlDomainResponse":{
+      "type":"structure",
+      "members":{
+        "controlInsightsMetadata":{"shape":"ControlInsightsMetadata"},
         "nextToken":{"shape":"Token"}
       }
     },

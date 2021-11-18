@@ -21,8 +21,8 @@
     "DeregisterOrganizationAdminAccount": "<p>Removes the specified member Amazon Web Services account as a delegated administrator for Audit Manager. </p> <important> <p>When you remove a delegated administrator from your Audit Manager settings, you continue to have access to the evidence that you previously collected under that account. This is also the case when you deregister a delegated administrator from Audit Manager. However, Audit Manager will stop collecting and attaching evidence to that delegated administrator account moving forward.</p> </important>",
     "DisassociateAssessmentReportEvidenceFolder": "<p> Disassociates an evidence folder from the specified assessment report in Audit Manager. </p>",
     "GetAccountStatus": "<p> Returns the registration status of an account in Audit Manager. </p>",
-    "GetAssessment": "<p> Returns an assessment from Audit Manager. </p>",
-    "GetAssessmentFramework": "<p> Returns a framework from Audit Manager. </p>",
+    "GetAssessment": "<p>Returns an assessment from Audit Manager. </p>",
+    "GetAssessmentFramework": "<p>Returns a framework from Audit Manager. </p>",
     "GetAssessmentReportUrl": "<p> Returns the URL of an assessment report in Audit Manager. </p>",
     "GetChangeLogs": "<p> Returns a list of changelogs from Audit Manager. </p>",
     "GetControl": "<p> Returns a control from Audit Manager. </p>",
@@ -32,13 +32,19 @@
     "GetEvidenceFolder": "<p> Returns an evidence folder from the specified assessment in Audit Manager. </p>",
     "GetEvidenceFoldersByAssessment": "<p> Returns the evidence folders from a specified assessment in Audit Manager. </p>",
     "GetEvidenceFoldersByAssessmentControl": "<p> Returns a list of evidence folders that are associated with a specified control of an assessment in Audit Manager. </p>",
+    "GetInsights": "<p>Gets the latest analytics data for all your current active assessments. </p>",
+    "GetInsightsByAssessment": "<p>Gets the latest analytics data for a specific active assessment. </p>",
     "GetOrganizationAdminAccount": "<p> Returns the name of the delegated Amazon Web Services administrator account for the organization. </p>",
     "GetServicesInScope": "<p> Returns a list of the in-scope Amazon Web Services services for the specified assessment. </p>",
     "GetSettings": "<p> Returns the settings for the specified Amazon Web Services account. </p>",
+    "ListAssessmentControlInsightsByControlDomain": "<p>Lists the latest analytics data for controls within a specific control domain and a specific active assessment.</p> <note> <p>Control insights are listed only if the control belongs to the control domain and assessment that was specified. Moreover, the control must have collected evidence on the <code>lastUpdated</code> date of <code>controlInsightsByAssessment</code>. If neither of these conditions are met, no data is listed for that control. </p> </note>",
     "ListAssessmentFrameworkShareRequests": "<p> Returns a list of sent or received share requests for custom frameworks in Audit Manager. </p>",
     "ListAssessmentFrameworks": "<p> Returns a list of the frameworks that are available in the Audit Manager framework library. </p>",
     "ListAssessmentReports": "<p> Returns a list of assessment reports created in Audit Manager. </p>",
     "ListAssessments": "<p> Returns a list of current and past assessments from Audit Manager. </p>",
+    "ListControlDomainInsights": "<p>Lists the latest analytics data for control domains across all of your active assessments. </p> <note> <p>A control domain is listed only if at least one of the controls within that domain collected evidence on the <code>lastUpdated</code> date of <code>controlDomainInsights</code>. If this condition isn’t met, no data is listed for that control domain.</p> </note>",
+    "ListControlDomainInsightsByAssessment": "<p>Lists analytics data for control domains within a specified active assessment.</p> <note> <p>A control domain is listed only if at least one of the controls within that domain collected evidence on the <code>lastUpdated</code> date of <code>controlDomainInsights</code>. If this condition isn’t met, no data is listed for that domain.</p> </note>",
+    "ListControlInsightsByControlDomain": "<p>Lists the latest analytics data for controls within a specific control domain across all active assessments.</p> <note> <p>Control insights are listed only if the control belongs to the control domain that was specified and the control collected evidence on the <code>lastUpdated</code> date of <code>controlInsightsMetadata</code>. If neither of these conditions are met, no data is listed for that control. </p> </note>",
     "ListControls": "<p> Returns a list of controls from Audit Manager. </p>",
     "ListKeywordsForDataSource": "<p> Returns a list of keywords that are pre-mapped to the specified control data source. </p>",
     "ListNotifications": "<p> Returns a list of all Audit Manager notifications. </p>",
@@ -347,6 +353,7 @@
       "refs": {
         "AssessmentMetadata$status": "<p> The overall status of the assessment. </p>",
         "AssessmentMetadataItem$status": "<p> The current status of the assessment. </p>",
+        "ListAssessmentsRequest$status": "<p> The current status of the assessment.</p>",
         "UpdateAssessmentStatusRequest$status": "<p> The current status of the assessment. </p>"
       }
     },
@@ -476,7 +483,7 @@
     "ChangeLogs": {
       "base": null,
       "refs": {
-        "GetChangeLogsResponse$changeLogs": "<p> The list of user activity for the control. </p>"
+        "GetChangeLogsResponse$changeLogs": "<p>The list of user activity for the control. </p>"
       }
     },
     "ComplianceType": {
@@ -527,6 +534,43 @@
         "Control$description": "<p> The description of the control. </p>",
         "CreateControlRequest$description": "<p> The description of the control. </p>",
         "UpdateControlRequest$description": "<p> The optional description of the control. </p>"
+      }
+    },
+    "ControlDomainInsights": {
+      "base": "<p>A summary of the latest analytics data for a specific control domain.</p> <p>Control domain insights are grouped by control domain, and ranked by the highest total count of non-compliant evidence.</p>",
+      "refs": {
+        "ControlDomainInsightsList$member": null
+      }
+    },
+    "ControlDomainInsightsList": {
+      "base": null,
+      "refs": {
+        "ListControlDomainInsightsByAssessmentResponse$controlDomainInsights": "<p>The control domain analytics data that the <code>ListControlDomainInsightsByAssessment</code> API returned. </p>",
+        "ListControlDomainInsightsResponse$controlDomainInsights": "<p>The control domain analytics data that the <code>ListControlDomainInsights</code> API returned. </p>"
+      }
+    },
+    "ControlInsightsMetadata": {
+      "base": null,
+      "refs": {
+        "ListControlInsightsByControlDomainResponse$controlInsightsMetadata": "<p>The control analytics data that the <code>ListControlInsightsByControlDomain</code> API returned. </p>"
+      }
+    },
+    "ControlInsightsMetadataByAssessment": {
+      "base": null,
+      "refs": {
+        "ListAssessmentControlInsightsByControlDomainResponse$controlInsightsByAssessment": "<p>The assessment control analytics data that the <code>ListAssessmentControlInsightsByControlDomain</code> API returned. </p>"
+      }
+    },
+    "ControlInsightsMetadataByAssessmentItem": {
+      "base": "<p>A summary of the latest analytics data for a specific control in a specific active assessment.</p> <p>Control insights are grouped by control domain, and ranked by the highest total count of non-compliant evidence. </p>",
+      "refs": {
+        "ControlInsightsMetadataByAssessment$member": null
+      }
+    },
+    "ControlInsightsMetadataItem": {
+      "base": "<p>A summary of the latest analytics data for a specific control. </p> <p>This data reflects the total counts for the specified control across all active assessments. Control insights are grouped by control domain, and ranked by the highest total count of non-compliant evidence.</p>",
+      "refs": {
+        "ControlInsightsMetadata$member": null
       }
     },
     "ControlMappingSource": {
@@ -585,13 +629,13 @@
         "BatchImportEvidenceToAssessmentControlRequest$controlSetId": "<p> The identifier for the control set. </p>",
         "CreateDelegationRequest$controlSetId": "<p> The unique identifier for the control set. </p>",
         "Delegation$controlSetId": "<p> The identifier for the control set that's associated with the delegation. </p>",
-        "GetChangeLogsRequest$controlSetId": "<p> The identifier for the control set. </p>",
+        "GetChangeLogsRequest$controlSetId": "<p> The unique identifier for the control set. </p>",
         "GetEvidenceByEvidenceFolderRequest$controlSetId": "<p> The identifier for the control set. </p>",
-        "GetEvidenceFolderRequest$controlSetId": "<p> The identifier for the control set. </p>",
+        "GetEvidenceFolderRequest$controlSetId": "<p> The unique identifier for the control set. </p>",
         "GetEvidenceFoldersByAssessmentControlRequest$controlSetId": "<p> The identifier for the control set. </p>",
-        "GetEvidenceRequest$controlSetId": "<p> The identifier for the control set. </p>",
+        "GetEvidenceRequest$controlSetId": "<p> The unique identifier for the control set. </p>",
         "Notification$controlSetId": "<p> The identifier for the control set. </p>",
-        "UpdateAssessmentControlRequest$controlSetId": "<p> The identifier for the control set. </p>"
+        "UpdateAssessmentControlRequest$controlSetId": "<p> The unique identifier for the control set. </p>"
       }
     },
     "ControlSetName": {
@@ -946,6 +990,14 @@
         "BatchDisassociateAssessmentReportEvidenceResponse$evidenceIds": "<p> The identifier for the evidence. </p>"
       }
     },
+    "EvidenceInsights": {
+      "base": "<p>A breakdown of the latest compliance check status for the evidence in your Audit Manager assessments. </p>",
+      "refs": {
+        "ControlDomainInsights$evidenceInsights": "<p>A breakdown of the compliance check status for the evidence that’s associated with the control domain. </p>",
+        "ControlInsightsMetadataByAssessmentItem$evidenceInsights": "<p>A breakdown of the compliance check status for the evidence that’s associated with the assessment control. </p>",
+        "ControlInsightsMetadataItem$evidenceInsights": "<p>A breakdown of the compliance check status for the evidence that’s associated with the control. </p>"
+      }
+    },
     "EvidenceList": {
       "base": null,
       "refs": {
@@ -1140,6 +1192,26 @@
       "refs": {
       }
     },
+    "GetInsightsByAssessmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightsByAssessmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetOrganizationAdminAccountRequest": {
       "base": null,
       "refs": {
@@ -1185,6 +1257,18 @@
         "DelegationMetadata$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>",
         "Evidence$iamId": "<p> The unique identifier for the IAM user or role that's associated with the evidence. </p>",
         "Role$roleArn": "<p> The Amazon Resource Name (ARN) of the IAM role. </p>"
+      }
+    },
+    "Insights": {
+      "base": "<p>A summary of the latest analytics data for all your active assessments. </p> <p>This summary is a snapshot of the data that your active assessments collected on the <code>lastUpdated</code> date. It’s important to understand that the following totals are daily counts based on this date — they aren’t a total sum to date. </p> <p>The <code>Insights</code> data is eventually consistent. This means that, when you read data from <code>Insights</code>, the response might not instantly reflect the results of a recently completed write or update operation. If you repeat your read request after a few hours, the response should return the latest data.</p> <note> <p>If you delete an assessment or change its status to inactive, <code>InsightsByAssessment</code> includes data for that assessment as follows.</p> <ul> <li> <p> <b>Inactive assessments</b> - If Audit Manager collected evidence for your assessment before you changed it inactive, that evidence is included in the <code>InsightsByAssessment</code> counts for that day.</p> </li> <li> <p> <b>Deleted assessments</b> - If Audit Manager collected evidence for your assessment before you deleted it, that evidence isn't included in the <code>InsightsByAssessment</code> counts for that day.</p> </li> </ul> </note>",
+      "refs": {
+        "GetInsightsResponse$insights": "<p>The analytics data that the <code>GetInsights</code> API returned. </p>"
+      }
+    },
+    "InsightsByAssessment": {
+      "base": "<p>A summary of the latest analytics data for a specific active assessment.</p> <p>This summary is a snapshot of the data that was collected on the <code>lastUpdated</code> date. It’s important to understand that the totals in <code>InsightsByAssessment</code> are daily counts based on this date — they aren’t a total sum to date. </p> <p>The <code>InsightsByAssessment</code> data is eventually consistent. This means that when you read data from <code>InsightsByAssessment</code>, the response might not instantly reflect the results of a recently completed write or update operation. If you repeat your read request after a few hours, the response returns the latest data.</p> <note> <p>If you delete an assessment or change its status to inactive, <code>InsightsByAssessment</code> includes data for that assessment as follows.</p> <ul> <li> <p> <b>Inactive assessments</b> - If Audit Manager collected evidence for your assessment before you changed it inactive, that evidence is included in the <code>InsightsByAssessment</code> counts for that day.</p> </li> <li> <p> <b>Deleted assessments</b> - If Audit Manager collected evidence for your assessment before you deleted it, that evidence isn't included in the <code>InsightsByAssessment</code> counts for that day.</p> </li> </ul> </note>",
+      "refs": {
+        "GetInsightsByAssessmentResponse$insights": "<p> The assessment analytics data that the <code>GetInsightsByAssessment</code> API returned. </p>"
       }
     },
     "Integer": {
@@ -1244,6 +1328,16 @@
         "Framework$lastUpdatedBy": "<p> The IAM user or role that most recently updated the framework. </p>"
       }
     },
+    "ListAssessmentControlInsightsByControlDomainRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssessmentControlInsightsByControlDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListAssessmentFrameworkShareRequestsRequest": {
       "base": null,
       "refs": {
@@ -1286,6 +1380,36 @@
       }
     },
     "ListAssessmentsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListControlDomainInsightsByAssessmentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListControlDomainInsightsByAssessmentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListControlDomainInsightsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListControlDomainInsightsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListControlInsightsByControlDomainRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListControlInsightsByControlDomainResponse": {
       "base": null,
       "refs": {
       }
@@ -1346,15 +1470,19 @@
     "MaxResults": {
       "base": "Max results in the page.",
       "refs": {
-        "GetChangeLogsRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
+        "GetChangeLogsRequest$maxResults": "<p>Represents the maximum number of results on a page or for an API request call. </p>",
         "GetDelegationsRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
         "GetEvidenceByEvidenceFolderRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
         "GetEvidenceFoldersByAssessmentControlRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
         "GetEvidenceFoldersByAssessmentRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
+        "ListAssessmentControlInsightsByControlDomainRequest$maxResults": "<p>Represents the maximum number of results on a page or for an API request call. </p>",
         "ListAssessmentFrameworkShareRequestsRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
         "ListAssessmentFrameworksRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
         "ListAssessmentReportsRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
         "ListAssessmentsRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
+        "ListControlDomainInsightsByAssessmentRequest$maxResults": "<p>Represents the maximum number of results on a page or for an API request call. </p>",
+        "ListControlDomainInsightsRequest$maxResults": "<p>Represents the maximum number of results on a page or for an API request call. </p>",
+        "ListControlInsightsByControlDomainRequest$maxResults": "<p>Represents the maximum number of results on a page or for an API request call. </p>",
         "ListControlsRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
         "ListKeywordsForDataSourceRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>",
         "ListNotificationsRequest$maxResults": "<p> Represents the maximum number of results on a page or for an API request call. </p>"
@@ -1365,6 +1493,10 @@
       "refs": {
         "AssessmentControlSet$description": "<p> The description for the control set. </p>",
         "ChangeLog$objectName": "<p> The name of the object that changed. This could be the name of an assessment, control, or control set.</p>",
+        "ControlDomainInsights$name": "<p>The name of the control domain. </p>",
+        "ControlInsightsMetadataByAssessmentItem$name": "<p>The name of the assessment control. </p>",
+        "ControlInsightsMetadataByAssessmentItem$controlSetName": "<p>The name of the control set that the assessment control belongs to. </p>",
+        "ControlInsightsMetadataItem$name": "<p>The name of the control. </p>",
         "DelegationMetadata$controlSetName": "<p> Specifies the name of the control set that was delegated for review. </p>",
         "EvidenceSources$member": null,
         "Notification$controlSetName": "<p> Specifies the name of the control set that the notification is about. </p>",
@@ -1392,7 +1524,23 @@
       "base": null,
       "refs": {
         "AssessmentFrameworkShareRequest$standardControlsCount": "<p>The number of standard controls that are part of the shared custom framework. </p>",
-        "AssessmentFrameworkShareRequest$customControlsCount": "<p>The number of custom controls that are part of the shared custom framework.</p>"
+        "AssessmentFrameworkShareRequest$customControlsCount": "<p>The number of custom controls that are part of the shared custom framework.</p>",
+        "ControlDomainInsights$controlsCountByNoncompliantEvidence": "<p>The number of controls in the control domain that collected non-compliant evidence on the <code>lastUpdated</code> date. </p>",
+        "ControlDomainInsights$totalControlsCount": "<p>The total number of controls in the control domain. </p>",
+        "EvidenceInsights$noncompliantEvidenceCount": "<p>The number of compliance check evidence that Audit Manager classified as non-compliant. This includes evidence that was collected from Security Hub with a <i>Fail</i> ruling, or collected from Config with a <i>Non-compliant</i> ruling. </p>",
+        "EvidenceInsights$compliantEvidenceCount": "<p>The number of compliance check evidence that Audit Manager classified as compliant. This includes evidence that was collected from Security Hub with a <i>Pass</i> ruling, or collected from Config with a <i>Compliant</i> ruling. </p>",
+        "EvidenceInsights$inconclusiveEvidenceCount": "<p>The number of evidence that a compliance check ruling isn't available for. Evidence is inconclusive when the associated control uses Security Hub or Config as a data source but you didn't enable those services. This is also the case when a control uses a data source that doesn’t support compliance checks (for example, manual evidence, API calls, or CloudTrail). </p> <note> <p>If evidence has a compliance check status of <i>not applicable</i> in the console, it's classified as <i>inconclusive</i> in <code>EvidenceInsights</code> data.</p> </note>",
+        "Insights$activeAssessmentsCount": "<p>The number of active assessments in Audit Manager. </p>",
+        "Insights$noncompliantEvidenceCount": "<p>The number of compliance check evidence that Audit Manager classified as non-compliant on the <code>lastUpdated</code> date. This includes evidence that was collected from Security Hub with a <i>Fail</i> ruling, or collected from Config with a <i>Non-compliant</i> ruling. </p>",
+        "Insights$compliantEvidenceCount": "<p>The number of compliance check evidence that Audit Manager classified as compliant on the <code>lastUpdated</code> date. This includes evidence that was collected from Security Hub with a <i>Pass</i> ruling, or collected from Config with a <i>Compliant</i> ruling. </p>",
+        "Insights$inconclusiveEvidenceCount": "<p>The number of evidence without a compliance check ruling. Evidence is inconclusive when the associated control uses Security Hub or Config as a data source but you didn't enable those services. This is also the case when a control uses a data source that doesn’t support compliance checks (for example: manual evidence, API calls, or CloudTrail). </p> <note> <p>If evidence has a compliance check status of <i>not applicable</i>, it's classed as <i>inconclusive</i> in <code>Insights</code> data.</p> </note>",
+        "Insights$assessmentControlsCountByNoncompliantEvidence": "<p>The number of assessment controls that collected non-compliant evidence on the <code>lastUpdated</code> date. </p>",
+        "Insights$totalAssessmentControlsCount": "<p>The total number of controls across all active assessments. </p>",
+        "InsightsByAssessment$noncompliantEvidenceCount": "<p>The number of compliance check evidence that Audit Manager classified as non-compliant. This includes evidence that was collected from Security Hub with a <i>Fail</i> ruling, or collected from Config with a <i>Non-compliant</i> ruling. </p>",
+        "InsightsByAssessment$compliantEvidenceCount": "<p>The number of compliance check evidence that Audit Manager classified as compliant. This includes evidence that was collected from Security Hub with a <i>Pass</i> ruling, or collected from Config with a <i>Compliant</i> ruling. </p>",
+        "InsightsByAssessment$inconclusiveEvidenceCount": "<p>The amount of evidence without a compliance check ruling. Evidence is inconclusive if the associated control uses Security Hub or Config as a data source and you didn't enable those services. This is also the case if a control uses a data source that doesn’t support compliance checks (for example, manual evidence, API calls, or CloudTrail). </p> <note> <p>If evidence has a compliance check status of <i>not applicable</i>, it's classified as <i>inconclusive</i> in <code>InsightsByAssessment</code> data.</p> </note>",
+        "InsightsByAssessment$assessmentControlsCountByNoncompliantEvidence": "<p>The number of assessment controls that collected non-compliant evidence on the <code>lastUpdated</code> date. </p>",
+        "InsightsByAssessment$totalAssessmentControlsCount": "<p>The total number of controls in the assessment. </p>"
       }
     },
     "ObjectTypeEnum": {
@@ -1621,7 +1769,7 @@
         "ResourceNotFoundException$message": null,
         "ResourceNotFoundException$resourceId": "<p> The unique identifier for the resource. </p>",
         "ResourceNotFoundException$resourceType": "<p> The type of resource that's affected by the error. </p>",
-        "UpdateAssessmentControlSetStatusRequest$controlSetId": "<p> The identifier for the control set. </p>",
+        "UpdateAssessmentControlSetStatusRequest$controlSetId": "<p> The unique identifier for the control set. </p>",
         "ValidateAssessmentReportIntegrityResponse$signatureAlgorithm": "<p> The signature algorithm that's used to code sign the assessment report file. </p>",
         "ValidateAssessmentReportIntegrityResponse$signatureDateTime": "<p> The date and time signature that specifies when the assessment report was created. </p>",
         "ValidateAssessmentReportIntegrityResponse$signatureKeyId": "<p> The unique identifier for the validation signature key. </p>",
@@ -1699,6 +1847,9 @@
         "Control$createdAt": "<p> Specifies when the control was created. </p>",
         "Control$lastUpdatedAt": "<p> Specifies when the control was most recently updated. </p>",
         "ControlComment$postedDate": "<p> The time when the comment was posted. </p>",
+        "ControlDomainInsights$lastUpdated": "<p>The time when the control domain insights were last updated. </p>",
+        "ControlInsightsMetadataByAssessmentItem$lastUpdated": "<p>The time when the assessment control insights were last updated. </p>",
+        "ControlInsightsMetadataItem$lastUpdated": "<p>The time when the control insights were last updated. </p>",
         "ControlMetadata$createdAt": "<p> Specifies when the control was created. </p>",
         "ControlMetadata$lastUpdatedAt": "<p> Specifies when the control was most recently updated. </p>",
         "Delegation$creationTime": "<p> Specifies when the delegation was created. </p>",
@@ -1707,6 +1858,8 @@
         "Evidence$time": "<p> The timestamp that represents when the evidence was collected. </p>",
         "Framework$createdAt": "<p> Specifies when the framework was created. </p>",
         "Framework$lastUpdatedAt": "<p> Specifies when the framework was most recently updated. </p>",
+        "Insights$lastUpdated": "<p>The time when the cross-assessment insights were last updated. </p>",
+        "InsightsByAssessment$lastUpdated": "<p>The time when the assessment insights were last updated.</p>",
         "Notification$eventTime": "<p> The time when the notification was sent. </p>"
       }
     },
@@ -1720,7 +1873,7 @@
       "base": null,
       "refs": {
         "GetChangeLogsRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
-        "GetChangeLogsResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
+        "GetChangeLogsResponse$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
         "GetDelegationsRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "GetDelegationsResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "GetEvidenceByEvidenceFolderRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
@@ -1729,6 +1882,8 @@
         "GetEvidenceFoldersByAssessmentControlResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "GetEvidenceFoldersByAssessmentRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "GetEvidenceFoldersByAssessmentResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
+        "ListAssessmentControlInsightsByControlDomainRequest$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
+        "ListAssessmentControlInsightsByControlDomainResponse$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
         "ListAssessmentFrameworkShareRequestsRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "ListAssessmentFrameworkShareRequestsResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "ListAssessmentFrameworksRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
@@ -1737,6 +1892,12 @@
         "ListAssessmentReportsResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "ListAssessmentsRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "ListAssessmentsResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
+        "ListControlDomainInsightsByAssessmentRequest$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
+        "ListControlDomainInsightsByAssessmentResponse$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
+        "ListControlDomainInsightsRequest$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
+        "ListControlDomainInsightsResponse$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
+        "ListControlInsightsByControlDomainRequest$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
+        "ListControlInsightsByControlDomainResponse$nextToken": "<p>The pagination token that's used to fetch the next set of results. </p>",
         "ListControlsRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "ListControlsResponse$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
         "ListKeywordsForDataSourceRequest$nextToken": "<p> The pagination token that's used to fetch the next set of results. </p>",
@@ -1788,6 +1949,9 @@
         "BatchImportEvidenceToAssessmentControlRequest$assessmentId": "<p> The identifier for the assessment. </p>",
         "BatchImportEvidenceToAssessmentControlRequest$controlId": "<p> The identifier for the control. </p>",
         "Control$id": "<p> The unique identifier for the control. </p>",
+        "ControlDomainInsights$id": "<p>The unique identifier for the control domain. </p>",
+        "ControlInsightsMetadataByAssessmentItem$id": "<p>The unique identifier for the assessment control. </p>",
+        "ControlInsightsMetadataItem$id": "<p>The unique identifier for the control. </p>",
         "ControlMappingSource$sourceId": "<p> The unique identifier for the source. </p>",
         "ControlMetadata$id": "<p> The unique identifier for the control. </p>",
         "ControlSet$id": "<p> The identifier of the control set in the assessment. This is the control set name in a plain string format. </p>",
@@ -1799,44 +1963,49 @@
         "DelegationIds$member": null,
         "DelegationMetadata$id": "<p> The unique identifier for the delegation. </p>",
         "DelegationMetadata$assessmentId": "<p> The unique identifier for the assessment. </p>",
-        "DeleteAssessmentFrameworkRequest$frameworkId": "<p> The identifier for the framework. </p>",
+        "DeleteAssessmentFrameworkRequest$frameworkId": "<p> The identifier for the custom framework. </p>",
         "DeleteAssessmentFrameworkShareRequest$requestId": "<p>The unique identifier for the share request to be deleted.</p>",
-        "DeleteAssessmentReportRequest$assessmentId": "<p> The identifier for the assessment. </p>",
+        "DeleteAssessmentReportRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
         "DeleteAssessmentReportRequest$assessmentReportId": "<p> The unique identifier for the assessment report. </p>",
         "DeleteAssessmentRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "DeleteControlRequest$controlId": "<p> The identifier for the control. </p>",
-        "DisassociateAssessmentReportEvidenceFolderRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "DisassociateAssessmentReportEvidenceFolderRequest$evidenceFolderId": "<p> The identifier for the folder in which evidence is stored. </p>",
+        "DeleteControlRequest$controlId": "<p> The unique identifier for the control. </p>",
+        "DisassociateAssessmentReportEvidenceFolderRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
+        "DisassociateAssessmentReportEvidenceFolderRequest$evidenceFolderId": "<p> The unique identifier for the folder that the evidence is stored in. </p>",
         "Evidence$evidenceFolderId": "<p> The identifier for the folder that the evidence is stored in. </p>",
         "Evidence$id": "<p> The identifier for the evidence. </p>",
         "EvidenceIds$member": null,
         "Framework$id": "<p> The unique identifier for the framework. </p>",
         "GetAssessmentFrameworkRequest$frameworkId": "<p> The identifier for the framework. </p>",
-        "GetAssessmentReportUrlRequest$assessmentReportId": "<p> The identifier for the assessment report. </p>",
-        "GetAssessmentReportUrlRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "GetAssessmentRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "GetChangeLogsRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "GetChangeLogsRequest$controlId": "<p> The identifier for the control. </p>",
+        "GetAssessmentReportUrlRequest$assessmentReportId": "<p> The unique identifier for the assessment report. </p>",
+        "GetAssessmentReportUrlRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
+        "GetAssessmentRequest$assessmentId": "<p>The unique identifier for the assessment. </p>",
+        "GetChangeLogsRequest$assessmentId": "<p>The unique identifier for the assessment. </p>",
+        "GetChangeLogsRequest$controlId": "<p> The unique identifier for the control. </p>",
         "GetControlRequest$controlId": "<p> The identifier for the control. </p>",
         "GetEvidenceByEvidenceFolderRequest$assessmentId": "<p> The identifier for the assessment. </p>",
         "GetEvidenceByEvidenceFolderRequest$evidenceFolderId": "<p> The unique identifier for the folder that the evidence is stored in. </p>",
-        "GetEvidenceFolderRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "GetEvidenceFolderRequest$evidenceFolderId": "<p> The identifier for the folder that the evidence is stored in. </p>",
+        "GetEvidenceFolderRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
+        "GetEvidenceFolderRequest$evidenceFolderId": "<p> The unique identifier for the folder that the evidence is stored in. </p>",
         "GetEvidenceFoldersByAssessmentControlRequest$assessmentId": "<p> The identifier for the assessment. </p>",
         "GetEvidenceFoldersByAssessmentControlRequest$controlId": "<p> The identifier for the control. </p>",
-        "GetEvidenceFoldersByAssessmentRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "GetEvidenceRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "GetEvidenceRequest$evidenceFolderId": "<p> The identifier for the folder that the evidence is stored in. </p>",
-        "GetEvidenceRequest$evidenceId": "<p> The identifier for the evidence. </p>",
+        "GetEvidenceFoldersByAssessmentRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
+        "GetEvidenceRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
+        "GetEvidenceRequest$evidenceFolderId": "<p> The unique identifier for the folder that the evidence is stored in. </p>",
+        "GetEvidenceRequest$evidenceId": "<p> The unique identifier for the evidence. </p>",
+        "GetInsightsByAssessmentRequest$assessmentId": "<p>The unique identifier for the assessment. </p>",
+        "ListAssessmentControlInsightsByControlDomainRequest$controlDomainId": "<p>The unique identifier for the control domain. </p>",
+        "ListAssessmentControlInsightsByControlDomainRequest$assessmentId": "<p>The unique identifier for the active assessment. </p>",
+        "ListControlDomainInsightsByAssessmentRequest$assessmentId": "<p>The unique identifier for the active assessment. </p>",
+        "ListControlInsightsByControlDomainRequest$controlDomainId": "<p>The unique identifier for the control domain. </p>",
         "Notification$assessmentId": "<p> The identifier for the assessment. </p>",
         "StartAssessmentFrameworkShareRequest$frameworkId": "<p> The unique identifier for the custom framework to be shared. </p>",
-        "UpdateAssessmentControlRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "UpdateAssessmentControlRequest$controlId": "<p> The identifier for the control. </p>",
-        "UpdateAssessmentControlSetStatusRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "UpdateAssessmentFrameworkRequest$frameworkId": "<p> The identifier for the framework. </p>",
+        "UpdateAssessmentControlRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
+        "UpdateAssessmentControlRequest$controlId": "<p> The unique identifier for the control. </p>",
+        "UpdateAssessmentControlSetStatusRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
+        "UpdateAssessmentFrameworkRequest$frameworkId": "<p> The unique identifier for the framework. </p>",
         "UpdateAssessmentFrameworkShareRequest$requestId": "<p> The unique identifier for the share request. </p>",
-        "UpdateAssessmentRequest$assessmentId": "<p> The identifier for the assessment. </p>",
-        "UpdateAssessmentStatusRequest$assessmentId": "<p> The identifier for the assessment. </p>",
+        "UpdateAssessmentRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
+        "UpdateAssessmentStatusRequest$assessmentId": "<p> The unique identifier for the assessment. </p>",
         "UpdateControlRequest$controlId": "<p> The identifier for the control. </p>"
       }
     },

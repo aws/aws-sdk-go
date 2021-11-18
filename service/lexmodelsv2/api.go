@@ -1603,7 +1603,8 @@ func (c *LexModelsV2) DeleteBotVersionRequest(input *DeleteBotVersionInput) (req
 // DeleteBotVersion API operation for Amazon Lex Model Building V2.
 //
 // Deletes a specific version of a bot. To delete all version of a bot, use
-// the DeleteBot operation.
+// the DeleteBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_DeleteBot.html)
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2378,8 +2379,9 @@ func (c *LexModelsV2) DeleteUtterancesRequest(input *DeleteUtterancesInput) (req
 // Deletes stored utterances.
 //
 // Amazon Lex stores the utterances that users send to your bot. Utterances
-// are stored for 15 days for use with the operation, and then stored indefinitely
-// for use in improving the ability of your bot to respond to user input..
+// are stored for 15 days for use with the ListAggregatedUtterances (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListAggregatedUtterances.html)
+// operation, and then stored indefinitely for use in improving the ability
+// of your bot to respond to user input..
 //
 // Use the DeleteUtterances operation to manually delete utterances for a specific
 // session. When you use the DeleteUtterances operation, utterances stored for
@@ -4163,7 +4165,7 @@ func (c *LexModelsV2) ListBuiltInIntentsRequest(input *ListBuiltInIntentsInput) 
 //
 // To use a built-in intent as a the base for your own intent, include the built-in
 // intent signature in the parentIntentSignature parameter when you call the
-// CreateIntent operation. For more information, see CreateIntent.
+// CreateIntent operation. For more information, see CreateIntent (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateIntent.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5853,7 +5855,8 @@ func (c *LexModelsV2) UpdateExportRequest(input *UpdateExportInput) (req *reques
 //
 // The password is not required. If you don't supply a password, Amazon Lex
 // generates a zip file that is not protected by a password. This is the archive
-// that is available at the pre-signed S3 URL provided by the operation.
+// that is available at the pre-signed S3 URL provided by the DescribeExport
+// (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html) operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6537,8 +6540,8 @@ type AudioLogDestination struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon S3 bucket where the audio log files are stored. The IAM role specified
-	// in the roleArn parameter of the CreateBot operation must have permission
-	// to write to this bucket.
+	// in the roleArn parameter of the CreateBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateBot.html)
+	// operation must have permission to write to this bucket.
 	//
 	// S3Bucket is a required field
 	S3Bucket *S3BucketLogDestination `locationName:"s3Bucket" type:"structure" required:"true"`
@@ -6769,12 +6772,14 @@ func (s *BotAliasLocaleSettings) SetEnabled(v bool) *BotAliasLocaleSettings {
 	return s
 }
 
-// Summary information about bot aliases returned from the ListBotAliases operation.
+// Summary information about bot aliases returned from the ListBotAliases (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBotAliases.html)
+// operation.
 type BotAliasSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier assigned to the bot alias. You can use this ID to get
-	// detailed information about the alias using the DescribeBotAlias operation.
+	// detailed information about the alias using the DescribeBotAlias (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeBotAlias.html)
+	// operation.
 	BotAliasId *string `locationName:"botAliasId" min:"10" type:"string"`
 
 	// The name of the bot alias.
@@ -7528,7 +7533,8 @@ func (s *BotLocaleSortBy) SetOrder(v string) *BotLocaleSortBy {
 	return s
 }
 
-// Summary information about bot locales returned by the ListBotLocales operation.
+// Summary information about bot locales returned by the ListBotLocales (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBotLocales.html)
+// operation.
 type BotLocaleSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -7667,12 +7673,14 @@ func (s *BotSortBy) SetOrder(v string) *BotSortBy {
 	return s
 }
 
-// Summary information about a bot returned by the ListBots operation.
+// Summary information about a bot returned by the ListBots (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBots.html)
+// operation.
 type BotSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier assigned to the bot. Use this ID to get detailed information
-	// about the bot with the DescribeBot operation.
+	// about the bot with the DescribeBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeBot.html)
+	// operation.
 	BotId *string `locationName:"botId" min:"10" type:"string"`
 
 	// The name of the bot.
@@ -7857,7 +7865,8 @@ func (s *BotVersionSortBy) SetOrder(v string) *BotVersionSortBy {
 	return s
 }
 
-// Summary information about a bot version returned by the ListBotVersions operation.
+// Summary information about a bot version returned by the ListBotVersions (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBotVersions.html)
+// operation.
 type BotVersionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -7931,7 +7940,8 @@ type BuildBotLocaleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the bot to build. The identifier is returned in the response
-	// from the operation.
+	// from the CreateBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateBot.html)
+	// operation.
 	//
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
@@ -8149,6 +8159,7 @@ func (s *BuiltInIntentSortBy) SetOrder(v string) *BuiltInIntentSortBy {
 }
 
 // Provides summary information about a built-in intent for the ListBuiltInIntents
+// (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBuiltInIntents.html)
 // operation.
 type BuiltInIntentSummary struct {
 	_ struct{} `type:"structure"`
@@ -8253,6 +8264,7 @@ func (s *BuiltInSlotTypeSortBy) SetOrder(v string) *BuiltInSlotTypeSortBy {
 }
 
 // Provides summary information about a built-in slot type for the ListBuiltInSlotTypes
+// (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListBuiltInSlotTypes.html)
 // operation.
 type BuiltInSlotTypeSummary struct {
 	_ struct{} `type:"structure"`
@@ -8646,7 +8658,8 @@ type CreateBotAliasInput struct {
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
-	// The version of the bot that this alias points to. You can use the operation
+	// The version of the bot that this alias points to. You can use the UpdateBotAlias
+	// (https://docs.aws.amazon.com/lexv2/latest/dg/API_UpdateBotAlias.html) operation
 	// to change the bot version associated with the alias.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
@@ -9681,7 +9694,8 @@ type CreateExportOutput struct {
 	// An identifier for a specific request to create an export.
 	ExportId *string `locationName:"exportId" min:"10" type:"string"`
 
-	// The status of the export. When the status is Completed, you can use the operation
+	// The status of the export. When the status is Completed, you can use the DescribeExport
+	// (https://docs.aws.amazon.com/latest/dg/API_DescribeExport.html) operation
 	// to get the pre-signed S3 URL link to your exported bot or bot locale.
 	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
 
@@ -11170,7 +11184,8 @@ func (s CreateUploadUrlInput) GoString() string {
 type CreateUploadUrlOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An identifier for a unique import job. Use it when you call the operation.
+	// An identifier for a unique import job. Use it when you call the StartImport
+	// (https://docs.aws.amazon.com/lexv2/latest/dg/API_StartImport.html) operation.
 	ImportId *string `locationName:"importId" min:"10" type:"string"`
 
 	// A pre-signed S3 write URL. Upload the zip archive file that contains the
@@ -11883,8 +11898,9 @@ type DeleteExportOutput struct {
 	ExportId *string `locationName:"exportId" min:"10" type:"string"`
 
 	// The current status of the deletion. When the deletion is complete, the export
-	// will no longer be returned by the operation and calls to the with the export
-	// identifier will fail.
+	// will no longer be returned by the ListExports (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListExports.html)
+	// operation and calls to the DescribeExport (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeExport.html)
+	// operation with the export identifier will fail.
 	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
 }
 
@@ -11974,8 +11990,9 @@ type DeleteImportOutput struct {
 	ImportId *string `locationName:"importId" min:"10" type:"string"`
 
 	// The current status of the deletion. When the deletion is complete, the import
-	// will no longer be returned by the operation and calls to the with the import
-	// identifier will fail.
+	// will no longer be returned by the ListImports (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListImports.html)
+	// operation and calls to the DescribeImport (https://docs.aws.amazon.com/lexv2/latest/dg/API_DescribeImport.html)
+	// operation with the import identifier will fail.
 	ImportStatus *string `locationName:"importStatus" type:"string" enum:"ImportStatus"`
 }
 
@@ -12661,7 +12678,9 @@ type DeleteUtterancesInput struct {
 	LocaleId *string `location:"querystring" locationName:"localeId" type:"string"`
 
 	// The unique identifier of the session with the user. The ID is returned in
-	// the response from the and operations.
+	// the response from the RecognizeText (https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_RecognizeText.html)
+	// and RecognizeUtterance (https://docs.aws.amazon.com/lexv2/latest/dg/API_runtime_RecognizeUtterance.html)
+	// operations.
 	SessionId *string `location:"querystring" locationName:"sessionId" min:"2" type:"string"`
 }
 
@@ -14758,7 +14777,8 @@ func (s *DialogCodeHookSettings) SetEnabled(v bool) *DialogCodeHookSettings {
 	return s
 }
 
-// Filters the response form the operation
+// Filters the response form the ListExports (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListExports.html)
+// operation
 type ExportFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -15499,7 +15519,8 @@ func (s *ImageResponseCard) SetTitle(v string) *ImageResponseCard {
 	return s
 }
 
-// Filters the response from the operation.
+// Filters the response from the ListImports (https://docs.aws.amazon.com/lexv2/latest/dg/API_ListImports.html)
+// operation.
 type ImportFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -20984,7 +21005,8 @@ type StartImportInput struct {
 	FilePassword *string `locationName:"filePassword" min:"1" type:"string" sensitive:"true"`
 
 	// The unique identifier for the import. It is included in the response from
-	// the operation.
+	// the CreateUploadUrl (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateUploadUrl.html)
+	// operation.
 	//
 	// ImportId is a required field
 	ImportId *string `locationName:"importId" min:"10" type:"string" required:"true"`
@@ -21895,7 +21917,8 @@ type UpdateBotInput struct {
 	_ struct{} `type:"structure"`
 
 	// The unique identifier of the bot to update. This identifier is returned by
-	// the CreateBot operation.
+	// the CreateBot (https://docs.aws.amazon.com/lexv2/latest/dg/API_CreateBot.html)
+	// operation.
 	//
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
@@ -23917,6 +23940,11 @@ func (s *ValidationException) RequestID() string {
 type VoiceSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates the type of Amazon Polly voice that Amazon Lex should use for voice
+	// interaction with the user. For more information, see Voices in Amazon Polly
+	// (https://docs.aws.amazon.com/polly/latest/dg/voicelist.html).
+	Engine *string `locationName:"engine" type:"string" enum:"VoiceEngine"`
+
 	// The identifier of the Amazon Polly voice to use.
 	//
 	// VoiceId is a required field
@@ -23952,6 +23980,12 @@ func (s *VoiceSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEngine sets the Engine field's value.
+func (s *VoiceSettings) SetEngine(v string) *VoiceSettings {
+	s.Engine = &v
+	return s
 }
 
 // SetVoiceId sets the VoiceId field's value.
@@ -24705,5 +24739,21 @@ func TimeDimension_Values() []string {
 		TimeDimensionHours,
 		TimeDimensionDays,
 		TimeDimensionWeeks,
+	}
+}
+
+const (
+	// VoiceEngineStandard is a VoiceEngine enum value
+	VoiceEngineStandard = "standard"
+
+	// VoiceEngineNeural is a VoiceEngine enum value
+	VoiceEngineNeural = "neural"
+)
+
+// VoiceEngine_Values returns all elements of the VoiceEngine enum
+func VoiceEngine_Values() []string {
+	return []string{
+		VoiceEngineStandard,
+		VoiceEngineNeural,
 	}
 }

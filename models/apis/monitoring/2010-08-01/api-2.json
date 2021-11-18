@@ -38,7 +38,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceFault"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"MissingRequiredParameterException"}
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DeleteDashboards":{
@@ -147,7 +148,8 @@
       "errors":[
         {"shape":"InvalidNextToken"},
         {"shape":"InternalServiceFault"},
-        {"shape":"InvalidParameterValueException"}
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "DescribeInsightRules":{
@@ -394,7 +396,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"InternalServiceFault"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"MissingRequiredParameterException"}
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InvalidParameterCombinationException"}
       ]
     },
     "PutCompositeAlarm":{
@@ -644,12 +647,30 @@
     "AnomalyDetector":{
       "type":"structure",
       "members":{
-        "Namespace":{"shape":"Namespace"},
-        "MetricName":{"shape":"MetricName"},
-        "Dimensions":{"shape":"Dimensions"},
-        "Stat":{"shape":"AnomalyDetectorMetricStat"},
+        "Namespace":{
+          "shape":"Namespace",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector.Namespace property."
+        },
+        "MetricName":{
+          "shape":"MetricName",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector.MetricName property."
+        },
+        "Dimensions":{
+          "shape":"Dimensions",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector.Dimensions property."
+        },
+        "Stat":{
+          "shape":"AnomalyDetectorMetricStat",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector.Stat property."
+        },
         "Configuration":{"shape":"AnomalyDetectorConfiguration"},
-        "StateValue":{"shape":"AnomalyDetectorStateValue"}
+        "StateValue":{"shape":"AnomalyDetectorStateValue"},
+        "SingleMetricAnomalyDetector":{"shape":"SingleMetricAnomalyDetector"},
+        "MetricMathAnomalyDetector":{"shape":"MetricMathAnomalyDetector"}
       }
     },
     "AnomalyDetectorConfiguration":{
@@ -665,7 +686,8 @@
     },
     "AnomalyDetectorMetricStat":{
       "type":"string",
-      "pattern":"(SampleCount|Average|Sum|Minimum|Maximum|p(\\d{1,2}|100)(\\.\\d{0,2})?|[ou]\\d+(\\.\\d*)?)(_E|_L|_H)?"
+      "max":50,
+      "pattern":"(SampleCount|Average|Sum|Minimum|Maximum|IQM|(p|tc|tm|ts|wm)(\\d{1,2}(\\.\\d{0,10})?|100)|[ou]\\d+(\\.\\d*)?)(_E|_L|_H)?|(TM|TC|TS|WM)\\(((((\\d{1,2})(\\.\\d{0,10})?|100(\\.0{0,10})?)%)?:((\\d{1,2})(\\.\\d{0,10})?|100(\\.0{0,10})?)%|((\\d{1,2})(\\.\\d{0,10})?|100(\\.0{0,10})?)%:(((\\d{1,2})(\\.\\d{0,10})?|100(\\.0{0,10})?)%)?)\\)|(TM|TC|TS|WM|PR)\\(((\\d+(\\.\\d{0,10})?|(\\d+(\\.\\d{0,10})?[Ee][+-]?\\d+)):((\\d+(\\.\\d{0,10})?|(\\d+(\\.\\d{0,10})?[Ee][+-]?\\d+)))?|((\\d+(\\.\\d{0,10})?|(\\d+(\\.\\d{0,10})?[Ee][+-]?\\d+)))?:(\\d+(\\.\\d{0,10})?|(\\d+(\\.\\d{0,10})?[Ee][+-]?\\d+)))\\)"
     },
     "AnomalyDetectorMetricTimezone":{
       "type":"string",
@@ -679,6 +701,18 @@
         "TRAINED_INSUFFICIENT_DATA",
         "TRAINED"
       ]
+    },
+    "AnomalyDetectorType":{
+      "type":"string",
+      "enum":[
+        "SINGLE_METRIC",
+        "METRIC_MATH"
+      ]
+    },
+    "AnomalyDetectorTypes":{
+      "type":"list",
+      "member":{"shape":"AnomalyDetectorType"},
+      "max":2
     },
     "AnomalyDetectors":{
       "type":"list",
@@ -862,16 +896,29 @@
     },
     "DeleteAnomalyDetectorInput":{
       "type":"structure",
-      "required":[
-        "Namespace",
-        "MetricName",
-        "Stat"
-      ],
       "members":{
-        "Namespace":{"shape":"Namespace"},
-        "MetricName":{"shape":"MetricName"},
-        "Dimensions":{"shape":"Dimensions"},
-        "Stat":{"shape":"AnomalyDetectorMetricStat"}
+        "Namespace":{
+          "shape":"Namespace",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector."
+        },
+        "MetricName":{
+          "shape":"MetricName",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector."
+        },
+        "Dimensions":{
+          "shape":"Dimensions",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector."
+        },
+        "Stat":{
+          "shape":"AnomalyDetectorMetricStat",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector."
+        },
+        "SingleMetricAnomalyDetector":{"shape":"SingleMetricAnomalyDetector"},
+        "MetricMathAnomalyDetector":{"shape":"MetricMathAnomalyDetector"}
       }
     },
     "DeleteAnomalyDetectorOutput":{
@@ -987,7 +1034,8 @@
         "MaxResults":{"shape":"MaxReturnedResultsCount"},
         "Namespace":{"shape":"Namespace"},
         "MetricName":{"shape":"MetricName"},
-        "Dimensions":{"shape":"Dimensions"}
+        "Dimensions":{"shape":"Dimensions"},
+        "AnomalyDetectorTypes":{"shape":"AnomalyDetectorTypes"}
       }
     },
     "DescribeAnomalyDetectorsOutput":{
@@ -1725,6 +1773,12 @@
       "min":1
     },
     "MetricLabel":{"type":"string"},
+    "MetricMathAnomalyDetector":{
+      "type":"structure",
+      "members":{
+        "MetricDataQueries":{"shape":"MetricDataQueries"}
+      }
+    },
     "MetricName":{
       "type":"string",
       "max":255,
@@ -1831,17 +1885,30 @@
     },
     "PutAnomalyDetectorInput":{
       "type":"structure",
-      "required":[
-        "Namespace",
-        "MetricName",
-        "Stat"
-      ],
       "members":{
-        "Namespace":{"shape":"Namespace"},
-        "MetricName":{"shape":"MetricName"},
-        "Dimensions":{"shape":"Dimensions"},
-        "Stat":{"shape":"AnomalyDetectorMetricStat"},
-        "Configuration":{"shape":"AnomalyDetectorConfiguration"}
+        "Namespace":{
+          "shape":"Namespace",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector."
+        },
+        "MetricName":{
+          "shape":"MetricName",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector."
+        },
+        "Dimensions":{
+          "shape":"Dimensions",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector."
+        },
+        "Stat":{
+          "shape":"AnomalyDetectorMetricStat",
+          "deprecated":true,
+          "deprecatedMessage":"Use SingleMetricAnomalyDetector."
+        },
+        "Configuration":{"shape":"AnomalyDetectorConfiguration"},
+        "SingleMetricAnomalyDetector":{"shape":"SingleMetricAnomalyDetector"},
+        "MetricMathAnomalyDetector":{"shape":"MetricMathAnomalyDetector"}
       }
     },
     "PutAnomalyDetectorOutput":{
@@ -2044,6 +2111,15 @@
         "StateValue":{"shape":"StateValue"},
         "StateReason":{"shape":"StateReason"},
         "StateReasonData":{"shape":"StateReasonData"}
+      }
+    },
+    "SingleMetricAnomalyDetector":{
+      "type":"structure",
+      "members":{
+        "Namespace":{"shape":"Namespace"},
+        "MetricName":{"shape":"MetricName"},
+        "Dimensions":{"shape":"Dimensions"},
+        "Stat":{"shape":"AnomalyDetectorMetricStat"}
       }
     },
     "Size":{"type":"long"},

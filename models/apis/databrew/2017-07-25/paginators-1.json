@@ -36,6 +36,12 @@
       "output_token": "NextToken",
       "result_key": "Recipes"
     },
+    "ListRulesets": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Rulesets"
+    },
     "ListSchedules": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

@@ -911,6 +911,43 @@
         } 
       ]
     },
+    "UpdateConnectivity":{
+      "name":"UpdateConnectivity",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v1/clusters/{clusterArn}/connectivity",
+        "responseCode":200
+      },
+      "input":{
+        "shape":"UpdateConnectivityRequest"
+      },
+      "output":{
+        "shape":"UpdateConnectivityResponse"
+      },
+      "errors":[
+        {
+          "shape":"BadRequestException"
+        },
+        {
+          "shape":"UnauthorizedException"
+        },
+        {
+          "shape":"InternalServerErrorException"
+        },
+        {
+          "shape":"ForbiddenException"
+        },
+        {
+          "shape":"NotFoundException"
+        },
+        {
+          "shape":"ServiceUnavailableException"
+        },
+        {
+          "shape":"TooManyRequestsException"
+        }
+      ]
+    },
     "UpdateMonitoring" : {
       "name" : "UpdateMonitoring",
       "http" : {
@@ -1074,6 +1111,10 @@
         "StorageInfo": {
           "shape": "StorageInfo",
           "locationName": "storageInfo"
+        },
+        "ConnectivityInfo":{
+          "shape":"ConnectivityInfo",
+          "locationName":"connectivityInfo"
         }
       },
       "required": [
@@ -1443,6 +1484,15 @@
       "exception": true,
       "error": {
         "httpStatusCode": 409
+      }
+    },
+    "ConnectivityInfo":{
+      "type":"structure",
+      "members":{
+        "PublicAccess":{
+          "shape":"PublicAccess",
+          "locationName":"publicAccess"
+        }
       }
     },
     "CreateClusterRequest": {
@@ -1919,6 +1969,18 @@
           "shape": "__string",
           "locationName": "bootstrapBrokerString"
         },
+        "BootstrapBrokerStringPublicSaslIam" : {
+          "shape" : "__string",
+          "locationName" : "bootstrapBrokerStringPublicSaslIam"
+        },
+        "BootstrapBrokerStringPublicSaslScram" : {
+          "shape" : "__string",
+          "locationName" : "bootstrapBrokerStringPublicSaslScram"
+        },
+        "BootstrapBrokerStringPublicTls" : {
+          "shape" : "__string",
+          "locationName" : "bootstrapBrokerStringPublicTls"
+        },
         "BootstrapBrokerStringTls": {
           "shape": "__string",
           "locationName": "bootstrapBrokerStringTls"
@@ -2299,6 +2361,10 @@
         "EncryptionInfo" : {
           "shape" : "EncryptionInfo",
           "locationName" : "encryptionInfo"
+        },
+        "ConnectivityInfo":{
+          "shape":"ConnectivityInfo",
+          "locationName":"connectivityInfo"
         }
       }
     },
@@ -2749,6 +2815,42 @@
         }
       }
     },
+    "UpdateConnectivityRequest":{
+      "type":"structure",
+      "members":{
+        "ClusterArn":{
+          "shape":"__string",
+          "location":"uri",
+          "locationName":"clusterArn"
+        },
+        "ConnectivityInfo":{
+          "shape":"ConnectivityInfo",
+          "locationName":"connectivityInfo"
+        },
+        "CurrentVersion":{
+          "shape":"__string",
+          "locationName":"currentVersion"
+        }
+      },
+      "required":[
+        "ClusterArn",
+        "ConnectivityInfo",
+        "CurrentVersion"
+      ]
+    },
+    "UpdateConnectivityResponse":{
+      "type":"structure",
+      "members":{
+        "ClusterArn":{
+          "shape":"__string",
+          "locationName":"clusterArn"
+        },
+        "ClusterOperationArn":{
+          "shape":"__string",
+          "locationName":"clusterOperationArn"
+        }
+      }
+    },
     "UpdateMonitoringRequest" : {
       "type" : "structure",
       "members" : {
@@ -2893,6 +2995,15 @@
         "NodeExporter" : {
           "shape" : "NodeExporterInfo",
           "locationName" : "nodeExporter"
+        }
+      }
+    },
+    "PublicAccess":{
+      "type":"structure",
+      "members":{
+        "Type":{
+          "shape":"__string",
+          "locationName":"type"
         }
       }
     },

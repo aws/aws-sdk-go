@@ -56,7 +56,9 @@ func (c *ChimeSDKMeetings) BatchCreateAttendeeRequest(input *BatchCreateAttendee
 
 // BatchCreateAttendee API operation for Amazon Chime SDK Meetings.
 //
-// Creates a group of meeting attendees.
+// Creates up to 100 attendees for an active Amazon Chime SDK meeting. For more
+// information about the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// in the Amazon Chime Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2061,6 +2063,10 @@ func (s DeleteMeetingOutput) GoString() string {
 type EngineTranscribeMedicalSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Set this field to PHI to identify personal health information in the transcription
+	// output.
+	ContentIdentificationType *string `type:"string" enum:"TranscribeMedicalContentIdentificationType"`
+
 	// The language code specified for the Amazon Transcribe Medical engine.
 	//
 	// LanguageCode is a required field
@@ -2121,6 +2127,12 @@ func (s *EngineTranscribeMedicalSettings) Validate() error {
 	return nil
 }
 
+// SetContentIdentificationType sets the ContentIdentificationType field's value.
+func (s *EngineTranscribeMedicalSettings) SetContentIdentificationType(v string) *EngineTranscribeMedicalSettings {
+	s.ContentIdentificationType = &v
+	return s
+}
+
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *EngineTranscribeMedicalSettings) SetLanguageCode(v string) *EngineTranscribeMedicalSettings {
 	s.LanguageCode = &v
@@ -2155,10 +2167,45 @@ func (s *EngineTranscribeMedicalSettings) SetVocabularyName(v string) *EngineTra
 type EngineTranscribeSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Set this field to PII to identify personal health information in the transcription
+	// output.
+	ContentIdentificationType *string `type:"string" enum:"TranscribeContentIdentificationType"`
+
+	// Set this field to PII to redact personally identifiable information in the
+	// transcription output. Content redaction is performed only upon complete transcription
+	// of the audio segments.
+	//
+	// You can’t set both ContentRedactionType and ContentIdentificationType in
+	// the same request. If you set both, your request returns a BadRequestException.
+	ContentRedactionType *string `type:"string" enum:"TranscribeContentRedactionType"`
+
+	// Generates partial transcription results that are less likely to change as
+	// meeting attendees speak. It does so by only allowing the last few words from
+	// the partial results to change.
+	EnablePartialResultsStabilization *bool `type:"boolean"`
+
 	// The language code specified for the Amazon Transcribe engine.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"TranscribeLanguageCode"`
+
+	// The name of the language model used during transcription.
+	LanguageModelName *string `min:"1" type:"string"`
+
+	// The stabity level of a partial results transcription. Determines how stable
+	// you want the transcription results to be. A higher level means the transcription
+	// results are less likely to change.
+	PartialResultsStability *string `type:"string" enum:"TranscribePartialResultsStability"`
+
+	// Lists the PII entity types you want to identify or redact. To specify entity
+	// types, you must enable ContentIdentificationType or ContentRedactionType.
+	//
+	// PIIEntityTypes must be comma-separated. The available values are: BANK_ACCOUNT_NUMBER,
+	// BANK_ROUTING, CREDIT_DEBIT_NUMBER, CREDIT_DEBIT_CVV, CREDIT_DEBIT_EXPIRY,
+	// PIN, EMAIL, ADDRESS, NAME, PHONE, SSN, and ALL.
+	//
+	// PiiEntityTypes is an optional parameter with a default value of ALL.
+	PiiEntityTypes *string `min:"1" type:"string"`
 
 	// The AWS Region passed to Amazon Transcribe. If you don't specify a Region,
 	// Amazon Chime uses the meeting's Region.
@@ -2198,6 +2245,12 @@ func (s *EngineTranscribeSettings) Validate() error {
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
+	if s.LanguageModelName != nil && len(*s.LanguageModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageModelName", 1))
+	}
+	if s.PiiEntityTypes != nil && len(*s.PiiEntityTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PiiEntityTypes", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2205,9 +2258,45 @@ func (s *EngineTranscribeSettings) Validate() error {
 	return nil
 }
 
+// SetContentIdentificationType sets the ContentIdentificationType field's value.
+func (s *EngineTranscribeSettings) SetContentIdentificationType(v string) *EngineTranscribeSettings {
+	s.ContentIdentificationType = &v
+	return s
+}
+
+// SetContentRedactionType sets the ContentRedactionType field's value.
+func (s *EngineTranscribeSettings) SetContentRedactionType(v string) *EngineTranscribeSettings {
+	s.ContentRedactionType = &v
+	return s
+}
+
+// SetEnablePartialResultsStabilization sets the EnablePartialResultsStabilization field's value.
+func (s *EngineTranscribeSettings) SetEnablePartialResultsStabilization(v bool) *EngineTranscribeSettings {
+	s.EnablePartialResultsStabilization = &v
+	return s
+}
+
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *EngineTranscribeSettings) SetLanguageCode(v string) *EngineTranscribeSettings {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetLanguageModelName sets the LanguageModelName field's value.
+func (s *EngineTranscribeSettings) SetLanguageModelName(v string) *EngineTranscribeSettings {
+	s.LanguageModelName = &v
+	return s
+}
+
+// SetPartialResultsStability sets the PartialResultsStability field's value.
+func (s *EngineTranscribeSettings) SetPartialResultsStability(v string) *EngineTranscribeSettings {
+	s.PartialResultsStability = &v
+	return s
+}
+
+// SetPiiEntityTypes sets the PiiEntityTypes field's value.
+func (s *EngineTranscribeSettings) SetPiiEntityTypes(v string) *EngineTranscribeSettings {
+	s.PiiEntityTypes = &v
 	return s
 }
 
@@ -3422,6 +3511,30 @@ func (s *UnprocessableEntityException) RequestID() string {
 }
 
 const (
+	// TranscribeContentIdentificationTypePii is a TranscribeContentIdentificationType enum value
+	TranscribeContentIdentificationTypePii = "PII"
+)
+
+// TranscribeContentIdentificationType_Values returns all elements of the TranscribeContentIdentificationType enum
+func TranscribeContentIdentificationType_Values() []string {
+	return []string{
+		TranscribeContentIdentificationTypePii,
+	}
+}
+
+const (
+	// TranscribeContentRedactionTypePii is a TranscribeContentRedactionType enum value
+	TranscribeContentRedactionTypePii = "PII"
+)
+
+// TranscribeContentRedactionType_Values returns all elements of the TranscribeContentRedactionType enum
+func TranscribeContentRedactionType_Values() []string {
+	return []string{
+		TranscribeContentRedactionTypePii,
+	}
+}
+
+const (
 	// TranscribeLanguageCodeEnUs is a TranscribeLanguageCode enum value
 	TranscribeLanguageCodeEnUs = "en-US"
 
@@ -3474,6 +3587,18 @@ func TranscribeLanguageCode_Values() []string {
 		TranscribeLanguageCodeJaJp,
 		TranscribeLanguageCodeKoKr,
 		TranscribeLanguageCodeZhCn,
+	}
+}
+
+const (
+	// TranscribeMedicalContentIdentificationTypePhi is a TranscribeMedicalContentIdentificationType enum value
+	TranscribeMedicalContentIdentificationTypePhi = "PHI"
+)
+
+// TranscribeMedicalContentIdentificationType_Values returns all elements of the TranscribeMedicalContentIdentificationType enum
+func TranscribeMedicalContentIdentificationType_Values() []string {
+	return []string{
+		TranscribeMedicalContentIdentificationTypePhi,
 	}
 }
 
@@ -3570,6 +3695,26 @@ func TranscribeMedicalType_Values() []string {
 	return []string{
 		TranscribeMedicalTypeConversation,
 		TranscribeMedicalTypeDictation,
+	}
+}
+
+const (
+	// TranscribePartialResultsStabilityLow is a TranscribePartialResultsStability enum value
+	TranscribePartialResultsStabilityLow = "low"
+
+	// TranscribePartialResultsStabilityMedium is a TranscribePartialResultsStability enum value
+	TranscribePartialResultsStabilityMedium = "medium"
+
+	// TranscribePartialResultsStabilityHigh is a TranscribePartialResultsStability enum value
+	TranscribePartialResultsStabilityHigh = "high"
+)
+
+// TranscribePartialResultsStability_Values returns all elements of the TranscribePartialResultsStability enum
+func TranscribePartialResultsStability_Values() []string {
+	return []string{
+		TranscribePartialResultsStabilityLow,
+		TranscribePartialResultsStabilityMedium,
+		TranscribePartialResultsStabilityHigh,
 	}
 }
 

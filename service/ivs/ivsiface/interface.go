@@ -116,6 +116,10 @@ type IVSAPI interface {
 	GetStreamKeyWithContext(aws.Context, *ivs.GetStreamKeyInput, ...request.Option) (*ivs.GetStreamKeyOutput, error)
 	GetStreamKeyRequest(*ivs.GetStreamKeyInput) (*request.Request, *ivs.GetStreamKeyOutput)
 
+	GetStreamSession(*ivs.GetStreamSessionInput) (*ivs.GetStreamSessionOutput, error)
+	GetStreamSessionWithContext(aws.Context, *ivs.GetStreamSessionInput, ...request.Option) (*ivs.GetStreamSessionOutput, error)
+	GetStreamSessionRequest(*ivs.GetStreamSessionInput) (*request.Request, *ivs.GetStreamSessionOutput)
+
 	ImportPlaybackKeyPair(*ivs.ImportPlaybackKeyPairInput) (*ivs.ImportPlaybackKeyPairOutput, error)
 	ImportPlaybackKeyPairWithContext(aws.Context, *ivs.ImportPlaybackKeyPairInput, ...request.Option) (*ivs.ImportPlaybackKeyPairOutput, error)
 	ImportPlaybackKeyPairRequest(*ivs.ImportPlaybackKeyPairInput) (*request.Request, *ivs.ImportPlaybackKeyPairOutput)
@@ -147,6 +151,13 @@ type IVSAPI interface {
 
 	ListStreamKeysPages(*ivs.ListStreamKeysInput, func(*ivs.ListStreamKeysOutput, bool) bool) error
 	ListStreamKeysPagesWithContext(aws.Context, *ivs.ListStreamKeysInput, func(*ivs.ListStreamKeysOutput, bool) bool, ...request.Option) error
+
+	ListStreamSessions(*ivs.ListStreamSessionsInput) (*ivs.ListStreamSessionsOutput, error)
+	ListStreamSessionsWithContext(aws.Context, *ivs.ListStreamSessionsInput, ...request.Option) (*ivs.ListStreamSessionsOutput, error)
+	ListStreamSessionsRequest(*ivs.ListStreamSessionsInput) (*request.Request, *ivs.ListStreamSessionsOutput)
+
+	ListStreamSessionsPages(*ivs.ListStreamSessionsInput, func(*ivs.ListStreamSessionsOutput, bool) bool) error
+	ListStreamSessionsPagesWithContext(aws.Context, *ivs.ListStreamSessionsInput, func(*ivs.ListStreamSessionsOutput, bool) bool, ...request.Option) error
 
 	ListStreams(*ivs.ListStreamsInput) (*ivs.ListStreamsOutput, error)
 	ListStreamsWithContext(aws.Context, *ivs.ListStreamsInput, ...request.Option) (*ivs.ListStreamsOutput, error)

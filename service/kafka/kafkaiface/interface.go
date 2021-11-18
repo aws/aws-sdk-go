@@ -197,6 +197,10 @@ type KafkaAPI interface {
 	UpdateConfigurationWithContext(aws.Context, *kafka.UpdateConfigurationInput, ...request.Option) (*kafka.UpdateConfigurationOutput, error)
 	UpdateConfigurationRequest(*kafka.UpdateConfigurationInput) (*request.Request, *kafka.UpdateConfigurationOutput)
 
+	UpdateConnectivity(*kafka.UpdateConnectivityInput) (*kafka.UpdateConnectivityOutput, error)
+	UpdateConnectivityWithContext(aws.Context, *kafka.UpdateConnectivityInput, ...request.Option) (*kafka.UpdateConnectivityOutput, error)
+	UpdateConnectivityRequest(*kafka.UpdateConnectivityInput) (*request.Request, *kafka.UpdateConnectivityOutput)
+
 	UpdateMonitoring(*kafka.UpdateMonitoringInput) (*kafka.UpdateMonitoringOutput, error)
 	UpdateMonitoringWithContext(aws.Context, *kafka.UpdateMonitoringInput, ...request.Option) (*kafka.UpdateMonitoringOutput, error)
 	UpdateMonitoringRequest(*kafka.UpdateMonitoringInput) (*request.Request, *kafka.UpdateMonitoringOutput)

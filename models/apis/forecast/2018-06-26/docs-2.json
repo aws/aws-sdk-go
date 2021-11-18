@@ -2,32 +2,42 @@
   "version": "2.0",
   "service": "<p>Provides APIs for creating and managing Amazon Forecast resources.</p>",
   "operations": {
+    "CreateAutoPredictor": "<p>Creates an Amazon Forecast predictor.</p> <p>Amazon Forecast creates predictors with AutoPredictor, which involves applying the optimal combination of algorithms to each time series in your datasets. You can use CreateAutoPredictor to create new predictors or upgrade/retrain existing predictors.</p> <p> <b>Creating new predictors</b> </p> <p>The following parameters are required when creating a new predictor:</p> <ul> <li> <p> <code>PredictorName</code> - A unique name for the predictor.</p> </li> <li> <p> <code>DatasetGroupArn</code> - The ARN of the dataset group used to train the predictor.</p> </li> <li> <p> <code>ForecastFrequency</code> - The granularity of your forecasts (hourly, daily, weekly, etc).</p> </li> <li> <p> <code>ForecastHorizon</code> - The number of time steps being forecasted.</p> </li> </ul> <p>When creating a new predictor, do not specify a value for <code>ReferencePredictorArn</code>.</p> <p> <b>Upgrading and retraining predictors</b> </p> <p>The following parameters are required when retraining or upgrading a predictor:</p> <ul> <li> <p> <code>PredictorName</code> - A unique name for the predictor.</p> </li> <li> <p> <code>ReferencePredictorArn</code> - The ARN of the predictor to retrain or upgrade.</p> </li> </ul> <p>When upgrading or retraining a predictor, only specify values for the <code>ReferencePredictorArn</code> and <code>PredictorName</code>. </p>",
     "CreateDataset": "<p>Creates an Amazon Forecast dataset. The information about the dataset that you provide helps Forecast understand how to consume the data for model training. This includes the following:</p> <ul> <li> <p> <i> <code>DataFrequency</code> </i> - How frequently your historical time-series data is collected.</p> </li> <li> <p> <i> <code>Domain</code> </i> and <i> <code>DatasetType</code> </i> - Each dataset has an associated dataset domain and a type within the domain. Amazon Forecast provides a list of predefined domains and types within each domain. For each unique dataset domain and type within the domain, Amazon Forecast requires your data to include a minimum set of predefined fields.</p> </li> <li> <p> <i> <code>Schema</code> </i> - A schema specifies the fields in the dataset, including the field name and data type.</p> </li> </ul> <p>After creating a dataset, you import your training data into it and add the dataset to a dataset group. You use the dataset group to create a predictor. For more information, see <a>howitworks-datasets-groups</a>.</p> <p>To get a list of all your datasets, use the <a>ListDatasets</a> operation.</p> <p>For example Forecast datasets, see the <a href=\"https://github.com/aws-samples/amazon-forecast-samples\">Amazon Forecast Sample GitHub repository</a>.</p> <note> <p>The <code>Status</code> of a dataset must be <code>ACTIVE</code> before you can import training data. Use the <a>DescribeDataset</a> operation to get the status.</p> </note>",
     "CreateDatasetGroup": "<p>Creates a dataset group, which holds a collection of related datasets. You can add datasets to the dataset group when you create the dataset group, or later by using the <a>UpdateDatasetGroup</a> operation.</p> <p>After creating a dataset group and adding datasets, you use the dataset group when you create a predictor. For more information, see <a>howitworks-datasets-groups</a>.</p> <p>To get a list of all your datasets groups, use the <a>ListDatasetGroups</a> operation.</p> <note> <p>The <code>Status</code> of a dataset group must be <code>ACTIVE</code> before you can use the dataset group to create a predictor. To get the status, use the <a>DescribeDatasetGroup</a> operation.</p> </note>",
     "CreateDatasetImportJob": "<p>Imports your training data to an Amazon Forecast dataset. You provide the location of your training data in an Amazon Simple Storage Service (Amazon S3) bucket and the Amazon Resource Name (ARN) of the dataset that you want to import the data to.</p> <p>You must specify a <a>DataSource</a> object that includes an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the data, as Amazon Forecast makes a copy of your data and processes it in an internal AWS system. For more information, see <a>aws-forecast-iam-roles</a>.</p> <p>The training data must be in CSV format. The delimiter must be a comma (,).</p> <p>You can specify the path to a specific CSV file, the S3 bucket, or to a folder in the S3 bucket. For the latter two cases, Amazon Forecast imports all files up to the limit of 10,000 files.</p> <p>Because dataset imports are not aggregated, your most recent dataset import is the one that is used when training a predictor or generating a forecast. Make sure that your most recent dataset import contains all of the data you want to model off of, and not just the new data collected since the previous import.</p> <p>To get a list of all your dataset import jobs, filtered by specified criteria, use the <a>ListDatasetImportJobs</a> operation.</p>",
+    "CreateExplainability": "<note> <p>Explainability is only available for Forecasts and Predictors generated from an AutoPredictor (<a>CreateAutoPredictor</a>)</p> </note> <p>Creates an Amazon Forecast Explainability.</p> <p>Explainability helps you better understand how the attributes in your datasets impact forecast. Amazon Forecast uses a metric called Impact scores to quantify the relative impact of each attribute and determine whether they increase or decrease forecast values.</p> <p>To enable Forecast Explainability, your predictor must include at least one of the following: related time series, item metadata, or additional datasets like Holidays and the Weather Index.</p> <p>CreateExplainability accepts either a Predictor ARN or Forecast ARN. To receive aggregated Impact scores for all time series and time points in your datasets, provide a Predictor ARN. To receive Impact scores for specific time series and time points, provide a Forecast ARN.</p> <p> <b>CreateExplainability with a Predictor ARN</b> </p> <note> <p>You can only have one Explainability resource per predictor. If you already enabled <code>ExplainPredictor</code> in <a>CreateAutoPredictor</a>, that predictor already has an Explainability resource.</p> </note> <p>The following parameters are required when providing a Predictor ARN:</p> <ul> <li> <p> <code>ExplainabilityName</code> - A unique name for the Explainability.</p> </li> <li> <p> <code>ResourceArn</code> - The Arn of the predictor.</p> </li> <li> <p> <code>TimePointGranularity</code> - Must be set to “ALL”.</p> </li> <li> <p> <code>TimeSeriesGranularity</code> - Must be set to “ALL”.</p> </li> </ul> <p>Do not specify a value for the following parameters:</p> <ul> <li> <p> <code>DataSource</code> - Only valid when TimeSeriesGranularity is “SPECIFIC”.</p> </li> <li> <p> <code>Schema</code> - Only valid when TimeSeriesGranularity is “SPECIFIC”.</p> </li> <li> <p> <code>StartDateTime</code> - Only valid when TimePointGranularity is “SPECIFIC”.</p> </li> <li> <p> <code>EndDateTime</code> - Only valid when TimePointGranularity is “SPECIFIC”.</p> </li> </ul> <p> <b>CreateExplainability with a Forecast ARN</b> </p> <note> <p>You can specify a maximum of 50 time series and 1500 time points.</p> </note> <p>The following parameters are required when providing a Predictor ARN:</p> <ul> <li> <p> <code>ExplainabilityName</code> - A unique name for the Explainability.</p> </li> <li> <p> <code>ResourceArn</code> - The Arn of the forecast.</p> </li> <li> <p> <code>TimePointGranularity</code> - Either “ALL” or “SPECIFIC”.</p> </li> <li> <p> <code>TimeSeriesGranularity</code> - Either “ALL” or “SPECIFIC”.</p> </li> </ul> <p>If you set TimeSeriesGranularity to “SPECIFIC”, you must also provide the following:</p> <ul> <li> <p> <code>DataSource</code> - The S3 location of the CSV file specifying your time series.</p> </li> <li> <p> <code>Schema</code> - The Schema defines the attributes and attribute types listed in the Data Source.</p> </li> </ul> <p>If you set TimePointGranularity to “SPECIFIC”, you must also provide the following:</p> <ul> <li> <p> <code>StartDateTime</code> - The first timestamp in the range of time points.</p> </li> <li> <p> <code>EndDateTime</code> - The last timestamp in the range of time points.</p> </li> </ul>",
+    "CreateExplainabilityExport": "<p>Exports an Explainability resource created by the <a>CreateExplainability</a> operation. Exported files are exported to an Amazon Simple Storage Service (Amazon S3) bucket.</p> <p>You must specify a <a>DataDestination</a> object that includes an Amazon S3 bucket and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the Amazon S3 bucket. For more information, see <a>aws-forecast-iam-roles</a>.</p> <note> <p>The <code>Status</code> of the export job must be <code>ACTIVE</code> before you can access the export in your Amazon S3 bucket. To get the status, use the <a>DescribeExplainabilityExport</a> operation.</p> </note>",
     "CreateForecast": "<p>Creates a forecast for each item in the <code>TARGET_TIME_SERIES</code> dataset that was used to train the predictor. This is known as inference. To retrieve the forecast for a single item at low latency, use the operation. To export the complete forecast into your Amazon Simple Storage Service (Amazon S3) bucket, use the <a>CreateForecastExportJob</a> operation.</p> <p>The range of the forecast is determined by the <code>ForecastHorizon</code> value, which you specify in the <a>CreatePredictor</a> request. When you query a forecast, you can request a specific date range within the forecast.</p> <p>To get a list of all your forecasts, use the <a>ListForecasts</a> operation.</p> <note> <p>The forecasts generated by Amazon Forecast are in the same time zone as the dataset that was used to create the predictor.</p> </note> <p>For more information, see <a>howitworks-forecast</a>.</p> <note> <p>The <code>Status</code> of the forecast must be <code>ACTIVE</code> before you can query or export the forecast. Use the <a>DescribeForecast</a> operation to get the status.</p> </note>",
     "CreateForecastExportJob": "<p>Exports a forecast created by the <a>CreateForecast</a> operation to your Amazon Simple Storage Service (Amazon S3) bucket. The forecast file name will match the following conventions:</p> <p>&lt;ForecastExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;</p> <p>where the &lt;ExportTimestamp&gt; component is in Java SimpleDateFormat (yyyy-MM-ddTHH-mm-ssZ).</p> <p>You must specify a <a>DataDestination</a> object that includes an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the Amazon S3 bucket. For more information, see <a>aws-forecast-iam-roles</a>.</p> <p>For more information, see <a>howitworks-forecast</a>.</p> <p>To get a list of all your forecast export jobs, use the <a>ListForecastExportJobs</a> operation.</p> <note> <p>The <code>Status</code> of the forecast export job must be <code>ACTIVE</code> before you can access the forecast in your Amazon S3 bucket. To get the status, use the <a>DescribeForecastExportJob</a> operation.</p> </note>",
-    "CreatePredictor": "<p>Creates an Amazon Forecast predictor.</p> <p>In the request, provide a dataset group and either specify an algorithm or let Amazon Forecast choose an algorithm for you using AutoML. If you specify an algorithm, you also can override algorithm-specific hyperparameters.</p> <p>Amazon Forecast uses the algorithm to train a predictor using the latest version of the datasets in the specified dataset group. You can then generate a forecast using the <a>CreateForecast</a> operation.</p> <p> To see the evaluation metrics, use the <a>GetAccuracyMetrics</a> operation. </p> <p>You can specify a featurization configuration to fill and aggregate the data fields in the <code>TARGET_TIME_SERIES</code> dataset to improve model training. For more information, see <a>FeaturizationConfig</a>.</p> <p>For RELATED_TIME_SERIES datasets, <code>CreatePredictor</code> verifies that the <code>DataFrequency</code> specified when the dataset was created matches the <code>ForecastFrequency</code>. TARGET_TIME_SERIES datasets don't have this restriction. Amazon Forecast also verifies the delimiter and timestamp format. For more information, see <a>howitworks-datasets-groups</a>.</p> <p>By default, predictors are trained and evaluated at the 0.1 (P10), 0.5 (P50), and 0.9 (P90) quantiles. You can choose custom forecast types to train and evaluate your predictor by setting the <code>ForecastTypes</code>. </p> <p> <b>AutoML</b> </p> <p>If you want Amazon Forecast to evaluate each algorithm and choose the one that minimizes the <code>objective function</code>, set <code>PerformAutoML</code> to <code>true</code>. The <code>objective function</code> is defined as the mean of the weighted losses over the forecast types. By default, these are the p10, p50, and p90 quantile losses. For more information, see <a>EvaluationResult</a>.</p> <p>When AutoML is enabled, the following properties are disallowed:</p> <ul> <li> <p> <code>AlgorithmArn</code> </p> </li> <li> <p> <code>HPOConfig</code> </p> </li> <li> <p> <code>PerformHPO</code> </p> </li> <li> <p> <code>TrainingParameters</code> </p> </li> </ul> <p>To get a list of all of your predictors, use the <a>ListPredictors</a> operation.</p> <note> <p>Before you can use the predictor to create a forecast, the <code>Status</code> of the predictor must be <code>ACTIVE</code>, signifying that training has completed. To get the status, use the <a>DescribePredictor</a> operation.</p> </note>",
+    "CreatePredictor": "<note> <p> This operation creates a legacy predictor that does not include all the predictor functionalities provided by Amazon Forecast. To create a predictor that is compatible with all aspects of Forecast, use CreateAutoPredictor.</p> </note> <p>Creates an Amazon Forecast predictor.</p> <p>In the request, provide a dataset group and either specify an algorithm or let Amazon Forecast choose an algorithm for you using AutoML. If you specify an algorithm, you also can override algorithm-specific hyperparameters.</p> <p>Amazon Forecast uses the algorithm to train a predictor using the latest version of the datasets in the specified dataset group. You can then generate a forecast using the <a>CreateForecast</a> operation.</p> <p> To see the evaluation metrics, use the <a>GetAccuracyMetrics</a> operation. </p> <p>You can specify a featurization configuration to fill and aggregate the data fields in the <code>TARGET_TIME_SERIES</code> dataset to improve model training. For more information, see <a>FeaturizationConfig</a>.</p> <p>For RELATED_TIME_SERIES datasets, <code>CreatePredictor</code> verifies that the <code>DataFrequency</code> specified when the dataset was created matches the <code>ForecastFrequency</code>. TARGET_TIME_SERIES datasets don't have this restriction. Amazon Forecast also verifies the delimiter and timestamp format. For more information, see <a>howitworks-datasets-groups</a>.</p> <p>By default, predictors are trained and evaluated at the 0.1 (P10), 0.5 (P50), and 0.9 (P90) quantiles. You can choose custom forecast types to train and evaluate your predictor by setting the <code>ForecastTypes</code>. </p> <p> <b>AutoML</b> </p> <p>If you want Amazon Forecast to evaluate each algorithm and choose the one that minimizes the <code>objective function</code>, set <code>PerformAutoML</code> to <code>true</code>. The <code>objective function</code> is defined as the mean of the weighted losses over the forecast types. By default, these are the p10, p50, and p90 quantile losses. For more information, see <a>EvaluationResult</a>.</p> <p>When AutoML is enabled, the following properties are disallowed:</p> <ul> <li> <p> <code>AlgorithmArn</code> </p> </li> <li> <p> <code>HPOConfig</code> </p> </li> <li> <p> <code>PerformHPO</code> </p> </li> <li> <p> <code>TrainingParameters</code> </p> </li> </ul> <p>To get a list of all of your predictors, use the <a>ListPredictors</a> operation.</p> <note> <p>Before you can use the predictor to create a forecast, the <code>Status</code> of the predictor must be <code>ACTIVE</code>, signifying that training has completed. To get the status, use the <a>DescribePredictor</a> operation.</p> </note>",
     "CreatePredictorBacktestExportJob": "<p>Exports backtest forecasts and accuracy metrics generated by the <a>CreatePredictor</a> operation. Two folders containing CSV files are exported to your specified S3 bucket.</p> <p> The export file names will match the following conventions:</p> <p> <code>&lt;ExportJobName&gt;_&lt;ExportTimestamp&gt;_&lt;PartNumber&gt;.csv</code> </p> <p>The &lt;ExportTimestamp&gt; component is in Java SimpleDate format (yyyy-MM-ddTHH-mm-ssZ).</p> <p>You must specify a <a>DataDestination</a> object that includes an Amazon S3 bucket and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the Amazon S3 bucket. For more information, see <a>aws-forecast-iam-roles</a>.</p> <note> <p>The <code>Status</code> of the export job must be <code>ACTIVE</code> before you can access the export in your Amazon S3 bucket. To get the status, use the <a>DescribePredictorBacktestExportJob</a> operation.</p> </note>",
     "DeleteDataset": "<p>Deletes an Amazon Forecast dataset that was created using the <a>CreateDataset</a> operation. You can only delete datasets that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>. To get the status use the <a>DescribeDataset</a> operation.</p> <note> <p>Forecast does not automatically update any dataset groups that contain the deleted dataset. In order to update the dataset group, use the operation, omitting the deleted dataset's ARN.</p> </note>",
     "DeleteDatasetGroup": "<p>Deletes a dataset group created using the <a>CreateDatasetGroup</a> operation. You can only delete dataset groups that have a status of <code>ACTIVE</code>, <code>CREATE_FAILED</code>, or <code>UPDATE_FAILED</code>. To get the status, use the <a>DescribeDatasetGroup</a> operation.</p> <p>This operation deletes only the dataset group, not the datasets in the group.</p>",
     "DeleteDatasetImportJob": "<p>Deletes a dataset import job created using the <a>CreateDatasetImportJob</a> operation. You can delete only dataset import jobs that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeDatasetImportJob</a> operation.</p>",
+    "DeleteExplainability": "<p>Deletes an Explainability resource.</p> <p>You can delete only predictor that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeExplainability</a> operation.</p>",
+    "DeleteExplainabilityExport": "<p>Deletes an Explainability export job.</p>",
     "DeleteForecast": "<p>Deletes a forecast created using the <a>CreateForecast</a> operation. You can delete only forecasts that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeForecast</a> operation.</p> <p>You can't delete a forecast while it is being exported. After a forecast is deleted, you can no longer query the forecast.</p>",
     "DeleteForecastExportJob": "<p>Deletes a forecast export job created using the <a>CreateForecastExportJob</a> operation. You can delete only export jobs that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeForecastExportJob</a> operation.</p>",
     "DeletePredictor": "<p>Deletes a predictor created using the <a>CreatePredictor</a> operation. You can delete only predictor that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribePredictor</a> operation.</p>",
     "DeletePredictorBacktestExportJob": "<p>Deletes a predictor backtest export job.</p>",
     "DeleteResourceTree": "<p>Deletes an entire resource tree. This operation will delete the parent resource and its child resources.</p> <p>Child resources are resources that were created from another resource. For example, when a forecast is generated from a predictor, the forecast is the child resource and the predictor is the parent resource.</p> <p>Amazon Forecast resources possess the following parent-child resource hierarchies:</p> <ul> <li> <p> <b>Dataset</b>: dataset import jobs</p> </li> <li> <p> <b>Dataset Group</b>: predictors, predictor backtest export jobs, forecasts, forecast export jobs</p> </li> <li> <p> <b>Predictor</b>: predictor backtest export jobs, forecasts, forecast export jobs</p> </li> <li> <p> <b>Forecast</b>: forecast export jobs</p> </li> </ul> <note> <p> <code>DeleteResourceTree</code> will only delete Amazon Forecast resources, and will not delete datasets or exported files stored in Amazon S3. </p> </note>",
+    "DescribeAutoPredictor": "<p>Describes a predictor created using the CreateAutoPredictor operation.</p>",
     "DescribeDataset": "<p>Describes an Amazon Forecast dataset created using the <a>CreateDataset</a> operation.</p> <p>In addition to listing the parameters specified in the <code>CreateDataset</code> request, this operation includes the following dataset properties:</p> <ul> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>Status</code> </p> </li> </ul>",
     "DescribeDatasetGroup": "<p>Describes a dataset group created using the <a>CreateDatasetGroup</a> operation.</p> <p>In addition to listing the parameters provided in the <code>CreateDatasetGroup</code> request, this operation includes the following properties:</p> <ul> <li> <p> <code>DatasetArns</code> - The datasets belonging to the group.</p> </li> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>Status</code> </p> </li> </ul>",
     "DescribeDatasetImportJob": "<p>Describes a dataset import job created using the <a>CreateDatasetImportJob</a> operation.</p> <p>In addition to listing the parameters provided in the <code>CreateDatasetImportJob</code> request, this operation includes the following properties:</p> <ul> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>DataSize</code> </p> </li> <li> <p> <code>FieldStatistics</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>Message</code> - If an error occurred, information about the error.</p> </li> </ul>",
+    "DescribeExplainability": "<p>Describes an Explainability resource created using the <a>CreateExplainability</a> operation.</p>",
+    "DescribeExplainabilityExport": "<p>Describes an Explainability export created using the <a>CreateExplainabilityExport</a> operation.</p>",
     "DescribeForecast": "<p>Describes a forecast created using the <a>CreateForecast</a> operation.</p> <p>In addition to listing the properties provided in the <code>CreateForecast</code> request, this operation lists the following properties:</p> <ul> <li> <p> <code>DatasetGroupArn</code> - The dataset group that provided the training data.</p> </li> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>Message</code> - If an error occurred, information about the error.</p> </li> </ul>",
     "DescribeForecastExportJob": "<p>Describes a forecast export job created using the <a>CreateForecastExportJob</a> operation.</p> <p>In addition to listing the properties provided by the user in the <code>CreateForecastExportJob</code> request, this operation lists the following properties:</p> <ul> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>Message</code> - If an error occurred, information about the error.</p> </li> </ul>",
-    "DescribePredictor": "<p>Describes a predictor created using the <a>CreatePredictor</a> operation.</p> <p>In addition to listing the properties provided in the <code>CreatePredictor</code> request, this operation lists the following properties:</p> <ul> <li> <p> <code>DatasetImportJobArns</code> - The dataset import jobs used to import training data.</p> </li> <li> <p> <code>AutoMLAlgorithmArns</code> - If AutoML is performed, the algorithms that were evaluated.</p> </li> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>Message</code> - If an error occurred, information about the error.</p> </li> </ul>",
+    "DescribePredictor": "<note> <p> This operation is only valid for legacy predictors created with CreatePredictor. If you are not using a legacy predictor, use DescribeAutoPredictor.</p> <p>To upgrade a legacy predictor to AutoPredictor, see Upgrading to AutoPredictor.</p> </note> <p>Describes a predictor created using the <a>CreatePredictor</a> operation.</p> <p>In addition to listing the properties provided in the <code>CreatePredictor</code> request, this operation lists the following properties:</p> <ul> <li> <p> <code>DatasetImportJobArns</code> - The dataset import jobs used to import training data.</p> </li> <li> <p> <code>AutoMLAlgorithmArns</code> - If AutoML is performed, the algorithms that were evaluated.</p> </li> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>Message</code> - If an error occurred, information about the error.</p> </li> </ul>",
     "DescribePredictorBacktestExportJob": "<p>Describes a predictor backtest export job created using the <a>CreatePredictorBacktestExportJob</a> operation.</p> <p>In addition to listing the properties provided by the user in the <code>CreatePredictorBacktestExportJob</code> request, this operation lists the following properties:</p> <ul> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>Message</code> (if an error occurred)</p> </li> </ul>",
     "GetAccuracyMetrics": "<p>Provides metrics on the accuracy of the models that were trained by the <a>CreatePredictor</a> operation. Use metrics to see how well the model performed and to decide whether to use the predictor to generate a forecast. For more information, see <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/metrics.html\">Predictor Metrics</a>.</p> <p>This operation generates metrics for each backtest window that was evaluated. The number of backtest windows (<code>NumberOfBacktestWindows</code>) is specified using the <a>EvaluationParameters</a> object, which is optionally included in the <code>CreatePredictor</code> request. If <code>NumberOfBacktestWindows</code> isn't specified, the number defaults to one.</p> <p>The parameters of the <code>filling</code> method determine which items contribute to the metrics. If you want all items to contribute, specify <code>zero</code>. If you want only those items that have complete data in the range being evaluated to contribute, specify <code>nan</code>. For more information, see <a>FeaturizationMethod</a>.</p> <note> <p>Before you can get accuracy metrics, the <code>Status</code> of the predictor must be <code>ACTIVE</code>, signifying that training has completed. To get the status, use the <a>DescribePredictor</a> operation.</p> </note>",
     "ListDatasetGroups": "<p>Returns a list of dataset groups created using the <a>CreateDatasetGroup</a> operation. For each dataset group, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the dataset group ARN with the <a>DescribeDatasetGroup</a> operation.</p>",
     "ListDatasetImportJobs": "<p>Returns a list of dataset import jobs created using the <a>CreateDatasetImportJob</a> operation. For each import job, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). You can retrieve the complete set of properties by using the ARN with the <a>DescribeDatasetImportJob</a> operation. You can filter the list by providing an array of <a>Filter</a> objects.</p>",
     "ListDatasets": "<p>Returns a list of datasets created using the <a>CreateDataset</a> operation. For each dataset, a summary of its properties, including its Amazon Resource Name (ARN), is returned. To retrieve the complete set of properties, use the ARN with the <a>DescribeDataset</a> operation.</p>",
+    "ListExplainabilities": "<p>Returns a list of Explainability resources created using the <a>CreateExplainability</a> operation. This operation returns a summary for each Explainability. You can filter the list using an array of <a>Filter</a> objects.</p> <p>To retrieve the complete set of properties for a particular Explainability resource, use the ARN with the <a>DescribeExplainability</a> operation.</p>",
+    "ListExplainabilityExports": "<p>Returns a list of Explainability exports created using the <a>CreateExplainabilityExport</a> operation. This operation returns a summary for each Explainability export. You can filter the list using an array of <a>Filter</a> objects.</p> <p>To retrieve the complete set of properties for a particular Explainability export, use the ARN with the <a>DescribeExplainability</a> operation.</p>",
     "ListForecastExportJobs": "<p>Returns a list of forecast export jobs created using the <a>CreateForecastExportJob</a> operation. For each forecast export job, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). To retrieve the complete set of properties, use the ARN with the <a>DescribeForecastExportJob</a> operation. You can filter the list using an array of <a>Filter</a> objects.</p>",
     "ListForecasts": "<p>Returns a list of forecasts created using the <a>CreateForecast</a> operation. For each forecast, this operation returns a summary of its properties, including its Amazon Resource Name (ARN). To retrieve the complete set of properties, specify the ARN with the <a>DescribeForecast</a> operation. You can filter the list using an array of <a>Filter</a> objects.</p>",
     "ListPredictorBacktestExportJobs": "<p>Returns a list of predictor backtest export jobs created using the <a>CreatePredictorBacktestExportJob</a> operation. This operation returns a summary for each backtest export job. You can filter the list using an array of <a>Filter</a> objects.</p> <p>To retrieve the complete set of properties for a particular backtest export job, use the ARN with the <a>DescribePredictorBacktestExportJob</a> operation.</p>",
@@ -39,14 +49,32 @@
     "UpdateDatasetGroup": "<p>Replaces the datasets in a dataset group with the specified datasets.</p> <note> <p>The <code>Status</code> of the dataset group must be <code>ACTIVE</code> before you can use the dataset group to create a predictor. Use the <a>DescribeDatasetGroup</a> operation to get the status.</p> </note>"
   },
   "shapes": {
+    "AdditionalDataset": {
+      "base": "<p>Describes an additional dataset. This object is part of the <a>DataConfig</a> object. Forecast supports the Weather Index and Holidays additional datasets.</p> <p> <b>Weather Index</b> </p> <p>The Amazon Forecast Weather Index is a built-in dataset that incorporates historical and projected weather information into your model. The Weather Index supplements your datasets with over two years of historical weather data and up to 14 days of projected weather data. For more information, see <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/weather.html\">Amazon Forecast Weather Index</a>.</p> <p> <b>Holidays</b> </p> <p>Holidays is a built-in dataset that incorporates national holiday information into your model. It provides native support for the holiday calendars of 66 countries. To view the holiday calendars, refer to the <a href=\"http://jollyday.sourceforge.net/data.html\">Jollyday</a> library. For more information, see <a href=\"https://docs.aws.amazon.com/forecast/latest/dg/holidays.html\">Holidays Featurization</a>.</p>",
+      "refs": {
+        "AdditionalDatasets$member": null
+      }
+    },
+    "AdditionalDatasets": {
+      "base": null,
+      "refs": {
+        "DataConfig$AdditionalDatasets": "<p>Additional built-in datasets like Holidays and the Weather Index.</p>"
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
         "ArnList$member": null,
+        "CreateAutoPredictorRequest$ReferencePredictorArn": "<p>The ARN of the predictor to retrain or upgrade. This parameter is only used when retraining or upgrading a predictor. When creating a new predictor, do not specify a value for this parameter.</p> <p>When upgrading or retraining a predictor, only specify values for the <code>ReferencePredictorArn</code> and <code>PredictorName</code>. The value for <code>PredictorName</code> must be a unique predictor name.</p>",
+        "CreateAutoPredictorResponse$PredictorArn": "<p>The Amazon Resource Name (ARN) of the predictor.</p>",
         "CreateDatasetGroupResponse$DatasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "CreateDatasetImportJobRequest$DatasetArn": "<p>The Amazon Resource Name (ARN) of the Amazon Forecast dataset that you want to import data to.</p>",
         "CreateDatasetImportJobResponse$DatasetImportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset import job.</p>",
         "CreateDatasetResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "CreateExplainabilityExportRequest$ExplainabilityArn": "<p>The Amazon Resource Name (ARN) of the Explainability to export.</p>",
+        "CreateExplainabilityExportResponse$ExplainabilityExportArn": "<p>The Amazon Resource Name (ARN) of the export.</p>",
+        "CreateExplainabilityRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Predictor or Forecast used to create the Explainability.</p>",
+        "CreateExplainabilityResponse$ExplainabilityArn": "<p>The Amazon Resource Name (ARN) of the Explainability.</p>",
         "CreateForecastExportJobRequest$ForecastArn": "<p>The Amazon Resource Name (ARN) of the forecast that you want to export.</p>",
         "CreateForecastExportJobResponse$ForecastExportJobArn": "<p>The Amazon Resource Name (ARN) of the export job.</p>",
         "CreateForecastRequest$PredictorArn": "<p>The Amazon Resource Name (ARN) of the predictor to use to generate the forecast.</p>",
@@ -55,17 +83,22 @@
         "CreatePredictorBacktestExportJobResponse$PredictorBacktestExportJobArn": "<p>The Amazon Resource Name (ARN) of the predictor backtest export job that you want to export.</p>",
         "CreatePredictorRequest$AlgorithmArn": "<p>The Amazon Resource Name (ARN) of the algorithm to use for model training. Required if <code>PerformAutoML</code> is not set to <code>true</code>.</p> <p class=\"title\"> <b>Supported algorithms:</b> </p> <ul> <li> <p> <code>arn:aws:forecast:::algorithm/ARIMA</code> </p> </li> <li> <p> <code>arn:aws:forecast:::algorithm/CNN-QR</code> </p> </li> <li> <p> <code>arn:aws:forecast:::algorithm/Deep_AR_Plus</code> </p> </li> <li> <p> <code>arn:aws:forecast:::algorithm/ETS</code> </p> </li> <li> <p> <code>arn:aws:forecast:::algorithm/NPTS</code> </p> </li> <li> <p> <code>arn:aws:forecast:::algorithm/Prophet</code> </p> </li> </ul>",
         "CreatePredictorResponse$PredictorArn": "<p>The Amazon Resource Name (ARN) of the predictor.</p>",
+        "DataConfig$DatasetGroupArn": "<p>The ARN of the dataset group used to train the predictor.</p>",
         "DatasetGroupSummary$DatasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "DatasetImportJobSummary$DatasetImportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset import job.</p>",
         "DatasetSummary$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DeleteDatasetGroupRequest$DatasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group to delete.</p>",
         "DeleteDatasetImportJobRequest$DatasetImportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset import job to delete.</p>",
         "DeleteDatasetRequest$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to delete.</p>",
+        "DeleteExplainabilityExportRequest$ExplainabilityExportArn": "<p>The Amazon Resource Name (ARN) of the Explainability export to delete. </p>",
+        "DeleteExplainabilityRequest$ExplainabilityArn": "<p>The Amazon Resource Name (ARN) of the Explainability resource to delete.</p>",
         "DeleteForecastExportJobRequest$ForecastExportJobArn": "<p>The Amazon Resource Name (ARN) of the forecast export job to delete.</p>",
         "DeleteForecastRequest$ForecastArn": "<p>The Amazon Resource Name (ARN) of the forecast to delete.</p>",
         "DeletePredictorBacktestExportJobRequest$PredictorBacktestExportJobArn": "<p>The Amazon Resource Name (ARN) of the predictor backtest export job to delete.</p>",
         "DeletePredictorRequest$PredictorArn": "<p>The Amazon Resource Name (ARN) of the predictor to delete.</p>",
         "DeleteResourceTreeRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the parent resource to delete. All child resources of the parent resource will also be deleted.</p>",
+        "DescribeAutoPredictorRequest$PredictorArn": "<p>The Amazon Resource Name (ARN) of the predictor.</p>",
+        "DescribeAutoPredictorResponse$PredictorArn": "<p>The Amazon Resource Name (ARN) of the predictor</p>",
         "DescribeDatasetGroupRequest$DatasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "DescribeDatasetGroupResponse$DatasetGroupArn": "<p>The ARN of the dataset group.</p>",
         "DescribeDatasetImportJobRequest$DatasetImportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset import job.</p>",
@@ -73,6 +106,12 @@
         "DescribeDatasetImportJobResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset that the training data was imported to.</p>",
         "DescribeDatasetRequest$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DescribeDatasetResponse$DatasetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "DescribeExplainabilityExportRequest$ExplainabilityExportArn": "<p>The Amazon Resource Name (ARN) of the Explainability export.</p>",
+        "DescribeExplainabilityExportResponse$ExplainabilityExportArn": "<p>The Amazon Resource Name (ARN) of the Explainability export.</p>",
+        "DescribeExplainabilityExportResponse$ExplainabilityArn": "<p>The Amazon Resource Name (ARN) of the Explainability.</p>",
+        "DescribeExplainabilityRequest$ExplainabilityArn": "<p>The Amazon Resource Name (ARN) of the Explaianability to describe.</p>",
+        "DescribeExplainabilityResponse$ExplainabilityArn": "<p>The Amazon Resource Name (ARN) of the Explainability.</p>",
+        "DescribeExplainabilityResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Predictor or Forecast used to create the Explainability resource.</p>",
         "DescribeForecastExportJobRequest$ForecastExportJobArn": "<p>The Amazon Resource Name (ARN) of the forecast export job.</p>",
         "DescribeForecastExportJobResponse$ForecastExportJobArn": "<p>The ARN of the forecast export job.</p>",
         "DescribeForecastExportJobResponse$ForecastArn": "<p>The Amazon Resource Name (ARN) of the exported forecast.</p>",
@@ -87,6 +126,10 @@
         "DescribePredictorResponse$AlgorithmArn": "<p>The Amazon Resource Name (ARN) of the algorithm used for model training.</p>",
         "EncryptionConfig$RoleArn": "<p>The ARN of the IAM role that Amazon Forecast can assume to access the AWS KMS key.</p> <p>Passing a role across AWS accounts is not allowed. If you pass a role that isn't in your account, you get an <code>InvalidInputException</code> error.</p>",
         "EvaluationResult$AlgorithmArn": "<p>The Amazon Resource Name (ARN) of the algorithm that was evaluated.</p>",
+        "ExplainabilityExportSummary$ExplainabilityExportArn": "<p>The Amazon Resource Name (ARN) of the Explainability export.</p>",
+        "ExplainabilityInfo$ExplainabilityArn": null,
+        "ExplainabilitySummary$ExplainabilityArn": "<p>The Amazon Resource Name (ARN) of the Explainability.</p>",
+        "ExplainabilitySummary$ResourceArn": "<p>The Amazon Resource Name (ARN) of the Predictor or Forecast used to create the Explainability.</p>",
         "Filter$Value": "<p>The value to match.</p>",
         "ForecastExportJobSummary$ForecastExportJobArn": "<p>The Amazon Resource Name (ARN) of the forecast export job.</p>",
         "ForecastSummary$ForecastArn": "<p>The ARN of the forecast.</p>",
@@ -97,6 +140,7 @@
         "PredictorExecution$AlgorithmArn": "<p>The ARN of the algorithm used to test the predictor.</p>",
         "PredictorSummary$PredictorArn": "<p>The ARN of the predictor.</p>",
         "PredictorSummary$DatasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that contains the data used to train the predictor.</p>",
+        "ReferencePredictorSummary$Arn": "<p>The ARN of the reference predictor.</p>",
         "S3Config$RoleArn": "<p>The ARN of the AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the Amazon S3 bucket or files. If you provide a value for the <code>KMSKeyArn</code> key, the role must allow access to the key.</p> <p>Passing a role across AWS accounts is not allowed. If you pass a role that isn't in your account, you get an <code>InvalidInputException</code> error.</p>",
         "StopResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource to stop. The supported ARNs are <code>DatasetImportJobArn</code>, <code>PredictorArn</code>, <code>PredictorBacktestExportJobArn</code>, <code>ForecastArn</code>, and <code>ForecastExportJobArn</code>. </p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the supported resources are Forecast dataset groups, datasets, dataset import jobs, predictors, forecasts, and forecast export jobs.</p>",
@@ -108,10 +152,23 @@
       "base": null,
       "refs": {
         "CreateDatasetGroupRequest$DatasetArns": "<p>An array of Amazon Resource Names (ARNs) of the datasets that you want to include in the dataset group.</p>",
+        "DescribeAutoPredictorResponse$DatasetImportJobArns": "<p>An array of the ARNs of the dataset import jobs used to import training data for the predictor.</p>",
         "DescribeDatasetGroupResponse$DatasetArns": "<p>An array of Amazon Resource Names (ARNs) of the datasets contained in the dataset group.</p>",
-        "DescribePredictorResponse$DatasetImportJobArns": "<p>An array of the ARNs of the dataset import jobs used to import training data for the predictor.</p>",
         "DescribePredictorResponse$AutoMLAlgorithmArns": "<p>When <code>PerformAutoML</code> is specified, the ARN of the chosen algorithm.</p>",
+        "DescribePredictorResponse$DatasetImportJobArns": "<p>An array of the ARNs of the dataset import jobs used to import training data for the predictor.</p>",
         "UpdateDatasetGroupRequest$DatasetArns": "<p>An array of the Amazon Resource Names (ARNs) of the datasets to add to the dataset group.</p>"
+      }
+    },
+    "AttributeConfig": {
+      "base": "<p>Provides information about the method used to transform attributes.</p> <p>The following is an example using the RETAIL domain:</p> <p> <code>{</code> </p> <p> <code>\"AttributeName\": \"demand\",</code> </p> <p> <code>\"Transformations\": {\"aggregation\": \"sum\", \"middlefill\": \"zero\", \"backfill\": \"zero\"}</code> </p> <p> <code>}</code> </p>",
+      "refs": {
+        "AttributeConfigs$member": null
+      }
+    },
+    "AttributeConfigs": {
+      "base": null,
+      "refs": {
+        "DataConfig$AttributeConfigs": "<p>Aggregation and filling options for attributes in your dataset group.</p>"
       }
     },
     "AttributeType": {
@@ -131,10 +188,17 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "CreateAutoPredictorRequest$ExplainPredictor": null,
+        "CreateExplainabilityRequest$EnableVisualization": "<p>Create an Expainability visualization that is viewable within the AWS console.</p>",
         "CreatePredictorRequest$PerformAutoML": "<p>Whether to perform AutoML. When Amazon Forecast performs AutoML, it evaluates the algorithms it provides and chooses the best algorithm and configuration for your training dataset.</p> <p>The default value is <code>false</code>. In this case, you are required to specify an algorithm.</p> <p>Set <code>PerformAutoML</code> to <code>true</code> to have Amazon Forecast perform AutoML. This is a good option if you aren't sure which algorithm is suitable for your training data. In this case, <code>PerformHPO</code> must be false.</p>",
         "CreatePredictorRequest$PerformHPO": "<p>Whether to perform hyperparameter optimization (HPO). HPO finds optimal hyperparameter values for your training data. The process of performing HPO is known as running a hyperparameter tuning job.</p> <p>The default value is <code>false</code>. In this case, Amazon Forecast uses default hyperparameter values from the chosen algorithm.</p> <p>To override the default values, set <code>PerformHPO</code> to <code>true</code> and, optionally, supply the <a>HyperParameterTuningJobConfig</a> object. The tuning job specifies a metric to optimize, which hyperparameters participate in tuning, and the valid range for each tunable hyperparameter. In this case, you are required to specify an algorithm and <code>PerformAutoML</code> must be false.</p> <p>The following algorithms support HPO:</p> <ul> <li> <p>DeepAR+</p> </li> <li> <p>CNN-QR</p> </li> </ul>",
+        "DescribeExplainabilityResponse$EnableVisualization": "<p>Whether the visualization was enabled for the Explainability resource.</p>",
         "DescribePredictorResponse$PerformAutoML": "<p>Whether the predictor is set to perform AutoML.</p>",
-        "DescribePredictorResponse$PerformHPO": "<p>Whether the predictor is set to perform hyperparameter optimization (HPO).</p>"
+        "DescribePredictorResponse$PerformHPO": "<p>Whether the predictor is set to perform hyperparameter optimization (HPO).</p>",
+        "DescribePredictorResponse$IsAutoPredictor": "<p>Whether the predictor was created with <a>CreateAutoPredictor</a>.</p>",
+        "ForecastSummary$CreatedUsingAutoPredictor": null,
+        "GetAccuracyMetricsResponse$IsAutoPredictor": "<p>Whether the predictor was created with <a>CreateAutoPredictor</a>.</p>",
+        "PredictorSummary$IsAutoPredictor": "<p>Whether AutoPredictor was used to create the predictor.</p>"
       }
     },
     "CategoricalParameterRange": {
@@ -149,6 +213,12 @@
         "ParameterRanges$CategoricalParameterRanges": "<p>Specifies the tunable range for each categorical hyperparameter.</p>"
       }
     },
+    "Configuration": {
+      "base": null,
+      "refs": {
+        "AdditionalDataset$Configuration": "<p> <b>Weather Index</b> </p> <p>To enable the Weather Index, do not specify a value for <code>Configuration</code>.</p> <p> <b>Holidays</b> </p> <p>To enable Holidays, specify a country with one of the following two-letter country codes:</p> <ul> <li> <p>\"AL\" - ALBANIA</p> </li> <li> <p>\"AR\" - ARGENTINA</p> </li> <li> <p>\"AT\" - AUSTRIA</p> </li> <li> <p>\"AU\" - AUSTRALIA</p> </li> <li> <p>\"BA\" - BOSNIA HERZEGOVINA</p> </li> <li> <p>\"BE\" - BELGIUM</p> </li> <li> <p>\"BG\" - BULGARIA</p> </li> <li> <p>\"BO\" - BOLIVIA</p> </li> <li> <p>\"BR\" - BRAZIL</p> </li> <li> <p>\"BY\" - BELARUS</p> </li> <li> <p>\"CA\" - CANADA</p> </li> <li> <p>\"CL\" - CHILE</p> </li> <li> <p>\"CO\" - COLOMBIA</p> </li> <li> <p>\"CR\" - COSTA RICA</p> </li> <li> <p>\"HR\" - CROATIA</p> </li> <li> <p>\"CZ\" - CZECH REPUBLIC</p> </li> <li> <p>\"DK\" - DENMARK</p> </li> <li> <p>\"EC\" - ECUADOR</p> </li> <li> <p>\"EE\" - ESTONIA</p> </li> <li> <p>\"ET\" - ETHIOPIA</p> </li> <li> <p>\"FI\" - FINLAND</p> </li> <li> <p>\"FR\" - FRANCE</p> </li> <li> <p>\"DE\" - GERMANY</p> </li> <li> <p>\"GR\" - GREECE</p> </li> <li> <p>\"HU\" - HUNGARY</p> </li> <li> <p>\"IS\" - ICELAND</p> </li> <li> <p>\"IN\" - INDIA</p> </li> <li> <p>\"IE\" - IRELAND</p> </li> <li> <p>\"IT\" - ITALY</p> </li> <li> <p>\"JP\" - JAPAN</p> </li> <li> <p>\"KZ\" - KAZAKHSTAN</p> </li> <li> <p>\"KR\" - KOREA</p> </li> <li> <p>\"LV\" - LATVIA</p> </li> <li> <p>\"LI\" - LIECHTENSTEIN</p> </li> <li> <p>\"LT\" - LITHUANIA</p> </li> <li> <p>\"LU\" - LUXEMBOURG</p> </li> <li> <p>\"MK\" - MACEDONIA</p> </li> <li> <p>\"MT\" - MALTA</p> </li> <li> <p>\"MX\" - MEXICO</p> </li> <li> <p>\"MD\" - MOLDOVA</p> </li> <li> <p>\"ME\" - MONTENEGRO</p> </li> <li> <p>\"NL\" - NETHERLANDS</p> </li> <li> <p>\"NZ\" - NEW ZEALAND</p> </li> <li> <p>\"NI\" - NICARAGUA</p> </li> <li> <p>\"NG\" - NIGERIA</p> </li> <li> <p>\"NO\" - NORWAY</p> </li> <li> <p>\"PA\" - PANAMA</p> </li> <li> <p>\"PY\" - PARAGUAY</p> </li> <li> <p>\"PE\" - PERU</p> </li> <li> <p>\"PL\" - POLAND</p> </li> <li> <p>\"PT\" - PORTUGAL</p> </li> <li> <p>\"RO\" - ROMANIA</p> </li> <li> <p>\"RU\" - RUSSIA</p> </li> <li> <p>\"RS\" - SERBIA</p> </li> <li> <p>\"SK\" - SLOVAKIA</p> </li> <li> <p>\"SI\" - SLOVENIA</p> </li> <li> <p>\"ZA\" - SOUTH AFRICA</p> </li> <li> <p>\"ES\" - SPAIN</p> </li> <li> <p>\"SE\" - SWEDEN</p> </li> <li> <p>\"CH\" - SWITZERLAND</p> </li> <li> <p>\"UA\" - UKRAINE</p> </li> <li> <p>\"AE\" - UNITED ARAB EMIRATES</p> </li> <li> <p>\"US\" - UNITED STATES</p> </li> <li> <p>\"UK\" - UNITED KINGDOM</p> </li> <li> <p>\"UY\" - URUGUAY</p> </li> <li> <p>\"VE\" - VENEZUELA</p> </li> </ul>"
+      }
+    },
     "ContinuousParameterRange": {
       "base": "<p>Specifies a continuous hyperparameter and it's range of tunable values. This object is part of the <a>ParameterRanges</a> object.</p>",
       "refs": {
@@ -159,6 +229,16 @@
       "base": null,
       "refs": {
         "ParameterRanges$ContinuousParameterRanges": "<p>Specifies the tunable range for each continuous hyperparameter.</p>"
+      }
+    },
+    "CreateAutoPredictorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAutoPredictorResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateDatasetGroupRequest": {
@@ -187,6 +267,26 @@
       }
     },
     "CreateDatasetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateExplainabilityExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateExplainabilityExportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateExplainabilityRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateExplainabilityResponse": {
       "base": null,
       "refs": {
       }
@@ -231,13 +331,23 @@
       "refs": {
       }
     },
+    "DataConfig": {
+      "base": "<p>The data configuration for your dataset group and any additional datasets.</p>",
+      "refs": {
+        "CreateAutoPredictorRequest$DataConfig": "<p>The data configuration for your dataset group and any additional datasets.</p>",
+        "DescribeAutoPredictorResponse$DataConfig": "<p>The data configuration for your dataset group and any additional datasets.</p>"
+      }
+    },
     "DataDestination": {
       "base": "<p>The destination for an export job. Provide an S3 path, an AWS Identity and Access Management (IAM) role that allows Amazon Forecast to access the location, and an AWS Key Management Service (KMS) key (optional). </p>",
       "refs": {
+        "CreateExplainabilityExportRequest$Destination": null,
         "CreateForecastExportJobRequest$Destination": "<p>The location where you want to save the forecast and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the location. The forecast must be exported to an Amazon S3 bucket.</p> <p>If encryption is used, <code>Destination</code> must include an AWS Key Management Service (KMS) key. The IAM role must allow Amazon Forecast permission to access the key.</p>",
         "CreatePredictorBacktestExportJobRequest$Destination": null,
+        "DescribeExplainabilityExportResponse$Destination": null,
         "DescribeForecastExportJobResponse$Destination": "<p>The path to the Amazon Simple Storage Service (Amazon S3) bucket where the forecast is exported.</p>",
         "DescribePredictorBacktestExportJobResponse$Destination": null,
+        "ExplainabilityExportSummary$Destination": null,
         "ForecastExportJobSummary$Destination": "<p>The path to the Amazon Simple Storage Service (Amazon S3) bucket where the forecast is exported.</p>",
         "PredictorBacktestExportJobSummary$Destination": null
       }
@@ -246,8 +356,10 @@
       "base": "<p>The source of your training data, an AWS Identity and Access Management (IAM) role that allows Amazon Forecast to access the data and, optionally, an AWS Key Management Service (KMS) key. This object is submitted in the <a>CreateDatasetImportJob</a> request.</p>",
       "refs": {
         "CreateDatasetImportJobRequest$DataSource": "<p>The location of the training data to import and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the data. The training data must be stored in an Amazon S3 bucket.</p> <p>If encryption is used, <code>DataSource</code> must include an AWS Key Management Service (KMS) key and the IAM role must allow Amazon Forecast permission to access the key. The KMS key and IAM role must match those specified in the <code>EncryptionConfig</code> parameter of the <a>CreateDataset</a> operation.</p>",
+        "CreateExplainabilityRequest$DataSource": null,
         "DatasetImportJobSummary$DataSource": "<p>The location of the training data to import and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the data. The training data must be stored in an Amazon S3 bucket.</p> <p>If encryption is used, <code>DataSource</code> includes an AWS Key Management Service (KMS) key.</p>",
-        "DescribeDatasetImportJobResponse$DataSource": "<p>The location of the training data to import and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the data.</p> <p>If encryption is used, <code>DataSource</code> includes an AWS Key Management Service (KMS) key.</p>"
+        "DescribeDatasetImportJobResponse$DataSource": "<p>The location of the training data to import and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the data.</p> <p>If encryption is used, <code>DataSource</code> includes an AWS Key Management Service (KMS) key.</p>",
+        "DescribeExplainabilityResponse$DataSource": null
       }
     },
     "DatasetGroupSummary": {
@@ -309,6 +421,16 @@
       "refs": {
       }
     },
+    "DeleteExplainabilityExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteExplainabilityRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteForecastExportJobRequest": {
       "base": null,
       "refs": {
@@ -330,6 +452,16 @@
       }
     },
     "DeleteResourceTreeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAutoPredictorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAutoPredictorResponse": {
       "base": null,
       "refs": {
       }
@@ -360,6 +492,26 @@
       }
     },
     "DescribeDatasetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeExplainabilityExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeExplainabilityExportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeExplainabilityRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeExplainabilityResponse": {
       "base": null,
       "refs": {
       }
@@ -435,8 +587,10 @@
     "EncryptionConfig": {
       "base": "<p>An AWS Key Management Service (KMS) key and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the key. You can specify this optional object in the <a>CreateDataset</a> and <a>CreatePredictor</a> requests.</p>",
       "refs": {
+        "CreateAutoPredictorRequest$EncryptionConfig": null,
         "CreateDatasetRequest$EncryptionConfig": "<p>An AWS Key Management Service (KMS) key and the AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the key.</p>",
         "CreatePredictorRequest$EncryptionConfig": "<p>An AWS Key Management Service (KMS) key and the AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the key.</p>",
+        "DescribeAutoPredictorResponse$EncryptionConfig": null,
         "DescribeDatasetResponse$EncryptionConfig": "<p>The AWS Key Management Service (KMS) key and the AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the key.</p>",
         "DescribePredictorResponse$EncryptionConfig": "<p>An AWS Key Management Service (KMS) key and the AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the key.</p>"
       }
@@ -446,6 +600,7 @@
       "refs": {
         "DatasetImportJobSummary$Message": "<p>If an error occurred, an informational message about the error.</p>",
         "DescribeForecastResponse$Message": "<p>If an error occurred, an informational message about the error.</p>",
+        "ExplainabilityExportSummary$Message": "<p>Information about any errors that may have occurred during the Explainability export.</p>",
         "ForecastExportJobSummary$Message": "<p>If an error occurred, an informational message about the error.</p>",
         "ForecastSummary$Message": "<p>If an error occurred, an informational message about the error.</p>",
         "InvalidInputException$Message": null,
@@ -488,6 +643,44 @@
       "base": null,
       "refs": {
         "WindowSummary$EvaluationType": "<p>The type of evaluation.</p> <ul> <li> <p> <code>SUMMARY</code> - The average metrics across all windows.</p> </li> <li> <p> <code>COMPUTED</code> - The metrics for the specified window.</p> </li> </ul>"
+      }
+    },
+    "Explainabilities": {
+      "base": null,
+      "refs": {
+        "ListExplainabilitiesResponse$Explainabilities": "<p>An array of objects that summarize the properties of each Explainability resource.</p>"
+      }
+    },
+    "ExplainabilityConfig": {
+      "base": "<p>The ExplainabilityConfig data type defines the number of time series and time points included in <a>CreateExplainability</a>.</p> <p>If you provide a predictor ARN for <code>ResourceArn</code>, you must set both <code>TimePointGranularity</code> and <code>TimeSeriesGranularity</code> to “ALL”. When creating Predictor Explainability, Amazon Forecast considers all time series and time points.</p> <p>If you provide a forecast ARN for <code>ResourceArn</code>, you can set <code>TimePointGranularity</code> and <code>TimeSeriesGranularity</code> to either “ALL” or “Specific”.</p>",
+      "refs": {
+        "CreateExplainabilityRequest$ExplainabilityConfig": "<p>The configuration settings that define the granularity of time series and time points for the Explainability.</p>",
+        "DescribeExplainabilityResponse$ExplainabilityConfig": "<p>The configuration settings that define the granularity of time series and time points for the Explainability.</p>",
+        "ExplainabilitySummary$ExplainabilityConfig": "<p>The configuration settings that define the granularity of time series and time points for the Explainability.</p>"
+      }
+    },
+    "ExplainabilityExportSummary": {
+      "base": "<p>Provides a summary of the Explainability export properties used in the <a>ListExplainabilityExports</a> operation. To get a complete set of properties, call the <a>DescribeExplainabilityExport</a> operation, and provide the <code>ExplainabilityExportArn</code>.</p>",
+      "refs": {
+        "ExplainabilityExports$member": null
+      }
+    },
+    "ExplainabilityExports": {
+      "base": null,
+      "refs": {
+        "ListExplainabilityExportsResponse$ExplainabilityExports": "<p>An array of objects that summarize the properties of each Explainability export.</p>"
+      }
+    },
+    "ExplainabilityInfo": {
+      "base": null,
+      "refs": {
+        "DescribeAutoPredictorResponse$ExplainabilityInfo": null
+      }
+    },
+    "ExplainabilitySummary": {
+      "base": "<p>Provides a summary of the Explainability properties used in the <a>ListExplainabilities</a> operation. To get a complete set of properties, call the <a>DescribeExplainability</a> operation, and provide the listed <code>ExplainabilityArn</code>.</p>",
+      "refs": {
+        "Explainabilities$member": null
       }
     },
     "Featurization": {
@@ -555,6 +748,8 @@
       "base": null,
       "refs": {
         "ListDatasetImportJobsRequest$Filters": "<p>An array of filters. For each filter, you provide a condition and a match statement. The condition is either <code>IS</code> or <code>IS_NOT</code>, which specifies whether to include or exclude the datasets that match the statement from the list, respectively. The match statement consists of a key and a value.</p> <p> <b>Filter properties</b> </p> <ul> <li> <p> <code>Condition</code> - The condition to apply. Valid values are <code>IS</code> and <code>IS_NOT</code>. To include the datasets that match the statement, specify <code>IS</code>. To exclude matching datasets, specify <code>IS_NOT</code>.</p> </li> <li> <p> <code>Key</code> - The name of the parameter to filter on. Valid values are <code>DatasetArn</code> and <code>Status</code>.</p> </li> <li> <p> <code>Value</code> - The value to match.</p> </li> </ul> <p>For example, to list all dataset import jobs whose status is ACTIVE, you specify the following filter:</p> <p> <code>\"Filters\": [ { \"Condition\": \"IS\", \"Key\": \"Status\", \"Value\": \"ACTIVE\" } ]</code> </p>",
+        "ListExplainabilitiesRequest$Filters": "<p>An array of filters. For each filter, provide a condition and a match statement. The condition is either <code>IS</code> or <code>IS_NOT</code>, which specifies whether to include or exclude the resources that match the statement from the list. The match statement consists of a key and a value.</p> <p> <b>Filter properties</b> </p> <ul> <li> <p> <code>Condition</code> - The condition to apply. Valid values are <code>IS</code> and <code>IS_NOT</code>.</p> </li> <li> <p> <code>Key</code> - The name of the parameter to filter on. Valid values are <code>PredictorArn</code> and <code>Status</code>.</p> </li> <li> <p> <code>Value</code> - The value to match.</p> </li> </ul>",
+        "ListExplainabilityExportsRequest$Filters": "<p>An array of filters. For each filter, provide a condition and a match statement. The condition is either <code>IS</code> or <code>IS_NOT</code>, which specifies whether to include or exclude resources that match the statement from the list. The match statement consists of a key and a value.</p> <p> <b>Filter properties</b> </p> <ul> <li> <p> <code>Condition</code> - The condition to apply. Valid values are <code>IS</code> and <code>IS_NOT</code>.</p> </li> <li> <p> <code>Key</code> - The name of the parameter to filter on. Valid values are <code>PredictorArn</code> and <code>Status</code>.</p> </li> <li> <p> <code>Value</code> - The value to match.</p> </li> </ul>",
         "ListForecastExportJobsRequest$Filters": "<p>An array of filters. For each filter, you provide a condition and a match statement. The condition is either <code>IS</code> or <code>IS_NOT</code>, which specifies whether to include or exclude the forecast export jobs that match the statement from the list, respectively. The match statement consists of a key and a value.</p> <p> <b>Filter properties</b> </p> <ul> <li> <p> <code>Condition</code> - The condition to apply. Valid values are <code>IS</code> and <code>IS_NOT</code>. To include the forecast export jobs that match the statement, specify <code>IS</code>. To exclude matching forecast export jobs, specify <code>IS_NOT</code>.</p> </li> <li> <p> <code>Key</code> - The name of the parameter to filter on. Valid values are <code>ForecastArn</code> and <code>Status</code>.</p> </li> <li> <p> <code>Value</code> - The value to match.</p> </li> </ul> <p>For example, to list all jobs that export a forecast named <i>electricityforecast</i>, specify the following filter:</p> <p> <code>\"Filters\": [ { \"Condition\": \"IS\", \"Key\": \"ForecastArn\", \"Value\": \"arn:aws:forecast:us-west-2:&lt;acct-id&gt;:forecast/electricityforecast\" } ]</code> </p>",
         "ListForecastsRequest$Filters": "<p>An array of filters. For each filter, you provide a condition and a match statement. The condition is either <code>IS</code> or <code>IS_NOT</code>, which specifies whether to include or exclude the forecasts that match the statement from the list, respectively. The match statement consists of a key and a value.</p> <p> <b>Filter properties</b> </p> <ul> <li> <p> <code>Condition</code> - The condition to apply. Valid values are <code>IS</code> and <code>IS_NOT</code>. To include the forecasts that match the statement, specify <code>IS</code>. To exclude matching forecasts, specify <code>IS_NOT</code>.</p> </li> <li> <p> <code>Key</code> - The name of the parameter to filter on. Valid values are <code>DatasetGroupArn</code>, <code>PredictorArn</code>, and <code>Status</code>.</p> </li> <li> <p> <code>Value</code> - The value to match.</p> </li> </ul> <p>For example, to list all forecasts whose status is not ACTIVE, you would specify:</p> <p> <code>\"Filters\": [ { \"Condition\": \"IS_NOT\", \"Key\": \"Status\", \"Value\": \"ACTIVE\" } ]</code> </p>",
         "ListPredictorBacktestExportJobsRequest$Filters": "<p>An array of filters. For each filter, provide a condition and a match statement. The condition is either <code>IS</code> or <code>IS_NOT</code>, which specifies whether to include or exclude the predictor backtest export jobs that match the statement from the list. The match statement consists of a key and a value.</p> <p> <b>Filter properties</b> </p> <ul> <li> <p> <code>Condition</code> - The condition to apply. Valid values are <code>IS</code> and <code>IS_NOT</code>. To include the predictor backtest export jobs that match the statement, specify <code>IS</code>. To exclude matching predictor backtest export jobs, specify <code>IS_NOT</code>.</p> </li> <li> <p> <code>Key</code> - The name of the parameter to filter on. Valid values are <code>PredictorArn</code> and <code>Status</code>.</p> </li> <li> <p> <code>Value</code> - The value to match.</p> </li> </ul>",
@@ -564,6 +759,7 @@
     "ForecastDimensions": {
       "base": null,
       "refs": {
+        "CreateAutoPredictorRequest$ForecastDimensions": "<p>An array of dimension (field) names that specify how to group the generated forecast.</p> <p>For example, if you are generating forecasts for item sales across all your stores, and your dataset contains a <code>store_id</code> field, you would specify <code>store_id</code> as a dimension to group sales forecasts for each store.</p>",
         "FeaturizationConfig$ForecastDimensions": "<p>An array of dimension (field) names that specify how to group the generated forecast.</p> <p>For example, suppose that you are generating a forecast for item sales across all of your stores, and your dataset contains a <code>store_id</code> field. If you want the sales forecast for each item by store, you would specify <code>store_id</code> as the dimension.</p> <p>All forecast dimensions specified in the <code>TARGET_TIME_SERIES</code> dataset don't need to be specified in the <code>CreatePredictor</code> request. All forecast dimensions specified in the <code>RELATED_TIME_SERIES</code> dataset must be specified in the <code>CreatePredictor</code> request.</p>"
       }
     },
@@ -595,8 +791,10 @@
     "ForecastTypes": {
       "base": null,
       "refs": {
+        "CreateAutoPredictorRequest$ForecastTypes": "<p>The forecast types used to train a predictor. You can specify up to five forecast types. Forecast types can be quantiles from 0.01 to 0.99, by increments of 0.01 or higher. You can also specify the mean forecast with <code>mean</code>.</p>",
         "CreateForecastRequest$ForecastTypes": "<p>The quantiles at which probabilistic forecasts are generated. <b>You can currently specify up to 5 quantiles per forecast</b>. Accepted values include <code>0.01 to 0.99</code> (increments of .01 only) and <code>mean</code>. The mean forecast is different from the median (0.50) when the distribution is not symmetric (for example, Beta and Negative Binomial). The default value is <code>[\"0.1\", \"0.5\", \"0.9\"]</code>.</p>",
         "CreatePredictorRequest$ForecastTypes": "<p>Specifies the forecast types used to train a predictor. You can specify up to five forecast types. Forecast types can be quantiles from 0.01 to 0.99, by increments of 0.01 or higher. You can also specify the mean forecast with <code>mean</code>. </p> <p>The default value is <code>[\"0.10\", \"0.50\", \"0.9\"]</code>.</p>",
+        "DescribeAutoPredictorResponse$ForecastTypes": "<p>The forecast types used during predictor training. Default value is [\"0.1\",\"0.5\",\"0.9\"].</p>",
         "DescribeForecastResponse$ForecastTypes": "<p>The quantiles at which probabilistic forecasts were generated.</p>",
         "DescribePredictorResponse$ForecastTypes": "<p>The forecast types used during predictor training. Default value is <code>[\"0.1\",\"0.5\",\"0.9\"]</code> </p>"
       }
@@ -610,7 +808,9 @@
     "Frequency": {
       "base": null,
       "refs": {
+        "CreateAutoPredictorRequest$ForecastFrequency": "<p>The frequency of predictions in a forecast.</p> <p>Valid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and 1min (1 minute). For example, \"Y\" indicates every year and \"5min\" indicates every five minutes.</p> <p>The frequency must be greater than or equal to the TARGET_TIME_SERIES dataset frequency.</p> <p>When a RELATED_TIME_SERIES dataset is provided, the frequency must be equal to the RELATED_TIME_SERIES dataset frequency.</p>",
         "CreateDatasetRequest$DataFrequency": "<p>The frequency of data collection. This parameter is required for RELATED_TIME_SERIES datasets.</p> <p>Valid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and 1min (1 minute). For example, \"D\" indicates every day and \"15min\" indicates every 15 minutes.</p>",
+        "DescribeAutoPredictorResponse$ForecastFrequency": "<p>The frequency of predictions in a forecast.</p> <p>Valid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and 1min (1 minute). For example, \"Y\" indicates every year and \"5min\" indicates every five minutes.</p>",
         "DescribeDatasetResponse$DataFrequency": "<p>The frequency of data collection.</p> <p>Valid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and 1min (1 minute). For example, \"M\" indicates every month and \"30min\" indicates every 30 minutes.</p>",
         "FeaturizationConfig$ForecastFrequency": "<p>The frequency of predictions in a forecast.</p> <p>Valid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and 1min (1 minute). For example, \"Y\" indicates every year and \"5min\" indicates every five minutes.</p> <p>The frequency must be greater than or equal to the TARGET_TIME_SERIES dataset frequency.</p> <p>When a RELATED_TIME_SERIES dataset is provided, the frequency must be equal to the RELATED_TIME_SERIES dataset frequency.</p>"
       }
@@ -649,7 +849,9 @@
     "Integer": {
       "base": null,
       "refs": {
+        "CreateAutoPredictorRequest$ForecastHorizon": "<p>The number of time-steps that the model predicts. The forecast horizon is also called the prediction length.</p>",
         "CreatePredictorRequest$ForecastHorizon": "<p>Specifies the number of time-steps that the model is trained to predict. The forecast horizon is also called the prediction length.</p> <p>For example, if you configure a dataset for daily data collection (using the <code>DataFrequency</code> parameter of the <a>CreateDataset</a> operation) and set the forecast horizon to 10, the model returns predictions for 10 days.</p> <p>The maximum forecast horizon is the lesser of 500 time-steps or 1/3 of the TARGET_TIME_SERIES dataset length.</p>",
+        "DescribeAutoPredictorResponse$ForecastHorizon": "<p>The number of time-steps that the model predicts. The forecast horizon is also called the prediction length.</p>",
         "DescribePredictorResponse$ForecastHorizon": "<p>The number of time-steps of the forecast. The forecast horizon is also called the prediction length.</p>",
         "EvaluationParameters$NumberOfBacktestWindows": "<p>The number of times to split the input data. The default is 1. Valid values are 1 through 5.</p>",
         "EvaluationParameters$BackTestWindowOffset": "<p>The point from the end of the dataset where you want to split the data for model training and testing (evaluation). Specify the value as the number of data points. The default is the value of the forecast horizon. <code>BackTestWindowOffset</code> can be used to mimic a past virtual forecast start date. This value must be greater than or equal to the forecast horizon and less than half of the TARGET_TIME_SERIES dataset length.</p> <p> <code>ForecastHorizon</code> &lt;= <code>BackTestWindowOffset</code> &lt; 1/2 * TARGET_TIME_SERIES dataset length</p>",
@@ -726,6 +928,26 @@
       "refs": {
       }
     },
+    "ListExplainabilitiesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExplainabilitiesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExplainabilityExportsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExplainabilityExportsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListForecastExportJobsRequest": {
       "base": null,
       "refs": {
@@ -776,10 +998,21 @@
       "refs": {
       }
     },
+    "LocalDateTime": {
+      "base": null,
+      "refs": {
+        "CreateExplainabilityRequest$StartDateTime": "<p>If <code>TimePointGranularity</code> is set to <code>SPECIFIC</code>, define the first point for the Explainability.</p>",
+        "CreateExplainabilityRequest$EndDateTime": "<p>If <code>TimePointGranularity</code> is set to <code>SPECIFIC</code>, define the last time point for the Explainability.</p>",
+        "DescribeExplainabilityResponse$StartDateTime": "<p>If <code>TimePointGranularity</code> is set to <code>SPECIFIC</code>, the first time point in the Explainability.</p>",
+        "DescribeExplainabilityResponse$EndDateTime": "<p>If <code>TimePointGranularity</code> is set to <code>SPECIFIC</code>, the last time point in the Explainability.</p>"
+      }
+    },
     "Long": {
       "base": null,
       "refs": {
+        "DescribeAutoPredictorResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time remaining in minutes for the predictor training job to complete.</p>",
         "DescribeDatasetImportJobResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time remaining in minutes for the dataset import job to complete.</p>",
+        "DescribeExplainabilityResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time remaining in minutes for the <a>CreateExplainability</a> job to complete.</p>",
         "DescribeForecastResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time remaining in minutes for the forecast job to complete.</p>",
         "DescribePredictorResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time remaining in minutes for the predictor training job to complete.</p>",
         "Statistics$CountLong": "<p>The number of values in the field. <code>CountLong</code> is used instead of <code>Count</code> if the value is greater than 2,147,483,647.</p>",
@@ -794,6 +1027,8 @@
         "ListDatasetGroupsRequest$MaxResults": "<p>The number of items to return in the response.</p>",
         "ListDatasetImportJobsRequest$MaxResults": "<p>The number of items to return in the response.</p>",
         "ListDatasetsRequest$MaxResults": "<p>The number of items to return in the response.</p>",
+        "ListExplainabilitiesRequest$MaxResults": "<p>The number of items returned in the response.</p>",
+        "ListExplainabilityExportsRequest$MaxResults": "<p>The number of items to return in the response.</p>",
         "ListForecastExportJobsRequest$MaxResults": "<p>The number of items to return in the response.</p>",
         "ListForecastsRequest$MaxResults": "<p>The number of items to return in the response.</p>",
         "ListPredictorBacktestExportJobsRequest$MaxResults": "<p>The number of items to return in the response.</p>",
@@ -803,10 +1038,14 @@
     "Message": {
       "base": null,
       "refs": {
+        "DescribeAutoPredictorResponse$Message": "<p>In the event of an error, a message detailing the cause of the error.</p>",
         "DescribeDatasetImportJobResponse$Message": "<p>If an error occurred, an informational message about the error.</p>",
+        "DescribeExplainabilityExportResponse$Message": "<p>Information about any errors that occurred during the export.</p>",
+        "DescribeExplainabilityResponse$Message": "<p>If an error occurred, a message about the error.</p>",
         "DescribeForecastExportJobResponse$Message": "<p>If an error occurred, an informational message about the error.</p>",
         "DescribePredictorBacktestExportJobResponse$Message": "<p>Information about any errors that may have occurred during the backtest export.</p>",
-        "DescribePredictorResponse$Message": "<p>If an error occurred, an informational message about the error.</p>"
+        "DescribePredictorResponse$Message": "<p>If an error occurred, an informational message about the error.</p>",
+        "ExplainabilitySummary$Message": "<p>Information about any errors that may have occurred during the Explainability creation process.</p>"
       }
     },
     "Metrics": {
@@ -818,11 +1057,17 @@
     "Name": {
       "base": null,
       "refs": {
+        "AdditionalDataset$Name": "<p>The name of the additional dataset. Valid names: <code>\"holiday\"</code> and <code>\"weather\"</code>.</p>",
+        "AttributeConfig$AttributeName": "<p>The name of the attribute as specified in the schema. Amazon Forecast supports the target field of the target time series and the related time series datasets. For example, for the RETAIL domain, the target is <code>demand</code>.</p>",
         "CategoricalParameterRange$Name": "<p>The name of the categorical hyperparameter to tune.</p>",
+        "Configuration$key": null,
         "ContinuousParameterRange$Name": "<p>The name of the hyperparameter to tune.</p>",
+        "CreateAutoPredictorRequest$PredictorName": "<p>A unique name for the predictor</p>",
         "CreateDatasetGroupRequest$DatasetGroupName": "<p>A name for the dataset group.</p>",
         "CreateDatasetImportJobRequest$DatasetImportJobName": "<p>The name for the dataset import job. We recommend including the current timestamp in the name, for example, <code>20190721DatasetImport</code>. This can help you avoid getting a <code>ResourceAlreadyExistsException</code> exception.</p>",
         "CreateDatasetRequest$DatasetName": "<p>A name for the dataset.</p>",
+        "CreateExplainabilityExportRequest$ExplainabilityExportName": "<p>A unique name for the Explainability export.</p>",
+        "CreateExplainabilityRequest$ExplainabilityName": "<p>A unique name for the Explainability.</p>",
         "CreateForecastExportJobRequest$ForecastExportJobName": "<p>The name for the forecast export job.</p>",
         "CreateForecastRequest$ForecastName": "<p>A name for the forecast.</p>",
         "CreatePredictorBacktestExportJobRequest$PredictorBacktestExportJobName": "<p>The name for the backtest export job.</p>",
@@ -830,14 +1075,19 @@
         "DatasetGroupSummary$DatasetGroupName": "<p>The name of the dataset group.</p>",
         "DatasetImportJobSummary$DatasetImportJobName": "<p>The name of the dataset import job.</p>",
         "DatasetSummary$DatasetName": "<p>The name of the dataset.</p>",
+        "DescribeAutoPredictorResponse$PredictorName": "<p>The name of the predictor.</p>",
         "DescribeDatasetGroupResponse$DatasetGroupName": "<p>The name of the dataset group.</p>",
         "DescribeDatasetImportJobResponse$DatasetImportJobName": "<p>The name of the dataset import job.</p>",
         "DescribeDatasetResponse$DatasetName": "<p>The name of the dataset.</p>",
+        "DescribeExplainabilityExportResponse$ExplainabilityExportName": "<p>The name of the Explainability export.</p>",
+        "DescribeExplainabilityResponse$ExplainabilityName": "<p>The name of the Explainability.</p>",
         "DescribeForecastExportJobResponse$ForecastExportJobName": "<p>The name of the forecast export job.</p>",
         "DescribeForecastResponse$ForecastName": "<p>The name of the forecast.</p>",
         "DescribePredictorBacktestExportJobResponse$PredictorBacktestExportJobName": "<p>The name of the predictor backtest export job.</p>",
         "DescribePredictorResponse$PredictorArn": "<p>The ARN of the predictor.</p>",
         "DescribePredictorResponse$PredictorName": "<p>The name of the predictor.</p>",
+        "ExplainabilityExportSummary$ExplainabilityExportName": "<p>The name of the Explainability export</p>",
+        "ExplainabilitySummary$ExplainabilityName": "<p>The name of the Explainability.</p>",
         "Featurization$AttributeName": "<p>The name of the schema attribute that specifies the data field to be featurized. Amazon Forecast supports the target field of the <code>TARGET_TIME_SERIES</code> and the <code>RELATED_TIME_SERIES</code> datasets. For example, for the <code>RETAIL</code> domain, the target is <code>demand</code>, and for the <code>CUSTOM</code> domain, the target is <code>target_value</code>. For more information, see <a>howitworks-missing-values</a>.</p>",
         "ForecastDimensions$member": null,
         "ForecastExportJobSummary$ForecastExportJobName": "<p>The name of the forecast export job.</p>",
@@ -846,7 +1096,8 @@
         "PredictorBacktestExportJobSummary$PredictorBacktestExportJobName": "<p>The name of the predictor backtest export job.</p>",
         "PredictorSummary$PredictorName": "<p>The name of the predictor.</p>",
         "SchemaAttribute$AttributeName": "<p>The name of the dataset field.</p>",
-        "SupplementaryFeature$Name": "<p>The name of the feature. Valid values: <code>\"holiday\"</code> and <code>\"weather\"</code>.</p>"
+        "SupplementaryFeature$Name": "<p>The name of the feature. Valid values: <code>\"holiday\"</code> and <code>\"weather\"</code>.</p>",
+        "Transformations$key": null
       }
     },
     "NextToken": {
@@ -858,6 +1109,10 @@
         "ListDatasetImportJobsResponse$NextToken": "<p>If the response is truncated, Amazon Forecast returns this token. To retrieve the next set of results, use the token in the next request.</p>",
         "ListDatasetsRequest$NextToken": "<p>If the result of the previous request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.</p>",
         "ListDatasetsResponse$NextToken": "<p>If the response is truncated, Amazon Forecast returns this token. To retrieve the next set of results, use the token in the next request.</p>",
+        "ListExplainabilitiesRequest$NextToken": "<p>If the result of the previous request was truncated, the response includes a NextToken. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.</p>",
+        "ListExplainabilitiesResponse$NextToken": "<p>Returns this token if the response is truncated. To retrieve the next set of results, use the token in the next request.</p>",
+        "ListExplainabilityExportsRequest$NextToken": "<p>If the result of the previous request was truncated, the response includes a NextToken. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.</p>",
+        "ListExplainabilityExportsResponse$NextToken": "<p>Returns this token if the response is truncated. To retrieve the next set of results, use the token in the next request.</p>",
         "ListForecastExportJobsRequest$NextToken": "<p>If the result of the previous request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.</p>",
         "ListForecastExportJobsResponse$NextToken": "<p>If the response is truncated, Amazon Forecast returns this token. To retrieve the next set of results, use the token in the next request.</p>",
         "ListForecastsRequest$NextToken": "<p>If the result of the previous request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.</p>",
@@ -871,7 +1126,9 @@
     "OptimizationMetric": {
       "base": null,
       "refs": {
+        "CreateAutoPredictorRequest$OptimizationMetric": "<p>The accuracy metric used to optimize the predictor.</p>",
         "CreatePredictorRequest$OptimizationMetric": "<p>The accuracy metric used to optimize the predictor.</p>",
+        "DescribeAutoPredictorResponse$OptimizationMetric": "<p>The accuracy metric used to optimize the predictor.</p>",
         "DescribePredictorResponse$OptimizationMetric": "<p>The accuracy metric used to optimize the predictor.</p>",
         "GetAccuracyMetricsResponse$OptimizationMetric": "<p>The accuracy metric used to optimize the predictor.</p>"
       }
@@ -944,6 +1201,13 @@
         "ListPredictorsResponse$Predictors": "<p>An array of objects that summarize each predictor's properties.</p>"
       }
     },
+    "ReferencePredictorSummary": {
+      "base": "<p>Provides a summary of the reference predictor used when retraining or upgrading a predictor.</p>",
+      "refs": {
+        "DescribeAutoPredictorResponse$ReferencePredictorSummary": "<p>The ARN and state of the reference predictor. This parameter is only valid for retrained or upgraded predictors.</p>",
+        "PredictorSummary$ReferencePredictorSummary": "<p>A summary of the reference predictor used if the predictor was retrained or upgraded.</p>"
+      }
+    },
     "ResourceAlreadyExistsException": {
       "base": "<p>There is already a resource with this name. Try again with a different name.</p>",
       "refs": {
@@ -983,7 +1247,9 @@
       "base": "<p>Defines the fields of a dataset. You specify this object in the <a>CreateDataset</a> request.</p>",
       "refs": {
         "CreateDatasetRequest$Schema": "<p>The schema for the dataset. The schema attributes and their order must match the fields in your data. The dataset <code>Domain</code> and <code>DatasetType</code> that you choose determine the minimum required fields in your training data. For information about the required fields for a specific dataset domain and type, see <a>howitworks-domains-ds-types</a>.</p>",
-        "DescribeDatasetResponse$Schema": "<p>An array of <code>SchemaAttribute</code> objects that specify the dataset fields. Each <code>SchemaAttribute</code> specifies the name and data type of a field.</p>"
+        "CreateExplainabilityRequest$Schema": null,
+        "DescribeDatasetResponse$Schema": "<p>An array of <code>SchemaAttribute</code> objects that specify the dataset fields. Each <code>SchemaAttribute</code> specifies the name and data type of a field.</p>",
+        "DescribeExplainabilityResponse$Schema": null
       }
     },
     "SchemaAttribute": {
@@ -998,6 +1264,12 @@
         "Schema$Attributes": "<p>An array of attributes specifying the name and type of each field in a dataset.</p>"
       }
     },
+    "State": {
+      "base": null,
+      "refs": {
+        "ReferencePredictorSummary$State": "<p>Whether the reference predictor is <code>Active</code> or <code>Deleted</code>.</p>"
+      }
+    },
     "Statistics": {
       "base": "<p>Provides statistics for each data field imported into to an Amazon Forecast dataset with the <a>CreateDatasetImportJob</a> operation.</p>",
       "refs": {
@@ -1008,12 +1280,18 @@
       "base": null,
       "refs": {
         "DatasetImportJobSummary$Status": "<p>The status of the dataset import job. States include:</p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> </ul>",
+        "DescribeAutoPredictorResponse$Status": "<p>The status of the predictor. States include: </p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul>",
         "DescribeDatasetGroupResponse$Status": "<p>The status of the dataset group. States include:</p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> <li> <p> <code>UPDATE_PENDING</code>, <code>UPDATE_IN_PROGRESS</code>, <code>UPDATE_FAILED</code> </p> </li> </ul> <p>The <code>UPDATE</code> states apply when you call the <a>UpdateDatasetGroup</a> operation.</p> <note> <p>The <code>Status</code> of the dataset group must be <code>ACTIVE</code> before you can use the dataset group to create a predictor.</p> </note>",
         "DescribeDatasetImportJobResponse$Status": "<p>The status of the dataset import job. States include:</p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> </ul>",
         "DescribeDatasetResponse$Status": "<p>The status of the dataset. States include:</p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> <li> <p> <code>UPDATE_PENDING</code>, <code>UPDATE_IN_PROGRESS</code>, <code>UPDATE_FAILED</code> </p> </li> </ul> <p>The <code>UPDATE</code> states apply while data is imported to the dataset from a call to the <a>CreateDatasetImportJob</a> operation and reflect the status of the dataset import job. For example, when the import job status is <code>CREATE_IN_PROGRESS</code>, the status of the dataset is <code>UPDATE_IN_PROGRESS</code>.</p> <note> <p>The <code>Status</code> of the dataset must be <code>ACTIVE</code> before you can import training data.</p> </note>",
+        "DescribeExplainabilityExportResponse$Status": "<p>The status of the Explainability export. States include: </p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul>",
+        "DescribeExplainabilityResponse$Status": "<p>The status of the Explainability resource. States include: </p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul>",
         "DescribeForecastExportJobResponse$Status": "<p>The status of the forecast export job. States include:</p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul> <note> <p>The <code>Status</code> of the forecast export job must be <code>ACTIVE</code> before you can access the forecast in your S3 bucket.</p> </note>",
         "DescribePredictorBacktestExportJobResponse$Status": "<p>The status of the predictor backtest export job. States include: </p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul>",
         "DescribePredictorResponse$Status": "<p>The status of the predictor. States include:</p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> </ul> <note> <p>The <code>Status</code> of the predictor must be <code>ACTIVE</code> before you can use the predictor to create a forecast.</p> </note>",
+        "ExplainabilityExportSummary$Status": "<p>The status of the Explainability export. States include: </p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul>",
+        "ExplainabilityInfo$Status": null,
+        "ExplainabilitySummary$Status": "<p>The status of the Explainability. States include: </p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul>",
         "ForecastExportJobSummary$Status": "<p>The status of the forecast export job. States include:</p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul> <note> <p>The <code>Status</code> of the forecast export job must be <code>ACTIVE</code> before you can access the forecast in your S3 bucket.</p> </note>",
         "ForecastSummary$Status": "<p>The status of the forecast. States include:</p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul> <note> <p>The <code>Status</code> of the forecast must be <code>ACTIVE</code> before you can query or export the forecast.</p> </note>",
         "PredictorBacktestExportJobSummary$Status": "<p>The status of the predictor backtest export job. States include: </p> <ul> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>CREATE_PENDING</code>, <code>CREATE_IN_PROGRESS</code>, <code>CREATE_FAILED</code> </p> </li> <li> <p> <code>CREATE_STOPPING</code>, <code>CREATE_STOPPED</code> </p> </li> <li> <p> <code>DELETE_PENDING</code>, <code>DELETE_IN_PROGRESS</code>, <code>DELETE_FAILED</code> </p> </li> </ul>",
@@ -1088,9 +1366,12 @@
     "Tags": {
       "base": null,
       "refs": {
+        "CreateAutoPredictorRequest$Tags": "<p>Optional metadata to help you categorize and organize your predictors. Each tag consists of a key and an optional value, both of which you define. Tag keys and values are case sensitive.</p> <p>The following restrictions apply to tags:</p> <ul> <li> <p>For each resource, each tag key must be unique and each tag key must have one value.</p> </li> <li> <p>Maximum number of tags per resource: 50.</p> </li> <li> <p>Maximum key length: 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length: 256 Unicode characters in UTF-8.</p> </li> <li> <p>Accepted characters: all letters and numbers, spaces representable in UTF-8, and + - = . _ : / @. If your tagging schema is used across other services and resources, the character restrictions of those services also apply. </p> </li> <li> <p>Key prefixes cannot include any upper or lowercase combination of <code>aws:</code> or <code>AWS:</code>. Values can have this prefix. If a tag value has <code>aws</code> as its prefix but the key does not, Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code> do not count against your tags per resource limit. You cannot edit or delete tag keys with this prefix.</p> </li> </ul>",
         "CreateDatasetGroupRequest$Tags": "<p>The optional metadata that you apply to the dataset group to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has <code>aws</code> as its prefix but the key does not, then Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code> do not count against your tags per resource limit.</p> </li> </ul>",
         "CreateDatasetImportJobRequest$Tags": "<p>The optional metadata that you apply to the dataset import job to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has <code>aws</code> as its prefix but the key does not, then Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code> do not count against your tags per resource limit.</p> </li> </ul>",
         "CreateDatasetRequest$Tags": "<p>The optional metadata that you apply to the dataset to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has <code>aws</code> as its prefix but the key does not, then Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code> do not count against your tags per resource limit.</p> </li> </ul>",
+        "CreateExplainabilityExportRequest$Tags": "<p>Optional metadata to help you categorize and organize your resources. Each tag consists of a key and an optional value, both of which you define. Tag keys and values are case sensitive.</p> <p>The following restrictions apply to tags:</p> <ul> <li> <p>For each resource, each tag key must be unique and each tag key must have one value.</p> </li> <li> <p>Maximum number of tags per resource: 50.</p> </li> <li> <p>Maximum key length: 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length: 256 Unicode characters in UTF-8.</p> </li> <li> <p>Accepted characters: all letters and numbers, spaces representable in UTF-8, and + - = . _ : / @. If your tagging schema is used across other services and resources, the character restrictions of those services also apply. </p> </li> <li> <p>Key prefixes cannot include any upper or lowercase combination of <code>aws:</code> or <code>AWS:</code>. Values can have this prefix. If a tag value has <code>aws</code> as its prefix but the key does not, Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code> do not count against your tags per resource limit. You cannot edit or delete tag keys with this prefix.</p> </li> </ul>",
+        "CreateExplainabilityRequest$Tags": "<p>Optional metadata to help you categorize and organize your resources. Each tag consists of a key and an optional value, both of which you define. Tag keys and values are case sensitive.</p> <p>The following restrictions apply to tags:</p> <ul> <li> <p>For each resource, each tag key must be unique and each tag key must have one value.</p> </li> <li> <p>Maximum number of tags per resource: 50.</p> </li> <li> <p>Maximum key length: 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length: 256 Unicode characters in UTF-8.</p> </li> <li> <p>Accepted characters: all letters and numbers, spaces representable in UTF-8, and + - = . _ : / @. If your tagging schema is used across other services and resources, the character restrictions of those services also apply. </p> </li> <li> <p>Key prefixes cannot include any upper or lowercase combination of <code>aws:</code> or <code>AWS:</code>. Values can have this prefix. If a tag value has <code>aws</code> as its prefix but the key does not, Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code> do not count against your tags per resource limit. You cannot edit or delete tag keys with this prefix.</p> </li> </ul>",
         "CreateForecastExportJobRequest$Tags": "<p>The optional metadata that you apply to the forecast export job to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has <code>aws</code> as its prefix but the key does not, then Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code> do not count against your tags per resource limit.</p> </li> </ul>",
         "CreateForecastRequest$Tags": "<p>The optional metadata that you apply to the forecast to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.</p> <p>The following basic restrictions apply to tags:</p> <ul> <li> <p>Maximum number of tags per resource - 50.</p> </li> <li> <p>For each resource, each tag key must be unique, and each tag key can have only one value.</p> </li> <li> <p>Maximum key length - 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length - 256 Unicode characters in UTF-8.</p> </li> <li> <p>If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @.</p> </li> <li> <p>Tag keys and values are case sensitive.</p> </li> <li> <p>Do not use <code>aws:</code>, <code>AWS:</code>, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has <code>aws</code> as its prefix but the key does not, then Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code> do not count against your tags per resource limit.</p> </li> </ul>",
         "CreatePredictorBacktestExportJobRequest$Tags": "<p>Optional metadata to help you categorize and organize your backtests. Each tag consists of a key and an optional value, both of which you define. Tag keys and values are case sensitive.</p> <p>The following restrictions apply to tags:</p> <ul> <li> <p>For each resource, each tag key must be unique and each tag key must have one value.</p> </li> <li> <p>Maximum number of tags per resource: 50.</p> </li> <li> <p>Maximum key length: 128 Unicode characters in UTF-8.</p> </li> <li> <p>Maximum value length: 256 Unicode characters in UTF-8.</p> </li> <li> <p>Accepted characters: all letters and numbers, spaces representable in UTF-8, and + - = . _ : / @. If your tagging schema is used across other services and resources, the character restrictions of those services also apply. </p> </li> <li> <p>Key prefixes cannot include any upper or lowercase combination of <code>aws:</code> or <code>AWS:</code>. Values can have this prefix. If a tag value has <code>aws</code> as its prefix but the key does not, Forecast considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of <code>aws</code> do not count against your tags per resource limit. You cannot edit or delete tag keys with this prefix.</p> </li> </ul>",
@@ -1117,6 +1398,18 @@
         "EvaluationResult$TestWindows": "<p>The array of test windows used for evaluating the algorithm. The <code>NumberOfBacktestWindows</code> from the <a>EvaluationParameters</a> object determines the number of windows in the array.</p>"
       }
     },
+    "TimePointGranularity": {
+      "base": null,
+      "refs": {
+        "ExplainabilityConfig$TimePointGranularity": "<p>To create an Explainability for all time points in your forecast horizon, use <code>ALL</code>. To create an Explainability for specific time points in your forecast horizon, use <code>SPECIFIC</code>.</p> <p>Specify time points with the <code>StartDateTime</code> and <code>EndDateTime</code> parameters within the <a>CreateExplainability</a> operation.</p>"
+      }
+    },
+    "TimeSeriesGranularity": {
+      "base": null,
+      "refs": {
+        "ExplainabilityConfig$TimeSeriesGranularity": "<p>To create an Explainability for all time series in your datasets, use <code>ALL</code>. To create an Explainability for specific time series in your datasets, use <code>SPECIFIC</code>.</p> <p>Specify time series by uploading a CSV file to an Amazon S3 bucket and set the location within the <a>DataDestination</a> data type.</p>"
+      }
+    },
     "TimeZone": {
       "base": null,
       "refs": {
@@ -1133,12 +1426,18 @@
         "DatasetImportJobSummary$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
         "DatasetSummary$CreationTime": "<p>When the dataset was created.</p>",
         "DatasetSummary$LastModificationTime": "<p>When you create a dataset, <code>LastModificationTime</code> is the same as <code>CreationTime</code>. While data is being imported to the dataset, <code>LastModificationTime</code> is the current time of the <code>ListDatasets</code> call. After a <a>CreateDatasetImportJob</a> operation has finished, <code>LastModificationTime</code> is when the import job completed or failed.</p>",
+        "DescribeAutoPredictorResponse$CreationTime": "<p>The timestamp of the CreateAutoPredictor request.</p>",
+        "DescribeAutoPredictorResponse$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
         "DescribeDatasetGroupResponse$CreationTime": "<p>When the dataset group was created.</p>",
         "DescribeDatasetGroupResponse$LastModificationTime": "<p>When the dataset group was created or last updated from a call to the <a>UpdateDatasetGroup</a> operation. While the dataset group is being updated, <code>LastModificationTime</code> is the current time of the <code>DescribeDatasetGroup</code> call.</p>",
         "DescribeDatasetImportJobResponse$CreationTime": "<p>When the dataset import job was created.</p>",
         "DescribeDatasetImportJobResponse$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
         "DescribeDatasetResponse$CreationTime": "<p>When the dataset was created.</p>",
         "DescribeDatasetResponse$LastModificationTime": "<p>When you create a dataset, <code>LastModificationTime</code> is the same as <code>CreationTime</code>. While data is being imported to the dataset, <code>LastModificationTime</code> is the current time of the <code>DescribeDataset</code> call. After a <a>CreateDatasetImportJob</a> operation has finished, <code>LastModificationTime</code> is when the import job completed or failed.</p>",
+        "DescribeExplainabilityExportResponse$CreationTime": "<p>When the Explainability export was created.</p>",
+        "DescribeExplainabilityExportResponse$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
+        "DescribeExplainabilityResponse$CreationTime": "<p>When the Explainability resource was created.</p>",
+        "DescribeExplainabilityResponse$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
         "DescribeForecastExportJobResponse$CreationTime": "<p>When the forecast export job was created.</p>",
         "DescribeForecastExportJobResponse$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
         "DescribeForecastResponse$CreationTime": "<p>When the forecast creation task was created.</p>",
@@ -1147,6 +1446,10 @@
         "DescribePredictorBacktestExportJobResponse$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
         "DescribePredictorResponse$CreationTime": "<p>When the model training task was created.</p>",
         "DescribePredictorResponse$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
+        "ExplainabilityExportSummary$CreationTime": "<p>When the Explainability was created.</p>",
+        "ExplainabilityExportSummary$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
+        "ExplainabilitySummary$CreationTime": "<p>When the Explainability was created.</p>",
+        "ExplainabilitySummary$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
         "ForecastExportJobSummary$CreationTime": "<p>When the forecast export job was created.</p>",
         "ForecastExportJobSummary$LastModificationTime": "<p>The last time the resource was modified. The timestamp depends on the status of the job:</p> <ul> <li> <p> <code>CREATE_PENDING</code> - The <code>CreationTime</code>.</p> </li> <li> <p> <code>CREATE_IN_PROGRESS</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPING</code> - The current timestamp.</p> </li> <li> <p> <code>CREATE_STOPPED</code> - When the job stopped.</p> </li> <li> <p> <code>ACTIVE</code> or <code>CREATE_FAILED</code> - When the job finished or failed.</p> </li> </ul>",
         "ForecastSummary$CreationTime": "<p>When the forecast creation task was created.</p>",
@@ -1173,6 +1476,12 @@
       "refs": {
         "CreatePredictorRequest$TrainingParameters": "<p>The hyperparameters to override for model training. The hyperparameters that you can override are listed in the individual algorithms. For the list of supported algorithms, see <a>aws-forecast-choosing-recipes</a>.</p>",
         "DescribePredictorResponse$TrainingParameters": "<p>The default training parameters or overrides selected during model training. When running AutoML or choosing HPO with CNN-QR or DeepAR+, the optimized values for the chosen hyperparameters are returned. For more information, see <a>aws-forecast-choosing-recipes</a>.</p>"
+      }
+    },
+    "Transformations": {
+      "base": null,
+      "refs": {
+        "AttributeConfig$Transformations": "<p>The method parameters (key-value pairs), which are a map of override parameters. Specify these parameters to override the default values. Related Time Series attributes do not accept aggregation parameters.</p> <p>The following list shows the parameters and their valid values for the \"filling\" featurization method for a <b>Target Time Series</b> dataset. Default values are bolded.</p> <ul> <li> <p> <code>aggregation</code>: <b>sum</b>, <code>avg</code>, <code>first</code>, <code>min</code>, <code>max</code> </p> </li> <li> <p> <code>frontfill</code>: <b>none</b> </p> </li> <li> <p> <code>middlefill</code>: <b>zero</b>, <code>nan</code> (not a number), <code>value</code>, <code>median</code>, <code>mean</code>, <code>min</code>, <code>max</code> </p> </li> <li> <p> <code>backfill</code>: <b>zero</b>, <code>nan</code>, <code>value</code>, <code>median</code>, <code>mean</code>, <code>min</code>, <code>max</code> </p> </li> </ul> <p>The following list shows the parameters and their valid values for a <b>Related Time Series</b> featurization method (there are no defaults):</p> <ul> <li> <p> <code>middlefill</code>: <code>zero</code>, <code>value</code>, <code>median</code>, <code>mean</code>, <code>min</code>, <code>max</code> </p> </li> <li> <p> <code>backfill</code>: <code>zero</code>, <code>value</code>, <code>median</code>, <code>mean</code>, <code>min</code>, <code>max</code> </p> </li> <li> <p> <code>futurefill</code>: <code>zero</code>, <code>value</code>, <code>median</code>, <code>mean</code>, <code>min</code>, <code>max</code> </p> </li> </ul> <p>To set a filling method to a specific value, set the fill parameter to <code>value</code> and define the value in a corresponding <code>_value</code> parameter. For example, to set backfilling to a value of 2, include the following: <code>\"backfill\": \"value\"</code> and <code>\"backfill_value\":\"2\"</code>. </p>"
       }
     },
     "UntagResourceRequest": {
@@ -1206,13 +1515,15 @@
       "base": null,
       "refs": {
         "SupplementaryFeature$Value": "<p> <b>Weather Index</b> </p> <p>To enable the Weather Index, set the value to <code>\"true\"</code> </p> <p> <b>Holidays</b> </p> <p>To enable Holidays, specify a country with one of the following two-letter country codes:</p> <ul> <li> <p>\"AL\" - ALBANIA</p> </li> <li> <p>\"AR\" - ARGENTINA</p> </li> <li> <p>\"AT\" - AUSTRIA</p> </li> <li> <p>\"AU\" - AUSTRALIA</p> </li> <li> <p>\"BA\" - BOSNIA HERZEGOVINA</p> </li> <li> <p>\"BE\" - BELGIUM</p> </li> <li> <p>\"BG\" - BULGARIA</p> </li> <li> <p>\"BO\" - BOLIVIA</p> </li> <li> <p>\"BR\" - BRAZIL</p> </li> <li> <p>\"BY\" - BELARUS</p> </li> <li> <p>\"CA\" - CANADA</p> </li> <li> <p>\"CL\" - CHILE</p> </li> <li> <p>\"CO\" - COLOMBIA</p> </li> <li> <p>\"CR\" - COSTA RICA</p> </li> <li> <p>\"HR\" - CROATIA</p> </li> <li> <p>\"CZ\" - CZECH REPUBLIC</p> </li> <li> <p>\"DK\" - DENMARK</p> </li> <li> <p>\"EC\" - ECUADOR</p> </li> <li> <p>\"EE\" - ESTONIA</p> </li> <li> <p>\"ET\" - ETHIOPIA</p> </li> <li> <p>\"FI\" - FINLAND</p> </li> <li> <p>\"FR\" - FRANCE</p> </li> <li> <p>\"DE\" - GERMANY</p> </li> <li> <p>\"GR\" - GREECE</p> </li> <li> <p>\"HU\" - HUNGARY</p> </li> <li> <p>\"IS\" - ICELAND</p> </li> <li> <p>\"IN\" - INDIA</p> </li> <li> <p>\"IE\" - IRELAND</p> </li> <li> <p>\"IT\" - ITALY</p> </li> <li> <p>\"JP\" - JAPAN</p> </li> <li> <p>\"KZ\" - KAZAKHSTAN</p> </li> <li> <p>\"KR\" - KOREA</p> </li> <li> <p>\"LV\" - LATVIA</p> </li> <li> <p>\"LI\" - LIECHTENSTEIN</p> </li> <li> <p>\"LT\" - LITHUANIA</p> </li> <li> <p>\"LU\" - LUXEMBOURG</p> </li> <li> <p>\"MK\" - MACEDONIA</p> </li> <li> <p>\"MT\" - MALTA</p> </li> <li> <p>\"MX\" - MEXICO</p> </li> <li> <p>\"MD\" - MOLDOVA</p> </li> <li> <p>\"ME\" - MONTENEGRO</p> </li> <li> <p>\"NL\" - NETHERLANDS</p> </li> <li> <p>\"NZ\" - NEW ZEALAND</p> </li> <li> <p>\"NI\" - NICARAGUA</p> </li> <li> <p>\"NG\" - NIGERIA</p> </li> <li> <p>\"NO\" - NORWAY</p> </li> <li> <p>\"PA\" - PANAMA</p> </li> <li> <p>\"PY\" - PARAGUAY</p> </li> <li> <p>\"PE\" - PERU</p> </li> <li> <p>\"PL\" - POLAND</p> </li> <li> <p>\"PT\" - PORTUGAL</p> </li> <li> <p>\"RO\" - ROMANIA</p> </li> <li> <p>\"RU\" - RUSSIA</p> </li> <li> <p>\"RS\" - SERBIA</p> </li> <li> <p>\"SK\" - SLOVAKIA</p> </li> <li> <p>\"SI\" - SLOVENIA</p> </li> <li> <p>\"ZA\" - SOUTH AFRICA</p> </li> <li> <p>\"ES\" - SPAIN</p> </li> <li> <p>\"SE\" - SWEDEN</p> </li> <li> <p>\"CH\" - SWITZERLAND</p> </li> <li> <p>\"UA\" - UKRAINE</p> </li> <li> <p>\"AE\" - UNITED ARAB EMIRATES</p> </li> <li> <p>\"US\" - UNITED STATES</p> </li> <li> <p>\"UK\" - UNITED KINGDOM</p> </li> <li> <p>\"UY\" - URUGUAY</p> </li> <li> <p>\"VE\" - VENEZUELA</p> </li> </ul>",
+        "Transformations$value": null,
         "Values$member": null
       }
     },
     "Values": {
       "base": null,
       "refs": {
-        "CategoricalParameterRange$Values": "<p>A list of the tunable categories for the hyperparameter.</p>"
+        "CategoricalParameterRange$Values": "<p>A list of the tunable categories for the hyperparameter.</p>",
+        "Configuration$value": null
       }
     },
     "WeightedQuantileLoss": {

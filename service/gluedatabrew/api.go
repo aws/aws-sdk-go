@@ -569,6 +569,92 @@ func (c *GlueDataBrew) CreateRecipeJobWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateRuleset = "CreateRuleset"
+
+// CreateRulesetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRuleset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRuleset for more information on using the CreateRuleset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateRulesetRequest method.
+//    req, resp := client.CreateRulesetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/CreateRuleset
+func (c *GlueDataBrew) CreateRulesetRequest(input *CreateRulesetInput) (req *request.Request, output *CreateRulesetOutput) {
+	op := &request.Operation{
+		Name:       opCreateRuleset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/rulesets",
+	}
+
+	if input == nil {
+		input = &CreateRulesetInput{}
+	}
+
+	output = &CreateRulesetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRuleset API operation for AWS Glue DataBrew.
+//
+// Creates a new ruleset that can be used in a profile job to validate the data
+// quality of a dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue DataBrew's
+// API operation CreateRuleset for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ServiceQuotaExceededException
+//   A service quota is exceeded.
+//
+//   * ValidationException
+//   The input parameters for this request failed validation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/CreateRuleset
+func (c *GlueDataBrew) CreateRuleset(input *CreateRulesetInput) (*CreateRulesetOutput, error) {
+	req, out := c.CreateRulesetRequest(input)
+	return out, req.Send()
+}
+
+// CreateRulesetWithContext is the same as CreateRuleset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRuleset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlueDataBrew) CreateRulesetWithContext(ctx aws.Context, input *CreateRulesetInput, opts ...request.Option) (*CreateRulesetOutput, error) {
+	req, out := c.CreateRulesetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateSchedule = "CreateSchedule"
 
 // CreateScheduleRequest generates a "aws/request.Request" representing the
@@ -990,6 +1076,91 @@ func (c *GlueDataBrew) DeleteRecipeVersion(input *DeleteRecipeVersionInput) (*De
 // for more information on using Contexts.
 func (c *GlueDataBrew) DeleteRecipeVersionWithContext(ctx aws.Context, input *DeleteRecipeVersionInput, opts ...request.Option) (*DeleteRecipeVersionOutput, error) {
 	req, out := c.DeleteRecipeVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRuleset = "DeleteRuleset"
+
+// DeleteRulesetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRuleset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRuleset for more information on using the DeleteRuleset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRulesetRequest method.
+//    req, resp := client.DeleteRulesetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/DeleteRuleset
+func (c *GlueDataBrew) DeleteRulesetRequest(input *DeleteRulesetInput) (req *request.Request, output *DeleteRulesetOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRuleset,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/rulesets/{name}",
+	}
+
+	if input == nil {
+		input = &DeleteRulesetInput{}
+	}
+
+	output = &DeleteRulesetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteRuleset API operation for AWS Glue DataBrew.
+//
+// Deletes a ruleset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue DataBrew's
+// API operation DeleteRuleset for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ValidationException
+//   The input parameters for this request failed validation.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/DeleteRuleset
+func (c *GlueDataBrew) DeleteRuleset(input *DeleteRulesetInput) (*DeleteRulesetOutput, error) {
+	req, out := c.DeleteRulesetRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRulesetWithContext is the same as DeleteRuleset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRuleset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlueDataBrew) DeleteRulesetWithContext(ctx aws.Context, input *DeleteRulesetInput, opts ...request.Option) (*DeleteRulesetOutput, error) {
+	req, out := c.DeleteRulesetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1483,6 +1654,88 @@ func (c *GlueDataBrew) DescribeRecipe(input *DescribeRecipeInput) (*DescribeReci
 // for more information on using Contexts.
 func (c *GlueDataBrew) DescribeRecipeWithContext(ctx aws.Context, input *DescribeRecipeInput, opts ...request.Option) (*DescribeRecipeOutput, error) {
 	req, out := c.DescribeRecipeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRuleset = "DescribeRuleset"
+
+// DescribeRulesetRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRuleset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRuleset for more information on using the DescribeRuleset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRulesetRequest method.
+//    req, resp := client.DescribeRulesetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/DescribeRuleset
+func (c *GlueDataBrew) DescribeRulesetRequest(input *DescribeRulesetInput) (req *request.Request, output *DescribeRulesetOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRuleset,
+		HTTPMethod: "GET",
+		HTTPPath:   "/rulesets/{name}",
+	}
+
+	if input == nil {
+		input = &DescribeRulesetInput{}
+	}
+
+	output = &DescribeRulesetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRuleset API operation for AWS Glue DataBrew.
+//
+// Retrieves detailed information about the ruleset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue DataBrew's
+// API operation DescribeRuleset for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ValidationException
+//   The input parameters for this request failed validation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/DescribeRuleset
+func (c *GlueDataBrew) DescribeRuleset(input *DescribeRulesetInput) (*DescribeRulesetOutput, error) {
+	req, out := c.DescribeRulesetRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRulesetWithContext is the same as DescribeRuleset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRuleset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlueDataBrew) DescribeRulesetWithContext(ctx aws.Context, input *DescribeRulesetInput, opts ...request.Option) (*DescribeRulesetOutput, error) {
+	req, out := c.DescribeRulesetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2388,6 +2641,147 @@ func (c *GlueDataBrew) ListRecipesPagesWithContext(ctx aws.Context, input *ListR
 
 	for p.Next() {
 		if !fn(p.Page().(*ListRecipesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRulesets = "ListRulesets"
+
+// ListRulesetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRulesets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRulesets for more information on using the ListRulesets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRulesetsRequest method.
+//    req, resp := client.ListRulesetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/ListRulesets
+func (c *GlueDataBrew) ListRulesetsRequest(input *ListRulesetsInput) (req *request.Request, output *ListRulesetsOutput) {
+	op := &request.Operation{
+		Name:       opListRulesets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/rulesets",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRulesetsInput{}
+	}
+
+	output = &ListRulesetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRulesets API operation for AWS Glue DataBrew.
+//
+// List all rulesets available in the current account or rulesets associated
+// with a specific resource (dataset).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue DataBrew's
+// API operation ListRulesets for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ValidationException
+//   The input parameters for this request failed validation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/ListRulesets
+func (c *GlueDataBrew) ListRulesets(input *ListRulesetsInput) (*ListRulesetsOutput, error) {
+	req, out := c.ListRulesetsRequest(input)
+	return out, req.Send()
+}
+
+// ListRulesetsWithContext is the same as ListRulesets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRulesets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlueDataBrew) ListRulesetsWithContext(ctx aws.Context, input *ListRulesetsInput, opts ...request.Option) (*ListRulesetsOutput, error) {
+	req, out := c.ListRulesetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRulesetsPages iterates over the pages of a ListRulesets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRulesets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRulesets operation.
+//    pageNum := 0
+//    err := client.ListRulesetsPages(params,
+//        func(page *gluedatabrew.ListRulesetsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GlueDataBrew) ListRulesetsPages(input *ListRulesetsInput, fn func(*ListRulesetsOutput, bool) bool) error {
+	return c.ListRulesetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRulesetsPagesWithContext same as ListRulesetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlueDataBrew) ListRulesetsPagesWithContext(ctx aws.Context, input *ListRulesetsInput, fn func(*ListRulesetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRulesetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRulesetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRulesetsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3639,6 +4033,88 @@ func (c *GlueDataBrew) UpdateRecipeJobWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+const opUpdateRuleset = "UpdateRuleset"
+
+// UpdateRulesetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRuleset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRuleset for more information on using the UpdateRuleset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateRulesetRequest method.
+//    req, resp := client.UpdateRulesetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/UpdateRuleset
+func (c *GlueDataBrew) UpdateRulesetRequest(input *UpdateRulesetInput) (req *request.Request, output *UpdateRulesetOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRuleset,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/rulesets/{name}",
+	}
+
+	if input == nil {
+		input = &UpdateRulesetInput{}
+	}
+
+	output = &UpdateRulesetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateRuleset API operation for AWS Glue DataBrew.
+//
+// Updates specified ruleset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue DataBrew's
+// API operation UpdateRuleset for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ValidationException
+//   The input parameters for this request failed validation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/databrew-2017-07-25/UpdateRuleset
+func (c *GlueDataBrew) UpdateRuleset(input *UpdateRulesetInput) (*UpdateRulesetOutput, error) {
+	req, out := c.UpdateRulesetRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRulesetWithContext is the same as UpdateRuleset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRuleset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GlueDataBrew) UpdateRulesetWithContext(ctx aws.Context, input *UpdateRulesetInput, opts ...request.Option) (*UpdateRulesetOutput, error) {
+	req, out := c.UpdateRulesetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateSchedule = "UpdateSchedule"
 
 // UpdateScheduleRequest generates a "aws/request.Request" representing the
@@ -3786,6 +4262,59 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Configuration of statistics that are allowed to be run on columns that contain
+// detected entities. When undefined, no statistics will be computed on columns
+// that contain detected entities.
+type AllowedStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// One or more column statistics to allow for columns that contain detected
+	// entities.
+	//
+	// Statistics is a required field
+	Statistics []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowedStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllowedStatistics) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllowedStatistics) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllowedStatistics"}
+	if s.Statistics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistics"))
+	}
+	if s.Statistics != nil && len(s.Statistics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Statistics", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *AllowedStatistics) SetStatistics(v []*string) *AllowedStatistics {
+	s.Statistics = v
+	return s
 }
 
 type BatchDeleteRecipeVersionInput struct {
@@ -4403,6 +4932,9 @@ type CreateProfileJobInput struct {
 	// The job's timeout in minutes. A job that attempts to run longer than this
 	// timeout period ends with a status of TIMEOUT.
 	Timeout *int64 `type:"integer"`
+
+	// List of validation configurations that are applied to the profile job.
+	ValidationConfigurations []*ValidationConfiguration `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -4453,6 +4985,9 @@ func (s *CreateProfileJobInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.ValidationConfigurations != nil && len(s.ValidationConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValidationConfigurations", 1))
+	}
 	if s.Configuration != nil {
 		if err := s.Configuration.Validate(); err != nil {
 			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
@@ -4461,6 +4996,16 @@ func (s *CreateProfileJobInput) Validate() error {
 	if s.OutputLocation != nil {
 		if err := s.OutputLocation.Validate(); err != nil {
 			invalidParams.AddNested("OutputLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ValidationConfigurations != nil {
+		for i, v := range s.ValidationConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ValidationConfigurations", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -4545,6 +5090,12 @@ func (s *CreateProfileJobInput) SetTags(v map[string]*string) *CreateProfileJobI
 // SetTimeout sets the Timeout field's value.
 func (s *CreateProfileJobInput) SetTimeout(v int64) *CreateProfileJobInput {
 	s.Timeout = &v
+	return s
+}
+
+// SetValidationConfigurations sets the ValidationConfigurations field's value.
+func (s *CreateProfileJobInput) SetValidationConfigurations(v []*ValidationConfiguration) *CreateProfileJobInput {
+	s.ValidationConfigurations = v
 	return s
 }
 
@@ -5158,6 +5709,156 @@ func (s *CreateRecipeOutput) SetName(v string) *CreateRecipeOutput {
 	return s
 }
 
+type CreateRulesetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the ruleset.
+	Description *string `type:"string"`
+
+	// The name of the ruleset to be created. Valid characters are alphanumeric
+	// (A-Z, a-z, 0-9), hyphen (-), period (.), and space.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A list of rules that are defined with the ruleset. A rule includes one or
+	// more checks to be validated on a DataBrew dataset.
+	//
+	// Rules is a required field
+	Rules []*Rule `min:"1" type:"list" required:"true"`
+
+	// Metadata tags to apply to the ruleset.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The Amazon Resource Name (ARN) of a resource (dataset) that the ruleset is
+	// associated with.
+	//
+	// TargetArn is a required field
+	TargetArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRulesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRulesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRulesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRulesetInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Rules == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rules"))
+	}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.TargetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetArn"))
+	}
+	if s.TargetArn != nil && len(*s.TargetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetArn", 20))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateRulesetInput) SetDescription(v string) *CreateRulesetInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRulesetInput) SetName(v string) *CreateRulesetInput {
+	s.Name = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *CreateRulesetInput) SetRules(v []*Rule) *CreateRulesetInput {
+	s.Rules = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRulesetInput) SetTags(v map[string]*string) *CreateRulesetInput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *CreateRulesetInput) SetTargetArn(v string) *CreateRulesetInput {
+	s.TargetArn = &v
+	return s
+}
+
+type CreateRulesetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the created ruleset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRulesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRulesetOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRulesetOutput) SetName(v string) *CreateRulesetOutput {
+	s.Name = &v
+	return s
+}
+
 type CreateScheduleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5605,15 +6306,17 @@ type DatabaseInputDefinition struct {
 	_ struct{} `type:"structure"`
 
 	// The table within the target database.
-	//
-	// DatabaseTableName is a required field
-	DatabaseTableName *string `min:"1" type:"string" required:"true"`
+	DatabaseTableName *string `min:"1" type:"string"`
 
 	// The Glue Connection that stores the connection information for the target
 	// database.
 	//
 	// GlueConnectionName is a required field
 	GlueConnectionName *string `min:"1" type:"string" required:"true"`
+
+	// Custom SQL to run against the provided Glue connection. This SQL will be
+	// used as the input for DataBrew projects and jobs.
+	QueryString *string `min:"1" type:"string"`
 
 	// Represents an Amazon S3 location (bucket name and object key) where DataBrew
 	// can read input data, or write output from a job.
@@ -5641,9 +6344,6 @@ func (s DatabaseInputDefinition) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DatabaseInputDefinition) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DatabaseInputDefinition"}
-	if s.DatabaseTableName == nil {
-		invalidParams.Add(request.NewErrParamRequired("DatabaseTableName"))
-	}
 	if s.DatabaseTableName != nil && len(*s.DatabaseTableName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatabaseTableName", 1))
 	}
@@ -5652,6 +6352,9 @@ func (s *DatabaseInputDefinition) Validate() error {
 	}
 	if s.GlueConnectionName != nil && len(*s.GlueConnectionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("GlueConnectionName", 1))
+	}
+	if s.QueryString != nil && len(*s.QueryString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryString", 1))
 	}
 	if s.TempDirectory != nil {
 		if err := s.TempDirectory.Validate(); err != nil {
@@ -5674,6 +6377,12 @@ func (s *DatabaseInputDefinition) SetDatabaseTableName(v string) *DatabaseInputD
 // SetGlueConnectionName sets the GlueConnectionName field's value.
 func (s *DatabaseInputDefinition) SetGlueConnectionName(v string) *DatabaseInputDefinition {
 	s.GlueConnectionName = &v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *DatabaseInputDefinition) SetQueryString(v string) *DatabaseInputDefinition {
+	s.QueryString = &v
 	return s
 }
 
@@ -6521,6 +7230,88 @@ func (s *DeleteRecipeVersionOutput) SetRecipeVersion(v string) *DeleteRecipeVers
 	return s
 }
 
+type DeleteRulesetInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the ruleset to be deleted.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRulesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRulesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRulesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRulesetInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteRulesetInput) SetName(v string) *DeleteRulesetInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteRulesetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the deleted ruleset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRulesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRulesetOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteRulesetOutput) SetName(v string) *DeleteRulesetOutput {
+	s.Name = &v
+	return s
+}
+
 type DeleteScheduleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -6930,6 +7721,9 @@ type DescribeJobOutput struct {
 	//
 	//    * RECIPE - The job applies one or more transformations to a dataset.
 	Type *string `type:"string" enum:"JobType"`
+
+	// List of validation configurations that are applied to the profile job.
+	ValidationConfigurations []*ValidationConfiguration `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -7088,6 +7882,12 @@ func (s *DescribeJobOutput) SetType(v string) *DescribeJobOutput {
 	return s
 }
 
+// SetValidationConfigurations sets the ValidationConfigurations field's value.
+func (s *DescribeJobOutput) SetValidationConfigurations(v []*ValidationConfiguration) *DescribeJobOutput {
+	s.ValidationConfigurations = v
+	return s
+}
+
 type DescribeJobRunInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7221,6 +8021,9 @@ type DescribeJobRunOutput struct {
 
 	// The current state of the job run entity itself.
 	State *string `type:"string" enum:"JobRunState"`
+
+	// List of validation configurations that are applied to the profile job.
+	ValidationConfigurations []*ValidationConfiguration `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -7346,6 +8149,12 @@ func (s *DescribeJobRunOutput) SetStartedOn(v time.Time) *DescribeJobRunOutput {
 // SetState sets the State field's value.
 func (s *DescribeJobRunOutput) SetState(v string) *DescribeJobRunOutput {
 	s.State = &v
+	return s
+}
+
+// SetValidationConfigurations sets the ValidationConfigurations field's value.
+func (s *DescribeJobRunOutput) SetValidationConfigurations(v []*ValidationConfiguration) *DescribeJobRunOutput {
+	s.ValidationConfigurations = v
 	return s
 }
 
@@ -7760,6 +8569,171 @@ func (s *DescribeRecipeOutput) SetTags(v map[string]*string) *DescribeRecipeOutp
 	return s
 }
 
+type DescribeRulesetInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The name of the ruleset to be described.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRulesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRulesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRulesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRulesetInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeRulesetInput) SetName(v string) *DescribeRulesetInput {
+	s.Name = &v
+	return s
+}
+
+type DescribeRulesetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the ruleset was created.
+	CreateDate *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the user who created the ruleset.
+	CreatedBy *string `type:"string"`
+
+	// The description of the ruleset.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the user who last modified the ruleset.
+	LastModifiedBy *string `type:"string"`
+
+	// The modification date and time of the ruleset.
+	LastModifiedDate *time.Time `type:"timestamp"`
+
+	// The name of the ruleset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the ruleset.
+	ResourceArn *string `min:"20" type:"string"`
+
+	// A list of rules that are defined with the ruleset. A rule includes one or
+	// more checks to be validated on a DataBrew dataset.
+	Rules []*Rule `min:"1" type:"list"`
+
+	// Metadata tags that have been applied to the ruleset.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The Amazon Resource Name (ARN) of a resource (dataset) that the ruleset is
+	// associated with.
+	TargetArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRulesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRulesetOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *DescribeRulesetOutput) SetCreateDate(v time.Time) *DescribeRulesetOutput {
+	s.CreateDate = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *DescribeRulesetOutput) SetCreatedBy(v string) *DescribeRulesetOutput {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeRulesetOutput) SetDescription(v string) *DescribeRulesetOutput {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *DescribeRulesetOutput) SetLastModifiedBy(v string) *DescribeRulesetOutput {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *DescribeRulesetOutput) SetLastModifiedDate(v time.Time) *DescribeRulesetOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeRulesetOutput) SetName(v string) *DescribeRulesetOutput {
+	s.Name = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DescribeRulesetOutput) SetResourceArn(v string) *DescribeRulesetOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *DescribeRulesetOutput) SetRules(v []*Rule) *DescribeRulesetOutput {
+	s.Rules = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeRulesetOutput) SetTags(v map[string]*string) *DescribeRulesetOutput {
+	s.Tags = v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *DescribeRulesetOutput) SetTargetArn(v string) *DescribeRulesetOutput {
+	s.TargetArn = &v
+	return s
+}
+
 type DescribeScheduleInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -7916,6 +8890,122 @@ func (s *DescribeScheduleOutput) SetTags(v map[string]*string) *DescribeSchedule
 	return s
 }
 
+// Configuration of entity detection for a profile job. When undefined, entity
+// detection is disabled.
+type EntityDetectorConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration of statistics that are allowed to be run on columns that contain
+	// detected entities. When undefined, no statistics will be computed on columns
+	// that contain detected entities.
+	AllowedStatistics []*AllowedStatistics `min:"1" type:"list"`
+
+	// Entity types to detect. Can be any of the following:
+	//
+	//    * USA_SSN
+	//
+	//    * EMAIL
+	//
+	//    * USA_ITIN
+	//
+	//    * USA_PASSPORT_NUMBER
+	//
+	//    * PHONE_NUMBER
+	//
+	//    * USA_DRIVING_LICENSE
+	//
+	//    * BANK_ACCOUNT
+	//
+	//    * CREDIT_CARD
+	//
+	//    * IP_ADDRESS
+	//
+	//    * MAC_ADDRESS
+	//
+	//    * USA_DEA_NUMBER
+	//
+	//    * USA_HCPCS_CODE
+	//
+	//    * USA_NATIONAL_PROVIDER_IDENTIFIER
+	//
+	//    * USA_NATIONAL_DRUG_CODE
+	//
+	//    * USA_HEALTH_INSURANCE_CLAIM_NUMBER
+	//
+	//    * USA_MEDICARE_BENEFICIARY_IDENTIFIER
+	//
+	//    * USA_CPT_CODE
+	//
+	//    * PERSON_NAME
+	//
+	//    * DATE
+	//
+	// The Entity type group USA_ALL is also supported, and includes all of the
+	// above entity types except PERSON_NAME and DATE.
+	//
+	// EntityTypes is a required field
+	EntityTypes []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityDetectorConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityDetectorConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityDetectorConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityDetectorConfiguration"}
+	if s.AllowedStatistics != nil && len(s.AllowedStatistics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AllowedStatistics", 1))
+	}
+	if s.EntityTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityTypes"))
+	}
+	if s.EntityTypes != nil && len(s.EntityTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityTypes", 1))
+	}
+	if s.AllowedStatistics != nil {
+		for i, v := range s.AllowedStatistics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AllowedStatistics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowedStatistics sets the AllowedStatistics field's value.
+func (s *EntityDetectorConfiguration) SetAllowedStatistics(v []*AllowedStatistics) *EntityDetectorConfiguration {
+	s.AllowedStatistics = v
+	return s
+}
+
+// SetEntityTypes sets the EntityTypes field's value.
+func (s *EntityDetectorConfiguration) SetEntityTypes(v []*string) *EntityDetectorConfiguration {
+	s.EntityTypes = v
+	return s
+}
+
 // Represents a set of options that define how DataBrew will interpret a Microsoft
 // Excel file when creating a dataset from that file.
 type ExcelOptions struct {
@@ -8059,7 +9149,7 @@ func (s *FilesLimit) SetOrderedBy(v string) *FilesLimit {
 }
 
 // Represents a structure for defining parameter conditions. Supported conditions
-// are described here: Supported conditions for dynamic datasets (https://docs-aws.amazon.com/databrew/latest/dg/datasets.multiple-files.html#conditions.for.dynamic.datasets)
+// are described here: Supported conditions for dynamic datasets (https://docs.aws.amazon.com/databrew/latest/dg/datasets.multiple-files.html#conditions.for.dynamic.datasets)
 // in the Glue DataBrew Developer Guide.
 type FilterExpression struct {
 	_ struct{} `type:"structure"`
@@ -8210,6 +9300,9 @@ type Input struct {
 	// Connection information for dataset input files stored in a database.
 	DatabaseInputDefinition *DatabaseInputDefinition `type:"structure"`
 
+	// Contains additional resource information needed for specific datasets.
+	Metadata *Metadata `type:"structure"`
+
 	// The Amazon S3 location where the data is stored.
 	S3InputDefinition *S3Location `type:"structure"`
 }
@@ -8245,6 +9338,11 @@ func (s *Input) Validate() error {
 			invalidParams.AddNested("DatabaseInputDefinition", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Metadata != nil {
+		if err := s.Metadata.Validate(); err != nil {
+			invalidParams.AddNested("Metadata", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3InputDefinition != nil {
 		if err := s.S3InputDefinition.Validate(); err != nil {
 			invalidParams.AddNested("S3InputDefinition", err.(request.ErrInvalidParams))
@@ -8266,6 +9364,12 @@ func (s *Input) SetDataCatalogInputDefinition(v *DataCatalogInputDefinition) *In
 // SetDatabaseInputDefinition sets the DatabaseInputDefinition field's value.
 func (s *Input) SetDatabaseInputDefinition(v *DatabaseInputDefinition) *Input {
 	s.DatabaseInputDefinition = v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *Input) SetMetadata(v *Metadata) *Input {
+	s.Metadata = v
 	return s
 }
 
@@ -8430,6 +9534,9 @@ type Job struct {
 	//
 	//    * RECIPE - A job to apply one or more transformations to a dataset.
 	Type *string `type:"string" enum:"JobType"`
+
+	// List of validation configurations that are applied to the profile job.
+	ValidationConfigurations []*ValidationConfiguration `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -8588,6 +9695,12 @@ func (s *Job) SetType(v string) *Job {
 	return s
 }
 
+// SetValidationConfigurations sets the ValidationConfigurations field's value.
+func (s *Job) SetValidationConfigurations(v []*ValidationConfiguration) *Job {
+	s.ValidationConfigurations = v
+	return s
+}
+
 // Represents one run of a DataBrew job.
 type JobRun struct {
 	_ struct{} `type:"structure"`
@@ -8649,6 +9762,9 @@ type JobRun struct {
 
 	// The current state of the job run entity itself.
 	State *string `type:"string" enum:"JobRunState"`
+
+	// List of validation configurations that are applied to the profile job run.
+	ValidationConfigurations []*ValidationConfiguration `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -8768,6 +9884,12 @@ func (s *JobRun) SetStartedOn(v time.Time) *JobRun {
 // SetState sets the State field's value.
 func (s *JobRun) SetState(v string) *JobRun {
 	s.State = &v
+	return s
+}
+
+// SetValidationConfigurations sets the ValidationConfigurations field's value.
+func (s *JobRun) SetValidationConfigurations(v []*ValidationConfiguration) *JobRun {
+	s.ValidationConfigurations = v
 	return s
 }
 
@@ -9530,6 +10652,121 @@ func (s *ListRecipesOutput) SetRecipes(v []*Recipe) *ListRecipesOutput {
 	return s
 }
 
+type ListRulesetsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results to return in this request.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token generated by DataBrew that specifies where to continue pagination
+	// if a previous request was truncated. To get the next set of pages, pass in
+	// the NextToken value from the response object of the previous page call.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of a resource (dataset). Using this parameter
+	// indicates to return only those rulesets that are associated with the specified
+	// resource.
+	TargetArn *string `location:"querystring" locationName:"targetArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRulesetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRulesetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRulesetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRulesetsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.TargetArn != nil && len(*s.TargetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRulesetsInput) SetMaxResults(v int64) *ListRulesetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRulesetsInput) SetNextToken(v string) *ListRulesetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *ListRulesetsInput) SetTargetArn(v string) *ListRulesetsInput {
+	s.TargetArn = &v
+	return s
+}
+
+type ListRulesetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that you can use in a subsequent call to retrieve the next set of
+	// results.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list of RulesetItem. RulesetItem contains meta data of a ruleset.
+	//
+	// Rulesets is a required field
+	Rulesets []*RulesetItem `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRulesetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRulesetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRulesetsOutput) SetNextToken(v string) *ListRulesetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRulesets sets the Rulesets field's value.
+func (s *ListRulesetsOutput) SetRulesets(v []*RulesetItem) *ListRulesetsOutput {
+	s.Rulesets = v
+	return s
+}
+
 type ListSchedulesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -9719,6 +10956,52 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+// Contains additional resource information needed for specific datasets.
+type Metadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) associated with the dataset. Currently, DataBrew
+	// only supports ARNs from Amazon AppFlow.
+	SourceArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Metadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Metadata) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Metadata) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Metadata"}
+	if s.SourceArn != nil && len(*s.SourceArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *Metadata) SetSourceArn(v string) *Metadata {
+	s.SourceArn = &v
 	return s
 }
 
@@ -9980,6 +11263,10 @@ type ProfileConfiguration struct {
 	// is undefined, the profile job will run all supported inter-column evaluations.
 	DatasetStatisticsConfiguration *StatisticsConfiguration `type:"structure"`
 
+	// Configuration of entity detection for a profile job. When undefined, entity
+	// detection is disabled.
+	EntityDetectorConfiguration *EntityDetectorConfiguration `type:"structure"`
+
 	// List of column selectors. ProfileColumns can be used to select columns from
 	// the dataset. When ProfileColumns is undefined, the profile job will profile
 	// all supported columns.
@@ -10028,6 +11315,11 @@ func (s *ProfileConfiguration) Validate() error {
 			invalidParams.AddNested("DatasetStatisticsConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.EntityDetectorConfiguration != nil {
+		if err := s.EntityDetectorConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EntityDetectorConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ProfileColumns != nil {
 		for i, v := range s.ProfileColumns {
 			if v == nil {
@@ -10054,6 +11346,12 @@ func (s *ProfileConfiguration) SetColumnStatisticsConfigurations(v []*ColumnStat
 // SetDatasetStatisticsConfiguration sets the DatasetStatisticsConfiguration field's value.
 func (s *ProfileConfiguration) SetDatasetStatisticsConfiguration(v *StatisticsConfiguration) *ProfileConfiguration {
 	s.DatasetStatisticsConfiguration = v
+	return s
+}
+
+// SetEntityDetectorConfiguration sets the EntityDetectorConfiguration field's value.
+func (s *ProfileConfiguration) SetEntityDetectorConfiguration(v *EntityDetectorConfiguration) *ProfileConfiguration {
+	s.EntityDetectorConfiguration = v
 	return s
 }
 
@@ -10773,6 +12071,273 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Represents a single data quality requirement that should be validated in
+// the scope of this dataset.
+type Rule struct {
+	_ struct{} `type:"structure"`
+
+	// The expression which includes column references, condition names followed
+	// by variable references, possibly grouped and combined with other conditions.
+	// For example, (:col1 starts_with :prefix1 or :col1 starts_with :prefix2) and
+	// (:col1 ends_with :suffix1 or :col1 ends_with :suffix2). Column and value
+	// references are substitution variables that should start with the ':' symbol.
+	// Depending on the context, substitution variables' values can be either an
+	// actual value or a column name. These values are defined in the SubstitutionMap.
+	// If a CheckExpression starts with a column reference, then ColumnSelectors
+	// in the rule should be null. If ColumnSelectors has been defined, then there
+	// should be no columnn reference in the left side of a condition, for example,
+	// is_between :val1 and :val2.
+	//
+	// CheckExpression is a required field
+	CheckExpression *string `min:"4" type:"string" required:"true"`
+
+	// List of column selectors. Selectors can be used to select columns using a
+	// name or regular expression from the dataset. Rule will be applied to selected
+	// columns.
+	ColumnSelectors []*ColumnSelector `min:"1" type:"list"`
+
+	// A value that specifies whether the rule is disabled. Once a rule is disabled,
+	// a profile job will not validate it during a job run. Default value is false.
+	Disabled *bool `type:"boolean"`
+
+	// The name of the rule.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The map of substitution variable names to their values used in a check expression.
+	// Variable names should start with a ':' (colon). Variable values can either
+	// be actual values or column names. To differentiate between the two, column
+	// names should be enclosed in backticks, for example, ":col1": "`Column A`".
+	SubstitutionMap map[string]*string `type:"map"`
+
+	// The threshold used with a non-aggregate check expression. Non-aggregate check
+	// expressions will be applied to each row in a specific column, and the threshold
+	// will be used to determine whether the validation succeeds.
+	Threshold *Threshold `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Rule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Rule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Rule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Rule"}
+	if s.CheckExpression == nil {
+		invalidParams.Add(request.NewErrParamRequired("CheckExpression"))
+	}
+	if s.CheckExpression != nil && len(*s.CheckExpression) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("CheckExpression", 4))
+	}
+	if s.ColumnSelectors != nil && len(s.ColumnSelectors) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ColumnSelectors", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ColumnSelectors != nil {
+		for i, v := range s.ColumnSelectors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColumnSelectors", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Threshold != nil {
+		if err := s.Threshold.Validate(); err != nil {
+			invalidParams.AddNested("Threshold", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCheckExpression sets the CheckExpression field's value.
+func (s *Rule) SetCheckExpression(v string) *Rule {
+	s.CheckExpression = &v
+	return s
+}
+
+// SetColumnSelectors sets the ColumnSelectors field's value.
+func (s *Rule) SetColumnSelectors(v []*ColumnSelector) *Rule {
+	s.ColumnSelectors = v
+	return s
+}
+
+// SetDisabled sets the Disabled field's value.
+func (s *Rule) SetDisabled(v bool) *Rule {
+	s.Disabled = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Rule) SetName(v string) *Rule {
+	s.Name = &v
+	return s
+}
+
+// SetSubstitutionMap sets the SubstitutionMap field's value.
+func (s *Rule) SetSubstitutionMap(v map[string]*string) *Rule {
+	s.SubstitutionMap = v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *Rule) SetThreshold(v *Threshold) *Rule {
+	s.Threshold = v
+	return s
+}
+
+// Contains metadata about the ruleset.
+type RulesetItem struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon Web Services account that owns the ruleset.
+	AccountId *string `type:"string"`
+
+	// The date and time that the ruleset was created.
+	CreateDate *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the user who created the ruleset.
+	CreatedBy *string `type:"string"`
+
+	// The description of the ruleset.
+	Description *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the user who last modified the ruleset.
+	LastModifiedBy *string `type:"string"`
+
+	// The modification date and time of the ruleset.
+	LastModifiedDate *time.Time `type:"timestamp"`
+
+	// The name of the ruleset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the ruleset.
+	ResourceArn *string `min:"20" type:"string"`
+
+	// The number of rules that are defined in the ruleset.
+	RuleCount *int64 `type:"integer"`
+
+	// Metadata tags that have been applied to the ruleset.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The Amazon Resource Name (ARN) of a resource (dataset) that the ruleset is
+	// associated with.
+	//
+	// TargetArn is a required field
+	TargetArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RulesetItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RulesetItem) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *RulesetItem) SetAccountId(v string) *RulesetItem {
+	s.AccountId = &v
+	return s
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *RulesetItem) SetCreateDate(v time.Time) *RulesetItem {
+	s.CreateDate = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *RulesetItem) SetCreatedBy(v string) *RulesetItem {
+	s.CreatedBy = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *RulesetItem) SetDescription(v string) *RulesetItem {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *RulesetItem) SetLastModifiedBy(v string) *RulesetItem {
+	s.LastModifiedBy = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *RulesetItem) SetLastModifiedDate(v time.Time) *RulesetItem {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RulesetItem) SetName(v string) *RulesetItem {
+	s.Name = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *RulesetItem) SetResourceArn(v string) *RulesetItem {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetRuleCount sets the RuleCount field's value.
+func (s *RulesetItem) SetRuleCount(v int64) *RulesetItem {
+	s.RuleCount = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RulesetItem) SetTags(v map[string]*string) *RulesetItem {
+	s.Tags = v
+	return s
+}
+
+// SetTargetArn sets the TargetArn field's value.
+func (s *RulesetItem) SetTargetArn(v string) *RulesetItem {
+	s.TargetArn = &v
+	return s
+}
+
 // Represents an Amazon S3 location (bucket name and object key) where DataBrew
 // can read input data, or write output from a job.
 type S3Location struct {
@@ -11072,7 +12637,11 @@ type SendProjectSessionActionInput struct {
 
 	// A unique identifier for an interactive session that's currently open and
 	// ready for work. The action will be performed on this session.
-	ClientSessionId *string `min:"1" type:"string"`
+	//
+	// ClientSessionId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SendProjectSessionActionInput's
+	// String and GoString methods.
+	ClientSessionId *string `min:"1" type:"string" sensitive:"true"`
 
 	// The name of the project to apply the action to.
 	//
@@ -11437,7 +13006,11 @@ type StartProjectSessionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A system-generated identifier for the session.
-	ClientSessionId *string `min:"1" type:"string"`
+	//
+	// ClientSessionId is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartProjectSessionOutput's
+	// String and GoString methods.
+	ClientSessionId *string `min:"1" type:"string" sensitive:"true"`
 
 	// The name of the project to be acted upon.
 	//
@@ -11797,6 +13370,75 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The threshold used with a non-aggregate check expression. The non-aggregate
+// check expression will be applied to each row in a specific column. Then the
+// threshold will be used to determine whether the validation succeeds.
+type Threshold struct {
+	_ struct{} `type:"structure"`
+
+	// The type of a threshold. Used for comparison of an actual count of rows that
+	// satisfy the rule to the threshold value.
+	Type *string `type:"string" enum:"ThresholdType"`
+
+	// Unit of threshold value. Can be either a COUNT or PERCENTAGE of the full
+	// sample size used for validation.
+	Unit *string `type:"string" enum:"ThresholdUnit"`
+
+	// The value of a threshold.
+	//
+	// Value is a required field
+	Value *float64 `type:"double" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Threshold) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Threshold) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Threshold) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Threshold"}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *Threshold) SetType(v string) *Threshold {
+	s.Type = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *Threshold) SetUnit(v string) *Threshold {
+	s.Unit = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Threshold) SetValue(v float64) *Threshold {
+	s.Value = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -12083,6 +13725,9 @@ type UpdateProfileJobInput struct {
 	// The job's timeout in minutes. A job that attempts to run longer than this
 	// timeout period ends with a status of TIMEOUT.
 	Timeout *int64 `type:"integer"`
+
+	// List of validation configurations that are applied to the profile job.
+	ValidationConfigurations []*ValidationConfiguration `min:"1" type:"list"`
 }
 
 // String returns the string representation.
@@ -12124,6 +13769,9 @@ func (s *UpdateProfileJobInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
 	}
+	if s.ValidationConfigurations != nil && len(s.ValidationConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValidationConfigurations", 1))
+	}
 	if s.Configuration != nil {
 		if err := s.Configuration.Validate(); err != nil {
 			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
@@ -12132,6 +13780,16 @@ func (s *UpdateProfileJobInput) Validate() error {
 	if s.OutputLocation != nil {
 		if err := s.OutputLocation.Validate(); err != nil {
 			invalidParams.AddNested("OutputLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ValidationConfigurations != nil {
+		for i, v := range s.ValidationConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ValidationConfigurations", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -12204,6 +13862,12 @@ func (s *UpdateProfileJobInput) SetRoleArn(v string) *UpdateProfileJobInput {
 // SetTimeout sets the Timeout field's value.
 func (s *UpdateProfileJobInput) SetTimeout(v int64) *UpdateProfileJobInput {
 	s.Timeout = &v
+	return s
+}
+
+// SetValidationConfigurations sets the ValidationConfigurations field's value.
+func (s *UpdateProfileJobInput) SetValidationConfigurations(v []*ValidationConfiguration) *UpdateProfileJobInput {
+	s.ValidationConfigurations = v
 	return s
 }
 
@@ -12707,6 +14371,125 @@ func (s *UpdateRecipeOutput) SetName(v string) *UpdateRecipeOutput {
 	return s
 }
 
+type UpdateRulesetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the ruleset.
+	Description *string `type:"string"`
+
+	// The name of the ruleset to be updated.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A list of rules that are defined with the ruleset. A rule includes one or
+	// more checks to be validated on a DataBrew dataset.
+	//
+	// Rules is a required field
+	Rules []*Rule `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRulesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRulesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRulesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRulesetInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Rules == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rules"))
+	}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateRulesetInput) SetDescription(v string) *UpdateRulesetInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateRulesetInput) SetName(v string) *UpdateRulesetInput {
+	s.Name = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *UpdateRulesetInput) SetRules(v []*Rule) *UpdateRulesetInput {
+	s.Rules = v
+	return s
+}
+
+type UpdateRulesetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the updated ruleset.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRulesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRulesetOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateRulesetOutput) SetName(v string) *UpdateRulesetOutput {
+	s.Name = &v
+	return s
+}
+
 type UpdateScheduleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12817,6 +14600,70 @@ func (s *UpdateScheduleOutput) SetName(v string) *UpdateScheduleOutput {
 	return s
 }
 
+// Configuration for data quality validation. Used to select the Rulesets and
+// Validation Mode to be used in the profile job. When ValidationConfiguration
+// is null, the profile job will run without data quality validation.
+type ValidationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the ruleset to be validated in the profile
+	// job. The TargetArn of the selected ruleset should be the same as the Amazon
+	// Resource Name (ARN) of the dataset that is associated with the profile job.
+	//
+	// RulesetArn is a required field
+	RulesetArn *string `min:"20" type:"string" required:"true"`
+
+	// Mode of data quality validation. Default mode is “CHECK_ALL” which verifies
+	// all rules defined in the selected ruleset.
+	ValidationMode *string `type:"string" enum:"ValidationMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ValidationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ValidationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ValidationConfiguration"}
+	if s.RulesetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RulesetArn"))
+	}
+	if s.RulesetArn != nil && len(*s.RulesetArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RulesetArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRulesetArn sets the RulesetArn field's value.
+func (s *ValidationConfiguration) SetRulesetArn(v string) *ValidationConfiguration {
+	s.RulesetArn = &v
+	return s
+}
+
+// SetValidationMode sets the ValidationMode field's value.
+func (s *ValidationConfiguration) SetValidationMode(v string) *ValidationConfiguration {
+	s.ValidationMode = &v
+	return s
+}
+
 // The input parameters for this request failed validation.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -12885,6 +14732,9 @@ func (s *ValidationException) RequestID() string {
 type ViewFrame struct {
 	_ struct{} `type:"structure"`
 
+	// Controls if analytics computation is enabled or disabled. Enabled by default.
+	Analytics *string `type:"string" enum:"AnalyticsMode"`
+
 	// The number of columns to include in the view frame, beginning with the StartColumnIndex
 	// value and ignoring any columns in the HiddenColumns list.
 	ColumnRange *int64 `type:"integer"`
@@ -12892,10 +14742,17 @@ type ViewFrame struct {
 	// A list of columns to hide in the view frame.
 	HiddenColumns []*string `type:"list"`
 
+	// The number of rows to include in the view frame, beginning with the StartRowIndex
+	// value.
+	RowRange *int64 `type:"integer"`
+
 	// The starting index for the range of columns to return in the view frame.
 	//
 	// StartColumnIndex is a required field
 	StartColumnIndex *int64 `type:"integer" required:"true"`
+
+	// The starting index for the range of rows to return in the view frame.
+	StartRowIndex *int64 `type:"integer"`
 }
 
 // String returns the string representation.
@@ -12929,6 +14786,12 @@ func (s *ViewFrame) Validate() error {
 	return nil
 }
 
+// SetAnalytics sets the Analytics field's value.
+func (s *ViewFrame) SetAnalytics(v string) *ViewFrame {
+	s.Analytics = &v
+	return s
+}
+
 // SetColumnRange sets the ColumnRange field's value.
 func (s *ViewFrame) SetColumnRange(v int64) *ViewFrame {
 	s.ColumnRange = &v
@@ -12941,10 +14804,38 @@ func (s *ViewFrame) SetHiddenColumns(v []*string) *ViewFrame {
 	return s
 }
 
+// SetRowRange sets the RowRange field's value.
+func (s *ViewFrame) SetRowRange(v int64) *ViewFrame {
+	s.RowRange = &v
+	return s
+}
+
 // SetStartColumnIndex sets the StartColumnIndex field's value.
 func (s *ViewFrame) SetStartColumnIndex(v int64) *ViewFrame {
 	s.StartColumnIndex = &v
 	return s
+}
+
+// SetStartRowIndex sets the StartRowIndex field's value.
+func (s *ViewFrame) SetStartRowIndex(v int64) *ViewFrame {
+	s.StartRowIndex = &v
+	return s
+}
+
+const (
+	// AnalyticsModeEnable is a AnalyticsMode enum value
+	AnalyticsModeEnable = "ENABLE"
+
+	// AnalyticsModeDisable is a AnalyticsMode enum value
+	AnalyticsModeDisable = "DISABLE"
+)
+
+// AnalyticsMode_Values returns all elements of the AnalyticsMode enum
+func AnalyticsMode_Values() []string {
+	return []string{
+		AnalyticsModeEnable,
+		AnalyticsModeDisable,
+	}
 }
 
 const (
@@ -13300,5 +15191,57 @@ func Source_Values() []string {
 		SourceS3,
 		SourceDataCatalog,
 		SourceDatabase,
+	}
+}
+
+const (
+	// ThresholdTypeGreaterThanOrEqual is a ThresholdType enum value
+	ThresholdTypeGreaterThanOrEqual = "GREATER_THAN_OR_EQUAL"
+
+	// ThresholdTypeLessThanOrEqual is a ThresholdType enum value
+	ThresholdTypeLessThanOrEqual = "LESS_THAN_OR_EQUAL"
+
+	// ThresholdTypeGreaterThan is a ThresholdType enum value
+	ThresholdTypeGreaterThan = "GREATER_THAN"
+
+	// ThresholdTypeLessThan is a ThresholdType enum value
+	ThresholdTypeLessThan = "LESS_THAN"
+)
+
+// ThresholdType_Values returns all elements of the ThresholdType enum
+func ThresholdType_Values() []string {
+	return []string{
+		ThresholdTypeGreaterThanOrEqual,
+		ThresholdTypeLessThanOrEqual,
+		ThresholdTypeGreaterThan,
+		ThresholdTypeLessThan,
+	}
+}
+
+const (
+	// ThresholdUnitCount is a ThresholdUnit enum value
+	ThresholdUnitCount = "COUNT"
+
+	// ThresholdUnitPercentage is a ThresholdUnit enum value
+	ThresholdUnitPercentage = "PERCENTAGE"
+)
+
+// ThresholdUnit_Values returns all elements of the ThresholdUnit enum
+func ThresholdUnit_Values() []string {
+	return []string{
+		ThresholdUnitCount,
+		ThresholdUnitPercentage,
+	}
+}
+
+const (
+	// ValidationModeCheckAll is a ValidationMode enum value
+	ValidationModeCheckAll = "CHECK_ALL"
+)
+
+// ValidationMode_Values returns all elements of the ValidationMode enum
+func ValidationMode_Values() []string {
+	return []string{
+		ValidationModeCheckAll,
 	}
 }

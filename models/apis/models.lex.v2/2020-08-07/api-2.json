@@ -4638,12 +4638,20 @@
       "max":140,
       "min":1
     },
+    "VoiceEngine":{
+      "type":"string",
+      "enum":[
+        "standard",
+        "neural"
+      ]
+    },
     "VoiceId":{"type":"string"},
     "VoiceSettings":{
       "type":"structure",
       "required":["voiceId"],
       "members":{
-        "voiceId":{"shape":"VoiceId"}
+        "voiceId":{"shape":"VoiceId"},
+        "engine":{"shape":"VoiceEngine"}
       }
     },
     "WaitAndContinueSpecification":{

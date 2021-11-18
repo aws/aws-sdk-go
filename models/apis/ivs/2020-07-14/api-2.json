@@ -225,6 +225,21 @@
         {"shape":"ValidationException"}
       ]
     },
+    "GetStreamSession":{
+      "name":"GetStreamSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetStreamSession",
+        "responseCode":200
+      },
+      "input":{"shape":"GetStreamSessionRequest"},
+      "output":{"shape":"GetStreamSessionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "ImportPlaybackKeyPair":{
       "name":"ImportPlaybackKeyPair",
       "http":{
@@ -295,6 +310,21 @@
       },
       "input":{"shape":"ListStreamKeysRequest"},
       "output":{"shape":"ListStreamKeysResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ListStreamSessions":{
+      "name":"ListStreamSessions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListStreamSessions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListStreamSessionsRequest"},
+      "output":{"shape":"ListStreamSessionsResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
@@ -422,6 +452,15 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "AudioConfiguration":{
+      "type":"structure",
+      "members":{
+        "channels":{"shape":"Integer"},
+        "codec":{"shape":"String"},
+        "sampleRate":{"shape":"Integer"},
+        "targetBitrate":{"shape":"Integer"}
+      }
     },
     "BatchError":{
       "type":"structure",
@@ -708,6 +747,20 @@
         "stream":{"shape":"Stream"}
       }
     },
+    "GetStreamSessionRequest":{
+      "type":"structure",
+      "required":["channelArn"],
+      "members":{
+        "channelArn":{"shape":"ChannelArn"},
+        "streamId":{"shape":"StreamId"}
+      }
+    },
+    "GetStreamSessionResponse":{
+      "type":"structure",
+      "members":{
+        "streamSession":{"shape":"StreamSession"}
+      }
+    },
     "ImportPlaybackKeyPairRequest":{
       "type":"structure",
       "required":["publicKeyMaterial"],
@@ -723,7 +776,15 @@
         "keyPair":{"shape":"PlaybackKeyPair"}
       }
     },
+    "IngestConfiguration":{
+      "type":"structure",
+      "members":{
+        "audio":{"shape":"AudioConfiguration"},
+        "video":{"shape":"VideoConfiguration"}
+      }
+    },
     "IngestEndpoint":{"type":"string"},
+    "Integer":{"type":"long"},
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -798,9 +859,27 @@
         "streamKeys":{"shape":"StreamKeyList"}
       }
     },
+    "ListStreamSessionsRequest":{
+      "type":"structure",
+      "required":["channelArn"],
+      "members":{
+        "channelArn":{"shape":"ChannelArn"},
+        "maxResults":{"shape":"MaxStreamResults"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListStreamSessionsResponse":{
+      "type":"structure",
+      "required":["streamSessions"],
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "streamSessions":{"shape":"StreamSessionList"}
+      }
+    },
     "ListStreamsRequest":{
       "type":"structure",
       "members":{
+        "filterBy":{"shape":"StreamFilters"},
         "maxResults":{"shape":"MaxStreamResults"},
         "nextToken":{"shape":"PaginationToken"}
       }
@@ -1034,7 +1113,28 @@
         "playbackUrl":{"shape":"PlaybackURL"},
         "startTime":{"shape":"StreamStartTime"},
         "state":{"shape":"StreamState"},
+        "streamId":{"shape":"StreamId"},
         "viewerCount":{"shape":"StreamViewerCount"}
+      }
+    },
+    "StreamEvent":{
+      "type":"structure",
+      "members":{
+        "eventTime":{"shape":"Time"},
+        "name":{"shape":"String"},
+        "type":{"shape":"String"}
+      }
+    },
+    "StreamEvents":{
+      "type":"list",
+      "member":{"shape":"StreamEvent"},
+      "max":500,
+      "min":0
+    },
+    "StreamFilters":{
+      "type":"structure",
+      "members":{
+        "health":{"shape":"StreamHealth"}
       }
     },
     "StreamHealth":{
@@ -1044,6 +1144,12 @@
         "STARVING",
         "UNKNOWN"
       ]
+    },
+    "StreamId":{
+      "type":"string",
+      "max":26,
+      "min":26,
+      "pattern":"^st-[a-zA-Z0-9]+$"
     },
     "StreamKey":{
       "type":"structure",
@@ -1095,6 +1201,31 @@
       "min":1,
       "sensitive":true
     },
+    "StreamSession":{
+      "type":"structure",
+      "members":{
+        "channel":{"shape":"Channel"},
+        "endTime":{"shape":"Time"},
+        "ingestConfiguration":{"shape":"IngestConfiguration"},
+        "recordingConfiguration":{"shape":"RecordingConfiguration"},
+        "startTime":{"shape":"Time"},
+        "streamId":{"shape":"StreamId"},
+        "truncatedEvents":{"shape":"StreamEvents"}
+      }
+    },
+    "StreamSessionList":{
+      "type":"list",
+      "member":{"shape":"StreamSessionSummary"}
+    },
+    "StreamSessionSummary":{
+      "type":"structure",
+      "members":{
+        "endTime":{"shape":"Time"},
+        "hasErrorEvent":{"shape":"Boolean"},
+        "startTime":{"shape":"Time"},
+        "streamId":{"shape":"StreamId"}
+      }
+    },
     "StreamStartTime":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
@@ -1113,6 +1244,7 @@
         "health":{"shape":"StreamHealth"},
         "startTime":{"shape":"StreamStartTime"},
         "state":{"shape":"StreamState"},
+        "streamId":{"shape":"StreamId"},
         "viewerCount":{"shape":"StreamViewerCount"}
       }
     },
@@ -1126,6 +1258,7 @@
       "fault":true
     },
     "StreamViewerCount":{"type":"long"},
+    "String":{"type":"string"},
     "TagKey":{
       "type":"string",
       "max":128,
@@ -1180,6 +1313,10 @@
       },
       "exception":true
     },
+    "Time":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -1232,6 +1369,19 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "VideoConfiguration":{
+      "type":"structure",
+      "members":{
+        "avcLevel":{"shape":"String"},
+        "avcProfile":{"shape":"String"},
+        "codec":{"shape":"String"},
+        "encoder":{"shape":"String"},
+        "targetBitrate":{"shape":"Integer"},
+        "targetFramerate":{"shape":"Integer"},
+        "videoHeight":{"shape":"Integer"},
+        "videoWidth":{"shape":"Integer"}
+      }
     },
     "errorCode":{"type":"string"},
     "errorMessage":{"type":"string"}

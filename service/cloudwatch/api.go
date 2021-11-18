@@ -179,6 +179,9 @@ func (c *CloudWatch) DeleteAnomalyDetectorRequest(input *DeleteAnomalyDetectorIn
 //   * ErrCodeMissingRequiredParameterException "MissingParameter"
 //   An input parameter that is required is missing.
 //
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Parameters were used together that cannot be used together.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/DeleteAnomalyDetector
 func (c *CloudWatch) DeleteAnomalyDetector(input *DeleteAnomalyDetectorInput) (*DeleteAnomalyDetectorOutput, error) {
 	req, out := c.DeleteAnomalyDetectorRequest(input)
@@ -515,6 +518,11 @@ func (c *CloudWatch) DescribeAlarmHistoryRequest(input *DescribeAlarmHistoryInpu
 //
 // CloudWatch retains the history of an alarm even if you delete the alarm.
 //
+// To use this operation and return information about a composite alarm, you
+// must be signed on with the cloudwatch:DescribeAlarmHistory permission that
+// is scoped to *. You can't return information about composite alarms if your
+// cloudwatch:DescribeAlarmHistory permission has a narrower scope.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -652,6 +660,11 @@ func (c *CloudWatch) DescribeAlarmsRequest(input *DescribeAlarmsInput) (req *req
 //
 // Retrieves the specified alarms. You can filter the results by specifying
 // a prefix for the alarm name, the alarm state, or a prefix for any action.
+//
+// To use this operation and return information about composite alarms, you
+// must be signed on with the cloudwatch:DescribeAlarms permission that is scoped
+// to *. You can't return information about composite alarms if your cloudwatch:DescribeAlarms
+// permission has a narrower scope.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -862,8 +875,11 @@ func (c *CloudWatch) DescribeAnomalyDetectorsRequest(input *DescribeAnomalyDetec
 // DescribeAnomalyDetectors API operation for Amazon CloudWatch.
 //
 // Lists the anomaly detection models that you have created in your account.
-// You can list all models in your account or filter the results to only the
-// models that are related to a certain namespace, metric name, or metric dimension.
+// For single metric anomaly detectors, you can list all of the models in your
+// account or filter the results to only the models that are related to a certain
+// namespace, metric name, or metric dimension. For metric math anomaly detectors,
+// you can list them by adding METRIC_MATH to the AnomalyDetectorTypes array.
+// This will return all metric math anomaly detectors in your account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -881,6 +897,9 @@ func (c *CloudWatch) DescribeAnomalyDetectorsRequest(input *DescribeAnomalyDetec
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value of an input parameter is bad or out-of-range.
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Parameters were used together that cannot be used together.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/DescribeAnomalyDetectors
 func (c *CloudWatch) DescribeAnomalyDetectors(input *DescribeAnomalyDetectorsInput) (*DescribeAnomalyDetectorsOutput, error) {
@@ -2669,6 +2688,9 @@ func (c *CloudWatch) PutAnomalyDetectorRequest(input *PutAnomalyDetectorInput) (
 //   * ErrCodeMissingRequiredParameterException "MissingParameter"
 //   An input parameter that is required is missing.
 //
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Parameters were used together that cannot be used together.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/PutAnomalyDetector
 func (c *CloudWatch) PutAnomalyDetector(input *PutAnomalyDetectorInput) (*PutAnomalyDetectorOutput, error) {
 	req, out := c.PutAnomalyDetectorRequest(input)
@@ -2775,6 +2797,10 @@ func (c *CloudWatch) PutCompositeAlarmRequest(input *PutCompositeAlarmInput) (re
 //
 // When you update an existing alarm, its state is left unchanged, but the update
 // completely overwrites the previous configuration of the alarm.
+//
+// To use this operation, you must be signed on with the cloudwatch:PutCompositeAlarm
+// permission that is scoped to *. You can't create a composite alarms if your
+// cloudwatch:PutCompositeAlarm permission has a narrower scope.
 //
 // If you are an IAM user, you must have iam:CreateServiceLinkedRole to create
 // a composite alarm that has Systems Manager OpsItem actions.
@@ -3068,11 +3094,11 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 //    * The iam:CreateServiceLinkedRole to create an alarm with Systems Manager
 //    OpsItem actions.
 //
-// The first time you create an alarm in the Management Console, the CLI, or
-// by using the PutMetricAlarm API, CloudWatch creates the necessary service-linked
-// role for you. The service-linked roles are called AWSServiceRoleForCloudWatchEvents
-// and AWSServiceRoleForCloudWatchAlarms_ActionSSM. For more information, see
-// Amazon Web Services service-linked role (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role).
+// The first time you create an alarm in the Amazon Web Services Management
+// Console, the CLI, or by using the PutMetricAlarm API, CloudWatch creates
+// the necessary service-linked role for you. The service-linked roles are called
+// AWSServiceRoleForCloudWatchEvents and AWSServiceRoleForCloudWatchAlarms_ActionSSM.
+// For more information, see Amazon Web Services service-linked role (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role).
 //
 // Cross-account alarms
 //
@@ -3311,7 +3337,7 @@ func (c *CloudWatch) PutMetricStreamRequest(input *PutMetricStreamInput) (req *r
 // CloudWatch metrics to Amazon Web Services destinations including Amazon S3
 // and to many third-party solutions.
 //
-// For more information, see Using Metric Streams (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Metric-Streams.html).
+// For more information, see Using Metric Streams (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metric-Streams.html).
 //
 // To create a metric stream, you must be logged on to an account that has the
 // iam:PassRole permission and either the CloudWatchFullAccess policy or the
@@ -3920,9 +3946,9 @@ func (s *AlarmHistoryItem) SetTimestamp(v time.Time) *AlarmHistoryItem {
 	return s
 }
 
-// An anomaly detection model associated with a particular CloudWatch metric
-// and statistic. You can use the model to display a band of expected normal
-// values when the metric is graphed.
+// An anomaly detection model associated with a particular CloudWatch metric,
+// statistic, or metric math expression. You can use the model to display a
+// band of expected, normal values when the metric is graphed.
 type AnomalyDetector struct {
 	_ struct{} `type:"structure"`
 
@@ -3932,16 +3958,30 @@ type AnomalyDetector struct {
 	Configuration *AnomalyDetectorConfiguration `type:"structure"`
 
 	// The metric dimensions associated with the anomaly detection model.
-	Dimensions []*Dimension `type:"list"`
+	//
+	// Deprecated: Use SingleMetricAnomalyDetector.Dimensions property.
+	Dimensions []*Dimension `deprecated:"true" type:"list"`
+
+	// The CloudWatch metric math expression for this anomaly detector.
+	MetricMathAnomalyDetector *MetricMathAnomalyDetector `type:"structure"`
 
 	// The name of the metric associated with the anomaly detection model.
-	MetricName *string `min:"1" type:"string"`
+	//
+	// Deprecated: Use SingleMetricAnomalyDetector.MetricName property.
+	MetricName *string `min:"1" deprecated:"true" type:"string"`
 
 	// The namespace of the metric associated with the anomaly detection model.
-	Namespace *string `min:"1" type:"string"`
+	//
+	// Deprecated: Use SingleMetricAnomalyDetector.Namespace property.
+	Namespace *string `min:"1" deprecated:"true" type:"string"`
+
+	// The CloudWatch metric and statistic for this anomaly detector.
+	SingleMetricAnomalyDetector *SingleMetricAnomalyDetector `type:"structure"`
 
 	// The statistic associated with the anomaly detection model.
-	Stat *string `type:"string"`
+	//
+	// Deprecated: Use SingleMetricAnomalyDetector.Stat property.
+	Stat *string `deprecated:"true" type:"string"`
 
 	// The current status of the anomaly detector's training. The possible values
 	// are TRAINED | PENDING_TRAINING | TRAINED_INSUFFICIENT_DATA
@@ -3978,6 +4018,12 @@ func (s *AnomalyDetector) SetDimensions(v []*Dimension) *AnomalyDetector {
 	return s
 }
 
+// SetMetricMathAnomalyDetector sets the MetricMathAnomalyDetector field's value.
+func (s *AnomalyDetector) SetMetricMathAnomalyDetector(v *MetricMathAnomalyDetector) *AnomalyDetector {
+	s.MetricMathAnomalyDetector = v
+	return s
+}
+
 // SetMetricName sets the MetricName field's value.
 func (s *AnomalyDetector) SetMetricName(v string) *AnomalyDetector {
 	s.MetricName = &v
@@ -3987,6 +4033,12 @@ func (s *AnomalyDetector) SetMetricName(v string) *AnomalyDetector {
 // SetNamespace sets the Namespace field's value.
 func (s *AnomalyDetector) SetNamespace(v string) *AnomalyDetector {
 	s.Namespace = &v
+	return s
+}
+
+// SetSingleMetricAnomalyDetector sets the SingleMetricAnomalyDetector field's value.
+func (s *AnomalyDetector) SetSingleMetricAnomalyDetector(v *SingleMetricAnomalyDetector) *AnomalyDetector {
+	s.SingleMetricAnomalyDetector = v
 	return s
 }
 
@@ -4488,22 +4540,62 @@ type DeleteAnomalyDetectorInput struct {
 	_ struct{} `type:"structure"`
 
 	// The metric dimensions associated with the anomaly detection model to delete.
-	Dimensions []*Dimension `type:"list"`
+	//
+	// Deprecated: Use SingleMetricAnomalyDetector.
+	Dimensions []*Dimension `deprecated:"true" type:"list"`
+
+	// The metric math anomaly detector to be deleted.
+	//
+	// When using MetricMathAnomalyDetector, you cannot include following parameters
+	// in the same operation:
+	//
+	//    * Dimensions,
+	//
+	//    * MetricName
+	//
+	//    * Namespace
+	//
+	//    * Stat
+	//
+	//    * the SingleMetricAnomalyDetector parameters of DeleteAnomalyDetectorInput
+	//
+	// Instead, specify the metric math anomaly detector attributes as part of the
+	// MetricMathAnomalyDetector property.
+	MetricMathAnomalyDetector *MetricMathAnomalyDetector `type:"structure"`
 
 	// The metric name associated with the anomaly detection model to delete.
 	//
-	// MetricName is a required field
-	MetricName *string `min:"1" type:"string" required:"true"`
+	// Deprecated: Use SingleMetricAnomalyDetector.
+	MetricName *string `min:"1" deprecated:"true" type:"string"`
 
 	// The namespace associated with the anomaly detection model to delete.
 	//
-	// Namespace is a required field
-	Namespace *string `min:"1" type:"string" required:"true"`
+	// Deprecated: Use SingleMetricAnomalyDetector.
+	Namespace *string `min:"1" deprecated:"true" type:"string"`
+
+	// A single metric anomaly detector to be deleted.
+	//
+	// When using SingleMetricAnomalyDetector, you cannot include the following
+	// parameters in the same operation:
+	//
+	//    * Dimensions,
+	//
+	//    * MetricName
+	//
+	//    * Namespace
+	//
+	//    * Stat
+	//
+	//    * the MetricMathAnomalyDetector parameters of DeleteAnomalyDetectorInput
+	//
+	// Instead, specify the single metric anomaly detector attributes as part of
+	// the SingleMetricAnomalyDetector property.
+	SingleMetricAnomalyDetector *SingleMetricAnomalyDetector `type:"structure"`
 
 	// The statistic associated with the anomaly detection model to delete.
 	//
-	// Stat is a required field
-	Stat *string `type:"string" required:"true"`
+	// Deprecated: Use SingleMetricAnomalyDetector.
+	Stat *string `deprecated:"true" type:"string"`
 }
 
 // String returns the string representation.
@@ -4527,20 +4619,11 @@ func (s DeleteAnomalyDetectorInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DeleteAnomalyDetectorInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteAnomalyDetectorInput"}
-	if s.MetricName == nil {
-		invalidParams.Add(request.NewErrParamRequired("MetricName"))
-	}
 	if s.MetricName != nil && len(*s.MetricName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
 	}
-	if s.Namespace == nil {
-		invalidParams.Add(request.NewErrParamRequired("Namespace"))
-	}
 	if s.Namespace != nil && len(*s.Namespace) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
-	}
-	if s.Stat == nil {
-		invalidParams.Add(request.NewErrParamRequired("Stat"))
 	}
 	if s.Dimensions != nil {
 		for i, v := range s.Dimensions {
@@ -4550,6 +4633,16 @@ func (s *DeleteAnomalyDetectorInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dimensions", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.MetricMathAnomalyDetector != nil {
+		if err := s.MetricMathAnomalyDetector.Validate(); err != nil {
+			invalidParams.AddNested("MetricMathAnomalyDetector", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SingleMetricAnomalyDetector != nil {
+		if err := s.SingleMetricAnomalyDetector.Validate(); err != nil {
+			invalidParams.AddNested("SingleMetricAnomalyDetector", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4565,6 +4658,12 @@ func (s *DeleteAnomalyDetectorInput) SetDimensions(v []*Dimension) *DeleteAnomal
 	return s
 }
 
+// SetMetricMathAnomalyDetector sets the MetricMathAnomalyDetector field's value.
+func (s *DeleteAnomalyDetectorInput) SetMetricMathAnomalyDetector(v *MetricMathAnomalyDetector) *DeleteAnomalyDetectorInput {
+	s.MetricMathAnomalyDetector = v
+	return s
+}
+
 // SetMetricName sets the MetricName field's value.
 func (s *DeleteAnomalyDetectorInput) SetMetricName(v string) *DeleteAnomalyDetectorInput {
 	s.MetricName = &v
@@ -4574,6 +4673,12 @@ func (s *DeleteAnomalyDetectorInput) SetMetricName(v string) *DeleteAnomalyDetec
 // SetNamespace sets the Namespace field's value.
 func (s *DeleteAnomalyDetectorInput) SetNamespace(v string) *DeleteAnomalyDetectorInput {
 	s.Namespace = &v
+	return s
+}
+
+// SetSingleMetricAnomalyDetector sets the SingleMetricAnomalyDetector field's value.
+func (s *DeleteAnomalyDetectorInput) SetSingleMetricAnomalyDetector(v *SingleMetricAnomalyDetector) *DeleteAnomalyDetectorInput {
+	s.SingleMetricAnomalyDetector = v
 	return s
 }
 
@@ -5352,6 +5457,10 @@ func (s *DescribeAlarmsOutput) SetNextToken(v string) *DescribeAlarmsOutput {
 type DescribeAnomalyDetectorsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The anomaly detector types to request when using DescribeAnomalyDetectorsInput.
+	// If empty, defaults to SINGLE_METRIC.
+	AnomalyDetectorTypes []*string `type:"list"`
+
 	// Limits the results to only the anomaly detection models that are associated
 	// with the specified metric dimensions. If there are multiple metrics that
 	// have these dimensions and have anomaly detection models associated, they're
@@ -5424,6 +5533,12 @@ func (s *DescribeAnomalyDetectorsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAnomalyDetectorTypes sets the AnomalyDetectorTypes field's value.
+func (s *DescribeAnomalyDetectorsInput) SetAnomalyDetectorTypes(v []*string) *DescribeAnomalyDetectorsInput {
+	s.AnomalyDetectorTypes = v
+	return s
 }
 
 // SetDimensions sets the Dimensions field's value.
@@ -7137,7 +7252,10 @@ func (s *GetMetricWidgetImageOutput) SetMetricWidgetImage(v []byte) *GetMetricWi
 	return s
 }
 
-// This structure contains the definition for a Contributor Insights rule.
+// This structure contains the definition for a Contributor Insights rule. For
+// more information about this rule, see Using Constributor Insights to analyze
+// high-cardinality data (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContributorInsights.html)
+// in the Amazon CloudWatch User Guide.
 type InsightRule struct {
 	_ struct{} `type:"structure"`
 
@@ -7155,7 +7273,7 @@ type InsightRule struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// For rules that you create, this is always {"Name": "CloudWatchLogRule", "Version":
-	// 1}. For built-in rules, this is {"Name": "ServiceLogRule", "Version": 1}
+	// 1}. For managed rules, this is {"Name": "ServiceLogRule", "Version": 1}
 	//
 	// Schema is a required field
 	Schema *string `type:"string" required:"true"`
@@ -8748,6 +8866,66 @@ func (s *MetricDatum) SetValues(v []*float64) *MetricDatum {
 	return s
 }
 
+// Indicates the CloudWatch math expression that provides the time series the
+// anomaly detector uses as input. The designated math expression must return
+// a single time series.
+type MetricMathAnomalyDetector struct {
+	_ struct{} `type:"structure"`
+
+	// An array of metric data query structures that enables you to create an anomaly
+	// detector based on the result of a metric math expression. Each item in MetricDataQueries
+	// gets a metric or performs a math expression. One item in MetricDataQueries
+	// is the expression that provides the time series that the anomaly detector
+	// uses as input. Designate the expression by setting ReturnData to True for
+	// this object in the array. For all other expressions and metrics, set ReturnData
+	// to False. The designated expression must return a single time series.
+	MetricDataQueries []*MetricDataQuery `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricMathAnomalyDetector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MetricMathAnomalyDetector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricMathAnomalyDetector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricMathAnomalyDetector"}
+	if s.MetricDataQueries != nil {
+		for i, v := range s.MetricDataQueries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MetricDataQueries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetricDataQueries sets the MetricDataQueries field's value.
+func (s *MetricMathAnomalyDetector) SetMetricDataQueries(v []*MetricDataQuery) *MetricMathAnomalyDetector {
+	s.MetricDataQueries = v
+	return s
+}
+
 // This structure defines the metric to be returned, along with the statistics,
 // period, and units.
 type MetricStat struct {
@@ -9073,22 +9251,62 @@ type PutAnomalyDetectorInput struct {
 	Configuration *AnomalyDetectorConfiguration `type:"structure"`
 
 	// The metric dimensions to create the anomaly detection model for.
-	Dimensions []*Dimension `type:"list"`
+	//
+	// Deprecated: Use SingleMetricAnomalyDetector.
+	Dimensions []*Dimension `deprecated:"true" type:"list"`
+
+	// The metric math anomaly detector to be created.
+	//
+	// When using MetricMathAnomalyDetector, you cannot include the following parameters
+	// in the same operation:
+	//
+	//    * Dimensions
+	//
+	//    * MetricName
+	//
+	//    * Namespace
+	//
+	//    * Stat
+	//
+	//    * the SingleMetricAnomalyDetector parameters of PutAnomalyDetectorInput
+	//
+	// Instead, specify the metric math anomaly detector attributes as part of the
+	// property MetricMathAnomalyDetector.
+	MetricMathAnomalyDetector *MetricMathAnomalyDetector `type:"structure"`
 
 	// The name of the metric to create the anomaly detection model for.
 	//
-	// MetricName is a required field
-	MetricName *string `min:"1" type:"string" required:"true"`
+	// Deprecated: Use SingleMetricAnomalyDetector.
+	MetricName *string `min:"1" deprecated:"true" type:"string"`
 
 	// The namespace of the metric to create the anomaly detection model for.
 	//
-	// Namespace is a required field
-	Namespace *string `min:"1" type:"string" required:"true"`
+	// Deprecated: Use SingleMetricAnomalyDetector.
+	Namespace *string `min:"1" deprecated:"true" type:"string"`
+
+	// A single metric anomaly detector to be created.
+	//
+	// When using SingleMetricAnomalyDetector, you cannot include the following
+	// parameters in the same operation:
+	//
+	//    * Dimensions
+	//
+	//    * MetricName
+	//
+	//    * Namespace
+	//
+	//    * Stat
+	//
+	//    * the MetricMatchAnomalyDetector parameters of PutAnomalyDetectorInput
+	//
+	// Instead, specify the single metric anomaly detector attributes as part of
+	// the property SingleMetricAnomalyDetector.
+	SingleMetricAnomalyDetector *SingleMetricAnomalyDetector `type:"structure"`
 
 	// The statistic to use for the metric and the anomaly detection model.
 	//
-	// Stat is a required field
-	Stat *string `type:"string" required:"true"`
+	// Deprecated: Use SingleMetricAnomalyDetector.
+	Stat *string `deprecated:"true" type:"string"`
 }
 
 // String returns the string representation.
@@ -9112,20 +9330,11 @@ func (s PutAnomalyDetectorInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutAnomalyDetectorInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutAnomalyDetectorInput"}
-	if s.MetricName == nil {
-		invalidParams.Add(request.NewErrParamRequired("MetricName"))
-	}
 	if s.MetricName != nil && len(*s.MetricName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
 	}
-	if s.Namespace == nil {
-		invalidParams.Add(request.NewErrParamRequired("Namespace"))
-	}
 	if s.Namespace != nil && len(*s.Namespace) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
-	}
-	if s.Stat == nil {
-		invalidParams.Add(request.NewErrParamRequired("Stat"))
 	}
 	if s.Configuration != nil {
 		if err := s.Configuration.Validate(); err != nil {
@@ -9140,6 +9349,16 @@ func (s *PutAnomalyDetectorInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dimensions", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.MetricMathAnomalyDetector != nil {
+		if err := s.MetricMathAnomalyDetector.Validate(); err != nil {
+			invalidParams.AddNested("MetricMathAnomalyDetector", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SingleMetricAnomalyDetector != nil {
+		if err := s.SingleMetricAnomalyDetector.Validate(); err != nil {
+			invalidParams.AddNested("SingleMetricAnomalyDetector", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -9161,6 +9380,12 @@ func (s *PutAnomalyDetectorInput) SetDimensions(v []*Dimension) *PutAnomalyDetec
 	return s
 }
 
+// SetMetricMathAnomalyDetector sets the MetricMathAnomalyDetector field's value.
+func (s *PutAnomalyDetectorInput) SetMetricMathAnomalyDetector(v *MetricMathAnomalyDetector) *PutAnomalyDetectorInput {
+	s.MetricMathAnomalyDetector = v
+	return s
+}
+
 // SetMetricName sets the MetricName field's value.
 func (s *PutAnomalyDetectorInput) SetMetricName(v string) *PutAnomalyDetectorInput {
 	s.MetricName = &v
@@ -9170,6 +9395,12 @@ func (s *PutAnomalyDetectorInput) SetMetricName(v string) *PutAnomalyDetectorInp
 // SetNamespace sets the Namespace field's value.
 func (s *PutAnomalyDetectorInput) SetNamespace(v string) *PutAnomalyDetectorInput {
 	s.Namespace = &v
+	return s
+}
+
+// SetSingleMetricAnomalyDetector sets the SingleMetricAnomalyDetector field's value.
+func (s *PutAnomalyDetectorInput) SetSingleMetricAnomalyDetector(v *SingleMetricAnomalyDetector) *PutAnomalyDetectorInput {
+	s.SingleMetricAnomalyDetector = v
 	return s
 }
 
@@ -10616,6 +10847,92 @@ func (s SetAlarmStateOutput) GoString() string {
 	return s.String()
 }
 
+// Designates the CloudWatch metric and statistic that provides the time series
+// the anomaly detector uses as input.
+type SingleMetricAnomalyDetector struct {
+	_ struct{} `type:"structure"`
+
+	// The metric dimensions to create the anomaly detection model for.
+	Dimensions []*Dimension `type:"list"`
+
+	// The name of the metric to create the anomaly detection model for.
+	MetricName *string `min:"1" type:"string"`
+
+	// The namespace of the metric to create the anomaly detection model for.
+	Namespace *string `min:"1" type:"string"`
+
+	// The statistic to use for the metric and anomaly detection model.
+	Stat *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SingleMetricAnomalyDetector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SingleMetricAnomalyDetector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SingleMetricAnomalyDetector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SingleMetricAnomalyDetector"}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+	if s.Dimensions != nil {
+		for i, v := range s.Dimensions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dimensions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *SingleMetricAnomalyDetector) SetDimensions(v []*Dimension) *SingleMetricAnomalyDetector {
+	s.Dimensions = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *SingleMetricAnomalyDetector) SetMetricName(v string) *SingleMetricAnomalyDetector {
+	s.MetricName = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *SingleMetricAnomalyDetector) SetNamespace(v string) *SingleMetricAnomalyDetector {
+	s.Namespace = &v
+	return s
+}
+
+// SetStat sets the Stat field's value.
+func (s *SingleMetricAnomalyDetector) SetStat(v string) *SingleMetricAnomalyDetector {
+	s.Stat = &v
+	return s
+}
+
 type StartMetricStreamsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11143,6 +11460,22 @@ func AnomalyDetectorStateValue_Values() []string {
 		AnomalyDetectorStateValuePendingTraining,
 		AnomalyDetectorStateValueTrainedInsufficientData,
 		AnomalyDetectorStateValueTrained,
+	}
+}
+
+const (
+	// AnomalyDetectorTypeSingleMetric is a AnomalyDetectorType enum value
+	AnomalyDetectorTypeSingleMetric = "SINGLE_METRIC"
+
+	// AnomalyDetectorTypeMetricMath is a AnomalyDetectorType enum value
+	AnomalyDetectorTypeMetricMath = "METRIC_MATH"
+)
+
+// AnomalyDetectorType_Values returns all elements of the AnomalyDetectorType enum
+func AnomalyDetectorType_Values() []string {
+	return []string{
+		AnomalyDetectorTypeSingleMetric,
+		AnomalyDetectorTypeMetricMath,
 	}
 }
 

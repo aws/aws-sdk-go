@@ -11,7 +11,8 @@ const (
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
 	//
-	// The input fails to satisfy the constraints specified by an AWS service.
+	// The input fails to satisfy the constraints specified by an Amazon Web Services
+	// service.
 	ErrCodeBadRequestException = "BadRequestException"
 
 	// ErrCodeConflictException for service response error code
@@ -43,7 +44,7 @@ const (
 	// "ServiceQuotaExceededException".
 	//
 	// The number of hosted configuration versions exceeds the limit for the AppConfig
-	// configuration store. Delete one or more versions and try again.
+	// hosted configuration store. Delete one or more versions and try again.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 )
 

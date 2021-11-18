@@ -3009,6 +3009,180 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentControlPagesWithContext(ctx
 	return p.Err()
 }
 
+const opGetInsights = "GetInsights"
+
+// GetInsightsRequest generates a "aws/request.Request" representing the
+// client's request for the GetInsights operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInsights for more information on using the GetInsights
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInsightsRequest method.
+//    req, resp := client.GetInsightsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/GetInsights
+func (c *AuditManager) GetInsightsRequest(input *GetInsightsInput) (req *request.Request, output *GetInsightsOutput) {
+	op := &request.Operation{
+		Name:       opGetInsights,
+		HTTPMethod: "GET",
+		HTTPPath:   "/insights",
+	}
+
+	if input == nil {
+		input = &GetInsightsInput{}
+	}
+
+	output = &GetInsightsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetInsights API operation for AWS Audit Manager.
+//
+// Gets the latest analytics data for all your current active assessments.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation GetInsights for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/GetInsights
+func (c *AuditManager) GetInsights(input *GetInsightsInput) (*GetInsightsOutput, error) {
+	req, out := c.GetInsightsRequest(input)
+	return out, req.Send()
+}
+
+// GetInsightsWithContext is the same as GetInsights with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInsights for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) GetInsightsWithContext(ctx aws.Context, input *GetInsightsInput, opts ...request.Option) (*GetInsightsOutput, error) {
+	req, out := c.GetInsightsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetInsightsByAssessment = "GetInsightsByAssessment"
+
+// GetInsightsByAssessmentRequest generates a "aws/request.Request" representing the
+// client's request for the GetInsightsByAssessment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInsightsByAssessment for more information on using the GetInsightsByAssessment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInsightsByAssessmentRequest method.
+//    req, resp := client.GetInsightsByAssessmentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/GetInsightsByAssessment
+func (c *AuditManager) GetInsightsByAssessmentRequest(input *GetInsightsByAssessmentInput) (req *request.Request, output *GetInsightsByAssessmentOutput) {
+	op := &request.Operation{
+		Name:       opGetInsightsByAssessment,
+		HTTPMethod: "GET",
+		HTTPPath:   "/insights/assessments/{assessmentId}",
+	}
+
+	if input == nil {
+		input = &GetInsightsByAssessmentInput{}
+	}
+
+	output = &GetInsightsByAssessmentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetInsightsByAssessment API operation for AWS Audit Manager.
+//
+// Gets the latest analytics data for a specific active assessment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation GetInsightsByAssessment for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+//   * ResourceNotFoundException
+//   The resource that's specified in the request can't be found.
+//
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/GetInsightsByAssessment
+func (c *AuditManager) GetInsightsByAssessment(input *GetInsightsByAssessmentInput) (*GetInsightsByAssessmentOutput, error) {
+	req, out := c.GetInsightsByAssessmentRequest(input)
+	return out, req.Send()
+}
+
+// GetInsightsByAssessmentWithContext is the same as GetInsightsByAssessment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInsightsByAssessment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) GetInsightsByAssessmentWithContext(ctx aws.Context, input *GetInsightsByAssessmentInput, opts ...request.Option) (*GetInsightsByAssessmentOutput, error) {
+	req, out := c.GetInsightsByAssessmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetOrganizationAdminAccount = "GetOrganizationAdminAccount"
 
 // GetOrganizationAdminAccountRequest generates a "aws/request.Request" representing the
@@ -3270,6 +3444,160 @@ func (c *AuditManager) GetSettingsWithContext(ctx aws.Context, input *GetSetting
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAssessmentControlInsightsByControlDomain = "ListAssessmentControlInsightsByControlDomain"
+
+// ListAssessmentControlInsightsByControlDomainRequest generates a "aws/request.Request" representing the
+// client's request for the ListAssessmentControlInsightsByControlDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAssessmentControlInsightsByControlDomain for more information on using the ListAssessmentControlInsightsByControlDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAssessmentControlInsightsByControlDomainRequest method.
+//    req, resp := client.ListAssessmentControlInsightsByControlDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListAssessmentControlInsightsByControlDomain
+func (c *AuditManager) ListAssessmentControlInsightsByControlDomainRequest(input *ListAssessmentControlInsightsByControlDomainInput) (req *request.Request, output *ListAssessmentControlInsightsByControlDomainOutput) {
+	op := &request.Operation{
+		Name:       opListAssessmentControlInsightsByControlDomain,
+		HTTPMethod: "GET",
+		HTTPPath:   "/insights/controls-by-assessment",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAssessmentControlInsightsByControlDomainInput{}
+	}
+
+	output = &ListAssessmentControlInsightsByControlDomainOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAssessmentControlInsightsByControlDomain API operation for AWS Audit Manager.
+//
+// Lists the latest analytics data for controls within a specific control domain
+// and a specific active assessment.
+//
+// Control insights are listed only if the control belongs to the control domain
+// and assessment that was specified. Moreover, the control must have collected
+// evidence on the lastUpdated date of controlInsightsByAssessment. If neither
+// of these conditions are met, no data is listed for that control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation ListAssessmentControlInsightsByControlDomain for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+//   * ResourceNotFoundException
+//   The resource that's specified in the request can't be found.
+//
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListAssessmentControlInsightsByControlDomain
+func (c *AuditManager) ListAssessmentControlInsightsByControlDomain(input *ListAssessmentControlInsightsByControlDomainInput) (*ListAssessmentControlInsightsByControlDomainOutput, error) {
+	req, out := c.ListAssessmentControlInsightsByControlDomainRequest(input)
+	return out, req.Send()
+}
+
+// ListAssessmentControlInsightsByControlDomainWithContext is the same as ListAssessmentControlInsightsByControlDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAssessmentControlInsightsByControlDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListAssessmentControlInsightsByControlDomainWithContext(ctx aws.Context, input *ListAssessmentControlInsightsByControlDomainInput, opts ...request.Option) (*ListAssessmentControlInsightsByControlDomainOutput, error) {
+	req, out := c.ListAssessmentControlInsightsByControlDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAssessmentControlInsightsByControlDomainPages iterates over the pages of a ListAssessmentControlInsightsByControlDomain operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAssessmentControlInsightsByControlDomain method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAssessmentControlInsightsByControlDomain operation.
+//    pageNum := 0
+//    err := client.ListAssessmentControlInsightsByControlDomainPages(params,
+//        func(page *auditmanager.ListAssessmentControlInsightsByControlDomainOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AuditManager) ListAssessmentControlInsightsByControlDomainPages(input *ListAssessmentControlInsightsByControlDomainInput, fn func(*ListAssessmentControlInsightsByControlDomainOutput, bool) bool) error {
+	return c.ListAssessmentControlInsightsByControlDomainPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAssessmentControlInsightsByControlDomainPagesWithContext same as ListAssessmentControlInsightsByControlDomainPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListAssessmentControlInsightsByControlDomainPagesWithContext(ctx aws.Context, input *ListAssessmentControlInsightsByControlDomainInput, fn func(*ListAssessmentControlInsightsByControlDomainOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAssessmentControlInsightsByControlDomainInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAssessmentControlInsightsByControlDomainRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAssessmentControlInsightsByControlDomainOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListAssessmentFrameworkShareRequests = "ListAssessmentFrameworkShareRequests"
@@ -3847,6 +4175,465 @@ func (c *AuditManager) ListAssessmentsPagesWithContext(ctx aws.Context, input *L
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAssessmentsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListControlDomainInsights = "ListControlDomainInsights"
+
+// ListControlDomainInsightsRequest generates a "aws/request.Request" representing the
+// client's request for the ListControlDomainInsights operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListControlDomainInsights for more information on using the ListControlDomainInsights
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListControlDomainInsightsRequest method.
+//    req, resp := client.ListControlDomainInsightsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListControlDomainInsights
+func (c *AuditManager) ListControlDomainInsightsRequest(input *ListControlDomainInsightsInput) (req *request.Request, output *ListControlDomainInsightsOutput) {
+	op := &request.Operation{
+		Name:       opListControlDomainInsights,
+		HTTPMethod: "GET",
+		HTTPPath:   "/insights/control-domains",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListControlDomainInsightsInput{}
+	}
+
+	output = &ListControlDomainInsightsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListControlDomainInsights API operation for AWS Audit Manager.
+//
+// Lists the latest analytics data for control domains across all of your active
+// assessments.
+//
+// A control domain is listed only if at least one of the controls within that
+// domain collected evidence on the lastUpdated date of controlDomainInsights.
+// If this condition isn’t met, no data is listed for that control domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation ListControlDomainInsights for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource that's specified in the request can't be found.
+//
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListControlDomainInsights
+func (c *AuditManager) ListControlDomainInsights(input *ListControlDomainInsightsInput) (*ListControlDomainInsightsOutput, error) {
+	req, out := c.ListControlDomainInsightsRequest(input)
+	return out, req.Send()
+}
+
+// ListControlDomainInsightsWithContext is the same as ListControlDomainInsights with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListControlDomainInsights for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListControlDomainInsightsWithContext(ctx aws.Context, input *ListControlDomainInsightsInput, opts ...request.Option) (*ListControlDomainInsightsOutput, error) {
+	req, out := c.ListControlDomainInsightsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListControlDomainInsightsPages iterates over the pages of a ListControlDomainInsights operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListControlDomainInsights method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListControlDomainInsights operation.
+//    pageNum := 0
+//    err := client.ListControlDomainInsightsPages(params,
+//        func(page *auditmanager.ListControlDomainInsightsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AuditManager) ListControlDomainInsightsPages(input *ListControlDomainInsightsInput, fn func(*ListControlDomainInsightsOutput, bool) bool) error {
+	return c.ListControlDomainInsightsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListControlDomainInsightsPagesWithContext same as ListControlDomainInsightsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListControlDomainInsightsPagesWithContext(ctx aws.Context, input *ListControlDomainInsightsInput, fn func(*ListControlDomainInsightsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListControlDomainInsightsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListControlDomainInsightsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListControlDomainInsightsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListControlDomainInsightsByAssessment = "ListControlDomainInsightsByAssessment"
+
+// ListControlDomainInsightsByAssessmentRequest generates a "aws/request.Request" representing the
+// client's request for the ListControlDomainInsightsByAssessment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListControlDomainInsightsByAssessment for more information on using the ListControlDomainInsightsByAssessment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListControlDomainInsightsByAssessmentRequest method.
+//    req, resp := client.ListControlDomainInsightsByAssessmentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListControlDomainInsightsByAssessment
+func (c *AuditManager) ListControlDomainInsightsByAssessmentRequest(input *ListControlDomainInsightsByAssessmentInput) (req *request.Request, output *ListControlDomainInsightsByAssessmentOutput) {
+	op := &request.Operation{
+		Name:       opListControlDomainInsightsByAssessment,
+		HTTPMethod: "GET",
+		HTTPPath:   "/insights/control-domains-by-assessment",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListControlDomainInsightsByAssessmentInput{}
+	}
+
+	output = &ListControlDomainInsightsByAssessmentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListControlDomainInsightsByAssessment API operation for AWS Audit Manager.
+//
+// Lists analytics data for control domains within a specified active assessment.
+//
+// A control domain is listed only if at least one of the controls within that
+// domain collected evidence on the lastUpdated date of controlDomainInsights.
+// If this condition isn’t met, no data is listed for that domain.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation ListControlDomainInsightsByAssessment for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+//   * ResourceNotFoundException
+//   The resource that's specified in the request can't be found.
+//
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListControlDomainInsightsByAssessment
+func (c *AuditManager) ListControlDomainInsightsByAssessment(input *ListControlDomainInsightsByAssessmentInput) (*ListControlDomainInsightsByAssessmentOutput, error) {
+	req, out := c.ListControlDomainInsightsByAssessmentRequest(input)
+	return out, req.Send()
+}
+
+// ListControlDomainInsightsByAssessmentWithContext is the same as ListControlDomainInsightsByAssessment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListControlDomainInsightsByAssessment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListControlDomainInsightsByAssessmentWithContext(ctx aws.Context, input *ListControlDomainInsightsByAssessmentInput, opts ...request.Option) (*ListControlDomainInsightsByAssessmentOutput, error) {
+	req, out := c.ListControlDomainInsightsByAssessmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListControlDomainInsightsByAssessmentPages iterates over the pages of a ListControlDomainInsightsByAssessment operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListControlDomainInsightsByAssessment method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListControlDomainInsightsByAssessment operation.
+//    pageNum := 0
+//    err := client.ListControlDomainInsightsByAssessmentPages(params,
+//        func(page *auditmanager.ListControlDomainInsightsByAssessmentOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AuditManager) ListControlDomainInsightsByAssessmentPages(input *ListControlDomainInsightsByAssessmentInput, fn func(*ListControlDomainInsightsByAssessmentOutput, bool) bool) error {
+	return c.ListControlDomainInsightsByAssessmentPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListControlDomainInsightsByAssessmentPagesWithContext same as ListControlDomainInsightsByAssessmentPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListControlDomainInsightsByAssessmentPagesWithContext(ctx aws.Context, input *ListControlDomainInsightsByAssessmentInput, fn func(*ListControlDomainInsightsByAssessmentOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListControlDomainInsightsByAssessmentInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListControlDomainInsightsByAssessmentRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListControlDomainInsightsByAssessmentOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListControlInsightsByControlDomain = "ListControlInsightsByControlDomain"
+
+// ListControlInsightsByControlDomainRequest generates a "aws/request.Request" representing the
+// client's request for the ListControlInsightsByControlDomain operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListControlInsightsByControlDomain for more information on using the ListControlInsightsByControlDomain
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListControlInsightsByControlDomainRequest method.
+//    req, resp := client.ListControlInsightsByControlDomainRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListControlInsightsByControlDomain
+func (c *AuditManager) ListControlInsightsByControlDomainRequest(input *ListControlInsightsByControlDomainInput) (req *request.Request, output *ListControlInsightsByControlDomainOutput) {
+	op := &request.Operation{
+		Name:       opListControlInsightsByControlDomain,
+		HTTPMethod: "GET",
+		HTTPPath:   "/insights/controls",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListControlInsightsByControlDomainInput{}
+	}
+
+	output = &ListControlInsightsByControlDomainOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListControlInsightsByControlDomain API operation for AWS Audit Manager.
+//
+// Lists the latest analytics data for controls within a specific control domain
+// across all active assessments.
+//
+// Control insights are listed only if the control belongs to the control domain
+// that was specified and the control collected evidence on the lastUpdated
+// date of controlInsightsMetadata. If neither of these conditions are met,
+// no data is listed for that control.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Audit Manager's
+// API operation ListControlInsightsByControlDomain for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource that's specified in the request can't be found.
+//
+//   * AccessDeniedException
+//   Your account isn't registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
+//
+//   * InternalServerException
+//   An internal service error occurred during the processing of your request.
+//   Try again later.
+//
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/auditmanager-2017-07-25/ListControlInsightsByControlDomain
+func (c *AuditManager) ListControlInsightsByControlDomain(input *ListControlInsightsByControlDomainInput) (*ListControlInsightsByControlDomainOutput, error) {
+	req, out := c.ListControlInsightsByControlDomainRequest(input)
+	return out, req.Send()
+}
+
+// ListControlInsightsByControlDomainWithContext is the same as ListControlInsightsByControlDomain with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListControlInsightsByControlDomain for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListControlInsightsByControlDomainWithContext(ctx aws.Context, input *ListControlInsightsByControlDomainInput, opts ...request.Option) (*ListControlInsightsByControlDomainOutput, error) {
+	req, out := c.ListControlInsightsByControlDomainRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListControlInsightsByControlDomainPages iterates over the pages of a ListControlInsightsByControlDomain operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListControlInsightsByControlDomain method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListControlInsightsByControlDomain operation.
+//    pageNum := 0
+//    err := client.ListControlInsightsByControlDomainPages(params,
+//        func(page *auditmanager.ListControlInsightsByControlDomainOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AuditManager) ListControlInsightsByControlDomainPages(input *ListControlInsightsByControlDomainInput, fn func(*ListControlInsightsByControlDomainOutput, bool) bool) error {
+	return c.ListControlInsightsByControlDomainPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListControlInsightsByControlDomainPagesWithContext same as ListControlInsightsByControlDomainPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AuditManager) ListControlInsightsByControlDomainPagesWithContext(ctx aws.Context, input *ListControlInsightsByControlDomainInput, fn func(*ListControlInsightsByControlDomainOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListControlInsightsByControlDomainInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListControlInsightsByControlDomainRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListControlInsightsByControlDomainOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -8269,6 +9056,225 @@ func (s *ControlComment) SetPostedDate(v time.Time) *ControlComment {
 	return s
 }
 
+// A summary of the latest analytics data for a specific control domain.
+//
+// Control domain insights are grouped by control domain, and ranked by the
+// highest total count of non-compliant evidence.
+type ControlDomainInsights struct {
+	_ struct{} `type:"structure"`
+
+	// The number of controls in the control domain that collected non-compliant
+	// evidence on the lastUpdated date.
+	ControlsCountByNoncompliantEvidence *int64 `locationName:"controlsCountByNoncompliantEvidence" type:"integer"`
+
+	// A breakdown of the compliance check status for the evidence that’s associated
+	// with the control domain.
+	EvidenceInsights *EvidenceInsights `locationName:"evidenceInsights" type:"structure"`
+
+	// The unique identifier for the control domain.
+	Id *string `locationName:"id" min:"36" type:"string"`
+
+	// The time when the control domain insights were last updated.
+	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
+
+	// The name of the control domain.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The total number of controls in the control domain.
+	TotalControlsCount *int64 `locationName:"totalControlsCount" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlDomainInsights) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlDomainInsights) GoString() string {
+	return s.String()
+}
+
+// SetControlsCountByNoncompliantEvidence sets the ControlsCountByNoncompliantEvidence field's value.
+func (s *ControlDomainInsights) SetControlsCountByNoncompliantEvidence(v int64) *ControlDomainInsights {
+	s.ControlsCountByNoncompliantEvidence = &v
+	return s
+}
+
+// SetEvidenceInsights sets the EvidenceInsights field's value.
+func (s *ControlDomainInsights) SetEvidenceInsights(v *EvidenceInsights) *ControlDomainInsights {
+	s.EvidenceInsights = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ControlDomainInsights) SetId(v string) *ControlDomainInsights {
+	s.Id = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *ControlDomainInsights) SetLastUpdated(v time.Time) *ControlDomainInsights {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ControlDomainInsights) SetName(v string) *ControlDomainInsights {
+	s.Name = &v
+	return s
+}
+
+// SetTotalControlsCount sets the TotalControlsCount field's value.
+func (s *ControlDomainInsights) SetTotalControlsCount(v int64) *ControlDomainInsights {
+	s.TotalControlsCount = &v
+	return s
+}
+
+// A summary of the latest analytics data for a specific control in a specific
+// active assessment.
+//
+// Control insights are grouped by control domain, and ranked by the highest
+// total count of non-compliant evidence.
+type ControlInsightsMetadataByAssessmentItem struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the control set that the assessment control belongs to.
+	ControlSetName *string `locationName:"controlSetName" min:"1" type:"string"`
+
+	// A breakdown of the compliance check status for the evidence that’s associated
+	// with the assessment control.
+	EvidenceInsights *EvidenceInsights `locationName:"evidenceInsights" type:"structure"`
+
+	// The unique identifier for the assessment control.
+	Id *string `locationName:"id" min:"36" type:"string"`
+
+	// The time when the assessment control insights were last updated.
+	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
+
+	// The name of the assessment control.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlInsightsMetadataByAssessmentItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlInsightsMetadataByAssessmentItem) GoString() string {
+	return s.String()
+}
+
+// SetControlSetName sets the ControlSetName field's value.
+func (s *ControlInsightsMetadataByAssessmentItem) SetControlSetName(v string) *ControlInsightsMetadataByAssessmentItem {
+	s.ControlSetName = &v
+	return s
+}
+
+// SetEvidenceInsights sets the EvidenceInsights field's value.
+func (s *ControlInsightsMetadataByAssessmentItem) SetEvidenceInsights(v *EvidenceInsights) *ControlInsightsMetadataByAssessmentItem {
+	s.EvidenceInsights = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ControlInsightsMetadataByAssessmentItem) SetId(v string) *ControlInsightsMetadataByAssessmentItem {
+	s.Id = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *ControlInsightsMetadataByAssessmentItem) SetLastUpdated(v time.Time) *ControlInsightsMetadataByAssessmentItem {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ControlInsightsMetadataByAssessmentItem) SetName(v string) *ControlInsightsMetadataByAssessmentItem {
+	s.Name = &v
+	return s
+}
+
+// A summary of the latest analytics data for a specific control.
+//
+// This data reflects the total counts for the specified control across all
+// active assessments. Control insights are grouped by control domain, and ranked
+// by the highest total count of non-compliant evidence.
+type ControlInsightsMetadataItem struct {
+	_ struct{} `type:"structure"`
+
+	// A breakdown of the compliance check status for the evidence that’s associated
+	// with the control.
+	EvidenceInsights *EvidenceInsights `locationName:"evidenceInsights" type:"structure"`
+
+	// The unique identifier for the control.
+	Id *string `locationName:"id" min:"36" type:"string"`
+
+	// The time when the control insights were last updated.
+	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
+
+	// The name of the control.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlInsightsMetadataItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ControlInsightsMetadataItem) GoString() string {
+	return s.String()
+}
+
+// SetEvidenceInsights sets the EvidenceInsights field's value.
+func (s *ControlInsightsMetadataItem) SetEvidenceInsights(v *EvidenceInsights) *ControlInsightsMetadataItem {
+	s.EvidenceInsights = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ControlInsightsMetadataItem) SetId(v string) *ControlInsightsMetadataItem {
+	s.Id = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *ControlInsightsMetadataItem) SetLastUpdated(v time.Time) *ControlInsightsMetadataItem {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ControlInsightsMetadataItem) SetName(v string) *ControlInsightsMetadataItem {
+	s.Name = &v
+	return s
+}
+
 // The data source that determines where Audit Manager collects evidence from
 // for the control.
 type ControlMappingSource struct {
@@ -9620,7 +10626,7 @@ func (s *DelegationMetadata) SetStatus(v string) *DelegationMetadata {
 type DeleteAssessmentFrameworkInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the framework.
+	// The identifier for the custom framework.
 	//
 	// FrameworkId is a required field
 	FrameworkId *string `location:"uri" locationName:"frameworkId" min:"36" type:"string" required:"true"`
@@ -9847,7 +10853,7 @@ func (s DeleteAssessmentOutput) GoString() string {
 type DeleteAssessmentReportInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -9935,7 +10941,7 @@ func (s DeleteAssessmentReportOutput) GoString() string {
 type DeleteControlInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the control.
+	// The unique identifier for the control.
 	//
 	// ControlId is a required field
 	ControlId *string `location:"uri" locationName:"controlId" min:"36" type:"string" required:"true"`
@@ -10125,12 +11131,12 @@ func (s DeregisterOrganizationAdminAccountOutput) GoString() string {
 type DisassociateAssessmentReportEvidenceFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the folder in which evidence is stored.
+	// The unique identifier for the folder that the evidence is stored in.
 	//
 	// EvidenceFolderId is a required field
 	EvidenceFolderId *string `locationName:"evidenceFolderId" min:"36" type:"string" required:"true"`
@@ -10374,6 +11380,68 @@ func (s *Evidence) SetResourcesIncluded(v []*Resource) *Evidence {
 // SetTime sets the Time field's value.
 func (s *Evidence) SetTime(v time.Time) *Evidence {
 	s.Time = &v
+	return s
+}
+
+// A breakdown of the latest compliance check status for the evidence in your
+// Audit Manager assessments.
+type EvidenceInsights struct {
+	_ struct{} `type:"structure"`
+
+	// The number of compliance check evidence that Audit Manager classified as
+	// compliant. This includes evidence that was collected from Security Hub with
+	// a Pass ruling, or collected from Config with a Compliant ruling.
+	CompliantEvidenceCount *int64 `locationName:"compliantEvidenceCount" type:"integer"`
+
+	// The number of evidence that a compliance check ruling isn't available for.
+	// Evidence is inconclusive when the associated control uses Security Hub or
+	// Config as a data source but you didn't enable those services. This is also
+	// the case when a control uses a data source that doesn’t support compliance
+	// checks (for example, manual evidence, API calls, or CloudTrail).
+	//
+	// If evidence has a compliance check status of not applicable in the console,
+	// it's classified as inconclusive in EvidenceInsights data.
+	InconclusiveEvidenceCount *int64 `locationName:"inconclusiveEvidenceCount" type:"integer"`
+
+	// The number of compliance check evidence that Audit Manager classified as
+	// non-compliant. This includes evidence that was collected from Security Hub
+	// with a Fail ruling, or collected from Config with a Non-compliant ruling.
+	NoncompliantEvidenceCount *int64 `locationName:"noncompliantEvidenceCount" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvidenceInsights) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EvidenceInsights) GoString() string {
+	return s.String()
+}
+
+// SetCompliantEvidenceCount sets the CompliantEvidenceCount field's value.
+func (s *EvidenceInsights) SetCompliantEvidenceCount(v int64) *EvidenceInsights {
+	s.CompliantEvidenceCount = &v
+	return s
+}
+
+// SetInconclusiveEvidenceCount sets the InconclusiveEvidenceCount field's value.
+func (s *EvidenceInsights) SetInconclusiveEvidenceCount(v int64) *EvidenceInsights {
+	s.InconclusiveEvidenceCount = &v
+	return s
+}
+
+// SetNoncompliantEvidenceCount sets the NoncompliantEvidenceCount field's value.
+func (s *EvidenceInsights) SetNoncompliantEvidenceCount(v int64) *EvidenceInsights {
+	s.NoncompliantEvidenceCount = &v
 	return s
 }
 
@@ -10724,7 +11792,7 @@ func (s *GetAssessmentFrameworkOutput) SetFramework(v *Framework) *GetAssessment
 type GetAssessmentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -10815,12 +11883,12 @@ func (s *GetAssessmentOutput) SetUserRole(v *Role) *GetAssessmentOutput {
 type GetAssessmentReportUrlInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the assessment report.
+	// The unique identifier for the assessment report.
 	//
 	// AssessmentReportId is a required field
 	AssessmentReportId *string `location:"uri" locationName:"assessmentReportId" min:"36" type:"string" required:"true"`
@@ -10913,15 +11981,15 @@ func (s *GetAssessmentReportUrlOutput) SetPreSignedUrl(v *URL) *GetAssessmentRep
 type GetChangeLogsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the control.
+	// The unique identifier for the control.
 	ControlId *string `location:"querystring" locationName:"controlId" min:"36" type:"string"`
 
-	// The identifier for the control set.
+	// The unique identifier for the control set.
 	ControlSetId *string `location:"querystring" locationName:"controlSetId" min:"1" type:"string"`
 
 	// Represents the maximum number of results on a page or for an API request
@@ -11376,17 +12444,17 @@ func (s *GetEvidenceByEvidenceFolderOutput) SetNextToken(v string) *GetEvidenceB
 type GetEvidenceFolderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the control set.
+	// The unique identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the folder that the evidence is stored in.
+	// The unique identifier for the folder that the evidence is stored in.
 	//
 	// EvidenceFolderId is a required field
 	EvidenceFolderId *string `location:"uri" locationName:"evidenceFolderId" min:"36" type:"string" required:"true"`
@@ -11639,7 +12707,7 @@ func (s *GetEvidenceFoldersByAssessmentControlOutput) SetNextToken(v string) *Ge
 type GetEvidenceFoldersByAssessmentInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -11754,22 +12822,22 @@ func (s *GetEvidenceFoldersByAssessmentOutput) SetNextToken(v string) *GetEviden
 type GetEvidenceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the control set.
+	// The unique identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the folder that the evidence is stored in.
+	// The unique identifier for the folder that the evidence is stored in.
 	//
 	// EvidenceFolderId is a required field
 	EvidenceFolderId *string `location:"uri" locationName:"evidenceFolderId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the evidence.
+	// The unique identifier for the evidence.
 	//
 	// EvidenceId is a required field
 	EvidenceId *string `location:"uri" locationName:"evidenceId" min:"36" type:"string" required:"true"`
@@ -11879,6 +12947,139 @@ func (s GetEvidenceOutput) GoString() string {
 // SetEvidence sets the Evidence field's value.
 func (s *GetEvidenceOutput) SetEvidence(v *Evidence) *GetEvidenceOutput {
 	s.Evidence = v
+	return s
+}
+
+type GetInsightsByAssessmentInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the assessment.
+	//
+	// AssessmentId is a required field
+	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInsightsByAssessmentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInsightsByAssessmentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetInsightsByAssessmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetInsightsByAssessmentInput"}
+	if s.AssessmentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentId"))
+	}
+	if s.AssessmentId != nil && len(*s.AssessmentId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssessmentId sets the AssessmentId field's value.
+func (s *GetInsightsByAssessmentInput) SetAssessmentId(v string) *GetInsightsByAssessmentInput {
+	s.AssessmentId = &v
+	return s
+}
+
+type GetInsightsByAssessmentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The assessment analytics data that the GetInsightsByAssessment API returned.
+	Insights *InsightsByAssessment `locationName:"insights" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInsightsByAssessmentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInsightsByAssessmentOutput) GoString() string {
+	return s.String()
+}
+
+// SetInsights sets the Insights field's value.
+func (s *GetInsightsByAssessmentOutput) SetInsights(v *InsightsByAssessment) *GetInsightsByAssessmentOutput {
+	s.Insights = v
+	return s
+}
+
+type GetInsightsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInsightsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInsightsInput) GoString() string {
+	return s.String()
+}
+
+type GetInsightsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The analytics data that the GetInsights API returned.
+	Insights *Insights `locationName:"insights" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInsightsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInsightsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInsights sets the Insights field's value.
+func (s *GetInsightsOutput) SetInsights(v *Insights) *GetInsightsOutput {
+	s.Insights = v
 	return s
 }
 
@@ -12077,6 +13278,237 @@ func (s *GetSettingsOutput) SetSettings(v *Settings) *GetSettingsOutput {
 	return s
 }
 
+// A summary of the latest analytics data for all your active assessments.
+//
+// This summary is a snapshot of the data that your active assessments collected
+// on the lastUpdated date. It’s important to understand that the following
+// totals are daily counts based on this date — they aren’t a total sum
+// to date.
+//
+// The Insights data is eventually consistent. This means that, when you read
+// data from Insights, the response might not instantly reflect the results
+// of a recently completed write or update operation. If you repeat your read
+// request after a few hours, the response should return the latest data.
+//
+// If you delete an assessment or change its status to inactive, InsightsByAssessment
+// includes data for that assessment as follows.
+//
+//    * Inactive assessments - If Audit Manager collected evidence for your
+//    assessment before you changed it inactive, that evidence is included in
+//    the InsightsByAssessment counts for that day.
+//
+//    * Deleted assessments - If Audit Manager collected evidence for your assessment
+//    before you deleted it, that evidence isn't included in the InsightsByAssessment
+//    counts for that day.
+type Insights struct {
+	_ struct{} `type:"structure"`
+
+	// The number of active assessments in Audit Manager.
+	ActiveAssessmentsCount *int64 `locationName:"activeAssessmentsCount" type:"integer"`
+
+	// The number of assessment controls that collected non-compliant evidence on
+	// the lastUpdated date.
+	AssessmentControlsCountByNoncompliantEvidence *int64 `locationName:"assessmentControlsCountByNoncompliantEvidence" type:"integer"`
+
+	// The number of compliance check evidence that Audit Manager classified as
+	// compliant on the lastUpdated date. This includes evidence that was collected
+	// from Security Hub with a Pass ruling, or collected from Config with a Compliant
+	// ruling.
+	CompliantEvidenceCount *int64 `locationName:"compliantEvidenceCount" type:"integer"`
+
+	// The number of evidence without a compliance check ruling. Evidence is inconclusive
+	// when the associated control uses Security Hub or Config as a data source
+	// but you didn't enable those services. This is also the case when a control
+	// uses a data source that doesn’t support compliance checks (for example:
+	// manual evidence, API calls, or CloudTrail).
+	//
+	// If evidence has a compliance check status of not applicable, it's classed
+	// as inconclusive in Insights data.
+	InconclusiveEvidenceCount *int64 `locationName:"inconclusiveEvidenceCount" type:"integer"`
+
+	// The time when the cross-assessment insights were last updated.
+	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
+
+	// The number of compliance check evidence that Audit Manager classified as
+	// non-compliant on the lastUpdated date. This includes evidence that was collected
+	// from Security Hub with a Fail ruling, or collected from Config with a Non-compliant
+	// ruling.
+	NoncompliantEvidenceCount *int64 `locationName:"noncompliantEvidenceCount" type:"integer"`
+
+	// The total number of controls across all active assessments.
+	TotalAssessmentControlsCount *int64 `locationName:"totalAssessmentControlsCount" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Insights) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Insights) GoString() string {
+	return s.String()
+}
+
+// SetActiveAssessmentsCount sets the ActiveAssessmentsCount field's value.
+func (s *Insights) SetActiveAssessmentsCount(v int64) *Insights {
+	s.ActiveAssessmentsCount = &v
+	return s
+}
+
+// SetAssessmentControlsCountByNoncompliantEvidence sets the AssessmentControlsCountByNoncompliantEvidence field's value.
+func (s *Insights) SetAssessmentControlsCountByNoncompliantEvidence(v int64) *Insights {
+	s.AssessmentControlsCountByNoncompliantEvidence = &v
+	return s
+}
+
+// SetCompliantEvidenceCount sets the CompliantEvidenceCount field's value.
+func (s *Insights) SetCompliantEvidenceCount(v int64) *Insights {
+	s.CompliantEvidenceCount = &v
+	return s
+}
+
+// SetInconclusiveEvidenceCount sets the InconclusiveEvidenceCount field's value.
+func (s *Insights) SetInconclusiveEvidenceCount(v int64) *Insights {
+	s.InconclusiveEvidenceCount = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *Insights) SetLastUpdated(v time.Time) *Insights {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetNoncompliantEvidenceCount sets the NoncompliantEvidenceCount field's value.
+func (s *Insights) SetNoncompliantEvidenceCount(v int64) *Insights {
+	s.NoncompliantEvidenceCount = &v
+	return s
+}
+
+// SetTotalAssessmentControlsCount sets the TotalAssessmentControlsCount field's value.
+func (s *Insights) SetTotalAssessmentControlsCount(v int64) *Insights {
+	s.TotalAssessmentControlsCount = &v
+	return s
+}
+
+// A summary of the latest analytics data for a specific active assessment.
+//
+// This summary is a snapshot of the data that was collected on the lastUpdated
+// date. It’s important to understand that the totals in InsightsByAssessment
+// are daily counts based on this date — they aren’t a total sum to date.
+//
+// The InsightsByAssessment data is eventually consistent. This means that when
+// you read data from InsightsByAssessment, the response might not instantly
+// reflect the results of a recently completed write or update operation. If
+// you repeat your read request after a few hours, the response returns the
+// latest data.
+//
+// If you delete an assessment or change its status to inactive, InsightsByAssessment
+// includes data for that assessment as follows.
+//
+//    * Inactive assessments - If Audit Manager collected evidence for your
+//    assessment before you changed it inactive, that evidence is included in
+//    the InsightsByAssessment counts for that day.
+//
+//    * Deleted assessments - If Audit Manager collected evidence for your assessment
+//    before you deleted it, that evidence isn't included in the InsightsByAssessment
+//    counts for that day.
+type InsightsByAssessment struct {
+	_ struct{} `type:"structure"`
+
+	// The number of assessment controls that collected non-compliant evidence on
+	// the lastUpdated date.
+	AssessmentControlsCountByNoncompliantEvidence *int64 `locationName:"assessmentControlsCountByNoncompliantEvidence" type:"integer"`
+
+	// The number of compliance check evidence that Audit Manager classified as
+	// compliant. This includes evidence that was collected from Security Hub with
+	// a Pass ruling, or collected from Config with a Compliant ruling.
+	CompliantEvidenceCount *int64 `locationName:"compliantEvidenceCount" type:"integer"`
+
+	// The amount of evidence without a compliance check ruling. Evidence is inconclusive
+	// if the associated control uses Security Hub or Config as a data source and
+	// you didn't enable those services. This is also the case if a control uses
+	// a data source that doesn’t support compliance checks (for example, manual
+	// evidence, API calls, or CloudTrail).
+	//
+	// If evidence has a compliance check status of not applicable, it's classified
+	// as inconclusive in InsightsByAssessment data.
+	InconclusiveEvidenceCount *int64 `locationName:"inconclusiveEvidenceCount" type:"integer"`
+
+	// The time when the assessment insights were last updated.
+	LastUpdated *time.Time `locationName:"lastUpdated" type:"timestamp"`
+
+	// The number of compliance check evidence that Audit Manager classified as
+	// non-compliant. This includes evidence that was collected from Security Hub
+	// with a Fail ruling, or collected from Config with a Non-compliant ruling.
+	NoncompliantEvidenceCount *int64 `locationName:"noncompliantEvidenceCount" type:"integer"`
+
+	// The total number of controls in the assessment.
+	TotalAssessmentControlsCount *int64 `locationName:"totalAssessmentControlsCount" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightsByAssessment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InsightsByAssessment) GoString() string {
+	return s.String()
+}
+
+// SetAssessmentControlsCountByNoncompliantEvidence sets the AssessmentControlsCountByNoncompliantEvidence field's value.
+func (s *InsightsByAssessment) SetAssessmentControlsCountByNoncompliantEvidence(v int64) *InsightsByAssessment {
+	s.AssessmentControlsCountByNoncompliantEvidence = &v
+	return s
+}
+
+// SetCompliantEvidenceCount sets the CompliantEvidenceCount field's value.
+func (s *InsightsByAssessment) SetCompliantEvidenceCount(v int64) *InsightsByAssessment {
+	s.CompliantEvidenceCount = &v
+	return s
+}
+
+// SetInconclusiveEvidenceCount sets the InconclusiveEvidenceCount field's value.
+func (s *InsightsByAssessment) SetInconclusiveEvidenceCount(v int64) *InsightsByAssessment {
+	s.InconclusiveEvidenceCount = &v
+	return s
+}
+
+// SetLastUpdated sets the LastUpdated field's value.
+func (s *InsightsByAssessment) SetLastUpdated(v time.Time) *InsightsByAssessment {
+	s.LastUpdated = &v
+	return s
+}
+
+// SetNoncompliantEvidenceCount sets the NoncompliantEvidenceCount field's value.
+func (s *InsightsByAssessment) SetNoncompliantEvidenceCount(v int64) *InsightsByAssessment {
+	s.NoncompliantEvidenceCount = &v
+	return s
+}
+
+// SetTotalAssessmentControlsCount sets the TotalAssessmentControlsCount field's value.
+func (s *InsightsByAssessment) SetTotalAssessmentControlsCount(v int64) *InsightsByAssessment {
+	s.TotalAssessmentControlsCount = &v
+	return s
+}
+
 // An internal service error occurred during the processing of your request.
 // Try again later.
 type InternalServerException struct {
@@ -12140,6 +13572,138 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListAssessmentControlInsightsByControlDomainInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the active assessment.
+	//
+	// AssessmentId is a required field
+	AssessmentId *string `location:"querystring" locationName:"assessmentId" min:"36" type:"string" required:"true"`
+
+	// The unique identifier for the control domain.
+	//
+	// ControlDomainId is a required field
+	ControlDomainId *string `location:"querystring" locationName:"controlDomainId" min:"36" type:"string" required:"true"`
+
+	// Represents the maximum number of results on a page or for an API request
+	// call.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssessmentControlInsightsByControlDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssessmentControlInsightsByControlDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAssessmentControlInsightsByControlDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAssessmentControlInsightsByControlDomainInput"}
+	if s.AssessmentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentId"))
+	}
+	if s.AssessmentId != nil && len(*s.AssessmentId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentId", 36))
+	}
+	if s.ControlDomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ControlDomainId"))
+	}
+	if s.ControlDomainId != nil && len(*s.ControlDomainId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ControlDomainId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssessmentId sets the AssessmentId field's value.
+func (s *ListAssessmentControlInsightsByControlDomainInput) SetAssessmentId(v string) *ListAssessmentControlInsightsByControlDomainInput {
+	s.AssessmentId = &v
+	return s
+}
+
+// SetControlDomainId sets the ControlDomainId field's value.
+func (s *ListAssessmentControlInsightsByControlDomainInput) SetControlDomainId(v string) *ListAssessmentControlInsightsByControlDomainInput {
+	s.ControlDomainId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAssessmentControlInsightsByControlDomainInput) SetMaxResults(v int64) *ListAssessmentControlInsightsByControlDomainInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssessmentControlInsightsByControlDomainInput) SetNextToken(v string) *ListAssessmentControlInsightsByControlDomainInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAssessmentControlInsightsByControlDomainOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The assessment control analytics data that the ListAssessmentControlInsightsByControlDomain
+	// API returned.
+	ControlInsightsByAssessment []*ControlInsightsMetadataByAssessmentItem `locationName:"controlInsightsByAssessment" type:"list"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssessmentControlInsightsByControlDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAssessmentControlInsightsByControlDomainOutput) GoString() string {
+	return s.String()
+}
+
+// SetControlInsightsByAssessment sets the ControlInsightsByAssessment field's value.
+func (s *ListAssessmentControlInsightsByControlDomainOutput) SetControlInsightsByAssessment(v []*ControlInsightsMetadataByAssessmentItem) *ListAssessmentControlInsightsByControlDomainOutput {
+	s.ControlInsightsByAssessment = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAssessmentControlInsightsByControlDomainOutput) SetNextToken(v string) *ListAssessmentControlInsightsByControlDomainOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListAssessmentFrameworkShareRequestsInput struct {
@@ -12471,6 +14035,9 @@ type ListAssessmentsInput struct {
 
 	// The pagination token that's used to fetch the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The current status of the assessment.
+	Status *string `location:"querystring" locationName:"status" type:"string" enum:"AssessmentStatus"`
 }
 
 // String returns the string representation.
@@ -12519,6 +14086,12 @@ func (s *ListAssessmentsInput) SetNextToken(v string) *ListAssessmentsInput {
 	return s
 }
 
+// SetStatus sets the Status field's value.
+func (s *ListAssessmentsInput) SetStatus(v string) *ListAssessmentsInput {
+	s.Status = &v
+	return s
+}
+
 type ListAssessmentsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12555,6 +14128,334 @@ func (s *ListAssessmentsOutput) SetAssessmentMetadata(v []*AssessmentMetadataIte
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAssessmentsOutput) SetNextToken(v string) *ListAssessmentsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListControlDomainInsightsByAssessmentInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the active assessment.
+	//
+	// AssessmentId is a required field
+	AssessmentId *string `location:"querystring" locationName:"assessmentId" min:"36" type:"string" required:"true"`
+
+	// Represents the maximum number of results on a page or for an API request
+	// call.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlDomainInsightsByAssessmentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlDomainInsightsByAssessmentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListControlDomainInsightsByAssessmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListControlDomainInsightsByAssessmentInput"}
+	if s.AssessmentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssessmentId"))
+	}
+	if s.AssessmentId != nil && len(*s.AssessmentId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssessmentId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssessmentId sets the AssessmentId field's value.
+func (s *ListControlDomainInsightsByAssessmentInput) SetAssessmentId(v string) *ListControlDomainInsightsByAssessmentInput {
+	s.AssessmentId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListControlDomainInsightsByAssessmentInput) SetMaxResults(v int64) *ListControlDomainInsightsByAssessmentInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListControlDomainInsightsByAssessmentInput) SetNextToken(v string) *ListControlDomainInsightsByAssessmentInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListControlDomainInsightsByAssessmentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The control domain analytics data that the ListControlDomainInsightsByAssessment
+	// API returned.
+	ControlDomainInsights []*ControlDomainInsights `locationName:"controlDomainInsights" type:"list"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlDomainInsightsByAssessmentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlDomainInsightsByAssessmentOutput) GoString() string {
+	return s.String()
+}
+
+// SetControlDomainInsights sets the ControlDomainInsights field's value.
+func (s *ListControlDomainInsightsByAssessmentOutput) SetControlDomainInsights(v []*ControlDomainInsights) *ListControlDomainInsightsByAssessmentOutput {
+	s.ControlDomainInsights = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListControlDomainInsightsByAssessmentOutput) SetNextToken(v string) *ListControlDomainInsightsByAssessmentOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListControlDomainInsightsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Represents the maximum number of results on a page or for an API request
+	// call.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlDomainInsightsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlDomainInsightsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListControlDomainInsightsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListControlDomainInsightsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListControlDomainInsightsInput) SetMaxResults(v int64) *ListControlDomainInsightsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListControlDomainInsightsInput) SetNextToken(v string) *ListControlDomainInsightsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListControlDomainInsightsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The control domain analytics data that the ListControlDomainInsights API
+	// returned.
+	ControlDomainInsights []*ControlDomainInsights `locationName:"controlDomainInsights" type:"list"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlDomainInsightsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlDomainInsightsOutput) GoString() string {
+	return s.String()
+}
+
+// SetControlDomainInsights sets the ControlDomainInsights field's value.
+func (s *ListControlDomainInsightsOutput) SetControlDomainInsights(v []*ControlDomainInsights) *ListControlDomainInsightsOutput {
+	s.ControlDomainInsights = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListControlDomainInsightsOutput) SetNextToken(v string) *ListControlDomainInsightsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListControlInsightsByControlDomainInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the control domain.
+	//
+	// ControlDomainId is a required field
+	ControlDomainId *string `location:"querystring" locationName:"controlDomainId" min:"36" type:"string" required:"true"`
+
+	// Represents the maximum number of results on a page or for an API request
+	// call.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlInsightsByControlDomainInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlInsightsByControlDomainInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListControlInsightsByControlDomainInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListControlInsightsByControlDomainInput"}
+	if s.ControlDomainId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ControlDomainId"))
+	}
+	if s.ControlDomainId != nil && len(*s.ControlDomainId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ControlDomainId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetControlDomainId sets the ControlDomainId field's value.
+func (s *ListControlInsightsByControlDomainInput) SetControlDomainId(v string) *ListControlInsightsByControlDomainInput {
+	s.ControlDomainId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListControlInsightsByControlDomainInput) SetMaxResults(v int64) *ListControlInsightsByControlDomainInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListControlInsightsByControlDomainInput) SetNextToken(v string) *ListControlInsightsByControlDomainInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListControlInsightsByControlDomainOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The control analytics data that the ListControlInsightsByControlDomain API
+	// returned.
+	ControlInsightsMetadata []*ControlInsightsMetadataItem `locationName:"controlInsightsMetadata" type:"list"`
+
+	// The pagination token that's used to fetch the next set of results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlInsightsByControlDomainOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListControlInsightsByControlDomainOutput) GoString() string {
+	return s.String()
+}
+
+// SetControlInsightsMetadata sets the ControlInsightsMetadata field's value.
+func (s *ListControlInsightsByControlDomainOutput) SetControlInsightsMetadata(v []*ControlInsightsMetadataItem) *ListControlInsightsByControlDomainOutput {
+	s.ControlInsightsMetadata = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListControlInsightsByControlDomainOutput) SetNextToken(v string) *ListControlInsightsByControlDomainOutput {
 	s.NextToken = &v
 	return s
 }
@@ -14047,7 +15948,7 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAssessmentControlInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -14055,12 +15956,12 @@ type UpdateAssessmentControlInput struct {
 	// The comment body text for the control.
 	CommentBody *string `locationName:"commentBody" type:"string"`
 
-	// The identifier for the control.
+	// The unique identifier for the control.
 	//
 	// ControlId is a required field
 	ControlId *string `location:"uri" locationName:"controlId" min:"36" type:"string" required:"true"`
 
-	// The identifier for the control set.
+	// The unique identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" min:"1" type:"string" required:"true"`
@@ -14180,7 +16081,7 @@ func (s *UpdateAssessmentControlOutput) SetControl(v *AssessmentControl) *Update
 type UpdateAssessmentControlSetStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -14190,7 +16091,7 @@ type UpdateAssessmentControlSetStatusInput struct {
 	// Comment is a required field
 	Comment *string `locationName:"comment" type:"string" required:"true"`
 
-	// The identifier for the control set.
+	// The unique identifier for the control set.
 	//
 	// ControlSetId is a required field
 	ControlSetId *string `location:"uri" locationName:"controlSetId" type:"string" required:"true"`
@@ -14403,7 +16304,7 @@ type UpdateAssessmentFrameworkInput struct {
 	// The description of the updated framework.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The identifier for the framework.
+	// The unique identifier for the framework.
 	//
 	// FrameworkId is a required field
 	FrameworkId *string `location:"uri" locationName:"frameworkId" min:"36" type:"string" required:"true"`
@@ -14646,7 +16547,7 @@ type UpdateAssessmentInput struct {
 	// The description of the assessment.
 	AssessmentDescription *string `locationName:"assessmentDescription" type:"string"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
@@ -14798,7 +16699,7 @@ func (s *UpdateAssessmentOutput) SetAssessment(v *Assessment) *UpdateAssessmentO
 type UpdateAssessmentStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the assessment.
+	// The unique identifier for the assessment.
 	//
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`

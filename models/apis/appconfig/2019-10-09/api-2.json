@@ -529,13 +529,26 @@
       "min":20,
       "pattern":"arn:(aws[a-zA-Z-]*)?:[a-z]+:([a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1})?:(\\d{12})?:[a-zA-Z0-9-_/:.]+"
     },
+    "BadRequestDetails":{
+      "type":"structure",
+      "members":{
+        "InvalidConfiguration":{"shape":"InvalidConfigurationDetailList"}
+      },
+      "union":true
+    },
     "BadRequestException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"String"}
+        "Message":{"shape":"String"},
+        "Reason":{"shape":"BadRequestReason"},
+        "Details":{"shape":"BadRequestDetails"}
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "BadRequestReason":{
+      "type":"string",
+      "enum":["InvalidConfiguration"]
     },
     "Blob":{
       "type":"blob",
@@ -571,7 +584,8 @@
         "Description":{"shape":"Description"},
         "LocationUri":{"shape":"Uri"},
         "RetrievalRoleArn":{"shape":"RoleArn"},
-        "Validators":{"shape":"ValidatorList"}
+        "Validators":{"shape":"ValidatorList"},
+        "Type":{"shape":"ConfigurationProfileType"}
       }
     },
     "ConfigurationProfileSummary":{
@@ -581,12 +595,17 @@
         "Id":{"shape":"Id"},
         "Name":{"shape":"Name"},
         "LocationUri":{"shape":"Uri"},
-        "ValidatorTypes":{"shape":"ValidatorTypeList"}
+        "ValidatorTypes":{"shape":"ValidatorTypeList"},
+        "Type":{"shape":"ConfigurationProfileType"}
       }
     },
     "ConfigurationProfileSummaryList":{
       "type":"list",
       "member":{"shape":"ConfigurationProfileSummary"}
+    },
+    "ConfigurationProfileType":{
+      "type":"string",
+      "pattern":"^[a-zA-Z\\.]+"
     },
     "ConfigurationProfiles":{
       "type":"structure",
@@ -630,7 +649,8 @@
         "LocationUri":{"shape":"Uri"},
         "RetrievalRoleArn":{"shape":"RoleArn"},
         "Validators":{"shape":"ValidatorList"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "Type":{"shape":"ConfigurationProfileType"}
       }
     },
     "CreateDeploymentStrategyRequest":{
@@ -1176,6 +1196,19 @@
       "exception":true,
       "fault":true
     },
+    "InvalidConfigurationDetail":{
+      "type":"structure",
+      "members":{
+        "Constraint":{"shape":"String"},
+        "Location":{"shape":"String"},
+        "Reason":{"shape":"String"},
+        "Type":{"shape":"String"}
+      }
+    },
+    "InvalidConfigurationDetailList":{
+      "type":"list",
+      "member":{"shape":"InvalidConfigurationDetail"}
+    },
     "Iso8601DateTime":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
@@ -1215,6 +1248,11 @@
           "shape":"NextToken",
           "location":"querystring",
           "locationName":"next_token"
+        },
+        "Type":{
+          "shape":"ConfigurationProfileType",
+          "location":"querystring",
+          "locationName":"type"
         }
       }
     },
@@ -1339,8 +1377,9 @@
     },
     "Monitor":{
       "type":"structure",
+      "required":["AlarmArn"],
       "members":{
-        "AlarmArn":{"shape":"Arn"},
+        "AlarmArn":{"shape":"StringWithLengthBetween1And2048"},
         "AlarmRoleArn":{"shape":"RoleArn"}
       }
     },
@@ -1471,6 +1510,11 @@
       "max":32768,
       "min":0,
       "sensitive":true
+    },
+    "StringWithLengthBetween1And2048":{
+      "type":"string",
+      "max":2048,
+      "min":1
     },
     "StringWithLengthBetween1And255":{
       "type":"string",

@@ -1782,7 +1782,7 @@ func (c *Kafka) ListKafkaVersionsRequest(input *ListKafkaVersionsInput) (req *re
 
 // ListKafkaVersions API operation for Managed Streaming for Kafka.
 //
-// Returns a list of Kafka versions.
+// Returns a list of Apache Kafka versions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3098,6 +3098,103 @@ func (c *Kafka) UpdateConfigurationWithContext(ctx aws.Context, input *UpdateCon
 	return out, req.Send()
 }
 
+const opUpdateConnectivity = "UpdateConnectivity"
+
+// UpdateConnectivityRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConnectivity operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConnectivity for more information on using the UpdateConnectivity
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateConnectivityRequest method.
+//    req, resp := client.UpdateConnectivityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateConnectivity
+func (c *Kafka) UpdateConnectivityRequest(input *UpdateConnectivityInput) (req *request.Request, output *UpdateConnectivityOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConnectivity,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/clusters/{clusterArn}/connectivity",
+	}
+
+	if input == nil {
+		input = &UpdateConnectivityInput{}
+	}
+
+	output = &UpdateConnectivityOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConnectivity API operation for Managed Streaming for Kafka.
+//
+// Updates the connectivity configuration for the cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation UpdateConnectivity for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Returns information about an error.
+//
+//   * UnauthorizedException
+//   Returns information about an error.
+//
+//   * InternalServerErrorException
+//   Returns information about an error.
+//
+//   * ForbiddenException
+//   Returns information about an error.
+//
+//   * NotFoundException
+//   Returns information about an error.
+//
+//   * ServiceUnavailableException
+//   Returns information about an error.
+//
+//   * TooManyRequestsException
+//   Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateConnectivity
+func (c *Kafka) UpdateConnectivity(input *UpdateConnectivityInput) (*UpdateConnectivityOutput, error) {
+	req, out := c.UpdateConnectivityRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConnectivityWithContext is the same as UpdateConnectivity with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConnectivity for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) UpdateConnectivityWithContext(ctx aws.Context, input *UpdateConnectivityInput, opts ...request.Option) (*UpdateConnectivityOutput, error) {
+	req, out := c.UpdateConnectivityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateMonitoring = "UpdateMonitoring"
 
 // UpdateMonitoringRequest generates a "aws/request.Request" representing the
@@ -3700,7 +3797,7 @@ func (s *BrokerLogs) SetS3(v *S3) *BrokerLogs {
 	return s
 }
 
-// Describes the setup to be used for Kafka broker nodes in the cluster.
+// Describes the setup to be used for Apache Kafka broker nodes in the cluster.
 type BrokerNodeGroupInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -3714,6 +3811,9 @@ type BrokerNodeGroupInfo struct {
 	//
 	// ClientSubnets is a required field
 	ClientSubnets []*string `locationName:"clientSubnets" type:"list" required:"true"`
+
+	// Information about the broker access configuration.
+	ConnectivityInfo *ConnectivityInfo `locationName:"connectivityInfo" type:"structure"`
 
 	// The type of broker used in the Amazon MSK cluster.
 	//
@@ -3786,6 +3886,12 @@ func (s *BrokerNodeGroupInfo) SetClientSubnets(v []*string) *BrokerNodeGroupInfo
 	return s
 }
 
+// SetConnectivityInfo sets the ConnectivityInfo field's value.
+func (s *BrokerNodeGroupInfo) SetConnectivityInfo(v *ConnectivityInfo) *BrokerNodeGroupInfo {
+	s.ConnectivityInfo = v
+	return s
+}
+
 // SetInstanceType sets the InstanceType field's value.
 func (s *BrokerNodeGroupInfo) SetInstanceType(v string) *BrokerNodeGroupInfo {
 	s.InstanceType = &v
@@ -3820,8 +3926,8 @@ type BrokerNodeInfo struct {
 	// The virtual private cloud (VPC) of the client.
 	ClientVpcIpAddress *string `locationName:"clientVpcIpAddress" type:"string"`
 
-	// Information about the version of software currently deployed on the Kafka
-	// brokers in the cluster.
+	// Information about the version of software currently deployed on the Apache
+	// Kafka brokers in the cluster.
 	CurrentBrokerSoftwareInfo *BrokerSoftwareInfo `locationName:"currentBrokerSoftwareInfo" type:"structure"`
 
 	// Endpoints for accessing the broker.
@@ -4061,8 +4167,8 @@ type ClusterInfo struct {
 	// The time when the cluster was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Information about the version of software currently deployed on the Kafka
-	// brokers in the cluster.
+	// Information about the version of software currently deployed on the Apache
+	// Kafka brokers in the cluster.
 	CurrentBrokerSoftwareInfo *BrokerSoftwareInfo `locationName:"currentBrokerSoftwareInfo" type:"structure"`
 
 	// The current version of the MSK cluster. Cluster versions aren't simple integers.
@@ -4428,7 +4534,8 @@ func (s *ClusterOperationStepInfo) SetStepStatus(v string) *ClusterOperationStep
 	return s
 }
 
-// Contains source Kafka versions and compatible target Kafka versions.
+// Contains source Apache Kafka versions and compatible target Apache Kafka
+// versions.
 type CompatibleKafkaVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -4749,6 +4856,38 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about the broker access configuration.
+type ConnectivityInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Public access control for brokers.
+	PublicAccess *PublicAccess `locationName:"publicAccess" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectivityInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConnectivityInfo) GoString() string {
+	return s.String()
+}
+
+// SetPublicAccess sets the PublicAccess field's value.
+func (s *ConnectivityInfo) SetPublicAccess(v *PublicAccess) *ConnectivityInfo {
+	s.PublicAccess = v
+	return s
+}
+
 // Creates a cluster.
 type CreateClusterInput struct {
 	_ struct{} `type:"structure"`
@@ -4784,7 +4923,7 @@ type CreateClusterInput struct {
 	// LoggingInfo details.
 	LoggingInfo *LoggingInfo `locationName:"loggingInfo" type:"structure"`
 
-	// The number of Kafka broker nodes in the Amazon MSK cluster.
+	// The number of Apache Kafka broker nodes in the Amazon MSK cluster.
 	//
 	// NumberOfBrokerNodes is a required field
 	NumberOfBrokerNodes *int64 `locationName:"numberOfBrokerNodes" min:"1" type:"integer" required:"true"`
@@ -5746,8 +5885,8 @@ func (s *DescribeConfigurationRevisionOutput) SetServerProperties(v []byte) *Des
 	return s
 }
 
-// Contains information about the EBS storage volumes attached to Kafka broker
-// nodes.
+// Contains information about the EBS storage volumes attached to Apache Kafka
+// broker nodes.
 type EBSStorageInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -6175,16 +6314,31 @@ type GetBootstrapBrokersOutput struct {
 
 	// A string that contains one or more DNS names (or IP addresses) and SASL IAM
 	// port pairs. The following is an example.
+	//  { "BootstrapBrokerStringSaslIam": "b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9198,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9198,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9198"}
+	BootstrapBrokerStringPublicSaslIam *string `locationName:"bootstrapBrokerStringPublicSaslIam" type:"string"`
+
+	// A string containing one or more DNS names (or IP addresses) and SASL SCRAM
+	// port pairs. The following is an example.
+	//  { "BootstrapBrokerStringSaslScram": "b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9196,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9196,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9196"}
+	BootstrapBrokerStringPublicSaslScram *string `locationName:"bootstrapBrokerStringPublicSaslScram" type:"string"`
+
+	// A string containing one or more DNS names (or IP addresses) and TLS port
+	// pairs. The following is an example.
+	//  { "BootstrapBrokerStringTls": "b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9194,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9194,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9194"}
+	BootstrapBrokerStringPublicTls *string `locationName:"bootstrapBrokerStringPublicTls" type:"string"`
+
+	// A string that contains one or more DNS names (or IP addresses) and SASL IAM
+	// port pairs. The following is an example.
 	//  { "BootstrapBrokerStringSaslIam": "b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9098,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9098,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9098"}
 	BootstrapBrokerStringSaslIam *string `locationName:"bootstrapBrokerStringSaslIam" type:"string"`
 
-	// A string containing one or more DNS names (or IP) and SASL SCRAM port pairs.
-	// The following is an example.
+	// A string containing one or more DNS names (or IP addresses) and SASL SCRAM
+	// port pairs. The following is an example.
 	//  { "BootstrapBrokerStringSaslScram": "b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096"}
 	BootstrapBrokerStringSaslScram *string `locationName:"bootstrapBrokerStringSaslScram" type:"string"`
 
-	// A string containing one or more DNS names (or IP) and TLS port pairs. The
-	// following is an example.
+	// A string containing one or more DNS names (or IP addresses) and TLS port
+	// pairs. The following is an example.
 	//  { "BootstrapBrokerStringTls": "b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094"}
 	BootstrapBrokerStringTls *string `locationName:"bootstrapBrokerStringTls" type:"string"`
 }
@@ -6210,6 +6364,24 @@ func (s GetBootstrapBrokersOutput) GoString() string {
 // SetBootstrapBrokerString sets the BootstrapBrokerString field's value.
 func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerString(v string) *GetBootstrapBrokersOutput {
 	s.BootstrapBrokerString = &v
+	return s
+}
+
+// SetBootstrapBrokerStringPublicSaslIam sets the BootstrapBrokerStringPublicSaslIam field's value.
+func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringPublicSaslIam(v string) *GetBootstrapBrokersOutput {
+	s.BootstrapBrokerStringPublicSaslIam = &v
+	return s
+}
+
+// SetBootstrapBrokerStringPublicSaslScram sets the BootstrapBrokerStringPublicSaslScram field's value.
+func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringPublicSaslScram(v string) *GetBootstrapBrokersOutput {
+	s.BootstrapBrokerStringPublicSaslScram = &v
+	return s
+}
+
+// SetBootstrapBrokerStringPublicTls sets the BootstrapBrokerStringPublicTls field's value.
+func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringPublicTls(v string) *GetBootstrapBrokersOutput {
+	s.BootstrapBrokerStringPublicTls = &v
 	return s
 }
 
@@ -6470,14 +6642,14 @@ func (s *JmxExporterInfo) SetEnabledInBroker(v bool) *JmxExporterInfo {
 	return s
 }
 
-// Information about a Kafka version.
+// Information about a Apache Kafka version.
 type KafkaVersion struct {
 	_ struct{} `type:"structure"`
 
 	// The status of the Apache Kafka version.
 	Status *string `locationName:"status" type:"string" enum:"KafkaVersionStatus"`
 
-	// The Kafka version.
+	// The Apache Kafka version.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -6981,7 +7153,7 @@ func (s *ListKafkaVersionsInput) SetNextToken(v string) *ListKafkaVersionsInput 
 type ListKafkaVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of Kafka version objects.
+	// An array of Apache Kafka version objects.
 	KafkaVersions []*KafkaVersion `locationName:"kafkaVersions" type:"list"`
 
 	// Paginated results marker.
@@ -7381,6 +7553,9 @@ type MutableClusterInfo struct {
 	// Information about the changes in the configuration of the brokers.
 	ConfigurationInfo *ConfigurationInfo `locationName:"configurationInfo" type:"structure"`
 
+	// Information about the broker access configuration.
+	ConnectivityInfo *ConnectivityInfo `locationName:"connectivityInfo" type:"structure"`
+
 	// Includes all encryption-related information.
 	EncryptionInfo *EncryptionInfo `locationName:"encryptionInfo" type:"structure"`
 
@@ -7435,6 +7610,12 @@ func (s *MutableClusterInfo) SetClientAuthentication(v *ClientAuthentication) *M
 // SetConfigurationInfo sets the ConfigurationInfo field's value.
 func (s *MutableClusterInfo) SetConfigurationInfo(v *ConfigurationInfo) *MutableClusterInfo {
 	s.ConfigurationInfo = v
+	return s
+}
+
+// SetConnectivityInfo sets the ConnectivityInfo field's value.
+func (s *MutableClusterInfo) SetConnectivityInfo(v *ConnectivityInfo) *MutableClusterInfo {
+	s.ConnectivityInfo = v
 	return s
 }
 
@@ -7889,6 +8070,39 @@ func (s *PrometheusInfo) SetJmxExporter(v *JmxExporterInfo) *PrometheusInfo {
 // SetNodeExporter sets the NodeExporter field's value.
 func (s *PrometheusInfo) SetNodeExporter(v *NodeExporterInfo) *PrometheusInfo {
 	s.NodeExporter = v
+	return s
+}
+
+// Broker public access control.
+type PublicAccess struct {
+	_ struct{} `type:"structure"`
+
+	// The value DISABLED indicates that public access is disabled. SERVICE_PROVIDED_EIPS
+	// indicates that public access is enabled.
+	Type *string `locationName:"type" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublicAccess) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PublicAccess) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *PublicAccess) SetType(v string) *PublicAccess {
+	s.Type = &v
 	return s
 }
 
@@ -9212,7 +9426,7 @@ type UpdateClusterKafkaVersionInput struct {
 	// CurrentVersion is a required field
 	CurrentVersion *string `locationName:"currentVersion" type:"string" required:"true"`
 
-	// Target Kafka version.
+	// Target Apache Kafka version.
 	//
 	// TargetKafkaVersion is a required field
 	TargetKafkaVersion *string `locationName:"targetKafkaVersion" type:"string" required:"true"`
@@ -9439,6 +9653,123 @@ func (s *UpdateConfigurationOutput) SetArn(v string) *UpdateConfigurationOutput 
 // SetLatestRevision sets the LatestRevision field's value.
 func (s *UpdateConfigurationOutput) SetLatestRevision(v *ConfigurationRevision) *UpdateConfigurationOutput {
 	s.LatestRevision = v
+	return s
+}
+
+// Request body for UpdateConnectivity.
+type UpdateConnectivityInput struct {
+	_ struct{} `type:"structure"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+
+	// Information about the broker access configuration.
+	//
+	// ConnectivityInfo is a required field
+	ConnectivityInfo *ConnectivityInfo `locationName:"connectivityInfo" type:"structure" required:"true"`
+
+	// The current version of the cluster.
+	//
+	// CurrentVersion is a required field
+	CurrentVersion *string `locationName:"currentVersion" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectivityInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectivityInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConnectivityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectivityInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+	if s.ConnectivityInfo == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectivityInfo"))
+	}
+	if s.CurrentVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("CurrentVersion"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *UpdateConnectivityInput) SetClusterArn(v string) *UpdateConnectivityInput {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetConnectivityInfo sets the ConnectivityInfo field's value.
+func (s *UpdateConnectivityInput) SetConnectivityInfo(v *ConnectivityInfo) *UpdateConnectivityInput {
+	s.ConnectivityInfo = v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *UpdateConnectivityInput) SetCurrentVersion(v string) *UpdateConnectivityInput {
+	s.CurrentVersion = &v
+	return s
+}
+
+// Response body for UpdateConnectivity.
+type UpdateConnectivityOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the cluster.
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the cluster operation.
+	ClusterOperationArn *string `locationName:"clusterOperationArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectivityOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateConnectivityOutput) GoString() string {
+	return s.String()
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *UpdateConnectivityOutput) SetClusterArn(v string) *UpdateConnectivityOutput {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetClusterOperationArn sets the ClusterOperationArn field's value.
+func (s *UpdateConnectivityOutput) SetClusterOperationArn(v string) *UpdateConnectivityOutput {
+	s.ClusterOperationArn = &v
 	return s
 }
 
@@ -9817,7 +10148,7 @@ func ClientBroker_Values() []string {
 	}
 }
 
-// The state of a Kafka cluster.
+// The state of an Apache Kafka cluster.
 const (
 	// ClusterStateActive is a ClusterState enum value
 	ClusterStateActive = "ACTIVE"
@@ -9907,7 +10238,7 @@ func EnhancedMonitoring_Values() []string {
 	}
 }
 
-// The status of a Kafka version.
+// The status of a Apache Kafka version.
 const (
 	// KafkaVersionStatusActive is a KafkaVersionStatus enum value
 	KafkaVersionStatusActive = "ACTIVE"
