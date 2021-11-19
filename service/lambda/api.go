@@ -721,6 +721,95 @@ func (c *Lambda) CreateFunctionWithContext(ctx aws.Context, input *CreateFunctio
 	return out, req.Send()
 }
 
+const opCreateFunctionUrlConfig = "CreateFunctionUrlConfig"
+
+// CreateFunctionUrlConfigRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFunctionUrlConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFunctionUrlConfig for more information on using the CreateFunctionUrlConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFunctionUrlConfigRequest method.
+//    req, resp := client.CreateFunctionUrlConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/CreateFunctionUrlConfig
+func (c *Lambda) CreateFunctionUrlConfigRequest(input *CreateFunctionUrlConfigInput) (req *request.Request, output *CreateFunctionUrlConfigOutput) {
+	op := &request.Operation{
+		Name:       opCreateFunctionUrlConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2021-10-31/functions/{FunctionName}/url",
+	}
+
+	if input == nil {
+		input = &CreateFunctionUrlConfigInput{}
+	}
+
+	output = &CreateFunctionUrlConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFunctionUrlConfig API operation for AWS Lambda.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation CreateFunctionUrlConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceConflictException
+//   The resource already exists, or another operation is in progress.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ServiceException
+//   The Lambda service encountered an internal error.
+//
+//   * TooManyRequestsException
+//   The request throughput limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/CreateFunctionUrlConfig
+func (c *Lambda) CreateFunctionUrlConfig(input *CreateFunctionUrlConfigInput) (*CreateFunctionUrlConfigOutput, error) {
+	req, out := c.CreateFunctionUrlConfigRequest(input)
+	return out, req.Send()
+}
+
+// CreateFunctionUrlConfigWithContext is the same as CreateFunctionUrlConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFunctionUrlConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) CreateFunctionUrlConfigWithContext(ctx aws.Context, input *CreateFunctionUrlConfigInput, opts ...request.Option) (*CreateFunctionUrlConfigOutput, error) {
+	req, out := c.CreateFunctionUrlConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAlias = "DeleteAlias"
 
 // DeleteAliasRequest generates a "aws/request.Request" representing the
@@ -1372,6 +1461,93 @@ func (c *Lambda) DeleteFunctionEventInvokeConfig(input *DeleteFunctionEventInvok
 // for more information on using Contexts.
 func (c *Lambda) DeleteFunctionEventInvokeConfigWithContext(ctx aws.Context, input *DeleteFunctionEventInvokeConfigInput, opts ...request.Option) (*DeleteFunctionEventInvokeConfigOutput, error) {
 	req, out := c.DeleteFunctionEventInvokeConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFunctionUrlConfig = "DeleteFunctionUrlConfig"
+
+// DeleteFunctionUrlConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFunctionUrlConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFunctionUrlConfig for more information on using the DeleteFunctionUrlConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFunctionUrlConfigRequest method.
+//    req, resp := client.DeleteFunctionUrlConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteFunctionUrlConfig
+func (c *Lambda) DeleteFunctionUrlConfigRequest(input *DeleteFunctionUrlConfigInput) (req *request.Request, output *DeleteFunctionUrlConfigOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFunctionUrlConfig,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2021-10-31/functions/{FunctionName}/url",
+	}
+
+	if input == nil {
+		input = &DeleteFunctionUrlConfigInput{}
+	}
+
+	output = &DeleteFunctionUrlConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFunctionUrlConfig API operation for AWS Lambda.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation DeleteFunctionUrlConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceConflictException
+//   The resource already exists, or another operation is in progress.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+//   * ServiceException
+//   The Lambda service encountered an internal error.
+//
+//   * TooManyRequestsException
+//   The request throughput limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteFunctionUrlConfig
+func (c *Lambda) DeleteFunctionUrlConfig(input *DeleteFunctionUrlConfigInput) (*DeleteFunctionUrlConfigOutput, error) {
+	req, out := c.DeleteFunctionUrlConfigRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFunctionUrlConfigWithContext is the same as DeleteFunctionUrlConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFunctionUrlConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) DeleteFunctionUrlConfigWithContext(ctx aws.Context, input *DeleteFunctionUrlConfigInput, opts ...request.Option) (*DeleteFunctionUrlConfigOutput, error) {
+	req, out := c.DeleteFunctionUrlConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2346,6 +2522,92 @@ func (c *Lambda) GetFunctionEventInvokeConfig(input *GetFunctionEventInvokeConfi
 // for more information on using Contexts.
 func (c *Lambda) GetFunctionEventInvokeConfigWithContext(ctx aws.Context, input *GetFunctionEventInvokeConfigInput, opts ...request.Option) (*GetFunctionEventInvokeConfigOutput, error) {
 	req, out := c.GetFunctionEventInvokeConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFunctionUrlConfig = "GetFunctionUrlConfig"
+
+// GetFunctionUrlConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetFunctionUrlConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFunctionUrlConfig for more information on using the GetFunctionUrlConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFunctionUrlConfigRequest method.
+//    req, resp := client.GetFunctionUrlConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionUrlConfig
+func (c *Lambda) GetFunctionUrlConfigRequest(input *GetFunctionUrlConfigInput) (req *request.Request, output *GetFunctionUrlConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetFunctionUrlConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-10-31/functions/{FunctionName}/url",
+	}
+
+	if input == nil {
+		input = &GetFunctionUrlConfigInput{}
+	}
+
+	output = &GetFunctionUrlConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFunctionUrlConfig API operation for AWS Lambda.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation GetFunctionUrlConfig for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ServiceException
+//   The Lambda service encountered an internal error.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+//   * TooManyRequestsException
+//   The request throughput limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionUrlConfig
+func (c *Lambda) GetFunctionUrlConfig(input *GetFunctionUrlConfigInput) (*GetFunctionUrlConfigOutput, error) {
+	req, out := c.GetFunctionUrlConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetFunctionUrlConfigWithContext is the same as GetFunctionUrlConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFunctionUrlConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) GetFunctionUrlConfigWithContext(ctx aws.Context, input *GetFunctionUrlConfigInput, opts ...request.Option) (*GetFunctionUrlConfigOutput, error) {
+	req, out := c.GetFunctionUrlConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3684,6 +3946,150 @@ func (c *Lambda) ListFunctionEventInvokeConfigsPagesWithContext(ctx aws.Context,
 
 	for p.Next() {
 		if !fn(p.Page().(*ListFunctionEventInvokeConfigsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFunctionUrlConfigs = "ListFunctionUrlConfigs"
+
+// ListFunctionUrlConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFunctionUrlConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFunctionUrlConfigs for more information on using the ListFunctionUrlConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFunctionUrlConfigsRequest method.
+//    req, resp := client.ListFunctionUrlConfigsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctionUrlConfigs
+func (c *Lambda) ListFunctionUrlConfigsRequest(input *ListFunctionUrlConfigsInput) (req *request.Request, output *ListFunctionUrlConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListFunctionUrlConfigs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2021-10-31/functions/{FunctionName}/urls",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "MaxItems",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFunctionUrlConfigsInput{}
+	}
+
+	output = &ListFunctionUrlConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFunctionUrlConfigs API operation for AWS Lambda.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation ListFunctionUrlConfigs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ServiceException
+//   The Lambda service encountered an internal error.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+//   * TooManyRequestsException
+//   The request throughput limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctionUrlConfigs
+func (c *Lambda) ListFunctionUrlConfigs(input *ListFunctionUrlConfigsInput) (*ListFunctionUrlConfigsOutput, error) {
+	req, out := c.ListFunctionUrlConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListFunctionUrlConfigsWithContext is the same as ListFunctionUrlConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFunctionUrlConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) ListFunctionUrlConfigsWithContext(ctx aws.Context, input *ListFunctionUrlConfigsInput, opts ...request.Option) (*ListFunctionUrlConfigsOutput, error) {
+	req, out := c.ListFunctionUrlConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFunctionUrlConfigsPages iterates over the pages of a ListFunctionUrlConfigs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFunctionUrlConfigs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFunctionUrlConfigs operation.
+//    pageNum := 0
+//    err := client.ListFunctionUrlConfigsPages(params,
+//        func(page *lambda.ListFunctionUrlConfigsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Lambda) ListFunctionUrlConfigsPages(input *ListFunctionUrlConfigsInput, fn func(*ListFunctionUrlConfigsOutput, bool) bool) error {
+	return c.ListFunctionUrlConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFunctionUrlConfigsPagesWithContext same as ListFunctionUrlConfigsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) ListFunctionUrlConfigsPagesWithContext(ctx aws.Context, input *ListFunctionUrlConfigsInput, fn func(*ListFunctionUrlConfigsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFunctionUrlConfigsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFunctionUrlConfigsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFunctionUrlConfigsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6313,6 +6719,95 @@ func (c *Lambda) UpdateFunctionEventInvokeConfigWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opUpdateFunctionUrlConfig = "UpdateFunctionUrlConfig"
+
+// UpdateFunctionUrlConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFunctionUrlConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFunctionUrlConfig for more information on using the UpdateFunctionUrlConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFunctionUrlConfigRequest method.
+//    req, resp := client.UpdateFunctionUrlConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateFunctionUrlConfig
+func (c *Lambda) UpdateFunctionUrlConfigRequest(input *UpdateFunctionUrlConfigInput) (req *request.Request, output *UpdateFunctionUrlConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFunctionUrlConfig,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2021-10-31/functions/{FunctionName}/url",
+	}
+
+	if input == nil {
+		input = &UpdateFunctionUrlConfigInput{}
+	}
+
+	output = &UpdateFunctionUrlConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFunctionUrlConfig API operation for AWS Lambda.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lambda's
+// API operation UpdateFunctionUrlConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceConflictException
+//   The resource already exists, or another operation is in progress.
+//
+//   * ResourceNotFoundException
+//   The resource specified in the request does not exist.
+//
+//   * InvalidParameterValueException
+//   One of the parameters in the request is invalid.
+//
+//   * ServiceException
+//   The Lambda service encountered an internal error.
+//
+//   * TooManyRequestsException
+//   The request throughput limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateFunctionUrlConfig
+func (c *Lambda) UpdateFunctionUrlConfig(input *UpdateFunctionUrlConfigInput) (*UpdateFunctionUrlConfigOutput, error) {
+	req, out := c.UpdateFunctionUrlConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFunctionUrlConfigWithContext is the same as UpdateFunctionUrlConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFunctionUrlConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lambda) UpdateFunctionUrlConfigWithContext(ctx aws.Context, input *UpdateFunctionUrlConfigInput, opts ...request.Option) (*UpdateFunctionUrlConfigOutput, error) {
+	req, out := c.UpdateFunctionUrlConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Limits that are related to concurrency and storage. All file and storage
 // sizes are in bytes.
 type AccountLimit struct {
@@ -7289,6 +7784,76 @@ func (s *CodeVerificationFailedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type Cors struct {
+	_ struct{} `type:"structure"`
+
+	AllowCredentials *bool `type:"boolean"`
+
+	AllowHeaders []*string `type:"list"`
+
+	AllowMethods []*string `type:"list"`
+
+	AllowOrigins []*string `type:"list"`
+
+	ExposeHeaders []*string `type:"list"`
+
+	MaxAge *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cors) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cors) GoString() string {
+	return s.String()
+}
+
+// SetAllowCredentials sets the AllowCredentials field's value.
+func (s *Cors) SetAllowCredentials(v bool) *Cors {
+	s.AllowCredentials = &v
+	return s
+}
+
+// SetAllowHeaders sets the AllowHeaders field's value.
+func (s *Cors) SetAllowHeaders(v []*string) *Cors {
+	s.AllowHeaders = v
+	return s
+}
+
+// SetAllowMethods sets the AllowMethods field's value.
+func (s *Cors) SetAllowMethods(v []*string) *Cors {
+	s.AllowMethods = v
+	return s
+}
+
+// SetAllowOrigins sets the AllowOrigins field's value.
+func (s *Cors) SetAllowOrigins(v []*string) *Cors {
+	s.AllowOrigins = v
+	return s
+}
+
+// SetExposeHeaders sets the ExposeHeaders field's value.
+func (s *Cors) SetExposeHeaders(v []*string) *Cors {
+	s.ExposeHeaders = v
+	return s
+}
+
+// SetMaxAge sets the MaxAge field's value.
+func (s *Cors) SetMaxAge(v int64) *Cors {
+	s.MaxAge = &v
+	return s
+}
+
 type CreateAliasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7523,8 +8088,6 @@ type CreateEventSourceMappingInput struct {
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
 	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
-	//
-	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams only) If the function returns an error, split the batch in two and
@@ -7800,8 +8363,7 @@ type CreateFunctionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instruction set architecture that the function supports. Enter a string
-	// array with one of the valid values (arm64 or x86_64). The default value is
-	// x86_64.
+	// array with one of the valid values. The default value is x86_64.
 	Architectures []*string `min:"1" type:"list"`
 
 	// The code for the function.
@@ -8091,6 +8653,150 @@ func (s *CreateFunctionInput) SetTracingConfig(v *TracingConfig) *CreateFunction
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *CreateFunctionInput) SetVpcConfig(v *VpcConfig) *CreateFunctionInput {
 	s.VpcConfig = v
+	return s
+}
+
+type CreateFunctionUrlConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// AuthorizationType is a required field
+	AuthorizationType *string `type:"string" required:"true" enum:"AuthorizationType"`
+
+	Cors *Cors `type:"structure"`
+
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+
+	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFunctionUrlConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFunctionUrlConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFunctionUrlConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFunctionUrlConfigInput"}
+	if s.AuthorizationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthorizationType"))
+	}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+	if s.Qualifier != nil && len(*s.Qualifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qualifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizationType sets the AuthorizationType field's value.
+func (s *CreateFunctionUrlConfigInput) SetAuthorizationType(v string) *CreateFunctionUrlConfigInput {
+	s.AuthorizationType = &v
+	return s
+}
+
+// SetCors sets the Cors field's value.
+func (s *CreateFunctionUrlConfigInput) SetCors(v *Cors) *CreateFunctionUrlConfigInput {
+	s.Cors = v
+	return s
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *CreateFunctionUrlConfigInput) SetFunctionName(v string) *CreateFunctionUrlConfigInput {
+	s.FunctionName = &v
+	return s
+}
+
+// SetQualifier sets the Qualifier field's value.
+func (s *CreateFunctionUrlConfigInput) SetQualifier(v string) *CreateFunctionUrlConfigInput {
+	s.Qualifier = &v
+	return s
+}
+
+type CreateFunctionUrlConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// AuthorizationType is a required field
+	AuthorizationType *string `type:"string" required:"true" enum:"AuthorizationType"`
+
+	Cors *Cors `type:"structure"`
+
+	// CreationTime is a required field
+	CreationTime *string `type:"string" required:"true"`
+
+	// FunctionArn is a required field
+	FunctionArn *string `type:"string" required:"true"`
+
+	// FunctionUrl is a required field
+	FunctionUrl *string `min:"40" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFunctionUrlConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateFunctionUrlConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizationType sets the AuthorizationType field's value.
+func (s *CreateFunctionUrlConfigOutput) SetAuthorizationType(v string) *CreateFunctionUrlConfigOutput {
+	s.AuthorizationType = &v
+	return s
+}
+
+// SetCors sets the Cors field's value.
+func (s *CreateFunctionUrlConfigOutput) SetCors(v *Cors) *CreateFunctionUrlConfigOutput {
+	s.Cors = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateFunctionUrlConfigOutput) SetCreationTime(v string) *CreateFunctionUrlConfigOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *CreateFunctionUrlConfigOutput) SetFunctionArn(v string) *CreateFunctionUrlConfigOutput {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetFunctionUrl sets the FunctionUrl field's value.
+func (s *CreateFunctionUrlConfigOutput) SetFunctionUrl(v string) *CreateFunctionUrlConfigOutput {
+	s.FunctionUrl = &v
 	return s
 }
 
@@ -8698,6 +9404,86 @@ func (s DeleteFunctionOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteFunctionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteFunctionUrlConfigInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+
+	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFunctionUrlConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFunctionUrlConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFunctionUrlConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFunctionUrlConfigInput"}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+	if s.Qualifier != nil && len(*s.Qualifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qualifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *DeleteFunctionUrlConfigInput) SetFunctionName(v string) *DeleteFunctionUrlConfigInput {
+	s.FunctionName = &v
+	return s
+}
+
+// SetQualifier sets the Qualifier field's value.
+func (s *DeleteFunctionUrlConfigInput) SetQualifier(v string) *DeleteFunctionUrlConfigInput {
+	s.Qualifier = &v
+	return s
+}
+
+type DeleteFunctionUrlConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFunctionUrlConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteFunctionUrlConfigOutput) GoString() string {
 	return s.String()
 }
 
@@ -10465,6 +11251,81 @@ func (s *FunctionEventInvokeConfig) SetMaximumRetryAttempts(v int64) *FunctionEv
 	return s
 }
 
+type FunctionUrlConfig struct {
+	_ struct{} `type:"structure"`
+
+	// AuthorizationType is a required field
+	AuthorizationType *string `type:"string" required:"true" enum:"AuthorizationType"`
+
+	Cors *Cors `type:"structure"`
+
+	// CreationTime is a required field
+	CreationTime *string `type:"string" required:"true"`
+
+	// FunctionArn is a required field
+	FunctionArn *string `type:"string" required:"true"`
+
+	// FunctionUrl is a required field
+	FunctionUrl *string `min:"40" type:"string" required:"true"`
+
+	// LastModifiedTime is a required field
+	LastModifiedTime *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FunctionUrlConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FunctionUrlConfig) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizationType sets the AuthorizationType field's value.
+func (s *FunctionUrlConfig) SetAuthorizationType(v string) *FunctionUrlConfig {
+	s.AuthorizationType = &v
+	return s
+}
+
+// SetCors sets the Cors field's value.
+func (s *FunctionUrlConfig) SetCors(v *Cors) *FunctionUrlConfig {
+	s.Cors = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FunctionUrlConfig) SetCreationTime(v string) *FunctionUrlConfig {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *FunctionUrlConfig) SetFunctionArn(v string) *FunctionUrlConfig {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetFunctionUrl sets the FunctionUrl field's value.
+func (s *FunctionUrlConfig) SetFunctionUrl(v string) *FunctionUrlConfig {
+	s.FunctionUrl = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *FunctionUrlConfig) SetLastModifiedTime(v string) *FunctionUrlConfig {
+	s.LastModifiedTime = &v
+	return s
+}
+
 type GetAccountSettingsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 }
@@ -11294,6 +12155,139 @@ func (s *GetFunctionOutput) SetConfiguration(v *FunctionConfiguration) *GetFunct
 // SetTags sets the Tags field's value.
 func (s *GetFunctionOutput) SetTags(v map[string]*string) *GetFunctionOutput {
 	s.Tags = v
+	return s
+}
+
+type GetFunctionUrlConfigInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+
+	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFunctionUrlConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFunctionUrlConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFunctionUrlConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFunctionUrlConfigInput"}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+	if s.Qualifier != nil && len(*s.Qualifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qualifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *GetFunctionUrlConfigInput) SetFunctionName(v string) *GetFunctionUrlConfigInput {
+	s.FunctionName = &v
+	return s
+}
+
+// SetQualifier sets the Qualifier field's value.
+func (s *GetFunctionUrlConfigInput) SetQualifier(v string) *GetFunctionUrlConfigInput {
+	s.Qualifier = &v
+	return s
+}
+
+type GetFunctionUrlConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// AuthorizationType is a required field
+	AuthorizationType *string `type:"string" required:"true" enum:"AuthorizationType"`
+
+	Cors *Cors `type:"structure"`
+
+	// CreationTime is a required field
+	CreationTime *string `type:"string" required:"true"`
+
+	// FunctionArn is a required field
+	FunctionArn *string `type:"string" required:"true"`
+
+	// FunctionUrl is a required field
+	FunctionUrl *string `min:"40" type:"string" required:"true"`
+
+	// LastModifiedTime is a required field
+	LastModifiedTime *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFunctionUrlConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetFunctionUrlConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizationType sets the AuthorizationType field's value.
+func (s *GetFunctionUrlConfigOutput) SetAuthorizationType(v string) *GetFunctionUrlConfigOutput {
+	s.AuthorizationType = &v
+	return s
+}
+
+// SetCors sets the Cors field's value.
+func (s *GetFunctionUrlConfigOutput) SetCors(v *Cors) *GetFunctionUrlConfigOutput {
+	s.Cors = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *GetFunctionUrlConfigOutput) SetCreationTime(v string) *GetFunctionUrlConfigOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *GetFunctionUrlConfigOutput) SetFunctionArn(v string) *GetFunctionUrlConfigOutput {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetFunctionUrl sets the FunctionUrl field's value.
+func (s *GetFunctionUrlConfigOutput) SetFunctionUrl(v string) *GetFunctionUrlConfigOutput {
+	s.FunctionUrl = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetFunctionUrlConfigOutput) SetLastModifiedTime(v string) *GetFunctionUrlConfigOutput {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -12748,9 +13742,6 @@ type InvokeInput struct {
 
 	// The JSON that you want to provide to your Lambda function as input.
 	//
-	// You can enter the JSON directly. For example, --payload '{ "key": "value"
-	// }'. You can also specify a file path. For example, --payload file://payload.json.
-	//
 	// Payload is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeInput's
 	// String and GoString methods.
@@ -14010,6 +15001,111 @@ func (s *ListFunctionEventInvokeConfigsOutput) SetFunctionEventInvokeConfigs(v [
 
 // SetNextMarker sets the NextMarker field's value.
 func (s *ListFunctionEventInvokeConfigsOutput) SetNextMarker(v string) *ListFunctionEventInvokeConfigsOutput {
+	s.NextMarker = &v
+	return s
+}
+
+type ListFunctionUrlConfigsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFunctionUrlConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFunctionUrlConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFunctionUrlConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFunctionUrlConfigsInput"}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+	if s.MaxItems != nil && *s.MaxItems < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxItems", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *ListFunctionUrlConfigsInput) SetFunctionName(v string) *ListFunctionUrlConfigsInput {
+	s.FunctionName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListFunctionUrlConfigsInput) SetMarker(v string) *ListFunctionUrlConfigsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListFunctionUrlConfigsInput) SetMaxItems(v int64) *ListFunctionUrlConfigsInput {
+	s.MaxItems = &v
+	return s
+}
+
+type ListFunctionUrlConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// FunctionUrlConfigs is a required field
+	FunctionUrlConfigs []*FunctionUrlConfig `type:"list" required:"true"`
+
+	NextMarker *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFunctionUrlConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListFunctionUrlConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFunctionUrlConfigs sets the FunctionUrlConfigs field's value.
+func (s *ListFunctionUrlConfigsOutput) SetFunctionUrlConfigs(v []*FunctionUrlConfig) *ListFunctionUrlConfigsOutput {
+	s.FunctionUrlConfigs = v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListFunctionUrlConfigsOutput) SetNextMarker(v string) *ListFunctionUrlConfigsOutput {
 	s.NextMarker = &v
 	return s
 }
@@ -16784,18 +17880,7 @@ type SourceAccessConfiguration struct {
 	//    for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.
 	//
 	//    * VIRTUAL_HOST - (Amazon MQ) The name of the virtual host in your RabbitMQ
-	//    broker. Lambda uses this RabbitMQ host as the event source. This property
-	//    cannot be specified in an UpdateEventSourceMapping API call.
-	//
-	//    * CLIENT_CERTIFICATE_TLS_AUTH - (Amazon MSK, Self-managed Apache Kafka)
-	//    The Secrets Manager ARN of your secret key containing the certificate
-	//    chain (X.509 PEM), private key (PKCS#8 PEM), and private key password
-	//    (optional) used for mutual TLS authentication of your MSK/Apache Kafka
-	//    brokers.
-	//
-	//    * SERVER_ROOT_CA_CERTIFICATE - (Self-managed Apache Kafka) The Secrets
-	//    Manager ARN of your secret key containing the root CA certificate (X.509
-	//    PEM) used for TLS encryption of your Apache Kafka brokers.
+	//    broker. Lambda uses this RabbitMQ host as the event source.
 	Type *string `type:"string" enum:"SourceAccessType"`
 
 	// The value for your chosen configuration in Type. For example: "URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName".
@@ -17536,8 +18621,6 @@ type UpdateEventSourceMappingInput struct {
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
 	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
-	//
-	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams only) If the function returns an error, split the batch in two and
@@ -17750,8 +18833,7 @@ type UpdateFunctionCodeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instruction set architecture that the function supports. Enter a string
-	// array with one of the valid values (arm64 or x86_64). The default value is
-	// x86_64.
+	// array with one of the valid values. The default value is x86_64.
 	Architectures []*string `min:"1" type:"list"`
 
 	// Set to true to validate the request parameters and access permissions without
@@ -18334,6 +19416,155 @@ func (s *UpdateFunctionEventInvokeConfigOutput) SetMaximumRetryAttempts(v int64)
 	return s
 }
 
+type UpdateFunctionUrlConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	AuthorizationType *string `type:"string" enum:"AuthorizationType"`
+
+	Cors *Cors `type:"structure"`
+
+	// FunctionName is a required field
+	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
+
+	Qualifier *string `location:"querystring" locationName:"Qualifier" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFunctionUrlConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFunctionUrlConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFunctionUrlConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFunctionUrlConfigInput"}
+	if s.FunctionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
+	}
+	if s.FunctionName != nil && len(*s.FunctionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionName", 1))
+	}
+	if s.Qualifier != nil && len(*s.Qualifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Qualifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizationType sets the AuthorizationType field's value.
+func (s *UpdateFunctionUrlConfigInput) SetAuthorizationType(v string) *UpdateFunctionUrlConfigInput {
+	s.AuthorizationType = &v
+	return s
+}
+
+// SetCors sets the Cors field's value.
+func (s *UpdateFunctionUrlConfigInput) SetCors(v *Cors) *UpdateFunctionUrlConfigInput {
+	s.Cors = v
+	return s
+}
+
+// SetFunctionName sets the FunctionName field's value.
+func (s *UpdateFunctionUrlConfigInput) SetFunctionName(v string) *UpdateFunctionUrlConfigInput {
+	s.FunctionName = &v
+	return s
+}
+
+// SetQualifier sets the Qualifier field's value.
+func (s *UpdateFunctionUrlConfigInput) SetQualifier(v string) *UpdateFunctionUrlConfigInput {
+	s.Qualifier = &v
+	return s
+}
+
+type UpdateFunctionUrlConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// AuthorizationType is a required field
+	AuthorizationType *string `type:"string" required:"true" enum:"AuthorizationType"`
+
+	Cors *Cors `type:"structure"`
+
+	// CreationTime is a required field
+	CreationTime *string `type:"string" required:"true"`
+
+	// FunctionArn is a required field
+	FunctionArn *string `type:"string" required:"true"`
+
+	// FunctionUrl is a required field
+	FunctionUrl *string `min:"40" type:"string" required:"true"`
+
+	// LastModifiedTime is a required field
+	LastModifiedTime *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFunctionUrlConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateFunctionUrlConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizationType sets the AuthorizationType field's value.
+func (s *UpdateFunctionUrlConfigOutput) SetAuthorizationType(v string) *UpdateFunctionUrlConfigOutput {
+	s.AuthorizationType = &v
+	return s
+}
+
+// SetCors sets the Cors field's value.
+func (s *UpdateFunctionUrlConfigOutput) SetCors(v *Cors) *UpdateFunctionUrlConfigOutput {
+	s.Cors = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *UpdateFunctionUrlConfigOutput) SetCreationTime(v string) *UpdateFunctionUrlConfigOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFunctionArn sets the FunctionArn field's value.
+func (s *UpdateFunctionUrlConfigOutput) SetFunctionArn(v string) *UpdateFunctionUrlConfigOutput {
+	s.FunctionArn = &v
+	return s
+}
+
+// SetFunctionUrl sets the FunctionUrl field's value.
+func (s *UpdateFunctionUrlConfigOutput) SetFunctionUrl(v string) *UpdateFunctionUrlConfigOutput {
+	s.FunctionUrl = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *UpdateFunctionUrlConfigOutput) SetLastModifiedTime(v string) *UpdateFunctionUrlConfigOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
 // The VPC security groups and subnets that are attached to a Lambda function.
 // For more information, see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
 type VpcConfig struct {
@@ -18439,6 +19670,22 @@ func Architecture_Values() []string {
 	return []string{
 		ArchitectureX8664,
 		ArchitectureArm64,
+	}
+}
+
+const (
+	// AuthorizationTypeNone is a AuthorizationType enum value
+	AuthorizationTypeNone = "NONE"
+
+	// AuthorizationTypeAwsIam is a AuthorizationType enum value
+	AuthorizationTypeAwsIam = "AWS_IAM"
+)
+
+// AuthorizationType_Values returns all elements of the AuthorizationType enum
+func AuthorizationType_Values() []string {
+	return []string{
+		AuthorizationTypeNone,
+		AuthorizationTypeAwsIam,
 	}
 }
 

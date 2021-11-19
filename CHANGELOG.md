@@ -1,3 +1,22 @@
+Release v1.42.9 (2021-11-19)
+===
+
+### Service Client Updates
+* `service/application-insights`: Updates service API
+* `service/appstream`: Updates service API and documentation
+  * Includes APIs for managing resources for Elastic fleets: applications, app blocks, and application-fleet associations.
+* `service/batch`: Updates service documentation
+  * Documentation updates for AWS Batch.
+* `service/cloudformation`: Updates service API and documentation
+  * The StackSets ManagedExecution feature will allow concurrency for non-conflicting StackSet operations and queuing the StackSet operations that conflict at a given time for later execution.
+* `service/lambda`: Updates service API, documentation, and paginators
+  * Add support for Lambda Function URLs. Customers can use Function URLs to create built-in HTTPS endpoints on their functions.
+* `service/medialive`: Updates service API and documentation
+  * This release adds support for specifying a SCTE-35 PID on input. MediaLive now supports SCTE-35 PID selection on inputs containing one or more active SCTE-35 PIDs.
+* `service/redshift`: Updates service API and documentation
+  * Added support of default IAM role for CreateCluster, RestoreFromClusterSnapshot and ModifyClusterIamRoles APIs
+* `service/runtime.lex.v2`: Updates service API and documentation
+
 Release v1.42.8 (2021-11-18)
 ===
 

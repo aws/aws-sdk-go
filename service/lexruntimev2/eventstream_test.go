@@ -462,8 +462,9 @@ func mockStartConversationReadEvents() (
 					},
 				},
 				DialogAction: &DialogAction{
-					SlotToElicit: aws.String("string value goes here"),
-					Type:         aws.String("string value goes here"),
+					SlotElicitationStyle: aws.String("string value goes here"),
+					SlotToElicit:         aws.String("string value goes here"),
+					Type:                 aws.String("string value goes here"),
 				},
 				Intent: &Intent{
 					ConfirmationState: aws.String("string value goes here"),
@@ -988,8 +989,9 @@ func mockStartConversationWriteEvents() (
 					},
 				},
 				DialogAction: &DialogAction{
-					SlotToElicit: aws.String("string value goes here"),
-					Type:         aws.String("string value goes here"),
+					SlotElicitationStyle: aws.String("string value goes here"),
+					SlotToElicit:         aws.String("string value goes here"),
+					Type:                 aws.String("string value goes here"),
 				},
 				Intent: &Intent{
 					ConfirmationState: aws.String("string value goes here"),

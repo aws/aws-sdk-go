@@ -1234,6 +1234,21 @@
         "ActivateTypeInput$MajorVersion": "<p>The major version of this extension you want to activate, if multiple major versions are available. The default is the latest major version. CloudFormation uses the latest available <i>minor</i> version of the major version selected.</p> <p>You can specify <code>MajorVersion</code> or <code>VersionBump</code>, but not both.</p>"
       }
     },
+    "ManagedExecution": {
+      "base": "<p>Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.</p>",
+      "refs": {
+        "CreateStackSetInput$ManagedExecution": "<p>Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.</p>",
+        "StackSet$ManagedExecution": "<p>Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.</p>",
+        "StackSetSummary$ManagedExecution": "<p>Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.</p>",
+        "UpdateStackSetInput$ManagedExecution": "<p>Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.</p>"
+      }
+    },
+    "ManagedExecutionNullable": {
+      "base": null,
+      "refs": {
+        "ManagedExecution$Active": "<p>When <code>true</code>, StackSets performs non-conflicting operations concurrently and queues conflicting operations. After conflicting operations finish, StackSets starts queued operations in request order.</p> <note> <p>If there are already running or queued operations, StackSets queues all incoming operations even if they are non-conflicting.</p> <p>You can't modify your stack set's execution configuration while there are running or queued operations for that stack set.</p> </note> <p>When <code>false</code> (default), StackSets performs one operation at a time in request order.</p>"
+      }
+    },
     "MaxConcurrentCount": {
       "base": null,
       "refs": {
@@ -1586,7 +1601,7 @@
         "DescribeTypeInput$PublicVersionNumber": "<p>The version number of a public third-party extension.</p>",
         "DescribeTypeOutput$PublicVersionNumber": "<p>The version number of a public third-party extension.</p> <p>This applies only if you specify a public extension you have activated in your account, or specify a public extension without specifying a version. For all other extensions, CloudFormation returns <code>null</code>.</p>",
         "DescribeTypeOutput$LatestPublicVersion": "<p>The latest version of a public extension <i>that is available</i> for use.</p> <p>This only applies if you specify a public extension, and you do not specify a version. For all other requests, CloudFormation returns <code>null</code>.</p>",
-        "PublishTypeInput$PublicVersionNumber": "<p>The version number to assign to this version of the extension.</p> <p>Use the following format, and adhere to semantic versioning when assigning a version number to your extension: </p> <p> <code>MAJOR.MINOR.PATCH</code> </p> <p>For more information, see <a href=\"https://semver.org/\">Semantic Versioning 2.0.0</a>.</p> <p>If you do not specify a version number, CloudFormation increments the version number by one minor version release.</p> <p>The first time you publish a type, CloudFormation sets the version number to <code>1.0.0</code>, regardless of the value you specify.</p>",
+        "PublishTypeInput$PublicVersionNumber": "<p>The version number to assign to this version of the extension.</p> <p>Use the following format, and adhere to semantic versioning when assigning a version number to your extension: </p> <p> <code>MAJOR.MINOR.PATCH</code> </p> <p>For more information, see <a href=\"https://semver.org/\">Semantic Versioning 2.0.0</a>.</p> <p>If you do not specify a version number, CloudFormation increments the version number by one minor version release.</p> <p>You cannot specify a version number the first time you publish a type. CloudFormation automatically sets the first version number to be <code>1.0.0</code>.</p>",
         "TypeSummary$PublicVersionNumber": "<p>For public extensions that have been activated for this account and region, the version of the public extension to be used for CloudFormation operations in this account and region.</p> <p>How you specified <code>AutoUpdate</code> when enabling the extension affects whether CloudFormation automatically updates the extention in this account and region when a new version is released. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-auto\">Setting CloudFormation to automatically use new versions of extensions</a> in the <i>CloudFormation User Guide</i>.</p>",
         "TypeSummary$LatestPublicVersion": "<p>For public extensions that have been activated for this account and region, the latest version of the public extension <i>that is available</i>. For any extensions other than activated third-arty extensions, CloudFormation returns <code>null</code>.</p> <p>How you specified <code>AutoUpdate</code> when enabling the extension affects whether CloudFormation automatically updates the extention in this account and region when a new version is released. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-auto\">Setting CloudFormation to automatically use new versions of extensions</a> in the <i>CloudFormation User Guide</i>.</p>",
         "TypeVersionSummary$PublicVersionNumber": "<p>For public extensions that have been activated for this account and region, the version of the public extension to be used for CloudFormation operations in this account and region. For any extensions other than activated third-arty extensions, CloudFormation returns <code>null</code>.</p> <p>How you specified <code>AutoUpdate</code> when enabling the extension affects whether CloudFormation automatically updates the extention in this account and region when a new version is released. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html#registry-public-enable-auto\">Setting CloudFormation to automatically use new versions of extensions</a> in the <i>CloudFormation User Guide</i>.</p>"
@@ -2855,7 +2870,7 @@
     "TypeFilters": {
       "base": "<p>Filter criteria to use in determining which extensions to return.</p>",
       "refs": {
-        "ListTypesInput$Filters": "<p>Filter criteria to use in determining which extensions to return.</p> <p>If you specify a filter, CloudFormation ignores any specified <code>Visibility</code> value when returning the list of types.</p>"
+        "ListTypesInput$Filters": "<p>Filter criteria to use in determining which extensions to return.</p> <p>Filters must be compatible with <code>Visibility</code> to return valid results. For example, specifying <code>AWS_TYPES</code> for <code>Category</code> and <code>PRIVATE</code> for <code>Visibility</code> returns an empty list of types, but specifying <code>PUBLIC</code> for <code>Visibility</code> returns the desired list.</p>"
       }
     },
     "TypeHierarchy": {

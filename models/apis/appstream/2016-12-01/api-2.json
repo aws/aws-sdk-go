@@ -13,6 +13,22 @@
     "uid":"appstream-2016-12-01"
   },
   "operations":{
+    "AssociateApplicationFleet":{
+      "name":"AssociateApplicationFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateApplicationFleetRequest"},
+      "output":{"shape":"AssociateApplicationFleetResult"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
     "AssociateFleet":{
       "name":"AssociateFleet",
       "http":{
@@ -71,6 +87,37 @@
         {"shape":"LimitExceededException"},
         {"shape":"InvalidAccountStatusException"},
         {"shape":"IncompatibleImageException"}
+      ]
+    },
+    "CreateAppBlock":{
+      "name":"CreateAppBlock",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAppBlockRequest"},
+      "output":{"shape":"CreateAppBlockResult"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceAlreadyExistsException"}
+      ]
+    },
+    "CreateApplication":{
+      "name":"CreateApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateApplicationRequest"},
+      "output":{"shape":"CreateApplicationResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "CreateDirectoryConfig":{
@@ -228,6 +275,35 @@
         {"shape":"OperationNotPermittedException"}
       ]
     },
+    "DeleteAppBlock":{
+      "name":"DeleteAppBlock",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAppBlockRequest"},
+      "output":{"shape":"DeleteAppBlockResult"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DeleteApplication":{
+      "name":"DeleteApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteApplicationRequest"},
+      "output":{"shape":"DeleteApplicationResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "DeleteDirectoryConfig":{
       "name":"DeleteDirectoryConfig",
       "http":{
@@ -333,6 +409,45 @@
       "input":{"shape":"DeleteUserRequest"},
       "output":{"shape":"DeleteUserResult"},
       "errors":[
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeAppBlocks":{
+      "name":"DescribeAppBlocks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAppBlocksRequest"},
+      "output":{"shape":"DescribeAppBlocksResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeApplicationFleetAssociations":{
+      "name":"DescribeApplicationFleetAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeApplicationFleetAssociationsRequest"},
+      "output":{"shape":"DescribeApplicationFleetAssociationsResult"},
+      "errors":[
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"OperationNotPermittedException"}
+      ]
+    },
+    "DescribeApplications":{
+      "name":"DescribeApplications",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeApplicationsRequest"},
+      "output":{"shape":"DescribeApplicationsResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -471,6 +586,20 @@
       "output":{"shape":"DisableUserResult"},
       "errors":[
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DisassociateApplicationFleet":{
+      "name":"DisassociateApplicationFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateApplicationFleetRequest"},
+      "output":{"shape":"DisassociateApplicationFleetResult"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"OperationNotPermittedException"}
       ]
     },
     "DisassociateFleet":{
@@ -628,6 +757,20 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateApplication":{
+      "name":"UpdateApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateApplicationRequest"},
+      "output":{"shape":"UpdateApplicationResult"},
+      "errors":[
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateDirectoryConfig":{
       "name":"UpdateDirectoryConfig",
       "http":{
@@ -743,6 +886,27 @@
         "DOMAIN_SMART_CARD_SIGNIN"
       ]
     },
+    "AppBlock":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Arn",
+        "SetupScriptDetails"
+      ],
+      "members":{
+        "Name":{"shape":"String"},
+        "Arn":{"shape":"Arn"},
+        "Description":{"shape":"String"},
+        "DisplayName":{"shape":"String"},
+        "SourceS3Location":{"shape":"S3Location"},
+        "SetupScriptDetails":{"shape":"ScriptDetails"},
+        "CreatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "AppBlocks":{
+      "type":"list",
+      "member":{"shape":"AppBlock"}
+    },
     "Application":{
       "type":"structure",
       "members":{
@@ -752,8 +916,45 @@
         "LaunchPath":{"shape":"String"},
         "LaunchParameters":{"shape":"String"},
         "Enabled":{"shape":"Boolean"},
-        "Metadata":{"shape":"Metadata"}
+        "Metadata":{"shape":"Metadata"},
+        "WorkingDirectory":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "Arn":{"shape":"Arn"},
+        "AppBlockArn":{"shape":"Arn"},
+        "IconS3Location":{"shape":"S3Location"},
+        "Platforms":{"shape":"Platforms"},
+        "InstanceFamilies":{"shape":"StringList"},
+        "CreatedTime":{"shape":"Timestamp"}
       }
+    },
+    "ApplicationAttribute":{
+      "type":"string",
+      "enum":[
+        "LAUNCH_PARAMETERS",
+        "WORKING_DIRECTORY"
+      ]
+    },
+    "ApplicationAttributes":{
+      "type":"list",
+      "member":{"shape":"ApplicationAttribute"},
+      "max":2
+    },
+    "ApplicationFleetAssociation":{
+      "type":"structure",
+      "required":[
+        "FleetName",
+        "ApplicationArn"
+      ],
+      "members":{
+        "FleetName":{"shape":"String"},
+        "ApplicationArn":{"shape":"Arn"}
+      }
+    },
+    "ApplicationFleetAssociationList":{
+      "type":"list",
+      "member":{"shape":"ApplicationFleetAssociation"},
+      "max":25,
+      "min":1
     },
     "ApplicationSettings":{
       "type":"structure",
@@ -787,6 +988,23 @@
     "ArnList":{
       "type":"list",
       "member":{"shape":"Arn"}
+    },
+    "AssociateApplicationFleetRequest":{
+      "type":"structure",
+      "required":[
+        "FleetName",
+        "ApplicationArn"
+      ],
+      "members":{
+        "FleetName":{"shape":"Name"},
+        "ApplicationArn":{"shape":"Arn"}
+      }
+    },
+    "AssociateApplicationFleetResult":{
+      "type":"structure",
+      "members":{
+        "ApplicationFleetAssociation":{"shape":"ApplicationFleetAssociation"}
+      }
     },
     "AssociateFleetRequest":{
       "type":"structure",
@@ -894,6 +1112,58 @@
         "DestinationImageName":{"shape":"Name"}
       }
     },
+    "CreateAppBlockRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "SourceS3Location",
+        "SetupScriptDetails"
+      ],
+      "members":{
+        "Name":{"shape":"Name"},
+        "Description":{"shape":"Description"},
+        "DisplayName":{"shape":"DisplayName"},
+        "SourceS3Location":{"shape":"S3Location"},
+        "SetupScriptDetails":{"shape":"ScriptDetails"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateAppBlockResult":{
+      "type":"structure",
+      "members":{
+        "AppBlock":{"shape":"AppBlock"}
+      }
+    },
+    "CreateApplicationRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "IconS3Location",
+        "LaunchPath",
+        "Platforms",
+        "InstanceFamilies",
+        "AppBlockArn"
+      ],
+      "members":{
+        "Name":{"shape":"Name"},
+        "DisplayName":{"shape":"DisplayName"},
+        "Description":{"shape":"Description"},
+        "IconS3Location":{"shape":"S3Location"},
+        "LaunchPath":{"shape":"String"},
+        "WorkingDirectory":{"shape":"String"},
+        "LaunchParameters":{"shape":"String"},
+        "Platforms":{"shape":"Platforms"},
+        "InstanceFamilies":{"shape":"StringList"},
+        "AppBlockArn":{"shape":"Arn"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateApplicationResult":{
+      "type":"structure",
+      "members":{
+        "Application":{"shape":"Application"}
+      }
+    },
     "CreateDirectoryConfigRequest":{
       "type":"structure",
       "required":[
@@ -916,8 +1186,7 @@
       "type":"structure",
       "required":[
         "Name",
-        "InstanceType",
-        "ComputeCapacity"
+        "InstanceType"
       ],
       "members":{
         "Name":{"shape":"Name"},
@@ -936,7 +1205,10 @@
         "Tags":{"shape":"Tags"},
         "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
         "IamRoleArn":{"shape":"Arn"},
-        "StreamView":{"shape":"StreamView"}
+        "StreamView":{"shape":"StreamView"},
+        "Platform":{"shape":"PlatformType"},
+        "MaxConcurrentSessions":{"shape":"Integer"},
+        "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"}
       }
     },
     "CreateFleetResult":{
@@ -1087,6 +1359,30 @@
       "members":{
       }
     },
+    "DeleteAppBlockRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"Name"}
+      }
+    },
+    "DeleteAppBlockResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteApplicationRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"Name"}
+      }
+    },
+    "DeleteApplicationResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteDirectoryConfigRequest":{
       "type":"structure",
       "required":["DirectoryName"],
@@ -1189,6 +1485,52 @@
     "DeleteUserResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DescribeAppBlocksRequest":{
+      "type":"structure",
+      "members":{
+        "Arns":{"shape":"ArnList"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "DescribeAppBlocksResult":{
+      "type":"structure",
+      "members":{
+        "AppBlocks":{"shape":"AppBlocks"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeApplicationFleetAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "FleetName":{"shape":"Name"},
+        "ApplicationArn":{"shape":"Arn"},
+        "MaxResults":{"shape":"Integer"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeApplicationFleetAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "ApplicationFleetAssociations":{"shape":"ApplicationFleetAssociationList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeApplicationsRequest":{
+      "type":"structure",
+      "members":{
+        "Arns":{"shape":"ArnList"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "DescribeApplicationsResult":{
+      "type":"structure",
+      "members":{
+        "Applications":{"shape":"Applications"},
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeDirectoryConfigsRequest":{
@@ -1398,6 +1740,22 @@
       "members":{
       }
     },
+    "DisassociateApplicationFleetRequest":{
+      "type":"structure",
+      "required":[
+        "FleetName",
+        "ApplicationArn"
+      ],
+      "members":{
+        "FleetName":{"shape":"Name"},
+        "ApplicationArn":{"shape":"Arn"}
+      }
+    },
+    "DisassociateApplicationFleetResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateFleetRequest":{
       "type":"structure",
       "required":[
@@ -1508,7 +1866,10 @@
         "DomainJoinInfo":{"shape":"DomainJoinInfo"},
         "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
         "IamRoleArn":{"shape":"Arn"},
-        "StreamView":{"shape":"StreamView"}
+        "StreamView":{"shape":"StreamView"},
+        "Platform":{"shape":"PlatformType"},
+        "MaxConcurrentSessions":{"shape":"Integer"},
+        "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"}
       }
     },
     "FleetAttribute":{
@@ -1517,7 +1878,8 @@
         "VPC_CONFIGURATION",
         "VPC_CONFIGURATION_SECURITY_GROUP_IDS",
         "DOMAIN_JOIN_INFO",
-        "IAM_ROLE_ARN"
+        "IAM_ROLE_ARN",
+        "USB_DEVICE_FILTER_STRINGS"
       ]
     },
     "FleetAttributes":{
@@ -1587,7 +1949,8 @@
       "type":"string",
       "enum":[
         "ALWAYS_ON",
-        "ON_DEMAND"
+        "ON_DEMAND",
+        "ELASTIC"
       ]
     },
     "Image":{
@@ -1860,6 +2223,11 @@
         "AMAZON_LINUX2"
       ]
     },
+    "Platforms":{
+      "type":"list",
+      "member":{"shape":"PlatformType"},
+      "max":4
+    },
     "RedirectURL":{
       "type":"string",
       "max":1000
@@ -1920,6 +2288,42 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "S3Bucket":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^[0-9a-z\\.\\-]*(?<!\\.)$"
+    },
+    "S3Key":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "S3Location":{
+      "type":"structure",
+      "required":[
+        "S3Bucket",
+        "S3Key"
+      ],
+      "members":{
+        "S3Bucket":{"shape":"S3Bucket"},
+        "S3Key":{"shape":"S3Key"}
+      }
+    },
+    "ScriptDetails":{
+      "type":"structure",
+      "required":[
+        "ScriptS3Location",
+        "ExecutablePath",
+        "TimeoutInSeconds"
+      ],
+      "members":{
+        "ScriptS3Location":{"shape":"S3Location"},
+        "ExecutablePath":{"shape":"String"},
+        "ExecutableParameters":{"shape":"String"},
+        "TimeoutInSeconds":{"shape":"Integer"}
+      }
     },
     "SecurityGroupIdList":{
       "type":"list",
@@ -2213,6 +2617,27 @@
       "members":{
       }
     },
+    "UpdateApplicationRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"Name"},
+        "DisplayName":{"shape":"DisplayName"},
+        "Description":{"shape":"Description"},
+        "IconS3Location":{"shape":"S3Location"},
+        "LaunchPath":{"shape":"String"},
+        "WorkingDirectory":{"shape":"String"},
+        "LaunchParameters":{"shape":"String"},
+        "AppBlockArn":{"shape":"Arn"},
+        "AttributesToDelete":{"shape":"ApplicationAttributes"}
+      }
+    },
+    "UpdateApplicationResult":{
+      "type":"structure",
+      "members":{
+        "Application":{"shape":"Application"}
+      }
+    },
     "UpdateDirectoryConfigRequest":{
       "type":"structure",
       "required":["DirectoryName"],
@@ -2250,7 +2675,10 @@
         "IdleDisconnectTimeoutInSeconds":{"shape":"Integer"},
         "AttributesToDelete":{"shape":"FleetAttributes"},
         "IamRoleArn":{"shape":"Arn"},
-        "StreamView":{"shape":"StreamView"}
+        "StreamView":{"shape":"StreamView"},
+        "Platform":{"shape":"PlatformType"},
+        "MaxConcurrentSessions":{"shape":"Integer"},
+        "UsbDeviceFilterStrings":{"shape":"UsbDeviceFilterStrings"}
       }
     },
     "UpdateFleetResult":{
@@ -2328,6 +2756,16 @@
     "UsageReportSubscriptionList":{
       "type":"list",
       "member":{"shape":"UsageReportSubscription"}
+    },
+    "UsbDeviceFilterString":{
+      "type":"string",
+      "max":100,
+      "min":0,
+      "pattern":"^((\\w*)\\s*(\\w*)\\s*\\,\\s*(\\w*)\\s*\\,\\s*\\*?(\\w*)\\s*\\,\\s*\\*?(\\w*)\\s*\\,\\s*\\*?\\d*\\s*\\,\\s*\\*?\\d*\\s*\\,\\s*[0-1]\\s*\\,\\s*[0-1]\\s*)$"
+    },
+    "UsbDeviceFilterStrings":{
+      "type":"list",
+      "member":{"shape":"UsbDeviceFilterString"}
     },
     "User":{
       "type":"structure",

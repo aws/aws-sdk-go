@@ -8705,6 +8705,10 @@ type CreateStackSetInput struct {
 	// which stack resources users and groups can include in their stack sets.
 	ExecutionRoleName *string `min:"1" type:"string"`
 
+	// Describes whether StackSets performs non-conflicting operations concurrently
+	// and queues conflicting operations.
+	ManagedExecution *ManagedExecution `type:"structure"`
+
 	// The input parameters for the stack set template.
 	Parameters []*Parameter `type:"list"`
 
@@ -8862,6 +8866,12 @@ func (s *CreateStackSetInput) SetDescription(v string) *CreateStackSetInput {
 // SetExecutionRoleName sets the ExecutionRoleName field's value.
 func (s *CreateStackSetInput) SetExecutionRoleName(v string) *CreateStackSetInput {
 	s.ExecutionRoleName = &v
+	return s
+}
+
+// SetManagedExecution sets the ManagedExecution field's value.
+func (s *CreateStackSetInput) SetManagedExecution(v *ManagedExecution) *CreateStackSetInput {
+	s.ManagedExecution = v
 	return s
 }
 
@@ -14575,8 +14585,9 @@ type ListTypesInput struct {
 
 	// Filter criteria to use in determining which extensions to return.
 	//
-	// If you specify a filter, CloudFormation ignores any specified Visibility
-	// value when returning the list of types.
+	// Filters must be compatible with Visibility to return valid results. For example,
+	// specifying AWS_TYPES for Category and PRIVATE for Visibility returns an empty
+	// list of types, but specifying PUBLIC for Visibility returns the desired list.
 	Filters *TypeFilters `type:"structure"`
 
 	// The maximum number of results to be returned with a single call. If the number
@@ -14823,6 +14834,50 @@ func (s *LoggingConfig) SetLogGroupName(v string) *LoggingConfig {
 // SetLogRoleArn sets the LogRoleArn field's value.
 func (s *LoggingConfig) SetLogRoleArn(v string) *LoggingConfig {
 	s.LogRoleArn = &v
+	return s
+}
+
+// Describes whether StackSets performs non-conflicting operations concurrently
+// and queues conflicting operations.
+type ManagedExecution struct {
+	_ struct{} `type:"structure"`
+
+	// When true, StackSets performs non-conflicting operations concurrently and
+	// queues conflicting operations. After conflicting operations finish, StackSets
+	// starts queued operations in request order.
+	//
+	// If there are already running or queued operations, StackSets queues all incoming
+	// operations even if they are non-conflicting.
+	//
+	// You can't modify your stack set's execution configuration while there are
+	// running or queued operations for that stack set.
+	//
+	// When false (default), StackSets performs one operation at a time in request
+	// order.
+	Active *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedExecution) GoString() string {
+	return s.String()
+}
+
+// SetActive sets the Active field's value.
+func (s *ManagedExecution) SetActive(v bool) *ManagedExecution {
+	s.Active = &v
 	return s
 }
 
@@ -15275,8 +15330,8 @@ type PublishTypeInput struct {
 	// If you do not specify a version number, CloudFormation increments the version
 	// number by one minor version release.
 	//
-	// The first time you publish a type, CloudFormation sets the version number
-	// to 1.0.0, regardless of the value you specify.
+	// You cannot specify a version number the first time you publish a type. CloudFormation
+	// automatically sets the first version number to be 1.0.0.
 	PublicVersionNumber *string `min:"5" type:"string"`
 
 	// The type of the extension.
@@ -18716,6 +18771,10 @@ type StackSet struct {
 	// groups can include in their stack sets.
 	ExecutionRoleName *string `min:"1" type:"string"`
 
+	// Describes whether StackSets performs non-conflicting operations concurrently
+	// and queues conflicting operations.
+	ManagedExecution *ManagedExecution `type:"structure"`
+
 	// [Service-managed permissions] The organization root ID or organizational
 	// unit (OU) IDs that you specified for DeploymentTargets (https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DeploymentTargets.html).
 	OrganizationalUnitIds []*string `type:"list"`
@@ -18807,6 +18866,12 @@ func (s *StackSet) SetDescription(v string) *StackSet {
 // SetExecutionRoleName sets the ExecutionRoleName field's value.
 func (s *StackSet) SetExecutionRoleName(v string) *StackSet {
 	s.ExecutionRoleName = &v
+	return s
+}
+
+// SetManagedExecution sets the ManagedExecution field's value.
+func (s *StackSet) SetManagedExecution(v *ManagedExecution) *StackSet {
+	s.ManagedExecution = v
 	return s
 }
 
@@ -19578,6 +19643,10 @@ type StackSetSummary struct {
 	// detection has not yet been performed.
 	LastDriftCheckTimestamp *time.Time `type:"timestamp"`
 
+	// Describes whether StackSets performs non-conflicting operations concurrently
+	// and queues conflicting operations.
+	ManagedExecution *ManagedExecution `type:"structure"`
+
 	// Describes how the IAM roles required for stack set operations are created.
 	//
 	//    * With self-managed permissions, you must create the administrator and
@@ -19638,6 +19707,12 @@ func (s *StackSetSummary) SetDriftStatus(v string) *StackSetSummary {
 // SetLastDriftCheckTimestamp sets the LastDriftCheckTimestamp field's value.
 func (s *StackSetSummary) SetLastDriftCheckTimestamp(v time.Time) *StackSetSummary {
 	s.LastDriftCheckTimestamp = &v
+	return s
+}
+
+// SetManagedExecution sets the ManagedExecution field's value.
+func (s *StackSetSummary) SetManagedExecution(v *ManagedExecution) *StackSetSummary {
+	s.ManagedExecution = v
 	return s
 }
 
@@ -21510,6 +21585,10 @@ type UpdateStackSetInput struct {
 	// so long as you have permissions to perform operations on the stack set.
 	ExecutionRoleName *string `min:"1" type:"string"`
 
+	// Describes whether StackSets performs non-conflicting operations concurrently
+	// and queues conflicting operations.
+	ManagedExecution *ManagedExecution `type:"structure"`
+
 	// The unique ID for this stack set operation.
 	//
 	// The operation ID also functions as an idempotency token, to ensure that CloudFormation
@@ -21733,6 +21812,12 @@ func (s *UpdateStackSetInput) SetDescription(v string) *UpdateStackSetInput {
 // SetExecutionRoleName sets the ExecutionRoleName field's value.
 func (s *UpdateStackSetInput) SetExecutionRoleName(v string) *UpdateStackSetInput {
 	s.ExecutionRoleName = &v
+	return s
+}
+
+// SetManagedExecution sets the ManagedExecution field's value.
+func (s *UpdateStackSetInput) SetManagedExecution(v *ManagedExecution) *UpdateStackSetInput {
+	s.ManagedExecution = v
 	return s
 }
 

@@ -13032,7 +13032,7 @@ type AuthorizeDataShareInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the data consumer that is authorized to access the datashare.
-	// This identifier is an AWS account ID.
+	// This identifier is an Amazon Web Services account ID.
 	//
 	// ConsumerIdentifier is a required field
 	ConsumerIdentifier *string `type:"string" required:"true"`
@@ -14047,6 +14047,9 @@ type Cluster struct {
 	// with an incremental resize.
 	DataTransferProgress *DataTransferProgress `type:"structure"`
 
+	// The Amazon Resource Name (ARN) for the IAM role set as default for the cluster.
+	DefaultIamRoleArn *string `type:"string"`
+
 	// Describes a group of DeferredMaintenanceWindow objects.
 	DeferredMaintenanceWindows []*DeferredMaintenanceWindow `locationNameList:"DeferredMaintenanceWindow" type:"list"`
 
@@ -14311,6 +14314,12 @@ func (s *Cluster) SetDBName(v string) *Cluster {
 // SetDataTransferProgress sets the DataTransferProgress field's value.
 func (s *Cluster) SetDataTransferProgress(v *DataTransferProgress) *Cluster {
 	s.DataTransferProgress = v
+	return s
+}
+
+// SetDefaultIamRoleArn sets the DefaultIamRoleArn field's value.
+func (s *Cluster) SetDefaultIamRoleArn(v string) *Cluster {
+	s.DefaultIamRoleArn = &v
 	return s
 }
 
@@ -15613,6 +15622,10 @@ type CreateClusterInput struct {
 	//    in the Amazon Redshift Database Developer Guide.
 	DBName *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) for the IAM role that was set as default for
+	// the cluster when the cluster was created.
+	DefaultIamRoleArn *string `type:"string"`
+
 	// The Elastic IP (EIP) address for the cluster.
 	//
 	// Constraints: The cluster must be provisioned in EC2-VPC and publicly-accessible
@@ -15887,6 +15900,12 @@ func (s *CreateClusterInput) SetClusterVersion(v string) *CreateClusterInput {
 // SetDBName sets the DBName field's value.
 func (s *CreateClusterInput) SetDBName(v string) *CreateClusterInput {
 	s.DBName = &v
+	return s
+}
+
+// SetDefaultIamRoleArn sets the DefaultIamRoleArn field's value.
+func (s *CreateClusterInput) SetDefaultIamRoleArn(v string) *CreateClusterInput {
+	s.DefaultIamRoleArn = &v
 	return s
 }
 
@@ -18230,7 +18249,7 @@ type DeauthorizeDataShareInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the data consumer that is to have authorization removed
-	// from the datashare. This identifier is an AWS account ID.
+	// from the datashare. This identifier is an Amazon Web Services account ID.
 	//
 	// ConsumerIdentifier is a required field
 	ConsumerIdentifier *string `type:"string" required:"true"`
@@ -21282,10 +21301,10 @@ type DescribeDataSharesForConsumerInput struct {
 
 	// An optional parameter that specifies the starting point to return a set of
 	// response records. When the results of a DescribeDataSharesForConsumer request
-	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
-	// field of the response. You can retrieve the next set of response records
-	// by providing the returned marker value in the Marker parameter and retrying
-	// the request.
+	// exceed the value specified in MaxRecords, Amazon Web Services returns a value
+	// in the Marker field of the response. You can retrieve the next set of response
+	// records by providing the returned marker value in the Marker parameter and
+	// retrying the request.
 	Marker *string `type:"string"`
 
 	// The maximum number of response records to return in each call. If the number
@@ -21350,10 +21369,10 @@ type DescribeDataSharesForConsumerOutput struct {
 
 	// An optional parameter that specifies the starting point to return a set of
 	// response records. When the results of a DescribeDataSharesForConsumer request
-	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
-	// field of the response. You can retrieve the next set of response records
-	// by providing the returned marker value in the Marker parameter and retrying
-	// the request.
+	// exceed the value specified in MaxRecords, Amazon Web Services returns a value
+	// in the Marker field of the response. You can retrieve the next set of response
+	// records by providing the returned marker value in the Marker parameter and
+	// retrying the request.
 	Marker *string `type:"string"`
 }
 
@@ -21392,10 +21411,10 @@ type DescribeDataSharesForProducerInput struct {
 
 	// An optional parameter that specifies the starting point to return a set of
 	// response records. When the results of a DescribeDataSharesForProducer request
-	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
-	// field of the response. You can retrieve the next set of response records
-	// by providing the returned marker value in the Marker parameter and retrying
-	// the request.
+	// exceed the value specified in MaxRecords, Amazon Web Services returns a value
+	// in the Marker field of the response. You can retrieve the next set of response
+	// records by providing the returned marker value in the Marker parameter and
+	// retrying the request.
 	Marker *string `type:"string"`
 
 	// The maximum number of response records to return in each call. If the number
@@ -21464,10 +21483,10 @@ type DescribeDataSharesForProducerOutput struct {
 
 	// An optional parameter that specifies the starting point to return a set of
 	// response records. When the results of a DescribeDataSharesForProducer request
-	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
-	// field of the response. You can retrieve the next set of response records
-	// by providing the returned marker value in the Marker parameter and retrying
-	// the request.
+	// exceed the value specified in MaxRecords, Amazon Web Services returns a value
+	// in the Marker field of the response. You can retrieve the next set of response
+	// records by providing the returned marker value in the Marker parameter and
+	// retrying the request.
 	Marker *string `type:"string"`
 }
 
@@ -21509,9 +21528,10 @@ type DescribeDataSharesInput struct {
 
 	// An optional parameter that specifies the starting point to return a set of
 	// response records. When the results of a DescribeDataShares request exceed
-	// the value specified in MaxRecords, AWS returns a value in the Marker field
-	// of the response. You can retrieve the next set of response records by providing
-	// the returned marker value in the Marker parameter and retrying the request.
+	// the value specified in MaxRecords, Amazon Web Services returns a value in
+	// the Marker field of the response. You can retrieve the next set of response
+	// records by providing the returned marker value in the Marker parameter and
+	// retrying the request.
 	Marker *string `type:"string"`
 
 	// The maximum number of response records to return in each call. If the number
@@ -21565,9 +21585,10 @@ type DescribeDataSharesOutput struct {
 
 	// An optional parameter that specifies the starting point to return a set of
 	// response records. When the results of a DescribeDataShares request exceed
-	// the value specified in MaxRecords, AWS returns a value in the Marker field
-	// of the response. You can retrieve the next set of response records by providing
-	// the returned marker value in the Marker parameter and retrying the request.
+	// the value specified in MaxRecords, Amazon Web Services returns a value in
+	// the Marker field of the response. You can retrieve the next set of response
+	// records by providing the returned marker value in the Marker parameter and
+	// retrying the request.
 	Marker *string `type:"string"`
 }
 
@@ -26604,6 +26625,10 @@ type ModifyClusterIamRolesInput struct {
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
+	// The Amazon Resource Name (ARN) for the IAM role that was set as default for
+	// the cluster when the cluster was last modified.
+	DefaultIamRoleArn *string `type:"string"`
+
 	// Zero or more IAM roles in ARN format to disassociate from the cluster. You
 	// can disassociate up to 10 IAM roles from a single cluster in a single request.
 	RemoveIamRoles []*string `locationNameList:"IamRoleArn" type:"list"`
@@ -26649,6 +26674,12 @@ func (s *ModifyClusterIamRolesInput) SetAddIamRoles(v []*string) *ModifyClusterI
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *ModifyClusterIamRolesInput) SetClusterIdentifier(v string) *ModifyClusterIamRolesInput {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetDefaultIamRoleArn sets the DefaultIamRoleArn field's value.
+func (s *ModifyClusterIamRolesInput) SetDefaultIamRoleArn(v string) *ModifyClusterIamRolesInput {
+	s.DefaultIamRoleArn = &v
 	return s
 }
 
@@ -30307,6 +30338,11 @@ type RestoreFromClusterSnapshotInput struct {
 	// must provide subnet group name where you want the cluster restored.
 	ClusterSubnetGroupName *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) for the IAM role that was set as default for
+	// the cluster when the cluster was last modified while it was restored from
+	// a snapshot.
+	DefaultIamRoleArn *string `type:"string"`
+
 	// The elastic IP (EIP) address for the cluster.
 	ElasticIp *string `type:"string"`
 
@@ -30520,6 +30556,12 @@ func (s *RestoreFromClusterSnapshotInput) SetClusterSecurityGroups(v []*string) 
 // SetClusterSubnetGroupName sets the ClusterSubnetGroupName field's value.
 func (s *RestoreFromClusterSnapshotInput) SetClusterSubnetGroupName(v string) *RestoreFromClusterSnapshotInput {
 	s.ClusterSubnetGroupName = &v
+	return s
+}
+
+// SetDefaultIamRoleArn sets the DefaultIamRoleArn field's value.
+func (s *RestoreFromClusterSnapshotInput) SetDefaultIamRoleArn(v string) *RestoreFromClusterSnapshotInput {
+	s.DefaultIamRoleArn = &v
 	return s
 }
 

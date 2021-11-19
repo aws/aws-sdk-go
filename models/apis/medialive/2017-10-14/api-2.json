@@ -8131,6 +8131,10 @@
           "shape": "NetworkInputSettings",
           "locationName": "networkInputSettings"
         },
+        "Scte35Pid": {
+          "shape": "__integerMin32Max8191",
+          "locationName": "scte35Pid"
+        },
         "Smpte2038DataPreference": {
           "shape": "Smpte2038DataPreference",
           "locationName": "smpte2038DataPreference"
@@ -13080,6 +13084,11 @@
     "__integerMin30": {
       "type": "integer",
       "min": 30
+    },
+    "__integerMin32Max8191": {
+      "type": "integer",
+      "min": 32,
+      "max": 8191
     },
     "__integerMin4Max20": {
       "type": "integer",

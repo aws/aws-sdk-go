@@ -1406,7 +1406,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "ManagedExecution":{"shape":"ManagedExecution"}
       }
     },
     "CreateStackSetOutput":{
@@ -2379,6 +2380,13 @@
       "max":100000,
       "min":1
     },
+    "ManagedExecution":{
+      "type":"structure",
+      "members":{
+        "Active":{"shape":"ManagedExecutionNullable"}
+      }
+    },
+    "ManagedExecutionNullable":{"type":"boolean"},
     "MaxConcurrentCount":{
       "type":"integer",
       "min":1
@@ -3453,7 +3461,8 @@
         "StackSetDriftDetectionDetails":{"shape":"StackSetDriftDetectionDetails"},
         "AutoDeployment":{"shape":"AutoDeployment"},
         "PermissionModel":{"shape":"PermissionModels"},
-        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"}
+        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"},
+        "ManagedExecution":{"shape":"ManagedExecution"}
       }
     },
     "StackSetARN":{"type":"string"},
@@ -3624,7 +3633,8 @@
         "AutoDeployment":{"shape":"AutoDeployment"},
         "PermissionModel":{"shape":"PermissionModels"},
         "DriftStatus":{"shape":"StackDriftStatus"},
-        "LastDriftCheckTimestamp":{"shape":"Timestamp"}
+        "LastDriftCheckTimestamp":{"shape":"Timestamp"},
+        "ManagedExecution":{"shape":"ManagedExecution"}
       }
     },
     "StackStatus":{
@@ -4088,7 +4098,8 @@
         },
         "Accounts":{"shape":"AccountList"},
         "Regions":{"shape":"RegionList"},
-        "CallAs":{"shape":"CallAs"}
+        "CallAs":{"shape":"CallAs"},
+        "ManagedExecution":{"shape":"ManagedExecution"}
       }
     },
     "UpdateStackSetOutput":{

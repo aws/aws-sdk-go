@@ -19401,6 +19401,10 @@ type InputSettings struct {
 	// Input settings.
 	NetworkInputSettings *NetworkInputSettings `locationName:"networkInputSettings" type:"structure"`
 
+	// PID from which to read SCTE-35 messages. If left undefined, EML will select
+	// the first SCTE-35 PID found in the input.
+	Scte35Pid *int64 `locationName:"scte35Pid" min:"32" type:"integer"`
+
 	// Specifies whether to extract applicable ancillary data from a SMPTE-2038
 	// source in this input. Applicable data types are captions, timecode, AFD,
 	// and SCTE-104 messages.- PREFER: Extract from SMPTE-2038 if present in this
@@ -19439,6 +19443,9 @@ func (s *InputSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "InputSettings"}
 	if s.FilterStrength != nil && *s.FilterStrength < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("FilterStrength", 1))
+	}
+	if s.Scte35Pid != nil && *s.Scte35Pid < 32 {
+		invalidParams.Add(request.NewErrParamMinValue("Scte35Pid", 32))
 	}
 	if s.AudioSelectors != nil {
 		for i, v := range s.AudioSelectors {
@@ -19506,6 +19513,12 @@ func (s *InputSettings) SetInputFilter(v string) *InputSettings {
 // SetNetworkInputSettings sets the NetworkInputSettings field's value.
 func (s *InputSettings) SetNetworkInputSettings(v *NetworkInputSettings) *InputSettings {
 	s.NetworkInputSettings = v
+	return s
+}
+
+// SetScte35Pid sets the Scte35Pid field's value.
+func (s *InputSettings) SetScte35Pid(v int64) *InputSettings {
+	s.Scte35Pid = &v
 	return s
 }
 

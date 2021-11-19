@@ -632,7 +632,7 @@ func (c *Batch) DeleteSchedulingPolicyRequest(input *DeleteSchedulingPolicyInput
 //
 // Deletes the specified scheduling policy.
 //
-// You can't delete a scheduling policy that is used in any job queues.
+// You can't delete a scheduling policy that's used in any job queues.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2867,8 +2867,9 @@ type ComputeEnvironmentDetail struct {
 	// ComputeEnvironmentArn is a required field
 	ComputeEnvironmentArn *string `locationName:"computeEnvironmentArn" type:"string" required:"true"`
 
-	// The name of the compute environment. Up to 128 letters (uppercase and lowercase),
-	// numbers, hyphens, and underscores are allowed.
+	// The name of the compute environment. It can be up to 128 letters long. It
+	// can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores
+	// (_).
 	//
 	// ComputeEnvironmentName is a required field
 	ComputeEnvironmentName *string `locationName:"computeEnvironmentName" type:"string" required:"true"`
@@ -4459,8 +4460,9 @@ func (s *ContainerSummary) SetReason(v string) *ContainerSummary {
 type CreateComputeEnvironmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name for your compute environment. Up to 128 letters (uppercase and lowercase),
-	// numbers, hyphens, and underscores are allowed.
+	// The name for your compute environment. It can be up to 128 letters long.
+	// It can contain uppercase and lowercase letters, numbers, hyphens (-), and
+	// underscores (_).
 	//
 	// ComputeEnvironmentName is a required field
 	ComputeEnvironmentName *string `locationName:"computeEnvironmentName" type:"string" required:"true"`
@@ -4531,8 +4533,8 @@ type CreateComputeEnvironmentInput struct {
 
 	// The maximum number of vCPUs for an unmanaged compute environment. This parameter
 	// is only used for fair share scheduling to reserve vCPU capacity for new share
-	// identifiers. If this parameter is not provided for a fair share job queue,
-	// no vCPU capacity will be reserved.
+	// identifiers. If this parameter isn't provided for a fair share job queue,
+	// no vCPU capacity is reserved.
 	//
 	// This parameter is only supported when the type parameter is set to UNMANAGED/
 	UnmanagedvCpus *int64 `locationName:"unmanagedvCpus" type:"integer"`
@@ -4628,8 +4630,9 @@ type CreateComputeEnvironmentOutput struct {
 	// The Amazon Resource Name (ARN) of the compute environment.
 	ComputeEnvironmentArn *string `locationName:"computeEnvironmentArn" type:"string"`
 
-	// The name of the compute environment. Up to 128 letters (uppercase and lowercase),
-	// numbers, hyphens, and underscores are allowed.
+	// The name of the compute environment. It can be up to 128 letters long. It
+	// can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores
+	// (_).
 	ComputeEnvironmentName *string `locationName:"computeEnvironmentName" type:"string"`
 }
 
@@ -4682,8 +4685,8 @@ type CreateJobQueueInput struct {
 	// ComputeEnvironmentOrder is a required field
 	ComputeEnvironmentOrder []*ComputeEnvironmentOrder `locationName:"computeEnvironmentOrder" type:"list" required:"true"`
 
-	// The name of the job queue. Up to 128 letters (uppercase and lowercase), numbers,
-	// and underscores are allowed.
+	// The name of the job queue. It can be up to 128 letters long. It can contain
+	// uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).
 	//
 	// JobQueueName is a required field
 	JobQueueName *string `locationName:"jobQueueName" type:"string" required:"true"`
@@ -4699,12 +4702,12 @@ type CreateJobQueueInput struct {
 	// Priority is a required field
 	Priority *int64 `locationName:"priority" type:"integer" required:"true"`
 
-	// Amazon Resource Name (ARN) of the fair share scheduling policy. If this parameter
-	// is specified, the job queue will use a fair share scheduling policy. If this
-	// parameter is not specified, the job queue will use a first in, first out
-	// (FIFO) scheduling policy. Once a job queue is created, the fair share scheduling
-	// policy can be replaced but not removed. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name
-	// . For example, aws:aws:batch:us-west-2:012345678910:scheduling-policy/MySchedulingPolicy.
+	// The Amazon Resource Name (ARN) of the fair share scheduling policy. If this
+	// parameter is specified, the job queue uses a fair share scheduling policy.
+	// If this parameter isn't specified, the job queue uses a first in, first out
+	// (FIFO) scheduling policy. After a job queue is created, you can replace but
+	// can't remove the fair share scheduling policy. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name
+	// . An example is aws:aws:batch:us-west-2:012345678910:scheduling-policy/MySchedulingPolicy.
 	SchedulingPolicyArn *string `locationName:"schedulingPolicyArn" type:"string"`
 
 	// The state of the job queue. If the job queue state is ENABLED, it is able
@@ -4855,8 +4858,9 @@ type CreateSchedulingPolicyInput struct {
 	// The fair share policy of the scheduling policy.
 	FairsharePolicy *FairsharePolicy `locationName:"fairsharePolicy" type:"structure"`
 
-	// The name of the scheduling policy. Up to 128 letters (uppercase and lowercase),
-	// numbers, hyphens, and underscores are allowed.
+	// The name of the scheduling policy. It can be up to 128 letters long. It can
+	// contain uppercase and lowercase letters, numbers, hyphens (-), and underscores
+	// (_).
 	//
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
@@ -5364,7 +5368,7 @@ type DescribeJobDefinitionsInput struct {
 	JobDefinitionName *string `locationName:"jobDefinitionName" type:"string"`
 
 	// A list of up to 100 job definitions. Each entry in the list can either be
-	// an ARN of the form arn:aws:batch:${Region}:${Account}:job-definition/${JobDefinitionName}:${Revision}
+	// an ARN in the format arn:aws:batch:${Region}:${Account}:job-definition/${JobDefinitionName}:${Revision}
 	// or a short version using the form ${JobDefinitionName}:${Revision}.
 	JobDefinitions []*string `locationName:"jobDefinitions" type:"list"`
 
@@ -6173,16 +6177,14 @@ type FairsharePolicy struct {
 
 	// The time period to use to calculate a fair share percentage for each fair
 	// share identifier in use, in seconds. A value of zero (0) indicates that only
-	// current usage should be measured; if there are four evenly weighted fair
-	// share identifiers then each can only use up to 25% of the available CPU resources,
-	// even if some of the fair share identifiers have no currently running jobs.
-	// The decay allows for more recently run jobs to have more weight than jobs
-	// that ran earlier. The maximum supported value is 604800 (1 week).
+	// current usage should be measured. The decay allows for more recently run
+	// jobs to have more weight than jobs that ran earlier. The maximum supported
+	// value is 604800 (1 week).
 	ShareDecaySeconds *int64 `locationName:"shareDecaySeconds" type:"integer"`
 
-	// Array of SharedIdentifier objects that contain the weights for the fair share
-	// identifiers for the fair share policy. Fair share identifiers that are not
-	// included have a default weight of 1.0.
+	// An array of SharedIdentifier objects that contain the weights for the fair
+	// share identifiers for the fair share policy. Fair share identifiers that
+	// aren't included have a default weight of 1.0.
 	ShareDistribution []*ShareAttributes `locationName:"shareDistribution" type:"list"`
 }
 
@@ -6376,9 +6378,9 @@ type JobDefinition struct {
 	// Revision is a required field
 	Revision *int64 `locationName:"revision" type:"integer" required:"true"`
 
-	// The scheduling priority of the job definition. This will only affect jobs
-	// in job queues with a fair share policy. Jobs with a higher scheduling priority
-	// will be scheduled before jobs with a lower scheduling priority.
+	// The scheduling priority of the job definition. This only affects jobs in
+	// job queues with a fair share policy. Jobs with a higher scheduling priority
+	// are scheduled before jobs with a lower scheduling priority.
 	SchedulingPriority *int64 `locationName:"schedulingPriority" type:"integer"`
 
 	// The status of the job definition.
@@ -6621,9 +6623,9 @@ type JobDetail struct {
 	// The retry strategy to use for this job if an attempt fails.
 	RetryStrategy *RetryStrategy `locationName:"retryStrategy" type:"structure"`
 
-	// The scheduling policy of the job definition. This will only affect jobs in
-	// job queues with a fair share policy. Jobs with a higher scheduling priority
-	// will be scheduled before jobs with a lower scheduling priority.
+	// The scheduling policy of the job definition. This only affects jobs in job
+	// queues with a fair share policy. Jobs with a higher scheduling priority are
+	// scheduled before jobs with a lower scheduling priority.
 	SchedulingPriority *int64 `locationName:"schedulingPriority" type:"integer"`
 
 	// The share identifier for the job.
@@ -6855,7 +6857,7 @@ type JobQueueDetail struct {
 	// Priority is a required field
 	Priority *int64 `locationName:"priority" type:"integer" required:"true"`
 
-	// Amazon Resource Name (ARN) of the scheduling policy. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name
+	// The Amazon Resource Name (ARN) of the scheduling policy. The format is aws:Partition:batch:Region:Account:scheduling-policy/Name
 	// . For example, aws:aws:batch:us-west-2:012345678910:scheduling-policy/MySchedulingPolicy.
 	SchedulingPolicyArn *string `locationName:"schedulingPolicyArn" type:"string"`
 
@@ -6962,10 +6964,10 @@ type JobSummary struct {
 	// the job.
 	Container *ContainerSummary `locationName:"container" type:"structure"`
 
-	// The Unix timestamp for when the job was created. For non-array jobs and parent
-	// array jobs, this is when the job entered the SUBMITTED state (at the time
-	// SubmitJob was called). For array child jobs, this is when the child job was
-	// spawned by its parent and entered the PENDING state.
+	// The Unix timestamp (in milliseconds) for when the job was created. For non-array
+	// jobs and parent array jobs, this is when the job entered the SUBMITTED state
+	// (at the time SubmitJob was called). For array child jobs, this is when the
+	// child job was spawned by its parent and entered the PENDING state.
 	CreatedAt *int64 `locationName:"createdAt" type:"long"`
 
 	// The Amazon Resource Name (ARN) of the job.
@@ -7492,13 +7494,15 @@ type ListJobsInput struct {
 	//
 	// The value for the filter is the time that's before the job was created. This
 	// corresponds to the createdAt value. The value is a string representation
-	// of the number of seconds since 00:00:00 UTC (midnight) on January 1, 1970.
+	// of the number of milliseconds since 00:00:00 UTC (midnight) on January 1,
+	// 1970.
 	//
 	// AFTER_CREATED_AT
 	//
 	// The value for the filter is the time that's after the job was created. This
 	// corresponds to the createdAt value. The value is a string representation
-	// of the number of seconds since 00:00:00 UTC (midnight) on January 1, 1970.
+	// of the number of milliseconds since 00:00:00 UTC (midnight) on January 1,
+	// 1970.
 	Filters []*KeyValuesPair `locationName:"filters" type:"list"`
 
 	// The name or full Amazon Resource Name (ARN) of the job queue used to list
@@ -7642,16 +7646,16 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 type ListSchedulingPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results returned by ListSchedulingPolicies in paginated
-	// output. When this parameter is used, ListSchedulingPolicies only returns
-	// maxResults results in a single page and a nextToken response element. The
-	// remaining results of the initial request can be seen by sending another ListSchedulingPolicies
-	// request with the returned nextToken value. This value can be between 1 and
-	// 100. If this parameter isn't used, then ListSchedulingPolicies returns up
-	// to 100 results and a nextToken value if applicable.
+	// The maximum number of results that's returned by ListSchedulingPolicies in
+	// paginated output. When this parameter is used, ListSchedulingPolicies only
+	// returns maxResults results in a single page and a nextToken response element.
+	// You can see the remaining results of the initial request by sending another
+	// ListSchedulingPolicies request with the returned nextToken value. This value
+	// can be between 1 and 100. If this parameter isn't used, ListSchedulingPolicies
+	// returns up to 100 results and a nextToken value if applicable.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
-	// The nextToken value returned from a previous paginated ListSchedulingPolicies
+	// The nextToken value that's returned from a previous paginated ListSchedulingPolicies
 	// request where maxResults was used and the results exceeded the value of that
 	// parameter. Pagination continues from the end of the previous results that
 	// returned the nextToken value. This value is null when there are no more results
@@ -8511,8 +8515,9 @@ type RegisterJobDefinitionInput struct {
 	// use only containerProperties.
 	ContainerProperties *ContainerProperties `locationName:"containerProperties" type:"structure"`
 
-	// The name of the job definition to register. Up to 128 letters (uppercase
-	// and lowercase), numbers, hyphens, and underscores are allowed.
+	// The name of the job definition to register. It can be up to 128 letters long.
+	// It can contain uppercase and lowercase letters, numbers, hyphens (-), and
+	// underscores (_).
 	//
 	// JobDefinitionName is a required field
 	JobDefinitionName *string `locationName:"jobDefinitionName" type:"string" required:"true"`
@@ -8994,12 +8999,11 @@ func (s *RetryStrategy) SetEvaluateOnExit(v []*EvaluateOnExit) *RetryStrategy {
 	return s
 }
 
-// An object representing a scheduling policy.
+// An object that represents a scheduling policy.
 type SchedulingPolicyDetail struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Name (ARN) of the scheduling policy. An example would be
-	// arn:aws:batch:us-east-1:123456789012:scheduling-policy/HighPriority
+	// The Amazon Resource Name (ARN) of the scheduling policy. An example is arn:aws:batch:us-east-1:123456789012:scheduling-policy/HighPriority .
 	//
 	// Arn is a required field
 	Arn *string `locationName:"arn" type:"string" required:"true"`
@@ -9012,9 +9016,9 @@ type SchedulingPolicyDetail struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The tags that you apply to the scheduling policy to help you categorize and
-	// organize your resources. Each tag consists of a key and an optional value.
-	// For more information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// The tags that you apply to the scheduling policy to categorize and organize
+	// your resources. Each tag consists of a key and an optional value. For more
+	// information, see Tagging Amazon Web Services Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// in Amazon Web Services General Reference.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
@@ -9061,8 +9065,8 @@ func (s *SchedulingPolicyDetail) SetTags(v map[string]*string) *SchedulingPolicy
 	return s
 }
 
-// An object containing the details of a scheduling policy returned in a ListSchedulingPolicy
-// action.
+// An object that contains the details of a scheduling policy that's returned
+// in a ListSchedulingPolicy action.
 type SchedulingPolicyListingDetail struct {
 	_ struct{} `type:"structure"`
 
@@ -9239,32 +9243,32 @@ func (s *ServerException) RequestID() string {
 }
 
 // Specifies the weights for the fair share identifiers for the fair share policy.
-// Fair share identifiers that are not included have a default weight of 1.0.
+// Fair share identifiers that aren't included have a default weight of 1.0.
 type ShareAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// A fair share identifier or fair share identifier prefix. If the string ends
-	// with '*' then this entry specifies the weight factor to use for fair share
-	// identifiers that begin with that prefix. The list of fair share identifiers
-	// in a fair share policy cannot overlap. For example you cannot have one that
+	// with an asterisk (*), this entry specifies the weight factor to use for fair
+	// share identifiers that start with that prefix. The list of fair share identifiers
+	// in a fair share policy cannot overlap. For example, you can't have one that
 	// specifies a shareIdentifier of UserA* and another that specifies a shareIdentifier
 	// of UserA-1.
 	//
 	// There can be no more than 500 fair share identifiers active in a job queue.
 	//
 	// The string is limited to 255 alphanumeric characters, optionally followed
-	// by '*'.
+	// by an asterisk (*).
 	//
 	// ShareIdentifier is a required field
 	ShareIdentifier *string `locationName:"shareIdentifier" type:"string" required:"true"`
 
 	// The weight factor for the fair share identifier. The default value is 1.0.
 	// A lower value has a higher priority for compute resources. For example, jobs
-	// using a share identifier with a weight factor of 0.125 (1/8) will get 8 times
-	// the compute resources of jobs using a share identifier with a weight factor
+	// that use a share identifier with a weight factor of 0.125 (1/8) get 8 times
+	// the compute resources of jobs that use a share identifier with a weight factor
 	// of 1.
 	//
-	// The smallest supported value is 0.0001 and the largest supported value is
+	// The smallest supported value is 0.0001, and the largest supported value is
 	// 999.9999.
 	WeightFactor *float64 `locationName:"weightFactor" type:"float"`
 }
@@ -9347,9 +9351,9 @@ type SubmitJobInput struct {
 	// JobDefinition is a required field
 	JobDefinition *string `locationName:"jobDefinition" type:"string" required:"true"`
 
-	// The name of the job. The first character must be alphanumeric, and up to
-	// 128 letters (uppercase and lowercase), numbers, hyphens, and underscores
-	// are allowed.
+	// The name of the job. It can be up to 128 letters long. The first character
+	// must be alphanumeric, can contain uppercase and lowercase letters, numbers,
+	// hyphens (-), and underscores (_).
 	//
 	// JobName is a required field
 	JobName *string `locationName:"jobName" type:"string" required:"true"`
@@ -10160,8 +10164,9 @@ type UpdateComputeEnvironmentOutput struct {
 	// The Amazon Resource Name (ARN) of the compute environment.
 	ComputeEnvironmentArn *string `locationName:"computeEnvironmentArn" type:"string"`
 
-	// The name of the compute environment. Up to 128 letters (uppercase and lowercase),
-	// numbers, hyphens, and underscores are allowed.
+	// The name of the compute environment. It can be up to 128 letters long. It
+	// can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores
+	// (_).
 	ComputeEnvironmentName *string `locationName:"computeEnvironmentName" type:"string"`
 }
 
@@ -10450,9 +10455,10 @@ type Volume struct {
 	// and shouldn't be provided.
 	Host *Host `locationName:"host" type:"structure"`
 
-	// The name of the volume. Up to 255 letters (uppercase and lowercase), numbers,
-	// hyphens, and underscores are allowed. This name is referenced in the sourceVolume
-	// parameter of container definition mountPoints.
+	// The name of the volume. It can be up to 255 letters long. It can contain
+	// uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).
+	// This name is referenced in the sourceVolume parameter of container definition
+	// mountPoints.
 	Name *string `locationName:"name" type:"string"`
 }
 
