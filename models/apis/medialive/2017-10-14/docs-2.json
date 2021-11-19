@@ -3856,6 +3856,12 @@
         "RtmpGroupSettings$CacheLength": "Cache length, in seconds, is used to calculate buffer size."
       }
     },
+    "__integerMin32Max8191": {
+      "base": null,
+      "refs": {
+        "InputSettings$Scte35Pid": "PID from which to read SCTE-35 messages. If left undefined, EML will select the first SCTE-35 PID found in the input."
+      }
+    },
     "__integerMin4Max20": {
       "base": null,
       "refs": {

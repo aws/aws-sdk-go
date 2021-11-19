@@ -7506,9 +7506,6 @@ const (
 	// TierOracle is a Tier enum value
 	TierOracle = "ORACLE"
 
-	// TierSapHana is a Tier enum value
-	TierSapHana = "SAP_HANA"
-
 	// TierSapHanaMultiNode is a Tier enum value
 	TierSapHanaMultiNode = "SAP_HANA_MULTI_NODE"
 
@@ -7537,7 +7534,6 @@ func Tier_Values() []string {
 		TierPostgresql,
 		TierJavaJmx,
 		TierOracle,
-		TierSapHana,
 		TierSapHanaMultiNode,
 		TierSapHanaSingleNode,
 		TierSapHanaHighAvailability,

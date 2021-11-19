@@ -24,6 +24,12 @@
       "output_token": "NextMarker",
       "result_key": "FunctionEventInvokeConfigs"
     },
+    "ListFunctionUrlConfigs": {
+      "input_token": "Marker",
+      "limit_key": "MaxItems",
+      "output_token": "NextMarker",
+      "result_key": "FunctionUrlConfigs"
+    },
     "ListFunctions": {
       "input_token": "Marker",
       "limit_key": "MaxItems",

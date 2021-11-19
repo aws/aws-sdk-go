@@ -378,7 +378,8 @@
       "required":["type"],
       "members":{
         "type":{"shape":"DialogActionType"},
-        "slotToElicit":{"shape":"NonEmptyString"}
+        "slotToElicit":{"shape":"NonEmptyString"},
+        "slotElicitationStyle":{"shape":"StyleType"}
       }
     },
     "DialogActionType":{
@@ -969,6 +970,14 @@
       "type":"map",
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"String"}
+    },
+    "StyleType":{
+      "type":"string",
+      "enum":[
+        "Default",
+        "SpellByLetter",
+        "SpellByWord"
+      ]
     },
     "Text":{
       "type":"string",

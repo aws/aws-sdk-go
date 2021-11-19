@@ -2432,7 +2432,8 @@
         "AvailabilityZoneRelocationStatus":{"shape":"String"},
         "ClusterNamespaceArn":{"shape":"String"},
         "TotalStorageCapacityInMegaBytes":{"shape":"LongOptional"},
-        "AquaConfiguration":{"shape":"AquaConfiguration"}
+        "AquaConfiguration":{"shape":"AquaConfiguration"},
+        "DefaultIamRoleArn":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -2950,7 +2951,8 @@
         "MaintenanceTrackName":{"shape":"String"},
         "SnapshotScheduleIdentifier":{"shape":"String"},
         "AvailabilityZoneRelocation":{"shape":"BooleanOptional"},
-        "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"}
+        "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"},
+        "DefaultIamRoleArn":{"shape":"String"}
       }
     },
     "CreateClusterParameterGroupMessage":{
@@ -4848,7 +4850,8 @@
       "members":{
         "ClusterIdentifier":{"shape":"String"},
         "AddIamRoles":{"shape":"IamRoleArnList"},
-        "RemoveIamRoles":{"shape":"IamRoleArnList"}
+        "RemoveIamRoles":{"shape":"IamRoleArnList"},
+        "DefaultIamRoleArn":{"shape":"String"}
       }
     },
     "ModifyClusterIamRolesResult":{
@@ -5612,7 +5615,8 @@
         "SnapshotScheduleIdentifier":{"shape":"String"},
         "NumberOfNodes":{"shape":"IntegerOptional"},
         "AvailabilityZoneRelocation":{"shape":"BooleanOptional"},
-        "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"}
+        "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"},
+        "DefaultIamRoleArn":{"shape":"String"}
       }
     },
     "RestoreFromClusterSnapshotResult":{
