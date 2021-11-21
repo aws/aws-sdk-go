@@ -112,3 +112,28 @@ func filterStatements(userPolicyRows []*MyPolicyDetail, tags map[string]string) 
 
 	return final, nil
 }
+
+func formatStatements(userPolicyRows []*MyPolicyDetail) ([]*OutputPolicyDetail, error) {
+	var final []*OutputPolicyDetail
+
+	for _, row := range userPolicyRows {
+		encodedValue := *row.PolicyDocument
+
+		decodedValue, err := url.QueryUnescape(encodedValue)
+		if err != nil {
+			return nil, err
+		}
+
+		var data FullStatement
+		if err := json.Unmarshal([]byte(decodedValue), &data); err != nil {
+			return nil, err
+		}
+
+		final = append(final, &OutputPolicyDetail{
+			PolicyDocument: data.Statement,
+			PolicyName:     row.PolicyName,
+		})
+	}
+
+	return final, nil
+}
