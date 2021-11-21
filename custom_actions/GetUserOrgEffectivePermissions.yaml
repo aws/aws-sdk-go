@@ -1,0 +1,23 @@
+name: GetUserOrgEffectivePermissions
+description: get the org effective permissions from AWS.
+enabled: true
+entry_point: api.go
+parameters:
+  userName:
+    type: string
+    description: email of the user.
+    placeholder: ""
+    required: true
+    default: ""
+    pattern: ""
+    options: [ ]
+  awsRegion:
+    type: string
+    description: AWS Region(s), More than 1 region can be provided seperated by ",",
+      Use "*" to run on all regions
+    placeholder: ""
+    required: false
+    default: us-east-1
+    pattern: ""
+    options: [ ]
+output: null

@@ -4,6 +4,16 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
+	"math/rand"
+	"net/http"
+	"os"
+	"path"
+	"strconv"
+	"strings"
+	"sync"
+	"time"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -287,15 +297,6 @@ import (
 	description2 "github.com/blinkops/blink-sdk/plugin/description"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
-	"io/ioutil"
-	"math/rand"
-	"net/http"
-	"os"
-	"path"
-	"strconv"
-	"strings"
-	"sync"
-	"time"
 )
 
 const (
@@ -309,8 +310,10 @@ const (
 	externalID             = "external_id"
 )
 
-type ActionExecutor func(map[string]interface{}) (map[string]interface{}, error)
-type ActionHandlersMap map[string]func(map[string]interface{}) (map[string]interface{}, error)
+type (
+	ActionExecutor    func(map[string]interface{}) (map[string]interface{}, error)
+	ActionHandlersMap map[string]func(map[string]interface{}) (map[string]interface{}, error)
+)
 
 type PackageParameters struct {
 	packageName string
@@ -338,8 +341,10 @@ func NewActionParametersDeepCopy(parameters map[string]interface{}) *ActionParam
 	}
 }
 
-func (a *ActionParameters) Get(parameter string) interface{} {
-	return a.Parameters[parameter]
+func (a *ActionParameters) Get(parameter string) (interface{}, bool) {
+	val, ok := a.Parameters[parameter]
+
+	return val, ok
 }
 
 func (a *ActionParameters) Set(parameter string, value interface{}) {
@@ -1705,6 +1710,11 @@ func resolvePackage(parameters *PackageParameters) (interface{}, error) {
 			return lookoutmetrics.New(parameters.awsSession), nil
 		}
 		return lookoutmetrics.ActionMap, nil
+	case "custom":
+		if parameters.awsSession != nil {
+			return *parameters.awsSession, nil
+		}
+		return customActionsMap, nil
 	}
 
 	return nil, errors.New("provided package name is not supported: " + parameters.packageName)
@@ -1764,6 +1774,12 @@ func resolveActionExecutor(packageName string, actionFunctionName string) (Actio
 }
 
 func resolvePackageNameAndActionFunctionName(requestActionName string) (string, string, error) {
+	for k := range customActionsMap {
+		if requestActionName == k {
+			return "custom", requestActionName, nil
+		}
+	}
+
 	actionNameComponents := strings.Split(requestActionName, packageActionSeparator)
 	if len(actionNameComponents) != 2 {
 		return "", "", errors.New("invalid action name structure, failed to infer component name")
@@ -1829,15 +1845,21 @@ func executeActionOnRegions(packageName string, ctx *plugin.ActionContext, actio
 }
 
 func executeAction(packageName string, ctx *plugin.ActionContext, actionExecutor ActionExecutor, actionParameters ActionParameters, timeout int32) (map[string]interface{}, error) {
-	actionRegion := actionParameters.Get(awsRegionKey).(string)
-	if actionRegion == runOnAllRegions {
-		availableRegions := awsutil.GetServiceRegions(packageName)
-		return executeActionOnRegions(packageName, ctx, actionExecutor, actionParameters, availableRegions), nil
-	}
+	actionRegion, ok := actionParameters.Get(awsRegionKey)
 
-	if strings.Contains(actionRegion, ",") {
-		availableRegions := strings.Split(actionRegion, ",")
-		return executeActionOnRegions(packageName, ctx, actionExecutor, actionParameters, availableRegions), nil
+	if ok {
+		if actionRegion.(string) == runOnAllRegions {
+			availableRegions := awsutil.GetServiceRegions(packageName)
+			return executeActionOnRegions(packageName, ctx, actionExecutor, actionParameters, availableRegions), nil
+		}
+
+		if strings.Contains(actionRegion.(string), ",") {
+			availableRegions := strings.Split(actionRegion.(string), ",")
+			return executeActionOnRegions(packageName, ctx, actionExecutor, actionParameters, availableRegions), nil
+		}
+
+	} else {
+		actionParameters.Set(awsRegionKey, runOnAllRegions)
 	}
 
 	if err := appendServiceToParametersByContext(packageName, ctx, actionParameters.Parameters, timeout); err != nil {
@@ -1856,21 +1878,25 @@ func executeAction(packageName string, ctx *plugin.ActionContext, actionExecutor
 func (p *AWSPlugin) ExecuteAction(ctx *plugin.ActionContext, request *plugin.ExecuteActionRequest) (*plugin.ExecuteActionResponse, error) {
 	log.Debugf("Requested to execute action: \n %v", *request)
 
+	// Get the package name and function name for example S3 ListBuckets.
 	packageName, actionFunctionName, err := resolvePackageNameAndActionFunctionName(request.Name)
 	if err != nil {
 		return nil, err
 	}
 
+	// get the parameters from the request
 	awsActionParameters, err := getActionParameters(request)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get action parameters, error: %v", err)
 	}
 
+	// get a function that will run in executeAction
 	actionExecutor, err := resolveActionExecutor(packageName, actionFunctionName)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get action executor, error: %v", err)
 	}
 
+	// runs the actionExecutor
 	output, err := executeAction(packageName, ctx, actionExecutor, *awsActionParameters, request.Timeout)
 	if err != nil {
 		return nil, err
@@ -1890,7 +1916,7 @@ func (p *AWSPlugin) ExecuteAction(ctx *plugin.ActionContext, request *plugin.Exe
 	}, nil
 }
 
-func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.ConnectionInstance) (*plugin.CredentialsValidationResponse, error) {
+func (p *AWSPlugin) TestCredentials(credentialsMap map[string]*connections.ConnectionInstance) (*plugin.CredentialsValidationResponse, error) {
 	log.Debugf("Requested to test credentials: \n %v", credentialsMap)
 
 	for _, connInstance := range credentialsMap {
@@ -1952,7 +1978,6 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 }
 
 func NewAWSPlugin(rootPluginDirectory string) (*AWSPlugin, error) {
-
 	pluginConfig := config.GetConfig()
 
 	actionFolderPath := path.Join(rootPluginDirectory, pluginConfig.Plugin.ActionsFolderPath)
@@ -2010,6 +2035,7 @@ func createAWSSessionByContext(region string, context *plugin.ActionContext, tim
 		log.Errorf("Failed to get AWS awsCredentials: %v", err)
 		return nil, err
 	}
+
 	return createAWSSessionByCredentials(region, awsCredentials, timeout)
 }
 
@@ -2130,11 +2156,11 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 		Region:      aws.String(region),
 		Credentials: creds,
 	}
+
 	if timeout > 0 {
 		awsConfig.HTTPClient = &http.Client{Timeout: time.Duration(timeout) * time.Second}
 	}
 	sess, err := session.NewSession(awsConfig)
-
 	if err != nil {
 		return nil, errors.New("failed to create AWS session using provided credentials")
 	}

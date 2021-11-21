@@ -640,12 +640,14 @@ func (o *Operation) GenerateAction() error {
 	actionParameters := make(map[string]plugin.ActionParameter)
 
 	isRegionRequired := true
+	region := ""
 	// aws services that are not region specific
 	var services = []string{"IAM", "S3", "STS", "Organizations"}
 
 	for _, s := range services {
 		if s == o.API.StructName() {
 			isRegionRequired = false
+			region = "us-east-1"
 		}
 	}
 
@@ -653,6 +655,7 @@ func (o *Operation) GenerateAction() error {
 		Type:        "string",
 		Description: "AWS Region(s), More than 1 region can be provided seperated by \",\", Use \"*\" to run on all regions",
 		Required:    isRegionRequired,
+		Default:     region,
 	}
 
 	inputShape := o.API.Shapes[o.InputRef.ShapeName]

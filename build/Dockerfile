@@ -8,13 +8,16 @@ COPY go.mod go.sum ./
 RUN go mod download
 COPY .. .
 
-FROM base AS aws-builder
+FROM base AS action-builder
 
 WORKDIR /go/src/github.com/aws/aws-sdk-go
 RUN go build -o ./aws-gen-api -tags codegen ./private/model/cli/gen-api/main.go && \
     chmod a+x aws-gen-api && \
     find './models/apis' -maxdepth 1 -exec ./aws-gen-api "{}/*/api-2.json" \;
 
+FROM base AS aws-builder
+
+WORKDIR /go/src/github.com/aws/aws-sdk-go
 # Build the Integration Pack
 RUN go build -ldflags="-s -w" -o /go/bin/blink-aws ./plugin.go
 
@@ -25,8 +28,10 @@ WORKDIR /blink-aws
 RUN apk add --no-cache && apk add libc6-compat
 
 # Copy only the required artifacts.
-COPY --from=aws-builder /go/src/github.com/aws/aws-sdk-go/actions actions/
+COPY --from=action-builder /go/src/github.com/aws/aws-sdk-go/actions actions/
 COPY --from=aws-builder /go/bin/blink-aws .
+
+COPY --from=action-builder /go/src/github.com/aws/aws-sdk-go/custom_actions actions/
 
 COPY config.yaml plugin.yaml ./
 
