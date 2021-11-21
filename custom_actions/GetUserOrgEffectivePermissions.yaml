@@ -3,9 +3,9 @@ description: get the org effective permissions from AWS.
 enabled: true
 entry_point: api.go
 parameters:
-  userName:
+  accountID:
     type: string
-    description: email of the user.
+    description: the user's account id.
     placeholder: ""
     required: true
     default: ""

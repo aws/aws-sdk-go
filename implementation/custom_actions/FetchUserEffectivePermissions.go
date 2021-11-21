@@ -345,40 +345,43 @@ func (perm *EffectivePermissions) getAllPoliciesForUser(infoMap iam.GetAccountAu
 	return allPolicies, nil
 }
 
-func (perm *EffectivePermissions) getAllPoliciesForOrg(user iam.UserDetail) (map[string]interface{}, error) {
+func (perm *EffectivePermissions) getAllPoliciesForOrg(accountID string) (map[string]interface{}, error) {
 	targetId, err := perm.getOrgId()
 	if err != nil {
 		return nil, err
 	}
 
-	tags, err := perm.getUserTags(user.UserName)
+	// tags, err := perm.getUserTags(user.UserName)
+	// if err != nil {
+	// 	return nil, err
+	// }
+	// TODO: return support of org SCP filtering by tags
+
+	accountSCPS, err := perm.getSCPSForTarget(accountID)
 	if err != nil {
 		return nil, err
 	}
 
-	accountSCPS, err := perm.getSCPSForTarget(perm.getUserAccountId(user))
-	if err != nil {
-		return nil, err
-	}
-
-	filteredAccountSCPS, err := filterStatements(accountSCPS, tags)
-	if err != nil {
-		return nil, err
-	}
+	//filteredAccountSCPS, err := filterStatements(accountSCPS, tags)
+	//if err != nil {
+	//	return nil, err
+	//}
+	// TODO: return support of org SCP filtering by tags
 
 	organizationSCPS, err := perm.getSCPSForTarget(*targetId)
 	if err != nil {
 		return nil, err
 	}
 
-	filteredOrganizationSCPS, err := filterStatements(organizationSCPS, tags)
-	if err != nil {
-		return nil, err
-	}
+	//filteredOrganizationSCPS, err := filterStatements(organizationSCPS, tags)
+	//if err != nil {
+	//	return nil, err
+	//}
+	// TODO: return support of org SCP filtering by tags
 
 	allPoliciesNonFiltered := map[string]interface{}{
-		"account_SCPS":      filteredAccountSCPS,
-		"organization_SCPS": filteredOrganizationSCPS,
+		"account_SCPS":      accountSCPS,
+		"organization_SCPS": organizationSCPS,
 	}
 
 	return allPoliciesNonFiltered, nil
@@ -447,10 +450,11 @@ func (perm *EffectivePermissions) getBaseValues() (*iam.GetAccountAuthorizationD
 }
 
 func (perm *EffectivePermissions) GetOrgEffectivePermissions() (map[string]interface{}, error) {
-	_, user, err := perm.getBaseValues()
-	if err != nil {
-		return nil, err
+	accountID, ok := perm.GetParameters()[accountIDKey]
+
+	if !ok {
+		return nil, fmt.Errorf("missing %s param", userNameKey)
 	}
 
-	return perm.getAllPoliciesForOrg(*user)
+	return perm.getAllPoliciesForOrg(accountID.(string))
 }
