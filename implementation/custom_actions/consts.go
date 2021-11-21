@@ -1,7 +1,7 @@
 package custom_actions
 
 const (
-	accountIDKey = "AccountID"
+	accountIDKey = "accountID"
 	userNameKey  = "userName"
 	filterSCP    = "SERVICE_CONTROL_POLICY"
 	serviceTag   = "_Service"

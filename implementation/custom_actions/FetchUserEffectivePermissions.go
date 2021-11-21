@@ -453,7 +453,7 @@ func (perm *EffectivePermissions) GetOrgEffectivePermissions() (map[string]inter
 	accountID, ok := perm.GetParameters()[accountIDKey]
 
 	if !ok {
-		return nil, fmt.Errorf("missing %s param", userNameKey)
+		return nil, fmt.Errorf("missing %s param", accountIDKey)
 	}
 
 	return perm.getAllPoliciesForOrg(accountID.(string))
