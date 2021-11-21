@@ -367,7 +367,10 @@ func (perm *EffectivePermissions) getAllPoliciesForOrg(accountID string) (map[st
 	//	return nil, err
 	//}
 	// TODO: return support of org SCP filtering by tags
-
+	formattedAccountSCPS, err := formatStatements(accountSCPS)
+	if err != nil {
+		return nil, err
+	}
 	organizationSCPS, err := perm.getSCPSForTarget(*targetId)
 	if err != nil {
 		return nil, err
@@ -378,10 +381,13 @@ func (perm *EffectivePermissions) getAllPoliciesForOrg(accountID string) (map[st
 	//	return nil, err
 	//}
 	// TODO: return support of org SCP filtering by tags
-
+	formattedOrganizationSCPS, err := formatStatements(organizationSCPS)
+	if err != nil {
+		return nil, err
+	}
 	allPoliciesNonFiltered := map[string]interface{}{
-		"account_SCPS":      accountSCPS,
-		"organization_SCPS": organizationSCPS,
+		"account_SCPS":      formattedAccountSCPS,
+		"organization_SCPS": formattedOrganizationSCPS,
 	}
 
 	return allPoliciesNonFiltered, nil
