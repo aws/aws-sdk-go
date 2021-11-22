@@ -492,6 +492,11 @@ func (c *SSM) CreateActivationRequest(input *CreateActivationInput) (req *reques
 // API operation CreateActivation for usage and error information.
 //
 // Returned Error Types:
+//   * InvalidParameters
+//   You must specify values for all required parameters in the Amazon Web Services
+//   Systems Manager document (SSM document). You can only supply values to parameters
+//   defined in the SSM document.
+//
 //   * InternalServerError
 //   An error occurred on the server side.
 //
@@ -16408,7 +16413,11 @@ type AssociationDescription struct {
 	Overview *AssociationOverview `type:"structure"`
 
 	// A description of the parameters for a document.
-	Parameters map[string][]*string `type:"map"`
+	//
+	// Parameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssociationDescription's
+	// String and GoString methods.
+	Parameters map[string][]*string `type:"map" sensitive:"true"`
 
 	// A cron expression that specifies a schedule when the association runs.
 	ScheduleExpression *string `min:"1" type:"string"`
@@ -17409,7 +17418,11 @@ type AssociationVersionInfo struct {
 	OutputLocation *InstanceAssociationOutputLocation `type:"structure"`
 
 	// Parameters specified when the association version was created.
-	Parameters map[string][]*string `type:"map"`
+	//
+	// Parameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by AssociationVersionInfo's
+	// String and GoString methods.
+	Parameters map[string][]*string `type:"map" sensitive:"true"`
 
 	// The cron or rate schedule specified for the association when the association
 	// version was created.
@@ -19309,7 +19322,11 @@ type Command struct {
 	OutputS3Region *string `min:"3" type:"string"`
 
 	// The parameter values to be inserted in the document when running the command.
-	Parameters map[string][]*string `type:"map"`
+	//
+	// Parameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by Command's
+	// String and GoString methods.
+	Parameters map[string][]*string `type:"map" sensitive:"true"`
 
 	// The date and time the command was requested.
 	RequestedDateTime *time.Time `type:"timestamp"`
@@ -19542,6 +19559,9 @@ type CommandFilter struct {
 
 	// The name of the filter.
 	//
+	// The ExecutionStage filter can't be used with the ListCommandInvocations operation,
+	// only with ListCommands.
+	//
 	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true" enum:"CommandFilterKey"`
 
@@ -19571,9 +19591,10 @@ type CommandFilter struct {
 	//    For example, specify AWS-RunPatchBaseline to see command executions that
 	//    used this SSM document to perform security patching operations on instances.
 	//
-	//    * ExecutionStage: Specify one of the following values: Executing: Returns
-	//    a list of command executions that are currently still running. Complete:
-	//    Returns a list of command executions that have already completed.
+	//    * ExecutionStage: Specify one of the following values (ListCommands operations
+	//    only): Executing: Returns a list of command executions that are currently
+	//    still running. Complete: Returns a list of command executions that have
+	//    already completed.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
@@ -20593,6 +20614,9 @@ type CreateActivationInput struct {
 	// default value is 1.
 	RegistrationLimit *int64 `min:"1" type:"integer"`
 
+	// Reserved for internal use.
+	RegistrationMetadata []*RegistrationMetadataItem `type:"list"`
+
 	// Optional metadata that you assign to a resource. Tags enable you to categorize
 	// a resource in different ways, such as by purpose, owner, or environment.
 	// For example, you might want to tag an activation to identify which servers
@@ -20645,6 +20669,16 @@ func (s *CreateActivationInput) Validate() error {
 	if s.RegistrationLimit != nil && *s.RegistrationLimit < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("RegistrationLimit", 1))
 	}
+	if s.RegistrationMetadata != nil {
+		for i, v := range s.RegistrationMetadata {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RegistrationMetadata", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -20689,6 +20723,12 @@ func (s *CreateActivationInput) SetIamRole(v string) *CreateActivationInput {
 // SetRegistrationLimit sets the RegistrationLimit field's value.
 func (s *CreateActivationInput) SetRegistrationLimit(v int64) *CreateActivationInput {
 	s.RegistrationLimit = &v
+	return s
+}
+
+// SetRegistrationMetadata sets the RegistrationMetadata field's value.
+func (s *CreateActivationInput) SetRegistrationMetadata(v []*RegistrationMetadataItem) *CreateActivationInput {
+	s.RegistrationMetadata = v
 	return s
 }
 
@@ -20934,7 +20974,11 @@ type CreateAssociationBatchRequestEntry struct {
 	OutputLocation *InstanceAssociationOutputLocation `type:"structure"`
 
 	// A description of the parameters for a document.
-	Parameters map[string][]*string `type:"map"`
+	//
+	// Parameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAssociationBatchRequestEntry's
+	// String and GoString methods.
+	Parameters map[string][]*string `type:"map" sensitive:"true"`
 
 	// A cron expression that specifies a schedule when the association runs.
 	ScheduleExpression *string `min:"1" type:"string"`
@@ -21224,7 +21268,11 @@ type CreateAssociationInput struct {
 	OutputLocation *InstanceAssociationOutputLocation `type:"structure"`
 
 	// The parameters for the runtime configuration of the document.
-	Parameters map[string][]*string `type:"map"`
+	//
+	// Parameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by CreateAssociationInput's
+	// String and GoString methods.
+	Parameters map[string][]*string `type:"map" sensitive:"true"`
 
 	// A cron expression when the association will be applied to the target(s).
 	ScheduleExpression *string `min:"1" type:"string"`
@@ -23713,7 +23761,7 @@ type DeregisterManagedInstanceInput struct {
 	// activation process.
 	//
 	// InstanceId is a required field
-	InstanceId *string `type:"string" required:"true"`
+	InstanceId *string `min:"20" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -23739,6 +23787,9 @@ func (s *DeregisterManagedInstanceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeregisterManagedInstanceInput"}
 	if s.InstanceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 20))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -42585,7 +42636,11 @@ type MaintenanceWindowRunCommandParameters struct {
 	OutputS3KeyPrefix *string `type:"string"`
 
 	// The parameters for the RUN_COMMAND task execution.
-	Parameters map[string][]*string `type:"map"`
+	//
+	// Parameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by MaintenanceWindowRunCommandParameters's
+	// String and GoString methods.
+	Parameters map[string][]*string `type:"map" sensitive:"true"`
 
 	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
 	// service role to use to publish Amazon Simple Notification Service (Amazon
@@ -48366,13 +48421,13 @@ type PutParameterInput struct {
 	// the expiration date and time. When the expiration time is reached, Parameter
 	// Store deletes the parameter.
 	//
-	// ExpirationNotification: This policy triggers an event in Amazon CloudWatch
+	// ExpirationNotification: This policy initiates an event in Amazon CloudWatch
 	// Events that notifies you about the expiration. By using this policy, you
 	// can receive notification before or after the expiration time is reached,
 	// in units of days or hours.
 	//
-	// NoChangeNotification: This policy triggers a CloudWatch Events event if a
-	// parameter hasn't been modified for a specified period of time. This policy
+	// NoChangeNotification: This policy initiates a CloudWatch Events event if
+	// a parameter hasn't been modified for a specified period of time. This policy
 	// type is useful when, for example, a secret needs to be changed within a period
 	// of time, but it hasn't been changed.
 	//
@@ -49373,6 +49428,73 @@ func (s RegisterTaskWithMaintenanceWindowOutput) GoString() string {
 // SetWindowTaskId sets the WindowTaskId field's value.
 func (s *RegisterTaskWithMaintenanceWindowOutput) SetWindowTaskId(v string) *RegisterTaskWithMaintenanceWindowOutput {
 	s.WindowTaskId = &v
+	return s
+}
+
+// Reserved for internal use.
+type RegistrationMetadataItem struct {
+	_ struct{} `type:"structure"`
+
+	// Reserved for internal use.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// Reserved for internal use.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegistrationMetadataItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegistrationMetadataItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegistrationMetadataItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegistrationMetadataItem"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *RegistrationMetadataItem) SetKey(v string) *RegistrationMetadataItem {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *RegistrationMetadataItem) SetValue(v string) *RegistrationMetadataItem {
+	s.Value = &v
 	return s
 }
 
@@ -51588,7 +51710,11 @@ type SendCommandInput struct {
 	OutputS3Region *string `min:"3" type:"string"`
 
 	// The required and optional parameters specified in the document being run.
-	Parameters map[string][]*string `type:"map"`
+	//
+	// Parameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by SendCommandInput's
+	// String and GoString methods.
+	Parameters map[string][]*string `type:"map" sensitive:"true"`
 
 	// The ARN of the Identity and Access Management (IAM) service role to use to
 	// publish Amazon Simple Notification Service (Amazon SNS) notifications for
@@ -54907,7 +55033,11 @@ type UpdateAssociationInput struct {
 	// The parameters you want to update for the association. If you create a parameter
 	// using Parameter Store, a capability of Amazon Web Services Systems Manager,
 	// you can reference the parameter using {{ssm:parameter-name}}.
-	Parameters map[string][]*string `type:"map"`
+	//
+	// Parameters is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateAssociationInput's
+	// String and GoString methods.
+	Parameters map[string][]*string `type:"map" sensitive:"true"`
 
 	// The cron expression used to schedule the association that you want to update.
 	ScheduleExpression *string `min:"1" type:"string"`
@@ -56650,7 +56780,7 @@ type UpdateManagedInstanceRoleInput struct {
 	// The ID of the managed instance where you want to update the role.
 	//
 	// InstanceId is a required field
-	InstanceId *string `type:"string" required:"true"`
+	InstanceId *string `min:"20" type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -56679,6 +56809,9 @@ func (s *UpdateManagedInstanceRoleInput) Validate() error {
 	}
 	if s.InstanceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 20))
 	}
 
 	if invalidParams.Len() > 0 {

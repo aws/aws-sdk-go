@@ -1009,6 +1009,112 @@ func (c *Connect) CreateContactFlowWithContext(ctx aws.Context, input *CreateCon
 	return out, req.Send()
 }
 
+const opCreateContactFlowModule = "CreateContactFlowModule"
+
+// CreateContactFlowModuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContactFlowModule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContactFlowModule for more information on using the CreateContactFlowModule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateContactFlowModuleRequest method.
+//    req, resp := client.CreateContactFlowModuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlowModule
+func (c *Connect) CreateContactFlowModuleRequest(input *CreateContactFlowModuleInput) (req *request.Request, output *CreateContactFlowModuleOutput) {
+	op := &request.Operation{
+		Name:       opCreateContactFlowModule,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateContactFlowModuleInput{}
+	}
+
+	output = &CreateContactFlowModuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContactFlowModule API operation for Amazon Connect Service.
+//
+// Creates a contact flow module for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateContactFlowModule for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidContactFlowModuleException
+//   The problems with the module. Please fix before trying again.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * IdempotencyException
+//   An entity with the same name already exists.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlowModule
+func (c *Connect) CreateContactFlowModule(input *CreateContactFlowModuleInput) (*CreateContactFlowModuleOutput, error) {
+	req, out := c.CreateContactFlowModuleRequest(input)
+	return out, req.Send()
+}
+
+// CreateContactFlowModuleWithContext is the same as CreateContactFlowModule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContactFlowModule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateContactFlowModuleWithContext(ctx aws.Context, input *CreateContactFlowModuleInput, opts ...request.Option) (*CreateContactFlowModuleOutput, error) {
+	req, out := c.CreateContactFlowModuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateHoursOfOperation = "CreateHoursOfOperation"
 
 // CreateHoursOfOperationRequest generates a "aws/request.Request" representing the
@@ -1052,6 +1158,8 @@ func (c *Connect) CreateHoursOfOperationRequest(input *CreateHoursOfOperationInp
 }
 
 // CreateHoursOfOperation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Creates hours of operation.
 //
@@ -1980,6 +2088,196 @@ func (c *Connect) CreateUserHierarchyGroupWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opDeleteContactFlow = "DeleteContactFlow"
+
+// DeleteContactFlowRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContactFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContactFlow for more information on using the DeleteContactFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteContactFlowRequest method.
+//    req, resp := client.DeleteContactFlowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlow
+func (c *Connect) DeleteContactFlowRequest(input *DeleteContactFlowInput) (req *request.Request, output *DeleteContactFlowOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContactFlow,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/contact-flows/{InstanceId}/{ContactFlowId}",
+	}
+
+	if input == nil {
+		input = &DeleteContactFlowInput{}
+	}
+
+	output = &DeleteContactFlowOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContactFlow API operation for Amazon Connect Service.
+//
+// Deletes a contact flow for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteContactFlow for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlow
+func (c *Connect) DeleteContactFlow(input *DeleteContactFlowInput) (*DeleteContactFlowOutput, error) {
+	req, out := c.DeleteContactFlowRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContactFlowWithContext is the same as DeleteContactFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContactFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteContactFlowWithContext(ctx aws.Context, input *DeleteContactFlowInput, opts ...request.Option) (*DeleteContactFlowOutput, error) {
+	req, out := c.DeleteContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteContactFlowModule = "DeleteContactFlowModule"
+
+// DeleteContactFlowModuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContactFlowModule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContactFlowModule for more information on using the DeleteContactFlowModule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteContactFlowModuleRequest method.
+//    req, resp := client.DeleteContactFlowModuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlowModule
+func (c *Connect) DeleteContactFlowModuleRequest(input *DeleteContactFlowModuleInput) (req *request.Request, output *DeleteContactFlowModuleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContactFlowModule,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}",
+	}
+
+	if input == nil {
+		input = &DeleteContactFlowModuleInput{}
+	}
+
+	output = &DeleteContactFlowModuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContactFlowModule API operation for Amazon Connect Service.
+//
+// Deletes the specified contact flow module.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteContactFlowModule for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteContactFlowModule
+func (c *Connect) DeleteContactFlowModule(input *DeleteContactFlowModuleInput) (*DeleteContactFlowModuleOutput, error) {
+	req, out := c.DeleteContactFlowModuleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContactFlowModuleWithContext is the same as DeleteContactFlowModule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContactFlowModule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteContactFlowModuleWithContext(ctx aws.Context, input *DeleteContactFlowModuleInput, opts ...request.Option) (*DeleteContactFlowModuleOutput, error) {
+	req, out := c.DeleteContactFlowModuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteHoursOfOperation = "DeleteHoursOfOperation"
 
 // DeleteHoursOfOperationRequest generates a "aws/request.Request" representing the
@@ -2024,6 +2322,8 @@ func (c *Connect) DeleteHoursOfOperationRequest(input *DeleteHoursOfOperationInp
 }
 
 // DeleteHoursOfOperation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Deletes an hours of operation.
 //
@@ -2421,7 +2721,7 @@ func (c *Connect) DeleteSecurityProfileRequest(input *DeleteSecurityProfileInput
 //   Request processing failed because of an error or failure with the service.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   You do not have sufficient permissions to perform this action.
 //
 //   * ResourceInUseException
 //   That resource is already in use. Please try another.
@@ -2870,8 +3170,8 @@ func (c *Connect) DescribeContactRequest(input *DescribeContactInput) (req *requ
 //
 // Describes the specified contact.
 //
-// Contact information is available in Amazon Connect for 24 months, and then
-// it is deleted.
+// Contact information remains available in Amazon Connect for 24 months, and
+// then it is deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3015,6 +3315,100 @@ func (c *Connect) DescribeContactFlowWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
+const opDescribeContactFlowModule = "DescribeContactFlowModule"
+
+// DescribeContactFlowModuleRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeContactFlowModule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeContactFlowModule for more information on using the DescribeContactFlowModule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeContactFlowModuleRequest method.
+//    req, resp := client.DescribeContactFlowModuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlowModule
+func (c *Connect) DescribeContactFlowModuleRequest(input *DescribeContactFlowModuleInput) (req *request.Request, output *DescribeContactFlowModuleOutput) {
+	op := &request.Operation{
+		Name:       opDescribeContactFlowModule,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}",
+	}
+
+	if input == nil {
+		input = &DescribeContactFlowModuleInput{}
+	}
+
+	output = &DescribeContactFlowModuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeContactFlowModule API operation for Amazon Connect Service.
+//
+// Describes the specified contact flow module.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeContactFlowModule for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlowModule
+func (c *Connect) DescribeContactFlowModule(input *DescribeContactFlowModuleInput) (*DescribeContactFlowModuleOutput, error) {
+	req, out := c.DescribeContactFlowModuleRequest(input)
+	return out, req.Send()
+}
+
+// DescribeContactFlowModuleWithContext is the same as DescribeContactFlowModule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeContactFlowModule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeContactFlowModuleWithContext(ctx aws.Context, input *DescribeContactFlowModuleInput, opts ...request.Option) (*DescribeContactFlowModuleOutput, error) {
+	req, out := c.DescribeContactFlowModuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeHoursOfOperation = "DescribeHoursOfOperation"
 
 // DescribeHoursOfOperationRequest generates a "aws/request.Request" representing the
@@ -3058,6 +3452,8 @@ func (c *Connect) DescribeHoursOfOperationRequest(input *DescribeHoursOfOperatio
 }
 
 // DescribeHoursOfOperation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Describes the hours of operation.
 //
@@ -5713,6 +6109,159 @@ func (c *Connect) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput
 
 	for p.Next() {
 		if !fn(p.Page().(*ListBotsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListContactFlowModules = "ListContactFlowModules"
+
+// ListContactFlowModulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListContactFlowModules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContactFlowModules for more information on using the ListContactFlowModules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListContactFlowModulesRequest method.
+//    req, resp := client.ListContactFlowModulesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlowModules
+func (c *Connect) ListContactFlowModulesRequest(input *ListContactFlowModulesInput) (req *request.Request, output *ListContactFlowModulesOutput) {
+	op := &request.Operation{
+		Name:       opListContactFlowModules,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contact-flow-modules-summary/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListContactFlowModulesInput{}
+	}
+
+	output = &ListContactFlowModulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContactFlowModules API operation for Amazon Connect Service.
+//
+// Provides information about the contact flow modules for the specified Amazon
+// Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListContactFlowModules for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListContactFlowModules
+func (c *Connect) ListContactFlowModules(input *ListContactFlowModulesInput) (*ListContactFlowModulesOutput, error) {
+	req, out := c.ListContactFlowModulesRequest(input)
+	return out, req.Send()
+}
+
+// ListContactFlowModulesWithContext is the same as ListContactFlowModules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContactFlowModules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListContactFlowModulesWithContext(ctx aws.Context, input *ListContactFlowModulesInput, opts ...request.Option) (*ListContactFlowModulesOutput, error) {
+	req, out := c.ListContactFlowModulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListContactFlowModulesPages iterates over the pages of a ListContactFlowModules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContactFlowModules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListContactFlowModules operation.
+//    pageNum := 0
+//    err := client.ListContactFlowModulesPages(params,
+//        func(page *connect.ListContactFlowModulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListContactFlowModulesPages(input *ListContactFlowModulesInput, fn func(*ListContactFlowModulesOutput, bool) bool) error {
+	return c.ListContactFlowModulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListContactFlowModulesPagesWithContext same as ListContactFlowModulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListContactFlowModulesPagesWithContext(ctx aws.Context, input *ListContactFlowModulesInput, fn func(*ListContactFlowModulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListContactFlowModulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListContactFlowModulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListContactFlowModulesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -9699,8 +10248,7 @@ func (c *Connect) StartTaskContactRequest(input *StartTaskContactInput) (req *re
 
 // StartTaskContact API operation for Amazon Connect Service.
 //
-// Initiates a contact flow to start a new task immediately or at a future date
-// and time.
+// Initiates a contact flow to start a new task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10458,7 +11006,7 @@ func (c *Connect) UpdateContactRequest(input *UpdateContactInput) (req *request.
 //
 // This API is in preview release for Amazon Connect and is subject to change.
 //
-// Adds or updates user defined contact information associated with the specified
+// Adds or updates user-defined contact information associated with the specified
 // contact. At least one field to be updated must be present in the request.
 //
 // You can add or update user-defined contact information for both ongoing and
@@ -10719,6 +11267,294 @@ func (c *Connect) UpdateContactFlowContentWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
+const opUpdateContactFlowMetadata = "UpdateContactFlowMetadata"
+
+// UpdateContactFlowMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactFlowMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactFlowMetadata for more information on using the UpdateContactFlowMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactFlowMetadataRequest method.
+//    req, resp := client.UpdateContactFlowMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowMetadata
+func (c *Connect) UpdateContactFlowMetadataRequest(input *UpdateContactFlowMetadataInput) (req *request.Request, output *UpdateContactFlowMetadataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactFlowMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-flows/{InstanceId}/{ContactFlowId}/metadata",
+	}
+
+	if input == nil {
+		input = &UpdateContactFlowMetadataInput{}
+	}
+
+	output = &UpdateContactFlowMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactFlowMetadata API operation for Amazon Connect Service.
+//
+// Updates metadata about specified contact flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactFlowMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowMetadata
+func (c *Connect) UpdateContactFlowMetadata(input *UpdateContactFlowMetadataInput) (*UpdateContactFlowMetadataOutput, error) {
+	req, out := c.UpdateContactFlowMetadataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactFlowMetadataWithContext is the same as UpdateContactFlowMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactFlowMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactFlowMetadataWithContext(ctx aws.Context, input *UpdateContactFlowMetadataInput, opts ...request.Option) (*UpdateContactFlowMetadataOutput, error) {
+	req, out := c.UpdateContactFlowMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateContactFlowModuleContent = "UpdateContactFlowModuleContent"
+
+// UpdateContactFlowModuleContentRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactFlowModuleContent operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactFlowModuleContent for more information on using the UpdateContactFlowModuleContent
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactFlowModuleContentRequest method.
+//    req, resp := client.UpdateContactFlowModuleContentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleContent
+func (c *Connect) UpdateContactFlowModuleContentRequest(input *UpdateContactFlowModuleContentInput) (req *request.Request, output *UpdateContactFlowModuleContentOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactFlowModuleContent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/content",
+	}
+
+	if input == nil {
+		input = &UpdateContactFlowModuleContentInput{}
+	}
+
+	output = &UpdateContactFlowModuleContentOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactFlowModuleContent API operation for Amazon Connect Service.
+//
+// Updates specified contact flow module for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactFlowModuleContent for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidContactFlowModuleException
+//   The problems with the module. Please fix before trying again.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleContent
+func (c *Connect) UpdateContactFlowModuleContent(input *UpdateContactFlowModuleContentInput) (*UpdateContactFlowModuleContentOutput, error) {
+	req, out := c.UpdateContactFlowModuleContentRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactFlowModuleContentWithContext is the same as UpdateContactFlowModuleContent with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactFlowModuleContent for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactFlowModuleContentWithContext(ctx aws.Context, input *UpdateContactFlowModuleContentInput, opts ...request.Option) (*UpdateContactFlowModuleContentOutput, error) {
+	req, out := c.UpdateContactFlowModuleContentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateContactFlowModuleMetadata = "UpdateContactFlowModuleMetadata"
+
+// UpdateContactFlowModuleMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactFlowModuleMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactFlowModuleMetadata for more information on using the UpdateContactFlowModuleMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactFlowModuleMetadataRequest method.
+//    req, resp := client.UpdateContactFlowModuleMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleMetadata
+func (c *Connect) UpdateContactFlowModuleMetadataRequest(input *UpdateContactFlowModuleMetadataInput) (req *request.Request, output *UpdateContactFlowModuleMetadataOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactFlowModuleMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-flow-modules/{InstanceId}/{ContactFlowModuleId}/metadata",
+	}
+
+	if input == nil {
+		input = &UpdateContactFlowModuleMetadataInput{}
+	}
+
+	output = &UpdateContactFlowModuleMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactFlowModuleMetadata API operation for Amazon Connect Service.
+//
+// Updates metadata about specified contact flow module.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactFlowModuleMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient permissions to perform this action.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowModuleMetadata
+func (c *Connect) UpdateContactFlowModuleMetadata(input *UpdateContactFlowModuleMetadataInput) (*UpdateContactFlowModuleMetadataOutput, error) {
+	req, out := c.UpdateContactFlowModuleMetadataRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactFlowModuleMetadataWithContext is the same as UpdateContactFlowModuleMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactFlowModuleMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactFlowModuleMetadataWithContext(ctx aws.Context, input *UpdateContactFlowModuleMetadataInput, opts ...request.Option) (*UpdateContactFlowModuleMetadataOutput, error) {
+	req, out := c.UpdateContactFlowModuleMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateContactFlowName = "UpdateContactFlowName"
 
 // UpdateContactFlowNameRequest generates a "aws/request.Request" representing the
@@ -10956,6 +11792,8 @@ func (c *Connect) UpdateHoursOfOperationRequest(input *UpdateHoursOfOperationInp
 }
 
 // UpdateHoursOfOperation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Updates the hours of operation.
 //
@@ -12982,7 +13820,7 @@ func (c *Connect) UpdateUserSecurityProfilesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// You do not have sufficient access to perform this action.
+// You do not have sufficient permissions to perform this action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13109,7 +13947,7 @@ type AgentStatus struct {
 	// The state of the agent status.
 	State *string `type:"string" enum:"AgentStatusState"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of agent status.
@@ -14462,6 +15300,9 @@ type ContactFlow struct {
 	// The name of the contact flow.
 	Name *string `min:"1" type:"string"`
 
+	// The type of contact flow.
+	State *string `type:"string" enum:"ContactFlowState"`
+
 	// One or more tags.
 	Tags map[string]*string `min:"1" type:"map"`
 
@@ -14519,6 +15360,12 @@ func (s *ContactFlow) SetName(v string) *ContactFlow {
 	return s
 }
 
+// SetState sets the State field's value.
+func (s *ContactFlow) SetState(v string) *ContactFlow {
+	s.State = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *ContactFlow) SetTags(v map[string]*string) *ContactFlow {
 	s.Tags = v
@@ -14528,6 +15375,160 @@ func (s *ContactFlow) SetTags(v map[string]*string) *ContactFlow {
 // SetType sets the Type field's value.
 func (s *ContactFlow) SetType(v string) *ContactFlow {
 	s.Type = &v
+	return s
+}
+
+// Contains information about a contact flow module.
+type ContactFlowModule struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The content of the contact flow module.
+	Content *string `min:"1" type:"string"`
+
+	// The description of the contact flow module.
+	Description *string `type:"string"`
+
+	// The identifier of the contact flow module.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the contact flow module.
+	Name *string `min:"1" type:"string"`
+
+	// The type of contact flow module.
+	State *string `type:"string" enum:"ContactFlowModuleState"`
+
+	// The status of the contact flow module.
+	Status *string `type:"string" enum:"ContactFlowModuleStatus"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModule) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ContactFlowModule) SetArn(v string) *ContactFlowModule {
+	s.Arn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *ContactFlowModule) SetContent(v string) *ContactFlowModule {
+	s.Content = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ContactFlowModule) SetDescription(v string) *ContactFlowModule {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ContactFlowModule) SetId(v string) *ContactFlowModule {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContactFlowModule) SetName(v string) *ContactFlowModule {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ContactFlowModule) SetState(v string) *ContactFlowModule {
+	s.State = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ContactFlowModule) SetStatus(v string) *ContactFlowModule {
+	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ContactFlowModule) SetTags(v map[string]*string) *ContactFlowModule {
+	s.Tags = v
+	return s
+}
+
+// Contains summary information about a contact flow.
+type ContactFlowModuleSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the contact flow module.
+	Arn *string `type:"string"`
+
+	// The identifier of the contact flow module.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the contact flow module.
+	Name *string `min:"1" type:"string"`
+
+	// The type of contact flow module.
+	State *string `type:"string" enum:"ContactFlowModuleState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModuleSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactFlowModuleSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ContactFlowModuleSummary) SetArn(v string) *ContactFlowModuleSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ContactFlowModuleSummary) SetId(v string) *ContactFlowModuleSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContactFlowModuleSummary) SetName(v string) *ContactFlowModuleSummary {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ContactFlowModuleSummary) SetState(v string) *ContactFlowModuleSummary {
+	s.State = &v
 	return s
 }
 
@@ -14606,6 +15607,9 @@ type ContactFlowSummary struct {
 	Arn *string `type:"string"`
 
 	// The type of contact flow.
+	ContactFlowState *string `type:"string" enum:"ContactFlowState"`
+
+	// The type of contact flow.
 	ContactFlowType *string `type:"string" enum:"ContactFlowType"`
 
 	// The identifier of the contact flow.
@@ -14636,6 +15640,12 @@ func (s ContactFlowSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *ContactFlowSummary) SetArn(v string) *ContactFlowSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetContactFlowState sets the ContactFlowState field's value.
+func (s *ContactFlowSummary) SetContactFlowState(v string) *ContactFlowSummary {
+	s.ContactFlowState = &v
 	return s
 }
 
@@ -14747,7 +15757,7 @@ type CreateAgentStatusInput struct {
 	// State is a required field
 	State *string `type:"string" required:"true" enum:"AgentStatusState"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -14996,6 +16006,161 @@ func (s *CreateContactFlowInput) SetType(v string) *CreateContactFlowInput {
 	return s
 }
 
+type CreateContactFlowModuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// The content of the contact flow module.
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// The description of the contact flow module.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the contact flow module.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The tags used to organize, track, or control access for this resource.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContactFlowModuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContactFlowModuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContactFlowModuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContactFlowModuleInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateContactFlowModuleInput) SetClientToken(v string) *CreateContactFlowModuleInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *CreateContactFlowModuleInput) SetContent(v string) *CreateContactFlowModuleInput {
+	s.Content = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateContactFlowModuleInput) SetDescription(v string) *CreateContactFlowModuleInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateContactFlowModuleInput) SetInstanceId(v string) *CreateContactFlowModuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateContactFlowModuleInput) SetName(v string) *CreateContactFlowModuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateContactFlowModuleInput) SetTags(v map[string]*string) *CreateContactFlowModuleInput {
+	s.Tags = v
+	return s
+}
+
+type CreateContactFlowModuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the contact flow module.
+	Arn *string `type:"string"`
+
+	// The identifier of the contact flow module.
+	Id *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContactFlowModuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateContactFlowModuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateContactFlowModuleOutput) SetArn(v string) *CreateContactFlowModuleOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateContactFlowModuleOutput) SetId(v string) *CreateContactFlowModuleOutput {
+	s.Id = &v
+	return s
+}
+
 type CreateContactFlowOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15059,7 +16224,7 @@ type CreateHoursOfOperationInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone of the hours of operation.
@@ -15388,7 +16553,7 @@ type CreateIntegrationAssociationInput struct {
 	// type.
 	SourceType *string `type:"string" enum:"SourceType"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -15555,7 +16720,7 @@ type CreateQueueInput struct {
 	// The quick connects available to agents who are working the queue.
 	QuickConnectIds []*string `min:"1" type:"list"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -15726,7 +16891,7 @@ type CreateQuickConnectInput struct {
 	// QuickConnectConfig is a required field
 	QuickConnectConfig *QuickConnectConfig `type:"structure" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -16072,7 +17237,7 @@ type CreateSecurityProfileInput struct {
 	// SecurityProfileName is a required field
 	SecurityProfileName *string `type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -16200,7 +17365,7 @@ type CreateUseCaseInput struct {
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The type of use case to associate to the integration association. Each integration
@@ -16849,6 +18014,184 @@ func (s *CurrentMetricResult) SetCollections(v []*CurrentMetricData) *CurrentMet
 func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult {
 	s.Dimensions = v
 	return s
+}
+
+type DeleteContactFlowInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContactFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContactFlowInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.ContactFlowId != nil && len(*s.ContactFlowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *DeleteContactFlowInput) SetContactFlowId(v string) *DeleteContactFlowInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteContactFlowInput) SetInstanceId(v string) *DeleteContactFlowInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeleteContactFlowModuleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the contact flow module.
+	//
+	// ContactFlowModuleId is a required field
+	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowModuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowModuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContactFlowModuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContactFlowModuleInput"}
+	if s.ContactFlowModuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowModuleId"))
+	}
+	if s.ContactFlowModuleId != nil && len(*s.ContactFlowModuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowModuleId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleId sets the ContactFlowModuleId field's value.
+func (s *DeleteContactFlowModuleInput) SetContactFlowModuleId(v string) *DeleteContactFlowModuleInput {
+	s.ContactFlowModuleId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteContactFlowModuleInput) SetInstanceId(v string) *DeleteContactFlowModuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeleteContactFlowModuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowModuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowModuleOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteContactFlowOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteContactFlowOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteHoursOfOperationInput struct {
@@ -17727,6 +19070,104 @@ func (s *DescribeContactFlowInput) SetInstanceId(v string) *DescribeContactFlowI
 	return s
 }
 
+type DescribeContactFlowModuleInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The identifier of the contact flow module.
+	//
+	// ContactFlowModuleId is a required field
+	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactFlowModuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactFlowModuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeContactFlowModuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeContactFlowModuleInput"}
+	if s.ContactFlowModuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowModuleId"))
+	}
+	if s.ContactFlowModuleId != nil && len(*s.ContactFlowModuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowModuleId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleId sets the ContactFlowModuleId field's value.
+func (s *DescribeContactFlowModuleInput) SetContactFlowModuleId(v string) *DescribeContactFlowModuleInput {
+	s.ContactFlowModuleId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeContactFlowModuleInput) SetInstanceId(v string) *DescribeContactFlowModuleInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeContactFlowModuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the contact flow module.
+	ContactFlowModule *ContactFlowModule `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactFlowModuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeContactFlowModuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactFlowModule sets the ContactFlowModule field's value.
+func (s *DescribeContactFlowModuleOutput) SetContactFlowModule(v *ContactFlowModule) *DescribeContactFlowModuleOutput {
+	s.ContactFlowModule = v
+	return s
+}
+
 type DescribeContactFlowOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17761,7 +19202,7 @@ func (s *DescribeContactFlowOutput) SetContactFlow(v *ContactFlow) *DescribeCont
 type DescribeContactInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The identifier of the initial contact.
+	// The identifier of the contact.
 	//
 	// ContactId is a required field
 	ContactId *string `location:"uri" locationName:"ContactId" min:"1" type:"string" required:"true"`
@@ -21421,7 +22862,7 @@ type HoursOfOperation struct {
 	// The name for the hours of operation.
 	Name *string `min:"1" type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 
 	// The time zone for the hours of operation.
@@ -21682,6 +23123,70 @@ func (s *HoursOfOperationTimeSlice) SetHours(v int64) *HoursOfOperationTimeSlice
 func (s *HoursOfOperationTimeSlice) SetMinutes(v int64) *HoursOfOperationTimeSlice {
 	s.Minutes = &v
 	return s
+}
+
+// An entity with the same name already exists.
+type IdempotencyException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdempotencyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdempotencyException) GoString() string {
+	return s.String()
+}
+
+func newErrorIdempotencyException(v protocol.ResponseMetadata) error {
+	return &IdempotencyException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *IdempotencyException) Code() string {
+	return "IdempotencyException"
+}
+
+// Message returns the exception's message.
+func (s *IdempotencyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *IdempotencyException) OrigErr() error {
+	return nil
+}
+
+func (s *IdempotencyException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *IdempotencyException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *IdempotencyException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The Amazon Connect instance.
@@ -22283,6 +23788,72 @@ func (s *InvalidContactFlowException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidContactFlowException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The problems with the module. Please fix before trying again.
+type InvalidContactFlowModuleException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	Problems []*ProblemDetail `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidContactFlowModuleException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidContactFlowModuleException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidContactFlowModuleException(v protocol.ResponseMetadata) error {
+	return &InvalidContactFlowModuleException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidContactFlowModuleException) Code() string {
+	return "InvalidContactFlowModuleException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidContactFlowModuleException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidContactFlowModuleException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidContactFlowModuleException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidContactFlowModuleException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidContactFlowModuleException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -23148,6 +24719,127 @@ func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
 	return s
 }
 
+type ListContactFlowModulesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The state of the contact flow module.
+	ContactFlowModuleState *string `location:"querystring" locationName:"state" type:"string" enum:"ContactFlowModuleState"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactFlowModulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactFlowModulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListContactFlowModulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListContactFlowModulesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleState sets the ContactFlowModuleState field's value.
+func (s *ListContactFlowModulesInput) SetContactFlowModuleState(v string) *ListContactFlowModulesInput {
+	s.ContactFlowModuleState = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListContactFlowModulesInput) SetInstanceId(v string) *ListContactFlowModulesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListContactFlowModulesInput) SetMaxResults(v int64) *ListContactFlowModulesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactFlowModulesInput) SetNextToken(v string) *ListContactFlowModulesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListContactFlowModulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the contact flow module.
+	ContactFlowModulesSummaryList []*ContactFlowModuleSummary `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactFlowModulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListContactFlowModulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactFlowModulesSummaryList sets the ContactFlowModulesSummaryList field's value.
+func (s *ListContactFlowModulesOutput) SetContactFlowModulesSummaryList(v []*ContactFlowModuleSummary) *ListContactFlowModulesOutput {
+	s.ContactFlowModulesSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactFlowModulesOutput) SetNextToken(v string) *ListContactFlowModulesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListContactFlowsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -23286,8 +24978,8 @@ type ListContactReferencesInput struct {
 	// The token for the next set of results. Use the value returned in the previous
 	// response in the next request to retrieve the next set of results.
 	//
-	// This is not expected to be set since the value returned in the previous response
-	// is always null.
+	// This is not expected to be set, because the value returned in the previous
+	// response is always null.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The type of reference.
@@ -23858,6 +25550,7 @@ type ListIntegrationAssociationsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
+	// The integration type.
 	IntegrationType *string `location:"querystring" locationName:"integrationType" type:"string" enum:"IntegrationType"`
 
 	// The maximum number of results to return per page.
@@ -26313,7 +28006,7 @@ type Queue struct {
 	// The status of the queue.
 	Status *string `type:"string" enum:"QueueStatus"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -26611,7 +28304,7 @@ type QuickConnect struct {
 	// The identifier for the quick connect.
 	QuickConnectId *string `type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -26894,7 +28587,8 @@ type ReferenceSummary struct {
 	// Otherwise, null.
 	Attachment *AttachmentReference `type:"structure"`
 
-	// Information about Url reference if the referenceType is URL. Otherwise, null.
+	// Information about the URL reference if the referenceType is URL. Otherwise,
+	// null.
 	Url *UrlReference `type:"structure"`
 }
 
@@ -27775,7 +29469,7 @@ type SecurityProfile struct {
 	// The name for the security profile.
 	SecurityProfileName *string `type:"string"`
 
-	// One or more tags.
+	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -29805,6 +31499,350 @@ func (s UpdateContactFlowContentOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateContactFlowContentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactFlowMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
+
+	// The state of contact flow.
+	ContactFlowState *string `type:"string" enum:"ContactFlowState"`
+
+	// The description of the contact flow.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// TThe name of the contact flow.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactFlowMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactFlowMetadataInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.ContactFlowId != nil && len(*s.ContactFlowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *UpdateContactFlowMetadataInput) SetContactFlowId(v string) *UpdateContactFlowMetadataInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetContactFlowState sets the ContactFlowState field's value.
+func (s *UpdateContactFlowMetadataInput) SetContactFlowState(v string) *UpdateContactFlowMetadataInput {
+	s.ContactFlowState = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateContactFlowMetadataInput) SetDescription(v string) *UpdateContactFlowMetadataInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactFlowMetadataInput) SetInstanceId(v string) *UpdateContactFlowMetadataInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateContactFlowMetadataInput) SetName(v string) *UpdateContactFlowMetadataInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateContactFlowMetadataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowMetadataOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactFlowModuleContentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow module.
+	//
+	// ContactFlowModuleId is a required field
+	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
+
+	// The content of the contact flow module.
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleContentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleContentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactFlowModuleContentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactFlowModuleContentInput"}
+	if s.ContactFlowModuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowModuleId"))
+	}
+	if s.ContactFlowModuleId != nil && len(*s.ContactFlowModuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowModuleId", 1))
+	}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleId sets the ContactFlowModuleId field's value.
+func (s *UpdateContactFlowModuleContentInput) SetContactFlowModuleId(v string) *UpdateContactFlowModuleContentInput {
+	s.ContactFlowModuleId = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *UpdateContactFlowModuleContentInput) SetContent(v string) *UpdateContactFlowModuleContentInput {
+	s.Content = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactFlowModuleContentInput) SetInstanceId(v string) *UpdateContactFlowModuleContentInput {
+	s.InstanceId = &v
+	return s
+}
+
+type UpdateContactFlowModuleContentOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleContentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleContentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactFlowModuleMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow module.
+	//
+	// ContactFlowModuleId is a required field
+	ContactFlowModuleId *string `location:"uri" locationName:"ContactFlowModuleId" min:"1" type:"string" required:"true"`
+
+	// The description of the contact flow module.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the contact flow module.
+	Name *string `min:"1" type:"string"`
+
+	// The state of contact flow module.
+	State *string `type:"string" enum:"ContactFlowModuleState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactFlowModuleMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactFlowModuleMetadataInput"}
+	if s.ContactFlowModuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowModuleId"))
+	}
+	if s.ContactFlowModuleId != nil && len(*s.ContactFlowModuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowModuleId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowModuleId sets the ContactFlowModuleId field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetContactFlowModuleId(v string) *UpdateContactFlowModuleMetadataInput {
+	s.ContactFlowModuleId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetDescription(v string) *UpdateContactFlowModuleMetadataInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetInstanceId(v string) *UpdateContactFlowModuleMetadataInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetName(v string) *UpdateContactFlowModuleMetadataInput {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *UpdateContactFlowModuleMetadataInput) SetState(v string) *UpdateContactFlowModuleMetadataInput {
+	s.State = &v
+	return s
+}
+
+type UpdateContactFlowModuleMetadataOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateContactFlowModuleMetadataOutput) GoString() string {
 	return s.String()
 }
 
@@ -33154,6 +35192,54 @@ const (
 func Comparison_Values() []string {
 	return []string{
 		ComparisonLt,
+	}
+}
+
+const (
+	// ContactFlowModuleStateActive is a ContactFlowModuleState enum value
+	ContactFlowModuleStateActive = "ACTIVE"
+
+	// ContactFlowModuleStateArchived is a ContactFlowModuleState enum value
+	ContactFlowModuleStateArchived = "ARCHIVED"
+)
+
+// ContactFlowModuleState_Values returns all elements of the ContactFlowModuleState enum
+func ContactFlowModuleState_Values() []string {
+	return []string{
+		ContactFlowModuleStateActive,
+		ContactFlowModuleStateArchived,
+	}
+}
+
+const (
+	// ContactFlowModuleStatusPublished is a ContactFlowModuleStatus enum value
+	ContactFlowModuleStatusPublished = "PUBLISHED"
+
+	// ContactFlowModuleStatusSaved is a ContactFlowModuleStatus enum value
+	ContactFlowModuleStatusSaved = "SAVED"
+)
+
+// ContactFlowModuleStatus_Values returns all elements of the ContactFlowModuleStatus enum
+func ContactFlowModuleStatus_Values() []string {
+	return []string{
+		ContactFlowModuleStatusPublished,
+		ContactFlowModuleStatusSaved,
+	}
+}
+
+const (
+	// ContactFlowStateActive is a ContactFlowState enum value
+	ContactFlowStateActive = "ACTIVE"
+
+	// ContactFlowStateArchived is a ContactFlowState enum value
+	ContactFlowStateArchived = "ARCHIVED"
+)
+
+// ContactFlowState_Values returns all elements of the ContactFlowState enum
+func ContactFlowState_Values() []string {
+	return []string{
+		ContactFlowStateActive,
+		ContactFlowStateArchived,
 	}
 }
 

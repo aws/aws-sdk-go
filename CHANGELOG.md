@@ -1,3 +1,28 @@
+Release v1.42.10 (2021-11-22)
+===
+
+### Service Client Updates
+* `service/braket`: Updates service API, documentation, and paginators
+* `service/chime-sdk-meetings`: Updates service API and documentation
+* `service/cloudformation`: Updates service API and documentation
+  * This release include SDK changes for the feature launch of Stack Import to Service Managed StackSet.
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/dms`: Updates service API and documentation
+  * Added new S3 endpoint settings to allow to convert the current UTC time into a specified time zone when a date partition folder is created. Using with 'DatePartitionedEnabled'.
+* `service/eks`: Updates service API and documentation
+* `service/es`: Updates service API and documentation
+  * This release adds an optional parameter dry-run for the UpdateElasticsearchDomainConfig API to perform basic validation checks, and detect the deployment type that will be required for the configuration change, without actually applying the change.
+* `service/finspace-data`: Updates service API, documentation, and paginators
+* `service/quicksight`: Updates service API and documentation
+  * Add support for Exasol data source, 1 click enterprise embedding and email customization.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds local backup support to Amazon RDS on AWS Outposts.
+* `service/s3control`: Updates service API and documentation
+  * Added Amazon CloudWatch publishing option for S3 Storage Lens metrics.
+* `service/ssm`: Updates service API and documentation
+  * Adds new parameter to CreateActivation API . This parameter is for "internal use only".
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.42.9 (2021-11-19)
 ===
 

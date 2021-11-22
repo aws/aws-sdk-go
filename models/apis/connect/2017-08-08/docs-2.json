@@ -12,7 +12,8 @@
     "AssociateSecurityKey": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Associates a security key to the instance.</p>",
     "CreateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates an agent status for the specified Amazon Connect instance.</p>",
     "CreateContactFlow": "<p>Creates a contact flow for the specified Amazon Connect instance.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
-    "CreateHoursOfOperation": "<p>Creates hours of operation. </p>",
+    "CreateContactFlowModule": "<p>Creates a contact flow module for the specified Amazon Connect instance. </p>",
+    "CreateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates hours of operation. </p>",
     "CreateInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon Kinesis. It also does not allow for any configurations on features, such as Contact Lens for Amazon Connect. </p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "CreateIntegrationAssociation": "<p>Creates an AWS resource association with an Amazon Connect instance.</p>",
     "CreateQueue": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates a new queue for the specified Amazon Connect instance.</p>",
@@ -22,7 +23,9 @@
     "CreateUseCase": "<p>Creates a use case for an integration association.</p>",
     "CreateUser": "<p>Creates a user account for the specified Amazon Connect instance.</p> <p>For information about how to create user accounts using the Amazon Connect console, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html\">Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "CreateUserHierarchyGroup": "<p>Creates a new user hierarchy group.</p>",
-    "DeleteHoursOfOperation": "<p>Deletes an hours of operation.</p>",
+    "DeleteContactFlow": "<p>Deletes a contact flow for the specified Amazon Connect instance.</p>",
+    "DeleteContactFlowModule": "<p>Deletes the specified contact flow module.</p>",
+    "DeleteHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes an hours of operation.</p>",
     "DeleteInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the Amazon Connect instance.</p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "DeleteIntegrationAssociation": "<p>Deletes an AWS resource association from an Amazon Connect instance. The association must not have any use cases associated with it.</p>",
     "DeleteQuickConnect": "<p>Deletes a quick connect.</p>",
@@ -31,9 +34,10 @@
     "DeleteUser": "<p>Deletes a user account from the specified Amazon Connect instance.</p> <p>For information about what happens to a user's data when their account is deleted, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/delete-users.html\">Delete Users from Your Amazon Connect Instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "DeleteUserHierarchyGroup": "<p>Deletes an existing user hierarchy group. It must not be associated with any agents or have any active child groups.</p>",
     "DescribeAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes an agent status.</p>",
-    "DescribeContact": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified contact. </p> <important> <p>Contact information is available in Amazon Connect for 24 months, and then it is deleted.</p> </important>",
+    "DescribeContact": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified contact. </p> <important> <p>Contact information remains available in Amazon Connect for 24 months, and then it is deleted.</p> </important>",
     "DescribeContactFlow": "<p>Describes the specified contact flow.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
-    "DescribeHoursOfOperation": "<p>Describes the hours of operation.</p>",
+    "DescribeContactFlowModule": "<p>Describes the specified contact flow module.</p>",
+    "DescribeHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the hours of operation.</p>",
     "DescribeInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns the current state of the specified instance identifier. It tracks the instance while it is being created and returns an error status, if applicable. </p> <p>If an instance is not created successfully, the instance status reason field returns details relevant to the reason. The instance in a failed state is returned only for 24 hours after the CreateInstance API was invoked.</p>",
     "DescribeInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified instance attribute.</p>",
     "DescribeInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Retrieves the current storage configurations for the specified resource type, association ID, and instance ID.</p>",
@@ -59,6 +63,7 @@
     "ListAgentStatuses": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Lists agent statuses.</p>",
     "ListApprovedOrigins": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all approved origins associated with the instance.</p>",
     "ListBots": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>For the specified version of Amazon Lex, returns a paginated list of all the Amazon Lex bots currently associated with the instance. </p>",
+    "ListContactFlowModules": "<p>Provides information about the contact flow modules for the specified Amazon Connect instance.</p>",
     "ListContactFlows": "<p>Provides information about the contact flows for the specified Amazon Connect instance.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p> <p>For more information about contact flows, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html\">Contact Flows</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListContactReferences": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>For the specified <code>referenceTypes</code>, returns a list of references associated with the contact. </p>",
     "ListHoursOfOperations": "<p>Provides information about the hours of operation for the specified Amazon Connect instance.</p> <p>For more information about hours of operation, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-hours-operation.html\">Set the Hours of Operation for a Queue</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
@@ -87,7 +92,7 @@
     "StartContactRecording": "<p>Starts recording the contact when the agent joins the call. StartContactRecording is a one-time action. For example, if you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend and resume it, such as when collecting sensitive information (for example, a credit card number), use SuspendContactRecording and ResumeContactRecording.</p> <p>You can use this API to override the recording behavior configured in the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/set-recording-behavior.html\">Set recording behavior</a> block.</p> <p>Only voice recordings are supported at this time.</p>",
     "StartContactStreaming": "<p> Initiates real-time message streaming for a new chat contact.</p> <p> For more information about message streaming, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html\">Enable real-time chat message streaming</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "StartOutboundVoiceContact": "<p>Places an outbound call to a contact, and then initiates the contact flow. It performs the actions in the contact flow that's specified (in <code>ContactFlowId</code>).</p> <p>Agents do not initiate the outbound API, which means that they do not dial the contact. If the contact flow places an outbound call to a contact, and then puts the contact in queue, the call is then routed to the agent, like any other inbound case.</p> <p>There is a 60-second dialing timeout for this operation. If the call is not connected after 60 seconds, it fails.</p> <note> <p>UK numbers with a 447 prefix are not allowed by default. Before you can dial these UK mobile numbers, you must submit a service quota increase request. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>. </p> </note> <note> <p>Campaign calls are not allowed by default. Before you can make a call with <code>TrafficType</code> = <code>CAMPAIGN</code>, you must submit a service quota increase request. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html\">Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator Guide</i>. </p> </note>",
-    "StartTaskContact": "<p>Initiates a contact flow to start a new task immediately or at a future date and time.</p>",
+    "StartTaskContact": "<p>Initiates a contact flow to start a new task.</p>",
     "StopContact": "<p>Ends the specified contact.</p>",
     "StopContactRecording": "<p>Stops recording a call when a contact is being recorded. StopContactRecording is a one-time action. If you use StopContactRecording to stop recording an ongoing call, you can't use StartContactRecording to restart it. For scenarios where the recording has started and you want to suspend it for sensitive information (for example, to collect a credit card number), and then restart it, use SuspendContactRecording and ResumeContactRecording.</p> <p>Only voice recordings are supported at this time.</p>",
     "StopContactStreaming": "<p> Ends message streaming on a specified contact. To restart message streaming on that contact, call the <a href=\"https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html\">StartContactStreaming</a> API. </p>",
@@ -95,12 +100,15 @@
     "TagResource": "<p>Adds the specified tags to the specified resource.</p> <p>The supported resource types are users, routing profiles, queues, quick connects, contact flows, agent status, and hours of operation.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "UntagResource": "<p>Removes the specified tags from the specified resource.</p>",
     "UpdateAgentStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates agent status.</p>",
-    "UpdateContact": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Adds or updates user defined contact information associated with the specified contact. At least one field to be updated must be present in the request.</p> <important> <p>You can add or update user-defined contact information for both ongoing and completed contacts.</p> </important>",
+    "UpdateContact": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Adds or updates user-defined contact information associated with the specified contact. At least one field to be updated must be present in the request.</p> <important> <p>You can add or update user-defined contact information for both ongoing and completed contacts.</p> </important>",
     "UpdateContactAttributes": "<p>Creates or updates user-defined contact attributes associated with the specified contact.</p> <p>You can create or update user-defined attributes for both ongoing and completed contacts. For example, while the call is active, you can update the customer's name or the reason the customer called. You can add notes about steps that the agent took during the call that display to the next agent that takes the call. You can also update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or to identify abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted. For information about CTR retention and the maximum size of the CTR attributes section, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits\">Feature specifications</a> in the <i>Amazon Connect Administrator Guide</i>. </p> <p> <b>Important:</b> You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, which was September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance.</p>",
     "UpdateContactFlowContent": "<p>Updates the specified contact flow.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
+    "UpdateContactFlowMetadata": "<p>Updates metadata about specified contact flow.</p>",
+    "UpdateContactFlowModuleContent": "<p>Updates specified contact flow module for the specified Amazon Connect instance. </p>",
+    "UpdateContactFlowModuleMetadata": "<p>Updates metadata about specified contact flow module.</p>",
     "UpdateContactFlowName": "<p>The name of the contact flow.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "UpdateContactSchedule": "<p>Updates the scheduled time of a task contact that is already scheduled.</p>",
-    "UpdateHoursOfOperation": "<p>Updates the hours of operation.</p>",
+    "UpdateHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation.</p>",
     "UpdateInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the value for the specified attribute type.</p>",
     "UpdateInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates an existing configuration for a resource type. This API is idempotent.</p>",
     "UpdateQueueHoursOfOperation": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the hours of operation for the specified queue.</p>",
@@ -131,8 +139,11 @@
         "AgentStatusSummary$Arn": "<p>The Amazon Resource Name (ARN) for the agent status.</p>",
         "Contact$Arn": "<p>The Amazon Resource Name (ARN) for the contact.</p>",
         "ContactFlow$Arn": "<p>The Amazon Resource Name (ARN) of the contact flow.</p>",
+        "ContactFlowModule$Arn": "<p>The Amazon Resource Name (ARN).</p>",
+        "ContactFlowModuleSummary$Arn": "<p>The Amazon Resource Name (ARN) of the contact flow module.</p>",
         "ContactFlowSummary$Arn": "<p>The Amazon Resource Name (ARN) of the contact flow.</p>",
         "CreateAgentStatusResponse$AgentStatusARN": "<p>The Amazon Resource Name (ARN) of the agent status.</p>",
+        "CreateContactFlowModuleResponse$Arn": "<p>The Amazon Resource Name (ARN) of the contact flow module.</p>",
         "CreateContactFlowResponse$ContactFlowArn": "<p>The Amazon Resource Name (ARN) of the contact flow.</p>",
         "CreateHoursOfOperationResponse$HoursOfOperationArn": "<p>The Amazon Resource Name (ARN) for the hours of operation.</p>",
         "CreateInstanceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the instance.</p>",
@@ -180,7 +191,7 @@
       }
     },
     "AccessDeniedException": {
-      "base": "<p>You do not have sufficient access to perform this action.</p>",
+      "base": "<p>You do not have sufficient permissions to perform this action.</p>",
       "refs": {
       }
     },
@@ -495,6 +506,7 @@
     "ClientToken": {
       "base": null,
       "refs": {
+        "CreateContactFlowModuleRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateInstanceRequest$ClientToken": "<p>The idempotency token.</p>",
         "StartChatContactRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "StartContactStreamingRequest$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
@@ -550,6 +562,7 @@
       "refs": {
         "ContactFlow$Description": "<p>The description of the contact flow.</p>",
         "CreateContactFlowRequest$Description": "<p>The description of the contact flow. </p>",
+        "UpdateContactFlowMetadataRequest$Description": "<p>The description of the contact flow.</p>",
         "UpdateContactFlowNameRequest$Description": "<p>The description of the contact flow.</p>"
       }
     },
@@ -559,6 +572,7 @@
         "ContactFlow$Id": "<p>The identifier of the contact flow.</p>",
         "ContactFlowSummary$Id": "<p>The identifier of the contact flow.</p>",
         "CreateContactFlowResponse$ContactFlowId": "<p>The identifier of the contact flow.</p>",
+        "DeleteContactFlowRequest$ContactFlowId": "<p>The identifier of the contact flow.</p>",
         "DescribeContactFlowRequest$ContactFlowId": "<p>The identifier of the contact flow.</p>",
         "OutboundCallerConfig$OutboundFlowId": "<p>The outbound whisper flow to be used during an outbound call.</p>",
         "QueueQuickConnectConfig$ContactFlowId": "<p>The identifier of the contact flow.</p>",
@@ -566,8 +580,79 @@
         "StartOutboundVoiceContactRequest$ContactFlowId": "<p>The identifier of the contact flow for the outbound call. To see the ContactFlowId in the Amazon Connect console user interface, on the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the contact flow. On the contact flow page, under the name of the contact flow, choose <b>Show additional flow information</b>. The ContactFlowId is the last part of the ARN, shown here in bold: </p> <p>arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b> </p>",
         "StartTaskContactRequest$ContactFlowId": "<p>The identifier of the contact flow for initiating the tasks. To see the ContactFlowId in the Amazon Connect console user interface, on the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the contact flow. On the contact flow page, under the name of the contact flow, choose <b>Show additional flow information</b>. The ContactFlowId is the last part of the ARN, shown here in bold: </p> <p>arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/<b>846ec553-a005-41c0-8341-xxxxxxxxxxxx</b> </p>",
         "UpdateContactFlowContentRequest$ContactFlowId": "<p>The identifier of the contact flow.</p>",
+        "UpdateContactFlowMetadataRequest$ContactFlowId": "<p>The identifier of the contact flow.</p>",
         "UpdateContactFlowNameRequest$ContactFlowId": "<p>The identifier of the contact flow.</p>",
         "UserQuickConnectConfig$ContactFlowId": "<p>The identifier of the contact flow.</p>"
+      }
+    },
+    "ContactFlowModule": {
+      "base": "<p>Contains information about a contact flow module.</p>",
+      "refs": {
+        "DescribeContactFlowModuleResponse$ContactFlowModule": "<p>Information about the contact flow module.</p>"
+      }
+    },
+    "ContactFlowModuleContent": {
+      "base": null,
+      "refs": {
+        "ContactFlowModule$Content": "<p>The content of the contact flow module.</p>",
+        "CreateContactFlowModuleRequest$Content": "<p>The content of the contact flow module.</p>",
+        "UpdateContactFlowModuleContentRequest$Content": "<p>The content of the contact flow module.</p>"
+      }
+    },
+    "ContactFlowModuleDescription": {
+      "base": null,
+      "refs": {
+        "ContactFlowModule$Description": "<p>The description of the contact flow module.</p>",
+        "CreateContactFlowModuleRequest$Description": "<p>The description of the contact flow module. </p>",
+        "UpdateContactFlowModuleMetadataRequest$Description": "<p>The description of the contact flow module.</p>"
+      }
+    },
+    "ContactFlowModuleId": {
+      "base": null,
+      "refs": {
+        "ContactFlowModule$Id": "<p>The identifier of the contact flow module.</p>",
+        "ContactFlowModuleSummary$Id": "<p>The identifier of the contact flow module.</p>",
+        "CreateContactFlowModuleResponse$Id": "<p>The identifier of the contact flow module.</p>",
+        "DeleteContactFlowModuleRequest$ContactFlowModuleId": "<p>The identifier of the contact flow module.</p>",
+        "DescribeContactFlowModuleRequest$ContactFlowModuleId": "<p>The identifier of the contact flow module.</p>",
+        "UpdateContactFlowModuleContentRequest$ContactFlowModuleId": "<p>The identifier of the contact flow module.</p>",
+        "UpdateContactFlowModuleMetadataRequest$ContactFlowModuleId": "<p>The identifier of the contact flow module.</p>"
+      }
+    },
+    "ContactFlowModuleName": {
+      "base": null,
+      "refs": {
+        "ContactFlowModule$Name": "<p>The name of the contact flow module.</p>",
+        "ContactFlowModuleSummary$Name": "<p>The name of the contact flow module.</p>",
+        "CreateContactFlowModuleRequest$Name": "<p>The name of the contact flow module.</p>",
+        "UpdateContactFlowModuleMetadataRequest$Name": "<p>The name of the contact flow module.</p>"
+      }
+    },
+    "ContactFlowModuleState": {
+      "base": null,
+      "refs": {
+        "ContactFlowModule$State": "<p>The type of contact flow module.</p>",
+        "ContactFlowModuleSummary$State": "<p>The type of contact flow module.</p>",
+        "ListContactFlowModulesRequest$ContactFlowModuleState": "<p>The state of the contact flow module.</p>",
+        "UpdateContactFlowModuleMetadataRequest$State": "<p>The state of contact flow module.</p>"
+      }
+    },
+    "ContactFlowModuleStatus": {
+      "base": null,
+      "refs": {
+        "ContactFlowModule$Status": "<p>The status of the contact flow module.</p>"
+      }
+    },
+    "ContactFlowModuleSummary": {
+      "base": "<p>Contains summary information about a contact flow.</p>",
+      "refs": {
+        "ContactFlowModulesSummaryList$member": null
+      }
+    },
+    "ContactFlowModulesSummaryList": {
+      "base": null,
+      "refs": {
+        "ListContactFlowModulesResponse$ContactFlowModulesSummaryList": "<p>Information about the contact flow module.</p>"
       }
     },
     "ContactFlowName": {
@@ -576,12 +661,21 @@
         "ContactFlow$Name": "<p>The name of the contact flow.</p>",
         "ContactFlowSummary$Name": "<p>The name of the contact flow.</p>",
         "CreateContactFlowRequest$Name": "<p>The name of the contact flow.</p>",
+        "UpdateContactFlowMetadataRequest$Name": "<p>TThe name of the contact flow.</p>",
         "UpdateContactFlowNameRequest$Name": "<p>The name of the contact flow.</p>"
       }
     },
     "ContactFlowNotPublishedException": {
       "base": "<p>The contact flow has not been published.</p>",
       "refs": {
+      }
+    },
+    "ContactFlowState": {
+      "base": null,
+      "refs": {
+        "ContactFlow$State": "<p>The type of contact flow.</p>",
+        "ContactFlowSummary$ContactFlowState": "<p>The type of contact flow.</p>",
+        "UpdateContactFlowMetadataRequest$ContactFlowState": "<p>The state of contact flow.</p>"
       }
     },
     "ContactFlowSummary": {
@@ -617,7 +711,7 @@
         "Contact$Id": "<p>The identifier for the contact.</p>",
         "Contact$InitialContactId": "<p>If this contact is related to other contacts, this is the ID of the initial contact.</p>",
         "Contact$PreviousContactId": "<p>If this contact is not the first contact, this is the ID of the previous contact.</p>",
-        "DescribeContactRequest$ContactId": "<p>The identifier of the initial contact.</p>",
+        "DescribeContactRequest$ContactId": "<p>The identifier of the contact.</p>",
         "GetContactAttributesRequest$InitialContactId": "<p>The identifier of the initial contact.</p>",
         "ListContactReferencesRequest$ContactId": "<p>The identifier of the initial contact.</p>",
         "ResumeContactRecordingRequest$ContactId": "<p>The identifier of the contact.</p>",
@@ -664,6 +758,16 @@
       }
     },
     "CreateAgentStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContactFlowModuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContactFlowModuleResponse": {
       "base": null,
       "refs": {
       }
@@ -834,6 +938,21 @@
         "RoutingProfileQueueConfigSummary$Delay": "<p>The delay, in seconds, that a contact should be in the queue before they are routed to an available agent. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html\">Queues: priority and delay</a> in the <i>Amazon Connect Administrator Guide</i>.</p>"
       }
     },
+    "DeleteContactFlowModuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContactFlowModuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContactFlowRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteHoursOfOperationRequest": {
       "base": null,
       "refs": {
@@ -880,6 +999,16 @@
       }
     },
     "DescribeAgentStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeContactFlowModuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeContactFlowModuleResponse": {
       "base": null,
       "refs": {
       }
@@ -1433,6 +1562,11 @@
         "HoursOfOperationConfig$EndTime": "<p>The end time that your contact center closes.</p>"
       }
     },
+    "IdempotencyException": {
+      "base": "<p>An entity with the same name already exists.</p>",
+      "refs": {
+      }
+    },
     "InboundCallsEnabled": {
       "base": null,
       "refs": {
@@ -1474,6 +1608,7 @@
         "AssociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "AssociateSecurityKeyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "CreateContactFlowModuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "CreateHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateInstanceResponse$Id": "<p>The identifier for the instance.</p>",
@@ -1485,6 +1620,8 @@
         "CreateUseCaseRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateUserHierarchyGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "CreateUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "DeleteContactFlowModuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "DeleteContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DeleteHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DeleteInstanceRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DeleteIntegrationAssociationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -1494,6 +1631,7 @@
         "DeleteUserHierarchyGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DeleteUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DescribeAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "DescribeContactFlowModuleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DescribeContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DescribeContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "DescribeHoursOfOperationRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -1525,6 +1663,7 @@
         "ListAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListApprovedOriginsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListBotsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "ListContactFlowModulesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListContactFlowsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListContactReferencesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "ListHoursOfOperationsRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -1561,6 +1700,9 @@
         "UpdateAgentStatusRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateContactAttributesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateContactFlowContentRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "UpdateContactFlowMetadataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "UpdateContactFlowModuleContentRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
+        "UpdateContactFlowModuleMetadataRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateContactFlowNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateContactRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
         "UpdateContactScheduleRequest$InstanceId": "<p>The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.</p>",
@@ -1666,7 +1808,7 @@
       "refs": {
         "CreateIntegrationAssociationRequest$IntegrationType": "<p>The type of information to be ingested.</p>",
         "IntegrationAssociationSummary$IntegrationType": "<p>The integration type.</p>",
-        "ListIntegrationAssociationsRequest$IntegrationType": "<p/>"
+        "ListIntegrationAssociationsRequest$IntegrationType": "<p>The integration type.</p>"
       }
     },
     "InternalServiceException": {
@@ -1676,6 +1818,11 @@
     },
     "InvalidContactFlowException": {
       "base": "<p>The contact flow is not valid.</p>",
+      "refs": {
+      }
+    },
+    "InvalidContactFlowModuleException": {
+      "base": "<p>The problems with the module. Please fix before trying again.</p>",
       "refs": {
       }
     },
@@ -1793,6 +1940,16 @@
       }
     },
     "ListBotsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContactFlowModulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContactFlowModulesResponse": {
       "base": null,
       "refs": {
       }
@@ -2049,6 +2206,7 @@
       "base": null,
       "refs": {
         "ListAgentStatusRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
+        "ListContactFlowModulesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListContactFlowsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListHoursOfOperationsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListPhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
@@ -2105,6 +2263,7 @@
         "ContactNotFoundException$Message": "<p>The message.</p>",
         "DestinationNotAllowedException$Message": "<p>The message about the outbound calls.</p>",
         "DuplicateResourceException$Message": null,
+        "IdempotencyException$Message": null,
         "InternalServiceException$Message": "<p>The message.</p>",
         "InvalidParameterException$Message": "<p>The message about the parameters.</p>",
         "InvalidRequestException$Message": "<p>The message about the request.</p>",
@@ -2145,9 +2304,11 @@
         "ListApprovedOriginsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListBotsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListBotsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
+        "ListContactFlowModulesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListContactFlowModulesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListContactFlowsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListContactFlowsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
-        "ListContactReferencesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p> <important> <p>This is not expected to be set since the value returned in the previous response is always null.</p> </important>",
+        "ListContactReferencesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p> <important> <p>This is not expected to be set, because the value returned in the previous response is always null.</p> </important>",
         "ListContactReferencesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p> <important> <p>This is always returned as null in the response.</p> </important>",
         "ListHoursOfOperationsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
         "ListHoursOfOperationsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
@@ -2367,7 +2528,8 @@
     "Problems": {
       "base": null,
       "refs": {
-        "InvalidContactFlowException$problems": "<p>The problems with the contact flow. Please fix before trying again.</p>"
+        "InvalidContactFlowException$problems": "<p>The problems with the contact flow. Please fix before trying again.</p>",
+        "InvalidContactFlowModuleException$Problems": null
       }
     },
     "PromptId": {
@@ -2997,24 +3159,26 @@
     "TagMap": {
       "base": null,
       "refs": {
-        "AgentStatus$Tags": "<p>One or more tags.</p>",
+        "AgentStatus$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ContactFlow$Tags": "<p>One or more tags.</p>",
-        "CreateAgentStatusRequest$Tags": "<p>One or more tags.</p>",
+        "ContactFlowModule$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateAgentStatusRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateContactFlowModuleRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateContactFlowRequest$Tags": "<p>One or more tags.</p>",
-        "CreateHoursOfOperationRequest$Tags": "<p>One or more tags.</p>",
-        "CreateIntegrationAssociationRequest$Tags": "<p>One or more tags.</p>",
-        "CreateQueueRequest$Tags": "<p>One or more tags.</p>",
-        "CreateQuickConnectRequest$Tags": "<p>One or more tags.</p>",
+        "CreateHoursOfOperationRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateIntegrationAssociationRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateQueueRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateQuickConnectRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateRoutingProfileRequest$Tags": "<p>One or more tags.</p>",
-        "CreateSecurityProfileRequest$Tags": "<p>One or more tags.</p>",
-        "CreateUseCaseRequest$Tags": "<p>One or more tags.</p>",
+        "CreateSecurityProfileRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "CreateUseCaseRequest$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "CreateUserRequest$Tags": "<p>One or more tags.</p>",
-        "HoursOfOperation$Tags": "<p>One or more tags.</p>",
+        "HoursOfOperation$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "ListTagsForResourceResponse$tags": "<p>Information about the tags.</p>",
-        "Queue$Tags": "<p>One or more tags.</p>",
-        "QuickConnect$Tags": "<p>One or more tags.</p>",
+        "Queue$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
+        "QuickConnect$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "RoutingProfile$Tags": "<p>One or more tags.</p>",
-        "SecurityProfile$Tags": "<p>One or more tags.</p>",
+        "SecurityProfile$Tags": "<p>The tags used to organize, track, or control access for this resource.</p>",
         "TagResourceRequest$tags": "<p>One or more tags. For example, { \"tags\": {\"key1\":\"value1\", \"key2\":\"value2\"} }.</p>",
         "User$Tags": "<p>The tags.</p>"
       }
@@ -3111,6 +3275,31 @@
       }
     },
     "UpdateContactFlowContentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactFlowMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactFlowModuleContentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactFlowModuleContentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactFlowModuleMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactFlowModuleMetadataResponse": {
       "base": null,
       "refs": {
       }
@@ -3265,7 +3454,7 @@
     "UrlReference": {
       "base": "<p>The URL reference.</p>",
       "refs": {
-        "ReferenceSummary$Url": "<p>Information about Url reference if the <code>referenceType</code> is <code>URL</code>. Otherwise, null.</p>"
+        "ReferenceSummary$Url": "<p>Information about the URL reference if the <code>referenceType</code> is <code>URL</code>. Otherwise, null.</p>"
       }
     },
     "UseCase": {

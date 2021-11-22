@@ -3105,7 +3105,8 @@
         "DeletionProtection":{"shape":"BooleanOptional"},
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
-        "CustomIamInstanceProfile":{"shape":"String"}
+        "CustomIamInstanceProfile":{"shape":"String"},
+        "BackupTarget":{"shape":"String"}
       }
     },
     "CreateDBInstanceReadReplicaMessage":{
@@ -4022,7 +4023,8 @@
         "ActivityStreamEngineNativeAuditFieldsIncluded":{"shape":"BooleanOptional"},
         "AutomationMode":{"shape":"AutomationMode"},
         "ResumeFullAutomationModeTime":{"shape":"TStamp"},
-        "CustomIamInstanceProfile":{"shape":"String"}
+        "CustomIamInstanceProfile":{"shape":"String"},
+        "BackupTarget":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -4065,7 +4067,8 @@
         "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"},
         "BackupRetentionPeriod":{"shape":"IntegerOptional"},
         "DBInstanceAutomatedBackupsArn":{"shape":"String"},
-        "DBInstanceAutomatedBackupsReplications":{"shape":"DBInstanceAutomatedBackupsReplicationList"}
+        "DBInstanceAutomatedBackupsReplications":{"shape":"DBInstanceAutomatedBackupsReplicationList"},
+        "BackupTarget":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -4639,7 +4642,8 @@
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "DbiResourceId":{"shape":"String"},
         "TagList":{"shape":"TagList"},
-        "OriginalSnapshotCreateTime":{"shape":"TStamp"}
+        "OriginalSnapshotCreateTime":{"shape":"TStamp"},
+        "SnapshotTarget":{"shape":"String"}
       },
       "wrapper":true
     },
@@ -7689,7 +7693,8 @@
         "DBParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"},
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
-        "CustomIamInstanceProfile":{"shape":"String"}
+        "CustomIamInstanceProfile":{"shape":"String"},
+        "BackupTarget":{"shape":"String"}
       }
     },
     "RestoreDBInstanceFromDBSnapshotResult":{
@@ -7800,7 +7805,8 @@
         "MaxAllocatedStorage":{"shape":"IntegerOptional"},
         "SourceDBInstanceAutomatedBackupsArn":{"shape":"String"},
         "EnableCustomerOwnedIp":{"shape":"BooleanOptional"},
-        "CustomIamInstanceProfile":{"shape":"String"}
+        "CustomIamInstanceProfile":{"shape":"String"},
+        "BackupTarget":{"shape":"String"}
       }
     },
     "RestoreDBInstanceToPointInTimeResult":{

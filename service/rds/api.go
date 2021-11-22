@@ -1406,16 +1406,13 @@ func (c *RDS) CreateCustomDBEngineVersionRequest(input *CreateCustomDBEngineVers
 //
 // Creates a custom DB engine version (CEV). A CEV is a binary volume snapshot
 // of a database engine and specific AMI. The only supported engine is Oracle
-// Database 19c Enterprise Edition with the January 2021 or later RU/RUR. For
-// more information, see Amazon RDS Custom requirements and limitations (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.preparing.manifest)
-// in the Amazon RDS User Guide.
+// Database 19c Enterprise Edition with the January 2021 or later RU/RUR.
 //
 // Amazon RDS, which is a fully managed service, supplies the Amazon Machine
 // Image (AMI) and database software. The Amazon RDS database software is preinstalled,
 // so you need only select a DB engine and version, and create your database.
 // With Amazon RDS Custom, you upload your database installation files in Amazon
-// S3. For more information, see Preparing to create a CEV (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.html#custom-cev.preparing)
-// in the Amazon RDS User Guide.
+// S3.
 //
 // When you create a custom engine version, you specify the files in a JSON
 // document called a CEV manifest. This document describes installation .zip
@@ -10842,7 +10839,7 @@ func (c *RDS) ModifyCustomDBEngineVersionRequest(input *ModifyCustomDBEngineVers
 // accesses your Amazon S3 bucket. These calls originate from the MediaImport
 // service for the ModifyCustomDbEngineVersion event.
 //
-// For more information, see Modifying CEV status (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.preparing.manifest)
+// For more information, see Modifying CEV status (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/custom-cev.html#custom-cev.modify)
 // in the Amazon RDS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -19920,6 +19917,16 @@ type CreateDBInstanceInput struct {
 	//    * Can't be set to 0 or 35 for an RDS Custom DB instance
 	BackupRetentionPeriod *int64 `type:"integer"`
 
+	// Specifies where automated backups and manual snapshots are stored.
+	//
+	// Possible values are outposts (Amazon Web Services Outposts) and region (Amazon
+	// Web Services Region). The default is region.
+	//
+	// For more information, see Working with Amazon RDS on Amazon Web Services
+	// Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	BackupTarget *string `type:"string"`
+
 	// For supported engines, this value indicates that the DB instance should be
 	// associated with the specified CharacterSet.
 	//
@@ -20380,59 +20387,13 @@ type CreateDBInstanceInput struct {
 	//
 	// Not applicable. The name for the master user is managed by the DB cluster.
 	//
-	// MariaDB
+	// Amazon RDS
 	//
 	// Constraints:
 	//
-	//    * Required for MariaDB.
+	//    * Required.
 	//
-	//    * Must be 1 to 16 letters or numbers.
-	//
-	//    * Can't be a reserved word for the chosen database engine.
-	//
-	// Microsoft SQL Server
-	//
-	// Constraints:
-	//
-	//    * Required for SQL Server.
-	//
-	//    * Must be 1 to 128 letters or numbers.
-	//
-	//    * The first character must be a letter.
-	//
-	//    * Can't be a reserved word for the chosen database engine.
-	//
-	// MySQL
-	//
-	// Constraints:
-	//
-	//    * Required for MySQL.
-	//
-	//    * Must be 1 to 16 letters or numbers.
-	//
-	//    * First character must be a letter.
-	//
-	//    * Can't be a reserved word for the chosen database engine.
-	//
-	// Oracle
-	//
-	// Constraints:
-	//
-	//    * Required for Oracle.
-	//
-	//    * Must be 1 to 30 letters or numbers.
-	//
-	//    * First character must be a letter.
-	//
-	//    * Can't be a reserved word for the chosen database engine.
-	//
-	// PostgreSQL
-	//
-	// Constraints:
-	//
-	//    * Required for PostgreSQL.
-	//
-	//    * Must be 1 to 63 letters or numbers.
+	//    * Must be 1 to 16 letters, numbers, or underscores.
 	//
 	//    * First character must be a letter.
 	//
@@ -20761,6 +20722,12 @@ func (s *CreateDBInstanceInput) SetAvailabilityZone(v string) *CreateDBInstanceI
 // SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
 func (s *CreateDBInstanceInput) SetBackupRetentionPeriod(v int64) *CreateDBInstanceInput {
 	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetBackupTarget sets the BackupTarget field's value.
+func (s *CreateDBInstanceInput) SetBackupTarget(v string) *CreateDBInstanceInput {
+	s.BackupTarget = &v
 	return s
 }
 
@@ -24862,6 +24829,10 @@ type DBInstance struct {
 	// Specifies the number of days for which automatic DB snapshots are retained.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
+	// Specifies where automated backups and manual snapshots are stored: Amazon
+	// Web Services Outposts or the Amazon Web Services Region.
+	BackupTarget *string `type:"string"`
+
 	// The identifier of the CA certificate for this DB instance.
 	CACertificateIdentifier *string `type:"string"`
 
@@ -25277,6 +25248,12 @@ func (s *DBInstance) SetBackupRetentionPeriod(v int64) *DBInstance {
 	return s
 }
 
+// SetBackupTarget sets the BackupTarget field's value.
+func (s *DBInstance) SetBackupTarget(v string) *DBInstance {
+	s.BackupTarget = &v
+	return s
+}
+
 // SetCACertificateIdentifier sets the CACertificateIdentifier field's value.
 func (s *DBInstance) SetCACertificateIdentifier(v string) *DBInstance {
 	s.CACertificateIdentifier = &v
@@ -25654,6 +25631,10 @@ type DBInstanceAutomatedBackup struct {
 	// The retention period for the automated backups.
 	BackupRetentionPeriod *int64 `type:"integer"`
 
+	// Specifies where automated backups are stored: Amazon Web Services Outposts
+	// or the Amazon Web Services Region.
+	BackupTarget *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) for the automated backups.
 	DBInstanceArn *string `type:"string"`
 
@@ -25779,6 +25760,12 @@ func (s *DBInstanceAutomatedBackup) SetAvailabilityZone(v string) *DBInstanceAut
 // SetBackupRetentionPeriod sets the BackupRetentionPeriod field's value.
 func (s *DBInstanceAutomatedBackup) SetBackupRetentionPeriod(v int64) *DBInstanceAutomatedBackup {
 	s.BackupRetentionPeriod = &v
+	return s
+}
+
+// SetBackupTarget sets the BackupTarget field's value.
+func (s *DBInstanceAutomatedBackup) SetBackupTarget(v string) *DBInstanceAutomatedBackup {
+	s.BackupTarget = &v
 	return s
 }
 
@@ -26988,6 +26975,10 @@ type DBSnapshot struct {
 	// Changes for the copy when the snapshot is copied.
 	SnapshotCreateTime *time.Time `type:"timestamp"`
 
+	// Specifies where manual snapshots are stored: Amazon Web Services Outposts
+	// or the Amazon Web Services Region.
+	SnapshotTarget *string `type:"string"`
+
 	// Provides the type of the DB snapshot.
 	SnapshotType *string `type:"string"`
 
@@ -27163,6 +27154,12 @@ func (s *DBSnapshot) SetProcessorFeatures(v []*ProcessorFeature) *DBSnapshot {
 // SetSnapshotCreateTime sets the SnapshotCreateTime field's value.
 func (s *DBSnapshot) SetSnapshotCreateTime(v time.Time) *DBSnapshot {
 	s.SnapshotCreateTime = &v
+	return s
+}
+
+// SetSnapshotTarget sets the SnapshotTarget field's value.
+func (s *DBSnapshot) SetSnapshotTarget(v string) *DBSnapshot {
+	s.SnapshotTarget = &v
 	return s
 }
 
@@ -33763,7 +33760,7 @@ type DescribeExportTasksInput struct {
 	//    to Amazon S3
 	//
 	//    * status - The status of the export task. Must be lowercase. Valid statuses
-	//    are the following: canceled canceling complete failed starting
+	//    are the following: canceled canceling complete failed in_progress starting
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// An optional pagination token provided by a previous DescribeExportTasks request.
@@ -45692,6 +45689,17 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// Example: us-east-1a
 	AvailabilityZone *string `type:"string"`
 
+	// Specifies where automated backups and manual snapshots are stored for the
+	// restored DB instance.
+	//
+	// Possible values are outposts (Amazon Web Services Outposts) and region (Amazon
+	// Web Services Region). The default is region.
+	//
+	// For more information, see Working with Amazon RDS on Amazon Web Services
+	// Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	BackupTarget *string `type:"string"`
+
 	// A value that indicates whether to copy all tags from the restored DB instance
 	// to snapshots of the DB instance. By default, tags are not copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
@@ -46024,6 +46032,12 @@ func (s *RestoreDBInstanceFromDBSnapshotInput) SetAutoMinorVersionUpgrade(v bool
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *RestoreDBInstanceFromDBSnapshotInput) SetAvailabilityZone(v string) *RestoreDBInstanceFromDBSnapshotInput {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetBackupTarget sets the BackupTarget field's value.
+func (s *RestoreDBInstanceFromDBSnapshotInput) SetBackupTarget(v string) *RestoreDBInstanceFromDBSnapshotInput {
+	s.BackupTarget = &v
 	return s
 }
 
@@ -46929,6 +46943,17 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Example: us-east-1a
 	AvailabilityZone *string `type:"string"`
 
+	// Specifies where automated backups and manual snapshots are stored for the
+	// restored DB instance.
+	//
+	// Possible values are outposts (Amazon Web Services Outposts) and region (Amazon
+	// Web Services Region). The default is region.
+	//
+	// For more information, see Working with Amazon RDS on Amazon Web Services
+	// Outposts (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-on-outposts.html)
+	// in the Amazon RDS User Guide.
+	BackupTarget *string `type:"string"`
+
 	// A value that indicates whether to copy all tags from the restored DB instance
 	// to snapshots of the DB instance. By default, tags are not copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
@@ -47284,6 +47309,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetAutoMinorVersionUpgrade(v bool)
 // SetAvailabilityZone sets the AvailabilityZone field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetAvailabilityZone(v string) *RestoreDBInstanceToPointInTimeInput {
 	s.AvailabilityZone = &v
+	return s
+}
+
+// SetBackupTarget sets the BackupTarget field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetBackupTarget(v string) *RestoreDBInstanceToPointInTimeInput {
+	s.BackupTarget = &v
 	return s
 }
 

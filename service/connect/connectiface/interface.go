@@ -100,6 +100,10 @@ type ConnectAPI interface {
 	CreateContactFlowWithContext(aws.Context, *connect.CreateContactFlowInput, ...request.Option) (*connect.CreateContactFlowOutput, error)
 	CreateContactFlowRequest(*connect.CreateContactFlowInput) (*request.Request, *connect.CreateContactFlowOutput)
 
+	CreateContactFlowModule(*connect.CreateContactFlowModuleInput) (*connect.CreateContactFlowModuleOutput, error)
+	CreateContactFlowModuleWithContext(aws.Context, *connect.CreateContactFlowModuleInput, ...request.Option) (*connect.CreateContactFlowModuleOutput, error)
+	CreateContactFlowModuleRequest(*connect.CreateContactFlowModuleInput) (*request.Request, *connect.CreateContactFlowModuleOutput)
+
 	CreateHoursOfOperation(*connect.CreateHoursOfOperationInput) (*connect.CreateHoursOfOperationOutput, error)
 	CreateHoursOfOperationWithContext(aws.Context, *connect.CreateHoursOfOperationInput, ...request.Option) (*connect.CreateHoursOfOperationOutput, error)
 	CreateHoursOfOperationRequest(*connect.CreateHoursOfOperationInput) (*request.Request, *connect.CreateHoursOfOperationOutput)
@@ -139,6 +143,14 @@ type ConnectAPI interface {
 	CreateUserHierarchyGroup(*connect.CreateUserHierarchyGroupInput) (*connect.CreateUserHierarchyGroupOutput, error)
 	CreateUserHierarchyGroupWithContext(aws.Context, *connect.CreateUserHierarchyGroupInput, ...request.Option) (*connect.CreateUserHierarchyGroupOutput, error)
 	CreateUserHierarchyGroupRequest(*connect.CreateUserHierarchyGroupInput) (*request.Request, *connect.CreateUserHierarchyGroupOutput)
+
+	DeleteContactFlow(*connect.DeleteContactFlowInput) (*connect.DeleteContactFlowOutput, error)
+	DeleteContactFlowWithContext(aws.Context, *connect.DeleteContactFlowInput, ...request.Option) (*connect.DeleteContactFlowOutput, error)
+	DeleteContactFlowRequest(*connect.DeleteContactFlowInput) (*request.Request, *connect.DeleteContactFlowOutput)
+
+	DeleteContactFlowModule(*connect.DeleteContactFlowModuleInput) (*connect.DeleteContactFlowModuleOutput, error)
+	DeleteContactFlowModuleWithContext(aws.Context, *connect.DeleteContactFlowModuleInput, ...request.Option) (*connect.DeleteContactFlowModuleOutput, error)
+	DeleteContactFlowModuleRequest(*connect.DeleteContactFlowModuleInput) (*request.Request, *connect.DeleteContactFlowModuleOutput)
 
 	DeleteHoursOfOperation(*connect.DeleteHoursOfOperationInput) (*connect.DeleteHoursOfOperationOutput, error)
 	DeleteHoursOfOperationWithContext(aws.Context, *connect.DeleteHoursOfOperationInput, ...request.Option) (*connect.DeleteHoursOfOperationOutput, error)
@@ -183,6 +195,10 @@ type ConnectAPI interface {
 	DescribeContactFlow(*connect.DescribeContactFlowInput) (*connect.DescribeContactFlowOutput, error)
 	DescribeContactFlowWithContext(aws.Context, *connect.DescribeContactFlowInput, ...request.Option) (*connect.DescribeContactFlowOutput, error)
 	DescribeContactFlowRequest(*connect.DescribeContactFlowInput) (*request.Request, *connect.DescribeContactFlowOutput)
+
+	DescribeContactFlowModule(*connect.DescribeContactFlowModuleInput) (*connect.DescribeContactFlowModuleOutput, error)
+	DescribeContactFlowModuleWithContext(aws.Context, *connect.DescribeContactFlowModuleInput, ...request.Option) (*connect.DescribeContactFlowModuleOutput, error)
+	DescribeContactFlowModuleRequest(*connect.DescribeContactFlowModuleInput) (*request.Request, *connect.DescribeContactFlowModuleOutput)
 
 	DescribeHoursOfOperation(*connect.DescribeHoursOfOperationInput) (*connect.DescribeHoursOfOperationOutput, error)
 	DescribeHoursOfOperationWithContext(aws.Context, *connect.DescribeHoursOfOperationInput, ...request.Option) (*connect.DescribeHoursOfOperationOutput, error)
@@ -302,6 +318,13 @@ type ConnectAPI interface {
 
 	ListBotsPages(*connect.ListBotsInput, func(*connect.ListBotsOutput, bool) bool) error
 	ListBotsPagesWithContext(aws.Context, *connect.ListBotsInput, func(*connect.ListBotsOutput, bool) bool, ...request.Option) error
+
+	ListContactFlowModules(*connect.ListContactFlowModulesInput) (*connect.ListContactFlowModulesOutput, error)
+	ListContactFlowModulesWithContext(aws.Context, *connect.ListContactFlowModulesInput, ...request.Option) (*connect.ListContactFlowModulesOutput, error)
+	ListContactFlowModulesRequest(*connect.ListContactFlowModulesInput) (*request.Request, *connect.ListContactFlowModulesOutput)
+
+	ListContactFlowModulesPages(*connect.ListContactFlowModulesInput, func(*connect.ListContactFlowModulesOutput, bool) bool) error
+	ListContactFlowModulesPagesWithContext(aws.Context, *connect.ListContactFlowModulesInput, func(*connect.ListContactFlowModulesOutput, bool) bool, ...request.Option) error
 
 	ListContactFlows(*connect.ListContactFlowsInput) (*connect.ListContactFlowsOutput, error)
 	ListContactFlowsWithContext(aws.Context, *connect.ListContactFlowsInput, ...request.Option) (*connect.ListContactFlowsOutput, error)
@@ -524,6 +547,18 @@ type ConnectAPI interface {
 	UpdateContactFlowContent(*connect.UpdateContactFlowContentInput) (*connect.UpdateContactFlowContentOutput, error)
 	UpdateContactFlowContentWithContext(aws.Context, *connect.UpdateContactFlowContentInput, ...request.Option) (*connect.UpdateContactFlowContentOutput, error)
 	UpdateContactFlowContentRequest(*connect.UpdateContactFlowContentInput) (*request.Request, *connect.UpdateContactFlowContentOutput)
+
+	UpdateContactFlowMetadata(*connect.UpdateContactFlowMetadataInput) (*connect.UpdateContactFlowMetadataOutput, error)
+	UpdateContactFlowMetadataWithContext(aws.Context, *connect.UpdateContactFlowMetadataInput, ...request.Option) (*connect.UpdateContactFlowMetadataOutput, error)
+	UpdateContactFlowMetadataRequest(*connect.UpdateContactFlowMetadataInput) (*request.Request, *connect.UpdateContactFlowMetadataOutput)
+
+	UpdateContactFlowModuleContent(*connect.UpdateContactFlowModuleContentInput) (*connect.UpdateContactFlowModuleContentOutput, error)
+	UpdateContactFlowModuleContentWithContext(aws.Context, *connect.UpdateContactFlowModuleContentInput, ...request.Option) (*connect.UpdateContactFlowModuleContentOutput, error)
+	UpdateContactFlowModuleContentRequest(*connect.UpdateContactFlowModuleContentInput) (*request.Request, *connect.UpdateContactFlowModuleContentOutput)
+
+	UpdateContactFlowModuleMetadata(*connect.UpdateContactFlowModuleMetadataInput) (*connect.UpdateContactFlowModuleMetadataOutput, error)
+	UpdateContactFlowModuleMetadataWithContext(aws.Context, *connect.UpdateContactFlowModuleMetadataInput, ...request.Option) (*connect.UpdateContactFlowModuleMetadataOutput, error)
+	UpdateContactFlowModuleMetadataRequest(*connect.UpdateContactFlowModuleMetadataInput) (*request.Request, *connect.UpdateContactFlowModuleMetadataOutput)
 
 	UpdateContactFlowName(*connect.UpdateContactFlowNameInput) (*connect.UpdateContactFlowNameOutput, error)
 	UpdateContactFlowNameWithContext(aws.Context, *connect.UpdateContactFlowNameInput, ...request.Option) (*connect.UpdateContactFlowNameOutput, error)

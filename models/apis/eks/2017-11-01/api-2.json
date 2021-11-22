@@ -442,7 +442,9 @@
         {"shape":"ClientException"},
         {"shape":"ServerException"},
         {"shape":"ServiceUnavailableException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourcePropagationDelayException"}
       ]
     },
     "TagResource":{
@@ -1964,6 +1966,14 @@
         "message":{"shape":"String"}
       },
       "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "ResourcePropagationDelayException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":428},
       "exception":true
     },
     "RoleArn":{

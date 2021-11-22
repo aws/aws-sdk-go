@@ -47,26 +47,28 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "Item$VocabularyFilterMatch": "<p>Indicates whether a word in the item matches a word in the vocabulary filter you've chosen for your real-time stream. If <code>true</code> then a word in the item matches your vocabulary filter.</p>",
+        "Item$VocabularyFilterMatch": "<p>Indicates whether a word in the item matches a word in the vocabulary filter you've chosen for your media stream. If <code>true</code> then a word in the item matches your vocabulary filter.</p>",
         "MedicalResult$IsPartial": "<p>Amazon Transcribe Medical divides the incoming audio stream into segments at natural points in the audio. Transcription results are returned based on these segments.</p> <p>The <code>IsPartial</code> field is <code>true</code> to indicate that Amazon Transcribe Medical has additional transcription data to send. The <code>IsPartial</code> field is <code>false</code> to indicate that this is the last transcription result for the segment.</p>",
         "Result$IsPartial": "<p>Amazon Transcribe divides the incoming audio stream into segments at natural points in the audio. Transcription results are returned based on these segments. </p> <p>The <code>IsPartial</code> field is <code>true</code> to indicate that Amazon Transcribe has additional transcription data to send, <code>false</code> to indicate that this is the last transcription result for the segment.</p>",
         "StartMedicalStreamTranscriptionRequest$ShowSpeakerLabel": "<p>When <code>true</code>, enables speaker identification in your real-time stream.</p>",
         "StartMedicalStreamTranscriptionRequest$EnableChannelIdentification": "<p>When <code>true</code>, instructs Amazon Transcribe Medical to process each audio channel separately and then merge the transcription output of each channel into a single transcription.</p> <p>Amazon Transcribe Medical also produces a transcription of each item. An item includes the start time, end time, and any alternative transcriptions.</p> <p>You can't set both <code>ShowSpeakerLabel</code> and <code>EnableChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
         "StartMedicalStreamTranscriptionResponse$ShowSpeakerLabel": "<p>Shows whether speaker identification was enabled in the stream.</p>",
         "StartMedicalStreamTranscriptionResponse$EnableChannelIdentification": "<p>Shows whether channel identification has been enabled in the stream.</p>",
-        "StartStreamTranscriptionRequest$ShowSpeakerLabel": "<p>When <code>true</code>, enables speaker identification in your real-time stream.</p>",
-        "StartStreamTranscriptionRequest$EnableChannelIdentification": "<p>When <code>true</code>, instructs Amazon Transcribe to process each audio channel separately and then merge the transcription output of each channel into a single transcription.</p> <p>Amazon Transcribe also produces a transcription of each item. An item includes the start time, end time, and any alternative transcriptions.</p> <p>You can't set both <code>ShowSpeakerLabel</code> and <code>EnableChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
+        "StartStreamTranscriptionRequest$ShowSpeakerLabel": "<p>When <code>true</code>, enables speaker identification in your media stream.</p>",
+        "StartStreamTranscriptionRequest$EnableChannelIdentification": "<p>When <code>true</code>, instructs Amazon Transcribe to process each audio channel separately, then merges the transcription output of each channel into a single transcription.</p> <p>Amazon Transcribe also produces a transcription of each item. An item includes the start time, end time, and any alternative transcriptions.</p> <p>You can't set both <code>ShowSpeakerLabel</code> and <code>EnableChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
         "StartStreamTranscriptionRequest$EnablePartialResultsStabilization": "<p>When <code>true</code>, instructs Amazon Transcribe to present transcription results that have the partial results stabilized. Normally, any word or phrase from one partial result can change in a subsequent partial result. With partial results stabilization enabled, only the last few words of one partial result can change in another partial result.</p>",
+        "StartStreamTranscriptionRequest$IdentifyLanguage": "<p>Optional. Set this value to <code>true</code> to enable language identification for your media stream.</p>",
         "StartStreamTranscriptionResponse$ShowSpeakerLabel": "<p>Shows whether speaker identification was enabled in the stream.</p>",
         "StartStreamTranscriptionResponse$EnableChannelIdentification": "<p>Shows whether channel identification has been enabled in the stream.</p>",
-        "StartStreamTranscriptionResponse$EnablePartialResultsStabilization": "<p>Shows whether partial results stabilization has been enabled in the stream.</p>"
+        "StartStreamTranscriptionResponse$EnablePartialResultsStabilization": "<p>Shows whether partial results stabilization has been enabled in the stream.</p>",
+        "StartStreamTranscriptionResponse$IdentifyLanguage": "<p>The language code of the language identified in your media stream.</p>"
       }
     },
     "Confidence": {
       "base": null,
       "refs": {
         "Entity$Confidence": "<p>A value between zero and one that Amazon Transcribe assigns to PII identified in the source audio. Larger values indicate a higher confidence in PII identification.</p>",
-        "Item$Confidence": "<p>A value between 0 and 1 for an item that is a confidence score that Amazon Transcribe assigns to each word or phrase that it transcribes.</p>",
+        "Item$Confidence": "<p>A value between zero and one for an item that is a confidence score that Amazon Transcribe assigns to each word or phrase that it transcribes.</p>",
         "MedicalEntity$Confidence": "<p>A value between zero and one that Amazon Transcribe Medical assigned to the personal health information that it identified in the source audio. Larger values indicate that Amazon Transcribe Medical has higher confidence in the personal health information that it identified.</p>",
         "MedicalItem$Confidence": "<p>A value between 0 and 1 for an item that is a confidence score that Amazon Transcribe Medical assigns to each word that it transcribes.</p>"
       }
@@ -99,6 +101,7 @@
         "Entity$EndTime": "<p>The end time of speech that was identified as PII.</p>",
         "Item$StartTime": "<p>The offset from the beginning of the audio stream to the beginning of the audio that resulted in the item.</p>",
         "Item$EndTime": "<p>The offset from the beginning of the audio stream to the end of the audio that resulted in the item.</p>",
+        "LanguageWithScore$Score": "<p>The confidence score for the associated language code. Confidence scores are values between zero and one; larger values indicate a higher confidence in the identified language. </p>",
         "MedicalEntity$StartTime": "<p>The start time of the speech that was identified as a medical entity.</p>",
         "MedicalEntity$EndTime": "<p>The end time of the speech that was identified as a medical entity.</p>",
         "MedicalItem$StartTime": "<p>The number of seconds into an audio stream that indicates the creation time of an item.</p>",
@@ -150,10 +153,33 @@
     "LanguageCode": {
       "base": null,
       "refs": {
+        "LanguageWithScore$LanguageCode": "<p>The language code of the language identified by Amazon Transcribe.</p>",
+        "Result$LanguageCode": "<p>The language code of the identified language in your media stream.</p>",
         "StartMedicalStreamTranscriptionRequest$LanguageCode": "<p> Indicates the source language used in the input audio stream. For Amazon Transcribe Medical, this is US English (en-US). </p>",
         "StartMedicalStreamTranscriptionResponse$LanguageCode": "<p>The language code for the response transcript. For Amazon Transcribe Medical, this is US English (en-US).</p>",
-        "StartStreamTranscriptionRequest$LanguageCode": "<p>Indicates the source language used in the input audio stream.</p>",
-        "StartStreamTranscriptionResponse$LanguageCode": "<p>The language code for the input audio stream.</p>"
+        "StartStreamTranscriptionRequest$LanguageCode": "<p>The language code of the input audio stream.</p>",
+        "StartStreamTranscriptionRequest$PreferredLanguage": "<p>Optional. From the subset of languages codes you provided for <code>LanguageOptions</code>, you can select one preferred language for your transcription.</p> <p>You can only use this parameter if you've set <code>IdentifyLanguage</code> to <code>true</code>in your request.</p>",
+        "StartStreamTranscriptionResponse$LanguageCode": "<p>The language code of the input audio stream.</p>",
+        "StartStreamTranscriptionResponse$PreferredLanguage": "<p>The preferred language you specified in your request.</p>"
+      }
+    },
+    "LanguageIdentification": {
+      "base": null,
+      "refs": {
+        "Result$LanguageIdentification": "<p>The language code of the dominant language identified in your media.</p>"
+      }
+    },
+    "LanguageOptions": {
+      "base": null,
+      "refs": {
+        "StartStreamTranscriptionRequest$LanguageOptions": "<p>An object containing a list of languages that might be present in your audio.</p> <p>You must provide two or more language codes to help Amazon Transcribe identify the correct language of your media stream with the highest possible accuracy. You can only select one variant per language; for example, you can't include both <code>en-US</code> and <code>en-UK</code> in the same request.</p> <p>You can only use this parameter if you've set <code>IdentifyLanguage</code> to <code>true</code>in your request.</p>",
+        "StartStreamTranscriptionResponse$LanguageOptions": "<p>The language codes used in the identification of your media stream's predominant language.</p>"
+      }
+    },
+    "LanguageWithScore": {
+      "base": "<p>The language codes of the identified languages and their associated confidence scores. The confidence score is a value between zero and one; a larger value indicates a higher confidence in the identified language.</p>",
+      "refs": {
+        "LanguageIdentification$member": null
       }
     },
     "LimitExceededException": {
@@ -177,8 +203,8 @@
       "refs": {
         "StartMedicalStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate of the input audio in Hertz.</p>",
         "StartMedicalStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate of the input audio in Hertz.</p>",
-        "StartStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate, in Hertz, of the input audio. We suggest that you use 8,000 Hz for low quality audio and 16,000 Hz for high quality audio.</p>",
-        "StartStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate for the input audio stream. Use 8,000 Hz for low quality audio and 16,000 Hz for high quality audio.</p>"
+        "StartStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate, in Hertz (Hz), of the input audio. We suggest that you use 8,000 Hz for low quality audio and 16,000 Hz or higher for high quality audio.</p>",
+        "StartStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate, in Hertz (Hz), for the input audio stream. Use 8,000 Hz for low quality audio and 16,000 Hz or higher for high quality audio.</p>"
       }
     },
     "MedicalAlternative": {
@@ -258,7 +284,7 @@
       "base": null,
       "refs": {
         "StartStreamTranscriptionRequest$LanguageModelName": "<p>The name of the language model you want to use.</p>",
-        "StartStreamTranscriptionResponse$LanguageModelName": null
+        "StartStreamTranscriptionResponse$LanguageModelName": "<p>The name of the language model used in your media stream.</p>"
       }
     },
     "NumberOfChannels": {
@@ -280,7 +306,7 @@
     "PiiEntityTypes": {
       "base": null,
       "refs": {
-        "StartStreamTranscriptionRequest$PiiEntityTypes": "<p>List the PII entity types you want to identify or redact. In order to specify entity types, you must have either <code>ContentIdentificationType</code> or <code>ContentRedactionType</code> enabled.</p> <p> <code>PiiEntityTypes</code> is an optional parameter with a default value of <code>ALL</code>.</p>",
+        "StartStreamTranscriptionRequest$PiiEntityTypes": "<p>List the PII entity types you want to identify or redact. In order to specify entity types, you must have either <code>ContentIdentificationType</code> or <code>ContentRedactionType</code> enabled.</p> <p> <code>PIIEntityTypes</code> must be comma-separated; the available values are: <code>BANK_ACCOUNT_NUMBER</code>, <code>BANK_ROUTING</code>, <code>CREDIT_DEBIT_NUMBER</code>, <code>CREDIT_DEBIT_CVV</code>, <code>CREDIT_DEBIT_EXPIRY</code>, <code>PIN</code>, <code>EMAIL</code>, <code>ADDRESS</code>, <code>NAME</code>, <code>PHONE</code>, <code>SSN</code>, and <code>ALL</code>.</p> <p> <code>PiiEntityTypes</code> is an optional parameter with a default value of <code>ALL</code>.</p>",
         "StartStreamTranscriptionResponse$PiiEntityTypes": "<p>Lists the PII entity types you specified in your request.</p>"
       }
     },
@@ -358,12 +384,12 @@
         "Alternative$Transcript": "<p>The text that was transcribed from the audio.</p>",
         "BadRequestException$Message": null,
         "ConflictException$Message": null,
-        "Entity$Category": "<p>The category of of information identified in this entity; for example, PII.</p>",
+        "Entity$Category": "<p>The category of information identified in this entity; for example, PII.</p>",
         "Entity$Type": "<p>The type of PII identified in this entity; for example, name or credit card number.</p>",
         "Entity$Content": "<p>The words in the transcription output that have been identified as a PII entity.</p>",
         "InternalFailureException$Message": null,
         "Item$Content": "<p>The word or punctuation that was recognized in the input audio.</p>",
-        "Item$Speaker": "<p>If speaker identification is enabled, shows the speakers identified in the real-time stream.</p>",
+        "Item$Speaker": "<p>If speaker identification is enabled, shows the speakers identified in the media stream.</p>",
         "LimitExceededException$Message": null,
         "MedicalAlternative$Transcript": "<p>The text that was transcribed from the audio.</p>",
         "MedicalEntity$Category": "<p>The type of personal health information of the medical entity.</p>",
@@ -405,15 +431,15 @@
     "VocabularyFilterMethod": {
       "base": null,
       "refs": {
-        "StartStreamTranscriptionRequest$VocabularyFilterMethod": "<p>The manner in which you use your vocabulary filter to filter words in your transcript. <code>Remove</code> removes filtered words from your transcription results. <code>Mask</code> masks filtered words with a <code>***</code> in your transcription results. <code>Tag</code> keeps the filtered words in your transcription results and tags them. The tag appears as <code>VocabularyFilterMatch</code> equal to <code>True</code> </p>",
-        "StartStreamTranscriptionResponse$VocabularyFilterMethod": "<p>The vocabulary filtering method used in the real-time stream.</p>"
+        "StartStreamTranscriptionRequest$VocabularyFilterMethod": "<p>The manner in which you use your vocabulary filter to filter words in your transcript. <code>Remove</code> removes filtered words from your transcription results. <code>Mask</code> masks filtered words with a <code>***</code> in your transcription results. <code>Tag</code> keeps the filtered words in your transcription results and tags them. The tag appears as <code>VocabularyFilterMatch</code> equal to <code>True</code>.</p>",
+        "StartStreamTranscriptionResponse$VocabularyFilterMethod": "<p>The vocabulary filtering method used in the media stream.</p>"
       }
     },
     "VocabularyFilterName": {
       "base": null,
       "refs": {
         "StartStreamTranscriptionRequest$VocabularyFilterName": "<p>The name of the vocabulary filter you've created that is unique to your account. Provide the name in this field to successfully use it in a stream.</p>",
-        "StartStreamTranscriptionResponse$VocabularyFilterName": "<p>The name of the vocabulary filter used in your real-time stream.</p>"
+        "StartStreamTranscriptionResponse$VocabularyFilterName": "<p>The name of the vocabulary filter used in your media stream.</p>"
       }
     },
     "VocabularyName": {

@@ -382,8 +382,8 @@ func (c *EKS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 // The Amazon EKS control plane consists of control plane instances that run
 // the Kubernetes software, such as etcd and the API server. The control plane
 // runs in an account managed by Amazon Web Services, and the Kubernetes API
-// is exposed via the Amazon EKS API server endpoint. Each Amazon EKS cluster
-// control plane is single-tenant and unique and runs on its own set of Amazon
+// is exposed by the Amazon EKS API server endpoint. Each Amazon EKS cluster
+// control plane is single tenant and unique. It runs on its own set of Amazon
 // EC2 instances.
 //
 // The cluster control plane is provisioned across multiple Availability Zones
@@ -393,12 +393,12 @@ func (c *EKS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 // to support kubectl exec, logs, and proxy data flows).
 //
 // Amazon EKS nodes run in your Amazon Web Services account and connect to your
-// cluster's control plane via the Kubernetes API server endpoint and a certificate
+// cluster's control plane over the Kubernetes API server endpoint and a certificate
 // file that is created for your cluster.
 //
-// Cluster creation typically takes several minutes. After you create an Amazon
-// EKS cluster, you must configure your Kubernetes tooling to communicate with
-// the API server and launch nodes into your cluster. For more information,
+// In most cases, it takes several minutes to create a cluster. After you create
+// an Amazon EKS cluster, you must configure your Kubernetes tooling to communicate
+// with the API server and launch nodes into your cluster. For more information,
 // see Managing Cluster Authentication (https://docs.aws.amazon.com/eks/latest/userguide/managing-auth.html)
 // and Launching Amazon EKS nodes (https://docs.aws.amazon.com/eks/latest/userguide/launch-workers.html)
 // in the Amazon EKS User Guide.
@@ -3141,6 +3141,13 @@ func (c *EKS) RegisterClusterRequest(input *RegisterClusterInput) (req *request.
 //   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
 //   in the IAM User Guide.
 //
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+//   * ResourcePropagationDelayException
+//   Required resources (such as Service Linked Roles) were created and are still
+//   propagating. Retry later.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/RegisterCluster
 func (c *EKS) RegisterCluster(input *RegisterClusterInput) (*RegisterClusterOutput, error) {
 	req, out := c.RegisterClusterRequest(input)
@@ -4007,9 +4014,9 @@ type Addon struct {
 	Status *string `locationName:"status" type:"string" enum:"AddonStatus"`
 
 	// The metadata that you apply to the add-on to assist with categorization and
-	// organization. Each tag consists of a key and an optional value, both of which
-	// you define. Add-on tags do not propagate to any other resources associated
-	// with the cluster.
+	// organization. Each tag consists of a key and an optional value. You define
+	// both. Add-on tags do not propagate to any other resources associated with
+	// the cluster.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -4395,8 +4402,8 @@ type AssociateIdentityProviderConfigInput struct {
 	Oidc *OidcIdentityProviderConfigRequest `locationName:"oidc" type:"structure" required:"true"`
 
 	// The metadata to apply to the configuration to assist with categorization
-	// and organization. Each tag consists of a key and an optional value, both
-	// of which you define.
+	// and organization. Each tag consists of a key and an optional value. You define
+	// both.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -4775,9 +4782,9 @@ type Cluster struct {
 	Status *string `locationName:"status" type:"string" enum:"ClusterStatus"`
 
 	// The metadata that you apply to the cluster to assist with categorization
-	// and organization. Each tag consists of a key and an optional value, both
-	// of which you define. Cluster tags do not propagate to any other resources
-	// associated with the cluster.
+	// and organization. Each tag consists of a key and an optional value. You define
+	// both. Cluster tags do not propagate to any other resources associated with
+	// the cluster.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The Kubernetes server version for the cluster.
@@ -5126,7 +5133,7 @@ type CreateAddonInput struct {
 	ServiceAccountRoleArn *string `locationName:"serviceAccountRoleArn" min:"1" type:"string"`
 
 	// The metadata to apply to the cluster to assist with categorization and organization.
-	// Each tag consists of a key and an optional value, both of which you define.
+	// Each tag consists of a key and an optional value. You define both.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -5276,13 +5283,13 @@ type CreateClusterInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The VPC configuration used by the cluster control plane. Amazon EKS VPC resources
-	// have specific requirements to work properly with Kubernetes. For more information,
-	// see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)
+	// The VPC configuration that's used by the cluster control plane. Amazon EKS
+	// VPC resources have specific requirements to work properly with Kubernetes.
+	// For more information, see Cluster VPC Considerations (https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html)
 	// and Cluster Security Group Considerations (https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html)
 	// in the Amazon EKS User Guide. You must specify at least two subnets. You
-	// can specify up to five security groups, but we recommend that you use a dedicated
-	// security group for your cluster control plane.
+	// can specify up to five security groups. However, we recommend that you use
+	// a dedicated security group for your cluster control plane.
 	//
 	// ResourcesVpcConfig is a required field
 	ResourcesVpcConfig *VpcConfigRequest `locationName:"resourcesVpcConfig" type:"structure" required:"true"`
@@ -5297,7 +5304,7 @@ type CreateClusterInput struct {
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
 
 	// The metadata to apply to the cluster to assist with categorization and organization.
-	// Each tag consists of a key and an optional value, both of which you define.
+	// Each tag consists of a key and an optional value. You define both.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The desired Kubernetes version for your cluster. If you don't specify a value
@@ -5471,10 +5478,9 @@ type CreateFargateProfileInput struct {
 	Subnets []*string `locationName:"subnets" type:"list"`
 
 	// The metadata to apply to the Fargate profile to assist with categorization
-	// and organization. Each tag consists of a key and an optional value, both
-	// of which you define. Fargate profile tags do not propagate to any other resources
-	// associated with the Fargate profile, such as the pods that are scheduled
-	// with it.
+	// and organization. Each tag consists of a key and an optional value. You define
+	// both. Fargate profile tags do not propagate to any other resources associated
+	// with the Fargate profile, such as the pods that are scheduled with it.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -5704,8 +5710,8 @@ type CreateNodegroupInput struct {
 	Subnets []*string `locationName:"subnets" type:"list" required:"true"`
 
 	// The metadata to apply to the node group to assist with categorization and
-	// organization. Each tag consists of a key and an optional value, both of which
-	// you define. Node group tags do not propagate to any other resources associated
+	// organization. Each tag consists of a key and an optional value. You define
+	// both. Node group tags do not propagate to any other resources associated
 	// with the node group, such as the Amazon EC2 instances or subnets.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
@@ -7358,10 +7364,9 @@ type FargateProfile struct {
 	Subnets []*string `locationName:"subnets" type:"list"`
 
 	// The metadata applied to the Fargate profile to assist with categorization
-	// and organization. Each tag consists of a key and an optional value, both
-	// of which you define. Fargate profile tags do not propagate to any other resources
-	// associated with the Fargate profile, such as the pods that are scheduled
-	// with it.
+	// and organization. Each tag consists of a key and an optional value. You define
+	// both. Fargate profile tags do not propagate to any other resources associated
+	// with the Fargate profile, such as the pods that are scheduled with it.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -8145,8 +8150,9 @@ func (s *ListAddonsOutput) SetNextToken(v string) *ListAddonsOutput {
 type ListClustersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Indicates whether connected clusters are included in the returned list. Default
-	// value is 'ALL'.
+	// Indicates whether external clusters are included in the returned list. Use
+	// 'all' to return connected clusters, or blank to return only Amazon EKS clusters.
+	// 'all' must be in lowercase otherwise an error occurs.
 	Include []*string `location:"querystring" locationName:"include" type:"list"`
 
 	// The maximum number of cluster results returned by ListClusters in paginated
@@ -9012,8 +9018,8 @@ type Nodegroup struct {
 	Subnets []*string `locationName:"subnets" type:"list"`
 
 	// The metadata applied to the node group to assist with categorization and
-	// organization. Each tag consists of a key and an optional value, both of which
-	// you define. Node group tags do not propagate to any other resources associated
+	// organization. Each tag consists of a key and an optional value. You define
+	// both. Node group tags do not propagate to any other resources associated
 	// with the node group, such as the Amazon EC2 instances or subnets.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
@@ -9547,8 +9553,8 @@ type OidcIdentityProviderConfig struct {
 	Status *string `locationName:"status" type:"string" enum:"ConfigStatus"`
 
 	// The metadata to apply to the provider configuration to assist with categorization
-	// and organization. Each tag consists of a key and an optional value, both
-	// of which you defined.
+	// and organization. Each tag consists of a key and an optional value. You define
+	// both.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The JSON Web token (JWT) claim that is used as the username.
@@ -10219,6 +10225,71 @@ func (s *ResourceNotFoundException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Required resources (such as Service Linked Roles) were created and are still
+// propagating. Retry later.
+type ResourcePropagationDelayException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePropagationDelayException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePropagationDelayException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourcePropagationDelayException(v protocol.ResponseMetadata) error {
+	return &ResourcePropagationDelayException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourcePropagationDelayException) Code() string {
+	return "ResourcePropagationDelayException"
+}
+
+// Message returns the exception's message.
+func (s *ResourcePropagationDelayException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourcePropagationDelayException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourcePropagationDelayException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourcePropagationDelayException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourcePropagationDelayException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

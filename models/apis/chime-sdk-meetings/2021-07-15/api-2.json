@@ -201,6 +201,12 @@
       "type":"list",
       "member":{"shape":"Attendee"}
     },
+    "AudioFeatures":{
+      "type":"structure",
+      "members":{
+        "EchoReduction":{"shape":"MeetingFeatureStatus"}
+      }
+    },
     "BadRequestException":{
       "type":"structure",
       "members":{
@@ -302,7 +308,8 @@
         "MediaRegion":{"shape":"MediaRegion"},
         "MeetingHostId":{"shape":"ExternalUserId"},
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
-        "NotificationsConfiguration":{"shape":"NotificationsConfiguration"}
+        "NotificationsConfiguration":{"shape":"NotificationsConfiguration"},
+        "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"}
       }
     },
     "CreateMeetingResponse":{
@@ -327,6 +334,7 @@
         "MediaRegion":{"shape":"MediaRegion"},
         "MeetingHostId":{"shape":"ExternalUserId"},
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
+        "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"},
         "NotificationsConfiguration":{"shape":"NotificationsConfiguration"},
         "Attendees":{"shape":"CreateMeetingWithAttendeesRequestItemList"}
       }
@@ -545,7 +553,21 @@
         "MeetingHostId":{"shape":"ExternalUserId"},
         "ExternalMeetingId":{"shape":"ExternalMeetingId"},
         "MediaRegion":{"shape":"MediaRegion"},
-        "MediaPlacement":{"shape":"MediaPlacement"}
+        "MediaPlacement":{"shape":"MediaPlacement"},
+        "MeetingFeatures":{"shape":"MeetingFeaturesConfiguration"}
+      }
+    },
+    "MeetingFeatureStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "UNAVAILABLE"
+      ]
+    },
+    "MeetingFeaturesConfiguration":{
+      "type":"structure",
+      "members":{
+        "Audio":{"shape":"AudioFeatures"}
       }
     },
     "NotFoundException":{

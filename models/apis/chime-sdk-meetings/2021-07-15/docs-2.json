@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>The Amazon Chime SDK meetings APIs in this section allow software developers to create Amazon Chime SDK meetings, set the AWS Regions for meetings, create and manage users, and send and receive meeting notifications.</p>",
+  "service": "<p>The Amazon Chime SDK meetings APIs in this section allow software developers to create Amazon Chime SDK meetings, set the AWS Regions for meetings, create and manage users, and send and receive meeting notifications. For more information about the meeting APIs, see <a href=\"http://amazonaws.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_meetings\">Amazon Chime SDK meetings</a>.</p>",
   "operations": {
     "BatchCreateAttendee": "<p>Creates up to 100 attendees for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "CreateAttendee": "<p> Creates a new attendee for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
@@ -37,6 +37,12 @@
         "BatchCreateAttendeeResponse$Attendees": "<p>The attendee information, including attendees' IDs and join tokens.</p>",
         "CreateMeetingWithAttendeesResponse$Attendees": "<p>The attendee information, including attendees' IDs and join tokens.</p>",
         "ListAttendeesResponse$Attendees": "<p>The Amazon Chime SDK attendee information.</p>"
+      }
+    },
+    "AudioFeatures": {
+      "base": "<p>An optional category of meeting features that contains audio-specific configurations, such as operating parameters for Amazon Voice Focus.</p>",
+      "refs": {
+        "MeetingFeaturesConfiguration$Audio": "<p>The configuration settings for the audio features available to a meeting. </p>"
       }
     },
     "BadRequestException": {
@@ -257,6 +263,20 @@
         "GetMeetingResponse$Meeting": "<p>The Amazon Chime SDK meeting information.</p>"
       }
     },
+    "MeetingFeatureStatus": {
+      "base": null,
+      "refs": {
+        "AudioFeatures$EchoReduction": "<p>Makes echo reduction available to clients who connect to the meeting.</p>"
+      }
+    },
+    "MeetingFeaturesConfiguration": {
+      "base": "<p>The configuration settings of the features available to a meeting.</p>",
+      "refs": {
+        "CreateMeetingRequest$MeetingFeatures": "<p>Lists the audio and video features enabled for a meeting, such as echo reduction.</p>",
+        "CreateMeetingWithAttendeesRequest$MeetingFeatures": "<p>Lists the audio and video features enabled for a meeting, such as echo reduction.</p>",
+        "Meeting$MeetingFeatures": "<p>The features available to a meeting, such as Amazon Voice Focus.</p>"
+      }
+    },
     "NotFoundException": {
       "base": "<p>One or more of the resources in the request does not exist in the system.</p>",
       "refs": {
@@ -340,13 +360,13 @@
     "TranscribeContentIdentificationType": {
       "base": null,
       "refs": {
-        "EngineTranscribeSettings$ContentIdentificationType": "<p>Set this field to <code>PII</code> to identify personal health information in the transcription output.</p>"
+        "EngineTranscribeSettings$ContentIdentificationType": "<p>Set this field to <code>PII</code> to identify personally identifiable information in the transcription output.</p>"
       }
     },
     "TranscribeContentRedactionType": {
       "base": null,
       "refs": {
-        "EngineTranscribeSettings$ContentRedactionType": "<p>Set this field to <code>PII</code> to redact personally identifiable information in the transcription output. Content redaction is performed only upon complete transcription of the audio segments.</p> <p>You can’t set both <code>ContentRedactionType</code> and <code>ContentIdentificationType</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>"
+        "EngineTranscribeSettings$ContentRedactionType": "<p>Set this field to <code>PII</code> to redact personally identifiable information in the transcription output. Content redaction is performed only upon complete transcription of the audio segments.</p> <p>You can’t set <code>ContentRedactionType</code> and <code>ContentIdentificationType</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>"
       }
     },
     "TranscribeLanguageCode": {
@@ -400,7 +420,7 @@
     "TranscribePiiEntityTypes": {
       "base": null,
       "refs": {
-        "EngineTranscribeSettings$PiiEntityTypes": "<p>Lists the PII entity types you want to identify or redact. To specify entity types, you must enable <code>ContentIdentificationType</code> or <code>ContentRedactionType</code>.</p> <p> <code>PIIEntityTypes</code> must be comma-separated. The available values are: <code>BANK_ACCOUNT_NUMBER</code>, <code>BANK_ROUTING, CREDIT_DEBIT_NUMBER</code>, <code>CREDIT_DEBIT_CVV</code>, <code>CREDIT_DEBIT_EXPIRY</code>, <code>PIN</code>, <code>EMAIL</code>, <code>ADDRESS</code>, <code>NAME</code>, <code>PHONE</code>, <code>SSN</code>, and <code>ALL</code>.</p> <p> <code>PiiEntityTypes</code> is an optional parameter with a default value of <code>ALL</code>.</p>"
+        "EngineTranscribeSettings$PiiEntityTypes": "<p>Lists the PII entity types you want to identify or redact. To specify entity types, you must enable <code>ContentIdentificationType</code> or <code>ContentRedactionType</code>.</p> <p>PIIEntityTypes must be comma-separated. The available values are: <code>BANK_ACCOUNT_NUMBER</code>, <code>BANK_ROUTING, CREDIT_DEBIT_NUMBER</code>, <code>CREDIT_DEBIT_CVV</code>, <code>CREDIT_DEBIT_EXPIRY</code>, <code>PIN</code>, <code>EMAIL</code>, <code>ADDRESS</code>, <code>NAME</code>, <code>PHONE</code>, <code>SSN</code>, and <code>ALL</code>.</p> <p> <code>PiiEntityTypes</code> is an optional parameter with a default value of <code>ALL</code>.</p>"
       }
     },
     "TranscribeRegion": {

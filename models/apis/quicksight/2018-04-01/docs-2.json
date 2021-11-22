@@ -3,16 +3,16 @@
   "service": "<fullname>Amazon QuickSight API Reference</fullname> <p>Amazon QuickSight is a fully managed, serverless business intelligence service for the Amazon Web Services Cloud that makes it easy to extend data and insights to every user in your organization. This API reference contains documentation for a programming interface that you can use to manage Amazon QuickSight. </p>",
   "operations": {
     "CancelIngestion": "<p>Cancels an ongoing ingestion of data into SPICE.</p>",
-    "CreateAccountCustomization": "<p>Creates Amazon QuickSight customizations the current Amazon Web Services Region. Currently, you can add a custom default theme by using the <code>CreateAccountCustomization</code> or <code>UpdateAccountCustomization</code> API operation. To further customize Amazon QuickSight by removing Amazon QuickSight sample assets and videos for all new users, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html\">Customizing Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p> <p>You can create customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace always override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation.</p> <p>Before you use the <code>CreateAccountCustomization</code> API operation to add a theme as the namespace default, make sure that you first share the theme with the namespace. If you don't share it with the namespace, the theme isn't visible to your users even if you make it the default theme. To check if the theme is shared, view the current permissions by using the <code> <a>DescribeThemePermissions</a> </code> API operation. To share the theme, grant permissions by using the <code> <a>UpdateThemePermissions</a> </code> API operation. </p>",
+    "CreateAccountCustomization": "<p>Creates Amazon QuickSight customizations the current Amazon Web Services Region. Currently, you can add a custom default theme by using the <code>CreateAccountCustomization</code> or <code>UpdateAccountCustomization</code> API operation. To further customize Amazon QuickSight by removing Amazon QuickSight sample assets and videos for all new users, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html\">Customizing Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p> <p>You can create customizations for your Amazon Web Services account or, if you specify a namespace, for a QuickSight namespace instead. Customizations that apply to a namespace always override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation.</p> <p>Before you use the <code>CreateAccountCustomization</code> API operation to add a theme as the namespace default, make sure that you first share the theme with the namespace. If you don't share it with the namespace, the theme isn't visible to your users even if you make it the default theme. To check if the theme is shared, view the current permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeThemePermissions.html\">DescribeThemePermissions</a> </code> API operation. To share the theme, grant permissions by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateThemePermissions.html\">UpdateThemePermissions</a> </code> API operation. </p>",
     "CreateAnalysis": "<p>Creates an analysis in Amazon QuickSight.</p>",
-    "CreateDashboard": "<p>Creates a dashboard from a template. To first create a template, see the <code> <a>CreateTemplate</a> </code> API operation.</p> <p>A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight reports, created from analyses. You can share Amazon QuickSight dashboards. With the right permissions, you can create scheduled email reports from them. If you have the correct permissions, you can create a dashboard from a template that exists in a different Amazon Web Services account.</p>",
+    "CreateDashboard": "<p>Creates a dashboard from a template. To first create a template, see the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation.</p> <p>A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight reports, created from analyses. You can share Amazon QuickSight dashboards. With the right permissions, you can create scheduled email reports from them. If you have the correct permissions, you can create a dashboard from a template that exists in a different Amazon Web Services account.</p>",
     "CreateDataSet": "<p>Creates a dataset.</p>",
     "CreateDataSource": "<p>Creates a data source.</p>",
     "CreateFolder": "<p>Creates an empty shared folder.</p>",
     "CreateFolderMembership": "<p>Adds an asset, such as a dashboard, analysis, or dataset into a folder.</p>",
     "CreateGroup": "<p>Creates an Amazon QuickSight group.</p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;relevant-aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is a group object.</p>",
     "CreateGroupMembership": "<p>Adds an Amazon QuickSight user to an Amazon QuickSight group. </p>",
-    "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAMpolicy, identified by its Amazon Resource Name (ARN). This policy assignment is attached to the specified groups or users of Amazon QuickSight. Assignment names are unique per Amazon Web Services account. To avoid overwriting rules in other namespaces, use assignment names that are unique.</p>",
+    "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAM policy, identified by its Amazon Resource Name (ARN). This policy assignment is attached to the specified groups or users of Amazon QuickSight. Assignment names are unique per Amazon Web Services account. To avoid overwriting rules in other namespaces, use assignment names that are unique.</p>",
     "CreateIngestion": "<p>Creates and starts a new SPICE ingestion on a dataset</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"http://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the Amazon Web Services Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
     "CreateNamespace": "<p>(Enterprise edition only) Creates a new namespace for you to use with Amazon QuickSight.</p> <p>A namespace allows you to isolate the Amazon QuickSight users and groups that are registered for that namespace. Users that access the namespace can share assets only with other users or groups in the same namespace. They can't see users and groups in other namespaces. You can create a namespace after your Amazon Web Services account is subscribed to Amazon QuickSight. The namespace must be unique within the Amazon Web Services account. By default, there is a limit of 100 namespaces per Amazon Web Services account. To increase your limit, create a ticket with Amazon Web Services Support. </p>",
     "CreateTemplate": "<p>Creates a template from an existing Amazon QuickSight analysis or template. You can use the resulting template to create a dashboard.</p> <p>A <i>template</i> is an entity in Amazon QuickSight that encapsulates the metadata required to create an analysis and that you can use to create s dashboard. A template adds a layer of abstraction by using placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets that follow the same schema that was used to create the source analysis and template.</p>",
@@ -28,7 +28,7 @@
     "DeleteFolderMembership": "<p>Removes an asset, such as a dashboard, analysis, or dataset, from a folder.</p>",
     "DeleteGroup": "<p>Removes a user group from Amazon QuickSight. </p>",
     "DeleteGroupMembership": "<p>Removes a user from a group so that the user is no longer a member of the group.</p>",
-    "DeleteIAMPolicyAssignment": "<p>Deletes an existing IAMpolicy assignment.</p>",
+    "DeleteIAMPolicyAssignment": "<p>Deletes an existing IAM policy assignment.</p>",
     "DeleteNamespace": "<p>Deletes a namespace and the users and groups that are associated with the namespace. This is an asynchronous process. Assets including dashboards, analyses, datasets and data sources are not deleted. To delete these assets, you use the API operations for the relevant asset. </p>",
     "DeleteTemplate": "<p>Deletes a template.</p>",
     "DeleteTemplateAlias": "<p>Deletes the item that the specified template alias points to. If you provide a specific alias, you delete the version of the template that the alias points to.</p>",
@@ -36,7 +36,7 @@
     "DeleteThemeAlias": "<p>Deletes the version of the theme that the specified theme alias points to. If you provide a specific alias, you delete the version of the theme that the alias points to.</p>",
     "DeleteUser": "<p>Deletes the Amazon QuickSight user that is associated with the identity of the Identity and Access Management (IAM) user or role that's making the call. The IAM user isn't deleted as a result of this call. </p>",
     "DeleteUserByPrincipalId": "<p>Deletes a user identified by its principal ID. </p>",
-    "DescribeAccountCustomization": "<p>Describes the customizations associated with the provided Amazon Web Services account and Amazon Amazon QuickSight namespace in an Amazon Web Services Region. The Amazon QuickSight console evaluates which customizations to apply by running this API operation with the <code>Resolved</code> flag included. </p> <p>To determine what customizations display when you run this command, it can help to visualize the relationship of the entities involved. </p> <ul> <li> <p> <code>Amazon Web Services account</code> - The Amazon Web Services account exists at the top of the hierarchy. It has the potential to use all of the Amazon Web Services Regions and AWS Services. When you subscribe to Amazon QuickSight, you choose one Amazon Web Services Region to use as your home Region. That's where your free SPICE capacity is located. You can use Amazon QuickSight in any supported Amazon Web Services Region. </p> </li> <li> <p> <code>Amazon Web Services Region</code> - In each Amazon Web Services Region where you sign in to Amazon QuickSight at least once, Amazon QuickSight acts as a separate instance of the same service. If you have a user directory, it resides in us-east-1, which is the US East (N. Virginia). Generally speaking, these users have access to Amazon QuickSight in any Amazon Web Services Region, unless they are constrained to a namespace. </p> <p>To run the command in a different Amazon Web Services Region, you change your Region settings. If you're using the AWS CLI, you can use one of the following options:</p> <ul> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html\">command line options</a>. </p> </li> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html\">named profiles</a>. </p> </li> <li> <p>Run <code>aws configure</code> to change your default Amazon Web Services Region. Use Enter to key the same settings for your keys. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html\">Configuring the AWS CLI</a>.</p> </li> </ul> </li> <li> <p> <code>Namespace</code> - A Amazon QuickSight namespace is a partition that contains users and assets (data sources, datasets, dashboards, and so on). To access assets that are in a specific namespace, users and groups must also be part of the same namespace. People who share a namespace are completely isolated from users and assets in other namespaces, even if they are in the same Amazon Web Services account and Amazon Web Services Region.</p> </li> <li> <p> <code>Applied customizations</code> - Within an Amazon Web Services Region, a set of Amazon QuickSight customizations can apply to an Amazon Web Services account or to a namespace. Settings that you apply to a namespace override settings that you apply to an Amazon Web Services account. All settings are isolated to a single Amazon Web Services Region. To apply them in other Amazon Web Services Regions, run the <code>CreateAccountCustomization</code> command in each Amazon Web Services Region where you want to apply the same customizations. </p> </li> </ul>",
+    "DescribeAccountCustomization": "<p>Describes the customizations associated with the provided Amazon Web Services account and Amazon Amazon QuickSight namespace in an Amazon Web Services Region. The Amazon QuickSight console evaluates which customizations to apply by running this API operation with the <code>Resolved</code> flag included. </p> <p>To determine what customizations display when you run this command, it can help to visualize the relationship of the entities involved. </p> <ul> <li> <p> <code>Amazon Web Services account</code> - The Amazon Web Services account exists at the top of the hierarchy. It has the potential to use all of the Amazon Web Services Regions and Amazon Web Services Services. When you subscribe to Amazon QuickSight, you choose one Amazon Web Services Region to use as your home Region. That's where your free SPICE capacity is located. You can use Amazon QuickSight in any supported Amazon Web Services Region. </p> </li> <li> <p> <code>Amazon Web Services Region</code> - In each Amazon Web Services Region where you sign in to Amazon QuickSight at least once, Amazon QuickSight acts as a separate instance of the same service. If you have a user directory, it resides in us-east-1, which is the US East (N. Virginia). Generally speaking, these users have access to Amazon QuickSight in any Amazon Web Services Region, unless they are constrained to a namespace. </p> <p>To run the command in a different Amazon Web Services Region, you change your Region settings. If you're using the CLI, you can use one of the following options:</p> <ul> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html\">command line options</a>. </p> </li> <li> <p>Use <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html\">named profiles</a>. </p> </li> <li> <p>Run <code>aws configure</code> to change your default Amazon Web Services Region. Use Enter to key the same settings for your keys. For more information, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html\">Configuring the CLI</a>.</p> </li> </ul> </li> <li> <p> <code>Namespace</code> - A QuickSight namespace is a partition that contains users and assets (data sources, datasets, dashboards, and so on). To access assets that are in a specific namespace, users and groups must also be part of the same namespace. People who share a namespace are completely isolated from users and assets in other namespaces, even if they are in the same Amazon Web Services account and Amazon Web Services Region.</p> </li> <li> <p> <code>Applied customizations</code> - Within an Amazon Web Services Region, a set of Amazon QuickSight customizations can apply to an Amazon Web Services account or to a namespace. Settings that you apply to a namespace override settings that you apply to an Amazon Web Services account. All settings are isolated to a single Amazon Web Services Region. To apply them in other Amazon Web Services Regions, run the <code>CreateAccountCustomization</code> command in each Amazon Web Services Region where you want to apply the same customizations. </p> </li> </ul>",
     "DescribeAccountSettings": "<p>Describes the settings that were used when your Amazon QuickSight subscription was first created in this Amazon Web Services account.</p>",
     "DescribeAnalysis": "<p>Provides a summary of the metadata for an analysis.</p>",
     "DescribeAnalysisPermissions": "<p>Provides the read and write permissions for an analysis.</p>",
@@ -50,9 +50,9 @@
     "DescribeFolderPermissions": "<p>Describes permissions for a folder.</p>",
     "DescribeFolderResolvedPermissions": "<p>Describes the folder resolved permissions. Permissions consists of both folder direct permissions and the inherited permissions from the ancestor folders.</p>",
     "DescribeGroup": "<p>Returns an Amazon QuickSight group's description and Amazon Resource Name (ARN). </p>",
-    "DescribeIAMPolicyAssignment": "<p>Describes an existing IAMpolicy assignment, as specified by the assignment name.</p>",
+    "DescribeIAMPolicyAssignment": "<p>Describes an existing IAM policy assignment, as specified by the assignment name.</p>",
     "DescribeIngestion": "<p>Describes a SPICE ingestion.</p>",
-    "DescribeIpRestriction": "<p>Provides a summary and status of IP Rules.</p>",
+    "DescribeIpRestriction": "<p>Provides a summary and status of IP rules.</p>",
     "DescribeNamespace": "<p>Describes the current namespace.</p>",
     "DescribeTemplate": "<p>Describes a template's metadata.</p>",
     "DescribeTemplateAlias": "<p>Describes the template alias for a template.</p>",
@@ -64,7 +64,7 @@
     "GenerateEmbedUrlForAnonymousUser": "<p>Generates an embed URL that you can use to embed an Amazon QuickSight dashboard in your website, without having to register any reader users. Before you use this action, make sure that you have configured the dashboards and permissions.</p> <p>The following rules apply to the generated URL:</p> <ul> <li> <p>It contains a temporary bearer token. It is valid for 5 minutes after it is generated. Once redeemed within this period, it cannot be re-used again.</p> </li> <li> <p>The URL validity period should not be confused with the actual session lifetime that can be customized using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForAnonymousUser.html#QS-GenerateEmbedUrlForAnonymousUser-request-SessionLifetimeInMinutes\">SessionLifetimeInMinutes</a> </code> parameter.</p> <p>The resulting user session is valid for 15 minutes (default) to 10 hours (maximum).</p> </li> <li> <p>You are charged only when the URL is used or there is interaction with Amazon QuickSight.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedded Analytics</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
     "GenerateEmbedUrlForRegisteredUser": "<p>Generates an embed URL that you can use to embed an Amazon QuickSight experience in your website. This action can be used for any type of user registered in an Amazon QuickSight account. Before you use this action, make sure that you have configured the relevant Amazon QuickSight resource and permissions.</p> <p>The following rules apply to the generated URL:</p> <ul> <li> <p>It contains a temporary bearer token. It is valid for 5 minutes after it is generated. Once redeemed within this period, it cannot be re-used again.</p> </li> <li> <p>The URL validity period should not be confused with the actual session lifetime that can be customized using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForRegisteredUser.html#QS-GenerateEmbedUrlForRegisteredUser-request-SessionLifetimeInMinutes\">SessionLifetimeInMinutes</a> </code> parameter.</p> <p>The resulting user session is valid for 15 minutes (default) to 10 hours (maximum).</p> </li> <li> <p>You are charged only when the URL is used or there is interaction with Amazon QuickSight.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedded Analytics</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
     "GetDashboardEmbedUrl": "<p>Generates a session URL and authorization code that you can use to embed an Amazon Amazon QuickSight read-only dashboard in your web server code. Before you use this command, make sure that you have configured the dashboards and permissions. </p> <p>Currently, you can use <code>GetDashboardEmbedURL</code> only from the server, not from the user's browser. The following rules apply to the combination of URL and authorization code:</p> <ul> <li> <p>They must be used together.</p> </li> <li> <p>They can be used one time only.</p> </li> <li> <p>They are valid for 5 minutes after you run this command.</p> </li> <li> <p>The resulting user session is valid for 10 hours.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-deprecated.html\">Embedding Analytics Using GetDashboardEmbedUrl</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>",
-    "GetSessionEmbedUrl": "<p>Generates a session URL and authorization code that you can use to embed the Amazon Amazon QuickSight console in your web server code. Use <code>GetSessionEmbedUrl</code> where you want to provide an authoring portal that allows users to create data sources, datasets, analyses, and dashboards. The users who access an embedded Amazon QuickSight console need belong to the author or admin security cohort. If you want to restrict permissions to some of these features, add a custom permissions profile to the user with the <code> <a>UpdateUser</a> </code> API operation. Use <code> <a>RegisterUser</a> </code> API operation to add a new user with a custom permission profile attached. For more information, see the following sections in the <i>Amazon QuickSight User Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedding Analytics</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html\">Customizing Access to the Amazon QuickSight Console</a> </p> </li> </ul>",
+    "GetSessionEmbedUrl": "<p>Generates a session URL and authorization code that you can use to embed the Amazon Amazon QuickSight console in your web server code. Use <code>GetSessionEmbedUrl</code> where you want to provide an authoring portal that allows users to create data sources, datasets, analyses, and dashboards. The users who access an embedded Amazon QuickSight console need belong to the author or admin security cohort. If you want to restrict permissions to some of these features, add a custom permissions profile to the user with the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html\">UpdateUser</a> </code> API operation. Use <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_RegisterUser.html\">RegisterUser</a> </code> API operation to add a new user with a custom permission profile attached. For more information, see the following sections in the <i>Amazon QuickSight User Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html\">Embedding Analytics</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html\">Customizing Access to the Amazon QuickSight Console</a> </p> </li> </ul>",
     "ListAnalyses": "<p>Lists Amazon QuickSight analyses that exist in the specified Amazon Web Services account.</p>",
     "ListDashboardVersions": "<p>Lists all the versions of the dashboards in the Amazon QuickSight subscription.</p>",
     "ListDashboards": "<p>Lists dashboards in an Amazon Web Services account.</p>",
@@ -74,8 +74,8 @@
     "ListFolders": "<p>Lists all folders in an account.</p>",
     "ListGroupMemberships": "<p>Lists member users in a group.</p>",
     "ListGroups": "<p>Lists all user groups in Amazon QuickSight. </p>",
-    "ListIAMPolicyAssignments": "<p>Lists IAMpolicy assignments in the current Amazon QuickSight account.</p>",
-    "ListIAMPolicyAssignmentsForUser": "<p>Lists all the IAMpolicy assignments, including the Amazon Resource Names (ARNs) for the IAM policies assigned to the specified user and group or groups that the user belongs to.</p>",
+    "ListIAMPolicyAssignments": "<p>Lists IAM policy assignments in the current Amazon QuickSight account.</p>",
+    "ListIAMPolicyAssignmentsForUser": "<p>Lists all the IAM policy assignments, including the Amazon Resource Names (ARNs) for the IAM policies assigned to the specified user and group or groups that the user belongs to.</p>",
     "ListIngestions": "<p>Lists the history of SPICE ingestions for a dataset.</p>",
     "ListNamespaces": "<p>Lists the namespaces for the specified Amazon Web Services account.</p>",
     "ListTagsForResource": "<p>Lists the tags assigned to a resource.</p>",
@@ -87,18 +87,18 @@
     "ListThemes": "<p>Lists all the themes in the current Amazon Web Services account.</p>",
     "ListUserGroups": "<p>Lists the Amazon QuickSight groups that an Amazon QuickSight user is a member of.</p>",
     "ListUsers": "<p>Returns a list of all of the Amazon QuickSight users belonging to this account. </p>",
-    "RegisterUser": "<p>Creates an Amazon QuickSight user, whose identity is associated with the AWS Identity and Access Management (IAM) identity or role specified in the request. </p>",
+    "RegisterUser": "<p>Creates an Amazon QuickSight user, whose identity is associated with the Identity and Access Management (IAM) identity or role specified in the request. </p>",
     "RestoreAnalysis": "<p>Restores an analysis.</p>",
     "SearchAnalyses": "<p>Searches for analyses that belong to the user specified in the filter.</p> <note> <p>This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.</p> </note>",
     "SearchDashboards": "<p>Searches for dashboards that belong to a user. </p> <note> <p>This operation is eventually consistent. The results are best effort and may not reflect very recent updates and changes.</p> </note>",
     "SearchFolders": "<p>Searches the subfolders in a folder.</p>",
-    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, and template. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other AWS services, except for the following:</p> <ul> <li> <p>You can't use tags to track AWS costs for Amazon QuickSight. This restriction is because Amazon QuickSight costs are based on users and SPICE capacity, which aren't taggable resources.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the Tag Editor for Resource Groups.</p> </li> </ul>",
+    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon QuickSight resource. </p> <p>Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values. You can use the <code>TagResource</code> operation with a resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource. Amazon QuickSight supports tagging on data set, data source, dashboard, and template. </p> <p>Tagging for Amazon QuickSight works in a similar way to tagging for other Amazon Web Services services, except for the following:</p> <ul> <li> <p>You can't use tags to track costs for Amazon QuickSight. This isn't possible because you can't tag the resources that Amazon QuickSight costs are based on, for example Amazon QuickSight storage capacity (SPICE), number of users, type of users, and usage metrics.</p> </li> <li> <p>Amazon QuickSight doesn't currently support the tag editor for Resource Groups.</p> </li> </ul>",
     "UntagResource": "<p>Removes a tag or tags from a resource.</p>",
     "UpdateAccountCustomization": "<p>Updates Amazon QuickSight customizations the current Amazon Web Services Region. Currently, the only customization you can use is a theme.</p> <p>You can use customizations for your Amazon Web Services account or, if you specify a namespace, for a Amazon QuickSight namespace instead. Customizations that apply to a namespace override customizations that apply to an Amazon Web Services account. To find out which customizations apply, use the <code>DescribeAccountCustomization</code> API operation. </p>",
     "UpdateAccountSettings": "<p>Updates the Amazon QuickSight settings in your Amazon Web Services account.</p>",
     "UpdateAnalysis": "<p>Updates an analysis in Amazon QuickSight</p>",
     "UpdateAnalysisPermissions": "<p>Updates the read and write permissions for an analysis.</p>",
-    "UpdateDashboard": "<p>Updates a dashboard in an Amazon Web Services account.</p> <note> <p>Updating a Dashboard creates a new dashboard version but does not immediately publish the new version. You can update the published version of a dashboard by using the <a>UpdateDashboardPublishedVersion</a> API operation.</p> </note>",
+    "UpdateDashboard": "<p>Updates a dashboard in an Amazon Web Services account.</p> <note> <p>Updating a Dashboard creates a new dashboard version but does not immediately publish the new version. You can update the published version of a dashboard by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateDashboardPublishedVersion.html\">UpdateDashboardPublishedVersion</a> </code> API operation.</p> </note>",
     "UpdateDashboardPermissions": "<p>Updates read and write permissions on a dashboard.</p>",
     "UpdateDashboardPublishedVersion": "<p>Updates the published version of a dashboard.</p>",
     "UpdateDataSet": "<p>Updates a dataset.</p>",
@@ -108,8 +108,8 @@
     "UpdateFolder": "<p>Updates the name of a folder.</p>",
     "UpdateFolderPermissions": "<p>Updates permissions of a folder.</p>",
     "UpdateGroup": "<p>Changes a group description. </p>",
-    "UpdateIAMPolicyAssignment": "<p>Updates an existing IAMpolicy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
-    "UpdateIpRestriction": "<p>Updates content and status of IP Rules.</p>",
+    "UpdateIAMPolicyAssignment": "<p>Updates an existing IAM policy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
+    "UpdateIpRestriction": "<p>Updates the content and status of IP rules. To use this operation, you need to provide the entire map of rules. You can use the <code>DescribeIpRestriction</code> operation to get the current rule map.</p>",
     "UpdateTemplate": "<p>Updates a template from an existing Amazon QuickSight analysis or another template.</p>",
     "UpdateTemplateAlias": "<p>Updates the template alias of a template.</p>",
     "UpdateTemplatePermissions": "<p>Updates the resource permissions for a template.</p>",
@@ -125,9 +125,9 @@
       }
     },
     "AccountCustomization": {
-      "base": "<p>The Amazon QuickSight customizations associated with your Amazon Web Services account or a Amazon QuickSight namespace in a specific Amazon Web Services Region.</p>",
+      "base": "<p>The Amazon QuickSight customizations associated with your Amazon Web Services account or a QuickSight namespace in a specific Amazon Web Services Region.</p>",
       "refs": {
-        "CreateAccountCustomizationRequest$AccountCustomization": "<p>The Amazon QuickSight customizations you're adding in the current Amazon Web Services Region. You can add these to an Amazon Web Services account and a Amazon QuickSight namespace. </p> <p>For example, you can add a default theme by setting <code>AccountCustomization</code> to the midnight theme: <code>\"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight::aws:theme/MIDNIGHT\" }</code>. Or, you can add a custom theme by specifying <code>\"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight:us-west-2:111122223333:theme/bdb844d0-0fe9-4d9d-b520-0fe602d93639\" }</code>. </p>",
+        "CreateAccountCustomizationRequest$AccountCustomization": "<p>The Amazon QuickSight customizations you're adding in the current Amazon Web Services Region. You can add these to an Amazon Web Services account and a QuickSight namespace. </p> <p>For example, you can add a default theme by setting <code>AccountCustomization</code> to the midnight theme: <code>\"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight::aws:theme/MIDNIGHT\" }</code>. Or, you can add a custom theme by specifying <code>\"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight:us-west-2:111122223333:theme/bdb844d0-0fe9-4d9d-b520-0fe602d93639\" }</code>. </p>",
         "CreateAccountCustomizationResponse$AccountCustomization": "<p>The Amazon QuickSight customizations you're adding in the current Amazon Web Services Region. </p>",
         "DescribeAccountCustomizationResponse$AccountCustomization": "<p>The Amazon QuickSight customizations that exist in the current Amazon Web Services Region. </p>",
         "UpdateAccountCustomizationRequest$AccountCustomization": "<p>The Amazon QuickSight customizations you're updating in the current Amazon Web Services Region. </p>",
@@ -137,13 +137,13 @@
     "AccountSettings": {
       "base": "<p>The Amazon QuickSight settings associated with your Amazon Web Services account.</p>",
       "refs": {
-        "DescribeAccountSettingsResponse$AccountSettings": "<p>The Amazon QuickSight settings for this Amazon Web Services account. This information includes the edition of Amazon Amazon QuickSight that you subscribed to (Standard or Enterprise) and the notification email for the Amazon QuickSight subscription. In the Amazon QuickSight console, the Amazon QuickSight subscription is sometimes referred to as a Amazon QuickSight \"account\" even though it's technically not an account by itself. Instead, it's a subscription to the Amazon QuickSight service for your Amazon Web Services account. The edition that you subscribe to applies to Amazon QuickSight in every Amazon Web Services Region where you use it.</p>"
+        "DescribeAccountSettingsResponse$AccountSettings": "<p>The Amazon QuickSight settings for this Amazon Web Services account. This information includes the edition of Amazon Amazon QuickSight that you subscribed to (Standard or Enterprise) and the notification email for the Amazon QuickSight subscription. In the QuickSight console, the Amazon QuickSight subscription is sometimes referred to as a QuickSight \"account\" even though it's technically not an account by itself. Instead, it's a subscription to the Amazon QuickSight service for your Amazon Web Services account. The edition that you subscribe to applies to Amazon QuickSight in every Amazon Web Services Region where you use it.</p>"
       }
     },
     "ActionList": {
       "base": null,
       "refs": {
-        "ResourcePermission$Actions": "<p>The IAMaction to grant or revoke permissions on.</p>"
+        "ResourcePermission$Actions": "<p>The IAM action to grant or revoke permissions on.</p>"
       }
     },
     "ActiveIAMPolicyAssignment": {
@@ -167,7 +167,7 @@
     "AdditionalDashboardIdList": {
       "base": null,
       "refs": {
-        "GetDashboardEmbedUrlRequest$AdditionalDashboardIds": "<p>A list of one or more dashboard IDs that you want to add to a session that includes anonymous users. The <code>IdentityType</code> parameter must be set to <code>ANONYMOUS</code> for this to work, because other identity types authenticate as Amazon QuickSight or IAMusers. For example, if you set \"<code>--dashboard-id dash_id1 --dashboard-id dash_id2 dash_id3 identity-type ANONYMOUS</code>\", the session can access all three dashboards. </p>"
+        "GetDashboardEmbedUrlRequest$AdditionalDashboardIds": "<p>A list of one or more dashboard IDs that you want to add to a session that includes anonymous users. The <code>IdentityType</code> parameter must be set to <code>ANONYMOUS</code> for this to work, because other identity types authenticate as Amazon QuickSight or IAM users. For example, if you set \"<code>--dashboard-id dash_id1 --dashboard-id dash_id2 dash_id3 identity-type ANONYMOUS</code>\", the session can access all three dashboards. </p>"
       }
     },
     "AliasName": {
@@ -197,9 +197,9 @@
       }
     },
     "AmazonOpenSearchParameters": {
-      "base": null,
+      "base": "<p>The parameters for OpenSearch.</p>",
       "refs": {
-        "DataSourceParameters$AmazonOpenSearchParameters": null
+        "DataSourceParameters$AmazonOpenSearchParameters": "<p>The parameters for OpenSearch.</p>"
       }
     },
     "Analysis": {
@@ -282,11 +282,11 @@
     "AnonymousUserDashboardEmbeddingConfiguration": {
       "base": "<p>Information about the dashboard that you want to embed.</p>",
       "refs": {
-        "AnonymousUserEmbeddingExperienceConfiguration$Dashboard": "<p>The type of embedding experience. In this case, an Amazon QuickSight dashboard.</p>"
+        "AnonymousUserEmbeddingExperienceConfiguration$Dashboard": "<p>The type of embedding experience. In this case, Amazon QuickSight dashboards.</p>"
       }
     },
     "AnonymousUserEmbeddingExperienceConfiguration": {
-      "base": "<p>The type of experience you want to embed. For anonymous users, you can embed an Amazon QuickSight dashboard.</p>",
+      "base": "<p>The type of experience you want to embed. For anonymous users, you can embed Amazon QuickSight dashboards.</p>",
       "refs": {
         "GenerateEmbedUrlForAnonymousUserRequest$ExperienceConfiguration": "<p>The configuration of the experience you are embedding.</p>"
       }
@@ -295,6 +295,7 @@
       "base": null,
       "refs": {
         "AccountCustomization$DefaultTheme": "<p>The default theme for this Amazon QuickSight subscription.</p>",
+        "AccountCustomization$DefaultEmailCustomizationTemplate": "<p>The default email customization template.</p>",
         "ActiveIAMPolicyAssignment$PolicyArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "Analysis$Arn": "<p>The Amazon Resource Name (ARN) of the analysis.</p>",
         "Analysis$ThemeArn": "<p>The ARN of the theme of the analysis.</p>",
@@ -313,8 +314,8 @@
         "CreateDataSourceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "CreateFolderRequest$ParentFolderArn": "<p>The Amazon Resource Name (ARN) for the parent folder.</p> <p> <code>ParentFolderArn</code> can be null. An empty <code>parentFolderArn</code> creates a root-level folder.</p>",
         "CreateFolderResponse$Arn": "<p>The Amazon Resource Name (ARN) for the newly created folder.</p>",
-        "CreateIAMPolicyAssignmentRequest$PolicyArn": "<p>The ARN for the IAMpolicy to apply to the Amazon QuickSight users and groups specified in this assignment.</p>",
-        "CreateIAMPolicyAssignmentResponse$PolicyArn": "<p>The ARN for the IAMpolicy that is applied to the Amazon QuickSight users and groups specified in this assignment.</p>",
+        "CreateIAMPolicyAssignmentRequest$PolicyArn": "<p>The ARN for the IAM policy to apply to the Amazon QuickSight users and groups specified in this assignment.</p>",
+        "CreateIAMPolicyAssignmentResponse$PolicyArn": "<p>The ARN for the IAM policy that is applied to the Amazon QuickSight users and groups specified in this assignment.</p>",
         "CreateIngestionResponse$Arn": "<p>The Amazon Resource Name (ARN) for the data ingestion.</p>",
         "CreateNamespaceResponse$Arn": "<p>The ARN of the Amazon QuickSight namespace you created. </p>",
         "CreateTemplateResponse$Arn": "<p>The ARN for the template.</p>",
@@ -350,17 +351,17 @@
         "DescribeDataSetPermissionsResponse$DataSetArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
         "DescribeDataSourcePermissionsResponse$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "DescribeFolderPermissionsResponse$Arn": "<p>The Amazon Resource Name (ARN) for the folder.</p>",
-        "DescribeFolderResolvedPermissionsResponse$Arn": "<p>The Amazon Resource Name (ARN).</p>",
+        "DescribeFolderResolvedPermissionsResponse$Arn": "<p>The Amazon Resource Name (ARN) of the folder.</p>",
         "DescribeTemplatePermissionsResponse$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "DescribeThemePermissionsResponse$ThemeArn": "<p>The Amazon Resource Name (ARN) of the theme.</p>",
-        "Folder$Arn": "<p>The folder Amazon Resource Name (ARN).</p>",
-        "FolderSummary$Arn": "<p>The Amazon Resource Name (ARN).</p>",
+        "Folder$Arn": "<p>The Amazon Resource Name (ARN) for the folder.</p>",
+        "FolderSummary$Arn": "<p>The Amazon Resource Name (ARN) of the folder.</p>",
         "GenerateEmbedUrlForRegisteredUserRequest$UserArn": "<p>The Amazon Resource Name for the registered user.</p>",
-        "GetDashboardEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any Amazon QuickSight users in your account (readers, authors, or admins) authenticated as one of the following:</p> <ul> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited nonfederated users</p> </li> <li> <p>IAMusers and IAMrole-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAMfederation.</p> </li> </ul> <p>Omit this parameter for users in the third group – IAMusers and IAM role-based sessions.</p>",
+        "GetDashboardEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any Amazon QuickSight users in your account (readers, authors, or admins) authenticated as one of the following:</p> <ul> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited nonfederated users</p> </li> <li> <p>IAM users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM federation.</p> </li> </ul> <p>Omit this parameter for users in the third group – IAM users and IAM role-based sessions.</p>",
         "GetSessionEmbedUrlRequest$UserArn": "<p>The Amazon QuickSight user's Amazon Resource Name (ARN), for use with <code>QUICKSIGHT</code> identity type. You can use this for any type of Amazon QuickSight users in your account (readers, authors, or admins). They need to be authenticated as one of the following:</p> <ol> <li> <p>Active Directory (AD) users or group members</p> </li> <li> <p>Invited nonfederated users</p> </li> <li> <p>Identity and Access Management (IAM) users and IAM role-based sessions authenticated through Federated Single Sign-On using SAML, OpenID Connect, or IAM federation</p> </li> </ol> <p>Omit this parameter for users in the third group, IAM users and IAM role-based sessions.</p>",
         "Group$Arn": "<p>The Amazon Resource Name (ARN) for the group.</p>",
         "GroupMember$Arn": "<p>The Amazon Resource Name (ARN) for the group member (user).</p>",
-        "IAMPolicyAssignment$PolicyArn": "<p>The Amazon Resource Name (ARN) for the IAMpolicy.</p>",
+        "IAMPolicyAssignment$PolicyArn": "<p>The Amazon Resource Name (ARN) for the IAM policy.</p>",
         "Ingestion$Arn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want a list of tags for.</p>",
         "LogicalTableSource$DataSetArn": "<p>The Amazon Resource Number (ARN) of the parent dataset.</p>",
@@ -400,10 +401,10 @@
         "UpdateDataSetResponse$IngestionArn": "<p>The ARN for the ingestion, which is triggered as a result of dataset creation if the import mode is SPICE.</p>",
         "UpdateDataSourcePermissionsResponse$DataSourceArn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
         "UpdateDataSourceResponse$Arn": "<p>The Amazon Resource Name (ARN) of the data source.</p>",
-        "UpdateFolderPermissionsResponse$Arn": "<p>The Amazon Resource Name (ARN).</p>",
-        "UpdateFolderResponse$Arn": "<p>The Amazon Resource Name (ARN).</p>",
-        "UpdateIAMPolicyAssignmentRequest$PolicyArn": "<p>The ARN for the IAMpolicy to apply to the Amazon QuickSight users and groups specified in this assignment.</p>",
-        "UpdateIAMPolicyAssignmentResponse$PolicyArn": "<p>The ARN for the IAMpolicy applied to the Amazon QuickSight users and groups specified in this assignment.</p>",
+        "UpdateFolderPermissionsResponse$Arn": "<p>The Amazon Resource Name (ARN) of the folder.</p>",
+        "UpdateFolderResponse$Arn": "<p>The Amazon Resource Name (ARN) of the folder.</p>",
+        "UpdateIAMPolicyAssignmentRequest$PolicyArn": "<p>The ARN for the IAM policy to apply to the Amazon QuickSight users and groups specified in this assignment.</p>",
+        "UpdateIAMPolicyAssignmentResponse$PolicyArn": "<p>The ARN for the IAM policy applied to the Amazon QuickSight users and groups specified in this assignment.</p>",
         "UpdateTemplatePermissionsResponse$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "UpdateTemplateResponse$Arn": "<p>The Amazon Resource Name (ARN) for the template.</p>",
         "UpdateTemplateResponse$VersionArn": "<p>The ARN for the template, including the version information of the first version.</p>",
@@ -460,11 +461,11 @@
         "CreateDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to create the dashboard.</p>",
         "CreateDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CreateDataSourceRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
-        "CreateFolderMembershipRequest$AwsAccountId": "<p>The AWS Account ID.</p>",
-        "CreateFolderRequest$AwsAccountId": "<p>The AWS Account ID.</p>",
+        "CreateFolderMembershipRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
+        "CreateFolderRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account where you want to create the folder.</p>",
         "CreateGroupMembershipRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "CreateGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
-        "CreateIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to assign an IAMpolicy to Amazon QuickSight users or groups.</p>",
+        "CreateIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account where you want to assign an IAM policy to Amazon QuickSight users or groups.</p>",
         "CreateIngestionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "CreateNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to create the Amazon QuickSight namespace in.</p>",
         "CreateTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you creating an alias for.</p>",
@@ -476,11 +477,11 @@
         "DeleteDashboardRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboard that you're deleting.</p>",
         "DeleteDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DeleteDataSourceRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
-        "DeleteFolderMembershipRequest$AwsAccountId": "<p>The AWS Account ID.</p>",
-        "DeleteFolderRequest$AwsAccountId": "<p>The AWS Account ID for the folder.</p>",
+        "DeleteFolderMembershipRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
+        "DeleteFolderRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
         "DeleteGroupMembershipRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DeleteGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
-        "DeleteIAMPolicyAssignmentRequest$AwsAccountId": "<p>The Amazon Web Services account ID where you want to delete the IAMpolicy assignment.</p>",
+        "DeleteIAMPolicyAssignmentRequest$AwsAccountId": "<p>The Amazon Web Services account ID where you want to delete the IAM policy assignment.</p>",
         "DeleteNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to delete the Amazon QuickSight namespace from.</p>",
         "DeleteTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the item to delete.</p>",
         "DeleteTemplateRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're deleting.</p>",
@@ -499,14 +500,14 @@
         "DescribeDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeDataSourcePermissionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "DescribeDataSourceRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
-        "DescribeFolderPermissionsRequest$AwsAccountId": "<p>The AWS Account ID.</p>",
-        "DescribeFolderRequest$AwsAccountId": "<p>The AWS account ID.</p>",
-        "DescribeFolderResolvedPermissionsRequest$AwsAccountId": "<p>The AWS account ID.</p>",
+        "DescribeFolderPermissionsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
+        "DescribeFolderRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
+        "DescribeFolderResolvedPermissionsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
         "DescribeGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "DescribeIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the assignment that you want to describe.</p>",
         "DescribeIngestionRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
-        "DescribeIpRestrictionRequest$AwsAccountId": "<p>Your AWS account ID.</p>",
-        "DescribeIpRestrictionResponse$AwsAccountId": "<p>Your AWS account ID.</p>",
+        "DescribeIpRestrictionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
+        "DescribeIpRestrictionResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "DescribeNamespaceRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight namespace that you want to describe.</p>",
         "DescribeTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template alias that you're describing.</p>",
         "DescribeTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're describing.</p>",
@@ -524,12 +525,12 @@
         "ListDashboardsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the dashboards that you're listing.</p>",
         "ListDataSetsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "ListDataSourcesRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
-        "ListFolderMembersRequest$AwsAccountId": "<p>The AWS account ID.</p>",
-        "ListFoldersRequest$AwsAccountId": "<p>The AWS account ID.</p>",
+        "ListFolderMembersRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
+        "ListFoldersRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
         "ListGroupMembershipsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "ListGroupsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
         "ListIAMPolicyAssignmentsForUserRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the assignments.</p>",
-        "ListIAMPolicyAssignmentsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains these IAMpolicy assignments.</p>",
+        "ListIAMPolicyAssignmentsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains these IAM policy assignments.</p>",
         "ListIngestionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "ListNamespacesRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight namespaces that you want to list.</p>",
         "ListTemplateAliasesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template aliases that you're listing.</p>",
@@ -544,7 +545,7 @@
         "RestoreAnalysisRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analysis.</p>",
         "SearchAnalysesRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the analyses that you're searching for.</p>",
         "SearchDashboardsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the user whose dashboards you're searching for. </p>",
-        "SearchFoldersRequest$AwsAccountId": "<p>The AWS account ID.</p>",
+        "SearchFoldersRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder.</p>",
         "UpdateAccountCustomizationRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountCustomizationResponse$AwsAccountId": "<p>The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.</p>",
         "UpdateAccountSettingsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the Amazon QuickSight settings that you want to list.</p>",
@@ -557,12 +558,12 @@
         "UpdateDataSetRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "UpdateDataSourcePermissionsRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
         "UpdateDataSourceRequest$AwsAccountId": "<p>The Amazon Web Services account ID.</p>",
-        "UpdateFolderPermissionsRequest$AwsAccountId": "<p>The AWS account ID.</p>",
-        "UpdateFolderRequest$AwsAccountId": "<p>The AWS account ID.</p>",
+        "UpdateFolderPermissionsRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder to update.</p>",
+        "UpdateFolderRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that contains the folder to update.</p>",
         "UpdateGroupRequest$AwsAccountId": "<p>The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.</p>",
-        "UpdateIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IAMpolicy assignment. </p>",
-        "UpdateIpRestrictionRequest$AwsAccountId": "<p>Your AWS account ID.</p>",
-        "UpdateIpRestrictionResponse$AwsAccountId": "<p>Your AWS account ID.</p>",
+        "UpdateIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IAM policy assignment. </p>",
+        "UpdateIpRestrictionRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
+        "UpdateIpRestrictionResponse$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the IP rules.</p>",
         "UpdateTemplateAliasRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template alias that you're updating.</p>",
         "UpdateTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template.</p>",
         "UpdateTemplateRequest$AwsAccountId": "<p>The ID of the Amazon Web Services account that contains the template that you're updating.</p>",
@@ -739,9 +740,9 @@
     "ColumnLevelPermissionRuleList": {
       "base": null,
       "refs": {
-        "CreateDataSetRequest$ColumnLevelPermissionRules": "<p>A set of one or more definitions of a <code> <a>ColumnLevelPermissionRule</a> </code>.</p>",
-        "DataSet$ColumnLevelPermissionRules": "<p>A set of one or more definitions of a <code> <a>ColumnLevelPermissionRule</a> </code>.</p>",
-        "UpdateDataSetRequest$ColumnLevelPermissionRules": "<p>A set of one or more definitions of a <code> <a>ColumnLevelPermissionRule</a> </code>.</p>"
+        "CreateDataSetRequest$ColumnLevelPermissionRules": "<p>A set of one or more definitions of a <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html\">ColumnLevelPermissionRule</a> </code>.</p>",
+        "DataSet$ColumnLevelPermissionRules": "<p>A set of one or more definitions of a <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html\">ColumnLevelPermissionRule</a> </code>.</p>",
+        "UpdateDataSetRequest$ColumnLevelPermissionRules": "<p>A set of one or more definitions of a <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html\">ColumnLevelPermissionRule</a> </code>.</p>"
       }
     },
     "ColumnList": {
@@ -783,7 +784,7 @@
       }
     },
     "ColumnTag": {
-      "base": "<p>A tag for a column in a <a>TagColumnOperation</a> structure. This is a variant type structure. For this structure to be valid, only one of the attributes can be non-null.</p>",
+      "base": "<p>A tag for a column in a <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_TagColumnOperation.html\">TagColumnOperation</a> </code> structure. This is a variant type structure. For this structure to be valid, only one of the attributes can be non-null.</p>",
       "refs": {
         "ColumnTagList$member": null
       }
@@ -991,7 +992,7 @@
     "CredentialPair": {
       "base": "<p>The combination of user name and password that are used as credentials.</p>",
       "refs": {
-        "DataSourceCredentials$CredentialPair": "<p>Credential pair. For more information, see <a>CredentialPair</a>.</p>"
+        "DataSourceCredentials$CredentialPair": "<p>Credential pair. For more information, see <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CredentialPair.html\">CredentialPair</a> </code>.</p>"
       }
     },
     "CustomSql": {
@@ -1074,8 +1075,8 @@
     "DashboardSourceEntity": {
       "base": "<p>Dashboard source entity.</p>",
       "refs": {
-        "CreateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you create the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only create a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to create a dashboard from an analysis, first convert the analysis to a template by using the <a>CreateTemplate</a> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code>ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>",
-        "UpdateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you update the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only update a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to update a dashboard from an analysis, first convert the analysis to a template by using the <a>CreateTemplate</a> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>"
+        "CreateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you create the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only create a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to create a dashboard from an analysis, first convert the analysis to a template by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code>ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>",
+        "UpdateDashboardRequest$SourceEntity": "<p>The entity that you are using as a source when you update the dashboard. In <code>SourceEntity</code>, you specify the type of object you're using as source. You can only update a dashboard from a template, so you use a <code>SourceTemplate</code> entity. If you need to update a dashboard from an analysis, first convert the analysis to a template by using the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html\">CreateTemplate</a> </code> API operation. For <code>SourceTemplate</code>, specify the Amazon Resource Name (ARN) of the source template. The <code>SourceTemplate</code> ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region. </p> <p>Use the <code>DataSetReferences</code> entity within <code>SourceTemplate</code> to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder. </p>"
       }
     },
     "DashboardSourceTemplate": {
@@ -1732,7 +1733,7 @@
       "base": null,
       "refs": {
         "AmazonElasticsearchParameters$Domain": "<p>The OpenSearch domain.</p>",
-        "AmazonOpenSearchParameters$Domain": null
+        "AmazonOpenSearchParameters$Domain": "<p>The OpenSearch domain.</p>"
       }
     },
     "DomainNotWhitelistedException": {
@@ -1768,7 +1769,7 @@
       "base": null,
       "refs": {
         "GenerateEmbedUrlForAnonymousUserResponse$EmbedUrl": "<p>The embed URL for the dashboard.</p>",
-        "GenerateEmbedUrlForRegisteredUserResponse$EmbedUrl": "<p>The embed URL for the Amazon QuickSight dashboard, console, or Q search bar.</p>",
+        "GenerateEmbedUrlForRegisteredUserResponse$EmbedUrl": "<p>The embed URL for the Amazon QuickSight dashboard or console.</p>",
         "GetDashboardEmbedUrlResponse$EmbedUrl": "<p>A single-use URL that you can put into your server-side webpage to embed your dashboard. This URL is valid for 5 minutes. The API operation provides the URL with an <code>auth_code</code> value that enables one (and only one) sign-on to a user session that is valid for 10 hours. </p>",
         "GetSessionEmbedUrlResponse$EmbedUrl": "<p>A single-use URL that you can put into your server-side web page to embed your Amazon QuickSight session. This URL is valid for 5 minutes. The API operation provides the URL with an <code>auth_code</code> value that enables one (and only one) sign-on to a user session that is valid for 10 hours. </p>"
       }
@@ -1789,6 +1790,12 @@
       "base": "<p>Error information for the SPICE ingestion of a dataset.</p>",
       "refs": {
         "Ingestion$ErrorInfo": "<p>Error information for this ingestion.</p>"
+      }
+    },
+    "ExasolParameters": {
+      "base": "<p>The required parameters for connecting to an Exasol data source.</p>",
+      "refs": {
+        "DataSourceParameters$ExasolParameters": "<p>The parameters for Exasol.</p>"
       }
     },
     "ExceptionResourceType": {
@@ -1856,11 +1863,11 @@
       "refs": {
         "AnalysisSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example <code>\"Operator\": \"StringEquals\"</code>.</p>",
         "DashboardSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter, for example, <code>\"Operator\": \"StringEquals\"</code>.</p>",
-        "FolderSearchFilter$Operator": "<p>The comparison operator that you want to use as a filter. For example, <code>\"Operator\": \"StringEquals\"</code>.</p>"
+        "FolderSearchFilter$Operator": "<p>The comparison operator that you want to use in the filter. For example, <code>\"Operator\": \"StringEquals\"</code>.</p>"
       }
     },
     "Folder": {
-      "base": "<p>A folder.</p>",
+      "base": "<p>A folder in Amazon QuickSight.</p>",
       "refs": {
         "DescribeFolderResponse$Folder": "<p>Information about the folder.</p>"
       }
@@ -1874,11 +1881,11 @@
     "FolderFilterAttribute": {
       "base": null,
       "refs": {
-        "FolderSearchFilter$Name": "<p>The name of the value that you want to use as a filter. For example, <code>\"Name\": \"PARENT_FOLDER_ARN\"</code>.</p>"
+        "FolderSearchFilter$Name": "<p>The name of a value that you want to use in the filter. For example, <code>\"Name\": \"PARENT_FOLDER_ARN\"</code>.</p>"
       }
     },
     "FolderMember": {
-      "base": "<p>An asset in a folder, such as a dashboard, analysis, or dataset.</p>",
+      "base": "<p>An asset in a Amazon QuickSight folder, such as a dashboard, analysis, or dataset.</p>",
       "refs": {
         "CreateFolderMembershipResponse$FolderMember": "<p>Information about the member in the folder.</p>"
       }
@@ -1899,7 +1906,7 @@
       }
     },
     "FolderSearchFilter": {
-      "base": "<p>Searches a folder by a filter.</p>",
+      "base": "<p>A filter to use to search a Amazon QuickSight folder.</p>",
       "refs": {
         "FolderSearchFilterList$member": null
       }
@@ -1911,7 +1918,7 @@
       }
     },
     "FolderSummary": {
-      "base": "<p>A summary of the folder. </p>",
+      "base": "<p>A summary of information about an existing Amazon QuickSight folder. </p>",
       "refs": {
         "FolderSummaryList$member": null
       }
@@ -1919,15 +1926,15 @@
     "FolderSummaryList": {
       "base": null,
       "refs": {
-        "ListFoldersResponse$FolderSummaryList": "<p>A structure that contains all of the folders in your AWS account. This structure provides basic information about the folders.</p>",
-        "SearchFoldersResponse$FolderSummaryList": "<p>A structure that contains all of the folders in your AWS account. This structure provides basic information about the folders.</p>"
+        "ListFoldersResponse$FolderSummaryList": "<p>A structure that contains all of the folders in the Amazon Web Services account. This structure provides basic information about the folders.</p>",
+        "SearchFoldersResponse$FolderSummaryList": "<p>A structure that contains all of the folders in the Amazon Web Services account. This structure provides basic information about the folders.</p>"
       }
     },
     "FolderType": {
       "base": null,
       "refs": {
         "CreateFolderRequest$FolderType": "<p>The type of folder. By default, <code>folderType</code> is <code>SHARED</code>.</p>",
-        "Folder$FolderType": "<p>The type of the folder.</p>",
+        "Folder$FolderType": "<p>The type of folder it is.</p>",
         "FolderSummary$FolderType": "<p>The type of folder.</p>"
       }
     },
@@ -2081,6 +2088,7 @@
       "refs": {
         "AuroraParameters$Host": "<p>Host.</p>",
         "AuroraPostgreSqlParameters$Host": "<p>The Amazon Aurora PostgreSQL-Compatible host to connect to.</p>",
+        "ExasolParameters$Host": "<p>The hostname or IP address of the Exasol data source.</p>",
         "MariaDbParameters$Host": "<p>Host.</p>",
         "MySqlParameters$Host": "<p>Host.</p>",
         "OracleParameters$Host": "<p>An Oracle host.</p>",
@@ -2096,13 +2104,13 @@
     "IAMPolicyAssignment": {
       "base": "<p>An Identity and Access Management (IAM) policy assignment.</p>",
       "refs": {
-        "DescribeIAMPolicyAssignmentResponse$IAMPolicyAssignment": "<p>Information describing the IAMpolicy assignment.</p>"
+        "DescribeIAMPolicyAssignmentResponse$IAMPolicyAssignment": "<p>Information describing the IAM policy assignment.</p>"
       }
     },
     "IAMPolicyAssignmentName": {
       "base": null,
       "refs": {
-        "ActiveIAMPolicyAssignment$AssignmentName": "<p>A name for the IAMpolicy assignment.</p>",
+        "ActiveIAMPolicyAssignment$AssignmentName": "<p>A name for the IAM policy assignment.</p>",
         "CreateIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment, also called a rule. It must be unique within an Amazon Web Services account.</p>",
         "CreateIAMPolicyAssignmentResponse$AssignmentName": "<p>The name of the assignment. This name must be unique within the Amazon Web Services account.</p>",
         "DeleteIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment. </p>",
@@ -2115,7 +2123,7 @@
       }
     },
     "IAMPolicyAssignmentSummary": {
-      "base": "<p>IAMpolicy assignment summary.</p>",
+      "base": "<p>IAM policy assignment summary.</p>",
       "refs": {
         "IAMPolicyAssignmentSummaryList$member": null
       }
@@ -2123,17 +2131,17 @@
     "IAMPolicyAssignmentSummaryList": {
       "base": null,
       "refs": {
-        "ListIAMPolicyAssignmentsResponse$IAMPolicyAssignments": "<p>Information describing the IAMpolicy assignments.</p>"
+        "ListIAMPolicyAssignmentsResponse$IAMPolicyAssignments": "<p>Information describing the IAM policy assignments.</p>"
       }
     },
     "IdentityMap": {
       "base": null,
       "refs": {
         "CreateIAMPolicyAssignmentRequest$Identities": "<p>The Amazon QuickSight users, groups, or both that you want to assign the policy to.</p>",
-        "CreateIAMPolicyAssignmentResponse$Identities": "<p>The Amazon QuickSight users, groups, or both that the IAMpolicy is assigned to.</p>",
+        "CreateIAMPolicyAssignmentResponse$Identities": "<p>The Amazon QuickSight users, groups, or both that the IAM policy is assigned to.</p>",
         "IAMPolicyAssignment$Identities": "<p>Identities.</p>",
         "UpdateIAMPolicyAssignmentRequest$Identities": "<p>The Amazon QuickSight users, groups, or both that you want to assign the policy to.</p>",
-        "UpdateIAMPolicyAssignmentResponse$Identities": "<p>The Amazon QuickSight users, groups, or both that the IAMpolicy is assigned to.</p>"
+        "UpdateIAMPolicyAssignmentResponse$Identities": "<p>The Amazon QuickSight users, groups, or both that the IAM policy is assigned to.</p>"
       }
     },
     "IdentityName": {
@@ -2159,7 +2167,7 @@
     "IdentityType": {
       "base": null,
       "refs": {
-        "RegisterUserRequest$IdentityType": "<p>Amazon QuickSight supports several ways of managing the identity of users. This parameter accepts two values:</p> <ul> <li> <p> <code>IAM</code>: A user whose identity maps to an existing IAMuser or role. </p> </li> <li> <p> <code>QUICKSIGHT</code>: A user whose identity is owned and managed internally by Amazon QuickSight. </p> </li> </ul>",
+        "RegisterUserRequest$IdentityType": "<p>Amazon QuickSight supports several ways of managing the identity of users. This parameter accepts two values:</p> <ul> <li> <p> <code>IAM</code>: A user whose identity maps to an existing IAM user or role. </p> </li> <li> <p> <code>QUICKSIGHT</code>: A user whose identity is owned and managed internally by Amazon QuickSight. </p> </li> </ul>",
         "User$IdentityType": "<p>The type of identity authentication used by the user.</p>"
       }
     },
@@ -2291,8 +2299,8 @@
     "IpRestrictionRuleMap": {
       "base": null,
       "refs": {
-        "DescribeIpRestrictionResponse$IpRestrictionRuleMap": "<p>Describes the IP rules with CIDR range and description.</p>",
-        "UpdateIpRestrictionRequest$IpRestrictionRuleMap": "<p>Describes updated IP rules.</p>"
+        "DescribeIpRestrictionResponse$IpRestrictionRuleMap": "<p>A map that describes the IP rules with CIDR range and description.</p>",
+        "UpdateIpRestrictionRequest$IpRestrictionRuleMap": "<p>A map that describes the updated IP rules with CIDR ranges and descriptions.</p>"
       }
     },
     "JiraParameters": {
@@ -2323,6 +2331,13 @@
     "LimitExceededException": {
       "base": "<p>A limit is exceeded.</p>",
       "refs": {
+      }
+    },
+    "LinkSharingConfiguration": {
+      "base": "<p>A structure that contains the configuration of a shareable link to the dashboard.</p>",
+      "refs": {
+        "DescribeDashboardPermissionsResponse$LinkSharingConfiguration": "<p>A structure that contains the configuration of a shareable link that grants access to the dashboard. Your users can use the link to view and interact with the dashboard, if the dashboard has been shared with them. For more information about sharing dashboards, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/sharing-a-dashboard.html\">Sharing Dashboards</a>.</p>",
+        "UpdateDashboardPermissionsResponse$LinkSharingConfiguration": "<p>Updates the permissions of a shared link to an Amazon QuickSight dashboard.</p>"
       }
     },
     "ListAnalysesRequest": {
@@ -2644,7 +2659,7 @@
       }
     },
     "MemberIdArnPair": {
-      "base": "<p>An object that consists of the member Amazon Resource Name (ARN) and member ID.</p>",
+      "base": "<p>An object that consists of a member Amazon Resource Name (ARN) and a member ID.</p>",
       "refs": {
         "FolderMemberList$member": null
       }
@@ -2654,7 +2669,7 @@
       "refs": {
         "CreateFolderMembershipRequest$MemberType": "<p>The type of the member, including <code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code>.</p>",
         "DeleteFolderMembershipRequest$MemberType": "<p>The type of the member, including <code>DASHBOARD</code>, <code>ANALYSIS</code>, and <code>DATASET</code> </p>",
-        "FolderMember$MemberType": "<p>The type of the asset.</p>"
+        "FolderMember$MemberType": "<p>The type of asset that it is.</p>"
       }
     },
     "MySqlParameters": {
@@ -2756,8 +2771,8 @@
     "NullableBoolean": {
       "base": null,
       "refs": {
-        "DescribeIpRestrictionResponse$Enabled": "<p>Whether or not IP rules are enabled.</p>",
-        "UpdateIpRestrictionRequest$Enabled": "<p>Whether or not IP rules are enabled.</p>"
+        "DescribeIpRestrictionResponse$Enabled": "<p>A value that specifies whether IP rules are turned on.</p>",
+        "UpdateIpRestrictionRequest$Enabled": "<p>A value that specifies whether IP rules are turned on.</p>"
       }
     },
     "OnClause": {
@@ -2808,7 +2823,7 @@
     "Path": {
       "base": null,
       "refs": {
-        "Folder$FolderPath": "<p>An array of ancestor folder ARN strings.</p>"
+        "Folder$FolderPath": "<p>An array of ancestor ARN strings for the folder.</p>"
       }
     },
     "PhysicalTable": {
@@ -2837,6 +2852,7 @@
       "refs": {
         "AuroraParameters$Port": "<p>Port.</p>",
         "AuroraPostgreSqlParameters$Port": "<p>The port that Amazon Aurora PostgreSQL is listening on.</p>",
+        "ExasolParameters$Port": "<p>The port for the Exasol data source.</p>",
         "MariaDbParameters$Port": "<p>Port.</p>",
         "MySqlParameters$Port": "<p>Port.</p>",
         "OracleParameters$Port": "<p>Port.</p>",
@@ -2874,7 +2890,7 @@
     "Principal": {
       "base": null,
       "refs": {
-        "ResourcePermission$Principal": "<p>The Amazon Resource Name (ARN) of the principal. This can be one of the following:</p> <ul> <li> <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p> </li> <li> <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p> </li> <li> <p>The ARN of an Amazon Web Services account root: This is an IAMARN rather than a Amazon QuickSight ARN. Use this option only to share resources (templates) across Amazon Web Services accounts. (This is less common.) </p> </li> </ul>"
+        "ResourcePermission$Principal": "<p>The Amazon Resource Name (ARN) of the principal. This can be one of the following:</p> <ul> <li> <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p> </li> <li> <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p> </li> <li> <p>The ARN of an Amazon Web Services account root: This is an IAM ARN rather than a QuickSight ARN. Use this option only to share resources (templates) across Amazon Web Services accounts. (This is less common.) </p> </li> </ul>"
       }
     },
     "PrincipalList": {
@@ -2947,9 +2963,9 @@
       }
     },
     "RegisteredUserEmbeddingExperienceConfiguration": {
-      "base": "<p>The type of experience you want to embed. For registered users, you can embed an Amazon QuickSight dashboard or the Amazon QuickSight console.</p> <note> <p>Exactly one of the experience configurations is required. You can choose <code>Dashboard</code> or <code>QuickSightConsole</code>. You cannot choose more than one experience configuraton.</p> </note>",
+      "base": "<p>The type of experience you want to embed. For registered users, you can embed Amazon QuickSight dashboards or the Amazon QuickSight console.</p> <note> <p>Exactly one of the experience configurations is required. You can choose <code>Dashboard</code> or <code>QuickSightConsole</code>. You cannot choose more than one experience configuration.</p> </note>",
       "refs": {
-        "GenerateEmbedUrlForRegisteredUserRequest$ExperienceConfiguration": "<p>The experience you are embedding. For registered users, you can embed Amazon QuickSight dashboards, the entire Amazon QuickSight console, or the Amazon QuickSight Q search bar.</p>"
+        "GenerateEmbedUrlForRegisteredUserRequest$ExperienceConfiguration": "<p>The experience you are embedding. For registered users, you can embed Amazon QuickSight dashboards or the entire Amazon QuickSight console.</p>"
       }
     },
     "RegisteredUserQSearchBarEmbeddingConfiguration": {
@@ -2961,7 +2977,7 @@
     "RegisteredUserQuickSightConsoleEmbeddingConfiguration": {
       "base": "<p>Information about the Amazon QuickSight console that you want to embed.</p>",
       "refs": {
-        "RegisteredUserEmbeddingExperienceConfiguration$QuickSightConsole": "<p>The configuration details for providing an Amazon QuickSight console embedding experience. This can be used along with custom permissions to restrict access to certain features. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html\">Customizing Access to the Amazon QuickSight Console</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>Use <code>GenerateEmbedUrlForRegisteredUser</code> where you want to provide an authoring portal that allows users to create data sources, datasets, analyses, and dashboards. The users who accesses an embedded Amazon QuickSight console needs to belong to the author or admin security cohort. If you want to restrict permissions to some of these features, add a custom permissions profile to the user with the <code> <a>UpdateUser</a> </code> API operation. Use <code> <a>RegisterUser</a> </code> API operation to add a new user with a custom permission profile attached. For more information, see the following sections in the <i>Amazon QuickSight User Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-full-console-for-authenticated-users.html\">Embedding the Full Functionality of the Amazon QuickSight Console for Authenticated Users</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html\">Customizing Access to the Amazon QuickSight Console</a> </p> </li> </ul> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>"
+        "RegisteredUserEmbeddingExperienceConfiguration$QuickSightConsole": "<p>The configuration details for providing each Amazon QuickSight console embedding experience. This can be used along with custom permissions to restrict access to certain features. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html\">Customizing Access to the Amazon QuickSight Console</a> in the <i>Amazon QuickSight User Guide</i>.</p> <p>Use <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForRegisteredUser.html\">GenerateEmbedUrlForRegisteredUser</a> </code> where you want to provide an authoring portal that allows users to create data sources, datasets, analyses, and dashboards. The users who accesses an embedded Amazon QuickSight console needs to belong to the author or admin security cohort. If you want to restrict permissions to some of these features, add a custom permissions profile to the user with the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html\">UpdateUser</a> </code> API operation. Use the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_RegisterUser.html\">RegisterUser</a> </code> API operation to add a new user with a custom permission profile attached. For more information, see the following sections in the <i>Amazon QuickSight User Guide</i>:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-full-console-for-authenticated-users.html\">Embedding the Full Functionality of the Amazon QuickSight Console for Authenticated Users</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html\">Customizing Access to the Amazon QuickSight Console</a> </p> </li> </ul> <p>For more information about the high-level steps for embedding and for an interactive demo of the ways you can customize embedding, visit the <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/quicksight-dev-portal.html\">Amazon QuickSight Developer Portal</a>.</p>"
       }
     },
     "RelationalTable": {
@@ -3052,6 +3068,7 @@
       "base": "<p>Permission for the resource.</p>",
       "refs": {
         "ResourcePermissionList$member": null,
+        "UpdateLinkPermissionList$member": null,
         "UpdateResourcePermissionList$member": null
       }
     },
@@ -3059,7 +3076,7 @@
       "base": null,
       "refs": {
         "CreateAnalysisRequest$Permissions": "<p>A structure that describes the principals and the resource-level permissions on an analysis. You can use the <code>Permissions</code> structure to grant permissions by providing a list of Identity and Access Management (IAM) action information for each principal listed by Amazon Resource Name (ARN). </p> <p>To specify no permissions, omit <code>Permissions</code>.</p>",
-        "CreateDashboardRequest$Permissions": "<p>A structure that contains the permissions of the dashboard. You can use this structure for granting permissions by providing a list of IAMaction information for each principal ARN. </p> <p>To specify no permissions, omit the permissions list.</p>",
+        "CreateDashboardRequest$Permissions": "<p>A structure that contains the permissions of the dashboard. You can use this structure for granting permissions by providing a list of IAM action information for each principal ARN. </p> <p>To specify no permissions, omit the permissions list.</p>",
         "CreateDataSetRequest$Permissions": "<p>A list of resource permissions on the dataset.</p>",
         "CreateDataSourceRequest$Permissions": "<p>A list of resource permissions on the data source.</p>",
         "CreateFolderRequest$Permissions": "<p>A structure that describes the principals and the resource-level permissions of a folder.</p> <p>To specify no permissions, omit <code>Permissions</code>.</p>",
@@ -3070,9 +3087,10 @@
         "DescribeDataSetPermissionsResponse$Permissions": "<p>A list of resource permissions on the dataset.</p>",
         "DescribeDataSourcePermissionsResponse$Permissions": "<p>A list of resource permissions on the data source.</p>",
         "DescribeFolderPermissionsResponse$Permissions": "<p>Information about the permissions on the folder.</p>",
-        "DescribeFolderResolvedPermissionsResponse$Permissions": "<p>Information about the permissions on the dashboard.</p>",
+        "DescribeFolderResolvedPermissionsResponse$Permissions": "<p>Information about the permissions for the folder.</p>",
         "DescribeTemplatePermissionsResponse$Permissions": "<p>A list of resource permissions to be set on the template. </p>",
         "DescribeThemePermissionsResponse$Permissions": "<p>A list of resource permissions set on the theme. </p>",
+        "LinkSharingConfiguration$Permissions": "<p>A structure that contains the permissions of a shareable link.</p>",
         "UpdateAnalysisPermissionsResponse$Permissions": "<p>A structure that describes the principals and the resource-level permissions on an analysis.</p>",
         "UpdateDashboardPermissionsResponse$Permissions": "<p>Information about the permissions on the dashboard.</p>",
         "UpdateDataSetPermissionsRequest$GrantPermissions": "<p>The resource permissions that you want to grant to the dataset.</p>",
@@ -3081,7 +3099,7 @@
         "UpdateDataSourcePermissionsRequest$RevokePermissions": "<p>A list of resource permissions that you want to revoke on the data source.</p>",
         "UpdateFolderPermissionsRequest$GrantPermissions": "<p>The permissions that you want to grant on a resource.</p>",
         "UpdateFolderPermissionsRequest$RevokePermissions": "<p>The permissions that you want to revoke from a resource.</p>",
-        "UpdateFolderPermissionsResponse$Permissions": "<p>Information about the permissions on the dashboard.</p>",
+        "UpdateFolderPermissionsResponse$Permissions": "<p>Information about the permissions for the folder.</p>",
         "UpdateTemplatePermissionsResponse$Permissions": "<p>A list of resource permissions to be set on the template.</p>",
         "UpdateThemePermissionsResponse$Permissions": "<p>The resulting list of resource permissions for the theme.</p>"
       }
@@ -3134,18 +3152,18 @@
         "AnonymousUserDashboardEmbeddingConfiguration$InitialDashboardId": "<p>The dashboard ID for the dashboard that you want the user to see first. This ID is included in the output URL. When the URL in response is accessed, Amazon QuickSight renders this dashboard.</p> <p>The Amazon Resource Name (ARN) of this dashboard must be included in the <code>AuthorizedResourceArns</code> parameter. Otherwise, the request will fail with <code>InvalidParameterValueException</code>.</p>",
         "CreateAnalysisRequest$AnalysisId": "<p>The ID for the analysis that you're creating. This ID displays in the URL of the analysis.</p>",
         "CreateAnalysisResponse$AnalysisId": "<p>The ID of the analysis.</p>",
-        "CreateDashboardRequest$DashboardId": "<p>The ID for the dashboard, also added to the IAMpolicy.</p>",
+        "CreateDashboardRequest$DashboardId": "<p>The ID for the dashboard, also added to the IAM policy.</p>",
         "CreateDashboardResponse$DashboardId": "<p>The ID for the dashboard.</p>",
-        "CreateFolderMembershipRequest$FolderId": "<p>The folder ID.</p>",
+        "CreateFolderMembershipRequest$FolderId": "<p>The ID of the folder.</p>",
         "CreateFolderMembershipRequest$MemberId": "<p>The ID of the asset (the dashboard, analysis, or dataset).</p>",
-        "CreateFolderRequest$FolderId": "<p>The folder ID.</p>",
+        "CreateFolderRequest$FolderId": "<p>The ID of the folder.</p>",
         "CreateFolderResponse$FolderId": "<p>The folder ID for the newly created folder.</p>",
         "CreateTemplateAliasRequest$TemplateId": "<p>An ID for the template.</p>",
         "CreateTemplateRequest$TemplateId": "<p>An ID for the template that you want to create. This template is unique per Amazon Web Services Region; in each Amazon Web Services account.</p>",
         "CreateTemplateResponse$TemplateId": "<p>The ID of the template.</p>",
         "CreateThemeAliasRequest$ThemeId": "<p>An ID for the theme alias.</p>",
         "CreateThemeRequest$ThemeId": "<p>An ID for the theme that you want to create. The theme ID is unique per Amazon Web Services Region in each Amazon Web Services account.</p>",
-        "CreateThemeRequest$BaseThemeId": "<p>The ID of the theme that a custom theme will inherit from. All themes inherit from one of the starting themes defined by Amazon QuickSight. For a list of the starting themes, use <code>ListThemes</code> or choose <b>Themes</b> from within a Amazon QuickSight analysis. </p>",
+        "CreateThemeRequest$BaseThemeId": "<p>The ID of the theme that a custom theme will inherit from. All themes inherit from one of the starting themes defined by Amazon QuickSight. For a list of the starting themes, use <code>ListThemes</code> or choose <b>Themes</b> from within an analysis. </p>",
         "CreateThemeResponse$ThemeId": "<p>The ID of the theme.</p>",
         "Dashboard$DashboardId": "<p>Dashboard ID.</p>",
         "DashboardSummary$DashboardId": "<p>Dashboard ID.</p>",
@@ -3155,8 +3173,8 @@
         "DeleteDashboardResponse$DashboardId": "<p>The ID of the dashboard.</p>",
         "DeleteFolderMembershipRequest$FolderId": "<p>The Folder ID.</p>",
         "DeleteFolderMembershipRequest$MemberId": "<p>The ID of the asset (the dashboard, analysis, or dataset) that you want to delete.</p>",
-        "DeleteFolderRequest$FolderId": "<p>The folder ID.</p>",
-        "DeleteFolderResponse$FolderId": "<p>The folder ID.</p>",
+        "DeleteFolderRequest$FolderId": "<p>The ID of the folder.</p>",
+        "DeleteFolderResponse$FolderId": "<p>The ID of the folder.</p>",
         "DeleteTemplateAliasRequest$TemplateId": "<p>The ID for the template that the specified alias is for.</p>",
         "DeleteTemplateAliasResponse$TemplateId": "<p>An ID for the template associated with the deletion.</p>",
         "DeleteTemplateRequest$TemplateId": "<p>An ID for the template you want to delete.</p>",
@@ -3168,14 +3186,14 @@
         "DescribeAnalysisPermissionsRequest$AnalysisId": "<p>The ID of the analysis whose permissions you're describing. The ID is part of the analysis URL.</p>",
         "DescribeAnalysisPermissionsResponse$AnalysisId": "<p>The ID of the analysis whose permissions you're describing.</p>",
         "DescribeAnalysisRequest$AnalysisId": "<p>The ID of the analysis that you're describing. The ID is part of the URL of the analysis.</p>",
-        "DescribeDashboardPermissionsRequest$DashboardId": "<p>The ID for the dashboard, also added to the IAMpolicy.</p>",
+        "DescribeDashboardPermissionsRequest$DashboardId": "<p>The ID for the dashboard, also added to the IAM policy.</p>",
         "DescribeDashboardPermissionsResponse$DashboardId": "<p>The ID for the dashboard.</p>",
         "DescribeDashboardRequest$DashboardId": "<p>The ID for the dashboard.</p>",
-        "DescribeFolderPermissionsRequest$FolderId": "<p>The folder ID.</p>",
-        "DescribeFolderPermissionsResponse$FolderId": "<p>The folder ID.</p>",
-        "DescribeFolderRequest$FolderId": "<p>The folder ID.</p>",
-        "DescribeFolderResolvedPermissionsRequest$FolderId": "<p>The folder ID.</p>",
-        "DescribeFolderResolvedPermissionsResponse$FolderId": "<p>The folder ID.</p>",
+        "DescribeFolderPermissionsRequest$FolderId": "<p>The ID of the folder.</p>",
+        "DescribeFolderPermissionsResponse$FolderId": "<p>The ID of the folder.</p>",
+        "DescribeFolderRequest$FolderId": "<p>The ID of the folder.</p>",
+        "DescribeFolderResolvedPermissionsRequest$FolderId": "<p>The ID of the folder.</p>",
+        "DescribeFolderResolvedPermissionsResponse$FolderId": "<p>The ID of the folder.</p>",
         "DescribeTemplateAliasRequest$TemplateId": "<p>The ID for the template.</p>",
         "DescribeTemplatePermissionsRequest$TemplateId": "<p>The ID for the template.</p>",
         "DescribeTemplatePermissionsResponse$TemplateId": "<p>The ID for the template.</p>",
@@ -3184,12 +3202,12 @@
         "DescribeThemePermissionsRequest$ThemeId": "<p>The ID for the theme that you want to describe permissions for.</p>",
         "DescribeThemePermissionsResponse$ThemeId": "<p>The ID for the theme.</p>",
         "DescribeThemeRequest$ThemeId": "<p>The ID for the theme.</p>",
-        "Folder$FolderId": "<p>The folder ID.</p>",
-        "FolderMember$MemberId": "<p>The ID of the asset.</p>",
-        "FolderSummary$FolderId": "<p>The folder ID.</p>",
+        "Folder$FolderId": "<p>The ID of the folder.</p>",
+        "FolderMember$MemberId": "<p>The ID of an asset in the folder.</p>",
+        "FolderSummary$FolderId": "<p>The ID of the folder.</p>",
         "GetDashboardEmbedUrlRequest$DashboardId": "<p>The ID for the dashboard, also added to the Identity and Access Management (IAM) policy.</p>",
         "ListDashboardVersionsRequest$DashboardId": "<p>The ID for the dashboard.</p>",
-        "ListFolderMembersRequest$FolderId": "<p>The folder ID.</p>",
+        "ListFolderMembersRequest$FolderId": "<p>The ID of the folder.</p>",
         "ListTemplateAliasesRequest$TemplateId": "<p>The ID for the template.</p>",
         "ListTemplateVersionsRequest$TemplateId": "<p>The ID for the template.</p>",
         "ListThemeAliasesRequest$ThemeId": "<p>The ID for the theme.</p>",
@@ -3215,10 +3233,10 @@
         "UpdateDashboardPublishedVersionResponse$DashboardId": "<p>The ID for the dashboard.</p>",
         "UpdateDashboardRequest$DashboardId": "<p>The ID for the dashboard.</p>",
         "UpdateDashboardResponse$DashboardId": "<p>The ID for the dashboard.</p>",
-        "UpdateFolderPermissionsRequest$FolderId": "<p>The folder ID.</p>",
-        "UpdateFolderPermissionsResponse$FolderId": "<p>The folder ID.</p>",
-        "UpdateFolderRequest$FolderId": "<p>The folder ID.</p>",
-        "UpdateFolderResponse$FolderId": "<p>The folder ID.</p>",
+        "UpdateFolderPermissionsRequest$FolderId": "<p>The ID of the folder.</p>",
+        "UpdateFolderPermissionsResponse$FolderId": "<p>The ID of the folder.</p>",
+        "UpdateFolderRequest$FolderId": "<p>The ID of the folder.</p>",
+        "UpdateFolderResponse$FolderId": "<p>The ID of the folder.</p>",
         "UpdateTemplateAliasRequest$TemplateId": "<p>The ID for the template.</p>",
         "UpdateTemplatePermissionsRequest$TemplateId": "<p>The ID for the template.</p>",
         "UpdateTemplatePermissionsResponse$TemplateId": "<p>The ID for the template.</p>",
@@ -3235,15 +3253,15 @@
     "RoleName": {
       "base": null,
       "refs": {
-        "RegisterUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>To add custom permissions to an existing user, use <code> <a>UpdateUser</a> </code> instead.</p> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a Amazon QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAMpolicies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
-        "UpdateUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a Amazon QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAMpolicies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
+        "RegisterUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>To add custom permissions to an existing user, use <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html\">UpdateUser</a> </code> instead.</p> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
+        "UpdateUserRequest$CustomPermissionsName": "<p>(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:</p> <ul> <li> <p>Create and update data sources</p> </li> <li> <p>Create and update datasets</p> </li> <li> <p>Create and update email reports</p> </li> <li> <p>Subscribe to email reports</p> </li> </ul> <p>A set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the <code>RegisterUser</code> API operation to assign the named set of permissions to a QuickSight user. </p> <p>Amazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).</p> <p>This feature is available only to Amazon QuickSight Enterprise edition subscriptions.</p>",
         "User$CustomPermissionsName": "<p>The custom permissions profile associated with this user.</p>"
       }
     },
     "RoleSessionName": {
       "base": null,
       "refs": {
-        "RegisterUserRequest$SessionName": "<p>You need to use this parameter only when you register one or more users using an assumed IAMrole. You don't need to provide the session name for other scenarios, for example when you are registering an IAMuser or an Amazon QuickSight user. You can register multiple users using the same IAMrole if each user has a different session name. For more information on assuming IAMroles, see <a href=\"https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html\"> <code>assume-role</code> </a> in the <i>AWS CLI Reference.</i> </p>"
+        "RegisterUserRequest$SessionName": "<p>You need to use this parameter only when you register one or more users using an assumed IAM role. You don't need to provide the session name for other scenarios, for example when you are registering an IAM user or an Amazon QuickSight user. You can register multiple users using the same IAM role if each user has a different session name. For more information on assuming IAM roles, see <a href=\"https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html\"> <code>assume-role</code> </a> in the <i>CLI Reference.</i> </p>"
       }
     },
     "RowInfo": {
@@ -3480,8 +3498,8 @@
         "CreateDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
-        "CreateFolderMembershipResponse$Status": "<p>The status of the folder membership. If succeeded, the status is <code>SC_OK (200)</code>.</p>",
-        "CreateFolderResponse$Status": "<p>The status of the newly created folder. If succeeded, the status is <code>SC_OK (200)</code>.</p>",
+        "CreateFolderMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
+        "CreateFolderResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateGroupMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "CreateIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3496,8 +3514,8 @@
         "DeleteDashboardResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
-        "DeleteFolderMembershipResponse$Status": "<p>The status of deleting the asset. If succeeded, the status is <code>SC_OK (200)</code>.</p>",
-        "DeleteFolderResponse$Status": "<p>The status of deleting the folder. If succeeded, the status is <code>SC_OK (200)</code>.</p>",
+        "DeleteFolderMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DeleteFolderResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteGroupMembershipResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "DeleteIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3518,13 +3536,13 @@
         "DescribeDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDataSourcePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
-        "DescribeFolderPermissionsResponse$Status": "<p>The status. If succeeded, the status is <code>SC_OK</code>.</p>",
-        "DescribeFolderResolvedPermissionsResponse$Status": "<p>The status. If succeeded, the status is <code>SC_OK</code> </p>",
-        "DescribeFolderResponse$Status": "<p>The status. If succeeded, the status is <code>SC_OK (200)</code>.</p>",
+        "DescribeFolderPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeFolderResolvedPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "DescribeFolderResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeIngestionResponse$Status": "<p>The HTTP status of the request.</p>",
-        "DescribeIpRestrictionResponse$Status": "<p>The status of a set of IP restrictions. A successful request returns a 200 status code.</p>",
+        "DescribeIpRestrictionResponse$Status": "<p>The HTTP status of the request. </p>",
         "DescribeNamespaceResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "DescribeTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3542,8 +3560,8 @@
         "ListDashboardsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListDataSetsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListDataSourcesResponse$Status": "<p>The HTTP status of the request.</p>",
-        "ListFolderMembersResponse$Status": "<p>The status. If succeeded, the status is <code>SC_OK</code> </p>",
-        "ListFoldersResponse$Status": "<p>The status. If succeeded, the status is <code>SC_OK</code> </p>",
+        "ListFolderMembersResponse$Status": "<p>The HTTP status of the request.</p>",
+        "ListFoldersResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListGroupMembershipsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListGroupsResponse$Status": "<p>The HTTP status of the request.</p>",
         "ListIAMPolicyAssignmentsForUserResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3563,7 +3581,7 @@
         "RestoreAnalysisResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchAnalysesResponse$Status": "<p>The HTTP status of the request.</p>",
         "SearchDashboardsResponse$Status": "<p>The HTTP status of the request.</p>",
-        "SearchFoldersResponse$Status": "<p>The status. If succeeded, the status is <code>SC_OK</code>.</p>",
+        "SearchFoldersResponse$Status": "<p>The HTTP status of the request.</p>",
         "TagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UntagResourceResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateAccountCustomizationResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3577,11 +3595,11 @@
         "UpdateDataSetResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateDataSourcePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateDataSourceResponse$Status": "<p>The HTTP status of the request.</p>",
-        "UpdateFolderPermissionsResponse$Status": "<p>The status. If succeeded, the status is <code>SC_OK</code>.</p>",
-        "UpdateFolderResponse$Status": "<p>The status. If succeeded, the status is <code>SC_OK</code>.</p>",
+        "UpdateFolderPermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
+        "UpdateFolderResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateGroupResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateIAMPolicyAssignmentResponse$Status": "<p>The HTTP status of the request.</p>",
-        "UpdateIpRestrictionResponse$Status": "<p>The status of the updated IP rules. A successful request returns a 200 code.</p>",
+        "UpdateIpRestrictionResponse$Status": "<p>The HTTP status of the request. </p>",
         "UpdateTemplateAliasResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplatePermissionsResponse$Status": "<p>The HTTP status of the request.</p>",
         "UpdateTemplateResponse$Status": "<p>The HTTP status of the request.</p>",
@@ -3617,7 +3635,7 @@
         "CreateDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateDataSetResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateDataSourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "CreateFolderMembershipResponse$RequestId": "<p>The request ID.</p>",
+        "CreateFolderMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateFolderResponse$RequestId": "<p>The request ID for the newly created folder.</p>",
         "CreateGroupMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "CreateGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3639,8 +3657,8 @@
         "DeleteDashboardResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteDataSetResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteDataSourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "DeleteFolderMembershipResponse$RequestId": "<p>The request ID.</p>",
-        "DeleteFolderResponse$RequestId": "<p>The request ID.</p>",
+        "DeleteFolderMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DeleteFolderResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteGroupMembershipResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DeleteIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3662,14 +3680,14 @@
         "DescribeDataSetResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDataSourcePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeDataSourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "DescribeFolderPermissionsResponse$RequestId": "<p>The request ID.</p>",
-        "DescribeFolderResolvedPermissionsResponse$RequestId": "<p>The request ID.</p>",
-        "DescribeFolderResponse$RequestId": "<p>The request ID.</p>",
+        "DescribeFolderPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeFolderResolvedPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "DescribeFolderResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeIngestionRequest$DataSetId": "<p>The ID of the dataset used in the ingestion.</p>",
         "DescribeIngestionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "DescribeIpRestrictionResponse$RequestId": "<p>The ID of the describe request.</p>",
+        "DescribeIpRestrictionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeNamespaceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "DescribeTemplatePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3717,10 +3735,10 @@
         "ListDataSourcesResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListFolderMembersRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListFolderMembersResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListFolderMembersResponse$RequestId": "<p>The request ID.</p>",
+        "ListFolderMembersResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListFoldersRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "ListFoldersResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListFoldersResponse$RequestId": "<p>The request ID.</p>",
+        "ListFoldersResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "ListGroupMembershipsRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListGroupMembershipsResponse$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
         "ListGroupMembershipsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3776,7 +3794,7 @@
         "QuickSightUserNotFoundException$Message": null,
         "QuickSightUserNotFoundException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "RegisterUserRequest$Email": "<p>The email address of the user that you want to register.</p>",
-        "RegisterUserRequest$IamArn": "<p>The ARN of the IAMuser or role that you are registering with Amazon QuickSight. </p>",
+        "RegisterUserRequest$IamArn": "<p>The ARN of the IAM user or role that you are registering with Amazon QuickSight. </p>",
         "RegisterUserRequest$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. The type of supported external login provider can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code> provider type, don’t use the \"CustomFederationProviderUrl\" parameter which is only needed when the external provider is custom.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When choosing <code>CUSTOM_OIDC</code> type, use the <code>CustomFederationProviderUrl</code> parameter to provide the custom OIDC provider URL.</p> </li> </ul>",
         "RegisterUserRequest$CustomFederationProviderUrl": "<p>The URL of the custom OpenID Connect (OIDC) provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. This parameter should only be used when <code>ExternalLoginFederationProviderType</code> parameter is set to <code>CUSTOM_OIDC</code>.</p>",
         "RegisterUserRequest$ExternalLoginId": "<p>The identity ID for a user in the external login provider.</p>",
@@ -3798,7 +3816,7 @@
         "SearchDashboardsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "SearchFoldersRequest$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
         "SearchFoldersResponse$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "SearchFoldersResponse$RequestId": "<p>The request ID.</p>",
+        "SearchFoldersResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "SessionLifetimeInMinutesInvalidException$Message": null,
         "SessionLifetimeInMinutesInvalidException$RequestId": "<p>The Amazon Web Services request ID for this request.</p>",
         "StringList$member": null,
@@ -3822,12 +3840,12 @@
         "UpdateDataSetResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateDataSourcePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateDataSourceResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "UpdateFolderPermissionsResponse$RequestId": "<p>The request ID.</p>",
-        "UpdateFolderResponse$RequestId": "<p>The request ID.</p>",
+        "UpdateFolderPermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
+        "UpdateFolderResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateGroupResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateIAMPolicyAssignmentResponse$AssignmentId": "<p>The ID of the assignment.</p>",
         "UpdateIAMPolicyAssignmentResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
-        "UpdateIpRestrictionResponse$RequestId": "<p>The ID of the update request.</p>",
+        "UpdateIpRestrictionResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplateAliasResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplatePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateTemplateResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
@@ -3835,13 +3853,13 @@
         "UpdateThemePermissionsResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateThemeResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "UpdateUserRequest$Email": "<p>The email address of the user that you want to update.</p>",
-        "UpdateUserRequest$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. The type of supported external login provider can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code> provider type, don’t use the \"CustomFederationProviderUrl\" parameter which is only needed when the external provider is custom.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When choosing <code>CUSTOM_OIDC</code> type, use the <code>CustomFederationProviderUrl</code> parameter to provide the custom OIDC provider URL.</p> </li> <li> <p> <code>NONE</code>: This clears all the previously saved external login information for a user. Use <code> <a>DescribeUser</a> </code> API to check the external login information.</p> </li> </ul>",
+        "UpdateUserRequest$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. The type of supported external login provider can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code> provider type, don’t use the \"CustomFederationProviderUrl\" parameter which is only needed when the external provider is custom.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When choosing <code>CUSTOM_OIDC</code> type, use the <code>CustomFederationProviderUrl</code> parameter to provide the custom OIDC provider URL.</p> </li> <li> <p> <code>NONE</code>: This clears all the previously saved external login information for a user. Use the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeUser.html\">DescribeUser</a> </code> API operation to check the external login information.</p> </li> </ul>",
         "UpdateUserRequest$CustomFederationProviderUrl": "<p>The URL of the custom OpenID Connect (OIDC) provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. This parameter should only be used when <code>ExternalLoginFederationProviderType</code> parameter is set to <code>CUSTOM_OIDC</code>.</p>",
         "UpdateUserRequest$ExternalLoginId": "<p>The identity ID for a user in the external login provider.</p>",
         "UpdateUserResponse$RequestId": "<p>The Amazon Web Services request ID for this operation.</p>",
         "User$Email": "<p>The user's email address.</p>",
         "User$PrincipalId": "<p>The principal ID of the user.</p>",
-        "User$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let the user federate into Amazon QuickSight with an associated IAMrole. The type can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider.</p> </li> </ul>",
+        "User$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let the user federate into Amazon QuickSight with an associated IAM role. The type can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider.</p> </li> </ul>",
         "User$ExternalLoginFederationProviderUrl": "<p>The URL of the external login provider.</p>",
         "User$ExternalLoginId": "<p>The identity ID for the user in the external login provider.</p>"
       }
@@ -4219,7 +4237,7 @@
       }
     },
     "UnsupportedPricingPlanException": {
-      "base": "<p>This error indicates that you are calling an embedding operation in Amazon QuickSight without the required pricing plan on your Amazon Web Services account. Before you can use embedding for anonymous users, a Amazon QuickSight administrator needs to add capacity pricing to Amazon QuickSight. You can do this on the <b>Manage Amazon QuickSight</b> page. </p> <p>After capacity pricing is added, you can use the <a>GetDashboardEmbedUrl</a> API operation with the <code>--identity-type ANONYMOUS</code> option.</p>",
+      "base": "<p>This error indicates that you are calling an embedding operation in Amazon QuickSight without the required pricing plan on your Amazon Web Services account. Before you can use embedding for anonymous users, a QuickSight administrator needs to add capacity pricing to Amazon QuickSight. You can do this on the <b>Manage Amazon QuickSight</b> page. </p> <p>After capacity pricing is added, you can use the <code> <a href=\"https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html\">GetDashboardEmbedUrl</a> </code> API operation with the <code>--identity-type ANONYMOUS</code> option.</p>",
       "refs": {
       }
     },
@@ -4404,6 +4422,13 @@
       "refs": {
       }
     },
+    "UpdateLinkPermissionList": {
+      "base": null,
+      "refs": {
+        "UpdateDashboardPermissionsRequest$GrantLinkPermissions": "<p>Grants link permissions to all users in a defined namespace.</p>",
+        "UpdateDashboardPermissionsRequest$RevokeLinkPermissions": "<p>Revokes link permissions from all users in a defined namespace.</p>"
+      }
+    },
     "UpdateResourcePermissionList": {
       "base": null,
       "refs": {
@@ -4517,7 +4542,7 @@
         "ListUserGroupsRequest$UserName": "<p>The Amazon QuickSight user name that you want to list group memberships for.</p>",
         "RegisterUserRequest$UserName": "<p>The Amazon QuickSight user name that you want to create for the user you are registering.</p>",
         "UpdateUserRequest$UserName": "<p>The Amazon QuickSight user name that you want to update.</p>",
-        "User$UserName": "<p>The user's user name.</p>"
+        "User$UserName": "<p>The user's user name. In the output, the value for <code>UserName</code> is <code>N/A</code> when the value for <code>IdentityType</code> is <code>IAM</code> and the corresponding IAM user is deleted.</p>"
       }
     },
     "UserRole": {

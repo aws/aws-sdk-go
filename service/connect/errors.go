@@ -11,7 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You do not have sufficient access to perform this action.
+	// You do not have sufficient permissions to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeContactFlowNotPublishedException for service response error code
@@ -38,6 +38,12 @@ const (
 	// A resource with the specified name already exists.
 	ErrCodeDuplicateResourceException = "DuplicateResourceException"
 
+	// ErrCodeIdempotencyException for service response error code
+	// "IdempotencyException".
+	//
+	// An entity with the same name already exists.
+	ErrCodeIdempotencyException = "IdempotencyException"
+
 	// ErrCodeInternalServiceException for service response error code
 	// "InternalServiceException".
 	//
@@ -49,6 +55,12 @@ const (
 	//
 	// The contact flow is not valid.
 	ErrCodeInvalidContactFlowException = "InvalidContactFlowException"
+
+	// ErrCodeInvalidContactFlowModuleException for service response error code
+	// "InvalidContactFlowModuleException".
+	//
+	// The problems with the module. Please fix before trying again.
+	ErrCodeInvalidContactFlowModuleException = "InvalidContactFlowModuleException"
 
 	// ErrCodeInvalidParameterException for service response error code
 	// "InvalidParameterException".
@@ -117,8 +129,10 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ContactNotFoundException":             newErrorContactNotFoundException,
 	"DestinationNotAllowedException":       newErrorDestinationNotAllowedException,
 	"DuplicateResourceException":           newErrorDuplicateResourceException,
+	"IdempotencyException":                 newErrorIdempotencyException,
 	"InternalServiceException":             newErrorInternalServiceException,
 	"InvalidContactFlowException":          newErrorInvalidContactFlowException,
+	"InvalidContactFlowModuleException":    newErrorInvalidContactFlowModuleException,
 	"InvalidParameterException":            newErrorInvalidParameterException,
 	"InvalidRequestException":              newErrorInvalidRequestException,
 	"LimitExceededException":               newErrorLimitExceededException,

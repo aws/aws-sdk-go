@@ -74,6 +74,13 @@ const (
 	// Amazon EKS clusters and node groups are Region-specific.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
+	// ErrCodeResourcePropagationDelayException for service response error code
+	// "ResourcePropagationDelayException".
+	//
+	// Required resources (such as Service Linked Roles) were created and are still
+	// propagating. Retry later.
+	ErrCodeResourcePropagationDelayException = "ResourcePropagationDelayException"
+
 	// ErrCodeServerException for service response error code
 	// "ServerException".
 	//
@@ -106,6 +113,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceInUseException":               newErrorResourceInUseException,
 	"ResourceLimitExceededException":       newErrorResourceLimitExceededException,
 	"ResourceNotFoundException":            newErrorResourceNotFoundException,
+	"ResourcePropagationDelayException":    newErrorResourcePropagationDelayException,
 	"ServerException":                      newErrorServerException,
 	"ServiceUnavailableException":          newErrorServiceUnavailableException,
 	"UnsupportedAvailabilityZoneException": newErrorUnsupportedAvailabilityZoneException,
