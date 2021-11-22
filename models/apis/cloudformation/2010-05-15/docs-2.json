@@ -38,7 +38,7 @@
     "GetStackPolicy": "<p>Returns the stack policy for a specified stack. If a stack doesn't have a policy, a null value is returned.</p>",
     "GetTemplate": "<p>Returns the template body for a specified stack. You can get the template for running or deleted stacks.</p> <p>For deleted stacks, GetTemplate returns the template for up to 90 days after the stack has been deleted.</p> <note> <p>If the template does not exist, a <code>ValidationError</code> is returned.</p> </note>",
     "GetTemplateSummary": "<p>Returns information about a new or existing template. The <code>GetTemplateSummary</code> action is useful for viewing parameter information, such as default parameter values and parameter types, before you create or update a stack or stack set.</p> <p>You can use the <code>GetTemplateSummary</code> action when you submit a template, or you can get template information for a stack set, or a running or deleted stack.</p> <p>For deleted stacks, <code>GetTemplateSummary</code> returns the template information for up to 90 days after the stack has been deleted. If the template does not exist, a <code>ValidationError</code> is returned.</p>",
-    "ImportStacksToStackSet": "<p>Import existing stacks into a new stack sets. Use the stack import operation to import up to 10 stacks into a new stack set in the same account as the source stack or in a different administrator account and Region, by specifying the stack ID of the stack you intend to import.</p> <note> <p> <code>ImportStacksToStackSet</code> is only supported by self-managed permissions.</p> </note>",
+    "ImportStacksToStackSet": "<p>Use the stack import operations for self-managed or service-managed StackSets. For self-managed StackSets, the import operation can import stacks in the administrator account or in different target accounts and Amazon Web Services Regions. For service-managed StackSets, the import operation can import any stack in the same AWS Organizations as the management account. The import operation can import up to 10 stacks using inline stack IDs or up to 10,000 stacks using an Amazon S3 object.</p>",
     "ListChangeSets": "<p>Returns the ID and status of each active change set for a stack. For example, CloudFormation lists change sets that are in the <code>CREATE_IN_PROGRESS</code> or <code>CREATE_PENDING</code> state.</p>",
     "ListExports": "<p>Lists all exported output values in the account and Region in which you call this action. Use this action to see the exported output values that you can import into other stacks. To import values, use the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html\"> <code>Fn::ImportValue</code> </a> function.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-exports.html\"> CloudFormation Export Stack Output Values</a>.</p>",
     "ListImports": "<p>Lists all stacks that are importing an exported output value. To modify or remove an exported output value, first use this action to see which stacks are using it. To see the exported output values in your account, see <a>ListExports</a>.</p> <p>For more information about importing an exported output value, see the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html\"> <code>Fn::ImportValue</code> </a> function.</p>",
@@ -284,7 +284,7 @@
     "Category": {
       "base": null,
       "refs": {
-        "TypeFilters$Category": "<p>The category of extensions to return.</p> <ul> <li> <p> <code>REGISTERED</code>: Private extensions that have been registered for this account and region.</p> </li> <li> <p> <code>ACTIVATED</code>: Public extensions that have been activated for this account and region.</p> </li> <li> <p> <code>THIRD-PARTY</code>: Extensions available for use from publishers other than Amazon. This includes:</p> <ul> <li> <p>Private extensions registered in the account.</p> </li> <li> <p>Public extensions from publishers other than Amazon, whether activated or not.</p> </li> </ul> </li> <li> <p> <code>AWS-TYPES</code>: Extensions available for use from Amazon.</p> </li> </ul>"
+        "TypeFilters$Category": "<p>The category of extensions to return.</p> <ul> <li> <p> <code>REGISTERED</code>: Private extensions that have been registered for this account and region.</p> </li> <li> <p> <code>ACTIVATED</code>: Public extensions that have been activated for this account and region.</p> </li> <li> <p> <code>THIRD_PARTY</code>: Extensions available for use from publishers other than Amazon. This includes:</p> <ul> <li> <p>Private extensions registered in the account.</p> </li> <li> <p>Public extensions from publishers other than Amazon, whether activated or not.</p> </li> </ul> </li> <li> <p> <code>AWS_TYPES</code>: Extensions available for use from Amazon.</p> </li> </ul>"
       }
     },
     "CausingEntity": {
@@ -1416,6 +1416,7 @@
       "base": null,
       "refs": {
         "DeploymentTargets$OrganizationalUnitIds": "<p>The organization root ID or organizational unit (OU) IDs to which StackSets deploys.</p>",
+        "ImportStacksToStackSetInput$OrganizationalUnitIds": "<p>The list of OU ID’s to which the stacks being imported has to be mapped as deployment target.</p>",
         "StackSet$OrganizationalUnitIds": "<p>[Service-managed permissions] The organization root ID or organizational unit (OU) IDs that you specified for <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_DeploymentTargets.html\">DeploymentTargets</a>.</p>"
       }
     },
@@ -1485,7 +1486,7 @@
       "base": null,
       "refs": {
         "Parameter$ParameterValue": "<p>The input value associated with the parameter.</p>",
-        "Parameter$ResolvedValue": "<p>Read-only. The value that corresponds to a Systems Manager parameter key. This field is returned only for <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html#aws-ssm-parameter-types\"> <code>SSM</code> parameter types</a> in the template.</p>",
+        "Parameter$ResolvedValue": "<p>Read-only. Read-only. The value that corresponds to a SSM parameter key. This field is returned only for <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html#aws-ssm-parameter-types\"> <code>SSM</code> </a> parameter types in the template.</p>",
         "ParameterDeclaration$DefaultValue": "<p>The default value of the parameter.</p>",
         "TemplateParameter$DefaultValue": "<p>The default value associated with the parameter.</p>"
       }
@@ -1628,7 +1629,7 @@
         "ListTypeVersionsInput$PublisherId": "<p>The publisher ID of the extension publisher.</p> <p>Extensions published by Amazon are not assigned a publisher ID.</p>",
         "RegisterPublisherOutput$PublisherId": "<p>The ID assigned this account by CloudFormation for publishing extensions.</p>",
         "RequiredActivatedType$PublisherId": "<p>The publisher ID of the extension publisher.</p>",
-        "TypeFilters$PublisherId": "<p>The id of the publisher of the extension. </p> <p>Extensions published by Amazon are not assigned a publisher ID. Use the <code>AWS-TYPES</code> category to specify a list of types published by Amazon.</p>",
+        "TypeFilters$PublisherId": "<p>The id of the publisher of the extension. </p> <p>Extensions published by Amazon are not assigned a publisher ID. Use the <code>AWS_TYPE</code> category to specify a list of types published by Amazon.</p>",
         "TypeSummary$PublisherId": "<p>The ID of the extension publisher, if the extension is published by a third party. Extensions published by Amazon do not return a publisher ID.</p>"
       }
     },
@@ -2159,7 +2160,13 @@
     "StackIdList": {
       "base": null,
       "refs": {
-        "ImportStacksToStackSetInput$StackIds": "<p>The IDs of the stacks you are importing into a stack set. You import up to 10 stacks per stack set at a time.</p>"
+        "ImportStacksToStackSetInput$StackIds": "<p>The IDs of the stacks you are importing into a stack set. You import up to 10 stacks per stack set at a time.</p> <p>Specify either <code>StackIds</code> or <code>StackIdsUrl</code>.</p>"
+      }
+    },
+    "StackIdsUrl": {
+      "base": null,
+      "refs": {
+        "ImportStacksToStackSetInput$StackIdsUrl": "<p>The Amazon S3 URL which contains list of stack ids to be inputted.</p> <p>Specify either <code>StackIds</code> or <code>StackIdsUrl</code>.</p>"
       }
     },
     "StackInstance": {
@@ -2790,7 +2797,7 @@
     "Type": {
       "base": null,
       "refs": {
-        "RollbackTrigger$Type": "<p>The resource type of the rollback trigger. Currently, <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html\">AWS::CloudWatch::Alarm</a> is the only supported resource type.</p>"
+        "RollbackTrigger$Type": "<p>The resource type of the rollback trigger. Specify either <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html\">AWS::CloudWatch::Alarm</a> or <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloudwatch-compositealarm.html\">AWS::CloudWatch::CompositeAlarm</a> resource types.</p>"
       }
     },
     "TypeArn": {

@@ -64,6 +64,30 @@ type FinSpaceDataAPI interface {
 	CreateChangesetWithContext(aws.Context, *finspacedata.CreateChangesetInput, ...request.Option) (*finspacedata.CreateChangesetOutput, error)
 	CreateChangesetRequest(*finspacedata.CreateChangesetInput) (*request.Request, *finspacedata.CreateChangesetOutput)
 
+	CreateDataView(*finspacedata.CreateDataViewInput) (*finspacedata.CreateDataViewOutput, error)
+	CreateDataViewWithContext(aws.Context, *finspacedata.CreateDataViewInput, ...request.Option) (*finspacedata.CreateDataViewOutput, error)
+	CreateDataViewRequest(*finspacedata.CreateDataViewInput) (*request.Request, *finspacedata.CreateDataViewOutput)
+
+	CreateDataset(*finspacedata.CreateDatasetInput) (*finspacedata.CreateDatasetOutput, error)
+	CreateDatasetWithContext(aws.Context, *finspacedata.CreateDatasetInput, ...request.Option) (*finspacedata.CreateDatasetOutput, error)
+	CreateDatasetRequest(*finspacedata.CreateDatasetInput) (*request.Request, *finspacedata.CreateDatasetOutput)
+
+	DeleteDataset(*finspacedata.DeleteDatasetInput) (*finspacedata.DeleteDatasetOutput, error)
+	DeleteDatasetWithContext(aws.Context, *finspacedata.DeleteDatasetInput, ...request.Option) (*finspacedata.DeleteDatasetOutput, error)
+	DeleteDatasetRequest(*finspacedata.DeleteDatasetInput) (*request.Request, *finspacedata.DeleteDatasetOutput)
+
+	GetChangeset(*finspacedata.GetChangesetInput) (*finspacedata.GetChangesetOutput, error)
+	GetChangesetWithContext(aws.Context, *finspacedata.GetChangesetInput, ...request.Option) (*finspacedata.GetChangesetOutput, error)
+	GetChangesetRequest(*finspacedata.GetChangesetInput) (*request.Request, *finspacedata.GetChangesetOutput)
+
+	GetDataView(*finspacedata.GetDataViewInput) (*finspacedata.GetDataViewOutput, error)
+	GetDataViewWithContext(aws.Context, *finspacedata.GetDataViewInput, ...request.Option) (*finspacedata.GetDataViewOutput, error)
+	GetDataViewRequest(*finspacedata.GetDataViewInput) (*request.Request, *finspacedata.GetDataViewOutput)
+
+	GetDataset(*finspacedata.GetDatasetInput) (*finspacedata.GetDatasetOutput, error)
+	GetDatasetWithContext(aws.Context, *finspacedata.GetDatasetInput, ...request.Option) (*finspacedata.GetDatasetOutput, error)
+	GetDatasetRequest(*finspacedata.GetDatasetInput) (*request.Request, *finspacedata.GetDatasetOutput)
+
 	GetProgrammaticAccessCredentials(*finspacedata.GetProgrammaticAccessCredentialsInput) (*finspacedata.GetProgrammaticAccessCredentialsOutput, error)
 	GetProgrammaticAccessCredentialsWithContext(aws.Context, *finspacedata.GetProgrammaticAccessCredentialsInput, ...request.Option) (*finspacedata.GetProgrammaticAccessCredentialsOutput, error)
 	GetProgrammaticAccessCredentialsRequest(*finspacedata.GetProgrammaticAccessCredentialsInput) (*request.Request, *finspacedata.GetProgrammaticAccessCredentialsOutput)
@@ -71,6 +95,35 @@ type FinSpaceDataAPI interface {
 	GetWorkingLocation(*finspacedata.GetWorkingLocationInput) (*finspacedata.GetWorkingLocationOutput, error)
 	GetWorkingLocationWithContext(aws.Context, *finspacedata.GetWorkingLocationInput, ...request.Option) (*finspacedata.GetWorkingLocationOutput, error)
 	GetWorkingLocationRequest(*finspacedata.GetWorkingLocationInput) (*request.Request, *finspacedata.GetWorkingLocationOutput)
+
+	ListChangesets(*finspacedata.ListChangesetsInput) (*finspacedata.ListChangesetsOutput, error)
+	ListChangesetsWithContext(aws.Context, *finspacedata.ListChangesetsInput, ...request.Option) (*finspacedata.ListChangesetsOutput, error)
+	ListChangesetsRequest(*finspacedata.ListChangesetsInput) (*request.Request, *finspacedata.ListChangesetsOutput)
+
+	ListChangesetsPages(*finspacedata.ListChangesetsInput, func(*finspacedata.ListChangesetsOutput, bool) bool) error
+	ListChangesetsPagesWithContext(aws.Context, *finspacedata.ListChangesetsInput, func(*finspacedata.ListChangesetsOutput, bool) bool, ...request.Option) error
+
+	ListDataViews(*finspacedata.ListDataViewsInput) (*finspacedata.ListDataViewsOutput, error)
+	ListDataViewsWithContext(aws.Context, *finspacedata.ListDataViewsInput, ...request.Option) (*finspacedata.ListDataViewsOutput, error)
+	ListDataViewsRequest(*finspacedata.ListDataViewsInput) (*request.Request, *finspacedata.ListDataViewsOutput)
+
+	ListDataViewsPages(*finspacedata.ListDataViewsInput, func(*finspacedata.ListDataViewsOutput, bool) bool) error
+	ListDataViewsPagesWithContext(aws.Context, *finspacedata.ListDataViewsInput, func(*finspacedata.ListDataViewsOutput, bool) bool, ...request.Option) error
+
+	ListDatasets(*finspacedata.ListDatasetsInput) (*finspacedata.ListDatasetsOutput, error)
+	ListDatasetsWithContext(aws.Context, *finspacedata.ListDatasetsInput, ...request.Option) (*finspacedata.ListDatasetsOutput, error)
+	ListDatasetsRequest(*finspacedata.ListDatasetsInput) (*request.Request, *finspacedata.ListDatasetsOutput)
+
+	ListDatasetsPages(*finspacedata.ListDatasetsInput, func(*finspacedata.ListDatasetsOutput, bool) bool) error
+	ListDatasetsPagesWithContext(aws.Context, *finspacedata.ListDatasetsInput, func(*finspacedata.ListDatasetsOutput, bool) bool, ...request.Option) error
+
+	UpdateChangeset(*finspacedata.UpdateChangesetInput) (*finspacedata.UpdateChangesetOutput, error)
+	UpdateChangesetWithContext(aws.Context, *finspacedata.UpdateChangesetInput, ...request.Option) (*finspacedata.UpdateChangesetOutput, error)
+	UpdateChangesetRequest(*finspacedata.UpdateChangesetInput) (*request.Request, *finspacedata.UpdateChangesetOutput)
+
+	UpdateDataset(*finspacedata.UpdateDatasetInput) (*finspacedata.UpdateDatasetOutput, error)
+	UpdateDatasetWithContext(aws.Context, *finspacedata.UpdateDatasetInput, ...request.Option) (*finspacedata.UpdateDatasetOutput, error)
+	UpdateDatasetRequest(*finspacedata.UpdateDatasetInput) (*request.Request, *finspacedata.UpdateDatasetOutput)
 }
 
 var _ FinSpaceDataAPI = (*finspacedata.FinSpaceData)(nil)

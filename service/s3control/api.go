@@ -6411,6 +6411,60 @@ func (s *BucketLevel) SetPrefixLevel(v *PrefixLevel) *BucketLevel {
 	return s
 }
 
+// A container for enabling Amazon CloudWatch publishing for S3 Storage Lens
+// metrics.
+//
+// For more information about publishing S3 Storage Lens metrics to CloudWatch,
+// see Monitor S3 Storage Lens metrics in CloudWatch (https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_view_metrics_cloudwatch.html)
+// in the Amazon S3 User Guide.
+type CloudWatchMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// A container that indicates whether CloudWatch publishing for S3 Storage Lens
+	// metrics is enabled. A value of true indicates that CloudWatch publishing
+	// for S3 Storage Lens metrics is enabled.
+	//
+	// IsEnabled is a required field
+	IsEnabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CloudWatchMetrics) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudWatchMetrics) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudWatchMetrics"}
+	if s.IsEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("IsEnabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *CloudWatchMetrics) SetIsEnabled(v bool) *CloudWatchMetrics {
+	s.IsEnabled = &v
+	return s
+}
+
 type CreateAccessPointForObjectLambdaInput struct {
 	_ struct{} `locationName:"CreateAccessPointForObjectLambdaRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
@@ -17887,13 +17941,15 @@ func (s *StorageLensConfiguration) SetStorageLensArn(v string) *StorageLensConfi
 type StorageLensDataExport struct {
 	_ struct{} `type:"structure"`
 
+	// A container for enabling Amazon CloudWatch publishing for S3 Storage Lens
+	// metrics.
+	CloudWatchMetrics *CloudWatchMetrics `type:"structure"`
+
 	// A container for the bucket where the S3 Storage Lens metrics export will
 	// be located.
 	//
 	// This bucket must be located in the same Region as the storage lens configuration.
-	//
-	// S3BucketDestination is a required field
-	S3BucketDestination *S3BucketDestination `type:"structure" required:"true"`
+	S3BucketDestination *S3BucketDestination `type:"structure"`
 }
 
 // String returns the string representation.
@@ -17917,8 +17973,10 @@ func (s StorageLensDataExport) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StorageLensDataExport) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StorageLensDataExport"}
-	if s.S3BucketDestination == nil {
-		invalidParams.Add(request.NewErrParamRequired("S3BucketDestination"))
+	if s.CloudWatchMetrics != nil {
+		if err := s.CloudWatchMetrics.Validate(); err != nil {
+			invalidParams.AddNested("CloudWatchMetrics", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.S3BucketDestination != nil {
 		if err := s.S3BucketDestination.Validate(); err != nil {
@@ -17930,6 +17988,12 @@ func (s *StorageLensDataExport) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCloudWatchMetrics sets the CloudWatchMetrics field's value.
+func (s *StorageLensDataExport) SetCloudWatchMetrics(v *CloudWatchMetrics) *StorageLensDataExport {
+	s.CloudWatchMetrics = v
+	return s
 }
 
 // SetS3BucketDestination sets the S3BucketDestination field's value.

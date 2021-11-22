@@ -162,7 +162,7 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 // in the Amazon QuickSight User Guide.
 //
 // You can create customizations for your Amazon Web Services account or, if
-// you specify a namespace, for a Amazon QuickSight namespace instead. Customizations
+// you specify a namespace, for a QuickSight namespace instead. Customizations
 // that apply to a namespace always override customizations that apply to an
 // Amazon Web Services account. To find out which customizations apply, use
 // the DescribeAccountCustomization API operation.
@@ -172,7 +172,9 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 // namespace. If you don't share it with the namespace, the theme isn't visible
 // to your users even if you make it the default theme. To check if the theme
 // is shared, view the current permissions by using the DescribeThemePermissions
+// (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeThemePermissions.html)
 // API operation. To share the theme, grant permissions by using the UpdateThemePermissions
+// (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateThemePermissions.html)
 // API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -189,6 +191,9 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 //   that your account is authorized to use the Amazon QuickSight service, that
 //   your policies have the correct permissions, and that you are using the correct
 //   access keys.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
 //
 //   * InvalidParameterValueException
 //   One or more parameters has a value that isn't valid.
@@ -375,7 +380,8 @@ func (c *QuickSight) CreateDashboardRequest(input *CreateDashboardInput) (req *r
 // CreateDashboard API operation for Amazon QuickSight.
 //
 // Creates a dashboard from a template. To first create a template, see the
-// CreateTemplate API operation.
+// CreateTemplate (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html)
+// API operation.
 //
 // A dashboard is an entity in Amazon QuickSight that identifies Amazon QuickSight
 // reports, created from analyses. You can share Amazon QuickSight dashboards.
@@ -1124,7 +1130,7 @@ func (c *QuickSight) CreateIAMPolicyAssignmentRequest(input *CreateIAMPolicyAssi
 
 // CreateIAMPolicyAssignment API operation for Amazon QuickSight.
 //
-// Creates an assignment with one specified IAMpolicy, identified by its Amazon
+// Creates an assignment with one specified IAM policy, identified by its Amazon
 // Resource Name (ARN). This policy assignment is attached to the specified
 // groups or users of Amazon QuickSight. Assignment names are unique per Amazon
 // Web Services account. To avoid overwriting rules in other namespaces, use
@@ -1911,6 +1917,9 @@ func (c *QuickSight) DeleteAccountCustomizationRequest(input *DeleteAccountCusto
 //   that your account is authorized to use the Amazon QuickSight service, that
 //   your policies have the correct permissions, and that you are using the correct
 //   access keys.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
 //
 //   * InvalidParameterValueException
 //   One or more parameters has a value that isn't valid.
@@ -2803,7 +2812,7 @@ func (c *QuickSight) DeleteIAMPolicyAssignmentRequest(input *DeleteIAMPolicyAssi
 
 // DeleteIAMPolicyAssignment API operation for Amazon QuickSight.
 //
-// Deletes an existing IAMpolicy assignment.
+// Deletes an existing IAM policy assignment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3622,10 +3631,10 @@ func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountC
 //
 //    * Amazon Web Services account - The Amazon Web Services account exists
 //    at the top of the hierarchy. It has the potential to use all of the Amazon
-//    Web Services Regions and AWS Services. When you subscribe to Amazon QuickSight,
-//    you choose one Amazon Web Services Region to use as your home Region.
-//    That's where your free SPICE capacity is located. You can use Amazon QuickSight
-//    in any supported Amazon Web Services Region.
+//    Web Services Regions and Amazon Web Services Services. When you subscribe
+//    to Amazon QuickSight, you choose one Amazon Web Services Region to use
+//    as your home Region. That's where your free SPICE capacity is located.
+//    You can use Amazon QuickSight in any supported Amazon Web Services Region.
 //
 //    * Amazon Web Services Region - In each Amazon Web Services Region where
 //    you sign in to Amazon QuickSight at least once, Amazon QuickSight acts
@@ -3634,15 +3643,15 @@ func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountC
 //    speaking, these users have access to Amazon QuickSight in any Amazon Web
 //    Services Region, unless they are constrained to a namespace. To run the
 //    command in a different Amazon Web Services Region, you change your Region
-//    settings. If you're using the AWS CLI, you can use one of the following
-//    options: Use command line options (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html).
+//    settings. If you're using the CLI, you can use one of the following options:
+//    Use command line options (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html).
 //    Use named profiles (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
 //    Run aws configure to change your default Amazon Web Services Region. Use
 //    Enter to key the same settings for your keys. For more information, see
-//    Configuring the AWS CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
+//    Configuring the CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
 //
-//    * Namespace - A Amazon QuickSight namespace is a partition that contains
-//    users and assets (data sources, datasets, dashboards, and so on). To access
+//    * Namespace - A QuickSight namespace is a partition that contains users
+//    and assets (data sources, datasets, dashboards, and so on). To access
 //    assets that are in a specific namespace, users and groups must also be
 //    part of the same namespace. People who share a namespace are completely
 //    isolated from users and assets in other namespaces, even if they are in
@@ -5030,7 +5039,7 @@ func (c *QuickSight) DescribeIAMPolicyAssignmentRequest(input *DescribeIAMPolicy
 
 // DescribeIAMPolicyAssignment API operation for Amazon QuickSight.
 //
-// Describes an existing IAMpolicy assignment, as specified by the assignment
+// Describes an existing IAM policy assignment, as specified by the assignment
 // name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5227,7 +5236,7 @@ func (c *QuickSight) DescribeIpRestrictionRequest(input *DescribeIpRestrictionIn
 
 // DescribeIpRestriction API operation for Amazon QuickSight.
 //
-// Provides a summary and status of IP Rules.
+// Provides a summary and status of IP rules.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6180,12 +6189,12 @@ func (c *QuickSight) GenerateEmbedUrlForAnonymousUserRequest(input *GenerateEmbe
 //   * UnsupportedPricingPlanException
 //   This error indicates that you are calling an embedding operation in Amazon
 //   QuickSight without the required pricing plan on your Amazon Web Services
-//   account. Before you can use embedding for anonymous users, a Amazon QuickSight
-//   administrator needs to add capacity pricing to Amazon QuickSight. You can
-//   do this on the Manage Amazon QuickSight page.
+//   account. Before you can use embedding for anonymous users, a QuickSight administrator
+//   needs to add capacity pricing to Amazon QuickSight. You can do this on the
+//   Manage Amazon QuickSight page.
 //
-//   After capacity pricing is added, you can use the GetDashboardEmbedUrl API
-//   operation with the --identity-type ANONYMOUS option.
+//   After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+//   API operation with the --identity-type ANONYMOUS option.
 //
 //   * InternalFailureException
 //   An internal failure occurred.
@@ -6324,12 +6333,12 @@ func (c *QuickSight) GenerateEmbedUrlForRegisteredUserRequest(input *GenerateEmb
 //   * UnsupportedPricingPlanException
 //   This error indicates that you are calling an embedding operation in Amazon
 //   QuickSight without the required pricing plan on your Amazon Web Services
-//   account. Before you can use embedding for anonymous users, a Amazon QuickSight
-//   administrator needs to add capacity pricing to Amazon QuickSight. You can
-//   do this on the Manage Amazon QuickSight page.
+//   account. Before you can use embedding for anonymous users, a QuickSight administrator
+//   needs to add capacity pricing to Amazon QuickSight. You can do this on the
+//   Manage Amazon QuickSight page.
 //
-//   After capacity pricing is added, you can use the GetDashboardEmbedUrl API
-//   operation with the --identity-type ANONYMOUS option.
+//   After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+//   API operation with the --identity-type ANONYMOUS option.
 //
 //   * InternalFailureException
 //   An internal failure occurred.
@@ -6478,12 +6487,12 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //   * UnsupportedPricingPlanException
 //   This error indicates that you are calling an embedding operation in Amazon
 //   QuickSight without the required pricing plan on your Amazon Web Services
-//   account. Before you can use embedding for anonymous users, a Amazon QuickSight
-//   administrator needs to add capacity pricing to Amazon QuickSight. You can
-//   do this on the Manage Amazon QuickSight page.
+//   account. Before you can use embedding for anonymous users, a QuickSight administrator
+//   needs to add capacity pricing to Amazon QuickSight. You can do this on the
+//   Manage Amazon QuickSight page.
 //
-//   After capacity pricing is added, you can use the GetDashboardEmbedUrl API
-//   operation with the --identity-type ANONYMOUS option.
+//   After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+//   API operation with the --identity-type ANONYMOUS option.
 //
 //   * InternalFailureException
 //   An internal failure occurred.
@@ -6560,10 +6569,11 @@ func (c *QuickSight) GetSessionEmbedUrlRequest(input *GetSessionEmbedUrlInput) (
 // data sources, datasets, analyses, and dashboards. The users who access an
 // embedded Amazon QuickSight console need belong to the author or admin security
 // cohort. If you want to restrict permissions to some of these features, add
-// a custom permissions profile to the user with the UpdateUser API operation.
-// Use RegisterUser API operation to add a new user with a custom permission
-// profile attached. For more information, see the following sections in the
-// Amazon QuickSight User Guide:
+// a custom permissions profile to the user with the UpdateUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html)
+// API operation. Use RegisterUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_RegisterUser.html)
+// API operation to add a new user with a custom permission profile attached.
+// For more information, see the following sections in the Amazon QuickSight
+// User Guide:
 //
 //    * Embedding Analytics (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html)
 //
@@ -7860,7 +7870,7 @@ func (c *QuickSight) ListIAMPolicyAssignmentsRequest(input *ListIAMPolicyAssignm
 
 // ListIAMPolicyAssignments API operation for Amazon QuickSight.
 //
-// Lists IAMpolicy assignments in the current Amazon QuickSight account.
+// Lists IAM policy assignments in the current Amazon QuickSight account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7958,7 +7968,7 @@ func (c *QuickSight) ListIAMPolicyAssignmentsForUserRequest(input *ListIAMPolicy
 
 // ListIAMPolicyAssignmentsForUser API operation for Amazon QuickSight.
 //
-// Lists all the IAMpolicy assignments, including the Amazon Resource Names
+// Lists all the IAM policy assignments, including the Amazon Resource Names
 // (ARNs) for the IAM policies assigned to the specified user and group or groups
 // that the user belongs to.
 //
@@ -9572,8 +9582,7 @@ func (c *QuickSight) RegisterUserRequest(input *RegisterUserInput) (req *request
 // RegisterUser API operation for Amazon QuickSight.
 //
 // Creates an Amazon QuickSight user, whose identity is associated with the
-// AWS Identity and Access Management (IAM) identity or role specified in the
-// request.
+// Identity and Access Management (IAM) identity or role specified in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10213,13 +10222,14 @@ func (c *QuickSight) TagResourceRequest(input *TagResourceInput) (req *request.R
 // tagging on data set, data source, dashboard, and template.
 //
 // Tagging for Amazon QuickSight works in a similar way to tagging for other
-// AWS services, except for the following:
+// Amazon Web Services services, except for the following:
 //
-//    * You can't use tags to track AWS costs for Amazon QuickSight. This restriction
-//    is because Amazon QuickSight costs are based on users and SPICE capacity,
-//    which aren't taggable resources.
+//    * You can't use tags to track costs for Amazon QuickSight. This isn't
+//    possible because you can't tag the resources that Amazon QuickSight costs
+//    are based on, for example Amazon QuickSight storage capacity (SPICE),
+//    number of users, type of users, and usage metrics.
 //
-//    * Amazon QuickSight doesn't currently support the Tag Editor for Resource
+//    * Amazon QuickSight doesn't currently support the tag editor for Resource
 //    Groups.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10436,6 +10446,9 @@ func (c *QuickSight) UpdateAccountCustomizationRequest(input *UpdateAccountCusto
 //   that your account is authorized to use the Amazon QuickSight service, that
 //   your policies have the correct permissions, and that you are using the correct
 //   access keys.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
 //
 //   * InvalidParameterValueException
 //   One or more parameters has a value that isn't valid.
@@ -10817,7 +10830,8 @@ func (c *QuickSight) UpdateDashboardRequest(input *UpdateDashboardInput) (req *r
 //
 // Updating a Dashboard creates a new dashboard version but does not immediately
 // publish the new version. You can update the published version of a dashboard
-// by using the UpdateDashboardPublishedVersion API operation.
+// by using the UpdateDashboardPublishedVersion (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateDashboardPublishedVersion.html)
+// API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11826,7 +11840,7 @@ func (c *QuickSight) UpdateIAMPolicyAssignmentRequest(input *UpdateIAMPolicyAssi
 
 // UpdateIAMPolicyAssignment API operation for Amazon QuickSight.
 //
-// Updates an existing IAMpolicy assignment. This operation updates only the
+// Updates an existing IAM policy assignment. This operation updates only the
 // optional parameter or parameters that are specified in the request. This
 // overwrites all of the users included in Identities.
 //
@@ -11930,7 +11944,9 @@ func (c *QuickSight) UpdateIpRestrictionRequest(input *UpdateIpRestrictionInput)
 
 // UpdateIpRestriction API operation for Amazon QuickSight.
 //
-// Updates content and status of IP Rules.
+// Updates the content and status of IP rules. To use this operation, you need
+// to provide the entire map of rules. You can use the DescribeIpRestriction
+// operation to get the current rule map.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12777,10 +12793,12 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 // The Amazon QuickSight customizations associated with your Amazon Web Services
-// account or a Amazon QuickSight namespace in a specific Amazon Web Services
-// Region.
+// account or a QuickSight namespace in a specific Amazon Web Services Region.
 type AccountCustomization struct {
 	_ struct{} `type:"structure"`
+
+	// The default email customization template.
+	DefaultEmailCustomizationTemplate *string `type:"string"`
 
 	// The default theme for this Amazon QuickSight subscription.
 	DefaultTheme *string `type:"string"`
@@ -12802,6 +12820,12 @@ func (s AccountCustomization) String() string {
 // value will be replaced with "sensitive".
 func (s AccountCustomization) GoString() string {
 	return s.String()
+}
+
+// SetDefaultEmailCustomizationTemplate sets the DefaultEmailCustomizationTemplate field's value.
+func (s *AccountCustomization) SetDefaultEmailCustomizationTemplate(v string) *AccountCustomization {
+	s.DefaultEmailCustomizationTemplate = &v
+	return s
 }
 
 // SetDefaultTheme sets the DefaultTheme field's value.
@@ -12877,7 +12901,7 @@ func (s *AccountSettings) SetNotificationEmail(v string) *AccountSettings {
 type ActiveIAMPolicyAssignment struct {
 	_ struct{} `type:"structure"`
 
-	// A name for the IAMpolicy assignment.
+	// A name for the IAM policy assignment.
 	AssignmentName *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the resource.
@@ -12996,9 +13020,12 @@ func (s *AmazonElasticsearchParameters) SetDomain(v string) *AmazonElasticsearch
 	return s
 }
 
+// The parameters for OpenSearch.
 type AmazonOpenSearchParameters struct {
 	_ struct{} `type:"structure"`
 
+	// The OpenSearch domain.
+	//
 	// Domain is a required field
 	Domain *string `min:"1" type:"string" required:"true"`
 }
@@ -13506,11 +13533,11 @@ func (s *AnonymousUserDashboardEmbeddingConfiguration) SetInitialDashboardId(v s
 }
 
 // The type of experience you want to embed. For anonymous users, you can embed
-// an Amazon QuickSight dashboard.
+// Amazon QuickSight dashboards.
 type AnonymousUserEmbeddingExperienceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The type of embedding experience. In this case, an Amazon QuickSight dashboard.
+	// The type of embedding experience. In this case, Amazon QuickSight dashboards.
 	Dashboard *AnonymousUserDashboardEmbeddingConfiguration `type:"structure"`
 }
 
@@ -14414,9 +14441,9 @@ func (s *ColumnSchema) SetName(v string) *ColumnSchema {
 	return s
 }
 
-// A tag for a column in a TagColumnOperation structure. This is a variant type
-// structure. For this structure to be valid, only one of the attributes can
-// be non-null.
+// A tag for a column in a TagColumnOperation (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_TagColumnOperation.html)
+// structure. This is a variant type structure. For this structure to be valid,
+// only one of the attributes can be non-null.
 type ColumnTag struct {
 	_ struct{} `type:"structure"`
 
@@ -14596,7 +14623,7 @@ type CreateAccountCustomizationInput struct {
 
 	// The Amazon QuickSight customizations you're adding in the current Amazon
 	// Web Services Region. You can add these to an Amazon Web Services account
-	// and a Amazon QuickSight namespace.
+	// and a QuickSight namespace.
 	//
 	// For example, you can add a default theme by setting AccountCustomization
 	// to the midnight theme: "AccountCustomization": { "DefaultTheme": "arn:aws:quicksight::aws:theme/MIDNIGHT"
@@ -15091,7 +15118,7 @@ type CreateDashboardInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID for the dashboard, also added to the IAMpolicy.
+	// The ID for the dashboard, also added to the IAM policy.
 	//
 	// DashboardId is a required field
 	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
@@ -15122,7 +15149,7 @@ type CreateDashboardInput struct {
 	Parameters *Parameters `type:"structure"`
 
 	// A structure that contains the permissions of the dashboard. You can use this
-	// structure for granting permissions by providing a list of IAMaction information
+	// structure for granting permissions by providing a list of IAM action information
 	// for each principal ARN.
 	//
 	// To specify no permissions, omit the permissions list.
@@ -15132,10 +15159,11 @@ type CreateDashboardInput struct {
 	// In SourceEntity, you specify the type of object you're using as source. You
 	// can only create a dashboard from a template, so you use a SourceTemplate
 	// entity. If you need to create a dashboard from an analysis, first convert
-	// the analysis to a template by using the CreateTemplate API operation. For
-	// SourceTemplate, specify the Amazon Resource Name (ARN) of the source template.
-	// The SourceTemplateARN can contain any Amazon Web Services account and any
-	// Amazon QuickSight-supported Amazon Web Services Region.
+	// the analysis to a template by using the CreateTemplate (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html)
+	// API operation. For SourceTemplate, specify the Amazon Resource Name (ARN)
+	// of the source template. The SourceTemplateARN can contain any Amazon Web
+	// Services account and any Amazon QuickSight-supported Amazon Web Services
+	// Region.
 	//
 	// Use the DataSetReferences entity within SourceTemplate to list the replacement
 	// datasets for the placeholders listed in the original. The schema in each
@@ -15395,7 +15423,7 @@ type CreateDataSetInput struct {
 	// Currently, only geospatial hierarchy is supported.
 	ColumnGroups []*ColumnGroup `min:"1" type:"list"`
 
-	// A set of one or more definitions of a ColumnLevelPermissionRule .
+	// A set of one or more definitions of a ColumnLevelPermissionRule (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html) .
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
 	// An ID for the dataset that you want to create. This ID is unique per Amazon
@@ -16014,12 +16042,12 @@ func (s *CreateDataSourceOutput) SetStatus(v int64) *CreateDataSourceOutput {
 type CreateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Account ID.
+	// The ID for the Amazon Web Services account where you want to create the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -16160,12 +16188,12 @@ func (s *CreateFolderInput) SetTags(v []*Tag) *CreateFolderInput {
 type CreateFolderMembershipInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS Account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -16263,10 +16291,10 @@ type CreateFolderMembershipOutput struct {
 	// Information about the member in the folder.
 	FolderMember *FolderMember `type:"structure"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status of the folder membership. If succeeded, the status is SC_OK (200).
+	// The HTTP status of the request.
 	Status *int64 `type:"integer"`
 }
 
@@ -16318,8 +16346,7 @@ type CreateFolderOutput struct {
 	// The request ID for the newly created folder.
 	RequestId *string `type:"string"`
 
-	// The status of the newly created folder. If succeeded, the status is SC_OK
-	// (200).
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -16686,8 +16713,8 @@ type CreateIAMPolicyAssignmentInput struct {
 	// AssignmentStatus is a required field
 	AssignmentStatus *string `type:"string" required:"true" enum:"AssignmentStatus"`
 
-	// The ID of the Amazon Web Services account where you want to assign an IAMpolicy
-	// to Amazon QuickSight users or groups.
+	// The ID of the Amazon Web Services account where you want to assign an IAM
+	// policy to Amazon QuickSight users or groups.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -16701,7 +16728,7 @@ type CreateIAMPolicyAssignmentInput struct {
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 
-	// The ARN for the IAMpolicy to apply to the Amazon QuickSight users and groups
+	// The ARN for the IAM policy to apply to the Amazon QuickSight users and groups
 	// specified in this assignment.
 	PolicyArn *string `type:"string"`
 }
@@ -16812,11 +16839,11 @@ type CreateIAMPolicyAssignmentOutput struct {
 	//    the data source.
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 
-	// The Amazon QuickSight users, groups, or both that the IAMpolicy is assigned
+	// The Amazon QuickSight users, groups, or both that the IAM policy is assigned
 	// to.
 	Identities map[string][]*string `type:"map"`
 
-	// The ARN for the IAMpolicy that is applied to the Amazon QuickSight users
+	// The ARN for the IAM policy that is applied to the Amazon QuickSight users
 	// and groups specified in this assignment.
 	PolicyArn *string `type:"string"`
 
@@ -17800,8 +17827,7 @@ type CreateThemeInput struct {
 
 	// The ID of the theme that a custom theme will inherit from. All themes inherit
 	// from one of the starting themes defined by Amazon QuickSight. For a list
-	// of the starting themes, use ListThemes or choose Themes from within a Amazon
-	// QuickSight analysis.
+	// of the starting themes, use ListThemes or choose Themes from within an analysis.
 	//
 	// BaseThemeId is a required field
 	BaseThemeId *string `min:"1" type:"string" required:"true"`
@@ -18951,7 +18977,7 @@ type DataSet struct {
 	// Currently, only geospatial hierarchy is supported.
 	ColumnGroups []*ColumnGroup `min:"1" type:"list"`
 
-	// A set of one or more definitions of a ColumnLevelPermissionRule .
+	// A set of one or more definitions of a ColumnLevelPermissionRule (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html) .
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
 	// The amount of SPICE capacity used by this dataset. This is 0 if the dataset
@@ -19560,7 +19586,7 @@ type DataSourceCredentials struct {
 	// structure.
 	CopySourceArn *string `type:"string"`
 
-	// Credential pair. For more information, see CredentialPair.
+	// Credential pair. For more information, see CredentialPair (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CredentialPair.html) .
 	CredentialPair *CredentialPair `type:"structure"`
 }
 
@@ -19659,6 +19685,7 @@ type DataSourceParameters struct {
 	// The parameters for OpenSearch.
 	AmazonElasticsearchParameters *AmazonElasticsearchParameters `type:"structure"`
 
+	// The parameters for OpenSearch.
 	AmazonOpenSearchParameters *AmazonOpenSearchParameters `type:"structure"`
 
 	// The parameters for Amazon Athena.
@@ -19672,6 +19699,9 @@ type DataSourceParameters struct {
 
 	// The parameters for IoT Analytics.
 	AwsIotAnalyticsParameters *AwsIotAnalyticsParameters `type:"structure"`
+
+	// The parameters for Exasol.
+	ExasolParameters *ExasolParameters `type:"structure"`
 
 	// The parameters for Jira.
 	JiraParameters *JiraParameters `type:"structure"`
@@ -19768,6 +19798,11 @@ func (s *DataSourceParameters) Validate() error {
 	if s.AwsIotAnalyticsParameters != nil {
 		if err := s.AwsIotAnalyticsParameters.Validate(); err != nil {
 			invalidParams.AddNested("AwsIotAnalyticsParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ExasolParameters != nil {
+		if err := s.ExasolParameters.Validate(); err != nil {
+			invalidParams.AddNested("ExasolParameters", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.JiraParameters != nil {
@@ -19885,6 +19920,12 @@ func (s *DataSourceParameters) SetAuroraPostgreSqlParameters(v *AuroraPostgreSql
 // SetAwsIotAnalyticsParameters sets the AwsIotAnalyticsParameters field's value.
 func (s *DataSourceParameters) SetAwsIotAnalyticsParameters(v *AwsIotAnalyticsParameters) *DataSourceParameters {
 	s.AwsIotAnalyticsParameters = v
+	return s
+}
+
+// SetExasolParameters sets the ExasolParameters field's value.
+func (s *DataSourceParameters) SetExasolParameters(v *ExasolParameters) *DataSourceParameters {
+	s.ExasolParameters = v
 	return s
 }
 
@@ -20750,12 +20791,12 @@ func (s *DeleteDataSourceOutput) SetStatus(v int64) *DeleteDataSourceOutput {
 type DeleteFolderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS Account ID for the folder.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -20816,7 +20857,7 @@ func (s *DeleteFolderInput) SetFolderId(v string) *DeleteFolderInput {
 type DeleteFolderMembershipInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS Account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -20917,10 +20958,10 @@ func (s *DeleteFolderMembershipInput) SetMemberType(v string) *DeleteFolderMembe
 type DeleteFolderMembershipOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status of deleting the asset. If succeeded, the status is SC_OK (200).
+	// The HTTP status of the request.
 	Status *int64 `type:"integer"`
 }
 
@@ -20960,13 +21001,13 @@ type DeleteFolderOutput struct {
 	// The Amazon Resource Name of the deleted folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status of deleting the folder. If succeeded, the status is SC_OK (200).
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -21287,7 +21328,7 @@ type DeleteIAMPolicyAssignmentInput struct {
 	// AssignmentName is a required field
 	AssignmentName *string `location:"uri" locationName:"AssignmentName" min:"1" type:"string" required:"true"`
 
-	// The Amazon Web Services account ID where you want to delete the IAMpolicy
+	// The Amazon Web Services account ID where you want to delete the IAM policy
 	// assignment.
 	//
 	// AwsAccountId is a required field
@@ -22558,12 +22599,12 @@ type DescribeAccountSettingsOutput struct {
 	// The Amazon QuickSight settings for this Amazon Web Services account. This
 	// information includes the edition of Amazon Amazon QuickSight that you subscribed
 	// to (Standard or Enterprise) and the notification email for the Amazon QuickSight
-	// subscription. In the Amazon QuickSight console, the Amazon QuickSight subscription
-	// is sometimes referred to as a Amazon QuickSight "account" even though it's
-	// technically not an account by itself. Instead, it's a subscription to the
-	// Amazon QuickSight service for your Amazon Web Services account. The edition
-	// that you subscribe to applies to Amazon QuickSight in every Amazon Web Services
-	// Region where you use it.
+	// subscription. In the QuickSight console, the Amazon QuickSight subscription
+	// is sometimes referred to as a QuickSight "account" even though it's technically
+	// not an account by itself. Instead, it's a subscription to the Amazon QuickSight
+	// service for your Amazon Web Services account. The edition that you subscribe
+	// to applies to Amazon QuickSight in every Amazon Web Services Region where
+	// you use it.
 	AccountSettings *AccountSettings `type:"structure"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -23014,7 +23055,7 @@ type DescribeDashboardPermissionsInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID for the dashboard, also added to the IAMpolicy.
+	// The ID for the dashboard, also added to the IAM policy.
 	//
 	// DashboardId is a required field
 	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
@@ -23081,6 +23122,12 @@ type DescribeDashboardPermissionsOutput struct {
 	// The ID for the dashboard.
 	DashboardId *string `min:"1" type:"string"`
 
+	// A structure that contains the configuration of a shareable link that grants
+	// access to the dashboard. Your users can use the link to view and interact
+	// with the dashboard, if the dashboard has been shared with them. For more
+	// information about sharing dashboards, see Sharing Dashboards (https://docs.aws.amazon.com/quicksight/latest/user/sharing-a-dashboard.html).
+	LinkSharingConfiguration *LinkSharingConfiguration `type:"structure"`
+
 	// A structure that contains the permissions for the dashboard.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
@@ -23118,6 +23165,12 @@ func (s *DescribeDashboardPermissionsOutput) SetDashboardArn(v string) *Describe
 // SetDashboardId sets the DashboardId field's value.
 func (s *DescribeDashboardPermissionsOutput) SetDashboardId(v string) *DescribeDashboardPermissionsOutput {
 	s.DashboardId = &v
+	return s
+}
+
+// SetLinkSharingConfiguration sets the LinkSharingConfiguration field's value.
+func (s *DescribeDashboardPermissionsOutput) SetLinkSharingConfiguration(v *LinkSharingConfiguration) *DescribeDashboardPermissionsOutput {
+	s.LinkSharingConfiguration = v
 	return s
 }
 
@@ -23644,12 +23697,12 @@ func (s *DescribeDataSourcePermissionsOutput) SetStatus(v int64) *DescribeDataSo
 type DescribeFolderInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -23713,10 +23766,10 @@ type DescribeFolderOutput struct {
 	// Information about the folder.
 	Folder *Folder `type:"structure"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK (200).
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -23759,12 +23812,12 @@ func (s *DescribeFolderOutput) SetStatus(v int64) *DescribeFolderOutput {
 type DescribeFolderPermissionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS Account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -23828,16 +23881,16 @@ type DescribeFolderPermissionsOutput struct {
 	// The Amazon Resource Name (ARN) for the folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
 	// Information about the permissions on the folder.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK.
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -23892,12 +23945,12 @@ func (s *DescribeFolderPermissionsOutput) SetStatus(v int64) *DescribeFolderPerm
 type DescribeFolderResolvedPermissionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -23958,19 +24011,19 @@ func (s *DescribeFolderResolvedPermissionsInput) SetFolderId(v string) *Describe
 type DescribeFolderResolvedPermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// Information about the permissions on the dashboard.
+	// Information about the permissions for the folder.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -24243,7 +24296,7 @@ func (s *DescribeIAMPolicyAssignmentInput) SetNamespace(v string) *DescribeIAMPo
 type DescribeIAMPolicyAssignmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information describing the IAMpolicy assignment.
+	// Information describing the IAM policy assignment.
 	IAMPolicyAssignment *IAMPolicyAssignment `type:"structure"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -24424,7 +24477,7 @@ func (s *DescribeIngestionOutput) SetStatus(v int64) *DescribeIngestionOutput {
 type DescribeIpRestrictionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Your AWS account ID.
+	// The ID of the Amazon Web Services account that contains the IP rules.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -24473,20 +24526,19 @@ func (s *DescribeIpRestrictionInput) SetAwsAccountId(v string) *DescribeIpRestri
 type DescribeIpRestrictionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Your AWS account ID.
+	// The ID of the Amazon Web Services account that contains the IP rules.
 	AwsAccountId *string `min:"12" type:"string"`
 
-	// Whether or not IP rules are enabled.
+	// A value that specifies whether IP rules are turned on.
 	Enabled *bool `type:"boolean"`
 
-	// Describes the IP rules with CIDR range and description.
+	// A map that describes the IP rules with CIDR range and description.
 	IpRestrictionRuleMap map[string]*string `type:"map"`
 
-	// The ID of the describe request.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status of a set of IP restrictions. A successful request returns a 200
-	// status code.
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -25727,6 +25779,73 @@ func (s *ErrorInfo) SetType(v string) *ErrorInfo {
 	return s
 }
 
+// The required parameters for connecting to an Exasol data source.
+type ExasolParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The hostname or IP address of the Exasol data source.
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// The port for the Exasol data source.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExasolParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExasolParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExasolParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExasolParameters"}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHost sets the Host field's value.
+func (s *ExasolParameters) SetHost(v string) *ExasolParameters {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *ExasolParameters) SetPort(v int64) *ExasolParameters {
+	s.Port = &v
+	return s
+}
+
 // Export to .csv option.
 type ExportToCSVOption struct {
 	_ struct{} `type:"structure"`
@@ -25851,23 +25970,23 @@ func (s *FilterOperation) SetConditionExpression(v string) *FilterOperation {
 	return s
 }
 
-// A folder.
+// A folder in Amazon QuickSight.
 type Folder struct {
 	_ struct{} `type:"structure"`
 
-	// The folder Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) for the folder.
 	Arn *string `type:"string"`
 
 	// The time that the folder was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// An array of ancestor folder ARN strings.
+	// An array of ancestor ARN strings for the folder.
 	FolderPath []*string `min:"1" type:"list"`
 
-	// The type of the folder.
+	// The type of folder it is.
 	FolderType *string `type:"string" enum:"FolderType"`
 
 	// The time that the folder was last updated.
@@ -25937,14 +26056,15 @@ func (s *Folder) SetName(v string) *Folder {
 	return s
 }
 
-// An asset in a folder, such as a dashboard, analysis, or dataset.
+// An asset in a Amazon QuickSight folder, such as a dashboard, analysis, or
+// dataset.
 type FolderMember struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the asset.
+	// The ID of an asset in the folder.
 	MemberId *string `min:"1" type:"string"`
 
-	// The type of the asset.
+	// The type of asset that it is.
 	MemberType *string `type:"string" enum:"MemberType"`
 }
 
@@ -25978,16 +26098,16 @@ func (s *FolderMember) SetMemberType(v string) *FolderMember {
 	return s
 }
 
-// Searches a folder by a filter.
+// A filter to use to search a Amazon QuickSight folder.
 type FolderSearchFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the value that you want to use as a filter. For example, "Name":
+	// The name of a value that you want to use in the filter. For example, "Name":
 	// "PARENT_FOLDER_ARN".
 	Name *string `type:"string" enum:"FolderFilterAttribute"`
 
-	// The comparison operator that you want to use as a filter. For example, "Operator":
-	// "StringEquals".
+	// The comparison operator that you want to use in the filter. For example,
+	// "Operator": "StringEquals".
 	Operator *string `type:"string" enum:"FilterOperator"`
 
 	// The value of the named item (in this example, PARENT_FOLDER_ARN), that you
@@ -26031,17 +26151,17 @@ func (s *FolderSearchFilter) SetValue(v string) *FolderSearchFilter {
 	return s
 }
 
-// A summary of the folder.
+// A summary of information about an existing Amazon QuickSight folder.
 type FolderSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the folder.
 	Arn *string `type:"string"`
 
 	// The time that the folder was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
 	// The type of folder.
@@ -26320,8 +26440,7 @@ type GenerateEmbedUrlForRegisteredUserInput struct {
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The experience you are embedding. For registered users, you can embed Amazon
-	// QuickSight dashboards, the entire Amazon QuickSight console, or the Amazon
-	// QuickSight Q search bar.
+	// QuickSight dashboards or the entire Amazon QuickSight console.
 	//
 	// ExperienceConfiguration is a required field
 	ExperienceConfiguration *RegisteredUserEmbeddingExperienceConfiguration `type:"structure" required:"true"`
@@ -26411,7 +26530,7 @@ func (s *GenerateEmbedUrlForRegisteredUserInput) SetUserArn(v string) *GenerateE
 type GenerateEmbedUrlForRegisteredUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The embed URL for the Amazon QuickSight dashboard, console, or Q search bar.
+	// The embed URL for the Amazon QuickSight dashboard or console.
 	//
 	// EmbedUrl is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GenerateEmbedUrlForRegisteredUserOutput's
@@ -26554,7 +26673,7 @@ type GetDashboardEmbedUrlInput struct {
 	// A list of one or more dashboard IDs that you want to add to a session that
 	// includes anonymous users. The IdentityType parameter must be set to ANONYMOUS
 	// for this to work, because other identity types authenticate as Amazon QuickSight
-	// or IAMusers. For example, if you set "--dashboard-id dash_id1 --dashboard-id
+	// or IAM users. For example, if you set "--dashboard-id dash_id1 --dashboard-id
 	// dash_id2 dash_id3 identity-type ANONYMOUS", the session can access all three
 	// dashboards.
 	AdditionalDashboardIds []*string `location:"querystring" locationName:"additional-dashboard-ids" min:"1" type:"list"`
@@ -26609,10 +26728,10 @@ type GetDashboardEmbedUrlInput struct {
 	//
 	//    * Invited nonfederated users
 	//
-	//    * IAMusers and IAMrole-based sessions authenticated through Federated
-	//    Single Sign-On using SAML, OpenID Connect, or IAMfederation.
+	//    * IAM users and IAM role-based sessions authenticated through Federated
+	//    Single Sign-On using SAML, OpenID Connect, or IAM federation.
 	//
-	// Omit this parameter for users in the third group – IAMusers and IAM role-based
+	// Omit this parameter for users in the third group – IAM users and IAM role-based
 	// sessions.
 	UserArn *string `location:"querystring" locationName:"user-arn" type:"string"`
 }
@@ -27105,7 +27224,7 @@ type IAMPolicyAssignment struct {
 	// Identities.
 	Identities map[string][]*string `type:"map"`
 
-	// The Amazon Resource Name (ARN) for the IAMpolicy.
+	// The Amazon Resource Name (ARN) for the IAM policy.
 	PolicyArn *string `type:"string"`
 }
 
@@ -27163,7 +27282,7 @@ func (s *IAMPolicyAssignment) SetPolicyArn(v string) *IAMPolicyAssignment {
 	return s
 }
 
-// IAMpolicy assignment summary.
+// IAM policy assignment summary.
 type IAMPolicyAssignmentSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -27996,6 +28115,38 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A structure that contains the configuration of a shareable link to the dashboard.
+type LinkSharingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains the permissions of a shareable link.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LinkSharingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LinkSharingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *LinkSharingConfiguration) SetPermissions(v []*ResourcePermission) *LinkSharingConfiguration {
+	s.Permissions = v
+	return s
+}
+
 type ListAnalysesInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -28659,12 +28810,12 @@ func (s *ListDataSourcesOutput) SetStatus(v int64) *ListDataSourcesOutput {
 type ListFolderMembersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -28753,10 +28904,10 @@ type ListFolderMembersOutput struct {
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -28805,7 +28956,7 @@ func (s *ListFolderMembersOutput) SetStatus(v int64) *ListFolderMembersOutput {
 type ListFoldersInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -28875,17 +29026,17 @@ func (s *ListFoldersInput) SetNextToken(v string) *ListFoldersInput {
 type ListFoldersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A structure that contains all of the folders in your AWS account. This structure
-	// provides basic information about the folders.
+	// A structure that contains all of the folders in the Amazon Web Services account.
+	// This structure provides basic information about the folders.
 	FolderSummaryList []*FolderSummary `type:"list"`
 
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -29410,7 +29561,8 @@ type ListIAMPolicyAssignmentsInput struct {
 	// The status of the assignments.
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 
-	// The ID of the Amazon Web Services account that contains these IAMpolicy assignments.
+	// The ID of the Amazon Web Services account that contains these IAM policy
+	// assignments.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -29503,7 +29655,7 @@ func (s *ListIAMPolicyAssignmentsInput) SetNextToken(v string) *ListIAMPolicyAss
 type ListIAMPolicyAssignmentsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information describing the IAMpolicy assignments.
+	// Information describing the IAM policy assignments.
 	IAMPolicyAssignments []*IAMPolicyAssignmentSummary `type:"list"`
 
 	// The token for the next set of results, or null if there are no more results.
@@ -31448,7 +31600,7 @@ func (s *MariaDbParameters) SetPort(v int64) *MariaDbParameters {
 	return s
 }
 
-// An object that consists of the member Amazon Resource Name (ARN) and member
+// An object that consists of a member Amazon Resource Name (ARN) and a member
 // ID.
 type MemberIdArnPair struct {
 	_ struct{} `type:"structure"`
@@ -32521,14 +32673,15 @@ type RegisterUserInput struct {
 	//
 	//    * Subscribe to email reports
 	//
-	// To add custom permissions to an existing user, use UpdateUser instead.
+	// To add custom permissions to an existing user, use UpdateUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html)
+	// instead.
 	//
 	// A set of custom permissions includes any combination of these restrictions.
 	// Currently, you need to create the profile names for custom permission sets
 	// by using the Amazon QuickSight console. Then, you use the RegisterUser API
-	// operation to assign the named set of permissions to a Amazon QuickSight user.
+	// operation to assign the named set of permissions to a QuickSight user.
 	//
-	// Amazon QuickSight custom permissions are applied through IAMpolicies. Therefore,
+	// Amazon QuickSight custom permissions are applied through IAM policies. Therefore,
 	// they override the permissions typically granted by assigning Amazon QuickSight
 	// users to one of the default security cohorts in Amazon QuickSight (admin,
 	// author, reader).
@@ -32558,13 +32711,13 @@ type RegisterUserInput struct {
 	// The identity ID for a user in the external login provider.
 	ExternalLoginId *string `type:"string"`
 
-	// The ARN of the IAMuser or role that you are registering with Amazon QuickSight.
+	// The ARN of the IAM user or role that you are registering with Amazon QuickSight.
 	IamArn *string `type:"string"`
 
 	// Amazon QuickSight supports several ways of managing the identity of users.
 	// This parameter accepts two values:
 	//
-	//    * IAM: A user whose identity maps to an existing IAMuser or role.
+	//    * IAM: A user whose identity maps to an existing IAM user or role.
 	//
 	//    * QUICKSIGHT: A user whose identity is owned and managed internally by
 	//    Amazon QuickSight.
@@ -32578,12 +32731,12 @@ type RegisterUserInput struct {
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 
 	// You need to use this parameter only when you register one or more users using
-	// an assumed IAMrole. You don't need to provide the session name for other
-	// scenarios, for example when you are registering an IAMuser or an Amazon QuickSight
-	// user. You can register multiple users using the same IAMrole if each user
-	// has a different session name. For more information on assuming IAMroles,
-	// see assume-role (https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html)
-	// in the AWS CLI Reference.
+	// an assumed IAM role. You don't need to provide the session name for other
+	// scenarios, for example when you are registering an IAM user or an Amazon
+	// QuickSight user. You can register multiple users using the same IAM role
+	// if each user has a different session name. For more information on assuming
+	// IAM roles, see assume-role (https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html)
+	// in the CLI Reference.
 	SessionName *string `min:"2" type:"string"`
 
 	// The Amazon QuickSight user name that you want to create for the user you
@@ -32854,11 +33007,11 @@ func (s *RegisteredUserDashboardEmbeddingConfiguration) SetInitialDashboardId(v 
 }
 
 // The type of experience you want to embed. For registered users, you can embed
-// an Amazon QuickSight dashboard or the Amazon QuickSight console.
+// Amazon QuickSight dashboards or the Amazon QuickSight console.
 //
 // Exactly one of the experience configurations is required. You can choose
 // Dashboard or QuickSightConsole. You cannot choose more than one experience
-// configuraton.
+// configuration.
 type RegisteredUserEmbeddingExperienceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -32871,20 +33024,22 @@ type RegisteredUserEmbeddingExperienceConfiguration struct {
 	// (https://docs.aws.amazon.com/quicksight/latest/user/embedding-overview.html).
 	QSearchBar *RegisteredUserQSearchBarEmbeddingConfiguration `type:"structure"`
 
-	// The configuration details for providing an Amazon QuickSight console embedding
+	// The configuration details for providing each Amazon QuickSight console embedding
 	// experience. This can be used along with custom permissions to restrict access
 	// to certain features. For more information, see Customizing Access to the
 	// Amazon QuickSight Console (https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html)
 	// in the Amazon QuickSight User Guide.
 	//
-	// Use GenerateEmbedUrlForRegisteredUser where you want to provide an authoring
-	// portal that allows users to create data sources, datasets, analyses, and
-	// dashboards. The users who accesses an embedded Amazon QuickSight console
-	// needs to belong to the author or admin security cohort. If you want to restrict
-	// permissions to some of these features, add a custom permissions profile to
-	// the user with the UpdateUser API operation. Use RegisterUser API operation
-	// to add a new user with a custom permission profile attached. For more information,
-	// see the following sections in the Amazon QuickSight User Guide:
+	// Use GenerateEmbedUrlForRegisteredUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GenerateEmbedUrlForRegisteredUser.html)
+	// where you want to provide an authoring portal that allows users to create
+	// data sources, datasets, analyses, and dashboards. The users who accesses
+	// an embedded Amazon QuickSight console needs to belong to the author or admin
+	// security cohort. If you want to restrict permissions to some of these features,
+	// add a custom permissions profile to the user with the UpdateUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_UpdateUser.html)
+	// API operation. Use the RegisterUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_RegisterUser.html)
+	// API operation to add a new user with a custom permission profile attached.
+	// For more information, see the following sections in the Amazon QuickSight
+	// User Guide:
 	//
 	//    * Embedding the Full Functionality of the Amazon QuickSight Console for
 	//    Authenticated Users (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-full-console-for-authenticated-users.html)
@@ -33392,7 +33547,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ResourcePermission struct {
 	_ struct{} `type:"structure"`
 
-	// The IAMaction to grant or revoke permissions on.
+	// The IAM action to grant or revoke permissions on.
 	//
 	// Actions is a required field
 	Actions []*string `min:"1" type:"list" required:"true"`
@@ -33405,9 +33560,9 @@ type ResourcePermission struct {
 	//    * The ARN of an Amazon QuickSight user, group, or namespace associated
 	//    with an analysis, dashboard, template, or theme. (This is common.)
 	//
-	//    * The ARN of an Amazon Web Services account root: This is an IAMARN rather
-	//    than a Amazon QuickSight ARN. Use this option only to share resources
-	//    (templates) across Amazon Web Services accounts. (This is less common.)
+	//    * The ARN of an Amazon Web Services account root: This is an IAM ARN rather
+	//    than a QuickSight ARN. Use this option only to share resources (templates)
+	//    across Amazon Web Services accounts. (This is less common.)
 	//
 	// Principal is a required field
 	Principal *string `min:"1" type:"string" required:"true"`
@@ -34426,7 +34581,7 @@ func (s *SearchDashboardsOutput) SetStatus(v int64) *SearchDashboardsOutput {
 type SearchFoldersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -34513,17 +34668,17 @@ func (s *SearchFoldersInput) SetNextToken(v string) *SearchFoldersInput {
 type SearchFoldersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A structure that contains all of the folders in your AWS account. This structure
-	// provides basic information about the folders.
+	// A structure that contains all of the folders in the Amazon Web Services account.
+	// This structure provides basic information about the folders.
 	FolderSummaryList []*FolderSummary `type:"list"`
 
 	// The token for the next set of results, or null if there are no more results.
 	NextToken *string `type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK.
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -37152,12 +37307,12 @@ func (s *UIColorPalette) SetWarningForeground(v string) *UIColorPalette {
 
 // This error indicates that you are calling an embedding operation in Amazon
 // QuickSight without the required pricing plan on your Amazon Web Services
-// account. Before you can use embedding for anonymous users, a Amazon QuickSight
-// administrator needs to add capacity pricing to Amazon QuickSight. You can
-// do this on the Manage Amazon QuickSight page.
+// account. Before you can use embedding for anonymous users, a QuickSight administrator
+// needs to add capacity pricing to Amazon QuickSight. You can do this on the
+// Manage Amazon QuickSight page.
 //
-// After capacity pricing is added, you can use the GetDashboardEmbedUrl API
-// operation with the --identity-type ANONYMOUS option.
+// After capacity pricing is added, you can use the GetDashboardEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_GetDashboardEmbedUrl.html)
+// API operation with the --identity-type ANONYMOUS option.
 type UnsupportedPricingPlanException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -38155,10 +38310,11 @@ type UpdateDashboardInput struct {
 	// In SourceEntity, you specify the type of object you're using as source. You
 	// can only update a dashboard from a template, so you use a SourceTemplate
 	// entity. If you need to update a dashboard from an analysis, first convert
-	// the analysis to a template by using the CreateTemplate API operation. For
-	// SourceTemplate, specify the Amazon Resource Name (ARN) of the source template.
-	// The SourceTemplate ARN can contain any Amazon Web Services account and any
-	// Amazon QuickSight-supported Amazon Web Services Region.
+	// the analysis to a template by using the CreateTemplate (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_CreateTemplate.html)
+	// API operation. For SourceTemplate, specify the Amazon Resource Name (ARN)
+	// of the source template. The SourceTemplate ARN can contain any Amazon Web
+	// Services account and any Amazon QuickSight-supported Amazon Web Services
+	// Region.
 	//
 	// Use the DataSetReferences entity within SourceTemplate to list the replacement
 	// datasets for the placeholders listed in the original. The schema in each
@@ -38377,8 +38533,14 @@ type UpdateDashboardPermissionsInput struct {
 	// DashboardId is a required field
 	DashboardId *string `location:"uri" locationName:"DashboardId" min:"1" type:"string" required:"true"`
 
+	// Grants link permissions to all users in a defined namespace.
+	GrantLinkPermissions []*ResourcePermission `type:"list"`
+
 	// The permissions that you want to grant on this resource.
 	GrantPermissions []*ResourcePermission `type:"list"`
+
+	// Revokes link permissions from all users in a defined namespace.
+	RevokeLinkPermissions []*ResourcePermission `type:"list"`
 
 	// The permissions that you want to revoke from this resource.
 	RevokePermissions []*ResourcePermission `type:"list"`
@@ -38417,6 +38579,16 @@ func (s *UpdateDashboardPermissionsInput) Validate() error {
 	if s.DashboardId != nil && len(*s.DashboardId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DashboardId", 1))
 	}
+	if s.GrantLinkPermissions != nil {
+		for i, v := range s.GrantLinkPermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GrantLinkPermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.GrantPermissions != nil {
 		for i, v := range s.GrantPermissions {
 			if v == nil {
@@ -38424,6 +38596,16 @@ func (s *UpdateDashboardPermissionsInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GrantPermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RevokeLinkPermissions != nil {
+		for i, v := range s.RevokeLinkPermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RevokeLinkPermissions", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -38456,9 +38638,21 @@ func (s *UpdateDashboardPermissionsInput) SetDashboardId(v string) *UpdateDashbo
 	return s
 }
 
+// SetGrantLinkPermissions sets the GrantLinkPermissions field's value.
+func (s *UpdateDashboardPermissionsInput) SetGrantLinkPermissions(v []*ResourcePermission) *UpdateDashboardPermissionsInput {
+	s.GrantLinkPermissions = v
+	return s
+}
+
 // SetGrantPermissions sets the GrantPermissions field's value.
 func (s *UpdateDashboardPermissionsInput) SetGrantPermissions(v []*ResourcePermission) *UpdateDashboardPermissionsInput {
 	s.GrantPermissions = v
+	return s
+}
+
+// SetRevokeLinkPermissions sets the RevokeLinkPermissions field's value.
+func (s *UpdateDashboardPermissionsInput) SetRevokeLinkPermissions(v []*ResourcePermission) *UpdateDashboardPermissionsInput {
+	s.RevokeLinkPermissions = v
 	return s
 }
 
@@ -38476,6 +38670,9 @@ type UpdateDashboardPermissionsOutput struct {
 
 	// The ID for the dashboard.
 	DashboardId *string `min:"1" type:"string"`
+
+	// Updates the permissions of a shared link to an Amazon QuickSight dashboard.
+	LinkSharingConfiguration *LinkSharingConfiguration `type:"structure"`
 
 	// Information about the permissions on the dashboard.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
@@ -38514,6 +38711,12 @@ func (s *UpdateDashboardPermissionsOutput) SetDashboardArn(v string) *UpdateDash
 // SetDashboardId sets the DashboardId field's value.
 func (s *UpdateDashboardPermissionsOutput) SetDashboardId(v string) *UpdateDashboardPermissionsOutput {
 	s.DashboardId = &v
+	return s
+}
+
+// SetLinkSharingConfiguration sets the LinkSharingConfiguration field's value.
+func (s *UpdateDashboardPermissionsOutput) SetLinkSharingConfiguration(v *LinkSharingConfiguration) *UpdateDashboardPermissionsOutput {
+	s.LinkSharingConfiguration = v
 	return s
 }
 
@@ -38689,7 +38892,7 @@ type UpdateDataSetInput struct {
 	// Currently, only geospatial hierarchy is supported.
 	ColumnGroups []*ColumnGroup `min:"1" type:"list"`
 
-	// A set of one or more definitions of a ColumnLevelPermissionRule .
+	// A set of one or more definitions of a ColumnLevelPermissionRule (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_ColumnLevelPermissionRule.html) .
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
 	// The ID for the dataset that you want to update. This ID is unique per Amazon
@@ -39548,12 +39751,12 @@ func (s *UpdateDataSourcePermissionsOutput) SetStatus(v int64) *UpdateDataSource
 type UpdateFolderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder to update.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -39631,16 +39834,16 @@ func (s *UpdateFolderInput) SetName(v string) *UpdateFolderInput {
 type UpdateFolderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK.
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -39689,12 +39892,12 @@ func (s *UpdateFolderOutput) SetStatus(v int64) *UpdateFolderOutput {
 type UpdateFolderPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID.
+	// The ID for the Amazon Web Services account that contains the folder to update.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The folder ID.
+	// The ID of the folder.
 	//
 	// FolderId is a required field
 	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
@@ -39799,19 +40002,19 @@ func (s *UpdateFolderPermissionsInput) SetRevokePermissions(v []*ResourcePermiss
 type UpdateFolderPermissionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the folder.
 	Arn *string `type:"string"`
 
-	// The folder ID.
+	// The ID of the folder.
 	FolderId *string `min:"1" type:"string"`
 
-	// Information about the permissions on the dashboard.
+	// Information about the permissions for the folder.
 	Permissions []*ResourcePermission `min:"1" type:"list"`
 
-	// The request ID.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status. If succeeded, the status is SC_OK.
+	// The HTTP status of the request.
 	Status *int64 `type:"integer"`
 }
 
@@ -40029,7 +40232,7 @@ type UpdateIAMPolicyAssignmentInput struct {
 	//    the data source.
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 
-	// The ID of the Amazon Web Services account that contains the IAMpolicy assignment.
+	// The ID of the Amazon Web Services account that contains the IAM policy assignment.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -40043,7 +40246,7 @@ type UpdateIAMPolicyAssignmentInput struct {
 	// Namespace is a required field
 	Namespace *string `location:"uri" locationName:"Namespace" type:"string" required:"true"`
 
-	// The ARN for the IAMpolicy to apply to the Amazon QuickSight users and groups
+	// The ARN for the IAM policy to apply to the Amazon QuickSight users and groups
 	// specified in this assignment.
 	PolicyArn *string `type:"string"`
 }
@@ -40150,11 +40353,11 @@ type UpdateIAMPolicyAssignmentOutput struct {
 	//    the data source.
 	AssignmentStatus *string `type:"string" enum:"AssignmentStatus"`
 
-	// The Amazon QuickSight users, groups, or both that the IAMpolicy is assigned
+	// The Amazon QuickSight users, groups, or both that the IAM policy is assigned
 	// to.
 	Identities map[string][]*string `type:"map"`
 
-	// The ARN for the IAMpolicy applied to the Amazon QuickSight users and groups
+	// The ARN for the IAM policy applied to the Amazon QuickSight users and groups
 	// specified in this assignment.
 	PolicyArn *string `type:"string"`
 
@@ -40228,15 +40431,15 @@ func (s *UpdateIAMPolicyAssignmentOutput) SetStatus(v int64) *UpdateIAMPolicyAss
 type UpdateIpRestrictionInput struct {
 	_ struct{} `type:"structure"`
 
-	// Your AWS account ID.
+	// The ID of the Amazon Web Services account that contains the IP rules.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// Whether or not IP rules are enabled.
+	// A value that specifies whether IP rules are turned on.
 	Enabled *bool `type:"boolean"`
 
-	// Describes updated IP rules.
+	// A map that describes the updated IP rules with CIDR ranges and descriptions.
 	IpRestrictionRuleMap map[string]*string `type:"map"`
 }
 
@@ -40295,13 +40498,13 @@ func (s *UpdateIpRestrictionInput) SetIpRestrictionRuleMap(v map[string]*string)
 type UpdateIpRestrictionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Your AWS account ID.
+	// The ID of the Amazon Web Services account that contains the IP rules.
 	AwsAccountId *string `min:"12" type:"string"`
 
-	// The ID of the update request.
+	// The Amazon Web Services request ID for this operation.
 	RequestId *string `type:"string"`
 
-	// The status of the updated IP rules. A successful request returns a 200 code.
+	// The HTTP status of the request.
 	Status *int64 `location:"statusCode" type:"integer"`
 }
 
@@ -41413,9 +41616,9 @@ type UpdateUserInput struct {
 	// A set of custom permissions includes any combination of these restrictions.
 	// Currently, you need to create the profile names for custom permission sets
 	// by using the Amazon QuickSight console. Then, you use the RegisterUser API
-	// operation to assign the named set of permissions to a Amazon QuickSight user.
+	// operation to assign the named set of permissions to a QuickSight user.
 	//
-	// Amazon QuickSight custom permissions are applied through IAMpolicies. Therefore,
+	// Amazon QuickSight custom permissions are applied through IAM policies. Therefore,
 	// they override the permissions typically granted by assigning Amazon QuickSight
 	// users to one of the default security cohorts in Amazon QuickSight (admin,
 	// author, reader).
@@ -41442,7 +41645,8 @@ type UpdateUserInput struct {
 	//    OIDC provider URL.
 	//
 	//    * NONE: This clears all the previously saved external login information
-	//    for a user. Use DescribeUser API to check the external login information.
+	//    for a user. Use the DescribeUser (https://docs.aws.amazon.com/quicksight/latest/APIReference/API_DescribeUser.html)
+	//    API operation to check the external login information.
 	ExternalLoginFederationProviderType *string `type:"string"`
 
 	// The identity ID for a user in the external login provider.
@@ -41749,7 +41953,7 @@ type User struct {
 	Email *string `type:"string"`
 
 	// The type of supported external login provider that provides identity to let
-	// the user federate into Amazon QuickSight with an associated IAMrole. The
+	// the user federate into Amazon QuickSight with an associated IAM role. The
 	// type can be one of the following.
 	//
 	//    * COGNITO: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.
@@ -41785,7 +41989,8 @@ type User struct {
 	//    * RESTRICTED_AUTHOR: This role isn't currently available for use.
 	Role *string `type:"string" enum:"UserRole"`
 
-	// The user's user name.
+	// The user's user name. In the output, the value for UserName is N/A when the
+	// value for IdentityType is IAM and the corresponding IAM user is deleted.
 	UserName *string `min:"1" type:"string"`
 }
 
@@ -42329,6 +42534,9 @@ const (
 
 	// DataSourceTypeAmazonOpensearch is a DataSourceType enum value
 	DataSourceTypeAmazonOpensearch = "AMAZON_OPENSEARCH"
+
+	// DataSourceTypeExasol is a DataSourceType enum value
+	DataSourceTypeExasol = "EXASOL"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -42358,6 +42566,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeTwitter,
 		DataSourceTypeTimestream,
 		DataSourceTypeAmazonOpensearch,
+		DataSourceTypeExasol,
 	}
 }
 

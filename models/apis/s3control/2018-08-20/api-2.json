@@ -982,6 +982,13 @@
         "locationName":"Arn"
       }
     },
+    "CloudWatchMetrics":{
+      "type":"structure",
+      "required":["IsEnabled"],
+      "members":{
+        "IsEnabled":{"shape":"IsEnabled"}
+      }
+    },
     "ConfigId":{
       "type":"string",
       "max":64,
@@ -3734,9 +3741,9 @@
     },
     "StorageLensDataExport":{
       "type":"structure",
-      "required":["S3BucketDestination"],
       "members":{
-        "S3BucketDestination":{"shape":"S3BucketDestination"}
+        "S3BucketDestination":{"shape":"S3BucketDestination"},
+        "CloudWatchMetrics":{"shape":"CloudWatchMetrics"}
       }
     },
     "StorageLensDataExportEncryption":{

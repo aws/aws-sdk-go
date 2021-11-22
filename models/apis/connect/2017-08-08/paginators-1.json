@@ -28,6 +28,12 @@
       "output_token": "NextToken",
       "result_key": "LexBots"
     },
+    "ListContactFlowModules": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ContactFlowModulesSummaryList"
+    },
     "ListContactFlows": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

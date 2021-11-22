@@ -2052,13 +2052,12 @@
     },
     "ImportStacksToStackSetInput":{
       "type":"structure",
-      "required":[
-        "StackSetName",
-        "StackIds"
-      ],
+      "required":["StackSetName"],
       "members":{
         "StackSetName":{"shape":"StackSetNameOrId"},
         "StackIds":{"shape":"StackIdList"},
+        "StackIdsUrl":{"shape":"StackIdsUrl"},
+        "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"},
         "OperationPreferences":{"shape":"StackSetOperationPreferences"},
         "OperationId":{
           "shape":"ClientRequestToken",
@@ -3184,6 +3183,12 @@
     "StackIdList":{
       "type":"list",
       "member":{"shape":"StackId"}
+    },
+    "StackIdsUrl":{
+      "type":"string",
+      "max":5120,
+      "min":1,
+      "pattern":"(s3://|http(s?)://).+"
     },
     "StackInstance":{
       "type":"structure",

@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Braket.
 //    func myFunc(svc braketiface.BraketAPI) bool {
-//        // Make svc.CancelQuantumTask request
+//        // Make svc.CancelJob request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockBraketClient struct {
 //        braketiface.BraketAPI
 //    }
-//    func (m *mockBraketClient) CancelQuantumTask(input *braket.CancelQuantumTaskInput) (*braket.CancelQuantumTaskOutput, error) {
+//    func (m *mockBraketClient) CancelJob(input *braket.CancelJobInput) (*braket.CancelJobOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,9 +60,17 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type BraketAPI interface {
+	CancelJob(*braket.CancelJobInput) (*braket.CancelJobOutput, error)
+	CancelJobWithContext(aws.Context, *braket.CancelJobInput, ...request.Option) (*braket.CancelJobOutput, error)
+	CancelJobRequest(*braket.CancelJobInput) (*request.Request, *braket.CancelJobOutput)
+
 	CancelQuantumTask(*braket.CancelQuantumTaskInput) (*braket.CancelQuantumTaskOutput, error)
 	CancelQuantumTaskWithContext(aws.Context, *braket.CancelQuantumTaskInput, ...request.Option) (*braket.CancelQuantumTaskOutput, error)
 	CancelQuantumTaskRequest(*braket.CancelQuantumTaskInput) (*request.Request, *braket.CancelQuantumTaskOutput)
+
+	CreateJob(*braket.CreateJobInput) (*braket.CreateJobOutput, error)
+	CreateJobWithContext(aws.Context, *braket.CreateJobInput, ...request.Option) (*braket.CreateJobOutput, error)
+	CreateJobRequest(*braket.CreateJobInput) (*request.Request, *braket.CreateJobOutput)
 
 	CreateQuantumTask(*braket.CreateQuantumTaskInput) (*braket.CreateQuantumTaskOutput, error)
 	CreateQuantumTaskWithContext(aws.Context, *braket.CreateQuantumTaskInput, ...request.Option) (*braket.CreateQuantumTaskOutput, error)
@@ -71,6 +79,10 @@ type BraketAPI interface {
 	GetDevice(*braket.GetDeviceInput) (*braket.GetDeviceOutput, error)
 	GetDeviceWithContext(aws.Context, *braket.GetDeviceInput, ...request.Option) (*braket.GetDeviceOutput, error)
 	GetDeviceRequest(*braket.GetDeviceInput) (*request.Request, *braket.GetDeviceOutput)
+
+	GetJob(*braket.GetJobInput) (*braket.GetJobOutput, error)
+	GetJobWithContext(aws.Context, *braket.GetJobInput, ...request.Option) (*braket.GetJobOutput, error)
+	GetJobRequest(*braket.GetJobInput) (*request.Request, *braket.GetJobOutput)
 
 	GetQuantumTask(*braket.GetQuantumTaskInput) (*braket.GetQuantumTaskOutput, error)
 	GetQuantumTaskWithContext(aws.Context, *braket.GetQuantumTaskInput, ...request.Option) (*braket.GetQuantumTaskOutput, error)
@@ -86,6 +98,13 @@ type BraketAPI interface {
 
 	SearchDevicesPages(*braket.SearchDevicesInput, func(*braket.SearchDevicesOutput, bool) bool) error
 	SearchDevicesPagesWithContext(aws.Context, *braket.SearchDevicesInput, func(*braket.SearchDevicesOutput, bool) bool, ...request.Option) error
+
+	SearchJobs(*braket.SearchJobsInput) (*braket.SearchJobsOutput, error)
+	SearchJobsWithContext(aws.Context, *braket.SearchJobsInput, ...request.Option) (*braket.SearchJobsOutput, error)
+	SearchJobsRequest(*braket.SearchJobsInput) (*request.Request, *braket.SearchJobsOutput)
+
+	SearchJobsPages(*braket.SearchJobsInput, func(*braket.SearchJobsOutput, bool) bool) error
+	SearchJobsPagesWithContext(aws.Context, *braket.SearchJobsInput, func(*braket.SearchJobsOutput, bool) bool, ...request.Option) error
 
 	SearchQuantumTasks(*braket.SearchQuantumTasksInput) (*braket.SearchQuantumTasksOutput, error)
 	SearchQuantumTasksWithContext(aws.Context, *braket.SearchQuantumTasksInput, ...request.Option) (*braket.SearchQuantumTasksOutput, error)

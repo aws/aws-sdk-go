@@ -5620,6 +5620,20 @@ func (c *DatabaseMigrationService) StartReplicationTaskAssessmentRequest(input *
 // Starts the replication task assessment for unsupported data types in the
 // source database.
 //
+// You can only use this operation for a task if the following conditions are
+// true:
+//
+//    * The task must be in the stopped state.
+//
+//    * The task must have successful connections to the source and target.
+//
+// If either of these conditions are not met, an InvalidResourceStateFault error
+// will result.
+//
+// For information about DMS task assessments, see Creating a task assessment
+// report (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.AssessmentReport.html)
+// in the Database Migration Service User Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -19624,6 +19638,17 @@ type S3Settings struct {
 	// is set to true.
 	DatePartitionSequence *string `type:"string" enum:"DatePartitionSequenceValue"`
 
+	// When creating an S3 target endpoint, set DatePartitionTimezone to convert
+	// the current UTC time into a specified time zone. The conversion occurs when
+	// a date partition folder is created and a CDC filename is generated. The time
+	// zone format is Area/Location. Use this parameter when DatePartitionedEnabled
+	// is set to true, as shown in the following example.
+	//
+	// s3-settings='{"DatePartitionEnabled": true, "DatePartitionSequence": "YYYYMMDDHH",
+	// "DatePartitionDelimiter": "SLASH", "DatePartitionTimezone":"Asia/Seoul",
+	// "BucketName": "dms-nattarat-test"}'
+	DatePartitionTimezone *string `type:"string"`
+
 	// The maximum size of an encoded dictionary page of a column. If the dictionary
 	// page exceeds this, this column is stored using an encoding type of PLAIN.
 	// This parameter defaults to 1024 * 1024 bytes (1 MiB), the maximum size of
@@ -19964,6 +19989,12 @@ func (s *S3Settings) SetDatePartitionEnabled(v bool) *S3Settings {
 // SetDatePartitionSequence sets the DatePartitionSequence field's value.
 func (s *S3Settings) SetDatePartitionSequence(v string) *S3Settings {
 	s.DatePartitionSequence = &v
+	return s
+}
+
+// SetDatePartitionTimezone sets the DatePartitionTimezone field's value.
+func (s *S3Settings) SetDatePartitionTimezone(v string) *S3Settings {
+	s.DatePartitionTimezone = &v
 	return s
 }
 

@@ -17,7 +17,7 @@
       "name":"CreateChangeset",
       "http":{
         "method":"POST",
-        "requestUri":"/datasets/{datasetId}/changesets"
+        "requestUri":"/datasets/{datasetId}/changesetsv2"
       },
       "input":{"shape":"CreateChangesetRequest"},
       "output":{"shape":"CreateChangesetResponse"},
@@ -26,7 +26,112 @@
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "CreateDataView":{
+      "name":"CreateDataView",
+      "http":{
+        "method":"POST",
+        "requestUri":"/datasets/{datasetId}/dataviewsv2"
+      },
+      "input":{"shape":"CreateDataViewRequest"},
+      "output":{"shape":"CreateDataViewResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "CreateDataset":{
+      "name":"CreateDataset",
+      "http":{
+        "method":"POST",
+        "requestUri":"/datasetsv2"
+      },
+      "input":{"shape":"CreateDatasetRequest"},
+      "output":{"shape":"CreateDatasetResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DeleteDataset":{
+      "name":"DeleteDataset",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/datasetsv2/{datasetId}"
+      },
+      "input":{"shape":"DeleteDatasetRequest"},
+      "output":{"shape":"DeleteDatasetResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "GetChangeset":{
+      "name":"GetChangeset",
+      "http":{
+        "method":"GET",
+        "requestUri":"/datasets/{datasetId}/changesetsv2/{changesetId}"
+      },
+      "input":{"shape":"GetChangesetRequest"},
+      "output":{"shape":"GetChangesetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "GetDataView":{
+      "name":"GetDataView",
+      "http":{
+        "method":"GET",
+        "requestUri":"/datasets/{datasetId}/dataviewsv2/{dataviewId}"
+      },
+      "input":{"shape":"GetDataViewRequest"},
+      "output":{"shape":"GetDataViewResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "GetDataset":{
+      "name":"GetDataset",
+      "http":{
+        "method":"GET",
+        "requestUri":"/datasetsv2/{datasetId}"
+      },
+      "input":{"shape":"GetDatasetRequest"},
+      "output":{"shape":"GetDatasetResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"}
       ]
     },
     "GetProgrammaticAccessCredentials":{
@@ -39,6 +144,7 @@
       "output":{"shape":"GetProgrammaticAccessCredentialsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
       ]
@@ -57,6 +163,89 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ]
+    },
+    "ListChangesets":{
+      "name":"ListChangesets",
+      "http":{
+        "method":"GET",
+        "requestUri":"/datasets/{datasetId}/changesetsv2"
+      },
+      "input":{"shape":"ListChangesetsRequest"},
+      "output":{"shape":"ListChangesetsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "ListDataViews":{
+      "name":"ListDataViews",
+      "http":{
+        "method":"GET",
+        "requestUri":"/datasets/{datasetId}/dataviewsv2"
+      },
+      "input":{"shape":"ListDataViewsRequest"},
+      "output":{"shape":"ListDataViewsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "ListDatasets":{
+      "name":"ListDatasets",
+      "http":{
+        "method":"GET",
+        "requestUri":"/datasetsv2"
+      },
+      "input":{"shape":"ListDatasetsRequest"},
+      "output":{"shape":"ListDatasetsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UpdateChangeset":{
+      "name":"UpdateChangeset",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/datasets/{datasetId}/changesetsv2/{changesetId}"
+      },
+      "input":{"shape":"UpdateChangesetRequest"},
+      "output":{"shape":"UpdateChangesetResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "UpdateDataset":{
+      "name":"UpdateDataset",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/datasetsv2/{datasetId}"
+      },
+      "input":{"shape":"UpdateDatasetRequest"},
+      "output":{"shape":"UpdateDatasetResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
     }
   },
   "shapes":{
@@ -68,6 +257,13 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
+    "AliasString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^alias\\/\\S+"
+    },
+    "Boolean":{"type":"boolean"},
     "ChangeType":{
       "type":"string",
       "enum":[
@@ -76,61 +272,190 @@
         "MODIFY"
       ]
     },
-    "ChangesetInfo":{
+    "ChangesetArn":{"type":"string"},
+    "ChangesetErrorInfo":{
       "type":"structure",
       "members":{
-        "id":{"shape":"IdType"},
-        "changesetArn":{"shape":"arn"},
-        "datasetId":{"shape":"IdType"},
-        "changeType":{"shape":"ChangeType"},
-        "sourceType":{"shape":"SourceType"},
-        "sourceParams":{"shape":"stringMap"},
-        "formatType":{"shape":"FormatType"},
-        "formatParams":{"shape":"stringMap"},
-        "createTimestamp":{"shape":"Timestamp"},
-        "status":{"shape":"ChangesetStatus"},
-        "errorInfo":{"shape":"ErrorInfo"},
-        "changesetLabels":{"shape":"stringMap"},
-        "updatesChangesetId":{"shape":"stringValue"},
-        "updatedByChangesetId":{"shape":"stringValue"}
+        "errorMessage":{"shape":"ErrorMessage"},
+        "errorCategory":{"shape":"ErrorCategory"}
       }
     },
-    "ChangesetStatus":{
+    "ChangesetId":{
+      "type":"string",
+      "max":26,
+      "min":1
+    },
+    "ChangesetList":{
+      "type":"list",
+      "member":{"shape":"ChangesetSummary"}
+    },
+    "ChangesetSummary":{
+      "type":"structure",
+      "members":{
+        "changesetId":{"shape":"ChangesetId"},
+        "changesetArn":{"shape":"ChangesetArn"},
+        "datasetId":{"shape":"DatasetId"},
+        "changeType":{"shape":"ChangeType"},
+        "sourceParams":{"shape":"SourceParams"},
+        "formatParams":{"shape":"FormatParams"},
+        "createTime":{"shape":"TimestampEpoch"},
+        "status":{"shape":"IngestionStatus"},
+        "errorInfo":{"shape":"ChangesetErrorInfo"},
+        "activeUntilTimestamp":{
+          "shape":"TimestampEpoch",
+          "box":true
+        },
+        "updatesChangesetId":{"shape":"ChangesetId"},
+        "updatedByChangesetId":{"shape":"ChangesetId"}
+      }
+    },
+    "ClientToken":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "ColumnDataType":{
       "type":"string",
       "enum":[
-        "PENDING",
-        "FAILED",
-        "SUCCESS",
-        "RUNNING",
-        "STOP_REQUESTED"
+        "STRING",
+        "CHAR",
+        "INTEGER",
+        "TINYINT",
+        "SMALLINT",
+        "BIGINT",
+        "FLOAT",
+        "DOUBLE",
+        "DATE",
+        "DATETIME",
+        "BOOLEAN",
+        "BINARY"
       ]
+    },
+    "ColumnDefinition":{
+      "type":"structure",
+      "members":{
+        "dataType":{"shape":"ColumnDataType"},
+        "columnName":{"shape":"ColumnName"},
+        "columnDescription":{"shape":"ColumnDescription"}
+      }
+    },
+    "ColumnDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
+    },
+    "ColumnList":{
+      "type":"list",
+      "member":{"shape":"ColumnDefinition"}
+    },
+    "ColumnName":{
+      "type":"string",
+      "max":126,
+      "pattern":".*\\S.*"
+    },
+    "ColumnNameList":{
+      "type":"list",
+      "member":{"shape":"ColumnName"}
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "CreateChangesetRequest":{
       "type":"structure",
       "required":[
         "datasetId",
         "changeType",
-        "sourceType",
-        "sourceParams"
+        "sourceParams",
+        "formatParams"
       ],
       "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
         "datasetId":{
-          "shape":"IdType",
+          "shape":"DatasetId",
           "location":"uri",
           "locationName":"datasetId"
         },
         "changeType":{"shape":"ChangeType"},
-        "sourceType":{"shape":"SourceType"},
-        "sourceParams":{"shape":"stringMap"},
-        "formatType":{"shape":"FormatType"},
-        "formatParams":{"shape":"stringMap"},
-        "tags":{"shape":"stringMap"}
+        "sourceParams":{"shape":"SourceParams"},
+        "formatParams":{"shape":"FormatParams"}
       }
     },
     "CreateChangesetResponse":{
       "type":"structure",
       "members":{
-        "changeset":{"shape":"ChangesetInfo"}
+        "datasetId":{"shape":"DatasetId"},
+        "changesetId":{"shape":"ChangesetId"}
+      }
+    },
+    "CreateDataViewRequest":{
+      "type":"structure",
+      "required":[
+        "datasetId",
+        "destinationTypeParams"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "datasetId":{
+          "shape":"DatasetId",
+          "location":"uri",
+          "locationName":"datasetId"
+        },
+        "autoUpdate":{"shape":"Boolean"},
+        "sortColumns":{"shape":"SortColumnList"},
+        "partitionColumns":{"shape":"PartitionColumnList"},
+        "asOfTimestamp":{
+          "shape":"TimestampEpoch",
+          "box":true
+        },
+        "destinationTypeParams":{"shape":"DataViewDestinationTypeParams"}
+      }
+    },
+    "CreateDataViewResponse":{
+      "type":"structure",
+      "members":{
+        "datasetId":{"shape":"DatasetId"},
+        "dataViewId":{"shape":"DataViewId"}
+      }
+    },
+    "CreateDatasetRequest":{
+      "type":"structure",
+      "required":[
+        "datasetTitle",
+        "kind",
+        "datasetDescription",
+        "permissionGroupParams",
+        "alias"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "datasetTitle":{"shape":"DatasetTitle"},
+        "kind":{"shape":"DatasetKind"},
+        "datasetDescription":{"shape":"DatasetDescription"},
+        "ownerInfo":{"shape":"DatasetOwnerInfo"},
+        "permissionGroupParams":{"shape":"PermissionGroupParams"},
+        "alias":{"shape":"AliasString"},
+        "schemaDefinition":{"shape":"SchemaUnion"}
+      }
+    },
+    "CreateDatasetResponse":{
+      "type":"structure",
+      "members":{
+        "datasetId":{"shape":"DatasetId"}
       }
     },
     "Credentials":{
@@ -141,34 +466,279 @@
         "sessionToken":{"shape":"stringValueMaxLength1000"}
       }
     },
-    "ErrorCategory":{
-      "type":"string",
-      "enum":[
-        "The_inputs_to_this_request_are_invalid",
-        "Service_limits_have_been_exceeded",
-        "Missing_required_permission_to_perform_this_request",
-        "One_or_more_inputs_to_this_request_were_not_found",
-        "The_system_temporarily_lacks_sufficient_resources_to_process_the_request",
-        "An_internal_error_has_occurred",
-        "Cancelled",
-        "A_user_recoverable_error_has_occurred"
-      ]
+    "DataViewArn":{"type":"string"},
+    "DataViewDestinationType":{"type":"string"},
+    "DataViewDestinationTypeParams":{
+      "type":"structure",
+      "required":["destinationType"],
+      "members":{
+        "destinationType":{"shape":"DataViewDestinationType"}
+      }
     },
-    "ErrorInfo":{
+    "DataViewErrorInfo":{
       "type":"structure",
       "members":{
-        "errorMessage":{"shape":"stringValueMaxLength1000"},
+        "errorMessage":{"shape":"ErrorMessage"},
         "errorCategory":{"shape":"ErrorCategory"}
       }
     },
-    "FormatType":{
+    "DataViewId":{
+      "type":"string",
+      "max":26,
+      "min":1
+    },
+    "DataViewList":{
+      "type":"list",
+      "member":{"shape":"DataViewSummary"}
+    },
+    "DataViewStatus":{
       "type":"string",
       "enum":[
-        "CSV",
-        "JSON",
-        "PARQUET",
-        "XML"
+        "RUNNING",
+        "STARTING",
+        "FAILED",
+        "CANCELLED",
+        "TIMEOUT",
+        "SUCCESS",
+        "PENDING",
+        "FAILED_CLEANUP_FAILED"
       ]
+    },
+    "DataViewSummary":{
+      "type":"structure",
+      "members":{
+        "dataViewId":{"shape":"DataViewId"},
+        "dataViewArn":{"shape":"DataViewArn"},
+        "datasetId":{"shape":"DatasetId"},
+        "asOfTimestamp":{
+          "shape":"TimestampEpoch",
+          "box":true
+        },
+        "partitionColumns":{"shape":"PartitionColumnList"},
+        "sortColumns":{"shape":"SortColumnList"},
+        "status":{"shape":"DataViewStatus"},
+        "errorInfo":{"shape":"DataViewErrorInfo"},
+        "destinationTypeProperties":{"shape":"DataViewDestinationTypeParams"},
+        "autoUpdate":{"shape":"Boolean"},
+        "createTime":{"shape":"TimestampEpoch"},
+        "lastModifiedTime":{"shape":"TimestampEpoch"}
+      }
+    },
+    "Dataset":{
+      "type":"structure",
+      "members":{
+        "datasetId":{"shape":"DatasetId"},
+        "datasetArn":{"shape":"DatasetArn"},
+        "datasetTitle":{"shape":"DatasetTitle"},
+        "kind":{"shape":"DatasetKind"},
+        "datasetDescription":{"shape":"DatasetDescription"},
+        "ownerInfo":{"shape":"DatasetOwnerInfo"},
+        "createTime":{"shape":"TimestampEpoch"},
+        "lastModifiedTime":{"shape":"TimestampEpoch"},
+        "schemaDefinition":{"shape":"SchemaUnion"},
+        "alias":{"shape":"AliasString"}
+      }
+    },
+    "DatasetArn":{"type":"string"},
+    "DatasetDescription":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
+    },
+    "DatasetId":{
+      "type":"string",
+      "max":26,
+      "min":1
+    },
+    "DatasetKind":{
+      "type":"string",
+      "enum":[
+        "TABULAR",
+        "NON_TABULAR"
+      ]
+    },
+    "DatasetList":{
+      "type":"list",
+      "member":{"shape":"Dataset"}
+    },
+    "DatasetOwnerInfo":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"OwnerName"},
+        "phoneNumber":{"shape":"PhoneNumber"},
+        "email":{"shape":"Email"}
+      }
+    },
+    "DatasetStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "FAILED",
+        "SUCCESS",
+        "RUNNING"
+      ]
+    },
+    "DatasetTitle":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "DeleteDatasetRequest":{
+      "type":"structure",
+      "required":["datasetId"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        },
+        "datasetId":{
+          "shape":"DatasetId",
+          "location":"uri",
+          "locationName":"datasetId"
+        }
+      }
+    },
+    "DeleteDatasetResponse":{
+      "type":"structure",
+      "members":{
+        "datasetId":{"shape":"DatasetId"}
+      }
+    },
+    "Email":{
+      "type":"string",
+      "max":320,
+      "min":4,
+      "pattern":"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+    },
+    "ErrorCategory":{
+      "type":"string",
+      "enum":[
+        "VALIDATION",
+        "SERVICE_QUOTA_EXCEEDED",
+        "ACCESS_DENIED",
+        "RESOURCE_NOT_FOUND",
+        "THROTTLING",
+        "INTERNAL_SERVICE_EXCEPTION",
+        "CANCELLED",
+        "USER_RECOVERABLE"
+      ]
+    },
+    "ErrorMessage":{
+      "type":"string",
+      "max":1000
+    },
+    "FormatParams":{
+      "type":"map",
+      "key":{"shape":"StringMapKey"},
+      "value":{"shape":"StringMapValue"}
+    },
+    "GetChangesetRequest":{
+      "type":"structure",
+      "required":[
+        "datasetId",
+        "changesetId"
+      ],
+      "members":{
+        "datasetId":{
+          "shape":"DatasetId",
+          "location":"uri",
+          "locationName":"datasetId"
+        },
+        "changesetId":{
+          "shape":"ChangesetId",
+          "location":"uri",
+          "locationName":"changesetId"
+        }
+      }
+    },
+    "GetChangesetResponse":{
+      "type":"structure",
+      "members":{
+        "changesetId":{"shape":"ChangesetId"},
+        "changesetArn":{"shape":"ChangesetArn"},
+        "datasetId":{"shape":"DatasetId"},
+        "changeType":{"shape":"ChangeType"},
+        "sourceParams":{"shape":"SourceParams"},
+        "formatParams":{"shape":"FormatParams"},
+        "createTime":{"shape":"TimestampEpoch"},
+        "status":{"shape":"IngestionStatus"},
+        "errorInfo":{"shape":"ChangesetErrorInfo"},
+        "activeUntilTimestamp":{
+          "shape":"TimestampEpoch",
+          "box":true
+        },
+        "updatesChangesetId":{"shape":"ChangesetId"},
+        "updatedByChangesetId":{"shape":"ChangesetId"}
+      }
+    },
+    "GetDataViewRequest":{
+      "type":"structure",
+      "required":[
+        "dataViewId",
+        "datasetId"
+      ],
+      "members":{
+        "dataViewId":{
+          "shape":"DataViewId",
+          "location":"uri",
+          "locationName":"dataviewId"
+        },
+        "datasetId":{
+          "shape":"DatasetId",
+          "location":"uri",
+          "locationName":"datasetId"
+        }
+      }
+    },
+    "GetDataViewResponse":{
+      "type":"structure",
+      "members":{
+        "autoUpdate":{"shape":"Boolean"},
+        "partitionColumns":{"shape":"PartitionColumnList"},
+        "datasetId":{"shape":"DatasetId"},
+        "asOfTimestamp":{
+          "shape":"TimestampEpoch",
+          "box":true
+        },
+        "errorInfo":{"shape":"DataViewErrorInfo"},
+        "lastModifiedTime":{"shape":"TimestampEpoch"},
+        "createTime":{"shape":"TimestampEpoch"},
+        "sortColumns":{"shape":"SortColumnList"},
+        "dataViewId":{"shape":"DataViewId"},
+        "dataViewArn":{"shape":"DataViewArn"},
+        "destinationTypeParams":{"shape":"DataViewDestinationTypeParams"},
+        "status":{"shape":"DataViewStatus"}
+      }
+    },
+    "GetDatasetRequest":{
+      "type":"structure",
+      "required":["datasetId"],
+      "members":{
+        "datasetId":{
+          "shape":"StringValueLength1to255",
+          "location":"uri",
+          "locationName":"datasetId"
+        }
+      }
+    },
+    "GetDatasetResponse":{
+      "type":"structure",
+      "members":{
+        "datasetId":{"shape":"DatasetId"},
+        "datasetArn":{"shape":"DatasetArn"},
+        "datasetTitle":{"shape":"DatasetTitle"},
+        "kind":{"shape":"DatasetKind"},
+        "datasetDescription":{"shape":"DatasetDescription"},
+        "createTime":{"shape":"TimestampEpoch"},
+        "lastModifiedTime":{"shape":"TimestampEpoch"},
+        "schemaDefinition":{"shape":"SchemaUnion"},
+        "alias":{"shape":"AliasString"},
+        "status":{"shape":"DatasetStatus"}
+      }
     },
     "GetProgrammaticAccessCredentialsRequest":{
       "type":"structure",
@@ -212,6 +782,16 @@
       "max":26,
       "min":1
     },
+    "IngestionStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "FAILED",
+        "SUCCESS",
+        "RUNNING",
+        "STOP_REQUESTED"
+      ]
+    },
     "InternalServerException":{
       "type":"structure",
       "members":{
@@ -219,6 +799,124 @@
       },
       "error":{"httpStatusCode":500},
       "exception":true
+    },
+    "LimitExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "ListChangesetsRequest":{
+      "type":"structure",
+      "required":["datasetId"],
+      "members":{
+        "datasetId":{
+          "shape":"DatasetId",
+          "location":"uri",
+          "locationName":"datasetId"
+        },
+        "maxResults":{
+          "shape":"ResultLimit",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListChangesetsResponse":{
+      "type":"structure",
+      "members":{
+        "changesets":{"shape":"ChangesetList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListDataViewsRequest":{
+      "type":"structure",
+      "required":["datasetId"],
+      "members":{
+        "datasetId":{
+          "shape":"DatasetId",
+          "location":"uri",
+          "locationName":"datasetId"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ResultLimit",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListDataViewsResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "dataViews":{"shape":"DataViewList"}
+      }
+    },
+    "ListDatasetsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ResultLimit",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListDatasetsResponse":{
+      "type":"structure",
+      "members":{
+        "datasets":{"shape":"DatasetList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "OwnerName":{
+      "type":"string",
+      "max":250,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "PaginationToken":{"type":"string"},
+    "PartitionColumnList":{
+      "type":"list",
+      "member":{"shape":"StringValueLength1to255"}
+    },
+    "PermissionGroupId":{
+      "type":"string",
+      "max":26,
+      "min":1
+    },
+    "PermissionGroupParams":{
+      "type":"structure",
+      "members":{
+        "permissionGroupId":{"shape":"PermissionGroupId"},
+        "datasetPermissions":{"shape":"ResourcePermissionsList"}
+      }
+    },
+    "PhoneNumber":{
+      "type":"string",
+      "max":20,
+      "min":10,
+      "pattern":"^[\\+0-9\\#\\,\\(][\\+0-9\\-\\.\\/\\(\\)\\,\\#\\s]+$"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -228,14 +926,69 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "ResourcePermission":{
+      "type":"structure",
+      "members":{
+        "permission":{"shape":"StringValueLength1to250"}
+      }
+    },
+    "ResourcePermissionsList":{
+      "type":"list",
+      "member":{"shape":"ResourcePermission"}
+    },
+    "ResultLimit":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "SchemaDefinition":{
+      "type":"structure",
+      "members":{
+        "columns":{"shape":"ColumnList"},
+        "primaryKeyColumns":{"shape":"ColumnNameList"}
+      }
+    },
+    "SchemaUnion":{
+      "type":"structure",
+      "members":{
+        "tabularSchemaConfig":{"shape":"SchemaDefinition"}
+      }
+    },
     "SessionDuration":{
       "type":"long",
       "max":720,
       "min":60
     },
-    "SourceType":{
+    "SortColumnList":{
+      "type":"list",
+      "member":{"shape":"StringValueLength1to255"}
+    },
+    "SourceParams":{
+      "type":"map",
+      "key":{"shape":"StringMapKey"},
+      "value":{"shape":"StringMapValue"}
+    },
+    "StringMapKey":{
       "type":"string",
-      "enum":["S3"]
+      "max":128,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
+    },
+    "StringMapValue":{
+      "type":"string",
+      "max":1000,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
+    },
+    "StringValueLength1to250":{
+      "type":"string",
+      "max":250,
+      "min":1,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
+    },
+    "StringValueLength1to255":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\s\\S]*\\S[\\s\\S]*"
     },
     "ThrottlingException":{
       "type":"structure",
@@ -244,7 +997,72 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
-    "Timestamp":{"type":"timestamp"},
+    "TimestampEpoch":{"type":"long"},
+    "UpdateChangesetRequest":{
+      "type":"structure",
+      "required":[
+        "datasetId",
+        "changesetId",
+        "sourceParams",
+        "formatParams"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "datasetId":{
+          "shape":"DatasetId",
+          "location":"uri",
+          "locationName":"datasetId"
+        },
+        "changesetId":{
+          "shape":"ChangesetId",
+          "location":"uri",
+          "locationName":"changesetId"
+        },
+        "sourceParams":{"shape":"SourceParams"},
+        "formatParams":{"shape":"FormatParams"}
+      }
+    },
+    "UpdateChangesetResponse":{
+      "type":"structure",
+      "members":{
+        "changesetId":{"shape":"ChangesetId"},
+        "datasetId":{"shape":"DatasetId"}
+      }
+    },
+    "UpdateDatasetRequest":{
+      "type":"structure",
+      "required":[
+        "datasetId",
+        "datasetTitle",
+        "kind",
+        "alias"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "datasetId":{
+          "shape":"DatasetId",
+          "location":"uri",
+          "locationName":"datasetId"
+        },
+        "datasetTitle":{"shape":"DatasetTitle"},
+        "kind":{"shape":"DatasetKind"},
+        "datasetDescription":{"shape":"DatasetDescription"},
+        "alias":{"shape":"AliasString"},
+        "schemaDefinition":{"shape":"SchemaUnion"}
+      }
+    },
+    "UpdateDatasetResponse":{
+      "type":"structure",
+      "members":{
+        "datasetId":{"shape":"DatasetId"}
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "members":{
@@ -252,11 +1070,6 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
-    },
-    "arn":{
-      "type":"string",
-      "max":2048,
-      "min":20
     },
     "errorMessage":{"type":"string"},
     "locationType":{
@@ -266,14 +1079,6 @@
         "SAGEMAKER"
       ]
     },
-    "stringMap":{
-      "type":"map",
-      "key":{"shape":"stringMapKey"},
-      "value":{"shape":"stringMapValue"}
-    },
-    "stringMapKey":{"type":"string"},
-    "stringMapValue":{"type":"string"},
-    "stringValue":{"type":"string"},
     "stringValueLength1to1024":{
       "type":"string",
       "max":1024,

@@ -8429,6 +8429,52 @@ func (s *DomainPackageDetails) SetReferencePath(v string) *DomainPackageDetails 
 	return s
 }
 
+type DryRunResults struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the deployment mechanism through which the update shall be applied
+	// on the domain. Possible responses are Blue/Green (The update will require
+	// a blue/green deployment.) DynamicUpdate (The update can be applied in-place
+	// without a Blue/Green deployment required.) Undetermined (The domain is undergoing
+	// an update which needs to complete before the deployment type can be predicted.)
+	// None (The configuration change matches the current configuration and will
+	// not result in any update.)
+	DeploymentType *string `min:"2" type:"string"`
+
+	// Contains an optional message associated with the DryRunResults.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DryRunResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DryRunResults) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *DryRunResults) SetDeploymentType(v string) *DryRunResults {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DryRunResults) SetMessage(v string) *DryRunResults {
+	s.Message = &v
+	return s
+}
+
 // Specifies maintenance schedule duration: duration value and duration unit.
 // See the Developer Guide (https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/auto-tune.html)
 // for more information.
@@ -13112,6 +13158,13 @@ type UpdateElasticsearchDomainConfigInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
+	// This flag, when set to True, specifies whether the UpdateElasticsearchDomain
+	// request should return the results of validation checks without actually applying
+	// the change. This flag, when set to True, specifies the deployment mechanism
+	// through which the update shall be applied on the domain. This will not actually
+	// perform the Update.
+	DryRun *bool `type:"boolean"`
+
 	// Specify the type and size of the EBS volume that you want to use.
 	EBSOptions *EBSOptions `type:"structure"`
 
@@ -13244,6 +13297,12 @@ func (s *UpdateElasticsearchDomainConfigInput) SetDomainName(v string) *UpdateEl
 	return s
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *UpdateElasticsearchDomainConfigInput) SetDryRun(v bool) *UpdateElasticsearchDomainConfigInput {
+	s.DryRun = &v
+	return s
+}
+
 // SetEBSOptions sets the EBSOptions field's value.
 func (s *UpdateElasticsearchDomainConfigInput) SetEBSOptions(v *EBSOptions) *UpdateElasticsearchDomainConfigInput {
 	s.EBSOptions = v
@@ -13295,6 +13354,9 @@ type UpdateElasticsearchDomainConfigOutput struct {
 	//
 	// DomainConfig is a required field
 	DomainConfig *ElasticsearchDomainConfig `type:"structure" required:"true"`
+
+	// Contains result of DryRun.
+	DryRunResults *DryRunResults `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13318,6 +13380,12 @@ func (s UpdateElasticsearchDomainConfigOutput) GoString() string {
 // SetDomainConfig sets the DomainConfig field's value.
 func (s *UpdateElasticsearchDomainConfigOutput) SetDomainConfig(v *ElasticsearchDomainConfig) *UpdateElasticsearchDomainConfigOutput {
 	s.DomainConfig = v
+	return s
+}
+
+// SetDryRunResults sets the DryRunResults field's value.
+func (s *UpdateElasticsearchDomainConfigOutput) SetDryRunResults(v *DryRunResults) *UpdateElasticsearchDomainConfigOutput {
+	s.DryRunResults = v
 	return s
 }
 

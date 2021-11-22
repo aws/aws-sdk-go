@@ -447,6 +447,12 @@
         "ServiceSoftwareOptions$UpdateStatus": "<p>The status of your service software update. This field can take the following values: <code>ELIGIBLE</code>, <code>PENDING_UPDATE</code>, <code>IN_PROGRESS</code>, <code>COMPLETED</code>, and <code>NOT_ELIGIBLE</code>.</p>"
       }
     },
+    "DeploymentType": {
+      "base": null,
+      "refs": {
+        "DryRunResults$DeploymentType": "<p> Specifies the deployment mechanism through which the update shall be applied on the domain. Possible responses are <code>Blue/Green</code> (The update will require a blue/green deployment.) <code>DynamicUpdate</code> (The update can be applied in-place without a Blue/Green deployment required.) <code>Undetermined</code> (The domain is undergoing an update which needs to complete before the deployment type can be predicted.) <code>None</code> (The configuration change matches the current configuration and will not result in any update.) </p>"
+      }
+    },
     "DescribeDomainAutoTunesRequest": {
       "base": "<p>Container for the parameters to the <code>DescribeDomainAutoTunes</code> operation.</p>",
       "refs": {
@@ -708,6 +714,18 @@
         "ReservedElasticsearchInstanceOffering$FixedPrice": "<p>The upfront fixed charge you will pay to purchase the specific reserved Elasticsearch instance offering. </p>",
         "ReservedElasticsearchInstanceOffering$UsagePrice": "<p>The rate you are charged for each hour the domain that is using the offering is running.</p>",
         "UpgradeStepItem$ProgressPercent": "<p>The Floating point value representing progress percentage of a particular step.</p>"
+      }
+    },
+    "DryRun": {
+      "base": null,
+      "refs": {
+        "UpdateElasticsearchDomainConfigRequest$DryRun": "<p> This flag, when set to True, specifies whether the <code>UpdateElasticsearchDomain</code> request should return the results of validation checks without actually applying the change. This flag, when set to True, specifies the deployment mechanism through which the update shall be applied on the domain. This will not actually perform the Update. </p>"
+      }
+    },
+    "DryRunResults": {
+      "base": null,
+      "refs": {
+        "UpdateElasticsearchDomainConfigResponse$DryRunResults": "<p>Contains result of DryRun. </p>"
       }
     },
     "Duration": {
@@ -1206,6 +1224,12 @@
       "base": "<p> Maximum number of Instances that can be instantiated for given InstanceType. </p>",
       "refs": {
         "InstanceCountLimits$MaximumInstanceCount": null
+      }
+    },
+    "Message": {
+      "base": null,
+      "refs": {
+        "DryRunResults$Message": "<p>Contains an optional message associated with the DryRunResults.</p>"
       }
     },
     "MinimumInstanceCount": {

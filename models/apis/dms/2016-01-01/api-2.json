@@ -2764,7 +2764,8 @@
         "CsvNullValue":{"shape":"String"},
         "IgnoreHeaderRows":{"shape":"IntegerOptional"},
         "MaxFileSize":{"shape":"IntegerOptional"},
-        "Rfc4180":{"shape":"BooleanOptional"}
+        "Rfc4180":{"shape":"BooleanOptional"},
+        "DatePartitionTimezone":{"shape":"String"}
       }
     },
     "SNSInvalidTopicFault":{

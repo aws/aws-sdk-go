@@ -4,7 +4,6 @@ package finspacedata
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -42,7 +41,7 @@ func (c *FinSpaceData) CreateChangesetRequest(input *CreateChangesetInput) (req 
 	op := &request.Operation{
 		Name:       opCreateChangeset,
 		HTTPMethod: "POST",
-		HTTPPath:   "/datasets/{datasetId}/changesets",
+		HTTPPath:   "/datasets/{datasetId}/changesetsv2",
 	}
 
 	if input == nil {
@@ -56,7 +55,7 @@ func (c *FinSpaceData) CreateChangesetRequest(input *CreateChangesetInput) (req 
 
 // CreateChangeset API operation for FinSpace Public API.
 //
-// Creates a new changeset in a FinSpace dataset.
+// Creates a new Changeset in a FinSpace Dataset.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -82,6 +81,12 @@ func (c *FinSpaceData) CreateChangesetRequest(input *CreateChangesetInput) (req 
 //   * AccessDeniedException
 //   You do not have sufficient access to perform this action.
 //
+//   * LimitExceededException
+//   A limit has exceeded.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateChangeset
 func (c *FinSpaceData) CreateChangeset(input *CreateChangesetInput) (*CreateChangesetOutput, error) {
 	req, out := c.CreateChangesetRequest(input)
@@ -99,6 +104,579 @@ func (c *FinSpaceData) CreateChangeset(input *CreateChangesetInput) (*CreateChan
 // for more information on using Contexts.
 func (c *FinSpaceData) CreateChangesetWithContext(ctx aws.Context, input *CreateChangesetInput, opts ...request.Option) (*CreateChangesetOutput, error) {
 	req, out := c.CreateChangesetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateDataView = "CreateDataView"
+
+// CreateDataViewRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataView operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataView for more information on using the CreateDataView
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDataViewRequest method.
+//    req, resp := client.CreateDataViewRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataView
+func (c *FinSpaceData) CreateDataViewRequest(input *CreateDataViewInput) (req *request.Request, output *CreateDataViewOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataView,
+		HTTPMethod: "POST",
+		HTTPPath:   "/datasets/{datasetId}/dataviewsv2",
+	}
+
+	if input == nil {
+		input = &CreateDataViewInput{}
+	}
+
+	output = &CreateDataViewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDataView API operation for FinSpace Public API.
+//
+// Creates a Dataview for a Dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation CreateDataView for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * LimitExceededException
+//   A limit has exceeded.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataView
+func (c *FinSpaceData) CreateDataView(input *CreateDataViewInput) (*CreateDataViewOutput, error) {
+	req, out := c.CreateDataViewRequest(input)
+	return out, req.Send()
+}
+
+// CreateDataViewWithContext is the same as CreateDataView with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataView for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) CreateDataViewWithContext(ctx aws.Context, input *CreateDataViewInput, opts ...request.Option) (*CreateDataViewOutput, error) {
+	req, out := c.CreateDataViewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateDataset = "CreateDataset"
+
+// CreateDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataset for more information on using the CreateDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDatasetRequest method.
+//    req, resp := client.CreateDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataset
+func (c *FinSpaceData) CreateDatasetRequest(input *CreateDatasetInput) (req *request.Request, output *CreateDatasetOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/datasetsv2",
+	}
+
+	if input == nil {
+		input = &CreateDatasetInput{}
+	}
+
+	output = &CreateDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDataset API operation for FinSpace Public API.
+//
+// Creates a new FinSpace Dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation CreateDataset for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * LimitExceededException
+//   A limit has exceeded.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/CreateDataset
+func (c *FinSpaceData) CreateDataset(input *CreateDatasetInput) (*CreateDatasetOutput, error) {
+	req, out := c.CreateDatasetRequest(input)
+	return out, req.Send()
+}
+
+// CreateDatasetWithContext is the same as CreateDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) CreateDatasetWithContext(ctx aws.Context, input *CreateDatasetInput, opts ...request.Option) (*CreateDatasetOutput, error) {
+	req, out := c.CreateDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDataset = "DeleteDataset"
+
+// DeleteDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataset for more information on using the DeleteDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDatasetRequest method.
+//    req, resp := client.DeleteDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeleteDataset
+func (c *FinSpaceData) DeleteDatasetRequest(input *DeleteDatasetInput) (req *request.Request, output *DeleteDatasetOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataset,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/datasetsv2/{datasetId}",
+	}
+
+	if input == nil {
+		input = &DeleteDatasetInput{}
+	}
+
+	output = &DeleteDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteDataset API operation for FinSpace Public API.
+//
+// Deletes a FinSpace Dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation DeleteDataset for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * LimitExceededException
+//   A limit has exceeded.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/DeleteDataset
+func (c *FinSpaceData) DeleteDataset(input *DeleteDatasetInput) (*DeleteDatasetOutput, error) {
+	req, out := c.DeleteDatasetRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDatasetWithContext is the same as DeleteDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) DeleteDatasetWithContext(ctx aws.Context, input *DeleteDatasetInput, opts ...request.Option) (*DeleteDatasetOutput, error) {
+	req, out := c.DeleteDatasetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetChangeset = "GetChangeset"
+
+// GetChangesetRequest generates a "aws/request.Request" representing the
+// client's request for the GetChangeset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetChangeset for more information on using the GetChangeset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetChangesetRequest method.
+//    req, resp := client.GetChangesetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetChangeset
+func (c *FinSpaceData) GetChangesetRequest(input *GetChangesetInput) (req *request.Request, output *GetChangesetOutput) {
+	op := &request.Operation{
+		Name:       opGetChangeset,
+		HTTPMethod: "GET",
+		HTTPPath:   "/datasets/{datasetId}/changesetsv2/{changesetId}",
+	}
+
+	if input == nil {
+		input = &GetChangesetInput{}
+	}
+
+	output = &GetChangesetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetChangeset API operation for FinSpace Public API.
+//
+// Get information about a Changeset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation GetChangeset for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetChangeset
+func (c *FinSpaceData) GetChangeset(input *GetChangesetInput) (*GetChangesetOutput, error) {
+	req, out := c.GetChangesetRequest(input)
+	return out, req.Send()
+}
+
+// GetChangesetWithContext is the same as GetChangeset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetChangeset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) GetChangesetWithContext(ctx aws.Context, input *GetChangesetInput, opts ...request.Option) (*GetChangesetOutput, error) {
+	req, out := c.GetChangesetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDataView = "GetDataView"
+
+// GetDataViewRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataView operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataView for more information on using the GetDataView
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDataViewRequest method.
+//    req, resp := client.GetDataViewRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataView
+func (c *FinSpaceData) GetDataViewRequest(input *GetDataViewInput) (req *request.Request, output *GetDataViewOutput) {
+	op := &request.Operation{
+		Name:       opGetDataView,
+		HTTPMethod: "GET",
+		HTTPPath:   "/datasets/{datasetId}/dataviewsv2/{dataviewId}",
+	}
+
+	if input == nil {
+		input = &GetDataViewInput{}
+	}
+
+	output = &GetDataViewOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataView API operation for FinSpace Public API.
+//
+// Gets information about a Dataview.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation GetDataView for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataView
+func (c *FinSpaceData) GetDataView(input *GetDataViewInput) (*GetDataViewOutput, error) {
+	req, out := c.GetDataViewRequest(input)
+	return out, req.Send()
+}
+
+// GetDataViewWithContext is the same as GetDataView with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataView for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) GetDataViewWithContext(ctx aws.Context, input *GetDataViewInput, opts ...request.Option) (*GetDataViewOutput, error) {
+	req, out := c.GetDataViewRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetDataset = "GetDataset"
+
+// GetDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataset for more information on using the GetDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDatasetRequest method.
+//    req, resp := client.GetDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataset
+func (c *FinSpaceData) GetDatasetRequest(input *GetDatasetInput) (req *request.Request, output *GetDatasetOutput) {
+	op := &request.Operation{
+		Name:       opGetDataset,
+		HTTPMethod: "GET",
+		HTTPPath:   "/datasetsv2/{datasetId}",
+	}
+
+	if input == nil {
+		input = &GetDatasetInput{}
+	}
+
+	output = &GetDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataset API operation for FinSpace Public API.
+//
+// Returns information about a Dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation GetDataset for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/GetDataset
+func (c *FinSpaceData) GetDataset(input *GetDatasetInput) (*GetDatasetOutput, error) {
+	req, out := c.GetDatasetRequest(input)
+	return out, req.Send()
+}
+
+// GetDatasetWithContext is the same as GetDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) GetDatasetWithContext(ctx aws.Context, input *GetDatasetInput, opts ...request.Option) (*GetDatasetOutput, error) {
+	req, out := c.GetDatasetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -148,7 +726,7 @@ func (c *FinSpaceData) GetProgrammaticAccessCredentialsRequest(input *GetProgram
 
 // GetProgrammaticAccessCredentials API operation for FinSpace Public API.
 //
-// Request programmatic credentials to use with Habanero SDK.
+// Request programmatic credentials to use with FinSpace SDK.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -161,6 +739,9 @@ func (c *FinSpaceData) GetProgrammaticAccessCredentialsRequest(input *GetProgram
 //   * InternalServerException
 //   The request processing has failed because of an unknown error, exception
 //   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -234,8 +815,8 @@ func (c *FinSpaceData) GetWorkingLocationRequest(input *GetWorkingLocationInput)
 
 // GetWorkingLocation API operation for FinSpace Public API.
 //
-// A temporary Amazon S3 location to copy your files from a source location
-// to stage or use as a scratch space in Habanero notebook.
+// A temporary Amazon S3 location, where you can copy your files from a source
+// location to stage or use as a scratch space in FinSpace notebook.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -275,6 +856,649 @@ func (c *FinSpaceData) GetWorkingLocation(input *GetWorkingLocationInput) (*GetW
 // for more information on using Contexts.
 func (c *FinSpaceData) GetWorkingLocationWithContext(ctx aws.Context, input *GetWorkingLocationInput, opts ...request.Option) (*GetWorkingLocationOutput, error) {
 	req, out := c.GetWorkingLocationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListChangesets = "ListChangesets"
+
+// ListChangesetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListChangesets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListChangesets for more information on using the ListChangesets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListChangesetsRequest method.
+//    req, resp := client.ListChangesetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListChangesets
+func (c *FinSpaceData) ListChangesetsRequest(input *ListChangesetsInput) (req *request.Request, output *ListChangesetsOutput) {
+	op := &request.Operation{
+		Name:       opListChangesets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/datasets/{datasetId}/changesetsv2",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListChangesetsInput{}
+	}
+
+	output = &ListChangesetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListChangesets API operation for FinSpace Public API.
+//
+// Lists the FinSpace Changesets for a Dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation ListChangesets for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListChangesets
+func (c *FinSpaceData) ListChangesets(input *ListChangesetsInput) (*ListChangesetsOutput, error) {
+	req, out := c.ListChangesetsRequest(input)
+	return out, req.Send()
+}
+
+// ListChangesetsWithContext is the same as ListChangesets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListChangesets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListChangesetsWithContext(ctx aws.Context, input *ListChangesetsInput, opts ...request.Option) (*ListChangesetsOutput, error) {
+	req, out := c.ListChangesetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListChangesetsPages iterates over the pages of a ListChangesets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListChangesets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListChangesets operation.
+//    pageNum := 0
+//    err := client.ListChangesetsPages(params,
+//        func(page *finspacedata.ListChangesetsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FinSpaceData) ListChangesetsPages(input *ListChangesetsInput, fn func(*ListChangesetsOutput, bool) bool) error {
+	return c.ListChangesetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListChangesetsPagesWithContext same as ListChangesetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListChangesetsPagesWithContext(ctx aws.Context, input *ListChangesetsInput, fn func(*ListChangesetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListChangesetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListChangesetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListChangesetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDataViews = "ListDataViews"
+
+// ListDataViewsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataViews operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataViews for more information on using the ListDataViews
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDataViewsRequest method.
+//    req, resp := client.ListDataViewsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDataViews
+func (c *FinSpaceData) ListDataViewsRequest(input *ListDataViewsInput) (req *request.Request, output *ListDataViewsOutput) {
+	op := &request.Operation{
+		Name:       opListDataViews,
+		HTTPMethod: "GET",
+		HTTPPath:   "/datasets/{datasetId}/dataviewsv2",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDataViewsInput{}
+	}
+
+	output = &ListDataViewsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataViews API operation for FinSpace Public API.
+//
+// Lists all available Dataviews for a Dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation ListDataViews for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDataViews
+func (c *FinSpaceData) ListDataViews(input *ListDataViewsInput) (*ListDataViewsOutput, error) {
+	req, out := c.ListDataViewsRequest(input)
+	return out, req.Send()
+}
+
+// ListDataViewsWithContext is the same as ListDataViews with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataViews for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListDataViewsWithContext(ctx aws.Context, input *ListDataViewsInput, opts ...request.Option) (*ListDataViewsOutput, error) {
+	req, out := c.ListDataViewsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDataViewsPages iterates over the pages of a ListDataViews operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDataViews method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDataViews operation.
+//    pageNum := 0
+//    err := client.ListDataViewsPages(params,
+//        func(page *finspacedata.ListDataViewsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FinSpaceData) ListDataViewsPages(input *ListDataViewsInput, fn func(*ListDataViewsOutput, bool) bool) error {
+	return c.ListDataViewsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDataViewsPagesWithContext same as ListDataViewsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListDataViewsPagesWithContext(ctx aws.Context, input *ListDataViewsInput, fn func(*ListDataViewsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDataViewsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDataViewsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDataViewsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListDatasets = "ListDatasets"
+
+// ListDatasetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDatasets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDatasets for more information on using the ListDatasets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDatasetsRequest method.
+//    req, resp := client.ListDatasetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDatasets
+func (c *FinSpaceData) ListDatasetsRequest(input *ListDatasetsInput) (req *request.Request, output *ListDatasetsOutput) {
+	op := &request.Operation{
+		Name:       opListDatasets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/datasetsv2",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDatasetsInput{}
+	}
+
+	output = &ListDatasetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDatasets API operation for FinSpace Public API.
+//
+// Lists all of the active Datasets that a user has access to.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation ListDatasets for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/ListDatasets
+func (c *FinSpaceData) ListDatasets(input *ListDatasetsInput) (*ListDatasetsOutput, error) {
+	req, out := c.ListDatasetsRequest(input)
+	return out, req.Send()
+}
+
+// ListDatasetsWithContext is the same as ListDatasets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDatasets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListDatasetsWithContext(ctx aws.Context, input *ListDatasetsInput, opts ...request.Option) (*ListDatasetsOutput, error) {
+	req, out := c.ListDatasetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDatasetsPages iterates over the pages of a ListDatasets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDatasets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDatasets operation.
+//    pageNum := 0
+//    err := client.ListDatasetsPages(params,
+//        func(page *finspacedata.ListDatasetsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FinSpaceData) ListDatasetsPages(input *ListDatasetsInput, fn func(*ListDatasetsOutput, bool) bool) error {
+	return c.ListDatasetsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDatasetsPagesWithContext same as ListDatasetsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) ListDatasetsPagesWithContext(ctx aws.Context, input *ListDatasetsInput, fn func(*ListDatasetsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDatasetsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDatasetsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDatasetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opUpdateChangeset = "UpdateChangeset"
+
+// UpdateChangesetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateChangeset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateChangeset for more information on using the UpdateChangeset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateChangesetRequest method.
+//    req, resp := client.UpdateChangesetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateChangeset
+func (c *FinSpaceData) UpdateChangesetRequest(input *UpdateChangesetInput) (req *request.Request, output *UpdateChangesetOutput) {
+	op := &request.Operation{
+		Name:       opUpdateChangeset,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/datasets/{datasetId}/changesetsv2/{changesetId}",
+	}
+
+	if input == nil {
+		input = &UpdateChangesetInput{}
+	}
+
+	output = &UpdateChangesetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateChangeset API operation for FinSpace Public API.
+//
+// Updates a FinSpace Changeset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation UpdateChangeset for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateChangeset
+func (c *FinSpaceData) UpdateChangeset(input *UpdateChangesetInput) (*UpdateChangesetOutput, error) {
+	req, out := c.UpdateChangesetRequest(input)
+	return out, req.Send()
+}
+
+// UpdateChangesetWithContext is the same as UpdateChangeset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateChangeset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) UpdateChangesetWithContext(ctx aws.Context, input *UpdateChangesetInput, opts ...request.Option) (*UpdateChangesetOutput, error) {
+	req, out := c.UpdateChangesetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateDataset = "UpdateDataset"
+
+// UpdateDatasetRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDataset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDataset for more information on using the UpdateDataset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateDatasetRequest method.
+//    req, resp := client.UpdateDatasetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateDataset
+func (c *FinSpaceData) UpdateDatasetRequest(input *UpdateDatasetInput) (req *request.Request, output *UpdateDatasetOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDataset,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/datasetsv2/{datasetId}",
+	}
+
+	if input == nil {
+		input = &UpdateDatasetInput{}
+	}
+
+	output = &UpdateDatasetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateDataset API operation for FinSpace Public API.
+//
+// Updates a FinSpace Dataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for FinSpace Public API's
+// API operation UpdateDataset for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request processing has failed because of an unknown error, exception
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ConflictException
+//   The request conflicts with an existing resource.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13/UpdateDataset
+func (c *FinSpaceData) UpdateDataset(input *UpdateDatasetInput) (*UpdateDatasetOutput, error) {
+	req, out := c.UpdateDatasetRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDatasetWithContext is the same as UpdateDataset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDataset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FinSpaceData) UpdateDatasetWithContext(ctx aws.Context, input *UpdateDatasetInput, opts ...request.Option) (*UpdateDatasetOutput, error) {
+	req, out := c.UpdateDatasetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -344,64 +1568,33 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A changeset is unit of data in a dataset.
-type ChangesetInfo struct {
+// The structure with error messages.
+type ChangesetErrorInfo struct {
 	_ struct{} `type:"structure"`
 
-	// Change type indicates how a changeset is applied to a dataset.
+	// The category of the error.
 	//
-	//    * REPLACE - Changeset is considered as a replacement to all prior loaded
-	//    changesets.
+	//    * VALIDATION -The inputs to this request are invalid.
 	//
-	//    * APPEND - Changeset is considered as an addition to the end of all prior
-	//    loaded changesets.
+	//    * SERVICE_QUOTA_EXCEEDED - Service quotas have been exceeded. Please contact
+	//    AWS support to increase quotas.
 	//
-	//    * MODIFY - Changeset is considered as a replacement to a specific prior
-	//    ingested changeset.
-	ChangeType *string `locationName:"changeType" type:"string" enum:"ChangeType"`
-
-	// The ARN identifier of the changeset.
-	ChangesetArn *string `locationName:"changesetArn" min:"20" type:"string"`
-
-	// Tags associated with the changeset.
-	ChangesetLabels map[string]*string `locationName:"changesetLabels" type:"map"`
-
-	// The timestamp at which the changeset was created in FinSpace.
-	CreateTimestamp *time.Time `locationName:"createTimestamp" type:"timestamp"`
-
-	// The unique identifier for the FinSpace dataset in which the changeset is
-	// created.
-	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
-
-	// The structure with error messages.
-	ErrorInfo *ErrorInfo `locationName:"errorInfo" type:"structure"`
-
-	// Structure of the source file(s).
-	FormatParams map[string]*string `locationName:"formatParams" type:"map"`
-
-	// Format type of the input files loaded into the changeset.
-	FormatType *string `locationName:"formatType" type:"string" enum:"FormatType"`
-
-	// Unique identifier for a changeset.
-	Id *string `locationName:"id" min:"1" type:"string"`
-
-	// Source path from which the files to create the changeset are sourced.
-	SourceParams map[string]*string `locationName:"sourceParams" type:"map"`
-
-	// Type of the data source from which the files to create the changeset are
-	// sourced.
+	//    * ACCESS_DENIED - Missing required permission to perform this request.
 	//
-	//    * S3 - Amazon S3.
-	SourceType *string `locationName:"sourceType" type:"string" enum:"SourceType"`
+	//    * RESOURCE_NOT_FOUND - One or more inputs to this request were not found.
+	//
+	//    * THROTTLING - The system temporarily lacks sufficient resources to process
+	//    the request.
+	//
+	//    * INTERNAL_SERVICE_EXCEPTION - An internal service error has occurred.
+	//
+	//    * CANCELLED - Cancelled.
+	//
+	//    * USER_RECOVERABLE - A user recoverable error has occurred.
+	ErrorCategory *string `locationName:"errorCategory" type:"string" enum:"ErrorCategory"`
 
-	// The status of changeset creation operation.
-	Status *string `locationName:"status" type:"string" enum:"ChangesetStatus"`
-
-	// Unique identifier of the changeset that is updated a changeset.
-	UpdatedByChangesetId *string `locationName:"updatedByChangesetId" type:"string"`
-
-	// Unique identifier of the changeset that is updated.
-	UpdatesChangesetId *string `locationName:"updatesChangesetId" type:"string"`
+	// The text of the error message.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 }
 
 // String returns the string representation.
@@ -409,7 +1602,7 @@ type ChangesetInfo struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ChangesetInfo) String() string {
+func (s ChangesetErrorInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -418,135 +1611,347 @@ func (s ChangesetInfo) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ChangesetInfo) GoString() string {
+func (s ChangesetErrorInfo) GoString() string {
 	return s.String()
 }
 
+// SetErrorCategory sets the ErrorCategory field's value.
+func (s *ChangesetErrorInfo) SetErrorCategory(v string) *ChangesetErrorInfo {
+	s.ErrorCategory = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ChangesetErrorInfo) SetErrorMessage(v string) *ChangesetErrorInfo {
+	s.ErrorMessage = &v
+	return s
+}
+
+// A Changeset is unit of data in a Dataset.
+type ChangesetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Time until which the Changeset is active. The value is determined as Epoch
+	// time in milliseconds. For example, the value for Monday, November 1, 2021
+	// 12:00:00 PM UTC is specified as 1635768000000.
+	ActiveUntilTimestamp *int64 `locationName:"activeUntilTimestamp" type:"long"`
+
+	// Type that indicates how a Changeset is applied to a Dataset.
+	//
+	//    * REPLACE - Changeset is considered as a replacement to all prior loaded
+	//    Changesets.
+	//
+	//    * APPEND - Changeset is considered as an addition to the end of all prior
+	//    loaded Changesets.
+	//
+	//    * MODIFY - Changeset is considered as a replacement to a specific prior
+	//    ingested Changeset.
+	ChangeType *string `locationName:"changeType" type:"string" enum:"ChangeType"`
+
+	// The ARN identifier of the Changeset.
+	ChangesetArn *string `locationName:"changesetArn" type:"string"`
+
+	// The unique identifier for a Changeset.
+	ChangesetId *string `locationName:"changesetId" min:"1" type:"string"`
+
+	// The timestamp at which the Changeset was created in FinSpace. The value is
+	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
+	CreateTime *int64 `locationName:"createTime" type:"long"`
+
+	// The unique identifier for the FinSpace Dataset in which the Changeset is
+	// created.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+
+	// The structure with error messages.
+	ErrorInfo *ChangesetErrorInfo `locationName:"errorInfo" type:"structure"`
+
+	// Options that define the structure of the source file(s).
+	FormatParams map[string]*string `locationName:"formatParams" type:"map"`
+
+	// Options that define the location of the data being ingested.
+	SourceParams map[string]*string `locationName:"sourceParams" type:"map"`
+
+	// Status of the Changeset ingestion.
+	//
+	//    * PENDING - Changeset is pending creation.
+	//
+	//    * FAILED - Changeset creation has failed.
+	//
+	//    * SUCCESS - Changeset creation has succeeded.
+	//
+	//    * RUNNING - Changeset creation is running.
+	//
+	//    * STOP_REQUESTED - User requested Changeset creation to stop.
+	Status *string `locationName:"status" type:"string" enum:"IngestionStatus"`
+
+	// The unique identifier of the updated Changeset.
+	UpdatedByChangesetId *string `locationName:"updatedByChangesetId" min:"1" type:"string"`
+
+	// The unique identifier of the Changeset that is updated.
+	UpdatesChangesetId *string `locationName:"updatesChangesetId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangesetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChangesetSummary) GoString() string {
+	return s.String()
+}
+
+// SetActiveUntilTimestamp sets the ActiveUntilTimestamp field's value.
+func (s *ChangesetSummary) SetActiveUntilTimestamp(v int64) *ChangesetSummary {
+	s.ActiveUntilTimestamp = &v
+	return s
+}
+
 // SetChangeType sets the ChangeType field's value.
-func (s *ChangesetInfo) SetChangeType(v string) *ChangesetInfo {
+func (s *ChangesetSummary) SetChangeType(v string) *ChangesetSummary {
 	s.ChangeType = &v
 	return s
 }
 
 // SetChangesetArn sets the ChangesetArn field's value.
-func (s *ChangesetInfo) SetChangesetArn(v string) *ChangesetInfo {
+func (s *ChangesetSummary) SetChangesetArn(v string) *ChangesetSummary {
 	s.ChangesetArn = &v
 	return s
 }
 
-// SetChangesetLabels sets the ChangesetLabels field's value.
-func (s *ChangesetInfo) SetChangesetLabels(v map[string]*string) *ChangesetInfo {
-	s.ChangesetLabels = v
+// SetChangesetId sets the ChangesetId field's value.
+func (s *ChangesetSummary) SetChangesetId(v string) *ChangesetSummary {
+	s.ChangesetId = &v
 	return s
 }
 
-// SetCreateTimestamp sets the CreateTimestamp field's value.
-func (s *ChangesetInfo) SetCreateTimestamp(v time.Time) *ChangesetInfo {
-	s.CreateTimestamp = &v
+// SetCreateTime sets the CreateTime field's value.
+func (s *ChangesetSummary) SetCreateTime(v int64) *ChangesetSummary {
+	s.CreateTime = &v
 	return s
 }
 
 // SetDatasetId sets the DatasetId field's value.
-func (s *ChangesetInfo) SetDatasetId(v string) *ChangesetInfo {
+func (s *ChangesetSummary) SetDatasetId(v string) *ChangesetSummary {
 	s.DatasetId = &v
 	return s
 }
 
 // SetErrorInfo sets the ErrorInfo field's value.
-func (s *ChangesetInfo) SetErrorInfo(v *ErrorInfo) *ChangesetInfo {
+func (s *ChangesetSummary) SetErrorInfo(v *ChangesetErrorInfo) *ChangesetSummary {
 	s.ErrorInfo = v
 	return s
 }
 
 // SetFormatParams sets the FormatParams field's value.
-func (s *ChangesetInfo) SetFormatParams(v map[string]*string) *ChangesetInfo {
+func (s *ChangesetSummary) SetFormatParams(v map[string]*string) *ChangesetSummary {
 	s.FormatParams = v
 	return s
 }
 
-// SetFormatType sets the FormatType field's value.
-func (s *ChangesetInfo) SetFormatType(v string) *ChangesetInfo {
-	s.FormatType = &v
-	return s
-}
-
-// SetId sets the Id field's value.
-func (s *ChangesetInfo) SetId(v string) *ChangesetInfo {
-	s.Id = &v
-	return s
-}
-
 // SetSourceParams sets the SourceParams field's value.
-func (s *ChangesetInfo) SetSourceParams(v map[string]*string) *ChangesetInfo {
+func (s *ChangesetSummary) SetSourceParams(v map[string]*string) *ChangesetSummary {
 	s.SourceParams = v
 	return s
 }
 
-// SetSourceType sets the SourceType field's value.
-func (s *ChangesetInfo) SetSourceType(v string) *ChangesetInfo {
-	s.SourceType = &v
-	return s
-}
-
 // SetStatus sets the Status field's value.
-func (s *ChangesetInfo) SetStatus(v string) *ChangesetInfo {
+func (s *ChangesetSummary) SetStatus(v string) *ChangesetSummary {
 	s.Status = &v
 	return s
 }
 
 // SetUpdatedByChangesetId sets the UpdatedByChangesetId field's value.
-func (s *ChangesetInfo) SetUpdatedByChangesetId(v string) *ChangesetInfo {
+func (s *ChangesetSummary) SetUpdatedByChangesetId(v string) *ChangesetSummary {
 	s.UpdatedByChangesetId = &v
 	return s
 }
 
 // SetUpdatesChangesetId sets the UpdatesChangesetId field's value.
-func (s *ChangesetInfo) SetUpdatesChangesetId(v string) *ChangesetInfo {
+func (s *ChangesetSummary) SetUpdatesChangesetId(v string) *ChangesetSummary {
 	s.UpdatesChangesetId = &v
 	return s
 }
 
+// The definition of a column in a tabular Dataset.
+type ColumnDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// Description for a column.
+	ColumnDescription *string `locationName:"columnDescription" type:"string"`
+
+	// Name for a column.
+	ColumnName *string `locationName:"columnName" type:"string"`
+
+	// Data type of a column.
+	//
+	//    * STRING - A String data type. CHAR - A char data type. INTEGER - An integer
+	//    data type. TINYINT - A tinyint data type. SMALLINT - A smallint data type.
+	//    BIGINT - A bigint data type. FLOAT - A float data type. DOUBLE - A double
+	//    data type. DATE - A date data type. DATETIME - A datetime data type. BOOLEAN
+	//    - A boolean data type. BINARY - A binary data type.
+	DataType *string `locationName:"dataType" type:"string" enum:"ColumnDataType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ColumnDefinition) GoString() string {
+	return s.String()
+}
+
+// SetColumnDescription sets the ColumnDescription field's value.
+func (s *ColumnDefinition) SetColumnDescription(v string) *ColumnDefinition {
+	s.ColumnDescription = &v
+	return s
+}
+
+// SetColumnName sets the ColumnName field's value.
+func (s *ColumnDefinition) SetColumnName(v string) *ColumnDefinition {
+	s.ColumnName = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *ColumnDefinition) SetDataType(v string) *ColumnDefinition {
+	s.DataType = &v
+	return s
+}
+
+// The request conflicts with an existing resource.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The request for a CreateChangeset operation.
 type CreateChangesetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Option to indicate how a changeset will be applied to a dataset.
+	// Option to indicate how a Changeset will be applied to a Dataset.
 	//
 	//    * REPLACE - Changeset will be considered as a replacement to all prior
-	//    loaded changesets.
+	//    loaded Changesets.
 	//
 	//    * APPEND - Changeset will be considered as an addition to the end of all
-	//    prior loaded changesets.
+	//    prior loaded Changesets.
+	//
+	//    * MODIFY - Changeset is considered as a replacement to a specific prior
+	//    ingested Changeset.
 	//
 	// ChangeType is a required field
 	ChangeType *string `locationName:"changeType" type:"string" required:"true" enum:"ChangeType"`
 
-	// The unique identifier for the FinSpace dataset in which the changeset will
-	// be created.
+	// A token used to ensure idempotency.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier for the FinSpace Dataset where the Changeset will be
+	// created.
 	//
 	// DatasetId is a required field
 	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
 
-	// Options that define the structure of the source file(s).
-	FormatParams map[string]*string `locationName:"formatParams" type:"map"`
+	// Options that define the structure of the source file(s) including the format
+	// type (formatType), header row (withHeader), data separation character (separator)
+	// and the type of compression (compression).
+	//
+	// formatType is a required attribute and can have the following values:
+	//
+	//    * PARQUET - Parquet source file format.
+	//
+	//    * CSV - CSV source file format.
+	//
+	//    * JSON - JSON source file format.
+	//
+	//    * XML - XML source file format.
+	//
+	// For example, you could specify the following for formatParams:
+	//
+	// FormatParams is a required field
+	FormatParams map[string]*string `locationName:"formatParams" type:"map" required:"true"`
 
-	// Format type of the input files being loaded into the changeset.
-	FormatType *string `locationName:"formatType" type:"string" enum:"FormatType"`
-
-	// Source path from which the files to create the changeset will be sourced.
+	// Options that define the location of the data being ingested.
 	//
 	// SourceParams is a required field
 	SourceParams map[string]*string `locationName:"sourceParams" type:"map" required:"true"`
-
-	// Type of the data source from which the files to create the changeset will
-	// be sourced.
-	//
-	//    * S3 - Amazon S3.
-	//
-	// SourceType is a required field
-	SourceType *string `locationName:"sourceType" type:"string" required:"true" enum:"SourceType"`
-
-	// Metadata tags to apply to this changeset.
-	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation.
@@ -573,17 +1978,20 @@ func (s *CreateChangesetInput) Validate() error {
 	if s.ChangeType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ChangeType"))
 	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.DatasetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
 	}
 	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
 	}
+	if s.FormatParams == nil {
+		invalidParams.Add(request.NewErrParamRequired("FormatParams"))
+	}
 	if s.SourceParams == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceParams"))
-	}
-	if s.SourceType == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceType"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -595,6 +2003,12 @@ func (s *CreateChangesetInput) Validate() error {
 // SetChangeType sets the ChangeType field's value.
 func (s *CreateChangesetInput) SetChangeType(v string) *CreateChangesetInput {
 	s.ChangeType = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateChangesetInput) SetClientToken(v string) *CreateChangesetInput {
+	s.ClientToken = &v
 	return s
 }
 
@@ -610,35 +2024,21 @@ func (s *CreateChangesetInput) SetFormatParams(v map[string]*string) *CreateChan
 	return s
 }
 
-// SetFormatType sets the FormatType field's value.
-func (s *CreateChangesetInput) SetFormatType(v string) *CreateChangesetInput {
-	s.FormatType = &v
-	return s
-}
-
 // SetSourceParams sets the SourceParams field's value.
 func (s *CreateChangesetInput) SetSourceParams(v map[string]*string) *CreateChangesetInput {
 	s.SourceParams = v
 	return s
 }
 
-// SetSourceType sets the SourceType field's value.
-func (s *CreateChangesetInput) SetSourceType(v string) *CreateChangesetInput {
-	s.SourceType = &v
-	return s
-}
-
-// SetTags sets the Tags field's value.
-func (s *CreateChangesetInput) SetTags(v map[string]*string) *CreateChangesetInput {
-	s.Tags = v
-	return s
-}
-
+// The response from a CreateChangeset operation.
 type CreateChangesetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the changeset details.
-	Changeset *ChangesetInfo `locationName:"changeset" type:"structure"`
+	// The unique identifier of the Changeset that is created.
+	ChangesetId *string `locationName:"changesetId" min:"1" type:"string"`
+
+	// The unique identifier for the FinSpace Dataset where the Changeset is created.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -659,13 +2059,367 @@ func (s CreateChangesetOutput) GoString() string {
 	return s.String()
 }
 
-// SetChangeset sets the Changeset field's value.
-func (s *CreateChangesetOutput) SetChangeset(v *ChangesetInfo) *CreateChangesetOutput {
-	s.Changeset = v
+// SetChangesetId sets the ChangesetId field's value.
+func (s *CreateChangesetOutput) SetChangesetId(v string) *CreateChangesetOutput {
+	s.ChangesetId = &v
 	return s
 }
 
-// Set short term API credentials.
+// SetDatasetId sets the DatasetId field's value.
+func (s *CreateChangesetOutput) SetDatasetId(v string) *CreateChangesetOutput {
+	s.DatasetId = &v
+	return s
+}
+
+// Request for creating a data view.
+type CreateDataViewInput struct {
+	_ struct{} `type:"structure"`
+
+	// Beginning time to use for the Dataview. The value is determined as Epoch
+	// time in milliseconds. For example, the value for Monday, November 1, 2021
+	// 12:00:00 PM UTC is specified as 1635768000000.
+	AsOfTimestamp *int64 `locationName:"asOfTimestamp" type:"long"`
+
+	// Flag to indicate Dataview should be updated automatically.
+	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
+
+	// A token used to ensure idempotency.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique Dataset identifier that is used to create a Dataview.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+
+	// Options that define the destination type for the Dataview.
+	//
+	// DestinationTypeParams is a required field
+	DestinationTypeParams *DataViewDestinationTypeParams `locationName:"destinationTypeParams" type:"structure" required:"true"`
+
+	// Ordered set of column names used to partition data.
+	PartitionColumns []*string `locationName:"partitionColumns" type:"list"`
+
+	// Columns to be used for sorting the data.
+	SortColumns []*string `locationName:"sortColumns" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataViewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataViewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataViewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataViewInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+	if s.DestinationTypeParams == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationTypeParams"))
+	}
+	if s.DestinationTypeParams != nil {
+		if err := s.DestinationTypeParams.Validate(); err != nil {
+			invalidParams.AddNested("DestinationTypeParams", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAsOfTimestamp sets the AsOfTimestamp field's value.
+func (s *CreateDataViewInput) SetAsOfTimestamp(v int64) *CreateDataViewInput {
+	s.AsOfTimestamp = &v
+	return s
+}
+
+// SetAutoUpdate sets the AutoUpdate field's value.
+func (s *CreateDataViewInput) SetAutoUpdate(v bool) *CreateDataViewInput {
+	s.AutoUpdate = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateDataViewInput) SetClientToken(v string) *CreateDataViewInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *CreateDataViewInput) SetDatasetId(v string) *CreateDataViewInput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetDestinationTypeParams sets the DestinationTypeParams field's value.
+func (s *CreateDataViewInput) SetDestinationTypeParams(v *DataViewDestinationTypeParams) *CreateDataViewInput {
+	s.DestinationTypeParams = v
+	return s
+}
+
+// SetPartitionColumns sets the PartitionColumns field's value.
+func (s *CreateDataViewInput) SetPartitionColumns(v []*string) *CreateDataViewInput {
+	s.PartitionColumns = v
+	return s
+}
+
+// SetSortColumns sets the SortColumns field's value.
+func (s *CreateDataViewInput) SetSortColumns(v []*string) *CreateDataViewInput {
+	s.SortColumns = v
+	return s
+}
+
+// Response for creating a data view.
+type CreateDataViewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the created Dataview.
+	DataViewId *string `locationName:"dataViewId" min:"1" type:"string"`
+
+	// The unique identifier of the Dataset used for the Dataview.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataViewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataViewOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataViewId sets the DataViewId field's value.
+func (s *CreateDataViewOutput) SetDataViewId(v string) *CreateDataViewOutput {
+	s.DataViewId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *CreateDataViewOutput) SetDatasetId(v string) *CreateDataViewOutput {
+	s.DatasetId = &v
+	return s
+}
+
+// The request for a CreateDataset operation
+type CreateDatasetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique resource identifier for a Dataset.
+	//
+	// Alias is a required field
+	Alias *string `locationName:"alias" min:"1" type:"string" required:"true"`
+
+	// A token used to ensure idempotency.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Description of a Dataset.
+	//
+	// DatasetDescription is a required field
+	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string" required:"true"`
+
+	// Display title for a FinSpace Dataset.
+	//
+	// DatasetTitle is a required field
+	DatasetTitle *string `locationName:"datasetTitle" min:"1" type:"string" required:"true"`
+
+	// The format in which Dataset data is structured.
+	//
+	//    * TABULAR - Data is structured in a tabular format.
+	//
+	//    * NON_TABULAR - Data is structured in a non-tabular format.
+	//
+	// Kind is a required field
+	Kind *string `locationName:"kind" type:"string" required:"true" enum:"DatasetKind"`
+
+	// Contact information for a Dataset owner.
+	OwnerInfo *DatasetOwnerInfo `locationName:"ownerInfo" type:"structure"`
+
+	// Permission group parameters for Dataset permissions.
+	//
+	// PermissionGroupParams is a required field
+	PermissionGroupParams *PermissionGroupParams `locationName:"permissionGroupParams" type:"structure" required:"true"`
+
+	// Definition for a schema on a tabular Dataset.
+	SchemaDefinition *SchemaUnion `locationName:"schemaDefinition" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDatasetInput"}
+	if s.Alias == nil {
+		invalidParams.Add(request.NewErrParamRequired("Alias"))
+	}
+	if s.Alias != nil && len(*s.Alias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DatasetDescription == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetDescription"))
+	}
+	if s.DatasetDescription != nil && len(*s.DatasetDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetDescription", 1))
+	}
+	if s.DatasetTitle == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetTitle"))
+	}
+	if s.DatasetTitle != nil && len(*s.DatasetTitle) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetTitle", 1))
+	}
+	if s.Kind == nil {
+		invalidParams.Add(request.NewErrParamRequired("Kind"))
+	}
+	if s.PermissionGroupParams == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionGroupParams"))
+	}
+	if s.OwnerInfo != nil {
+		if err := s.OwnerInfo.Validate(); err != nil {
+			invalidParams.AddNested("OwnerInfo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PermissionGroupParams != nil {
+		if err := s.PermissionGroupParams.Validate(); err != nil {
+			invalidParams.AddNested("PermissionGroupParams", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlias sets the Alias field's value.
+func (s *CreateDatasetInput) SetAlias(v string) *CreateDatasetInput {
+	s.Alias = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateDatasetInput) SetClientToken(v string) *CreateDatasetInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDatasetDescription sets the DatasetDescription field's value.
+func (s *CreateDatasetInput) SetDatasetDescription(v string) *CreateDatasetInput {
+	s.DatasetDescription = &v
+	return s
+}
+
+// SetDatasetTitle sets the DatasetTitle field's value.
+func (s *CreateDatasetInput) SetDatasetTitle(v string) *CreateDatasetInput {
+	s.DatasetTitle = &v
+	return s
+}
+
+// SetKind sets the Kind field's value.
+func (s *CreateDatasetInput) SetKind(v string) *CreateDatasetInput {
+	s.Kind = &v
+	return s
+}
+
+// SetOwnerInfo sets the OwnerInfo field's value.
+func (s *CreateDatasetInput) SetOwnerInfo(v *DatasetOwnerInfo) *CreateDatasetInput {
+	s.OwnerInfo = v
+	return s
+}
+
+// SetPermissionGroupParams sets the PermissionGroupParams field's value.
+func (s *CreateDatasetInput) SetPermissionGroupParams(v *PermissionGroupParams) *CreateDatasetInput {
+	s.PermissionGroupParams = v
+	return s
+}
+
+// SetSchemaDefinition sets the SchemaDefinition field's value.
+func (s *CreateDatasetInput) SetSchemaDefinition(v *SchemaUnion) *CreateDatasetInput {
+	s.SchemaDefinition = v
+	return s
+}
+
+// The response from a CreateDataset operation
+type CreateDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the created Dataset.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *CreateDatasetOutput) SetDatasetId(v string) *CreateDatasetOutput {
+	s.DatasetId = &v
+	return s
+}
+
+// Short term API credentials.
 type Credentials struct {
 	_ struct{} `type:"structure"`
 
@@ -715,8 +2469,57 @@ func (s *Credentials) SetSessionToken(v string) *Credentials {
 	return s
 }
 
-// Error message.
-type ErrorInfo struct {
+// Structure for the Dataview destination type parameters.
+type DataViewDestinationTypeParams struct {
+	_ struct{} `type:"structure"`
+
+	// Destination type for a Dataview.
+	//
+	//    * GLUE_TABLE - Glue table destination type.
+	//
+	// DestinationType is a required field
+	DestinationType *string `locationName:"destinationType" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataViewDestinationTypeParams) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataViewDestinationTypeParams) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataViewDestinationTypeParams) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataViewDestinationTypeParams"}
+	if s.DestinationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationType sets the DestinationType field's value.
+func (s *DataViewDestinationTypeParams) SetDestinationType(v string) *DataViewDestinationTypeParams {
+	s.DestinationType = &v
+	return s
+}
+
+// The structure with error messages.
+type DataViewErrorInfo struct {
 	_ struct{} `type:"structure"`
 
 	// The category of the error.
@@ -735,7 +2538,9 @@ type ErrorInfo struct {
 	//
 	//    * INTERNAL_SERVICE_EXCEPTION - An internal service error has occurred.
 	//
-	//    * CANCELLED - A user recoverable error has occurred.
+	//    * CANCELLED - Cancelled.
+	//
+	//    * USER_RECOVERABLE - A user recoverable error has occurred.
 	ErrorCategory *string `locationName:"errorCategory" type:"string" enum:"ErrorCategory"`
 
 	// The text of the error message.
@@ -747,7 +2552,7 @@ type ErrorInfo struct {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ErrorInfo) String() string {
+func (s DataViewErrorInfo) String() string {
 	return awsutil.Prettify(s)
 }
 
@@ -756,29 +2561,1081 @@ func (s ErrorInfo) String() string {
 // API parameter values that are decorated as "sensitive" in the API will not
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
-func (s ErrorInfo) GoString() string {
+func (s DataViewErrorInfo) GoString() string {
 	return s.String()
 }
 
 // SetErrorCategory sets the ErrorCategory field's value.
-func (s *ErrorInfo) SetErrorCategory(v string) *ErrorInfo {
+func (s *DataViewErrorInfo) SetErrorCategory(v string) *DataViewErrorInfo {
 	s.ErrorCategory = &v
 	return s
 }
 
 // SetErrorMessage sets the ErrorMessage field's value.
-func (s *ErrorInfo) SetErrorMessage(v string) *ErrorInfo {
+func (s *DataViewErrorInfo) SetErrorMessage(v string) *DataViewErrorInfo {
 	s.ErrorMessage = &v
 	return s
 }
 
+// Structure for the summary of a Dataview.
+type DataViewSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Time range to use for the Dataview. The value is determined as Epoch time
+	// in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00
+	// PM UTC is specified as 1635768000000.
+	AsOfTimestamp *int64 `locationName:"asOfTimestamp" type:"long"`
+
+	// The flag to indicate Dataview should be updated automatically.
+	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
+
+	// The timestamp at which the Dataview was created in FinSpace. The value is
+	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
+	CreateTime *int64 `locationName:"createTime" type:"long"`
+
+	// The ARN identifier of the Dataview.
+	DataViewArn *string `locationName:"dataViewArn" type:"string"`
+
+	// The unique identifier for the Dataview.
+	DataViewId *string `locationName:"dataViewId" min:"1" type:"string"`
+
+	// Th unique identifier for the Dataview Dataset.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+
+	// Information about the Dataview destination.
+	DestinationTypeProperties *DataViewDestinationTypeParams `locationName:"destinationTypeProperties" type:"structure"`
+
+	// The structure with error messages.
+	ErrorInfo *DataViewErrorInfo `locationName:"errorInfo" type:"structure"`
+
+	// The last time that a Dataview was modified. The value is determined as Epoch
+	// time in milliseconds. For example, the value for Monday, November 1, 2021
+	// 12:00:00 PM UTC is specified as 1635768000000.
+	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
+
+	// Ordered set of column names used to partition data.
+	PartitionColumns []*string `locationName:"partitionColumns" type:"list"`
+
+	// Columns to be used for sorting the data.
+	SortColumns []*string `locationName:"sortColumns" type:"list"`
+
+	// The status of a Dataview creation.
+	//
+	//    * RUNNING - Dataview creation is running.
+	//
+	//    * STARTING - Dataview creation is starting.
+	//
+	//    * FAILED - Dataview creation has failed.
+	//
+	//    * CANCELLED - Dataview creation has been cancelled.
+	//
+	//    * TIMEOUT - Dataview creation has timed out.
+	//
+	//    * SUCCESS - Dataview creation has succeeded.
+	//
+	//    * PENDING - Dataview creation is pending.
+	//
+	//    * FAILED_CLEANUP_FAILED - Dataview creation failed and resource cleanup
+	//    failed.
+	Status *string `locationName:"status" type:"string" enum:"DataViewStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataViewSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataViewSummary) GoString() string {
+	return s.String()
+}
+
+// SetAsOfTimestamp sets the AsOfTimestamp field's value.
+func (s *DataViewSummary) SetAsOfTimestamp(v int64) *DataViewSummary {
+	s.AsOfTimestamp = &v
+	return s
+}
+
+// SetAutoUpdate sets the AutoUpdate field's value.
+func (s *DataViewSummary) SetAutoUpdate(v bool) *DataViewSummary {
+	s.AutoUpdate = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *DataViewSummary) SetCreateTime(v int64) *DataViewSummary {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDataViewArn sets the DataViewArn field's value.
+func (s *DataViewSummary) SetDataViewArn(v string) *DataViewSummary {
+	s.DataViewArn = &v
+	return s
+}
+
+// SetDataViewId sets the DataViewId field's value.
+func (s *DataViewSummary) SetDataViewId(v string) *DataViewSummary {
+	s.DataViewId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *DataViewSummary) SetDatasetId(v string) *DataViewSummary {
+	s.DatasetId = &v
+	return s
+}
+
+// SetDestinationTypeProperties sets the DestinationTypeProperties field's value.
+func (s *DataViewSummary) SetDestinationTypeProperties(v *DataViewDestinationTypeParams) *DataViewSummary {
+	s.DestinationTypeProperties = v
+	return s
+}
+
+// SetErrorInfo sets the ErrorInfo field's value.
+func (s *DataViewSummary) SetErrorInfo(v *DataViewErrorInfo) *DataViewSummary {
+	s.ErrorInfo = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DataViewSummary) SetLastModifiedTime(v int64) *DataViewSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetPartitionColumns sets the PartitionColumns field's value.
+func (s *DataViewSummary) SetPartitionColumns(v []*string) *DataViewSummary {
+	s.PartitionColumns = v
+	return s
+}
+
+// SetSortColumns sets the SortColumns field's value.
+func (s *DataViewSummary) SetSortColumns(v []*string) *DataViewSummary {
+	s.SortColumns = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DataViewSummary) SetStatus(v string) *DataViewSummary {
+	s.Status = &v
+	return s
+}
+
+// The structure for a Dataset.
+type Dataset struct {
+	_ struct{} `type:"structure"`
+
+	// The unique resource identifier for a Dataset.
+	Alias *string `locationName:"alias" min:"1" type:"string"`
+
+	// The timestamp at which the Dataset was created in FinSpace. The value is
+	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
+	CreateTime *int64 `locationName:"createTime" type:"long"`
+
+	// The ARN identifier of the Dataset.
+	DatasetArn *string `locationName:"datasetArn" type:"string"`
+
+	// Description for a Dataset.
+	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string"`
+
+	// An identifier for a Dataset.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+
+	// Display title for a Dataset.
+	DatasetTitle *string `locationName:"datasetTitle" min:"1" type:"string"`
+
+	// The format in which Dataset data is structured.
+	//
+	//    * TABULAR - Data is structured in a tabular format.
+	//
+	//    * NON_TABULAR - Data is structured in a non-tabular format.
+	Kind *string `locationName:"kind" type:"string" enum:"DatasetKind"`
+
+	// The last time that the Dataset was modified. The value is determined as Epoch
+	// time in milliseconds. For example, the value for Monday, November 1, 2021
+	// 12:00:00 PM UTC is specified as 1635768000000.
+	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
+
+	// Contact information for a Dataset owner.
+	OwnerInfo *DatasetOwnerInfo `locationName:"ownerInfo" type:"structure"`
+
+	// Definition for a schema on a tabular Dataset.
+	SchemaDefinition *SchemaUnion `locationName:"schemaDefinition" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Dataset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Dataset) GoString() string {
+	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *Dataset) SetAlias(v string) *Dataset {
+	s.Alias = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *Dataset) SetCreateTime(v int64) *Dataset {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *Dataset) SetDatasetArn(v string) *Dataset {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetDescription sets the DatasetDescription field's value.
+func (s *Dataset) SetDatasetDescription(v string) *Dataset {
+	s.DatasetDescription = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *Dataset) SetDatasetId(v string) *Dataset {
+	s.DatasetId = &v
+	return s
+}
+
+// SetDatasetTitle sets the DatasetTitle field's value.
+func (s *Dataset) SetDatasetTitle(v string) *Dataset {
+	s.DatasetTitle = &v
+	return s
+}
+
+// SetKind sets the Kind field's value.
+func (s *Dataset) SetKind(v string) *Dataset {
+	s.Kind = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Dataset) SetLastModifiedTime(v int64) *Dataset {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetOwnerInfo sets the OwnerInfo field's value.
+func (s *Dataset) SetOwnerInfo(v *DatasetOwnerInfo) *Dataset {
+	s.OwnerInfo = v
+	return s
+}
+
+// SetSchemaDefinition sets the SchemaDefinition field's value.
+func (s *Dataset) SetSchemaDefinition(v *SchemaUnion) *Dataset {
+	s.SchemaDefinition = v
+	return s
+}
+
+// A structure for Dataset owner info.
+type DatasetOwnerInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Email address for the Dataset owner.
+	Email *string `locationName:"email" min:"4" type:"string"`
+
+	// Name of the Dataset owner.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// Phone number for the Dataset owner.
+	PhoneNumber *string `locationName:"phoneNumber" min:"10" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetOwnerInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DatasetOwnerInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetOwnerInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetOwnerInfo"}
+	if s.Email != nil && len(*s.Email) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("Email", 4))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PhoneNumber != nil && len(*s.PhoneNumber) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("PhoneNumber", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEmail sets the Email field's value.
+func (s *DatasetOwnerInfo) SetEmail(v string) *DatasetOwnerInfo {
+	s.Email = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DatasetOwnerInfo) SetName(v string) *DatasetOwnerInfo {
+	s.Name = &v
+	return s
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *DatasetOwnerInfo) SetPhoneNumber(v string) *DatasetOwnerInfo {
+	s.PhoneNumber = &v
+	return s
+}
+
+// The request for a DeleteDataset operation.
+type DeleteDatasetInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A token used to ensure idempotency.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier of the Dataset to be deleted.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDatasetInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeleteDatasetInput) SetClientToken(v string) *DeleteDatasetInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *DeleteDatasetInput) SetDatasetId(v string) *DeleteDatasetInput {
+	s.DatasetId = &v
+	return s
+}
+
+// The response from an DeleteDataset operation
+type DeleteDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the deleted Dataset.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *DeleteDatasetOutput) SetDatasetId(v string) *DeleteDatasetOutput {
+	s.DatasetId = &v
+	return s
+}
+
+// Request to describe a changeset.
+type GetChangesetInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the Changeset for which to get data.
+	//
+	// ChangesetId is a required field
+	ChangesetId *string `location:"uri" locationName:"changesetId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the FinSpace Dataset where the Changeset is created.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetChangesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetChangesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetChangesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetChangesetInput"}
+	if s.ChangesetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangesetId"))
+	}
+	if s.ChangesetId != nil && len(*s.ChangesetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChangesetId", 1))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChangesetId sets the ChangesetId field's value.
+func (s *GetChangesetInput) SetChangesetId(v string) *GetChangesetInput {
+	s.ChangesetId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *GetChangesetInput) SetDatasetId(v string) *GetChangesetInput {
+	s.DatasetId = &v
+	return s
+}
+
+// The response from a describe changeset operation
+type GetChangesetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Time until which the Changeset is active. The value is determined as Epoch
+	// time in milliseconds. For example, the value for Monday, November 1, 2021
+	// 12:00:00 PM UTC is specified as 1635768000000.
+	ActiveUntilTimestamp *int64 `locationName:"activeUntilTimestamp" type:"long"`
+
+	// Type that indicates how a Changeset is applied to a Dataset.
+	//
+	//    * REPLACE - Changeset is considered as a replacement to all prior loaded
+	//    Changesets.
+	//
+	//    * APPEND - Changeset is considered as an addition to the end of all prior
+	//    loaded Changesets.
+	//
+	//    * MODIFY - Changeset is considered as a replacement to a specific prior
+	//    ingested Changeset.
+	ChangeType *string `locationName:"changeType" type:"string" enum:"ChangeType"`
+
+	// The ARN identifier of the Changeset.
+	ChangesetArn *string `locationName:"changesetArn" type:"string"`
+
+	// The unique identifier for a Changeset.
+	ChangesetId *string `locationName:"changesetId" min:"1" type:"string"`
+
+	// The timestamp at which the Changeset was created in FinSpace. The value is
+	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
+	CreateTime *int64 `locationName:"createTime" type:"long"`
+
+	// The unique identifier for the FinSpace Dataset where the Changeset is created.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+
+	// The structure with error messages.
+	ErrorInfo *ChangesetErrorInfo `locationName:"errorInfo" type:"structure"`
+
+	// Structure of the source file(s).
+	FormatParams map[string]*string `locationName:"formatParams" type:"map"`
+
+	// Options that define the location of the data being ingested.
+	SourceParams map[string]*string `locationName:"sourceParams" type:"map"`
+
+	// The status of Changeset creation operation.
+	Status *string `locationName:"status" type:"string" enum:"IngestionStatus"`
+
+	// The unique identifier of the updated Changeset.
+	UpdatedByChangesetId *string `locationName:"updatedByChangesetId" min:"1" type:"string"`
+
+	// The unique identifier of the Changeset that is being updated.
+	UpdatesChangesetId *string `locationName:"updatesChangesetId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetChangesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetChangesetOutput) GoString() string {
+	return s.String()
+}
+
+// SetActiveUntilTimestamp sets the ActiveUntilTimestamp field's value.
+func (s *GetChangesetOutput) SetActiveUntilTimestamp(v int64) *GetChangesetOutput {
+	s.ActiveUntilTimestamp = &v
+	return s
+}
+
+// SetChangeType sets the ChangeType field's value.
+func (s *GetChangesetOutput) SetChangeType(v string) *GetChangesetOutput {
+	s.ChangeType = &v
+	return s
+}
+
+// SetChangesetArn sets the ChangesetArn field's value.
+func (s *GetChangesetOutput) SetChangesetArn(v string) *GetChangesetOutput {
+	s.ChangesetArn = &v
+	return s
+}
+
+// SetChangesetId sets the ChangesetId field's value.
+func (s *GetChangesetOutput) SetChangesetId(v string) *GetChangesetOutput {
+	s.ChangesetId = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *GetChangesetOutput) SetCreateTime(v int64) *GetChangesetOutput {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *GetChangesetOutput) SetDatasetId(v string) *GetChangesetOutput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetErrorInfo sets the ErrorInfo field's value.
+func (s *GetChangesetOutput) SetErrorInfo(v *ChangesetErrorInfo) *GetChangesetOutput {
+	s.ErrorInfo = v
+	return s
+}
+
+// SetFormatParams sets the FormatParams field's value.
+func (s *GetChangesetOutput) SetFormatParams(v map[string]*string) *GetChangesetOutput {
+	s.FormatParams = v
+	return s
+}
+
+// SetSourceParams sets the SourceParams field's value.
+func (s *GetChangesetOutput) SetSourceParams(v map[string]*string) *GetChangesetOutput {
+	s.SourceParams = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetChangesetOutput) SetStatus(v string) *GetChangesetOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedByChangesetId sets the UpdatedByChangesetId field's value.
+func (s *GetChangesetOutput) SetUpdatedByChangesetId(v string) *GetChangesetOutput {
+	s.UpdatedByChangesetId = &v
+	return s
+}
+
+// SetUpdatesChangesetId sets the UpdatesChangesetId field's value.
+func (s *GetChangesetOutput) SetUpdatesChangesetId(v string) *GetChangesetOutput {
+	s.UpdatesChangesetId = &v
+	return s
+}
+
+// Request for retrieving a data view detail. Grouped / accessible within a
+// dataset by its dataset id.
+type GetDataViewInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the Dataview.
+	//
+	// DataViewId is a required field
+	DataViewId *string `location:"uri" locationName:"dataviewId" min:"1" type:"string" required:"true"`
+
+	// The unique identifier for the Dataset used in the Dataview.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataViewInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataViewInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataViewInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataViewInput"}
+	if s.DataViewId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataViewId"))
+	}
+	if s.DataViewId != nil && len(*s.DataViewId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataViewId", 1))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataViewId sets the DataViewId field's value.
+func (s *GetDataViewInput) SetDataViewId(v string) *GetDataViewInput {
+	s.DataViewId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *GetDataViewInput) SetDatasetId(v string) *GetDataViewInput {
+	s.DatasetId = &v
+	return s
+}
+
+// Response from retrieving a dataview, which includes details on the target
+// database and table name
+type GetDataViewOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Time range to use for the Dataview. The value is determined as Epoch time
+	// in milliseconds. For example, the value for Monday, November 1, 2021 12:00:00
+	// PM UTC is specified as 1635768000000.
+	AsOfTimestamp *int64 `locationName:"asOfTimestamp" type:"long"`
+
+	// Flag to indicate Dataview should be updated automatically.
+	AutoUpdate *bool `locationName:"autoUpdate" type:"boolean"`
+
+	// The timestamp at which the Dataview was created in FinSpace. The value is
+	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
+	CreateTime *int64 `locationName:"createTime" type:"long"`
+
+	// The ARN identifier of the Dataview.
+	DataViewArn *string `locationName:"dataViewArn" type:"string"`
+
+	// The unique identifier for the Dataview.
+	DataViewId *string `locationName:"dataViewId" min:"1" type:"string"`
+
+	// The unique identifier for the Dataset used in the Dataview.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+
+	// Options that define the destination type for the Dataview.
+	DestinationTypeParams *DataViewDestinationTypeParams `locationName:"destinationTypeParams" type:"structure"`
+
+	// Information about an error that occurred for the Dataview.
+	ErrorInfo *DataViewErrorInfo `locationName:"errorInfo" type:"structure"`
+
+	// The last time that a Dataview was modified. The value is determined as Epoch
+	// time in milliseconds. For example, the value for Monday, November 1, 2021
+	// 12:00:00 PM UTC is specified as 1635768000000.
+	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
+
+	// Ordered set of column names used to partition data.
+	PartitionColumns []*string `locationName:"partitionColumns" type:"list"`
+
+	// Columns to be used for sorting the data.
+	SortColumns []*string `locationName:"sortColumns" type:"list"`
+
+	// The status of a Dataview creation.
+	//
+	//    * RUNNING - Dataview creation is running.
+	//
+	//    * STARTING - Dataview creation is starting.
+	//
+	//    * FAILED - Dataview creation has failed.
+	//
+	//    * CANCELLED - Dataview creation has been cancelled.
+	//
+	//    * TIMEOUT - Dataview creation has timed out.
+	//
+	//    * SUCCESS - Dataview creation has succeeded.
+	//
+	//    * PENDING - Dataview creation is pending.
+	//
+	//    * FAILED_CLEANUP_FAILED - Dataview creation failed and resource cleanup
+	//    failed.
+	Status *string `locationName:"status" type:"string" enum:"DataViewStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataViewOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataViewOutput) GoString() string {
+	return s.String()
+}
+
+// SetAsOfTimestamp sets the AsOfTimestamp field's value.
+func (s *GetDataViewOutput) SetAsOfTimestamp(v int64) *GetDataViewOutput {
+	s.AsOfTimestamp = &v
+	return s
+}
+
+// SetAutoUpdate sets the AutoUpdate field's value.
+func (s *GetDataViewOutput) SetAutoUpdate(v bool) *GetDataViewOutput {
+	s.AutoUpdate = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *GetDataViewOutput) SetCreateTime(v int64) *GetDataViewOutput {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDataViewArn sets the DataViewArn field's value.
+func (s *GetDataViewOutput) SetDataViewArn(v string) *GetDataViewOutput {
+	s.DataViewArn = &v
+	return s
+}
+
+// SetDataViewId sets the DataViewId field's value.
+func (s *GetDataViewOutput) SetDataViewId(v string) *GetDataViewOutput {
+	s.DataViewId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *GetDataViewOutput) SetDatasetId(v string) *GetDataViewOutput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetDestinationTypeParams sets the DestinationTypeParams field's value.
+func (s *GetDataViewOutput) SetDestinationTypeParams(v *DataViewDestinationTypeParams) *GetDataViewOutput {
+	s.DestinationTypeParams = v
+	return s
+}
+
+// SetErrorInfo sets the ErrorInfo field's value.
+func (s *GetDataViewOutput) SetErrorInfo(v *DataViewErrorInfo) *GetDataViewOutput {
+	s.ErrorInfo = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetDataViewOutput) SetLastModifiedTime(v int64) *GetDataViewOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetPartitionColumns sets the PartitionColumns field's value.
+func (s *GetDataViewOutput) SetPartitionColumns(v []*string) *GetDataViewOutput {
+	s.PartitionColumns = v
+	return s
+}
+
+// SetSortColumns sets the SortColumns field's value.
+func (s *GetDataViewOutput) SetSortColumns(v []*string) *GetDataViewOutput {
+	s.SortColumns = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetDataViewOutput) SetStatus(v string) *GetDataViewOutput {
+	s.Status = &v
+	return s
+}
+
+// Request for the GetDataset operation.
+type GetDatasetInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for a Dataset.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDatasetInput"}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *GetDatasetInput) SetDatasetId(v string) *GetDatasetInput {
+	s.DatasetId = &v
+	return s
+}
+
+// Response for the GetDataset operation
+type GetDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique resource identifier for a Dataset.
+	Alias *string `locationName:"alias" min:"1" type:"string"`
+
+	// The timestamp at which the Dataset was created in FinSpace. The value is
+	// determined as Epoch time in milliseconds. For example, the value for Monday,
+	// November 1, 2021 12:00:00 PM UTC is specified as 1635768000000.
+	CreateTime *int64 `locationName:"createTime" type:"long"`
+
+	// The ARN identifier of the Dataset.
+	DatasetArn *string `locationName:"datasetArn" type:"string"`
+
+	// A description of the Dataset.
+	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string"`
+
+	// The unique identifier for a Dataset.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+
+	// Display title for a Dataset.
+	DatasetTitle *string `locationName:"datasetTitle" min:"1" type:"string"`
+
+	// The format in which Dataset data is structured.
+	//
+	//    * TABULAR - Data is structured in a tabular format.
+	//
+	//    * NON_TABULAR - Data is structured in a non-tabular format.
+	Kind *string `locationName:"kind" type:"string" enum:"DatasetKind"`
+
+	// The last time that the Dataset was modified. The value is determined as Epoch
+	// time in milliseconds. For example, the value for Monday, November 1, 2021
+	// 12:00:00 PM UTC is specified as 1635768000000.
+	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
+
+	// Definition for a schema on a tabular Dataset.
+	SchemaDefinition *SchemaUnion `locationName:"schemaDefinition" type:"structure"`
+
+	// Status of the Dataset creation.
+	//
+	//    * PENDING - Dataset is pending creation.
+	//
+	//    * FAILED - Dataset creation has failed.
+	//
+	//    * SUCCESS - Dataset creation has succeeded.
+	//
+	//    * RUNNING - Dataset creation is running.
+	Status *string `locationName:"status" type:"string" enum:"DatasetStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *GetDatasetOutput) SetAlias(v string) *GetDatasetOutput {
+	s.Alias = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *GetDatasetOutput) SetCreateTime(v int64) *GetDatasetOutput {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *GetDatasetOutput) SetDatasetArn(v string) *GetDatasetOutput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetDescription sets the DatasetDescription field's value.
+func (s *GetDatasetOutput) SetDatasetDescription(v string) *GetDatasetOutput {
+	s.DatasetDescription = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *GetDatasetOutput) SetDatasetId(v string) *GetDatasetOutput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetDatasetTitle sets the DatasetTitle field's value.
+func (s *GetDatasetOutput) SetDatasetTitle(v string) *GetDatasetOutput {
+	s.DatasetTitle = &v
+	return s
+}
+
+// SetKind sets the Kind field's value.
+func (s *GetDatasetOutput) SetKind(v string) *GetDatasetOutput {
+	s.Kind = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetDatasetOutput) SetLastModifiedTime(v int64) *GetDatasetOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetSchemaDefinition sets the SchemaDefinition field's value.
+func (s *GetDatasetOutput) SetSchemaDefinition(v *SchemaUnion) *GetDatasetOutput {
+	s.SchemaDefinition = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetDatasetOutput) SetStatus(v string) *GetDatasetOutput {
+	s.Status = &v
+	return s
+}
+
+// Request for GetProgrammaticAccessCredentials operation
 type GetProgrammaticAccessCredentialsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The time duration in which the credentials remain valid.
 	DurationInMinutes *int64 `location:"querystring" locationName:"durationInMinutes" min:"60" type:"long"`
 
-	// The habanero environment identifier.
+	// The FinSpace environment identifier.
 	//
 	// EnvironmentId is a required field
 	EnvironmentId *string `location:"querystring" locationName:"environmentId" min:"1" type:"string" required:"true"`
@@ -833,6 +3690,7 @@ func (s *GetProgrammaticAccessCredentialsInput) SetEnvironmentId(v string) *GetP
 	return s
 }
 
+// Response for GetProgrammaticAccessCredentials operation
 type GetProgrammaticAccessCredentialsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -883,7 +3741,7 @@ type GetWorkingLocationInput struct {
 	//    studio.
 	//
 	//    * INGESTION - Use the Amazon S3 location as a staging location to copy
-	//    your data content and then use the location with the changeset creation
+	//    your data content and then use the location with the Changeset creation
 	//    operation.
 	LocationType *string `locationName:"locationType" type:"string" enum:"LocationType"`
 }
@@ -1026,6 +3884,453 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A limit has exceeded.
+type LimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorLimitExceededException(v protocol.ResponseMetadata) error {
+	return &LimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *LimitExceededException) Code() string {
+	return "LimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *LimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *LimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *LimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *LimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *LimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Request to ListChangesetsRequest. It exposes minimal query filters.
+type ListChangesetsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier for the FinSpace Dataset to which the Changeset belongs.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token indicating where a results page should begin.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListChangesetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListChangesetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListChangesetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListChangesetsInput"}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *ListChangesetsInput) SetDatasetId(v string) *ListChangesetsInput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListChangesetsInput) SetMaxResults(v int64) *ListChangesetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChangesetsInput) SetNextToken(v string) *ListChangesetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// Response to ListChangesetsResponse. This returns a list of dataset changesets
+// that match the query criteria.
+type ListChangesetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of Changesets found.
+	Changesets []*ChangesetSummary `locationName:"changesets" type:"list"`
+
+	// A token indicating where a results page should begin.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListChangesetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListChangesetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetChangesets sets the Changesets field's value.
+func (s *ListChangesetsOutput) SetChangesets(v []*ChangesetSummary) *ListChangesetsOutput {
+	s.Changesets = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListChangesetsOutput) SetNextToken(v string) *ListChangesetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// Request for a list data views.
+type ListDataViewsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique identifier of the Dataset for which to retrieve Dataviews.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token indicating where a results page should begin.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataViewsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataViewsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataViewsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataViewsInput"}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *ListDataViewsInput) SetDatasetId(v string) *ListDataViewsInput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataViewsInput) SetMaxResults(v int64) *ListDataViewsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataViewsInput) SetNextToken(v string) *ListDataViewsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDataViewsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Dataviews.
+	DataViews []*DataViewSummary `locationName:"dataViews" type:"list"`
+
+	// A token indicating where a results page should begin.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataViewsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataViewsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataViews sets the DataViews field's value.
+func (s *ListDataViewsOutput) SetDataViews(v []*DataViewSummary) *ListDataViewsOutput {
+	s.DataViews = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataViewsOutput) SetNextToken(v string) *ListDataViewsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// Request for the ListDatasets operation.
+type ListDatasetsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum number of results per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token indicating where a results page should begin.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDatasetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDatasetsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDatasetsInput) SetMaxResults(v int64) *ListDatasetsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetsInput) SetNextToken(v string) *ListDatasetsInput {
+	s.NextToken = &v
+	return s
+}
+
+// Response for the ListDatasets operation
+type ListDatasetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of Datasets.
+	Datasets []*Dataset `locationName:"datasets" type:"list"`
+
+	// A token indicating where a results page should begin.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDatasetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasets sets the Datasets field's value.
+func (s *ListDatasetsOutput) SetDatasets(v []*Dataset) *ListDatasetsOutput {
+	s.Datasets = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetsOutput) SetNextToken(v string) *ListDatasetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// Permission group parameters for Dataset permissions.
+type PermissionGroupParams struct {
+	_ struct{} `type:"structure"`
+
+	// List of resource permissions.
+	DatasetPermissions []*ResourcePermission `locationName:"datasetPermissions" type:"list"`
+
+	// The unique identifier of the PermissionGroup.
+	PermissionGroupId *string `locationName:"permissionGroupId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionGroupParams) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PermissionGroupParams) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PermissionGroupParams) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PermissionGroupParams"}
+	if s.PermissionGroupId != nil && len(*s.PermissionGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PermissionGroupId", 1))
+	}
+	if s.DatasetPermissions != nil {
+		for i, v := range s.DatasetPermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DatasetPermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetPermissions sets the DatasetPermissions field's value.
+func (s *PermissionGroupParams) SetDatasetPermissions(v []*ResourcePermission) *PermissionGroupParams {
+	s.DatasetPermissions = v
+	return s
+}
+
+// SetPermissionGroupId sets the PermissionGroupId field's value.
+func (s *PermissionGroupParams) SetPermissionGroupId(v string) *PermissionGroupParams {
+	s.PermissionGroupId = &v
+	return s
+}
+
 // One or more resources can't be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -1088,6 +4393,124 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Resource permission for a Dataset.
+type ResourcePermission struct {
+	_ struct{} `type:"structure"`
+
+	// Permission for a resource.
+	Permission *string `locationName:"permission" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePermission) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourcePermission) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourcePermission) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourcePermission"}
+	if s.Permission != nil && len(*s.Permission) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Permission", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPermission sets the Permission field's value.
+func (s *ResourcePermission) SetPermission(v string) *ResourcePermission {
+	s.Permission = &v
+	return s
+}
+
+// Definition for a schema on a tabular Dataset.
+type SchemaDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// List of column definitions.
+	Columns []*ColumnDefinition `locationName:"columns" type:"list"`
+
+	// List of column names used for primary key.
+	PrimaryKeyColumns []*string `locationName:"primaryKeyColumns" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaDefinition) GoString() string {
+	return s.String()
+}
+
+// SetColumns sets the Columns field's value.
+func (s *SchemaDefinition) SetColumns(v []*ColumnDefinition) *SchemaDefinition {
+	s.Columns = v
+	return s
+}
+
+// SetPrimaryKeyColumns sets the PrimaryKeyColumns field's value.
+func (s *SchemaDefinition) SetPrimaryKeyColumns(v []*string) *SchemaDefinition {
+	s.PrimaryKeyColumns = v
+	return s
+}
+
+// A union of schema types.
+type SchemaUnion struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for a schema on a tabular Dataset.
+	TabularSchemaConfig *SchemaDefinition `locationName:"tabularSchemaConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaUnion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SchemaUnion) GoString() string {
+	return s.String()
+}
+
+// SetTabularSchemaConfig sets the TabularSchemaConfig field's value.
+func (s *SchemaUnion) SetTabularSchemaConfig(v *SchemaDefinition) *SchemaUnion {
+	s.TabularSchemaConfig = v
+	return s
 }
 
 // The request was denied due to request throttling.
@@ -1154,6 +4577,323 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Request to update an existing changeset.
+type UpdateChangesetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the Changeset to update.
+	//
+	// ChangesetId is a required field
+	ChangesetId *string `location:"uri" locationName:"changesetId" min:"1" type:"string" required:"true"`
+
+	// A token used to ensure idempotency.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier for the FinSpace Dataset in which the Changeset is
+	// created.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+
+	// Options that define the structure of the source file(s).
+	//
+	// FormatParams is a required field
+	FormatParams map[string]*string `locationName:"formatParams" type:"map" required:"true"`
+
+	// Options that define the location of the data being ingested.
+	//
+	// SourceParams is a required field
+	SourceParams map[string]*string `locationName:"sourceParams" type:"map" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateChangesetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateChangesetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateChangesetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateChangesetInput"}
+	if s.ChangesetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChangesetId"))
+	}
+	if s.ChangesetId != nil && len(*s.ChangesetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChangesetId", 1))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+	if s.FormatParams == nil {
+		invalidParams.Add(request.NewErrParamRequired("FormatParams"))
+	}
+	if s.SourceParams == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceParams"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChangesetId sets the ChangesetId field's value.
+func (s *UpdateChangesetInput) SetChangesetId(v string) *UpdateChangesetInput {
+	s.ChangesetId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateChangesetInput) SetClientToken(v string) *UpdateChangesetInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *UpdateChangesetInput) SetDatasetId(v string) *UpdateChangesetInput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetFormatParams sets the FormatParams field's value.
+func (s *UpdateChangesetInput) SetFormatParams(v map[string]*string) *UpdateChangesetInput {
+	s.FormatParams = v
+	return s
+}
+
+// SetSourceParams sets the SourceParams field's value.
+func (s *UpdateChangesetInput) SetSourceParams(v map[string]*string) *UpdateChangesetInput {
+	s.SourceParams = v
+	return s
+}
+
+// The response from a update changeset operation.
+type UpdateChangesetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the Changeset to update.
+	ChangesetId *string `locationName:"changesetId" min:"1" type:"string"`
+
+	// The unique identifier for the FinSpace Dataset in which the Changeset is
+	// created.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateChangesetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateChangesetOutput) GoString() string {
+	return s.String()
+}
+
+// SetChangesetId sets the ChangesetId field's value.
+func (s *UpdateChangesetOutput) SetChangesetId(v string) *UpdateChangesetOutput {
+	s.ChangesetId = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *UpdateChangesetOutput) SetDatasetId(v string) *UpdateChangesetOutput {
+	s.DatasetId = &v
+	return s
+}
+
+// The request for an UpdateDataset operation
+type UpdateDatasetInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique resource identifier for a Dataset.
+	//
+	// Alias is a required field
+	Alias *string `locationName:"alias" min:"1" type:"string" required:"true"`
+
+	// A token used to ensure idempotency.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// A description for the Dataset.
+	DatasetDescription *string `locationName:"datasetDescription" min:"1" type:"string"`
+
+	// The unique identifier for the Dataset to update.
+	//
+	// DatasetId is a required field
+	DatasetId *string `location:"uri" locationName:"datasetId" min:"1" type:"string" required:"true"`
+
+	// A display title for the Dataset.
+	//
+	// DatasetTitle is a required field
+	DatasetTitle *string `locationName:"datasetTitle" min:"1" type:"string" required:"true"`
+
+	// The format in which the Dataset data is structured.
+	//
+	//    * TABULAR - Data is structured in a tabular format.
+	//
+	//    * NON_TABULAR - Data is structured in a non-tabular format.
+	//
+	// Kind is a required field
+	Kind *string `locationName:"kind" type:"string" required:"true" enum:"DatasetKind"`
+
+	// Definition for a schema on a tabular Dataset.
+	SchemaDefinition *SchemaUnion `locationName:"schemaDefinition" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDatasetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDatasetInput"}
+	if s.Alias == nil {
+		invalidParams.Add(request.NewErrParamRequired("Alias"))
+	}
+	if s.Alias != nil && len(*s.Alias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.DatasetDescription != nil && len(*s.DatasetDescription) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetDescription", 1))
+	}
+	if s.DatasetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetId"))
+	}
+	if s.DatasetId != nil && len(*s.DatasetId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetId", 1))
+	}
+	if s.DatasetTitle == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetTitle"))
+	}
+	if s.DatasetTitle != nil && len(*s.DatasetTitle) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatasetTitle", 1))
+	}
+	if s.Kind == nil {
+		invalidParams.Add(request.NewErrParamRequired("Kind"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlias sets the Alias field's value.
+func (s *UpdateDatasetInput) SetAlias(v string) *UpdateDatasetInput {
+	s.Alias = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateDatasetInput) SetClientToken(v string) *UpdateDatasetInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDatasetDescription sets the DatasetDescription field's value.
+func (s *UpdateDatasetInput) SetDatasetDescription(v string) *UpdateDatasetInput {
+	s.DatasetDescription = &v
+	return s
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *UpdateDatasetInput) SetDatasetId(v string) *UpdateDatasetInput {
+	s.DatasetId = &v
+	return s
+}
+
+// SetDatasetTitle sets the DatasetTitle field's value.
+func (s *UpdateDatasetInput) SetDatasetTitle(v string) *UpdateDatasetInput {
+	s.DatasetTitle = &v
+	return s
+}
+
+// SetKind sets the Kind field's value.
+func (s *UpdateDatasetInput) SetKind(v string) *UpdateDatasetInput {
+	s.Kind = &v
+	return s
+}
+
+// SetSchemaDefinition sets the SchemaDefinition field's value.
+func (s *UpdateDatasetInput) SetSchemaDefinition(v *SchemaUnion) *UpdateDatasetInput {
+	s.SchemaDefinition = v
+	return s
+}
+
+// The response from an UpdateDataset operation
+type UpdateDatasetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for updated Dataset.
+	DatasetId *string `locationName:"datasetId" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDatasetOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetId sets the DatasetId field's value.
+func (s *UpdateDatasetOutput) SetDatasetId(v string) *UpdateDatasetOutput {
+	s.DatasetId = &v
+	return s
+}
+
 // The input fails to satisfy the constraints specified by an AWS service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -1218,6 +4958,7 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Indicates how the given change will be applied to the dataset.
 const (
 	// ChangeTypeReplace is a ChangeType enum value
 	ChangeTypeReplace = "REPLACE"
@@ -1238,95 +4979,213 @@ func ChangeType_Values() []string {
 	}
 }
 
+// Data type of a column.
 const (
-	// ChangesetStatusPending is a ChangesetStatus enum value
-	ChangesetStatusPending = "PENDING"
+	// ColumnDataTypeString is a ColumnDataType enum value
+	ColumnDataTypeString = "STRING"
 
-	// ChangesetStatusFailed is a ChangesetStatus enum value
-	ChangesetStatusFailed = "FAILED"
+	// ColumnDataTypeChar is a ColumnDataType enum value
+	ColumnDataTypeChar = "CHAR"
 
-	// ChangesetStatusSuccess is a ChangesetStatus enum value
-	ChangesetStatusSuccess = "SUCCESS"
+	// ColumnDataTypeInteger is a ColumnDataType enum value
+	ColumnDataTypeInteger = "INTEGER"
 
-	// ChangesetStatusRunning is a ChangesetStatus enum value
-	ChangesetStatusRunning = "RUNNING"
+	// ColumnDataTypeTinyint is a ColumnDataType enum value
+	ColumnDataTypeTinyint = "TINYINT"
 
-	// ChangesetStatusStopRequested is a ChangesetStatus enum value
-	ChangesetStatusStopRequested = "STOP_REQUESTED"
+	// ColumnDataTypeSmallint is a ColumnDataType enum value
+	ColumnDataTypeSmallint = "SMALLINT"
+
+	// ColumnDataTypeBigint is a ColumnDataType enum value
+	ColumnDataTypeBigint = "BIGINT"
+
+	// ColumnDataTypeFloat is a ColumnDataType enum value
+	ColumnDataTypeFloat = "FLOAT"
+
+	// ColumnDataTypeDouble is a ColumnDataType enum value
+	ColumnDataTypeDouble = "DOUBLE"
+
+	// ColumnDataTypeDate is a ColumnDataType enum value
+	ColumnDataTypeDate = "DATE"
+
+	// ColumnDataTypeDatetime is a ColumnDataType enum value
+	ColumnDataTypeDatetime = "DATETIME"
+
+	// ColumnDataTypeBoolean is a ColumnDataType enum value
+	ColumnDataTypeBoolean = "BOOLEAN"
+
+	// ColumnDataTypeBinary is a ColumnDataType enum value
+	ColumnDataTypeBinary = "BINARY"
 )
 
-// ChangesetStatus_Values returns all elements of the ChangesetStatus enum
-func ChangesetStatus_Values() []string {
+// ColumnDataType_Values returns all elements of the ColumnDataType enum
+func ColumnDataType_Values() []string {
 	return []string{
-		ChangesetStatusPending,
-		ChangesetStatusFailed,
-		ChangesetStatusSuccess,
-		ChangesetStatusRunning,
-		ChangesetStatusStopRequested,
+		ColumnDataTypeString,
+		ColumnDataTypeChar,
+		ColumnDataTypeInteger,
+		ColumnDataTypeTinyint,
+		ColumnDataTypeSmallint,
+		ColumnDataTypeBigint,
+		ColumnDataTypeFloat,
+		ColumnDataTypeDouble,
+		ColumnDataTypeDate,
+		ColumnDataTypeDatetime,
+		ColumnDataTypeBoolean,
+		ColumnDataTypeBinary,
 	}
 }
 
+// Status of a DataView
 const (
-	// ErrorCategoryTheInputsToThisRequestAreInvalid is a ErrorCategory enum value
-	ErrorCategoryTheInputsToThisRequestAreInvalid = "The_inputs_to_this_request_are_invalid"
+	// DataViewStatusRunning is a DataViewStatus enum value
+	DataViewStatusRunning = "RUNNING"
 
-	// ErrorCategoryServiceLimitsHaveBeenExceeded is a ErrorCategory enum value
-	ErrorCategoryServiceLimitsHaveBeenExceeded = "Service_limits_have_been_exceeded"
+	// DataViewStatusStarting is a DataViewStatus enum value
+	DataViewStatusStarting = "STARTING"
 
-	// ErrorCategoryMissingRequiredPermissionToPerformThisRequest is a ErrorCategory enum value
-	ErrorCategoryMissingRequiredPermissionToPerformThisRequest = "Missing_required_permission_to_perform_this_request"
+	// DataViewStatusFailed is a DataViewStatus enum value
+	DataViewStatusFailed = "FAILED"
 
-	// ErrorCategoryOneOrMoreInputsToThisRequestWereNotFound is a ErrorCategory enum value
-	ErrorCategoryOneOrMoreInputsToThisRequestWereNotFound = "One_or_more_inputs_to_this_request_were_not_found"
+	// DataViewStatusCancelled is a DataViewStatus enum value
+	DataViewStatusCancelled = "CANCELLED"
 
-	// ErrorCategoryTheSystemTemporarilyLacksSufficientResourcesToProcessTheRequest is a ErrorCategory enum value
-	ErrorCategoryTheSystemTemporarilyLacksSufficientResourcesToProcessTheRequest = "The_system_temporarily_lacks_sufficient_resources_to_process_the_request"
+	// DataViewStatusTimeout is a DataViewStatus enum value
+	DataViewStatusTimeout = "TIMEOUT"
 
-	// ErrorCategoryAnInternalErrorHasOccurred is a ErrorCategory enum value
-	ErrorCategoryAnInternalErrorHasOccurred = "An_internal_error_has_occurred"
+	// DataViewStatusSuccess is a DataViewStatus enum value
+	DataViewStatusSuccess = "SUCCESS"
+
+	// DataViewStatusPending is a DataViewStatus enum value
+	DataViewStatusPending = "PENDING"
+
+	// DataViewStatusFailedCleanupFailed is a DataViewStatus enum value
+	DataViewStatusFailedCleanupFailed = "FAILED_CLEANUP_FAILED"
+)
+
+// DataViewStatus_Values returns all elements of the DataViewStatus enum
+func DataViewStatus_Values() []string {
+	return []string{
+		DataViewStatusRunning,
+		DataViewStatusStarting,
+		DataViewStatusFailed,
+		DataViewStatusCancelled,
+		DataViewStatusTimeout,
+		DataViewStatusSuccess,
+		DataViewStatusPending,
+		DataViewStatusFailedCleanupFailed,
+	}
+}
+
+// Dataset Kind
+const (
+	// DatasetKindTabular is a DatasetKind enum value
+	DatasetKindTabular = "TABULAR"
+
+	// DatasetKindNonTabular is a DatasetKind enum value
+	DatasetKindNonTabular = "NON_TABULAR"
+)
+
+// DatasetKind_Values returns all elements of the DatasetKind enum
+func DatasetKind_Values() []string {
+	return []string{
+		DatasetKindTabular,
+		DatasetKindNonTabular,
+	}
+}
+
+// Status of the dataset process returned from scheduler service.
+const (
+	// DatasetStatusPending is a DatasetStatus enum value
+	DatasetStatusPending = "PENDING"
+
+	// DatasetStatusFailed is a DatasetStatus enum value
+	DatasetStatusFailed = "FAILED"
+
+	// DatasetStatusSuccess is a DatasetStatus enum value
+	DatasetStatusSuccess = "SUCCESS"
+
+	// DatasetStatusRunning is a DatasetStatus enum value
+	DatasetStatusRunning = "RUNNING"
+)
+
+// DatasetStatus_Values returns all elements of the DatasetStatus enum
+func DatasetStatus_Values() []string {
+	return []string{
+		DatasetStatusPending,
+		DatasetStatusFailed,
+		DatasetStatusSuccess,
+		DatasetStatusRunning,
+	}
+}
+
+// Changeset Error Category
+const (
+	// ErrorCategoryValidation is a ErrorCategory enum value
+	ErrorCategoryValidation = "VALIDATION"
+
+	// ErrorCategoryServiceQuotaExceeded is a ErrorCategory enum value
+	ErrorCategoryServiceQuotaExceeded = "SERVICE_QUOTA_EXCEEDED"
+
+	// ErrorCategoryAccessDenied is a ErrorCategory enum value
+	ErrorCategoryAccessDenied = "ACCESS_DENIED"
+
+	// ErrorCategoryResourceNotFound is a ErrorCategory enum value
+	ErrorCategoryResourceNotFound = "RESOURCE_NOT_FOUND"
+
+	// ErrorCategoryThrottling is a ErrorCategory enum value
+	ErrorCategoryThrottling = "THROTTLING"
+
+	// ErrorCategoryInternalServiceException is a ErrorCategory enum value
+	ErrorCategoryInternalServiceException = "INTERNAL_SERVICE_EXCEPTION"
 
 	// ErrorCategoryCancelled is a ErrorCategory enum value
-	ErrorCategoryCancelled = "Cancelled"
+	ErrorCategoryCancelled = "CANCELLED"
 
-	// ErrorCategoryAUserRecoverableErrorHasOccurred is a ErrorCategory enum value
-	ErrorCategoryAUserRecoverableErrorHasOccurred = "A_user_recoverable_error_has_occurred"
+	// ErrorCategoryUserRecoverable is a ErrorCategory enum value
+	ErrorCategoryUserRecoverable = "USER_RECOVERABLE"
 )
 
 // ErrorCategory_Values returns all elements of the ErrorCategory enum
 func ErrorCategory_Values() []string {
 	return []string{
-		ErrorCategoryTheInputsToThisRequestAreInvalid,
-		ErrorCategoryServiceLimitsHaveBeenExceeded,
-		ErrorCategoryMissingRequiredPermissionToPerformThisRequest,
-		ErrorCategoryOneOrMoreInputsToThisRequestWereNotFound,
-		ErrorCategoryTheSystemTemporarilyLacksSufficientResourcesToProcessTheRequest,
-		ErrorCategoryAnInternalErrorHasOccurred,
+		ErrorCategoryValidation,
+		ErrorCategoryServiceQuotaExceeded,
+		ErrorCategoryAccessDenied,
+		ErrorCategoryResourceNotFound,
+		ErrorCategoryThrottling,
+		ErrorCategoryInternalServiceException,
 		ErrorCategoryCancelled,
-		ErrorCategoryAUserRecoverableErrorHasOccurred,
+		ErrorCategoryUserRecoverable,
 	}
 }
 
+// Status of the ingestion process returned from scheduler service.
 const (
-	// FormatTypeCsv is a FormatType enum value
-	FormatTypeCsv = "CSV"
+	// IngestionStatusPending is a IngestionStatus enum value
+	IngestionStatusPending = "PENDING"
 
-	// FormatTypeJson is a FormatType enum value
-	FormatTypeJson = "JSON"
+	// IngestionStatusFailed is a IngestionStatus enum value
+	IngestionStatusFailed = "FAILED"
 
-	// FormatTypeParquet is a FormatType enum value
-	FormatTypeParquet = "PARQUET"
+	// IngestionStatusSuccess is a IngestionStatus enum value
+	IngestionStatusSuccess = "SUCCESS"
 
-	// FormatTypeXml is a FormatType enum value
-	FormatTypeXml = "XML"
+	// IngestionStatusRunning is a IngestionStatus enum value
+	IngestionStatusRunning = "RUNNING"
+
+	// IngestionStatusStopRequested is a IngestionStatus enum value
+	IngestionStatusStopRequested = "STOP_REQUESTED"
 )
 
-// FormatType_Values returns all elements of the FormatType enum
-func FormatType_Values() []string {
+// IngestionStatus_Values returns all elements of the IngestionStatus enum
+func IngestionStatus_Values() []string {
 	return []string{
-		FormatTypeCsv,
-		FormatTypeJson,
-		FormatTypeParquet,
-		FormatTypeXml,
+		IngestionStatusPending,
+		IngestionStatusFailed,
+		IngestionStatusSuccess,
+		IngestionStatusRunning,
+		IngestionStatusStopRequested,
 	}
 }
 
@@ -1343,17 +5202,5 @@ func LocationType_Values() []string {
 	return []string{
 		LocationTypeIngestion,
 		LocationTypeSagemaker,
-	}
-}
-
-const (
-	// SourceTypeS3 is a SourceType enum value
-	SourceTypeS3 = "S3"
-)
-
-// SourceType_Values returns all elements of the SourceType enum
-func SourceType_Values() []string {
-	return []string{
-		SourceTypeS3,
 	}
 }

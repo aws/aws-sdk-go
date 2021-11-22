@@ -38,6 +38,7 @@
       "output":{"shape":"CreateAccountCustomizationResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceExistsException"},
         {"shape":"ResourceNotFoundException"},
@@ -342,6 +343,7 @@
       "output":{"shape":"DeleteAccountCustomizationResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -1645,6 +1647,7 @@
       "output":{"shape":"UpdateAccountCustomizationResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -2055,7 +2058,8 @@
     "AccountCustomization":{
       "type":"structure",
       "members":{
-        "DefaultTheme":{"shape":"Arn"}
+        "DefaultTheme":{"shape":"Arn"},
+        "DefaultEmailCustomizationTemplate":{"shape":"Arn"}
       }
     },
     "AccountSettings":{
@@ -3522,7 +3526,8 @@
         "SqlServerParameters":{"shape":"SqlServerParameters"},
         "TeradataParameters":{"shape":"TeradataParameters"},
         "TwitterParameters":{"shape":"TwitterParameters"},
-        "AmazonOpenSearchParameters":{"shape":"AmazonOpenSearchParameters"}
+        "AmazonOpenSearchParameters":{"shape":"AmazonOpenSearchParameters"},
+        "ExasolParameters":{"shape":"ExasolParameters"}
       }
     },
     "DataSourceParametersList":{
@@ -3557,7 +3562,8 @@
         "TERADATA",
         "TWITTER",
         "TIMESTREAM",
-        "AMAZON_OPENSEARCH"
+        "AMAZON_OPENSEARCH",
+        "EXASOL"
       ]
     },
     "Database":{
@@ -4344,7 +4350,8 @@
           "shape":"StatusCode",
           "location":"statusCode"
         },
-        "RequestId":{"shape":"String"}
+        "RequestId":{"shape":"String"},
+        "LinkSharingConfiguration":{"shape":"LinkSharingConfiguration"}
       }
     },
     "DescribeDashboardRequest":{
@@ -5072,6 +5079,17 @@
       "members":{
         "Type":{"shape":"IngestionErrorType"},
         "Message":{"shape":"String"}
+      }
+    },
+    "ExasolParameters":{
+      "type":"structure",
+      "required":[
+        "Host",
+        "Port"
+      ],
+      "members":{
+        "Host":{"shape":"Host"},
+        "Port":{"shape":"Port"}
       }
     },
     "ExceptionResourceType":{
@@ -5804,6 +5822,12 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "LinkSharingConfiguration":{
+      "type":"structure",
+      "members":{
+        "Permissions":{"shape":"ResourcePermissionList"}
+      }
     },
     "ListAnalysesRequest":{
       "type":"structure",
@@ -8207,7 +8231,9 @@
           "locationName":"DashboardId"
         },
         "GrantPermissions":{"shape":"UpdateResourcePermissionList"},
-        "RevokePermissions":{"shape":"UpdateResourcePermissionList"}
+        "RevokePermissions":{"shape":"UpdateResourcePermissionList"},
+        "GrantLinkPermissions":{"shape":"UpdateLinkPermissionList"},
+        "RevokeLinkPermissions":{"shape":"UpdateLinkPermissionList"}
       }
     },
     "UpdateDashboardPermissionsResponse":{
@@ -8220,7 +8246,8 @@
         "Status":{
           "shape":"StatusCode",
           "location":"statusCode"
-        }
+        },
+        "LinkSharingConfiguration":{"shape":"LinkSharingConfiguration"}
       }
     },
     "UpdateDashboardPublishedVersionRequest":{
@@ -8615,6 +8642,11 @@
           "location":"statusCode"
         }
       }
+    },
+    "UpdateLinkPermissionList":{
+      "type":"list",
+      "member":{"shape":"ResourcePermission"},
+      "max":2
     },
     "UpdateResourcePermissionList":{
       "type":"list",

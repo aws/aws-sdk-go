@@ -323,6 +323,12 @@
         "Include$Buckets": "<p>A container for the S3 Storage Lens bucket includes.</p>"
       }
     },
+    "CloudWatchMetrics": {
+      "base": "<p>A container for enabling Amazon CloudWatch publishing for S3 Storage Lens metrics.</p> <p>For more information about publishing S3 Storage Lens metrics to CloudWatch, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage_lens_view_metrics_cloudwatch.html\">Monitor S3 Storage Lens metrics in CloudWatch</a> in the <i>Amazon S3 User Guide</i>.</p>",
+      "refs": {
+        "StorageLensDataExport$CloudWatchMetrics": "<p>A container for enabling Amazon CloudWatch publishing for S3 Storage Lens metrics.</p>"
+      }
+    },
     "ConfigId": {
       "base": null,
       "refs": {
@@ -873,6 +879,7 @@
       "base": null,
       "refs": {
         "ActivityMetrics$IsEnabled": "<p>A container for whether the activity metrics are enabled.</p>",
+        "CloudWatchMetrics$IsEnabled": "<p>A container that indicates whether CloudWatch publishing for S3 Storage Lens metrics is enabled. A value of <code>true</code> indicates that CloudWatch publishing for S3 Storage Lens metrics is enabled.</p>",
         "ListStorageLensConfigurationEntry$IsEnabled": "<p>A container for whether the S3 Storage Lens configuration is enabled. This property is required.</p>",
         "PrefixLevelStorageMetrics$IsEnabled": "<p>A container for whether prefix-level storage metrics are enabled.</p>",
         "StorageLensConfiguration$IsEnabled": "<p>A container for whether the S3 Storage Lens configuration is enabled.</p>"

@@ -1150,6 +1150,39 @@ func (s *Attendee) SetJoinToken(v string) *Attendee {
 	return s
 }
 
+// An optional category of meeting features that contains audio-specific configurations,
+// such as operating parameters for Amazon Voice Focus.
+type AudioFeatures struct {
+	_ struct{} `type:"structure"`
+
+	// Makes echo reduction available to clients who connect to the meeting.
+	EchoReduction *string `type:"string" enum:"MeetingFeatureStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioFeatures) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioFeatures) GoString() string {
+	return s.String()
+}
+
+// SetEchoReduction sets the EchoReduction field's value.
+func (s *AudioFeatures) SetEchoReduction(v string) *AudioFeatures {
+	s.EchoReduction = &v
+	return s
+}
+
 // The input parameters don't match the service's restrictions.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
@@ -1581,6 +1614,9 @@ type CreateMeetingInput struct {
 	// MediaRegion is a required field
 	MediaRegion *string `min:"2" type:"string" required:"true"`
 
+	// Lists the audio and video features enabled for a meeting, such as echo reduction.
+	MeetingFeatures *MeetingFeaturesConfiguration `type:"structure"`
+
 	// Reserved.
 	//
 	// MeetingHostId is a sensitive parameter and its value will be
@@ -1662,6 +1698,12 @@ func (s *CreateMeetingInput) SetMediaRegion(v string) *CreateMeetingInput {
 	return s
 }
 
+// SetMeetingFeatures sets the MeetingFeatures field's value.
+func (s *CreateMeetingInput) SetMeetingFeatures(v *MeetingFeaturesConfiguration) *CreateMeetingInput {
+	s.MeetingFeatures = v
+	return s
+}
+
 // SetMeetingHostId sets the MeetingHostId field's value.
 func (s *CreateMeetingInput) SetMeetingHostId(v string) *CreateMeetingInput {
 	s.MeetingHostId = &v
@@ -1734,6 +1776,9 @@ type CreateMeetingWithAttendeesInput struct {
 	//
 	// MediaRegion is a required field
 	MediaRegion *string `min:"2" type:"string" required:"true"`
+
+	// Lists the audio and video features enabled for a meeting, such as echo reduction.
+	MeetingFeatures *MeetingFeaturesConfiguration `type:"structure"`
 
 	// Reserved.
 	//
@@ -1835,6 +1880,12 @@ func (s *CreateMeetingWithAttendeesInput) SetExternalMeetingId(v string) *Create
 // SetMediaRegion sets the MediaRegion field's value.
 func (s *CreateMeetingWithAttendeesInput) SetMediaRegion(v string) *CreateMeetingWithAttendeesInput {
 	s.MediaRegion = &v
+	return s
+}
+
+// SetMeetingFeatures sets the MeetingFeatures field's value.
+func (s *CreateMeetingWithAttendeesInput) SetMeetingFeatures(v *MeetingFeaturesConfiguration) *CreateMeetingWithAttendeesInput {
+	s.MeetingFeatures = v
 	return s
 }
 
@@ -2167,16 +2218,16 @@ func (s *EngineTranscribeMedicalSettings) SetVocabularyName(v string) *EngineTra
 type EngineTranscribeSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Set this field to PII to identify personal health information in the transcription
-	// output.
+	// Set this field to PII to identify personally identifiable information in
+	// the transcription output.
 	ContentIdentificationType *string `type:"string" enum:"TranscribeContentIdentificationType"`
 
 	// Set this field to PII to redact personally identifiable information in the
 	// transcription output. Content redaction is performed only upon complete transcription
 	// of the audio segments.
 	//
-	// You can’t set both ContentRedactionType and ContentIdentificationType in
-	// the same request. If you set both, your request returns a BadRequestException.
+	// You can’t set ContentRedactionType and ContentIdentificationType in the
+	// same request. If you set both, your request returns a BadRequestException.
 	ContentRedactionType *string `type:"string" enum:"TranscribeContentRedactionType"`
 
 	// Generates partial transcription results that are less likely to change as
@@ -2865,6 +2916,9 @@ type Meeting struct {
 	// eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
 	MediaRegion *string `min:"2" type:"string"`
 
+	// The features available to a meeting, such as Amazon Voice Focus.
+	MeetingFeatures *MeetingFeaturesConfiguration `type:"structure"`
+
 	// Reserved.
 	//
 	// MeetingHostId is a sensitive parameter and its value will be
@@ -2912,6 +2966,12 @@ func (s *Meeting) SetMediaRegion(v string) *Meeting {
 	return s
 }
 
+// SetMeetingFeatures sets the MeetingFeatures field's value.
+func (s *Meeting) SetMeetingFeatures(v *MeetingFeaturesConfiguration) *Meeting {
+	s.MeetingFeatures = v
+	return s
+}
+
 // SetMeetingHostId sets the MeetingHostId field's value.
 func (s *Meeting) SetMeetingHostId(v string) *Meeting {
 	s.MeetingHostId = &v
@@ -2921,6 +2981,38 @@ func (s *Meeting) SetMeetingHostId(v string) *Meeting {
 // SetMeetingId sets the MeetingId field's value.
 func (s *Meeting) SetMeetingId(v string) *Meeting {
 	s.MeetingId = &v
+	return s
+}
+
+// The configuration settings of the features available to a meeting.
+type MeetingFeaturesConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration settings for the audio features available to a meeting.
+	Audio *AudioFeatures `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeetingFeaturesConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeetingFeaturesConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAudio sets the Audio field's value.
+func (s *MeetingFeaturesConfiguration) SetAudio(v *AudioFeatures) *MeetingFeaturesConfiguration {
+	s.Audio = v
 	return s
 }
 
@@ -3508,6 +3600,22 @@ func (s *UnprocessableEntityException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *UnprocessableEntityException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// MeetingFeatureStatusAvailable is a MeetingFeatureStatus enum value
+	MeetingFeatureStatusAvailable = "AVAILABLE"
+
+	// MeetingFeatureStatusUnavailable is a MeetingFeatureStatus enum value
+	MeetingFeatureStatusUnavailable = "UNAVAILABLE"
+)
+
+// MeetingFeatureStatus_Values returns all elements of the MeetingFeatureStatus enum
+func MeetingFeatureStatus_Values() []string {
+	return []string{
+		MeetingFeatureStatusAvailable,
+		MeetingFeatureStatusUnavailable,
+	}
 }
 
 const (

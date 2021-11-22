@@ -168,6 +168,23 @@
         "zh-CN"
       ]
     },
+    "LanguageIdentification":{
+      "type":"list",
+      "member":{"shape":"LanguageWithScore"}
+    },
+    "LanguageOptions":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^[a-zA-Z-,]+"
+    },
+    "LanguageWithScore":{
+      "type":"structure",
+      "members":{
+        "LanguageCode":{"shape":"LanguageCode"},
+        "Score":{"shape":"Double"}
+      }
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -307,7 +324,9 @@
         "EndTime":{"shape":"Double"},
         "IsPartial":{"shape":"Boolean"},
         "Alternatives":{"shape":"AlternativeList"},
-        "ChannelId":{"shape":"String"}
+        "ChannelId":{"shape":"String"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "LanguageIdentification":{"shape":"LanguageIdentification"}
       }
     },
     "ResultList":{
@@ -480,7 +499,6 @@
     "StartStreamTranscriptionRequest":{
       "type":"structure",
       "required":[
-        "LanguageCode",
         "MediaSampleRateHertz",
         "MediaEncoding",
         "AudioStream"
@@ -566,6 +584,21 @@
           "shape":"ModelName",
           "location":"header",
           "locationName":"x-amzn-transcribe-language-model-name"
+        },
+        "IdentifyLanguage":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-identify-language"
+        },
+        "LanguageOptions":{
+          "shape":"LanguageOptions",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-language-options"
+        },
+        "PreferredLanguage":{
+          "shape":"LanguageCode",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-preferred-language"
         }
       },
       "payload":"AudioStream"
@@ -658,6 +691,21 @@
           "shape":"ModelName",
           "location":"header",
           "locationName":"x-amzn-transcribe-language-model-name"
+        },
+        "IdentifyLanguage":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-identify-language"
+        },
+        "LanguageOptions":{
+          "shape":"LanguageOptions",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-language-options"
+        },
+        "PreferredLanguage":{
+          "shape":"LanguageCode",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-preferred-language"
         }
       },
       "payload":"TranscriptResultStream"

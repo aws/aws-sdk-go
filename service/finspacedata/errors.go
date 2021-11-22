@@ -14,12 +14,24 @@ const (
 	// You do not have sufficient access to perform this action.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// The request conflicts with an existing resource.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
 	// The request processing has failed because of an unknown error, exception
 	// or failure.
 	ErrCodeInternalServerException = "InternalServerException"
+
+	// ErrCodeLimitExceededException for service response error code
+	// "LimitExceededException".
+	//
+	// A limit has exceeded.
+	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
@@ -42,7 +54,9 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":     newErrorAccessDeniedException,
+	"ConflictException":         newErrorConflictException,
 	"InternalServerException":   newErrorInternalServerException,
+	"LimitExceededException":    newErrorLimitExceededException,
 	"ResourceNotFoundException": newErrorResourceNotFoundException,
 	"ThrottlingException":       newErrorThrottlingException,
 	"ValidationException":       newErrorValidationException,
