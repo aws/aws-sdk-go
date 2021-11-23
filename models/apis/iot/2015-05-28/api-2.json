@@ -1588,6 +1588,21 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "DescribeManagedJobTemplate":{
+      "name":"DescribeManagedJobTemplate",
+      "http":{
+        "method":"GET",
+        "requestUri":"/managed-job-templates/{templateName}"
+      },
+      "input":{"shape":"DescribeManagedJobTemplateRequest"},
+      "output":{"shape":"DescribeManagedJobTemplateResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeMitigationAction":{
       "name":"DescribeMitigationAction",
       "http":{
@@ -2471,6 +2486,21 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListManagedJobTemplates":{
+      "name":"ListManagedJobTemplates",
+      "http":{
+        "method":"GET",
+        "requestUri":"/managed-job-templates"
+      },
+      "input":{"shape":"ListManagedJobTemplatesRequest"},
+      "output":{"shape":"ListManagedJobTemplatesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "ListMitigationActions":{
@@ -5452,7 +5482,8 @@
         "timeoutConfig":{"shape":"TimeoutConfig"},
         "tags":{"shape":"TagList"},
         "namespaceId":{"shape":"NamespaceId"},
-        "jobTemplateArn":{"shape":"JobTemplateArn"}
+        "jobTemplateArn":{"shape":"JobTemplateArn"},
+        "documentParameters":{"shape":"ParameterMap"}
       }
     },
     "CreateJobResponse":{
@@ -6969,6 +7000,34 @@
         "timeoutConfig":{"shape":"TimeoutConfig"}
       }
     },
+    "DescribeManagedJobTemplateRequest":{
+      "type":"structure",
+      "required":["templateName"],
+      "members":{
+        "templateName":{
+          "shape":"ManagedJobTemplateName",
+          "location":"uri",
+          "locationName":"templateName"
+        },
+        "templateVersion":{
+          "shape":"ManagedTemplateVersion",
+          "location":"querystring",
+          "locationName":"templateVersion"
+        }
+      }
+    },
+    "DescribeManagedJobTemplateResponse":{
+      "type":"structure",
+      "members":{
+        "templateName":{"shape":"ManagedJobTemplateName"},
+        "templateArn":{"shape":"JobTemplateArn"},
+        "description":{"shape":"JobDescription"},
+        "templateVersion":{"shape":"ManagedTemplateVersion"},
+        "environments":{"shape":"Environments"},
+        "documentParameters":{"shape":"DocumentParameters"},
+        "document":{"shape":"JobDocument"}
+      }
+    },
     "DescribeMitigationActionRequest":{
       "type":"structure",
       "required":["actionName"],
@@ -7470,6 +7529,20 @@
       }
     },
     "DisconnectReason":{"type":"string"},
+    "DocumentParameter":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"ParameterKey"},
+        "description":{"shape":"JobDescription"},
+        "regex":{"shape":"Regex"},
+        "example":{"shape":"Example"},
+        "optional":{"shape":"Optional"}
+      }
+    },
+    "DocumentParameters":{
+      "type":"list",
+      "member":{"shape":"DocumentParameter"}
+    },
     "DomainConfigurationArn":{"type":"string"},
     "DomainConfigurationName":{
       "type":"string",
@@ -7622,6 +7695,14 @@
       "type":"string",
       "max":128
     },
+    "Environment":{
+      "type":"string",
+      "pattern":"[^\\p{C}]+"
+    },
+    "Environments":{
+      "type":"list",
+      "member":{"shape":"Environment"}
+    },
     "ErrorCode":{"type":"string"},
     "ErrorInfo":{
       "type":"structure",
@@ -7658,6 +7739,10 @@
         "CERTIFICATE",
         "CA_CERTIFICATE"
       ]
+    },
+    "Example":{
+      "type":"string",
+      "pattern":"[^\\p{C}]+"
     },
     "ExecutionNamePrefix":{"type":"string"},
     "ExecutionNumber":{"type":"long"},
@@ -8220,7 +8305,7 @@
     "IncrementFactor":{
       "type":"double",
       "max":5,
-      "min":1
+      "min":1.1
     },
     "IndexName":{
       "type":"string",
@@ -8265,6 +8350,15 @@
       "fault":true
     },
     "InternalFailureException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"errorMessage"}
+      },
+      "error":{"httpStatusCode":500},
+      "exception":true,
+      "fault":true
+    },
+    "InternalServerException":{
       "type":"structure",
       "members":{
         "message":{"shape":"errorMessage"}
@@ -8371,7 +8465,8 @@
         "jobProcessDetails":{"shape":"JobProcessDetails"},
         "timeoutConfig":{"shape":"TimeoutConfig"},
         "namespaceId":{"shape":"NamespaceId"},
-        "jobTemplateArn":{"shape":"JobTemplateArn"}
+        "jobTemplateArn":{"shape":"JobTemplateArn"},
+        "documentParameters":{"shape":"ParameterMap"}
       }
     },
     "JobArn":{"type":"string"},
@@ -9352,6 +9447,33 @@
       "type":"structure",
       "members":{
         "jobs":{"shape":"JobSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListManagedJobTemplatesRequest":{
+      "type":"structure",
+      "members":{
+        "templateName":{
+          "shape":"ManagedJobTemplateName",
+          "location":"querystring",
+          "locationName":"templateName"
+        },
+        "maxResults":{
+          "shape":"LaserMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListManagedJobTemplatesResponse":{
+      "type":"structure",
+      "members":{
+        "managedJobTemplates":{"shape":"ManagedJobTemplatesSummaryList"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -10336,6 +10458,29 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "ManagedJobTemplateName":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "ManagedJobTemplateSummary":{
+      "type":"structure",
+      "members":{
+        "templateArn":{"shape":"JobTemplateArn"},
+        "templateName":{"shape":"ManagedJobTemplateName"},
+        "description":{"shape":"JobDescription"},
+        "environments":{"shape":"Environments"},
+        "templateVersion":{"shape":"ManagedTemplateVersion"}
+      }
+    },
+    "ManagedJobTemplatesSummaryList":{
+      "type":"list",
+      "member":{"shape":"ManagedJobTemplateSummary"}
+    },
+    "ManagedTemplateVersion":{
+      "type":"string",
+      "pattern":"^[1-9]+.[0-9]+"
+    },
     "Marker":{
       "type":"string",
       "max":1024,
@@ -10645,6 +10790,7 @@
         "id":{"shape":"ElasticsearchId"}
       }
     },
+    "Optional":{"type":"boolean"},
     "OptionalVersion":{"type":"long"},
     "OutgoingCertificate":{
       "type":"structure",
@@ -10668,6 +10814,23 @@
       "min":1
     },
     "Parameter":{"type":"string"},
+    "ParameterKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "ParameterMap":{
+      "type":"map",
+      "key":{"shape":"ParameterKey"},
+      "value":{"shape":"ParameterValue"}
+    },
+    "ParameterValue":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[^\\p{C}]+"
+    },
     "Parameters":{
       "type":"map",
       "key":{"shape":"Parameter"},
@@ -10956,6 +11119,7 @@
     },
     "Recursive":{"type":"boolean"},
     "RecursiveWithoutDefault":{"type":"boolean"},
+    "Regex":{"type":"string"},
     "RegisterCACertificateRequest":{
       "type":"structure",
       "required":[

@@ -304,6 +304,7 @@
         {"shape":"UserAlreadyExistsFault"},
         {"shape":"UserQuotaExceededFault"},
         {"shape":"DuplicateUserNameFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"},
         {"shape":"TagQuotaPerResourceExceeded"}
@@ -324,6 +325,7 @@
         {"shape":"UserNotFoundFault"},
         {"shape":"DuplicateUserNameFault"},
         {"shape":"UserGroupAlreadyExistsFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"DefaultUserRequired"},
         {"shape":"UserGroupQuotaExceededFault"},
         {"shape":"InvalidParameterValueException"},
@@ -505,6 +507,7 @@
       "errors":[
         {"shape":"InvalidUserStateFault"},
         {"shape":"UserNotFoundFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"DefaultUserAssociatedToUserGroupFault"}
       ]
@@ -523,6 +526,7 @@
       "errors":[
         {"shape":"UserGroupNotFoundFault"},
         {"shape":"InvalidUserGroupStateFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"InvalidParameterValueException"}
       ]
     },
@@ -785,6 +789,7 @@
       },
       "errors":[
         {"shape":"UserGroupNotFoundFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
@@ -801,6 +806,7 @@
       },
       "errors":[
         {"shape":"UserNotFoundFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
@@ -1074,6 +1080,7 @@
       "errors":[
         {"shape":"UserNotFoundFault"},
         {"shape":"InvalidUserStateFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -1093,6 +1100,7 @@
         {"shape":"UserGroupNotFoundFault"},
         {"shape":"UserNotFoundFault"},
         {"shape":"DuplicateUserNameFault"},
+        {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"DefaultUserRequired"},
         {"shape":"InvalidUserGroupStateFault"},
         {"shape":"InvalidParameterValueException"},
@@ -2073,7 +2081,8 @@
         "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
         "KmsKeyId":{"shape":"String"},
         "UserGroupIds":{"shape":"UserGroupIdListInput"},
-        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"}
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"},
+        "DataTieringEnabled":{"shape":"BooleanOptional"}
       }
     },
     "CreateReplicationGroupResult":{
@@ -2140,6 +2149,13 @@
     "CustomerNodeEndpointList":{
       "type":"list",
       "member":{"shape":"CustomerNodeEndpoint"}
+    },
+    "DataTieringStatus":{
+      "type":"string",
+      "enum":[
+        "enabled",
+        "disabled"
+      ]
     },
     "DecreaseNodeGroupsInGlobalReplicationGroupMessage":{
       "type":"structure",
@@ -3666,7 +3682,8 @@
         "ARN":{"shape":"String"},
         "UserGroupIds":{"shape":"UserGroupIdList"},
         "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationList"},
-        "ReplicationGroupCreateTime":{"shape":"TStamp"}
+        "ReplicationGroupCreateTime":{"shape":"TStamp"},
+        "DataTiering":{"shape":"DataTieringStatus"}
       },
       "wrapper":true
     },
@@ -4044,7 +4061,8 @@
         "AutomaticFailover":{"shape":"AutomaticFailoverStatus"},
         "NodeSnapshots":{"shape":"NodeSnapshotList"},
         "KmsKeyId":{"shape":"String"},
-        "ARN":{"shape":"String"}
+        "ARN":{"shape":"String"},
+        "DataTiering":{"shape":"DataTieringStatus"}
       },
       "wrapper":true
     },
@@ -4354,6 +4372,7 @@
         "UserName":{"shape":"String"},
         "Status":{"shape":"String"},
         "Engine":{"shape":"EngineType"},
+        "MinimumEngineVersion":{"shape":"String"},
         "AccessString":{"shape":"String"},
         "UserGroupIds":{"shape":"UserGroupIdList"},
         "Authentication":{"shape":"Authentication"},
@@ -4378,6 +4397,7 @@
         "Status":{"shape":"String"},
         "Engine":{"shape":"EngineType"},
         "UserIds":{"shape":"UserIdList"},
+        "MinimumEngineVersion":{"shape":"String"},
         "PendingChanges":{"shape":"UserGroupPendingChanges"},
         "ReplicationGroups":{"shape":"UGReplicationGroupIdList"},
         "ARN":{"shape":"String"}

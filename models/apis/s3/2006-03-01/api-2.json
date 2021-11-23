@@ -4368,7 +4368,9 @@
           "shape":"TagSet",
           "flattened":true,
           "locationName":"Tag"
-        }
+        },
+        "ObjectSizeGreaterThan":{"shape":"ObjectSizeGreaterThanBytes"},
+        "ObjectSizeLessThan":{"shape":"ObjectSizeLessThanBytes"}
       }
     },
     "LifecycleRuleFilter":{
@@ -4376,6 +4378,8 @@
       "members":{
         "Prefix":{"shape":"Prefix"},
         "Tag":{"shape":"Tag"},
+        "ObjectSizeGreaterThan":{"shape":"ObjectSizeGreaterThanBytes"},
+        "ObjectSizeLessThan":{"shape":"ObjectSizeLessThanBytes"},
         "And":{"shape":"LifecycleRuleAndOperator"}
       }
     },
@@ -5019,14 +5023,16 @@
     "NoncurrentVersionExpiration":{
       "type":"structure",
       "members":{
-        "NoncurrentDays":{"shape":"Days"}
+        "NoncurrentDays":{"shape":"Days"},
+        "NewerNoncurrentVersions":{"shape":"VersionCount"}
       }
     },
     "NoncurrentVersionTransition":{
       "type":"structure",
       "members":{
         "NoncurrentDays":{"shape":"Days"},
-        "StorageClass":{"shape":"TransitionStorageClass"}
+        "StorageClass":{"shape":"TransitionStorageClass"},
+        "NewerNoncurrentVersions":{"shape":"VersionCount"}
       }
     },
     "NoncurrentVersionTransitionList":{
@@ -5190,6 +5196,8 @@
         "ObjectWriter"
       ]
     },
+    "ObjectSizeGreaterThanBytes":{"type":"long"},
+    "ObjectSizeLessThanBytes":{"type":"long"},
     "ObjectStorageClass":{
       "type":"string",
       "enum":[
@@ -7555,6 +7563,7 @@
       }
     },
     "Value":{"type":"string"},
+    "VersionCount":{"type":"integer"},
     "VersionIdMarker":{"type":"string"},
     "VersioningConfiguration":{
       "type":"structure",

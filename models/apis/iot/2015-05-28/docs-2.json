@@ -21,7 +21,7 @@
     "CreateAuditSuppression": "<p> Creates a Device Defender audit suppression. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateAuditSuppression</a> action.</p>",
     "CreateAuthorizer": "<p>Creates an authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateAuthorizer</a> action.</p>",
     "CreateBillingGroup": "<p>Creates a billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateBillingGroup</a> action.</p>",
-    "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p> <b>Note:</b> The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCertificateFromCsr</a> action.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr Amazon Web Services CLI command to create a certificate for the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
+    "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p> <b>Note:</b> The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST P-512 curves. For supported certificates, consult <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms\"> Certificate signing algorithms supported by IoT</a>.</p> <p> <b>Note:</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCertificateFromCsr</a> action.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr Amazon Web Services CLI command to create a certificate for the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
     "CreateCustomMetric": "<p> Use this API to define a Custom Metric published by your devices to Device Defender. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCustomMetric</a> action.</p>",
     "CreateDimension": "<p>Create a dimension that you can use to limit the scope of a metric used in a security profile for IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateDimension</a> action.</p>",
     "CreateDomainConfiguration": "<p>Creates a domain configuration.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateDomainConfiguration</a> action.</p>",
@@ -99,6 +99,7 @@
     "DescribeJob": "<p>Describes a job.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeJob</a> action.</p>",
     "DescribeJobExecution": "<p>Describes a job execution.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeJobExecution</a> action.</p>",
     "DescribeJobTemplate": "<p>Returns information about a job template.</p>",
+    "DescribeManagedJobTemplate": "<p>View details of a managed job template.</p>",
     "DescribeMitigationAction": "<p>Gets information about a mitigation action.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeMitigationAction</a> action.</p>",
     "DescribeProvisioningTemplate": "<p>Returns information about a fleet provisioning template.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeProvisioningTemplate</a> action.</p>",
     "DescribeProvisioningTemplateVersion": "<p>Returns information about a fleet provisioning template version.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeProvisioningTemplateVersion</a> action.</p>",
@@ -155,6 +156,7 @@
     "ListJobExecutionsForThing": "<p>Lists the job executions for the specified thing.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListJobExecutionsForThing</a> action.</p>",
     "ListJobTemplates": "<p>Returns a list of job templates.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListJobTemplates</a> action.</p>",
     "ListJobs": "<p>Lists jobs.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListJobs</a> action.</p>",
+    "ListManagedJobTemplates": "<p>Returns a list of managed job templates.</p>",
     "ListMitigationActions": "<p>Gets a list of all mitigation actions that match the specified filter criteria.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListMitigationActions</a> action.</p>",
     "ListOTAUpdates": "<p>Lists OTA updates.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListOTAUpdates</a> action.</p>",
     "ListOutgoingCertificates": "<p>Lists certificates that are being transferred but not yet accepted.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListOutgoingCertificates</a> action.</p>",
@@ -189,10 +191,10 @@
     "PutVerificationStateOnViolation": "<p>Set a verification state and provide a description of that verification state on a violation (detect alarm).</p>",
     "RegisterCACertificate": "<p>Registers a CA certificate with IoT. This CA certificate can then be used to sign device certificates, which can be then registered with IoT. You can register up to 10 CA certificates per Amazon Web Services account that have the same subject field. This enables you to have up to 10 certificate authorities sign your device certificates. If you have more than one CA certificate registered, make sure you pass the CA certificate when you register your device certificates with the <a>RegisterCertificate</a> action.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RegisterCACertificate</a> action.</p>",
     "RegisterCertificate": "<p>Registers a device certificate with IoT. If you have more than one CA certificate that has the same subject field, you must specify the CA certificate that was used to sign the device certificate being registered.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RegisterCertificate</a> action.</p>",
-    "RegisterCertificateWithoutCA": "<p>Register a certificate that does not have a certificate authority (CA).</p>",
+    "RegisterCertificateWithoutCA": "<p>Register a certificate that does not have a certificate authority (CA). For supported certificates, consult <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms\"> Certificate signing algorithms supported by IoT</a>. </p>",
     "RegisterThing": "<p>Provisions a thing in the device registry. RegisterThing calls other IoT control plane APIs. These calls might exceed your account level <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot\"> IoT Throttling Limits</a> and cause throttle errors. Please contact <a href=\"https://console.aws.amazon.com/support/home\">Amazon Web Services Customer Support</a> to raise your throttling limits if necessary.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RegisterThing</a> action.</p>",
     "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. After it is called, the certificate will be returned to the source's account in the INACTIVE state.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RejectCertificateTransfer</a> action.</p>",
-    "RemoveThingFromBillingGroup": "<p>Removes the given thing from the billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RemoveThingFromBillingGroup</a> action.</p>",
+    "RemoveThingFromBillingGroup": "<p>Removes the given thing from the billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RemoveThingFromBillingGroup</a> action.</p> <note> <p>This call is asynchronous. It might take several seconds for the detachment to propagate.</p> </note>",
     "RemoveThingFromThingGroup": "<p>Remove the specified thing from the specified group.</p> <p>You must specify either a <code>thingGroupArn</code> or a <code>thingGroupName</code> to identify the thing group and either a <code>thingArn</code> or a <code>thingName</code> to identify the thing to remove from the thing group. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RemoveThingFromThingGroup</a> action.</p>",
     "ReplaceTopicRule": "<p>Replaces the rule. You must specify all parameters for the new rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ReplaceTopicRule</a> action.</p>",
     "SearchIndex": "<p>The query search index.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">SearchIndex</a> action.</p>",
@@ -1265,7 +1267,7 @@
     "BillingGroupName": {
       "base": null,
       "refs": {
-        "AddThingToBillingGroupRequest$billingGroupName": "<p>The name of the billing group.</p>",
+        "AddThingToBillingGroupRequest$billingGroupName": "<p>The name of the billing group.</p> <note> <p>This call is asynchronous. It might take several seconds for the detachment to propagate.</p> </note>",
         "CreateBillingGroupRequest$billingGroupName": "<p>The name you wish to give to the billing group.</p>",
         "CreateBillingGroupResponse$billingGroupName": "<p>The name you gave to the billing group.</p>",
         "CreateThingRequest$billingGroupName": "<p>The name of the billing group the thing will be added to.</p>",
@@ -1633,7 +1635,7 @@
     "ClientRequestToken": {
       "base": null,
       "refs": {
-        "CreateAuditSuppressionRequest$clientRequestToken": "<p> Each audit supression must have a unique client request token. If you try to create a new audit suppression with the same token as one that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request. </p>",
+        "CreateAuditSuppressionRequest$clientRequestToken": "<p> Each audit supression must have a unique client request token. If you try to create a new audit suppression with the same token as one that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request.</p>",
         "CreateCustomMetricRequest$clientRequestToken": "<p>Each custom metric must have a unique client request token. If you try to create a new custom metric that already exists with a different token, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request. </p>",
         "CreateDimensionRequest$clientRequestToken": "<p>Each dimension must have a unique client request token. If you try to create a new dimension with the same token as a dimension that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request.</p>",
         "StartAuditMitigationActionsTaskRequest$clientRequestToken": "<p>Each audit mitigation task must have a unique client request token. If you try to start a new task with the same token as a task that already exists, an exception occurs. If you omit this value, a unique client request token is generated automatically.</p>",
@@ -1773,9 +1775,9 @@
         "Bucket$count": "<p>The number of documents that have the value counted for the particular bucket.</p>",
         "DescribeThingRegistrationTaskResponse$successCount": "<p>The number of things successfully provisioned.</p>",
         "DescribeThingRegistrationTaskResponse$failureCount": "<p>The number of things that failed to be provisioned.</p>",
-        "GetBucketsAggregationResponse$totalCount": "<p>The total number of documents that fit the query string criteria and contain a value for the Aggregation field targeted in the request.</p>",
+        "GetBucketsAggregationResponse$totalCount": "<p>The total number of things that fit the query string criteria.</p>",
         "GetCardinalityResponse$cardinality": "<p>The approximate count of unique values that match the query.</p>",
-        "Statistics$count": "<p>The count of things that match the query.</p>"
+        "Statistics$count": "<p>The count of things that match the query string criteria and contain a valid aggregation field value.</p>"
       }
     },
     "CreateAuditSuppressionRequest": {
@@ -2735,6 +2737,16 @@
       "refs": {
       }
     },
+    "DescribeManagedJobTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeManagedJobTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeMitigationActionRequest": {
       "base": null,
       "refs": {
@@ -3062,6 +3074,18 @@
         "ThingConnectivity$disconnectReason": "<p>The reason why the client is disconnected. If the thing has been disconnected for approximately an hour, the <code>disconnectReason</code> value might be missing.</p>"
       }
     },
+    "DocumentParameter": {
+      "base": "<p>A map of key-value pairs containing the patterns that need to be replaced in a managed template job document schema. You can use the description of each key as a guidance to specify the inputs during runtime when creating a job.</p>",
+      "refs": {
+        "DocumentParameters$member": null
+      }
+    },
+    "DocumentParameters": {
+      "base": null,
+      "refs": {
+        "DescribeManagedJobTemplateResponse$documentParameters": "<p>A map of key-value pairs that you can use as guidance to specify the inputs for creating a job from a managed template.</p>"
+      }
+    },
     "DomainConfigurationArn": {
       "base": null,
       "refs": {
@@ -3229,6 +3253,19 @@
         "DescribeEndpointRequest$endpointType": "<p>The endpoint type. Valid endpoint types include:</p> <ul> <li> <p> <code>iot:Data</code> - Returns a VeriSign signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Data-ATS</code> - Returns an ATS signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:CredentialProvider</code> - Returns an IoT credentials provider API endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Jobs</code> - Returns an IoT device management Jobs API endpoint.</p> </li> </ul> <p>We strongly recommend that customers use the newer <code>iot:Data-ATS</code> endpoint type to avoid issues related to the widespread distrust of Symantec certificate authorities.</p>"
       }
     },
+    "Environment": {
+      "base": null,
+      "refs": {
+        "Environments$member": null
+      }
+    },
+    "Environments": {
+      "base": null,
+      "refs": {
+        "DescribeManagedJobTemplateResponse$environments": "<p>A list of environments that are supported with the managed job template.</p>",
+        "ManagedJobTemplateSummary$environments": "<p>A list of environments that are supported with the managed job template.</p>"
+      }
+    },
     "ErrorCode": {
       "base": null,
       "refs": {
@@ -3269,6 +3306,12 @@
       "base": null,
       "refs": {
         "EventConfigurations$key": null
+      }
+    },
+    "Example": {
+      "base": null,
+      "refs": {
+        "DocumentParameter$example": "<p>An example illustrating a pattern that need to be replaced in a managed template job document schema.</p>"
       }
     },
     "ExecutionNamePrefix": {
@@ -3892,6 +3935,11 @@
       "refs": {
       }
     },
+    "InternalServerException": {
+      "base": "<p>Internal error from the service that indicates an unexpected error or that the service is unavailable.</p>",
+      "refs": {
+      }
+    },
     "InvalidAggregationException": {
       "base": "<p>The aggregation is invalid.</p>",
       "refs": {
@@ -3993,8 +4041,11 @@
         "CreateJobResponse$description": "<p>The job description.</p>",
         "CreateJobTemplateRequest$description": "<p>A description of the job document.</p>",
         "DescribeJobTemplateResponse$description": "<p>A description of the job template.</p>",
+        "DescribeManagedJobTemplateResponse$description": "<p>The unique description of a managed template.</p>",
+        "DocumentParameter$description": "<p>Description of the map field containing the patterns that need to be replaced in a managed template job document schema.</p>",
         "Job$description": "<p>A short text description of the job.</p>",
         "JobTemplateSummary$description": "<p>A description of the job template.</p>",
+        "ManagedJobTemplateSummary$description": "<p>The description for a managed template.</p>",
         "UpdateJobRequest$description": "<p>A short text description of the job.</p>"
       }
     },
@@ -4004,6 +4055,7 @@
         "CreateJobRequest$document": "<p>The job document. Required if you don't specify a value for <code>documentSource</code>.</p>",
         "CreateJobTemplateRequest$document": "<p>The job document. Required if you don't specify a value for <code>documentSource</code>.</p>",
         "DescribeJobTemplateResponse$document": "<p>The job document.</p>",
+        "DescribeManagedJobTemplateResponse$document": "<p>The document schema for a managed job template.</p>",
         "GetJobDocumentResponse$document": "<p>The job document content.</p>"
       }
     },
@@ -4147,8 +4199,10 @@
         "CreateJobRequest$jobTemplateArn": "<p>The ARN of the job template used to create the job.</p>",
         "CreateJobTemplateResponse$jobTemplateArn": "<p>The ARN of the job template.</p>",
         "DescribeJobTemplateResponse$jobTemplateArn": "<p>The ARN of the job template.</p>",
+        "DescribeManagedJobTemplateResponse$templateArn": "<p>The unique Amazon Resource Name (ARN) of the managed template.</p>",
         "Job$jobTemplateArn": "<p>The ARN of the job template used to create the job.</p>",
-        "JobTemplateSummary$jobTemplateArn": "<p>The ARN of the job template.</p>"
+        "JobTemplateSummary$jobTemplateArn": "<p>The ARN of the job template.</p>",
+        "ManagedJobTemplateSummary$templateArn": "<p>The Amazon Resource Name (ARN) for a managed template.</p>"
       }
     },
     "JobTemplateId": {
@@ -4229,7 +4283,8 @@
         "ListJobExecutionsForJobRequest$maxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListJobExecutionsForThingRequest$maxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListJobTemplatesRequest$maxResults": "<p>The maximum number of results to return in the list.</p>",
-        "ListJobsRequest$maxResults": "<p>The maximum number of results to return per request.</p>"
+        "ListJobsRequest$maxResults": "<p>The maximum number of results to return per request.</p>",
+        "ListManagedJobTemplatesRequest$maxResults": "<p>Maximum number of entries that can be returned.</p>"
       }
     },
     "LastModifiedDate": {
@@ -4478,6 +4533,16 @@
       }
     },
     "ListJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListManagedJobTemplatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListManagedJobTemplatesResponse": {
       "base": null,
       "refs": {
       }
@@ -4874,6 +4939,35 @@
       "refs": {
       }
     },
+    "ManagedJobTemplateName": {
+      "base": null,
+      "refs": {
+        "DescribeManagedJobTemplateRequest$templateName": "<p>The unique name of a managed job template, which is required.</p>",
+        "DescribeManagedJobTemplateResponse$templateName": "<p>The unique name of a managed template, such as <code>AWS-Reboot</code>.</p>",
+        "ListManagedJobTemplatesRequest$templateName": "<p>An optional parameter for template name. If specified, only the versions of the managed job templates that have the specified template name will be returned.</p>",
+        "ManagedJobTemplateSummary$templateName": "<p>The unique Name for a managed template.</p>"
+      }
+    },
+    "ManagedJobTemplateSummary": {
+      "base": "<p>An object that contains information about the managed template.</p>",
+      "refs": {
+        "ManagedJobTemplatesSummaryList$member": null
+      }
+    },
+    "ManagedJobTemplatesSummaryList": {
+      "base": null,
+      "refs": {
+        "ListManagedJobTemplatesResponse$managedJobTemplates": "<p>A list of managed job templates that are returned.</p>"
+      }
+    },
+    "ManagedTemplateVersion": {
+      "base": null,
+      "refs": {
+        "DescribeManagedJobTemplateRequest$templateVersion": "<p>An optional parameter to specify version of a managed template. If not specified, the pre-defined default version is returned.</p>",
+        "DescribeManagedJobTemplateResponse$templateVersion": "<p>The version for a managed template.</p>",
+        "ManagedJobTemplateSummary$templateVersion": "<p>The version for a managed template.</p>"
+      }
+    },
     "Marker": {
       "base": null,
       "refs": {
@@ -5223,6 +5317,8 @@
         "ListJobTemplatesResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListJobsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListJobsResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListManagedJobTemplatesRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
+        "ListManagedJobTemplatesResponse$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListMitigationActionsRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListMitigationActionsResponse$nextToken": "<p>The token for the next set of results.</p>",
         "ListOTAUpdatesRequest$nextToken": "<p>A token used to retrieve the next set of results.</p>",
@@ -5408,6 +5504,12 @@
         "Action$openSearch": "<p>Write data to an Amazon OpenSearch Service domain.</p>"
       }
     },
+    "Optional": {
+      "base": null,
+      "refs": {
+        "DocumentParameter$optional": "<p>Specifies whether a pattern that needs to be replaced in a managed template job document schema is optional or required.</p>"
+      }
+    },
     "OptionalVersion": {
       "base": null,
       "refs": {
@@ -5466,6 +5568,26 @@
       "base": null,
       "refs": {
         "Parameters$key": null
+      }
+    },
+    "ParameterKey": {
+      "base": null,
+      "refs": {
+        "DocumentParameter$key": "<p>Key of the map field containing the patterns that need to be replaced in a managed template job document schema.</p>",
+        "ParameterMap$key": null
+      }
+    },
+    "ParameterMap": {
+      "base": null,
+      "refs": {
+        "CreateJobRequest$documentParameters": "<p>Parameters of a managed template that you can specify to create the job document.</p>",
+        "Job$documentParameters": "<p>A key-value map that pairs the patterns that need to be replaced in a managed template job document schema. You can use the description of each key as a guidance to specify the inputs during runtime when creating a job.</p>"
+      }
+    },
+    "ParameterValue": {
+      "base": null,
+      "refs": {
+        "ParameterMap$value": null
       }
     },
     "Parameters": {
@@ -5963,6 +6085,12 @@
         "ListThingGroupsRequest$recursive": "<p>If true, return child groups as well.</p>"
       }
     },
+    "Regex": {
+      "base": null,
+      "refs": {
+        "DocumentParameter$regex": "<p>A regular expression of the patterns that need to be replaced in a managed template job document schema.</p>"
+      }
+    },
     "RegisterCACertificateRequest": {
       "base": "<p>The input to the RegisterCACertificate operation.</p>",
       "refs": {
@@ -6272,7 +6400,7 @@
         "CreateOTAUpdateRequest$roleArn": "<p>The IAM role that grants Amazon Web Services IoT Core access to the Amazon S3, IoT jobs and Amazon Web Services Code Signing resources to create an OTA update job.</p>",
         "CreateProvisioningTemplateRequest$provisioningRoleArn": "<p>The role ARN for the role associated with the fleet provisioning template. This IoT role grants permission to provision a device.</p>",
         "CreateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
-        "CreateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal assumes to access your S3 files.</p>",
+        "CreateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal to access your S3 files.</p>",
         "DescribeAccountAuditConfigurationResponse$roleArn": "<p>The ARN of the role that grants permission to IoT to access information about your devices, policies, certificates, and other items as required when performing an audit.</p> <p>On the first call to <code>UpdateAccountAuditConfiguration</code>, this parameter is required.</p>",
         "DescribeMitigationActionResponse$roleArn": "<p>The ARN of the IAM role used to apply this action.</p>",
         "DescribeProvisioningTemplateResponse$provisioningRoleArn": "<p>The ARN of the role associated with the provisioning template. This IoT role grants permission to provision a device.</p>",
@@ -6807,7 +6935,7 @@
       }
     },
     "Statistics": {
-      "base": "<p>A map of key-value pairs for all supported statistics. Currently, only count is supported.</p>",
+      "base": "<p>A map of key-value pairs for all supported statistics. For issues with missing or unexpected values for this API, consult <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/fleet-indexing-troubleshooting.html\"> Fleet indexing troubleshooting guide</a>.</p>",
       "refs": {
         "GetStatisticsResponse$statistics": "<p>The statistics returned by the Fleet Indexing service based on the query and aggregation field.</p>"
       }
@@ -8306,6 +8434,7 @@
         "IndexNotReadyException$message": "<p>The message for the exception.</p>",
         "InternalException$message": "<p>The message for the exception.</p>",
         "InternalFailureException$message": "<p>The message for the exception.</p>",
+        "InternalServerException$message": null,
         "InvalidAggregationException$message": null,
         "InvalidQueryException$message": "<p>The message for the exception.</p>",
         "InvalidRequestException$message": "<p>The message for the exception.</p>",

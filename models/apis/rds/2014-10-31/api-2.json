@@ -1919,6 +1919,23 @@
         {"shape":"ReservedDBInstanceQuotaExceededFault"}
       ]
     },
+    "RebootDBCluster":{
+      "name":"RebootDBCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RebootDBClusterMessage"},
+      "output":{
+        "shape":"RebootDBClusterResult",
+        "resultWrapper":"RebootDBClusterResult"
+      },
+      "errors":[
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
+      ]
+    },
     "RebootDBInstance":{
       "name":"RebootDBInstance",
       "http":{
@@ -3002,7 +3019,18 @@
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "Domain":{"shape":"String"},
         "DomainIAMRoleName":{"shape":"String"},
-        "EnableGlobalWriteForwarding":{"shape":"BooleanOptional"}
+        "EnableGlobalWriteForwarding":{"shape":"BooleanOptional"},
+        "DBClusterInstanceClass":{"shape":"String"},
+        "AllocatedStorage":{"shape":"IntegerOptional"},
+        "StorageType":{"shape":"String"},
+        "Iops":{"shape":"IntegerOptional"},
+        "PubliclyAccessible":{"shape":"BooleanOptional"},
+        "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
+        "MonitoringInterval":{"shape":"IntegerOptional"},
+        "MonitoringRoleArn":{"shape":"String"},
+        "EnablePerformanceInsights":{"shape":"BooleanOptional"},
+        "PerformanceInsightsKMSKeyId":{"shape":"String"},
+        "PerformanceInsightsRetentionPeriod":{"shape":"IntegerOptional"}
       }
     },
     "CreateDBClusterParameterGroupMessage":{
@@ -3526,7 +3554,17 @@
         "TagList":{"shape":"TagList"},
         "GlobalWriteForwardingStatus":{"shape":"WriteForwardingStatus"},
         "GlobalWriteForwardingRequested":{"shape":"BooleanOptional"},
-        "PendingModifiedValues":{"shape":"ClusterPendingModifiedValues"}
+        "PendingModifiedValues":{"shape":"ClusterPendingModifiedValues"},
+        "DBClusterInstanceClass":{"shape":"String"},
+        "StorageType":{"shape":"String"},
+        "Iops":{"shape":"IntegerOptional"},
+        "PubliclyAccessible":{"shape":"BooleanOptional"},
+        "AutoMinorVersionUpgrade":{"shape":"Boolean"},
+        "MonitoringInterval":{"shape":"IntegerOptional"},
+        "MonitoringRoleArn":{"shape":"String"},
+        "PerformanceInsightsEnabled":{"shape":"BooleanOptional"},
+        "PerformanceInsightsKMSKeyId":{"shape":"String"},
+        "PerformanceInsightsRetentionPeriod":{"shape":"IntegerOptional"}
       },
       "wrapper":true
     },
@@ -6513,7 +6551,17 @@
         "DeletionProtection":{"shape":"BooleanOptional"},
         "EnableHttpEndpoint":{"shape":"BooleanOptional"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
-        "EnableGlobalWriteForwarding":{"shape":"BooleanOptional"}
+        "EnableGlobalWriteForwarding":{"shape":"BooleanOptional"},
+        "DBClusterInstanceClass":{"shape":"String"},
+        "AllocatedStorage":{"shape":"IntegerOptional"},
+        "StorageType":{"shape":"String"},
+        "Iops":{"shape":"IntegerOptional"},
+        "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
+        "MonitoringInterval":{"shape":"IntegerOptional"},
+        "MonitoringRoleArn":{"shape":"String"},
+        "EnablePerformanceInsights":{"shape":"BooleanOptional"},
+        "PerformanceInsightsKMSKeyId":{"shape":"String"},
+        "PerformanceInsightsRetentionPeriod":{"shape":"IntegerOptional"}
       }
     },
     "ModifyDBClusterParameterGroupMessage":{
@@ -7037,7 +7085,8 @@
         "SupportsKerberosAuthentication":{"shape":"BooleanOptional"},
         "OutpostCapable":{"shape":"Boolean"},
         "SupportedActivityStreamModes":{"shape":"ActivityStreamModeList"},
-        "SupportsGlobalDatabases":{"shape":"Boolean"}
+        "SupportsGlobalDatabases":{"shape":"Boolean"},
+        "SupportsClusters":{"shape":"Boolean"}
       },
       "wrapper":true
     },
@@ -7265,6 +7314,19 @@
     "ReadersArnList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "RebootDBClusterMessage":{
+      "type":"structure",
+      "required":["DBClusterIdentifier"],
+      "members":{
+        "DBClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "RebootDBClusterResult":{
+      "type":"structure",
+      "members":{
+        "DBCluster":{"shape":"DBCluster"}
+      }
     },
     "RebootDBInstanceMessage":{
       "type":"structure",
@@ -7612,7 +7674,11 @@
         "DeletionProtection":{"shape":"BooleanOptional"},
         "CopyTagsToSnapshot":{"shape":"BooleanOptional"},
         "Domain":{"shape":"String"},
-        "DomainIAMRoleName":{"shape":"String"}
+        "DomainIAMRoleName":{"shape":"String"},
+        "DBClusterInstanceClass":{"shape":"String"},
+        "StorageType":{"shape":"String"},
+        "Iops":{"shape":"IntegerOptional"},
+        "PubliclyAccessible":{"shape":"BooleanOptional"}
       }
     },
     "RestoreDBClusterFromSnapshotResult":{
@@ -7648,7 +7714,11 @@
         "Domain":{"shape":"String"},
         "DomainIAMRoleName":{"shape":"String"},
         "ScalingConfiguration":{"shape":"ScalingConfiguration"},
-        "EngineMode":{"shape":"String"}
+        "EngineMode":{"shape":"String"},
+        "DBClusterInstanceClass":{"shape":"String"},
+        "StorageType":{"shape":"String"},
+        "PubliclyAccessible":{"shape":"BooleanOptional"},
+        "Iops":{"shape":"IntegerOptional"}
       }
     },
     "RestoreDBClusterToPointInTimeResult":{

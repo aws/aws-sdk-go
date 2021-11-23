@@ -1873,8 +1873,9 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 // Creates an X.509 certificate using the specified certificate signing request.
 //
 // Note: The CSR must include a public key that is either an RSA key with a
-// length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384
-// curves.
+// length of at least 2048 bits or an ECC key from NIST P-256, NIST P-384, or
+// NIST P-512 curves. For supported certificates, consult Certificate signing
+// algorithms supported by IoT (https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms).
 //
 // Note: Reusing the same certificate signing request (CSR) results in a distinct
 // certificate.
@@ -9193,6 +9194,92 @@ func (c *IoT) DescribeJobTemplateWithContext(ctx aws.Context, input *DescribeJob
 	return out, req.Send()
 }
 
+const opDescribeManagedJobTemplate = "DescribeManagedJobTemplate"
+
+// DescribeManagedJobTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeManagedJobTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeManagedJobTemplate for more information on using the DescribeManagedJobTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeManagedJobTemplateRequest method.
+//    req, resp := client.DescribeManagedJobTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DescribeManagedJobTemplateRequest(input *DescribeManagedJobTemplateInput) (req *request.Request, output *DescribeManagedJobTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDescribeManagedJobTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/managed-job-templates/{templateName}",
+	}
+
+	if input == nil {
+		input = &DescribeManagedJobTemplateInput{}
+	}
+
+	output = &DescribeManagedJobTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeManagedJobTemplate API operation for AWS IoT.
+//
+// View details of a managed job template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeManagedJobTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalServerException
+//   Internal error from the service that indicates an unexpected error or that
+//   the service is unavailable.
+//
+func (c *IoT) DescribeManagedJobTemplate(input *DescribeManagedJobTemplateInput) (*DescribeManagedJobTemplateOutput, error) {
+	req, out := c.DescribeManagedJobTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DescribeManagedJobTemplateWithContext is the same as DescribeManagedJobTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeManagedJobTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DescribeManagedJobTemplateWithContext(ctx aws.Context, input *DescribeManagedJobTemplateInput, opts ...request.Option) (*DescribeManagedJobTemplateOutput, error) {
+	req, out := c.DescribeManagedJobTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeMitigationAction = "DescribeMitigationAction"
 
 // DescribeMitigationActionRequest generates a "aws/request.Request" representing the
@@ -15711,6 +15798,92 @@ func (c *IoT) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInput, fn
 	return p.Err()
 }
 
+const opListManagedJobTemplates = "ListManagedJobTemplates"
+
+// ListManagedJobTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListManagedJobTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListManagedJobTemplates for more information on using the ListManagedJobTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListManagedJobTemplatesRequest method.
+//    req, resp := client.ListManagedJobTemplatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) ListManagedJobTemplatesRequest(input *ListManagedJobTemplatesInput) (req *request.Request, output *ListManagedJobTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListManagedJobTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/managed-job-templates",
+	}
+
+	if input == nil {
+		input = &ListManagedJobTemplatesInput{}
+	}
+
+	output = &ListManagedJobTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListManagedJobTemplates API operation for AWS IoT.
+//
+// Returns a list of managed job templates.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListManagedJobTemplates for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalServerException
+//   Internal error from the service that indicates an unexpected error or that
+//   the service is unavailable.
+//
+func (c *IoT) ListManagedJobTemplates(input *ListManagedJobTemplatesInput) (*ListManagedJobTemplatesOutput, error) {
+	req, out := c.ListManagedJobTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListManagedJobTemplatesWithContext is the same as ListManagedJobTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListManagedJobTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListManagedJobTemplatesWithContext(ctx aws.Context, input *ListManagedJobTemplatesInput, opts ...request.Option) (*ListManagedJobTemplatesOutput, error) {
+	req, out := c.ListManagedJobTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListMitigationActions = "ListMitigationActions"
 
 // ListMitigationActionsRequest generates a "aws/request.Request" representing the
@@ -20617,7 +20790,9 @@ func (c *IoT) RegisterCertificateWithoutCARequest(input *RegisterCertificateWith
 
 // RegisterCertificateWithoutCA API operation for AWS IoT.
 //
-// Register a certificate that does not have a certificate authority (CA).
+// Register a certificate that does not have a certificate authority (CA). For
+// supported certificates, consult Certificate signing algorithms supported
+// by IoT (https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20929,6 +21104,9 @@ func (c *IoT) RemoveThingFromBillingGroupRequest(input *RemoveThingFromBillingGr
 //
 // Requires permission to access the RemoveThingFromBillingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
+//
+// This call is asynchronous. It might take several seconds for the detachment
+// to propagate.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -25692,6 +25870,9 @@ type AddThingToBillingGroupInput struct {
 	BillingGroupArn *string `locationName:"billingGroupArn" type:"string"`
 
 	// The name of the billing group.
+	//
+	// This call is asynchronous. It might take several seconds for the detachment
+	// to propagate.
 	BillingGroupName *string `locationName:"billingGroupName" min:"1" type:"string"`
 
 	// The ARN of the thing to be added to the billing group.
@@ -32070,6 +32251,9 @@ type CreateJobInput struct {
 	// The job document. Required if you don't specify a value for documentSource.
 	Document *string `locationName:"document" type:"string"`
 
+	// Parameters of a managed template that you can specify to create the job document.
+	DocumentParameters map[string]*string `locationName:"documentParameters" type:"map"`
+
 	// An S3 link to the job document. Required if you don't specify a value for
 	// document.
 	//
@@ -32223,6 +32407,12 @@ func (s *CreateJobInput) SetDescription(v string) *CreateJobInput {
 // SetDocument sets the Document field's value.
 func (s *CreateJobInput) SetDocument(v string) *CreateJobInput {
 	s.Document = &v
+	return s
+}
+
+// SetDocumentParameters sets the DocumentParameters field's value.
+func (s *CreateJobInput) SetDocumentParameters(v map[string]*string) *CreateJobInput {
+	s.DocumentParameters = v
 	return s
 }
 
@@ -34300,8 +34490,7 @@ type CreateStreamInput struct {
 	// Files is a required field
 	Files []*StreamFile `locationName:"files" min:"1" type:"list" required:"true"`
 
-	// An IAM role that allows the IoT service principal assumes to access your
-	// S3 files.
+	// An IAM role that allows the IoT service principal to access your S3 files.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
@@ -40031,6 +40220,151 @@ func (s *DescribeJobTemplateOutput) SetTimeoutConfig(v *TimeoutConfig) *Describe
 	return s
 }
 
+type DescribeManagedJobTemplateInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The unique name of a managed job template, which is required.
+	//
+	// TemplateName is a required field
+	TemplateName *string `location:"uri" locationName:"templateName" min:"1" type:"string" required:"true"`
+
+	// An optional parameter to specify version of a managed template. If not specified,
+	// the pre-defined default version is returned.
+	TemplateVersion *string `location:"querystring" locationName:"templateVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeManagedJobTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeManagedJobTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeManagedJobTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeManagedJobTemplateInput"}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *DescribeManagedJobTemplateInput) SetTemplateName(v string) *DescribeManagedJobTemplateInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateVersion sets the TemplateVersion field's value.
+func (s *DescribeManagedJobTemplateInput) SetTemplateVersion(v string) *DescribeManagedJobTemplateInput {
+	s.TemplateVersion = &v
+	return s
+}
+
+type DescribeManagedJobTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique description of a managed template.
+	Description *string `locationName:"description" type:"string"`
+
+	// The document schema for a managed job template.
+	Document *string `locationName:"document" type:"string"`
+
+	// A map of key-value pairs that you can use as guidance to specify the inputs
+	// for creating a job from a managed template.
+	DocumentParameters []*DocumentParameter `locationName:"documentParameters" type:"list"`
+
+	// A list of environments that are supported with the managed job template.
+	Environments []*string `locationName:"environments" type:"list"`
+
+	// The unique Amazon Resource Name (ARN) of the managed template.
+	TemplateArn *string `locationName:"templateArn" min:"1" type:"string"`
+
+	// The unique name of a managed template, such as AWS-Reboot.
+	TemplateName *string `locationName:"templateName" min:"1" type:"string"`
+
+	// The version for a managed template.
+	TemplateVersion *string `locationName:"templateVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeManagedJobTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeManagedJobTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeManagedJobTemplateOutput) SetDescription(v string) *DescribeManagedJobTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDocument sets the Document field's value.
+func (s *DescribeManagedJobTemplateOutput) SetDocument(v string) *DescribeManagedJobTemplateOutput {
+	s.Document = &v
+	return s
+}
+
+// SetDocumentParameters sets the DocumentParameters field's value.
+func (s *DescribeManagedJobTemplateOutput) SetDocumentParameters(v []*DocumentParameter) *DescribeManagedJobTemplateOutput {
+	s.DocumentParameters = v
+	return s
+}
+
+// SetEnvironments sets the Environments field's value.
+func (s *DescribeManagedJobTemplateOutput) SetEnvironments(v []*string) *DescribeManagedJobTemplateOutput {
+	s.Environments = v
+	return s
+}
+
+// SetTemplateArn sets the TemplateArn field's value.
+func (s *DescribeManagedJobTemplateOutput) SetTemplateArn(v string) *DescribeManagedJobTemplateOutput {
+	s.TemplateArn = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *DescribeManagedJobTemplateOutput) SetTemplateName(v string) *DescribeManagedJobTemplateOutput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateVersion sets the TemplateVersion field's value.
+func (s *DescribeManagedJobTemplateOutput) SetTemplateVersion(v string) *DescribeManagedJobTemplateOutput {
+	s.TemplateVersion = &v
+	return s
+}
+
 type DescribeMitigationActionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -42344,6 +42678,82 @@ func (s DisableTopicRuleOutput) GoString() string {
 	return s.String()
 }
 
+// A map of key-value pairs containing the patterns that need to be replaced
+// in a managed template job document schema. You can use the description of
+// each key as a guidance to specify the inputs during runtime when creating
+// a job.
+type DocumentParameter struct {
+	_ struct{} `type:"structure"`
+
+	// Description of the map field containing the patterns that need to be replaced
+	// in a managed template job document schema.
+	Description *string `locationName:"description" type:"string"`
+
+	// An example illustrating a pattern that need to be replaced in a managed template
+	// job document schema.
+	Example *string `locationName:"example" type:"string"`
+
+	// Key of the map field containing the patterns that need to be replaced in
+	// a managed template job document schema.
+	Key *string `locationName:"key" min:"1" type:"string"`
+
+	// Specifies whether a pattern that needs to be replaced in a managed template
+	// job document schema is optional or required.
+	Optional *bool `locationName:"optional" type:"boolean"`
+
+	// A regular expression of the patterns that need to be replaced in a managed
+	// template job document schema.
+	Regex *string `locationName:"regex" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentParameter) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DocumentParameter) SetDescription(v string) *DocumentParameter {
+	s.Description = &v
+	return s
+}
+
+// SetExample sets the Example field's value.
+func (s *DocumentParameter) SetExample(v string) *DocumentParameter {
+	s.Example = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *DocumentParameter) SetKey(v string) *DocumentParameter {
+	s.Key = &v
+	return s
+}
+
+// SetOptional sets the Optional field's value.
+func (s *DocumentParameter) SetOptional(v bool) *DocumentParameter {
+	s.Optional = &v
+	return s
+}
+
+// SetRegex sets the Regex field's value.
+func (s *DocumentParameter) SetRegex(v string) *DocumentParameter {
+	s.Regex = &v
+	return s
+}
+
 // The summary of a domain configuration. A domain configuration specifies custom
 // IoT-specific information about a domain. A domain configuration can be associated
 // with an Amazon Web Services-managed domain (for example, dbc123defghijk.iot.us-west-2.amazonaws.com),
@@ -43024,7 +43434,7 @@ type ExponentialRolloutRate struct {
 	// example, 1.5, but not 1.55).
 	//
 	// IncrementFactor is a required field
-	IncrementFactor *float64 `locationName:"incrementFactor" min:"1" type:"double" required:"true"`
+	IncrementFactor *float64 `locationName:"incrementFactor" min:"1.1" type:"double" required:"true"`
 
 	// The criteria to initiate the increase in rate of rollout for a job.
 	//
@@ -43062,8 +43472,8 @@ func (s *ExponentialRolloutRate) Validate() error {
 	if s.IncrementFactor == nil {
 		invalidParams.Add(request.NewErrParamRequired("IncrementFactor"))
 	}
-	if s.IncrementFactor != nil && *s.IncrementFactor < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("IncrementFactor", 1))
+	if s.IncrementFactor != nil && *s.IncrementFactor < 1.1 {
+		invalidParams.Add(request.NewErrParamMinValue("IncrementFactor", 1.1))
 	}
 	if s.RateIncreaseCriteria == nil {
 		invalidParams.Add(request.NewErrParamRequired("RateIncreaseCriteria"))
@@ -43553,8 +43963,7 @@ type GetBucketsAggregationOutput struct {
 	// count: The number of documents that have that value.
 	Buckets []*Bucket `locationName:"buckets" type:"list"`
 
-	// The total number of documents that fit the query string criteria and contain
-	// a value for the Aggregation field targeted in the request.
+	// The total number of things that fit the query string criteria.
 	TotalCount *int64 `locationName:"totalCount" type:"integer"`
 }
 
@@ -45559,6 +45968,71 @@ func (s *InternalFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Internal error from the service that indicates an unexpected error or that
+// the service is unavailable.
+type InternalServerException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalServerException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalServerException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalServerException(v protocol.ResponseMetadata) error {
+	return &InternalServerException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalServerException) Code() string {
+	return "InternalServerException"
+}
+
+// Message returns the exception's message.
+func (s *InternalServerException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalServerException) OrigErr() error {
+	return nil
+}
+
+func (s *InternalServerException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalServerException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalServerException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The aggregation is invalid.
 type InvalidAggregationException struct {
 	_            struct{}                  `type:"structure"`
@@ -46144,6 +46618,11 @@ type Job struct {
 	// A short text description of the job.
 	Description *string `locationName:"description" type:"string"`
 
+	// A key-value map that pairs the patterns that need to be replaced in a managed
+	// template job document schema. You can use the description of each key as
+	// a guidance to specify the inputs during runtime when creating a job.
+	DocumentParameters map[string]*string `locationName:"documentParameters" type:"map"`
+
 	// Will be true if the job was canceled with the optional force parameter set
 	// to true.
 	ForceCanceled *bool `locationName:"forceCanceled" type:"boolean"`
@@ -46250,6 +46729,12 @@ func (s *Job) SetCreatedAt(v time.Time) *Job {
 // SetDescription sets the Description field's value.
 func (s *Job) SetDescription(v string) *Job {
 	s.Description = &v
+	return s
+}
+
+// SetDocumentParameters sets the DocumentParameters field's value.
+func (s *Job) SetDocumentParameters(v map[string]*string) *Job {
+	s.DocumentParameters = v
 	return s
 }
 
@@ -50126,6 +50611,113 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 	return s
 }
 
+type ListManagedJobTemplatesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Maximum number of entries that can be returned.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// An optional parameter for template name. If specified, only the versions
+	// of the managed job templates that have the specified template name will be
+	// returned.
+	TemplateName *string `location:"querystring" locationName:"templateName" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedJobTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedJobTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListManagedJobTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListManagedJobTemplatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListManagedJobTemplatesInput) SetMaxResults(v int64) *ListManagedJobTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListManagedJobTemplatesInput) SetNextToken(v string) *ListManagedJobTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *ListManagedJobTemplatesInput) SetTemplateName(v string) *ListManagedJobTemplatesInput {
+	s.TemplateName = &v
+	return s
+}
+
+type ListManagedJobTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of managed job templates that are returned.
+	ManagedJobTemplates []*ManagedJobTemplateSummary `locationName:"managedJobTemplates" type:"list"`
+
+	// The token to retrieve the next set of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedJobTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedJobTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetManagedJobTemplates sets the ManagedJobTemplates field's value.
+func (s *ListManagedJobTemplatesOutput) SetManagedJobTemplates(v []*ManagedJobTemplateSummary) *ListManagedJobTemplatesOutput {
+	s.ManagedJobTemplates = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListManagedJobTemplatesOutput) SetNextToken(v string) *ListManagedJobTemplatesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListMitigationActionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -53865,6 +54457,74 @@ func (s *MalformedPolicyException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *MalformedPolicyException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// An object that contains information about the managed template.
+type ManagedJobTemplateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The description for a managed template.
+	Description *string `locationName:"description" type:"string"`
+
+	// A list of environments that are supported with the managed job template.
+	Environments []*string `locationName:"environments" type:"list"`
+
+	// The Amazon Resource Name (ARN) for a managed template.
+	TemplateArn *string `locationName:"templateArn" min:"1" type:"string"`
+
+	// The unique Name for a managed template.
+	TemplateName *string `locationName:"templateName" min:"1" type:"string"`
+
+	// The version for a managed template.
+	TemplateVersion *string `locationName:"templateVersion" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedJobTemplateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedJobTemplateSummary) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ManagedJobTemplateSummary) SetDescription(v string) *ManagedJobTemplateSummary {
+	s.Description = &v
+	return s
+}
+
+// SetEnvironments sets the Environments field's value.
+func (s *ManagedJobTemplateSummary) SetEnvironments(v []*string) *ManagedJobTemplateSummary {
+	s.Environments = v
+	return s
+}
+
+// SetTemplateArn sets the TemplateArn field's value.
+func (s *ManagedJobTemplateSummary) SetTemplateArn(v string) *ManagedJobTemplateSummary {
+	s.TemplateArn = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *ManagedJobTemplateSummary) SetTemplateName(v string) *ManagedJobTemplateSummary {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateVersion sets the TemplateVersion field's value.
+func (s *ManagedJobTemplateSummary) SetTemplateVersion(v string) *ManagedJobTemplateSummary {
+	s.TemplateVersion = &v
+	return s
 }
 
 // The dimension of a metric.
@@ -59419,15 +60079,17 @@ func (s *StatisticalThreshold) SetStatistic(v string) *StatisticalThreshold {
 	return s
 }
 
-// A map of key-value pairs for all supported statistics. Currently, only count
-// is supported.
+// A map of key-value pairs for all supported statistics. For issues with missing
+// or unexpected values for this API, consult Fleet indexing troubleshooting
+// guide (https://docs.aws.amazon.com/iot/latest/developerguide/fleet-indexing-troubleshooting.html).
 type Statistics struct {
 	_ struct{} `type:"structure"`
 
 	// The average of the aggregated field values.
 	Average *float64 `locationName:"average" type:"double"`
 
-	// The count of things that match the query.
+	// The count of things that match the query string criteria and contain a valid
+	// aggregation field value.
 	Count *int64 `locationName:"count" type:"integer"`
 
 	// The maximum aggregated field value.

@@ -474,6 +474,12 @@
         "ServiceSoftwareOptions$UpdateStatus": "<p>The status of your service software update. This field can take the following values: <code> ELIGIBLE</code>, <code>PENDING_UPDATE</code>, <code>IN_PROGRESS</code>, <code>COMPLETED</code>, and <code> NOT_ELIGIBLE</code>. </p>"
       }
     },
+    "DeploymentType": {
+      "base": null,
+      "refs": {
+        "DryRunResults$DeploymentType": "<p> Specifies the way in which Amazon OpenSearch Service applies the update. Possible responses are <code>Blue/Green</code> (the update requires a blue/green deployment), <code>DynamicUpdate</code> (no blue/green required), <code>Undetermined</code> (the domain is undergoing an update and can't predict the deployment type; try again after the update is complete), and <code>None</code> (the request doesn't include any configuration changes). </p>"
+      }
+    },
     "DescribeDomainAutoTunesRequest": {
       "base": "<p>Container for the parameters to the <code>DescribeDomainAutoTunes</code> operation. </p>",
       "refs": {
@@ -757,6 +763,18 @@
         "ReservedInstanceOffering$FixedPrice": "<p>The upfront fixed charge you will pay to purchase the specific reserved OpenSearch instance offering.</p>",
         "ReservedInstanceOffering$UsagePrice": "<p>The rate you are charged for each hour the domain that is using the offering is running.</p>",
         "UpgradeStepItem$ProgressPercent": "<p>The floating point value representing the progress percentage of a particular step.</p>"
+      }
+    },
+    "DryRun": {
+      "base": null,
+      "refs": {
+        "UpdateDomainConfigRequest$DryRun": "<p>This flag, when set to True, specifies whether the <code>UpdateDomain</code> request should return the results of validation checks (DryRunResults) without actually applying the change.</p>"
+      }
+    },
+    "DryRunResults": {
+      "base": null,
+      "refs": {
+        "UpdateDomainConfigResponse$DryRunResults": "<p>Contains result of DryRun. </p>"
       }
     },
     "Duration": {
@@ -1193,6 +1211,12 @@
       "base": "<p> Maximum number of instances that can be instantiated for a given InstanceType. </p>",
       "refs": {
         "InstanceCountLimits$MaximumInstanceCount": null
+      }
+    },
+    "Message": {
+      "base": null,
+      "refs": {
+        "DryRunResults$Message": "<p>Contains an optional message associated with the DryRunResults.</p>"
       }
     },
     "MinimumInstanceCount": {

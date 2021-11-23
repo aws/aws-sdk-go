@@ -1943,7 +1943,9 @@ type CreateChangesetInput struct {
 	//
 	//    * XML - XML source file format.
 	//
-	// For example, you could specify the following for formatParams:
+	// For example, you could specify the following for formatParams: "formatParams":
+	// { "formatType": "CSV", "withHeader": "true", "separator": ",", "compression":"None"
+	// }
 	//
 	// FormatParams is a required field
 	FormatParams map[string]*string `locationName:"formatParams" type:"map" required:"true"`

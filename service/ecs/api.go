@@ -8019,9 +8019,13 @@ type ContainerDefinition struct {
 	// available memory resources for the container instance where the container
 	// is placed. Otherwise, the value of memory is used.
 	//
-	// The Docker daemon reserves a minimum of 4 MiB of memory for a container.
-	// Therefore, we recommend that you specify fewer than 4 MiB of memory for your
-	// containers.
+	// The Docker 20.10.0 or later daemon reserves a minimum of 6 MiB of memory
+	// for a container, so you should not specify fewer than 6 MiB of memory for
+	// your containers.
+	//
+	// The Docker 19.03.13-ce or earlier daemon reserves a minimum of 4 MiB of memory
+	// for a container, so you should not specify fewer than 4 MiB of memory for
+	// your containers.
 	Memory *int64 `locationName:"memory" type:"integer"`
 
 	// The soft limit (in MiB) of memory to reserve for the container. When system
@@ -18677,10 +18681,17 @@ func (s *RunTaskOutput) SetTasks(v []*Task) *RunTaskOutput {
 }
 
 // Information about the platform for the Amazon ECS service or task.
+//
+// For more informataion about RuntimePlatform, see RuntimePlatform (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#runtime-platform)
+// in the Amazon Elastic Container Service Developer Guide.
 type RuntimePlatform struct {
 	_ struct{} `type:"structure"`
 
 	// The CPU architecture.
+	//
+	// You can run your Linux tasks on an ARM-based platform by setting the value
+	// to ARM64. This option is avaiable for tasks that run on Linuc Amazon EC2
+	// instance or Linux containers on Fargate.
 	CpuArchitecture *string `locationName:"cpuArchitecture" type:"string" enum:"CPUArchitecture"`
 
 	// The operating system.

@@ -1,36 +1,39 @@
 {
   "version": "2.0",
-  "service": "<p>AWS IoT Core Device Advisor is a cloud-based, fully managed test capability for validating IoT devices during device software development. Device Advisor provides pre-built tests that you can use to validate IoT devices for reliable and secure connectivity with AWS IoT Core before deploying devices to production. By using Device Advisor, you can confirm that your devices can connect to AWS IoT Core, follow security best practices and, if applicable, receive software updates from IoT Device Management. You can also download signed qualification reports to submit to the AWS Partner Network to get your device qualified for the AWS Partner Device Catalog without the need to send your device in and wait for it to be tested.</p>",
+  "service": "<p>Amazon Web Services IoT Core Device Advisor is a cloud-based, fully managed test capability for validating IoT devices during device software development. Device Advisor provides pre-built tests that you can use to validate IoT devices for reliable and secure connectivity with Amazon Web Services IoT Core before deploying devices to production. By using Device Advisor, you can confirm that your devices can connect to Amazon Web Services IoT Core, follow security best practices and, if applicable, receive software updates from IoT Device Management. You can also download signed qualification reports to submit to the Amazon Web Services Partner Network to get your device qualified for the Amazon Web Services Partner Device Catalog without the need to send your device in and wait for it to be tested.</p>",
   "operations": {
-    "CreateSuiteDefinition": "<p>Creates a Device Advisor test suite.</p>",
-    "DeleteSuiteDefinition": "<p>Deletes a Device Advisor test suite.</p>",
-    "GetSuiteDefinition": "<p>Gets information about a Device Advisor test suite.</p>",
-    "GetSuiteRun": "<p>Gets information about a Device Advisor test suite run.</p>",
-    "GetSuiteRunReport": "<p>Gets a report download link for a successful Device Advisor qualifying test suite run.</p>",
-    "ListSuiteDefinitions": "<p>Lists the Device Advisor test suites you have created.</p>",
-    "ListSuiteRuns": "<p>Lists the runs of the specified Device Advisor test suite. You can list all runs of the test suite, or the runs of a specific version of the test suite.</p>",
-    "ListTagsForResource": "<p>Lists the tags attached to an IoT Device Advisor resource.</p>",
-    "StartSuiteRun": "<p>Starts a Device Advisor test suite run.</p>",
-    "StopSuiteRun": "<p>Stops a Device Advisor test suite run that is currently running.</p>",
-    "TagResource": "<p>Adds to and modifies existing tags of an IoT Device Advisor resource.</p>",
-    "UntagResource": "<p>Removes tags from an IoT Device Advisor resource.</p>",
-    "UpdateSuiteDefinition": "<p>Updates a Device Advisor test suite.</p>"
+    "CreateSuiteDefinition": "<p>Creates a Device Advisor test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateSuiteDefinition</a> action.</p>",
+    "DeleteSuiteDefinition": "<p>Deletes a Device Advisor test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteSuiteDefinition</a> action.</p>",
+    "GetEndpoint": null,
+    "GetSuiteDefinition": "<p>Gets information about a Device Advisor test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetSuiteDefinition</a> action.</p>",
+    "GetSuiteRun": "<p>Gets information about a Device Advisor test suite run.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetSuiteRun</a> action.</p>",
+    "GetSuiteRunReport": "<p>Gets a report download link for a successful Device Advisor qualifying test suite run.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetSuiteRunReport</a> action.</p>",
+    "ListSuiteDefinitions": "<p>Lists the Device Advisor test suites you have created.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSuiteDefinitions</a> action.</p>",
+    "ListSuiteRuns": "<p>Lists the runs of the specified Device Advisor test suite. You can list all runs of the test suite, or the runs of a specific version of the test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSuiteRuns</a> action.</p>",
+    "ListTagsForResource": "<p>Lists the tags attached to an IoT Device Advisor resource.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTagsForResource</a> action.</p>",
+    "StartSuiteRun": "<p>Starts a Device Advisor test suite run.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StartSuiteRun</a> action.</p>",
+    "StopSuiteRun": "<p>Stops a Device Advisor test suite run that is currently running.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StopSuiteRun</a> action.</p>",
+    "TagResource": "<p>Adds to and modifies existing tags of an IoT Device Advisor resource.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">TagResource</a> action.</p>",
+    "UntagResource": "<p>Removes tags from an IoT Device Advisor resource.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UntagResource</a> action.</p>",
+    "UpdateSuiteDefinition": "<p>Updates a Device Advisor test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateSuiteDefinition</a> action.</p>"
   },
   "shapes": {
     "AmazonResourceName": {
       "base": null,
       "refs": {
-        "CreateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Creates a Device Advisor test suite with Amazon Resource name.</p>",
-        "DeviceUnderTest$thingArn": "<p>Lists devices thing arn</p>",
-        "DeviceUnderTest$certificateArn": "<p>Lists devices certificate arn</p>",
+        "CreateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Creates a Device Advisor test suite with Amazon Resource Name (ARN).</p>",
+        "DeviceUnderTest$thingArn": "<p>Lists devices thing ARN.</p>",
+        "DeviceUnderTest$certificateArn": "<p>Lists devices certificate ARN.</p>",
+        "GetEndpointRequest$thingArn": null,
+        "GetEndpointRequest$certificateArn": null,
         "GetSuiteDefinitionResponse$suiteDefinitionArn": "<p>The ARN of the suite definition.</p>",
         "GetSuiteRunResponse$suiteRunArn": "<p>The ARN of the suite run.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the IoT Device Advisor resource.</p>",
-        "StartSuiteRunResponse$suiteRunArn": "<p>Amazon resource name of the started suite run.</p>",
-        "SuiteDefinitionConfiguration$devicePermissionRoleArn": "<p>Gets device permission arn.</p>",
+        "StartSuiteRunResponse$suiteRunArn": "<p>Amazon Resource Name (ARN) of the started suite run.</p>",
+        "SuiteDefinitionConfiguration$devicePermissionRoleArn": "<p>Gets device permission ARN.</p>",
         "TagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource.</p>",
-        "UpdateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Amazon Resource name of the updated test suite.</p>"
+        "UpdateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Amazon Resource Name (ARN) of the updated test suite.</p>"
       }
     },
     "ConflictException": {
@@ -59,7 +62,7 @@
       }
     },
     "DeviceUnderTest": {
-      "base": "<p>Lists all the devices under test</p>",
+      "base": "<p>Information of a test device. Required to provide either a thing ARN or a certificate ARN.</p>",
       "refs": {
         "DeviceUnderTestList$member": null,
         "SuiteRunConfiguration$primaryDevice": "<p>Gets the primary device for suite run.</p>"
@@ -72,6 +75,12 @@
         "SuiteDefinitionInformation$defaultDevices": "<p>Specifies the devices under test for the test suite.</p>"
       }
     },
+    "Endpoint": {
+      "base": null,
+      "refs": {
+        "GetEndpointResponse$endpoint": null
+      }
+    },
     "ErrorReason": {
       "base": null,
       "refs": {
@@ -82,6 +91,16 @@
       "base": null,
       "refs": {
         "TestCaseRun$failure": "<p>Provides test case run failure result.</p>"
+      }
+    },
+    "GetEndpointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetEndpointResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "GetSuiteDefinitionRequest": {
@@ -196,6 +215,12 @@
         "ValidationException$message": "<p>Sends invalid request exception message.</p>"
       }
     },
+    "ParallelRun": {
+      "base": null,
+      "refs": {
+        "SuiteRunConfiguration$parallelRun": null
+      }
+    },
     "QualificationReportDownloadUrl": {
       "base": null,
       "refs": {
@@ -232,7 +257,7 @@
     "Status": {
       "base": null,
       "refs": {
-        "TestCaseRun$status": "<p>Provides test case run status.</p>"
+        "TestCaseRun$status": "<p>Provides test case run status.</p> <ul> <li> <p> <code>PASS</code>: Test passed.</p> </li> <li> <p> <code>FAIL</code>: Test failed.</p> </li> <li> <p> <code>PENDING</code>: Test has not started running but is scheduled.</p> </li> <li> <p> <code>RUNNING</code>: Test is running</p> </li> <li> <p> <code>STOPPING</code>: Test is performing cleanup steps. You will see this status only if you stop a suite run.</p> </li> <li> <p> <code>STOPPED</code> Test is stopped. You will see this status only if you stop a suite run.</p> </li> <li> <p> <code>PASS_WITH_WARNINGS</code>: Test passed with warnings.</p> </li> <li> <p> <code>ERORR</code>: Test faced an error when running due to an internal issue.</p> </li> </ul>"
       }
     },
     "StopSuiteRunRequest": {
@@ -309,7 +334,7 @@
       }
     },
     "SuiteRunInformation": {
-      "base": "<p>Information about the suite run.</p>",
+      "base": "<p>Information about the suite run.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">SuiteRunInformation</a> action.</p>",
       "refs": {
         "SuiteRunsList$member": null
       }
@@ -393,7 +418,7 @@
         "GetSuiteDefinitionResponse$lastModifiedAt": "<p>Date (in Unix epoch time) when the suite definition was last modified.</p>",
         "GetSuiteRunResponse$startTime": "<p>Date (in Unix epoch time) when the test suite run was started.</p>",
         "GetSuiteRunResponse$endTime": "<p>Date (in Unix epoch time) when the test suite run ended.</p>",
-        "StartSuiteRunResponse$createdAt": "<p>Date (in Unix epoch time) when the suite run was created.</p>",
+        "StartSuiteRunResponse$createdAt": "<p>Starts a Device Advisor test suite run based on suite create time.</p>",
         "SuiteDefinitionInformation$createdAt": "<p>Date (in Unix epoch time) when the test suite was created.</p>",
         "SuiteRunInformation$createdAt": "<p>Date (in Unix epoch time) when the suite run was created.</p>",
         "SuiteRunInformation$startedAt": "<p>Date (in Unix epoch time) when the suite run was started.</p>",
@@ -417,29 +442,29 @@
       "base": null,
       "refs": {
         "CreateSuiteDefinitionResponse$suiteDefinitionId": "<p>Creates a Device Advisor test suite with suite UUID.</p>",
-        "DeleteSuiteDefinitionRequest$suiteDefinitionId": "<p>Suite definition Id of the test suite to be deleted.</p>",
-        "GetSuiteDefinitionRequest$suiteDefinitionId": "<p>Suite definition Id of the test suite to get.</p>",
-        "GetSuiteDefinitionResponse$suiteDefinitionId": "<p>Suite definition Id of the suite definition.</p>",
-        "GetSuiteRunReportRequest$suiteDefinitionId": "<p>Suite definition Id of the test suite.</p>",
-        "GetSuiteRunReportRequest$suiteRunId": "<p>Suite run Id of the test suite run.</p>",
-        "GetSuiteRunRequest$suiteDefinitionId": "<p>Suite definition Id for the test suite run.</p>",
-        "GetSuiteRunRequest$suiteRunId": "<p>Suite run Id for the test suite run.</p>",
-        "GetSuiteRunResponse$suiteDefinitionId": "<p>Suite definition Id for the test suite run.</p>",
-        "GetSuiteRunResponse$suiteRunId": "<p>Suite run Id for the test suite run.</p>",
-        "GroupResult$groupId": "<p>Group result Id.</p>",
-        "ListSuiteRunsRequest$suiteDefinitionId": "<p>Lists the test suite runs of the specified test suite based on suite definition Id.</p>",
+        "DeleteSuiteDefinitionRequest$suiteDefinitionId": "<p>Suite definition ID of the test suite to be deleted.</p>",
+        "GetSuiteDefinitionRequest$suiteDefinitionId": "<p>Suite definition ID of the test suite to get.</p>",
+        "GetSuiteDefinitionResponse$suiteDefinitionId": "<p>Suite definition ID of the suite definition.</p>",
+        "GetSuiteRunReportRequest$suiteDefinitionId": "<p>Suite definition ID of the test suite.</p>",
+        "GetSuiteRunReportRequest$suiteRunId": "<p>Suite run ID of the test suite run.</p>",
+        "GetSuiteRunRequest$suiteDefinitionId": "<p>Suite definition ID for the test suite run.</p>",
+        "GetSuiteRunRequest$suiteRunId": "<p>Suite run ID for the test suite run.</p>",
+        "GetSuiteRunResponse$suiteDefinitionId": "<p>Suite definition ID for the test suite run.</p>",
+        "GetSuiteRunResponse$suiteRunId": "<p>Suite run ID for the test suite run.</p>",
+        "GroupResult$groupId": "<p>Group result ID.</p>",
+        "ListSuiteRunsRequest$suiteDefinitionId": "<p>Lists the test suite runs of the specified test suite based on suite definition ID.</p>",
         "SelectedTestList$member": null,
-        "StartSuiteRunRequest$suiteDefinitionId": "<p>Suite definition Id of the test suite.</p>",
-        "StartSuiteRunResponse$suiteRunId": "<p>Suite Run Id of the started suite run.</p>",
-        "StopSuiteRunRequest$suiteDefinitionId": "<p>Suite definition Id of the test suite run to be stopped.</p>",
-        "StopSuiteRunRequest$suiteRunId": "<p>Suite run Id of the test suite run to be stopped.</p>",
-        "SuiteDefinitionInformation$suiteDefinitionId": "<p>Suite definition Id of the test suite.</p>",
-        "SuiteRunInformation$suiteDefinitionId": "<p>Suite definition Id of the suite run.</p>",
-        "SuiteRunInformation$suiteRunId": "<p>Suite run Id of the suite run.</p>",
-        "TestCaseRun$testCaseRunId": "<p>Provides test case run Id.</p>",
-        "TestCaseRun$testCaseDefinitionId": "<p>Provides test case run definition Id.</p>",
-        "UpdateSuiteDefinitionRequest$suiteDefinitionId": "<p>Suite definition Id of the test suite to be updated.</p>",
-        "UpdateSuiteDefinitionResponse$suiteDefinitionId": "<p>Suite definition Id of the updated test suite.</p>"
+        "StartSuiteRunRequest$suiteDefinitionId": "<p>Suite definition ID of the test suite.</p>",
+        "StartSuiteRunResponse$suiteRunId": "<p>Suite Run ID of the started suite run.</p>",
+        "StopSuiteRunRequest$suiteDefinitionId": "<p>Suite definition ID of the test suite run to be stopped.</p>",
+        "StopSuiteRunRequest$suiteRunId": "<p>Suite run ID of the test suite run to be stopped.</p>",
+        "SuiteDefinitionInformation$suiteDefinitionId": "<p>Suite definition ID of the test suite.</p>",
+        "SuiteRunInformation$suiteDefinitionId": "<p>Suite definition ID of the suite run.</p>",
+        "SuiteRunInformation$suiteRunId": "<p>Suite run ID of the suite run.</p>",
+        "TestCaseRun$testCaseRunId": "<p>Provides test case run ID.</p>",
+        "TestCaseRun$testCaseDefinitionId": "<p>Provides test case run definition ID.</p>",
+        "UpdateSuiteDefinitionRequest$suiteDefinitionId": "<p>Suite definition ID of the test suite to be updated.</p>",
+        "UpdateSuiteDefinitionResponse$suiteDefinitionId": "<p>Suite definition ID of the updated test suite.</p>"
       }
     },
     "UntagResourceRequest": {

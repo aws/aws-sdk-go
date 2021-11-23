@@ -1685,8 +1685,8 @@ func (c *Macie2) DescribeOrganizationConfigurationRequest(input *DescribeOrganiz
 
 // DescribeOrganizationConfiguration API operation for Amazon Macie 2.
 //
-// Retrieves the Amazon Macie configuration settings for an Amazon Web Services
-// organization.
+// Retrieves the Amazon Macie configuration settings for an organization in
+// Organizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1791,7 +1791,8 @@ func (c *Macie2) DisableMacieRequest(input *DisableMacieInput) (req *request.Req
 
 // DisableMacie API operation for Amazon Macie 2.
 //
-// Disables an Amazon Macie account and deletes Macie resources for the account.
+// Disables Amazon Macie and deletes all settings and resources for a Macie
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1897,7 +1898,7 @@ func (c *Macie2) DisableOrganizationAdminAccountRequest(input *DisableOrganizati
 // DisableOrganizationAdminAccount API operation for Amazon Macie 2.
 //
 // Disables an account as the delegated Amazon Macie administrator account for
-// an Amazon Web Services organization.
+// an organization in Organizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2426,7 +2427,7 @@ func (c *Macie2) EnableOrganizationAdminAccountRequest(input *EnableOrganization
 // EnableOrganizationAdminAccount API operation for Amazon Macie 2.
 //
 // Designates an account as the delegated Amazon Macie administrator account
-// for an Amazon Web Services organization.
+// for an organization in Organizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2635,8 +2636,8 @@ func (c *Macie2) GetBucketStatisticsRequest(input *GetBucketStatisticsInput) (re
 
 // GetBucketStatistics API operation for Amazon Macie 2.
 //
-// Retrieves (queries) aggregated statistical data for all the S3 buckets that
-// Amazon Macie monitors and analyzes.
+// Retrieves (queries) aggregated statistical data about S3 buckets that Amazon
+// Macie monitors and analyzes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5109,7 +5110,7 @@ func (c *Macie2) ListOrganizationAdminAccountsRequest(input *ListOrganizationAdm
 // ListOrganizationAdminAccounts API operation for Amazon Macie 2.
 //
 // Retrieves information about the delegated Amazon Macie administrator account
-// for an Amazon Web Services organization.
+// for an organization in Organizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6180,8 +6181,8 @@ func (c *Macie2) UpdateMacieSessionRequest(input *UpdateMacieSessionInput) (req 
 
 // UpdateMacieSession API operation for Amazon Macie 2.
 //
-// Suspends or re-enables an Amazon Macie account, or updates the configuration
-// settings for a Macie account.
+// Suspends or re-enables Amazon Macie, or updates the configuration settings
+// for a Macie account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6392,8 +6393,7 @@ func (c *Macie2) UpdateOrganizationConfigurationRequest(input *UpdateOrganizatio
 
 // UpdateOrganizationConfiguration API operation for Amazon Macie 2.
 //
-// Updates the Amazon Macie configuration settings for an Amazon Web Services
-// organization.
+// Updates the Amazon Macie configuration settings for an organization in Organizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6742,14 +6742,14 @@ func (s *AccountLevelPermissions) SetBlockPublicAccess(v *BlockPublicAccess) *Ac
 }
 
 // Provides information about the delegated Amazon Macie administrator account
-// for an Amazon Web Services organization.
+// for an organization in Organizations.
 type AdminAccount struct {
 	_ struct{} `type:"structure"`
 
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The current status of an account as the delegated Amazon Macie administrator
-	// account for an Amazon Web Services organization. Possible values are:
+	// account for an organization in Organizations. Possible values are:
 	Status *string `locationName:"status" type:"string" enum:"AdminStatus"`
 }
 
@@ -8861,7 +8861,12 @@ func (s *CreateFindingsFilterOutput) SetId(v string) *CreateFindingsFilterOutput
 	return s
 }
 
-// Specifies the settings for an Amazon Macie membership invitation.
+// Specifies the settings for an Amazon Macie membership invitation. When you
+// send an invitation, Macie notifies the recipient by creating an Health event
+// for the recipient's account and, if Macie is already enabled for the account,
+// displaying an Accounts badge and notification on the recipient's console.
+// You can optionally notify the recipient by also sending the invitation as
+// an email message.
 type CreateInvitationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10247,7 +10252,7 @@ func (s DescribeOrganizationConfigurationInput) GoString() string {
 }
 
 // Provides information about the Amazon Macie configuration settings for an
-// Amazon Web Services organization.
+// organization in Organizations.
 type DescribeOrganizationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10661,10 +10666,9 @@ func (s EnableMacieOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies an account to designate as a delegated Amazon Macie administrator
-// account for an Amazon Web Services organization. To submit this request,
-// you must be a user of the management account for the Amazon Web Services
-// organization.
+// Specifies an account to designate as the delegated Amazon Macie administrator
+// account for an organization in Organizations. To submit this request, you
+// must be a user of the Organizations management account.
 type EnableOrganizationAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11257,8 +11261,7 @@ func (s GetAdministratorAccountInput) GoString() string {
 type GetAdministratorAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Provides information about an Amazon Macie membership invitation that was
-	// received by an account.
+	// Provides information about an Amazon Macie membership invitation.
 	Administrator *Invitation `locationName:"administrator" type:"structure"`
 }
 
@@ -12277,8 +12280,7 @@ func (s GetMasterAccountInput) GoString() string {
 type GetMasterAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Provides information about an Amazon Macie membership invitation that was
-	// received by an account.
+	// Provides information about an Amazon Macie membership invitation.
 	Master *Invitation `locationName:"master" type:"structure"`
 }
 
@@ -12371,7 +12373,7 @@ type GetMemberOutput struct {
 	MasterAccountId *string `locationName:"masterAccountId" type:"string"`
 
 	// The current status of the relationship between an account and an associated
-	// Amazon Macie administrator account (inviter account). Possible values are:
+	// Amazon Macie administrator account. Possible values are:
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string" enum:"RelationshipStatus"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
@@ -12806,8 +12808,7 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides information about an Amazon Macie membership invitation that was
-// received by an account.
+// Provides information about an Amazon Macie membership invitation.
 type Invitation struct {
 	_ struct{} `type:"structure"`
 
@@ -12818,7 +12819,7 @@ type Invitation struct {
 	InvitedAt *time.Time `locationName:"invitedAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The current status of the relationship between an account and an associated
-	// Amazon Macie administrator account (inviter account). Possible values are:
+	// Amazon Macie administrator account. Possible values are:
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string" enum:"RelationshipStatus"`
 }
 
@@ -14286,7 +14287,7 @@ func (s *ListOrganizationAdminAccountsInput) SetNextToken(v string) *ListOrganiz
 }
 
 // Provides information about the delegated Amazon Macie administrator accounts
-// for an Amazon Web Services organization.
+// for an organization in Organizations.
 type ListOrganizationAdminAccountsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14660,7 +14661,7 @@ type Member struct {
 	MasterAccountId *string `locationName:"masterAccountId" type:"string"`
 
 	// The current status of the relationship between an account and an associated
-	// Amazon Macie administrator account (inviter account). Possible values are:
+	// Amazon Macie administrator account. Possible values are:
 	RelationshipStatus *string `locationName:"relationshipStatus" type:"string" enum:"RelationshipStatus"`
 
 	// A string-to-string map of key-value pairs that specifies the tags (keys and
@@ -18085,7 +18086,7 @@ func (s UpdateMemberSessionOutput) GoString() string {
 }
 
 // Specifies whether to enable Amazon Macie automatically for accounts that
-// are added to an Amazon Web Services organization.
+// are added to an organization in Organizations.
 type UpdateOrganizationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18706,7 +18707,7 @@ func (s *WeeklySchedule) SetDayOfWeek(v string) *WeeklySchedule {
 }
 
 // The current status of an account as the delegated Amazon Macie administrator
-// account for an Amazon Web Services organization. Possible values are:
+// account for an organization in Organizations. Possible values are:
 const (
 	// AdminStatusEnabled is a AdminStatus enum value
 	AdminStatusEnabled = "ENABLED"
@@ -19319,7 +19320,7 @@ func OrderBy_Values() []string {
 }
 
 // The current status of the relationship between an account and an associated
-// Amazon Macie administrator account (inviter account). Possible values are:
+// Amazon Macie administrator account. Possible values are:
 const (
 	// RelationshipStatusEnabled is a RelationshipStatus enum value
 	RelationshipStatusEnabled = "Enabled"

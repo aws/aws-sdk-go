@@ -687,6 +687,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetNetworkAnalyzerConfiguration":{
+      "name":"GetNetworkAnalyzerConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/network-analyzer-configurations/{ConfigurationName}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetNetworkAnalyzerConfigurationRequest"},
+      "output":{"shape":"GetNetworkAnalyzerConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetPartnerAccount":{
       "name":"GetPartnerAccount",
       "http":{
@@ -1336,6 +1353,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "UpdateNetworkAnalyzerConfiguration":{
+      "name":"UpdateNetworkAnalyzerConfiguration",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/network-analyzer-configurations/{ConfigurationName}",
+        "responseCode":204
+      },
+      "input":{"shape":"UpdateNetworkAnalyzerConfigurationRequest"},
+      "output":{"shape":"UpdateNetworkAnalyzerConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
       ]
@@ -2559,6 +2593,25 @@
         "LoRaWAN":{"shape":"LoRaWANMulticastSession"}
       }
     },
+    "GetNetworkAnalyzerConfigurationRequest":{
+      "type":"structure",
+      "required":["ConfigurationName"],
+      "members":{
+        "ConfigurationName":{
+          "shape":"NetworkAnalyzerConfigurationName",
+          "location":"uri",
+          "locationName":"ConfigurationName"
+        }
+      }
+    },
+    "GetNetworkAnalyzerConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "TraceContent":{"shape":"TraceContent"},
+        "WirelessDevices":{"shape":"WirelessDeviceList"},
+        "WirelessGateways":{"shape":"WirelessGatewayList"}
+      }
+    },
     "GetPartnerAccountRequest":{
       "type":"structure",
       "required":[
@@ -3497,6 +3550,12 @@
       "max":10,
       "min":0
     },
+    "NetworkAnalyzerConfigurationName":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"NetworkAnalyzerConfig_Default"
+    },
     "NextToken":{
       "type":"string",
       "max":4096
@@ -4080,6 +4139,13 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TraceContent":{
+      "type":"structure",
+      "members":{
+        "WirelessDeviceFrameInfo":{"shape":"WirelessDeviceFrameInfo"},
+        "LogLevel":{"shape":"LogLevel"}
+      }
+    },
     "TransmitMode":{
       "type":"integer",
       "max":1,
@@ -4197,6 +4263,27 @@
       }
     },
     "UpdateMulticastGroupResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateNetworkAnalyzerConfigurationRequest":{
+      "type":"structure",
+      "required":["ConfigurationName"],
+      "members":{
+        "ConfigurationName":{
+          "shape":"NetworkAnalyzerConfigurationName",
+          "location":"uri",
+          "locationName":"ConfigurationName"
+        },
+        "TraceContent":{"shape":"TraceContent"},
+        "WirelessDevicesToAdd":{"shape":"WirelessDeviceList"},
+        "WirelessDevicesToRemove":{"shape":"WirelessDeviceList"},
+        "WirelessGatewaysToAdd":{"shape":"WirelessGatewayList"},
+        "WirelessGatewaysToRemove":{"shape":"WirelessGatewayList"}
+      }
+    },
+    "UpdateNetworkAnalyzerConfigurationResponse":{
       "type":"structure",
       "members":{
       }
@@ -4353,6 +4440,13 @@
       "type":"list",
       "member":{"shape":"WirelessDeviceEventLogOption"}
     },
+    "WirelessDeviceFrameInfo":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "WirelessDeviceId":{
       "type":"string",
       "max":256
@@ -4365,6 +4459,12 @@
         "ThingName",
         "SidewalkManufacturingSn"
       ]
+    },
+    "WirelessDeviceList":{
+      "type":"list",
+      "member":{"shape":"WirelessDeviceId"},
+      "max":250,
+      "min":0
     },
     "WirelessDeviceLogOption":{
       "type":"structure",
@@ -4447,6 +4547,10 @@
         "WirelessGatewayId",
         "ThingName"
       ]
+    },
+    "WirelessGatewayList":{
+      "type":"list",
+      "member":{"shape":"WirelessGatewayId"}
     },
     "WirelessGatewayLogOption":{
       "type":"structure",

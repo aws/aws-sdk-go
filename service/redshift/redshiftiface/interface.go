@@ -307,13 +307,22 @@ type RedshiftAPI interface {
 	DescribeDataSharesWithContext(aws.Context, *redshift.DescribeDataSharesInput, ...request.Option) (*redshift.DescribeDataSharesOutput, error)
 	DescribeDataSharesRequest(*redshift.DescribeDataSharesInput) (*request.Request, *redshift.DescribeDataSharesOutput)
 
+	DescribeDataSharesPages(*redshift.DescribeDataSharesInput, func(*redshift.DescribeDataSharesOutput, bool) bool) error
+	DescribeDataSharesPagesWithContext(aws.Context, *redshift.DescribeDataSharesInput, func(*redshift.DescribeDataSharesOutput, bool) bool, ...request.Option) error
+
 	DescribeDataSharesForConsumer(*redshift.DescribeDataSharesForConsumerInput) (*redshift.DescribeDataSharesForConsumerOutput, error)
 	DescribeDataSharesForConsumerWithContext(aws.Context, *redshift.DescribeDataSharesForConsumerInput, ...request.Option) (*redshift.DescribeDataSharesForConsumerOutput, error)
 	DescribeDataSharesForConsumerRequest(*redshift.DescribeDataSharesForConsumerInput) (*request.Request, *redshift.DescribeDataSharesForConsumerOutput)
 
+	DescribeDataSharesForConsumerPages(*redshift.DescribeDataSharesForConsumerInput, func(*redshift.DescribeDataSharesForConsumerOutput, bool) bool) error
+	DescribeDataSharesForConsumerPagesWithContext(aws.Context, *redshift.DescribeDataSharesForConsumerInput, func(*redshift.DescribeDataSharesForConsumerOutput, bool) bool, ...request.Option) error
+
 	DescribeDataSharesForProducer(*redshift.DescribeDataSharesForProducerInput) (*redshift.DescribeDataSharesForProducerOutput, error)
 	DescribeDataSharesForProducerWithContext(aws.Context, *redshift.DescribeDataSharesForProducerInput, ...request.Option) (*redshift.DescribeDataSharesForProducerOutput, error)
 	DescribeDataSharesForProducerRequest(*redshift.DescribeDataSharesForProducerInput) (*request.Request, *redshift.DescribeDataSharesForProducerOutput)
+
+	DescribeDataSharesForProducerPages(*redshift.DescribeDataSharesForProducerInput, func(*redshift.DescribeDataSharesForProducerOutput, bool) bool) error
+	DescribeDataSharesForProducerPagesWithContext(aws.Context, *redshift.DescribeDataSharesForProducerInput, func(*redshift.DescribeDataSharesForProducerOutput, bool) bool, ...request.Option) error
 
 	DescribeDefaultClusterParameters(*redshift.DescribeDefaultClusterParametersInput) (*redshift.DescribeDefaultClusterParametersOutput, error)
 	DescribeDefaultClusterParametersWithContext(aws.Context, *redshift.DescribeDefaultClusterParametersInput, ...request.Option) (*redshift.DescribeDefaultClusterParametersOutput, error)
@@ -389,6 +398,13 @@ type RedshiftAPI interface {
 	DescribePartners(*redshift.DescribePartnersInput) (*redshift.DescribePartnersOutput, error)
 	DescribePartnersWithContext(aws.Context, *redshift.DescribePartnersInput, ...request.Option) (*redshift.DescribePartnersOutput, error)
 	DescribePartnersRequest(*redshift.DescribePartnersInput) (*request.Request, *redshift.DescribePartnersOutput)
+
+	DescribeReservedNodeExchangeStatus(*redshift.DescribeReservedNodeExchangeStatusInput) (*redshift.DescribeReservedNodeExchangeStatusOutput, error)
+	DescribeReservedNodeExchangeStatusWithContext(aws.Context, *redshift.DescribeReservedNodeExchangeStatusInput, ...request.Option) (*redshift.DescribeReservedNodeExchangeStatusOutput, error)
+	DescribeReservedNodeExchangeStatusRequest(*redshift.DescribeReservedNodeExchangeStatusInput) (*request.Request, *redshift.DescribeReservedNodeExchangeStatusOutput)
+
+	DescribeReservedNodeExchangeStatusPages(*redshift.DescribeReservedNodeExchangeStatusInput, func(*redshift.DescribeReservedNodeExchangeStatusOutput, bool) bool) error
+	DescribeReservedNodeExchangeStatusPagesWithContext(aws.Context, *redshift.DescribeReservedNodeExchangeStatusInput, func(*redshift.DescribeReservedNodeExchangeStatusOutput, bool) bool, ...request.Option) error
 
 	DescribeReservedNodeOfferings(*redshift.DescribeReservedNodeOfferingsInput) (*redshift.DescribeReservedNodeOfferingsOutput, error)
 	DescribeReservedNodeOfferingsWithContext(aws.Context, *redshift.DescribeReservedNodeOfferingsInput, ...request.Option) (*redshift.DescribeReservedNodeOfferingsOutput, error)
@@ -477,6 +493,13 @@ type RedshiftAPI interface {
 	GetClusterCredentials(*redshift.GetClusterCredentialsInput) (*redshift.GetClusterCredentialsOutput, error)
 	GetClusterCredentialsWithContext(aws.Context, *redshift.GetClusterCredentialsInput, ...request.Option) (*redshift.GetClusterCredentialsOutput, error)
 	GetClusterCredentialsRequest(*redshift.GetClusterCredentialsInput) (*request.Request, *redshift.GetClusterCredentialsOutput)
+
+	GetReservedNodeExchangeConfigurationOptions(*redshift.GetReservedNodeExchangeConfigurationOptionsInput) (*redshift.GetReservedNodeExchangeConfigurationOptionsOutput, error)
+	GetReservedNodeExchangeConfigurationOptionsWithContext(aws.Context, *redshift.GetReservedNodeExchangeConfigurationOptionsInput, ...request.Option) (*redshift.GetReservedNodeExchangeConfigurationOptionsOutput, error)
+	GetReservedNodeExchangeConfigurationOptionsRequest(*redshift.GetReservedNodeExchangeConfigurationOptionsInput) (*request.Request, *redshift.GetReservedNodeExchangeConfigurationOptionsOutput)
+
+	GetReservedNodeExchangeConfigurationOptionsPages(*redshift.GetReservedNodeExchangeConfigurationOptionsInput, func(*redshift.GetReservedNodeExchangeConfigurationOptionsOutput, bool) bool) error
+	GetReservedNodeExchangeConfigurationOptionsPagesWithContext(aws.Context, *redshift.GetReservedNodeExchangeConfigurationOptionsInput, func(*redshift.GetReservedNodeExchangeConfigurationOptionsOutput, bool) bool, ...request.Option) error
 
 	GetReservedNodeExchangeOfferings(*redshift.GetReservedNodeExchangeOfferingsInput) (*redshift.GetReservedNodeExchangeOfferingsOutput, error)
 	GetReservedNodeExchangeOfferingsWithContext(aws.Context, *redshift.GetReservedNodeExchangeOfferingsInput, ...request.Option) (*redshift.GetReservedNodeExchangeOfferingsOutput, error)

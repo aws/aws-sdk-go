@@ -998,6 +998,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidRequestException"},
         {"shape":"MissingParameterValueException"},
         {"shape":"ServiceUnavailableException"}
       ],
@@ -1871,7 +1872,8 @@
     "DescribeRegionSettingsOutput":{
       "type":"structure",
       "members":{
-        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"}
+        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"},
+        "ResourceTypeManagementPreference":{"shape":"ResourceTypeManagementPreference"}
       }
     },
     "DescribeReportJobInput":{
@@ -2981,6 +2983,11 @@
       "type":"list",
       "member":{"shape":"ARN"}
     },
+    "ResourceTypeManagementPreference":{
+      "type":"map",
+      "key":{"shape":"ResourceType"},
+      "value":{"shape":"IsEnabled"}
+    },
     "ResourceTypeOptInPreference":{
       "type":"map",
       "key":{"shape":"ResourceType"},
@@ -3277,7 +3284,8 @@
     "UpdateRegionSettingsInput":{
       "type":"structure",
       "members":{
-        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"}
+        "ResourceTypeOptInPreference":{"shape":"ResourceTypeOptInPreference"},
+        "ResourceTypeManagementPreference":{"shape":"ResourceTypeManagementPreference"}
       }
     },
     "UpdateReportPlanInput":{

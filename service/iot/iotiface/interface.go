@@ -448,6 +448,10 @@ type IoTAPI interface {
 	DescribeJobTemplateWithContext(aws.Context, *iot.DescribeJobTemplateInput, ...request.Option) (*iot.DescribeJobTemplateOutput, error)
 	DescribeJobTemplateRequest(*iot.DescribeJobTemplateInput) (*request.Request, *iot.DescribeJobTemplateOutput)
 
+	DescribeManagedJobTemplate(*iot.DescribeManagedJobTemplateInput) (*iot.DescribeManagedJobTemplateOutput, error)
+	DescribeManagedJobTemplateWithContext(aws.Context, *iot.DescribeManagedJobTemplateInput, ...request.Option) (*iot.DescribeManagedJobTemplateOutput, error)
+	DescribeManagedJobTemplateRequest(*iot.DescribeManagedJobTemplateInput) (*request.Request, *iot.DescribeManagedJobTemplateOutput)
+
 	DescribeMitigationAction(*iot.DescribeMitigationActionInput) (*iot.DescribeMitigationActionOutput, error)
 	DescribeMitigationActionWithContext(aws.Context, *iot.DescribeMitigationActionInput, ...request.Option) (*iot.DescribeMitigationActionOutput, error)
 	DescribeMitigationActionRequest(*iot.DescribeMitigationActionInput) (*request.Request, *iot.DescribeMitigationActionOutput)
@@ -743,6 +747,10 @@ type IoTAPI interface {
 
 	ListJobsPages(*iot.ListJobsInput, func(*iot.ListJobsOutput, bool) bool) error
 	ListJobsPagesWithContext(aws.Context, *iot.ListJobsInput, func(*iot.ListJobsOutput, bool) bool, ...request.Option) error
+
+	ListManagedJobTemplates(*iot.ListManagedJobTemplatesInput) (*iot.ListManagedJobTemplatesOutput, error)
+	ListManagedJobTemplatesWithContext(aws.Context, *iot.ListManagedJobTemplatesInput, ...request.Option) (*iot.ListManagedJobTemplatesOutput, error)
+	ListManagedJobTemplatesRequest(*iot.ListManagedJobTemplatesInput) (*request.Request, *iot.ListManagedJobTemplatesOutput)
 
 	ListMitigationActions(*iot.ListMitigationActionsInput) (*iot.ListMitigationActionsOutput, error)
 	ListMitigationActionsWithContext(aws.Context, *iot.ListMitigationActionsInput, ...request.Option) (*iot.ListMitigationActionsOutput, error)

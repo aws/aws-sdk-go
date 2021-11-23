@@ -156,26 +156,7 @@ func (c *Backup) CreateBackupSelectionRequest(input *CreateBackupSelectionInput)
 // CreateBackupSelection API operation for AWS Backup.
 //
 // Creates a JSON document that specifies a set of resources to assign to a
-// backup plan. Resources can be included by specifying patterns for a ListOfTags
-// and selected Resources.
-//
-// For example, consider the following patterns:
-//
-//    * Resources: "arn:aws:ec2:region:account-id:volume/volume-id"
-//
-//    * ConditionKey:"department" ConditionValue:"finance" ConditionType:"StringEquals"
-//
-//    * ConditionKey:"importance" ConditionValue:"critical" ConditionType:"StringEquals"
-//
-// Using these patterns would back up all Amazon Elastic Block Store (Amazon
-// EBS) volumes that are tagged as "department=finance", "importance=critical",
-// in addition to an EBS volume with the specified volume ID.
-//
-// Resources and conditions are additive in that all resources that match the
-// pattern are selected. This shouldn't be confused with a logical AND, where
-// all conditions must match. The matching patterns are logically put together
-// using the OR operator. In other words, all patterns that match are selected
-// for backup.
+// backup plan. For examples, see Assigning resources programmatically (https://docs.aws.amazon.com/assigning-resources.html#assigning-resources-json).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5584,6 +5565,9 @@ func (c *Backup) PutBackupVaultLockConfigurationRequest(input *PutBackupVaultLoc
 // Vault Lock enforces a minimum and maximum retention period for future backup
 // and copy jobs that target a backup vault.
 //
+// Backup Vault Lock has yet to receive a third-party assessment for SEC 17a-4(f)
+// and CFTC.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6734,6 +6718,10 @@ func (c *Backup) UpdateRecoveryPointLifecycleRequest(input *UpdateRecoveryPointL
 //   Indicates that something is wrong with a parameter's value. For example,
 //   the value is out of range.
 //
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a parameter is of the wrong type.
+//
 //   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
@@ -7139,25 +7127,28 @@ func (s *CalculatedLifecycle) SetMoveToColdStorageAt(v time.Time) *CalculatedLif
 }
 
 // Contains an array of triplets made up of a condition type (such as StringEquals),
-// a key, and a value. Conditions are used to filter resources in a selection
-// that is assigned to a backup plan.
+// a key, and a value. Used to filter resources using their tags and assign
+// them to a backup plan. Case sensitive.
 type Condition struct {
 	_ struct{} `type:"structure"`
 
-	// The key in a key-value pair. For example, in "ec2:ResourceTag/Department":
-	// "accounting", "ec2:ResourceTag/Department" is the key.
+	// The key in a key-value pair. For example, in the tag Department: Accounting,
+	// Department is the key.
 	//
 	// ConditionKey is a required field
 	ConditionKey *string `type:"string" required:"true"`
 
-	// An operation, such as StringEquals, that is applied to a key-value pair used
-	// to filter resources in a selection.
+	// An operation applied to a key-value pair used to assign resources to your
+	// backup plan. Condition only supports StringEquals. For more flexible assignment
+	// options, incluidng StringLike and the ability to exclude resources from your
+	// backup plan, use Conditions (with an "s" on the end) for your BackupSelection
+	// (https://docs.aws.amazon.com/aws-backup/latest/devguide/API_BackupSelection.html).
 	//
 	// ConditionType is a required field
 	ConditionType *string `type:"string" required:"true" enum:"ConditionType"`
 
-	// The value in a key-value pair. For example, in "ec2:ResourceTag/Department":
-	// "accounting", "accounting" is the value.
+	// The value in a key-value pair. For example, in the tag Department: Accounting,
+	// Accounting is the value.
 	//
 	// ConditionValue is a required field
 	ConditionValue *string `type:"string" required:"true"`
@@ -7218,11 +7209,17 @@ func (s *Condition) SetConditionValue(v string) *Condition {
 	return s
 }
 
+// Includes information about tags you define to assign tagged resources to
+// a backup plan.
 type ConditionParameter struct {
 	_ struct{} `type:"structure"`
 
+	// The key in a key-value pair. For example, in the tag Department: Accounting,
+	// Department is the key.
 	ConditionKey *string `type:"string"`
 
+	// The value in a key-value pair. For example, in the tag Department: Accounting,
+	// Accounting is the value.
 	ConditionValue *string `type:"string"`
 }
 
@@ -7256,15 +7253,26 @@ func (s *ConditionParameter) SetConditionValue(v string) *ConditionParameter {
 	return s
 }
 
+// Contains information about which resources to include or exclude from a backup
+// plan using their tags. Conditions are case sensitive.
 type Conditions struct {
 	_ struct{} `type:"structure"`
 
+	// Filters the values of your tagged resources for only those resources that
+	// you tagged with the same value. Also called "exact matching."
 	StringEquals []*ConditionParameter `type:"list"`
 
+	// Filters the values of your tagged resources for matching tag values with
+	// the use of a wildcard character (*) anywhere in the string. For example,
+	// "prod*" or "*rod*" matches the tag value "production".
 	StringLike []*ConditionParameter `type:"list"`
 
+	// Filters the values of your tagged resources for only those resources that
+	// you tagged that do not have the same value. Also called "negated matching."
 	StringNotEquals []*ConditionParameter `type:"list"`
 
+	// Filters the values of your tagged resources for non-matching tag values with
+	// the use of a wildcard character (*) anywhere in the string.
 	StringNotLike []*ConditionParameter `type:"list"`
 }
 
@@ -7426,9 +7434,10 @@ func (s *ControlInputParameter) SetParameterValue(v string) *ControlInputParamet
 }
 
 // A framework consists of one or more controls. Each control has its own control
-// scope. The control scope defines what the control will evaluate. Three examples
-// of control scopes are: a specific backup plan, all backup plans with a specific
-// tag, or all backup plans.
+// scope. The control scope can include one or more resource types, a combination
+// of a tag key and value, or a combination of one resource type and one resource
+// ID. If no scope is specified, evaluations for the rule are triggered when
+// any resource in your recording group changes in configuration.
 //
 // To set a control scope that includes all of a particular resource, leave
 // the ControlScope empty or do not pass it when calling CreateFramework.
@@ -7443,8 +7452,10 @@ type ControlScope struct {
 	// such as EFS or RDS.
 	ComplianceResourceTypes []*string `type:"list"`
 
-	// Describes whether the control scope includes resources with one or more tags.
-	// Each tag is a key-value pair.
+	// The tag key-value pair applied to those Amazon Web Services resources that
+	// you want to trigger an evaluation for a rule. A maximum of one key-value
+	// pair can be provided. The tag value is optional, but it cannot be an empty
+	// string. The structure to assign a tag is: [{"Key":"string","Value":"string"}].
 	Tags map[string]*string `type:"map"`
 }
 
@@ -7758,6 +7769,8 @@ type CreateBackupPlanInput struct {
 	// risk of running the operation twice. If the request includes a CreatorRequestId
 	// that matches an existing backup plan, that plan is returned. This parameter
 	// is optional.
+	//
+	// If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.
 	CreatorRequestId *string `type:"string"`
 }
 
@@ -7904,7 +7917,10 @@ type CreateBackupSelectionInput struct {
 	BackupSelection *Selection `type:"structure" required:"true"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of running the operation twice.
+	// be retried without the risk of running the operation twice. This parameter
+	// is optional.
+	//
+	// If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.
 	CreatorRequestId *string `type:"string"`
 }
 
@@ -8041,7 +8057,10 @@ type CreateBackupVaultInput struct {
 	BackupVaultTags map[string]*string `type:"map" sensitive:"true"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of running the operation twice.
+	// be retried without the risk of running the operation twice. This parameter
+	// is optional.
+	//
+	// If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.
 	CreatorRequestId *string `type:"string"`
 
 	// The server-side encryption key that is used to protect your backups; for
@@ -10531,6 +10550,10 @@ func (s DescribeRegionSettingsInput) GoString() string {
 type DescribeRegionSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns whether a DynamoDB recovery point was taken using Backup's advanced
+	// DynamoDB backup features (https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html).
+	ResourceTypeManagementPreference map[string]*bool `type:"map"`
+
 	// Returns a list of all services along with the opt-in preferences in the Region.
 	ResourceTypeOptInPreference map[string]*bool `type:"map"`
 }
@@ -10551,6 +10574,12 @@ func (s DescribeRegionSettingsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeRegionSettingsOutput) GoString() string {
 	return s.String()
+}
+
+// SetResourceTypeManagementPreference sets the ResourceTypeManagementPreference field's value.
+func (s *DescribeRegionSettingsOutput) SetResourceTypeManagementPreference(v map[string]*bool) *DescribeRegionSettingsOutput {
+	s.ResourceTypeManagementPreference = v
+	return s
 }
 
 // SetResourceTypeOptInPreference sets the ResourceTypeOptInPreference field's value.
@@ -14704,7 +14733,8 @@ type Plan struct {
 	// Contains a list of BackupOptions for each resource type.
 	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
 
-	// The display name of a backup plan.
+	// The display name of a backup plan. Must contain 1 to 50 alphanumeric or '-_.'
+	// characters.
 	//
 	// BackupPlanName is a required field
 	BackupPlanName *string `type:"string" required:"true"`
@@ -14762,7 +14792,8 @@ type PlanInput struct {
 	// are only available for Windows Volume Shadow Copy Service (VSS) backup jobs.
 	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
 
-	// The optional display name of a backup plan.
+	// The display name of a backup plan. Must contain 1 to 50 alphanumeric or '-_.'
+	// characters.
 	//
 	// BackupPlanName is a required field
 	BackupPlanName *string `type:"string" required:"true"`
@@ -14901,7 +14932,10 @@ type PlansListMember struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of running the operation twice.
+	// be retried without the risk of running the operation twice. This parameter
+	// is optional.
+	//
+	// If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.
 	CreatorRequestId *string `type:"string"`
 
 	// The date and time a backup plan is deleted, in Unix format and Coordinated
@@ -15281,18 +15315,19 @@ type PutBackupVaultNotificationsInput struct {
 	// An array of events that indicate the status of jobs to back up resources
 	// to the backup vault.
 	//
+	// For common use cases and code samples, see Using Amazon SNS to track Backup
+	// events (https://docs.aws.amazon.com/aws-backup/latest/devguide/sns-notifications.html).
+	//
 	// The following events are supported:
 	//
-	// BACKUP_JOB_STARTED, BACKUP_JOB_COMPLETED,
+	//    * BACKUP_JOB_STARTED | BACKUP_JOB_COMPLETED
 	//
-	// COPY_JOB_STARTED, COPY_JOB_SUCCESSFUL, COPY_JOB_FAILED,
+	//    * COPY_JOB_STARTED | COPY_JOB_SUCCESSFUL | COPY_JOB_FAILED
 	//
-	// RESTORE_JOB_STARTED, RESTORE_JOB_COMPLETED, and RECOVERY_POINT_MODIFIED.
+	//    * RESTORE_JOB_STARTED | RESTORE_JOB_COMPLETED | RECOVERY_POINT_MODIFIED
 	//
-	// To find failed backup jobs, use BACKUP_JOB_COMPLETED and filter using event
-	// metadata.
-	//
-	// Other events in the following list are deprecated.
+	// Ignore the list below because it includes deprecated events. Refer to the
+	// list above.
 	//
 	// BackupVaultEvents is a required field
 	BackupVaultEvents []*string `type:"list" required:"true"`
@@ -16459,17 +16494,19 @@ type Rule struct {
 	// of resources.
 	RuleId *string `type:"string"`
 
-	// An optional display name for a backup rule.
+	// A display name for a backup rule. Must contain 1 to 50 alphanumeric or '-_.'
+	// characters.
 	//
 	// RuleName is a required field
 	RuleName *string `type:"string" required:"true"`
 
 	// A cron expression in UTC specifying when Backup initiates a backup job. For
-	// more information about cron expressions, see Schedule Expressions for Rules
-	// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
-	// in the Amazon CloudWatch Events User Guide.. Prior to specifying a value
-	// for this parameter, we recommend testing your cron expression using one of
-	// the many available cron generator and testing tools.
+	// more information about Amazon Web Services cron expressions, see Schedule
+	// Expressions for Rules (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
+	// in the Amazon CloudWatch Events User Guide.. Two examples of Amazon Web Services
+	// cron expressions are 15 * ? * * * (take a backup every hour at 15 minutes
+	// past the hour) and 0 12 * * ? * (take a backup every day at 12 noon UTC).
+	// For a table of examples, click the preceding link and scroll down the page.
 	ScheduleExpression *string `type:"string"`
 
 	// A value in minutes after a backup is scheduled before a job will be canceled
@@ -16600,7 +16637,8 @@ type RuleInput struct {
 	// String and GoString methods.
 	RecoveryPointTags map[string]*string `type:"map" sensitive:"true"`
 
-	// An optional display name for a backup rule.
+	// A display name for a backup rule. Must contain 1 to 50 alphanumeric or '-_.'
+	// characters.
 	//
 	// RuleName is a required field
 	RuleName *string `type:"string" required:"true"`
@@ -16723,6 +16761,17 @@ func (s *RuleInput) SetTargetBackupVaultName(v string) *RuleInput {
 type Selection struct {
 	_ struct{} `type:"structure"`
 
+	// A list of conditions that you define to assign resources to your backup plans
+	// using tags. For example, "StringEquals": {"Department": "accounting". Condition
+	// operators are case sensitive.
+	//
+	// Conditions differs from ListOfTags as follows:
+	//
+	//    * When you specify more than one condition, you only assign the resources
+	//    that match ALL conditions (using AND logic).
+	//
+	//    * Conditions supports StringEquals, StringLike, StringNotEquals, and StringNotLike.
+	//    ListOfTags only supports StringEquals.
 	Conditions *Conditions `type:"structure"`
 
 	// The ARN of the IAM role that Backup uses to authenticate when backing up
@@ -16731,19 +16780,37 @@ type Selection struct {
 	// IamRoleArn is a required field
 	IamRoleArn *string `type:"string" required:"true"`
 
-	// An array of conditions used to specify a set of resources to assign to a
-	// backup plan; for example, "StringEquals": {"ec2:ResourceTag/Department":
-	// "accounting". Assigns the backup plan to every resource with at least one
-	// matching tag.
+	// A list of conditions that you define to assign resources to your backup plans
+	// using tags. For example, "StringEquals": {"Department": "accounting". Condition
+	// operators are case sensitive.
+	//
+	// ListOfTags differs from Conditions as follows:
+	//
+	//    * When you specify more than one condition, you assign all resources that
+	//    match AT LEAST ONE condition (using OR logic).
+	//
+	//    * ListOfTags only supports StringEquals. Conditions supports StringEquals,
+	//    StringLike, StringNotEquals, and StringNotLike.
 	ListOfTags []*Condition `type:"list"`
 
+	// A list of Amazon Resource Names (ARNs) to exclude from a backup plan. The
+	// maximum number of ARNs is 500 without wildcards, or 30 ARNs with wildcards.
+	//
+	// If you need to exclude many resources from a backup plan, consider a different
+	// resource selection strategy, such as assigning only one or a few resource
+	// types or refining your resource selection using tags.
 	NotResources []*string `type:"list"`
 
-	// An array of strings that contain Amazon Resource Names (ARNs) of resources
-	// to assign to a backup plan.
+	// A list of Amazon Resource Names (ARNs) to assign to a backup plan. The maximum
+	// number of ARNs is 500 without wildcards, or 30 ARNs with wildcards.
+	//
+	// If you need to assign many resources to a backup plan, consider a different
+	// resource selection strategy, such as assigning all resources of a resource
+	// type or refining your resource selection using tags.
 	Resources []*string `type:"list"`
 
-	// The display name of a resource selection document.
+	// The display name of a resource selection document. Must contain 1 to 50 alphanumeric
+	// or '-_.' characters.
 	//
 	// SelectionName is a required field
 	SelectionName *string `type:"string" required:"true"`
@@ -16843,7 +16910,10 @@ type SelectionsListMember struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of running the operation twice.
+	// be retried without the risk of running the operation twice. This parameter
+	// is optional.
+	//
+	// If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.
 	CreatorRequestId *string `type:"string"`
 
 	// Specifies the IAM role Amazon Resource Name (ARN) to create the target recovery
@@ -17712,7 +17782,8 @@ type TagResourceInput struct {
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
 	// Key-value pairs that are used to help organize your resources. You can assign
-	// your own metadata to the resources you create.
+	// your own metadata to the resources you create. For clarity, this is the structure
+	// to assign tags: [{"Key":"string","Value":"string"}].
 	//
 	// Tags is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by TagResourceInput's
@@ -18384,6 +18455,10 @@ func (s *UpdateRecoveryPointLifecycleOutput) SetRecoveryPointArn(v string) *Upda
 type UpdateRegionSettingsInput struct {
 	_ struct{} `type:"structure"`
 
+	// Enables or disables Backup's advanced DynamoDB backup features (https://docs.aws.amazon.com/aws-backup/latest/devguide/advanced-ddb-backup.html)
+	// for the Region.
+	ResourceTypeManagementPreference map[string]*bool `type:"map"`
+
 	// Updates the list of services along with the opt-in preferences for the Region.
 	ResourceTypeOptInPreference map[string]*bool `type:"map"`
 }
@@ -18404,6 +18479,12 @@ func (s UpdateRegionSettingsInput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateRegionSettingsInput) GoString() string {
 	return s.String()
+}
+
+// SetResourceTypeManagementPreference sets the ResourceTypeManagementPreference field's value.
+func (s *UpdateRegionSettingsInput) SetResourceTypeManagementPreference(v map[string]*bool) *UpdateRegionSettingsInput {
+	s.ResourceTypeManagementPreference = v
+	return s
 }
 
 // SetResourceTypeOptInPreference sets the ResourceTypeOptInPreference field's value.
@@ -18617,7 +18698,10 @@ type VaultListMember struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of running the operation twice.
+	// be retried without the risk of running the operation twice. This parameter
+	// is optional.
+	//
+	// If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.
 	CreatorRequestId *string `type:"string"`
 
 	// The server-side encryption key that is used to protect your backups; for

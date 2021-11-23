@@ -58,12 +58,7 @@ func (c *RDS) AddRoleToDBClusterRequest(input *AddRoleToDBClusterInput) (req *re
 
 // AddRoleToDBCluster API operation for Amazon Relational Database Service.
 //
-// Associates an Identity and Access Management (IAM) role from an Amazon Aurora
-// DB cluster. For more information, see Authorizing Amazon Aurora MySQL to
-// Access Other Amazon Web Services Services on Your Behalf (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Authorizing.html)
-// in the Amazon Aurora User Guide.
-//
-// This action only applies to Aurora DB clusters.
+// Associates an Identity and Access Management (IAM) role with a DB cluster.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -520,7 +515,7 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressRequest(input *AuthorizeDBSecurityG
 // First, EC2 or VPC security groups can be added to the DBSecurityGroup if
 // the application using the database is running on EC2 or VPC instances. Second,
 // IP ranges are available if the application accessing your database is running
-// on the Internet. Required parameters for this API are one of CIDR range,
+// on the internet. Required parameters for this API are one of CIDR range,
 // EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either EC2SecurityGroupName
 // or EC2SecurityGroupId for non-VPC).
 //
@@ -791,8 +786,6 @@ func (c *RDS) CopyDBClusterParameterGroupRequest(input *CopyDBClusterParameterGr
 //
 // Copies the specified DB cluster parameter group.
 //
-// This action only applies to Aurora DB clusters.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -934,14 +927,19 @@ func (c *RDS) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) (r
 // cluster snapshot identified by TargetDBClusterSnapshotIdentifier while that
 // DB cluster snapshot is in "copying" status.
 //
-// For more information on copying encrypted DB cluster snapshots from one Amazon
-// Web Services Region to another, see Copying a Snapshot (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_CopySnapshot.html)
+// For more information on copying encrypted Amazon Aurora DB cluster snapshots
+// from one Amazon Web Services Region to another, see Copying a Snapshot (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_CopySnapshot.html)
 // in the Amazon Aurora User Guide.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1522,18 +1520,22 @@ func (c *RDS) CreateDBClusterRequest(input *CreateDBClusterInput) (req *request.
 
 // CreateDBCluster API operation for Amazon Relational Database Service.
 //
-// Creates a new Amazon Aurora DB cluster.
+// Creates a new Amazon Aurora DB cluster or Multi-AZ DB cluster.
 //
-// You can use the ReplicationSourceIdentifier parameter to create the DB cluster
-// as a read replica of another DB cluster or Amazon RDS MySQL or PostgreSQL
-// DB instance. For cross-region replication where the DB cluster identified
-// by ReplicationSourceIdentifier is encrypted, you must also specify the PreSignedUrl
-// parameter.
+// You can use the ReplicationSourceIdentifier parameter to create an Amazon
+// Aurora DB cluster as a read replica of another DB cluster or Amazon RDS MySQL
+// or PostgreSQL DB instance. For cross-Region replication where the DB cluster
+// identified by ReplicationSourceIdentifier is encrypted, also specify the
+// PreSignedUrl parameter.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1780,9 +1782,14 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 // values for any of the parameters, you must modify the group after creating
 // it using ModifyDBClusterParameterGroup. Once you've created a DB cluster
 // parameter group, you need to associate it with your DB cluster using ModifyDBCluster.
-// When you associate a new DB cluster parameter group with a running DB cluster,
-// you need to reboot the DB instances in the DB cluster without failover for
+//
+// When you associate a new DB cluster parameter group with a running Aurora
+// DB cluster, reboot the DB instances in the DB cluster without failover for
 // the new DB cluster parameter group and associated settings to take effect.
+//
+// When you associate a new DB cluster parameter group with a running Multi-AZ
+// DB cluster, reboot the DB cluster without failover for the new DB cluster
+// parameter group and associated settings to take effect.
 //
 // After you create a DB cluster parameter group, you should wait at least 5
 // minutes before creating your first DB cluster that uses that DB cluster parameter
@@ -1796,10 +1803,14 @@ func (c *RDS) CreateDBClusterParameterGroupRequest(input *CreateDBClusterParamet
 // action to verify that your DB cluster parameter group has been created or
 // modified.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1882,11 +1893,16 @@ func (c *RDS) CreateDBClusterSnapshotRequest(input *CreateDBClusterSnapshotInput
 
 // CreateDBClusterSnapshot API operation for Amazon Relational Database Service.
 //
-// Creates a snapshot of a DB cluster. For more information on Amazon Aurora,
-// see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// Creates a snapshot of a DB cluster.
+//
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3336,10 +3352,14 @@ func (c *RDS) DeleteDBClusterRequest(input *DeleteDBClusterInput) (req *request.
 // and can't be recovered. Manual DB cluster snapshots of the specified DB cluster
 // are not deleted.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3522,10 +3542,14 @@ func (c *RDS) DeleteDBClusterParameterGroupRequest(input *DeleteDBClusterParamet
 // Deletes a specified DB cluster parameter group. The DB cluster parameter
 // group to be deleted can't be associated with any DB clusters.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3614,10 +3638,14 @@ func (c *RDS) DeleteDBClusterSnapshotRequest(input *DeleteDBClusterSnapshotInput
 //
 // The DB cluster snapshot must be in the available state to be deleted.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5212,7 +5240,7 @@ func (c *RDS) DescribeDBClusterBacktracksRequest(input *DescribeDBClusterBacktra
 //
 // Returns information about backtracks for a DB cluster.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
 // This action only applies to Aurora MySQL DB clusters.
@@ -5498,10 +5526,14 @@ func (c *RDS) DescribeDBClusterParameterGroupsRequest(input *DescribeDBClusterPa
 // parameter is specified, the list will contain only the description of the
 // specified DB cluster parameter group.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5641,10 +5673,14 @@ func (c *RDS) DescribeDBClusterParametersRequest(input *DescribeDBClusterParamet
 // Returns the detailed parameter list for a particular DB cluster parameter
 // group.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5789,8 +5825,6 @@ func (c *RDS) DescribeDBClusterSnapshotAttributesRequest(input *DescribeDBCluste
 // a manual DB cluster snapshot, or to make the manual DB cluster snapshot public
 // or private, use the ModifyDBClusterSnapshotAttribute API action.
 //
-// This action only applies to Aurora DB clusters.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5877,10 +5911,15 @@ func (c *RDS) DescribeDBClusterSnapshotsRequest(input *DescribeDBClusterSnapshot
 // Returns information about DB cluster snapshots. This API action supports
 // pagination.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6017,11 +6056,18 @@ func (c *RDS) DescribeDBClustersRequest(input *DescribeDBClustersInput) (req *re
 
 // DescribeDBClusters API operation for Amazon Relational Database Service.
 //
-// Returns information about provisioned Aurora DB clusters. This API supports
-// pagination.
+// Returns information about Amazon Aurora DB clusters and Multi-AZ DB clusters.
+// This API supports pagination.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
+//
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // This operation can also return information for Amazon Neptune DB instances
 // and Amazon DocumentDB instances.
@@ -8070,7 +8116,7 @@ func (c *RDS) DescribeEngineDefaultClusterParametersRequest(input *DescribeEngin
 // Returns the default engine and system parameter information for the cluster
 // database engine.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8781,7 +8827,7 @@ func (c *RDS) DescribeGlobalClustersRequest(input *DescribeGlobalClustersInput) 
 // Returns information about Aurora global database clusters. This API supports
 // pagination.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
 // This action only applies to Aurora DB clusters.
@@ -9329,7 +9375,8 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsRequest(input *DescribeOrderable
 
 // DescribeOrderableDBInstanceOptions API operation for Amazon Relational Database Service.
 //
-// Returns a list of orderable DB instance options for the specified engine.
+// Returns a list of orderable DB instance options for the specified DB engine,
+// DB engine version, and DB instance class.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10232,20 +10279,33 @@ func (c *RDS) FailoverDBClusterRequest(input *FailoverDBClusterInput) (req *requ
 //
 // Forces a failover for a DB cluster.
 //
-// A failover for a DB cluster promotes one of the Aurora Replicas (read-only
-// instances) in the DB cluster to be the primary instance (the cluster writer).
+// For an Aurora DB cluster, failover for a DB cluster promotes one of the Aurora
+// Replicas (read-only instances) in the DB cluster to be the primary DB instance
+// (the cluster writer).
 //
-// Amazon Aurora will automatically fail over to an Aurora Replica, if one exists,
-// when the primary instance fails. You can force a failover when you want to
-// simulate a failure of a primary instance for testing. Because each instance
-// in a DB cluster has its own endpoint address, you will need to clean up and
-// re-establish any existing connections that use those endpoint addresses when
-// the failover is complete.
+// For a Multi-AZ DB cluster, failover for a DB cluster promotes one of the
+// readable standby DB instances (read-only instances) in the DB cluster to
+// be the primary DB instance (the cluster writer).
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// An Amazon Aurora DB cluster automatically fails over to an Aurora Replica,
+// if one exists, when the primary DB instance fails. A Multi-AZ DB cluster
+// automatically fails over to a readbable standby DB instance when the primary
+// DB instance fails.
+//
+// To simulate a failure of a primary instance for testing, you can force a
+// failover. Because each instance in a DB cluster has its own endpoint address,
+// make sure to clean up and re-establish any existing connections that use
+// those endpoint addresses when the failover is complete.
+//
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10922,13 +10982,19 @@ func (c *RDS) ModifyDBClusterRequest(input *ModifyDBClusterInput) (req *request.
 
 // ModifyDBCluster API operation for Amazon Relational Database Service.
 //
-// Modify a setting for an Amazon Aurora DB cluster. You can change one or more
-// database configuration parameters by specifying these parameters and the
-// new values in the request. For more information on Amazon Aurora, see What
-// Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// Modify the settings for an Amazon Aurora DB cluster or a Multi-AZ DB cluster.
+// You can change one or more settings by specifying these parameters and the
+// new values in the request.
+//
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11142,9 +11208,6 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 // one parameter, submit a list of the following: ParameterName, ParameterValue,
 // and ApplyMethod. A maximum of 20 parameters can be modified in a single request.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
-// in the Amazon Aurora User Guide.
-//
 // After you create a DB cluster parameter group, you should wait at least 5
 // minutes before creating your first DB cluster that uses that DB cluster parameter
 // group as the default parameter group. This allows Amazon RDS to fully complete
@@ -11162,7 +11225,15 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 // and retry any transactions that were active when the parameter changes took
 // effect.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
+//
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11269,8 +11340,6 @@ func (c *RDS) ModifyDBClusterSnapshotAttributeRequest(input *ModifyDBClusterSnap
 // a manual DB cluster snapshot, or whether a manual DB cluster snapshot is
 // public or private, use the DescribeDBClusterSnapshotAttributes API action.
 // The accounts are returned as values for the restore attribute.
-//
-// This action only applies to Aurora DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12248,7 +12317,7 @@ func (c *RDS) ModifyGlobalClusterRequest(input *ModifyGlobalClusterInput) (req *
 // Modify a setting for an Amazon Aurora global cluster. You can change one
 // or more database configuration parameters by specifying these parameters
 // and the new values in the request. For more information on Amazon Aurora,
-// see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
 // This action only applies to Aurora DB clusters.
@@ -12519,8 +12588,6 @@ func (c *RDS) PromoteReadReplicaDBClusterRequest(input *PromoteReadReplicaDBClus
 //
 // Promotes a read replica DB cluster to a standalone DB cluster.
 //
-// This action only applies to Aurora DB clusters.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12637,6 +12704,105 @@ func (c *RDS) PurchaseReservedDBInstancesOffering(input *PurchaseReservedDBInsta
 // for more information on using Contexts.
 func (c *RDS) PurchaseReservedDBInstancesOfferingWithContext(ctx aws.Context, input *PurchaseReservedDBInstancesOfferingInput, opts ...request.Option) (*PurchaseReservedDBInstancesOfferingOutput, error) {
 	req, out := c.PurchaseReservedDBInstancesOfferingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRebootDBCluster = "RebootDBCluster"
+
+// RebootDBClusterRequest generates a "aws/request.Request" representing the
+// client's request for the RebootDBCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RebootDBCluster for more information on using the RebootDBCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RebootDBClusterRequest method.
+//    req, resp := client.RebootDBClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RebootDBCluster
+func (c *RDS) RebootDBClusterRequest(input *RebootDBClusterInput) (req *request.Request, output *RebootDBClusterOutput) {
+	op := &request.Operation{
+		Name:       opRebootDBCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RebootDBClusterInput{}
+	}
+
+	output = &RebootDBClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RebootDBCluster API operation for Amazon Relational Database Service.
+//
+// You might need to reboot your DB cluster, usually for maintenance reasons.
+// For example, if you make certain modifications, or if you change the DB cluster
+// parameter group associated with the DB cluster, reboot the DB cluster for
+// the changes to take effect.
+//
+// Rebooting a DB cluster restarts the database engine service. Rebooting a
+// DB cluster results in a momentary outage, during which the DB cluster status
+// is set to rebooting.
+//
+// Use this operation only for a non-Aurora Multi-AZ DB cluster. The Multi-AZ
+// DB clusters feature is in preview and is subject to change.
+//
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Relational Database Service's
+// API operation RebootDBCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//   DBClusterIdentifier doesn't refer to an existing DB cluster.
+//
+//   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//   The requested operation can't be performed while the cluster is in this state.
+//
+//   * ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//   The DB instance isn't in a valid state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RebootDBCluster
+func (c *RDS) RebootDBCluster(input *RebootDBClusterInput) (*RebootDBClusterOutput, error) {
+	req, out := c.RebootDBClusterRequest(input)
+	return out, req.Send()
+}
+
+// RebootDBClusterWithContext is the same as RebootDBCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RebootDBCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RDS) RebootDBClusterWithContext(ctx aws.Context, input *RebootDBClusterInput, opts ...request.Option) (*RebootDBClusterOutput, error) {
+	req, out := c.RebootDBClusterRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12891,7 +13057,7 @@ func (c *RDS) RemoveFromGlobalClusterRequest(input *RemoveFromGlobalClusterInput
 // Detaches an Aurora secondary cluster from an Aurora global database cluster.
 // The cluster becomes a standalone cluster with read-write capability instead
 // of being read-only and receiving data from a primary cluster in a different
-// region.
+// Region.
 //
 // This action only applies to Aurora DB clusters.
 //
@@ -12981,13 +13147,18 @@ func (c *RDS) RemoveRoleFromDBClusterRequest(input *RemoveRoleFromDBClusterInput
 
 // RemoveRoleFromDBCluster API operation for Amazon Relational Database Service.
 //
-// Disassociates an Amazon Web Services Identity and Access Management (IAM)
-// role from an Amazon Aurora DB cluster. For more information, see Authorizing
-// Amazon Aurora MySQL to Access Other Amazon Web Services Services on Your
-// Behalf (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Integrating.Authorizing.html)
+// Removes the asssociation of an Amazon Web Services Identity and Access Management
+// (IAM) role from a DB cluster.
+//
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13352,10 +13523,15 @@ func (c *RDS) ResetDBClusterParameterGroupRequest(input *ResetDBClusterParameter
 // for every DB instance in your DB cluster that you want the updated static
 // parameter to apply to.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13541,7 +13717,7 @@ func (c *RDS) RestoreDBClusterFromS3Request(input *RestoreDBClusterFromS3Input) 
 // cluster in DBClusterIdentifier. You can create DB instances only after the
 // RestoreDBClusterFromS3 action has completed and the DB cluster is available.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora, see What is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
 // This action only applies to Aurora DB clusters. The source DB engine must
@@ -13672,8 +13848,7 @@ func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSna
 
 // RestoreDBClusterFromSnapshot API operation for Amazon Relational Database Service.
 //
-// Creates a new DB cluster from a DB snapshot or DB cluster snapshot. This
-// action only applies to Aurora DB clusters.
+// Creates a new DB cluster from a DB snapshot or DB cluster snapshot.
 //
 // The target DB cluster is created from the source snapshot with a default
 // configuration. If you don't specify a security group, the new DB cluster
@@ -13685,10 +13860,15 @@ func (c *RDS) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromSna
 // cluster in DBClusterIdentifier. You can create DB instances only after the
 // RestoreDBClusterFromSnapshot action has completed and the DB cluster is available.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13835,17 +14015,22 @@ func (c *RDS) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPoin
 // same configuration as the original DB cluster, except that the new DB cluster
 // is created with the default DB security group.
 //
-// This action only restores the DB cluster, not the DB instances for that DB
-// cluster. You must invoke the CreateDBInstance action to create DB instances
-// for the restored DB cluster, specifying the identifier of the restored DB
-// cluster in DBClusterIdentifier. You can create DB instances only after the
-// RestoreDBClusterToPointInTime action has completed and the DB cluster is
-// available.
+// For Aurora, this action only restores the DB cluster, not the DB instances
+// for that DB cluster. You must invoke the CreateDBInstance action to create
+// DB instances for the restored DB cluster, specifying the identifier of the
+// restored DB cluster in DBClusterIdentifier. You can create DB instances only
+// after the RestoreDBClusterToPointInTime action has completed and the DB cluster
+// is available.
 //
-// For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15549,7 +15734,7 @@ type AddRoleToDBClusterInput struct {
 	FeatureName *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to associate with the Aurora
-	// DB cluster, for example, arn:aws:iam::123456789012:role/AuroraAccessRole.
+	// DB cluster, for example arn:aws:iam::123456789012:role/AuroraAccessRole.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
@@ -18652,14 +18837,14 @@ type CreateDBClusterEndpointInput struct {
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
-	// The type of the endpoint. One of: READER, WRITER, ANY.
+	// The type of the endpoint, one of: READER, WRITER, ANY.
 	//
 	// EndpointType is a required field
 	EndpointType *string `type:"string" required:"true"`
 
 	// List of DB instance identifiers that aren't part of the custom endpoint group.
-	// All other eligible instances are reachable through the custom endpoint. Only
-	// relevant if the list of static members is empty.
+	// All other eligible instances are reachable through the custom endpoint. This
+	// parameter is relevant only if the list of static members is empty.
 	ExcludedMembers []*string `type:"list"`
 
 	// List of DB instance identifiers that are part of the custom endpoint group.
@@ -18879,16 +19064,33 @@ func (s *CreateDBClusterEndpointOutput) SetStatus(v string) *CreateDBClusterEndp
 type CreateDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of Availability Zones (AZs) where instances in the DB cluster can
-	// be created. For information on Amazon Web Services Regions and Availability
-	// Zones, see Choosing the Regions and Availability Zones (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.RegionsAndAvailabilityZones.html)
+	// The amount of storage in gibibytes (GiB) to allocate to each DB instance
+	// in the Multi-AZ DB cluster.
+	//
+	// This setting is required to create a Multi-AZ DB cluster.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	AllocatedStorage *int64 `type:"integer"`
+
+	// A value that indicates whether minor engine upgrades are applied automatically
+	// to the DB cluster during the maintenance window. By default, minor engine
+	// upgrades are applied automatically.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
+
+	// A list of Availability Zones (AZs) where DB instances in the DB cluster can
+	// be created.
+	//
+	// For information on Amazon Web Services Regions and Availability Zones, see
+	// Choosing the Regions and Availability Zones (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Concepts.RegionsAndAvailabilityZones.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
 
 	// The target backtrack window, in seconds. To disable backtracking, set this
 	// value to 0.
-	//
-	// Currently, Backtrack is only supported for Aurora MySQL DB clusters.
 	//
 	// Default: 0
 	//
@@ -18896,6 +19098,8 @@ type CreateDBClusterInput struct {
 	//
 	//    * If specified, this value must be set to a number from 0 to 259,200 (72
 	//    hours).
+	//
+	// Valid for: Aurora MySQL DB clusters only
 	BacktrackWindow *int64 `type:"long"`
 
 	// The number of days for which automated backups are retained.
@@ -18905,14 +19109,20 @@ type CreateDBClusterInput struct {
 	// Constraints:
 	//
 	//    * Must be a value from 1 to 35
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// A value that indicates that the DB cluster should be associated with the
 	// specified CharacterSet.
+	//
+	// Valid for: Aurora DB clusters only
 	CharacterSetName *string `type:"string"`
 
 	// A value that indicates whether to copy all tags from the DB cluster to snapshots
 	// of the DB cluster. The default is not to copy them.
+	//
+	// Valid for: Aurora DB clusters only
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The DB cluster identifier. This parameter is stored as a lowercase string.
@@ -18927,8 +19137,23 @@ type CreateDBClusterInput struct {
 	//
 	// Example: my-cluster1
 	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The compute and memory capacity of each DB instance in the Multi-AZ DB cluster,
+	// for example db.m6g.xlarge. Not all DB instance classes are available in all
+	// Amazon Web Services Regions, or for all database engines.
+	//
+	// For the full list of DB instance classes and availability for your engine,
+	// see DB instance class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
+	// in the Amazon RDS User Guide.
+	//
+	// This setting is required to create a Multi-AZ DB cluster.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	DBClusterInstanceClass *string `type:"string"`
 
 	// The name of the DB cluster parameter group to associate with this DB cluster.
 	// If you do not specify a value, then the default DB cluster parameter group
@@ -18938,24 +19163,34 @@ type CreateDBClusterInput struct {
 	//
 	//    * If supplied, must match the name of an existing DB cluster parameter
 	//    group.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBClusterParameterGroupName *string `type:"string"`
 
 	// A DB subnet group to associate with this DB cluster.
+	//
+	// This setting is required to create a Multi-AZ DB cluster.
 	//
 	// Constraints: Must match the name of an existing DBSubnetGroup. Must not be
 	// default.
 	//
 	// Example: mySubnetgroup
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBSubnetGroupName *string `type:"string"`
 
 	// The name for your database of up to 64 alphanumeric characters. If you do
 	// not provide a name, Amazon RDS doesn't create a database in the DB cluster
 	// you are creating.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DatabaseName *string `type:"string"`
 
 	// A value that indicates whether the DB cluster has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled.
+	// deletion protection isn't enabled.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DeletionProtection *bool `type:"boolean"`
 
 	// DestinationRegion is used for presigning the request to a given region.
@@ -18963,14 +19198,19 @@ type CreateDBClusterInput struct {
 
 	// The Active Directory directory ID to create the DB cluster in.
 	//
-	// For Amazon Aurora DB clusters, Amazon RDS can use Kerberos Authentication
-	// to authenticate users that connect to the DB cluster. For more information,
-	// see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/kerberos-authentication.html)
+	// For Amazon Aurora DB clusters, Amazon RDS can use Kerberos authentication
+	// to authenticate users that connect to the DB cluster.
+	//
+	// For more information, see Kerberos authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/kerberos-authentication.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	Domain *string `type:"string"`
 
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
+	//
+	// Valid for: Aurora DB clusters only
 	DomainIAMRoleName *string `type:"string"`
 
 	// The list of log types that need to be enabled for exporting to CloudWatch
@@ -18985,6 +19225,8 @@ type CreateDBClusterInput struct {
 	// Aurora PostgreSQL
 	//
 	// Possible value is postgresql.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
 	// A value that indicates whether to enable this DB cluster to forward write
@@ -18998,6 +19240,8 @@ type CreateDBClusterInput struct {
 	// are replicated back to this cluster. For the primary DB cluster of an Aurora
 	// global database, this value is used immediately if the primary is demoted
 	// by the FailoverGlobalCluster API operation, but it does nothing until then.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
@@ -19009,20 +19253,44 @@ type CreateDBClusterInput struct {
 	//
 	// For more information, see Using the Data API for Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableHttpEndpoint *bool `type:"boolean"`
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
+
+	// A value that indicates whether to turn on Performance Insights for the DB
+	// cluster.
+	//
+	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	EnablePerformanceInsights *bool `type:"boolean"`
 
 	// The name of the database engine to be used for this DB cluster.
 	//
-	// Valid Values: aurora (for MySQL 5.6-compatible Aurora), aurora-mysql (for
-	// MySQL 5.7-compatible Aurora), and aurora-postgresql
+	// Valid Values:
+	//
+	//    * aurora (for MySQL 5.6-compatible Aurora)
+	//
+	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
+	//
+	//    * aurora-postgresql
+	//
+	//    * mysql
+	//
+	//    * postgres
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
@@ -19052,37 +19320,81 @@ type CreateDBClusterInput struct {
 	//    * Limitations of Aurora Global Databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.limitations)
 	//
 	//    * Limitations of Multi-Master Clusters (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-multi-master.html#aurora-multi-master-limitations)
+	//
+	// Valid for: Aurora DB clusters only
 	EngineMode *string `type:"string"`
 
 	// The version number of the database engine to use.
 	//
-	// To list all of the available engine versions for aurora (for MySQL 5.6-compatible
-	// Aurora), use the following command:
+	// To list all of the available engine versions for MySQL 5.6-compatible Aurora,
+	// use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for aurora-mysql (for MySQL
-	// 5.7-compatible Aurora), use the following command:
+	// To list all of the available engine versions for MySQL 5.7-compatible Aurora,
+	// use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for aurora-postgresql, use the
+	// To list all of the available engine versions for Aurora PostgreSQL, use the
 	// following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-postgresql --query "DBEngineVersions[].EngineVersion"
 	//
+	// To list all of the available engine versions for RDS for MySQL, use the following
+	// command:
+	//
+	// aws rds describe-db-engine-versions --engine mysql --query "DBEngineVersions[].EngineVersion"
+	//
+	// To list all of the available engine versions for RDS for PostgreSQL, use
+	// the following command:
+	//
+	// aws rds describe-db-engine-versions --engine postgres --query "DBEngineVersions[].EngineVersion"
+	//
 	// Aurora MySQL
 	//
-	// Example: 5.6.10a, 5.6.mysql_aurora.1.19.2, 5.7.12, 5.7.mysql_aurora.2.04.5
+	// For information, see MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.html)
+	// in the Amazon Aurora User Guide.
 	//
 	// Aurora PostgreSQL
 	//
-	// Example: 9.6.3, 10.7
+	// For information, see Amazon Aurora PostgreSQL releases and engine versions
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.Updates.20180305.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// MySQL
+	//
+	// For information, see MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt)
+	// in the Amazon RDS User Guide.
+	//
+	// PostgreSQL
+	//
+	// For information, see Amazon RDS for PostgreSQL versions and extensions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	EngineVersion *string `type:"string"`
 
 	// The global cluster ID of an Aurora cluster that becomes the primary cluster
 	// in the new global database cluster.
+	//
+	// Valid for: Aurora DB clusters only
 	GlobalClusterIdentifier *string `type:"string"`
+
+	// The amount of Provisioned IOPS (input/output operations per second) to be
+	// initially allocated for each DB instance in the Multi-AZ DB cluster.
+	//
+	// For information about valid Iops values, see Amazon RDS Provisioned IOPS
+	// storage to improve performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// in the Amazon RDS User Guide.
+	//
+	// This setting is required to create a Multi-AZ DB cluster.
+	//
+	// Constraints: Must be a multiple between .5 and 50 of the storage amount for
+	// the DB cluster.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	Iops *int64 `type:"integer"`
 
 	// The Amazon Web Services KMS key identifier for an encrypted DB cluster.
 	//
@@ -19107,12 +19419,16 @@ type CreateDBClusterInput struct {
 	// Web Services Region, you must set KmsKeyId to a KMS key identifier that is
 	// valid in the destination Amazon Web Services Region. This KMS key is used
 	// to encrypt the read replica in that Amazon Web Services Region.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	KmsKeyId *string `type:"string"`
 
 	// The password for the master database user. This password can contain any
 	// printable ASCII character except "/", """, or "@".
 	//
 	// Constraints: Must contain from 8 to 41 characters.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	MasterUserPassword *string `type:"string"`
 
 	// The name of the master user for the DB cluster.
@@ -19124,24 +19440,81 @@ type CreateDBClusterInput struct {
 	//    * First character must be a letter.
 	//
 	//    * Can't be a reserved word for the chosen database engine.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	MasterUsername *string `type:"string"`
+
+	// The interval, in seconds, between points when Enhanced Monitoring metrics
+	// are collected for the DB cluster. To turn off collecting Enhanced Monitoring
+	// metrics, specify 0. The default is 0.
+	//
+	// If MonitoringRoleArn is specified, also set MonitoringInterval to a value
+	// other than 0.
+	//
+	// Valid Values: 0, 1, 5, 10, 15, 30, 60
+	//
+	// Valid for: Multi-AZ DB clusters only
+	MonitoringInterval *int64 `type:"integer"`
+
+	// The Amazon Resource Name (ARN) for the IAM role that permits RDS to send
+	// Enhanced Monitoring metrics to Amazon CloudWatch Logs. An example is arn:aws:iam:123456789012:role/emaccess.
+	// For information on creating a monitoring role, see Setting up and enabling
+	// Enhanced Monitoring (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html#USER_Monitoring.OS.Enabling)
+	// in the Amazon RDS User Guide.
+	//
+	// If MonitoringInterval is set to a value other than 0, supply a MonitoringRoleArn
+	// value.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	MonitoringRoleArn *string `type:"string"`
 
 	// A value that indicates that the DB cluster should be associated with the
 	// specified option group.
 	//
-	// Permanent options can't be removed from an option group. The option group
-	// can't be removed from a DB cluster once it is associated with a DB cluster.
+	// DB clusters are associated with a default option group that can't be modified.
 	OptionGroupName *string `type:"string"`
+
+	// The Amazon Web Services KMS key identifier for encryption of Performance
+	// Insights data.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key.
+	//
+	// If you don't specify a value for PerformanceInsightsKMSKeyId, then Amazon
+	// RDS uses your default KMS key. There is a default KMS key for your Amazon
+	// Web Services account. Your Amazon Web Services account has a different default
+	// KMS key for each Amazon Web Services Region.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	PerformanceInsightsKMSKeyId *string `type:"string"`
+
+	// The amount of time, in days, to retain Performance Insights data. Valid values
+	// are 7 or 731 (2 years).
+	//
+	// Valid for: Multi-AZ DB clusters only
+	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
 
 	// The port number on which the instances in the DB cluster accept connections.
 	//
-	// Default: 3306 if engine is set as aurora or 5432 if set to aurora-postgresql.
+	// RDS for MySQL and Aurora MySQL
+	//
+	// Default: 3306
+	//
+	// Valid values: 1150-65535
+	//
+	// RDS for PostgreSQL and Aurora PostgreSQL
+	//
+	// Default: 5432
+	//
+	// Valid values: 1150-65535
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	Port *int64 `type:"integer"`
 
 	// A URL that contains a Signature Version 4 signed request for the CreateDBCluster
 	// action to be called in the source Amazon Web Services Region where the DB
-	// cluster is replicated from. You only need to specify PreSignedUrl when you
-	// are performing cross-region replication from an encrypted DB cluster.
+	// cluster is replicated from. Specify PreSignedUrl only when you are performing
+	// cross-Region replication from an encrypted DB cluster.
 	//
 	// The pre-signed URL must be a valid request for the CreateDBCluster API action
 	// that can be executed in the source Amazon Web Services Region that contains
@@ -19175,6 +19548,8 @@ type CreateDBClusterInput struct {
 	// manually. Specifying SourceRegion autogenerates a pre-signed URL that is
 	// a valid request for the operation that can be executed in the source Amazon
 	// Web Services Region.
+	//
+	// Valid for: Aurora DB clusters only
 	PreSignedUrl *string `type:"string"`
 
 	// The daily time range during which automated backups are created if automated
@@ -19194,6 +19569,8 @@ type CreateDBClusterInput struct {
 	//    * Must not conflict with the preferred maintenance window.
 	//
 	//    * Must be at least 30 minutes.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	PreferredBackupWindow *string `type:"string"`
 
 	// The weekly time range during which system maintenance can occur, in Universal
@@ -19210,14 +19587,56 @@ type CreateDBClusterInput struct {
 	// Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.
 	//
 	// Constraints: Minimum 30-minute window.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	PreferredMaintenanceWindow *string `type:"string"`
+
+	// A value that indicates whether the DB cluster is publicly accessible.
+	//
+	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB cluster's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB cluster's VPC. Access to the DB cluster is ultimately controlled
+	// by the security group it uses. That public access isn't permitted if the
+	// security group assigned to the DB cluster doesn't permit it.
+	//
+	// When the DB cluster isn't publicly accessible, it is an internal DB cluster
+	// with a DNS name that resolves to a private IP address.
+	//
+	// Default: The default behavior varies depending on whether DBSubnetGroupName
+	// is specified.
+	//
+	// If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified,
+	// the following applies:
+	//
+	//    * If the default VPC in the target Region doesn’t have an internet gateway
+	//    attached to it, the DB cluster is private.
+	//
+	//    * If the default VPC in the target Region has an internet gateway attached
+	//    to it, the DB cluster is public.
+	//
+	// If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified,
+	// the following applies:
+	//
+	//    * If the subnets are part of a VPC that doesn’t have an internet gateway
+	//    attached to it, the DB cluster is private.
+	//
+	//    * If the subnets are part of a VPC that has an internet gateway attached
+	//    to it, the DB cluster is public.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	PubliclyAccessible *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the source DB instance or DB cluster if
 	// this DB cluster is created as a read replica.
+	//
+	// Valid for: Aurora DB clusters only
 	ReplicationSourceIdentifier *string `type:"string"`
 
 	// For DB clusters in serverless DB engine mode, the scaling properties of the
 	// DB cluster.
+	//
+	// Valid for: Aurora DB clusters only
 	ScalingConfiguration *ScalingConfiguration `type:"structure"`
 
 	// SourceRegion is the source region where the resource exists. This is not
@@ -19226,12 +19645,31 @@ type CreateDBClusterInput struct {
 	SourceRegion *string `type:"string" ignore:"true"`
 
 	// A value that indicates whether the DB cluster is encrypted.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	StorageEncrypted *bool `type:"boolean"`
 
+	// Specifies the storage type to be associated with the DB cluster.
+	//
+	// This setting is required to create a Multi-AZ DB cluster.
+	//
+	// Valid values: standard | gp2 | io1
+	//
+	// If you specify io1, also include a value for the Iops parameter.
+	//
+	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	//
+	// Valid for: Multi-AZ DB clusters only
+	StorageType *string `type:"string"`
+
 	// Tags to assign to the DB cluster.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A list of EC2 VPC security groups to associate with this DB cluster.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 }
 
@@ -19269,6 +19707,18 @@ func (s *CreateDBClusterInput) Validate() error {
 	return nil
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *CreateDBClusterInput) SetAllocatedStorage(v int64) *CreateDBClusterInput {
+	s.AllocatedStorage = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *CreateDBClusterInput) SetAutoMinorVersionUpgrade(v bool) *CreateDBClusterInput {
+	s.AutoMinorVersionUpgrade = &v
+	return s
+}
+
 // SetAvailabilityZones sets the AvailabilityZones field's value.
 func (s *CreateDBClusterInput) SetAvailabilityZones(v []*string) *CreateDBClusterInput {
 	s.AvailabilityZones = v
@@ -19302,6 +19752,12 @@ func (s *CreateDBClusterInput) SetCopyTagsToSnapshot(v bool) *CreateDBClusterInp
 // SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
 func (s *CreateDBClusterInput) SetDBClusterIdentifier(v string) *CreateDBClusterInput {
 	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterInstanceClass sets the DBClusterInstanceClass field's value.
+func (s *CreateDBClusterInput) SetDBClusterInstanceClass(v string) *CreateDBClusterInput {
+	s.DBClusterInstanceClass = &v
 	return s
 }
 
@@ -19371,6 +19827,12 @@ func (s *CreateDBClusterInput) SetEnableIAMDatabaseAuthentication(v bool) *Creat
 	return s
 }
 
+// SetEnablePerformanceInsights sets the EnablePerformanceInsights field's value.
+func (s *CreateDBClusterInput) SetEnablePerformanceInsights(v bool) *CreateDBClusterInput {
+	s.EnablePerformanceInsights = &v
+	return s
+}
+
 // SetEngine sets the Engine field's value.
 func (s *CreateDBClusterInput) SetEngine(v string) *CreateDBClusterInput {
 	s.Engine = &v
@@ -19395,6 +19857,12 @@ func (s *CreateDBClusterInput) SetGlobalClusterIdentifier(v string) *CreateDBClu
 	return s
 }
 
+// SetIops sets the Iops field's value.
+func (s *CreateDBClusterInput) SetIops(v int64) *CreateDBClusterInput {
+	s.Iops = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateDBClusterInput) SetKmsKeyId(v string) *CreateDBClusterInput {
 	s.KmsKeyId = &v
@@ -19413,9 +19881,33 @@ func (s *CreateDBClusterInput) SetMasterUsername(v string) *CreateDBClusterInput
 	return s
 }
 
+// SetMonitoringInterval sets the MonitoringInterval field's value.
+func (s *CreateDBClusterInput) SetMonitoringInterval(v int64) *CreateDBClusterInput {
+	s.MonitoringInterval = &v
+	return s
+}
+
+// SetMonitoringRoleArn sets the MonitoringRoleArn field's value.
+func (s *CreateDBClusterInput) SetMonitoringRoleArn(v string) *CreateDBClusterInput {
+	s.MonitoringRoleArn = &v
+	return s
+}
+
 // SetOptionGroupName sets the OptionGroupName field's value.
 func (s *CreateDBClusterInput) SetOptionGroupName(v string) *CreateDBClusterInput {
 	s.OptionGroupName = &v
+	return s
+}
+
+// SetPerformanceInsightsKMSKeyId sets the PerformanceInsightsKMSKeyId field's value.
+func (s *CreateDBClusterInput) SetPerformanceInsightsKMSKeyId(v string) *CreateDBClusterInput {
+	s.PerformanceInsightsKMSKeyId = &v
+	return s
+}
+
+// SetPerformanceInsightsRetentionPeriod sets the PerformanceInsightsRetentionPeriod field's value.
+func (s *CreateDBClusterInput) SetPerformanceInsightsRetentionPeriod(v int64) *CreateDBClusterInput {
+	s.PerformanceInsightsRetentionPeriod = &v
 	return s
 }
 
@@ -19443,6 +19935,12 @@ func (s *CreateDBClusterInput) SetPreferredMaintenanceWindow(v string) *CreateDB
 	return s
 }
 
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *CreateDBClusterInput) SetPubliclyAccessible(v bool) *CreateDBClusterInput {
+	s.PubliclyAccessible = &v
+	return s
+}
+
 // SetReplicationSourceIdentifier sets the ReplicationSourceIdentifier field's value.
 func (s *CreateDBClusterInput) SetReplicationSourceIdentifier(v string) *CreateDBClusterInput {
 	s.ReplicationSourceIdentifier = &v
@@ -19467,6 +19965,12 @@ func (s *CreateDBClusterInput) SetStorageEncrypted(v bool) *CreateDBClusterInput
 	return s
 }
 
+// SetStorageType sets the StorageType field's value.
+func (s *CreateDBClusterInput) SetStorageType(v string) *CreateDBClusterInput {
+	s.StorageType = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateDBClusterInput) SetTags(v []*Tag) *CreateDBClusterInput {
 	s.Tags = v
@@ -19482,10 +19986,26 @@ func (s *CreateDBClusterInput) SetVpcSecurityGroupIds(v []*string) *CreateDBClus
 type CreateDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -19520,7 +20040,7 @@ type CreateDBClusterParameterGroupInput struct {
 	//
 	// Constraints:
 	//
-	//    * Must match the name of an existing DB cluster parameter group.
+	//    * Must not match the name of an existing DB cluster parameter group.
 	//
 	// This value is stored as a lowercase string.
 	//
@@ -19539,6 +20059,14 @@ type CreateDBClusterParameterGroupInput struct {
 	// Aurora PostgreSQL
 	//
 	// Example: aurora-postgresql9.6
+	//
+	// RDS for MySQL
+	//
+	// Example: mysql8.0
+	//
+	// RDS for PostgreSQL
+	//
+	// Example: postgres12
 	//
 	// To list all of the available parameter group families for a DB engine, use
 	// the following command:
@@ -19561,6 +20089,10 @@ type CreateDBClusterParameterGroupInput struct {
 	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
 	//
 	//    * aurora-postgresql
+	//
+	//    * mysql
+	//
+	//    * postgres
 	//
 	// DBParameterGroupFamily is a required field
 	DBParameterGroupFamily *string `type:"string" required:"true"`
@@ -19971,7 +20503,7 @@ type CreateDBInstanceInput struct {
 	// This setting doesn't apply to RDS Custom.
 	DBClusterIdentifier *string `type:"string"`
 
-	// The compute and memory capacity of the DB instance, for example, db.m4.large.
+	// The compute and memory capacity of the DB instance, for example db.m4.large.
 	// Not all DB instance classes are available in all Amazon Web Services Regions,
 	// or for all database engines. For the full list of DB instance classes, and
 	// availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -20128,7 +20660,7 @@ type CreateDBInstanceInput struct {
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled. For more information, see Deleting a DB
+	// deletion protection isn't enabled. For more information, see Deleting a DB
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	//
 	// Amazon Aurora
@@ -20207,7 +20739,7 @@ type CreateDBInstanceInput struct {
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// This setting doesn't apply to RDS Custom or Amazon Aurora. In Aurora, mapping
 	// Amazon Web Services IAM accounts to database accounts is managed by the DB
@@ -20287,33 +20819,33 @@ type CreateDBInstanceInput struct {
 	//
 	// MariaDB
 	//
-	// See MariaDB on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html#MariaDB.Concepts.VersionMgmt)
+	// For information, see MariaDB on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html#MariaDB.Concepts.VersionMgmt)
 	// in the Amazon RDS User Guide.
 	//
 	// Microsoft SQL Server
 	//
-	// See Microsoft SQL Server Versions on Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport)
+	// For information, see Microsoft SQL Server Versions on Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport)
 	// in the Amazon RDS User Guide.
 	//
 	// MySQL
 	//
-	// See MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt)
+	// For information, see MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt)
 	// in the Amazon RDS User Guide.
 	//
 	// Oracle
 	//
-	// See Oracle Database Engine Release Notes (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.Oracle.PatchComposition.html)
+	// For information, see Oracle Database Engine Release Notes (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.Oracle.PatchComposition.html)
 	// in the Amazon RDS User Guide.
 	//
 	// PostgreSQL
 	//
-	// See Amazon RDS for PostgreSQL versions and extensions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts)
+	// For information, see Amazon RDS for PostgreSQL versions and extensions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts)
 	// in the Amazon RDS User Guide.
 	EngineVersion *string `type:"string"`
 
 	// The amount of Provisioned IOPS (input/output operations per second) to be
 	// initially allocated for the DB instance. For information about valid Iops
-	// values, see Amazon RDS Provisioned IOPS Storage to Improve Performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// values, see Amazon RDS Provisioned IOPS storage to improve performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints: For MariaDB, MySQL, Oracle, and PostgreSQL DB instances, must
@@ -20583,12 +21115,12 @@ type CreateDBInstanceInput struct {
 
 	// A value that indicates whether the DB instance is publicly accessible.
 	//
-	// When the DB instance is publicly accessible, its DNS endpoint resolves to
-	// the private IP address from within the DB instance's VPC, and to the public
-	// IP address from outside of the DB instance's VPC. Access to the DB instance
-	// is ultimately controlled by the security group it uses, and that public access
-	// is not permitted if the security group assigned to the DB instance doesn't
-	// permit it.
+	// When the DB instance is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB instance's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB instance's VPC. Access to the DB instance is ultimately controlled
+	// by the security group it uses. That public access is not permitted if the
+	// security group assigned to the DB instance doesn't permit it.
 	//
 	// When the DB instance isn't publicly accessible, it is an internal DB instance
 	// with a DNS name that resolves to a private IP address.
@@ -20599,19 +21131,19 @@ type CreateDBInstanceInput struct {
 	// If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified,
 	// the following applies:
 	//
-	//    * If the default VPC in the target region doesn’t have an Internet gateway
+	//    * If the default VPC in the target Region doesn’t have an internet gateway
 	//    attached to it, the DB instance is private.
 	//
-	//    * If the default VPC in the target region has an Internet gateway attached
+	//    * If the default VPC in the target Region has an internet gateway attached
 	//    to it, the DB instance is public.
 	//
 	// If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified,
 	// the following applies:
 	//
-	//    * If the subnets are part of a VPC that doesn’t have an Internet gateway
+	//    * If the subnets are part of a VPC that doesn’t have an internet gateway
 	//    attached to it, the DB instance is private.
 	//
-	//    * If the subnets are part of a VPC that has an Internet gateway attached
+	//    * If the subnets are part of a VPC that has an internet gateway attached
 	//    to it, the DB instance is public.
 	PubliclyAccessible *bool `type:"boolean"`
 
@@ -21006,7 +21538,10 @@ type CreateDBInstanceOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -21075,7 +21610,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
 
-	// The compute and memory capacity of the read replica, for example, db.m4.large.
+	// The compute and memory capacity of the read replica, for example db.m4.large.
 	// Not all DB instance classes are available in all Amazon Web Services Regions,
 	// or for all database engines. For the full list of DB instance classes, and
 	// availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -21094,8 +21629,8 @@ type CreateDBInstanceReadReplicaInput struct {
 	// The name of the DB parameter group to associate with this DB instance.
 	//
 	// If you do not specify a value for DBParameterGroupName, then Amazon RDS uses
-	// the DBParameterGroup of source DB instance for a same region read replica,
-	// or the default DBParameterGroup for the specified DB engine for a cross region
+	// the DBParameterGroup of source DB instance for a same Region read replica,
+	// or the default DBParameterGroup for the specified DB engine for a cross-Region
 	// read replica.
 	//
 	// Specifying a parameter group for this operation is only supported for Oracle
@@ -21135,7 +21670,7 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled. For more information, see Deleting a DB
+	// deletion protection isn't enabled. For more information, see Deleting a DB
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
 
@@ -21168,7 +21703,7 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
@@ -21342,7 +21877,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	// Web Services Region.
 	//
 	// SourceRegion isn't supported for SQL Server, because SQL Server on Amazon
-	// RDS doesn't support cross-region read replicas.
+	// RDS doesn't support cross-Region read replicas.
 	//
 	// This setting doesn't apply to RDS Custom.
 	PreSignedUrl *string `type:"string"`
@@ -21355,12 +21890,12 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// A value that indicates whether the DB instance is publicly accessible.
 	//
-	// When the DB instance is publicly accessible, its DNS endpoint resolves to
-	// the private IP address from within the DB instance's VPC, and to the public
-	// IP address from outside of the DB instance's VPC. Access to the DB instance
-	// is ultimately controlled by the security group it uses, and that public access
-	// is not permitted if the security group assigned to the DB instance doesn't
-	// permit it.
+	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB cluster's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB cluster's VPC. Access to the DB cluster is ultimately controlled
+	// by the security group it uses. That public access isn't permitted if the
+	// security group assigned to the DB cluster doesn't permit it.
 	//
 	// When the DB instance isn't publicly accessible, it is an internal DB instance
 	// with a DNS name that resolves to a private IP address.
@@ -21408,7 +21943,7 @@ type CreateDBInstanceReadReplicaInput struct {
 	//    in the Amazon RDS User Guide.
 	//
 	//    * Can specify a PostgreSQL DB instance only if the source is running PostgreSQL
-	//    9.3.5 or later (9.4.7 and higher for cross-region replication).
+	//    9.3.5 or later (9.4.7 and higher for cross-Region replication).
 	//
 	//    * The specified DB instance must have automatic backups enabled, that
 	//    is, its backup retention period must be greater than 0.
@@ -21706,7 +22241,10 @@ type CreateDBInstanceReadReplicaOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -23132,10 +23670,26 @@ func (s *CustomAvailabilityZone) SetVpnDetails(v *VpnDetails) *CustomAvailabilit
 	return s
 }
 
-// Contains the details of an Amazon Aurora DB cluster.
+// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 //
-// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-// and StartDBCluster actions.
+// For an Amazon Aurora DB cluster, this data type is used as a response element
+// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+//
+// For a Multi-AZ DB cluster, this data type is used as a response element in
+// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+//
+// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+// in the Amazon Aurora User Guide.
+//
+// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+// in the Amazon RDS User Guide.
+//
+// The Multi-AZ DB clusters feature is in preview and is subject to change.
 type DBCluster struct {
 	_ struct{} `type:"structure"`
 
@@ -23169,6 +23723,11 @@ type DBCluster struct {
 	// with a DB cluster grant permission for the DB cluster to access other Amazon
 	// Web Services on your behalf.
 	AssociatedRoles []*DBClusterRole `locationNameList:"DBClusterRole" type:"list"`
+
+	// A value that indicates that minor version patches are applied automatically.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The time when a stopped DB cluster is restarted automatically.
 	AutomaticRestartTime *time.Time `type:"timestamp"`
@@ -23223,6 +23782,11 @@ type DBCluster struct {
 	// Contains a user-supplied DB cluster identifier. This identifier is the unique
 	// key that identifies a DB cluster.
 	DBClusterIdentifier *string `type:"string"`
+
+	// The name of the compute and memory capacity class of the DB instance.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	DBClusterInstanceClass *string `type:"string"`
 
 	// Provides the list of instances that make up the DB cluster.
 	DBClusterMembers []*DBClusterMember `locationNameList:"DBClusterMember" type:"list"`
@@ -23313,6 +23877,11 @@ type DBCluster struct {
 	// and Access Management (IAM) accounts to database accounts is enabled.
 	IAMDatabaseAuthenticationEnabled *bool `type:"boolean"`
 
+	// The Provisioned IOPS (I/O operations per second) value.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	Iops *int64 `type:"integer"`
+
 	// If StorageEncrypted is enabled, the Amazon Web Services KMS key identifier
 	// for the encrypted DB cluster.
 	//
@@ -23327,6 +23896,18 @@ type DBCluster struct {
 	// Contains the master username for the DB cluster.
 	MasterUsername *string `type:"string"`
 
+	// The interval, in seconds, between points when Enhanced Monitoring metrics
+	// are collected for the DB cluster.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	MonitoringInterval *int64 `type:"integer"`
+
+	// The ARN for the IAM role that permits RDS to send Enhanced Monitoring metrics
+	// to Amazon CloudWatch Logs.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	MonitoringRoleArn *string `type:"string"`
+
 	// Specifies whether the DB cluster has instances in multiple Availability Zones.
 	MultiAZ *bool `type:"boolean"`
 
@@ -23338,6 +23919,27 @@ type DBCluster struct {
 	// Specifies the progress of the operation as a percentage.
 	PercentProgress *string `type:"string"`
 
+	// True if Performance Insights is enabled for the DB cluster, and otherwise
+	// false.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	PerformanceInsightsEnabled *bool `type:"boolean"`
+
+	// The Amazon Web Services KMS key identifier for encryption of Performance
+	// Insights data.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	PerformanceInsightsKMSKeyId *string `type:"string"`
+
+	// The amount of time, in days, to retain Performance Insights data. Valid values
+	// are 7 or 731 (2 years).
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
+
 	// Specifies the port that the database engine is listening on.
 	Port *int64 `type:"integer"`
 
@@ -23348,6 +23950,23 @@ type DBCluster struct {
 	// Specifies the weekly time range during which system maintenance can occur,
 	// in Universal Coordinated Time (UTC).
 	PreferredMaintenanceWindow *string `type:"string"`
+
+	// Specifies the accessibility options for the DB instance.
+	//
+	// When the DB instance is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB instance's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB instance's VPC. Access to the DB instance is ultimately controlled
+	// by the security group it uses. That public access is not permitted if the
+	// security group assigned to the DB instance doesn't permit it.
+	//
+	// When the DB instance isn't publicly accessible, it is an internal DB instance
+	// with a DNS name that resolves to a private IP address.
+	//
+	// For more information, see CreateDBInstance.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	PubliclyAccessible *bool `type:"boolean"`
 
 	// Contains one or more identifiers of the read replicas associated with this
 	// DB cluster.
@@ -23382,6 +24001,11 @@ type DBCluster struct {
 
 	// Specifies whether the DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
+
+	// The storage type associated with DB instance.
+	//
+	// This setting is only for non-Aurora Multi-AZ DB clusters.
+	StorageType *string `type:"string"`
 
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
 	// in the Amazon RDS User Guide.
@@ -23442,6 +24066,12 @@ func (s *DBCluster) SetAllocatedStorage(v int64) *DBCluster {
 // SetAssociatedRoles sets the AssociatedRoles field's value.
 func (s *DBCluster) SetAssociatedRoles(v []*DBClusterRole) *DBCluster {
 	s.AssociatedRoles = v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *DBCluster) SetAutoMinorVersionUpgrade(v bool) *DBCluster {
+	s.AutoMinorVersionUpgrade = &v
 	return s
 }
 
@@ -23526,6 +24156,12 @@ func (s *DBCluster) SetDBClusterArn(v string) *DBCluster {
 // SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
 func (s *DBCluster) SetDBClusterIdentifier(v string) *DBCluster {
 	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterInstanceClass sets the DBClusterInstanceClass field's value.
+func (s *DBCluster) SetDBClusterInstanceClass(v string) *DBCluster {
+	s.DBClusterInstanceClass = &v
 	return s
 }
 
@@ -23649,6 +24285,12 @@ func (s *DBCluster) SetIAMDatabaseAuthenticationEnabled(v bool) *DBCluster {
 	return s
 }
 
+// SetIops sets the Iops field's value.
+func (s *DBCluster) SetIops(v int64) *DBCluster {
+	s.Iops = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *DBCluster) SetKmsKeyId(v string) *DBCluster {
 	s.KmsKeyId = &v
@@ -23664,6 +24306,18 @@ func (s *DBCluster) SetLatestRestorableTime(v time.Time) *DBCluster {
 // SetMasterUsername sets the MasterUsername field's value.
 func (s *DBCluster) SetMasterUsername(v string) *DBCluster {
 	s.MasterUsername = &v
+	return s
+}
+
+// SetMonitoringInterval sets the MonitoringInterval field's value.
+func (s *DBCluster) SetMonitoringInterval(v int64) *DBCluster {
+	s.MonitoringInterval = &v
+	return s
+}
+
+// SetMonitoringRoleArn sets the MonitoringRoleArn field's value.
+func (s *DBCluster) SetMonitoringRoleArn(v string) *DBCluster {
+	s.MonitoringRoleArn = &v
 	return s
 }
 
@@ -23685,6 +24339,24 @@ func (s *DBCluster) SetPercentProgress(v string) *DBCluster {
 	return s
 }
 
+// SetPerformanceInsightsEnabled sets the PerformanceInsightsEnabled field's value.
+func (s *DBCluster) SetPerformanceInsightsEnabled(v bool) *DBCluster {
+	s.PerformanceInsightsEnabled = &v
+	return s
+}
+
+// SetPerformanceInsightsKMSKeyId sets the PerformanceInsightsKMSKeyId field's value.
+func (s *DBCluster) SetPerformanceInsightsKMSKeyId(v string) *DBCluster {
+	s.PerformanceInsightsKMSKeyId = &v
+	return s
+}
+
+// SetPerformanceInsightsRetentionPeriod sets the PerformanceInsightsRetentionPeriod field's value.
+func (s *DBCluster) SetPerformanceInsightsRetentionPeriod(v int64) *DBCluster {
+	s.PerformanceInsightsRetentionPeriod = &v
+	return s
+}
+
 // SetPort sets the Port field's value.
 func (s *DBCluster) SetPort(v int64) *DBCluster {
 	s.Port = &v
@@ -23700,6 +24372,12 @@ func (s *DBCluster) SetPreferredBackupWindow(v string) *DBCluster {
 // SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
 func (s *DBCluster) SetPreferredMaintenanceWindow(v string) *DBCluster {
 	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *DBCluster) SetPubliclyAccessible(v bool) *DBCluster {
+	s.PubliclyAccessible = &v
 	return s
 }
 
@@ -23736,6 +24414,12 @@ func (s *DBCluster) SetStatus(v string) *DBCluster {
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *DBCluster) SetStorageEncrypted(v bool) *DBCluster {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DBCluster) SetStorageType(v string) *DBCluster {
+	s.StorageType = &v
 	return s
 }
 
@@ -24776,7 +25460,10 @@ func (s *DBEngineVersion) SetValidUpgradeTarget(v []*UpgradeTarget) *DBEngineVer
 
 // Contains the details of an Amazon RDS DB instance.
 //
-// This data type is used as a response element in the DescribeDBInstances action.
+// This data type is used as a response element in the operations CreateDBInstance,
+// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 type DBInstance struct {
 	_ struct{} `type:"structure"`
 
@@ -25078,12 +25765,12 @@ type DBInstance struct {
 
 	// Specifies the accessibility options for the DB instance.
 	//
-	// When the DB instance is publicly accessible, its DNS endpoint resolves to
-	// the private IP address from within the DB instance's VPC, and to the public
-	// IP address from outside of the DB instance's VPC. Access to the DB instance
-	// is ultimately controlled by the security group it uses, and that public access
-	// is not permitted if the security group assigned to the DB instance doesn't
-	// permit it.
+	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB cluster's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB cluster's VPC. Access to the DB cluster is ultimately controlled
+	// by the security group it uses. That public access isn't permitted if the
+	// security group assigned to the DB cluster doesn't permit it.
 	//
 	// When the DB instance isn't publicly accessible, it is an internal DB instance
 	// with a DNS name that resolves to a private IP address.
@@ -25093,9 +25780,9 @@ type DBInstance struct {
 
 	// Contains one or more identifiers of Aurora DB clusters to which the RDS DB
 	// instance is replicated as a read replica. For example, when you create an
-	// Aurora read replica of an RDS MySQL DB instance, the Aurora MySQL DB cluster
-	// for the Aurora read replica is shown. This output does not contain information
-	// about cross region Aurora read replicas.
+	// Aurora read replica of an RDS for MySQL DB instance, the Aurora MySQL DB
+	// cluster for the Aurora read replica is shown. This output doesn't contain
+	// information about cross-Region Aurora read replicas.
 	//
 	// Currently, each RDS DB instance can have only one Aurora read replica.
 	ReadReplicaDBClusterIdentifiers []*string `locationNameList:"ReadReplicaDBClusterIdentifier" type:"list"`
@@ -28095,10 +28782,26 @@ func (s *DeleteDBClusterInput) SetSkipFinalSnapshot(v bool) *DeleteDBClusterInpu
 type DeleteDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -28480,7 +29183,10 @@ type DeleteDBInstanceOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -36356,10 +37062,12 @@ type FailoverDBClusterInput struct {
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
-	// The name of the instance to promote to the primary instance.
+	// The name of the DB instance to promote to the primary DB instance.
 	//
-	// You must specify the instance identifier for an Aurora Replica in the DB
-	// cluster. For example, mydbcluster-replica1.
+	// Specify the DB instance identifier for an Aurora Replica or a Multi-AZ readable
+	// standby in the DB cluster, for example mydbcluster-replica1.
+	//
+	// This setting isn't supported for RDS for MySQL Multi-AZ DB clusters.
 	TargetDBInstanceIdentifier *string `type:"string"`
 }
 
@@ -36409,10 +37117,26 @@ func (s *FailoverDBClusterInput) SetTargetDBInstanceIdentifier(v string) *Failov
 type FailoverDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -38271,11 +38995,21 @@ func (s *ModifyDBClusterEndpointOutput) SetStatus(v string) *ModifyDBClusterEndp
 type ModifyDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
+	// The amount of storage in gibibytes (GiB) to allocate to each DB instance
+	// in the Multi-AZ DB cluster.
+	//
+	// Type: Integer
+	//
+	// Valid for: Multi-AZ DB clusters only
+	AllocatedStorage *int64 `type:"integer"`
+
 	// A value that indicates whether major version upgrades are allowed.
 	//
 	// Constraints: You must allow major version upgrades when specifying a value
 	// for the EngineVersion parameter that is a different major version than the
 	// DB cluster's current version.
+	//
+	// Valid for: Aurora DB clusters only
 	AllowMajorVersionUpgrade *bool `type:"boolean"`
 
 	// A value that indicates whether the modifications in this request and any
@@ -38292,12 +39026,19 @@ type ModifyDBClusterInput struct {
 	// of the value of the ApplyImmediately parameter.
 	//
 	// By default, this parameter is disabled.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	ApplyImmediately *bool `type:"boolean"`
+
+	// A value that indicates whether minor engine upgrades are applied automatically
+	// to the DB cluster during the maintenance window. By default, minor engine
+	// upgrades are applied automatically.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The target backtrack window, in seconds. To disable backtracking, set this
 	// value to 0.
-	//
-	// Currently, Backtrack is only supported for Aurora MySQL DB clusters.
 	//
 	// Default: 0
 	//
@@ -38305,24 +39046,32 @@ type ModifyDBClusterInput struct {
 	//
 	//    * If specified, this value must be set to a number from 0 to 259,200 (72
 	//    hours).
+	//
+	// Valid for: Aurora MySQL DB clusters only
 	BacktrackWindow *int64 `type:"long"`
 
-	// The number of days for which automated backups are retained. You must specify
-	// a minimum value of 1.
+	// The number of days for which automated backups are retained. Specify a minimum
+	// value of 1.
 	//
 	// Default: 1
 	//
 	// Constraints:
 	//
 	//    * Must be a value from 1 to 35
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	BackupRetentionPeriod *int64 `type:"integer"`
 
 	// The configuration setting for the log types to be enabled for export to CloudWatch
 	// Logs for a specific DB cluster.
+	//
+	// Valid for: Aurora DB clusters only
 	CloudwatchLogsExportConfiguration *CloudwatchLogsExportConfiguration `type:"structure"`
 
 	// A value that indicates whether to copy all tags from the DB cluster to snapshots
 	// of the DB cluster. The default is not to copy them.
+	//
+	// Valid for: Aurora DB clusters only
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The DB cluster identifier for the cluster being modified. This parameter
@@ -38331,10 +39080,25 @@ type ModifyDBClusterInput struct {
 	// Constraints: This identifier must match the identifier of an existing DB
 	// cluster.
 	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
+	// The compute and memory capacity of each DB instance in the Multi-AZ DB cluster,
+	// for example db.m6g.xlarge. Not all DB instance classes are available in all
+	// Amazon Web Services Regions, or for all database engines.
+	//
+	// For the full list of DB instance classes and availability for your engine,
+	// see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	DBClusterInstanceClass *string `type:"string"`
+
 	// The name of the DB cluster parameter group to use for the DB cluster.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBClusterParameterGroupName *string `type:"string"`
 
 	// The name of the DB parameter group to apply to all instances of the DB cluster.
@@ -38352,11 +39116,15 @@ type ModifyDBClusterInput struct {
 	//
 	//    * The DBInstanceParameterGroupName parameter is only valid in combination
 	//    with the AllowMajorVersionUpgrade parameter.
+	//
+	// Valid for: Aurora DB clusters only
 	DBInstanceParameterGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB cluster has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled.
+	// deletion protection isn't enabled.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DeletionProtection *bool `type:"boolean"`
 
 	// The Active Directory directory ID to move the DB cluster to. Specify none
@@ -38365,10 +39133,14 @@ type ModifyDBClusterInput struct {
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/kerberos-authentication.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	Domain *string `type:"string"`
 
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
+	//
+	// Valid for: Aurora DB clusters only
 	DomainIAMRoleName *string `type:"string"`
 
 	// A value that indicates whether to enable this DB cluster to forward write
@@ -38382,6 +39154,8 @@ type ModifyDBClusterInput struct {
 	// are replicated back to this cluster. For the primary DB cluster of an Aurora
 	// global database, this value is used immediately if the primary is demoted
 	// by the FailoverGlobalCluster API operation, but it does nothing until then.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableGlobalWriteForwarding *bool `type:"boolean"`
 
 	// A value that indicates whether to enable the HTTP endpoint for an Aurora
@@ -38393,41 +39167,105 @@ type ModifyDBClusterInput struct {
 	//
 	// For more information, see Using the Data API for Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableHttpEndpoint *bool `type:"boolean"`
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
+
+	// A value that indicates whether to turn on Performance Insights for the DB
+	// cluster.
+	//
+	// For more information, see Using Amazon Performance Insights (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	EnablePerformanceInsights *bool `type:"boolean"`
 
 	// The version number of the database engine to which you want to upgrade. Changing
 	// this parameter results in an outage. The change is applied during the next
 	// maintenance window unless ApplyImmediately is enabled.
 	//
-	// To list all of the available engine versions for aurora (for MySQL 5.6-compatible
-	// Aurora), use the following command:
+	// To list all of the available engine versions for MySQL 5.6-compatible Aurora,
+	// use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for aurora-mysql (for MySQL
-	// 5.7-compatible Aurora), use the following command:
+	// To list all of the available engine versions for MySQL 5.7-compatible Aurora,
+	// use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for aurora-postgresql, use the
+	// To list all of the available engine versions for Aurora PostgreSQL, use the
 	// following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-postgresql --query "DBEngineVersions[].EngineVersion"
+	//
+	// To list all of the available engine versions for RDS for MySQL, use the following
+	// command:
+	//
+	// aws rds describe-db-engine-versions --engine mysql --query "DBEngineVersions[].EngineVersion"
+	//
+	// To list all of the available engine versions for RDS for PostgreSQL, use
+	// the following command:
+	//
+	// aws rds describe-db-engine-versions --engine postgres --query "DBEngineVersions[].EngineVersion"
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	EngineVersion *string `type:"string"`
+
+	// The amount of Provisioned IOPS (input/output operations per second) to be
+	// initially allocated for each DB instance in the Multi-AZ DB cluster.
+	//
+	// For information about valid Iops values, see Amazon RDS Provisioned IOPS
+	// Storage to Improve Performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints: Must be a multiple between .5 and 50 of the storage amount for
+	// the DB cluster.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	Iops *int64 `type:"integer"`
 
 	// The new password for the master database user. This password can contain
 	// any printable ASCII character except "/", """, or "@".
 	//
 	// Constraints: Must contain from 8 to 41 characters.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	MasterUserPassword *string `type:"string"`
+
+	// The interval, in seconds, between points when Enhanced Monitoring metrics
+	// are collected for the DB cluster. To turn off collecting Enhanced Monitoring
+	// metrics, specify 0. The default is 0.
+	//
+	// If MonitoringRoleArn is specified, also set MonitoringInterval to a value
+	// other than 0.
+	//
+	// Valid Values: 0, 1, 5, 10, 15, 30, 60
+	//
+	// Valid for: Multi-AZ DB clusters only
+	MonitoringInterval *int64 `type:"integer"`
+
+	// The Amazon Resource Name (ARN) for the IAM role that permits RDS to send
+	// Enhanced Monitoring metrics to Amazon CloudWatch Logs. An example is arn:aws:iam:123456789012:role/emaccess.
+	// For information on creating a monitoring role, see To create an IAM role
+	// for Amazon RDS Enhanced Monitoring (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.html#USER_Monitoring.OS.IAMRole)
+	// in the Amazon RDS User Guide.
+	//
+	// If MonitoringInterval is set to a value other than 0, supply a MonitoringRoleArn
+	// value.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	MonitoringRoleArn *string `type:"string"`
 
 	// The new DB cluster identifier for the DB cluster when renaming a DB cluster.
 	// This value is stored as a lowercase string.
@@ -38441,25 +39279,43 @@ type ModifyDBClusterInput struct {
 	//    * Can't end with a hyphen or contain two consecutive hyphens
 	//
 	// Example: my-cluster2
+	//
+	// Valid for: Aurora DB clusters only
 	NewDBClusterIdentifier *string `type:"string"`
 
 	// A value that indicates that the DB cluster should be associated with the
-	// specified option group. Changing this parameter doesn't result in an outage
-	// except in the following case, and the change is applied during the next maintenance
-	// window unless the ApplyImmediately is enabled for this request. If the parameter
-	// change results in an option group that enables OEM, this change can cause
-	// a brief (sub-second) period during which new connections are rejected but
-	// existing connections are not interrupted.
+	// specified option group.
 	//
-	// Permanent options can't be removed from an option group. The option group
-	// can't be removed from a DB cluster once it is associated with a DB cluster.
+	// DB clusters are associated with a default option group that can't be modified.
 	OptionGroupName *string `type:"string"`
+
+	// The Amazon Web Services KMS key identifier for encryption of Performance
+	// Insights data.
+	//
+	// The Amazon Web Services KMS key identifier is the key ARN, key ID, alias
+	// ARN, or alias name for the KMS key.
+	//
+	// If you don't specify a value for PerformanceInsightsKMSKeyId, then Amazon
+	// RDS uses your default KMS key. There is a default KMS key for your Amazon
+	// Web Services account. Your Amazon Web Services account has a different default
+	// KMS key for each Amazon Web Services Region.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	PerformanceInsightsKMSKeyId *string `type:"string"`
+
+	// The amount of time, in days, to retain Performance Insights data. Valid values
+	// are 7 or 731 (2 years).
+	//
+	// Valid for: Multi-AZ DB clusters only
+	PerformanceInsightsRetentionPeriod *int64 `type:"integer"`
 
 	// The port number on which the DB cluster accepts connections.
 	//
 	// Constraints: Value must be 1150-65535
 	//
 	// Default: The same port as the original DB cluster.
+	//
+	// Valid for: Aurora DB clusters only
 	Port *int64 `type:"integer"`
 
 	// The daily time range during which automated backups are created if automated
@@ -38479,6 +39335,8 @@ type ModifyDBClusterInput struct {
 	//    * Must not conflict with the preferred maintenance window.
 	//
 	//    * Must be at least 30 minutes.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	PreferredBackupWindow *string `type:"string"`
 
 	// The weekly time range during which system maintenance can occur, in Universal
@@ -38495,13 +39353,30 @@ type ModifyDBClusterInput struct {
 	// Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.
 	//
 	// Constraints: Minimum 30-minute window.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	PreferredMaintenanceWindow *string `type:"string"`
 
 	// The scaling properties of the DB cluster. You can only modify scaling properties
 	// for DB clusters in serverless DB engine mode.
+	//
+	// Valid for: Aurora DB clusters only
 	ScalingConfiguration *ScalingConfiguration `type:"structure"`
 
+	// Specifies the storage type to be associated with the DB cluster.
+	//
+	// Valid values: standard | gp2 | io1
+	//
+	// If you specify io1, you must also include a value for the Iops parameter.
+	//
+	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	//
+	// Valid for: Multi-AZ DB clusters only
+	StorageType *string `type:"string"`
+
 	// A list of VPC security groups that the DB cluster will belong to.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 }
 
@@ -38536,6 +39411,12 @@ func (s *ModifyDBClusterInput) Validate() error {
 	return nil
 }
 
+// SetAllocatedStorage sets the AllocatedStorage field's value.
+func (s *ModifyDBClusterInput) SetAllocatedStorage(v int64) *ModifyDBClusterInput {
+	s.AllocatedStorage = &v
+	return s
+}
+
 // SetAllowMajorVersionUpgrade sets the AllowMajorVersionUpgrade field's value.
 func (s *ModifyDBClusterInput) SetAllowMajorVersionUpgrade(v bool) *ModifyDBClusterInput {
 	s.AllowMajorVersionUpgrade = &v
@@ -38545,6 +39426,12 @@ func (s *ModifyDBClusterInput) SetAllowMajorVersionUpgrade(v bool) *ModifyDBClus
 // SetApplyImmediately sets the ApplyImmediately field's value.
 func (s *ModifyDBClusterInput) SetApplyImmediately(v bool) *ModifyDBClusterInput {
 	s.ApplyImmediately = &v
+	return s
+}
+
+// SetAutoMinorVersionUpgrade sets the AutoMinorVersionUpgrade field's value.
+func (s *ModifyDBClusterInput) SetAutoMinorVersionUpgrade(v bool) *ModifyDBClusterInput {
+	s.AutoMinorVersionUpgrade = &v
 	return s
 }
 
@@ -38575,6 +39462,12 @@ func (s *ModifyDBClusterInput) SetCopyTagsToSnapshot(v bool) *ModifyDBClusterInp
 // SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
 func (s *ModifyDBClusterInput) SetDBClusterIdentifier(v string) *ModifyDBClusterInput {
 	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterInstanceClass sets the DBClusterInstanceClass field's value.
+func (s *ModifyDBClusterInput) SetDBClusterInstanceClass(v string) *ModifyDBClusterInput {
+	s.DBClusterInstanceClass = &v
 	return s
 }
 
@@ -38626,15 +39519,39 @@ func (s *ModifyDBClusterInput) SetEnableIAMDatabaseAuthentication(v bool) *Modif
 	return s
 }
 
+// SetEnablePerformanceInsights sets the EnablePerformanceInsights field's value.
+func (s *ModifyDBClusterInput) SetEnablePerformanceInsights(v bool) *ModifyDBClusterInput {
+	s.EnablePerformanceInsights = &v
+	return s
+}
+
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *ModifyDBClusterInput) SetEngineVersion(v string) *ModifyDBClusterInput {
 	s.EngineVersion = &v
 	return s
 }
 
+// SetIops sets the Iops field's value.
+func (s *ModifyDBClusterInput) SetIops(v int64) *ModifyDBClusterInput {
+	s.Iops = &v
+	return s
+}
+
 // SetMasterUserPassword sets the MasterUserPassword field's value.
 func (s *ModifyDBClusterInput) SetMasterUserPassword(v string) *ModifyDBClusterInput {
 	s.MasterUserPassword = &v
+	return s
+}
+
+// SetMonitoringInterval sets the MonitoringInterval field's value.
+func (s *ModifyDBClusterInput) SetMonitoringInterval(v int64) *ModifyDBClusterInput {
+	s.MonitoringInterval = &v
+	return s
+}
+
+// SetMonitoringRoleArn sets the MonitoringRoleArn field's value.
+func (s *ModifyDBClusterInput) SetMonitoringRoleArn(v string) *ModifyDBClusterInput {
+	s.MonitoringRoleArn = &v
 	return s
 }
 
@@ -38647,6 +39564,18 @@ func (s *ModifyDBClusterInput) SetNewDBClusterIdentifier(v string) *ModifyDBClus
 // SetOptionGroupName sets the OptionGroupName field's value.
 func (s *ModifyDBClusterInput) SetOptionGroupName(v string) *ModifyDBClusterInput {
 	s.OptionGroupName = &v
+	return s
+}
+
+// SetPerformanceInsightsKMSKeyId sets the PerformanceInsightsKMSKeyId field's value.
+func (s *ModifyDBClusterInput) SetPerformanceInsightsKMSKeyId(v string) *ModifyDBClusterInput {
+	s.PerformanceInsightsKMSKeyId = &v
+	return s
+}
+
+// SetPerformanceInsightsRetentionPeriod sets the PerformanceInsightsRetentionPeriod field's value.
+func (s *ModifyDBClusterInput) SetPerformanceInsightsRetentionPeriod(v int64) *ModifyDBClusterInput {
+	s.PerformanceInsightsRetentionPeriod = &v
 	return s
 }
 
@@ -38674,6 +39603,12 @@ func (s *ModifyDBClusterInput) SetScalingConfiguration(v *ScalingConfiguration) 
 	return s
 }
 
+// SetStorageType sets the StorageType field's value.
+func (s *ModifyDBClusterInput) SetStorageType(v string) *ModifyDBClusterInput {
+	s.StorageType = &v
+	return s
+}
+
 // SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
 func (s *ModifyDBClusterInput) SetVpcSecurityGroupIds(v []*string) *ModifyDBClusterInput {
 	s.VpcSecurityGroupIds = v
@@ -38683,10 +39618,26 @@ func (s *ModifyDBClusterInput) SetVpcSecurityGroupIds(v []*string) *ModifyDBClus
 type ModifyDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -39069,7 +40020,7 @@ type ModifyDBInstanceInput struct {
 	// For more information, see ModifyDBCluster.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
-	// The new compute and memory capacity of the DB instance, for example, db.m4.large.
+	// The new compute and memory capacity of the DB instance, for example db.m4.large.
 	// Not all DB instance classes are available in all Amazon Web Services Regions,
 	// or for all database engines. For the full list of DB instance classes, and
 	// availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -39190,7 +40141,7 @@ type ModifyDBInstanceInput struct {
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled. For more information, see Deleting a DB
+	// deletion protection isn't enabled. For more information, see Deleting a DB
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
 
@@ -39228,7 +40179,7 @@ type ModifyDBInstanceInput struct {
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// This setting doesn't apply to Amazon Aurora. Mapping Amazon Web Services
 	// IAM accounts to database accounts is managed by the DB cluster.
@@ -39509,12 +40460,12 @@ type ModifyDBInstanceInput struct {
 
 	// A value that indicates whether the DB instance is publicly accessible.
 	//
-	// When the DB instance is publicly accessible, its DNS endpoint resolves to
-	// the private IP address from within the DB instance's VPC, and to the public
-	// IP address from outside of the DB instance's VPC. Access to the DB instance
-	// is ultimately controlled by the security group it uses, and that public access
-	// is not permitted if the security group assigned to the DB instance doesn't
-	// permit it.
+	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB cluster's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB cluster's VPC. Access to the DB cluster is ultimately controlled
+	// by the security group it uses. That public access isn't permitted if the
+	// security group assigned to the DB cluster doesn't permit it.
 	//
 	// When the DB instance isn't publicly accessible, it is an internal DB instance
 	// with a DNS name that resolves to a private IP address.
@@ -39927,7 +40878,10 @@ type ModifyDBInstanceOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -41999,6 +42953,15 @@ type OrderableDBInstanceOption struct {
 	// A list of the supported DB engine modes.
 	SupportedEngineModes []*string `type:"list"`
 
+	// Whether DB instances can be configured as a Multi-AZ DB cluster.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	SupportsClusters *bool `type:"boolean"`
+
 	// Indicates whether a DB instance supports Enhanced Monitoring at intervals
 	// from 1 to 60 seconds.
 	SupportsEnhancedMonitoring *bool `type:"boolean"`
@@ -42159,6 +43122,12 @@ func (s *OrderableDBInstanceOption) SetSupportedActivityStreamModes(v []*string)
 // SetSupportedEngineModes sets the SupportedEngineModes field's value.
 func (s *OrderableDBInstanceOption) SetSupportedEngineModes(v []*string) *OrderableDBInstanceOption {
 	s.SupportedEngineModes = v
+	return s
+}
+
+// SetSupportsClusters sets the SupportsClusters field's value.
+func (s *OrderableDBInstanceOption) SetSupportsClusters(v bool) *OrderableDBInstanceOption {
+	s.SupportsClusters = &v
 	return s
 }
 
@@ -42850,10 +43819,26 @@ func (s *PromoteReadReplicaDBClusterInput) SetDBClusterIdentifier(v string) *Pro
 type PromoteReadReplicaDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -42982,7 +43967,10 @@ type PromoteReadReplicaOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -43175,6 +44163,106 @@ func (s *Range) SetTo(v int64) *Range {
 	return s
 }
 
+type RebootDBClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The DB cluster identifier. This parameter is stored as a lowercase string.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing DBCluster.
+	//
+	// DBClusterIdentifier is a required field
+	DBClusterIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RebootDBClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RebootDBClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RebootDBClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RebootDBClusterInput"}
+	if s.DBClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *RebootDBClusterInput) SetDBClusterIdentifier(v string) *RebootDBClusterInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+type RebootDBClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
+	//
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
+	DBCluster *DBCluster `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RebootDBClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RebootDBClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBCluster sets the DBCluster field's value.
+func (s *RebootDBClusterOutput) SetDBCluster(v *DBCluster) *RebootDBClusterOutput {
+	s.DBCluster = v
+	return s
+}
+
 type RebootDBInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -43243,7 +44331,10 @@ type RebootDBInstanceOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -44422,7 +45513,7 @@ type RestoreDBClusterFromS3Input struct {
 
 	// A value that indicates whether the DB cluster has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled.
+	// deletion protection isn't enabled.
 	DeletionProtection *bool `type:"boolean"`
 
 	// Specify the Active Directory directory ID to restore the DB cluster in. The
@@ -44446,7 +45537,7 @@ type RestoreDBClusterFromS3Input struct {
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon Aurora User Guide.
@@ -44856,10 +45947,26 @@ func (s *RestoreDBClusterFromS3Input) SetVpcSecurityGroupIds(v []*string) *Resto
 type RestoreDBClusterFromS3Output struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -44892,6 +45999,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 
 	// Provides the list of Availability Zones (AZs) where instances in the restored
 	// DB cluster can be created.
+	//
+	// Valid for: Aurora DB clusters only
 	AvailabilityZones []*string `locationNameList:"AvailabilityZone" type:"list"`
 
 	// The target backtrack window, in seconds. To disable backtracking, set this
@@ -44905,10 +46014,14 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	//    * If specified, this value must be set to a number from 0 to 259,200 (72
 	//    hours).
+	//
+	// Valid for: Aurora DB clusters only
 	BacktrackWindow *int64 `type:"long"`
 
 	// A value that indicates whether to copy all tags from the restored DB cluster
 	// to snapshots of the restored DB cluster. The default is not to copy them.
+	//
+	// Valid for: Aurora DB clusters only
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The name of the DB cluster to create from the DB snapshot or DB cluster snapshot.
@@ -44924,8 +46037,21 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// Example: my-snapshot-id
 	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The compute and memory capacity of the each DB instance in the Multi-AZ DB
+	// cluster, for example db.m6g.xlarge. Not all DB instance classes are available
+	// in all Amazon Web Services Regions, or for all database engines.
+	//
+	// For the full list of DB instance classes, and availability for your engine,
+	// see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	DBClusterInstanceClass *string `type:"string"`
 
 	// The name of the DB cluster parameter group to associate with this DB cluster.
 	// If this argument is omitted, the default DB cluster parameter group for the
@@ -44941,6 +46067,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//    * First character must be a letter.
 	//
 	//    * Can't end with a hyphen or contain two consecutive hyphens.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBClusterParameterGroupName *string `type:"string"`
 
 	// The name of the DB subnet group to use for the new DB cluster.
@@ -44948,14 +46076,20 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Constraints: If supplied, must match the name of an existing DB subnet group.
 	//
 	// Example: mySubnetgroup
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBSubnetGroupName *string `type:"string"`
 
 	// The database name for the restored DB cluster.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DatabaseName *string `type:"string"`
 
 	// A value that indicates whether the DB cluster has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled.
+	// deletion protection isn't enabled.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DeletionProtection *bool `type:"boolean"`
 
 	// Specify the Active Directory directory ID to restore the DB cluster in. The
@@ -44965,24 +46099,34 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// For more information, see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/kerberos-authentication.html)
 	// in the Amazon RDS User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	Domain *string `type:"string"`
 
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
+	//
+	// Valid for: Aurora DB clusters only
 	DomainIAMRoleName *string `type:"string"`
 
 	// The list of logs that the restored DB cluster is to export to Amazon CloudWatch
-	// Logs. The values in the list depend on the DB engine being used. For more
-	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
+	// Logs. The values in the list depend on the DB engine being used.
+	//
+	// For more information, see Publishing Database Logs to Amazon CloudWatch Logs
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
 	// The database engine to use for the new DB cluster.
@@ -44991,6 +46135,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	// Constraint: Must be compatible with the engine of the source
 	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
@@ -44998,36 +46144,72 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// global, or multimaster.
 	//
 	// For more information, see CreateDBCluster (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html).
+	//
+	// Valid for: Aurora DB clusters only
 	EngineMode *string `type:"string"`
 
 	// The version of the database engine to use for the new DB cluster.
 	//
-	// To list all of the available engine versions for aurora (for MySQL 5.6-compatible
-	// Aurora), use the following command:
+	// To list all of the available engine versions for MySQL 5.6-compatible Aurora,
+	// use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for aurora-mysql (for MySQL
-	// 5.7-compatible Aurora), use the following command:
+	// To list all of the available engine versions for MySQL 5.7-compatible Aurora,
+	// use the following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-mysql --query "DBEngineVersions[].EngineVersion"
 	//
-	// To list all of the available engine versions for aurora-postgresql, use the
+	// To list all of the available engine versions for Aurora PostgreSQL, use the
 	// following command:
 	//
 	// aws rds describe-db-engine-versions --engine aurora-postgresql --query "DBEngineVersions[].EngineVersion"
 	//
-	// If you aren't using the default engine version, then you must specify the
-	// engine version.
+	// To list all of the available engine versions for RDS for MySQL, use the following
+	// command:
+	//
+	// aws rds describe-db-engine-versions --engine mysql --query "DBEngineVersions[].EngineVersion"
+	//
+	// To list all of the available engine versions for RDS for PostgreSQL, use
+	// the following command:
+	//
+	// aws rds describe-db-engine-versions --engine postgres --query "DBEngineVersions[].EngineVersion"
 	//
 	// Aurora MySQL
 	//
-	// Example: 5.6.10a, 5.6.mysql_aurora.1.19.2, 5.7.12, 5.7.mysql_aurora.2.04.5
+	// See MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraMySQL.Updates.html)
+	// in the Amazon Aurora User Guide.
 	//
 	// Aurora PostgreSQL
 	//
-	// Example: 9.6.3, 10.7
+	// See Amazon Aurora PostgreSQL releases and engine versions (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.Updates.20180305.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// MySQL
+	//
+	// See MySQL on Amazon RDS Versions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.VersionMgmt)
+	// in the Amazon RDS User Guide.
+	//
+	// PostgreSQL
+	//
+	// See Amazon RDS for PostgreSQL versions and extensions (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	EngineVersion *string `type:"string"`
+
+	// The amount of Provisioned IOPS (input/output operations per second) to be
+	// initially allocated for each DB instance in the Multi-AZ DB cluster.
+	//
+	// For information about valid Iops values, see Amazon RDS Provisioned IOPS
+	// Storage to Improve Performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints: Must be a multiple between .5 and 50 of the storage amount for
+	// the DB instance.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	Iops *int64 `type:"integer"`
 
 	// The Amazon Web Services KMS key identifier to use when restoring an encrypted
 	// DB cluster from a DB snapshot or DB cluster snapshot.
@@ -45045,9 +46227,13 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	//    * If the DB snapshot or DB cluster snapshot in SnapshotIdentifier isn't
 	//    encrypted, then the restored DB cluster isn't encrypted.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	KmsKeyId *string `type:"string"`
 
 	// The name of the option group to use for the restored DB cluster.
+	//
+	// DB clusters are associated with a default option group that can't be modified.
 	OptionGroupName *string `type:"string"`
 
 	// The port number on which the new DB cluster accepts connections.
@@ -45055,10 +46241,50 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// Constraints: This value must be 1150-65535
 	//
 	// Default: The same port as the original DB cluster.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	Port *int64 `type:"integer"`
+
+	// A value that indicates whether the DB cluster is publicly accessible.
+	//
+	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB cluster's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB cluster's VPC. Access to the DB cluster is ultimately controlled
+	// by the security group it uses. That public access is not permitted if the
+	// security group assigned to the DB cluster doesn't permit it.
+	//
+	// When the DB cluster isn't publicly accessible, it is an internal DB cluster
+	// with a DNS name that resolves to a private IP address.
+	//
+	// Default: The default behavior varies depending on whether DBSubnetGroupName
+	// is specified.
+	//
+	// If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified,
+	// the following applies:
+	//
+	//    * If the default VPC in the target Region doesn’t have an internet gateway
+	//    attached to it, the DB cluster is private.
+	//
+	//    * If the default VPC in the target Region has an internet gateway attached
+	//    to it, the DB cluster is public.
+	//
+	// If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified,
+	// the following applies:
+	//
+	//    * If the subnets are part of a VPC that doesn’t have an internet gateway
+	//    attached to it, the DB cluster is private.
+	//
+	//    * If the subnets are part of a VPC that has an internet gateway attached
+	//    to it, the DB cluster is public.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	PubliclyAccessible *bool `type:"boolean"`
 
 	// For DB clusters in serverless DB engine mode, the scaling properties of the
 	// DB cluster.
+	//
+	// Valid for: Aurora DB clusters only
 	ScalingConfiguration *ScalingConfiguration `type:"structure"`
 
 	// The identifier for the DB snapshot or DB cluster snapshot to restore from.
@@ -45071,13 +46297,31 @@ type RestoreDBClusterFromSnapshotInput struct {
 	//
 	//    * Must match the identifier of an existing Snapshot.
 	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	//
 	// SnapshotIdentifier is a required field
 	SnapshotIdentifier *string `type:"string" required:"true"`
 
+	// Specifies the storage type to be associated with the each DB instance in
+	// the Multi-AZ DB cluster.
+	//
+	// Valid values: standard | gp2 | io1
+	//
+	// If you specify io1, you must also include a value for the Iops parameter.
+	//
+	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	StorageType *string `type:"string"`
+
 	// The tags to be assigned to the restored DB cluster.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A list of VPC security groups that the new DB cluster will belong to.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 }
 
@@ -45139,6 +46383,12 @@ func (s *RestoreDBClusterFromSnapshotInput) SetCopyTagsToSnapshot(v bool) *Resto
 // SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetDBClusterIdentifier(v string) *RestoreDBClusterFromSnapshotInput {
 	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetDBClusterInstanceClass sets the DBClusterInstanceClass field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetDBClusterInstanceClass(v string) *RestoreDBClusterFromSnapshotInput {
+	s.DBClusterInstanceClass = &v
 	return s
 }
 
@@ -45208,6 +46458,12 @@ func (s *RestoreDBClusterFromSnapshotInput) SetEngineVersion(v string) *RestoreD
 	return s
 }
 
+// SetIops sets the Iops field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetIops(v int64) *RestoreDBClusterFromSnapshotInput {
+	s.Iops = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetKmsKeyId(v string) *RestoreDBClusterFromSnapshotInput {
 	s.KmsKeyId = &v
@@ -45226,6 +46482,12 @@ func (s *RestoreDBClusterFromSnapshotInput) SetPort(v int64) *RestoreDBClusterFr
 	return s
 }
 
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetPubliclyAccessible(v bool) *RestoreDBClusterFromSnapshotInput {
+	s.PubliclyAccessible = &v
+	return s
+}
+
 // SetScalingConfiguration sets the ScalingConfiguration field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetScalingConfiguration(v *ScalingConfiguration) *RestoreDBClusterFromSnapshotInput {
 	s.ScalingConfiguration = v
@@ -45235,6 +46497,12 @@ func (s *RestoreDBClusterFromSnapshotInput) SetScalingConfiguration(v *ScalingCo
 // SetSnapshotIdentifier sets the SnapshotIdentifier field's value.
 func (s *RestoreDBClusterFromSnapshotInput) SetSnapshotIdentifier(v string) *RestoreDBClusterFromSnapshotInput {
 	s.SnapshotIdentifier = &v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *RestoreDBClusterFromSnapshotInput) SetStorageType(v string) *RestoreDBClusterFromSnapshotInput {
+	s.StorageType = &v
 	return s
 }
 
@@ -45253,10 +46521,26 @@ func (s *RestoreDBClusterFromSnapshotInput) SetVpcSecurityGroupIds(v []*string) 
 type RestoreDBClusterFromSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -45290,18 +46574,20 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// The target backtrack window, in seconds. To disable backtracking, set this
 	// value to 0.
 	//
-	// Currently, Backtrack is only supported for Aurora MySQL DB clusters.
-	//
 	// Default: 0
 	//
 	// Constraints:
 	//
 	//    * If specified, this value must be set to a number from 0 to 259,200 (72
 	//    hours).
+	//
+	// Valid for: Aurora MySQL DB clusters only
 	BacktrackWindow *int64 `type:"long"`
 
 	// A value that indicates whether to copy all tags from the restored DB cluster
 	// to snapshots of the restored DB cluster. The default is not to copy them.
+	//
+	// Valid for: Aurora DB clusters only
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
 	// The name of the new DB cluster to be created.
@@ -45314,8 +46600,21 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	//    * Can't end with a hyphen or contain two consecutive hyphens
 	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	//
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The compute and memory capacity of the each DB instance in the Multi-AZ DB
+	// cluster, for example db.m6g.xlarge. Not all DB instance classes are available
+	// in all Amazon Web Services Regions, or for all database engines.
+	//
+	// For the full list of DB instance classes, and availability for your engine,
+	// see DB instance class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
+	// in the Amazon RDS User Guide.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	DBClusterInstanceClass *string `type:"string"`
 
 	// The name of the DB cluster parameter group to associate with this DB cluster.
 	// If this argument is omitted, the default DB cluster parameter group for the
@@ -45331,6 +46630,8 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//    * First character must be a letter.
 	//
 	//    * Can't end with a hyphen or contain two consecutive hyphens.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBClusterParameterGroupName *string `type:"string"`
 
 	// The DB subnet group name to use for the new DB cluster.
@@ -45338,11 +46639,15 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Constraints: If supplied, must match the name of an existing DBSubnetGroup.
 	//
 	// Example: mySubnetgroup
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DBSubnetGroupName *string `type:"string"`
 
 	// A value that indicates whether the DB cluster has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled.
+	// deletion protection isn't enabled.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	DeletionProtection *bool `type:"boolean"`
 
 	// Specify the Active Directory directory ID to restore the DB cluster in. The
@@ -45352,24 +46657,34 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// to authenticate users that connect to the DB cluster. For more information,
 	// see Kerberos Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/kerberos-authentication.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	Domain *string `type:"string"`
 
 	// Specify the name of the IAM role to be used when making API calls to the
 	// Directory Service.
+	//
+	// Valid for: Aurora DB clusters only
 	DomainIAMRoleName *string `type:"string"`
 
 	// The list of logs that the restored DB cluster is to export to CloudWatch
-	// Logs. The values in the list depend on the DB engine being used. For more
-	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
+	// Logs. The values in the list depend on the DB engine being used.
+	//
+	// For more information, see Publishing Database Logs to Amazon CloudWatch Logs
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// For more information, see IAM Database Authentication (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.IAMDBAuth.html)
 	// in the Amazon Aurora User Guide.
+	//
+	// Valid for: Aurora DB clusters only
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
 	// The engine mode of the new cluster. Specify provisioned or serverless, depending
@@ -45378,7 +46693,22 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// cluster. To create a clone that is an Aurora Serverless cluster, the original
 	// cluster must be an Aurora Serverless cluster or an encrypted provisioned
 	// cluster.
+	//
+	// Valid for: Aurora DB clusters only
 	EngineMode *string `type:"string"`
+
+	// The amount of Provisioned IOPS (input/output operations per second) to be
+	// initially allocated for each DB instance in the Multi-AZ DB cluster.
+	//
+	// For information about valid Iops values, see Amazon RDS Provisioned IOPS
+	// storage to improve performance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Storage.html#USER_PIOPS)
+	// in the Amazon RDS User Guide.
+	//
+	// Constraints: Must be a multiple between .5 and 50 of the storage amount for
+	// the DB instance.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	Iops *int64 `type:"integer"`
 
 	// The Amazon Web Services KMS key identifier to use when restoring an encrypted
 	// DB cluster from an encrypted DB cluster.
@@ -45403,9 +46733,13 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	// If DBClusterIdentifier refers to a DB cluster that isn't encrypted, then
 	// the restore request is rejected.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	KmsKeyId *string `type:"string"`
 
 	// The name of the option group for the new DB cluster.
+	//
+	// DB clusters are associated with a default option group that can't be modified.
 	OptionGroupName *string `type:"string"`
 
 	// The port number on which the new DB cluster accepts connections.
@@ -45413,7 +46747,45 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Constraints: A value from 1150-65535.
 	//
 	// Default: The default port for the engine.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	Port *int64 `type:"integer"`
+
+	// A value that indicates whether the DB cluster is publicly accessible.
+	//
+	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB cluster's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB cluster's VPC. Access to the DB cluster is ultimately controlled
+	// by the security group it uses. That public access is not permitted if the
+	// security group assigned to the DB cluster doesn't permit it.
+	//
+	// When the DB cluster isn't publicly accessible, it is an internal DB cluster
+	// with a DNS name that resolves to a private IP address.
+	//
+	// Default: The default behavior varies depending on whether DBSubnetGroupName
+	// is specified.
+	//
+	// If DBSubnetGroupName isn't specified, and PubliclyAccessible isn't specified,
+	// the following applies:
+	//
+	//    * If the default VPC in the target Region doesn’t have an internet gateway
+	//    attached to it, the DB cluster is private.
+	//
+	//    * If the default VPC in the target Region has an internet gateway attached
+	//    to it, the DB cluster is public.
+	//
+	// If DBSubnetGroupName is specified, and PubliclyAccessible isn't specified,
+	// the following applies:
+	//
+	//    * If the subnets are part of a VPC that doesn’t have an internet gateway
+	//    attached to it, the DB cluster is private.
+	//
+	//    * If the subnets are part of a VPC that has an internet gateway attached
+	//    to it, the DB cluster is public.
+	//
+	// Valid for: Multi-AZ DB clusters only
+	PubliclyAccessible *bool `type:"boolean"`
 
 	// The date and time to restore the DB cluster to.
 	//
@@ -45430,6 +46802,8 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//    * Can't be specified if the RestoreType parameter is copy-on-write
 	//
 	// Example: 2015-03-07T23:45:00Z
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	RestoreToTime *time.Time `type:"timestamp"`
 
 	// The type of restore to be performed. You can specify one of the following
@@ -45446,10 +46820,14 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	// If you don't specify a RestoreType value, then the new DB cluster is restored
 	// as a full copy of the source DB cluster.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	RestoreType *string `type:"string"`
 
 	// For DB clusters in serverless DB engine mode, the scaling properties of the
 	// DB cluster.
+	//
+	// Valid for: Aurora DB clusters only
 	ScalingConfiguration *ScalingConfiguration `type:"structure"`
 
 	// The identifier of the source DB cluster from which to restore.
@@ -45458,8 +46836,22 @@ type RestoreDBClusterToPointInTimeInput struct {
 	//
 	//    * Must match the identifier of an existing DBCluster.
 	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
+	//
 	// SourceDBClusterIdentifier is a required field
 	SourceDBClusterIdentifier *string `type:"string" required:"true"`
+
+	// Specifies the storage type to be associated with the each DB instance in
+	// the Multi-AZ DB cluster.
+	//
+	// Valid values: standard | gp2 | io1
+	//
+	// If you specify io1, also include a value for the Iops parameter.
+	//
+	// Default: io1 if the Iops parameter is specified, otherwise gp2
+	//
+	// Valid for: Multi-AZ DB clusters only
+	StorageType *string `type:"string"`
 
 	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
 	// in the Amazon RDS User Guide.
@@ -45470,9 +46862,13 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// backup time.
 	//
 	// Constraints: Can't be specified if RestoreToTime parameter is provided.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	UseLatestRestorableTime *bool `type:"boolean"`
 
 	// A list of VPC security groups that the new DB cluster belongs to.
+	//
+	// Valid for: Aurora DB clusters and Multi-AZ DB clusters
 	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
 }
 
@@ -45528,6 +46924,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetDBClusterIdentifier(v string) *R
 	return s
 }
 
+// SetDBClusterInstanceClass sets the DBClusterInstanceClass field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetDBClusterInstanceClass(v string) *RestoreDBClusterToPointInTimeInput {
+	s.DBClusterInstanceClass = &v
+	return s
+}
+
 // SetDBClusterParameterGroupName sets the DBClusterParameterGroupName field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetDBClusterParameterGroupName(v string) *RestoreDBClusterToPointInTimeInput {
 	s.DBClusterParameterGroupName = &v
@@ -45576,6 +46978,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetEngineMode(v string) *RestoreDBC
 	return s
 }
 
+// SetIops sets the Iops field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetIops(v int64) *RestoreDBClusterToPointInTimeInput {
+	s.Iops = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetKmsKeyId(v string) *RestoreDBClusterToPointInTimeInput {
 	s.KmsKeyId = &v
@@ -45591,6 +46999,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetOptionGroupName(v string) *Resto
 // SetPort sets the Port field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetPort(v int64) *RestoreDBClusterToPointInTimeInput {
 	s.Port = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetPubliclyAccessible(v bool) *RestoreDBClusterToPointInTimeInput {
+	s.PubliclyAccessible = &v
 	return s
 }
 
@@ -45618,6 +47032,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetSourceDBClusterIdentifier(v stri
 	return s
 }
 
+// SetStorageType sets the StorageType field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetStorageType(v string) *RestoreDBClusterToPointInTimeInput {
+	s.StorageType = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetTags(v []*Tag) *RestoreDBClusterToPointInTimeInput {
 	s.Tags = v
@@ -45639,10 +47059,26 @@ func (s *RestoreDBClusterToPointInTimeInput) SetVpcSecurityGroupIds(v []*string)
 type RestoreDBClusterToPointInTimeOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -45722,7 +47158,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
 
-	// The compute and memory capacity of the Amazon RDS DB instance, for example,
+	// The compute and memory capacity of the Amazon RDS DB instance, for example
 	// db.m4.large. Not all DB instance classes are available in all Amazon Web
 	// Services Regions, or for all database engines. For the full list of DB instance
 	// classes, and availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -45792,7 +47228,7 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled. For more information, see Deleting a DB
+	// deletion protection isn't enabled. For more information, see Deleting a DB
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
 
@@ -45940,12 +47376,12 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// A value that indicates whether the DB instance is publicly accessible.
 	//
-	// When the DB instance is publicly accessible, its DNS endpoint resolves to
-	// the private IP address from within the DB instance's VPC, and to the public
-	// IP address from outside of the DB instance's VPC. Access to the DB instance
-	// is ultimately controlled by the security group it uses, and that public access
-	// is not permitted if the security group assigned to the DB instance doesn't
-	// permit it.
+	// When the DB instance is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB instance's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB instance's VPC. Access to the DB instance is ultimately controlled
+	// by the security group it uses. That public access is not permitted if the
+	// security group assigned to the DB instance doesn't permit it.
 	//
 	// When the DB instance isn't publicly accessible, it is an internal DB instance
 	// with a DNS name that resolves to a private IP address.
@@ -46214,7 +47650,10 @@ type RestoreDBInstanceFromDBSnapshotOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -46282,7 +47721,7 @@ type RestoreDBInstanceFromS3Input struct {
 	// of the DB instance. By default, tags are not copied.
 	CopyTagsToSnapshot *bool `type:"boolean"`
 
-	// The compute and memory capacity of the DB instance, for example, db.m4.large.
+	// The compute and memory capacity of the DB instance, for example db.m4.large.
 	// Not all DB instance classes are available in all Amazon Web Services Regions,
 	// or for all database engines. For the full list of DB instance classes, and
 	// availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -46328,7 +47767,7 @@ type RestoreDBInstanceFromS3Input struct {
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled. For more information, see Deleting a DB
+	// deletion protection isn't enabled. For more information, see Deleting a DB
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
 
@@ -46340,7 +47779,7 @@ type RestoreDBInstanceFromS3Input struct {
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
@@ -46510,12 +47949,12 @@ type RestoreDBInstanceFromS3Input struct {
 
 	// A value that indicates whether the DB instance is publicly accessible.
 	//
-	// When the DB instance is publicly accessible, its DNS endpoint resolves to
-	// the private IP address from within the DB instance's VPC, and to the public
-	// IP address from outside of the DB instance's VPC. Access to the DB instance
-	// is ultimately controlled by the security group it uses, and that public access
-	// is not permitted if the security group assigned to the DB instance doesn't
-	// permit it.
+	// When the DB instance is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB instance's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB instance's VPC. Access to the DB instance is ultimately controlled
+	// by the security group it uses. That public access is not permitted if the
+	// security group assigned to the DB instance doesn't permit it.
 	//
 	// When the DB instance isn't publicly accessible, it is an internal DB instance
 	// with a DNS name that resolves to a private IP address.
@@ -46896,7 +48335,10 @@ type RestoreDBInstanceFromS3Output struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -46976,7 +48418,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// This setting is required for RDS Custom.
 	CustomIamInstanceProfile *string `type:"string"`
 
-	// The compute and memory capacity of the Amazon RDS DB instance, for example,
+	// The compute and memory capacity of the Amazon RDS DB instance, for example
 	// db.m4.large. Not all DB instance classes are available in all Amazon Web
 	// Services Regions, or for all database engines. For the full list of DB instance
 	// classes, and availability for your engine, see DB Instance Class (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html)
@@ -47018,7 +48460,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// A value that indicates whether the DB instance has deletion protection enabled.
 	// The database can't be deleted when deletion protection is enabled. By default,
-	// deletion protection is disabled. For more information, see Deleting a DB
+	// deletion protection isn't enabled. For more information, see Deleting a DB
 	// Instance (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_DeleteInstance.html).
 	DeletionProtection *bool `type:"boolean"`
 
@@ -47067,7 +48509,7 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// A value that indicates whether to enable mapping of Amazon Web Services Identity
 	// and Access Management (IAM) accounts to database accounts. By default, mapping
-	// is disabled.
+	// isn't enabled.
 	//
 	// This setting doesn't apply to RDS Custom.
 	//
@@ -47171,12 +48613,12 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// A value that indicates whether the DB instance is publicly accessible.
 	//
-	// When the DB instance is publicly accessible, its DNS endpoint resolves to
-	// the private IP address from within the DB instance's VPC, and to the public
-	// IP address from outside of the DB instance's VPC. Access to the DB instance
-	// is ultimately controlled by the security group it uses, and that public access
-	// is not permitted if the security group assigned to the DB instance doesn't
-	// permit it.
+	// When the DB cluster is publicly accessible, its Domain Name System (DNS)
+	// endpoint resolves to the private IP address from within the DB cluster's
+	// virtual private cloud (VPC). It resolves to the public IP address from outside
+	// of the DB cluster's VPC. Access to the DB cluster is ultimately controlled
+	// by the security group it uses. That public access isn't permitted if the
+	// security group assigned to the DB cluster doesn't permit it.
 	//
 	// When the DB instance isn't publicly accessible, it is an internal DB instance
 	// with a DNS name that resolves to a private IP address.
@@ -47521,7 +48963,10 @@ type RestoreDBInstanceToPointInTimeOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -48223,10 +49668,26 @@ func (s *StartDBClusterInput) SetDBClusterIdentifier(v string) *StartDBClusterIn
 type StartDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -48439,7 +49900,10 @@ type StartDBInstanceOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 
@@ -48962,10 +50426,26 @@ func (s *StopDBClusterInput) SetDBClusterIdentifier(v string) *StopDBClusterInpu
 type StopDBClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the details of an Amazon Aurora DB cluster.
+	// Contains the details of an Amazon Aurora DB cluster or Multi-AZ DB cluster.
 	//
-	// This data type is used as a response element in the DescribeDBClusters, StopDBCluster,
-	// and StartDBCluster actions.
+	// For an Amazon Aurora DB cluster, this data type is used as a response element
+	// in the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, PromoteReadReplicaDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot,
+	// RestoreDBClusterToPointInTime, StartDBCluster, and StopDBCluster.
+	//
+	// For a Multi-AZ DB cluster, this data type is used as a response element in
+	// the operations CreateDBCluster, DeleteDBCluster, DescribeDBClusters, FailoverDBCluster,
+	// ModifyDBCluster, RebootDBCluster, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+	//
+	// For more information on Amazon Aurora DB clusters, see What is Amazon Aurora?
+	// (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
+	// in the Amazon Aurora User Guide.
+	//
+	// For more information on Multi-AZ DB clusters, see Multi-AZ deployments with
+	// two readable standby DB instances (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/multi-az-db-clusters-concepts.html)
+	// in the Amazon RDS User Guide.
+	//
+	// The Multi-AZ DB clusters feature is in preview and is subject to change.
 	DBCluster *DBCluster `type:"structure"`
 }
 
@@ -49134,7 +50614,10 @@ type StopDBInstanceOutput struct {
 
 	// Contains the details of an Amazon RDS DB instance.
 	//
-	// This data type is used as a response element in the DescribeDBInstances action.
+	// This data type is used as a response element in the operations CreateDBInstance,
+	// CreateDBInstanceReadReplica, DeleteDBInstance, DescribeDBInstances, ModifyDBInstance,
+	// PromoteReadReplica, RebootDBInstance, RestoreDBInstanceFromDBSnapshot, RestoreDBInstanceFromS3,
+	// RestoreDBInstanceToPointInTime, StartDBInstance, and StopDBInstance.
 	DBInstance *DBInstance `type:"structure"`
 }
 

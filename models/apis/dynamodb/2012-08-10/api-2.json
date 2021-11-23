@@ -1083,13 +1083,15 @@
       "type":"structure",
       "required":["Statements"],
       "members":{
-        "Statements":{"shape":"PartiQLBatchRequest"}
+        "Statements":{"shape":"PartiQLBatchRequest"},
+        "ReturnConsumedCapacity":{"shape":"ReturnConsumedCapacity"}
       }
     },
     "BatchExecuteStatementOutput":{
       "type":"structure",
       "members":{
-        "Responses":{"shape":"PartiQLBatchResponse"}
+        "Responses":{"shape":"PartiQLBatchResponse"},
+        "ConsumedCapacity":{"shape":"ConsumedCapacityMultiple"}
       }
     },
     "BatchGetItemInput":{
@@ -1767,14 +1769,16 @@
         "Statement":{"shape":"PartiQLStatement"},
         "Parameters":{"shape":"PreparedStatementParameters"},
         "ConsistentRead":{"shape":"ConsistentRead"},
-        "NextToken":{"shape":"PartiQLNextToken"}
+        "NextToken":{"shape":"PartiQLNextToken"},
+        "ReturnConsumedCapacity":{"shape":"ReturnConsumedCapacity"}
       }
     },
     "ExecuteStatementOutput":{
       "type":"structure",
       "members":{
         "Items":{"shape":"ItemList"},
-        "NextToken":{"shape":"PartiQLNextToken"}
+        "NextToken":{"shape":"PartiQLNextToken"},
+        "ConsumedCapacity":{"shape":"ConsumedCapacity"}
       }
     },
     "ExecuteTransactionInput":{
@@ -1785,13 +1789,15 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "ReturnConsumedCapacity":{"shape":"ReturnConsumedCapacity"}
       }
     },
     "ExecuteTransactionOutput":{
       "type":"structure",
       "members":{
-        "Responses":{"shape":"ItemResponseList"}
+        "Responses":{"shape":"ItemResponseList"},
+        "ConsumedCapacity":{"shape":"ConsumedCapacityMultiple"}
       }
     },
     "ExpectedAttributeMap":{

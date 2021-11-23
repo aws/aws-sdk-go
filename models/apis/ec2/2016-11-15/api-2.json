@@ -3499,6 +3499,15 @@
       },
       "input":{"shape":"ModifyNetworkInterfaceAttributeRequest"}
     },
+    "ModifyPrivateDnsNameOptions":{
+      "name":"ModifyPrivateDnsNameOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyPrivateDnsNameOptionsRequest"},
+      "output":{"shape":"ModifyPrivateDnsNameOptionsResult"}
+    },
     "ModifyReservedInstances":{
       "name":"ModifyReservedInstances",
       "http":{
@@ -8225,7 +8234,8 @@
       "required":["AvailabilityZone"],
       "members":{
         "AvailabilityZone":{"shape":"String"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "Ipv6Native":{"shape":"Boolean"}
       }
     },
     "CreateDefaultSubnetResult":{
@@ -9379,10 +9389,7 @@
     },
     "CreateSubnetRequest":{
       "type":"structure",
-      "required":[
-        "CidrBlock",
-        "VpcId"
-      ],
+      "required":["VpcId"],
       "members":{
         "TagSpecifications":{
           "shape":"TagSpecificationList",
@@ -9397,7 +9404,8 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        }
+        },
+        "Ipv6Native":{"shape":"Boolean"}
       }
     },
     "CreateSubnetResult":{
@@ -19521,6 +19529,13 @@
         "host"
       ]
     },
+    "HostnameType":{
+      "type":"string",
+      "enum":[
+        "ip-name",
+        "resource-name"
+      ]
+    },
     "Hour":{
       "type":"integer",
       "max":23,
@@ -20727,6 +20742,14 @@
         "UsageOperationUpdateTime":{
           "shape":"MillisecondDateTime",
           "locationName":"usageOperationUpdateTime"
+        },
+        "PrivateDnsNameOptions":{
+          "shape":"PrivateDnsNameOptionsResponse",
+          "locationName":"privateDnsNameOptions"
+        },
+        "Ipv6Address":{
+          "shape":"String",
+          "locationName":"ipv6Address"
         }
       }
     },
@@ -23824,6 +23847,31 @@
         "PartitionNumber":{"shape":"Integer"}
       }
     },
+    "LaunchTemplatePrivateDnsNameOptions":{
+      "type":"structure",
+      "members":{
+        "HostnameType":{
+          "shape":"HostnameType",
+          "locationName":"hostnameType"
+        },
+        "EnableResourceNameDnsARecord":{
+          "shape":"Boolean",
+          "locationName":"enableResourceNameDnsARecord"
+        },
+        "EnableResourceNameDnsAAAARecord":{
+          "shape":"Boolean",
+          "locationName":"enableResourceNameDnsAAAARecord"
+        }
+      }
+    },
+    "LaunchTemplatePrivateDnsNameOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "HostnameType":{"shape":"HostnameType"},
+        "EnableResourceNameDnsARecord":{"shape":"Boolean"},
+        "EnableResourceNameDnsAAAARecord":{"shape":"Boolean"}
+      }
+    },
     "LaunchTemplateSet":{
       "type":"list",
       "member":{
@@ -25195,6 +25243,25 @@
         }
       }
     },
+    "ModifyPrivateDnsNameOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceId":{"shape":"InstanceId"},
+        "PrivateDnsHostnameType":{"shape":"HostnameType"},
+        "EnableResourceNameDnsARecord":{"shape":"Boolean"},
+        "EnableResourceNameDnsAAAARecord":{"shape":"Boolean"}
+      }
+    },
+    "ModifyPrivateDnsNameOptionsResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "ModifyReservedInstancesRequest":{
       "type":"structure",
       "required":[
@@ -25316,7 +25383,10 @@
         },
         "MapCustomerOwnedIpOnLaunch":{"shape":"AttributeBooleanValue"},
         "CustomerOwnedIpv4Pool":{"shape":"CoipPoolId"},
-        "EnableDns64":{"shape":"AttributeBooleanValue"}
+        "EnableDns64":{"shape":"AttributeBooleanValue"},
+        "PrivateDnsHostnameTypeOnLaunch":{"shape":"HostnameType"},
+        "EnableResourceNameDnsARecordOnLaunch":{"shape":"AttributeBooleanValue"},
+        "EnableResourceNameDnsAAAARecordOnLaunch":{"shape":"AttributeBooleanValue"}
       }
     },
     "ModifyTrafficMirrorFilterNetworkServicesRequest":{
@@ -26460,6 +26530,14 @@
         "DenyAllIgwTraffic":{
           "shape":"Boolean",
           "locationName":"denyAllIgwTraffic"
+        },
+        "Ipv6Native":{
+          "shape":"Boolean",
+          "locationName":"ipv6Native"
+        },
+        "Ipv6Address":{
+          "shape":"String",
+          "locationName":"ipv6Address"
         }
       }
     },
@@ -27618,6 +27696,48 @@
         "Name":{
           "shape":"String",
           "locationName":"name"
+        }
+      }
+    },
+    "PrivateDnsNameOptionsOnLaunch":{
+      "type":"structure",
+      "members":{
+        "HostnameType":{
+          "shape":"HostnameType",
+          "locationName":"hostnameType"
+        },
+        "EnableResourceNameDnsARecord":{
+          "shape":"Boolean",
+          "locationName":"enableResourceNameDnsARecord"
+        },
+        "EnableResourceNameDnsAAAARecord":{
+          "shape":"Boolean",
+          "locationName":"enableResourceNameDnsAAAARecord"
+        }
+      }
+    },
+    "PrivateDnsNameOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "HostnameType":{"shape":"HostnameType"},
+        "EnableResourceNameDnsARecord":{"shape":"Boolean"},
+        "EnableResourceNameDnsAAAARecord":{"shape":"Boolean"}
+      }
+    },
+    "PrivateDnsNameOptionsResponse":{
+      "type":"structure",
+      "members":{
+        "HostnameType":{
+          "shape":"HostnameType",
+          "locationName":"hostnameType"
+        },
+        "EnableResourceNameDnsARecord":{
+          "shape":"Boolean",
+          "locationName":"enableResourceNameDnsARecord"
+        },
+        "EnableResourceNameDnsAAAARecord":{
+          "shape":"Boolean",
+          "locationName":"enableResourceNameDnsAAAARecord"
         }
       }
     },
@@ -28849,7 +28969,8 @@
         "HibernationOptions":{"shape":"LaunchTemplateHibernationOptionsRequest"},
         "MetadataOptions":{"shape":"LaunchTemplateInstanceMetadataOptionsRequest"},
         "EnclaveOptions":{"shape":"LaunchTemplateEnclaveOptionsRequest"},
-        "InstanceRequirements":{"shape":"InstanceRequirementsRequest"}
+        "InstanceRequirements":{"shape":"InstanceRequirementsRequest"},
+        "PrivateDnsNameOptions":{"shape":"LaunchTemplatePrivateDnsNameOptionsRequest"}
       }
     },
     "RequestSpotFleetRequest":{
@@ -29844,6 +29965,10 @@
         "InstanceRequirements":{
           "shape":"InstanceRequirements",
           "locationName":"instanceRequirements"
+        },
+        "PrivateDnsNameOptions":{
+          "shape":"LaunchTemplatePrivateDnsNameOptions",
+          "locationName":"privateDnsNameOptions"
         }
       }
     },
@@ -30346,7 +30471,8 @@
           "locationName":"LicenseSpecification"
         },
         "MetadataOptions":{"shape":"InstanceMetadataOptionsRequest"},
-        "EnclaveOptions":{"shape":"EnclaveOptionsRequest"}
+        "EnclaveOptions":{"shape":"EnclaveOptionsRequest"},
+        "PrivateDnsNameOptions":{"shape":"PrivateDnsNameOptionsRequest"}
       }
     },
     "RunScheduledInstancesRequest":{
@@ -32470,6 +32596,14 @@
         "EnableDns64":{
           "shape":"Boolean",
           "locationName":"enableDns64"
+        },
+        "Ipv6Native":{
+          "shape":"Boolean",
+          "locationName":"ipv6Native"
+        },
+        "PrivateDnsNameOptionsOnLaunch":{
+          "shape":"PrivateDnsNameOptionsOnLaunch",
+          "locationName":"privateDnsNameOptionsOnLaunch"
         }
       }
     },

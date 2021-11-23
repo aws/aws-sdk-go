@@ -749,8 +749,8 @@ func (c *WorkSpaces) CreateUpdatedWorkspaceImageRequest(input *CreateUpdatedWork
 // To determine which WorkSpace images need to be updated with the latest Amazon
 // WorkSpaces requirements, use DescribeWorkspaceImages (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html).
 //
-//    * Only Windows 10 WorkSpace images can be programmatically updated at
-//    this time.
+//    * Only Windows 10, Windows Sever 2016, and Windows Server 2019 WorkSpace
+//    images can be programmatically updated at this time.
 //
 //    * Microsoft Windows updates and other application updates are not included
 //    in the update process.

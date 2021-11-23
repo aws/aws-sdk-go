@@ -8299,6 +8299,21 @@ func (s *BackupSummary) SetTableName(v string) *BackupSummary {
 type BatchExecuteStatementInput struct {
 	_ struct{} `type:"structure"`
 
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
+	//
+	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
+	//    operation, together with ConsumedCapacity for each table and secondary
+	//    index that was accessed. Note that some operations, such as GetItem and
+	//    BatchGetItem, do not access any indexes at all. In these cases, specifying
+	//    INDEXES will only return ConsumedCapacity information for table(s).
+	//
+	//    * TOTAL - The response includes only the aggregate ConsumedCapacity for
+	//    the operation.
+	//
+	//    * NONE - No ConsumedCapacity details are included in the response.
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
+
 	// The list of PartiQL statements representing the batch to run.
 	//
 	// Statements is a required field
@@ -8349,6 +8364,12 @@ func (s *BatchExecuteStatementInput) Validate() error {
 	return nil
 }
 
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *BatchExecuteStatementInput) SetReturnConsumedCapacity(v string) *BatchExecuteStatementInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
 // SetStatements sets the Statements field's value.
 func (s *BatchExecuteStatementInput) SetStatements(v []*BatchStatementRequest) *BatchExecuteStatementInput {
 	s.Statements = v
@@ -8357,6 +8378,10 @@ func (s *BatchExecuteStatementInput) SetStatements(v []*BatchStatementRequest) *
 
 type BatchExecuteStatementOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The capacity units consumed by the entire operation. The values of the list
+	// are ordered according to the ordering of the statements.
+	ConsumedCapacity []*ConsumedCapacity `type:"list"`
 
 	// The response to each PartiQL statement in the batch.
 	Responses []*BatchStatementResponse `type:"list"`
@@ -8378,6 +8403,12 @@ func (s BatchExecuteStatementOutput) String() string {
 // value will be replaced with "sensitive".
 func (s BatchExecuteStatementOutput) GoString() string {
 	return s.String()
+}
+
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *BatchExecuteStatementOutput) SetConsumedCapacity(v []*ConsumedCapacity) *BatchExecuteStatementOutput {
+	s.ConsumedCapacity = v
+	return s
 }
 
 // SetResponses sets the Responses field's value.
@@ -8441,8 +8472,8 @@ type BatchGetItemInput struct {
 	// RequestItems is a required field
 	RequestItems map[string]*KeysAndAttributes `min:"1" type:"map" required:"true"`
 
-	// Determines the level of detail about provisioned throughput consumption that
-	// is returned in the response:
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
 	//
 	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 	//    operation, together with ConsumedCapacity for each table and secondary
@@ -8782,8 +8813,8 @@ type BatchWriteItemInput struct {
 	// RequestItems is a required field
 	RequestItems map[string][]*WriteRequest `min:"1" type:"map" required:"true"`
 
-	// Determines the level of detail about provisioned throughput consumption that
-	// is returned in the response:
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
 	//
 	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 	//    operation, together with ConsumedCapacity for each table and secondary
@@ -10844,8 +10875,8 @@ type DeleteItemInput struct {
 	// Key is a required field
 	Key map[string]*AttributeValue `type:"map" required:"true"`
 
-	// Determines the level of detail about provisioned throughput consumption that
-	// is returned in the response:
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
 	//
 	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 	//    operation, together with ConsumedCapacity for each table and secondary
@@ -12657,6 +12688,21 @@ type ExecuteStatementInput struct {
 	// The parameters for the PartiQL statement, if any.
 	Parameters []*AttributeValue `min:"1" type:"list"`
 
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
+	//
+	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
+	//    operation, together with ConsumedCapacity for each table and secondary
+	//    index that was accessed. Note that some operations, such as GetItem and
+	//    BatchGetItem, do not access any indexes at all. In these cases, specifying
+	//    INDEXES will only return ConsumedCapacity information for table(s).
+	//
+	//    * TOTAL - The response includes only the aggregate ConsumedCapacity for
+	//    the operation.
+	//
+	//    * NONE - No ConsumedCapacity details are included in the response.
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
+
 	// The PartiQL statement representing the operation to run.
 	//
 	// Statement is a required field
@@ -12721,6 +12767,12 @@ func (s *ExecuteStatementInput) SetParameters(v []*AttributeValue) *ExecuteState
 	return s
 }
 
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *ExecuteStatementInput) SetReturnConsumedCapacity(v string) *ExecuteStatementInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
 // SetStatement sets the Statement field's value.
 func (s *ExecuteStatementInput) SetStatement(v string) *ExecuteStatementInput {
 	s.Statement = &v
@@ -12729,6 +12781,14 @@ func (s *ExecuteStatementInput) SetStatement(v string) *ExecuteStatementInput {
 
 type ExecuteStatementOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The capacity units consumed by an operation. The data returned includes the
+	// total provisioned throughput consumed, along with statistics for the table
+	// and any indexes involved in the operation. ConsumedCapacity is only returned
+	// if the request asked for it. For more information, see Provisioned Throughput
+	// (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html)
+	// in the Amazon DynamoDB Developer Guide.
+	ConsumedCapacity *ConsumedCapacity `type:"structure"`
 
 	// If a read operation was used, this property will contain the result of the
 	// read operation; a map of attribute names and their values. For the write
@@ -12759,6 +12819,12 @@ func (s ExecuteStatementOutput) GoString() string {
 	return s.String()
 }
 
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *ExecuteStatementOutput) SetConsumedCapacity(v *ConsumedCapacity) *ExecuteStatementOutput {
+	s.ConsumedCapacity = v
+	return s
+}
+
 // SetItems sets the Items field's value.
 func (s *ExecuteStatementOutput) SetItems(v []map[string]*AttributeValue) *ExecuteStatementOutput {
 	s.Items = v
@@ -12777,6 +12843,12 @@ type ExecuteTransactionInput struct {
 	// Set this value to get remaining results, if NextToken was returned in the
 	// statement response.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response. For more information, see TransactGetItems
+	// (https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactGetItems.html)
+	// and TransactWriteItems (https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_TransactWriteItems.html).
+	ReturnConsumedCapacity *string `type:"string" enum:"ReturnConsumedCapacity"`
 
 	// The list of PartiQL statements representing the transaction to run.
 	//
@@ -12837,6 +12909,12 @@ func (s *ExecuteTransactionInput) SetClientRequestToken(v string) *ExecuteTransa
 	return s
 }
 
+// SetReturnConsumedCapacity sets the ReturnConsumedCapacity field's value.
+func (s *ExecuteTransactionInput) SetReturnConsumedCapacity(v string) *ExecuteTransactionInput {
+	s.ReturnConsumedCapacity = &v
+	return s
+}
+
 // SetTransactStatements sets the TransactStatements field's value.
 func (s *ExecuteTransactionInput) SetTransactStatements(v []*ParameterizedStatement) *ExecuteTransactionInput {
 	s.TransactStatements = v
@@ -12845,6 +12923,10 @@ func (s *ExecuteTransactionInput) SetTransactStatements(v []*ParameterizedStatem
 
 type ExecuteTransactionOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The capacity units consumed by the entire operation. The values of the list
+	// are ordered according to the ordering of the statements.
+	ConsumedCapacity []*ConsumedCapacity `type:"list"`
 
 	// The response to a PartiQL transaction.
 	Responses []*ItemResponse `min:"1" type:"list"`
@@ -12866,6 +12948,12 @@ func (s ExecuteTransactionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s ExecuteTransactionOutput) GoString() string {
 	return s.String()
+}
+
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *ExecuteTransactionOutput) SetConsumedCapacity(v []*ConsumedCapacity) *ExecuteTransactionOutput {
+	s.ConsumedCapacity = v
+	return s
 }
 
 // SetResponses sets the Responses field's value.
@@ -13860,8 +13948,8 @@ type GetItemInput struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProjectionExpression *string `type:"string"`
 
-	// Determines the level of detail about provisioned throughput consumption that
-	// is returned in the response:
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
 	//
 	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 	//    operation, together with ConsumedCapacity for each table and secondary
@@ -17437,8 +17525,8 @@ type PutItemInput struct {
 	// Item is a required field
 	Item map[string]*AttributeValue `type:"map" required:"true"`
 
-	// Determines the level of detail about provisioned throughput consumption that
-	// is returned in the response:
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
 	//
 	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 	//    operation, together with ConsumedCapacity for each table and secondary
@@ -17901,8 +17989,8 @@ type QueryInput struct {
 	// in the Amazon DynamoDB Developer Guide.
 	QueryFilter map[string]*Condition `type:"map"`
 
-	// Determines the level of detail about provisioned throughput consumption that
-	// is returned in the response:
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
 	//
 	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 	//    operation, together with ConsumedCapacity for each table and secondary
@@ -20351,8 +20439,8 @@ type ScanInput struct {
 	// in the Amazon DynamoDB Developer Guide.
 	ProjectionExpression *string `type:"string"`
 
-	// Determines the level of detail about provisioned throughput consumption that
-	// is returned in the response:
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
 	//
 	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 	//    operation, together with ConsumedCapacity for each table and secondary
@@ -22143,8 +22231,8 @@ type TransactWriteItemsInput struct {
 	// exception.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// Determines the level of detail about provisioned throughput consumption that
-	// is returned in the response:
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
 	//
 	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 	//    operation, together with ConsumedCapacity for each table and secondary
@@ -23458,8 +23546,8 @@ type UpdateItemInput struct {
 	// Key is a required field
 	Key map[string]*AttributeValue `type:"map" required:"true"`
 
-	// Determines the level of detail about provisioned throughput consumption that
-	// is returned in the response:
+	// Determines the level of detail about either provisioned or on-demand throughput
+	// consumption that is returned in the response:
 	//
 	//    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 	//    operation, together with ConsumedCapacity for each table and secondary
@@ -24845,8 +24933,8 @@ func ReplicaStatus_Values() []string {
 	}
 }
 
-// Determines the level of detail about provisioned throughput consumption that
-// is returned in the response:
+// Determines the level of detail about either provisioned or on-demand throughput
+// consumption that is returned in the response:
 //
 //    * INDEXES - The response includes the aggregate ConsumedCapacity for the
 //    operation, together with ConsumedCapacity for each table and secondary
