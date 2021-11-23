@@ -8088,6 +8088,8 @@ type CreateEventSourceMappingInput struct {
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
 	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
+	//
+	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams only) If the function returns an error, split the batch in two and
@@ -8114,6 +8116,11 @@ type CreateEventSourceMappingInput struct {
 	//
 	//    * Amazon Managed Streaming for Apache Kafka - The ARN of the cluster.
 	EventSourceArn *string `type:"string"`
+
+	// (Streams and Amazon SQS) A object that defines the filter criteria used to
+	// determine whether Lambda should process an event. For more information, see
+	// Lambda event filtering (https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
+	FilterCriteria *FilterCriteria `type:"structure"`
 
 	// The name of the Lambda function.
 	//
@@ -8281,6 +8288,12 @@ func (s *CreateEventSourceMappingInput) SetEventSourceArn(v string) *CreateEvent
 	return s
 }
 
+// SetFilterCriteria sets the FilterCriteria field's value.
+func (s *CreateEventSourceMappingInput) SetFilterCriteria(v *FilterCriteria) *CreateEventSourceMappingInput {
+	s.FilterCriteria = v
+	return s
+}
+
 // SetFunctionName sets the FunctionName field's value.
 func (s *CreateEventSourceMappingInput) SetFunctionName(v string) *CreateEventSourceMappingInput {
 	s.FunctionName = &v
@@ -8363,7 +8376,8 @@ type CreateFunctionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instruction set architecture that the function supports. Enter a string
-	// array with one of the valid values. The default value is x86_64.
+	// array with one of the valid values (arm64 or x86_64). The default value is
+	// x86_64.
 	Architectures []*string `min:"1" type:"list"`
 
 	// The code for the function.
@@ -10409,6 +10423,11 @@ type EventSourceMappingConfiguration struct {
 	// The Amazon Resource Name (ARN) of the event source.
 	EventSourceArn *string `type:"string"`
 
+	// (Streams and Amazon SQS) A object that defines the filter criteria used to
+	// determine whether Lambda should process an event. For more information, see
+	// Event filtering.
+	FilterCriteria *FilterCriteria `type:"structure"`
+
 	// The ARN of the Lambda function.
 	FunctionArn *string `type:"string"`
 
@@ -10523,6 +10542,12 @@ func (s *EventSourceMappingConfiguration) SetDestinationConfig(v *DestinationCon
 // SetEventSourceArn sets the EventSourceArn field's value.
 func (s *EventSourceMappingConfiguration) SetEventSourceArn(v string) *EventSourceMappingConfiguration {
 	s.EventSourceArn = &v
+	return s
+}
+
+// SetFilterCriteria sets the FilterCriteria field's value.
+func (s *EventSourceMappingConfiguration) SetFilterCriteria(v *FilterCriteria) *EventSourceMappingConfiguration {
+	s.FilterCriteria = v
 	return s
 }
 
@@ -10694,6 +10719,71 @@ func (s *FileSystemConfig) SetArn(v string) *FileSystemConfig {
 // SetLocalMountPath sets the LocalMountPath field's value.
 func (s *FileSystemConfig) SetLocalMountPath(v string) *FileSystemConfig {
 	s.LocalMountPath = &v
+	return s
+}
+
+// An object that specifies a filter criteria.
+type Filter struct {
+	_ struct{} `type:"structure"`
+
+	// A filter pattern. For more information on the syntax of a filter pattern,
+	// see Filter criteria syntax (https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-syntax).
+	Pattern *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Filter) GoString() string {
+	return s.String()
+}
+
+// SetPattern sets the Pattern field's value.
+func (s *Filter) SetPattern(v string) *Filter {
+	s.Pattern = &v
+	return s
+}
+
+// An object that contains the filters on the event source.
+type FilterCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A list of filters.
+	Filters []*Filter `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FilterCriteria) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *FilterCriteria) SetFilters(v []*Filter) *FilterCriteria {
+	s.Filters = v
 	return s
 }
 
@@ -13741,6 +13831,9 @@ type InvokeInput struct {
 	LogType *string `location:"header" locationName:"X-Amz-Log-Type" type:"string" enum:"LogType"`
 
 	// The JSON that you want to provide to your Lambda function as input.
+	//
+	// You can enter the JSON directly. For example, --payload '{ "key": "value"
+	// }'. You can also specify a file path. For example, --payload file://payload.json.
 	//
 	// Payload is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeInput's
@@ -17880,7 +17973,8 @@ type SourceAccessConfiguration struct {
 	//    for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.
 	//
 	//    * VIRTUAL_HOST - (Amazon MQ) The name of the virtual host in your RabbitMQ
-	//    broker. Lambda uses this RabbitMQ host as the event source.
+	//    broker. Lambda uses this RabbitMQ host as the event source. This property
+	//    cannot be specified in an UpdateEventSourceMapping API call.
 	Type *string `type:"string" enum:"SourceAccessType"`
 
 	// The value for your chosen configuration in Type. For example: "URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName".
@@ -18621,6 +18715,8 @@ type UpdateEventSourceMappingInput struct {
 	//    * Amazon Managed Streaming for Apache Kafka - Default 100. Max 10,000.
 	//
 	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
+	//
+	//    * Amazon MQ (ActiveMQ and RabbitMQ) - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams only) If the function returns an error, split the batch in two and
@@ -18636,6 +18732,11 @@ type UpdateEventSourceMappingInput struct {
 	//
 	// Default: True
 	Enabled *bool `type:"boolean"`
+
+	// (Streams and Amazon SQS) A object that defines the filter criteria used to
+	// determine whether Lambda should process an event. For more information, see
+	// Lambda event filtering (https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html).
+	FilterCriteria *FilterCriteria `type:"structure"`
 
 	// The name of the Lambda function.
 	//
@@ -18775,6 +18876,12 @@ func (s *UpdateEventSourceMappingInput) SetEnabled(v bool) *UpdateEventSourceMap
 	return s
 }
 
+// SetFilterCriteria sets the FilterCriteria field's value.
+func (s *UpdateEventSourceMappingInput) SetFilterCriteria(v *FilterCriteria) *UpdateEventSourceMappingInput {
+	s.FilterCriteria = v
+	return s
+}
+
 // SetFunctionName sets the FunctionName field's value.
 func (s *UpdateEventSourceMappingInput) SetFunctionName(v string) *UpdateEventSourceMappingInput {
 	s.FunctionName = &v
@@ -18833,7 +18940,8 @@ type UpdateFunctionCodeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The instruction set architecture that the function supports. Enter a string
-	// array with one of the valid values. The default value is x86_64.
+	// array with one of the valid values (arm64 or x86_64). The default value is
+	// x86_64.
 	Architectures []*string `min:"1" type:"list"`
 
 	// Set to true to validate the request parameters and access permissions without

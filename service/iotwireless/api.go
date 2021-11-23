@@ -3649,6 +3649,97 @@ func (c *IoTWireless) GetMulticastGroupSessionWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opGetNetworkAnalyzerConfiguration = "GetNetworkAnalyzerConfiguration"
+
+// GetNetworkAnalyzerConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetNetworkAnalyzerConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetNetworkAnalyzerConfiguration for more information on using the GetNetworkAnalyzerConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetNetworkAnalyzerConfigurationRequest method.
+//    req, resp := client.GetNetworkAnalyzerConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetNetworkAnalyzerConfiguration
+func (c *IoTWireless) GetNetworkAnalyzerConfigurationRequest(input *GetNetworkAnalyzerConfigurationInput) (req *request.Request, output *GetNetworkAnalyzerConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetNetworkAnalyzerConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/network-analyzer-configurations/{ConfigurationName}",
+	}
+
+	if input == nil {
+		input = &GetNetworkAnalyzerConfigurationInput{}
+	}
+
+	output = &GetNetworkAnalyzerConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetNetworkAnalyzerConfiguration API operation for AWS IoT Wireless.
+//
+// Get NetworkAnalyzer configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetNetworkAnalyzerConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetNetworkAnalyzerConfiguration
+func (c *IoTWireless) GetNetworkAnalyzerConfiguration(input *GetNetworkAnalyzerConfigurationInput) (*GetNetworkAnalyzerConfigurationOutput, error) {
+	req, out := c.GetNetworkAnalyzerConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetNetworkAnalyzerConfigurationWithContext is the same as GetNetworkAnalyzerConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetNetworkAnalyzerConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetNetworkAnalyzerConfigurationWithContext(ctx aws.Context, input *GetNetworkAnalyzerConfigurationInput, opts ...request.Option) (*GetNetworkAnalyzerConfigurationOutput, error) {
+	req, out := c.GetNetworkAnalyzerConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPartnerAccount = "GetPartnerAccount"
 
 // GetPartnerAccountRequest generates a "aws/request.Request" representing the
@@ -7755,6 +7846,98 @@ func (c *IoTWireless) UpdateMulticastGroup(input *UpdateMulticastGroupInput) (*U
 // for more information on using Contexts.
 func (c *IoTWireless) UpdateMulticastGroupWithContext(ctx aws.Context, input *UpdateMulticastGroupInput, opts ...request.Option) (*UpdateMulticastGroupOutput, error) {
 	req, out := c.UpdateMulticastGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateNetworkAnalyzerConfiguration = "UpdateNetworkAnalyzerConfiguration"
+
+// UpdateNetworkAnalyzerConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateNetworkAnalyzerConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateNetworkAnalyzerConfiguration for more information on using the UpdateNetworkAnalyzerConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateNetworkAnalyzerConfigurationRequest method.
+//    req, resp := client.UpdateNetworkAnalyzerConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateNetworkAnalyzerConfiguration
+func (c *IoTWireless) UpdateNetworkAnalyzerConfigurationRequest(input *UpdateNetworkAnalyzerConfigurationInput) (req *request.Request, output *UpdateNetworkAnalyzerConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateNetworkAnalyzerConfiguration,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/network-analyzer-configurations/{ConfigurationName}",
+	}
+
+	if input == nil {
+		input = &UpdateNetworkAnalyzerConfigurationInput{}
+	}
+
+	output = &UpdateNetworkAnalyzerConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateNetworkAnalyzerConfiguration API operation for AWS IoT Wireless.
+//
+// Update NetworkAnalyzer configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation UpdateNetworkAnalyzerConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateNetworkAnalyzerConfiguration
+func (c *IoTWireless) UpdateNetworkAnalyzerConfiguration(input *UpdateNetworkAnalyzerConfigurationInput) (*UpdateNetworkAnalyzerConfigurationOutput, error) {
+	req, out := c.UpdateNetworkAnalyzerConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateNetworkAnalyzerConfigurationWithContext is the same as UpdateNetworkAnalyzerConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateNetworkAnalyzerConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) UpdateNetworkAnalyzerConfigurationWithContext(ctx aws.Context, input *UpdateNetworkAnalyzerConfigurationInput, opts ...request.Option) (*UpdateNetworkAnalyzerConfigurationOutput, error) {
+	req, out := c.UpdateNetworkAnalyzerConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12553,6 +12736,104 @@ func (s GetMulticastGroupSessionOutput) GoString() string {
 // SetLoRaWAN sets the LoRaWAN field's value.
 func (s *GetMulticastGroupSessionOutput) SetLoRaWAN(v *LoRaWANMulticastSession) *GetMulticastGroupSessionOutput {
 	s.LoRaWAN = v
+	return s
+}
+
+type GetNetworkAnalyzerConfigurationInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// NetworkAnalyzer configuration name.
+	//
+	// ConfigurationName is a required field
+	ConfigurationName *string `location:"uri" locationName:"ConfigurationName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkAnalyzerConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkAnalyzerConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetNetworkAnalyzerConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetNetworkAnalyzerConfigurationInput"}
+	if s.ConfigurationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationName"))
+	}
+	if s.ConfigurationName != nil && len(*s.ConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationName sets the ConfigurationName field's value.
+func (s *GetNetworkAnalyzerConfigurationInput) SetConfigurationName(v string) *GetNetworkAnalyzerConfigurationInput {
+	s.ConfigurationName = &v
+	return s
+}
+
+type GetNetworkAnalyzerConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Trace Content for resources.
+	TraceContent *TraceContent `type:"structure"`
+
+	// List of WirelessDevices in the NetworkAnalyzerConfiguration.
+	WirelessDevices []*string `type:"list"`
+
+	// List of WirelessGateways in the NetworkAnalyzerConfiguration.
+	WirelessGateways []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkAnalyzerConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetNetworkAnalyzerConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetTraceContent sets the TraceContent field's value.
+func (s *GetNetworkAnalyzerConfigurationOutput) SetTraceContent(v *TraceContent) *GetNetworkAnalyzerConfigurationOutput {
+	s.TraceContent = v
+	return s
+}
+
+// SetWirelessDevices sets the WirelessDevices field's value.
+func (s *GetNetworkAnalyzerConfigurationOutput) SetWirelessDevices(v []*string) *GetNetworkAnalyzerConfigurationOutput {
+	s.WirelessDevices = v
+	return s
+}
+
+// SetWirelessGateways sets the WirelessGateways field's value.
+func (s *GetNetworkAnalyzerConfigurationOutput) SetWirelessGateways(v []*string) *GetNetworkAnalyzerConfigurationOutput {
+	s.WirelessGateways = v
 	return s
 }
 
@@ -18559,6 +18840,47 @@ func (s *TooManyTagsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Trace Content for resources.
+type TraceContent struct {
+	_ struct{} `type:"structure"`
+
+	// The log level for a log message.
+	LogLevel *string `type:"string" enum:"LogLevel"`
+
+	// WirelessDevice FrameInfo for trace content.
+	WirelessDeviceFrameInfo *string `type:"string" enum:"WirelessDeviceFrameInfo"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TraceContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TraceContent) GoString() string {
+	return s.String()
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *TraceContent) SetLogLevel(v string) *TraceContent {
+	s.LogLevel = &v
+	return s
+}
+
+// SetWirelessDeviceFrameInfo sets the WirelessDeviceFrameInfo field's value.
+func (s *TraceContent) SetWirelessDeviceFrameInfo(v string) *TraceContent {
+	s.WirelessDeviceFrameInfo = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -19073,6 +19395,122 @@ func (s UpdateMulticastGroupOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UpdateMulticastGroupOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateNetworkAnalyzerConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// NetworkAnalyzer configuration name.
+	//
+	// ConfigurationName is a required field
+	ConfigurationName *string `location:"uri" locationName:"ConfigurationName" min:"1" type:"string" required:"true"`
+
+	// Trace Content for resources.
+	TraceContent *TraceContent `type:"structure"`
+
+	// WirelessDevices to add into NetworkAnalyzerConfiguration.
+	WirelessDevicesToAdd []*string `type:"list"`
+
+	// WirelessDevices to remove from NetworkAnalyzerConfiguration.
+	WirelessDevicesToRemove []*string `type:"list"`
+
+	// WirelessGateways to add into NetworkAnalyzerConfiguration.
+	WirelessGatewaysToAdd []*string `type:"list"`
+
+	// WirelessGateways to remove from NetworkAnalyzerConfiguration.
+	WirelessGatewaysToRemove []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNetworkAnalyzerConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNetworkAnalyzerConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateNetworkAnalyzerConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateNetworkAnalyzerConfigurationInput"}
+	if s.ConfigurationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationName"))
+	}
+	if s.ConfigurationName != nil && len(*s.ConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationName sets the ConfigurationName field's value.
+func (s *UpdateNetworkAnalyzerConfigurationInput) SetConfigurationName(v string) *UpdateNetworkAnalyzerConfigurationInput {
+	s.ConfigurationName = &v
+	return s
+}
+
+// SetTraceContent sets the TraceContent field's value.
+func (s *UpdateNetworkAnalyzerConfigurationInput) SetTraceContent(v *TraceContent) *UpdateNetworkAnalyzerConfigurationInput {
+	s.TraceContent = v
+	return s
+}
+
+// SetWirelessDevicesToAdd sets the WirelessDevicesToAdd field's value.
+func (s *UpdateNetworkAnalyzerConfigurationInput) SetWirelessDevicesToAdd(v []*string) *UpdateNetworkAnalyzerConfigurationInput {
+	s.WirelessDevicesToAdd = v
+	return s
+}
+
+// SetWirelessDevicesToRemove sets the WirelessDevicesToRemove field's value.
+func (s *UpdateNetworkAnalyzerConfigurationInput) SetWirelessDevicesToRemove(v []*string) *UpdateNetworkAnalyzerConfigurationInput {
+	s.WirelessDevicesToRemove = v
+	return s
+}
+
+// SetWirelessGatewaysToAdd sets the WirelessGatewaysToAdd field's value.
+func (s *UpdateNetworkAnalyzerConfigurationInput) SetWirelessGatewaysToAdd(v []*string) *UpdateNetworkAnalyzerConfigurationInput {
+	s.WirelessGatewaysToAdd = v
+	return s
+}
+
+// SetWirelessGatewaysToRemove sets the WirelessGatewaysToRemove field's value.
+func (s *UpdateNetworkAnalyzerConfigurationInput) SetWirelessGatewaysToRemove(v []*string) *UpdateNetworkAnalyzerConfigurationInput {
+	s.WirelessGatewaysToRemove = v
+	return s
+}
+
+type UpdateNetworkAnalyzerConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNetworkAnalyzerConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateNetworkAnalyzerConfigurationOutput) GoString() string {
 	return s.String()
 }
 
@@ -20612,6 +21050,23 @@ func WirelessDeviceEvent_Values() []string {
 		WirelessDeviceEventUplinkData,
 		WirelessDeviceEventDownlinkData,
 		WirelessDeviceEventRegistration,
+	}
+}
+
+// WirelessDevice FrameInfo for trace content.
+const (
+	// WirelessDeviceFrameInfoEnabled is a WirelessDeviceFrameInfo enum value
+	WirelessDeviceFrameInfoEnabled = "ENABLED"
+
+	// WirelessDeviceFrameInfoDisabled is a WirelessDeviceFrameInfo enum value
+	WirelessDeviceFrameInfoDisabled = "DISABLED"
+)
+
+// WirelessDeviceFrameInfo_Values returns all elements of the WirelessDeviceFrameInfo enum
+func WirelessDeviceFrameInfo_Values() []string {
+	return []string{
+		WirelessDeviceFrameInfoEnabled,
+		WirelessDeviceFrameInfoDisabled,
 	}
 }
 

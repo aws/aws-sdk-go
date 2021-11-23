@@ -216,6 +216,10 @@ type IoTWirelessAPI interface {
 	GetMulticastGroupSessionWithContext(aws.Context, *iotwireless.GetMulticastGroupSessionInput, ...request.Option) (*iotwireless.GetMulticastGroupSessionOutput, error)
 	GetMulticastGroupSessionRequest(*iotwireless.GetMulticastGroupSessionInput) (*request.Request, *iotwireless.GetMulticastGroupSessionOutput)
 
+	GetNetworkAnalyzerConfiguration(*iotwireless.GetNetworkAnalyzerConfigurationInput) (*iotwireless.GetNetworkAnalyzerConfigurationOutput, error)
+	GetNetworkAnalyzerConfigurationWithContext(aws.Context, *iotwireless.GetNetworkAnalyzerConfigurationInput, ...request.Option) (*iotwireless.GetNetworkAnalyzerConfigurationOutput, error)
+	GetNetworkAnalyzerConfigurationRequest(*iotwireless.GetNetworkAnalyzerConfigurationInput) (*request.Request, *iotwireless.GetNetworkAnalyzerConfigurationOutput)
+
 	GetPartnerAccount(*iotwireless.GetPartnerAccountInput) (*iotwireless.GetPartnerAccountOutput, error)
 	GetPartnerAccountWithContext(aws.Context, *iotwireless.GetPartnerAccountInput, ...request.Option) (*iotwireless.GetPartnerAccountOutput, error)
 	GetPartnerAccountRequest(*iotwireless.GetPartnerAccountInput) (*request.Request, *iotwireless.GetPartnerAccountOutput)
@@ -399,6 +403,10 @@ type IoTWirelessAPI interface {
 	UpdateMulticastGroup(*iotwireless.UpdateMulticastGroupInput) (*iotwireless.UpdateMulticastGroupOutput, error)
 	UpdateMulticastGroupWithContext(aws.Context, *iotwireless.UpdateMulticastGroupInput, ...request.Option) (*iotwireless.UpdateMulticastGroupOutput, error)
 	UpdateMulticastGroupRequest(*iotwireless.UpdateMulticastGroupInput) (*request.Request, *iotwireless.UpdateMulticastGroupOutput)
+
+	UpdateNetworkAnalyzerConfiguration(*iotwireless.UpdateNetworkAnalyzerConfigurationInput) (*iotwireless.UpdateNetworkAnalyzerConfigurationOutput, error)
+	UpdateNetworkAnalyzerConfigurationWithContext(aws.Context, *iotwireless.UpdateNetworkAnalyzerConfigurationInput, ...request.Option) (*iotwireless.UpdateNetworkAnalyzerConfigurationOutput, error)
+	UpdateNetworkAnalyzerConfigurationRequest(*iotwireless.UpdateNetworkAnalyzerConfigurationInput) (*request.Request, *iotwireless.UpdateNetworkAnalyzerConfigurationOutput)
 
 	UpdatePartnerAccount(*iotwireless.UpdatePartnerAccountInput) (*iotwireless.UpdatePartnerAccountOutput, error)
 	UpdatePartnerAccountWithContext(aws.Context, *iotwireless.UpdatePartnerAccountInput, ...request.Option) (*iotwireless.UpdatePartnerAccountOutput, error)

@@ -625,6 +625,10 @@ type RDSAPI interface {
 	PurchaseReservedDBInstancesOfferingWithContext(aws.Context, *rds.PurchaseReservedDBInstancesOfferingInput, ...request.Option) (*rds.PurchaseReservedDBInstancesOfferingOutput, error)
 	PurchaseReservedDBInstancesOfferingRequest(*rds.PurchaseReservedDBInstancesOfferingInput) (*request.Request, *rds.PurchaseReservedDBInstancesOfferingOutput)
 
+	RebootDBCluster(*rds.RebootDBClusterInput) (*rds.RebootDBClusterOutput, error)
+	RebootDBClusterWithContext(aws.Context, *rds.RebootDBClusterInput, ...request.Option) (*rds.RebootDBClusterOutput, error)
+	RebootDBClusterRequest(*rds.RebootDBClusterInput) (*request.Request, *rds.RebootDBClusterOutput)
+
 	RebootDBInstance(*rds.RebootDBInstanceInput) (*rds.RebootDBInstanceOutput, error)
 	RebootDBInstanceWithContext(aws.Context, *rds.RebootDBInstanceInput, ...request.Option) (*rds.RebootDBInstanceOutput, error)
 	RebootDBInstanceRequest(*rds.RebootDBInstanceInput) (*request.Request, *rds.RebootDBInstanceOutput)

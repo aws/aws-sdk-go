@@ -41,6 +41,7 @@
     "GetLogLevelsByResourceTypes": "<p>Returns current default log levels or log levels by resource types. Based on resource types, log levels can be for wireless device log options or wireless gateway log options.</p>",
     "GetMulticastGroup": "<p>Gets information about a multicast group.</p>",
     "GetMulticastGroupSession": "<p>Gets information about a multicast group session.</p>",
+    "GetNetworkAnalyzerConfiguration": "<p>Get NetworkAnalyzer configuration.</p>",
     "GetPartnerAccount": "<p>Gets information about a partner account. If <code>PartnerAccountId</code> and <code>PartnerType</code> are <code>null</code>, returns all partner accounts.</p>",
     "GetResourceEventConfiguration": "<p>Get the event configuration for a particular resource identifier.</p>",
     "GetResourceLogLevel": "<p>Fetches the log-level override, if any, for a given resource-ID and resource-type. It can be used for a wireless device or a wireless gateway.</p>",
@@ -81,6 +82,7 @@
     "UpdateFuotaTask": "<p>Updates properties of a FUOTA task.</p>",
     "UpdateLogLevelsByResourceTypes": "<p>Set default log level, or log levels by resource types. This can be for wireless device log options or wireless gateways log options and is used to control the log messages that'll be displayed in CloudWatch.</p>",
     "UpdateMulticastGroup": "<p>Updates properties of a multicast group session.</p>",
+    "UpdateNetworkAnalyzerConfiguration": "<p>Update NetworkAnalyzer configuration.</p>",
     "UpdatePartnerAccount": "<p>Updates properties of a partner account.</p>",
     "UpdateResourceEventConfiguration": "<p>Update the event configuration for a particular resource identifier.</p>",
     "UpdateWirelessDevice": "<p>Updates properties of a wireless device.</p>",
@@ -1001,6 +1003,16 @@
       "refs": {
       }
     },
+    "GetNetworkAnalyzerConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetNetworkAnalyzerConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetPartnerAccountRequest": {
       "base": null,
       "refs": {
@@ -1467,6 +1479,7 @@
         "GetLogLevelsByResourceTypesResponse$DefaultLogLevel": null,
         "GetResourceLogLevelResponse$LogLevel": null,
         "PutResourceLogLevelRequest$LogLevel": null,
+        "TraceContent$LogLevel": null,
         "UpdateLogLevelsByResourceTypesRequest$DefaultLogLevel": null,
         "WirelessDeviceEventLogOption$LogLevel": null,
         "WirelessDeviceLogOption$LogLevel": null,
@@ -1648,6 +1661,13 @@
       "refs": {
         "LoRaWANGateway$NetIdFilters": null,
         "UpdateWirelessGatewayRequest$NetIdFilters": null
+      }
+    },
+    "NetworkAnalyzerConfigurationName": {
+      "base": "<p>NetworkAnalyzer configuration name.</p>",
+      "refs": {
+        "GetNetworkAnalyzerConfigurationRequest$ConfigurationName": null,
+        "UpdateNetworkAnalyzerConfigurationRequest$ConfigurationName": null
       }
     },
     "NextToken": {
@@ -2300,6 +2320,13 @@
       "refs": {
       }
     },
+    "TraceContent": {
+      "base": "<p>Trace Content for resources.</p>",
+      "refs": {
+        "GetNetworkAnalyzerConfigurationResponse$TraceContent": null,
+        "UpdateNetworkAnalyzerConfigurationRequest$TraceContent": null
+      }
+    },
     "TransmitMode": {
       "base": null,
       "refs": {
@@ -2377,6 +2404,16 @@
       }
     },
     "UpdateMulticastGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateNetworkAnalyzerConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateNetworkAnalyzerConfigurationResponse": {
       "base": null,
       "refs": {
       }
@@ -2471,6 +2508,12 @@
         "WirelessDeviceLogOption$Events": null
       }
     },
+    "WirelessDeviceFrameInfo": {
+      "base": "<p>WirelessDevice FrameInfo for trace content.</p>",
+      "refs": {
+        "TraceContent$WirelessDeviceFrameInfo": null
+      }
+    },
     "WirelessDeviceId": {
       "base": "<p>The ID of the wireless device.</p>",
       "refs": {
@@ -2489,6 +2532,7 @@
         "SendDataToWirelessDeviceRequest$Id": "<p>The ID of the wireless device to receive the data.</p>",
         "TestWirelessDeviceRequest$Id": "<p>The ID of the wireless device to test.</p>",
         "UpdateWirelessDeviceRequest$Id": "<p>The ID of the resource to update.</p>",
+        "WirelessDeviceList$member": null,
         "WirelessDeviceStatistics$Id": "<p>The ID of the wireless device reporting the data.</p>"
       }
     },
@@ -2496,6 +2540,14 @@
       "base": null,
       "refs": {
         "GetWirelessDeviceRequest$IdentifierType": "<p>The type of identifier used in <code>identifier</code>.</p>"
+      }
+    },
+    "WirelessDeviceList": {
+      "base": null,
+      "refs": {
+        "GetNetworkAnalyzerConfigurationResponse$WirelessDevices": "<p>List of WirelessDevices in the NetworkAnalyzerConfiguration.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$WirelessDevicesToAdd": "<p>WirelessDevices to add into NetworkAnalyzerConfiguration.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$WirelessDevicesToRemove": "<p>WirelessDevices to remove from NetworkAnalyzerConfiguration.</p>"
       }
     },
     "WirelessDeviceLogOption": {
@@ -2586,6 +2638,7 @@
         "GetWirelessGatewayTaskRequest$Id": "<p>The ID of the resource to get.</p>",
         "GetWirelessGatewayTaskResponse$WirelessGatewayId": "<p>The ID of the wireless gateway.</p>",
         "UpdateWirelessGatewayRequest$Id": "<p>The ID of the resource to update.</p>",
+        "WirelessGatewayList$member": null,
         "WirelessGatewayStatistics$Id": "<p>The ID of the wireless gateway reporting the data.</p>"
       }
     },
@@ -2593,6 +2646,14 @@
       "base": null,
       "refs": {
         "GetWirelessGatewayRequest$IdentifierType": "<p>The type of identifier used in <code>identifier</code>.</p>"
+      }
+    },
+    "WirelessGatewayList": {
+      "base": null,
+      "refs": {
+        "GetNetworkAnalyzerConfigurationResponse$WirelessGateways": "<p>List of WirelessGateways in the NetworkAnalyzerConfiguration.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$WirelessGatewaysToAdd": "<p>WirelessGateways to add into NetworkAnalyzerConfiguration.</p>",
+        "UpdateNetworkAnalyzerConfigurationRequest$WirelessGatewaysToRemove": "<p>WirelessGateways to remove from NetworkAnalyzerConfiguration.</p>"
       }
     },
     "WirelessGatewayLogOption": {

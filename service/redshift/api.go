@@ -5644,6 +5644,12 @@ func (c *Redshift) DescribeDataSharesRequest(input *DescribeDataSharesInput) (re
 		Name:       opDescribeDataShares,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5693,6 +5699,58 @@ func (c *Redshift) DescribeDataSharesWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
+// DescribeDataSharesPages iterates over the pages of a DescribeDataShares operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDataShares method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDataShares operation.
+//    pageNum := 0
+//    err := client.DescribeDataSharesPages(params,
+//        func(page *redshift.DescribeDataSharesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeDataSharesPages(input *DescribeDataSharesInput, fn func(*DescribeDataSharesOutput, bool) bool) error {
+	return c.DescribeDataSharesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDataSharesPagesWithContext same as DescribeDataSharesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeDataSharesPagesWithContext(ctx aws.Context, input *DescribeDataSharesInput, fn func(*DescribeDataSharesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDataSharesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDataSharesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDataSharesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeDataSharesForConsumer = "DescribeDataSharesForConsumer"
 
 // DescribeDataSharesForConsumerRequest generates a "aws/request.Request" representing the
@@ -5724,6 +5782,12 @@ func (c *Redshift) DescribeDataSharesForConsumerRequest(input *DescribeDataShare
 		Name:       opDescribeDataSharesForConsumer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5774,6 +5838,58 @@ func (c *Redshift) DescribeDataSharesForConsumerWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+// DescribeDataSharesForConsumerPages iterates over the pages of a DescribeDataSharesForConsumer operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDataSharesForConsumer method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDataSharesForConsumer operation.
+//    pageNum := 0
+//    err := client.DescribeDataSharesForConsumerPages(params,
+//        func(page *redshift.DescribeDataSharesForConsumerOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeDataSharesForConsumerPages(input *DescribeDataSharesForConsumerInput, fn func(*DescribeDataSharesForConsumerOutput, bool) bool) error {
+	return c.DescribeDataSharesForConsumerPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDataSharesForConsumerPagesWithContext same as DescribeDataSharesForConsumerPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeDataSharesForConsumerPagesWithContext(ctx aws.Context, input *DescribeDataSharesForConsumerInput, fn func(*DescribeDataSharesForConsumerOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDataSharesForConsumerInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDataSharesForConsumerRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDataSharesForConsumerOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeDataSharesForProducer = "DescribeDataSharesForProducer"
 
 // DescribeDataSharesForProducerRequest generates a "aws/request.Request" representing the
@@ -5805,6 +5921,12 @@ func (c *Redshift) DescribeDataSharesForProducerRequest(input *DescribeDataShare
 		Name:       opDescribeDataSharesForProducer,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5853,6 +5975,58 @@ func (c *Redshift) DescribeDataSharesForProducerWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeDataSharesForProducerPages iterates over the pages of a DescribeDataSharesForProducer operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDataSharesForProducer method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDataSharesForProducer operation.
+//    pageNum := 0
+//    err := client.DescribeDataSharesForProducerPages(params,
+//        func(page *redshift.DescribeDataSharesForProducerOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeDataSharesForProducerPages(input *DescribeDataSharesForProducerInput, fn func(*DescribeDataSharesForProducerOutput, bool) bool) error {
+	return c.DescribeDataSharesForProducerPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDataSharesForProducerPagesWithContext same as DescribeDataSharesForProducerPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeDataSharesForProducerPagesWithContext(ctx aws.Context, input *DescribeDataSharesForProducerInput, fn func(*DescribeDataSharesForProducerOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDataSharesForProducerInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDataSharesForProducerRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDataSharesForProducerOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeDefaultClusterParameters = "DescribeDefaultClusterParameters"
@@ -7391,6 +7565,150 @@ func (c *Redshift) DescribePartnersWithContext(ctx aws.Context, input *DescribeP
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opDescribeReservedNodeExchangeStatus = "DescribeReservedNodeExchangeStatus"
+
+// DescribeReservedNodeExchangeStatusRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReservedNodeExchangeStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReservedNodeExchangeStatus for more information on using the DescribeReservedNodeExchangeStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeReservedNodeExchangeStatusRequest method.
+//    req, resp := client.DescribeReservedNodeExchangeStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeReservedNodeExchangeStatus
+func (c *Redshift) DescribeReservedNodeExchangeStatusRequest(input *DescribeReservedNodeExchangeStatusInput) (req *request.Request, output *DescribeReservedNodeExchangeStatusOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReservedNodeExchangeStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeReservedNodeExchangeStatusInput{}
+	}
+
+	output = &DescribeReservedNodeExchangeStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReservedNodeExchangeStatus API operation for Amazon Redshift.
+//
+// Returns exchange status details and associated metadata for a reserved-node
+// exchange. Statuses include such values as in progress and requested.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribeReservedNodeExchangeStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeReservedNodeNotFoundFault "ReservedNodeNotFound"
+//   The specified reserved compute node not found.
+//
+//   * ErrCodeReservedNodeExchangeNotFoundFault "ReservedNodeExchangeNotFond"
+//   The reserved-node exchange status wasn't found.
+//
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeReservedNodeExchangeStatus
+func (c *Redshift) DescribeReservedNodeExchangeStatus(input *DescribeReservedNodeExchangeStatusInput) (*DescribeReservedNodeExchangeStatusOutput, error) {
+	req, out := c.DescribeReservedNodeExchangeStatusRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReservedNodeExchangeStatusWithContext is the same as DescribeReservedNodeExchangeStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReservedNodeExchangeStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeReservedNodeExchangeStatusWithContext(ctx aws.Context, input *DescribeReservedNodeExchangeStatusInput, opts ...request.Option) (*DescribeReservedNodeExchangeStatusOutput, error) {
+	req, out := c.DescribeReservedNodeExchangeStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeReservedNodeExchangeStatusPages iterates over the pages of a DescribeReservedNodeExchangeStatus operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeReservedNodeExchangeStatus method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeReservedNodeExchangeStatus operation.
+//    pageNum := 0
+//    err := client.DescribeReservedNodeExchangeStatusPages(params,
+//        func(page *redshift.DescribeReservedNodeExchangeStatusOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeReservedNodeExchangeStatusPages(input *DescribeReservedNodeExchangeStatusInput, fn func(*DescribeReservedNodeExchangeStatusOutput, bool) bool) error {
+	return c.DescribeReservedNodeExchangeStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeReservedNodeExchangeStatusPagesWithContext same as DescribeReservedNodeExchangeStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeReservedNodeExchangeStatusPagesWithContext(ctx aws.Context, input *DescribeReservedNodeExchangeStatusInput, fn func(*DescribeReservedNodeExchangeStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeReservedNodeExchangeStatusInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeReservedNodeExchangeStatusRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeReservedNodeExchangeStatusOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeReservedNodeOfferings = "DescribeReservedNodeOfferings"
@@ -9303,6 +9621,168 @@ func (c *Redshift) GetClusterCredentialsWithContext(ctx aws.Context, input *GetC
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetReservedNodeExchangeConfigurationOptions = "GetReservedNodeExchangeConfigurationOptions"
+
+// GetReservedNodeExchangeConfigurationOptionsRequest generates a "aws/request.Request" representing the
+// client's request for the GetReservedNodeExchangeConfigurationOptions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetReservedNodeExchangeConfigurationOptions for more information on using the GetReservedNodeExchangeConfigurationOptions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetReservedNodeExchangeConfigurationOptionsRequest method.
+//    req, resp := client.GetReservedNodeExchangeConfigurationOptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetReservedNodeExchangeConfigurationOptions
+func (c *Redshift) GetReservedNodeExchangeConfigurationOptionsRequest(input *GetReservedNodeExchangeConfigurationOptionsInput) (req *request.Request, output *GetReservedNodeExchangeConfigurationOptionsOutput) {
+	op := &request.Operation{
+		Name:       opGetReservedNodeExchangeConfigurationOptions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetReservedNodeExchangeConfigurationOptionsInput{}
+	}
+
+	output = &GetReservedNodeExchangeConfigurationOptionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetReservedNodeExchangeConfigurationOptions API operation for Amazon Redshift.
+//
+// Gets the configuration options for the reserved-node exchange. These options
+// include information about the source reserved node and target reserved node
+// offering. Details include the node type, the price, the node count, and the
+// offering type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation GetReservedNodeExchangeConfigurationOptions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeReservedNodeNotFoundFault "ReservedNodeNotFound"
+//   The specified reserved compute node not found.
+//
+//   * ErrCodeInvalidReservedNodeStateFault "InvalidReservedNodeState"
+//   Indicates that the Reserved Node being exchanged is not in an active state.
+//
+//   * ErrCodeReservedNodeAlreadyMigratedFault "ReservedNodeAlreadyMigrated"
+//   Indicates that the reserved node has already been exchanged.
+//
+//   * ErrCodeReservedNodeOfferingNotFoundFault "ReservedNodeOfferingNotFound"
+//   Specified offering does not exist.
+//
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
+//   * ErrCodeDependentServiceUnavailableFault "DependentServiceUnavailableFault"
+//   Your request cannot be completed because a dependent internal service is
+//   temporarily unavailable. Wait 30 to 60 seconds and try again.
+//
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeClusterSnapshotNotFoundFault "ClusterSnapshotNotFound"
+//   The snapshot identifier does not refer to an existing cluster snapshot.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/GetReservedNodeExchangeConfigurationOptions
+func (c *Redshift) GetReservedNodeExchangeConfigurationOptions(input *GetReservedNodeExchangeConfigurationOptionsInput) (*GetReservedNodeExchangeConfigurationOptionsOutput, error) {
+	req, out := c.GetReservedNodeExchangeConfigurationOptionsRequest(input)
+	return out, req.Send()
+}
+
+// GetReservedNodeExchangeConfigurationOptionsWithContext is the same as GetReservedNodeExchangeConfigurationOptions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetReservedNodeExchangeConfigurationOptions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) GetReservedNodeExchangeConfigurationOptionsWithContext(ctx aws.Context, input *GetReservedNodeExchangeConfigurationOptionsInput, opts ...request.Option) (*GetReservedNodeExchangeConfigurationOptionsOutput, error) {
+	req, out := c.GetReservedNodeExchangeConfigurationOptionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetReservedNodeExchangeConfigurationOptionsPages iterates over the pages of a GetReservedNodeExchangeConfigurationOptions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetReservedNodeExchangeConfigurationOptions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetReservedNodeExchangeConfigurationOptions operation.
+//    pageNum := 0
+//    err := client.GetReservedNodeExchangeConfigurationOptionsPages(params,
+//        func(page *redshift.GetReservedNodeExchangeConfigurationOptionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) GetReservedNodeExchangeConfigurationOptionsPages(input *GetReservedNodeExchangeConfigurationOptionsInput, fn func(*GetReservedNodeExchangeConfigurationOptionsOutput, bool) bool) error {
+	return c.GetReservedNodeExchangeConfigurationOptionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetReservedNodeExchangeConfigurationOptionsPagesWithContext same as GetReservedNodeExchangeConfigurationOptionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) GetReservedNodeExchangeConfigurationOptionsPagesWithContext(ctx aws.Context, input *GetReservedNodeExchangeConfigurationOptionsInput, fn func(*GetReservedNodeExchangeConfigurationOptionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetReservedNodeExchangeConfigurationOptionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetReservedNodeExchangeConfigurationOptionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetReservedNodeExchangeConfigurationOptionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetReservedNodeExchangeOfferings = "GetReservedNodeExchangeOfferings"
@@ -11503,6 +11983,25 @@ func (c *Redshift) ResizeClusterRequest(input *ResizeClusterInput) (req *request
 //   * ErrCodeLimitExceededFault "LimitExceededFault"
 //   The encryption key has exceeded its grant limit in Amazon Web Services KMS.
 //
+//   * ErrCodeReservedNodeNotFoundFault "ReservedNodeNotFound"
+//   The specified reserved compute node not found.
+//
+//   * ErrCodeInvalidReservedNodeStateFault "InvalidReservedNodeState"
+//   Indicates that the Reserved Node being exchanged is not in an active state.
+//
+//   * ErrCodeReservedNodeAlreadyMigratedFault "ReservedNodeAlreadyMigrated"
+//   Indicates that the reserved node has already been exchanged.
+//
+//   * ErrCodeReservedNodeOfferingNotFoundFault "ReservedNodeOfferingNotFound"
+//   Specified offering does not exist.
+//
+//   * ErrCodeDependentServiceUnavailableFault "DependentServiceUnavailableFault"
+//   Your request cannot be completed because a dependent internal service is
+//   temporarily unavailable. Wait 30 to 60 seconds and try again.
+//
+//   * ErrCodeReservedNodeAlreadyExistsFault "ReservedNodeAlreadyExists"
+//   User already has a reservation with the given identifier.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ResizeCluster
 func (c *Redshift) ResizeCluster(input *ResizeClusterInput) (*ResizeClusterOutput, error) {
 	req, out := c.ResizeClusterRequest(input)
@@ -11679,6 +12178,28 @@ func (c *Redshift) RestoreFromClusterSnapshotRequest(input *RestoreFromClusterSn
 //
 //   * ErrCodeInvalidTagFault "InvalidTagFault"
 //   The tag is invalid.
+//
+//   * ErrCodeReservedNodeNotFoundFault "ReservedNodeNotFound"
+//   The specified reserved compute node not found.
+//
+//   * ErrCodeInvalidReservedNodeStateFault "InvalidReservedNodeState"
+//   Indicates that the Reserved Node being exchanged is not in an active state.
+//
+//   * ErrCodeReservedNodeAlreadyMigratedFault "ReservedNodeAlreadyMigrated"
+//   Indicates that the reserved node has already been exchanged.
+//
+//   * ErrCodeReservedNodeOfferingNotFoundFault "ReservedNodeOfferingNotFound"
+//   Specified offering does not exist.
+//
+//   * ErrCodeDependentServiceUnavailableFault "DependentServiceUnavailableFault"
+//   Your request cannot be completed because a dependent internal service is
+//   temporarily unavailable. Wait 30 to 60 seconds and try again.
+//
+//   * ErrCodeReservedNodeAlreadyExistsFault "ReservedNodeAlreadyExists"
+//   User already has a reservation with the given identifier.
+//
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RestoreFromClusterSnapshot
 func (c *Redshift) RestoreFromClusterSnapshot(input *RestoreFromClusterSnapshotInput) (*RestoreFromClusterSnapshotOutput, error) {
@@ -14146,6 +14667,10 @@ type Cluster struct {
 	// from a public network.
 	PubliclyAccessible *bool `type:"boolean"`
 
+	// The status of the reserved-node exchange request. Statuses include in-progress
+	// and requested.
+	ReservedNodeExchangeStatus *ReservedNodeExchangeStatus `type:"structure"`
+
 	// Returns the following:
 	//
 	//    * AllowCancelResize: a boolean value indicating if the resize operation
@@ -14452,6 +14977,12 @@ func (s *Cluster) SetPreferredMaintenanceWindow(v string) *Cluster {
 // SetPubliclyAccessible sets the PubliclyAccessible field's value.
 func (s *Cluster) SetPubliclyAccessible(v bool) *Cluster {
 	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetReservedNodeExchangeStatus sets the ReservedNodeExchangeStatus field's value.
+func (s *Cluster) SetReservedNodeExchangeStatus(v *ReservedNodeExchangeStatus) *Cluster {
+	s.ReservedNodeExchangeStatus = v
 	return s
 }
 
@@ -23068,6 +23599,113 @@ func (s *DescribePartnersOutput) SetPartnerIntegrationInfoList(v []*PartnerInteg
 	return s
 }
 
+type DescribeReservedNodeExchangeStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional pagination token provided by a previous DescribeReservedNodeExchangeStatus
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by the MaxRecords parameter.
+	// You can retrieve the next set of response records by providing the returned
+	// marker value in the Marker parameter and retrying the request.
+	Marker *string `type:"string"`
+
+	// The maximum number of response records to return in each call. If the number
+	// of remaining response records exceeds the specified MaxRecords value, a value
+	// is returned in a Marker field of the response. You can retrieve the next
+	// set of records by retrying the command with the returned marker value.
+	MaxRecords *int64 `type:"integer"`
+
+	// The identifier of the reserved-node exchange request.
+	ReservedNodeExchangeRequestId *string `type:"string"`
+
+	// The identifier of the source reserved node in a reserved-node exchange request.
+	ReservedNodeId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReservedNodeExchangeStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReservedNodeExchangeStatusInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedNodeExchangeStatusInput) SetMarker(v string) *DescribeReservedNodeExchangeStatusInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeReservedNodeExchangeStatusInput) SetMaxRecords(v int64) *DescribeReservedNodeExchangeStatusInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetReservedNodeExchangeRequestId sets the ReservedNodeExchangeRequestId field's value.
+func (s *DescribeReservedNodeExchangeStatusInput) SetReservedNodeExchangeRequestId(v string) *DescribeReservedNodeExchangeStatusInput {
+	s.ReservedNodeExchangeRequestId = &v
+	return s
+}
+
+// SetReservedNodeId sets the ReservedNodeId field's value.
+func (s *DescribeReservedNodeExchangeStatusInput) SetReservedNodeId(v string) *DescribeReservedNodeExchangeStatusInput {
+	s.ReservedNodeId = &v
+	return s
+}
+
+type DescribeReservedNodeExchangeStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token provided by a previous DescribeReservedNodeExchangeStatus
+	// request.
+	Marker *string `type:"string"`
+
+	// The details of the reserved-node exchange request, including the status,
+	// request time, source reserved-node identifier, and additional details.
+	ReservedNodeExchangeStatusDetails []*ReservedNodeExchangeStatus `locationNameList:"ReservedNodeExchangeStatus" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReservedNodeExchangeStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeReservedNodeExchangeStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeReservedNodeExchangeStatusOutput) SetMarker(v string) *DescribeReservedNodeExchangeStatusOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReservedNodeExchangeStatusDetails sets the ReservedNodeExchangeStatusDetails field's value.
+func (s *DescribeReservedNodeExchangeStatusOutput) SetReservedNodeExchangeStatusDetails(v []*ReservedNodeExchangeStatus) *DescribeReservedNodeExchangeStatusOutput {
+	s.ReservedNodeExchangeStatusDetails = v
+	return s
+}
+
 type DescribeReservedNodeOfferingsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25850,6 +26488,140 @@ func (s *GetClusterCredentialsOutput) SetDbUser(v string) *GetClusterCredentials
 // SetExpiration sets the Expiration field's value.
 func (s *GetClusterCredentialsOutput) SetExpiration(v time.Time) *GetClusterCredentialsOutput {
 	s.Expiration = &v
+	return s
+}
+
+type GetReservedNodeExchangeConfigurationOptionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The action type of the reserved-node configuration. The action type can be
+	// an exchange initiated from either a snapshot or a resize.
+	//
+	// ActionType is a required field
+	ActionType *string `type:"string" required:"true" enum:"ReservedNodeExchangeActionType"`
+
+	// The identifier for the cluster that is the source for a reserved-node exchange.
+	ClusterIdentifier *string `type:"string"`
+
+	// An optional pagination token provided by a previous GetReservedNodeExchangeConfigurationOptions
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by the MaxRecords parameter.
+	// You can retrieve the next set of response records by providing the returned
+	// marker value in the Marker parameter and retrying the request.
+	Marker *string `type:"string"`
+
+	// The maximum number of response records to return in each call. If the number
+	// of remaining response records exceeds the specified MaxRecords value, a value
+	// is returned in a Marker field of the response. You can retrieve the next
+	// set of records by retrying the command with the returned marker value.
+	MaxRecords *int64 `type:"integer"`
+
+	// The identifier for the snapshot that is the source for the reserved-node
+	// exchange.
+	SnapshotIdentifier *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetReservedNodeExchangeConfigurationOptionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetReservedNodeExchangeConfigurationOptionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetReservedNodeExchangeConfigurationOptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetReservedNodeExchangeConfigurationOptionsInput"}
+	if s.ActionType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ActionType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionType sets the ActionType field's value.
+func (s *GetReservedNodeExchangeConfigurationOptionsInput) SetActionType(v string) *GetReservedNodeExchangeConfigurationOptionsInput {
+	s.ActionType = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *GetReservedNodeExchangeConfigurationOptionsInput) SetClusterIdentifier(v string) *GetReservedNodeExchangeConfigurationOptionsInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *GetReservedNodeExchangeConfigurationOptionsInput) SetMarker(v string) *GetReservedNodeExchangeConfigurationOptionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *GetReservedNodeExchangeConfigurationOptionsInput) SetMaxRecords(v int64) *GetReservedNodeExchangeConfigurationOptionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSnapshotIdentifier sets the SnapshotIdentifier field's value.
+func (s *GetReservedNodeExchangeConfigurationOptionsInput) SetSnapshotIdentifier(v string) *GetReservedNodeExchangeConfigurationOptionsInput {
+	s.SnapshotIdentifier = &v
+	return s
+}
+
+type GetReservedNodeExchangeConfigurationOptionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pagination token provided by a previous GetReservedNodeExchangeConfigurationOptions
+	// request.
+	Marker *string `type:"string"`
+
+	// the configuration options for the reserved-node exchange. These options include
+	// information about the source reserved node and target reserved node. Details
+	// include the node type, the price, the node count, and the offering type.
+	ReservedNodeConfigurationOptionList []*ReservedNodeConfigurationOption `locationNameList:"ReservedNodeConfigurationOption" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetReservedNodeExchangeConfigurationOptionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetReservedNodeExchangeConfigurationOptionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *GetReservedNodeExchangeConfigurationOptionsOutput) SetMarker(v string) *GetReservedNodeExchangeConfigurationOptionsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetReservedNodeConfigurationOptionList sets the ReservedNodeConfigurationOptionList field's value.
+func (s *GetReservedNodeExchangeConfigurationOptionsOutput) SetReservedNodeConfigurationOptionList(v []*ReservedNodeConfigurationOption) *GetReservedNodeExchangeConfigurationOptionsOutput {
+	s.ReservedNodeConfigurationOptionList = v
 	return s
 }
 
@@ -29820,6 +30592,165 @@ func (s *ReservedNode) SetUsagePrice(v float64) *ReservedNode {
 	return s
 }
 
+// Details for a reserved-node exchange. Examples include the node type for
+// a reserved node, the price for a node, the node's state, and other details.
+type ReservedNodeConfigurationOption struct {
+	_ struct{} `type:"structure"`
+
+	// Describes a reserved node. You can call the DescribeReservedNodeOfferings
+	// API to obtain the available reserved node offerings.
+	SourceReservedNode *ReservedNode `type:"structure"`
+
+	// The target reserved-node count.
+	TargetReservedNodeCount *int64 `type:"integer"`
+
+	// Describes a reserved node offering.
+	TargetReservedNodeOffering *ReservedNodeOffering `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReservedNodeConfigurationOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReservedNodeConfigurationOption) GoString() string {
+	return s.String()
+}
+
+// SetSourceReservedNode sets the SourceReservedNode field's value.
+func (s *ReservedNodeConfigurationOption) SetSourceReservedNode(v *ReservedNode) *ReservedNodeConfigurationOption {
+	s.SourceReservedNode = v
+	return s
+}
+
+// SetTargetReservedNodeCount sets the TargetReservedNodeCount field's value.
+func (s *ReservedNodeConfigurationOption) SetTargetReservedNodeCount(v int64) *ReservedNodeConfigurationOption {
+	s.TargetReservedNodeCount = &v
+	return s
+}
+
+// SetTargetReservedNodeOffering sets the TargetReservedNodeOffering field's value.
+func (s *ReservedNodeConfigurationOption) SetTargetReservedNodeOffering(v *ReservedNodeOffering) *ReservedNodeConfigurationOption {
+	s.TargetReservedNodeOffering = v
+	return s
+}
+
+// Reserved-node status details, such as the source reserved-node identifier,
+// the target reserved-node identifier, the node type, the node count, and other
+// details.
+type ReservedNodeExchangeStatus struct {
+	_ struct{} `type:"structure"`
+
+	// A date and time that indicate when the reserved-node exchange was requested.
+	RequestTime *time.Time `type:"timestamp"`
+
+	// The identifier of the reserved-node exchange request.
+	ReservedNodeExchangeRequestId *string `type:"string"`
+
+	// The source reserved-node count in the cluster.
+	SourceReservedNodeCount *int64 `type:"integer"`
+
+	// The identifier of the source reserved node.
+	SourceReservedNodeId *string `type:"string"`
+
+	// The source reserved-node type, for example ds2.xlarge.
+	SourceReservedNodeType *string `type:"string"`
+
+	// The status of the reserved-node exchange request. Statuses include in-progress
+	// and requested.
+	Status *string `type:"string" enum:"ReservedNodeExchangeStatusType"`
+
+	// The count of target reserved nodes in the cluster.
+	TargetReservedNodeCount *int64 `type:"integer"`
+
+	// The identifier of the target reserved node offering.
+	TargetReservedNodeOfferingId *string `type:"string"`
+
+	// The node type of the target reserved node, for example ra3.4xlarge.
+	TargetReservedNodeType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReservedNodeExchangeStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ReservedNodeExchangeStatus) GoString() string {
+	return s.String()
+}
+
+// SetRequestTime sets the RequestTime field's value.
+func (s *ReservedNodeExchangeStatus) SetRequestTime(v time.Time) *ReservedNodeExchangeStatus {
+	s.RequestTime = &v
+	return s
+}
+
+// SetReservedNodeExchangeRequestId sets the ReservedNodeExchangeRequestId field's value.
+func (s *ReservedNodeExchangeStatus) SetReservedNodeExchangeRequestId(v string) *ReservedNodeExchangeStatus {
+	s.ReservedNodeExchangeRequestId = &v
+	return s
+}
+
+// SetSourceReservedNodeCount sets the SourceReservedNodeCount field's value.
+func (s *ReservedNodeExchangeStatus) SetSourceReservedNodeCount(v int64) *ReservedNodeExchangeStatus {
+	s.SourceReservedNodeCount = &v
+	return s
+}
+
+// SetSourceReservedNodeId sets the SourceReservedNodeId field's value.
+func (s *ReservedNodeExchangeStatus) SetSourceReservedNodeId(v string) *ReservedNodeExchangeStatus {
+	s.SourceReservedNodeId = &v
+	return s
+}
+
+// SetSourceReservedNodeType sets the SourceReservedNodeType field's value.
+func (s *ReservedNodeExchangeStatus) SetSourceReservedNodeType(v string) *ReservedNodeExchangeStatus {
+	s.SourceReservedNodeType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReservedNodeExchangeStatus) SetStatus(v string) *ReservedNodeExchangeStatus {
+	s.Status = &v
+	return s
+}
+
+// SetTargetReservedNodeCount sets the TargetReservedNodeCount field's value.
+func (s *ReservedNodeExchangeStatus) SetTargetReservedNodeCount(v int64) *ReservedNodeExchangeStatus {
+	s.TargetReservedNodeCount = &v
+	return s
+}
+
+// SetTargetReservedNodeOfferingId sets the TargetReservedNodeOfferingId field's value.
+func (s *ReservedNodeExchangeStatus) SetTargetReservedNodeOfferingId(v string) *ReservedNodeExchangeStatus {
+	s.TargetReservedNodeOfferingId = &v
+	return s
+}
+
+// SetTargetReservedNodeType sets the TargetReservedNodeType field's value.
+func (s *ReservedNodeExchangeStatus) SetTargetReservedNodeType(v string) *ReservedNodeExchangeStatus {
+	s.TargetReservedNodeType = &v
+	return s
+}
+
 // Describes a reserved node offering.
 type ReservedNodeOffering struct {
 	_ struct{} `type:"structure"`
@@ -30023,6 +30954,12 @@ type ResizeClusterInput struct {
 	// The new number of nodes for the cluster. If not specified, the cluster's
 	// current number of nodes is used.
 	NumberOfNodes *int64 `type:"integer"`
+
+	// The identifier of the reserved node.
+	ReservedNodeId *string `type:"string"`
+
+	// The identifier of the target reserved node offering.
+	TargetReservedNodeOfferingId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -30086,6 +31023,18 @@ func (s *ResizeClusterInput) SetNumberOfNodes(v int64) *ResizeClusterInput {
 	return s
 }
 
+// SetReservedNodeId sets the ReservedNodeId field's value.
+func (s *ResizeClusterInput) SetReservedNodeId(v string) *ResizeClusterInput {
+	s.ReservedNodeId = &v
+	return s
+}
+
+// SetTargetReservedNodeOfferingId sets the TargetReservedNodeOfferingId field's value.
+func (s *ResizeClusterInput) SetTargetReservedNodeOfferingId(v string) *ResizeClusterInput {
+	s.TargetReservedNodeOfferingId = &v
+	return s
+}
+
 // Describes a resize cluster operation. For example, a scheduled action to
 // run the ResizeCluster API operation.
 type ResizeClusterMessage struct {
@@ -30111,6 +31060,12 @@ type ResizeClusterMessage struct {
 	// The new number of nodes for the cluster. If not specified, the cluster's
 	// current number of nodes is used.
 	NumberOfNodes *int64 `type:"integer"`
+
+	// The identifier of the reserved node.
+	ReservedNodeId *string `type:"string"`
+
+	// The identifier of the target reserved node offering.
+	TargetReservedNodeOfferingId *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -30171,6 +31126,18 @@ func (s *ResizeClusterMessage) SetNodeType(v string) *ResizeClusterMessage {
 // SetNumberOfNodes sets the NumberOfNodes field's value.
 func (s *ResizeClusterMessage) SetNumberOfNodes(v int64) *ResizeClusterMessage {
 	s.NumberOfNodes = &v
+	return s
+}
+
+// SetReservedNodeId sets the ReservedNodeId field's value.
+func (s *ResizeClusterMessage) SetReservedNodeId(v string) *ResizeClusterMessage {
+	s.ReservedNodeId = &v
+	return s
+}
+
+// SetTargetReservedNodeOfferingId sets the TargetReservedNodeOfferingId field's value.
+func (s *ResizeClusterMessage) SetTargetReservedNodeOfferingId(v string) *ResizeClusterMessage {
+	s.TargetReservedNodeOfferingId = &v
 	return s
 }
 
@@ -30440,6 +31407,9 @@ type RestoreFromClusterSnapshotInput struct {
 	// If true, the cluster can be accessed from a public network.
 	PubliclyAccessible *bool `type:"boolean"`
 
+	// The identifier of the target reserved node offering.
+	ReservedNodeId *string `type:"string"`
+
 	// The name of the cluster the source snapshot was created from. This parameter
 	// is required if your IAM user has a policy containing a snapshot resource
 	// element that specifies anything other than * for the cluster name.
@@ -30455,6 +31425,9 @@ type RestoreFromClusterSnapshotInput struct {
 
 	// A unique identifier for the snapshot schedule.
 	SnapshotScheduleIdentifier *string `type:"string"`
+
+	// The identifier of the target reserved node offering.
+	TargetReservedNodeOfferingId *string `type:"string"`
 
 	// A list of Virtual Private Cloud (VPC) security groups to be associated with
 	// the cluster.
@@ -30649,6 +31622,12 @@ func (s *RestoreFromClusterSnapshotInput) SetPubliclyAccessible(v bool) *Restore
 	return s
 }
 
+// SetReservedNodeId sets the ReservedNodeId field's value.
+func (s *RestoreFromClusterSnapshotInput) SetReservedNodeId(v string) *RestoreFromClusterSnapshotInput {
+	s.ReservedNodeId = &v
+	return s
+}
+
 // SetSnapshotClusterIdentifier sets the SnapshotClusterIdentifier field's value.
 func (s *RestoreFromClusterSnapshotInput) SetSnapshotClusterIdentifier(v string) *RestoreFromClusterSnapshotInput {
 	s.SnapshotClusterIdentifier = &v
@@ -30664,6 +31643,12 @@ func (s *RestoreFromClusterSnapshotInput) SetSnapshotIdentifier(v string) *Resto
 // SetSnapshotScheduleIdentifier sets the SnapshotScheduleIdentifier field's value.
 func (s *RestoreFromClusterSnapshotInput) SetSnapshotScheduleIdentifier(v string) *RestoreFromClusterSnapshotInput {
 	s.SnapshotScheduleIdentifier = &v
+	return s
+}
+
+// SetTargetReservedNodeOfferingId sets the TargetReservedNodeOfferingId field's value.
+func (s *RestoreFromClusterSnapshotInput) SetTargetReservedNodeOfferingId(v string) *RestoreFromClusterSnapshotInput {
+	s.TargetReservedNodeOfferingId = &v
 	return s
 }
 
@@ -33540,6 +34525,54 @@ func PartnerIntegrationStatus_Values() []string {
 		PartnerIntegrationStatusInactive,
 		PartnerIntegrationStatusRuntimeFailure,
 		PartnerIntegrationStatusConnectionFailure,
+	}
+}
+
+const (
+	// ReservedNodeExchangeActionTypeRestoreCluster is a ReservedNodeExchangeActionType enum value
+	ReservedNodeExchangeActionTypeRestoreCluster = "restore-cluster"
+
+	// ReservedNodeExchangeActionTypeResizeCluster is a ReservedNodeExchangeActionType enum value
+	ReservedNodeExchangeActionTypeResizeCluster = "resize-cluster"
+)
+
+// ReservedNodeExchangeActionType_Values returns all elements of the ReservedNodeExchangeActionType enum
+func ReservedNodeExchangeActionType_Values() []string {
+	return []string{
+		ReservedNodeExchangeActionTypeRestoreCluster,
+		ReservedNodeExchangeActionTypeResizeCluster,
+	}
+}
+
+const (
+	// ReservedNodeExchangeStatusTypeRequested is a ReservedNodeExchangeStatusType enum value
+	ReservedNodeExchangeStatusTypeRequested = "REQUESTED"
+
+	// ReservedNodeExchangeStatusTypePending is a ReservedNodeExchangeStatusType enum value
+	ReservedNodeExchangeStatusTypePending = "PENDING"
+
+	// ReservedNodeExchangeStatusTypeInProgress is a ReservedNodeExchangeStatusType enum value
+	ReservedNodeExchangeStatusTypeInProgress = "IN_PROGRESS"
+
+	// ReservedNodeExchangeStatusTypeRetrying is a ReservedNodeExchangeStatusType enum value
+	ReservedNodeExchangeStatusTypeRetrying = "RETRYING"
+
+	// ReservedNodeExchangeStatusTypeSucceeded is a ReservedNodeExchangeStatusType enum value
+	ReservedNodeExchangeStatusTypeSucceeded = "SUCCEEDED"
+
+	// ReservedNodeExchangeStatusTypeFailed is a ReservedNodeExchangeStatusType enum value
+	ReservedNodeExchangeStatusTypeFailed = "FAILED"
+)
+
+// ReservedNodeExchangeStatusType_Values returns all elements of the ReservedNodeExchangeStatusType enum
+func ReservedNodeExchangeStatusType_Values() []string {
+	return []string{
+		ReservedNodeExchangeStatusTypeRequested,
+		ReservedNodeExchangeStatusTypePending,
+		ReservedNodeExchangeStatusTypeInProgress,
+		ReservedNodeExchangeStatusTypeRetrying,
+		ReservedNodeExchangeStatusTypeSucceeded,
+		ReservedNodeExchangeStatusTypeFailed,
 	}
 }
 

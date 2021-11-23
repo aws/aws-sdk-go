@@ -68,6 +68,10 @@ type IoTDeviceAdvisorAPI interface {
 	DeleteSuiteDefinitionWithContext(aws.Context, *iotdeviceadvisor.DeleteSuiteDefinitionInput, ...request.Option) (*iotdeviceadvisor.DeleteSuiteDefinitionOutput, error)
 	DeleteSuiteDefinitionRequest(*iotdeviceadvisor.DeleteSuiteDefinitionInput) (*request.Request, *iotdeviceadvisor.DeleteSuiteDefinitionOutput)
 
+	GetEndpoint(*iotdeviceadvisor.GetEndpointInput) (*iotdeviceadvisor.GetEndpointOutput, error)
+	GetEndpointWithContext(aws.Context, *iotdeviceadvisor.GetEndpointInput, ...request.Option) (*iotdeviceadvisor.GetEndpointOutput, error)
+	GetEndpointRequest(*iotdeviceadvisor.GetEndpointInput) (*request.Request, *iotdeviceadvisor.GetEndpointOutput)
+
 	GetSuiteDefinition(*iotdeviceadvisor.GetSuiteDefinitionInput) (*iotdeviceadvisor.GetSuiteDefinitionOutput, error)
 	GetSuiteDefinitionWithContext(aws.Context, *iotdeviceadvisor.GetSuiteDefinitionInput, ...request.Option) (*iotdeviceadvisor.GetSuiteDefinitionOutput, error)
 	GetSuiteDefinitionRequest(*iotdeviceadvisor.GetSuiteDefinitionInput) (*request.Request, *iotdeviceadvisor.GetSuiteDefinitionOutput)

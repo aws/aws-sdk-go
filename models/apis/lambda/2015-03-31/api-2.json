@@ -1398,6 +1398,7 @@
         "FunctionName":{"shape":"FunctionName"},
         "Enabled":{"shape":"Enabled"},
         "BatchSize":{"shape":"BatchSize"},
+        "FilterCriteria":{"shape":"FilterCriteria"},
         "MaximumBatchingWindowInSeconds":{"shape":"MaximumBatchingWindowInSeconds"},
         "ParallelizationFactor":{"shape":"ParallelizationFactor"},
         "StartingPosition":{"shape":"EventSourcePosition"},
@@ -1803,6 +1804,7 @@
         "MaximumBatchingWindowInSeconds":{"shape":"MaximumBatchingWindowInSeconds"},
         "ParallelizationFactor":{"shape":"ParallelizationFactor"},
         "EventSourceArn":{"shape":"Arn"},
+        "FilterCriteria":{"shape":"FilterCriteria"},
         "FunctionArn":{"shape":"FunctionArn"},
         "LastModified":{"shape":"Date"},
         "LastProcessingResult":{"shape":"String"},
@@ -1858,6 +1860,22 @@
       "type":"list",
       "member":{"shape":"FileSystemConfig"},
       "max":1
+    },
+    "Filter":{
+      "type":"structure",
+      "members":{
+        "Pattern":{"shape":"Pattern"}
+      }
+    },
+    "FilterCriteria":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"FilterList"}
+      }
+    },
+    "FilterList":{
+      "type":"list",
+      "member":{"shape":"Filter"}
     },
     "FunctionArn":{
       "type":"string",
@@ -3147,6 +3165,12 @@
       "max":10,
       "min":1
     },
+    "Pattern":{
+      "type":"string",
+      "max":4096,
+      "min":0,
+      "pattern":".*"
+    },
     "PolicyLengthExceededException":{
       "type":"structure",
       "members":{
@@ -3828,6 +3852,7 @@
         "FunctionName":{"shape":"FunctionName"},
         "Enabled":{"shape":"Enabled"},
         "BatchSize":{"shape":"BatchSize"},
+        "FilterCriteria":{"shape":"FilterCriteria"},
         "MaximumBatchingWindowInSeconds":{"shape":"MaximumBatchingWindowInSeconds"},
         "DestinationConfig":{"shape":"DestinationConfig"},
         "MaximumRecordAgeInSeconds":{"shape":"MaximumRecordAgeInSeconds"},

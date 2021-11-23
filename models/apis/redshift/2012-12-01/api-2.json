@@ -1144,6 +1144,23 @@
         {"shape":"UnauthorizedPartnerIntegrationFault"}
       ]
     },
+    "DescribeReservedNodeExchangeStatus":{
+      "name":"DescribeReservedNodeExchangeStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeReservedNodeExchangeStatusInputMessage"},
+      "output":{
+        "shape":"DescribeReservedNodeExchangeStatusOutputMessage",
+        "resultWrapper":"DescribeReservedNodeExchangeStatusResult"
+      },
+      "errors":[
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"ReservedNodeExchangeNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"}
+      ]
+    },
     "DescribeReservedNodeOfferings":{
       "name":"DescribeReservedNodeOfferings",
       "http":{
@@ -1405,6 +1422,28 @@
       "errors":[
         {"shape":"ClusterNotFoundFault"},
         {"shape":"UnsupportedOperationFault"}
+      ]
+    },
+    "GetReservedNodeExchangeConfigurationOptions":{
+      "name":"GetReservedNodeExchangeConfigurationOptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetReservedNodeExchangeConfigurationOptionsInputMessage"},
+      "output":{
+        "shape":"GetReservedNodeExchangeConfigurationOptionsOutputMessage",
+        "resultWrapper":"GetReservedNodeExchangeConfigurationOptionsResult"
+      },
+      "errors":[
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"InvalidReservedNodeStateFault"},
+        {"shape":"ReservedNodeAlreadyMigratedFault"},
+        {"shape":"ReservedNodeOfferingNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceUnavailableFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"ClusterSnapshotNotFoundFault"}
       ]
     },
     "GetReservedNodeExchangeOfferings":{
@@ -1825,7 +1864,13 @@
         {"shape":"UnsupportedOptionFault"},
         {"shape":"UnsupportedOperationFault"},
         {"shape":"UnauthorizedOperation"},
-        {"shape":"LimitExceededFault"}
+        {"shape":"LimitExceededFault"},
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"InvalidReservedNodeStateFault"},
+        {"shape":"ReservedNodeAlreadyMigratedFault"},
+        {"shape":"ReservedNodeOfferingNotFoundFault"},
+        {"shape":"DependentServiceUnavailableFault"},
+        {"shape":"ReservedNodeAlreadyExistsFault"}
       ]
     },
     "RestoreFromClusterSnapshot":{
@@ -1864,7 +1909,14 @@
         {"shape":"InvalidClusterTrackFault"},
         {"shape":"SnapshotScheduleNotFoundFault"},
         {"shape":"TagLimitExceededFault"},
-        {"shape":"InvalidTagFault"}
+        {"shape":"InvalidTagFault"},
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"InvalidReservedNodeStateFault"},
+        {"shape":"ReservedNodeAlreadyMigratedFault"},
+        {"shape":"ReservedNodeOfferingNotFoundFault"},
+        {"shape":"DependentServiceUnavailableFault"},
+        {"shape":"ReservedNodeAlreadyExistsFault"},
+        {"shape":"UnsupportedOperationFault"}
       ]
     },
     "RestoreTableFromClusterSnapshot":{
@@ -2433,7 +2485,8 @@
         "ClusterNamespaceArn":{"shape":"String"},
         "TotalStorageCapacityInMegaBytes":{"shape":"LongOptional"},
         "AquaConfiguration":{"shape":"AquaConfiguration"},
-        "DefaultIamRoleArn":{"shape":"String"}
+        "DefaultIamRoleArn":{"shape":"String"},
+        "ReservedNodeExchangeStatus":{"shape":"ReservedNodeExchangeStatus"}
       },
       "wrapper":true
     },
@@ -3755,6 +3808,22 @@
         "PartnerIntegrationInfoList":{"shape":"PartnerIntegrationInfoList"}
       }
     },
+    "DescribeReservedNodeExchangeStatusInputMessage":{
+      "type":"structure",
+      "members":{
+        "ReservedNodeId":{"shape":"String"},
+        "ReservedNodeExchangeRequestId":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeReservedNodeExchangeStatusOutputMessage":{
+      "type":"structure",
+      "members":{
+        "ReservedNodeExchangeStatusDetails":{"shape":"ReservedNodeExchangeStatusList"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeReservedNodeOfferingsMessage":{
       "type":"structure",
       "members":{
@@ -4206,6 +4275,24 @@
         "DurationSeconds":{"shape":"IntegerOptional"},
         "AutoCreate":{"shape":"BooleanOptional"},
         "DbGroups":{"shape":"DbGroupList"}
+      }
+    },
+    "GetReservedNodeExchangeConfigurationOptionsInputMessage":{
+      "type":"structure",
+      "required":["ActionType"],
+      "members":{
+        "ActionType":{"shape":"ReservedNodeExchangeActionType"},
+        "ClusterIdentifier":{"shape":"String"},
+        "SnapshotIdentifier":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "GetReservedNodeExchangeConfigurationOptionsOutputMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "ReservedNodeConfigurationOptionList":{"shape":"ReservedNodeConfigurationOptionList"}
       }
     },
     "GetReservedNodeExchangeOfferingsInputMessage":{
@@ -5415,6 +5502,73 @@
       },
       "exception":true
     },
+    "ReservedNodeConfigurationOption":{
+      "type":"structure",
+      "members":{
+        "SourceReservedNode":{"shape":"ReservedNode"},
+        "TargetReservedNodeCount":{"shape":"Integer"},
+        "TargetReservedNodeOffering":{"shape":"ReservedNodeOffering"}
+      },
+      "wrapper":true
+    },
+    "ReservedNodeConfigurationOptionList":{
+      "type":"list",
+      "member":{
+        "shape":"ReservedNodeConfigurationOption",
+        "locationName":"ReservedNodeConfigurationOption"
+      }
+    },
+    "ReservedNodeExchangeActionType":{
+      "type":"string",
+      "enum":[
+        "restore-cluster",
+        "resize-cluster"
+      ]
+    },
+    "ReservedNodeExchangeNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ReservedNodeExchangeNotFond",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ReservedNodeExchangeStatus":{
+      "type":"structure",
+      "members":{
+        "ReservedNodeExchangeRequestId":{"shape":"String"},
+        "Status":{"shape":"ReservedNodeExchangeStatusType"},
+        "RequestTime":{"shape":"TStamp"},
+        "SourceReservedNodeId":{"shape":"String"},
+        "SourceReservedNodeType":{"shape":"String"},
+        "SourceReservedNodeCount":{"shape":"Integer"},
+        "TargetReservedNodeOfferingId":{"shape":"String"},
+        "TargetReservedNodeType":{"shape":"String"},
+        "TargetReservedNodeCount":{"shape":"Integer"}
+      },
+      "wrapper":true
+    },
+    "ReservedNodeExchangeStatusList":{
+      "type":"list",
+      "member":{
+        "shape":"ReservedNodeExchangeStatus",
+        "locationName":"ReservedNodeExchangeStatus"
+      }
+    },
+    "ReservedNodeExchangeStatusType":{
+      "type":"string",
+      "enum":[
+        "REQUESTED",
+        "PENDING",
+        "IN_PROGRESS",
+        "RETRYING",
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
     "ReservedNodeList":{
       "type":"list",
       "member":{
@@ -5515,7 +5669,9 @@
         "ClusterType":{"shape":"String"},
         "NodeType":{"shape":"String"},
         "NumberOfNodes":{"shape":"IntegerOptional"},
-        "Classic":{"shape":"BooleanOptional"}
+        "Classic":{"shape":"BooleanOptional"},
+        "ReservedNodeId":{"shape":"String"},
+        "TargetReservedNodeOfferingId":{"shape":"String"}
       }
     },
     "ResizeClusterResult":{
@@ -5616,7 +5772,9 @@
         "NumberOfNodes":{"shape":"IntegerOptional"},
         "AvailabilityZoneRelocation":{"shape":"BooleanOptional"},
         "AquaConfigurationStatus":{"shape":"AquaConfigurationStatus"},
-        "DefaultIamRoleArn":{"shape":"String"}
+        "DefaultIamRoleArn":{"shape":"String"},
+        "ReservedNodeId":{"shape":"String"},
+        "TargetReservedNodeOfferingId":{"shape":"String"}
       }
     },
     "RestoreFromClusterSnapshotResult":{

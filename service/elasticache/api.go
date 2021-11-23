@@ -1540,7 +1540,7 @@ func (c *ElastiCache) CreateUserRequest(input *CreateUserInput) (req *request.Re
 
 // CreateUser API operation for Amazon ElastiCache.
 //
-// For Redis engine version 6.x onwards: Creates a Redis user. For more information,
+// For Redis engine version 6.0 onwards: Creates a Redis user. For more information,
 // see Using Role Based Access Control (RBAC) (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1559,6 +1559,9 @@ func (c *ElastiCache) CreateUserRequest(input *CreateUserInput) (req *request.Re
 //
 //   * ErrCodeDuplicateUserNameFault "DuplicateUserName"
 //   A user with this username already exists.
+//
+//   * ErrCodeServiceLinkedRoleNotFoundFault "ServiceLinkedRoleNotFoundFault"
+//   The specified service linked role (SLR) was not found.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -1637,7 +1640,7 @@ func (c *ElastiCache) CreateUserGroupRequest(input *CreateUserGroupInput) (req *
 
 // CreateUserGroup API operation for Amazon ElastiCache.
 //
-// For Redis engine version 6.x onwards: Creates a Redis user group. For more
+// For Redis engine version 6.0 onwards: Creates a Redis user group. For more
 // information, see Using Role Based Access Control (RBAC) (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1656,6 +1659,9 @@ func (c *ElastiCache) CreateUserGroupRequest(input *CreateUserGroupInput) (req *
 //
 //   * ErrCodeUserGroupAlreadyExistsFault "UserGroupAlreadyExists"
 //   The user group with this ID already exists.
+//
+//   * ErrCodeServiceLinkedRoleNotFoundFault "ServiceLinkedRoleNotFoundFault"
+//   The specified service linked role (SLR) was not found.
 //
 //   * ErrCodeDefaultUserRequired "DefaultUserRequired"
 //   You must add default user to a user group.
@@ -2653,7 +2659,7 @@ func (c *ElastiCache) DeleteUserRequest(input *DeleteUserInput) (req *request.Re
 
 // DeleteUser API operation for Amazon ElastiCache.
 //
-// For Redis engine version 6.x onwards: Deletes a user. The user will be removed
+// For Redis engine version 6.0 onwards: Deletes a user. The user will be removed
 // from all user groups and in turn removed from all replication groups. For
 // more information, see Using Role Based Access Control (RBAC) (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html).
 //
@@ -2670,6 +2676,9 @@ func (c *ElastiCache) DeleteUserRequest(input *DeleteUserInput) (req *request.Re
 //
 //   * ErrCodeUserNotFoundFault "UserNotFound"
 //   The user does not exist or could not be found.
+//
+//   * ErrCodeServiceLinkedRoleNotFoundFault "ServiceLinkedRoleNotFoundFault"
+//   The specified service linked role (SLR) was not found.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -2743,7 +2752,7 @@ func (c *ElastiCache) DeleteUserGroupRequest(input *DeleteUserGroupInput) (req *
 
 // DeleteUserGroup API operation for Amazon ElastiCache.
 //
-// For Redis engine version 6.x onwards: Deletes a user group. The user group
+// For Redis engine version 6.0 onwards: Deletes a user group. The user group
 // must first be disassociated from the replication group before it can be deleted.
 // For more information, see Using Role Based Access Control (RBAC) (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html).
 //
@@ -2760,6 +2769,9 @@ func (c *ElastiCache) DeleteUserGroupRequest(input *DeleteUserGroupInput) (req *
 //
 //   * ErrCodeInvalidUserGroupStateFault "InvalidUserGroupState"
 //   The user group is not in an active state.
+//
+//   * ErrCodeServiceLinkedRoleNotFoundFault "ServiceLinkedRoleNotFoundFault"
+//   The specified service linked role (SLR) was not found.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -5020,6 +5032,9 @@ func (c *ElastiCache) DescribeUserGroupsRequest(input *DescribeUserGroupsInput) 
 //   * ErrCodeUserGroupNotFoundFault "UserGroupNotFound"
 //   The user group was not found or does not exist
 //
+//   * ErrCodeServiceLinkedRoleNotFoundFault "ServiceLinkedRoleNotFoundFault"
+//   The specified service linked role (SLR) was not found.
+//
 //   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
 //   Two or more incompatible parameters were specified.
 //
@@ -5159,6 +5174,9 @@ func (c *ElastiCache) DescribeUsersRequest(input *DescribeUsersInput) (req *requ
 // Returned Error Codes:
 //   * ErrCodeUserNotFoundFault "UserNotFound"
 //   The user does not exist or could not be found.
+//
+//   * ErrCodeServiceLinkedRoleNotFoundFault "ServiceLinkedRoleNotFoundFault"
+//   The specified service linked role (SLR) was not found.
 //
 //   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
 //   Two or more incompatible parameters were specified.
@@ -6540,6 +6558,9 @@ func (c *ElastiCache) ModifyUserRequest(input *ModifyUserInput) (req *request.Re
 //   * ErrCodeInvalidUserStateFault "InvalidUserState"
 //   The user is not in active state.
 //
+//   * ErrCodeServiceLinkedRoleNotFoundFault "ServiceLinkedRoleNotFoundFault"
+//   The specified service linked role (SLR) was not found.
+//
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
 //
@@ -6630,6 +6651,9 @@ func (c *ElastiCache) ModifyUserGroupRequest(input *ModifyUserGroupInput) (req *
 //
 //   * ErrCodeDuplicateUserNameFault "DuplicateUserName"
 //   A user with this username already exists.
+//
+//   * ErrCodeServiceLinkedRoleNotFoundFault "ServiceLinkedRoleNotFoundFault"
+//   The specified service linked role (SLR) was not found.
 //
 //   * ErrCodeDefaultUserRequired "DefaultUserRequired"
 //   You must add default user to a user group.
@@ -7396,6 +7420,12 @@ func (c *ElastiCache) TestFailoverRequest(input *TestFailoverInput) (req *reques
 // on a specified node group (called shard in the console) in a replication
 // group (called cluster in the console).
 //
+// This API is designed for testing the behavior of your application in case
+// of ElastiCache failover. It is not designed to be an operational tool for
+// initiating a failover to overcome a problem you may have with the cluster.
+// Moreover, in certain conditions such as large-scale operational events, Amazon
+// may block this API.
+//
 // Note the following
 //
 //    * A customer can use this operation to test automatic failover on up to
@@ -7975,7 +8005,9 @@ type CacheCluster struct {
 	// The date the auth token was last modified
 	AuthTokenLastModifiedDate *time.Time `type:"timestamp"`
 
-	// This parameter is currently disabled.
+	// If you are running Redis engine version 6.0 or later, set this parameter
+	// to yes if you want to opt-in to the next minor version upgrade campaign.
+	// This parameter is disabled for previous versions.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The date and time when the cluster was created.
@@ -8013,11 +8045,13 @@ type CacheCluster struct {
 	//    * Compute optimized: Previous generation: (not recommended) C1 node types:
 	//    cache.c1.xlarge
 	//
-	//    * Memory optimized: Current generation: R6g node types (available only
-	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
-	//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+	//    * Memory optimized: Current generation: R6gd node types (available only
+	//    for Redis engine version 6.2 onward). cache.r6gd.xlarge, cache.r6gd.2xlarge,
+	//    cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge, cache.r6gd.16xlarge
+	//    R6g node types (available only for Redis engine version 5.0.6 onward and
+	//    for Memcached engine version 1.5.16 onward). cache.r6g.large, cache.r6g.xlarge,
+	//    cache.r6g.2xlarge, cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge,
+	//    cache.r6g.16xlarge For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 	//    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
 	//    cache.r4.2xlarge, cache.r4.4xlarge, cache.r4.8xlarge, cache.r4.16xlarge
@@ -8363,7 +8397,7 @@ type CacheEngineVersion struct {
 	// The name of the cache parameter group family associated with this cache engine.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 | redis6.2
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// The name of the cache engine.
@@ -8446,11 +8480,13 @@ func (s *CacheEngineVersion) SetEngineVersion(v string) *CacheEngineVersion {
 //    * Compute optimized: Previous generation: (not recommended) C1 node types:
 //    cache.c1.xlarge
 //
-//    * Memory optimized: Current generation: R6g node types (available only
-//    for Redis engine version 5.0.6 onward and for Memcached engine version
-//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
-//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+//    * Memory optimized: Current generation: R6gd node types (available only
+//    for Redis engine version 6.2 onward). cache.r6gd.xlarge, cache.r6gd.2xlarge,
+//    cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge, cache.r6gd.16xlarge
+//    R6g node types (available only for Redis engine version 5.0.6 onward and
+//    for Memcached engine version 1.5.16 onward). cache.r6g.large, cache.r6g.xlarge,
+//    cache.r6g.2xlarge, cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge,
+//    cache.r6g.16xlarge For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 //    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 //    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
 //    cache.r4.2xlarge, cache.r4.4xlarge, cache.r4.8xlarge, cache.r4.16xlarge
@@ -8825,7 +8861,7 @@ type CacheParameterGroup struct {
 	// is compatible with.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 |
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// The name of the cache parameter group.
@@ -9546,7 +9582,9 @@ type CreateCacheClusterInput struct {
 	// http://redis.io/commands/AUTH.
 	AuthToken *string `type:"string"`
 
-	// This parameter is currently disabled.
+	// If you are running Redis engine version 6.0 or later, set this parameter
+	// to yes if you want to opt-in to the next minor version upgrade campaign.
+	// This parameter is disabled for previous versions.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The node group (shard) identifier. This parameter is stored as a lowercase
@@ -9586,11 +9624,13 @@ type CreateCacheClusterInput struct {
 	//    * Compute optimized: Previous generation: (not recommended) C1 node types:
 	//    cache.c1.xlarge
 	//
-	//    * Memory optimized: Current generation: R6g node types (available only
-	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
-	//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+	//    * Memory optimized: Current generation: R6gd node types (available only
+	//    for Redis engine version 6.2 onward). cache.r6gd.xlarge, cache.r6gd.2xlarge,
+	//    cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge, cache.r6gd.16xlarge
+	//    R6g node types (available only for Redis engine version 5.0.6 onward and
+	//    for Memcached engine version 1.5.16 onward). cache.r6g.large, cache.r6g.xlarge,
+	//    cache.r6g.2xlarge, cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge,
+	//    cache.r6g.16xlarge For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 	//    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
 	//    cache.r4.2xlarge, cache.r4.4xlarge, cache.r4.8xlarge, cache.r4.16xlarge
@@ -10003,7 +10043,7 @@ type CreateCacheParameterGroupInput struct {
 	// can be used with.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 | redis6.2
 	//
 	// CacheParameterGroupFamily is a required field
 	CacheParameterGroupFamily *string `type:"string" required:"true"`
@@ -10507,7 +10547,9 @@ type CreateReplicationGroupInput struct {
 	// http://redis.io/commands/AUTH.
 	AuthToken *string `type:"string"`
 
-	// This parameter is currently disabled.
+	// If you are running Redis engine version 6.0 or later, set this parameter
+	// to yes if you want to opt-in to the next minor version upgrade campaign.
+	// This parameter is disabled for previous versions.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// Specifies whether a read-only replica is automatically promoted to read/write
@@ -10542,11 +10584,13 @@ type CreateReplicationGroupInput struct {
 	//    * Compute optimized: Previous generation: (not recommended) C1 node types:
 	//    cache.c1.xlarge
 	//
-	//    * Memory optimized: Current generation: R6g node types (available only
-	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
-	//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+	//    * Memory optimized: Current generation: R6gd node types (available only
+	//    for Redis engine version 6.2 onward). cache.r6gd.xlarge, cache.r6gd.2xlarge,
+	//    cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge, cache.r6gd.16xlarge
+	//    R6g node types (available only for Redis engine version 5.0.6 onward and
+	//    for Memcached engine version 1.5.16 onward). cache.r6g.large, cache.r6g.xlarge,
+	//    cache.r6g.2xlarge, cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge,
+	//    cache.r6g.16xlarge For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 	//    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
 	//    cache.r4.2xlarge, cache.r4.4xlarge, cache.r4.8xlarge, cache.r4.16xlarge
@@ -10588,6 +10632,11 @@ type CreateReplicationGroupInput struct {
 	// a subnet group before you start creating a cluster. For more information,
 	// see Subnets and Subnet Groups (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/SubnetGroups.html).
 	CacheSubnetGroupName *string `type:"string"`
+
+	// Enables data tiering. Data tiering is only supported for replication groups
+	// using the r6gd node type. This parameter must be set to true when using r6gd
+	// nodes. For more information, see Data tiering (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/data-tiering.html).
+	DataTieringEnabled *bool `type:"boolean"`
 
 	// The name of the cache engine to be used for the clusters in this replication
 	// group. Must be Redis.
@@ -10895,6 +10944,12 @@ func (s *CreateReplicationGroupInput) SetCacheSecurityGroupNames(v []*string) *C
 // SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
 func (s *CreateReplicationGroupInput) SetCacheSubnetGroupName(v string) *CreateReplicationGroupInput {
 	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetDataTieringEnabled sets the DataTieringEnabled field's value.
+func (s *CreateReplicationGroupInput) SetDataTieringEnabled(v bool) *CreateReplicationGroupInput {
+	s.DataTieringEnabled = &v
 	return s
 }
 
@@ -11288,6 +11343,8 @@ type CreateUserGroupOutput struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
+	MinimumEngineVersion *string `type:"string"`
+
 	// A list of updates being applied to the user group.
 	PendingChanges *UserGroupPendingChanges `type:"structure"`
 
@@ -11331,6 +11388,12 @@ func (s *CreateUserGroupOutput) SetARN(v string) *CreateUserGroupOutput {
 // SetEngine sets the Engine field's value.
 func (s *CreateUserGroupOutput) SetEngine(v string) *CreateUserGroupOutput {
 	s.Engine = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *CreateUserGroupOutput) SetMinimumEngineVersion(v string) *CreateUserGroupOutput {
+	s.MinimumEngineVersion = &v
 	return s
 }
 
@@ -11505,6 +11568,8 @@ type CreateUserOutput struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
+	MinimumEngineVersion *string `type:"string"`
+
 	// Indicates the user status. Can be "active", "modifying" or "deleting".
 	Status *string `type:"string"`
 
@@ -11557,6 +11622,12 @@ func (s *CreateUserOutput) SetAuthentication(v *Authentication) *CreateUserOutpu
 // SetEngine sets the Engine field's value.
 func (s *CreateUserOutput) SetEngine(v string) *CreateUserOutput {
 	s.Engine = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *CreateUserOutput) SetMinimumEngineVersion(v string) *CreateUserOutput {
+	s.MinimumEngineVersion = &v
 	return s
 }
 
@@ -12543,6 +12614,8 @@ type DeleteUserGroupOutput struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
+	MinimumEngineVersion *string `type:"string"`
+
 	// A list of updates being applied to the user group.
 	PendingChanges *UserGroupPendingChanges `type:"structure"`
 
@@ -12586,6 +12659,12 @@ func (s *DeleteUserGroupOutput) SetARN(v string) *DeleteUserGroupOutput {
 // SetEngine sets the Engine field's value.
 func (s *DeleteUserGroupOutput) SetEngine(v string) *DeleteUserGroupOutput {
 	s.Engine = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *DeleteUserGroupOutput) SetMinimumEngineVersion(v string) *DeleteUserGroupOutput {
+	s.MinimumEngineVersion = &v
 	return s
 }
 
@@ -12683,6 +12762,8 @@ type DeleteUserOutput struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
+	MinimumEngineVersion *string `type:"string"`
+
 	// Indicates the user status. Can be "active", "modifying" or "deleting".
 	Status *string `type:"string"`
 
@@ -12735,6 +12816,12 @@ func (s *DeleteUserOutput) SetAuthentication(v *Authentication) *DeleteUserOutpu
 // SetEngine sets the Engine field's value.
 func (s *DeleteUserOutput) SetEngine(v string) *DeleteUserOutput {
 	s.Engine = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *DeleteUserOutput) SetMinimumEngineVersion(v string) *DeleteUserOutput {
+	s.MinimumEngineVersion = &v
 	return s
 }
 
@@ -12892,7 +12979,7 @@ type DescribeCacheEngineVersionsInput struct {
 	// The name of a specific cache parameter group family to return details for.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis6.2
 	//
 	// Constraints:
 	//
@@ -13468,7 +13555,7 @@ type DescribeEngineDefaultParametersInput struct {
 	// The name of the cache parameter group family.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis6.2
 	//
 	// CacheParameterGroupFamily is a required field
 	CacheParameterGroupFamily *string `type:"string" required:"true"`
@@ -13949,11 +14036,13 @@ type DescribeReservedCacheNodesInput struct {
 	//    * Compute optimized: Previous generation: (not recommended) C1 node types:
 	//    cache.c1.xlarge
 	//
-	//    * Memory optimized: Current generation: R6g node types (available only
-	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
-	//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+	//    * Memory optimized: Current generation: R6gd node types (available only
+	//    for Redis engine version 6.2 onward). cache.r6gd.xlarge, cache.r6gd.2xlarge,
+	//    cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge, cache.r6gd.16xlarge
+	//    R6g node types (available only for Redis engine version 5.0.6 onward and
+	//    for Memcached engine version 1.5.16 onward). cache.r6g.large, cache.r6g.xlarge,
+	//    cache.r6g.2xlarge, cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge,
+	//    cache.r6g.16xlarge For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 	//    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
 	//    cache.r4.2xlarge, cache.r4.4xlarge, cache.r4.8xlarge, cache.r4.16xlarge
@@ -14107,11 +14196,13 @@ type DescribeReservedCacheNodesOfferingsInput struct {
 	//    * Compute optimized: Previous generation: (not recommended) C1 node types:
 	//    cache.c1.xlarge
 	//
-	//    * Memory optimized: Current generation: R6g node types (available only
-	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
-	//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+	//    * Memory optimized: Current generation: R6gd node types (available only
+	//    for Redis engine version 6.2 onward). cache.r6gd.xlarge, cache.r6gd.2xlarge,
+	//    cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge, cache.r6gd.16xlarge
+	//    R6g node types (available only for Redis engine version 5.0.6 onward and
+	//    for Memcached engine version 1.5.16 onward). cache.r6g.large, cache.r6g.xlarge,
+	//    cache.r6g.2xlarge, cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge,
+	//    cache.r6g.16xlarge For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 	//    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
 	//    cache.r4.2xlarge, cache.r4.4xlarge, cache.r4.8xlarge, cache.r4.16xlarge
@@ -15210,7 +15301,7 @@ type EngineDefaults struct {
 	// default parameters apply.
 	//
 	// Valid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 |
-	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x |
+	// redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.0 | redis6.2
 	CacheParameterGroupFamily *string `type:"string"`
 
 	// Provides an identifier to allow retrieval of paginated results.
@@ -16461,7 +16552,9 @@ type ModifyCacheClusterInput struct {
 	// For more information, see Authenticating Users with Redis AUTH (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html)
 	AuthTokenUpdateStrategy *string `type:"string" enum:"AuthTokenUpdateStrategyType"`
 
-	// This parameter is currently disabled.
+	// If you are running Redis engine version 6.0 or later, set this parameter
+	// to yes if you want to opt-in to the next minor version upgrade campaign.
+	// This parameter is disabled for previous versions.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The cluster identifier. This value is stored as a lowercase string.
@@ -17186,7 +17279,9 @@ type ModifyReplicationGroupInput struct {
 	// For more information, see Authenticating Users with Redis AUTH (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html)
 	AuthTokenUpdateStrategy *string `type:"string" enum:"AuthTokenUpdateStrategyType"`
 
-	// This parameter is currently disabled.
+	// If you are running Redis engine version 6.0 or later, set this parameter
+	// to yes if you want to opt-in to the next minor version upgrade campaign.
+	// This parameter is disabled for previous versions.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// Determines whether a read replica is automatically promoted to read/write
@@ -17781,6 +17876,8 @@ type ModifyUserGroupOutput struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
+	MinimumEngineVersion *string `type:"string"`
+
 	// A list of updates being applied to the user group.
 	PendingChanges *UserGroupPendingChanges `type:"structure"`
 
@@ -17824,6 +17921,12 @@ func (s *ModifyUserGroupOutput) SetARN(v string) *ModifyUserGroupOutput {
 // SetEngine sets the Engine field's value.
 func (s *ModifyUserGroupOutput) SetEngine(v string) *ModifyUserGroupOutput {
 	s.Engine = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *ModifyUserGroupOutput) SetMinimumEngineVersion(v string) *ModifyUserGroupOutput {
+	s.MinimumEngineVersion = &v
 	return s
 }
 
@@ -17960,6 +18063,8 @@ type ModifyUserOutput struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
+	MinimumEngineVersion *string `type:"string"`
+
 	// Indicates the user status. Can be "active", "modifying" or "deleting".
 	Status *string `type:"string"`
 
@@ -18012,6 +18117,12 @@ func (s *ModifyUserOutput) SetAuthentication(v *Authentication) *ModifyUserOutpu
 // SetEngine sets the Engine field's value.
 func (s *ModifyUserOutput) SetEngine(v string) *ModifyUserOutput {
 	s.Engine = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *ModifyUserOutput) SetMinimumEngineVersion(v string) *ModifyUserOutput {
+	s.MinimumEngineVersion = &v
 	return s
 }
 
@@ -19486,6 +19597,11 @@ type ReplicationGroup struct {
 	// endpoint to connect to this replication group.
 	ConfigurationEndpoint *Endpoint `type:"structure"`
 
+	// Enables data tiering. Data tiering is only supported for replication groups
+	// using the r6gd node type. This parameter must be set to true when using r6gd
+	// nodes. For more information, see Data tiering (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/data-tiering.html).
+	DataTiering *string `type:"string" enum:"DataTieringStatus"`
+
 	// The user supplied description of the replication group.
 	Description *string `type:"string"`
 
@@ -19631,6 +19747,12 @@ func (s *ReplicationGroup) SetClusterEnabled(v bool) *ReplicationGroup {
 // SetConfigurationEndpoint sets the ConfigurationEndpoint field's value.
 func (s *ReplicationGroup) SetConfigurationEndpoint(v *Endpoint) *ReplicationGroup {
 	s.ConfigurationEndpoint = v
+	return s
+}
+
+// SetDataTiering sets the DataTiering field's value.
+func (s *ReplicationGroup) SetDataTiering(v string) *ReplicationGroup {
+	s.DataTiering = &v
 	return s
 }
 
@@ -19845,11 +19967,13 @@ type ReservedCacheNode struct {
 	//    * Compute optimized: Previous generation: (not recommended) C1 node types:
 	//    cache.c1.xlarge
 	//
-	//    * Memory optimized: Current generation: R6g node types (available only
-	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
-	//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+	//    * Memory optimized: Current generation: R6gd node types (available only
+	//    for Redis engine version 6.2 onward). cache.r6gd.xlarge, cache.r6gd.2xlarge,
+	//    cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge, cache.r6gd.16xlarge
+	//    R6g node types (available only for Redis engine version 5.0.6 onward and
+	//    for Memcached engine version 1.5.16 onward). cache.r6g.large, cache.r6g.xlarge,
+	//    cache.r6g.2xlarge, cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge,
+	//    cache.r6g.16xlarge For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 	//    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
 	//    cache.r4.2xlarge, cache.r4.4xlarge, cache.r4.8xlarge, cache.r4.16xlarge
@@ -20028,11 +20152,13 @@ type ReservedCacheNodesOffering struct {
 	//    * Compute optimized: Previous generation: (not recommended) C1 node types:
 	//    cache.c1.xlarge
 	//
-	//    * Memory optimized: Current generation: R6g node types (available only
-	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
-	//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+	//    * Memory optimized: Current generation: R6gd node types (available only
+	//    for Redis engine version 6.2 onward). cache.r6gd.xlarge, cache.r6gd.2xlarge,
+	//    cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge, cache.r6gd.16xlarge
+	//    R6g node types (available only for Redis engine version 5.0.6 onward and
+	//    for Memcached engine version 1.5.16 onward). cache.r6g.large, cache.r6g.xlarge,
+	//    cache.r6g.2xlarge, cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge,
+	//    cache.r6g.16xlarge For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 	//    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
 	//    cache.r4.2xlarge, cache.r4.4xlarge, cache.r4.8xlarge, cache.r4.16xlarge
@@ -20631,7 +20757,9 @@ type Snapshot struct {
 	// The ARN (Amazon Resource Name) of the snapshot.
 	ARN *string `type:"string"`
 
-	// This parameter is currently disabled.
+	// If you are running Redis engine version 6.0 or later, set this parameter
+	// to yes if you want to opt-in to the next minor version upgrade campaign.
+	// This parameter is disabled for previous versions.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// Indicates the status of automatic failover for the source Redis replication
@@ -20667,11 +20795,13 @@ type Snapshot struct {
 	//    * Compute optimized: Previous generation: (not recommended) C1 node types:
 	//    cache.c1.xlarge
 	//
-	//    * Memory optimized: Current generation: R6g node types (available only
-	//    for Redis engine version 5.0.6 onward and for Memcached engine version
-	//    1.5.16 onward). cache.r6g.large, cache.r6g.xlarge, cache.r6g.2xlarge,
-	//    cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge, cache.r6g.16xlarge
-	//    For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
+	//    * Memory optimized: Current generation: R6gd node types (available only
+	//    for Redis engine version 6.2 onward). cache.r6gd.xlarge, cache.r6gd.2xlarge,
+	//    cache.r6gd.4xlarge, cache.r6gd.8xlarge, cache.r6gd.12xlarge, cache.r6gd.16xlarge
+	//    R6g node types (available only for Redis engine version 5.0.6 onward and
+	//    for Memcached engine version 1.5.16 onward). cache.r6g.large, cache.r6g.xlarge,
+	//    cache.r6g.2xlarge, cache.r6g.4xlarge, cache.r6g.8xlarge, cache.r6g.12xlarge,
+	//    cache.r6g.16xlarge For region availability, see Supported Node Types (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/CacheNodes.SupportedTypes.html#CacheNodes.SupportedTypesByRegion)
 	//    R5 node types: cache.r5.large, cache.r5.xlarge, cache.r5.2xlarge, cache.r5.4xlarge,
 	//    cache.r5.12xlarge, cache.r5.24xlarge R4 node types: cache.r4.large, cache.r4.xlarge,
 	//    cache.r4.2xlarge, cache.r4.4xlarge, cache.r4.8xlarge, cache.r4.16xlarge
@@ -20696,6 +20826,11 @@ type Snapshot struct {
 
 	// The name of the cache subnet group associated with the source cluster.
 	CacheSubnetGroupName *string `type:"string"`
+
+	// Enables data tiering. Data tiering is only supported for replication groups
+	// using the r6gd node type. This parameter must be set to true when using r6gd
+	// nodes. For more information, see Data tiering (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/data-tiering.html).
+	DataTiering *string `type:"string" enum:"DataTieringStatus"`
 
 	// The name of the cache engine (memcached or redis) used by the source cluster.
 	Engine *string `type:"string"`
@@ -20858,6 +20993,12 @@ func (s *Snapshot) SetCacheParameterGroupName(v string) *Snapshot {
 // SetCacheSubnetGroupName sets the CacheSubnetGroupName field's value.
 func (s *Snapshot) SetCacheSubnetGroupName(v string) *Snapshot {
 	s.CacheSubnetGroupName = &v
+	return s
+}
+
+// SetDataTiering sets the DataTiering field's value.
+func (s *Snapshot) SetDataTiering(v string) *Snapshot {
+	s.DataTiering = &v
 	return s
 }
 
@@ -21634,6 +21775,8 @@ type User struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
+	MinimumEngineVersion *string `type:"string"`
+
 	// Indicates the user status. Can be "active", "modifying" or "deleting".
 	Status *string `type:"string"`
 
@@ -21689,6 +21832,12 @@ func (s *User) SetEngine(v string) *User {
 	return s
 }
 
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *User) SetMinimumEngineVersion(v string) *User {
+	s.MinimumEngineVersion = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *User) SetStatus(v string) *User {
 	s.Status = &v
@@ -21721,6 +21870,8 @@ type UserGroup struct {
 
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
+
+	MinimumEngineVersion *string `type:"string"`
 
 	// A list of updates being applied to the user group.
 	PendingChanges *UserGroupPendingChanges `type:"structure"`
@@ -21765,6 +21916,12 @@ func (s *UserGroup) SetARN(v string) *UserGroup {
 // SetEngine sets the Engine field's value.
 func (s *UserGroup) SetEngine(v string) *UserGroup {
 	s.Engine = &v
+	return s
+}
+
+// SetMinimumEngineVersion sets the MinimumEngineVersion field's value.
+func (s *UserGroup) SetMinimumEngineVersion(v string) *UserGroup {
+	s.MinimumEngineVersion = &v
 	return s
 }
 
@@ -21985,6 +22142,22 @@ func ChangeType_Values() []string {
 	return []string{
 		ChangeTypeImmediate,
 		ChangeTypeRequiresReboot,
+	}
+}
+
+const (
+	// DataTieringStatusEnabled is a DataTieringStatus enum value
+	DataTieringStatusEnabled = "enabled"
+
+	// DataTieringStatusDisabled is a DataTieringStatus enum value
+	DataTieringStatusDisabled = "disabled"
+)
+
+// DataTieringStatus_Values returns all elements of the DataTieringStatus enum
+func DataTieringStatus_Values() []string {
+	return []string{
+		DataTieringStatusEnabled,
+		DataTieringStatusDisabled,
 	}
 }
 

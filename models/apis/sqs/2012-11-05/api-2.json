@@ -860,7 +860,8 @@
         "KmsDataKeyReusePeriodSeconds",
         "DeduplicationScope",
         "FifoThroughputLimit",
-        "RedriveAllowPolicy"
+        "RedriveAllowPolicy",
+        "SqsManagedSseEnabled"
       ]
     },
     "QueueDeletedRecently":{

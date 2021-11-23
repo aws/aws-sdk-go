@@ -65,6 +65,13 @@ const (
 	// An unexpected error has occurred.
 	ErrCodeInternalFailureException = "InternalFailureException"
 
+	// ErrCodeInternalServerException for service response error code
+	// "InternalServerException".
+	//
+	// Internal error from the service that indicates an unexpected error or that
+	// the service is unavailable.
+	ErrCodeInternalServerException = "InternalServerException"
+
 	// ErrCodeInvalidAggregationException for service response error code
 	// "InvalidAggregationException".
 	//
@@ -208,6 +215,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"IndexNotReadyException":               newErrorIndexNotReadyException,
 	"InternalException":                    newErrorInternalException,
 	"InternalFailureException":             newErrorInternalFailureException,
+	"InternalServerException":              newErrorInternalServerException,
 	"InvalidAggregationException":          newErrorInvalidAggregationException,
 	"InvalidQueryException":                newErrorInvalidQueryException,
 	"InvalidRequestException":              newErrorInvalidRequestException,

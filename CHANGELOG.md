@@ -1,3 +1,39 @@
+Release v1.42.11 (2021-11-23)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * DynamoDB PartiQL now supports ReturnConsumedCapacity, which returns capacity units consumed by PartiQL APIs if the request specified returnConsumedCapacity parameter. PartiQL APIs include ExecuteStatement, BatchExecuteStatement, and ExecuteTransaction.
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new parameter ipv6Native to the allow creation of IPv6-only subnets using the CreateSubnet operation, and the operation ModifySubnetAttribute includes new parameters to modify subnet attributes to use resource-based naming and enable DNS resolutions for Private DNS name.
+* `service/ecs`: Updates service documentation
+  * Documentation update for ARM support on Amazon ECS.
+* `service/elasticache`: Updates service API and documentation
+  * Adding support for r6gd instances for Redis with data tiering. In a cluster with data tiering enabled, when available memory capacity is exhausted, the least recently used data is automatically tiered to solid state drives for cost-effective capacity scaling with minimal performance impact.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/finspace-data`: Updates service documentation
+* `service/iot`: Updates service API and documentation
+  * This release introduces a new feature, Managed Job Template, for AWS IoT Jobs Service. Customers can now use service provided managed job templates to easily create jobs for supported standard job actions.
+* `service/iotdeviceadvisor`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/lambda`: Updates service API and documentation
+  * Release Lambda event source filtering for SQS, Kinesis Streams, and DynamoDB Streams.
+* `service/macie2`: Updates service documentation
+* `service/opensearch`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds support for Multi-AZ DB clusters for RDS for MySQL and RDS for PostgreSQL.
+* `service/redshift`: Updates service API, documentation, and paginators
+  * This release adds support for reserved node exchange with restore/resize
+* `service/s3`: Updates service API, documentation, and examples
+  * Introduce two new Filters to S3 Lifecycle configurations - ObjectSizeGreaterThan and ObjectSizeLessThan. Introduce a new way to trigger actions on noncurrent versions by providing the number of newer noncurrent versions along with noncurrent days.
+* `service/sqs`: Updates service API and documentation
+  * Amazon SQS adds a new queue attribute, SqsManagedSseEnabled, which enables server-side queue encryption using SQS owned encryption keys.
+* `service/sts`: Updates service documentation
+  * Documentation updates for AWS Security Token Service.
+* `service/workspaces`: Updates service documentation
+  * Documentation updates for Amazon WorkSpaces
+
 Release v1.42.10 (2021-11-22)
 ===
 

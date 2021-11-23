@@ -1123,6 +1123,11 @@
         "ELIGIBLE"
       ]
     },
+    "DeploymentType":{
+      "type":"string",
+      "max":128,
+      "min":2
+    },
     "DescribeDomainAutoTunesRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -1527,6 +1532,14 @@
       "member":{"shape":"DomainStatus"}
     },
     "Double":{"type":"double"},
+    "DryRun":{"type":"boolean"},
+    "DryRunResults":{
+      "type":"structure",
+      "members":{
+        "DeploymentType":{"shape":"DeploymentType"},
+        "Message":{"shape":"Message"}
+      }
+    },
     "Duration":{
       "type":"structure",
       "members":{
@@ -2031,6 +2044,11 @@
       "max":100
     },
     "MaximumInstanceCount":{"type":"integer"},
+    "Message":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
     "MinimumInstanceCount":{"type":"integer"},
     "NextToken":{"type":"string"},
     "NodeToNodeEncryptionOptions":{
@@ -2671,14 +2689,16 @@
         "DomainEndpointOptions":{"shape":"DomainEndpointOptions"},
         "NodeToNodeEncryptionOptions":{"shape":"NodeToNodeEncryptionOptions"},
         "AdvancedSecurityOptions":{"shape":"AdvancedSecurityOptionsInput"},
-        "AutoTuneOptions":{"shape":"AutoTuneOptions"}
+        "AutoTuneOptions":{"shape":"AutoTuneOptions"},
+        "DryRun":{"shape":"DryRun"}
       }
     },
     "UpdateDomainConfigResponse":{
       "type":"structure",
       "required":["DomainConfig"],
       "members":{
-        "DomainConfig":{"shape":"DomainConfig"}
+        "DomainConfig":{"shape":"DomainConfig"},
+        "DryRunResults":{"shape":"DryRunResults"}
       }
     },
     "UpdatePackageRequest":{

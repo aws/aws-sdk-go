@@ -9090,6 +9090,50 @@ func (s *DomainStatus) SetVPCOptions(v *VPCDerivedInfo) *DomainStatus {
 	return s
 }
 
+type DryRunResults struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the way in which Amazon OpenSearch Service applies the update.
+	// Possible responses are Blue/Green (the update requires a blue/green deployment),
+	// DynamicUpdate (no blue/green required), Undetermined (the domain is undergoing
+	// an update and can't predict the deployment type; try again after the update
+	// is complete), and None (the request doesn't include any configuration changes).
+	DeploymentType *string `min:"2" type:"string"`
+
+	// Contains an optional message associated with the DryRunResults.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DryRunResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DryRunResults) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *DryRunResults) SetDeploymentType(v string) *DryRunResults {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DryRunResults) SetMessage(v string) *DryRunResults {
+	s.Message = &v
+	return s
+}
+
 // The maintenance schedule duration: duration value and duration unit. See
 // Auto-Tune for Amazon OpenSearch Service (https://docs.aws.amazon.com/opensearch-service/latest/developerguide/auto-tune.html)
 // for more information.
@@ -13215,6 +13259,11 @@ type UpdateDomainConfigInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"3" type:"string" required:"true"`
 
+	// This flag, when set to True, specifies whether the UpdateDomain request should
+	// return the results of validation checks (DryRunResults) without actually
+	// applying the change.
+	DryRun *bool `type:"boolean"`
+
 	// Specify the type and size of the EBS volume to use.
 	EBSOptions *EBSOptions `type:"structure"`
 
@@ -13360,6 +13409,12 @@ func (s *UpdateDomainConfigInput) SetDomainName(v string) *UpdateDomainConfigInp
 	return s
 }
 
+// SetDryRun sets the DryRun field's value.
+func (s *UpdateDomainConfigInput) SetDryRun(v bool) *UpdateDomainConfigInput {
+	s.DryRun = &v
+	return s
+}
+
 // SetEBSOptions sets the EBSOptions field's value.
 func (s *UpdateDomainConfigInput) SetEBSOptions(v *EBSOptions) *UpdateDomainConfigInput {
 	s.EBSOptions = v
@@ -13405,6 +13460,9 @@ type UpdateDomainConfigOutput struct {
 	//
 	// DomainConfig is a required field
 	DomainConfig *DomainConfig `type:"structure" required:"true"`
+
+	// Contains result of DryRun.
+	DryRunResults *DryRunResults `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13428,6 +13486,12 @@ func (s UpdateDomainConfigOutput) GoString() string {
 // SetDomainConfig sets the DomainConfig field's value.
 func (s *UpdateDomainConfigOutput) SetDomainConfig(v *DomainConfig) *UpdateDomainConfigOutput {
 	s.DomainConfig = v
+	return s
+}
+
+// SetDryRunResults sets the DryRunResults field's value.
+func (s *UpdateDomainConfigOutput) SetDryRunResults(v *DryRunResults) *UpdateDomainConfigOutput {
+	s.DryRunResults = v
 	return s
 }
 

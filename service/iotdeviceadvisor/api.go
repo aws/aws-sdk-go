@@ -59,6 +59,9 @@ func (c *IoTDeviceAdvisor) CreateSuiteDefinitionRequest(input *CreateSuiteDefini
 //
 // Creates a Device Advisor test suite.
 //
+// Requires permission to access the CreateSuiteDefinition (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -142,6 +145,9 @@ func (c *IoTDeviceAdvisor) DeleteSuiteDefinitionRequest(input *DeleteSuiteDefini
 //
 // Deletes a Device Advisor test suite.
 //
+// Requires permission to access the DeleteSuiteDefinition (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -173,6 +179,89 @@ func (c *IoTDeviceAdvisor) DeleteSuiteDefinition(input *DeleteSuiteDefinitionInp
 // for more information on using Contexts.
 func (c *IoTDeviceAdvisor) DeleteSuiteDefinitionWithContext(ctx aws.Context, input *DeleteSuiteDefinitionInput, opts ...request.Option) (*DeleteSuiteDefinitionOutput, error) {
 	req, out := c.DeleteSuiteDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEndpoint = "GetEndpoint"
+
+// GetEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the GetEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEndpoint for more information on using the GetEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetEndpointRequest method.
+//    req, resp := client.GetEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetEndpoint
+func (c *IoTDeviceAdvisor) GetEndpointRequest(input *GetEndpointInput) (req *request.Request, output *GetEndpointOutput) {
+	op := &request.Operation{
+		Name:       opGetEndpoint,
+		HTTPMethod: "GET",
+		HTTPPath:   "/endpoint",
+	}
+
+	if input == nil {
+		input = &GetEndpointInput{}
+	}
+
+	output = &GetEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEndpoint API operation for AWS IoT Core Device Advisor.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Core Device Advisor's
+// API operation GetEndpoint for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Sends invalid request exception.
+//
+//   * InternalServerException
+//   Sends Internal Failure Exception.
+//
+//   * ResourceNotFoundException
+//   Sends Resource Not Found Exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetEndpoint
+func (c *IoTDeviceAdvisor) GetEndpoint(input *GetEndpointInput) (*GetEndpointOutput, error) {
+	req, out := c.GetEndpointRequest(input)
+	return out, req.Send()
+}
+
+// GetEndpointWithContext is the same as GetEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTDeviceAdvisor) GetEndpointWithContext(ctx aws.Context, input *GetEndpointInput, opts ...request.Option) (*GetEndpointOutput, error) {
+	req, out := c.GetEndpointRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -223,6 +312,9 @@ func (c *IoTDeviceAdvisor) GetSuiteDefinitionRequest(input *GetSuiteDefinitionIn
 // GetSuiteDefinition API operation for AWS IoT Core Device Advisor.
 //
 // Gets information about a Device Advisor test suite.
+//
+// Requires permission to access the GetSuiteDefinition (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -309,6 +401,9 @@ func (c *IoTDeviceAdvisor) GetSuiteRunRequest(input *GetSuiteRunInput) (req *req
 //
 // Gets information about a Device Advisor test suite run.
 //
+// Requires permission to access the GetSuiteRun (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -394,6 +489,9 @@ func (c *IoTDeviceAdvisor) GetSuiteRunReportRequest(input *GetSuiteRunReportInpu
 //
 // Gets a report download link for a successful Device Advisor qualifying test
 // suite run.
+//
+// Requires permission to access the GetSuiteRunReport (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -485,6 +583,9 @@ func (c *IoTDeviceAdvisor) ListSuiteDefinitionsRequest(input *ListSuiteDefinitio
 // ListSuiteDefinitions API operation for AWS IoT Core Device Advisor.
 //
 // Lists the Device Advisor test suites you have created.
+//
+// Requires permission to access the ListSuiteDefinitions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -627,6 +728,9 @@ func (c *IoTDeviceAdvisor) ListSuiteRunsRequest(input *ListSuiteRunsInput) (req 
 // Lists the runs of the specified Device Advisor test suite. You can list all
 // runs of the test suite, or the runs of a specific version of the test suite.
 //
+// Requires permission to access the ListSuiteRuns (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -761,6 +865,9 @@ func (c *IoTDeviceAdvisor) ListTagsForResourceRequest(input *ListTagsForResource
 //
 // Lists the tags attached to an IoT Device Advisor resource.
 //
+// Requires permission to access the ListTagsForResource (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -845,6 +952,9 @@ func (c *IoTDeviceAdvisor) StartSuiteRunRequest(input *StartSuiteRunInput) (req 
 // StartSuiteRun API operation for AWS IoT Core Device Advisor.
 //
 // Starts a Device Advisor test suite run.
+//
+// Requires permission to access the StartSuiteRun (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -932,6 +1042,9 @@ func (c *IoTDeviceAdvisor) StopSuiteRunRequest(input *StopSuiteRunInput) (req *r
 //
 // Stops a Device Advisor test suite run that is currently running.
 //
+// Requires permission to access the StopSuiteRun (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1017,6 +1130,9 @@ func (c *IoTDeviceAdvisor) TagResourceRequest(input *TagResourceInput) (req *req
 // TagResource API operation for AWS IoT Core Device Advisor.
 //
 // Adds to and modifies existing tags of an IoT Device Advisor resource.
+//
+// Requires permission to access the TagResource (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1104,6 +1220,9 @@ func (c *IoTDeviceAdvisor) UntagResourceRequest(input *UntagResourceInput) (req 
 //
 // Removes tags from an IoT Device Advisor resource.
 //
+// Requires permission to access the UntagResource (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1188,6 +1307,9 @@ func (c *IoTDeviceAdvisor) UpdateSuiteDefinitionRequest(input *UpdateSuiteDefini
 // UpdateSuiteDefinition API operation for AWS IoT Core Device Advisor.
 //
 // Updates a Device Advisor test suite.
+//
+// Requires permission to access the UpdateSuiteDefinition (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1351,7 +1473,7 @@ type CreateSuiteDefinitionOutput struct {
 	// Creates a Device Advisor test suite with TimeStamp of when it was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// Creates a Device Advisor test suite with Amazon Resource name.
+	// Creates a Device Advisor test suite with Amazon Resource Name (ARN).
 	SuiteDefinitionArn *string `locationName:"suiteDefinitionArn" min:"20" type:"string"`
 
 	// Creates a Device Advisor test suite with suite UUID.
@@ -1406,7 +1528,7 @@ func (s *CreateSuiteDefinitionOutput) SetSuiteDefinitionName(v string) *CreateSu
 type DeleteSuiteDefinitionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Suite definition Id of the test suite to be deleted.
+	// Suite definition ID of the test suite to be deleted.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
@@ -1474,14 +1596,15 @@ func (s DeleteSuiteDefinitionOutput) GoString() string {
 	return s.String()
 }
 
-// Lists all the devices under test
+// Information of a test device. Required to provide either a thing ARN or a
+// certificate ARN.
 type DeviceUnderTest struct {
 	_ struct{} `type:"structure"`
 
-	// Lists devices certificate arn
+	// Lists devices certificate ARN.
 	CertificateArn *string `locationName:"certificateArn" min:"20" type:"string"`
 
-	// Lists devices thing arn
+	// Lists devices thing ARN.
 	ThingArn *string `locationName:"thingArn" min:"20" type:"string"`
 }
 
@@ -1531,10 +1654,94 @@ func (s *DeviceUnderTest) SetThingArn(v string) *DeviceUnderTest {
 	return s
 }
 
+type GetEndpointInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	CertificateArn *string `location:"querystring" locationName:"certificateArn" min:"20" type:"string"`
+
+	ThingArn *string `location:"querystring" locationName:"thingArn" min:"20" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEndpointInput"}
+	if s.CertificateArn != nil && len(*s.CertificateArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("CertificateArn", 20))
+	}
+	if s.ThingArn != nil && len(*s.ThingArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *GetEndpointInput) SetCertificateArn(v string) *GetEndpointInput {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetThingArn sets the ThingArn field's value.
+func (s *GetEndpointInput) SetThingArn(v string) *GetEndpointInput {
+	s.ThingArn = &v
+	return s
+}
+
+type GetEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	Endpoint *string `locationName:"endpoint" min:"45" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *GetEndpointOutput) SetEndpoint(v string) *GetEndpointOutput {
+	s.Endpoint = &v
+	return s
+}
+
 type GetSuiteDefinitionInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Suite definition Id of the test suite to get.
+	// Suite definition ID of the test suite to get.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
@@ -1610,7 +1817,7 @@ type GetSuiteDefinitionOutput struct {
 	// Suite configuration of the suite definition.
 	SuiteDefinitionConfiguration *SuiteDefinitionConfiguration `locationName:"suiteDefinitionConfiguration" type:"structure"`
 
-	// Suite definition Id of the suite definition.
+	// Suite definition ID of the suite definition.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Suite definition version of the suite definition.
@@ -1689,12 +1896,12 @@ func (s *GetSuiteDefinitionOutput) SetTags(v map[string]*string) *GetSuiteDefini
 type GetSuiteRunInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Suite definition Id for the test suite run.
+	// Suite definition ID for the test suite run.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
 
-	// Suite run Id for the test suite run.
+	// Suite run ID for the test suite run.
 	//
 	// SuiteRunId is a required field
 	SuiteRunId *string `location:"uri" locationName:"suiteRunId" min:"12" type:"string" required:"true"`
@@ -1767,7 +1974,7 @@ type GetSuiteRunOutput struct {
 	// Status for the test suite run.
 	Status *string `locationName:"status" type:"string" enum:"SuiteRunStatus"`
 
-	// Suite definition Id for the test suite run.
+	// Suite definition ID for the test suite run.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Suite definition version for the test suite run.
@@ -1779,7 +1986,7 @@ type GetSuiteRunOutput struct {
 	// Suite run configuration for the test suite run.
 	SuiteRunConfiguration *SuiteRunConfiguration `locationName:"suiteRunConfiguration" type:"structure"`
 
-	// Suite run Id for the test suite run.
+	// Suite run ID for the test suite run.
 	SuiteRunId *string `locationName:"suiteRunId" min:"12" type:"string"`
 
 	// The tags attached to the suite run.
@@ -1876,12 +2083,12 @@ func (s *GetSuiteRunOutput) SetTestResult(v *TestResult) *GetSuiteRunOutput {
 type GetSuiteRunReportInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Suite definition Id of the test suite.
+	// Suite definition ID of the test suite.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
 
-	// Suite run Id of the test suite run.
+	// Suite run ID of the test suite run.
 	//
 	// SuiteRunId is a required field
 	SuiteRunId *string `location:"uri" locationName:"suiteRunId" min:"12" type:"string" required:"true"`
@@ -1974,7 +2181,7 @@ func (s *GetSuiteRunReportOutput) SetQualificationReportDownloadUrl(v string) *G
 type GroupResult struct {
 	_ struct{} `type:"structure"`
 
-	// Group result Id.
+	// Group result ID.
 	GroupId *string `locationName:"groupId" min:"12" type:"string"`
 
 	// Group Result Name.
@@ -2189,7 +2396,7 @@ type ListSuiteRunsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// Lists the test suite runs of the specified test suite based on suite definition
-	// Id.
+	// ID.
 	SuiteDefinitionId *string `location:"querystring" locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Must be passed along with suiteDefinitionId. Lists the test suite runs of
@@ -2447,7 +2654,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 type StartSuiteRunInput struct {
 	_ struct{} `type:"structure"`
 
-	// Suite definition Id of the test suite.
+	// Suite definition ID of the test suite.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
@@ -2531,13 +2738,13 @@ func (s *StartSuiteRunInput) SetTags(v map[string]*string) *StartSuiteRunInput {
 type StartSuiteRunOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Date (in Unix epoch time) when the suite run was created.
+	// Starts a Device Advisor test suite run based on suite create time.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// Amazon resource name of the started suite run.
+	// Amazon Resource Name (ARN) of the started suite run.
 	SuiteRunArn *string `locationName:"suiteRunArn" min:"20" type:"string"`
 
-	// Suite Run Id of the started suite run.
+	// Suite Run ID of the started suite run.
 	SuiteRunId *string `locationName:"suiteRunId" min:"12" type:"string"`
 }
 
@@ -2580,12 +2787,12 @@ func (s *StartSuiteRunOutput) SetSuiteRunId(v string) *StartSuiteRunOutput {
 type StopSuiteRunInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// Suite definition Id of the test suite run to be stopped.
+	// Suite definition ID of the test suite run to be stopped.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
 
-	// Suite run Id of the test suite run to be stopped.
+	// Suite run ID of the test suite run to be stopped.
 	//
 	// SuiteRunId is a required field
 	SuiteRunId *string `location:"uri" locationName:"suiteRunId" min:"12" type:"string" required:"true"`
@@ -2669,7 +2876,7 @@ func (s StopSuiteRunOutput) GoString() string {
 type SuiteDefinitionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Gets device permission arn.
+	// Gets device permission ARN.
 	DevicePermissionRoleArn *string `locationName:"devicePermissionRoleArn" min:"20" type:"string"`
 
 	// Gets the devices configured.
@@ -2775,7 +2982,7 @@ type SuiteDefinitionInformation struct {
 	// Specifies if the test suite is intended for qualification.
 	IntendedForQualification *bool `locationName:"intendedForQualification" type:"boolean"`
 
-	// Suite definition Id of the test suite.
+	// Suite definition ID of the test suite.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Suite name of the test suite.
@@ -2834,6 +3041,8 @@ func (s *SuiteDefinitionInformation) SetSuiteDefinitionName(v string) *SuiteDefi
 type SuiteRunConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	ParallelRun *bool `locationName:"parallelRun" type:"boolean"`
+
 	// Gets the primary device for suite run.
 	PrimaryDevice *DeviceUnderTest `locationName:"primaryDevice" type:"structure"`
 
@@ -2874,6 +3083,12 @@ func (s *SuiteRunConfiguration) Validate() error {
 	return nil
 }
 
+// SetParallelRun sets the ParallelRun field's value.
+func (s *SuiteRunConfiguration) SetParallelRun(v bool) *SuiteRunConfiguration {
+	s.ParallelRun = &v
+	return s
+}
+
 // SetPrimaryDevice sets the PrimaryDevice field's value.
 func (s *SuiteRunConfiguration) SetPrimaryDevice(v *DeviceUnderTest) *SuiteRunConfiguration {
 	s.PrimaryDevice = v
@@ -2887,6 +3102,9 @@ func (s *SuiteRunConfiguration) SetSelectedTestList(v []*string) *SuiteRunConfig
 }
 
 // Information about the suite run.
+//
+// Requires permission to access the SuiteRunInformation (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 type SuiteRunInformation struct {
 	_ struct{} `type:"structure"`
 
@@ -2908,7 +3126,7 @@ type SuiteRunInformation struct {
 	// Status of the suite run.
 	Status *string `locationName:"status" type:"string" enum:"SuiteRunStatus"`
 
-	// Suite definition Id of the suite run.
+	// Suite definition ID of the suite run.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Suite definition name of the suite run.
@@ -2917,7 +3135,7 @@ type SuiteRunInformation struct {
 	// Suite definition version of the suite run.
 	SuiteDefinitionVersion *string `locationName:"suiteDefinitionVersion" min:"2" type:"string"`
 
-	// Suite run Id of the suite run.
+	// Suite run ID of the suite run.
 	SuiteRunId *string `locationName:"suiteRunId" min:"12" type:"string"`
 }
 
@@ -3101,15 +3319,33 @@ type TestCaseRun struct {
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// Provides test case run status.
+	//
+	//    * PASS: Test passed.
+	//
+	//    * FAIL: Test failed.
+	//
+	//    * PENDING: Test has not started running but is scheduled.
+	//
+	//    * RUNNING: Test is running
+	//
+	//    * STOPPING: Test is performing cleanup steps. You will see this status
+	//    only if you stop a suite run.
+	//
+	//    * STOPPED Test is stopped. You will see this status only if you stop a
+	//    suite run.
+	//
+	//    * PASS_WITH_WARNINGS: Test passed with warnings.
+	//
+	//    * ERORR: Test faced an error when running due to an internal issue.
 	Status *string `locationName:"status" type:"string" enum:"Status"`
 
-	// Provides test case run definition Id.
+	// Provides test case run definition ID.
 	TestCaseDefinitionId *string `locationName:"testCaseDefinitionId" min:"12" type:"string"`
 
 	// Provides test case run definition Name.
 	TestCaseDefinitionName *string `locationName:"testCaseDefinitionName" type:"string"`
 
-	// Provides test case run Id.
+	// Provides test case run ID.
 	TestCaseRunId *string `locationName:"testCaseRunId" min:"12" type:"string"`
 
 	// Provides test case run warnings.
@@ -3311,7 +3547,7 @@ type UpdateSuiteDefinitionInput struct {
 	// Updates a Device Advisor test suite with suite definition configuration.
 	SuiteDefinitionConfiguration *SuiteDefinitionConfiguration `locationName:"suiteDefinitionConfiguration" type:"structure"`
 
-	// Suite definition Id of the test suite to be updated.
+	// Suite definition ID of the test suite to be updated.
 	//
 	// SuiteDefinitionId is a required field
 	SuiteDefinitionId *string `location:"uri" locationName:"suiteDefinitionId" min:"12" type:"string" required:"true"`
@@ -3377,10 +3613,10 @@ type UpdateSuiteDefinitionOutput struct {
 	// Timestamp of when the test suite was updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// Amazon Resource name of the updated test suite.
+	// Amazon Resource Name (ARN) of the updated test suite.
 	SuiteDefinitionArn *string `locationName:"suiteDefinitionArn" min:"20" type:"string"`
 
-	// Suite definition Id of the updated test suite.
+	// Suite definition ID of the updated test suite.
 	SuiteDefinitionId *string `locationName:"suiteDefinitionId" min:"12" type:"string"`
 
 	// Suite definition name of the updated test suite.

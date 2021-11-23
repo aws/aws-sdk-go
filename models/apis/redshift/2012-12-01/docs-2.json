@@ -71,6 +71,7 @@
     "DescribeNodeConfigurationOptions": "<p>Returns properties of possible node configurations such as node type, number of nodes, and disk usage for the specified action type.</p>",
     "DescribeOrderableClusterOptions": "<p>Returns a list of orderable cluster options. Before you create a new cluster you can use this operation to find what options are available, such as the EC2 Availability Zones (AZ) in the specific Amazon Web Services Region that you can specify, and the node types you can request. The node types differ by available storage, memory, CPU and price. With the cost involved you might want to obtain a list of cluster options in the specific region and specify values when creating a cluster. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DescribePartners": "<p>Returns information about the partner integrations defined for a cluster.</p>",
+    "DescribeReservedNodeExchangeStatus": "<p>Returns exchange status details and associated metadata for a reserved-node exchange. Statuses include such values as in progress and requested.</p>",
     "DescribeReservedNodeOfferings": "<p>Returns a list of the available reserved node offerings by Amazon Redshift with their descriptions including the node type, the fixed and recurring costs of reserving the node and duration the node will be reserved for you. These descriptions help you determine which reserve node offering you want to purchase. You then use the unique offering ID in you call to <a>PurchaseReservedNodeOffering</a> to reserve one or more nodes for your Amazon Redshift cluster. </p> <p> For more information about reserved node offerings, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/purchase-reserved-node-instance.html\">Purchasing Reserved Nodes</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "DescribeReservedNodes": "<p>Returns the descriptions of the reserved nodes.</p>",
     "DescribeResize": "<p>Returns information about the last resize operation for the specified cluster. If no resize operation has ever been initiated for the specified cluster, a <code>HTTP 404</code> error is returned. If a resize operation was initiated and completed, the status of the resize remains as <code>SUCCEEDED</code> until the next resize. </p> <p>A resize operation can be requested using <a>ModifyCluster</a> and specifying a different number or type of nodes for the cluster. </p>",
@@ -87,6 +88,7 @@
     "EnableLogging": "<p>Starts logging information, such as queries and connection attempts, for the specified Amazon Redshift cluster.</p>",
     "EnableSnapshotCopy": "<p>Enables the automatic copy of snapshots from one region to another region for a specified cluster.</p>",
     "GetClusterCredentials": "<p>Returns a database user name and temporary password with temporary authorization to log on to an Amazon Redshift database. The action returns the database user name prefixed with <code>IAM:</code> if <code>AutoCreate</code> is <code>False</code> or <code>IAMA:</code> if <code>AutoCreate</code> is <code>True</code>. You can optionally specify one or more database user groups that the user will join at log on. By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes). For more information, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html\">Using IAM Authentication to Generate Database User Credentials</a> in the Amazon Redshift Cluster Management Guide.</p> <p>The Identity and Access Management (IAM) user or role that runs GetClusterCredentials must have an IAM policy attached that allows access to all necessary actions and resources. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html#redshift-policy-resources.getclustercredentials-resources\">Resource Policies for GetClusterCredentials</a> in the Amazon Redshift Cluster Management Guide.</p> <p>If the <code>DbGroups</code> parameter is specified, the IAM policy must allow the <code>redshift:JoinGroup</code> action with access to the listed <code>dbgroups</code>. </p> <p>In addition, if the <code>AutoCreate</code> parameter is set to <code>True</code>, then the policy must include the <code>redshift:CreateClusterUser</code> privilege.</p> <p>If the <code>DbName</code> parameter is specified, the IAM policy must allow access to the resource <code>dbname</code> for the specified database name. </p>",
+    "GetReservedNodeExchangeConfigurationOptions": "<p>Gets the configuration options for the reserved-node exchange. These options include information about the source reserved node and target reserved node offering. Details include the node type, the price, the node count, and the offering type.</p>",
     "GetReservedNodeExchangeOfferings": "<p>Returns an array of DC2 ReservedNodeOfferings that matches the payment type, term, and usage price of the given DC1 reserved node.</p>",
     "ModifyAquaConfiguration": "<p>Modifies whether a cluster can use AQUA (Advanced Query Accelerator). </p>",
     "ModifyAuthenticationProfile": "<p>Modifies an authentication profile.</p>",
@@ -1230,6 +1232,16 @@
       "refs": {
       }
     },
+    "DescribeReservedNodeExchangeStatusInputMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeReservedNodeExchangeStatusOutputMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeReservedNodeOfferingsMessage": {
       "base": "<p/>",
       "refs": {
@@ -1525,6 +1537,16 @@
       "refs": {
       }
     },
+    "GetReservedNodeExchangeConfigurationOptionsInputMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetReservedNodeExchangeConfigurationOptionsOutputMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetReservedNodeExchangeOfferingsInputMessage": {
       "base": "<p/>",
       "refs": {
@@ -1680,6 +1702,9 @@
         "NodeConfigurationOption$NumberOfNodes": "<p>The number of nodes.</p>",
         "ReservedNode$Duration": "<p>The duration of the node reservation in seconds.</p>",
         "ReservedNode$NodeCount": "<p>The number of reserved compute nodes.</p>",
+        "ReservedNodeConfigurationOption$TargetReservedNodeCount": "<p>The target reserved-node count.</p>",
+        "ReservedNodeExchangeStatus$SourceReservedNodeCount": "<p>The source reserved-node count in the cluster.</p>",
+        "ReservedNodeExchangeStatus$TargetReservedNodeCount": "<p>The count of target reserved nodes in the cluster.</p>",
         "ReservedNodeOffering$Duration": "<p>The duration, in seconds, for which the offering will reserve the node.</p>",
         "Snapshot$Port": "<p>The port that the cluster is listening on.</p>",
         "Snapshot$NumberOfNodes": "<p>The number of nodes in the cluster.</p>"
@@ -1719,6 +1744,7 @@
         "DescribeHsmConfigurationsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeNodeConfigurationOptionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>500</code> </p> <p>Constraints: minimum 100, maximum 500.</p>",
         "DescribeOrderableClusterOptionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
+        "DescribeReservedNodeExchangeStatusInputMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>Marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value.</p>",
         "DescribeReservedNodeOfferingsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeReservedNodesMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
         "DescribeScheduledActionsMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value. </p> <p>Default: <code>100</code> </p> <p>Constraints: minimum 20, maximum 100.</p>",
@@ -1730,6 +1756,7 @@
         "EnableSnapshotCopyMessage$RetentionPeriod": "<p>The number of days to retain automated snapshots in the destination region after they are copied from the source region.</p> <p>Default: 7.</p> <p>Constraints: Must be at least 1 and no more than 35.</p>",
         "EnableSnapshotCopyMessage$ManualSnapshotRetentionPeriod": "<p>The number of days to retain newly copied snapshots in the destination Amazon Web Services Region after they are copied from the source Amazon Web Services Region. If the value is -1, the manual snapshot is retained indefinitely. </p> <p>The value must be either -1 or an integer between 1 and 3,653.</p>",
         "GetClusterCredentialsMessage$DurationSeconds": "<p>The number of seconds until the returned temporary password expires.</p> <p>Constraint: minimum 900, maximum 3600.</p> <p>Default: 900</p>",
+        "GetReservedNodeExchangeConfigurationOptionsInputMessage$MaxRecords": "<p>The maximum number of response records to return in each call. If the number of remaining response records exceeds the specified <code>MaxRecords</code> value, a value is returned in a <code>Marker</code> field of the response. You can retrieve the next set of records by retrying the command with the returned marker value.</p>",
         "GetReservedNodeExchangeOfferingsInputMessage$MaxRecords": "<p>An integer setting the maximum number of ReservedNodeOfferings to retrieve.</p>",
         "ModifyClusterMaintenanceMessage$DeferMaintenanceDuration": "<p>An integer indicating the duration of the maintenance window in days. If you specify a duration, you can't specify an end time. The duration must be 45 days or less.</p>",
         "ModifyClusterMessage$NumberOfNodes": "<p>The new number of nodes of the cluster. If you specify a new number of nodes, you must also specify the node type parameter.</p> <p> For more information about resizing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/rs-resize-tutorial.html\">Resizing Clusters in Amazon Redshift</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p> <p>Valid Values: Integer greater than <code>0</code>.</p>",
@@ -2334,6 +2361,7 @@
       "refs": {
         "AcceptReservedNodeExchangeOutputMessage$ExchangedReservedNode": "<p/>",
         "PurchaseReservedNodeOfferingResult$ReservedNode": null,
+        "ReservedNodeConfigurationOption$SourceReservedNode": null,
         "ReservedNodeList$member": null
       }
     },
@@ -2345,6 +2373,48 @@
     "ReservedNodeAlreadyMigratedFault": {
       "base": "<p>Indicates that the reserved node has already been exchanged.</p>",
       "refs": {
+      }
+    },
+    "ReservedNodeConfigurationOption": {
+      "base": "<p>Details for a reserved-node exchange. Examples include the node type for a reserved node, the price for a node, the node's state, and other details.</p>",
+      "refs": {
+        "ReservedNodeConfigurationOptionList$member": null
+      }
+    },
+    "ReservedNodeConfigurationOptionList": {
+      "base": null,
+      "refs": {
+        "GetReservedNodeExchangeConfigurationOptionsOutputMessage$ReservedNodeConfigurationOptionList": "<p>the configuration options for the reserved-node exchange. These options include information about the source reserved node and target reserved node. Details include the node type, the price, the node count, and the offering type.</p>"
+      }
+    },
+    "ReservedNodeExchangeActionType": {
+      "base": null,
+      "refs": {
+        "GetReservedNodeExchangeConfigurationOptionsInputMessage$ActionType": "<p>The action type of the reserved-node configuration. The action type can be an exchange initiated from either a snapshot or a resize.</p>"
+      }
+    },
+    "ReservedNodeExchangeNotFoundFault": {
+      "base": "<p>The reserved-node exchange status wasn't found.</p>",
+      "refs": {
+      }
+    },
+    "ReservedNodeExchangeStatus": {
+      "base": "<p>Reserved-node status details, such as the source reserved-node identifier, the target reserved-node identifier, the node type, the node count, and other details.</p>",
+      "refs": {
+        "Cluster$ReservedNodeExchangeStatus": "<p>The status of the reserved-node exchange request. Statuses include in-progress and requested.</p>",
+        "ReservedNodeExchangeStatusList$member": null
+      }
+    },
+    "ReservedNodeExchangeStatusList": {
+      "base": null,
+      "refs": {
+        "DescribeReservedNodeExchangeStatusOutputMessage$ReservedNodeExchangeStatusDetails": "<p>The details of the reserved-node exchange request, including the status, request time, source reserved-node identifier, and additional details.</p>"
+      }
+    },
+    "ReservedNodeExchangeStatusType": {
+      "base": null,
+      "refs": {
+        "ReservedNodeExchangeStatus$Status": "<p>The status of the reserved-node exchange request. Statuses include in-progress and requested.</p>"
       }
     },
     "ReservedNodeList": {
@@ -2361,6 +2431,7 @@
     "ReservedNodeOffering": {
       "base": "<p>Describes a reserved node offering.</p>",
       "refs": {
+        "ReservedNodeConfigurationOption$TargetReservedNodeOffering": null,
         "ReservedNodeOfferingList$member": null
       }
     },
@@ -3046,6 +3117,10 @@
         "DescribeOrderableClusterOptionsMessage$ClusterVersion": "<p>The version filter value. Specify this parameter to show only the available offerings matching the specified version.</p> <p>Default: All versions.</p> <p>Constraints: Must be one of the version returned from <a>DescribeClusterVersions</a>.</p>",
         "DescribeOrderableClusterOptionsMessage$NodeType": "<p>The node type filter value. Specify this parameter to show only the available offerings matching the specified node type.</p>",
         "DescribeOrderableClusterOptionsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeOrderableClusterOptions</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
+        "DescribeReservedNodeExchangeStatusInputMessage$ReservedNodeId": "<p>The identifier of the source reserved node in a reserved-node exchange request.</p>",
+        "DescribeReservedNodeExchangeStatusInputMessage$ReservedNodeExchangeRequestId": "<p>The identifier of the reserved-node exchange request.</p>",
+        "DescribeReservedNodeExchangeStatusInputMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeReservedNodeExchangeStatus</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by the <code>MaxRecords</code> parameter. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request.</p>",
+        "DescribeReservedNodeExchangeStatusOutputMessage$Marker": "<p>A pagination token provided by a previous <code>DescribeReservedNodeExchangeStatus</code> request.</p>",
         "DescribeReservedNodeOfferingsMessage$ReservedNodeOfferingId": "<p>The unique identifier for the offering.</p>",
         "DescribeReservedNodeOfferingsMessage$Marker": "<p>An optional parameter that specifies the starting point to return a set of response records. When the results of a <a>DescribeReservedNodeOfferings</a> request exceed the value specified in <code>MaxRecords</code>, Amazon Web Services returns a value in the <code>Marker</code> field of the response. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request. </p>",
         "DescribeReservedNodesMessage$ReservedNodeId": "<p>Identifier for the node reservation.</p>",
@@ -3116,6 +3191,10 @@
         "GetClusterCredentialsMessage$DbUser": "<p>The name of a database user. If a user name matching <code>DbUser</code> exists in the database, the temporary user credentials have the same permissions as the existing user. If <code>DbUser</code> doesn't exist in the database and <code>Autocreate</code> is <code>True</code>, a new user is created using the value for <code>DbUser</code> with PUBLIC permissions. If a database user matching the value for <code>DbUser</code> doesn't exist and <code>Autocreate</code> is <code>False</code>, then the command succeeds but the connection attempt will fail because the user doesn't exist in the database.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html\">CREATE USER</a> in the Amazon Redshift Database Developer Guide. </p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 64 alphanumeric characters or hyphens. The user name can't be <code>PUBLIC</code>.</p> </li> <li> <p>Must contain only lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Must not contain a colon ( : ) or slash ( / ). </p> </li> <li> <p>Cannot be a reserved word. A list of reserved words can be found in <a href=\"http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words</a> in the Amazon Redshift Database Developer Guide.</p> </li> </ul>",
         "GetClusterCredentialsMessage$DbName": "<p>The name of a database that <code>DbUser</code> is authorized to log on to. If <code>DbName</code> is not specified, <code>DbUser</code> can log on to any existing database.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 64 alphanumeric characters or hyphens</p> </li> <li> <p>Must contain only lowercase letters, numbers, underscore, plus sign, period (dot), at symbol (@), or hyphen.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Must not contain a colon ( : ) or slash ( / ). </p> </li> <li> <p>Cannot be a reserved word. A list of reserved words can be found in <a href=\"http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html\">Reserved Words</a> in the Amazon Redshift Database Developer Guide.</p> </li> </ul>",
         "GetClusterCredentialsMessage$ClusterIdentifier": "<p>The unique identifier of the cluster that contains the database for which your are requesting credentials. This parameter is case sensitive.</p>",
+        "GetReservedNodeExchangeConfigurationOptionsInputMessage$ClusterIdentifier": "<p>The identifier for the cluster that is the source for a reserved-node exchange.</p>",
+        "GetReservedNodeExchangeConfigurationOptionsInputMessage$SnapshotIdentifier": "<p>The identifier for the snapshot that is the source for the reserved-node exchange.</p>",
+        "GetReservedNodeExchangeConfigurationOptionsInputMessage$Marker": "<p>An optional pagination token provided by a previous <code>GetReservedNodeExchangeConfigurationOptions</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by the <code>MaxRecords</code> parameter. You can retrieve the next set of response records by providing the returned marker value in the <code>Marker</code> parameter and retrying the request.</p>",
+        "GetReservedNodeExchangeConfigurationOptionsOutputMessage$Marker": "<p>A pagination token provided by a previous <code>GetReservedNodeExchangeConfigurationOptions</code> request.</p>",
         "GetReservedNodeExchangeOfferingsInputMessage$ReservedNodeId": "<p>A string representing the node identifier for the DC1 Reserved Node to be exchanged.</p>",
         "GetReservedNodeExchangeOfferingsInputMessage$Marker": "<p>A value that indicates the starting point for the next set of ReservedNodeOfferings.</p>",
         "GetReservedNodeExchangeOfferingsOutputMessage$Marker": "<p>An optional parameter that specifies the starting point for returning a set of response records. When the results of a <code>GetReservedNodeExchangeOfferings</code> request exceed the value specified in MaxRecords, Amazon Redshift returns a value in the marker field of the response. You can retrieve the next set of response records by providing the returned marker value in the marker parameter and retrying the request. </p>",
@@ -3218,6 +3297,11 @@
         "ReservedNode$CurrencyCode": "<p>The currency code for the reserved cluster.</p>",
         "ReservedNode$State": "<p>The state of the reserved compute node.</p> <p>Possible Values:</p> <ul> <li> <p>pending-payment-This reserved node has recently been purchased, and the sale has been approved, but payment has not yet been confirmed.</p> </li> <li> <p>active-This reserved node is owned by the caller and is available for use.</p> </li> <li> <p>payment-failed-Payment failed for the purchase attempt.</p> </li> <li> <p>retired-The reserved node is no longer available. </p> </li> <li> <p>exchanging-The owner is exchanging the reserved node for another reserved node.</p> </li> </ul>",
         "ReservedNode$OfferingType": "<p>The anticipated utilization of the reserved node, as defined in the reserved node offering.</p>",
+        "ReservedNodeExchangeStatus$ReservedNodeExchangeRequestId": "<p>The identifier of the reserved-node exchange request.</p>",
+        "ReservedNodeExchangeStatus$SourceReservedNodeId": "<p>The identifier of the source reserved node.</p>",
+        "ReservedNodeExchangeStatus$SourceReservedNodeType": "<p>The source reserved-node type, for example ds2.xlarge.</p>",
+        "ReservedNodeExchangeStatus$TargetReservedNodeOfferingId": "<p>The identifier of the target reserved node offering.</p>",
+        "ReservedNodeExchangeStatus$TargetReservedNodeType": "<p>The node type of the target reserved node, for example ra3.4xlarge.</p>",
         "ReservedNodeOffering$ReservedNodeOfferingId": "<p>The offering identifier.</p>",
         "ReservedNodeOffering$NodeType": "<p>The node type offered by the reserved node offering.</p>",
         "ReservedNodeOffering$CurrencyCode": "<p>The currency code for the compute nodes offering.</p>",
@@ -3228,6 +3312,8 @@
         "ResizeClusterMessage$ClusterIdentifier": "<p>The unique identifier for the cluster to resize.</p>",
         "ResizeClusterMessage$ClusterType": "<p>The new cluster type for the specified cluster.</p>",
         "ResizeClusterMessage$NodeType": "<p>The new node type for the nodes you are adding. If not specified, the cluster's current node type is used.</p>",
+        "ResizeClusterMessage$ReservedNodeId": "<p>The identifier of the reserved node.</p>",
+        "ResizeClusterMessage$TargetReservedNodeOfferingId": "<p>The identifier of the target reserved node offering.</p>",
         "ResizeInfo$ResizeType": "<p>Returns the value <code>ClassicResize</code>.</p>",
         "ResizeProgressMessage$TargetNodeType": "<p>The node type that the cluster will have after the resize operation is complete.</p>",
         "ResizeProgressMessage$TargetClusterType": "<p>The cluster type after the resize operation is complete.</p> <p>Valid Values: <code>multi-node</code> | <code>single-node</code> </p>",
@@ -3253,6 +3339,8 @@
         "RestoreFromClusterSnapshotMessage$MaintenanceTrackName": "<p>The name of the maintenance track for the restored cluster. When you take a snapshot, the snapshot inherits the <code>MaintenanceTrack</code> value from the cluster. The snapshot might be on a different track than the cluster that was the source for the snapshot. For example, suppose that you take a snapshot of a cluster that is on the current track and then change the cluster to be on the trailing track. In this case, the snapshot and the source cluster are on different tracks.</p>",
         "RestoreFromClusterSnapshotMessage$SnapshotScheduleIdentifier": "<p>A unique identifier for the snapshot schedule.</p>",
         "RestoreFromClusterSnapshotMessage$DefaultIamRoleArn": "<p>The Amazon Resource Name (ARN) for the IAM role that was set as default for the cluster when the cluster was last modified while it was restored from a snapshot.</p>",
+        "RestoreFromClusterSnapshotMessage$ReservedNodeId": "<p>The identifier of the target reserved node offering.</p>",
+        "RestoreFromClusterSnapshotMessage$TargetReservedNodeOfferingId": "<p>The identifier of the target reserved node offering.</p>",
         "RestoreStatus$Status": "<p>The status of the restore action. Returns starting, restoring, completed, or failed.</p>",
         "RestoreTableFromClusterSnapshotMessage$ClusterIdentifier": "<p>The identifier of the Amazon Redshift cluster to restore the table to.</p>",
         "RestoreTableFromClusterSnapshotMessage$SnapshotIdentifier": "<p>The identifier of the snapshot to restore the table from. This snapshot must have been created from the Amazon Redshift cluster specified by the <code>ClusterIdentifier</code> parameter.</p>",
@@ -3452,6 +3540,7 @@
         "PartnerIntegrationInfo$CreatedAt": "<p>The date (UTC) that the partner integration was created.</p>",
         "PartnerIntegrationInfo$UpdatedAt": "<p>The date (UTC) that the partner integration status was last updated by the partner.</p>",
         "ReservedNode$StartTime": "<p>The time the reservation started. You purchase a reserved node offering for a duration. This is the start time of that duration.</p>",
+        "ReservedNodeExchangeStatus$RequestTime": "<p>A date and time that indicate when the reserved-node exchange was requested.</p>",
         "RevisionTarget$DatabaseRevisionReleaseDate": "<p>The date on which the database revision was released.</p>",
         "ScheduledAction$StartTime": "<p>The start time in UTC when the schedule is active. Before this time, the scheduled action does not trigger. </p>",
         "ScheduledAction$EndTime": "<p>The end time in UTC when the schedule is no longer active. After this time, the scheduled action does not trigger. </p>",

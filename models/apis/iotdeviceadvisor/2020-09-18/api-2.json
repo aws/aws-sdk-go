@@ -39,6 +39,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetEndpoint":{
+      "name":"GetEndpoint",
+      "http":{
+        "method":"GET",
+        "requestUri":"/endpoint"
+      },
+      "input":{"shape":"GetEndpointRequest"},
+      "output":{"shape":"GetEndpointResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "GetSuiteDefinition":{
       "name":"GetSuiteDefinition",
       "http":{
@@ -250,8 +264,34 @@
       "max":2,
       "min":0
     },
+    "Endpoint":{
+      "type":"string",
+      "max":75,
+      "min":45
+    },
     "ErrorReason":{"type":"string"},
     "Failure":{"type":"string"},
+    "GetEndpointRequest":{
+      "type":"structure",
+      "members":{
+        "thingArn":{
+          "shape":"AmazonResourceName",
+          "location":"querystring",
+          "locationName":"thingArn"
+        },
+        "certificateArn":{
+          "shape":"AmazonResourceName",
+          "location":"querystring",
+          "locationName":"certificateArn"
+        }
+      }
+    },
+    "GetEndpointResponse":{
+      "type":"structure",
+      "members":{
+        "endpoint":{"shape":"Endpoint"}
+      }
+    },
     "GetSuiteDefinitionRequest":{
       "type":"structure",
       "required":["suiteDefinitionId"],
@@ -446,6 +486,7 @@
       "max":2048,
       "min":1
     },
+    "ParallelRun":{"type":"boolean"},
     "QualificationReportDownloadUrl":{"type":"string"},
     "ResourceNotFoundException":{
       "type":"structure",
@@ -574,7 +615,8 @@
       "type":"structure",
       "members":{
         "primaryDevice":{"shape":"DeviceUnderTest"},
-        "selectedTestList":{"shape":"SelectedTestList"}
+        "selectedTestList":{"shape":"SelectedTestList"},
+        "parallelRun":{"shape":"ParallelRun"}
       }
     },
     "SuiteRunInformation":{

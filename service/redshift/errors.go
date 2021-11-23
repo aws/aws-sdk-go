@@ -575,6 +575,12 @@ const (
 	// Indicates that the reserved node has already been exchanged.
 	ErrCodeReservedNodeAlreadyMigratedFault = "ReservedNodeAlreadyMigrated"
 
+	// ErrCodeReservedNodeExchangeNotFoundFault for service response error code
+	// "ReservedNodeExchangeNotFond".
+	//
+	// The reserved-node exchange status wasn't found.
+	ErrCodeReservedNodeExchangeNotFoundFault = "ReservedNodeExchangeNotFond"
+
 	// ErrCodeReservedNodeNotFoundFault for service response error code
 	// "ReservedNodeNotFound".
 	//
