@@ -30,7 +30,7 @@ const (
 	// ErrCodeInvalidEndpointException for service response error code
 	// "InvalidEndpointException".
 	//
-	// The requested endpoint was invalid.
+	// The requested endpoint was not valid.
 	ErrCodeInvalidEndpointException = "InvalidEndpointException"
 
 	// ErrCodeQueryExecutionException for service response error code
@@ -38,6 +38,18 @@ const (
 	//
 	// Timestream was unable to run the query successfully.
 	ErrCodeQueryExecutionException = "QueryExecutionException"
+
+	// ErrCodeResourceNotFoundException for service response error code
+	// "ResourceNotFoundException".
+	//
+	// The requested resource could not be found.
+	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// You have exceeded the service quota.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
@@ -53,11 +65,13 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":    newErrorAccessDeniedException,
-	"ConflictException":        newErrorConflictException,
-	"InternalServerException":  newErrorInternalServerException,
-	"InvalidEndpointException": newErrorInvalidEndpointException,
-	"QueryExecutionException":  newErrorQueryExecutionException,
-	"ThrottlingException":      newErrorThrottlingException,
-	"ValidationException":      newErrorValidationException,
+	"AccessDeniedException":         newErrorAccessDeniedException,
+	"ConflictException":             newErrorConflictException,
+	"InternalServerException":       newErrorInternalServerException,
+	"InvalidEndpointException":      newErrorInvalidEndpointException,
+	"QueryExecutionException":       newErrorQueryExecutionException,
+	"ResourceNotFoundException":     newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ThrottlingException":           newErrorThrottlingException,
+	"ValidationException":           newErrorValidationException,
 }

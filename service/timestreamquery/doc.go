@@ -3,6 +3,8 @@
 // Package timestreamquery provides the client and types for making API
 // requests to Amazon Timestream Query.
 //
+// Amazon Timestream Query
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/timestream-query-2018-11-01 for more information on this service.
 //
 // See timestreamquery package documentation for more information.

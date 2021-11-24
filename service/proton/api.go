@@ -58,12 +58,12 @@ func (c *Proton) AcceptEnvironmentAccountConnectionRequest(input *AcceptEnvironm
 // AcceptEnvironmentAccountConnection API operation for AWS Proton.
 //
 // In a management account, an environment account connection request is accepted.
-// When the environment account connection request is accepted, AWS Proton can
-// use the associated IAM role to provision environment infrastructure resources
+// When the environment account connection request is accepted, Proton can use
+// the associated IAM role to provision environment infrastructure resources
 // in the associated environment account.
 //
 // For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the AWS Proton Administrator guide.
+// in the Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -161,7 +161,7 @@ func (c *Proton) CancelEnvironmentDeploymentRequest(input *CancelEnvironmentDepl
 // Attempts to cancel an environment deployment on an UpdateEnvironment action,
 // if the deployment is IN_PROGRESS. For more information, see Update an environment
 // (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-update.html)
-// in the AWS Proton Administrator guide.
+// in the Proton Administrator guide.
 //
 // The following list includes potential cancellation scenarios.
 //
@@ -270,8 +270,8 @@ func (c *Proton) CancelServiceInstanceDeploymentRequest(input *CancelServiceInst
 //
 // Attempts to cancel a service instance deployment on an UpdateServiceInstance
 // action, if the deployment is IN_PROGRESS. For more information, see Update
-// a service instance in the AWS Proton Administrator guide (https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-instance-update.html)
-// or the AWS Proton User guide (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-instance-update.html).
+// a service instance in the Proton Administrator guide (https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-instance-update.html)
+// or the Proton User guide (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-instance-update.html).
 //
 // The following list includes potential cancellation scenarios.
 //
@@ -380,8 +380,8 @@ func (c *Proton) CancelServicePipelineDeploymentRequest(input *CancelServicePipe
 //
 // Attempts to cancel a service pipeline deployment on an UpdateServicePipeline
 // action, if the deployment is IN_PROGRESS. For more information, see Update
-// a service pipeline in the AWS Proton Administrator guide (https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-pipeline-update.html)
-// or the AWS Proton User guide (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-pipeline-update.html).
+// a service pipeline in the Proton Administrator guide (https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-pipeline-update.html)
+// or the Proton User guide (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-pipeline-update.html).
 //
 // The following list includes potential cancellation scenarios.
 //
@@ -488,10 +488,20 @@ func (c *Proton) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *r
 
 // CreateEnvironment API operation for AWS Proton.
 //
-// Deploy a new environment. An AWS Proton environment is created from an environment
+// Deploy a new environment. An Proton environment is created from an environment
 // template that defines infrastructure and resources that can be shared across
-// services. For more information, see the Environments (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
-// in the AWS Proton Administrator Guide.
+// services.
+//
+// You can provision environments using the following methods:
+//
+//    * Standard provisioning: Proton makes direct calls to provision your resources.
+//
+//    * Pull request provisioning: Proton makes pull requests on your repository
+//    to provide compiled infrastructure as code (IaC) files that your IaC engine
+//    uses to provision resources.
+//
+// For more information, see the Environments (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
+// in the Proton Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -502,8 +512,8 @@ func (c *Proton) CreateEnvironmentRequest(input *CreateEnvironmentInput) (req *r
 //
 // Returned Error Types:
 //   * ServiceQuotaExceededException
-//   A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//   in the AWS Proton Administrator Guide.
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
 //
 //   * ValidationException
 //   The input is invalid or an out-of-range value was supplied for the input
@@ -598,7 +608,7 @@ func (c *Proton) CreateEnvironmentAccountConnectionRequest(input *CreateEnvironm
 // a management account and an environment account that maintains authorization
 // and permissions. For more information, see Environment account connections
 // (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the AWS Proton Administrator guide.
+// in the Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -609,8 +619,8 @@ func (c *Proton) CreateEnvironmentAccountConnectionRequest(input *CreateEnvironm
 //
 // Returned Error Types:
 //   * ServiceQuotaExceededException
-//   A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//   in the AWS Proton Administrator Guide.
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
 //
 //   * ValidationException
 //   The input is invalid or an out-of-range value was supplied for the input
@@ -694,23 +704,23 @@ func (c *Proton) CreateEnvironmentTemplateRequest(input *CreateEnvironmentTempla
 
 // CreateEnvironmentTemplate API operation for AWS Proton.
 //
-// Create an environment template for AWS Proton. For more information, see
-// Environment Templates (https://docs.aws.amazon.com/proton/latest/adminguide/ag-templates.html)
-// in the AWS Proton Administrator Guide.
+// Create an environment template for Proton. For more information, see Environment
+// Templates (https://docs.aws.amazon.com/proton/latest/adminguide/ag-templates.html)
+// in the Proton Administrator Guide.
 //
 // You can create an environment template in one of the two following ways:
 //
 //    * Register and publish a standard environment template that instructs
-//    AWS Proton to deploy and manage environment infrastructure.
+//    Proton to deploy and manage environment infrastructure.
 //
 //    * Register and publish a customer managed environment template that connects
-//    AWS Proton to your existing provisioned infrastructure that you manage.
-//    AWS Proton doesn't manage your existing provisioned infrastructure. To
-//    create an environment template for customer provisioned and managed infrastructure,
+//    Proton to your existing provisioned infrastructure that you manage. Proton
+//    doesn't manage your existing provisioned infrastructure. To create an
+//    environment template for customer provisioned and managed infrastructure,
 //    include the provisioning parameter and set the value to CUSTOMER_MANAGED.
 //    For more information, see Register and publish an environment template
 //    (https://docs.aws.amazon.com/proton/latest/adminguide/template-create.html)
-//    in the AWS Proton Administrator Guide.
+//    in the Proton Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -721,8 +731,8 @@ func (c *Proton) CreateEnvironmentTemplateRequest(input *CreateEnvironmentTempla
 //
 // Returned Error Types:
 //   * ServiceQuotaExceededException
-//   A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//   in the AWS Proton Administrator Guide.
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
 //
 //   * ValidationException
 //   The input is invalid or an out-of-range value was supplied for the input
@@ -820,8 +830,8 @@ func (c *Proton) CreateEnvironmentTemplateVersionRequest(input *CreateEnvironmen
 //
 // Returned Error Types:
 //   * ServiceQuotaExceededException
-//   A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//   in the AWS Proton Administrator Guide.
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
 //
 //   * ValidationException
 //   The input is invalid or an out-of-range value was supplied for the input
@@ -859,6 +869,106 @@ func (c *Proton) CreateEnvironmentTemplateVersion(input *CreateEnvironmentTempla
 // for more information on using Contexts.
 func (c *Proton) CreateEnvironmentTemplateVersionWithContext(ctx aws.Context, input *CreateEnvironmentTemplateVersionInput, opts ...request.Option) (*CreateEnvironmentTemplateVersionOutput, error) {
 	req, out := c.CreateEnvironmentTemplateVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateRepository = "CreateRepository"
+
+// CreateRepositoryRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRepository operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRepository for more information on using the CreateRepository
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateRepositoryRequest method.
+//    req, resp := client.CreateRepositoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/CreateRepository
+func (c *Proton) CreateRepositoryRequest(input *CreateRepositoryInput) (req *request.Request, output *CreateRepositoryOutput) {
+	op := &request.Operation{
+		Name:       opCreateRepository,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateRepositoryInput{}
+	}
+
+	output = &CreateRepositoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRepository API operation for AWS Proton.
+//
+// Create and register a link to a repository that can be used with pull request
+// provisioning or template sync configurations. For more information, see Template
+// bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html)
+// and Template sync configurations (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-sync-configs.html)
+// in the Proton Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation CreateRepository for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceQuotaExceededException
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
+//
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ConflictException
+//   The request couldn't be made due to a conflicting operation or resource.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/CreateRepository
+func (c *Proton) CreateRepository(input *CreateRepositoryInput) (*CreateRepositoryOutput, error) {
+	req, out := c.CreateRepositoryRequest(input)
+	return out, req.Send()
+}
+
+// CreateRepositoryWithContext is the same as CreateRepository with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRepository for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) CreateRepositoryWithContext(ctx aws.Context, input *CreateRepositoryInput, opts ...request.Option) (*CreateRepositoryOutput, error) {
+	req, out := c.CreateRepositoryRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -908,11 +1018,11 @@ func (c *Proton) CreateServiceRequest(input *CreateServiceInput) (req *request.R
 
 // CreateService API operation for AWS Proton.
 //
-// Create an AWS Proton service. An AWS Proton service is an instantiation of
-// a service template and often includes several service instances and pipeline.
-// For more information, see Services (https://docs.aws.amazon.com/proton/latest/adminguide/ag-services.html)
-// in the AWS Proton Administrator Guide and Services (https://docs.aws.amazon.com/proton/latest/userguide/ug-service.html)
-// in the AWS Proton User Guide.
+// Create an Proton service. An Proton service is an instantiation of a service
+// template and often includes several service instances and pipeline. For more
+// information, see Services (https://docs.aws.amazon.com/proton/latest/adminguide/ag-services.html)
+// in the Proton Administrator Guide and Services (https://docs.aws.amazon.com/proton/latest/userguide/ug-service.html)
+// in the Proton User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -923,8 +1033,8 @@ func (c *Proton) CreateServiceRequest(input *CreateServiceInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceQuotaExceededException
-//   A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//   in the AWS Proton Administrator Guide.
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
 //
 //   * ValidationException
 //   The input is invalid or an out-of-range value was supplied for the input
@@ -1013,12 +1123,12 @@ func (c *Proton) CreateServiceTemplateRequest(input *CreateServiceTemplateInput)
 //
 // Create a service template. The administrator creates a service template to
 // define standardized infrastructure and an optional CICD service pipeline.
-// Developers, in turn, select the service template from AWS Proton. If the
-// selected service template includes a service pipeline definition, they provide
-// a link to their source code repository. AWS Proton then deploys and manages
-// the infrastructure defined by the selected service template. For more information,
-// see Service Templates (https://docs.aws.amazon.com/proton/latest/adminguide/managing-svc-templates.html)
-// in the AWS Proton Administrator Guide.
+// Developers, in turn, select the service template from Proton. If the selected
+// service template includes a service pipeline definition, they provide a link
+// to their source code repository. Proton then deploys and manages the infrastructure
+// defined by the selected service template. For more information, see Service
+// Templates (https://docs.aws.amazon.com/proton/latest/adminguide/managing-svc-templates.html)
+// in the Proton Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1029,8 +1139,8 @@ func (c *Proton) CreateServiceTemplateRequest(input *CreateServiceTemplateInput)
 //
 // Returned Error Types:
 //   * ServiceQuotaExceededException
-//   A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//   in the AWS Proton Administrator Guide.
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
 //
 //   * ValidationException
 //   The input is invalid or an out-of-range value was supplied for the input
@@ -1115,8 +1225,8 @@ func (c *Proton) CreateServiceTemplateVersionRequest(input *CreateServiceTemplat
 // CreateServiceTemplateVersion API operation for AWS Proton.
 //
 // Create a new major or minor version of a service template. A major version
-// of a service template is a version that isn't backwards compatible. A minor
-// version of a service template is a version that's backwards compatible within
+// of a service template is a version that isn't backward compatible. A minor
+// version of a service template is a version that's backward compatible within
 // its major version.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1128,8 +1238,8 @@ func (c *Proton) CreateServiceTemplateVersionRequest(input *CreateServiceTemplat
 //
 // Returned Error Types:
 //   * ServiceQuotaExceededException
-//   A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//   in the AWS Proton Administrator Guide.
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
 //
 //   * ValidationException
 //   The input is invalid or an out-of-range value was supplied for the input
@@ -1167,6 +1277,108 @@ func (c *Proton) CreateServiceTemplateVersion(input *CreateServiceTemplateVersio
 // for more information on using Contexts.
 func (c *Proton) CreateServiceTemplateVersionWithContext(ctx aws.Context, input *CreateServiceTemplateVersionInput, opts ...request.Option) (*CreateServiceTemplateVersionOutput, error) {
 	req, out := c.CreateServiceTemplateVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateTemplateSyncConfig = "CreateTemplateSyncConfig"
+
+// CreateTemplateSyncConfigRequest generates a "aws/request.Request" representing the
+// client's request for the CreateTemplateSyncConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateTemplateSyncConfig for more information on using the CreateTemplateSyncConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateTemplateSyncConfigRequest method.
+//    req, resp := client.CreateTemplateSyncConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/CreateTemplateSyncConfig
+func (c *Proton) CreateTemplateSyncConfigRequest(input *CreateTemplateSyncConfigInput) (req *request.Request, output *CreateTemplateSyncConfigOutput) {
+	op := &request.Operation{
+		Name:       opCreateTemplateSyncConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateTemplateSyncConfigInput{}
+	}
+
+	output = &CreateTemplateSyncConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateTemplateSyncConfig API operation for AWS Proton.
+//
+// Set up a template for automated template version creation. When a commit
+// is pushed to your registered repository (https://docs.aws.amazon.com/proton/latest/APIReference/API_Repository.html),
+// Proton checks for changes to your repository template bundles. If it detects
+// a template bundle change, a new minor or major version of its template is
+// created, if the version doesn’t already exist. For more information, see
+// Template sync configurations (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-sync-configs.html)
+// in the Proton Administrator Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation CreateTemplateSyncConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceQuotaExceededException
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
+//
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ConflictException
+//   The request couldn't be made due to a conflicting operation or resource.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/CreateTemplateSyncConfig
+func (c *Proton) CreateTemplateSyncConfig(input *CreateTemplateSyncConfigInput) (*CreateTemplateSyncConfigOutput, error) {
+	req, out := c.CreateTemplateSyncConfigRequest(input)
+	return out, req.Send()
+}
+
+// CreateTemplateSyncConfigWithContext is the same as CreateTemplateSyncConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateTemplateSyncConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) CreateTemplateSyncConfigWithContext(ctx aws.Context, input *CreateTemplateSyncConfigInput, opts ...request.Option) (*CreateTemplateSyncConfigOutput, error) {
+	req, out := c.CreateTemplateSyncConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1314,13 +1526,13 @@ func (c *Proton) DeleteEnvironmentAccountConnectionRequest(input *DeleteEnvironm
 // In an environment account, delete an environment account connection.
 //
 // After you delete an environment account connection that’s in use by an
-// AWS Proton environment, AWS Proton can’t manage the environment infrastructure
+// Proton environment, Proton can’t manage the environment infrastructure
 // resources until a new environment account connection is accepted for the
 // environment account and associated environment. You're responsible for cleaning
 // up provisioned resources that remain without an environment connection.
 //
 // For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the AWS Proton Administrator guide.
+// in the Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1515,12 +1727,12 @@ func (c *Proton) DeleteEnvironmentTemplateVersionRequest(input *DeleteEnvironmen
 // version of the environment template if it's not the Recommended version.
 // Delete the Recommended version of the environment template if no other major
 // versions or minor versions of the environment template exist. A major version
-// of an environment template is a version that's not backwards compatible.
+// of an environment template is a version that's not backward compatible.
 //
 // Delete a minor version of an environment template if it isn't the Recommended
 // version. Delete a Recommended minor version of the environment template if
 // no other minor versions of the environment template exist. A minor version
-// of an environment template is a version that's backwards compatible.
+// of an environment template is a version that's backward compatible.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1566,6 +1778,101 @@ func (c *Proton) DeleteEnvironmentTemplateVersion(input *DeleteEnvironmentTempla
 // for more information on using Contexts.
 func (c *Proton) DeleteEnvironmentTemplateVersionWithContext(ctx aws.Context, input *DeleteEnvironmentTemplateVersionInput, opts ...request.Option) (*DeleteEnvironmentTemplateVersionOutput, error) {
 	req, out := c.DeleteEnvironmentTemplateVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRepository = "DeleteRepository"
+
+// DeleteRepositoryRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRepository operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRepository for more information on using the DeleteRepository
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRepositoryRequest method.
+//    req, resp := client.DeleteRepositoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/DeleteRepository
+func (c *Proton) DeleteRepositoryRequest(input *DeleteRepositoryInput) (req *request.Request, output *DeleteRepositoryOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRepository,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteRepositoryInput{}
+	}
+
+	output = &DeleteRepositoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteRepository API operation for AWS Proton.
+//
+// De-register and unlink your repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation DeleteRepository for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ConflictException
+//   The request couldn't be made due to a conflicting operation or resource.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/DeleteRepository
+func (c *Proton) DeleteRepository(input *DeleteRepositoryInput) (*DeleteRepositoryOutput, error) {
+	req, out := c.DeleteRepositoryRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRepositoryWithContext is the same as DeleteRepository with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRepository for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) DeleteRepositoryWithContext(ctx aws.Context, input *DeleteRepositoryInput, opts ...request.Option) (*DeleteRepositoryOutput, error) {
+	req, out := c.DeleteRepositoryRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1866,6 +2173,101 @@ func (c *Proton) DeleteServiceTemplateVersionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opDeleteTemplateSyncConfig = "DeleteTemplateSyncConfig"
+
+// DeleteTemplateSyncConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTemplateSyncConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTemplateSyncConfig for more information on using the DeleteTemplateSyncConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteTemplateSyncConfigRequest method.
+//    req, resp := client.DeleteTemplateSyncConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/DeleteTemplateSyncConfig
+func (c *Proton) DeleteTemplateSyncConfigRequest(input *DeleteTemplateSyncConfigInput) (req *request.Request, output *DeleteTemplateSyncConfigOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTemplateSyncConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteTemplateSyncConfigInput{}
+	}
+
+	output = &DeleteTemplateSyncConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteTemplateSyncConfig API operation for AWS Proton.
+//
+// Delete a template sync configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation DeleteTemplateSyncConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ConflictException
+//   The request couldn't be made due to a conflicting operation or resource.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/DeleteTemplateSyncConfig
+func (c *Proton) DeleteTemplateSyncConfig(input *DeleteTemplateSyncConfigInput) (*DeleteTemplateSyncConfigOutput, error) {
+	req, out := c.DeleteTemplateSyncConfigRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTemplateSyncConfigWithContext is the same as DeleteTemplateSyncConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTemplateSyncConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) DeleteTemplateSyncConfigWithContext(ctx aws.Context, input *DeleteTemplateSyncConfigInput, opts ...request.Option) (*DeleteTemplateSyncConfigOutput, error) {
+	req, out := c.DeleteTemplateSyncConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAccountSettings = "GetAccountSettings"
 
 // GetAccountSettingsRequest generates a "aws/request.Request" representing the
@@ -1910,7 +2312,7 @@ func (c *Proton) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req 
 
 // GetAccountSettings API operation for AWS Proton.
 //
-// Get detail data for the AWS Proton pipeline service role.
+// Get detail data for the Proton pipeline service role.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2098,7 +2500,7 @@ func (c *Proton) GetEnvironmentAccountConnectionRequest(input *GetEnvironmentAcc
 // connection.
 //
 // For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the AWS Proton Administrator guide.
+// in the Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2325,6 +2727,190 @@ func (c *Proton) GetEnvironmentTemplateVersion(input *GetEnvironmentTemplateVers
 // for more information on using Contexts.
 func (c *Proton) GetEnvironmentTemplateVersionWithContext(ctx aws.Context, input *GetEnvironmentTemplateVersionInput, opts ...request.Option) (*GetEnvironmentTemplateVersionOutput, error) {
 	req, out := c.GetEnvironmentTemplateVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetRepository = "GetRepository"
+
+// GetRepositoryRequest generates a "aws/request.Request" representing the
+// client's request for the GetRepository operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRepository for more information on using the GetRepository
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRepositoryRequest method.
+//    req, resp := client.GetRepositoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetRepository
+func (c *Proton) GetRepositoryRequest(input *GetRepositoryInput) (req *request.Request, output *GetRepositoryOutput) {
+	op := &request.Operation{
+		Name:       opGetRepository,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetRepositoryInput{}
+	}
+
+	output = &GetRepositoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRepository API operation for AWS Proton.
+//
+// Get detail data for a repository.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation GetRepository for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetRepository
+func (c *Proton) GetRepository(input *GetRepositoryInput) (*GetRepositoryOutput, error) {
+	req, out := c.GetRepositoryRequest(input)
+	return out, req.Send()
+}
+
+// GetRepositoryWithContext is the same as GetRepository with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRepository for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) GetRepositoryWithContext(ctx aws.Context, input *GetRepositoryInput, opts ...request.Option) (*GetRepositoryOutput, error) {
+	req, out := c.GetRepositoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetRepositorySyncStatus = "GetRepositorySyncStatus"
+
+// GetRepositorySyncStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetRepositorySyncStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRepositorySyncStatus for more information on using the GetRepositorySyncStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRepositorySyncStatusRequest method.
+//    req, resp := client.GetRepositorySyncStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetRepositorySyncStatus
+func (c *Proton) GetRepositorySyncStatusRequest(input *GetRepositorySyncStatusInput) (req *request.Request, output *GetRepositorySyncStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetRepositorySyncStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetRepositorySyncStatusInput{}
+	}
+
+	output = &GetRepositorySyncStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRepositorySyncStatus API operation for AWS Proton.
+//
+// Get the repository sync status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation GetRepositorySyncStatus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetRepositorySyncStatus
+func (c *Proton) GetRepositorySyncStatus(input *GetRepositorySyncStatusInput) (*GetRepositorySyncStatusOutput, error) {
+	req, out := c.GetRepositorySyncStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetRepositorySyncStatusWithContext is the same as GetRepositorySyncStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRepositorySyncStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) GetRepositorySyncStatusWithContext(ctx aws.Context, input *GetRepositorySyncStatusInput, opts ...request.Option) (*GetRepositorySyncStatusOutput, error) {
+	req, out := c.GetRepositorySyncStatusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2699,6 +3285,190 @@ func (c *Proton) GetServiceTemplateVersionWithContext(ctx aws.Context, input *Ge
 	return out, req.Send()
 }
 
+const opGetTemplateSyncConfig = "GetTemplateSyncConfig"
+
+// GetTemplateSyncConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetTemplateSyncConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTemplateSyncConfig for more information on using the GetTemplateSyncConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetTemplateSyncConfigRequest method.
+//    req, resp := client.GetTemplateSyncConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetTemplateSyncConfig
+func (c *Proton) GetTemplateSyncConfigRequest(input *GetTemplateSyncConfigInput) (req *request.Request, output *GetTemplateSyncConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetTemplateSyncConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetTemplateSyncConfigInput{}
+	}
+
+	output = &GetTemplateSyncConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTemplateSyncConfig API operation for AWS Proton.
+//
+// Get detail data for a template sync configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation GetTemplateSyncConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetTemplateSyncConfig
+func (c *Proton) GetTemplateSyncConfig(input *GetTemplateSyncConfigInput) (*GetTemplateSyncConfigOutput, error) {
+	req, out := c.GetTemplateSyncConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetTemplateSyncConfigWithContext is the same as GetTemplateSyncConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTemplateSyncConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) GetTemplateSyncConfigWithContext(ctx aws.Context, input *GetTemplateSyncConfigInput, opts ...request.Option) (*GetTemplateSyncConfigOutput, error) {
+	req, out := c.GetTemplateSyncConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetTemplateSyncStatus = "GetTemplateSyncStatus"
+
+// GetTemplateSyncStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetTemplateSyncStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTemplateSyncStatus for more information on using the GetTemplateSyncStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetTemplateSyncStatusRequest method.
+//    req, resp := client.GetTemplateSyncStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetTemplateSyncStatus
+func (c *Proton) GetTemplateSyncStatusRequest(input *GetTemplateSyncStatusInput) (req *request.Request, output *GetTemplateSyncStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetTemplateSyncStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetTemplateSyncStatusInput{}
+	}
+
+	output = &GetTemplateSyncStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTemplateSyncStatus API operation for AWS Proton.
+//
+// Get the status of a template sync.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation GetTemplateSyncStatus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/GetTemplateSyncStatus
+func (c *Proton) GetTemplateSyncStatus(input *GetTemplateSyncStatusInput) (*GetTemplateSyncStatusOutput, error) {
+	req, out := c.GetTemplateSyncStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetTemplateSyncStatusWithContext is the same as GetTemplateSyncStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTemplateSyncStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) GetTemplateSyncStatusWithContext(ctx aws.Context, input *GetTemplateSyncStatusInput, opts ...request.Option) (*GetTemplateSyncStatusOutput, error) {
+	req, out := c.GetTemplateSyncStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListEnvironmentAccountConnections = "ListEnvironmentAccountConnections"
 
 // ListEnvironmentAccountConnectionsRequest generates a "aws/request.Request" representing the
@@ -2752,7 +3522,7 @@ func (c *Proton) ListEnvironmentAccountConnectionsRequest(input *ListEnvironment
 // View a list of environment account connections.
 //
 // For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the AWS Proton Administrator guide.
+// in the Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2842,6 +3612,306 @@ func (c *Proton) ListEnvironmentAccountConnectionsPagesWithContext(ctx aws.Conte
 
 	for p.Next() {
 		if !fn(p.Page().(*ListEnvironmentAccountConnectionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEnvironmentOutputs = "ListEnvironmentOutputs"
+
+// ListEnvironmentOutputsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEnvironmentOutputs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEnvironmentOutputs for more information on using the ListEnvironmentOutputs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEnvironmentOutputsRequest method.
+//    req, resp := client.ListEnvironmentOutputsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListEnvironmentOutputs
+func (c *Proton) ListEnvironmentOutputsRequest(input *ListEnvironmentOutputsInput) (req *request.Request, output *ListEnvironmentOutputsOutput) {
+	op := &request.Operation{
+		Name:       opListEnvironmentOutputs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEnvironmentOutputsInput{}
+	}
+
+	output = &ListEnvironmentOutputsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEnvironmentOutputs API operation for AWS Proton.
+//
+// List the infrastructure as code outputs for your environment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation ListEnvironmentOutputs for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListEnvironmentOutputs
+func (c *Proton) ListEnvironmentOutputs(input *ListEnvironmentOutputsInput) (*ListEnvironmentOutputsOutput, error) {
+	req, out := c.ListEnvironmentOutputsRequest(input)
+	return out, req.Send()
+}
+
+// ListEnvironmentOutputsWithContext is the same as ListEnvironmentOutputs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEnvironmentOutputs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListEnvironmentOutputsWithContext(ctx aws.Context, input *ListEnvironmentOutputsInput, opts ...request.Option) (*ListEnvironmentOutputsOutput, error) {
+	req, out := c.ListEnvironmentOutputsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEnvironmentOutputsPages iterates over the pages of a ListEnvironmentOutputs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEnvironmentOutputs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEnvironmentOutputs operation.
+//    pageNum := 0
+//    err := client.ListEnvironmentOutputsPages(params,
+//        func(page *proton.ListEnvironmentOutputsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Proton) ListEnvironmentOutputsPages(input *ListEnvironmentOutputsInput, fn func(*ListEnvironmentOutputsOutput, bool) bool) error {
+	return c.ListEnvironmentOutputsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEnvironmentOutputsPagesWithContext same as ListEnvironmentOutputsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListEnvironmentOutputsPagesWithContext(ctx aws.Context, input *ListEnvironmentOutputsInput, fn func(*ListEnvironmentOutputsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEnvironmentOutputsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEnvironmentOutputsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEnvironmentOutputsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEnvironmentProvisionedResources = "ListEnvironmentProvisionedResources"
+
+// ListEnvironmentProvisionedResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListEnvironmentProvisionedResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEnvironmentProvisionedResources for more information on using the ListEnvironmentProvisionedResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEnvironmentProvisionedResourcesRequest method.
+//    req, resp := client.ListEnvironmentProvisionedResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListEnvironmentProvisionedResources
+func (c *Proton) ListEnvironmentProvisionedResourcesRequest(input *ListEnvironmentProvisionedResourcesInput) (req *request.Request, output *ListEnvironmentProvisionedResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListEnvironmentProvisionedResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEnvironmentProvisionedResourcesInput{}
+	}
+
+	output = &ListEnvironmentProvisionedResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEnvironmentProvisionedResources API operation for AWS Proton.
+//
+// List the provisioned resources for your environment.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation ListEnvironmentProvisionedResources for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListEnvironmentProvisionedResources
+func (c *Proton) ListEnvironmentProvisionedResources(input *ListEnvironmentProvisionedResourcesInput) (*ListEnvironmentProvisionedResourcesOutput, error) {
+	req, out := c.ListEnvironmentProvisionedResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListEnvironmentProvisionedResourcesWithContext is the same as ListEnvironmentProvisionedResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEnvironmentProvisionedResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListEnvironmentProvisionedResourcesWithContext(ctx aws.Context, input *ListEnvironmentProvisionedResourcesInput, opts ...request.Option) (*ListEnvironmentProvisionedResourcesOutput, error) {
+	req, out := c.ListEnvironmentProvisionedResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEnvironmentProvisionedResourcesPages iterates over the pages of a ListEnvironmentProvisionedResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEnvironmentProvisionedResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEnvironmentProvisionedResources operation.
+//    pageNum := 0
+//    err := client.ListEnvironmentProvisionedResourcesPages(params,
+//        func(page *proton.ListEnvironmentProvisionedResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Proton) ListEnvironmentProvisionedResourcesPages(input *ListEnvironmentProvisionedResourcesInput, fn func(*ListEnvironmentProvisionedResourcesOutput, bool) bool) error {
+	return c.ListEnvironmentProvisionedResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEnvironmentProvisionedResourcesPagesWithContext same as ListEnvironmentProvisionedResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListEnvironmentProvisionedResourcesPagesWithContext(ctx aws.Context, input *ListEnvironmentProvisionedResourcesInput, fn func(*ListEnvironmentProvisionedResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEnvironmentProvisionedResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEnvironmentProvisionedResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEnvironmentProvisionedResourcesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3296,6 +4366,603 @@ func (c *Proton) ListEnvironmentsPagesWithContext(ctx aws.Context, input *ListEn
 	return p.Err()
 }
 
+const opListRepositories = "ListRepositories"
+
+// ListRepositoriesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRepositories operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRepositories for more information on using the ListRepositories
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRepositoriesRequest method.
+//    req, resp := client.ListRepositoriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListRepositories
+func (c *Proton) ListRepositoriesRequest(input *ListRepositoriesInput) (req *request.Request, output *ListRepositoriesOutput) {
+	op := &request.Operation{
+		Name:       opListRepositories,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRepositoriesInput{}
+	}
+
+	output = &ListRepositoriesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRepositories API operation for AWS Proton.
+//
+// List repositories with detail data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation ListRepositories for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListRepositories
+func (c *Proton) ListRepositories(input *ListRepositoriesInput) (*ListRepositoriesOutput, error) {
+	req, out := c.ListRepositoriesRequest(input)
+	return out, req.Send()
+}
+
+// ListRepositoriesWithContext is the same as ListRepositories with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRepositories for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListRepositoriesWithContext(ctx aws.Context, input *ListRepositoriesInput, opts ...request.Option) (*ListRepositoriesOutput, error) {
+	req, out := c.ListRepositoriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRepositoriesPages iterates over the pages of a ListRepositories operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRepositories method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRepositories operation.
+//    pageNum := 0
+//    err := client.ListRepositoriesPages(params,
+//        func(page *proton.ListRepositoriesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Proton) ListRepositoriesPages(input *ListRepositoriesInput, fn func(*ListRepositoriesOutput, bool) bool) error {
+	return c.ListRepositoriesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRepositoriesPagesWithContext same as ListRepositoriesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListRepositoriesPagesWithContext(ctx aws.Context, input *ListRepositoriesInput, fn func(*ListRepositoriesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRepositoriesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRepositoriesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRepositoriesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRepositorySyncDefinitions = "ListRepositorySyncDefinitions"
+
+// ListRepositorySyncDefinitionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRepositorySyncDefinitions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRepositorySyncDefinitions for more information on using the ListRepositorySyncDefinitions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRepositorySyncDefinitionsRequest method.
+//    req, resp := client.ListRepositorySyncDefinitionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListRepositorySyncDefinitions
+func (c *Proton) ListRepositorySyncDefinitionsRequest(input *ListRepositorySyncDefinitionsInput) (req *request.Request, output *ListRepositorySyncDefinitionsOutput) {
+	op := &request.Operation{
+		Name:       opListRepositorySyncDefinitions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRepositorySyncDefinitionsInput{}
+	}
+
+	output = &ListRepositorySyncDefinitionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRepositorySyncDefinitions API operation for AWS Proton.
+//
+// List repository sync definitions with detail data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation ListRepositorySyncDefinitions for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListRepositorySyncDefinitions
+func (c *Proton) ListRepositorySyncDefinitions(input *ListRepositorySyncDefinitionsInput) (*ListRepositorySyncDefinitionsOutput, error) {
+	req, out := c.ListRepositorySyncDefinitionsRequest(input)
+	return out, req.Send()
+}
+
+// ListRepositorySyncDefinitionsWithContext is the same as ListRepositorySyncDefinitions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRepositorySyncDefinitions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListRepositorySyncDefinitionsWithContext(ctx aws.Context, input *ListRepositorySyncDefinitionsInput, opts ...request.Option) (*ListRepositorySyncDefinitionsOutput, error) {
+	req, out := c.ListRepositorySyncDefinitionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRepositorySyncDefinitionsPages iterates over the pages of a ListRepositorySyncDefinitions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRepositorySyncDefinitions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRepositorySyncDefinitions operation.
+//    pageNum := 0
+//    err := client.ListRepositorySyncDefinitionsPages(params,
+//        func(page *proton.ListRepositorySyncDefinitionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Proton) ListRepositorySyncDefinitionsPages(input *ListRepositorySyncDefinitionsInput, fn func(*ListRepositorySyncDefinitionsOutput, bool) bool) error {
+	return c.ListRepositorySyncDefinitionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRepositorySyncDefinitionsPagesWithContext same as ListRepositorySyncDefinitionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListRepositorySyncDefinitionsPagesWithContext(ctx aws.Context, input *ListRepositorySyncDefinitionsInput, fn func(*ListRepositorySyncDefinitionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRepositorySyncDefinitionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRepositorySyncDefinitionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRepositorySyncDefinitionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListServiceInstanceOutputs = "ListServiceInstanceOutputs"
+
+// ListServiceInstanceOutputsRequest generates a "aws/request.Request" representing the
+// client's request for the ListServiceInstanceOutputs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListServiceInstanceOutputs for more information on using the ListServiceInstanceOutputs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListServiceInstanceOutputsRequest method.
+//    req, resp := client.ListServiceInstanceOutputsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListServiceInstanceOutputs
+func (c *Proton) ListServiceInstanceOutputsRequest(input *ListServiceInstanceOutputsInput) (req *request.Request, output *ListServiceInstanceOutputsOutput) {
+	op := &request.Operation{
+		Name:       opListServiceInstanceOutputs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListServiceInstanceOutputsInput{}
+	}
+
+	output = &ListServiceInstanceOutputsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListServiceInstanceOutputs API operation for AWS Proton.
+//
+// View a list service instance infrastructure as code outputs with detail data.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation ListServiceInstanceOutputs for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListServiceInstanceOutputs
+func (c *Proton) ListServiceInstanceOutputs(input *ListServiceInstanceOutputsInput) (*ListServiceInstanceOutputsOutput, error) {
+	req, out := c.ListServiceInstanceOutputsRequest(input)
+	return out, req.Send()
+}
+
+// ListServiceInstanceOutputsWithContext is the same as ListServiceInstanceOutputs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListServiceInstanceOutputs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListServiceInstanceOutputsWithContext(ctx aws.Context, input *ListServiceInstanceOutputsInput, opts ...request.Option) (*ListServiceInstanceOutputsOutput, error) {
+	req, out := c.ListServiceInstanceOutputsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListServiceInstanceOutputsPages iterates over the pages of a ListServiceInstanceOutputs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListServiceInstanceOutputs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListServiceInstanceOutputs operation.
+//    pageNum := 0
+//    err := client.ListServiceInstanceOutputsPages(params,
+//        func(page *proton.ListServiceInstanceOutputsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Proton) ListServiceInstanceOutputsPages(input *ListServiceInstanceOutputsInput, fn func(*ListServiceInstanceOutputsOutput, bool) bool) error {
+	return c.ListServiceInstanceOutputsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListServiceInstanceOutputsPagesWithContext same as ListServiceInstanceOutputsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListServiceInstanceOutputsPagesWithContext(ctx aws.Context, input *ListServiceInstanceOutputsInput, fn func(*ListServiceInstanceOutputsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListServiceInstanceOutputsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListServiceInstanceOutputsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListServiceInstanceOutputsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListServiceInstanceProvisionedResources = "ListServiceInstanceProvisionedResources"
+
+// ListServiceInstanceProvisionedResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListServiceInstanceProvisionedResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListServiceInstanceProvisionedResources for more information on using the ListServiceInstanceProvisionedResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListServiceInstanceProvisionedResourcesRequest method.
+//    req, resp := client.ListServiceInstanceProvisionedResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListServiceInstanceProvisionedResources
+func (c *Proton) ListServiceInstanceProvisionedResourcesRequest(input *ListServiceInstanceProvisionedResourcesInput) (req *request.Request, output *ListServiceInstanceProvisionedResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListServiceInstanceProvisionedResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListServiceInstanceProvisionedResourcesInput{}
+	}
+
+	output = &ListServiceInstanceProvisionedResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListServiceInstanceProvisionedResources API operation for AWS Proton.
+//
+// List provisioned resources for a service instance with details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation ListServiceInstanceProvisionedResources for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListServiceInstanceProvisionedResources
+func (c *Proton) ListServiceInstanceProvisionedResources(input *ListServiceInstanceProvisionedResourcesInput) (*ListServiceInstanceProvisionedResourcesOutput, error) {
+	req, out := c.ListServiceInstanceProvisionedResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListServiceInstanceProvisionedResourcesWithContext is the same as ListServiceInstanceProvisionedResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListServiceInstanceProvisionedResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListServiceInstanceProvisionedResourcesWithContext(ctx aws.Context, input *ListServiceInstanceProvisionedResourcesInput, opts ...request.Option) (*ListServiceInstanceProvisionedResourcesOutput, error) {
+	req, out := c.ListServiceInstanceProvisionedResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListServiceInstanceProvisionedResourcesPages iterates over the pages of a ListServiceInstanceProvisionedResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListServiceInstanceProvisionedResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListServiceInstanceProvisionedResources operation.
+//    pageNum := 0
+//    err := client.ListServiceInstanceProvisionedResourcesPages(params,
+//        func(page *proton.ListServiceInstanceProvisionedResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Proton) ListServiceInstanceProvisionedResourcesPages(input *ListServiceInstanceProvisionedResourcesInput, fn func(*ListServiceInstanceProvisionedResourcesOutput, bool) bool) error {
+	return c.ListServiceInstanceProvisionedResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListServiceInstanceProvisionedResourcesPagesWithContext same as ListServiceInstanceProvisionedResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListServiceInstanceProvisionedResourcesPagesWithContext(ctx aws.Context, input *ListServiceInstanceProvisionedResourcesInput, fn func(*ListServiceInstanceProvisionedResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListServiceInstanceProvisionedResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListServiceInstanceProvisionedResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListServiceInstanceProvisionedResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListServiceInstances = "ListServiceInstances"
 
 // ListServiceInstancesRequest generates a "aws/request.Request" representing the
@@ -3439,6 +5106,306 @@ func (c *Proton) ListServiceInstancesPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListServiceInstancesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListServicePipelineOutputs = "ListServicePipelineOutputs"
+
+// ListServicePipelineOutputsRequest generates a "aws/request.Request" representing the
+// client's request for the ListServicePipelineOutputs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListServicePipelineOutputs for more information on using the ListServicePipelineOutputs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListServicePipelineOutputsRequest method.
+//    req, resp := client.ListServicePipelineOutputsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListServicePipelineOutputs
+func (c *Proton) ListServicePipelineOutputsRequest(input *ListServicePipelineOutputsInput) (req *request.Request, output *ListServicePipelineOutputsOutput) {
+	op := &request.Operation{
+		Name:       opListServicePipelineOutputs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListServicePipelineOutputsInput{}
+	}
+
+	output = &ListServicePipelineOutputsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListServicePipelineOutputs API operation for AWS Proton.
+//
+// View a list service pipeline infrastructure as code outputs with detail.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation ListServicePipelineOutputs for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListServicePipelineOutputs
+func (c *Proton) ListServicePipelineOutputs(input *ListServicePipelineOutputsInput) (*ListServicePipelineOutputsOutput, error) {
+	req, out := c.ListServicePipelineOutputsRequest(input)
+	return out, req.Send()
+}
+
+// ListServicePipelineOutputsWithContext is the same as ListServicePipelineOutputs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListServicePipelineOutputs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListServicePipelineOutputsWithContext(ctx aws.Context, input *ListServicePipelineOutputsInput, opts ...request.Option) (*ListServicePipelineOutputsOutput, error) {
+	req, out := c.ListServicePipelineOutputsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListServicePipelineOutputsPages iterates over the pages of a ListServicePipelineOutputs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListServicePipelineOutputs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListServicePipelineOutputs operation.
+//    pageNum := 0
+//    err := client.ListServicePipelineOutputsPages(params,
+//        func(page *proton.ListServicePipelineOutputsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Proton) ListServicePipelineOutputsPages(input *ListServicePipelineOutputsInput, fn func(*ListServicePipelineOutputsOutput, bool) bool) error {
+	return c.ListServicePipelineOutputsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListServicePipelineOutputsPagesWithContext same as ListServicePipelineOutputsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListServicePipelineOutputsPagesWithContext(ctx aws.Context, input *ListServicePipelineOutputsInput, fn func(*ListServicePipelineOutputsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListServicePipelineOutputsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListServicePipelineOutputsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListServicePipelineOutputsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListServicePipelineProvisionedResources = "ListServicePipelineProvisionedResources"
+
+// ListServicePipelineProvisionedResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the ListServicePipelineProvisionedResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListServicePipelineProvisionedResources for more information on using the ListServicePipelineProvisionedResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListServicePipelineProvisionedResourcesRequest method.
+//    req, resp := client.ListServicePipelineProvisionedResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListServicePipelineProvisionedResources
+func (c *Proton) ListServicePipelineProvisionedResourcesRequest(input *ListServicePipelineProvisionedResourcesInput) (req *request.Request, output *ListServicePipelineProvisionedResourcesOutput) {
+	op := &request.Operation{
+		Name:       opListServicePipelineProvisionedResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListServicePipelineProvisionedResourcesInput{}
+	}
+
+	output = &ListServicePipelineProvisionedResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListServicePipelineProvisionedResources API operation for AWS Proton.
+//
+// List provisioned resources for a service and pipeline with details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation ListServicePipelineProvisionedResources for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/ListServicePipelineProvisionedResources
+func (c *Proton) ListServicePipelineProvisionedResources(input *ListServicePipelineProvisionedResourcesInput) (*ListServicePipelineProvisionedResourcesOutput, error) {
+	req, out := c.ListServicePipelineProvisionedResourcesRequest(input)
+	return out, req.Send()
+}
+
+// ListServicePipelineProvisionedResourcesWithContext is the same as ListServicePipelineProvisionedResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListServicePipelineProvisionedResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListServicePipelineProvisionedResourcesWithContext(ctx aws.Context, input *ListServicePipelineProvisionedResourcesInput, opts ...request.Option) (*ListServicePipelineProvisionedResourcesOutput, error) {
+	req, out := c.ListServicePipelineProvisionedResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListServicePipelineProvisionedResourcesPages iterates over the pages of a ListServicePipelineProvisionedResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListServicePipelineProvisionedResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListServicePipelineProvisionedResources operation.
+//    pageNum := 0
+//    err := client.ListServicePipelineProvisionedResourcesPages(params,
+//        func(page *proton.ListServicePipelineProvisionedResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Proton) ListServicePipelineProvisionedResourcesPages(input *ListServicePipelineProvisionedResourcesInput, fn func(*ListServicePipelineProvisionedResourcesOutput, bool) bool) error {
+	return c.ListServicePipelineProvisionedResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListServicePipelineProvisionedResourcesPagesWithContext same as ListServicePipelineProvisionedResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) ListServicePipelineProvisionedResourcesPagesWithContext(ctx aws.Context, input *ListServicePipelineProvisionedResourcesInput, fn func(*ListServicePipelineProvisionedResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListServicePipelineProvisionedResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListServicePipelineProvisionedResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListServicePipelineProvisionedResourcesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -3940,9 +5907,9 @@ func (c *Proton) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 
 // ListTagsForResource API operation for AWS Proton.
 //
-// List tags for a resource. For more information, see AWS Proton resources
-// and tagging in the AWS Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-// or AWS Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+// List tags for a resource. For more information, see Proton resources and
+// tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4042,6 +6009,112 @@ func (c *Proton) ListTagsForResourcePagesWithContext(ctx aws.Context, input *Lis
 	return p.Err()
 }
 
+const opNotifyResourceDeploymentStatusChange = "NotifyResourceDeploymentStatusChange"
+
+// NotifyResourceDeploymentStatusChangeRequest generates a "aws/request.Request" representing the
+// client's request for the NotifyResourceDeploymentStatusChange operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See NotifyResourceDeploymentStatusChange for more information on using the NotifyResourceDeploymentStatusChange
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the NotifyResourceDeploymentStatusChangeRequest method.
+//    req, resp := client.NotifyResourceDeploymentStatusChangeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/NotifyResourceDeploymentStatusChange
+func (c *Proton) NotifyResourceDeploymentStatusChangeRequest(input *NotifyResourceDeploymentStatusChangeInput) (req *request.Request, output *NotifyResourceDeploymentStatusChangeOutput) {
+	op := &request.Operation{
+		Name:       opNotifyResourceDeploymentStatusChange,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &NotifyResourceDeploymentStatusChangeInput{}
+	}
+
+	output = &NotifyResourceDeploymentStatusChangeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// NotifyResourceDeploymentStatusChange API operation for AWS Proton.
+//
+// Notify Proton of status changes to a provisioned resource when you use pull
+// request provisioning. For more information, see Template bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html).
+//
+// Provisioning by pull request is currently in feature preview and is only
+// usable with Terraform based Proton Templates. To learn more about Amazon
+// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+// see section 2 on Beta and Previews.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation NotifyResourceDeploymentStatusChange for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceQuotaExceededException
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
+//
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ConflictException
+//   The request couldn't be made due to a conflicting operation or resource.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/NotifyResourceDeploymentStatusChange
+func (c *Proton) NotifyResourceDeploymentStatusChange(input *NotifyResourceDeploymentStatusChangeInput) (*NotifyResourceDeploymentStatusChangeOutput, error) {
+	req, out := c.NotifyResourceDeploymentStatusChangeRequest(input)
+	return out, req.Send()
+}
+
+// NotifyResourceDeploymentStatusChangeWithContext is the same as NotifyResourceDeploymentStatusChange with the addition of
+// the ability to pass a context and additional request options.
+//
+// See NotifyResourceDeploymentStatusChange for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) NotifyResourceDeploymentStatusChangeWithContext(ctx aws.Context, input *NotifyResourceDeploymentStatusChangeInput, opts ...request.Option) (*NotifyResourceDeploymentStatusChangeOutput, error) {
+	req, out := c.NotifyResourceDeploymentStatusChangeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRejectEnvironmentAccountConnection = "RejectEnvironmentAccountConnection"
 
 // RejectEnvironmentAccountConnectionRequest generates a "aws/request.Request" representing the
@@ -4096,7 +6169,7 @@ func (c *Proton) RejectEnvironmentAccountConnectionRequest(input *RejectEnvironm
 // an environment.
 //
 // For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the AWS Proton Administrator guide.
+// in the Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4192,9 +6265,9 @@ func (c *Proton) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 
 // TagResource API operation for AWS Proton.
 //
-// Tag a resource. For more information, see AWS Proton resources and tagging
-// in the AWS Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-// or AWS Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+// Tag a resource. For more information, see Proton resources and tagging in
+// the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4290,9 +6363,9 @@ func (c *Proton) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 
 // UntagResource API operation for AWS Proton.
 //
-// Remove a tag from a resource. For more information, see AWS Proton resources
-// and tagging in the AWS Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-// or AWS Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+// Remove a tag from a resource. For more information, see Proton resources
+// and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4387,7 +6460,7 @@ func (c *Proton) UpdateAccountSettingsRequest(input *UpdateAccountSettingsInput)
 
 // UpdateAccountSettings API operation for AWS Proton.
 //
-// Update the AWS Proton pipeline service account settings.
+// Update the Proton service pipeline role or repository settings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4482,8 +6555,8 @@ func (c *Proton) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 // Update an environment.
 //
 // If the environment is associated with an environment account connection,
-// don't update or include the protonServiceRoleArn parameter to update or connect
-// to an environment account connection.
+// don't update or include the protonServiceRoleArn and provisioningRepository
+// parameter to update or connect to an environment account connection.
 //
 // You can only update to a new environment account connection if it was created
 // in the same environment account that the current environment account connection
@@ -4495,6 +6568,13 @@ func (c *Proton) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 //
 // You can update either the environmentAccountConnectionId or protonServiceRoleArn
 // parameter and value. You can’t update both.
+//
+// If the environment was provisioned with pull request provisioning, include
+// the provisioningRepository parameter and omit the protonServiceRoleArn and
+// environmentAccountConnectionId parameters.
+//
+// If the environment wasn't provisioned with pull request provisioning, omit
+// the provisioningRepository parameter.
 //
 // There are four modes for updating an environment as described in the following.
 // The deploymentType field defines the mode.
@@ -4621,7 +6701,7 @@ func (c *Proton) UpdateEnvironmentAccountConnectionRequest(input *UpdateEnvironm
 // a new IAM role.
 //
 // For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-// in the AWS Proton Administrator guide.
+// in the Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4924,8 +7004,8 @@ func (c *Proton) UpdateServiceRequest(input *UpdateServiceInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceQuotaExceededException
-//   A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-//   in the AWS Proton Administrator Guide.
+//   A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+//   in the Proton Administrator Guide.
 //
 //   * ValidationException
 //   The input is invalid or an out-of-range value was supplied for the input
@@ -5404,6 +7484,102 @@ func (c *Proton) UpdateServiceTemplateVersionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opUpdateTemplateSyncConfig = "UpdateTemplateSyncConfig"
+
+// UpdateTemplateSyncConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTemplateSyncConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTemplateSyncConfig for more information on using the UpdateTemplateSyncConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateTemplateSyncConfigRequest method.
+//    req, resp := client.UpdateTemplateSyncConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/UpdateTemplateSyncConfig
+func (c *Proton) UpdateTemplateSyncConfigRequest(input *UpdateTemplateSyncConfigInput) (req *request.Request, output *UpdateTemplateSyncConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTemplateSyncConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateTemplateSyncConfigInput{}
+	}
+
+	output = &UpdateTemplateSyncConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTemplateSyncConfig API operation for AWS Proton.
+//
+// Update template sync configuration parameters, except for the templateName
+// and templateType.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Proton's
+// API operation UpdateTemplateSyncConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The input is invalid or an out-of-range value was supplied for the input
+//   parameter.
+//
+//   * AccessDeniedException
+//   There isn't sufficient access for performing this action.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * ConflictException
+//   The request couldn't be made due to a conflicting operation or resource.
+//
+//   * ResourceNotFoundException
+//   The requested resource wasn't found.
+//
+//   * InternalServerException
+//   The request failed to register with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20/UpdateTemplateSyncConfig
+func (c *Proton) UpdateTemplateSyncConfig(input *UpdateTemplateSyncConfigInput) (*UpdateTemplateSyncConfigOutput, error) {
+	req, out := c.UpdateTemplateSyncConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTemplateSyncConfigWithContext is the same as UpdateTemplateSyncConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTemplateSyncConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Proton) UpdateTemplateSyncConfigWithContext(ctx aws.Context, input *UpdateTemplateSyncConfigInput, opts ...request.Option) (*UpdateTemplateSyncConfigOutput, error) {
+	req, out := c.UpdateTemplateSyncConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type AcceptEnvironmentAccountConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5453,7 +7629,7 @@ func (s *AcceptEnvironmentAccountConnectionInput) SetId(v string) *AcceptEnviron
 type AcceptEnvironmentAccountConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment account connection data that's returned by AWS Proton.
+	// The environment account connection data that's returned by Proton.
 	//
 	// EnvironmentAccountConnection is a required field
 	EnvironmentAccountConnection *EnvironmentAccountConnection `locationName:"environmentAccountConnection" type:"structure" required:"true"`
@@ -5550,12 +7726,20 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The AWS Proton pipeline service role data.
+// The Proton pipeline service role and repository data.
 type AccountSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Proton pipeline service role.
-	PipelineServiceRoleArn *string `locationName:"pipelineServiceRoleArn" min:"1" type:"string"`
+	// The repository that you provide with pull request provisioning.
+	//
+	// Provisioning by pull request is currently in feature preview and is only
+	// usable with Terraform based Proton Templates. To learn more about Amazon
+	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+	// see section 2 on Beta and Previews.
+	PipelineProvisioningRepository *RepositoryBranch `locationName:"pipelineProvisioningRepository" type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Proton pipeline service role.
+	PipelineServiceRoleArn *string `locationName:"pipelineServiceRoleArn" type:"string"`
 }
 
 // String returns the string representation.
@@ -5574,6 +7758,12 @@ func (s AccountSettings) String() string {
 // value will be replaced with "sensitive".
 func (s AccountSettings) GoString() string {
 	return s.String()
+}
+
+// SetPipelineProvisioningRepository sets the PipelineProvisioningRepository field's value.
+func (s *AccountSettings) SetPipelineProvisioningRepository(v *RepositoryBranch) *AccountSettings {
+	s.PipelineProvisioningRepository = v
+	return s
 }
 
 // SetPipelineServiceRoleArn sets the PipelineServiceRoleArn field's value.
@@ -5634,7 +7824,7 @@ func (s *CancelEnvironmentDeploymentInput) SetEnvironmentName(v string) *CancelE
 type CancelEnvironmentDeploymentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment summary data that's returned by AWS Proton.
+	// The environment summary data that's returned by Proton.
 	//
 	// Environment is a required field
 	Environment *Environment `locationName:"environment" type:"structure" required:"true"`
@@ -5733,7 +7923,7 @@ func (s *CancelServiceInstanceDeploymentInput) SetServiceName(v string) *CancelS
 type CancelServiceInstanceDeploymentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service instance summary data that's returned by AWS Proton.
+	// The service instance summary data that's returned by Proton.
 	//
 	// ServiceInstance is a required field
 	ServiceInstance *ServiceInstance `locationName:"serviceInstance" type:"structure" required:"true"`
@@ -5815,7 +8005,7 @@ func (s *CancelServicePipelineDeploymentInput) SetServiceName(v string) *CancelS
 type CancelServicePipelineDeploymentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service pipeline detail data that's returned by AWS Proton.
+	// The service pipeline detail data that's returned by Proton.
 	//
 	// Pipeline is a required field
 	Pipeline *ServicePipeline `locationName:"pipeline" type:"structure" required:"true"`
@@ -6027,32 +8217,37 @@ func (s *ConflictException) RequestID() string {
 type CreateEnvironmentAccountConnectionInput struct {
 	_ struct{} `type:"structure"`
 
-	// When included, if two identicial requests are made with the same client token,
-	// AWS Proton returns the environment account connection that the first request
+	// When included, if two identical requests are made with the same client token,
+	// Proton returns the environment account connection that the first request
 	// created.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// The name of the AWS Proton environment that's created in the associated management
+	// The name of the Proton environment that's created in the associated management
 	// account.
 	//
 	// EnvironmentName is a required field
 	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
 
 	// The ID of the management account that accepts or rejects the environment
-	// account connection. You create an manage the AWS Proton environment in this
-	// account. If the management account accepts the environment account connection,
-	// AWS Proton can use the associated IAM role to provision environment infrastructure
-	// resources in the associated environment account.
+	// account connection. You create an manage the Proton environment in this account.
+	// If the management account accepts the environment account connection, Proton
+	// can use the associated IAM role to provision environment infrastructure resources
+	// in the associated environment account.
 	//
 	// ManagementAccountId is a required field
 	ManagementAccountId *string `locationName:"managementAccountId" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM service role that's created in
-	// the environment account. AWS Proton uses this role to provision infrastructure
+	// the environment account. Proton uses this role to provision infrastructure
 	// resources in the associated environment account.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
+
+	// Tags for your environment account connection. For more information, see Proton
+	// resources and tagging (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// in the Proton Administrator Guide.
+	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
 // String returns the string representation.
@@ -6091,6 +8286,16 @@ func (s *CreateEnvironmentAccountConnectionInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6122,10 +8327,16 @@ func (s *CreateEnvironmentAccountConnectionInput) SetRoleArn(v string) *CreateEn
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateEnvironmentAccountConnectionInput) SetTags(v []*Tag) *CreateEnvironmentAccountConnectionInput {
+	s.Tags = v
+	return s
+}
+
 type CreateEnvironmentAccountConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment account connection detail data that's returned by AWS Proton.
+	// The environment account connection detail data that's returned by Proton.
 	//
 	// EnvironmentAccountConnection is a required field
 	EnvironmentAccountConnection *EnvironmentAccountConnection `locationName:"environmentAccountConnection" type:"structure" required:"true"`
@@ -6168,9 +8379,9 @@ type CreateEnvironmentInput struct {
 	// The ID of the environment account connection that you provide if you're provisioning
 	// your environment infrastructure resources to an environment account. You
 	// must include either the environmentAccountConnectionId or protonServiceRoleArn
-	// parameter and value. For more information, see Environment account connections
-	// (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
-	// in the AWS Proton Administrator guide.
+	// parameter and value and omit the provisioningRepository parameter and values.
+	// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
+	// in the Proton Administrator guide.
 	EnvironmentAccountConnectionId *string `locationName:"environmentAccountConnectionId" type:"string"`
 
 	// The name of the environment.
@@ -6178,16 +8389,26 @@ type CreateEnvironmentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Proton service role that allows
-	// AWS Proton to make calls to other services on your behalf. You must include
-	// either the environmentAccountConnectionId or protonServiceRoleArn parameter
-	// and value.
+	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
+	// to make calls to other services on your behalf. You must include either the
+	// environmentAccountConnectionId or protonServiceRoleArn parameter and value
+	// and omit the provisioningRepository parameter when you use standard provisioning.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
+
+	// The repository that you provide with pull request provisioning. If you provide
+	// this parameter, you must omit the environmentAccountConnectionId and protonServiceRoleArn
+	// parameters.
+	//
+	// Provisioning by pull request is currently in feature preview and is only
+	// usable with Terraform based Proton Templates. To learn more about Amazon
+	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+	// see section 2 on Beta and Previews.
+	ProvisioningRepository *RepositoryBranchInput_ `locationName:"provisioningRepository" type:"structure"`
 
 	// A link to a YAML formatted spec file that provides inputs as defined in the
 	// environment template bundle schema file. For more information, see Environments
 	// (https://docs.aws.amazon.com/proton/latest/adminguide/ag-environments.html)
-	// in the AWS Proton Administrator Guide.
+	// in the Proton Administrator Guide.
 	//
 	// Spec is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateEnvironmentInput's
@@ -6196,22 +8417,22 @@ type CreateEnvironmentInput struct {
 	// Spec is a required field
 	Spec *string `locationName:"spec" min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// Create tags for your environment. For more information, see AWS Proton resources
-	// and tagging in the AWS Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or AWS Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// Create tags for your environment. For more information, see Proton resources
+	// and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// The ID of the major version of the environment template.
+	// The major version of the environment template.
 	//
 	// TemplateMajorVersion is a required field
 	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of the environment template.
+	// The minor version of the environment template.
 	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string"`
 
 	// The name of the environment template. For more information, see Environment
 	// Templates (https://docs.aws.amazon.com/proton/latest/adminguide/ag-templates.html)
-	// in the AWS Proton Administrator Guide.
+	// in the Proton Administrator Guide.
 	//
 	// TemplateName is a required field
 	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
@@ -6268,6 +8489,11 @@ func (s *CreateEnvironmentInput) Validate() error {
 	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
 	}
+	if s.ProvisioningRepository != nil {
+		if err := s.ProvisioningRepository.Validate(); err != nil {
+			invalidParams.AddNested("ProvisioningRepository", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -6309,6 +8535,12 @@ func (s *CreateEnvironmentInput) SetProtonServiceRoleArn(v string) *CreateEnviro
 	return s
 }
 
+// SetProvisioningRepository sets the ProvisioningRepository field's value.
+func (s *CreateEnvironmentInput) SetProvisioningRepository(v *RepositoryBranchInput_) *CreateEnvironmentInput {
+	s.ProvisioningRepository = v
+	return s
+}
+
 // SetSpec sets the Spec field's value.
 func (s *CreateEnvironmentInput) SetSpec(v string) *CreateEnvironmentInput {
 	s.Spec = &v
@@ -6342,7 +8574,7 @@ func (s *CreateEnvironmentInput) SetTemplateName(v string) *CreateEnvironmentInp
 type CreateEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment detail data that's returned by AWS Proton.
+	// The environment detail data that's returned by Proton.
 	//
 	// Environment is a required field
 	Environment *Environment `locationName:"environment" type:"structure" required:"true"`
@@ -6389,7 +8621,7 @@ type CreateEnvironmentTemplateInput struct {
 	// String and GoString methods.
 	DisplayName *string `locationName:"displayName" min:"1" type:"string" sensitive:"true"`
 
-	// A customer provided encryption key that AWS Proton uses to encrypt data.
+	// A customer provided encryption key that Proton uses to encrypt data.
 	EncryptionKey *string `locationName:"encryptionKey" min:"1" type:"string"`
 
 	// The name of the environment template.
@@ -6401,9 +8633,9 @@ type CreateEnvironmentTemplateInput struct {
 	// and managed infrastructure.
 	Provisioning *string `locationName:"provisioning" type:"string" enum:"Provisioning"`
 
-	// Create tags for your environment template. For more information, see AWS
-	// Proton resources and tagging in the AWS Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or AWS Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// Create tags for your environment template. For more information, see Proton
+	// resources and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -6496,7 +8728,7 @@ func (s *CreateEnvironmentTemplateInput) SetTags(v []*Tag) *CreateEnvironmentTem
 type CreateEnvironmentTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment template detail data that's returned by AWS Proton.
+	// The environment template detail data that's returned by Proton.
 	//
 	// EnvironmentTemplate is a required field
 	EnvironmentTemplate *EnvironmentTemplate `locationName:"environmentTemplate" type:"structure" required:"true"`
@@ -6529,9 +8761,8 @@ func (s *CreateEnvironmentTemplateOutput) SetEnvironmentTemplate(v *EnvironmentT
 type CreateEnvironmentTemplateVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// When included, if two identicial requests are made with the same client token,
-	// AWS Proton returns the environment template version that the first request
-	// created.
+	// When included, if two identical requests are made with the same client token,
+	// Proton returns the environment template version that the first request created.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// A description of the new version of an environment template.
@@ -6541,10 +8772,11 @@ type CreateEnvironmentTemplateVersionInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// To create a new minor version of the environment template, include a majorVersion.
+	// To create a new minor version of the environment template, include a major
+	// Version.
 	//
 	// To create a new major and minor version of the environment template, exclude
-	// majorVersion.
+	// major Version.
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string"`
 
 	// An object that includes the template bundle S3 bucket path and name for the
@@ -6656,7 +8888,7 @@ func (s *CreateEnvironmentTemplateVersionInput) SetTemplateName(v string) *Creat
 type CreateEnvironmentTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment template detail data that's returned by AWS Proton.
+	// The environment template detail data that's returned by Proton.
 	//
 	// EnvironmentTemplateVersion is a required field
 	EnvironmentTemplateVersion *EnvironmentTemplateVersion `locationName:"environmentTemplateVersion" type:"structure" required:"true"`
@@ -6686,15 +8918,143 @@ func (s *CreateEnvironmentTemplateVersionOutput) SetEnvironmentTemplateVersion(v
 	return s
 }
 
+type CreateRepositoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of your Amazon Web Services CodeStar connection.
+	// For more information, see Setting up for Proton (https://docs.aws.amazon.com/setting-up-for-service)
+	// in the Proton Administrator Guide.
+	//
+	// ConnectionArn is a required field
+	ConnectionArn *string `locationName:"connectionArn" min:"1" type:"string" required:"true"`
+
+	// The ARN of your customer Amazon Web Services Key Management Service (Amazon
+	// Web Services KMS) key.
+	EncryptionKey *string `locationName:"encryptionKey" min:"1" type:"string"`
+
+	// The repository name, for example myrepos/myrepo.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// Provider is a required field
+	Provider *string `locationName:"provider" type:"string" required:"true" enum:"RepositoryProvider"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRepositoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRepositoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRepositoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRepositoryInput"}
+	if s.ConnectionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionArn"))
+	}
+	if s.ConnectionArn != nil && len(*s.ConnectionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConnectionArn", 1))
+	}
+	if s.EncryptionKey != nil && len(*s.EncryptionKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EncryptionKey", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Provider == nil {
+		invalidParams.Add(request.NewErrParamRequired("Provider"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionArn sets the ConnectionArn field's value.
+func (s *CreateRepositoryInput) SetConnectionArn(v string) *CreateRepositoryInput {
+	s.ConnectionArn = &v
+	return s
+}
+
+// SetEncryptionKey sets the EncryptionKey field's value.
+func (s *CreateRepositoryInput) SetEncryptionKey(v string) *CreateRepositoryInput {
+	s.EncryptionKey = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRepositoryInput) SetName(v string) *CreateRepositoryInput {
+	s.Name = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *CreateRepositoryInput) SetProvider(v string) *CreateRepositoryInput {
+	s.Provider = &v
+	return s
+}
+
+type CreateRepositoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The repository detail data that's returned by Proton.
+	//
+	// Repository is a required field
+	Repository *Repository `locationName:"repository" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRepositoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRepositoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetRepository sets the Repository field's value.
+func (s *CreateRepositoryOutput) SetRepository(v *Repository) *CreateRepositoryOutput {
+	s.Repository = v
+	return s
+}
+
 type CreateServiceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the code repository branch that holds the code that's deployed
-	// in AWS Proton. Don't include this parameter if your service template doesn't
+	// in Proton. Don't include this parameter if your service template doesn't
 	// include a service pipeline.
 	BranchName *string `locationName:"branchName" min:"1" type:"string"`
 
-	// A description of the AWS Proton service.
+	// A description of the Proton service.
 	//
 	// Description is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateServiceInput's
@@ -6708,9 +9068,9 @@ type CreateServiceInput struct {
 
 	// The Amazon Resource Name (ARN) of the repository connection. For more information,
 	// see Set up repository connection (https://docs.aws.amazon.com/proton/latest/adminguide/setting-up-for-service.html#setting-up-vcontrol)
-	// in the AWS Proton Administrator Guide and Setting up with AWS Proton (https://docs.aws.amazon.com/proton/latest/userguide/proton-setup.html#setup-repo-connection)
-	// in the AWS Proton User Guide. Don't include this parameter if your service
-	// template doesn't include a service pipeline.
+	// in the Proton Administrator Guide and Setting up with Proton (https://docs.aws.amazon.com/proton/latest/userguide/proton-setup.html#setup-repo-connection)
+	// in the Proton User Guide. Don't include this parameter if your service template
+	// doesn't include a service pipeline.
 	RepositoryConnectionArn *string `locationName:"repositoryConnectionArn" min:"1" type:"string"`
 
 	// The ID of the code repository. Don't include this parameter if your service
@@ -6721,8 +9081,8 @@ type CreateServiceInput struct {
 	// bundle schema file. The spec file is in YAML format. Don’t include pipeline
 	// inputs in the spec if your service template doesn’t include a service pipeline.
 	// For more information, see Create a service (https://docs.aws.amazon.com/proton/latest/adminguide/ag-create-svc.html.html)
-	// in the AWS Proton Administrator Guide and Create a service (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-create.html)
-	// in the AWS Proton User Guide.
+	// in the Proton Administrator Guide and Create a service (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-create.html)
+	// in the Proton User Guide.
 	//
 	// Spec is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateServiceInput's
@@ -6731,19 +9091,17 @@ type CreateServiceInput struct {
 	// Spec is a required field
 	Spec *string `locationName:"spec" min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// Create tags for your service. For more information, see AWS Proton resources
-	// and tagging in the AWS Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or AWS Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// Create tags for your service. For more information, see Proton resources
+	// and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// The ID of the major version of the service template that was used to create
-	// the service.
+	// The major version of the service template that was used to create the service.
 	//
 	// TemplateMajorVersion is a required field
 	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of the service template that was used to create
-	// the service.
+	// The minor version of the service template that was used to create the service.
 	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string"`
 
 	// The name of the service template that's used to create the service.
@@ -6889,7 +9247,7 @@ func (s *CreateServiceInput) SetTemplateName(v string) *CreateServiceInput {
 type CreateServiceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service detail data that's returned by AWS Proton.
+	// The service detail data that's returned by Proton.
 	//
 	// Service is a required field
 	Service *Service `locationName:"service" type:"structure" required:"true"`
@@ -6944,16 +9302,16 @@ type CreateServiceTemplateInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// AWS Proton includes a service pipeline for your service by default. When
-	// included, this parameter indicates that an AWS Proton service pipeline won't
-	// be included for your service. Once specified, this parameter can't be changed.
-	// For more information, see Service template bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html)
-	// in the AWS Proton Administrator Guide.
+	// Proton includes a service pipeline for your service by default. When included,
+	// this parameter indicates that an Proton service pipeline won't be included
+	// for your service. Once specified, this parameter can't be changed. For more
+	// information, see Service template bundles (https://docs.aws.amazon.com/proton/latest/adminguide/ag-template-bundles.html)
+	// in the Proton Administrator Guide.
 	PipelineProvisioning *string `locationName:"pipelineProvisioning" type:"string" enum:"Provisioning"`
 
-	// Create tags for your service template. For more information, see AWS Proton
-	// resources and tagging in the AWS Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
-	// or AWS Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
+	// Create tags for your service template. For more information, see Proton resources
+	// and tagging in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/resources.html)
+	// or Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/resources.html).
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -7046,7 +9404,7 @@ func (s *CreateServiceTemplateInput) SetTags(v []*Tag) *CreateServiceTemplateInp
 type CreateServiceTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service template detail data that's returned by AWS Proton.
+	// The service template detail data that's returned by Proton.
 	//
 	// ServiceTemplate is a required field
 	ServiceTemplate *ServiceTemplate `locationName:"serviceTemplate" type:"structure" required:"true"`
@@ -7079,8 +9437,8 @@ func (s *CreateServiceTemplateOutput) SetServiceTemplate(v *ServiceTemplate) *Cr
 type CreateServiceTemplateVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// When included, if two identicial requests are made with the same client token,
-	// AWS Proton returns the service template version that the first request created.
+	// When included, if two identical requests are made with the same client token,
+	// Proton returns the service template version that the first request created.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// An array of compatible environment template objects for the new version of
@@ -7096,10 +9454,10 @@ type CreateServiceTemplateVersionInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// To create a new minor version of the service template, include a majorVersion.
+	// To create a new minor version of the service template, include a major Version.
 	//
 	// To create a new major and minor version of the service template, exclude
-	// majorVersion.
+	// major Version.
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string"`
 
 	// An object that includes the template bundle S3 bucket path and name for the
@@ -7233,8 +9591,7 @@ func (s *CreateServiceTemplateVersionInput) SetTemplateName(v string) *CreateSer
 type CreateServiceTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service template version summary of detail data that's returned by AWS
-	// Proton.
+	// The service template version summary of detail data that's returned by Proton.
 	//
 	// ServiceTemplateVersion is a required field
 	ServiceTemplateVersion *ServiceTemplateVersion `locationName:"serviceTemplateVersion" type:"structure" required:"true"`
@@ -7261,6 +9618,161 @@ func (s CreateServiceTemplateVersionOutput) GoString() string {
 // SetServiceTemplateVersion sets the ServiceTemplateVersion field's value.
 func (s *CreateServiceTemplateVersionOutput) SetServiceTemplateVersion(v *ServiceTemplateVersion) *CreateServiceTemplateVersionOutput {
 	s.ServiceTemplateVersion = v
+	return s
+}
+
+type CreateTemplateSyncConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The branch of the registered repository for your template.
+	//
+	// Branch is a required field
+	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
+
+	// The name of your repository, for example myrepos/myrepo.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
+
+	// The provider type for your repository.
+	//
+	// RepositoryProvider is a required field
+	RepositoryProvider *string `locationName:"repositoryProvider" type:"string" required:"true" enum:"RepositoryProvider"`
+
+	// A repository subdirectory path to your template bundle directory. When included,
+	// Proton limits the template bundle search to this repository directory.
+	Subdirectory *string `locationName:"subdirectory" min:"1" type:"string"`
+
+	// The name of your registered template.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+
+	// The type of the registered template.
+	//
+	// TemplateType is a required field
+	TemplateType *string `locationName:"templateType" type:"string" required:"true" enum:"TemplateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTemplateSyncConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTemplateSyncConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateTemplateSyncConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateTemplateSyncConfigInput"}
+	if s.Branch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Branch"))
+	}
+	if s.Branch != nil && len(*s.Branch) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Branch", 1))
+	}
+	if s.RepositoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryName"))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 1))
+	}
+	if s.RepositoryProvider == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryProvider"))
+	}
+	if s.Subdirectory != nil && len(*s.Subdirectory) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Subdirectory", 1))
+	}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+	if s.TemplateType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBranch sets the Branch field's value.
+func (s *CreateTemplateSyncConfigInput) SetBranch(v string) *CreateTemplateSyncConfigInput {
+	s.Branch = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *CreateTemplateSyncConfigInput) SetRepositoryName(v string) *CreateTemplateSyncConfigInput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryProvider sets the RepositoryProvider field's value.
+func (s *CreateTemplateSyncConfigInput) SetRepositoryProvider(v string) *CreateTemplateSyncConfigInput {
+	s.RepositoryProvider = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *CreateTemplateSyncConfigInput) SetSubdirectory(v string) *CreateTemplateSyncConfigInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *CreateTemplateSyncConfigInput) SetTemplateName(v string) *CreateTemplateSyncConfigInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *CreateTemplateSyncConfigInput) SetTemplateType(v string) *CreateTemplateSyncConfigInput {
+	s.TemplateType = &v
+	return s
+}
+
+type CreateTemplateSyncConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The template sync configuration detail data that's returned by Proton.
+	TemplateSyncConfig *TemplateSyncConfig `locationName:"templateSyncConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTemplateSyncConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateTemplateSyncConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetTemplateSyncConfig sets the TemplateSyncConfig field's value.
+func (s *CreateTemplateSyncConfigOutput) SetTemplateSyncConfig(v *TemplateSyncConfig) *CreateTemplateSyncConfigOutput {
+	s.TemplateSyncConfig = v
 	return s
 }
 
@@ -7313,7 +9825,7 @@ func (s *DeleteEnvironmentAccountConnectionInput) SetId(v string) *DeleteEnviron
 type DeleteEnvironmentAccountConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment account connection detail data that's returned by AWS Proton.
+	// The environment account connection detail data that's returned by Proton.
 	EnvironmentAccountConnection *EnvironmentAccountConnection `locationName:"environmentAccountConnection" type:"structure"`
 }
 
@@ -7393,7 +9905,7 @@ func (s *DeleteEnvironmentInput) SetName(v string) *DeleteEnvironmentInput {
 type DeleteEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment detail data that's returned by AWS Proton.
+	// The environment detail data that's returned by Proton.
 	Environment *Environment `locationName:"environment" type:"structure"`
 }
 
@@ -7473,7 +9985,7 @@ func (s *DeleteEnvironmentTemplateInput) SetName(v string) *DeleteEnvironmentTem
 type DeleteEnvironmentTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment template detail data that's returned by AWS Proton.
+	// The environment template detail data that's returned by Proton.
 	EnvironmentTemplate *EnvironmentTemplate `locationName:"environmentTemplate" type:"structure"`
 }
 
@@ -7587,7 +10099,7 @@ func (s *DeleteEnvironmentTemplateVersionInput) SetTemplateName(v string) *Delet
 type DeleteEnvironmentTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment template version detail data that's returned by AWS Proton.
+	// The environment template version detail data that's returned by Proton.
 	EnvironmentTemplateVersion *EnvironmentTemplateVersion `locationName:"environmentTemplateVersion" type:"structure"`
 }
 
@@ -7612,6 +10124,100 @@ func (s DeleteEnvironmentTemplateVersionOutput) GoString() string {
 // SetEnvironmentTemplateVersion sets the EnvironmentTemplateVersion field's value.
 func (s *DeleteEnvironmentTemplateVersionOutput) SetEnvironmentTemplateVersion(v *EnvironmentTemplateVersion) *DeleteEnvironmentTemplateVersionOutput {
 	s.EnvironmentTemplateVersion = v
+	return s
+}
+
+type DeleteRepositoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the repository.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// Provider is a required field
+	Provider *string `locationName:"provider" type:"string" required:"true" enum:"RepositoryProvider"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRepositoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRepositoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRepositoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRepositoryInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Provider == nil {
+		invalidParams.Add(request.NewErrParamRequired("Provider"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteRepositoryInput) SetName(v string) *DeleteRepositoryInput {
+	s.Name = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *DeleteRepositoryInput) SetProvider(v string) *DeleteRepositoryInput {
+	s.Provider = &v
+	return s
+}
+
+type DeleteRepositoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The repository detail data that's returned by Proton.
+	Repository *Repository `locationName:"repository" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRepositoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRepositoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetRepository sets the Repository field's value.
+func (s *DeleteRepositoryOutput) SetRepository(v *Repository) *DeleteRepositoryOutput {
+	s.Repository = v
 	return s
 }
 
@@ -7667,7 +10273,7 @@ func (s *DeleteServiceInput) SetName(v string) *DeleteServiceInput {
 type DeleteServiceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service detail data that's returned by AWS Proton.
+	// The service detail data that's returned by Proton.
 	Service *Service `locationName:"service" type:"structure"`
 }
 
@@ -7747,7 +10353,7 @@ func (s *DeleteServiceTemplateInput) SetName(v string) *DeleteServiceTemplateInp
 type DeleteServiceTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service template detail data that's returned by AWS Proton.
+	// The service template detail data that's returned by Proton.
 	ServiceTemplate *ServiceTemplate `locationName:"serviceTemplate" type:"structure"`
 }
 
@@ -7861,7 +10467,7 @@ func (s *DeleteServiceTemplateVersionInput) SetTemplateName(v string) *DeleteSer
 type DeleteServiceTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service template version detail data that's returned by AWS Proton.
+	// The service template version detail data that's returned by Proton.
 	ServiceTemplateVersion *ServiceTemplateVersion `locationName:"serviceTemplateVersion" type:"structure"`
 }
 
@@ -7889,8 +10495,102 @@ func (s *DeleteServiceTemplateVersionOutput) SetServiceTemplateVersion(v *Servic
 	return s
 }
 
-// The environment detail data. An AWS Proton environment is a set resources
-// shared across an AWS Proton service.
+type DeleteTemplateSyncConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The template name.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+
+	// The template type.
+	//
+	// TemplateType is a required field
+	TemplateType *string `locationName:"templateType" type:"string" required:"true" enum:"TemplateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateSyncConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateSyncConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTemplateSyncConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTemplateSyncConfigInput"}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+	if s.TemplateType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *DeleteTemplateSyncConfigInput) SetTemplateName(v string) *DeleteTemplateSyncConfigInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *DeleteTemplateSyncConfigInput) SetTemplateType(v string) *DeleteTemplateSyncConfigInput {
+	s.TemplateType = &v
+	return s
+}
+
+type DeleteTemplateSyncConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The template sync configuration detail data that's returned by Proton.
+	TemplateSyncConfig *TemplateSyncConfig `locationName:"templateSyncConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateSyncConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTemplateSyncConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetTemplateSyncConfig sets the TemplateSyncConfig field's value.
+func (s *DeleteTemplateSyncConfigOutput) SetTemplateSyncConfig(v *TemplateSyncConfig) *DeleteTemplateSyncConfigOutput {
+	s.TemplateSyncConfig = v
+	return s
+}
+
+// The environment detail data. An Proton environment is a set resources shared
+// across an Proton service.
 type Environment struct {
 	_ struct{} `type:"structure"`
 
@@ -7946,13 +10646,21 @@ type Environment struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Proton service role that allows
-	// AWS Proton to make calls to other services on your behalf.
+	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
+	// to make calls to other services on your behalf.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
 	// When included, indicates that the environment template is for customer provisioned
 	// and managed infrastructure.
 	Provisioning *string `locationName:"provisioning" type:"string" enum:"Provisioning"`
+
+	// The repository that you provide with pull request provisioning.
+	//
+	// Provisioning by pull request is currently in feature preview and is only
+	// usable with Terraform based Proton Templates. To learn more about Amazon
+	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+	// see section 2 on Beta and Previews.
+	ProvisioningRepository *RepositoryBranch `locationName:"provisioningRepository" type:"structure"`
 
 	// The environment spec.
 	//
@@ -8064,6 +10772,12 @@ func (s *Environment) SetProtonServiceRoleArn(v string) *Environment {
 // SetProvisioning sets the Provisioning field's value.
 func (s *Environment) SetProvisioning(v string) *Environment {
 	s.Provisioning = &v
+	return s
+}
+
+// SetProvisioningRepository sets the ProvisioningRepository field's value.
+func (s *Environment) SetProvisioningRepository(v *RepositoryBranch) *Environment {
+	s.ProvisioningRepository = v
 	return s
 }
 
@@ -8396,20 +11110,20 @@ type EnvironmentSummary struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Proton service role that allows
-	// AWS Proton to make calls to other services on your behalf.
+	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
+	// to make calls to other services on your behalf.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
 
 	// When included, indicates that the environment template is for customer provisioned
 	// and managed infrastructure.
 	Provisioning *string `locationName:"provisioning" type:"string" enum:"Provisioning"`
 
-	// The ID of the major version of the environment template.
+	// The major version of the environment template.
 	//
 	// TemplateMajorVersion is a required field
 	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of the environment template.
+	// The minor version of the environment template.
 	//
 	// TemplateMinorVersion is a required field
 	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string" required:"true"`
@@ -8758,7 +11472,7 @@ type EnvironmentTemplateSummary struct {
 	// and managed infrastructure.
 	Provisioning *string `locationName:"provisioning" type:"string" enum:"Provisioning"`
 
-	// The ID of the recommended version of the environment template.
+	// The recommended version of the environment template.
 	RecommendedVersion *string `locationName:"recommendedVersion" min:"1" type:"string"`
 }
 
@@ -8854,18 +11568,18 @@ type EnvironmentTemplateVersion struct {
 	// LastModifiedAt is a required field
 	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp" required:"true"`
 
-	// The ID of the latest major version that's associated with the version of
-	// an environment template.
+	// The latest major version that's associated with the version of an environment
+	// template.
 	//
 	// MajorVersion is a required field
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of an environment template.
+	// The minor version of an environment template.
 	//
 	// MinorVersion is a required field
 	MinorVersion *string `locationName:"minorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the recommended minor version of the environment template.
+	// The recommended minor version of the environment template.
 	RecommendedMinorVersion *string `locationName:"recommendedMinorVersion" min:"1" type:"string"`
 
 	// The schema of the version of an environment template.
@@ -9003,18 +11717,18 @@ type EnvironmentTemplateVersionSummary struct {
 	// LastModifiedAt is a required field
 	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp" required:"true"`
 
-	// The ID of the latest major version that's associated with the version of
-	// an environment template.
+	// The latest major version that's associated with the version of an environment
+	// template.
 	//
 	// MajorVersion is a required field
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the version of an environment template.
+	// The version of an environment template.
 	//
 	// MinorVersion is a required field
 	MinorVersion *string `locationName:"minorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the recommended minor version of the environment template.
+	// The recommended minor version of the environment template.
 	RecommendedMinorVersion *string `locationName:"recommendedMinorVersion" min:"1" type:"string"`
 
 	// The status of the version of an environment template.
@@ -9138,7 +11852,7 @@ func (s GetAccountSettingsInput) GoString() string {
 type GetAccountSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Proton pipeline service role detail data that's returned by AWS Proton.
+	// The Proton pipeline service role detail data that's returned by Proton.
 	AccountSettings *AccountSettings `locationName:"accountSettings" type:"structure"`
 }
 
@@ -9215,7 +11929,7 @@ func (s *GetEnvironmentAccountConnectionInput) SetId(v string) *GetEnvironmentAc
 type GetEnvironmentAccountConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment account connection detail data that's returned by AWS Proton.
+	// The environment account connection detail data that's returned by Proton.
 	//
 	// EnvironmentAccountConnection is a required field
 	EnvironmentAccountConnection *EnvironmentAccountConnection `locationName:"environmentAccountConnection" type:"structure" required:"true"`
@@ -9297,7 +12011,7 @@ func (s *GetEnvironmentInput) SetName(v string) *GetEnvironmentInput {
 type GetEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment detail data that's returned by AWS Proton.
+	// The environment detail data that's returned by Proton.
 	//
 	// Environment is a required field
 	Environment *Environment `locationName:"environment" type:"structure" required:"true"`
@@ -9380,7 +12094,7 @@ func (s *GetEnvironmentTemplateInput) SetName(v string) *GetEnvironmentTemplateI
 type GetEnvironmentTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment template detail data that's returned by AWS Proton.
+	// The environment template detail data that's returned by Proton.
 	//
 	// EnvironmentTemplate is a required field
 	EnvironmentTemplate *EnvironmentTemplate `locationName:"environmentTemplate" type:"structure" required:"true"`
@@ -9413,7 +12127,7 @@ func (s *GetEnvironmentTemplateOutput) SetEnvironmentTemplate(v *EnvironmentTemp
 type GetEnvironmentTemplateVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// To view environment template major version detail data, include majorVersion.
+	// To view environment template major version detail data, include major Version.
 	//
 	// MajorVersion is a required field
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string" required:"true"`
@@ -9496,7 +12210,7 @@ func (s *GetEnvironmentTemplateVersionInput) SetTemplateName(v string) *GetEnvir
 type GetEnvironmentTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment template version detail data that's returned by AWS Proton.
+	// The environment template version detail data that's returned by Proton.
 	//
 	// EnvironmentTemplateVersion is a required field
 	EnvironmentTemplateVersion *EnvironmentTemplateVersion `locationName:"environmentTemplateVersion" type:"structure" required:"true"`
@@ -9523,6 +12237,227 @@ func (s GetEnvironmentTemplateVersionOutput) GoString() string {
 // SetEnvironmentTemplateVersion sets the EnvironmentTemplateVersion field's value.
 func (s *GetEnvironmentTemplateVersionOutput) SetEnvironmentTemplateVersion(v *EnvironmentTemplateVersion) *GetEnvironmentTemplateVersionOutput {
 	s.EnvironmentTemplateVersion = v
+	return s
+}
+
+type GetRepositoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The repository name, for example myrepos/myrepo.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// Provider is a required field
+	Provider *string `locationName:"provider" type:"string" required:"true" enum:"RepositoryProvider"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRepositoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRepositoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRepositoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRepositoryInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Provider == nil {
+		invalidParams.Add(request.NewErrParamRequired("Provider"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GetRepositoryInput) SetName(v string) *GetRepositoryInput {
+	s.Name = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *GetRepositoryInput) SetProvider(v string) *GetRepositoryInput {
+	s.Provider = &v
+	return s
+}
+
+type GetRepositoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The repository detail data that's returned by Proton.
+	//
+	// Repository is a required field
+	Repository *Repository `locationName:"repository" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRepositoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRepositoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetRepository sets the Repository field's value.
+func (s *GetRepositoryOutput) SetRepository(v *Repository) *GetRepositoryOutput {
+	s.Repository = v
+	return s
+}
+
+type GetRepositorySyncStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The repository branch.
+	//
+	// Branch is a required field
+	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
+
+	// The repository name.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// RepositoryProvider is a required field
+	RepositoryProvider *string `locationName:"repositoryProvider" type:"string" required:"true" enum:"RepositoryProvider"`
+
+	// The repository sync type.
+	//
+	// SyncType is a required field
+	SyncType *string `locationName:"syncType" type:"string" required:"true" enum:"SyncType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRepositorySyncStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRepositorySyncStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRepositorySyncStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRepositorySyncStatusInput"}
+	if s.Branch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Branch"))
+	}
+	if s.Branch != nil && len(*s.Branch) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Branch", 1))
+	}
+	if s.RepositoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryName"))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 1))
+	}
+	if s.RepositoryProvider == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryProvider"))
+	}
+	if s.SyncType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBranch sets the Branch field's value.
+func (s *GetRepositorySyncStatusInput) SetBranch(v string) *GetRepositorySyncStatusInput {
+	s.Branch = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *GetRepositorySyncStatusInput) SetRepositoryName(v string) *GetRepositorySyncStatusInput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryProvider sets the RepositoryProvider field's value.
+func (s *GetRepositorySyncStatusInput) SetRepositoryProvider(v string) *GetRepositorySyncStatusInput {
+	s.RepositoryProvider = &v
+	return s
+}
+
+// SetSyncType sets the SyncType field's value.
+func (s *GetRepositorySyncStatusInput) SetSyncType(v string) *GetRepositorySyncStatusInput {
+	s.SyncType = &v
+	return s
+}
+
+type GetRepositorySyncStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The repository sync status detail data that's returned by Proton.
+	LatestSync *RepositorySyncAttempt `locationName:"latestSync" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRepositorySyncStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRepositorySyncStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetLatestSync sets the LatestSync field's value.
+func (s *GetRepositorySyncStatusOutput) SetLatestSync(v *RepositorySyncAttempt) *GetRepositorySyncStatusOutput {
+	s.LatestSync = v
 	return s
 }
 
@@ -9644,7 +12579,7 @@ func (s *GetServiceInstanceInput) SetServiceName(v string) *GetServiceInstanceIn
 type GetServiceInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service instance detail data that's returned by AWS Proton.
+	// The service instance detail data that's returned by Proton.
 	//
 	// ServiceInstance is a required field
 	ServiceInstance *ServiceInstance `locationName:"serviceInstance" type:"structure" required:"true"`
@@ -9677,7 +12612,7 @@ func (s *GetServiceInstanceOutput) SetServiceInstance(v *ServiceInstance) *GetSe
 type GetServiceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service detail data that's returned by AWS Proton.
+	// The service detail data that's returned by Proton.
 	Service *Service `locationName:"service" type:"structure"`
 }
 
@@ -9757,7 +12692,7 @@ func (s *GetServiceTemplateInput) SetName(v string) *GetServiceTemplateInput {
 type GetServiceTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service template detail data that's returned by AWS Proton.
+	// The service template detail data that's returned by Proton.
 	//
 	// ServiceTemplate is a required field
 	ServiceTemplate *ServiceTemplate `locationName:"serviceTemplate" type:"structure" required:"true"`
@@ -9790,7 +12725,7 @@ func (s *GetServiceTemplateOutput) SetServiceTemplate(v *ServiceTemplate) *GetSe
 type GetServiceTemplateVersionInput struct {
 	_ struct{} `type:"structure"`
 
-	// To view service template major version detail data, include majorVersion.
+	// To view service template major version detail data, include major Version.
 	//
 	// MajorVersion is a required field
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string" required:"true"`
@@ -9873,7 +12808,7 @@ func (s *GetServiceTemplateVersionInput) SetTemplateName(v string) *GetServiceTe
 type GetServiceTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service template version detail data that's returned by AWS Proton.
+	// The service template version detail data that's returned by Proton.
 	//
 	// ServiceTemplateVersion is a required field
 	ServiceTemplateVersion *ServiceTemplateVersion `locationName:"serviceTemplateVersion" type:"structure" required:"true"`
@@ -9900,6 +12835,229 @@ func (s GetServiceTemplateVersionOutput) GoString() string {
 // SetServiceTemplateVersion sets the ServiceTemplateVersion field's value.
 func (s *GetServiceTemplateVersionOutput) SetServiceTemplateVersion(v *ServiceTemplateVersion) *GetServiceTemplateVersionOutput {
 	s.ServiceTemplateVersion = v
+	return s
+}
+
+type GetTemplateSyncConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The template name.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+
+	// The template type.
+	//
+	// TemplateType is a required field
+	TemplateType *string `locationName:"templateType" type:"string" required:"true" enum:"TemplateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemplateSyncConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemplateSyncConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTemplateSyncConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTemplateSyncConfigInput"}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+	if s.TemplateType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *GetTemplateSyncConfigInput) SetTemplateName(v string) *GetTemplateSyncConfigInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *GetTemplateSyncConfigInput) SetTemplateType(v string) *GetTemplateSyncConfigInput {
+	s.TemplateType = &v
+	return s
+}
+
+type GetTemplateSyncConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The template sync configuration detail data that's returned by Proton.
+	TemplateSyncConfig *TemplateSyncConfig `locationName:"templateSyncConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemplateSyncConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemplateSyncConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetTemplateSyncConfig sets the TemplateSyncConfig field's value.
+func (s *GetTemplateSyncConfigOutput) SetTemplateSyncConfig(v *TemplateSyncConfig) *GetTemplateSyncConfigOutput {
+	s.TemplateSyncConfig = v
+	return s
+}
+
+type GetTemplateSyncStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The template name.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+
+	// The template type.
+	//
+	// TemplateType is a required field
+	TemplateType *string `locationName:"templateType" type:"string" required:"true" enum:"TemplateType"`
+
+	// The template version.
+	//
+	// TemplateVersion is a required field
+	TemplateVersion *string `locationName:"templateVersion" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemplateSyncStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemplateSyncStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTemplateSyncStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTemplateSyncStatusInput"}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+	if s.TemplateType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateType"))
+	}
+	if s.TemplateVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateVersion"))
+	}
+	if s.TemplateVersion != nil && len(*s.TemplateVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *GetTemplateSyncStatusInput) SetTemplateName(v string) *GetTemplateSyncStatusInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *GetTemplateSyncStatusInput) SetTemplateType(v string) *GetTemplateSyncStatusInput {
+	s.TemplateType = &v
+	return s
+}
+
+// SetTemplateVersion sets the TemplateVersion field's value.
+func (s *GetTemplateSyncStatusInput) SetTemplateVersion(v string) *GetTemplateSyncStatusInput {
+	s.TemplateVersion = &v
+	return s
+}
+
+type GetTemplateSyncStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The template sync desired state that's returned by Proton.
+	DesiredState *Revision `locationName:"desiredState" type:"structure"`
+
+	// The details of the last successful sync that's returned by Proton.
+	LatestSuccessfulSync *ResourceSyncAttempt `locationName:"latestSuccessfulSync" type:"structure"`
+
+	// The details of the last sync that's returned by Proton.
+	LatestSync *ResourceSyncAttempt `locationName:"latestSync" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemplateSyncStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTemplateSyncStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetDesiredState sets the DesiredState field's value.
+func (s *GetTemplateSyncStatusOutput) SetDesiredState(v *Revision) *GetTemplateSyncStatusOutput {
+	s.DesiredState = v
+	return s
+}
+
+// SetLatestSuccessfulSync sets the LatestSuccessfulSync field's value.
+func (s *GetTemplateSyncStatusOutput) SetLatestSuccessfulSync(v *ResourceSyncAttempt) *GetTemplateSyncStatusOutput {
+	s.LatestSuccessfulSync = v
+	return s
+}
+
+// SetLatestSync sets the LatestSync field's value.
+func (s *GetTemplateSyncStatusOutput) SetLatestSync(v *ResourceSyncAttempt) *GetTemplateSyncStatusOutput {
+	s.LatestSync = v
 	return s
 }
 
@@ -10065,7 +13223,7 @@ type ListEnvironmentAccountConnectionsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An array of environment account connections with details that's returned
-	// by AWS Proton.
+	// by Proton.
 	//
 	// EnvironmentAccountConnections is a required field
 	EnvironmentAccountConnections []*EnvironmentAccountConnectionSummary `locationName:"environmentAccountConnections" type:"list" required:"true"`
@@ -10106,13 +13264,221 @@ func (s *ListEnvironmentAccountConnectionsOutput) SetNextToken(v string) *ListEn
 	return s
 }
 
+type ListEnvironmentOutputsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The environment name.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
+
+	// A token to indicate the location of the next environment output in the array
+	// of environment outputs, after the list of environment outputs that was previously
+	// requested.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEnvironmentOutputsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEnvironmentOutputsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEnvironmentOutputsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEnvironmentOutputsInput"}
+	if s.EnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentName"))
+	}
+	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *ListEnvironmentOutputsInput) SetEnvironmentName(v string) *ListEnvironmentOutputsInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEnvironmentOutputsInput) SetNextToken(v string) *ListEnvironmentOutputsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEnvironmentOutputsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next environment output in the array
+	// of environment outputs, after the current requested list of environment outputs.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of environment outputs with detail data.
+	//
+	// Outputs is a required field
+	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEnvironmentOutputsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEnvironmentOutputsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEnvironmentOutputsOutput) SetNextToken(v string) *ListEnvironmentOutputsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *ListEnvironmentOutputsOutput) SetOutputs(v []*Output_) *ListEnvironmentOutputsOutput {
+	s.Outputs = v
+	return s
+}
+
+type ListEnvironmentProvisionedResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The environment name.
+	//
+	// EnvironmentName is a required field
+	EnvironmentName *string `locationName:"environmentName" min:"1" type:"string" required:"true"`
+
+	// A token to indicate the location of the next environment provisioned resource
+	// in the array of environment provisioned resources, after the list of environment
+	// provisioned resources that was previously requested.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEnvironmentProvisionedResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEnvironmentProvisionedResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEnvironmentProvisionedResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEnvironmentProvisionedResourcesInput"}
+	if s.EnvironmentName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnvironmentName"))
+	}
+	if s.EnvironmentName != nil && len(*s.EnvironmentName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EnvironmentName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *ListEnvironmentProvisionedResourcesInput) SetEnvironmentName(v string) *ListEnvironmentProvisionedResourcesInput {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEnvironmentProvisionedResourcesInput) SetNextToken(v string) *ListEnvironmentProvisionedResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEnvironmentProvisionedResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next environment provisioned resource
+	// in the array of provisioned resources, after the current requested list of
+	// environment provisioned resources.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of environment provisioned resources.
+	//
+	// ProvisionedResources is a required field
+	ProvisionedResources []*ProvisionedResource `locationName:"provisionedResources" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEnvironmentProvisionedResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEnvironmentProvisionedResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEnvironmentProvisionedResourcesOutput) SetNextToken(v string) *ListEnvironmentProvisionedResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProvisionedResources sets the ProvisionedResources field's value.
+func (s *ListEnvironmentProvisionedResourcesOutput) SetProvisionedResources(v []*ProvisionedResource) *ListEnvironmentProvisionedResourcesOutput {
+	s.ProvisionedResources = v
+	return s
+}
+
 type ListEnvironmentTemplateVersionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// To view a list of minor of versions under a major version of an environment
-	// template, include majorVersion.
+	// template, include major Version.
 	//
-	// To view a list of major versions of an environment template, exclude majorVersion.
+	// To view a list of major versions of an environment template, exclude major
+	// Version.
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string"`
 
 	// The maximum number of major or minor versions of an environment template
@@ -10453,6 +13819,475 @@ func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput 
 	return s
 }
 
+type ListRepositoriesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of repositories to list.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token to indicate the location of the next repository in the array of repositories,
+	// after the list of repositories previously requested.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRepositoriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRepositoriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRepositoriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRepositoriesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRepositoriesInput) SetMaxResults(v int64) *ListRepositoriesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRepositoriesInput) SetNextToken(v string) *ListRepositoriesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRepositoriesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next repository in the array of repositories,
+	// after the current requested list of repositories.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of repositories.
+	//
+	// Repositories is a required field
+	Repositories []*RepositorySummary `locationName:"repositories" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRepositoriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRepositoriesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRepositoriesOutput) SetNextToken(v string) *ListRepositoriesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRepositories sets the Repositories field's value.
+func (s *ListRepositoriesOutput) SetRepositories(v []*RepositorySummary) *ListRepositoriesOutput {
+	s.Repositories = v
+	return s
+}
+
+type ListRepositorySyncDefinitionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next repository sync definition in
+	// the array of repository sync definitions, after the list of repository sync
+	// definitions previously requested.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The repository name.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// RepositoryProvider is a required field
+	RepositoryProvider *string `locationName:"repositoryProvider" type:"string" required:"true" enum:"RepositoryProvider"`
+
+	// The sync type. The only supported value is TEMPLATE_SYNC.
+	//
+	// SyncType is a required field
+	SyncType *string `locationName:"syncType" type:"string" required:"true" enum:"SyncType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRepositorySyncDefinitionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRepositorySyncDefinitionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRepositorySyncDefinitionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRepositorySyncDefinitionsInput"}
+	if s.RepositoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryName"))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 1))
+	}
+	if s.RepositoryProvider == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryProvider"))
+	}
+	if s.SyncType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SyncType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRepositorySyncDefinitionsInput) SetNextToken(v string) *ListRepositorySyncDefinitionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *ListRepositorySyncDefinitionsInput) SetRepositoryName(v string) *ListRepositorySyncDefinitionsInput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryProvider sets the RepositoryProvider field's value.
+func (s *ListRepositorySyncDefinitionsInput) SetRepositoryProvider(v string) *ListRepositorySyncDefinitionsInput {
+	s.RepositoryProvider = &v
+	return s
+}
+
+// SetSyncType sets the SyncType field's value.
+func (s *ListRepositorySyncDefinitionsInput) SetSyncType(v string) *ListRepositorySyncDefinitionsInput {
+	s.SyncType = &v
+	return s
+}
+
+type ListRepositorySyncDefinitionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next repository sync definition in
+	// the array of repository sync definitions, after the current requested list
+	// of repository sync definitions.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of repository sync definitions.
+	//
+	// SyncDefinitions is a required field
+	SyncDefinitions []*RepositorySyncDefinition `locationName:"syncDefinitions" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRepositorySyncDefinitionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRepositorySyncDefinitionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRepositorySyncDefinitionsOutput) SetNextToken(v string) *ListRepositorySyncDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSyncDefinitions sets the SyncDefinitions field's value.
+func (s *ListRepositorySyncDefinitionsOutput) SetSyncDefinitions(v []*RepositorySyncDefinition) *ListRepositorySyncDefinitionsOutput {
+	s.SyncDefinitions = v
+	return s
+}
+
+type ListServiceInstanceOutputsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next output in the array of outputs,
+	// after the list of outputs that was previously requested.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The service instance name.
+	//
+	// ServiceInstanceName is a required field
+	ServiceInstanceName *string `locationName:"serviceInstanceName" min:"1" type:"string" required:"true"`
+
+	// The service name.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstanceOutputsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstanceOutputsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListServiceInstanceOutputsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListServiceInstanceOutputsInput"}
+	if s.ServiceInstanceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceInstanceName"))
+	}
+	if s.ServiceInstanceName != nil && len(*s.ServiceInstanceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceInstanceName", 1))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServiceInstanceOutputsInput) SetNextToken(v string) *ListServiceInstanceOutputsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceInstanceName sets the ServiceInstanceName field's value.
+func (s *ListServiceInstanceOutputsInput) SetServiceInstanceName(v string) *ListServiceInstanceOutputsInput {
+	s.ServiceInstanceName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ListServiceInstanceOutputsInput) SetServiceName(v string) *ListServiceInstanceOutputsInput {
+	s.ServiceName = &v
+	return s
+}
+
+type ListServiceInstanceOutputsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next output in the array of outputs,
+	// after the current requested list of outputs.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of service instance infrastructure as code outputs.
+	//
+	// Outputs is a required field
+	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstanceOutputsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstanceOutputsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServiceInstanceOutputsOutput) SetNextToken(v string) *ListServiceInstanceOutputsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *ListServiceInstanceOutputsOutput) SetOutputs(v []*Output_) *ListServiceInstanceOutputsOutput {
+	s.Outputs = v
+	return s
+}
+
+type ListServiceInstanceProvisionedResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next provisioned resource in the
+	// array of provisioned resources, after the list of provisioned resources that
+	// was previously requested.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The service instance name.
+	//
+	// ServiceInstanceName is a required field
+	ServiceInstanceName *string `locationName:"serviceInstanceName" min:"1" type:"string" required:"true"`
+
+	// The service name.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstanceProvisionedResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstanceProvisionedResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListServiceInstanceProvisionedResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListServiceInstanceProvisionedResourcesInput"}
+	if s.ServiceInstanceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceInstanceName"))
+	}
+	if s.ServiceInstanceName != nil && len(*s.ServiceInstanceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceInstanceName", 1))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServiceInstanceProvisionedResourcesInput) SetNextToken(v string) *ListServiceInstanceProvisionedResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceInstanceName sets the ServiceInstanceName field's value.
+func (s *ListServiceInstanceProvisionedResourcesInput) SetServiceInstanceName(v string) *ListServiceInstanceProvisionedResourcesInput {
+	s.ServiceInstanceName = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ListServiceInstanceProvisionedResourcesInput) SetServiceName(v string) *ListServiceInstanceProvisionedResourcesInput {
+	s.ServiceName = &v
+	return s
+}
+
+type ListServiceInstanceProvisionedResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next provisioned resource in the
+	// array of provisioned resources, after the current requested list of provisioned
+	// resources.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of provisioned resources for a service instance.
+	//
+	// ProvisionedResources is a required field
+	ProvisionedResources []*ProvisionedResource `locationName:"provisionedResources" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstanceProvisionedResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServiceInstanceProvisionedResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServiceInstanceProvisionedResourcesOutput) SetNextToken(v string) *ListServiceInstanceProvisionedResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProvisionedResources sets the ProvisionedResources field's value.
+func (s *ListServiceInstanceProvisionedResourcesOutput) SetProvisionedResources(v []*ProvisionedResource) *ListServiceInstanceProvisionedResourcesOutput {
+	s.ProvisionedResources = v
+	return s
+}
+
 type ListServiceInstancesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10562,13 +14397,219 @@ func (s *ListServiceInstancesOutput) SetServiceInstances(v []*ServiceInstanceSum
 	return s
 }
 
+type ListServicePipelineOutputsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next output in the array of outputs,
+	// after the list of outputs that was previously requested.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The service name.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicePipelineOutputsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicePipelineOutputsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListServicePipelineOutputsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListServicePipelineOutputsInput"}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicePipelineOutputsInput) SetNextToken(v string) *ListServicePipelineOutputsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ListServicePipelineOutputsInput) SetServiceName(v string) *ListServicePipelineOutputsInput {
+	s.ServiceName = &v
+	return s
+}
+
+type ListServicePipelineOutputsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next output in the array of outputs,
+	// after the current requested list of outputs.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of outputs.
+	//
+	// Outputs is a required field
+	Outputs []*Output_ `locationName:"outputs" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicePipelineOutputsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicePipelineOutputsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicePipelineOutputsOutput) SetNextToken(v string) *ListServicePipelineOutputsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *ListServicePipelineOutputsOutput) SetOutputs(v []*Output_) *ListServicePipelineOutputsOutput {
+	s.Outputs = v
+	return s
+}
+
+type ListServicePipelineProvisionedResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next provisioned resource in the
+	// array of provisioned resources, after the list of provisioned resources that
+	// was previously requested.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The service name.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicePipelineProvisionedResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicePipelineProvisionedResourcesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListServicePipelineProvisionedResourcesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListServicePipelineProvisionedResourcesInput"}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicePipelineProvisionedResourcesInput) SetNextToken(v string) *ListServicePipelineProvisionedResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ListServicePipelineProvisionedResourcesInput) SetServiceName(v string) *ListServicePipelineProvisionedResourcesInput {
+	s.ServiceName = &v
+	return s
+}
+
+type ListServicePipelineProvisionedResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token to indicate the location of the next provisioned resource in the
+	// array of provisioned resources, after the current requested list of provisioned
+	// resources.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of provisioned resources for a service and pipeline.
+	//
+	// ProvisionedResources is a required field
+	ProvisionedResources []*ProvisionedResource `locationName:"provisionedResources" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicePipelineProvisionedResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListServicePipelineProvisionedResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListServicePipelineProvisionedResourcesOutput) SetNextToken(v string) *ListServicePipelineProvisionedResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetProvisionedResources sets the ProvisionedResources field's value.
+func (s *ListServicePipelineProvisionedResourcesOutput) SetProvisionedResources(v []*ProvisionedResource) *ListServicePipelineProvisionedResourcesOutput {
+	s.ProvisionedResources = v
+	return s
+}
+
 type ListServiceTemplateVersionsInput struct {
 	_ struct{} `type:"structure"`
 
 	// To view a list of minor of versions under a major version of a service template,
-	// include majorVersion.
+	// include major Version.
 	//
-	// To view a list of major versions of a service template, exclude majorVersion.
+	// To view a list of major versions of a service template, exclude major Version.
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string"`
 
 	// The maximum number of major or minor versions of a service template to list.
@@ -10653,8 +14694,8 @@ type ListServiceTemplateVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A token to indicate the location of the next major or minor version in the
-	// array of major or minor versions of a service template, after the list of
-	// major or minor versions that was previously requested.
+	// array of major or minor versions of a service template, after the current
+	// requested list of service major or minor versions.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// An array of major or minor versions of a service template with detail data.
@@ -11001,6 +15042,244 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+type NotifyResourceDeploymentStatusChangeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The deployment ID for your provisioned resource.
+	DeploymentId *string `locationName:"deploymentId" type:"string"`
+
+	// The provisioned resource state change detail data that's returned by Proton.
+	Outputs []*Output_ `locationName:"outputs" type:"list"`
+
+	// The provisioned resource Amazon Resource Name (ARN).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// The status of your provisioned resource.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceDeploymentStatus"`
+
+	// The deployment status message for your provisioned resource.
+	//
+	// StatusMessage is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by NotifyResourceDeploymentStatusChangeInput's
+	// String and GoString methods.
+	StatusMessage *string `locationName:"statusMessage" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyResourceDeploymentStatusChangeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyResourceDeploymentStatusChangeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NotifyResourceDeploymentStatusChangeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NotifyResourceDeploymentStatusChangeInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.Outputs != nil {
+		for i, v := range s.Outputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Outputs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *NotifyResourceDeploymentStatusChangeInput) SetDeploymentId(v string) *NotifyResourceDeploymentStatusChangeInput {
+	s.DeploymentId = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *NotifyResourceDeploymentStatusChangeInput) SetOutputs(v []*Output_) *NotifyResourceDeploymentStatusChangeInput {
+	s.Outputs = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *NotifyResourceDeploymentStatusChangeInput) SetResourceArn(v string) *NotifyResourceDeploymentStatusChangeInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *NotifyResourceDeploymentStatusChangeInput) SetStatus(v string) *NotifyResourceDeploymentStatusChangeInput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *NotifyResourceDeploymentStatusChangeInput) SetStatusMessage(v string) *NotifyResourceDeploymentStatusChangeInput {
+	s.StatusMessage = &v
+	return s
+}
+
+type NotifyResourceDeploymentStatusChangeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyResourceDeploymentStatusChangeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NotifyResourceDeploymentStatusChangeOutput) GoString() string {
+	return s.String()
+}
+
+// An infrastructure as code defined resource output.
+type Output_ struct {
+	_ struct{} `type:"structure" sensitive:"true"`
+
+	// The output key.
+	Key *string `locationName:"key" min:"1" type:"string"`
+
+	// The output value.
+	ValueString *string `locationName:"valueString" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Output_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Output_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Output_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Output_"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.ValueString != nil && len(*s.ValueString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ValueString", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Output_) SetKey(v string) *Output_ {
+	s.Key = &v
+	return s
+}
+
+// SetValueString sets the ValueString field's value.
+func (s *Output_) SetValueString(v string) *Output_ {
+	s.ValueString = &v
+	return s
+}
+
+// Detail data for a provisioned resource.
+type ProvisionedResource struct {
+	_ struct{} `type:"structure"`
+
+	// The provisioned resource identifier.
+	Identifier *string `locationName:"identifier" min:"1" type:"string"`
+
+	// The provisioned resource name.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The resource provisioning engine.
+	//
+	// Provisioning by pull request is currently in feature preview and is only
+	// usable with Terraform based Proton Templates. To learn more about Amazon
+	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+	// see section 2 on Beta and Previews.
+	ProvisioningEngine *string `locationName:"provisioningEngine" type:"string" enum:"ProvisionedResourceEngine"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionedResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionedResource) GoString() string {
+	return s.String()
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *ProvisionedResource) SetIdentifier(v string) *ProvisionedResource {
+	s.Identifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ProvisionedResource) SetName(v string) *ProvisionedResource {
+	s.Name = &v
+	return s
+}
+
+// SetProvisioningEngine sets the ProvisioningEngine field's value.
+func (s *ProvisionedResource) SetProvisioningEngine(v string) *ProvisionedResource {
+	s.ProvisioningEngine = &v
+	return s
+}
+
 type RejectEnvironmentAccountConnectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11050,7 +15329,7 @@ func (s *RejectEnvironmentAccountConnectionInput) SetId(v string) *RejectEnviron
 type RejectEnvironmentAccountConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment connection account detail data that's returned by AWS Proton.
+	// The environment connection account detail data that's returned by Proton.
 	//
 	// EnvironmentAccountConnection is a required field
 	EnvironmentAccountConnection *EnvironmentAccountConnection `locationName:"environmentAccountConnection" type:"structure" required:"true"`
@@ -11077,6 +15356,485 @@ func (s RejectEnvironmentAccountConnectionOutput) GoString() string {
 // SetEnvironmentAccountConnection sets the EnvironmentAccountConnection field's value.
 func (s *RejectEnvironmentAccountConnectionOutput) SetEnvironmentAccountConnection(v *EnvironmentAccountConnection) *RejectEnvironmentAccountConnectionOutput {
 	s.EnvironmentAccountConnection = v
+	return s
+}
+
+// Detail date for a repository that has been registered with Proton.
+type Repository struct {
+	_ struct{} `type:"structure"`
+
+	// The repository Amazon Resource Name (ARN).
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The repository Amazon Web Services CodeStar connection that connects Proton
+	// to your repository.
+	//
+	// ConnectionArn is a required field
+	ConnectionArn *string `locationName:"connectionArn" min:"1" type:"string" required:"true"`
+
+	// Your customer Amazon Web Services KMS encryption key.
+	EncryptionKey *string `locationName:"encryptionKey" min:"1" type:"string"`
+
+	// The repository name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// Provider is a required field
+	Provider *string `locationName:"provider" type:"string" required:"true" enum:"RepositoryProvider"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Repository) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Repository) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Repository) SetArn(v string) *Repository {
+	s.Arn = &v
+	return s
+}
+
+// SetConnectionArn sets the ConnectionArn field's value.
+func (s *Repository) SetConnectionArn(v string) *Repository {
+	s.ConnectionArn = &v
+	return s
+}
+
+// SetEncryptionKey sets the EncryptionKey field's value.
+func (s *Repository) SetEncryptionKey(v string) *Repository {
+	s.EncryptionKey = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Repository) SetName(v string) *Repository {
+	s.Name = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *Repository) SetProvider(v string) *Repository {
+	s.Provider = &v
+	return s
+}
+
+// Detail data for a repository branch.
+//
+// Provisioning by pull request is currently in feature preview and is only
+// usable with Terraform based Proton Templates. To learn more about Amazon
+// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+// see section 2 on Beta and Previews.
+type RepositoryBranch struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the repository branch.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The repository branch.
+	//
+	// Branch is a required field
+	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
+
+	// The repository name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// Provider is a required field
+	Provider *string `locationName:"provider" type:"string" required:"true" enum:"RepositoryProvider"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositoryBranch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositoryBranch) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RepositoryBranch) SetArn(v string) *RepositoryBranch {
+	s.Arn = &v
+	return s
+}
+
+// SetBranch sets the Branch field's value.
+func (s *RepositoryBranch) SetBranch(v string) *RepositoryBranch {
+	s.Branch = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RepositoryBranch) SetName(v string) *RepositoryBranch {
+	s.Name = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *RepositoryBranch) SetProvider(v string) *RepositoryBranch {
+	s.Provider = &v
+	return s
+}
+
+// Detail input data for a repository branch.
+//
+// Provisioning by pull request is currently in feature preview and is only
+// usable with Terraform based Proton Templates. To learn more about Amazon
+// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+// see section 2 on Beta and Previews.
+type RepositoryBranchInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The repository branch.
+	//
+	// Branch is a required field
+	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
+
+	// The repository name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// Provider is a required field
+	Provider *string `locationName:"provider" type:"string" required:"true" enum:"RepositoryProvider"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositoryBranchInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositoryBranchInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RepositoryBranchInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RepositoryBranchInput_"}
+	if s.Branch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Branch"))
+	}
+	if s.Branch != nil && len(*s.Branch) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Branch", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Provider == nil {
+		invalidParams.Add(request.NewErrParamRequired("Provider"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBranch sets the Branch field's value.
+func (s *RepositoryBranchInput_) SetBranch(v string) *RepositoryBranchInput_ {
+	s.Branch = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RepositoryBranchInput_) SetName(v string) *RepositoryBranchInput_ {
+	s.Name = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *RepositoryBranchInput_) SetProvider(v string) *RepositoryBranchInput_ {
+	s.Provider = &v
+	return s
+}
+
+// A summary of detail data for a registered repository.
+type RepositorySummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for a repository.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The repository name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// Provider is a required field
+	Provider *string `locationName:"provider" type:"string" required:"true" enum:"RepositoryProvider"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositorySummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositorySummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RepositorySummary) SetArn(v string) *RepositorySummary {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RepositorySummary) SetName(v string) *RepositorySummary {
+	s.Name = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *RepositorySummary) SetProvider(v string) *RepositorySummary {
+	s.Provider = &v
+	return s
+}
+
+// Detail data for a repository sync attempt activated by a push to a repository.
+type RepositorySyncAttempt struct {
+	_ struct{} `type:"structure"`
+
+	// Detail data for sync attempt events.
+	//
+	// Events is a required field
+	Events []*RepositorySyncEvent `locationName:"events" type:"list" required:"true"`
+
+	// The time when the sync attempt started.
+	//
+	// StartedAt is a required field
+	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" required:"true"`
+
+	// The sync attempt status.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"RepositorySyncStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositorySyncAttempt) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositorySyncAttempt) GoString() string {
+	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *RepositorySyncAttempt) SetEvents(v []*RepositorySyncEvent) *RepositorySyncAttempt {
+	s.Events = v
+	return s
+}
+
+// SetStartedAt sets the StartedAt field's value.
+func (s *RepositorySyncAttempt) SetStartedAt(v time.Time) *RepositorySyncAttempt {
+	s.StartedAt = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RepositorySyncAttempt) SetStatus(v string) *RepositorySyncAttempt {
+	s.Status = &v
+	return s
+}
+
+// The repository sync definition.
+type RepositorySyncDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The repository branch.
+	//
+	// Branch is a required field
+	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
+
+	// The directory in the repository.
+	//
+	// Directory is a required field
+	Directory *string `locationName:"directory" type:"string" required:"true"`
+
+	// The resource that is synced from.
+	//
+	// Parent is a required field
+	Parent *string `locationName:"parent" type:"string" required:"true"`
+
+	// The resource that is synced to.
+	//
+	// Target is a required field
+	Target *string `locationName:"target" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositorySyncDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositorySyncDefinition) GoString() string {
+	return s.String()
+}
+
+// SetBranch sets the Branch field's value.
+func (s *RepositorySyncDefinition) SetBranch(v string) *RepositorySyncDefinition {
+	s.Branch = &v
+	return s
+}
+
+// SetDirectory sets the Directory field's value.
+func (s *RepositorySyncDefinition) SetDirectory(v string) *RepositorySyncDefinition {
+	s.Directory = &v
+	return s
+}
+
+// SetParent sets the Parent field's value.
+func (s *RepositorySyncDefinition) SetParent(v string) *RepositorySyncDefinition {
+	s.Parent = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *RepositorySyncDefinition) SetTarget(v string) *RepositorySyncDefinition {
+	s.Target = &v
+	return s
+}
+
+// Repository sync event detail data for a sync attempt.
+type RepositorySyncEvent struct {
+	_ struct{} `type:"structure"`
+
+	// Event detail for a repository sync attempt.
+	//
+	// Event is a required field
+	Event *string `locationName:"event" type:"string" required:"true"`
+
+	// The external ID of the sync event.
+	ExternalId *string `locationName:"externalId" type:"string"`
+
+	// The time that the sync event occurred.
+	//
+	// Time is a required field
+	Time *time.Time `locationName:"time" type:"timestamp" required:"true"`
+
+	// The type of event.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositorySyncEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RepositorySyncEvent) GoString() string {
+	return s.String()
+}
+
+// SetEvent sets the Event field's value.
+func (s *RepositorySyncEvent) SetEvent(v string) *RepositorySyncEvent {
+	s.Event = &v
+	return s
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *RepositorySyncEvent) SetExternalId(v string) *RepositorySyncEvent {
+	s.ExternalId = &v
+	return s
+}
+
+// SetTime sets the Time field's value.
+func (s *RepositorySyncEvent) SetTime(v time.Time) *RepositorySyncEvent {
+	s.Time = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *RepositorySyncEvent) SetType(v string) *RepositorySyncEvent {
+	s.Type = &v
 	return s
 }
 
@@ -11145,6 +15903,239 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Detail data for a resource sync attempt activated by a push to a repository.
+type ResourceSyncAttempt struct {
+	_ struct{} `type:"structure"`
+
+	// An array of events with detail data.
+	//
+	// Events is a required field
+	Events []*ResourceSyncEvent `locationName:"events" type:"list" required:"true"`
+
+	// Detail data for the initial repository commit, path and push.
+	//
+	// InitialRevision is a required field
+	InitialRevision *Revision `locationName:"initialRevision" type:"structure" required:"true"`
+
+	// The time when the sync attempt started.
+	//
+	// StartedAt is a required field
+	StartedAt *time.Time `locationName:"startedAt" type:"timestamp" required:"true"`
+
+	// The status of the sync attempt.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"ResourceSyncStatus"`
+
+	// The resource that is synced to.
+	//
+	// Target is a required field
+	Target *string `locationName:"target" type:"string" required:"true"`
+
+	// Detail data for the target revision.
+	//
+	// TargetRevision is a required field
+	TargetRevision *Revision `locationName:"targetRevision" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceSyncAttempt) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceSyncAttempt) GoString() string {
+	return s.String()
+}
+
+// SetEvents sets the Events field's value.
+func (s *ResourceSyncAttempt) SetEvents(v []*ResourceSyncEvent) *ResourceSyncAttempt {
+	s.Events = v
+	return s
+}
+
+// SetInitialRevision sets the InitialRevision field's value.
+func (s *ResourceSyncAttempt) SetInitialRevision(v *Revision) *ResourceSyncAttempt {
+	s.InitialRevision = v
+	return s
+}
+
+// SetStartedAt sets the StartedAt field's value.
+func (s *ResourceSyncAttempt) SetStartedAt(v time.Time) *ResourceSyncAttempt {
+	s.StartedAt = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ResourceSyncAttempt) SetStatus(v string) *ResourceSyncAttempt {
+	s.Status = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *ResourceSyncAttempt) SetTarget(v string) *ResourceSyncAttempt {
+	s.Target = &v
+	return s
+}
+
+// SetTargetRevision sets the TargetRevision field's value.
+func (s *ResourceSyncAttempt) SetTargetRevision(v *Revision) *ResourceSyncAttempt {
+	s.TargetRevision = v
+	return s
+}
+
+// Detail data for a resource sync event.
+type ResourceSyncEvent struct {
+	_ struct{} `type:"structure"`
+
+	// A resource sync event.
+	//
+	// Event is a required field
+	Event *string `locationName:"event" type:"string" required:"true"`
+
+	// The external ID for the event.
+	ExternalId *string `locationName:"externalId" type:"string"`
+
+	// The time when the event occurred.
+	//
+	// Time is a required field
+	Time *time.Time `locationName:"time" type:"timestamp" required:"true"`
+
+	// The type of event.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceSyncEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceSyncEvent) GoString() string {
+	return s.String()
+}
+
+// SetEvent sets the Event field's value.
+func (s *ResourceSyncEvent) SetEvent(v string) *ResourceSyncEvent {
+	s.Event = &v
+	return s
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *ResourceSyncEvent) SetExternalId(v string) *ResourceSyncEvent {
+	s.ExternalId = &v
+	return s
+}
+
+// SetTime sets the Time field's value.
+func (s *ResourceSyncEvent) SetTime(v time.Time) *ResourceSyncEvent {
+	s.Time = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ResourceSyncEvent) SetType(v string) *ResourceSyncEvent {
+	s.Type = &v
+	return s
+}
+
+// Revision detail data for a commit and push that activates a sync attempt
+type Revision struct {
+	_ struct{} `type:"structure"`
+
+	// The repository branch.
+	//
+	// Branch is a required field
+	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
+
+	// The repository directory changed by a commit and push that activated the
+	// sync attempt.
+	//
+	// Directory is a required field
+	Directory *string `locationName:"directory" type:"string" required:"true"`
+
+	// The repository name.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// RepositoryProvider is a required field
+	RepositoryProvider *string `locationName:"repositoryProvider" type:"string" required:"true" enum:"RepositoryProvider"`
+
+	// The secure hash algorithm (SHA) hash for the revision.
+	//
+	// Sha is a required field
+	Sha *string `locationName:"sha" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Revision) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Revision) GoString() string {
+	return s.String()
+}
+
+// SetBranch sets the Branch field's value.
+func (s *Revision) SetBranch(v string) *Revision {
+	s.Branch = &v
+	return s
+}
+
+// SetDirectory sets the Directory field's value.
+func (s *Revision) SetDirectory(v string) *Revision {
+	s.Directory = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *Revision) SetRepositoryName(v string) *Revision {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryProvider sets the RepositoryProvider field's value.
+func (s *Revision) SetRepositoryProvider(v string) *Revision {
+	s.RepositoryProvider = &v
+	return s
+}
+
+// SetSha sets the Sha field's value.
+func (s *Revision) SetSha(v string) *Revision {
+	s.Sha = &v
+	return s
 }
 
 // Template bundle S3 bucket data.
@@ -11224,7 +16215,7 @@ type Service struct {
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
 	// The name of the code repository branch that holds the code that's deployed
-	// in AWS Proton.
+	// in Proton.
 	BranchName *string `locationName:"branchName" min:"1" type:"string"`
 
 	// The time when the service was created.
@@ -11254,11 +16245,11 @@ type Service struct {
 
 	// The Amazon Resource Name (ARN) of the repository connection. For more information,
 	// see Set up a repository connection (https://docs.aws.amazon.com/proton/latest/adminguide/setting-up-for-service.html#setting-up-vcontrol)
-	// in the AWS Proton Administrator Guide and Setting up with AWS Proton (https://docs.aws.amazon.com/proton/latest/userguide/proton-setup.html#setup-repo-connection)
-	// in the AWS Proton User Guide.
+	// in the Proton Administrator Guide and Setting up with Proton (https://docs.aws.amazon.com/proton/latest/userguide/proton-setup.html#setup-repo-connection)
+	// in the Proton User Guide.
 	RepositoryConnectionArn *string `locationName:"repositoryConnectionArn" min:"1" type:"string"`
 
-	// The ID of the code repository.
+	// The ID of the source code repository.
 	RepositoryId *string `locationName:"repositoryId" min:"1" type:"string"`
 
 	// The formatted specification that defines the service.
@@ -11442,14 +16433,14 @@ type ServiceInstance struct {
 	// String and GoString methods.
 	Spec *string `locationName:"spec" min:"1" type:"string" sensitive:"true"`
 
-	// The ID of the major version of the service template that was used to create
-	// the service instance.
+	// The major version of the service template that was used to create the service
+	// instance.
 	//
 	// TemplateMajorVersion is a required field
 	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of the service template that was used to create
-	// the service instance.
+	// The minor version of the service template that was used to create the service
+	// instance.
 	//
 	// TemplateMinorVersion is a required field
 	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string" required:"true"`
@@ -11607,12 +16598,12 @@ type ServiceInstanceSummary struct {
 	// ServiceName is a required field
 	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
 
-	// The ID of the major version of a service template.
+	// The service instance template major version.
 	//
 	// TemplateMajorVersion is a required field
 	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of a service template.
+	// The service instance template minor version.
 	//
 	// TemplateMinorVersion is a required field
 	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string" required:"true"`
@@ -11756,14 +16747,14 @@ type ServicePipeline struct {
 	// String and GoString methods.
 	Spec *string `locationName:"spec" min:"1" type:"string" sensitive:"true"`
 
-	// The ID of the major version of the service template that was used to create
-	// the service pipeline.
+	// The major version of the service template that was used to create the service
+	// pipeline.
 	//
 	// TemplateMajorVersion is a required field
 	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of the service template that was used to create
-	// the service pipeline.
+	// The minor version of the service template that was used to create the service
+	// pipeline.
 	//
 	// TemplateMinorVersion is a required field
 	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string" required:"true"`
@@ -11852,8 +16843,8 @@ func (s *ServicePipeline) SetTemplateName(v string) *ServicePipeline {
 	return s
 }
 
-// A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-// in the AWS Proton Administrator Guide.
+// A quota was exceeded. For more information, see Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
+// in the Proton Administrator Guide.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12081,7 +17072,7 @@ type ServiceTemplate struct {
 	// template. Otherwise, a service pipeline isn't included in the service template.
 	PipelineProvisioning *string `locationName:"pipelineProvisioning" type:"string" enum:"Provisioning"`
 
-	// The ID of the recommended version of the service template.
+	// The recommended version of the service template.
 	RecommendedVersion *string `locationName:"recommendedVersion" min:"1" type:"string"`
 }
 
@@ -12199,7 +17190,7 @@ type ServiceTemplateSummary struct {
 	// template, otherwise a service pipeline isn't included in the service template.
 	PipelineProvisioning *string `locationName:"pipelineProvisioning" type:"string" enum:"Provisioning"`
 
-	// The ID of the recommended version of the service template.
+	// The recommended version of the service template.
 	RecommendedVersion *string `locationName:"recommendedVersion" min:"1" type:"string"`
 }
 
@@ -12301,18 +17292,18 @@ type ServiceTemplateVersion struct {
 	// LastModifiedAt is a required field
 	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp" required:"true"`
 
-	// The ID of the latest major version that's associated with the version of
-	// a service template.
+	// The latest major version that's associated with the version of a service
+	// template.
 	//
 	// MajorVersion is a required field
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of a service template.
+	// The minor version of a service template.
 	//
 	// MinorVersion is a required field
 	MinorVersion *string `locationName:"minorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the recommended minor version of the service template.
+	// The recommended minor version of the service template.
 	RecommendedMinorVersion *string `locationName:"recommendedMinorVersion" min:"1" type:"string"`
 
 	// The schema of the version of a service template.
@@ -12456,18 +17447,18 @@ type ServiceTemplateVersionSummary struct {
 	// LastModifiedAt is a required field
 	LastModifiedAt *time.Time `locationName:"lastModifiedAt" type:"timestamp" required:"true"`
 
-	// The ID of the latest major version that's associated with the version of
-	// a service template.
+	// The latest major version that's associated with the version of a service
+	// template.
 	//
 	// MajorVersion is a required field
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the minor version of a service template.
+	// The minor version of a service template.
 	//
 	// MinorVersion is a required field
 	MinorVersion *string `locationName:"minorVersion" min:"1" type:"string" required:"true"`
 
-	// The ID of the recommended minor version of the service template.
+	// The recommended minor version of the service template.
 	RecommendedMinorVersion *string `locationName:"recommendedMinorVersion" min:"1" type:"string"`
 
 	// The service template minor version status.
@@ -12726,6 +17717,93 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// The detail data for a template sync configuration.
+type TemplateSyncConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The repository branch.
+	//
+	// Branch is a required field
+	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
+
+	// The name of the repository, for example myrepos/myrepo.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// RepositoryProvider is a required field
+	RepositoryProvider *string `locationName:"repositoryProvider" type:"string" required:"true" enum:"RepositoryProvider"`
+
+	// A subdirectory path to your template bundle version.
+	Subdirectory *string `locationName:"subdirectory" min:"1" type:"string"`
+
+	// The template name.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+
+	// The template type.
+	//
+	// TemplateType is a required field
+	TemplateType *string `locationName:"templateType" type:"string" required:"true" enum:"TemplateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSyncConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateSyncConfig) GoString() string {
+	return s.String()
+}
+
+// SetBranch sets the Branch field's value.
+func (s *TemplateSyncConfig) SetBranch(v string) *TemplateSyncConfig {
+	s.Branch = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *TemplateSyncConfig) SetRepositoryName(v string) *TemplateSyncConfig {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryProvider sets the RepositoryProvider field's value.
+func (s *TemplateSyncConfig) SetRepositoryProvider(v string) *TemplateSyncConfig {
+	s.RepositoryProvider = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *TemplateSyncConfig) SetSubdirectory(v string) *TemplateSyncConfig {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *TemplateSyncConfig) SetTemplateName(v string) *TemplateSyncConfig {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *TemplateSyncConfig) SetTemplateType(v string) *TemplateSyncConfig {
+	s.TemplateType = &v
+	return s
+}
+
 // Template version source data.
 type TemplateVersionSourceInput struct {
 	_ struct{} `type:"structure"`
@@ -12931,8 +18009,21 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAccountSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Proton pipeline service role.
-	PipelineServiceRoleArn *string `locationName:"pipelineServiceRoleArn" min:"1" type:"string"`
+	// The repository that you provide with pull request provisioning.
+	//
+	// Provisioning by pull request is currently in feature preview and is only
+	// usable with Terraform based Proton Templates. To learn more about Amazon
+	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+	// see section 2 on Beta and Previews.
+	PipelineProvisioningRepository *RepositoryBranchInput_ `locationName:"pipelineProvisioningRepository" type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Proton pipeline service role.
+	//
+	// Provisioning by pull request is currently in feature preview and is only
+	// usable with Terraform based Proton Templates. To learn more about Amazon
+	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+	// see section 2 on Beta and Previews.
+	PipelineServiceRoleArn *string `locationName:"pipelineServiceRoleArn" type:"string"`
 }
 
 // String returns the string representation.
@@ -12956,14 +18047,22 @@ func (s UpdateAccountSettingsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateAccountSettingsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateAccountSettingsInput"}
-	if s.PipelineServiceRoleArn != nil && len(*s.PipelineServiceRoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("PipelineServiceRoleArn", 1))
+	if s.PipelineProvisioningRepository != nil {
+		if err := s.PipelineProvisioningRepository.Validate(); err != nil {
+			invalidParams.AddNested("PipelineProvisioningRepository", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetPipelineProvisioningRepository sets the PipelineProvisioningRepository field's value.
+func (s *UpdateAccountSettingsInput) SetPipelineProvisioningRepository(v *RepositoryBranchInput_) *UpdateAccountSettingsInput {
+	s.PipelineProvisioningRepository = v
+	return s
 }
 
 // SetPipelineServiceRoleArn sets the PipelineServiceRoleArn field's value.
@@ -12975,7 +18074,8 @@ func (s *UpdateAccountSettingsInput) SetPipelineServiceRoleArn(v string) *Update
 type UpdateAccountSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Proton pipeline service role detail data that's returned by AWS Proton.
+	// The Proton pipeline service role repository detail data that's returned by
+	// Proton.
 	//
 	// AccountSettings is a required field
 	AccountSettings *AccountSettings `locationName:"accountSettings" type:"structure" required:"true"`
@@ -13072,7 +18172,7 @@ func (s *UpdateEnvironmentAccountConnectionInput) SetRoleArn(v string) *UpdateEn
 type UpdateEnvironmentAccountConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment account connection detail data that's returned by AWS Proton.
+	// The environment account connection detail data that's returned by Proton.
 	//
 	// EnvironmentAccountConnection is a required field
 	EnvironmentAccountConnection *EnvironmentAccountConnection `locationName:"environmentAccountConnection" type:"structure" required:"true"`
@@ -13155,9 +18255,17 @@ type UpdateEnvironmentInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Proton service role that allows
-	// AWS Proton to make API calls to other services your behalf.
+	// The Amazon Resource Name (ARN) of the Proton service role that allows Proton
+	// to make API calls to other services your behalf.
 	ProtonServiceRoleArn *string `locationName:"protonServiceRoleArn" min:"1" type:"string"`
+
+	// The repository that you provide with pull request provisioning.
+	//
+	// Provisioning by pull request is currently in feature preview and is only
+	// usable with Terraform based Proton Templates. To learn more about Amazon
+	// Web Services Feature Preview terms (https://aws.amazon.com/service-terms),
+	// see section 2 on Beta and Previews.
+	ProvisioningRepository *RepositoryBranchInput_ `locationName:"provisioningRepository" type:"structure"`
 
 	// The formatted specification that defines the update.
 	//
@@ -13166,10 +18274,10 @@ type UpdateEnvironmentInput struct {
 	// String and GoString methods.
 	Spec *string `locationName:"spec" min:"1" type:"string" sensitive:"true"`
 
-	// The ID of the major version of the environment to update.
+	// The major version of the environment to update.
 	TemplateMajorVersion *string `locationName:"templateMajorVersion" min:"1" type:"string"`
 
-	// The ID of the minor version of the environment to update.
+	// The minor version of the environment to update.
 	TemplateMinorVersion *string `locationName:"templateMinorVersion" min:"1" type:"string"`
 }
 
@@ -13215,6 +18323,11 @@ func (s *UpdateEnvironmentInput) Validate() error {
 	if s.TemplateMinorVersion != nil && len(*s.TemplateMinorVersion) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TemplateMinorVersion", 1))
 	}
+	if s.ProvisioningRepository != nil {
+		if err := s.ProvisioningRepository.Validate(); err != nil {
+			invalidParams.AddNested("ProvisioningRepository", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -13252,6 +18365,12 @@ func (s *UpdateEnvironmentInput) SetProtonServiceRoleArn(v string) *UpdateEnviro
 	return s
 }
 
+// SetProvisioningRepository sets the ProvisioningRepository field's value.
+func (s *UpdateEnvironmentInput) SetProvisioningRepository(v *RepositoryBranchInput_) *UpdateEnvironmentInput {
+	s.ProvisioningRepository = v
+	return s
+}
+
 // SetSpec sets the Spec field's value.
 func (s *UpdateEnvironmentInput) SetSpec(v string) *UpdateEnvironmentInput {
 	s.Spec = &v
@@ -13273,7 +18392,7 @@ func (s *UpdateEnvironmentInput) SetTemplateMinorVersion(v string) *UpdateEnviro
 type UpdateEnvironmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment detail data that's returned by AWS Proton.
+	// The environment detail data that's returned by Proton.
 	//
 	// Environment is a required field
 	Environment *Environment `locationName:"environment" type:"structure" required:"true"`
@@ -13385,7 +18504,7 @@ func (s *UpdateEnvironmentTemplateInput) SetName(v string) *UpdateEnvironmentTem
 type UpdateEnvironmentTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment template detail data that's returned by AWS Proton.
+	// The environment template detail data that's returned by Proton.
 	//
 	// EnvironmentTemplate is a required field
 	EnvironmentTemplate *EnvironmentTemplate `locationName:"environmentTemplate" type:"structure" required:"true"`
@@ -13425,7 +18544,7 @@ type UpdateEnvironmentTemplateVersionInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// To update a major version of an environment template, include majorVersion.
+	// To update a major version of an environment template, include major Version.
 	//
 	// MajorVersion is a required field
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string" required:"true"`
@@ -13523,7 +18642,7 @@ func (s *UpdateEnvironmentTemplateVersionInput) SetTemplateName(v string) *Updat
 type UpdateEnvironmentTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The environment template version detail data that's returned by AWS Proton.
+	// The environment template version detail data that's returned by Proton.
 	//
 	// EnvironmentTemplateVersion is a required field
 	EnvironmentTemplateVersion *EnvironmentTemplateVersion `locationName:"environmentTemplateVersion" type:"structure" required:"true"`
@@ -13571,8 +18690,8 @@ type UpdateServiceInput struct {
 	// Lists the service instances to add and the existing service instances to
 	// remain. Omit the existing service instances to delete from the list. Don't
 	// include edits to the existing service instances or pipeline. For more information,
-	// see Edit a service in the AWS Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-update.html)
-	// or the AWS Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-update.html).
+	// see Edit a service in the Proton Administrator Guide (https://docs.aws.amazon.com/proton/latest/adminguide/ag-svc-update.html)
+	// or the Proton User Guide (https://docs.aws.amazon.com/proton/latest/userguide/ug-svc-update.html).
 	//
 	// Spec is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateServiceInput's
@@ -13786,7 +18905,7 @@ func (s *UpdateServiceInstanceInput) SetTemplateMinorVersion(v string) *UpdateSe
 type UpdateServiceInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service instance summary data returned by AWS Proton.
+	// The service instance summary data returned by Proton.
 	//
 	// ServiceInstance is a required field
 	ServiceInstance *ServiceInstance `locationName:"serviceInstance" type:"structure" required:"true"`
@@ -13819,7 +18938,7 @@ func (s *UpdateServiceInstanceOutput) SetServiceInstance(v *ServiceInstance) *Up
 type UpdateServiceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service detail data that's returned by AWS Proton.
+	// The service detail data that's returned by Proton.
 	//
 	// Service is a required field
 	Service *Service `locationName:"service" type:"structure" required:"true"`
@@ -13990,7 +19109,7 @@ func (s *UpdateServicePipelineInput) SetTemplateMinorVersion(v string) *UpdateSe
 type UpdateServicePipelineOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The pipeline details returned by AWS Proton.
+	// The pipeline details returned by Proton.
 	//
 	// Pipeline is a required field
 	Pipeline *ServicePipeline `locationName:"pipeline" type:"structure" required:"true"`
@@ -14102,7 +19221,7 @@ func (s *UpdateServiceTemplateInput) SetName(v string) *UpdateServiceTemplateInp
 type UpdateServiceTemplateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service template detail data that's returned by AWS Proton.
+	// The service template detail data that's returned by Proton.
 	//
 	// ServiceTemplate is a required field
 	ServiceTemplate *ServiceTemplate `locationName:"serviceTemplate" type:"structure" required:"true"`
@@ -14146,7 +19265,7 @@ type UpdateServiceTemplateVersionInput struct {
 	// String and GoString methods.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
-	// To update a major version of a service template, include majorVersion.
+	// To update a major version of a service template, include major Version.
 	//
 	// MajorVersion is a required field
 	MajorVersion *string `locationName:"majorVersion" min:"1" type:"string" required:"true"`
@@ -14263,7 +19382,7 @@ func (s *UpdateServiceTemplateVersionInput) SetTemplateName(v string) *UpdateSer
 type UpdateServiceTemplateVersionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service template version detail data that's returned by AWS Proton.
+	// The service template version detail data that's returned by Proton.
 	//
 	// ServiceTemplateVersion is a required field
 	ServiceTemplateVersion *ServiceTemplateVersion `locationName:"serviceTemplateVersion" type:"structure" required:"true"`
@@ -14290,6 +19409,161 @@ func (s UpdateServiceTemplateVersionOutput) GoString() string {
 // SetServiceTemplateVersion sets the ServiceTemplateVersion field's value.
 func (s *UpdateServiceTemplateVersionOutput) SetServiceTemplateVersion(v *ServiceTemplateVersion) *UpdateServiceTemplateVersionOutput {
 	s.ServiceTemplateVersion = v
+	return s
+}
+
+type UpdateTemplateSyncConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The repository branch.
+	//
+	// Branch is a required field
+	Branch *string `locationName:"branch" min:"1" type:"string" required:"true"`
+
+	// The name of the repository, for example myrepos/myrepo.
+	//
+	// RepositoryName is a required field
+	RepositoryName *string `locationName:"repositoryName" min:"1" type:"string" required:"true"`
+
+	// The repository provider.
+	//
+	// RepositoryProvider is a required field
+	RepositoryProvider *string `locationName:"repositoryProvider" type:"string" required:"true" enum:"RepositoryProvider"`
+
+	// A subdirectory path to your template bundle version. When included, limits
+	// the template bundle search to this repository directory.
+	Subdirectory *string `locationName:"subdirectory" min:"1" type:"string"`
+
+	// The synced template name.
+	//
+	// TemplateName is a required field
+	TemplateName *string `locationName:"templateName" min:"1" type:"string" required:"true"`
+
+	// The synced template type.
+	//
+	// TemplateType is a required field
+	TemplateType *string `locationName:"templateType" type:"string" required:"true" enum:"TemplateType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTemplateSyncConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTemplateSyncConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTemplateSyncConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTemplateSyncConfigInput"}
+	if s.Branch == nil {
+		invalidParams.Add(request.NewErrParamRequired("Branch"))
+	}
+	if s.Branch != nil && len(*s.Branch) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Branch", 1))
+	}
+	if s.RepositoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryName"))
+	}
+	if s.RepositoryName != nil && len(*s.RepositoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RepositoryName", 1))
+	}
+	if s.RepositoryProvider == nil {
+		invalidParams.Add(request.NewErrParamRequired("RepositoryProvider"))
+	}
+	if s.Subdirectory != nil && len(*s.Subdirectory) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Subdirectory", 1))
+	}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+	if s.TemplateType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBranch sets the Branch field's value.
+func (s *UpdateTemplateSyncConfigInput) SetBranch(v string) *UpdateTemplateSyncConfigInput {
+	s.Branch = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *UpdateTemplateSyncConfigInput) SetRepositoryName(v string) *UpdateTemplateSyncConfigInput {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryProvider sets the RepositoryProvider field's value.
+func (s *UpdateTemplateSyncConfigInput) SetRepositoryProvider(v string) *UpdateTemplateSyncConfigInput {
+	s.RepositoryProvider = &v
+	return s
+}
+
+// SetSubdirectory sets the Subdirectory field's value.
+func (s *UpdateTemplateSyncConfigInput) SetSubdirectory(v string) *UpdateTemplateSyncConfigInput {
+	s.Subdirectory = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *UpdateTemplateSyncConfigInput) SetTemplateName(v string) *UpdateTemplateSyncConfigInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *UpdateTemplateSyncConfigInput) SetTemplateType(v string) *UpdateTemplateSyncConfigInput {
+	s.TemplateType = &v
+	return s
+}
+
+type UpdateTemplateSyncConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The template sync configuration detail data that's returned by Proton.
+	TemplateSyncConfig *TemplateSyncConfig `locationName:"templateSyncConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTemplateSyncConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTemplateSyncConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetTemplateSyncConfig sets the TemplateSyncConfig field's value.
+func (s *UpdateTemplateSyncConfigOutput) SetTemplateSyncConfig(v *TemplateSyncConfig) *UpdateTemplateSyncConfigOutput {
+	s.TemplateSyncConfig = v
 	return s
 }
 
@@ -14461,6 +19735,23 @@ func EnvironmentAccountConnectionStatus_Values() []string {
 	}
 }
 
+// List of provisioning engines
+const (
+	// ProvisionedResourceEngineCloudformation is a ProvisionedResourceEngine enum value
+	ProvisionedResourceEngineCloudformation = "CLOUDFORMATION"
+
+	// ProvisionedResourceEngineTerraform is a ProvisionedResourceEngine enum value
+	ProvisionedResourceEngineTerraform = "TERRAFORM"
+)
+
+// ProvisionedResourceEngine_Values returns all elements of the ProvisionedResourceEngine enum
+func ProvisionedResourceEngine_Values() []string {
+	return []string{
+		ProvisionedResourceEngineCloudformation,
+		ProvisionedResourceEngineTerraform,
+	}
+}
+
 const (
 	// ProvisioningCustomerManaged is a Provisioning enum value
 	ProvisioningCustomerManaged = "CUSTOMER_MANAGED"
@@ -14470,6 +19761,99 @@ const (
 func Provisioning_Values() []string {
 	return []string{
 		ProvisioningCustomerManaged,
+	}
+}
+
+const (
+	// RepositoryProviderGithub is a RepositoryProvider enum value
+	RepositoryProviderGithub = "GITHUB"
+
+	// RepositoryProviderGithubEnterprise is a RepositoryProvider enum value
+	RepositoryProviderGithubEnterprise = "GITHUB_ENTERPRISE"
+
+	// RepositoryProviderBitbucket is a RepositoryProvider enum value
+	RepositoryProviderBitbucket = "BITBUCKET"
+)
+
+// RepositoryProvider_Values returns all elements of the RepositoryProvider enum
+func RepositoryProvider_Values() []string {
+	return []string{
+		RepositoryProviderGithub,
+		RepositoryProviderGithubEnterprise,
+		RepositoryProviderBitbucket,
+	}
+}
+
+const (
+	// RepositorySyncStatusInitiated is a RepositorySyncStatus enum value
+	RepositorySyncStatusInitiated = "INITIATED"
+
+	// RepositorySyncStatusInProgress is a RepositorySyncStatus enum value
+	RepositorySyncStatusInProgress = "IN_PROGRESS"
+
+	// RepositorySyncStatusSucceeded is a RepositorySyncStatus enum value
+	RepositorySyncStatusSucceeded = "SUCCEEDED"
+
+	// RepositorySyncStatusFailed is a RepositorySyncStatus enum value
+	RepositorySyncStatusFailed = "FAILED"
+
+	// RepositorySyncStatusQueued is a RepositorySyncStatus enum value
+	RepositorySyncStatusQueued = "QUEUED"
+)
+
+// RepositorySyncStatus_Values returns all elements of the RepositorySyncStatus enum
+func RepositorySyncStatus_Values() []string {
+	return []string{
+		RepositorySyncStatusInitiated,
+		RepositorySyncStatusInProgress,
+		RepositorySyncStatusSucceeded,
+		RepositorySyncStatusFailed,
+		RepositorySyncStatusQueued,
+	}
+}
+
+// The state that a PR-based deployment can be updated to.
+const (
+	// ResourceDeploymentStatusInProgress is a ResourceDeploymentStatus enum value
+	ResourceDeploymentStatusInProgress = "IN_PROGRESS"
+
+	// ResourceDeploymentStatusFailed is a ResourceDeploymentStatus enum value
+	ResourceDeploymentStatusFailed = "FAILED"
+
+	// ResourceDeploymentStatusSucceeded is a ResourceDeploymentStatus enum value
+	ResourceDeploymentStatusSucceeded = "SUCCEEDED"
+)
+
+// ResourceDeploymentStatus_Values returns all elements of the ResourceDeploymentStatus enum
+func ResourceDeploymentStatus_Values() []string {
+	return []string{
+		ResourceDeploymentStatusInProgress,
+		ResourceDeploymentStatusFailed,
+		ResourceDeploymentStatusSucceeded,
+	}
+}
+
+const (
+	// ResourceSyncStatusInitiated is a ResourceSyncStatus enum value
+	ResourceSyncStatusInitiated = "INITIATED"
+
+	// ResourceSyncStatusInProgress is a ResourceSyncStatus enum value
+	ResourceSyncStatusInProgress = "IN_PROGRESS"
+
+	// ResourceSyncStatusSucceeded is a ResourceSyncStatus enum value
+	ResourceSyncStatusSucceeded = "SUCCEEDED"
+
+	// ResourceSyncStatusFailed is a ResourceSyncStatus enum value
+	ResourceSyncStatusFailed = "FAILED"
+)
+
+// ResourceSyncStatus_Values returns all elements of the ResourceSyncStatus enum
+func ResourceSyncStatus_Values() []string {
+	return []string{
+		ResourceSyncStatusInitiated,
+		ResourceSyncStatusInProgress,
+		ResourceSyncStatusSucceeded,
+		ResourceSyncStatusFailed,
 	}
 }
 
@@ -14534,6 +19918,34 @@ func ServiceStatus_Values() []string {
 		ServiceStatusUpdateFailedCleanupFailed,
 		ServiceStatusUpdateFailed,
 		ServiceStatusUpdateCompleteCleanupFailed,
+	}
+}
+
+const (
+	// SyncTypeTemplateSync is a SyncType enum value
+	SyncTypeTemplateSync = "TEMPLATE_SYNC"
+)
+
+// SyncType_Values returns all elements of the SyncType enum
+func SyncType_Values() []string {
+	return []string{
+		SyncTypeTemplateSync,
+	}
+}
+
+const (
+	// TemplateTypeEnvironment is a TemplateType enum value
+	TemplateTypeEnvironment = "ENVIRONMENT"
+
+	// TemplateTypeService is a TemplateType enum value
+	TemplateTypeService = "SERVICE"
+)
+
+// TemplateType_Values returns all elements of the TemplateType enum
+func TemplateType_Values() []string {
+	return []string{
+		TemplateTypeEnvironment,
+		TemplateTypeService,
 	}
 }
 

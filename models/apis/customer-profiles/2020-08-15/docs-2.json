@@ -3,7 +3,7 @@
   "service": "<fullname>Amazon Connect Customer Profiles</fullname> <p>Welcome to the Amazon Connect Customer Profiles API Reference. This guide provides information about the Amazon Connect Customer Profiles API, including supported operations, data types, parameters, and schemas.</p> <p>Amazon Connect Customer Profiles is a unified customer profile for your contact center that has pre-built connectors powered by AppFlow that make it easy to combine customer information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with contact history from your Amazon Connect contact center.</p> <p>If you're new to Amazon Connect , you might find it helpful to also review the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/what-is-amazon-connect.html\">Amazon Connect Administrator Guide</a>.</p>",
   "operations": {
     "AddProfileKey": "<p>Associates a new key value with a specific profile, such as a Contact Trace Record (CTR) ContactId.</p> <p>A profile object can have a single unique key and any number of additional keys that can be used to identify the profile that it belongs to.</p>",
-    "CreateDomain": "<p>Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p>",
+    "CreateDomain": "<p>Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p> <p>To prevent cross-service impersonation when you call this API, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html\">Cross-service confused deputy prevention</a> for sample policies that you should apply. </p>",
     "CreateProfile": "<p>Creates a standard profile.</p> <p>A standard profile represents the following attributes for a customer profile in a domain.</p>",
     "DeleteDomain": "<p>Deletes a specific domain and all of its customer data, such as customer profile attributes and their related objects.</p>",
     "DeleteIntegration": "<p>Removes an integration from a specific domain.</p>",
@@ -11,13 +11,16 @@
     "DeleteProfileKey": "<p>Removes a searchable key from a customer profile.</p>",
     "DeleteProfileObject": "<p>Removes an object associated with a profile of a given ProfileObjectType.</p>",
     "DeleteProfileObjectType": "<p>Removes a ProfileObjectType from a specific domain as well as removes all the ProfileObjects of that type. It also disables integrations from this specific ProfileObjectType. In addition, it scrubs all of the fields of the standard profile that were populated from this ProfileObjectType.</p>",
+    "GetAutoMergingPreview": "<p>Tests the auto-merging settings of your Identity Resolution Job without merging your data. It randomly selects a sample of matching groups from the existing matching results, and applies the automerging settings that you provided. You can then view the number of profiles in the sample, the number of matches, and the number of profiles identified to be merged. This enables you to evaluate the accuracy of the attributes in your matching list. </p> <p>You can't view which profiles are matched and would be merged.</p> <important> <p>We strongly recommend you use this API to do a dry run of the automerging process before running the Identity Resolution Job. Include <b>at least</b> two matching attributes. If your matching list includes too few attributes (such as only <code>FirstName</code> or only <code>LastName</code>), there may be a large number of matches. This increases the chances of erroneous merges.</p> </important>",
     "GetDomain": "<p>Returns information about a specific domain.</p>",
+    "GetIdentityResolutionJob": "<p>Returns information about an Identity Resolution Job in a specific domain. </p> <p>Identity Resolution Jobs are set up using the Amazon Connect admin console. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/use-identity-resolution.html\">Use Identity Resolution to consolidate similar profiles</a>.</p>",
     "GetIntegration": "<p>Returns an integration for a domain.</p>",
-    "GetMatches": "<p>This API is in preview release for Amazon Connect and subject to change.</p> <p>Before calling this API, use <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable identity resolution: set <code>Matching</code> to true.</p> <p>GetMatches returns potentially matching profiles, based on the results of the latest run of a machine learning process. </p> <important> <p>Amazon Connect starts a batch process every Saturday at 12AM UTC to identify matching profiles. The results are returned up to seven days after the Saturday run.</p> </important> <p>Amazon Connect uses the following profile attributes to identify matches:</p> <ul> <li> <p>PhoneNumber</p> </li> <li> <p>HomePhoneNumber</p> </li> <li> <p>BusinessPhoneNumber</p> </li> <li> <p>MobilePhoneNumber</p> </li> <li> <p>EmailAddress</p> </li> <li> <p>PersonalEmailAddress</p> </li> <li> <p>BusinessEmailAddress</p> </li> <li> <p>FullName</p> </li> <li> <p>BusinessName</p> </li> </ul> <p>For example, two or more profiles—with spelling mistakes such as <b>John Doe</b> and <b>Jhn Doe</b>, or different casing email addresses such as <b>JOHN_DOE@ANYCOMPANY.COM</b> and <b>johndoe@anycompany.com</b>, or different phone number formats such as <b>555-010-0000</b> and <b>+1-555-010-0000</b>—can be detected as belonging to the same customer <b>John Doe</b> and merged into a unified profile.</p>",
+    "GetMatches": "<p>This API is in preview release for Amazon Connect and subject to change.</p> <p>Before calling this API, use <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable identity resolution: set <code>Matching</code> to true.</p> <p>GetMatches returns potentially matching profiles, based on the results of the latest run of a machine learning process. </p> <important> <p>The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>, Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution Job. If you do not specify a date and time for Identity Resolution Job to run, by default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains. </p> <p>After the Identity Resolution Job completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. Or, if you have configured <code>ExportingConfig</code> in the <code>MatchingRequest</code>, you can download the results from S3.</p> </important> <p>Amazon Connect uses the following profile attributes to identify matches:</p> <ul> <li> <p>PhoneNumber</p> </li> <li> <p>HomePhoneNumber</p> </li> <li> <p>BusinessPhoneNumber</p> </li> <li> <p>MobilePhoneNumber</p> </li> <li> <p>EmailAddress</p> </li> <li> <p>PersonalEmailAddress</p> </li> <li> <p>BusinessEmailAddress</p> </li> <li> <p>FullName</p> </li> <li> <p>BusinessName</p> </li> </ul> <p>For example, two or more profiles—with spelling mistakes such as <b>John Doe</b> and <b>Jhn Doe</b>, or different casing email addresses such as <b>JOHN_DOE@ANYCOMPANY.COM</b> and <b>johndoe@anycompany.com</b>, or different phone number formats such as <b>555-010-0000</b> and <b>+1-555-010-0000</b>—can be detected as belonging to the same customer <b>John Doe</b> and merged into a unified profile.</p>",
     "GetProfileObjectType": "<p>Returns the object types for a specific domain.</p>",
     "GetProfileObjectTypeTemplate": "<p>Returns the template information for a specific object type.</p> <p>A template is a predefined ProfileObjectType, such as “Salesforce-Account” or “Salesforce-Contact.” When a user sends a ProfileObject, using the PutProfileObject API, with an ObjectTypeName that matches one of the TemplateIds, it uses the mappings from the template.</p>",
     "ListAccountIntegrations": "<p>Lists all of the integrations associated to a specific URI in the AWS account.</p>",
     "ListDomains": "<p>Returns a list of all the domains for an AWS account that have been created.</p>",
+    "ListIdentityResolutionJobs": "<p>Lists all of the Identity Resolution Jobs in your domain. The response sorts the list by <code>JobStartTime</code>.</p>",
     "ListIntegrations": "<p>Lists all of the integrations in your domain.</p>",
     "ListProfileObjectTypeTemplates": "<p>Lists all of the template information for object types.</p>",
     "ListProfileObjectTypes": "<p>Lists all of the templates available within the service.</p>",
@@ -30,7 +33,7 @@
     "SearchProfiles": "<p>Searches for profiles within a specific domain name using name, phone number, email address, account number, or a custom defined index.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon Connect Customer Profiles resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p> <p>Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.</p> <p>You can use the TagResource action with a resource that already has tags. If you specify a new tag key, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource.</p>",
     "UntagResource": "<p>Removes one or more tags from the specified Amazon Connect Customer Profiles resource. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p>",
-    "UpdateDomain": "<p>Updates the properties of a domain, including creating or selecting a dead letter queue or an encryption key.</p> <p>After a domain is created, the name can’t be changed.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p>",
+    "UpdateDomain": "<p>Updates the properties of a domain, including creating or selecting a dead letter queue or an encryption key.</p> <p>After a domain is created, the name can’t be changed.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p> <p>To prevent cross-service impersonation when you call this API, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html\">Cross-service confused deputy prevention</a> for sample policies that you should apply. </p>",
     "UpdateProfile": "<p>Updates the properties of a profile. The ProfileId is required for updating a customer profile.</p> <p>When calling the UpdateProfile API, specifying an empty string value means that any existing value will be removed. Not specifying a string value means that any value already there will be kept.</p>"
   },
   "shapes": {
@@ -52,8 +55,12 @@
         "DeleteProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
         "FieldMap$key": null,
         "FieldNameList$member": null,
+        "GetAutoMergingPreviewRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "GetAutoMergingPreviewResponse$DomainName": "<p>The unique name of the domain.</p>",
         "GetDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetDomainResponse$DomainName": "<p>The unique name of the domain.</p>",
+        "GetIdentityResolutionJobRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "GetIdentityResolutionJobResponse$DomainName": "<p>The unique name of the domain.</p>",
         "GetIntegrationRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetIntegrationResponse$DomainName": "<p>The unique name of the domain.</p>",
         "GetMatchesRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -63,8 +70,10 @@
         "GetProfileObjectTypeTemplateResponse$TemplateId": "<p>A unique identifier for the object template.</p>",
         "GetProfileObjectTypeTemplateResponse$SourceName": "<p>The name of the source of the object template.</p>",
         "GetProfileObjectTypeTemplateResponse$SourceObject": "<p>The source of the object template.</p>",
+        "IdentityResolutionJob$DomainName": "<p>The unique name of the domain.</p>",
         "KeyMap$key": null,
         "ListDomainItem$DomainName": "<p>The unique name of the domain.</p>",
+        "ListIdentityResolutionJobsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListIntegrationItem$DomainName": "<p>The unique name of the domain.</p>",
         "ListIntegrationsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListProfileObjectTypeTemplateItem$TemplateId": "<p>A unique identifier for the object template.</p>",
@@ -128,6 +137,14 @@
         "Profile$Attributes": "<p>A key value pair of attributes of a customer profile.</p>"
       }
     },
+    "AutoMerging": {
+      "base": "<p>Configuration settings for how to perform the auto-merging of profiles.</p>",
+      "refs": {
+        "GetIdentityResolutionJobResponse$AutoMerging": "<p>Configuration settings for how to perform the auto-merging of profiles.</p>",
+        "MatchingRequest$AutoMerging": "<p>Configuration information about the auto-merging process.</p>",
+        "MatchingResponse$AutoMerging": "<p>Configuration information about the auto-merging process.</p>"
+      }
+    },
     "BadRequestException": {
       "base": "<p>The input you provided is invalid.</p>",
       "refs": {
@@ -145,6 +162,19 @@
         "S3SourceProperties$BucketPrefix": "<p>The object key for the Amazon S3 bucket in which the source files are stored.</p>"
       }
     },
+    "ConflictResolution": {
+      "base": "<p>How the auto-merging process should resolve conflicts between different profiles.</p>",
+      "refs": {
+        "AutoMerging$ConflictResolution": "<p>How the auto-merging process should resolve conflicts between different profiles. For example, if Profile A and Profile B have the same <code>FirstName</code> and <code>LastName</code> (and that is the matching criteria), which <code>EmailAddress</code> should be used? </p>",
+        "GetAutoMergingPreviewRequest$ConflictResolution": "<p>How the auto-merging process should resolve conflicts between different profiles.</p>"
+      }
+    },
+    "ConflictResolvingModel": {
+      "base": null,
+      "refs": {
+        "ConflictResolution$ConflictResolvingModel": "<p>How the auto-merging process should resolve conflicts between different profiles.</p> <ul> <li> <p> <code>RECENCY</code>: Uses the data that was most recently updated.</p> </li> <li> <p> <code>SOURCE</code>: Uses the data from a specific source. For example, if a company has been aquired or two departments have merged, data from the specified source is used. If two duplicate profiles are from the same source, then <code>RECENCY</code> is used again.</p> </li> </ul>"
+      }
+    },
     "ConnectorOperator": {
       "base": "<p>The operation to be performed on the provided source fields.</p>",
       "refs": {
@@ -155,6 +185,13 @@
       "base": null,
       "refs": {
         "SourceFlowConfig$ConnectorProfileName": "<p>The name of the AppFlow connector profile. This name must be unique for each connector profile in the AWS account.</p>"
+      }
+    },
+    "Consolidation": {
+      "base": "<p>The matching criteria to be used during the auto-merging process. </p>",
+      "refs": {
+        "AutoMerging$Consolidation": "<p>A list of matching attributes that represent matching criteria. If two profiles meet at least one of the requirements in the matching attributes list, they will be merged.</p>",
+        "GetAutoMergingPreviewRequest$Consolidation": "<p>A list of matching attributes that represent matching criteria.</p>"
       }
     },
     "CreateDomainRequest": {
@@ -275,6 +312,26 @@
         "GetDomainResponse$Stats": "<p>Usage-specific statistics about the domain.</p>"
       }
     },
+    "Double": {
+      "base": null,
+      "refs": {
+        "MatchItem$ConfidenceScore": "<p>A number between 0 and 1 that represents the confidence level of assigning profiles to a matching group. A score of 1 likely indicates an exact match.</p>"
+      }
+    },
+    "ExportingConfig": {
+      "base": "<p>Configuration information about the S3 bucket where Identity Resolution Jobs writes result files. </p> <note> <p>You need to give Customer Profiles service principal write permission to your S3 bucket. Otherwise, you'll get an exception in the API response. For an example policy, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/cross-service-confused-deputy-prevention.html#customer-profiles-cross-service\">Amazon Connect Customer Profiles cross-service confused deputy prevention</a>. </p> </note>",
+      "refs": {
+        "MatchingRequest$ExportingConfig": "<p>Configuration information for exporting Identity Resolution results, for example, to an S3 bucket.</p>",
+        "MatchingResponse$ExportingConfig": "<p>Configuration information for exporting Identity Resolution results, for example, to an S3 bucket.</p>"
+      }
+    },
+    "ExportingLocation": {
+      "base": "<p>The S3 location where Identity Resolution Jobs write result files.</p>",
+      "refs": {
+        "GetIdentityResolutionJobResponse$ExportingLocation": "<p>The S3 location where the Identity Resolution Job writes result files.</p>",
+        "IdentityResolutionJob$ExportingLocation": "<p>The S3 location where the Identity Resolution Job writes result files.</p>"
+      }
+    },
     "FieldContentType": {
       "base": null,
       "refs": {
@@ -328,12 +385,32 @@
         "UpdateProfileRequest$Gender": "<p>The gender with which the customer identifies. </p>"
       }
     },
+    "GetAutoMergingPreviewRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAutoMergingPreviewResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetDomainRequest": {
       "base": null,
       "refs": {
       }
     },
     "GetDomainResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIdentityResolutionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetIdentityResolutionJobResponse": {
       "base": null,
       "refs": {
       }
@@ -378,6 +455,25 @@
       "refs": {
       }
     },
+    "IdentityResolutionJob": {
+      "base": "<p>Information about the Identity Resolution Job.</p>",
+      "refs": {
+        "IdentityResolutionJobsList$member": null
+      }
+    },
+    "IdentityResolutionJobStatus": {
+      "base": null,
+      "refs": {
+        "GetIdentityResolutionJobResponse$Status": "<p>The status of the Identity Resolution Job.</p> <ul> <li> <p> <code>PENDING</code>: The Identity Resolution Job is scheduled but has not started yet. If you turn off the Identity Resolution feature in your domain, jobs in the <code>PENDING</code> state are deleted.</p> </li> <li> <p> <code>PREPROCESSING</code>: The Identity Resolution Job is loading your data.</p> </li> <li> <p> <code>FIND_MATCHING</code>: The Identity Resolution Job is using the machine learning model to identify profiles that belong to the same matching group.</p> </li> <li> <p> <code>MERGING</code>: The Identity Resolution Job is merging duplicate profiles.</p> </li> <li> <p> <code>COMPLETED</code>: The Identity Resolution Job completed successfully.</p> </li> <li> <p> <code>PARTIAL_SUCCESS</code>: There's a system error and not all of the data is merged. The Identity Resolution Job writes a message indicating the source of the problem.</p> </li> <li> <p> <code>FAILED</code>: The Identity Resolution Job did not merge any data. It writes a message indicating the source of the problem.</p> </li> </ul>",
+        "IdentityResolutionJob$Status": "<p>The status of the Identity Resolution Job.</p> <ul> <li> <p> <code>PENDING</code>: The Identity Resolution Job is scheduled but has not started yet. If you turn off the Identity Resolution feature in your domain, jobs in the <code>PENDING</code> state are deleted.</p> </li> <li> <p> <code>PREPROCESSING</code>: The Identity Resolution Job is loading your data.</p> </li> <li> <p> <code>FIND_MATCHING</code>: The Identity Resolution Job is using the machine learning model to identify profiles that belong to the same matching group.</p> </li> <li> <p> <code>MERGING</code>: The Identity Resolution Job is merging duplicate profiles.</p> </li> <li> <p> <code>COMPLETED</code>: The Identity Resolution Job completed successfully.</p> </li> <li> <p> <code>PARTIAL_SUCCESS</code>: There's a system error and not all of the data is merged. The Identity Resolution Job writes a message indicating the source of the problem.</p> </li> <li> <p> <code>FAILED</code>: The Identity Resolution Job did not merge any data. It writes a message indicating the source of the problem.</p> </li> </ul>"
+      }
+    },
+    "IdentityResolutionJobsList": {
+      "base": null,
+      "refs": {
+        "ListIdentityResolutionJobsResponse$IdentityResolutionJobsList": "<p>A list of Identity Resolution Jobs.</p>"
+      }
+    },
     "IncrementalPullConfig": {
       "base": "<p>Specifies the configuration used when importing incremental records from the source.</p>",
       "refs": {
@@ -394,6 +490,32 @@
     "InternalServerException": {
       "base": "<p>An internal service error occurred.</p>",
       "refs": {
+      }
+    },
+    "JobSchedule": {
+      "base": "<p>The day and time when do you want to start the Identity Resolution Job every week.</p>",
+      "refs": {
+        "MatchingRequest$JobSchedule": "<p>The day and time when do you want to start the Identity Resolution Job every week.</p>",
+        "MatchingResponse$JobSchedule": "<p>The day and time when do you want to start the Identity Resolution Job every week.</p>"
+      }
+    },
+    "JobScheduleDayOfTheWeek": {
+      "base": null,
+      "refs": {
+        "JobSchedule$DayOfTheWeek": "<p>The day when the Identity Resolution Job should run every week.</p>"
+      }
+    },
+    "JobScheduleTime": {
+      "base": null,
+      "refs": {
+        "JobSchedule$Time": "<p>The time when the Identity Resolution Job should run every week.</p>"
+      }
+    },
+    "JobStats": {
+      "base": "<p>Statistics about the Identity Resolution Job.</p>",
+      "refs": {
+        "GetIdentityResolutionJobResponse$JobStats": "<p>Statistics about the Identity Resolution Job.</p>",
+        "IdentityResolutionJob$JobStats": "<p>Statistics about an Identity Resolution Job.</p>"
       }
     },
     "KeyMap": {
@@ -433,6 +555,16 @@
       }
     },
     "ListDomainsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIdentityResolutionJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListIdentityResolutionJobsResponse": {
       "base": null,
       "refs": {
       }
@@ -535,19 +667,31 @@
         "GetMatchesResponse$Matches": "<p>The list of matched profiles for this instance.</p>"
       }
     },
+    "MatchingAttributes": {
+      "base": null,
+      "refs": {
+        "MatchingAttributesList$member": null
+      }
+    },
+    "MatchingAttributesList": {
+      "base": null,
+      "refs": {
+        "Consolidation$MatchingAttributesList": "<p>A list of matching criteria.</p>"
+      }
+    },
     "MatchingRequest": {
       "base": "<p>The flag that enables the matching process of duplicate profiles.</p>",
       "refs": {
-        "CreateDomainRequest$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>",
-        "UpdateDomainRequest$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>"
+        "CreateDomainRequest$Matching": "<p>The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>, Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution Job. If you do not specify a date and time for Identity Resolution Job to run, by default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains. </p> <p>After the Identity Resolution Job completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. Or, if you have configured <code>ExportingConfig</code> in the <code>MatchingRequest</code>, you can download the results from S3.</p>",
+        "UpdateDomainRequest$Matching": "<p>The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>, Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution Job. If you do not specify a date and time for Identity Resolution Job to run, by default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains. </p> <p>After the Identity Resolution Job completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. Or, if you have configured <code>ExportingConfig</code> in the <code>MatchingRequest</code>, you can download the results from S3.</p>"
       }
     },
     "MatchingResponse": {
       "base": "<p>The flag that enables the matching process of duplicate profiles.</p>",
       "refs": {
-        "CreateDomainResponse$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>",
-        "GetDomainResponse$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>",
-        "UpdateDomainResponse$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>"
+        "CreateDomainResponse$Matching": "<p>The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>, Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution Job. If you do not specify a date and time for Identity Resolution Job to run, by default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains. </p> <p>After the Identity Resolution Job completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. Or, if you have configured <code>ExportingConfig</code> in the <code>MatchingRequest</code>, you can download the results from S3.</p>",
+        "GetDomainResponse$Matching": "<p>The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>, Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution Job. If you do not specify a date and time for Identity Resolution Job to run, by default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains. </p> <p>After the Identity Resolution Job completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. Or, if you have configured <code>ExportingConfig</code> in the <code>MatchingRequest</code>, you can download the results from S3.</p>",
+        "UpdateDomainResponse$Matching": "<p>The process of matching duplicate profiles. If <code>Matching</code> = <code>true</code>, Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution Job. If you do not specify a date and time for Identity Resolution Job to run, by default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains. </p> <p>After the Identity Resolution Job completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. Or, if you have configured <code>ExportingConfig</code> in the <code>MatchingRequest</code>, you can download the results from S3.</p>"
       }
     },
     "MergeProfilesRequest": {
@@ -694,6 +838,18 @@
       "base": null,
       "refs": {
         "ConnectorOperator$S3": "<p>The operation to be performed on the provided Amazon S3 source fields.</p>"
+      }
+    },
+    "S3ExportingConfig": {
+      "base": "<p>Configuration information about the S3 bucket where Identity Resolution Jobs write result files.</p>",
+      "refs": {
+        "ExportingConfig$S3Exporting": "<p>The S3 location where Identity Resolution Jobs write result files.</p>"
+      }
+    },
+    "S3ExportingLocation": {
+      "base": "<p>The S3 location where Identity Resolution Jobs write result files.</p>",
+      "refs": {
+        "ExportingLocation$S3Exporting": "<p>Information about the S3 location where Identity Resolution Jobs write result files.</p>"
       }
     },
     "S3SourceProperties": {
@@ -1001,7 +1157,13 @@
         "DomainStats$ProfileCount": "<p>The total number of profiles currently in the domain.</p>",
         "DomainStats$MeteringProfileCount": "<p>The number of profiles that you are currently paying for in the domain. If you have more than 100 objects associated with a single profile, that profile counts as two profiles. If you have more than 200 objects, that profile counts as three, and so on.</p>",
         "DomainStats$ObjectCount": "<p>The total number of objects in domain.</p>",
-        "DomainStats$TotalSize": "<p>The total size, in bytes, of all objects in the domain.</p>"
+        "DomainStats$TotalSize": "<p>The total size, in bytes, of all objects in the domain.</p>",
+        "GetAutoMergingPreviewResponse$NumberOfMatchesInSample": "<p>The number of match groups in the domain that have been reviewed in this preview dry run.</p>",
+        "GetAutoMergingPreviewResponse$NumberOfProfilesInSample": "<p>The number of profiles found in this preview dry run.</p>",
+        "GetAutoMergingPreviewResponse$NumberOfProfilesWillBeMerged": "<p>The number of profiles that would be merged if this wasn't a preview dry run.</p>",
+        "JobStats$NumberOfProfilesReviewed": "<p>The number of profiles reviewed.</p>",
+        "JobStats$NumberOfMatchesFound": "<p>The number of matches found.</p>",
+        "JobStats$NumberOfMergesDone": "<p>The number of merges completed.</p>"
       }
     },
     "matchesNumber": {
@@ -1016,6 +1178,7 @@
         "GetMatchesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListAccountIntegrationsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListDomainsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
+        "ListIdentityResolutionJobsRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListIntegrationsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListProfileObjectTypeTemplatesRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListProfileObjectTypesRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
@@ -1043,6 +1206,7 @@
     "optionalBoolean": {
       "base": null,
       "refs": {
+        "AutoMerging$Enabled": "<p>The flag that enables the auto-merging of duplicate profiles.</p>",
         "MatchingRequest$Enabled": "<p>The flag that enables the matching process of duplicate profiles.</p>",
         "MatchingResponse$Enabled": "<p>The flag that enables the matching process of duplicate profiles.</p>"
       }
@@ -1055,6 +1219,25 @@
         "DeleteProfileKeyRequest$Values": "<p>A list of key values.</p>",
         "ObjectFilter$Values": "<p>A list of key values.</p>",
         "SearchProfilesRequest$Values": "<p>A list of key values.</p>"
+      }
+    },
+    "s3BucketName": {
+      "base": null,
+      "refs": {
+        "S3ExportingConfig$S3BucketName": "<p>The name of the S3 bucket where Identity Resolution Jobs write result files.</p>",
+        "S3ExportingLocation$S3BucketName": "<p>The name of the S3 bucket name where Identity Resolution Jobs write result files.</p>"
+      }
+    },
+    "s3KeyName": {
+      "base": null,
+      "refs": {
+        "S3ExportingLocation$S3KeyName": "<p>The S3 key name of the location where Identity Resolution Jobs write result files.</p>"
+      }
+    },
+    "s3KeyNameCustomerOutputConfig": {
+      "base": null,
+      "refs": {
+        "S3ExportingConfig$S3KeyName": "<p>The S3 key name of the location where Identity Resolution Jobs write result files.</p>"
       }
     },
     "sqsQueueUrl": {
@@ -1125,6 +1308,7 @@
         "AttributeSourceIdMap$key": null,
         "Attributes$key": null,
         "Attributes$value": null,
+        "ConflictResolution$SourceName": "<p>The <code>ObjectType</code> name that is used to resolve profile merging conflicts when choosing <code>SOURCE</code> as the <code>ConflictResolvingModel</code>.</p>",
         "CreateProfileRequest$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
         "CreateProfileRequest$BusinessName": "<p>The name of the customer’s business.</p>",
         "CreateProfileRequest$FirstName": "<p>The customer’s first name.</p>",
@@ -1142,10 +1326,13 @@
         "DeleteProfileObjectRequest$ProfileObjectUniqueKey": "<p>The unique identifier of the profile object generated by the service.</p>",
         "GetIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "GetIntegrationResponse$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
+        "GetProfileObjectTypeResponse$SourceLastUpdatedTimestampFormat": "<p>The format of your <code>sourceLastUpdatedTimestamp</code> that was previously set up.</p>",
+        "GetProfileObjectTypeTemplateResponse$SourceLastUpdatedTimestampFormat": "<p>The format of your <code>sourceLastUpdatedTimestamp</code> that was previously set up.</p>",
         "ListAccountIntegrationsRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "ListIntegrationItem$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "ListProfileObjectsItem$ProfileObjectUniqueKey": "<p>The unique identifier of the ProfileObject generated by the service.</p>",
         "MatchItem$MatchId": "<p>The unique identifiers for this group of profiles that match.</p>",
+        "MatchingAttributes$member": null,
         "Profile$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
         "Profile$BusinessName": "<p>The name of the customer’s business.</p>",
         "Profile$FirstName": "<p>The customer’s first name.</p>",
@@ -1162,6 +1349,8 @@
         "PutIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "PutIntegrationResponse$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "PutProfileObjectResponse$ProfileObjectUniqueKey": "<p>The unique identifier of the profile object generated by the service.</p>",
+        "PutProfileObjectTypeRequest$SourceLastUpdatedTimestampFormat": "<p>The format of your <code>sourceLastUpdatedTimestamp</code> that was previously set up. </p>",
+        "PutProfileObjectTypeResponse$SourceLastUpdatedTimestampFormat": "<p>The format of your <code>sourceLastUpdatedTimestamp</code> that was previously set up in fields that were parsed using <a href=\"https://docs.oracle.com/javase/10/docs/api/java/text/SimpleDateFormat.html\">SimpleDateFormat</a>. If you have <code>sourceLastUpdatedTimestamp</code> in your field, you must set up <code>sourceLastUpdatedTimestampFormat</code>.</p>",
         "UpdateAttributes$key": null,
         "requestValueList$member": null
       }
@@ -1169,6 +1358,8 @@
     "stringTo2048": {
       "base": null,
       "refs": {
+        "GetIdentityResolutionJobResponse$Message": "<p>The error messages that are generated when the Identity Resolution Job runs.</p>",
+        "IdentityResolutionJob$Message": "<p>The error messages that are generated when the Identity Resolution Job runs.</p>",
         "SourceFields$member": null
       }
     },
@@ -1197,11 +1388,17 @@
         "CreateDomainResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
         "GetDomainResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "GetDomainResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
+        "GetIdentityResolutionJobResponse$JobStartTime": "<p>The timestamp of when the Identity Resolution Job was started or will be started.</p>",
+        "GetIdentityResolutionJobResponse$JobEndTime": "<p>The timestamp of when the Identity Resolution Job was completed.</p>",
+        "GetIdentityResolutionJobResponse$LastUpdatedAt": "<p>The timestamp of when the Identity Resolution Job was most recently edited.</p>",
+        "GetIdentityResolutionJobResponse$JobExpirationTime": "<p>The timestamp of when the Identity Resolution Job will expire.</p>",
         "GetIntegrationResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "GetIntegrationResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
         "GetMatchesResponse$MatchGenerationDate": "<p>The timestamp this version of Match Result generated.</p>",
         "GetProfileObjectTypeResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "GetProfileObjectTypeResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
+        "IdentityResolutionJob$JobStartTime": "<p>The timestamp of when the job was started or will be started.</p>",
+        "IdentityResolutionJob$JobEndTime": "<p>The timestamp of when the job was completed.</p>",
         "ListDomainItem$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "ListDomainItem$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
         "ListIntegrationItem$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
@@ -1225,6 +1422,8 @@
         "ListAccountIntegrationsResponse$NextToken": "<p>The pagination token from the previous ListAccountIntegrations API call.</p>",
         "ListDomainsRequest$NextToken": "<p>The pagination token from the previous ListDomain API call.</p>",
         "ListDomainsResponse$NextToken": "<p>The pagination token from the previous ListDomains API call.</p>",
+        "ListIdentityResolutionJobsRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "ListIdentityResolutionJobsResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListIntegrationsRequest$NextToken": "<p>The pagination token from the previous ListIntegrations API call.</p>",
         "ListIntegrationsResponse$NextToken": "<p>The pagination token from the previous ListIntegrations API call.</p>",
         "ListProfileObjectTypeTemplatesRequest$NextToken": "<p>The pagination token from the previous ListObjectTypeTemplates API call.</p>",
@@ -1285,6 +1484,9 @@
         "FieldSourceProfileIds$ShippingAddress": "<p>A unique identifier for the shipping address field to be merged.</p>",
         "FieldSourceProfileIds$MailingAddress": "<p>A unique identifier for the mailing address field to be merged.</p>",
         "FieldSourceProfileIds$BillingAddress": "<p>A unique identifier for the billing type field to be merged.</p>",
+        "GetIdentityResolutionJobRequest$JobId": "<p>The unique identifier of the Identity Resolution Job.</p>",
+        "GetIdentityResolutionJobResponse$JobId": "<p>The unique identifier of the Identity Resolution Job.</p>",
+        "IdentityResolutionJob$JobId": "<p>The unique identifier of the Identity Resolution Job.</p>",
         "ListProfileObjectsRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
         "MergeProfilesRequest$MainProfileId": "<p>The identifier of the profile to be taken.</p>",
         "Profile$ProfileId": "<p>The unique identifier of a customer profile.</p>",

@@ -125,6 +125,107 @@ func (c *IoTSiteWise) AssociateAssetsWithContext(ctx aws.Context, input *Associa
 	return out, req.Send()
 }
 
+const opAssociateTimeSeriesToAssetProperty = "AssociateTimeSeriesToAssetProperty"
+
+// AssociateTimeSeriesToAssetPropertyRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateTimeSeriesToAssetProperty operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateTimeSeriesToAssetProperty for more information on using the AssociateTimeSeriesToAssetProperty
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateTimeSeriesToAssetPropertyRequest method.
+//    req, resp := client.AssociateTimeSeriesToAssetPropertyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/AssociateTimeSeriesToAssetProperty
+func (c *IoTSiteWise) AssociateTimeSeriesToAssetPropertyRequest(input *AssociateTimeSeriesToAssetPropertyInput) (req *request.Request, output *AssociateTimeSeriesToAssetPropertyOutput) {
+	op := &request.Operation{
+		Name:       opAssociateTimeSeriesToAssetProperty,
+		HTTPMethod: "POST",
+		HTTPPath:   "/timeseries/associate/",
+	}
+
+	if input == nil {
+		input = &AssociateTimeSeriesToAssetPropertyInput{}
+	}
+
+	output = &AssociateTimeSeriesToAssetPropertyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// AssociateTimeSeriesToAssetProperty API operation for AWS IoT SiteWise.
+//
+// Associates a time series (data stream) with an asset property.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation AssociateTimeSeriesToAssetProperty for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * ConflictingOperationException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/AssociateTimeSeriesToAssetProperty
+func (c *IoTSiteWise) AssociateTimeSeriesToAssetProperty(input *AssociateTimeSeriesToAssetPropertyInput) (*AssociateTimeSeriesToAssetPropertyOutput, error) {
+	req, out := c.AssociateTimeSeriesToAssetPropertyRequest(input)
+	return out, req.Send()
+}
+
+// AssociateTimeSeriesToAssetPropertyWithContext is the same as AssociateTimeSeriesToAssetProperty with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateTimeSeriesToAssetProperty for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) AssociateTimeSeriesToAssetPropertyWithContext(ctx aws.Context, input *AssociateTimeSeriesToAssetPropertyInput, opts ...request.Option) (*AssociateTimeSeriesToAssetPropertyOutput, error) {
+	req, out := c.AssociateTimeSeriesToAssetPropertyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchAssociateProjectAssets = "BatchAssociateProjectAssets"
 
 // BatchAssociateProjectAssetsRequest generates a "aws/request.Request" representing the
@@ -1164,6 +1265,9 @@ func (c *IoTSiteWise) CreateProjectRequest(input *CreateProjectInput) (req *requ
 //
 // Creates a project in the specified portal.
 //
+// Make sure that the project name and description don't contain confidential
+// information.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1916,6 +2020,118 @@ func (c *IoTSiteWise) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOu
 // for more information on using Contexts.
 func (c *IoTSiteWise) DeleteProjectWithContext(ctx aws.Context, input *DeleteProjectInput, opts ...request.Option) (*DeleteProjectOutput, error) {
 	req, out := c.DeleteProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteTimeSeries = "DeleteTimeSeries"
+
+// DeleteTimeSeriesRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteTimeSeries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteTimeSeries for more information on using the DeleteTimeSeries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteTimeSeriesRequest method.
+//    req, resp := client.DeleteTimeSeriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DeleteTimeSeries
+func (c *IoTSiteWise) DeleteTimeSeriesRequest(input *DeleteTimeSeriesInput) (req *request.Request, output *DeleteTimeSeriesOutput) {
+	op := &request.Operation{
+		Name:       opDeleteTimeSeries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/timeseries/delete/",
+	}
+
+	if input == nil {
+		input = &DeleteTimeSeriesInput{}
+	}
+
+	output = &DeleteTimeSeriesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteTimeSeries API operation for AWS IoT SiteWise.
+//
+// Deletes a time series (data stream). If you delete a time series that's associated
+// with an asset property, the asset property still exists, but the time series
+// will no longer be associated with this asset property.
+//
+// To identify a time series, do one of the following:
+//
+//    * If the time series isn't associated with an asset property, specify
+//    the alias of the time series.
+//
+//    * If the time series is associated with an asset property, specify one
+//    of the following: The alias of the time series. The assetId and propertyId
+//    that identifies the asset property.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation DeleteTimeSeries for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * ConflictingOperationException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DeleteTimeSeries
+func (c *IoTSiteWise) DeleteTimeSeries(input *DeleteTimeSeriesInput) (*DeleteTimeSeriesOutput, error) {
+	req, out := c.DeleteTimeSeriesRequest(input)
+	return out, req.Send()
+}
+
+// DeleteTimeSeriesWithContext is the same as DeleteTimeSeries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteTimeSeries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) DeleteTimeSeriesWithContext(ctx aws.Context, input *DeleteTimeSeriesInput, opts ...request.Option) (*DeleteTimeSeriesOutput, error) {
+	req, out := c.DeleteTimeSeriesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3099,6 +3315,111 @@ func (c *IoTSiteWise) DescribeStorageConfigurationWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opDescribeTimeSeries = "DescribeTimeSeries"
+
+// DescribeTimeSeriesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTimeSeries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTimeSeries for more information on using the DescribeTimeSeries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeTimeSeriesRequest method.
+//    req, resp := client.DescribeTimeSeriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeTimeSeries
+func (c *IoTSiteWise) DescribeTimeSeriesRequest(input *DescribeTimeSeriesInput) (req *request.Request, output *DescribeTimeSeriesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTimeSeries,
+		HTTPMethod: "GET",
+		HTTPPath:   "/timeseries/describe/",
+	}
+
+	if input == nil {
+		input = &DescribeTimeSeriesInput{}
+	}
+
+	output = &DescribeTimeSeriesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeTimeSeries API operation for AWS IoT SiteWise.
+//
+// Retrieves information about a time series (data stream).
+//
+// To identify a time series, do one of the following:
+//
+//    * If the time series isn't associated with an asset property, specify
+//    the alias of the time series.
+//
+//    * If the time series is associated with an asset property, specify one
+//    of the following: The alias of the time series. The assetId and propertyId
+//    that identifies the asset property.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation DescribeTimeSeries for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeTimeSeries
+func (c *IoTSiteWise) DescribeTimeSeries(input *DescribeTimeSeriesInput) (*DescribeTimeSeriesOutput, error) {
+	req, out := c.DescribeTimeSeriesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTimeSeriesWithContext is the same as DescribeTimeSeries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTimeSeries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) DescribeTimeSeriesWithContext(ctx aws.Context, input *DescribeTimeSeriesInput, opts ...request.Option) (*DescribeTimeSeriesOutput, error) {
+	req, out := c.DescribeTimeSeriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateAssets = "DisassociateAssets"
 
 // DisassociateAssetsRequest generates a "aws/request.Request" representing the
@@ -3196,6 +3517,107 @@ func (c *IoTSiteWise) DisassociateAssets(input *DisassociateAssetsInput) (*Disas
 // for more information on using Contexts.
 func (c *IoTSiteWise) DisassociateAssetsWithContext(ctx aws.Context, input *DisassociateAssetsInput, opts ...request.Option) (*DisassociateAssetsOutput, error) {
 	req, out := c.DisassociateAssetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociateTimeSeriesFromAssetProperty = "DisassociateTimeSeriesFromAssetProperty"
+
+// DisassociateTimeSeriesFromAssetPropertyRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateTimeSeriesFromAssetProperty operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateTimeSeriesFromAssetProperty for more information on using the DisassociateTimeSeriesFromAssetProperty
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateTimeSeriesFromAssetPropertyRequest method.
+//    req, resp := client.DisassociateTimeSeriesFromAssetPropertyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DisassociateTimeSeriesFromAssetProperty
+func (c *IoTSiteWise) DisassociateTimeSeriesFromAssetPropertyRequest(input *DisassociateTimeSeriesFromAssetPropertyInput) (req *request.Request, output *DisassociateTimeSeriesFromAssetPropertyOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateTimeSeriesFromAssetProperty,
+		HTTPMethod: "POST",
+		HTTPPath:   "/timeseries/disassociate/",
+	}
+
+	if input == nil {
+		input = &DisassociateTimeSeriesFromAssetPropertyInput{}
+	}
+
+	output = &DisassociateTimeSeriesFromAssetPropertyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DisassociateTimeSeriesFromAssetProperty API operation for AWS IoT SiteWise.
+//
+// Disassociates a time series (data stream) from an asset property.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation DisassociateTimeSeriesFromAssetProperty for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * ConflictingOperationException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DisassociateTimeSeriesFromAssetProperty
+func (c *IoTSiteWise) DisassociateTimeSeriesFromAssetProperty(input *DisassociateTimeSeriesFromAssetPropertyInput) (*DisassociateTimeSeriesFromAssetPropertyOutput, error) {
+	req, out := c.DisassociateTimeSeriesFromAssetPropertyRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateTimeSeriesFromAssetPropertyWithContext is the same as DisassociateTimeSeriesFromAssetProperty with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateTimeSeriesFromAssetProperty for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) DisassociateTimeSeriesFromAssetPropertyWithContext(ctx aws.Context, input *DisassociateTimeSeriesFromAssetPropertyInput, opts ...request.Option) (*DisassociateTimeSeriesFromAssetPropertyOutput, error) {
+	req, out := c.DisassociateTimeSeriesFromAssetPropertyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5462,6 +5884,160 @@ func (c *IoTSiteWise) ListTagsForResourceWithContext(ctx aws.Context, input *Lis
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListTimeSeries = "ListTimeSeries"
+
+// ListTimeSeriesRequest generates a "aws/request.Request" representing the
+// client's request for the ListTimeSeries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTimeSeries for more information on using the ListTimeSeries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTimeSeriesRequest method.
+//    req, resp := client.ListTimeSeriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListTimeSeries
+func (c *IoTSiteWise) ListTimeSeriesRequest(input *ListTimeSeriesInput) (req *request.Request, output *ListTimeSeriesOutput) {
+	op := &request.Operation{
+		Name:       opListTimeSeries,
+		HTTPMethod: "GET",
+		HTTPPath:   "/timeseries/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTimeSeriesInput{}
+	}
+
+	output = &ListTimeSeriesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListTimeSeries API operation for AWS IoT SiteWise.
+//
+// Retrieves a paginated list of time series (data streams).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation ListTimeSeries for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListTimeSeries
+func (c *IoTSiteWise) ListTimeSeries(input *ListTimeSeriesInput) (*ListTimeSeriesOutput, error) {
+	req, out := c.ListTimeSeriesRequest(input)
+	return out, req.Send()
+}
+
+// ListTimeSeriesWithContext is the same as ListTimeSeries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTimeSeries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) ListTimeSeriesWithContext(ctx aws.Context, input *ListTimeSeriesInput, opts ...request.Option) (*ListTimeSeriesOutput, error) {
+	req, out := c.ListTimeSeriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTimeSeriesPages iterates over the pages of a ListTimeSeries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTimeSeries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTimeSeries operation.
+//    pageNum := 0
+//    err := client.ListTimeSeriesPages(params,
+//        func(page *iotsitewise.ListTimeSeriesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTSiteWise) ListTimeSeriesPages(input *ListTimeSeriesInput, fn func(*ListTimeSeriesOutput, bool) bool) error {
+	return c.ListTimeSeriesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTimeSeriesPagesWithContext same as ListTimeSeriesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) ListTimeSeriesPagesWithContext(ctx aws.Context, input *ListTimeSeriesInput, fn func(*ListTimeSeriesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTimeSeriesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTimeSeriesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTimeSeriesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opPutDefaultEncryptionConfiguration = "PutDefaultEncryptionConfiguration"
@@ -8702,6 +9278,125 @@ func (s AssociateAssetsOutput) GoString() string {
 	return s.String()
 }
 
+type AssociateTimeSeriesToAssetPropertyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The alias that identifies the time series.
+	//
+	// Alias is a required field
+	Alias *string `location:"querystring" locationName:"alias" min:"1" type:"string" required:"true"`
+
+	// The ID of the asset in which the asset property was created.
+	//
+	// AssetId is a required field
+	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string" required:"true"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The ID of the asset property.
+	//
+	// PropertyId is a required field
+	PropertyId *string `location:"querystring" locationName:"propertyId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateTimeSeriesToAssetPropertyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateTimeSeriesToAssetPropertyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateTimeSeriesToAssetPropertyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateTimeSeriesToAssetPropertyInput"}
+	if s.Alias == nil {
+		invalidParams.Add(request.NewErrParamRequired("Alias"))
+	}
+	if s.Alias != nil && len(*s.Alias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
+	}
+	if s.AssetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetId"))
+	}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.PropertyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PropertyId"))
+	}
+	if s.PropertyId != nil && len(*s.PropertyId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlias sets the Alias field's value.
+func (s *AssociateTimeSeriesToAssetPropertyInput) SetAlias(v string) *AssociateTimeSeriesToAssetPropertyInput {
+	s.Alias = &v
+	return s
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *AssociateTimeSeriesToAssetPropertyInput) SetAssetId(v string) *AssociateTimeSeriesToAssetPropertyInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *AssociateTimeSeriesToAssetPropertyInput) SetClientToken(v string) *AssociateTimeSeriesToAssetPropertyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *AssociateTimeSeriesToAssetPropertyInput) SetPropertyId(v string) *AssociateTimeSeriesToAssetPropertyInput {
+	s.PropertyId = &v
+	return s
+}
+
+type AssociateTimeSeriesToAssetPropertyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateTimeSeriesToAssetPropertyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateTimeSeriesToAssetPropertyOutput) GoString() string {
+	return s.String()
+}
+
 // Contains a summary of an associated asset.
 type AssociatedAssetsSummary struct {
 	_ struct{} `type:"structure"`
@@ -11540,6 +12235,110 @@ func (s DeleteProjectOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteTimeSeriesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The alias that identifies the time series.
+	Alias *string `location:"querystring" locationName:"alias" min:"1" type:"string"`
+
+	// The ID of the asset in which the asset property was created.
+	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The ID of the asset property.
+	PropertyId *string `location:"querystring" locationName:"propertyId" min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTimeSeriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTimeSeriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteTimeSeriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteTimeSeriesInput"}
+	if s.Alias != nil && len(*s.Alias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
+	}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.PropertyId != nil && len(*s.PropertyId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlias sets the Alias field's value.
+func (s *DeleteTimeSeriesInput) SetAlias(v string) *DeleteTimeSeriesInput {
+	s.Alias = &v
+	return s
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *DeleteTimeSeriesInput) SetAssetId(v string) *DeleteTimeSeriesInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeleteTimeSeriesInput) SetClientToken(v string) *DeleteTimeSeriesInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *DeleteTimeSeriesInput) SetPropertyId(v string) *DeleteTimeSeriesInput {
+	s.PropertyId = &v
+	return s
+}
+
+type DeleteTimeSeriesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTimeSeriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteTimeSeriesOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeAccessPolicyInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -12411,8 +13210,8 @@ type DescribeDefaultEncryptionConfigurationOutput struct {
 	// EncryptionType is a required field
 	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
 
-	// The key ARN of the customer managed customer master key (CMK) used for KMS
-	// encryption if you use KMS_BASED_ENCRYPTION.
+	// The key ARN of the customer managed key used for KMS encryption if you use
+	// KMS_BASED_ENCRYPTION.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
 }
 
@@ -13219,6 +14018,21 @@ type DescribeStorageConfigurationOutput struct {
 	// ConfigurationStatus is a required field
 	ConfigurationStatus *ConfigurationStatus `locationName:"configurationStatus" type:"structure" required:"true"`
 
+	// Contains the storage configuration for time series (data streams) that aren't
+	// associated with asset properties. The disassociatedDataStorage can be one
+	// of the following values:
+	//
+	//    * ENABLED – IoT SiteWise accepts time series that aren't associated
+	//    with asset properties. After the disassociatedDataStorage is enabled,
+	//    you can't disable it.
+	//
+	//    * DISABLED – IoT SiteWise doesn't accept time series (data streams)
+	//    that aren't associated with asset properties.
+	//
+	// For more information, see Data streams (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/data-streams.html)
+	// in the IoT SiteWise User Guide.
+	DisassociatedDataStorage *string `locationName:"disassociatedDataStorage" type:"string" enum:"DisassociatedDataStorageState"`
+
 	// The date the storage configuration was last updated, in Unix epoch time.
 	LastUpdateDate *time.Time `locationName:"lastUpdateDate" type:"timestamp"`
 
@@ -13263,6 +14077,12 @@ func (s *DescribeStorageConfigurationOutput) SetConfigurationStatus(v *Configura
 	return s
 }
 
+// SetDisassociatedDataStorage sets the DisassociatedDataStorage field's value.
+func (s *DescribeStorageConfigurationOutput) SetDisassociatedDataStorage(v string) *DescribeStorageConfigurationOutput {
+	s.DisassociatedDataStorage = &v
+	return s
+}
+
 // SetLastUpdateDate sets the LastUpdateDate field's value.
 func (s *DescribeStorageConfigurationOutput) SetLastUpdateDate(v time.Time) *DescribeStorageConfigurationOutput {
 	s.LastUpdateDate = &v
@@ -13278,6 +14098,184 @@ func (s *DescribeStorageConfigurationOutput) SetMultiLayerStorage(v *MultiLayerS
 // SetStorageType sets the StorageType field's value.
 func (s *DescribeStorageConfigurationOutput) SetStorageType(v string) *DescribeStorageConfigurationOutput {
 	s.StorageType = &v
+	return s
+}
+
+type DescribeTimeSeriesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The alias that identifies the time series.
+	Alias *string `location:"querystring" locationName:"alias" min:"1" type:"string"`
+
+	// The ID of the asset in which the asset property was created.
+	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string"`
+
+	// The ID of the asset property.
+	PropertyId *string `location:"querystring" locationName:"propertyId" min:"36" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTimeSeriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTimeSeriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTimeSeriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTimeSeriesInput"}
+	if s.Alias != nil && len(*s.Alias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
+	}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.PropertyId != nil && len(*s.PropertyId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlias sets the Alias field's value.
+func (s *DescribeTimeSeriesInput) SetAlias(v string) *DescribeTimeSeriesInput {
+	s.Alias = &v
+	return s
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *DescribeTimeSeriesInput) SetAssetId(v string) *DescribeTimeSeriesInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *DescribeTimeSeriesInput) SetPropertyId(v string) *DescribeTimeSeriesInput {
+	s.PropertyId = &v
+	return s
+}
+
+type DescribeTimeSeriesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The alias that identifies the time series.
+	Alias *string `locationName:"alias" min:"1" type:"string"`
+
+	// The ID of the asset in which the asset property was created.
+	AssetId *string `locationName:"assetId" min:"36" type:"string"`
+
+	// The data type of the time series.
+	//
+	// If you specify STRUCT, you must also specify dataTypeSpec to identify the
+	// type of the structure for this time series.
+	//
+	// DataType is a required field
+	DataType *string `locationName:"dataType" type:"string" required:"true" enum:"PropertyDataType"`
+
+	// The data type of the structure for this time series. This parameter is required
+	// for time series that have the STRUCT data type.
+	//
+	// The options for this parameter depend on the type of the composite model
+	// in which you created the asset property that is associated with your time
+	// series. Use AWS/ALARM_STATE for alarm state in alarm composite models.
+	DataTypeSpec *string `locationName:"dataTypeSpec" min:"1" type:"string"`
+
+	// The ID of the asset property.
+	PropertyId *string `locationName:"propertyId" min:"36" type:"string"`
+
+	// The date that the time series was created, in Unix epoch time.
+	//
+	// TimeSeriesCreationDate is a required field
+	TimeSeriesCreationDate *time.Time `locationName:"timeSeriesCreationDate" type:"timestamp" required:"true"`
+
+	// The ID of the time series.
+	//
+	// TimeSeriesId is a required field
+	TimeSeriesId *string `locationName:"timeSeriesId" min:"36" type:"string" required:"true"`
+
+	// The date that the time series was last updated, in Unix epoch time.
+	//
+	// TimeSeriesLastUpdateDate is a required field
+	TimeSeriesLastUpdateDate *time.Time `locationName:"timeSeriesLastUpdateDate" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTimeSeriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTimeSeriesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *DescribeTimeSeriesOutput) SetAlias(v string) *DescribeTimeSeriesOutput {
+	s.Alias = &v
+	return s
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *DescribeTimeSeriesOutput) SetAssetId(v string) *DescribeTimeSeriesOutput {
+	s.AssetId = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *DescribeTimeSeriesOutput) SetDataType(v string) *DescribeTimeSeriesOutput {
+	s.DataType = &v
+	return s
+}
+
+// SetDataTypeSpec sets the DataTypeSpec field's value.
+func (s *DescribeTimeSeriesOutput) SetDataTypeSpec(v string) *DescribeTimeSeriesOutput {
+	s.DataTypeSpec = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *DescribeTimeSeriesOutput) SetPropertyId(v string) *DescribeTimeSeriesOutput {
+	s.PropertyId = &v
+	return s
+}
+
+// SetTimeSeriesCreationDate sets the TimeSeriesCreationDate field's value.
+func (s *DescribeTimeSeriesOutput) SetTimeSeriesCreationDate(v time.Time) *DescribeTimeSeriesOutput {
+	s.TimeSeriesCreationDate = &v
+	return s
+}
+
+// SetTimeSeriesId sets the TimeSeriesId field's value.
+func (s *DescribeTimeSeriesOutput) SetTimeSeriesId(v string) *DescribeTimeSeriesOutput {
+	s.TimeSeriesId = &v
+	return s
+}
+
+// SetTimeSeriesLastUpdateDate sets the TimeSeriesLastUpdateDate field's value.
+func (s *DescribeTimeSeriesOutput) SetTimeSeriesLastUpdateDate(v time.Time) *DescribeTimeSeriesOutput {
+	s.TimeSeriesLastUpdateDate = &v
 	return s
 }
 
@@ -13446,6 +14444,125 @@ func (s DisassociateAssetsOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DisassociateAssetsOutput) GoString() string {
+	return s.String()
+}
+
+type DisassociateTimeSeriesFromAssetPropertyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The alias that identifies the time series.
+	//
+	// Alias is a required field
+	Alias *string `location:"querystring" locationName:"alias" min:"1" type:"string" required:"true"`
+
+	// The ID of the asset in which the asset property was created.
+	//
+	// AssetId is a required field
+	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string" required:"true"`
+
+	// A unique case-sensitive identifier that you can provide to ensure the idempotency
+	// of the request. Don't reuse this client token if a new idempotent request
+	// is required.
+	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The ID of the asset property.
+	//
+	// PropertyId is a required field
+	PropertyId *string `location:"querystring" locationName:"propertyId" min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateTimeSeriesFromAssetPropertyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateTimeSeriesFromAssetPropertyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateTimeSeriesFromAssetPropertyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateTimeSeriesFromAssetPropertyInput"}
+	if s.Alias == nil {
+		invalidParams.Add(request.NewErrParamRequired("Alias"))
+	}
+	if s.Alias != nil && len(*s.Alias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
+	}
+	if s.AssetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetId"))
+	}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
+	}
+	if s.PropertyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PropertyId"))
+	}
+	if s.PropertyId != nil && len(*s.PropertyId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlias sets the Alias field's value.
+func (s *DisassociateTimeSeriesFromAssetPropertyInput) SetAlias(v string) *DisassociateTimeSeriesFromAssetPropertyInput {
+	s.Alias = &v
+	return s
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *DisassociateTimeSeriesFromAssetPropertyInput) SetAssetId(v string) *DisassociateTimeSeriesFromAssetPropertyInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DisassociateTimeSeriesFromAssetPropertyInput) SetClientToken(v string) *DisassociateTimeSeriesFromAssetPropertyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *DisassociateTimeSeriesFromAssetPropertyInput) SetPropertyId(v string) *DisassociateTimeSeriesFromAssetPropertyInput {
+	s.PropertyId = &v
+	return s
+}
+
+type DisassociateTimeSeriesFromAssetPropertyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateTimeSeriesFromAssetPropertyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateTimeSeriesFromAssetPropertyOutput) GoString() string {
 	return s.String()
 }
 
@@ -14356,26 +15473,26 @@ type GetInterpolatedAssetPropertyValuesInput struct {
 	// IntervalInSeconds is a required field
 	IntervalInSeconds *int64 `location:"querystring" locationName:"intervalInSeconds" min:"1" type:"long" required:"true"`
 
-	// The query interval for the window in seconds. IoT SiteWise computes each
-	// interpolated value by using data points from the timestamp of each interval
+	// The query interval for the window, in seconds. IoT SiteWise computes each
+	// interpolated value by using data points from the timestamp of each interval,
 	// minus the window to the timestamp of each interval plus the window. If not
-	// specified, the window is between the start time minus the interval and the
-	// end time plus the interval.
+	// specified, the window ranges between the start time minus the interval and
+	// the end time plus the interval.
 	//
 	//    * If you specify a value for the intervalWindowInSeconds parameter, the
-	//    type parameter must be LINEAR_INTERPOLATION.
+	//    value for the type parameter must be LINEAR_INTERPOLATION.
 	//
-	//    * If no data point is found during the specified query window, IoT SiteWise
+	//    * If a data point isn't found during the specified query window, IoT SiteWise
 	//    won't return an interpolated value for the interval. This indicates that
 	//    there's a gap in the ingested data points.
 	//
 	// For example, you can get the interpolated temperature values for a wind turbine
 	// every 24 hours over a duration of 7 days. If the interpolation starts on
 	// July 1, 2021, at 9 AM with a window of 2 hours, IoT SiteWise uses the data
-	// points from 7 AM (9 AM - 2 hours) to 11 AM (9 AM + 2 hours) on July 2, 2021
-	// to compute the first interpolated value, uses the data points from 7 AM (9
-	// AM - 2 hours) to 11 AM (9 AM + 2 hours) on July 3, 2021 to compute the second
-	// interpolated value, and so on.
+	// points from 7 AM (9 AM minus 2 hours) to 11 AM (9 AM plus 2 hours) on July
+	// 2, 2021 to compute the first interpolated value. Next, IoT SiteWise uses
+	// the data points from 7 AM (9 AM minus 2 hours) to 11 AM (9 AM plus 2 hours)
+	// on July 3, 2021 to compute the second interpolated value, and so on.
 	IntervalWindowInSeconds *int64 `location:"querystring" locationName:"intervalWindowInSeconds" min:"1" type:"long"`
 
 	// The maximum number of results to return for each paginated request. If not
@@ -14417,7 +15534,7 @@ type GetInterpolatedAssetPropertyValuesInput struct {
 	//    (https://en.wikipedia.org/wiki/Linear_interpolation). For example, you
 	//    can use this operation to return the interpolated temperature values for
 	//    a wind turbine every 24 hours over a duration of 7 days. If the interpolation
-	//    starts on July 1, 2021, at 9 AM, IoT SiteWise returns the first interpolated
+	//    starts July 1, 2021, at 9 AM, IoT SiteWise returns the first interpolated
 	//    value on July 2, 2021, at 9 AM, the second interpolated value on July
 	//    3, 2021, at 9 AM, and so on.
 	//
@@ -14426,11 +15543,11 @@ type GetInterpolatedAssetPropertyValuesInput struct {
 	//    IoT SiteWise returns the last observed data point for the previous interval
 	//    and carries forward this interpolated value until a new data point is
 	//    found. For example, you can get the state of an on-off valve every 24
-	//    hours over a duration of 7 days. If the interpolation starts on July 1,
-	//    2021, at 9 AM, IoT SiteWise returns the last observed data point between
-	//    July 1, 2021, at 9 AM and July 2, 2021, at 9 AM as the first interpolated
-	//    value. If no data point is found after 9 AM on July 2, 2021, IoT SiteWise
-	//    uses the same interpolated value for the rest of the days.
+	//    hours over a duration of 7 days. If the interpolation starts July 1, 2021,
+	//    at 9 AM, IoT SiteWise returns the last observed data point between July
+	//    1, 2021, at 9 AM and July 2, 2021, at 9 AM as the first interpolated value.
+	//    If a data point isn't found after 9 AM on July 2, 2021, IoT SiteWise uses
+	//    the same interpolated value for the rest of the days.
 	//
 	// Type is a required field
 	Type *string `location:"querystring" locationName:"type" min:"1" type:"string" required:"true"`
@@ -16732,6 +17849,143 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+type ListTimeSeriesInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The alias prefix of the time series.
+	AliasPrefix *string `location:"querystring" locationName:"aliasPrefix" min:"1" type:"string"`
+
+	// The ID of the asset in which the asset property was created.
+	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string"`
+
+	// The maximum number of results to return for each paginated request.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to be used for the next set of paginated results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The type of the time series. The time series type can be one of the following
+	// values:
+	//
+	//    * ASSOCIATED – The time series is associated with an asset property.
+	//
+	//    * DISASSOCIATED – The time series isn't associated with any asset property.
+	TimeSeriesType *string `location:"querystring" locationName:"timeSeriesType" type:"string" enum:"ListTimeSeriesType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTimeSeriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTimeSeriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTimeSeriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTimeSeriesInput"}
+	if s.AliasPrefix != nil && len(*s.AliasPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AliasPrefix", 1))
+	}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAliasPrefix sets the AliasPrefix field's value.
+func (s *ListTimeSeriesInput) SetAliasPrefix(v string) *ListTimeSeriesInput {
+	s.AliasPrefix = &v
+	return s
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *ListTimeSeriesInput) SetAssetId(v string) *ListTimeSeriesInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTimeSeriesInput) SetMaxResults(v int64) *ListTimeSeriesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTimeSeriesInput) SetNextToken(v string) *ListTimeSeriesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTimeSeriesType sets the TimeSeriesType field's value.
+func (s *ListTimeSeriesInput) SetTimeSeriesType(v string) *ListTimeSeriesInput {
+	s.TimeSeriesType = &v
+	return s
+}
+
+type ListTimeSeriesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+
+	// One or more time series summaries to list.
+	//
+	// TimeSeriesSummaries is a required field
+	TimeSeriesSummaries []*TimeSeriesSummary `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTimeSeriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTimeSeriesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTimeSeriesOutput) SetNextToken(v string) *ListTimeSeriesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTimeSeriesSummaries sets the TimeSeriesSummaries field's value.
+func (s *ListTimeSeriesOutput) SetTimeSeriesSummaries(v []*TimeSeriesSummary) *ListTimeSeriesOutput {
+	s.TimeSeriesSummaries = v
+	return s
+}
+
 // Contains logging options.
 type LoggingOptions struct {
 	_ struct{} `type:"structure"`
@@ -17894,8 +19148,8 @@ type PutDefaultEncryptionConfigurationInput struct {
 	// EncryptionType is a required field
 	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
 
-	// The Key ID of the customer managed customer master key (CMK) used for KMS
-	// encryption. This is required if you use KMS_BASED_ENCRYPTION.
+	// The Key ID of the customer managed key used for KMS encryption. This is required
+	// if you use KMS_BASED_ENCRYPTION.
 	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
 }
 
@@ -17959,7 +19213,7 @@ type PutDefaultEncryptionConfigurationOutput struct {
 	// EncryptionType is a required field
 	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
 
-	// The Key ARN of the KMS CMK used for KMS encryption if you use KMS_BASED_ENCRYPTION.
+	// The Key ARN of the KMS key used for KMS encryption if you use KMS_BASED_ENCRYPTION.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
 }
 
@@ -18075,6 +19329,21 @@ func (s PutLoggingOptionsOutput) GoString() string {
 type PutStorageConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
+	// Contains the storage configuration for time series (data streams) that aren't
+	// associated with asset properties. The disassociatedDataStorage can be one
+	// of the following values:
+	//
+	//    * ENABLED – IoT SiteWise accepts time series that aren't associated
+	//    with asset properties. After the disassociatedDataStorage is enabled,
+	//    you can't disable it.
+	//
+	//    * DISABLED – IoT SiteWise doesn't accept time series (data streams)
+	//    that aren't associated with asset properties.
+	//
+	// For more information, see Data streams (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/data-streams.html)
+	// in the IoT SiteWise User Guide.
+	DisassociatedDataStorage *string `locationName:"disassociatedDataStorage" type:"string" enum:"DisassociatedDataStorageState"`
+
 	// Identifies a storage destination. If you specified MULTI_LAYER_STORAGE for
 	// the storage type, you must specify a MultiLayerStorage object.
 	MultiLayerStorage *MultiLayerStorage `locationName:"multiLayerStorage" type:"structure"`
@@ -18129,6 +19398,12 @@ func (s *PutStorageConfigurationInput) Validate() error {
 	return nil
 }
 
+// SetDisassociatedDataStorage sets the DisassociatedDataStorage field's value.
+func (s *PutStorageConfigurationInput) SetDisassociatedDataStorage(v string) *PutStorageConfigurationInput {
+	s.DisassociatedDataStorage = &v
+	return s
+}
+
 // SetMultiLayerStorage sets the MultiLayerStorage field's value.
 func (s *PutStorageConfigurationInput) SetMultiLayerStorage(v *MultiLayerStorage) *PutStorageConfigurationInput {
 	s.MultiLayerStorage = v
@@ -18148,6 +19423,21 @@ type PutStorageConfigurationOutput struct {
 	//
 	// ConfigurationStatus is a required field
 	ConfigurationStatus *ConfigurationStatus `locationName:"configurationStatus" type:"structure" required:"true"`
+
+	// Contains the storage configuration for time series (data streams) that aren't
+	// associated with asset properties. The disassociatedDataStorage can be one
+	// of the following values:
+	//
+	//    * ENABLED – IoT SiteWise accepts time series that aren't associated
+	//    with asset properties. After the disassociatedDataStorage is enabled,
+	//    you can't disable it.
+	//
+	//    * DISABLED – IoT SiteWise doesn't accept time series (data streams)
+	//    that aren't associated with asset properties.
+	//
+	// For more information, see Data streams (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/data-streams.html)
+	// in the IoT SiteWise User Guide.
+	DisassociatedDataStorage *string `locationName:"disassociatedDataStorage" type:"string" enum:"DisassociatedDataStorageState"`
 
 	// Contains information about the storage destination.
 	MultiLayerStorage *MultiLayerStorage `locationName:"multiLayerStorage" type:"structure"`
@@ -18187,6 +19477,12 @@ func (s PutStorageConfigurationOutput) GoString() string {
 // SetConfigurationStatus sets the ConfigurationStatus field's value.
 func (s *PutStorageConfigurationOutput) SetConfigurationStatus(v *ConfigurationStatus) *PutStorageConfigurationOutput {
 	s.ConfigurationStatus = v
+	return s
+}
+
+// SetDisassociatedDataStorage sets the DisassociatedDataStorage field's value.
+func (s *PutStorageConfigurationOutput) SetDisassociatedDataStorage(v string) *PutStorageConfigurationOutput {
+	s.DisassociatedDataStorage = &v
 	return s
 }
 
@@ -18685,6 +19981,117 @@ func (s *TimeInNanos) SetTimeInSeconds(v int64) *TimeInNanos {
 	return s
 }
 
+// Contains a summary of a time series (data stream).
+type TimeSeriesSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The alias that identifies the time series.
+	Alias *string `locationName:"alias" min:"1" type:"string"`
+
+	// The ID of the asset in which the asset property was created.
+	AssetId *string `locationName:"assetId" min:"36" type:"string"`
+
+	// The data type of the time series.
+	//
+	// If you specify STRUCT, you must also specify dataTypeSpec to identify the
+	// type of the structure for this time series.
+	//
+	// DataType is a required field
+	DataType *string `locationName:"dataType" type:"string" required:"true" enum:"PropertyDataType"`
+
+	// The data type of the structure for this time series. This parameter is required
+	// for time series that have the STRUCT data type.
+	//
+	// The options for this parameter depend on the type of the composite model
+	// in which you created the asset property that is associated with your time
+	// series. Use AWS/ALARM_STATE for alarm state in alarm composite models.
+	DataTypeSpec *string `locationName:"dataTypeSpec" min:"1" type:"string"`
+
+	// The ID of the asset property.
+	PropertyId *string `locationName:"propertyId" min:"36" type:"string"`
+
+	// The date that the time series was created, in Unix epoch time.
+	//
+	// TimeSeriesCreationDate is a required field
+	TimeSeriesCreationDate *time.Time `locationName:"timeSeriesCreationDate" type:"timestamp" required:"true"`
+
+	// The ID of the time series.
+	//
+	// TimeSeriesId is a required field
+	TimeSeriesId *string `locationName:"timeSeriesId" min:"36" type:"string" required:"true"`
+
+	// The date that the time series was last updated, in Unix epoch time.
+	//
+	// TimeSeriesLastUpdateDate is a required field
+	TimeSeriesLastUpdateDate *time.Time `locationName:"timeSeriesLastUpdateDate" type:"timestamp" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TimeSeriesSummary) GoString() string {
+	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *TimeSeriesSummary) SetAlias(v string) *TimeSeriesSummary {
+	s.Alias = &v
+	return s
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *TimeSeriesSummary) SetAssetId(v string) *TimeSeriesSummary {
+	s.AssetId = &v
+	return s
+}
+
+// SetDataType sets the DataType field's value.
+func (s *TimeSeriesSummary) SetDataType(v string) *TimeSeriesSummary {
+	s.DataType = &v
+	return s
+}
+
+// SetDataTypeSpec sets the DataTypeSpec field's value.
+func (s *TimeSeriesSummary) SetDataTypeSpec(v string) *TimeSeriesSummary {
+	s.DataTypeSpec = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *TimeSeriesSummary) SetPropertyId(v string) *TimeSeriesSummary {
+	s.PropertyId = &v
+	return s
+}
+
+// SetTimeSeriesCreationDate sets the TimeSeriesCreationDate field's value.
+func (s *TimeSeriesSummary) SetTimeSeriesCreationDate(v time.Time) *TimeSeriesSummary {
+	s.TimeSeriesCreationDate = &v
+	return s
+}
+
+// SetTimeSeriesId sets the TimeSeriesId field's value.
+func (s *TimeSeriesSummary) SetTimeSeriesId(v string) *TimeSeriesSummary {
+	s.TimeSeriesId = &v
+	return s
+}
+
+// SetTimeSeriesLastUpdateDate sets the TimeSeriesLastUpdateDate field's value.
+func (s *TimeSeriesSummary) SetTimeSeriesLastUpdateDate(v time.Time) *TimeSeriesSummary {
+	s.TimeSeriesLastUpdateDate = &v
+	return s
+}
+
 // You've reached the limit for the number of tags allowed for a resource. For
 // more information, see Tag naming limits and requirements (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html#tag-conventions)
 // in the Amazon Web Services General Reference.
@@ -18923,16 +20330,16 @@ func (s *TransformProcessingConfig) SetForwardingConfig(v *ForwardingConfig) *Tr
 }
 
 // Contains a tumbling window, which is a repeating fixed-sized, non-overlapping,
-// and contiguous time window. You use this window in metrics to aggregate data
-// from properties and other assets.
+// and contiguous time window. You can use this window in metrics to aggregate
+// data from properties and other assets.
 //
 // You can use m, h, d, and w when you specify an interval or offset. Note that
-// m represents minutes, and w represents weeks. You can also use s to represent
-// seconds in offset.
+// m represents minutes, h represents hours, d represents days, and w represents
+// weeks. You can also use s to represent seconds in offset.
 //
 // The interval and offset parameters support the ISO 8601 format (https://en.wikipedia.org/wiki/ISO_8601).
-// For example, PT5S represents five seconds, PT5M represents five minutes,
-// and PT5H represents five hours.
+// For example, PT5S represents 5 seconds, PT5M represents 5 minutes, and PT5H
+// represents 5 hours.
 type TumblingWindow struct {
 	_ struct{} `type:"structure"`
 
@@ -18954,28 +20361,28 @@ type TumblingWindow struct {
 	//
 	//    * The offset time. For example, if you specify 18h for offset and 1d for
 	//    interval, IoT SiteWise aggregates data in one of the following ways: If
-	//    you create the metric before or at 6:00 PM (UTC), you get the first aggregation
+	//    you create the metric before or at 6 PM (UTC), you get the first aggregation
 	//    result at 6 PM (UTC) on the day when you create the metric. If you create
-	//    the metric after 6:00 PM (UTC), you get the first aggregation result at
-	//    6 PM (UTC) the next day.
+	//    the metric after 6 PM (UTC), you get the first aggregation result at 6
+	//    PM (UTC) the next day.
 	//
 	//    * The ISO 8601 format. For example, if you specify PT18H for offset and
 	//    1d for interval, IoT SiteWise aggregates data in one of the following
-	//    ways: If you create the metric before or at 6:00 PM (UTC), you get the
-	//    first aggregation result at 6 PM (UTC) on the day when you create the
-	//    metric. If you create the metric after 6:00 PM (UTC), you get the first
-	//    aggregation result at 6 PM (UTC) the next day.
+	//    ways: If you create the metric before or at 6 PM (UTC), you get the first
+	//    aggregation result at 6 PM (UTC) on the day when you create the metric.
+	//    If you create the metric after 6 PM (UTC), you get the first aggregation
+	//    result at 6 PM (UTC) the next day.
 	//
-	//    * The 24-hour clock. For example, if you specify 00:03:00 for offset and
+	//    * The 24-hour clock. For example, if you specify 00:03:00 for offset,
 	//    5m for interval, and you create the metric at 2 PM (UTC), you get the
 	//    first aggregation result at 2:03 PM (UTC). You get the second aggregation
 	//    result at 2:08 PM (UTC).
 	//
 	//    * The offset time zone. For example, if you specify 2021-07-23T18:00-08
 	//    for offset and 1d for interval, IoT SiteWise aggregates data in one of
-	//    the following ways: If you create the metric before or at 6:00 PM (PST),
+	//    the following ways: If you create the metric before or at 6 PM (PST),
 	//    you get the first aggregation result at 6 PM (PST) on the day when you
-	//    create the metric. If you create the metric after 6:00 PM (PST), you get
+	//    create the metric. If you create the metric after 6 PM (PST), you get
 	//    the first aggregation result at 6 PM (PST) the next day.
 	Offset *string `locationName:"offset" min:"2" type:"string"`
 }
@@ -20885,6 +22292,22 @@ func DetailedErrorCode_Values() []string {
 }
 
 const (
+	// DisassociatedDataStorageStateEnabled is a DisassociatedDataStorageState enum value
+	DisassociatedDataStorageStateEnabled = "ENABLED"
+
+	// DisassociatedDataStorageStateDisabled is a DisassociatedDataStorageState enum value
+	DisassociatedDataStorageStateDisabled = "DISABLED"
+)
+
+// DisassociatedDataStorageState_Values returns all elements of the DisassociatedDataStorageState enum
+func DisassociatedDataStorageState_Values() []string {
+	return []string{
+		DisassociatedDataStorageStateEnabled,
+		DisassociatedDataStorageStateDisabled,
+	}
+}
+
+const (
 	// EncryptionTypeSitewiseDefaultEncryption is a EncryptionType enum value
 	EncryptionTypeSitewiseDefaultEncryption = "SITEWISE_DEFAULT_ENCRYPTION"
 
@@ -20977,6 +22400,22 @@ func ListAssetsFilter_Values() []string {
 	return []string{
 		ListAssetsFilterAll,
 		ListAssetsFilterTopLevel,
+	}
+}
+
+const (
+	// ListTimeSeriesTypeAssociated is a ListTimeSeriesType enum value
+	ListTimeSeriesTypeAssociated = "ASSOCIATED"
+
+	// ListTimeSeriesTypeDisassociated is a ListTimeSeriesType enum value
+	ListTimeSeriesTypeDisassociated = "DISASSOCIATED"
+)
+
+// ListTimeSeriesType_Values returns all elements of the ListTimeSeriesType enum
+func ListTimeSeriesType_Values() []string {
+	return []string{
+		ListTimeSeriesTypeAssociated,
+		ListTimeSeriesTypeDisassociated,
 	}
 }
 

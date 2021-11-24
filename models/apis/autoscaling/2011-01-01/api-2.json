@@ -2401,6 +2401,18 @@
         "Max":{"shape":"NullablePositiveInteger"}
       }
     },
+    "Metric":{
+      "type":"structure",
+      "required":[
+        "Namespace",
+        "MetricName"
+      ],
+      "members":{
+        "Namespace":{"shape":"MetricNamespace"},
+        "MetricName":{"shape":"MetricName"},
+        "Dimensions":{"shape":"MetricDimensions"}
+      }
+    },
     "MetricCollectionType":{
       "type":"structure",
       "members":{
@@ -2410,6 +2422,21 @@
     "MetricCollectionTypes":{
       "type":"list",
       "member":{"shape":"MetricCollectionType"}
+    },
+    "MetricDataQueries":{
+      "type":"list",
+      "member":{"shape":"MetricDataQuery"}
+    },
+    "MetricDataQuery":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"XmlStringMaxLen255"},
+        "Expression":{"shape":"XmlStringMaxLen1023"},
+        "MetricStat":{"shape":"MetricStat"},
+        "Label":{"shape":"XmlStringMetricLabel"},
+        "ReturnData":{"shape":"ReturnData"}
+      }
     },
     "MetricDimension":{
       "type":"structure",
@@ -2441,6 +2468,18 @@
     "MetricName":{"type":"string"},
     "MetricNamespace":{"type":"string"},
     "MetricScale":{"type":"double"},
+    "MetricStat":{
+      "type":"structure",
+      "required":[
+        "Metric",
+        "Stat"
+      ],
+      "members":{
+        "Metric":{"shape":"Metric"},
+        "Stat":{"shape":"XmlStringMetricStat"},
+        "Unit":{"shape":"MetricUnit"}
+      }
+    },
     "MetricStatistic":{
       "type":"string",
       "enum":[
@@ -2600,6 +2639,27 @@
         "MaxCapacityBuffer":{"shape":"PredictiveScalingMaxCapacityBuffer"}
       }
     },
+    "PredictiveScalingCustomizedCapacityMetric":{
+      "type":"structure",
+      "required":["MetricDataQueries"],
+      "members":{
+        "MetricDataQueries":{"shape":"MetricDataQueries"}
+      }
+    },
+    "PredictiveScalingCustomizedLoadMetric":{
+      "type":"structure",
+      "required":["MetricDataQueries"],
+      "members":{
+        "MetricDataQueries":{"shape":"MetricDataQueries"}
+      }
+    },
+    "PredictiveScalingCustomizedScalingMetric":{
+      "type":"structure",
+      "required":["MetricDataQueries"],
+      "members":{
+        "MetricDataQueries":{"shape":"MetricDataQueries"}
+      }
+    },
     "PredictiveScalingForecastTimestamps":{
       "type":"list",
       "member":{"shape":"TimestampType"}
@@ -2627,7 +2687,10 @@
         "TargetValue":{"shape":"MetricScale"},
         "PredefinedMetricPairSpecification":{"shape":"PredictiveScalingPredefinedMetricPair"},
         "PredefinedScalingMetricSpecification":{"shape":"PredictiveScalingPredefinedScalingMetric"},
-        "PredefinedLoadMetricSpecification":{"shape":"PredictiveScalingPredefinedLoadMetric"}
+        "PredefinedLoadMetricSpecification":{"shape":"PredictiveScalingPredefinedLoadMetric"},
+        "CustomizedScalingMetricSpecification":{"shape":"PredictiveScalingCustomizedScalingMetric"},
+        "CustomizedLoadMetricSpecification":{"shape":"PredictiveScalingCustomizedLoadMetric"},
+        "CustomizedCapacityMetricSpecification":{"shape":"PredictiveScalingCustomizedCapacityMetric"}
       }
     },
     "PredictiveScalingMetricSpecifications":{
@@ -2851,6 +2914,7 @@
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
+    "ReturnData":{"type":"boolean"},
     "ScalingActivityInProgressFault":{
       "type":"structure",
       "members":{
@@ -3267,6 +3331,17 @@
     "XmlStringMaxLen64":{
       "type":"string",
       "max":64,
+      "min":1,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "XmlStringMetricLabel":{
+      "type":"string",
+      "max":2047,
+      "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
+    },
+    "XmlStringMetricStat":{
+      "type":"string",
+      "max":100,
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },

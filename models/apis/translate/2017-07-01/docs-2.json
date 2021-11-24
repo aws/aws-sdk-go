@@ -130,13 +130,13 @@
     "EncryptionKeyID": {
       "base": null,
       "refs": {
-        "EncryptionKey$Id": "<p>The Amazon Resource Name (ARN) of the encryption key being used to encrypt the custom terminology.</p>"
+        "EncryptionKey$Id": "<p>The Amazon Resource Name (ARN) of the encryption key being used to encrypt this object.</p>"
       }
     },
     "EncryptionKeyType": {
       "base": null,
       "refs": {
-        "EncryptionKey$Type": "<p>The type of encryption key used by Amazon Translate to encrypt custom terminologies.</p>"
+        "EncryptionKey$Type": "<p>The type of encryption key used by Amazon Translate to encrypt this object.</p>"
       }
     },
     "GetParallelDataRequest": {
@@ -365,7 +365,7 @@
     "ParallelDataDataLocation": {
       "base": "<p>The location of the most recent parallel data input file that was successfully imported into Amazon Translate.</p>",
       "refs": {
-        "GetParallelDataResponse$DataLocation": "<p>The Amazon S3 location of the most recent parallel data input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan parallel data input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download a parallel data input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
+        "GetParallelDataResponse$DataLocation": "<p>The Amazon S3 location of the most recent parallel data input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
         "GetParallelDataResponse$AuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to create a parallel data resource. The location is returned as a presigned URL to that has a 30 minute expiration.</p>",
         "GetParallelDataResponse$LatestUpdateAttemptAuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to update a parallel data resource. The location is returned as a presigned URL to that has a 30 minute expiration.</p>"
       }
@@ -398,6 +398,12 @@
         "ParallelDataProperties$LatestUpdateAttemptStatus": "<p>The status of the most recent update attempt for the parallel data resource.</p>",
         "UpdateParallelDataResponse$Status": "<p>The status of the parallel data resource that you are attempting to update. Your update request is accepted only if this status is either <code>ACTIVE</code> or <code>FAILED</code>.</p>",
         "UpdateParallelDataResponse$LatestUpdateAttemptStatus": "<p>The status of the parallel data update attempt. When the updated parallel data resource is ready for you to use, the status is <code>ACTIVE</code>.</p>"
+      }
+    },
+    "Profanity": {
+      "base": null,
+      "refs": {
+        "TranslationSettings$Profanity": "<p>Enable the profanity setting if you want Amazon Translate to mask profane words and phrases in your translation output.</p> <p>To mask profane words and phrases, Amazon Translate replaces them with the grawlix string “?$#@$“. This 5-character sequence is used for each profane word or phrase, regardless of the length or number of words.</p> <p>Amazon Translate does not detect profanity in all of its supported languages. For languages that support profanity detection, see <a href=\"https://docs.aws.amazon.com/translate/latest/dg/what-is.html#what-is-languages\">Supported Languages and Language Codes in the Amazon Translate Developer Guide</a>.</p>"
       }
     },
     "ResourceName": {
@@ -479,13 +485,13 @@
         "InvalidRequestException$Message": null,
         "LimitExceededException$Message": null,
         "ParallelDataDataLocation$RepositoryType": "<p>Describes the repository that contains the parallel data input file.</p>",
-        "ParallelDataDataLocation$Location": "<p>The Amazon S3 location of the parallel data input file. The location is returned as a presigned URL to that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan parallel data input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download a parallel data input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
+        "ParallelDataDataLocation$Location": "<p>The Amazon S3 location of the parallel data input file. The location is returned as a presigned URL to that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
         "ResourceNotFoundException$Message": null,
         "ServiceUnavailableException$Message": null,
         "Term$SourceText": "<p>The source text of the term being translated by the custom terminology.</p>",
         "Term$TargetText": "<p>The target text of the term being translated by the custom terminology.</p>",
         "TerminologyDataLocation$RepositoryType": "<p>The repository type for the custom terminology data.</p>",
-        "TerminologyDataLocation$Location": "<p>The location of the custom terminology data.</p>",
+        "TerminologyDataLocation$Location": "<p>The Amazon S3 location of the most recent custom terminology input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
         "TextSizeLimitExceededException$Message": null,
         "TooManyRequestsException$Message": null,
         "TranslateTextResponse$TranslatedText": "<p>The translated text.</p>",
@@ -534,7 +540,7 @@
     "TerminologyDataLocation": {
       "base": "<p>The location of the custom terminology data.</p>",
       "refs": {
-        "GetTerminologyResponse$TerminologyDataLocation": "<p>The data location of the custom terminology being retrieved. The custom terminology file is returned in a presigned url that has a 30 minute expiration.</p>",
+        "GetTerminologyResponse$TerminologyDataLocation": "<p>The Amazon S3 location of the most recent custom terminology input file that was successfully imported into Amazon Translate. The location is returned as a presigned URL that has a 30 minute expiration.</p> <important> <p>Amazon Translate doesn't scan all input files for the risk of CSV injection attacks. </p> <p>CSV injection occurs when a .csv or .tsv file is altered so that a record contains malicious code. The record begins with a special character, such as =, +, -, or @. When the file is opened in a spreadsheet program, the program might interpret the record as a formula and run the code within it.</p> <p>Before you download an input file from Amazon S3, ensure that you recognize the file and trust its creator.</p> </important>",
         "GetTerminologyResponse$AuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to create a terminology resource. The location is returned as a presigned URL to that has a 30 minute expiration.</p>",
         "ImportTerminologyResponse$AuxiliaryDataLocation": "<p>The Amazon S3 location of a file that provides any errors or warnings that were produced by your input file. This file was created when Amazon Translate attempted to create a terminology resource. The location is returned as a presigned URL to that has a 30 minute expiration.</p>"
       }
@@ -611,6 +617,15 @@
     "TranslateTextResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "TranslationSettings": {
+      "base": "<p>Settings that configure the translation output.</p>",
+      "refs": {
+        "StartTextTranslationJobRequest$Settings": "<p>Settings to configure your translation output, including the option to mask profane words and phrases.</p>",
+        "TextTranslationJobProperties$Settings": "<p>Settings that configure the translation output.</p>",
+        "TranslateTextRequest$Settings": "<p>Settings to configure your translation output, including the option to mask profane words and phrases.</p>",
+        "TranslateTextResponse$AppliedSettings": "<p>Settings that configure the translation output.</p>"
       }
     },
     "UnboundedLengthString": {

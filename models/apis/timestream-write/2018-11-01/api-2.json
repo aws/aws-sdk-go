@@ -29,7 +29,8 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
         {"shape":"InvalidEndpointException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidEndpointException"}
       ],
       "endpointdiscovery":{"required":true}
     },
@@ -48,6 +49,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InvalidEndpointException"},
         {"shape":"InternalServerException"},
         {"shape":"InvalidEndpointException"}
       ],
@@ -267,6 +269,7 @@
         "requestUri":"/"
       },
       "input":{"shape":"WriteRecordsRequest"},
+      "output":{"shape":"WriteRecordsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
@@ -293,6 +296,7 @@
       "max":1011,
       "min":1
     },
+    "Boolean":{"type":"boolean"},
     "ConflictException":{
       "type":"structure",
       "required":["Message"],
@@ -305,7 +309,7 @@
       "type":"structure",
       "required":["DatabaseName"],
       "members":{
-        "DatabaseName":{"shape":"ResourceName"},
+        "DatabaseName":{"shape":"ResourceCreateAPIName"},
         "KmsKeyId":{"shape":"StringValue2048"},
         "Tags":{"shape":"TagList"}
       }
@@ -323,10 +327,11 @@
         "TableName"
       ],
       "members":{
-        "DatabaseName":{"shape":"ResourceName"},
-        "TableName":{"shape":"ResourceName"},
+        "DatabaseName":{"shape":"ResourceCreateAPIName"},
+        "TableName":{"shape":"ResourceCreateAPIName"},
         "RetentionProperties":{"shape":"RetentionProperties"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "MagneticStoreWriteProperties":{"shape":"MagneticStoreWriteProperties"}
       }
     },
     "CreateTableResponse":{
@@ -418,8 +423,8 @@
         "Value"
       ],
       "members":{
-        "Name":{"shape":"StringValue256"},
-        "Value":{"shape":"StringValue2048"},
+        "Name":{"shape":"SchemaName"},
+        "Value":{"shape":"SchemaValue"},
         "DimensionValueType":{"shape":"DimensionValueType"}
       }
     },
@@ -448,6 +453,7 @@
       "member":{"shape":"Endpoint"}
     },
     "ErrorMessage":{"type":"string"},
+    "Integer":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
       "required":["Message"],
@@ -507,10 +513,37 @@
       }
     },
     "Long":{"type":"long"},
+    "MagneticStoreRejectedDataLocation":{
+      "type":"structure",
+      "members":{
+        "S3Configuration":{"shape":"S3Configuration"}
+      }
+    },
     "MagneticStoreRetentionPeriodInDays":{
       "type":"long",
       "max":73000,
       "min":1
+    },
+    "MagneticStoreWriteProperties":{
+      "type":"structure",
+      "required":["EnableMagneticStoreWrites"],
+      "members":{
+        "EnableMagneticStoreWrites":{"shape":"Boolean"},
+        "MagneticStoreRejectedDataLocation":{"shape":"MagneticStoreRejectedDataLocation"}
+      }
+    },
+    "MeasureValue":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value",
+        "Type"
+      ],
+      "members":{
+        "Name":{"shape":"SchemaName"},
+        "Value":{"shape":"StringValue2048"},
+        "Type":{"shape":"MeasureValueType"}
+      }
     },
     "MeasureValueType":{
       "type":"string",
@@ -518,8 +551,14 @@
         "DOUBLE",
         "BIGINT",
         "VARCHAR",
-        "BOOLEAN"
+        "BOOLEAN",
+        "TIMESTAMP",
+        "MULTI"
       ]
+    },
+    "MeasureValues":{
+      "type":"list",
+      "member":{"shape":"MeasureValue"}
     },
     "MemoryStoreRetentionPeriodInHours":{
       "type":"long",
@@ -536,7 +575,7 @@
       "type":"structure",
       "members":{
         "Dimensions":{"shape":"Dimensions"},
-        "MeasureName":{"shape":"StringValue256"},
+        "MeasureName":{"shape":"SchemaName"},
         "MeasureValue":{"shape":"StringValue2048"},
         "MeasureValueType":{"shape":"MeasureValueType"},
         "Time":{"shape":"StringValue256"},
@@ -544,7 +583,8 @@
         "Version":{
           "shape":"RecordVersion",
           "box":true
-        }
+        },
+        "MeasureValues":{"shape":"MeasureValues"}
       }
     },
     "RecordIndex":{"type":"integer"},
@@ -554,6 +594,14 @@
       "member":{"shape":"Record"},
       "max":100,
       "min":1
+    },
+    "RecordsIngested":{
+      "type":"structure",
+      "members":{
+        "Total":{"shape":"Integer"},
+        "MemoryStore":{"shape":"Integer"},
+        "MagneticStore":{"shape":"Integer"}
+      }
     },
     "RejectedRecord":{
       "type":"structure",
@@ -578,12 +626,11 @@
       },
       "exception":true
     },
-    "ResourceName":{
+    "ResourceCreateAPIName":{
       "type":"string",
-      "max":64,
-      "min":3,
       "pattern":"[a-zA-Z0-9_.-]+"
     },
+    "ResourceName":{"type":"string"},
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -602,6 +649,39 @@
         "MagneticStoreRetentionPeriodInDays":{"shape":"MagneticStoreRetentionPeriodInDays"}
       }
     },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]"
+    },
+    "S3Configuration":{
+      "type":"structure",
+      "members":{
+        "BucketName":{"shape":"S3BucketName"},
+        "ObjectKeyPrefix":{"shape":"S3ObjectKeyPrefix"},
+        "EncryptionOption":{"shape":"S3EncryptionOption"},
+        "KmsKeyId":{"shape":"StringValue2048"}
+      }
+    },
+    "S3EncryptionOption":{
+      "type":"string",
+      "enum":[
+        "SSE_S3",
+        "SSE_KMS"
+      ]
+    },
+    "S3ObjectKeyPrefix":{
+      "type":"string",
+      "max":928,
+      "min":1,
+      "pattern":"[a-zA-Z0-9|!\\-_*'\\(\\)]([a-zA-Z0-9]|[!\\-_*'\\(\\)\\/.])+"
+    },
+    "SchemaName":{
+      "type":"string",
+      "min":1
+    },
+    "SchemaValue":{"type":"string"},
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
@@ -629,7 +709,8 @@
         "TableStatus":{"shape":"TableStatus"},
         "RetentionProperties":{"shape":"RetentionProperties"},
         "CreationTime":{"shape":"Date"},
-        "LastUpdatedTime":{"shape":"Date"}
+        "LastUpdatedTime":{"shape":"Date"},
+        "MagneticStoreWriteProperties":{"shape":"MagneticStoreWriteProperties"}
       }
     },
     "TableList":{
@@ -746,13 +827,13 @@
       "type":"structure",
       "required":[
         "DatabaseName",
-        "TableName",
-        "RetentionProperties"
+        "TableName"
       ],
       "members":{
         "DatabaseName":{"shape":"ResourceName"},
         "TableName":{"shape":"ResourceName"},
-        "RetentionProperties":{"shape":"RetentionProperties"}
+        "RetentionProperties":{"shape":"RetentionProperties"},
+        "MagneticStoreWriteProperties":{"shape":"MagneticStoreWriteProperties"}
       }
     },
     "UpdateTableResponse":{
@@ -781,6 +862,12 @@
         "TableName":{"shape":"ResourceName"},
         "CommonAttributes":{"shape":"Record"},
         "Records":{"shape":"Records"}
+      }
+    },
+    "WriteRecordsResponse":{
+      "type":"structure",
+      "members":{
+        "RecordsIngested":{"shape":"RecordsIngested"}
       }
     }
   }
