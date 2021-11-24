@@ -1,3 +1,24 @@
+Release v1.42.12 (2021-11-24)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Customers can now configure predictive scaling policies to proactively scale EC2 Auto Scaling groups based on any CloudWatch metrics that more accurately represent the load on the group than the four predefined metrics. They can also use math expressions to further customize the metrics.
+* `service/customer-profiles`: Updates service API and documentation
+* `service/elasticache`: Updates service documentation
+  * Doc only update for ElastiCache
+* `service/imagebuilder`: Updates service API and documentation
+* `service/iotsitewise`: Updates service API, documentation, and paginators
+* `service/lambda`: Updates service API, documentation, and paginators
+  * Remove Lambda function url apis
+* `service/proton`: Updates service API, documentation, and paginators
+* `service/timestream-query`: Updates service API, documentation, and paginators
+* `service/timestream-write`: Updates service API and documentation
+* `service/translate`: Updates service API and documentation
+
+### SDK Bugs
+* `aws/crr`: Fixed a race condition that caused concurrent calls relying on endpoint discovery to share the same `url.URL` reference in their operation's `http.Request`.
+
 Release v1.42.11 (2021-11-23)
 ===
 

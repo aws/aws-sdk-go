@@ -660,6 +660,10 @@
         "FAILED"
       ]
     },
+    "Profanity":{
+      "type":"string",
+      "enum":["MASK"]
+    },
     "ResourceName":{
       "type":"string",
       "max":256,
@@ -712,7 +716,8 @@
         "ClientToken":{
           "shape":"ClientTokenString",
           "idempotencyToken":true
-        }
+        },
+        "Settings":{"shape":"TranslationSettings"}
       }
     },
     "StartTextTranslationJobResponse":{
@@ -854,7 +859,8 @@
         "EndTime":{"shape":"Timestamp"},
         "InputDataConfig":{"shape":"InputDataConfig"},
         "OutputDataConfig":{"shape":"OutputDataConfig"},
-        "DataAccessRoleArn":{"shape":"IamRoleArn"}
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "Settings":{"shape":"TranslationSettings"}
       }
     },
     "TextTranslationJobPropertiesList":{
@@ -880,7 +886,8 @@
         "Text":{"shape":"BoundedLengthString"},
         "TerminologyNames":{"shape":"ResourceNameList"},
         "SourceLanguageCode":{"shape":"LanguageCodeString"},
-        "TargetLanguageCode":{"shape":"LanguageCodeString"}
+        "TargetLanguageCode":{"shape":"LanguageCodeString"},
+        "Settings":{"shape":"TranslationSettings"}
       }
     },
     "TranslateTextResponse":{
@@ -894,7 +901,14 @@
         "TranslatedText":{"shape":"String"},
         "SourceLanguageCode":{"shape":"LanguageCodeString"},
         "TargetLanguageCode":{"shape":"LanguageCodeString"},
-        "AppliedTerminologies":{"shape":"AppliedTerminologyList"}
+        "AppliedTerminologies":{"shape":"AppliedTerminologyList"},
+        "AppliedSettings":{"shape":"TranslationSettings"}
+      }
+    },
+    "TranslationSettings":{
+      "type":"structure",
+      "members":{
+        "Profanity":{"shape":"Profanity"}
       }
     },
     "UnboundedLengthString":{"type":"string"},

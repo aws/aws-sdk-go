@@ -1,5 +1,17 @@
 {
   "pagination": {
+    "ListScheduledQueries": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ScheduledQueries"
+    },
+    "ListTagsForResource": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Tags"
+    },
     "Query": {
       "input_token": "NextToken",
       "limit_key": "MaxRows",

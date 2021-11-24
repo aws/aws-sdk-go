@@ -85,10 +85,10 @@ func (c *TimestreamWrite) CreateDatabaseRequest(input *CreateDatabaseInput) (req
 //
 // Creates a new Timestream database. If the KMS key is not specified, the database
 // will be encrypted with a Timestream managed KMS key located in your account.
-// Refer to AWS managed KMS keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)
-// for more info. Service quotas apply. For more information, see Access Management
-// (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// Refer to Amazon Web Services managed KMS keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)
+// for more info. Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-db.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -121,6 +121,9 @@ func (c *TimestreamWrite) CreateDatabaseRequest(input *CreateDatabaseInput) (req
 //   * InternalServerException
 //   Timestream was unable to fully process this request because of an internal
 //   server error.
+//
+//   * InvalidEndpointException
+//   The requested endpoint was invalid.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/timestream-write-2018-11-01/CreateDatabase
 func (c *TimestreamWrite) CreateDatabase(input *CreateDatabaseInput) (*CreateDatabaseOutput, error) {
@@ -212,13 +215,13 @@ func (c *TimestreamWrite) CreateTableRequest(input *CreateTableInput) (req *requ
 // CreateTable API operation for Amazon Timestream Write.
 //
 // The CreateTable operation adds a new table to an existing database in your
-// account. In an AWS account, table names must be at least unique within each
-// Region if they are in the same database. You may have identical table names
-// in the same Region if the tables are in seperate databases. While creating
-// the table, you must specify the table name, database name, and the retention
-// properties. Service quotas apply. For more information, see Access Management
-// (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// account. In an Amazon Web Services account, table names must be at least
+// unique within each Region if they are in the same database. You may have
+// identical table names in the same Region if the tables are in separate databases.
+// While creating the table, you must specify the table name, database name,
+// and the retention properties. Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.create-table.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -248,6 +251,9 @@ func (c *TimestreamWrite) CreateTableRequest(input *CreateTableInput) (req *requ
 //   * ThrottlingException
 //   Too many requests were made by a user exceeding service quotas. The request
 //   was throttled.
+//
+//   * InvalidEndpointException
+//   The requested endpoint was invalid.
 //
 //   * InternalServerException
 //   Timestream was unable to fully process this request because of an internal
@@ -354,6 +360,9 @@ func (c *TimestreamWrite) DeleteDatabaseRequest(input *DeleteDatabaseInput) (req
 //
 // Due to the nature of distributed retries, the operation can return either
 // success or a ResourceNotFoundException. Clients should consider them equivalent.
+//
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.delete-db.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -481,6 +490,9 @@ func (c *TimestreamWrite) DeleteTableRequest(input *DeleteTableInput) (req *requ
 // Due to the nature of distributed retries, the operation can return either
 // success or a ResourceNotFoundException. Clients should consider them equivalent.
 //
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.delete-table.html)
+// for details.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -601,9 +613,9 @@ func (c *TimestreamWrite) DescribeDatabaseRequest(input *DescribeDatabaseInput) 
 //
 // Returns information about the database, including the database name, time
 // that the database was created, and the total number of tables found within
-// the database. Service quotas apply. For more information, see Access Management
-// (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// the database. Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.describe-db.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -703,17 +715,20 @@ func (c *TimestreamWrite) DescribeEndpointsRequest(input *DescribeEndpointsInput
 // DescribeEndpoints returns a list of available endpoints to make Timestream
 // API calls against. This API is available through both Write and Query.
 //
-// Because Timestream’s SDKs are designed to transparently work with the service’s
+// Because the Timestream SDKs are designed to transparently work with the service’s
 // architecture, including the management and mapping of the service endpoints,
 // it is not recommended that you use this API unless:
+//
+//    * You are using VPC endpoints (Amazon Web Services PrivateLink) with Timestream
+//    (https://docs.aws.amazon.com/timestream/latest/developerguide/VPCEndpoints)
 //
 //    * Your application uses a programming language that does not yet have
 //    SDK support
 //
 //    * You require better control over the client-side implementation
 //
-// For detailed information on how to use DescribeEndpoints, see The Endpoint
-// Discovery Pattern and REST APIs (https://docs.aws.amazon.com/timestream/latest/developerguide/Using-API.endpoint-discovery.html).
+// For detailed information on how and when to use and implement DescribeEndpoints,
+// see The Endpoint Discovery Pattern (https://docs.aws.amazon.com/timestream/latest/developerguide/Using.API.html#Using-API.endpoint-discovery).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -897,8 +912,9 @@ func (c *TimestreamWrite) DescribeTableRequest(input *DescribeTableInput) (req *
 //
 // Returns information about the table, including the table name, database name,
 // retention duration of the memory store and the magnetic store. Service quotas
-// apply. For more information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.describe-table.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1024,9 +1040,9 @@ func (c *TimestreamWrite) ListDatabasesRequest(input *ListDatabasesInput) (req *
 
 // ListDatabases API operation for Amazon Timestream Write.
 //
-// Returns a list of your Timestream databases. Service quotas apply. For more
-// information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// Returns a list of your Timestream databases. Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.list-db.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1201,7 +1217,8 @@ func (c *TimestreamWrite) ListTablesRequest(input *ListTablesInput) (req *reques
 // ListTables API operation for Amazon Timestream Write.
 //
 // A list of tables, along with the name, status and retention properties of
-// each table.
+// each table. See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.list-table.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1727,6 +1744,9 @@ func (c *TimestreamWrite) UpdateDatabaseRequest(input *UpdateDatabaseInput) (req
 // to be used (KmsKeyId). If there are any concurrent UpdateDatabase requests,
 // first writer wins.
 //
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.update-db.html)
+// for details.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1856,8 +1876,8 @@ func (c *TimestreamWrite) UpdateTableRequest(input *UpdateTableInput) (req *requ
 // of data 22 hours after this change was made. Timestream does not retrieve
 // data from the magnetic store to populate the memory store.
 //
-// Service quotas apply. For more information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.update-table.html)
+// for details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1949,7 +1969,6 @@ func (c *TimestreamWrite) WriteRecordsRequest(input *WriteRecordsInput) (req *re
 
 	output = &WriteRecordsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	// if custom endpoint for the request is set to a non empty string,
 	// we skip the endpoint discovery workflow.
 	if req.Config.Endpoint == nil || *req.Config.Endpoint == "" {
@@ -1988,9 +2007,36 @@ func (c *TimestreamWrite) WriteRecordsRequest(input *WriteRecordsInput) (req *re
 // a batch of data into Timestream, the query results might not reflect the
 // results of a recently completed write operation. The results may also include
 // some stale data. If you repeat the query request after a short time, the
-// results should return the latest data. Service quotas apply. For more information,
-// see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
-// in the Timestream Developer Guide.
+// results should return the latest data. Service quotas apply (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html).
+//
+// See code sample (https://docs.aws.amazon.com/timestream/latest/developerguide/code-samples.write.html)
+// for details.
+//
+// Upserts
+//
+// You can use the Version parameter in a WriteRecords request to update data
+// points. Timestream tracks a version number with each record. Version defaults
+// to 1 when not specified for the record in the request. Timestream will update
+// an existing record’s measure value along with its Version upon receiving
+// a write request with a higher Version number for that record. Upon receiving
+// an update request where the measure value is the same as that of the existing
+// record, Timestream still updates Version, if it is greater than the existing
+// value of Version. You can update a data point as many times as desired, as
+// long as the value of Version continuously increases.
+//
+// For example, suppose you write a new record without indicating Version in
+// the request. Timestream will store this record, and set Version to 1. Now,
+// suppose you try to update this record with a WriteRecords request of the
+// same record with a different measure value but, like before, do not provide
+// Version. In this case, Timestream will reject this update with a RejectedRecordsException
+// since the updated record’s version is not greater than the existing value
+// of Version. However, if you were to resend the update request with Version
+// set to 2, Timestream would then succeed in updating the record’s value,
+// and the Version would be set to 2. Next, suppose you sent a WriteRecords
+// request with this same record and an identical measure value, but with Version
+// set to 3. In this case, Timestream would only update Version to 3. Any further
+// updates would need to send a version number greater than 3, or the update
+// requests would receive a RejectedRecordsException.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2022,7 +2068,13 @@ func (c *TimestreamWrite) WriteRecordsRequest(input *WriteRecordsInput) (req *re
 //   WriteRecords would throw this exception in the following cases:
 //
 //      * Records with duplicate data where there are multiple records with the
-//      same dimensions, timestamps, and measure names but different measure values.
+//      same dimensions, timestamps, and measure names but: Measure values are
+//      different Version is not present in the request or the value of version
+//      in the new record is equal to or lower than the existing value In this
+//      case, if Timestream rejects data, the ExistingVersion field in the RejectedRecords
+//      response will indicate the current record’s version. To force an update,
+//      you can resend the request with a version for the record set to a value
+//      greater than the ExistingVersion.
 //
 //      * Records with timestamps that lie outside the retention duration of the
 //      memory store
@@ -2030,7 +2082,7 @@ func (c *TimestreamWrite) WriteRecordsRequest(input *WriteRecordsInput) (req *re
 //      * Records with dimensions or measures that exceed the Timestream defined
 //      limits.
 //
-//   For more information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
+//   For more information, see Quotas (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
 //   in the Timestream Developer Guide.
 //
 //   * InvalidEndpointException
@@ -2193,11 +2245,11 @@ type CreateDatabaseInput struct {
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
 	// The KMS key for the database. If the KMS key is not specified, the database
 	// will be encrypted with a Timestream managed KMS key located in your account.
-	// Refer to AWS managed KMS keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)
+	// Refer to Amazon Web Services managed KMS keys (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk)
 	// for more info.
 	KmsKeyId *string `min:"1" type:"string"`
 
@@ -2228,9 +2280,6 @@ func (s *CreateDatabaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDatabaseInput"}
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
 	}
 	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
@@ -2307,7 +2356,10 @@ type CreateTableInput struct {
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
+
+	// Contains properties to set on the table when enabling magnetic store writes.
+	MagneticStoreWriteProperties *MagneticStoreWriteProperties `type:"structure"`
 
 	// The duration for which your time series data must be stored in the memory
 	// store and the magnetic store.
@@ -2316,7 +2368,7 @@ type CreateTableInput struct {
 	// The name of the Timestream table.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 
 	// A list of key-value pairs to label the table.
 	Tags []*Tag `type:"list"`
@@ -2346,14 +2398,13 @@ func (s *CreateTableInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
 	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
+	if s.MagneticStoreWriteProperties != nil {
+		if err := s.MagneticStoreWriteProperties.Validate(); err != nil {
+			invalidParams.AddNested("MagneticStoreWriteProperties", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RetentionProperties != nil {
 		if err := s.RetentionProperties.Validate(); err != nil {
@@ -2380,6 +2431,12 @@ func (s *CreateTableInput) Validate() error {
 // SetDatabaseName sets the DatabaseName field's value.
 func (s *CreateTableInput) SetDatabaseName(v string) *CreateTableInput {
 	s.DatabaseName = &v
+	return s
+}
+
+// SetMagneticStoreWriteProperties sets the MagneticStoreWriteProperties field's value.
+func (s *CreateTableInput) SetMagneticStoreWriteProperties(v *MagneticStoreWriteProperties) *CreateTableInput {
+	s.MagneticStoreWriteProperties = v
 	return s
 }
 
@@ -2445,7 +2502,7 @@ type Database struct {
 	CreationTime *time.Time `type:"timestamp"`
 
 	// The name of the Timestream database.
-	DatabaseName *string `min:"3" type:"string"`
+	DatabaseName *string `type:"string"`
 
 	// The identifier of the KMS key used to encrypt the data stored in the database.
 	KmsKeyId *string `min:"1" type:"string"`
@@ -2517,7 +2574,7 @@ type DeleteDatabaseInput struct {
 	// The name of the Timestream database to be deleted.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2543,9 +2600,6 @@ func (s *DeleteDatabaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DeleteDatabaseInput"}
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2588,12 +2642,12 @@ type DeleteTableInput struct {
 	// The name of the database where the Timestream database is to be deleted.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
 	// The name of the Timestream table to be deleted.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2620,14 +2674,8 @@ func (s *DeleteTableInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
-	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2676,7 +2724,7 @@ type DescribeDatabaseInput struct {
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2702,9 +2750,6 @@ func (s *DescribeDatabaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeDatabaseInput"}
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2811,12 +2856,12 @@ type DescribeTableInput struct {
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
 	// The name of the Timestream table.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2843,14 +2888,8 @@ func (s *DescribeTableInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
-	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2923,7 +2962,7 @@ type Dimension struct {
 	// The value of the dimension.
 	//
 	// Value is a required field
-	Value *string `min:"1" type:"string" required:"true"`
+	Value *string `type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -2955,9 +2994,6 @@ func (s *Dimension) Validate() error {
 	}
 	if s.Value == nil {
 		invalidParams.Add(request.NewErrParamRequired("Value"))
-	}
-	if s.Value != nil && len(*s.Value) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3260,7 +3296,7 @@ type ListTablesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the Timestream database.
-	DatabaseName *string `min:"3" type:"string"`
+	DatabaseName *string `type:"string"`
 
 	// The total number of items to return in the output. If the total number of
 	// items available is more than the value specified, a NextToken is provided
@@ -3294,9 +3330,6 @@ func (s ListTablesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListTablesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListTablesInput"}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -3447,6 +3480,207 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
+// The location to write error reports for records rejected, asynchronously,
+// during magnetic store writes.
+type MagneticStoreRejectedDataLocation struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration of an S3 location to write error reports for records rejected,
+	// asynchronously, during magnetic store writes.
+	S3Configuration *S3Configuration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MagneticStoreRejectedDataLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MagneticStoreRejectedDataLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MagneticStoreRejectedDataLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MagneticStoreRejectedDataLocation"}
+	if s.S3Configuration != nil {
+		if err := s.S3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Configuration sets the S3Configuration field's value.
+func (s *MagneticStoreRejectedDataLocation) SetS3Configuration(v *S3Configuration) *MagneticStoreRejectedDataLocation {
+	s.S3Configuration = v
+	return s
+}
+
+// The set of properties on a table for configuring magnetic store writes.
+type MagneticStoreWriteProperties struct {
+	_ struct{} `type:"structure"`
+
+	// A flag to enable magnetic store writes.
+	//
+	// EnableMagneticStoreWrites is a required field
+	EnableMagneticStoreWrites *bool `type:"boolean" required:"true"`
+
+	// The location to write error reports for records rejected asynchronously during
+	// magnetic store writes.
+	MagneticStoreRejectedDataLocation *MagneticStoreRejectedDataLocation `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MagneticStoreWriteProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MagneticStoreWriteProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MagneticStoreWriteProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MagneticStoreWriteProperties"}
+	if s.EnableMagneticStoreWrites == nil {
+		invalidParams.Add(request.NewErrParamRequired("EnableMagneticStoreWrites"))
+	}
+	if s.MagneticStoreRejectedDataLocation != nil {
+		if err := s.MagneticStoreRejectedDataLocation.Validate(); err != nil {
+			invalidParams.AddNested("MagneticStoreRejectedDataLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnableMagneticStoreWrites sets the EnableMagneticStoreWrites field's value.
+func (s *MagneticStoreWriteProperties) SetEnableMagneticStoreWrites(v bool) *MagneticStoreWriteProperties {
+	s.EnableMagneticStoreWrites = &v
+	return s
+}
+
+// SetMagneticStoreRejectedDataLocation sets the MagneticStoreRejectedDataLocation field's value.
+func (s *MagneticStoreWriteProperties) SetMagneticStoreRejectedDataLocation(v *MagneticStoreRejectedDataLocation) *MagneticStoreWriteProperties {
+	s.MagneticStoreRejectedDataLocation = v
+	return s
+}
+
+// MeasureValue represents the data attribute of the time series. For example,
+// the CPU utilization of an EC2 instance or the RPM of a wind turbine are measures.
+// MeasureValue has both name and value.
+//
+// MeasureValue is only allowed for type MULTI. Using MULTI type, you can pass
+// multiple data attributes associated with the same time series in a single
+// record
+type MeasureValue struct {
+	_ struct{} `type:"structure"`
+
+	// Name of the MeasureValue.
+	//
+	// For constraints on MeasureValue names, refer to Naming Constraints (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html#limits.naming)
+	// in the Timestream developer guide.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Contains the data type of the MeasureValue for the time series data point.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"MeasureValueType"`
+
+	// Value for the MeasureValue.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeasureValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MeasureValue) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MeasureValue) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MeasureValue"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *MeasureValue) SetName(v string) *MeasureValue {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MeasureValue) SetType(v string) *MeasureValue {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MeasureValue) SetValue(v string) *MeasureValue {
+	s.Value = &v
+	return s
+}
+
 // Record represents a time series data point being written into Timestream.
 // Each record contains an array of dimensions. Dimensions represent the meta
 // data attributes of a time series data point such as the instance name or
@@ -3456,6 +3690,13 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 // and the value type which is the data type of the measure value. In addition,
 // the record contains the timestamp when the measure was collected that the
 // timestamp unit which represents the granularity of the timestamp.
+//
+// Records have a Version field, which is a 64-bit long that you can use for
+// updating data points. Writes of a duplicate record with the same dimension,
+// timestamp, and measure name but different measure value will only succeed
+// if the Version attribute of the record in the write request is higher than
+// that of the existing record. Timestream defaults to a Version of 1 for records
+// without the Version field.
 type Record struct {
 	_ struct{} `type:"structure"`
 
@@ -3470,7 +3711,14 @@ type Record struct {
 	MeasureValue *string `min:"1" type:"string"`
 
 	// Contains the data type of the measure value for the time series data point.
+	// Default type is DOUBLE.
 	MeasureValueType *string `type:"string" enum:"MeasureValueType"`
+
+	// Contains the list of MeasureValue for time series data points.
+	//
+	// This is only allowed for type MULTI. For scalar values, use MeasureValue
+	// attribute of the Record directly.
+	MeasureValues []*MeasureValue `type:"list"`
 
 	// Contains the time at which the measure value for the data point was collected.
 	// The time value plus the unit provides the time elapsed since the epoch. For
@@ -3479,13 +3727,16 @@ type Record struct {
 	Time *string `min:"1" type:"string"`
 
 	// The granularity of the timestamp unit. It indicates if the time value is
-	// in seconds, milliseconds, nanoseconds or other supported values.
+	// in seconds, milliseconds, nanoseconds or other supported values. Default
+	// is MILLISECONDS.
 	TimeUnit *string `type:"string" enum:"TimeUnit"`
 
 	// 64-bit attribute used for record updates. Write requests for duplicate data
 	// with a higher version number will update the existing measure value and version.
 	// In cases where the measure value is the same, Version will still be updated
-	// . Default value is to 1.
+	// . Default value is 1.
+	//
+	// Version must be 1 or greater, or you will receive a ValidationException error.
 	Version *int64 `type:"long"`
 }
 
@@ -3529,6 +3780,16 @@ func (s *Record) Validate() error {
 			}
 		}
 	}
+	if s.MeasureValues != nil {
+		for i, v := range s.MeasureValues {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MeasureValues", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3560,6 +3821,12 @@ func (s *Record) SetMeasureValueType(v string) *Record {
 	return s
 }
 
+// SetMeasureValues sets the MeasureValues field's value.
+func (s *Record) SetMeasureValues(v []*MeasureValue) *Record {
+	s.MeasureValues = v
+	return s
+}
+
 // SetTime sets the Time field's value.
 func (s *Record) SetTime(v string) *Record {
 	s.Time = &v
@@ -3578,6 +3845,56 @@ func (s *Record) SetVersion(v int64) *Record {
 	return s
 }
 
+// Information on the records ingested by this request.
+type RecordsIngested struct {
+	_ struct{} `type:"structure"`
+
+	// Count of records ingested into the magnetic store.
+	MagneticStore *int64 `type:"integer"`
+
+	// Count of records ingested into the memory store.
+	MemoryStore *int64 `type:"integer"`
+
+	// Total count of successfully ingested records.
+	Total *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecordsIngested) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecordsIngested) GoString() string {
+	return s.String()
+}
+
+// SetMagneticStore sets the MagneticStore field's value.
+func (s *RecordsIngested) SetMagneticStore(v int64) *RecordsIngested {
+	s.MagneticStore = &v
+	return s
+}
+
+// SetMemoryStore sets the MemoryStore field's value.
+func (s *RecordsIngested) SetMemoryStore(v int64) *RecordsIngested {
+	s.MemoryStore = &v
+	return s
+}
+
+// SetTotal sets the Total field's value.
+func (s *RecordsIngested) SetTotal(v int64) *RecordsIngested {
+	s.Total = &v
+	return s
+}
+
 // Records that were not successfully inserted into Timestream due to data validation
 // issues that must be resolved prior to reinserting time series data into the
 // system.
@@ -3593,7 +3910,13 @@ type RejectedRecord struct {
 	// causes of failure include:
 	//
 	//    * Records with duplicate data where there are multiple records with the
-	//    same dimensions, timestamps, and measure names but different measure values.
+	//    same dimensions, timestamps, and measure names but: Measure values are
+	//    different Version is not present in the request or the value of version
+	//    in the new record is equal to or lower than the existing value If Timestream
+	//    rejects data for this case, the ExistingVersion field in the RejectedRecords
+	//    response will indicate the current record’s version. To force an update,
+	//    you can resend the request with a version for the record set to a value
+	//    greater than the ExistingVersion.
 	//
 	//    * Records with timestamps that lie outside the retention duration of the
 	//    memory store When the retention window is updated, you will receive a
@@ -3654,7 +3977,13 @@ func (s *RejectedRecord) SetRecordIndex(v int64) *RejectedRecord {
 // WriteRecords would throw this exception in the following cases:
 //
 //    * Records with duplicate data where there are multiple records with the
-//    same dimensions, timestamps, and measure names but different measure values.
+//    same dimensions, timestamps, and measure names but: Measure values are
+//    different Version is not present in the request or the value of version
+//    in the new record is equal to or lower than the existing value In this
+//    case, if Timestream rejects data, the ExistingVersion field in the RejectedRecords
+//    response will indicate the current record’s version. To force an update,
+//    you can resend the request with a version for the record set to a value
+//    greater than the ExistingVersion.
 //
 //    * Records with timestamps that lie outside the retention duration of the
 //    memory store
@@ -3662,7 +3991,7 @@ func (s *RejectedRecord) SetRecordIndex(v int64) *RejectedRecord {
 //    * Records with dimensions or measures that exceed the Timestream defined
 //    limits.
 //
-// For more information, see Access Management (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
+// For more information, see Quotas (https://docs.aws.amazon.com/timestream/latest/developerguide/ts-limits.html)
 // in the Timestream Developer Guide.
 type RejectedRecordsException struct {
 	_            struct{}                  `type:"structure"`
@@ -3862,6 +4191,86 @@ func (s *RetentionProperties) SetMemoryStoreRetentionPeriodInHours(v int64) *Ret
 	return s
 }
 
+// Configuration specifing an S3 location.
+type S3Configuration struct {
+	_ struct{} `type:"structure"`
+
+	// >Bucket name of the customer S3 bucket.
+	BucketName *string `min:"3" type:"string"`
+
+	// Encryption option for the customer s3 location. Options are S3 server side
+	// encryption with an S3-managed key or KMS managed key.
+	EncryptionOption *string `type:"string" enum:"S3EncryptionOption"`
+
+	// KMS key id for the customer s3 location when encrypting with a KMS managed
+	// key.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// Object key preview for the customer S3 location.
+	ObjectKeyPrefix *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Configuration"}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.ObjectKeyPrefix != nil && len(*s.ObjectKeyPrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ObjectKeyPrefix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3Configuration) SetBucketName(v string) *S3Configuration {
+	s.BucketName = &v
+	return s
+}
+
+// SetEncryptionOption sets the EncryptionOption field's value.
+func (s *S3Configuration) SetEncryptionOption(v string) *S3Configuration {
+	s.EncryptionOption = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *S3Configuration) SetKmsKeyId(v string) *S3Configuration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetObjectKeyPrefix sets the ObjectKeyPrefix field's value.
+func (s *S3Configuration) SetObjectKeyPrefix(v string) *S3Configuration {
+	s.ObjectKeyPrefix = &v
+	return s
+}
+
 // Instance quota of resource exceeded for this account.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -3939,16 +4348,19 @@ type Table struct {
 	CreationTime *time.Time `type:"timestamp"`
 
 	// The name of the Timestream database that contains this table.
-	DatabaseName *string `min:"3" type:"string"`
+	DatabaseName *string `type:"string"`
 
 	// The time when the Timestream table was last updated.
 	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// Contains properties to set on the table when enabling magnetic store writes.
+	MagneticStoreWriteProperties *MagneticStoreWriteProperties `type:"structure"`
 
 	// The retention duration for the memory store and magnetic store.
 	RetentionProperties *RetentionProperties `type:"structure"`
 
 	// The name of the Timestream table.
-	TableName *string `min:"3" type:"string"`
+	TableName *string `type:"string"`
 
 	// The current state of the table:
 	//
@@ -3997,6 +4409,12 @@ func (s *Table) SetDatabaseName(v string) *Table {
 // SetLastUpdatedTime sets the LastUpdatedTime field's value.
 func (s *Table) SetLastUpdatedTime(v time.Time) *Table {
 	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetMagneticStoreWriteProperties sets the MagneticStoreWriteProperties field's value.
+func (s *Table) SetMagneticStoreWriteProperties(v *MagneticStoreWriteProperties) *Table {
+	s.MagneticStoreWriteProperties = v
 	return s
 }
 
@@ -4339,7 +4757,7 @@ type UpdateDatabaseInput struct {
 	// The name of the database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
 	// The identifier of the new KMS key (KmsKeyId) to be used to encrypt the data
 	// stored in the database. If the KmsKeyId currently registered with the database
@@ -4382,9 +4800,6 @@ func (s *UpdateDatabaseInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateDatabaseInput"}
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
-	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
 	}
 	if s.KmsKeyId == nil {
 		invalidParams.Add(request.NewErrParamRequired("KmsKeyId"))
@@ -4450,17 +4865,18 @@ type UpdateTableInput struct {
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
+
+	// Contains properties to set on the table when enabling magnetic store writes.
+	MagneticStoreWriteProperties *MagneticStoreWriteProperties `type:"structure"`
 
 	// The retention duration of the memory store and the magnetic store.
-	//
-	// RetentionProperties is a required field
-	RetentionProperties *RetentionProperties `type:"structure" required:"true"`
+	RetentionProperties *RetentionProperties `type:"structure"`
 
-	// The name of the Timesream table.
+	// The name of the Timestream table.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -4487,17 +4903,13 @@ func (s *UpdateTableInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
-	if s.RetentionProperties == nil {
-		invalidParams.Add(request.NewErrParamRequired("RetentionProperties"))
-	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
 	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
+	if s.MagneticStoreWriteProperties != nil {
+		if err := s.MagneticStoreWriteProperties.Validate(); err != nil {
+			invalidParams.AddNested("MagneticStoreWriteProperties", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RetentionProperties != nil {
 		if err := s.RetentionProperties.Validate(); err != nil {
@@ -4514,6 +4926,12 @@ func (s *UpdateTableInput) Validate() error {
 // SetDatabaseName sets the DatabaseName field's value.
 func (s *UpdateTableInput) SetDatabaseName(v string) *UpdateTableInput {
 	s.DatabaseName = &v
+	return s
+}
+
+// SetMagneticStoreWriteProperties sets the MagneticStoreWriteProperties field's value.
+func (s *UpdateTableInput) SetMagneticStoreWriteProperties(v *MagneticStoreWriteProperties) *UpdateTableInput {
+	s.MagneticStoreWriteProperties = v
 	return s
 }
 
@@ -4627,27 +5045,29 @@ func (s *ValidationException) RequestID() string {
 type WriteRecordsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A record containing the common measure and dimension attributes shared across
-	// all the records in the request. The measure and dimension attributes specified
-	// in here will be merged with the measure and dimension attributes in the records
-	// object when the data is written into Timestream.
+	// A record containing the common measure, dimension, time, and version attributes
+	// shared across all the records in the request. The measure and dimension attributes
+	// specified will be merged with the measure and dimension attributes in the
+	// records object when the data is written into Timestream. Dimensions may not
+	// overlap, or a ValidationException will be thrown. In other words, a record
+	// must contain dimensions with unique names.
 	CommonAttributes *Record `type:"structure"`
 
 	// The name of the Timestream database.
 	//
 	// DatabaseName is a required field
-	DatabaseName *string `min:"3" type:"string" required:"true"`
+	DatabaseName *string `type:"string" required:"true"`
 
-	// An array of records containing the unique dimension and measure attributes
-	// for each time series data point.
+	// An array of records containing the unique measure, dimension, time, and version
+	// attributes for each time series data point.
 	//
 	// Records is a required field
 	Records []*Record `min:"1" type:"list" required:"true"`
 
-	// The name of the Timesream table.
+	// The name of the Timestream table.
 	//
 	// TableName is a required field
-	TableName *string `min:"3" type:"string" required:"true"`
+	TableName *string `type:"string" required:"true"`
 }
 
 // String returns the string representation.
@@ -4674,9 +5094,6 @@ func (s *WriteRecordsInput) Validate() error {
 	if s.DatabaseName == nil {
 		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
 	}
-	if s.DatabaseName != nil && len(*s.DatabaseName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 3))
-	}
 	if s.Records == nil {
 		invalidParams.Add(request.NewErrParamRequired("Records"))
 	}
@@ -4685,9 +5102,6 @@ func (s *WriteRecordsInput) Validate() error {
 	}
 	if s.TableName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableName"))
-	}
-	if s.TableName != nil && len(*s.TableName) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("TableName", 3))
 	}
 	if s.CommonAttributes != nil {
 		if err := s.CommonAttributes.Validate(); err != nil {
@@ -4737,6 +5151,9 @@ func (s *WriteRecordsInput) SetTableName(v string) *WriteRecordsInput {
 
 type WriteRecordsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Information on the records ingested by this request.
+	RecordsIngested *RecordsIngested `type:"structure"`
 }
 
 // String returns the string representation.
@@ -4755,6 +5172,12 @@ func (s WriteRecordsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s WriteRecordsOutput) GoString() string {
 	return s.String()
+}
+
+// SetRecordsIngested sets the RecordsIngested field's value.
+func (s *WriteRecordsOutput) SetRecordsIngested(v *RecordsIngested) *WriteRecordsOutput {
+	s.RecordsIngested = v
+	return s
 }
 
 const (
@@ -4781,6 +5204,12 @@ const (
 
 	// MeasureValueTypeBoolean is a MeasureValueType enum value
 	MeasureValueTypeBoolean = "BOOLEAN"
+
+	// MeasureValueTypeTimestamp is a MeasureValueType enum value
+	MeasureValueTypeTimestamp = "TIMESTAMP"
+
+	// MeasureValueTypeMulti is a MeasureValueType enum value
+	MeasureValueTypeMulti = "MULTI"
 )
 
 // MeasureValueType_Values returns all elements of the MeasureValueType enum
@@ -4790,6 +5219,24 @@ func MeasureValueType_Values() []string {
 		MeasureValueTypeBigint,
 		MeasureValueTypeVarchar,
 		MeasureValueTypeBoolean,
+		MeasureValueTypeTimestamp,
+		MeasureValueTypeMulti,
+	}
+}
+
+const (
+	// S3EncryptionOptionSseS3 is a S3EncryptionOption enum value
+	S3EncryptionOptionSseS3 = "SSE_S3"
+
+	// S3EncryptionOptionSseKms is a S3EncryptionOption enum value
+	S3EncryptionOptionSseKms = "SSE_KMS"
+)
+
+// S3EncryptionOption_Values returns all elements of the S3EncryptionOption enum
+func S3EncryptionOption_Values() []string {
+	return []string{
+		S3EncryptionOptionSseS3,
+		S3EncryptionOptionSseKms,
 	}
 }
 

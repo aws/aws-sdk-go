@@ -2178,12 +2178,12 @@ type EncryptionKey struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the encryption key being used to encrypt
-	// the custom terminology.
+	// this object.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
-	// The type of encryption key used by Amazon Translate to encrypt custom terminologies.
+	// The type of encryption key used by Amazon Translate to encrypt this object.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"EncryptionKeyType"`
@@ -2300,16 +2300,16 @@ type GetParallelDataOutput struct {
 	// successfully imported into Amazon Translate. The location is returned as
 	// a presigned URL that has a 30 minute expiration.
 	//
-	// Amazon Translate doesn't scan parallel data input files for the risk of CSV
-	// injection attacks.
+	// Amazon Translate doesn't scan all input files for the risk of CSV injection
+	// attacks.
 	//
 	// CSV injection occurs when a .csv or .tsv file is altered so that a record
 	// contains malicious code. The record begins with a special character, such
 	// as =, +, -, or @. When the file is opened in a spreadsheet program, the program
 	// might interpret the record as a formula and run the code within it.
 	//
-	// Before you download a parallel data input file from Amazon S3, ensure that
-	// you recognize the file and trust its creator.
+	// Before you download an input file from Amazon S3, ensure that you recognize
+	// the file and trust its creator.
 	DataLocation *ParallelDataDataLocation `type:"structure"`
 
 	// The Amazon S3 location of a file that provides any errors or warnings that
@@ -2438,8 +2438,20 @@ type GetTerminologyOutput struct {
 	// presigned URL to that has a 30 minute expiration.
 	AuxiliaryDataLocation *TerminologyDataLocation `type:"structure"`
 
-	// The data location of the custom terminology being retrieved. The custom terminology
-	// file is returned in a presigned url that has a 30 minute expiration.
+	// The Amazon S3 location of the most recent custom terminology input file that
+	// was successfully imported into Amazon Translate. The location is returned
+	// as a presigned URL that has a 30 minute expiration.
+	//
+	// Amazon Translate doesn't scan all input files for the risk of CSV injection
+	// attacks.
+	//
+	// CSV injection occurs when a .csv or .tsv file is altered so that a record
+	// contains malicious code. The record begins with a special character, such
+	// as =, +, -, or @. When the file is opened in a spreadsheet program, the program
+	// might interpret the record as a formula and run the code within it.
+	//
+	// Before you download an input file from Amazon S3, ensure that you recognize
+	// the file and trust its creator.
 	TerminologyDataLocation *TerminologyDataLocation `type:"structure"`
 
 	// The properties of the custom terminology being retrieved.
@@ -3529,16 +3541,16 @@ type ParallelDataDataLocation struct {
 	// The Amazon S3 location of the parallel data input file. The location is returned
 	// as a presigned URL to that has a 30 minute expiration.
 	//
-	// Amazon Translate doesn't scan parallel data input files for the risk of CSV
-	// injection attacks.
+	// Amazon Translate doesn't scan all input files for the risk of CSV injection
+	// attacks.
 	//
 	// CSV injection occurs when a .csv or .tsv file is altered so that a record
 	// contains malicious code. The record begins with a special character, such
 	// as =, +, -, or @. When the file is opened in a spreadsheet program, the program
 	// might interpret the record as a formula and run the code within it.
 	//
-	// Before you download a parallel data input file from Amazon S3, ensure that
-	// you recognize the file and trust its creator.
+	// Before you download an input file from Amazon S3, ensure that you recognize
+	// the file and trust its creator.
 	//
 	// Location is a required field
 	Location *string `type:"string" required:"true"`
@@ -3941,6 +3953,10 @@ type StartTextTranslationJobInput struct {
 	// For more information, see customizing-translations-parallel-data.
 	ParallelDataNames []*string `type:"list"`
 
+	// Settings to configure your translation output, including the option to mask
+	// profane words and phrases.
+	Settings *TranslationSettings `type:"structure"`
+
 	// The language code of the input language. For a list of language codes, see
 	// what-is-languages.
 	//
@@ -4069,6 +4085,12 @@ func (s *StartTextTranslationJobInput) SetOutputDataConfig(v *OutputDataConfig) 
 // SetParallelDataNames sets the ParallelDataNames field's value.
 func (s *StartTextTranslationJobInput) SetParallelDataNames(v []*string) *StartTextTranslationJobInput {
 	s.ParallelDataNames = v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *StartTextTranslationJobInput) SetSettings(v *TranslationSettings) *StartTextTranslationJobInput {
+	s.Settings = v
 	return s
 }
 
@@ -4379,7 +4401,20 @@ func (s *TerminologyData) SetFormat(v string) *TerminologyData {
 type TerminologyDataLocation struct {
 	_ struct{} `type:"structure"`
 
-	// The location of the custom terminology data.
+	// The Amazon S3 location of the most recent custom terminology input file that
+	// was successfully imported into Amazon Translate. The location is returned
+	// as a presigned URL that has a 30 minute expiration.
+	//
+	// Amazon Translate doesn't scan all input files for the risk of CSV injection
+	// attacks.
+	//
+	// CSV injection occurs when a .csv or .tsv file is altered so that a record
+	// contains malicious code. The record begins with a special character, such
+	// as =, +, -, or @. When the file is opened in a spreadsheet program, the program
+	// might interpret the record as a formula and run the code within it.
+	//
+	// Before you download an input file from Amazon S3, ensure that you recognize
+	// the file and trust its creator.
 	//
 	// Location is a required field
 	Location *string `type:"string" required:"true"`
@@ -4585,6 +4620,10 @@ func (s *TerminologyProperties) SetTermCount(v int64) *TerminologyProperties {
 type TextInput struct {
 	_ struct{} `type:"structure"`
 
+	// Settings to configure your translation output, including the option to mask
+	// profane words and phrases.
+	Settings *TranslationSettings `type:"structure"`
+
 	// The language code for the language of the source text. The language must
 	// be a language supported by Amazon Translate. For a list of language codes,
 	// see what-is-languages.
@@ -4661,6 +4700,12 @@ func (s *TextInput) Validate() error {
 	return nil
 }
 
+// SetSettings sets the Settings field's value.
+func (s *TextInput) SetSettings(v *TranslationSettings) *TextInput {
+	s.Settings = v
+	return s
+}
+
 // SetSourceLanguageCode sets the SourceLanguageCode field's value.
 func (s *TextInput) SetSourceLanguageCode(v string) *TextInput {
 	s.SourceLanguageCode = &v
@@ -4687,6 +4732,9 @@ func (s *TextInput) SetText(v string) *TextInput {
 
 type TextOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Settings that configure the translation output.
+	AppliedSettings *TranslationSettings `type:"structure"`
 
 	// The names of the custom terminologies applied to the input text by Amazon
 	// Translate for the translated text response.
@@ -4724,6 +4772,12 @@ func (s TextOutput) String() string {
 // value will be replaced with "sensitive".
 func (s TextOutput) GoString() string {
 	return s.String()
+}
+
+// SetAppliedSettings sets the AppliedSettings field's value.
+func (s *TextOutput) SetAppliedSettings(v *TranslationSettings) *TextOutput {
+	s.AppliedSettings = v
+	return s
 }
 
 // SetAppliedTerminologies sets the AppliedTerminologies field's value.
@@ -4931,6 +4985,9 @@ type TextTranslationJobProperties struct {
 	// translation job.
 	ParallelDataNames []*string `type:"list"`
 
+	// Settings that configure the translation output.
+	Settings *TranslationSettings `type:"structure"`
+
 	// The language code of the language of the source text. The language must be
 	// a language supported by Amazon Translate.
 	SourceLanguageCode *string `min:"2" type:"string"`
@@ -5026,6 +5083,12 @@ func (s *TextTranslationJobProperties) SetParallelDataNames(v []*string) *TextTr
 	return s
 }
 
+// SetSettings sets the Settings field's value.
+func (s *TextTranslationJobProperties) SetSettings(v *TranslationSettings) *TextTranslationJobProperties {
+	s.Settings = v
+	return s
+}
+
 // SetSourceLanguageCode sets the SourceLanguageCode field's value.
 func (s *TextTranslationJobProperties) SetSourceLanguageCode(v string) *TextTranslationJobProperties {
 	s.SourceLanguageCode = &v
@@ -5113,6 +5176,47 @@ func (s *TooManyRequestsException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Settings that configure the translation output.
+type TranslationSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Enable the profanity setting if you want Amazon Translate to mask profane
+	// words and phrases in your translation output.
+	//
+	// To mask profane words and phrases, Amazon Translate replaces them with the
+	// grawlix string “?$#@$“. This 5-character sequence is used for each profane
+	// word or phrase, regardless of the length or number of words.
+	//
+	// Amazon Translate does not detect profanity in all of its supported languages.
+	// For languages that support profanity detection, see Supported Languages and
+	// Language Codes in the Amazon Translate Developer Guide (https://docs.aws.amazon.com/translate/latest/dg/what-is.html#what-is-languages).
+	Profanity *string `type:"string" enum:"Profanity"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranslationSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TranslationSettings) GoString() string {
+	return s.String()
+}
+
+// SetProfanity sets the Profanity field's value.
+func (s *TranslationSettings) SetProfanity(v string) *TranslationSettings {
+	s.Profanity = &v
+	return s
 }
 
 // Amazon Translate does not support translation from the language of the source
@@ -5457,6 +5561,18 @@ func ParallelDataStatus_Values() []string {
 		ParallelDataStatusActive,
 		ParallelDataStatusDeleting,
 		ParallelDataStatusFailed,
+	}
+}
+
+const (
+	// ProfanityMask is a Profanity enum value
+	ProfanityMask = "MASK"
+)
+
+// Profanity_Values returns all elements of the Profanity enum
+func Profanity_Values() []string {
+	return []string{
+		ProfanityMask,
 	}
 }
 

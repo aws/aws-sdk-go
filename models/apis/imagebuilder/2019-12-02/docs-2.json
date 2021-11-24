@@ -13,7 +13,7 @@
     "DeleteComponent": "<p> Deletes a component build version.</p>",
     "DeleteContainerRecipe": "<p>Deletes a container recipe.</p>",
     "DeleteDistributionConfiguration": "<p> Deletes a distribution configuration.</p>",
-    "DeleteImage": "<p>Deletes an Image Builder image resource. This does not delete any EC2 AMIs or ECR container images that are created during the image build process. You must clean those up separately, using the appropriate Amazon EC2 or Amazon ECR console actions, or API or CLI commands.</p> <ul> <li> <p>To deregister an EC2 Linux AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/deregister-ami.html\">Deregister your Linux AMI</a> in the <i> <i>Amazon EC2 User Guide</i> </i>.</p> </li> <li> <p>To deregister an EC2 Windows AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/deregister-ami.html\">Deregister your Windows AMI</a> in the <i> <i>Amazon EC2 Windows Guide</i> </i>.</p> </li> <li> <p>To delete a container image from Amazon ECR, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.comAmazonECR/latest/userguide/delete_image.html\">Deleting an image</a> in the <i>Amazon ECR User Guide</i>.</p> </li> </ul>",
+    "DeleteImage": "<p>Deletes an Image Builder image resource. This does not delete any EC2 AMIs or ECR container images that are created during the image build process. You must clean those up separately, using the appropriate Amazon EC2 or Amazon ECR console actions, or API or CLI commands.</p> <ul> <li> <p>To deregister an EC2 Linux AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/deregister-ami.html\">Deregister your Linux AMI</a> in the <i> <i>Amazon EC2 User Guide</i> </i>.</p> </li> <li> <p>To deregister an EC2 Windows AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/deregister-ami.html\">Deregister your Windows AMI</a> in the <i> <i>Amazon EC2 Windows Guide</i> </i>.</p> </li> <li> <p>To delete a container image from Amazon ECR, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/delete_image.html\">Deleting an image</a> in the <i>Amazon ECR User Guide</i>.</p> </li> </ul>",
     "DeleteImagePipeline": "<p> Deletes an image pipeline.</p>",
     "DeleteImageRecipe": "<p> Deletes an image recipe.</p>",
     "DeleteInfrastructureConfiguration": "<p> Deletes an infrastructure configuration.</p>",
@@ -42,7 +42,7 @@
     "ListInfrastructureConfigurations": "<p> Returns a list of infrastructure configurations.</p>",
     "ListTagsForResource": "<p> Returns the list of tags for the specified resource.</p>",
     "PutComponentPolicy": "<p> Applies a policy to a component. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutComponentPolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
-    "PutContainerRecipePolicy": "<p>Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare (https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html) to share resources. If you call the Image Builder API <code>PutContainerImagePolicy</code>, you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html) in order for the resource to be visible to all principals with whom the resource is shared.</p>",
+    "PutContainerRecipePolicy": "<p>Applies a policy to a container image. We recommend that you call the RAM API CreateResourceShare (https://docs.aws.amazon.com//ram/latest/APIReference/API_CreateResourceShare.html) to share resources. If you call the Image Builder API <code>PutContainerImagePolicy</code>, you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com//ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html) in order for the resource to be visible to all principals with whom the resource is shared.</p>",
     "PutImagePolicy": "<p>Applies a policy to an image. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImagePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
     "PutImageRecipePolicy": "<p> Applies a policy to an image recipe. We recommend that you call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html\">CreateResourceShare</a> to share resources. If you call the Image Builder API <code>PutImageRecipePolicy</code>, you must also call the RAM API <a href=\"https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html\">PromoteResourceShareCreatedFromPolicy</a> in order for the resource to be visible to all principals with whom the resource is shared.</p>",
     "StartImagePipelineExecution": "<p> Manually triggers a pipeline to create an image.</p>",
@@ -1349,7 +1349,7 @@
         "Ami$name": "<p>The name of the Amazon EC2 AMI.</p>",
         "Ami$description": "<p>The description of the Amazon EC2 AMI. Minimum and maximum length are in characters.</p>",
         "Ami$accountId": "<p>The account ID of the owner of the AMI.</p>",
-        "AmiDistributionConfiguration$description": "<p>The description of the distribution configuration. Minimum and maximum length are in characters.</p>",
+        "AmiDistributionConfiguration$description": "<p>The description of the AMI distribution configuration. Minimum and maximum length are in characters.</p>",
         "AmiDistributionConfiguration$kmsKeyId": "<p>The KMS key identifier used to encrypt the distributed image.</p>",
         "CancelImageCreationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "Component$description": "<p>The description of the component.</p>",
@@ -1495,6 +1495,30 @@
         "SystemsManagerAgent$uninstallAfterBuild": "<p>Controls whether the Systems Manager agent is removed from your final build image, prior to creating the new AMI. If this is set to true, then the agent is removed from the final image. If it's set to false, then the agent is left in, so that it is included in the new AMI. The default value is false.</p>",
         "UpdateImagePipelineRequest$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
         "UpdateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.</p>"
+      }
+    },
+    "OrganizationArn": {
+      "base": null,
+      "refs": {
+        "OrganizationArnList$member": null
+      }
+    },
+    "OrganizationArnList": {
+      "base": null,
+      "refs": {
+        "LaunchPermissionConfiguration$organizationArns": "<p>The ARN for an Amazon Web Services Organization that you want to share your AMI with. For more information, see <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html\">What is Organizations?</a>.</p>"
+      }
+    },
+    "OrganizationalUnitArn": {
+      "base": null,
+      "refs": {
+        "OrganizationalUnitArnList$member": null
+      }
+    },
+    "OrganizationalUnitArnList": {
+      "base": null,
+      "refs": {
+        "LaunchPermissionConfiguration$organizationalUnitArns": "<p>The ARN for an Organizations organizational unit (OU) that you want to share your AMI with. For more information about key concepts for Organizations, see <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html\">Organizations terminology and concepts</a>.</p>"
       }
     },
     "OsVersion": {

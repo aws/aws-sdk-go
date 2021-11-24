@@ -1269,7 +1269,7 @@ func (c *Imagebuilder) DeleteImageRequest(input *DeleteImageInput) (req *request
 //    * To deregister an EC2 Windows AMI, see Deregister your Windows AMI (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/deregister-ami.html)
 //    in the Amazon EC2 Windows Guide .
 //
-//    * To delete a container image from Amazon ECR, see Deleting an image (https://docs.aws.amazon.com/https:/docs.aws.amazon.comAmazonECR/latest/userguide/delete_image.html)
+//    * To delete a container image from Amazon ECR, see Deleting an image (https://docs.aws.amazon.com/AmazonECR/latest/userguide/delete_image.html)
 //    in the Amazon ECR User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4773,9 +4773,9 @@ func (c *Imagebuilder) PutContainerRecipePolicyRequest(input *PutContainerRecipe
 // PutContainerRecipePolicy API operation for EC2 Image Builder.
 //
 // Applies a policy to a container image. We recommend that you call the RAM
-// API CreateResourceShare (https://docs.aws.amazon.com/ram/latest/APIReference/API_CreateResourceShare.html)
+// API CreateResourceShare (https://docs.aws.amazon.com//ram/latest/APIReference/API_CreateResourceShare.html)
 // to share resources. If you call the Image Builder API PutContainerImagePolicy,
-// you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com/ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html)
+// you must also call the RAM API PromoteResourceShareCreatedFromPolicy (https://docs.aws.amazon.com//ram/latest/APIReference/API_PromoteResourceShareCreatedFromPolicy.html)
 // in order for the resource to be visible to all principals with whom the resource
 // is shared.
 //
@@ -5802,8 +5802,8 @@ type AmiDistributionConfiguration struct {
 	// The tags to apply to AMIs distributed to this Region.
 	AmiTags map[string]*string `locationName:"amiTags" min:"1" type:"map"`
 
-	// The description of the distribution configuration. Minimum and maximum length
-	// are in characters.
+	// The description of the AMI distribution configuration. Minimum and maximum
+	// length are in characters.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// The KMS key identifier used to encrypt the distributed image.
@@ -13197,6 +13197,15 @@ func (s *InvalidVersionNumberException) RequestID() string {
 type LaunchPermissionConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN for an Amazon Web Services Organization that you want to share your
+	// AMI with. For more information, see What is Organizations? (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html).
+	OrganizationArns []*string `locationName:"organizationArns" min:"1" type:"list"`
+
+	// The ARN for an Organizations organizational unit (OU) that you want to share
+	// your AMI with. For more information about key concepts for Organizations,
+	// see Organizations terminology and concepts (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html).
+	OrganizationalUnitArns []*string `locationName:"organizationalUnitArns" min:"1" type:"list"`
+
 	// The name of the group.
 	UserGroups []*string `locationName:"userGroups" type:"list"`
 
@@ -13225,6 +13234,12 @@ func (s LaunchPermissionConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *LaunchPermissionConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "LaunchPermissionConfiguration"}
+	if s.OrganizationArns != nil && len(s.OrganizationArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationArns", 1))
+	}
+	if s.OrganizationalUnitArns != nil && len(s.OrganizationalUnitArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationalUnitArns", 1))
+	}
 	if s.UserIds != nil && len(s.UserIds) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("UserIds", 1))
 	}
@@ -13233,6 +13248,18 @@ func (s *LaunchPermissionConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetOrganizationArns sets the OrganizationArns field's value.
+func (s *LaunchPermissionConfiguration) SetOrganizationArns(v []*string) *LaunchPermissionConfiguration {
+	s.OrganizationArns = v
+	return s
+}
+
+// SetOrganizationalUnitArns sets the OrganizationalUnitArns field's value.
+func (s *LaunchPermissionConfiguration) SetOrganizationalUnitArns(v []*string) *LaunchPermissionConfiguration {
+	s.OrganizationalUnitArns = v
+	return s
 }
 
 // SetUserGroups sets the UserGroups field's value.

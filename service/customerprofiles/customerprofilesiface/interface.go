@@ -96,9 +96,17 @@ type CustomerProfilesAPI interface {
 	DeleteProfileObjectTypeWithContext(aws.Context, *customerprofiles.DeleteProfileObjectTypeInput, ...request.Option) (*customerprofiles.DeleteProfileObjectTypeOutput, error)
 	DeleteProfileObjectTypeRequest(*customerprofiles.DeleteProfileObjectTypeInput) (*request.Request, *customerprofiles.DeleteProfileObjectTypeOutput)
 
+	GetAutoMergingPreview(*customerprofiles.GetAutoMergingPreviewInput) (*customerprofiles.GetAutoMergingPreviewOutput, error)
+	GetAutoMergingPreviewWithContext(aws.Context, *customerprofiles.GetAutoMergingPreviewInput, ...request.Option) (*customerprofiles.GetAutoMergingPreviewOutput, error)
+	GetAutoMergingPreviewRequest(*customerprofiles.GetAutoMergingPreviewInput) (*request.Request, *customerprofiles.GetAutoMergingPreviewOutput)
+
 	GetDomain(*customerprofiles.GetDomainInput) (*customerprofiles.GetDomainOutput, error)
 	GetDomainWithContext(aws.Context, *customerprofiles.GetDomainInput, ...request.Option) (*customerprofiles.GetDomainOutput, error)
 	GetDomainRequest(*customerprofiles.GetDomainInput) (*request.Request, *customerprofiles.GetDomainOutput)
+
+	GetIdentityResolutionJob(*customerprofiles.GetIdentityResolutionJobInput) (*customerprofiles.GetIdentityResolutionJobOutput, error)
+	GetIdentityResolutionJobWithContext(aws.Context, *customerprofiles.GetIdentityResolutionJobInput, ...request.Option) (*customerprofiles.GetIdentityResolutionJobOutput, error)
+	GetIdentityResolutionJobRequest(*customerprofiles.GetIdentityResolutionJobInput) (*request.Request, *customerprofiles.GetIdentityResolutionJobOutput)
 
 	GetIntegration(*customerprofiles.GetIntegrationInput) (*customerprofiles.GetIntegrationOutput, error)
 	GetIntegrationWithContext(aws.Context, *customerprofiles.GetIntegrationInput, ...request.Option) (*customerprofiles.GetIntegrationOutput, error)
@@ -123,6 +131,10 @@ type CustomerProfilesAPI interface {
 	ListDomains(*customerprofiles.ListDomainsInput) (*customerprofiles.ListDomainsOutput, error)
 	ListDomainsWithContext(aws.Context, *customerprofiles.ListDomainsInput, ...request.Option) (*customerprofiles.ListDomainsOutput, error)
 	ListDomainsRequest(*customerprofiles.ListDomainsInput) (*request.Request, *customerprofiles.ListDomainsOutput)
+
+	ListIdentityResolutionJobs(*customerprofiles.ListIdentityResolutionJobsInput) (*customerprofiles.ListIdentityResolutionJobsOutput, error)
+	ListIdentityResolutionJobsWithContext(aws.Context, *customerprofiles.ListIdentityResolutionJobsInput, ...request.Option) (*customerprofiles.ListIdentityResolutionJobsOutput, error)
+	ListIdentityResolutionJobsRequest(*customerprofiles.ListIdentityResolutionJobsInput) (*request.Request, *customerprofiles.ListIdentityResolutionJobsOutput)
 
 	ListIntegrations(*customerprofiles.ListIntegrationsInput) (*customerprofiles.ListIntegrationsOutput, error)
 	ListIntegrationsWithContext(aws.Context, *customerprofiles.ListIntegrationsInput, ...request.Option) (*customerprofiles.ListIntegrationsOutput, error)

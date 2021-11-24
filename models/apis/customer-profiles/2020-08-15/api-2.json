@@ -157,6 +157,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetAutoMergingPreview":{
+      "name":"GetAutoMergingPreview",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{DomainName}/identity-resolution-jobs/auto-merging-preview"
+      },
+      "input":{"shape":"GetAutoMergingPreviewRequest"},
+      "output":{"shape":"GetAutoMergingPreviewResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetDomain":{
       "name":"GetDomain",
       "http":{
@@ -165,6 +181,22 @@
       },
       "input":{"shape":"GetDomainRequest"},
       "output":{"shape":"GetDomainResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetIdentityResolutionJob":{
+      "name":"GetIdentityResolutionJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/identity-resolution-jobs/{JobId}"
+      },
+      "input":{"shape":"GetIdentityResolutionJobRequest"},
+      "output":{"shape":"GetIdentityResolutionJobResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
@@ -261,6 +293,22 @@
       },
       "input":{"shape":"ListDomainsRequest"},
       "output":{"shape":"ListDomainsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListIdentityResolutionJobs":{
+      "name":"ListIdentityResolutionJobs",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/identity-resolution-jobs"
+      },
+      "input":{"shape":"ListIdentityResolutionJobsRequest"},
+      "output":{"shape":"ListIdentityResolutionJobsResponse"},
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"},
@@ -553,6 +601,15 @@
       "key":{"shape":"string1To255"},
       "value":{"shape":"string1To255"}
     },
+    "AutoMerging":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"optionalBoolean"},
+        "Consolidation":{"shape":"Consolidation"},
+        "ConflictResolution":{"shape":"ConflictResolution"}
+      }
+    },
     "BadRequestException":{
       "type":"structure",
       "members":{
@@ -572,6 +629,21 @@
       "max":512,
       "pattern":".*"
     },
+    "ConflictResolution":{
+      "type":"structure",
+      "required":["ConflictResolvingModel"],
+      "members":{
+        "ConflictResolvingModel":{"shape":"ConflictResolvingModel"},
+        "SourceName":{"shape":"string1To255"}
+      }
+    },
+    "ConflictResolvingModel":{
+      "type":"string",
+      "enum":[
+        "RECENCY",
+        "SOURCE"
+      ]
+    },
     "ConnectorOperator":{
       "type":"structure",
       "members":{
@@ -586,6 +658,13 @@
       "type":"string",
       "max":256,
       "pattern":"[\\w/!@#+=.-]+"
+    },
+    "Consolidation":{
+      "type":"structure",
+      "required":["MatchingAttributesList"],
+      "members":{
+        "MatchingAttributesList":{"shape":"MatchingAttributesList"}
+      }
     },
     "CreateDomainRequest":{
       "type":"structure",
@@ -832,6 +911,19 @@
         "TotalSize":{"shape":"long"}
       }
     },
+    "Double":{"type":"double"},
+    "ExportingConfig":{
+      "type":"structure",
+      "members":{
+        "S3Exporting":{"shape":"S3ExportingConfig"}
+      }
+    },
+    "ExportingLocation":{
+      "type":"structure",
+      "members":{
+        "S3Exporting":{"shape":"S3ExportingLocation"}
+      }
+    },
     "FieldContentType":{
       "type":"string",
       "enum":[
@@ -913,6 +1005,33 @@
         "UNSPECIFIED"
       ]
     },
+    "GetAutoMergingPreviewRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "Consolidation",
+        "ConflictResolution"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "Consolidation":{"shape":"Consolidation"},
+        "ConflictResolution":{"shape":"ConflictResolution"}
+      }
+    },
+    "GetAutoMergingPreviewResponse":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{"shape":"name"},
+        "NumberOfMatchesInSample":{"shape":"long"},
+        "NumberOfProfilesInSample":{"shape":"long"},
+        "NumberOfProfilesWillBeMerged":{"shape":"long"}
+      }
+    },
     "GetDomainRequest":{
       "type":"structure",
       "required":["DomainName"],
@@ -941,6 +1060,41 @@
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
+      }
+    },
+    "GetIdentityResolutionJobRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "JobId"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "JobId":{
+          "shape":"uuid",
+          "location":"uri",
+          "locationName":"JobId"
+        }
+      }
+    },
+    "GetIdentityResolutionJobResponse":{
+      "type":"structure",
+      "members":{
+        "DomainName":{"shape":"name"},
+        "JobId":{"shape":"uuid"},
+        "Status":{"shape":"IdentityResolutionJobStatus"},
+        "Message":{"shape":"stringTo2048"},
+        "JobStartTime":{"shape":"timestamp"},
+        "JobEndTime":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"},
+        "JobExpirationTime":{"shape":"timestamp"},
+        "AutoMerging":{"shape":"AutoMerging"},
+        "ExportingLocation":{"shape":"ExportingLocation"},
+        "JobStats":{"shape":"JobStats"}
       }
     },
     "GetIntegrationRequest":{
@@ -1038,6 +1192,7 @@
         "ExpirationDays":{"shape":"expirationDaysInteger"},
         "EncryptionKey":{"shape":"encryptionKey"},
         "AllowProfileCreation":{"shape":"boolean"},
+        "SourceLastUpdatedTimestampFormat":{"shape":"string1To255"},
         "Fields":{"shape":"FieldMap"},
         "Keys":{"shape":"KeyMap"},
         "CreatedAt":{"shape":"timestamp"},
@@ -1063,9 +1218,39 @@
         "SourceName":{"shape":"name"},
         "SourceObject":{"shape":"name"},
         "AllowProfileCreation":{"shape":"boolean"},
+        "SourceLastUpdatedTimestampFormat":{"shape":"string1To255"},
         "Fields":{"shape":"FieldMap"},
         "Keys":{"shape":"KeyMap"}
       }
+    },
+    "IdentityResolutionJob":{
+      "type":"structure",
+      "members":{
+        "DomainName":{"shape":"name"},
+        "JobId":{"shape":"uuid"},
+        "Status":{"shape":"IdentityResolutionJobStatus"},
+        "JobStartTime":{"shape":"timestamp"},
+        "JobEndTime":{"shape":"timestamp"},
+        "JobStats":{"shape":"JobStats"},
+        "ExportingLocation":{"shape":"ExportingLocation"},
+        "Message":{"shape":"stringTo2048"}
+      }
+    },
+    "IdentityResolutionJobStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "PREPROCESSING",
+        "FIND_MATCHING",
+        "MERGING",
+        "COMPLETED",
+        "PARTIAL_SUCCESS",
+        "FAILED"
+      ]
+    },
+    "IdentityResolutionJobsList":{
+      "type":"list",
+      "member":{"shape":"IdentityResolutionJob"}
     },
     "IncrementalPullConfig":{
       "type":"structure",
@@ -1085,6 +1270,43 @@
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "JobSchedule":{
+      "type":"structure",
+      "required":[
+        "DayOfTheWeek",
+        "Time"
+      ],
+      "members":{
+        "DayOfTheWeek":{"shape":"JobScheduleDayOfTheWeek"},
+        "Time":{"shape":"JobScheduleTime"}
+      }
+    },
+    "JobScheduleDayOfTheWeek":{
+      "type":"string",
+      "enum":[
+        "SUNDAY",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY"
+      ]
+    },
+    "JobScheduleTime":{
+      "type":"string",
+      "max":5,
+      "min":3,
+      "pattern":"^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "JobStats":{
+      "type":"structure",
+      "members":{
+        "NumberOfProfilesReviewed":{"shape":"long"},
+        "NumberOfMatchesFound":{"shape":"long"},
+        "NumberOfMergesDone":{"shape":"long"}
+      }
     },
     "KeyMap":{
       "type":"map",
@@ -1154,6 +1376,34 @@
       "type":"structure",
       "members":{
         "Items":{"shape":"DomainList"},
+        "NextToken":{"shape":"token"}
+      }
+    },
+    "ListIdentityResolutionJobsRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListIdentityResolutionJobsResponse":{
+      "type":"structure",
+      "members":{
+        "IdentityResolutionJobsList":{"shape":"IdentityResolutionJobsList"},
         "NextToken":{"shape":"token"}
       }
     },
@@ -1367,24 +1617,43 @@
       "type":"structure",
       "members":{
         "MatchId":{"shape":"string1To255"},
-        "ProfileIds":{"shape":"ProfileIdList"}
+        "ProfileIds":{"shape":"ProfileIdList"},
+        "ConfidenceScore":{"shape":"Double"}
       }
     },
     "MatchesList":{
       "type":"list",
       "member":{"shape":"MatchItem"}
     },
+    "MatchingAttributes":{
+      "type":"list",
+      "member":{"shape":"string1To255"},
+      "max":20,
+      "min":1
+    },
+    "MatchingAttributesList":{
+      "type":"list",
+      "member":{"shape":"MatchingAttributes"},
+      "max":10,
+      "min":1
+    },
     "MatchingRequest":{
       "type":"structure",
       "required":["Enabled"],
       "members":{
-        "Enabled":{"shape":"optionalBoolean"}
+        "Enabled":{"shape":"optionalBoolean"},
+        "JobSchedule":{"shape":"JobSchedule"},
+        "AutoMerging":{"shape":"AutoMerging"},
+        "ExportingConfig":{"shape":"ExportingConfig"}
       }
     },
     "MatchingResponse":{
       "type":"structure",
       "members":{
-        "Enabled":{"shape":"optionalBoolean"}
+        "Enabled":{"shape":"optionalBoolean"},
+        "JobSchedule":{"shape":"JobSchedule"},
+        "AutoMerging":{"shape":"AutoMerging"},
+        "ExportingConfig":{"shape":"ExportingConfig"}
       }
     },
     "MergeProfilesRequest":{
@@ -1613,6 +1882,7 @@
         "ExpirationDays":{"shape":"expirationDaysInteger"},
         "EncryptionKey":{"shape":"encryptionKey"},
         "AllowProfileCreation":{"shape":"boolean"},
+        "SourceLastUpdatedTimestampFormat":{"shape":"string1To255"},
         "Fields":{"shape":"FieldMap"},
         "Keys":{"shape":"KeyMap"},
         "Tags":{"shape":"TagMap"}
@@ -1631,6 +1901,7 @@
         "ExpirationDays":{"shape":"expirationDaysInteger"},
         "EncryptionKey":{"shape":"encryptionKey"},
         "AllowProfileCreation":{"shape":"boolean"},
+        "SourceLastUpdatedTimestampFormat":{"shape":"string1To255"},
         "Fields":{"shape":"FieldMap"},
         "Keys":{"shape":"KeyMap"},
         "CreatedAt":{"shape":"timestamp"},
@@ -1670,6 +1941,21 @@
         "VALIDATE_NUMERIC",
         "NO_OP"
       ]
+    },
+    "S3ExportingConfig":{
+      "type":"structure",
+      "required":["S3BucketName"],
+      "members":{
+        "S3BucketName":{"shape":"s3BucketName"},
+        "S3KeyName":{"shape":"s3KeyNameCustomerOutputConfig"}
+      }
+    },
+    "S3ExportingLocation":{
+      "type":"structure",
+      "members":{
+        "S3BucketName":{"shape":"s3BucketName"},
+        "S3KeyName":{"shape":"s3KeyName"}
+      }
     },
     "S3SourceProperties":{
       "type":"structure",
@@ -2151,6 +2437,24 @@
     "requestValueList":{
       "type":"list",
       "member":{"shape":"string1To255"}
+    },
+    "s3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^[a-z0-9.-]+$"
+    },
+    "s3KeyName":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":".*"
+    },
+    "s3KeyNameCustomerOutputConfig":{
+      "type":"string",
+      "max":800,
+      "min":1,
+      "pattern":".*"
     },
     "sqsQueueUrl":{
       "type":"string",

@@ -8,7 +8,6 @@
     "CreateCodeSigningConfig": "<p>Creates a code signing configuration. A <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-trustedcode.html\">code signing configuration</a> defines a list of allowed signing profiles and defines the code-signing validation policy (action to be taken if deployment validation checks fail). </p>",
     "CreateEventSourceMapping": "<p>Creates a mapping between an event source and an Lambda function. Lambda reads items from the event source and triggers the function.</p> <p>For details about how to configure different event sources, see the following topics. </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping\"> Amazon DynamoDB Streams</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping\"> Amazon Kinesis</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource\"> Amazon SQS</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping\"> Amazon MQ and RabbitMQ</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html\"> Amazon MSK</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html\"> Apache Kafka</a> </p> </li> </ul> <p>The following error handling options are only available for stream sources (DynamoDB and Kinesis):</p> <ul> <li> <p> <code>BisectBatchOnFunctionError</code> - If the function returns an error, split the batch in two and retry.</p> </li> <li> <p> <code>DestinationConfig</code> - Send discarded records to an Amazon SQS queue or Amazon SNS topic.</p> </li> <li> <p> <code>MaximumRecordAgeInSeconds</code> - Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires</p> </li> <li> <p> <code>MaximumRetryAttempts</code> - Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.</p> </li> <li> <p> <code>ParallelizationFactor</code> - Process multiple batches from each shard concurrently.</p> </li> </ul> <p>For information about which configuration parameters apply to each event source, see the following topics.</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params\"> Amazon DynamoDB Streams</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params\"> Amazon Kinesis</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params\"> Amazon SQS</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params\"> Amazon MQ and RabbitMQ</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms\"> Amazon MSK</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms\"> Apache Kafka</a> </p> </li> </ul>",
     "CreateFunction": "<p>Creates a Lambda function. To create a function, you need a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html\">deployment package</a> and an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role\">execution role</a>. The deployment package is a .zip file archive or container image that contains your function code. The execution role grants the function permission to use Amazon Web Services services, such as Amazon CloudWatch Logs for log streaming and X-Ray for request tracing.</p> <p>You set the package type to <code>Image</code> if the deployment package is a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html\">container image</a>. For a container image, the code property must include the URI of a container image in the Amazon ECR registry. You do not need to specify the handler and runtime properties. </p> <p>You set the package type to <code>Zip</code> if the deployment package is a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip\">.zip file archive</a>. For a .zip file archive, the code property specifies the location of the .zip file. You must also specify the handler and runtime properties. The code in the deployment package must be compatible with the target instruction set architecture of the function (<code>x86-64</code> or <code>arm64</code>). If you do not specify the architecture, the default value is <code>x86-64</code>.</p> <p>When you create a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute or so. During this time, you can't invoke or modify the function. The <code>State</code>, <code>StateReason</code>, and <code>StateReasonCode</code> fields in the response from <a>GetFunctionConfiguration</a> indicate when the function is ready to invoke. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html\">Function States</a>.</p> <p>A function has an unpublished version, and can have published versions and aliases. The unpublished version changes when you update your function's code and configuration. A published version is a snapshot of your function code and configuration that can't be changed. An alias is a named resource that maps to a version, and can be changed to map to a different version. Use the <code>Publish</code> parameter to create version <code>1</code> of your function from its initial configuration.</p> <p>The other parameters let you configure version-specific and function-level settings. You can modify version-specific settings later with <a>UpdateFunctionConfiguration</a>. Function-level settings apply to both the unpublished and published versions of the function, and include tags (<a>TagResource</a>) and per-function concurrency limits (<a>PutFunctionConcurrency</a>).</p> <p>You can use code signing if your deployment package is a .zip file archive. To enable code signing for this function, specify the ARN of a code-signing configuration. When a user attempts to deploy a code package with <a>UpdateFunctionCode</a>, Lambda checks that the code package has a valid signature from a trusted publisher. The code-signing configuration includes set set of signing profiles, which define the trusted publishers for this function.</p> <p>If another account or an Amazon Web Services service invokes your function, use <a>AddPermission</a> to grant permission by creating a resource-based IAM policy. You can grant permissions at the function level, on a version, or on an alias.</p> <p>To invoke your function directly, use <a>Invoke</a>. To invoke your function in response to events in other Amazon Web Services services, create an event source mapping (<a>CreateEventSourceMapping</a>), or configure a function trigger in the other service. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html\">Invoking Functions</a>.</p>",
-    "CreateFunctionUrlConfig": null,
     "DeleteAlias": "<p>Deletes a Lambda function <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html\">alias</a>.</p>",
     "DeleteCodeSigningConfig": "<p>Deletes the code signing configuration. You can delete the code signing configuration only if no function is using it. </p>",
     "DeleteEventSourceMapping": "<p>Deletes an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/intro-invocation-modes.html\">event source mapping</a>. You can get the identifier of a mapping from the output of <a>ListEventSourceMappings</a>.</p> <p>When you delete an event source mapping, it enters a <code>Deleting</code> state and might not be completely deleted for several seconds.</p>",
@@ -16,7 +15,6 @@
     "DeleteFunctionCodeSigningConfig": "<p>Removes the code signing configuration from the function.</p>",
     "DeleteFunctionConcurrency": "<p>Removes a concurrent execution limit from a function.</p>",
     "DeleteFunctionEventInvokeConfig": "<p>Deletes the configuration for asynchronous invocation for a function, version, or alias.</p> <p>To configure options for asynchronous invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>",
-    "DeleteFunctionUrlConfig": null,
     "DeleteLayerVersion": "<p>Deletes a version of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>. Deleted versions can no longer be viewed or added to functions. To avoid breaking functions, a copy of the version remains in Lambda until no functions refer to it.</p>",
     "DeleteProvisionedConcurrencyConfig": "<p>Deletes the provisioned concurrency configuration for a function.</p>",
     "GetAccountSettings": "<p>Retrieves details about your account's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/limits.html\">limits</a> and usage in an Amazon Web Services Region.</p>",
@@ -28,7 +26,6 @@
     "GetFunctionConcurrency": "<p>Returns details about the reserved concurrency configuration for a function. To set a concurrency limit for a function, use <a>PutFunctionConcurrency</a>.</p>",
     "GetFunctionConfiguration": "<p>Returns the version-specific settings of a Lambda function or version. The output includes only options that can vary between versions of a function. To modify these settings, use <a>UpdateFunctionConfiguration</a>.</p> <p>To get all of a function's details, including function-level settings, use <a>GetFunction</a>.</p>",
     "GetFunctionEventInvokeConfig": "<p>Retrieves the configuration for asynchronous invocation for a function, version, or alias.</p> <p>To configure options for asynchronous invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>",
-    "GetFunctionUrlConfig": null,
     "GetLayerVersion": "<p>Returns information about a version of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>, with a link to download the layer archive that's valid for 10 minutes.</p>",
     "GetLayerVersionByArn": "<p>Returns information about a version of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>, with a link to download the layer archive that's valid for 10 minutes.</p>",
     "GetLayerVersionPolicy": "<p>Returns the permission policy for a version of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>. For more information, see <a>AddLayerVersionPermission</a>.</p>",
@@ -40,7 +37,6 @@
     "ListCodeSigningConfigs": "<p>Returns a list of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuring-codesigning.html\">code signing configurations</a>. A request returns up to 10,000 configurations per call. You can use the <code>MaxItems</code> parameter to return fewer configurations per call. </p>",
     "ListEventSourceMappings": "<p>Lists event source mappings. Specify an <code>EventSourceArn</code> to only show event source mappings for a single event source.</p>",
     "ListFunctionEventInvokeConfigs": "<p>Retrieves a list of configurations for asynchronous invocation for a function.</p> <p>To configure options for asynchronous invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>",
-    "ListFunctionUrlConfigs": null,
     "ListFunctions": "<p>Returns a list of Lambda functions, with the version-specific configuration of each. Lambda returns up to 50 functions per call.</p> <p>Set <code>FunctionVersion</code> to <code>ALL</code> to include all published versions of each function in addition to the unpublished version. </p> <note> <p>The <code>ListFunctions</code> action returns a subset of the <a>FunctionConfiguration</a> fields. To get the additional fields (State, StateReasonCode, StateReason, LastUpdateStatus, LastUpdateStatusReason, LastUpdateStatusReasonCode) for a function or version, use <a>GetFunction</a>.</p> </note>",
     "ListFunctionsByCodeSigningConfig": "<p>List the functions that use the specified code signing configuration. You can use this method prior to deleting a code signing configuration, to verify that no functions are using it.</p>",
     "ListLayerVersions": "<p>Lists the versions of an <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html\">Lambda layer</a>. Versions that have been deleted aren't listed. Specify a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">runtime identifier</a> to list only versions that indicate that they're compatible with that runtime. Specify a compatible architecture to include only layer versions that are compatible with that architecture.</p>",
@@ -63,8 +59,7 @@
     "UpdateEventSourceMapping": "<p>Updates an event source mapping. You can change the function that Lambda invokes, or pause invocation and resume later from the same location.</p> <p>For details about how to configure different event sources, see the following topics. </p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping\"> Amazon DynamoDB Streams</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping\"> Amazon Kinesis</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource\"> Amazon SQS</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping\"> Amazon MQ and RabbitMQ</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html\"> Amazon MSK</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html\"> Apache Kafka</a> </p> </li> </ul> <p>The following error handling options are only available for stream sources (DynamoDB and Kinesis):</p> <ul> <li> <p> <code>BisectBatchOnFunctionError</code> - If the function returns an error, split the batch in two and retry.</p> </li> <li> <p> <code>DestinationConfig</code> - Send discarded records to an Amazon SQS queue or Amazon SNS topic.</p> </li> <li> <p> <code>MaximumRecordAgeInSeconds</code> - Discard records older than the specified age. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires</p> </li> <li> <p> <code>MaximumRetryAttempts</code> - Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.</p> </li> <li> <p> <code>ParallelizationFactor</code> - Process multiple batches from each shard concurrently.</p> </li> </ul> <p>For information about which configuration parameters apply to each event source, see the following topics.</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-ddb-params\"> Amazon DynamoDB Streams</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-params\"> Amazon Kinesis</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#services-sqs-params\"> Amazon SQS</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-params\"> Amazon MQ and RabbitMQ</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html#services-msk-parms\"> Amazon MSK</a> </p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/with-kafka.html#services-kafka-parms\"> Apache Kafka</a> </p> </li> </ul>",
     "UpdateFunctionCode": "<p>Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by a trusted publisher. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-trustedcode.html\">Configuring code signing</a>.</p> <p>The function's code is locked when you publish a version. You can't modify the code of a published version, only the unpublished version.</p> <note> <p>For a function defined as a container image, Lambda resolves the image tag to an image digest. In Amazon ECR, if you update the image tag to a new image, Lambda does not automatically update the function.</p> </note>",
     "UpdateFunctionConfiguration": "<p>Modify the version-specific settings of a Lambda function.</p> <p>When you update a function, Lambda provisions an instance of the function and its supporting resources. If your function connects to a VPC, this process can take a minute. During this time, you can't modify the function, but you can still invoke it. The <code>LastUpdateStatus</code>, <code>LastUpdateStatusReason</code>, and <code>LastUpdateStatusReasonCode</code> fields in the response from <a>GetFunctionConfiguration</a> indicate when the update is complete and the function is processing events with the new configuration. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html\">Function States</a>.</p> <p>These settings can vary between versions of a function and are locked when you publish a version. You can't modify the configuration of a published version, only the unpublished version.</p> <p>To configure function concurrency, use <a>PutFunctionConcurrency</a>. To grant invoke permissions to an account or Amazon Web Services service, use <a>AddPermission</a>.</p>",
-    "UpdateFunctionEventInvokeConfig": "<p>Updates the configuration for asynchronous invocation for a function, version, or alias.</p> <p>To configure options for asynchronous invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>",
-    "UpdateFunctionUrlConfig": null
+    "UpdateFunctionEventInvokeConfig": "<p>Updates the configuration for asynchronous invocation for a function, version, or alias.</p> <p>To configure options for asynchronous invocation, use <a>PutFunctionEventInvokeConfig</a>.</p>"
   },
   "shapes": {
     "AccountLimit": {
@@ -147,24 +142,6 @@
         "UpdateAliasRequest$RoutingConfig": "<p>The <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html#configuring-alias-routing\">routing configuration</a> of the alias.</p>"
       }
     },
-    "AllowCredentials": {
-      "base": null,
-      "refs": {
-        "Cors$AllowCredentials": null
-      }
-    },
-    "AllowMethodsList": {
-      "base": null,
-      "refs": {
-        "Cors$AllowMethods": null
-      }
-    },
-    "AllowOriginsList": {
-      "base": null,
-      "refs": {
-        "Cors$AllowOrigins": null
-      }
-    },
     "AllowedPublishers": {
       "base": "<p>List of signing profiles that can sign a code package. </p>",
       "refs": {
@@ -202,17 +179,6 @@
         "Layer$SigningJobArn": "<p>The Amazon Resource Name (ARN) of a signing job.</p>",
         "ListEventSourceMappingsRequest$EventSourceArn": "<p>The Amazon Resource Name (ARN) of the event source.</p> <ul> <li> <p> <b>Amazon Kinesis</b> - The ARN of the data stream or a stream consumer.</p> </li> <li> <p> <b>Amazon DynamoDB Streams</b> - The ARN of the stream.</p> </li> <li> <p> <b>Amazon Simple Queue Service</b> - The ARN of the queue.</p> </li> <li> <p> <b>Amazon Managed Streaming for Apache Kafka</b> - The ARN of the cluster.</p> </li> </ul>",
         "SigningProfileVersionArns$member": null
-      }
-    },
-    "AuthorizationType": {
-      "base": null,
-      "refs": {
-        "CreateFunctionUrlConfigRequest$AuthorizationType": null,
-        "CreateFunctionUrlConfigResponse$AuthorizationType": null,
-        "FunctionUrlConfig$AuthorizationType": null,
-        "GetFunctionUrlConfigResponse$AuthorizationType": null,
-        "UpdateFunctionUrlConfigRequest$AuthorizationType": null,
-        "UpdateFunctionUrlConfigResponse$AuthorizationType": null
       }
     },
     "BatchSize": {
@@ -343,17 +309,6 @@
         "GetFunctionResponse$Concurrency": "<p>The function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html\">reserved concurrency</a>.</p>"
       }
     },
-    "Cors": {
-      "base": null,
-      "refs": {
-        "CreateFunctionUrlConfigRequest$Cors": null,
-        "CreateFunctionUrlConfigResponse$Cors": null,
-        "FunctionUrlConfig$Cors": null,
-        "GetFunctionUrlConfigResponse$Cors": null,
-        "UpdateFunctionUrlConfigRequest$Cors": null,
-        "UpdateFunctionUrlConfigResponse$Cors": null
-      }
-    },
     "CreateAliasRequest": {
       "base": null,
       "refs": {
@@ -375,16 +330,6 @@
       }
     },
     "CreateFunctionRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "CreateFunctionUrlConfigRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "CreateFunctionUrlConfigResponse": {
       "base": null,
       "refs": {
       }
@@ -442,11 +387,6 @@
       }
     },
     "DeleteFunctionRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "DeleteFunctionUrlConfigRequest": {
       "base": null,
       "refs": {
       }
@@ -653,17 +593,17 @@
       }
     },
     "Filter": {
-      "base": "<p> An object that specifies a filter criteria. </p>",
+      "base": "<p> A structure within a <code>FilterCriteria</code> object that defines an event filtering pattern. </p>",
       "refs": {
         "FilterList$member": null
       }
     },
     "FilterCriteria": {
-      "base": "<p> An object that contains the filters on the event source. </p>",
+      "base": "<p> An object that contains the filters for an event source. </p>",
       "refs": {
-        "CreateEventSourceMappingRequest$FilterCriteria": "<p>(Streams and Amazon SQS) A object that defines the filter criteria used to determine whether Lambda should process an event. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html\">Lambda event filtering</a>.</p>",
-        "EventSourceMappingConfiguration$FilterCriteria": "<p>(Streams and Amazon SQS) A object that defines the filter criteria used to determine whether Lambda should process an event. For more information, see Event filtering.</p>",
-        "UpdateEventSourceMappingRequest$FilterCriteria": "<p>(Streams and Amazon SQS) A object that defines the filter criteria used to determine whether Lambda should process an event. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html\">Lambda event filtering</a>.</p>"
+        "CreateEventSourceMappingRequest$FilterCriteria": "<p>(Streams and Amazon SQS) An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html\">Lambda event filtering</a>.</p>",
+        "EventSourceMappingConfiguration$FilterCriteria": "<p>(Streams and Amazon SQS) An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html\">Lambda event filtering</a>.</p>",
+        "UpdateEventSourceMappingRequest$FilterCriteria": "<p>(Streams and Amazon SQS) An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html\">Lambda event filtering</a>.</p>"
       }
     },
     "FilterList": {
@@ -676,18 +616,14 @@
       "base": null,
       "refs": {
         "AliasConfiguration$AliasArn": "<p>The Amazon Resource Name (ARN) of the alias.</p>",
-        "CreateFunctionUrlConfigResponse$FunctionArn": null,
         "EventSourceMappingConfiguration$FunctionArn": "<p>The ARN of the Lambda function.</p>",
         "FunctionArnList$member": null,
         "FunctionConfiguration$MasterArn": "<p>For Lambda@Edge functions, the ARN of the main function.</p>",
         "FunctionEventInvokeConfig$FunctionArn": "<p>The Amazon Resource Name (ARN) of the function.</p>",
-        "FunctionUrlConfig$FunctionArn": null,
-        "GetFunctionUrlConfigResponse$FunctionArn": null,
         "ListTagsRequest$Resource": "<p>The function's Amazon Resource Name (ARN). Note: Lambda does not support adding tags to aliases or versions.</p>",
         "ProvisionedConcurrencyConfigListItem$FunctionArn": "<p>The Amazon Resource Name (ARN) of the alias or version.</p>",
         "TagResourceRequest$Resource": "<p>The function's Amazon Resource Name (ARN).</p>",
-        "UntagResourceRequest$Resource": "<p>The function's Amazon Resource Name (ARN).</p>",
-        "UpdateFunctionUrlConfigResponse$FunctionArn": null
+        "UntagResourceRequest$Resource": "<p>The function's Amazon Resource Name (ARN).</p>"
       }
     },
     "FunctionArnList": {
@@ -741,25 +677,21 @@
         "CreateAliasRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "CreateEventSourceMappingRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Version or Alias ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.</p>",
         "CreateFunctionRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
-        "CreateFunctionUrlConfigRequest$FunctionName": null,
         "DeleteAliasRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "DeleteFunctionCodeSigningConfigRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "DeleteFunctionConcurrencyRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "DeleteFunctionEventInvokeConfigRequest$FunctionName": "<p>The name of the Lambda function, version, or alias.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code> (name-only), <code>my-function:v1</code> (with alias).</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "DeleteFunctionRequest$FunctionName": "<p>The name of the Lambda function or version.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code> (name-only), <code>my-function:1</code> (with version).</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
-        "DeleteFunctionUrlConfigRequest$FunctionName": null,
         "DeleteProvisionedConcurrencyConfigRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "GetAliasRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "GetFunctionCodeSigningConfigRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "GetFunctionCodeSigningConfigResponse$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "GetFunctionConcurrencyRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "GetFunctionEventInvokeConfigRequest$FunctionName": "<p>The name of the Lambda function, version, or alias.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code> (name-only), <code>my-function:v1</code> (with alias).</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
-        "GetFunctionUrlConfigRequest$FunctionName": null,
         "GetProvisionedConcurrencyConfigRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "ListAliasesRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "ListEventSourceMappingsRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Version or Alias ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.</p>",
         "ListFunctionEventInvokeConfigsRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
-        "ListFunctionUrlConfigsRequest$FunctionName": null,
         "ListProvisionedConcurrencyConfigsRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "PublishVersionRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "PutFunctionCodeSigningConfigRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
@@ -772,8 +704,7 @@
         "UpdateEventSourceMappingRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>MyFunction</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction</code>.</p> </li> <li> <p> <b>Version or Alias ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:MyFunction:PROD</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:MyFunction</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.</p>",
         "UpdateFunctionCodeRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
         "UpdateFunctionConfigurationRequest$FunctionName": "<p>The name of the Lambda function.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code>.</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
-        "UpdateFunctionEventInvokeConfigRequest$FunctionName": "<p>The name of the Lambda function, version, or alias.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code> (name-only), <code>my-function:v1</code> (with alias).</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>",
-        "UpdateFunctionUrlConfigRequest$FunctionName": null
+        "UpdateFunctionEventInvokeConfigRequest$FunctionName": "<p>The name of the Lambda function, version, or alias.</p> <p class=\"title\"> <b>Name formats</b> </p> <ul> <li> <p> <b>Function name</b> - <code>my-function</code> (name-only), <code>my-function:v1</code> (with alias).</p> </li> <li> <p> <b>Function ARN</b> - <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.</p> </li> <li> <p> <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.</p> </li> </ul> <p>You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.</p>"
       }
     },
     "FunctionResponseType": {
@@ -785,39 +716,9 @@
     "FunctionResponseTypeList": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$FunctionResponseTypes": "<p>(Streams only) A list of current response type enums applied to the event source mapping.</p>",
+        "CreateEventSourceMappingRequest$FunctionResponseTypes": "<p>(Streams and Amazon SQS) A list of current response type enums applied to the event source mapping.</p>",
         "EventSourceMappingConfiguration$FunctionResponseTypes": "<p>(Streams only) A list of current response type enums applied to the event source mapping.</p>",
-        "UpdateEventSourceMappingRequest$FunctionResponseTypes": "<p>(Streams only) A list of current response type enums applied to the event source mapping.</p>"
-      }
-    },
-    "FunctionUrl": {
-      "base": null,
-      "refs": {
-        "CreateFunctionUrlConfigResponse$FunctionUrl": null,
-        "FunctionUrlConfig$FunctionUrl": null,
-        "GetFunctionUrlConfigResponse$FunctionUrl": null,
-        "UpdateFunctionUrlConfigResponse$FunctionUrl": null
-      }
-    },
-    "FunctionUrlConfig": {
-      "base": null,
-      "refs": {
-        "FunctionUrlConfigList$member": null
-      }
-    },
-    "FunctionUrlConfigList": {
-      "base": null,
-      "refs": {
-        "ListFunctionUrlConfigsResponse$FunctionUrlConfigs": null
-      }
-    },
-    "FunctionUrlQualifier": {
-      "base": null,
-      "refs": {
-        "CreateFunctionUrlConfigRequest$Qualifier": null,
-        "DeleteFunctionUrlConfigRequest$Qualifier": null,
-        "GetFunctionUrlConfigRequest$Qualifier": null,
-        "UpdateFunctionUrlConfigRequest$Qualifier": null
+        "UpdateEventSourceMappingRequest$FunctionResponseTypes": "<p>(Streams and Amazon SQS) A list of current response type enums applied to the event source mapping.</p>"
       }
     },
     "FunctionVersion": {
@@ -896,16 +797,6 @@
       "refs": {
       }
     },
-    "GetFunctionUrlConfigRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "GetFunctionUrlConfigResponse": {
-      "base": null,
-      "refs": {
-      }
-    },
     "GetLayerVersionByArnRequest": {
       "base": null,
       "refs": {
@@ -954,22 +845,9 @@
     "Handler": {
       "base": null,
       "refs": {
-        "CreateFunctionRequest$Handler": "<p>The name of the method within your code that Lambda calls to execute your function. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html\">Programming Model</a>.</p>",
+        "CreateFunctionRequest$Handler": "<p>The name of the method within your code that Lambda calls to execute your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html\">Programming Model</a>.</p>",
         "FunctionConfiguration$Handler": "<p>The function that Lambda calls to begin executing your function.</p>",
-        "UpdateFunctionConfigurationRequest$Handler": "<p>The name of the method within your code that Lambda calls to execute your function. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html\">Programming Model</a>.</p>"
-      }
-    },
-    "Header": {
-      "base": null,
-      "refs": {
-        "HeadersList$member": null
-      }
-    },
-    "HeadersList": {
-      "base": null,
-      "refs": {
-        "Cors$AllowHeaders": null,
-        "Cors$ExposeHeaders": null
+        "UpdateFunctionConfigurationRequest$Handler": "<p>The name of the method within your code that Lambda calls to execute your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html\">Programming Model</a>.</p>"
       }
     },
     "HttpStatus": {
@@ -1275,16 +1153,6 @@
       "refs": {
       }
     },
-    "ListFunctionUrlConfigsRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "ListFunctionUrlConfigsResponse": {
-      "base": null,
-      "refs": {
-      }
-    },
     "ListFunctionsByCodeSigningConfigRequest": {
       "base": null,
       "refs": {
@@ -1386,22 +1254,10 @@
         "ListFunctionsRequest$MasterRegion": "<p>For Lambda@Edge functions, the Amazon Web Services Region of the master function. For example, <code>us-east-1</code> filters the list of functions to only include Lambda@Edge functions replicated from a master function in US East (N. Virginia). If specified, you must set <code>FunctionVersion</code> to <code>ALL</code>.</p>"
       }
     },
-    "MaxAge": {
-      "base": null,
-      "refs": {
-        "Cors$MaxAge": null
-      }
-    },
     "MaxFunctionEventInvokeConfigListItems": {
       "base": null,
       "refs": {
         "ListFunctionEventInvokeConfigsRequest$MaxItems": "<p>The maximum number of configurations to return.</p>"
-      }
-    },
-    "MaxItems": {
-      "base": null,
-      "refs": {
-        "ListFunctionUrlConfigsRequest$MaxItems": null
       }
     },
     "MaxLayerListItems": {
@@ -1476,12 +1332,6 @@
         "UpdateFunctionConfigurationRequest$MemorySize": "<p>The amount of <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html\">memory available to the function</a> at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.</p>"
       }
     },
-    "Method": {
-      "base": null,
-      "refs": {
-        "AllowMethodsList$member": null
-      }
-    },
     "NameSpacedFunctionArn": {
       "base": null,
       "refs": {
@@ -1535,12 +1385,6 @@
         "AddLayerVersionPermissionRequest$OrganizationId": "<p>With the principal set to <code>*</code>, grant permission to all accounts in the specified organization.</p>"
       }
     },
-    "Origin": {
-      "base": null,
-      "refs": {
-        "AllowOriginsList$member": null
-      }
-    },
     "PackageType": {
       "base": null,
       "refs": {
@@ -1559,7 +1403,7 @@
     "Pattern": {
       "base": null,
       "refs": {
-        "Filter$Pattern": "<p> A filter pattern. For more information on the syntax of a filter pattern, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-syntax\"> Filter criteria syntax</a>. </p>"
+        "Filter$Pattern": "<p> A filter pattern. For more information on the syntax of a filter pattern, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventfiltering.html#filtering-syntax\"> Filter rule syntax</a>. </p>"
       }
     },
     "PolicyLengthExceededException": {
@@ -1750,11 +1594,11 @@
       "base": null,
       "refs": {
         "CompatibleRuntimes$member": null,
-        "CreateFunctionRequest$Runtime": "<p>The identifier of the function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">runtime</a>.</p>",
+        "CreateFunctionRequest$Runtime": "<p>The identifier of the function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">runtime</a>. Runtime is required if the deployment package is a .zip file archive. </p>",
         "FunctionConfiguration$Runtime": "<p>The runtime environment for the Lambda function.</p>",
         "ListLayerVersionsRequest$CompatibleRuntime": "<p>A runtime identifier. For example, <code>go1.x</code>.</p>",
         "ListLayersRequest$CompatibleRuntime": "<p>A runtime identifier. For example, <code>go1.x</code>.</p>",
-        "UpdateFunctionConfigurationRequest$Runtime": "<p>The identifier of the function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">runtime</a>.</p>"
+        "UpdateFunctionConfigurationRequest$Runtime": "<p>The identifier of the function's <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html\">runtime</a>. Runtime is required if the deployment package is a .zip file archive. </p>"
       }
     },
     "S3Bucket": {
@@ -1836,7 +1680,7 @@
     "SourceAccessType": {
       "base": null,
       "refs": {
-        "SourceAccessConfiguration$Type": "<p>The type of authentication protocol, VPC components, or virtual host for your event source. For example: <code>\"Type\":\"SASL_SCRAM_512_AUTH\"</code>.</p> <ul> <li> <p> <code>BASIC_AUTH</code> - (Amazon MQ) The Secrets Manager secret that stores your broker credentials.</p> </li> <li> <p> <code>BASIC_AUTH</code> - (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL/PLAIN authentication of your Apache Kafka brokers.</p> </li> <li> <p> <code>VPC_SUBNET</code> - The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your self-managed Apache Kafka cluster.</p> </li> <li> <p> <code>VPC_SECURITY_GROUP</code> - The VPC security group used to manage access to your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_256_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-256 authentication of your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_512_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>VIRTUAL_HOST</code> - (Amazon MQ) The name of the virtual host in your RabbitMQ broker. Lambda uses this RabbitMQ host as the event source. This property cannot be specified in an UpdateEventSourceMapping API call.</p> </li> </ul>"
+        "SourceAccessConfiguration$Type": "<p>The type of authentication protocol, VPC components, or virtual host for your event source. For example: <code>\"Type\":\"SASL_SCRAM_512_AUTH\"</code>.</p> <ul> <li> <p> <code>BASIC_AUTH</code> - (Amazon MQ) The Secrets Manager secret that stores your broker credentials.</p> </li> <li> <p> <code>BASIC_AUTH</code> - (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL/PLAIN authentication of your Apache Kafka brokers.</p> </li> <li> <p> <code>VPC_SUBNET</code> - The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your self-managed Apache Kafka cluster.</p> </li> <li> <p> <code>VPC_SECURITY_GROUP</code> - The VPC security group used to manage access to your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_256_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-256 authentication of your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_512_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>VIRTUAL_HOST</code> - (Amazon MQ) The name of the virtual host in your RabbitMQ broker. Lambda uses this RabbitMQ host as the event source. This property cannot be specified in an UpdateEventSourceMapping API call.</p> </li> <li> <p> <code>CLIENT_CERTIFICATE_TLS_AUTH</code> - (Amazon MSK, Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the certificate chain (X.509 PEM), private key (PKCS#8 PEM), and private key password (optional) used for mutual TLS authentication of your MSK/Apache Kafka brokers.</p> </li> <li> <p> <code>SERVER_ROOT_CA_CERTIFICATE</code> - (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key containing the root CA certificate (X.509 PEM) used for TLS encryption of your Apache Kafka brokers. </p> </li> </ul>"
       }
     },
     "SourceOwner": {
@@ -1960,8 +1804,6 @@
         "ListEventSourceMappingsResponse$NextMarker": "<p>A pagination token that's returned when the response doesn't contain all event source mappings.</p>",
         "ListFunctionEventInvokeConfigsRequest$Marker": "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>",
         "ListFunctionEventInvokeConfigsResponse$NextMarker": "<p>The pagination token that's included if more results are available.</p>",
-        "ListFunctionUrlConfigsRequest$Marker": null,
-        "ListFunctionUrlConfigsResponse$NextMarker": null,
         "ListFunctionsByCodeSigningConfigRequest$Marker": "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>",
         "ListFunctionsByCodeSigningConfigResponse$NextMarker": "<p>The pagination token that's included if more results are available.</p>",
         "ListFunctionsRequest$Marker": "<p>Specify the pagination token that's returned by a previous request to retrieve the next page of results.</p>",
@@ -2089,20 +1931,13 @@
       "base": null,
       "refs": {
         "CodeSigningConfig$LastModified": "<p>The date and time that the Code signing configuration was last modified, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD). </p>",
-        "CreateFunctionUrlConfigResponse$CreationTime": null,
         "FunctionConfiguration$LastModified": "<p>The date and time that the function was last updated, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>",
-        "FunctionUrlConfig$CreationTime": null,
-        "FunctionUrlConfig$LastModifiedTime": null,
-        "GetFunctionUrlConfigResponse$CreationTime": null,
-        "GetFunctionUrlConfigResponse$LastModifiedTime": null,
         "GetLayerVersionResponse$CreatedDate": "<p>The date that the layer version was created, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>",
         "GetProvisionedConcurrencyConfigResponse$LastModified": "<p>The date and time that a user last updated the configuration, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 format</a>.</p>",
         "LayerVersionsListItem$CreatedDate": "<p>The date that the version was created, in ISO 8601 format. For example, <code>2018-11-27T15:10:45.123+0000</code>.</p>",
         "ProvisionedConcurrencyConfigListItem$LastModified": "<p>The date and time that a user last updated the configuration, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 format</a>.</p>",
         "PublishLayerVersionResponse$CreatedDate": "<p>The date that the layer version was created, in <a href=\"https://www.w3.org/TR/NOTE-datetime\">ISO-8601 format</a> (YYYY-MM-DDThh:mm:ss.sTZD).</p>",
-        "PutProvisionedConcurrencyConfigResponse$LastModified": "<p>The date and time that a user last updated the configuration, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 format</a>.</p>",
-        "UpdateFunctionUrlConfigResponse$CreationTime": null,
-        "UpdateFunctionUrlConfigResponse$LastModifiedTime": null
+        "PutProvisionedConcurrencyConfigResponse$LastModified": "<p>The date and time that a user last updated the configuration, in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601 format</a>.</p>"
       }
     },
     "TooManyRequestsException": {
@@ -2204,16 +2039,6 @@
       }
     },
     "UpdateFunctionEventInvokeConfigRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "UpdateFunctionUrlConfigRequest": {
-      "base": null,
-      "refs": {
-      }
-    },
-    "UpdateFunctionUrlConfigResponse": {
       "base": null,
       "refs": {
       }

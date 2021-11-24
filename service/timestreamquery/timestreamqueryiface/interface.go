@@ -64,9 +64,43 @@ type TimestreamQueryAPI interface {
 	CancelQueryWithContext(aws.Context, *timestreamquery.CancelQueryInput, ...request.Option) (*timestreamquery.CancelQueryOutput, error)
 	CancelQueryRequest(*timestreamquery.CancelQueryInput) (*request.Request, *timestreamquery.CancelQueryOutput)
 
+	CreateScheduledQuery(*timestreamquery.CreateScheduledQueryInput) (*timestreamquery.CreateScheduledQueryOutput, error)
+	CreateScheduledQueryWithContext(aws.Context, *timestreamquery.CreateScheduledQueryInput, ...request.Option) (*timestreamquery.CreateScheduledQueryOutput, error)
+	CreateScheduledQueryRequest(*timestreamquery.CreateScheduledQueryInput) (*request.Request, *timestreamquery.CreateScheduledQueryOutput)
+
+	DeleteScheduledQuery(*timestreamquery.DeleteScheduledQueryInput) (*timestreamquery.DeleteScheduledQueryOutput, error)
+	DeleteScheduledQueryWithContext(aws.Context, *timestreamquery.DeleteScheduledQueryInput, ...request.Option) (*timestreamquery.DeleteScheduledQueryOutput, error)
+	DeleteScheduledQueryRequest(*timestreamquery.DeleteScheduledQueryInput) (*request.Request, *timestreamquery.DeleteScheduledQueryOutput)
+
 	DescribeEndpoints(*timestreamquery.DescribeEndpointsInput) (*timestreamquery.DescribeEndpointsOutput, error)
 	DescribeEndpointsWithContext(aws.Context, *timestreamquery.DescribeEndpointsInput, ...request.Option) (*timestreamquery.DescribeEndpointsOutput, error)
 	DescribeEndpointsRequest(*timestreamquery.DescribeEndpointsInput) (*request.Request, *timestreamquery.DescribeEndpointsOutput)
+
+	DescribeScheduledQuery(*timestreamquery.DescribeScheduledQueryInput) (*timestreamquery.DescribeScheduledQueryOutput, error)
+	DescribeScheduledQueryWithContext(aws.Context, *timestreamquery.DescribeScheduledQueryInput, ...request.Option) (*timestreamquery.DescribeScheduledQueryOutput, error)
+	DescribeScheduledQueryRequest(*timestreamquery.DescribeScheduledQueryInput) (*request.Request, *timestreamquery.DescribeScheduledQueryOutput)
+
+	ExecuteScheduledQuery(*timestreamquery.ExecuteScheduledQueryInput) (*timestreamquery.ExecuteScheduledQueryOutput, error)
+	ExecuteScheduledQueryWithContext(aws.Context, *timestreamquery.ExecuteScheduledQueryInput, ...request.Option) (*timestreamquery.ExecuteScheduledQueryOutput, error)
+	ExecuteScheduledQueryRequest(*timestreamquery.ExecuteScheduledQueryInput) (*request.Request, *timestreamquery.ExecuteScheduledQueryOutput)
+
+	ListScheduledQueries(*timestreamquery.ListScheduledQueriesInput) (*timestreamquery.ListScheduledQueriesOutput, error)
+	ListScheduledQueriesWithContext(aws.Context, *timestreamquery.ListScheduledQueriesInput, ...request.Option) (*timestreamquery.ListScheduledQueriesOutput, error)
+	ListScheduledQueriesRequest(*timestreamquery.ListScheduledQueriesInput) (*request.Request, *timestreamquery.ListScheduledQueriesOutput)
+
+	ListScheduledQueriesPages(*timestreamquery.ListScheduledQueriesInput, func(*timestreamquery.ListScheduledQueriesOutput, bool) bool) error
+	ListScheduledQueriesPagesWithContext(aws.Context, *timestreamquery.ListScheduledQueriesInput, func(*timestreamquery.ListScheduledQueriesOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*timestreamquery.ListTagsForResourceInput) (*timestreamquery.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *timestreamquery.ListTagsForResourceInput, ...request.Option) (*timestreamquery.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*timestreamquery.ListTagsForResourceInput) (*request.Request, *timestreamquery.ListTagsForResourceOutput)
+
+	ListTagsForResourcePages(*timestreamquery.ListTagsForResourceInput, func(*timestreamquery.ListTagsForResourceOutput, bool) bool) error
+	ListTagsForResourcePagesWithContext(aws.Context, *timestreamquery.ListTagsForResourceInput, func(*timestreamquery.ListTagsForResourceOutput, bool) bool, ...request.Option) error
+
+	PrepareQuery(*timestreamquery.PrepareQueryInput) (*timestreamquery.PrepareQueryOutput, error)
+	PrepareQueryWithContext(aws.Context, *timestreamquery.PrepareQueryInput, ...request.Option) (*timestreamquery.PrepareQueryOutput, error)
+	PrepareQueryRequest(*timestreamquery.PrepareQueryInput) (*request.Request, *timestreamquery.PrepareQueryOutput)
 
 	Query(*timestreamquery.QueryInput) (*timestreamquery.QueryOutput, error)
 	QueryWithContext(aws.Context, *timestreamquery.QueryInput, ...request.Option) (*timestreamquery.QueryOutput, error)
@@ -74,6 +108,18 @@ type TimestreamQueryAPI interface {
 
 	QueryPages(*timestreamquery.QueryInput, func(*timestreamquery.QueryOutput, bool) bool) error
 	QueryPagesWithContext(aws.Context, *timestreamquery.QueryInput, func(*timestreamquery.QueryOutput, bool) bool, ...request.Option) error
+
+	TagResource(*timestreamquery.TagResourceInput) (*timestreamquery.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *timestreamquery.TagResourceInput, ...request.Option) (*timestreamquery.TagResourceOutput, error)
+	TagResourceRequest(*timestreamquery.TagResourceInput) (*request.Request, *timestreamquery.TagResourceOutput)
+
+	UntagResource(*timestreamquery.UntagResourceInput) (*timestreamquery.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *timestreamquery.UntagResourceInput, ...request.Option) (*timestreamquery.UntagResourceOutput, error)
+	UntagResourceRequest(*timestreamquery.UntagResourceInput) (*request.Request, *timestreamquery.UntagResourceOutput)
+
+	UpdateScheduledQuery(*timestreamquery.UpdateScheduledQueryInput) (*timestreamquery.UpdateScheduledQueryOutput, error)
+	UpdateScheduledQueryWithContext(aws.Context, *timestreamquery.UpdateScheduledQueryInput, ...request.Option) (*timestreamquery.UpdateScheduledQueryOutput, error)
+	UpdateScheduledQueryRequest(*timestreamquery.UpdateScheduledQueryInput) (*request.Request, *timestreamquery.UpdateScheduledQueryOutput)
 }
 
 var _ TimestreamQueryAPI = (*timestreamquery.TimestreamQuery)(nil)

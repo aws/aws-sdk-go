@@ -1104,8 +1104,8 @@
     },
     "ComponentParameterValue":{
       "type":"string",
-      "min":1,
-      "pattern":"[^\\x00]+"
+      "min":0,
+      "pattern":"[^\\x00]*"
     },
     "ComponentParameterValueList":{
       "type":"list",
@@ -2333,7 +2333,9 @@
       "type":"structure",
       "members":{
         "userIds":{"shape":"AccountList"},
-        "userGroups":{"shape":"StringList"}
+        "userGroups":{"shape":"StringList"},
+        "organizationArns":{"shape":"OrganizationArnList"},
+        "organizationalUnitArns":{"shape":"OrganizationalUnitArnList"}
       }
     },
     "LaunchTemplateConfiguration":{
@@ -2616,6 +2618,26 @@
       "min":1
     },
     "NullableBoolean":{"type":"boolean"},
+    "OrganizationArn":{
+      "type":"string",
+      "pattern":"^arn:aws[^:]*:organizations::[0-9]{12}:organization/o-[a-z0-9]{10,32}$"
+    },
+    "OrganizationArnList":{
+      "type":"list",
+      "member":{"shape":"OrganizationArn"},
+      "max":25,
+      "min":1
+    },
+    "OrganizationalUnitArn":{
+      "type":"string",
+      "pattern":"^arn:aws[^:]*:organizations::[0-9]{12}:ou/o-[a-z0-9]{10,32}/ou-[0-9a-z]{4,32}-[0-9a-z]{8,32}"
+    },
+    "OrganizationalUnitArnList":{
+      "type":"list",
+      "member":{"shape":"OrganizationalUnitArn"},
+      "max":25,
+      "min":1
+    },
     "OsVersion":{
       "type":"string",
       "min":1
