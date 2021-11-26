@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Outposts.
 //    func myFunc(svc outpostsiface.OutpostsAPI) bool {
-//        // Make svc.CreateOrder request
+//        // Make svc.CancelOrder request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockOutpostsClient struct {
 //        outpostsiface.OutpostsAPI
 //    }
-//    func (m *mockOutpostsClient) CreateOrder(input *outposts.CreateOrderInput) (*outposts.CreateOrderOutput, error) {
+//    func (m *mockOutpostsClient) CancelOrder(input *outposts.CancelOrderInput) (*outposts.CancelOrderOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type OutpostsAPI interface {
+	CancelOrder(*outposts.CancelOrderInput) (*outposts.CancelOrderOutput, error)
+	CancelOrderWithContext(aws.Context, *outposts.CancelOrderInput, ...request.Option) (*outposts.CancelOrderOutput, error)
+	CancelOrderRequest(*outposts.CancelOrderInput) (*request.Request, *outposts.CancelOrderOutput)
+
 	CreateOrder(*outposts.CreateOrderInput) (*outposts.CreateOrderOutput, error)
 	CreateOrderWithContext(aws.Context, *outposts.CreateOrderInput, ...request.Option) (*outposts.CreateOrderOutput, error)
 	CreateOrderRequest(*outposts.CreateOrderInput) (*request.Request, *outposts.CreateOrderOutput)
@@ -67,6 +71,10 @@ type OutpostsAPI interface {
 	CreateOutpost(*outposts.CreateOutpostInput) (*outposts.CreateOutpostOutput, error)
 	CreateOutpostWithContext(aws.Context, *outposts.CreateOutpostInput, ...request.Option) (*outposts.CreateOutpostOutput, error)
 	CreateOutpostRequest(*outposts.CreateOutpostInput) (*request.Request, *outposts.CreateOutpostOutput)
+
+	CreateSite(*outposts.CreateSiteInput) (*outposts.CreateSiteOutput, error)
+	CreateSiteWithContext(aws.Context, *outposts.CreateSiteInput, ...request.Option) (*outposts.CreateSiteOutput, error)
+	CreateSiteRequest(*outposts.CreateSiteInput) (*request.Request, *outposts.CreateSiteOutput)
 
 	DeleteOutpost(*outposts.DeleteOutpostInput) (*outposts.DeleteOutpostOutput, error)
 	DeleteOutpostWithContext(aws.Context, *outposts.DeleteOutpostInput, ...request.Option) (*outposts.DeleteOutpostOutput, error)
@@ -76,6 +84,14 @@ type OutpostsAPI interface {
 	DeleteSiteWithContext(aws.Context, *outposts.DeleteSiteInput, ...request.Option) (*outposts.DeleteSiteOutput, error)
 	DeleteSiteRequest(*outposts.DeleteSiteInput) (*request.Request, *outposts.DeleteSiteOutput)
 
+	GetCatalogItem(*outposts.GetCatalogItemInput) (*outposts.GetCatalogItemOutput, error)
+	GetCatalogItemWithContext(aws.Context, *outposts.GetCatalogItemInput, ...request.Option) (*outposts.GetCatalogItemOutput, error)
+	GetCatalogItemRequest(*outposts.GetCatalogItemInput) (*request.Request, *outposts.GetCatalogItemOutput)
+
+	GetOrder(*outposts.GetOrderInput) (*outposts.GetOrderOutput, error)
+	GetOrderWithContext(aws.Context, *outposts.GetOrderInput, ...request.Option) (*outposts.GetOrderOutput, error)
+	GetOrderRequest(*outposts.GetOrderInput) (*request.Request, *outposts.GetOrderOutput)
+
 	GetOutpost(*outposts.GetOutpostInput) (*outposts.GetOutpostOutput, error)
 	GetOutpostWithContext(aws.Context, *outposts.GetOutpostInput, ...request.Option) (*outposts.GetOutpostOutput, error)
 	GetOutpostRequest(*outposts.GetOutpostInput) (*request.Request, *outposts.GetOutpostOutput)
@@ -83,6 +99,28 @@ type OutpostsAPI interface {
 	GetOutpostInstanceTypes(*outposts.GetOutpostInstanceTypesInput) (*outposts.GetOutpostInstanceTypesOutput, error)
 	GetOutpostInstanceTypesWithContext(aws.Context, *outposts.GetOutpostInstanceTypesInput, ...request.Option) (*outposts.GetOutpostInstanceTypesOutput, error)
 	GetOutpostInstanceTypesRequest(*outposts.GetOutpostInstanceTypesInput) (*request.Request, *outposts.GetOutpostInstanceTypesOutput)
+
+	GetSite(*outposts.GetSiteInput) (*outposts.GetSiteOutput, error)
+	GetSiteWithContext(aws.Context, *outposts.GetSiteInput, ...request.Option) (*outposts.GetSiteOutput, error)
+	GetSiteRequest(*outposts.GetSiteInput) (*request.Request, *outposts.GetSiteOutput)
+
+	GetSiteAddress(*outposts.GetSiteAddressInput) (*outposts.GetSiteAddressOutput, error)
+	GetSiteAddressWithContext(aws.Context, *outposts.GetSiteAddressInput, ...request.Option) (*outposts.GetSiteAddressOutput, error)
+	GetSiteAddressRequest(*outposts.GetSiteAddressInput) (*request.Request, *outposts.GetSiteAddressOutput)
+
+	ListCatalogItems(*outposts.ListCatalogItemsInput) (*outposts.ListCatalogItemsOutput, error)
+	ListCatalogItemsWithContext(aws.Context, *outposts.ListCatalogItemsInput, ...request.Option) (*outposts.ListCatalogItemsOutput, error)
+	ListCatalogItemsRequest(*outposts.ListCatalogItemsInput) (*request.Request, *outposts.ListCatalogItemsOutput)
+
+	ListCatalogItemsPages(*outposts.ListCatalogItemsInput, func(*outposts.ListCatalogItemsOutput, bool) bool) error
+	ListCatalogItemsPagesWithContext(aws.Context, *outposts.ListCatalogItemsInput, func(*outposts.ListCatalogItemsOutput, bool) bool, ...request.Option) error
+
+	ListOrders(*outposts.ListOrdersInput) (*outposts.ListOrdersOutput, error)
+	ListOrdersWithContext(aws.Context, *outposts.ListOrdersInput, ...request.Option) (*outposts.ListOrdersOutput, error)
+	ListOrdersRequest(*outposts.ListOrdersInput) (*request.Request, *outposts.ListOrdersOutput)
+
+	ListOrdersPages(*outposts.ListOrdersInput, func(*outposts.ListOrdersOutput, bool) bool) error
+	ListOrdersPagesWithContext(aws.Context, *outposts.ListOrdersInput, func(*outposts.ListOrdersOutput, bool) bool, ...request.Option) error
 
 	ListOutposts(*outposts.ListOutpostsInput) (*outposts.ListOutpostsOutput, error)
 	ListOutpostsWithContext(aws.Context, *outposts.ListOutpostsInput, ...request.Option) (*outposts.ListOutpostsOutput, error)
@@ -109,6 +147,18 @@ type OutpostsAPI interface {
 	UntagResource(*outposts.UntagResourceInput) (*outposts.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *outposts.UntagResourceInput, ...request.Option) (*outposts.UntagResourceOutput, error)
 	UntagResourceRequest(*outposts.UntagResourceInput) (*request.Request, *outposts.UntagResourceOutput)
+
+	UpdateSite(*outposts.UpdateSiteInput) (*outposts.UpdateSiteOutput, error)
+	UpdateSiteWithContext(aws.Context, *outposts.UpdateSiteInput, ...request.Option) (*outposts.UpdateSiteOutput, error)
+	UpdateSiteRequest(*outposts.UpdateSiteInput) (*request.Request, *outposts.UpdateSiteOutput)
+
+	UpdateSiteAddress(*outposts.UpdateSiteAddressInput) (*outposts.UpdateSiteAddressOutput, error)
+	UpdateSiteAddressWithContext(aws.Context, *outposts.UpdateSiteAddressInput, ...request.Option) (*outposts.UpdateSiteAddressOutput, error)
+	UpdateSiteAddressRequest(*outposts.UpdateSiteAddressInput) (*request.Request, *outposts.UpdateSiteAddressOutput)
+
+	UpdateSiteRackPhysicalProperties(*outposts.UpdateSiteRackPhysicalPropertiesInput) (*outposts.UpdateSiteRackPhysicalPropertiesOutput, error)
+	UpdateSiteRackPhysicalPropertiesWithContext(aws.Context, *outposts.UpdateSiteRackPhysicalPropertiesInput, ...request.Option) (*outposts.UpdateSiteRackPhysicalPropertiesOutput, error)
+	UpdateSiteRackPhysicalPropertiesRequest(*outposts.UpdateSiteRackPhysicalPropertiesInput) (*request.Request, *outposts.UpdateSiteRackPhysicalPropertiesOutput)
 }
 
 var _ OutpostsAPI = (*outposts.Outposts)(nil)

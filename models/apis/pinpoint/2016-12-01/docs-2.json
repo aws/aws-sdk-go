@@ -92,6 +92,7 @@
     "PutEvents" : "<p>Creates a new event to record for endpoints, or creates or updates endpoint data that existing events are associated with.</p>",
     "RemoveAttributes" : "<p>Removes one or more attributes, of the same attribute type, from all the endpoints that are associated with an application.</p>",
     "SendMessages" : "<p>Creates and sends a direct message.</p>",
+    "SendOTPMessage" : "<p>Send an OTP message</p>",
     "SendUsersMessages" : "<p>Creates and sends a message to a list of users.</p>",
     "TagResource" : "<p>Adds one or more tags (keys and values) to an application, campaign, message template, or segment.</p>",
     "UntagResource" : "<p>Removes one or more tags (keys and values) from an application, campaign, message template, or segment.</p>",
@@ -118,7 +119,8 @@
     "UpdateSmsTemplate" : "<p>Updates an existing message template for messages that are sent through the SMS channel.</p>",
     "UpdateTemplateActiveVersion" : "<p>Changes the status of a specific version of a message template to <i>active</i>.</p>",
     "UpdateVoiceChannel" : "<p>Enables the voice channel for an application or updates the status and settings of the voice channel for an application.</p>",
-    "UpdateVoiceTemplate" : "<p>Updates an existing message template for messages that are sent through the voice channel.</p>"
+    "UpdateVoiceTemplate" : "<p>Updates an existing message template for messages that are sent through the voice channel.</p>",
+    "VerifyOTPMessage" : "<p>Verify an OTP</p>"
   },
   "shapes" : {
     "ADMChannelRequest" : {
@@ -1204,6 +1206,10 @@
       "base" : "<p>Provides information about all the segments that are associated with an application.</p>",
       "refs" : { }
     },
+    "SendOTPMessageRequestParameters" : {
+      "base" : "<p>Send OTP message request parameters.</p>",
+      "refs" : { }
+    },
     "SendUsersMessageRequest" : {
       "base" : "<p>Specifies the configuration and other settings for a message to send to all the endpoints that are associated with a list of users.</p>",
       "refs" : { }
@@ -1360,6 +1366,14 @@
       "base" : "<p>Specifies Amazon Pinpoint configuration settings for retrieving and processing recommendation data from a recommender model.</p>",
       "refs" : { }
     },
+    "VerificationResponse" : {
+      "base" : "<p>Verify OTP Message Response.</p>",
+      "refs" : { }
+    },
+    "VerifyOTPMessageRequestParameters" : {
+      "base" : "<p>Verify OTP message request.</p>",
+      "refs" : { }
+    },
     "VoiceChannelRequest" : {
       "base" : "<p>Specifies the status and settings of the voice channel for an application.</p>",
       "refs" : { }
@@ -1487,6 +1501,7 @@
         "SMSChannelResponse$HasCredential" : "<p>(Not used) This property is retained only for backward compatibility.</p>",
         "SMSChannelResponse$IsArchived" : "<p>Specifies whether the SMS channel is archived.</p>",
         "Schedule$IsLocalTime" : "<p>Specifies whether the start and end times for the campaign schedule use each recipient's local time. To base the schedule on each recipient's local time, set this value to true.</p>",
+        "VerificationResponse$Valid" : "<p>Specifies whether the OTP is valid or not.</p>",
         "VoiceChannelRequest$Enabled" : "<p>Specifies whether to enable the voice channel for the application.</p>",
         "VoiceChannelResponse$Enabled" : "<p>Specifies whether the voice channel is enabled for the application.</p>",
         "VoiceChannelResponse$HasCredential" : "<p>(Not used) This property is retained only for backward compatibility.</p>",
@@ -1575,6 +1590,9 @@
         "SegmentImportResource$Size" : "<p>The number of endpoint definitions that were imported successfully to create the segment.</p>",
         "SegmentReference$Version" : "<p>The version number of the segment.</p>",
         "SegmentResponse$Version" : "<p>The version number of the segment.</p>",
+        "SendOTPMessageRequestParameters$AllowedAttempts" : "<p>The attempts allowed to validate an OTP.</p>",
+        "SendOTPMessageRequestParameters$CodeLength" : "<p>The number of characters in the generated OTP.</p>",
+        "SendOTPMessageRequestParameters$ValidityPeriod" : "<p>The time in minutes before the OTP is no longer valid.</p>",
         "Session$Duration" : "<p>The duration of the session, in milliseconds.</p>",
         "TreatmentResource$SizePercent" : "<p>The allocated percentage of users (segment members) that the treatment is sent to.</p>",
         "UpdateRecommenderConfiguration$RecommendationsPerMessage" : "<p>The number of recommended items to retrieve from the model for each endpoint or user, depending on the value for the RecommendationProviderIdType property. This number determines how many recommended items are available for use in message variables. The minimum value is 1. The maximum value is 5. The default value is 5.</p> <p>To use multiple recommended items and custom attributes with message variables, you have to use an AWS Lambda function (RecommendationTransformerUri) to perform additional processing of recommendation data.</p>",
@@ -2448,6 +2466,14 @@
         "SegmentResponse$LastModifiedDate" : "<p>The date and time when the segment was last modified.</p>",
         "SegmentResponse$Name" : "<p>The name of the segment.</p>",
         "SegmentsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
+        "SendOTPMessageRequestParameters$BrandName" : "<p>The brand name that will be substituted into the OTP message body. Should be owned by calling AWS account.</p>",
+        "SendOTPMessageRequestParameters$Channel" : "<p>Channel type for the OTP message. Supported values: [SMS].</p>",
+        "SendOTPMessageRequestParameters$DestinationIdentity" : "<p>The destination identity to send OTP to.</p>",
+        "SendOTPMessageRequestParameters$EntityId" : "<p>A unique Entity ID received from DLT after entity registration is approved.</p>",
+        "SendOTPMessageRequestParameters$Language" : "<p>The language to be used for the outgoing message body containing the OTP.</p>",
+        "SendOTPMessageRequestParameters$OriginationIdentity" : "<p>The origination identity used to send OTP from.</p>",
+        "SendOTPMessageRequestParameters$ReferenceId" : "<p>Developer-specified reference identifier. Required to match during OTP verification.</p>",
+        "SendOTPMessageRequestParameters$TemplateId" : "<p>A unique Template ID received from DLT after entity registration is approved.</p>",
         "SendUsersMessageRequest$TraceId" : "<p>The unique identifier for tracing the message. This identifier is visible to message recipients.</p>",
         "SendUsersMessageResponse$ApplicationId" : "<p>The unique identifier for the application that was used to send the message.</p>",
         "SendUsersMessageResponse$RequestId" : "<p>The unique identifier that was assigned to the message request.</p>",
@@ -2491,6 +2517,9 @@
         "UpdateRecommenderConfiguration$RecommendationProviderUri" : "<p>The Amazon Resource Name (ARN) of the recommender model to retrieve recommendation data from. This value must match the ARN of an Amazon Personalize campaign.</p>",
         "UpdateRecommenderConfiguration$RecommendationTransformerUri" : "<p>The name or Amazon Resource Name (ARN) of the AWS Lambda function to invoke for additional processing of recommendation data that's retrieved from the recommender model.</p>",
         "UpdateRecommenderConfiguration$RecommendationsDisplayName" : "<p>A custom display name for the standard endpoint or user attribute (RecommendationItems) that temporarily stores recommended items for each endpoint or user, depending on the value for the RecommendationProviderIdType property. This value is required if the configuration doesn't invoke an AWS Lambda function (RecommendationTransformerUri) to perform additional processing of recommendation data.</p> <p>This name appears in the <b>Attribute finder</b> of the template editor on the Amazon Pinpoint console. The name can contain up to 25 characters. The characters can be letters, numbers, spaces, underscores (_), or hyphens (-). These restrictions don't apply to attribute values.</p>",
+        "VerifyOTPMessageRequestParameters$DestinationIdentity" : "<p>The destination identity to send OTP to.</p>",
+        "VerifyOTPMessageRequestParameters$Otp" : "<p>The OTP the end user provided for verification.</p>",
+        "VerifyOTPMessageRequestParameters$ReferenceId" : "<p>The reference identifier provided when the OTP was previously sent.</p>",
         "VoiceChannelResponse$ApplicationId" : "<p>The unique identifier for the application that the voice channel applies to.</p>",
         "VoiceChannelResponse$CreationDate" : "<p>The date and time, in ISO 8601 format, when the voice channel was enabled.</p>",
         "VoiceChannelResponse$Id" : "<p>(Deprecated) An identifier for the voice channel. This property is retained only for backward compatibility.</p>",

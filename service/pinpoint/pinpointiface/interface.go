@@ -420,6 +420,10 @@ type PinpointAPI interface {
 	SendMessagesWithContext(aws.Context, *pinpoint.SendMessagesInput, ...request.Option) (*pinpoint.SendMessagesOutput, error)
 	SendMessagesRequest(*pinpoint.SendMessagesInput) (*request.Request, *pinpoint.SendMessagesOutput)
 
+	SendOTPMessage(*pinpoint.SendOTPMessageInput) (*pinpoint.SendOTPMessageOutput, error)
+	SendOTPMessageWithContext(aws.Context, *pinpoint.SendOTPMessageInput, ...request.Option) (*pinpoint.SendOTPMessageOutput, error)
+	SendOTPMessageRequest(*pinpoint.SendOTPMessageInput) (*request.Request, *pinpoint.SendOTPMessageOutput)
+
 	SendUsersMessages(*pinpoint.SendUsersMessagesInput) (*pinpoint.SendUsersMessagesOutput, error)
 	SendUsersMessagesWithContext(aws.Context, *pinpoint.SendUsersMessagesInput, ...request.Option) (*pinpoint.SendUsersMessagesOutput, error)
 	SendUsersMessagesRequest(*pinpoint.SendUsersMessagesInput) (*request.Request, *pinpoint.SendUsersMessagesOutput)

@@ -13,6 +13,22 @@
     "uid":"outposts-2019-12-03"
   },
   "operations":{
+    "CancelOrder":{
+      "name":"CancelOrder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/orders/{OrderId}/cancel"
+      },
+      "input":{"shape":"CancelOrderInput"},
+      "output":{"shape":"CancelOrderOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateOrder":{
       "name":"CreateOrder",
       "http":{
@@ -42,6 +58,22 @@
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "CreateSite":{
+      "name":"CreateSite",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sites"
+      },
+      "input":{"shape":"CreateSiteInput"},
+      "output":{"shape":"CreateSiteOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceQuotaExceededException"}
@@ -79,6 +111,34 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetCatalogItem":{
+      "name":"GetCatalogItem",
+      "http":{
+        "method":"GET",
+        "requestUri":"/catalog/item/{CatalogItemId}"
+      },
+      "input":{"shape":"GetCatalogItemInput"},
+      "output":{"shape":"GetCatalogItemOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetOrder":{
+      "name":"GetOrder",
+      "http":{
+        "method":"GET",
+        "requestUri":"/orders/{OrderId}"
+      },
+      "input":{"shape":"GetOrderInput"},
+      "output":{"shape":"GetOrderOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetOutpost":{
       "name":"GetOutpost",
       "http":{
@@ -102,6 +162,65 @@
       },
       "input":{"shape":"GetOutpostInstanceTypesInput"},
       "output":{"shape":"GetOutpostInstanceTypesOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetSite":{
+      "name":"GetSite",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sites/{SiteId}"
+      },
+      "input":{"shape":"GetSiteInput"},
+      "output":{"shape":"GetSiteOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetSiteAddress":{
+      "name":"GetSiteAddress",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sites/{SiteId}/address"
+      },
+      "input":{"shape":"GetSiteAddressInput"},
+      "output":{"shape":"GetSiteAddressOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListCatalogItems":{
+      "name":"ListCatalogItems",
+      "http":{
+        "method":"GET",
+        "requestUri":"/catalog/items"
+      },
+      "input":{"shape":"ListCatalogItemsInput"},
+      "output":{"shape":"ListCatalogItemsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListOrders":{
+      "name":"ListOrders",
+      "http":{
+        "method":"GET",
+        "requestUri":"/list-orders"
+      },
+      "input":{"shape":"ListOrdersInput"},
+      "output":{"shape":"ListOrdersOutput"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"NotFoundException"},
@@ -178,6 +297,54 @@
         {"shape":"ValidationException"},
         {"shape":"NotFoundException"}
       ]
+    },
+    "UpdateSite":{
+      "name":"UpdateSite",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/sites/{SiteId}"
+      },
+      "input":{"shape":"UpdateSiteInput"},
+      "output":{"shape":"UpdateSiteOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateSiteAddress":{
+      "name":"UpdateSiteAddress",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/sites/{SiteId}/address"
+      },
+      "input":{"shape":"UpdateSiteAddressInput"},
+      "output":{"shape":"UpdateSiteAddressOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateSiteRackPhysicalProperties":{
+      "name":"UpdateSiteRackPhysicalProperties",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/sites/{SiteId}/rackPhysicalProperties"
+      },
+      "input":{"shape":"UpdateSiteRackPhysicalPropertiesInput"},
+      "output":{"shape":"UpdateSiteRackPhysicalPropertiesOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
     }
   },
   "shapes":{
@@ -194,6 +361,54 @@
       "max":12,
       "min":12,
       "pattern":"\\d{12}"
+    },
+    "Address":{
+      "type":"structure",
+      "required":[
+        "AddressLine1",
+        "City",
+        "StateOrRegion",
+        "PostalCode",
+        "CountryCode"
+      ],
+      "members":{
+        "ContactName":{"shape":"ContactName"},
+        "ContactPhoneNumber":{"shape":"ContactPhoneNumber"},
+        "AddressLine1":{"shape":"AddressLine1"},
+        "AddressLine2":{"shape":"AddressLine2"},
+        "AddressLine3":{"shape":"AddressLine3"},
+        "City":{"shape":"City"},
+        "StateOrRegion":{"shape":"StateOrRegion"},
+        "DistrictOrCounty":{"shape":"DistrictOrCounty"},
+        "PostalCode":{"shape":"PostalCode"},
+        "CountryCode":{"shape":"CountryCode"},
+        "Municipality":{"shape":"Municipality"}
+      }
+    },
+    "AddressLine1":{
+      "type":"string",
+      "max":180,
+      "min":1,
+      "pattern":"^\\S[\\S ]*$"
+    },
+    "AddressLine2":{
+      "type":"string",
+      "max":60,
+      "min":0,
+      "pattern":"^\\S[\\S ]*$"
+    },
+    "AddressLine3":{
+      "type":"string",
+      "max":60,
+      "min":0,
+      "pattern":"^\\S[\\S ]*$"
+    },
+    "AddressType":{
+      "type":"string",
+      "enum":[
+        "SHIPPING_ADDRESS",
+        "OPERATING_ADDRESS"
+      ]
     },
     "Arn":{
       "type":"string",
@@ -224,6 +439,70 @@
       "max":5,
       "min":1
     },
+    "CancelOrderInput":{
+      "type":"structure",
+      "required":["OrderId"],
+      "members":{
+        "OrderId":{
+          "shape":"OrderId",
+          "location":"uri",
+          "locationName":"OrderId"
+        }
+      }
+    },
+    "CancelOrderOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CatalogItem":{
+      "type":"structure",
+      "members":{
+        "CatalogItemId":{"shape":"SkuCode"},
+        "ItemStatus":{"shape":"CatalogItemStatus"},
+        "EC2Capacities":{"shape":"EC2CapacityListDefinition"},
+        "PowerKva":{"shape":"CatalogItemPowerKva"},
+        "WeightLbs":{"shape":"CatalogItemWeightLbs"},
+        "SupportedUplinkGbps":{"shape":"SupportedUplinkGbpsListDefinition"},
+        "SupportedStorage":{"shape":"SupportedStorageList"}
+      }
+    },
+    "CatalogItemClass":{
+      "type":"string",
+      "enum":[
+        "RACK",
+        "SERVER"
+      ]
+    },
+    "CatalogItemClassList":{
+      "type":"list",
+      "member":{"shape":"CatalogItemClass"}
+    },
+    "CatalogItemListDefinition":{
+      "type":"list",
+      "member":{"shape":"CatalogItem"}
+    },
+    "CatalogItemPowerKva":{
+      "type":"float",
+      "box":true
+    },
+    "CatalogItemStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "DISCONTINUED"
+      ]
+    },
+    "CatalogItemWeightLbs":{
+      "type":"integer",
+      "box":true
+    },
+    "City":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"^\\S[\\S ]*$"
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -233,6 +512,24 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "ContactName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^\\S[\\S ]*$"
+    },
+    "ContactPhoneNumber":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^[\\S ]+$"
+    },
+    "CountryCode":{
+      "type":"string",
+      "max":2,
+      "min":2,
+      "pattern":"^[A-Z]{2}$"
     },
     "CreateOrderInput":{
       "type":"structure",
@@ -275,6 +572,25 @@
         "Outpost":{"shape":"Outpost"}
       }
     },
+    "CreateSiteInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"SiteName"},
+        "Description":{"shape":"SiteDescription"},
+        "Notes":{"shape":"SiteNotes"},
+        "Tags":{"shape":"TagMap"},
+        "OperatingAddress":{"shape":"Address"},
+        "ShippingAddress":{"shape":"Address"},
+        "RackPhysicalProperties":{"shape":"RackPhysicalProperties"}
+      }
+    },
+    "CreateSiteOutput":{
+      "type":"structure",
+      "members":{
+        "Site":{"shape":"Site"}
+      }
+    },
     "DeleteOutpostInput":{
       "type":"structure",
       "required":["OutpostId"],
@@ -307,11 +623,80 @@
       "members":{
       }
     },
+    "DistrictOrCounty":{
+      "type":"string",
+      "max":60,
+      "min":1,
+      "pattern":"^\\S[\\S ]*"
+    },
+    "EC2Capacity":{
+      "type":"structure",
+      "members":{
+        "Family":{"shape":"Family"},
+        "MaxSize":{"shape":"MaxSize"},
+        "Quantity":{"shape":"Quantity"}
+      }
+    },
+    "EC2CapacityListDefinition":{
+      "type":"list",
+      "member":{"shape":"EC2Capacity"}
+    },
+    "EC2FamilyList":{
+      "type":"list",
+      "member":{"shape":"Family"}
+    },
     "ErrorMessage":{
       "type":"string",
       "max":1000,
       "min":1,
       "pattern":"^[\\S \\n]+$"
+    },
+    "Family":{
+      "type":"string",
+      "max":10,
+      "min":1,
+      "pattern":"[a-z0-9]+"
+    },
+    "FiberOpticCableType":{
+      "type":"string",
+      "enum":[
+        "SINGLE_MODE",
+        "MULTI_MODE"
+      ]
+    },
+    "GetCatalogItemInput":{
+      "type":"structure",
+      "required":["CatalogItemId"],
+      "members":{
+        "CatalogItemId":{
+          "shape":"SkuCode",
+          "location":"uri",
+          "locationName":"CatalogItemId"
+        }
+      }
+    },
+    "GetCatalogItemOutput":{
+      "type":"structure",
+      "members":{
+        "CatalogItem":{"shape":"CatalogItem"}
+      }
+    },
+    "GetOrderInput":{
+      "type":"structure",
+      "required":["OrderId"],
+      "members":{
+        "OrderId":{
+          "shape":"OrderId",
+          "location":"uri",
+          "locationName":"OrderId"
+        }
+      }
+    },
+    "GetOrderOutput":{
+      "type":"structure",
+      "members":{
+        "Order":{"shape":"Order"}
+      }
     },
     "GetOutpostInput":{
       "type":"structure",
@@ -360,6 +745,50 @@
         "Outpost":{"shape":"Outpost"}
       }
     },
+    "GetSiteAddressInput":{
+      "type":"structure",
+      "required":[
+        "SiteId",
+        "AddressType"
+      ],
+      "members":{
+        "SiteId":{
+          "shape":"SiteId",
+          "location":"uri",
+          "locationName":"SiteId"
+        },
+        "AddressType":{
+          "shape":"AddressType",
+          "location":"querystring",
+          "locationName":"AddressType"
+        }
+      }
+    },
+    "GetSiteAddressOutput":{
+      "type":"structure",
+      "members":{
+        "SiteId":{"shape":"SiteId"},
+        "AddressType":{"shape":"AddressType"},
+        "Address":{"shape":"Address"}
+      }
+    },
+    "GetSiteInput":{
+      "type":"structure",
+      "required":["SiteId"],
+      "members":{
+        "SiteId":{
+          "shape":"SiteId",
+          "location":"uri",
+          "locationName":"SiteId"
+        }
+      }
+    },
+    "GetSiteOutput":{
+      "type":"structure",
+      "members":{
+        "Site":{"shape":"Site"}
+      }
+    },
     "ISO8601Timestamp":{"type":"timestamp"},
     "InstanceType":{"type":"string"},
     "InstanceTypeItem":{
@@ -398,7 +827,7 @@
         "CatalogItemId":{"shape":"SkuCode"},
         "LineItemId":{"shape":"LineItemId"},
         "Quantity":{"shape":"LineItemQuantity"},
-        "Status":{"shape":"Status"}
+        "Status":{"shape":"LineItemStatus"}
       }
     },
     "LineItemId":{
@@ -426,6 +855,88 @@
       "member":{"shape":"LineItemRequest"},
       "max":20,
       "min":1
+    },
+    "LineItemStatus":{
+      "type":"string",
+      "enum":[
+        "PREPARING",
+        "BUILDING",
+        "SHIPPED",
+        "DELIVERED",
+        "INSTALLING",
+        "INSTALLED",
+        "ERROR",
+        "CANCELLED"
+      ]
+    },
+    "LineItemStatusCounts":{
+      "type":"map",
+      "key":{"shape":"LineItemStatus"},
+      "value":{"shape":"LineItemQuantity"}
+    },
+    "ListCatalogItemsInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults1000",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "ItemClassFilter":{
+          "shape":"CatalogItemClassList",
+          "location":"querystring",
+          "locationName":"ItemClassFilter"
+        },
+        "SupportedStorageFilter":{
+          "shape":"SupportedStorageList",
+          "location":"querystring",
+          "locationName":"SupportedStorageFilter"
+        },
+        "EC2FamilyFilter":{
+          "shape":"EC2FamilyList",
+          "location":"querystring",
+          "locationName":"EC2FamilyFilter"
+        }
+      }
+    },
+    "ListCatalogItemsOutput":{
+      "type":"structure",
+      "members":{
+        "CatalogItems":{"shape":"CatalogItemListDefinition"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListOrdersInput":{
+      "type":"structure",
+      "members":{
+        "OutpostIdentifierFilter":{
+          "shape":"OutpostIdentifier",
+          "location":"querystring",
+          "locationName":"OutpostIdentifierFilter"
+        },
+        "NextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults1000",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        }
+      }
+    },
+    "ListOrdersOutput":{
+      "type":"structure",
+      "members":{
+        "Orders":{"shape":"OrderSummaryListDefinition"},
+        "NextToken":{"shape":"Token"}
+      }
     },
     "ListOutpostsInput":{
       "type":"structure",
@@ -509,6 +1020,23 @@
       "max":1000,
       "min":1
     },
+    "MaxSize":{"type":"string"},
+    "MaximumSupportedWeightLbs":{
+      "type":"string",
+      "enum":[
+        "NO_LIMIT",
+        "MAX_1400_LBS",
+        "MAX_1600_LBS",
+        "MAX_1800_LBS",
+        "MAX_2000_LBS"
+      ]
+    },
+    "Municipality":{
+      "type":"string",
+      "max":180,
+      "min":0,
+      "pattern":"^\\S[\\S ]*$"
+    },
     "NotFoundException":{
       "type":"structure",
       "members":{
@@ -516,6 +1044,24 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "OpticalStandard":{
+      "type":"string",
+      "enum":[
+        "OPTIC_10GBASE_SR",
+        "OPTIC_10GBASE_IR",
+        "OPTIC_10GBASE_LR",
+        "OPTIC_40GBASE_SR",
+        "OPTIC_40GBASE_ESR",
+        "OPTIC_40GBASE_IR4_LR4L",
+        "OPTIC_40GBASE_LR4",
+        "OPTIC_100GBASE_SR4",
+        "OPTIC_100GBASE_CWDM4",
+        "OPTIC_100GBASE_LR4",
+        "OPTIC_100G_PSM4_MSA",
+        "OPTIC_1000BASE_LX",
+        "OPTIC_1000BASE_SX"
+      ]
     },
     "Order":{
       "type":"structure",
@@ -543,7 +1089,34 @@
         "PROCESSING",
         "INSTALLING",
         "FULFILLED",
-        "CANCELLED"
+        "CANCELLED",
+        "PREPARING",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "ERROR"
+      ]
+    },
+    "OrderSummary":{
+      "type":"structure",
+      "members":{
+        "OutpostId":{"shape":"OutpostIdOnly"},
+        "OrderId":{"shape":"OrderId"},
+        "OrderType":{"shape":"OrderType"},
+        "Status":{"shape":"OrderStatus"},
+        "LineItemCountsByStatus":{"shape":"LineItemStatusCounts"},
+        "OrderSubmissionDate":{"shape":"ISO8601Timestamp"},
+        "OrderFulfilledDate":{"shape":"ISO8601Timestamp"}
+      }
+    },
+    "OrderSummaryListDefinition":{
+      "type":"list",
+      "member":{"shape":"OrderSummary"}
+    },
+    "OrderType":{
+      "type":"string",
+      "enum":[
+        "OUTPOST",
+        "REPLACEMENT"
       ]
     },
     "Outpost":{
@@ -616,9 +1189,64 @@
       "type":"string",
       "enum":["THREE_YEARS"]
     },
+    "PostalCode":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9 -]+$"
+    },
+    "PowerConnector":{
+      "type":"string",
+      "enum":[
+        "L6_30P",
+        "IEC309",
+        "AH530P7W",
+        "AH532P6W"
+      ]
+    },
+    "PowerDrawKva":{
+      "type":"string",
+      "enum":[
+        "POWER_5_KVA",
+        "POWER_10_KVA",
+        "POWER_15_KVA"
+      ]
+    },
+    "PowerFeedDrop":{
+      "type":"string",
+      "enum":[
+        "ABOVE_RACK",
+        "BELOW_RACK"
+      ]
+    },
+    "PowerPhase":{
+      "type":"string",
+      "enum":[
+        "SINGLE_PHASE",
+        "THREE_PHASE"
+      ]
+    },
+    "Quantity":{"type":"string"},
+    "RackPhysicalProperties":{
+      "type":"structure",
+      "members":{
+        "PowerDrawKva":{"shape":"PowerDrawKva"},
+        "PowerPhase":{"shape":"PowerPhase"},
+        "PowerConnector":{"shape":"PowerConnector"},
+        "PowerFeedDrop":{"shape":"PowerFeedDrop"},
+        "UplinkGbps":{"shape":"UplinkGbps"},
+        "UplinkCount":{"shape":"UplinkCount"},
+        "FiberOpticCableType":{"shape":"FiberOpticCableType"},
+        "OpticalStandard":{"shape":"OpticalStandard"},
+        "MaximumSupportedWeightLbs":{"shape":"MaximumSupportedWeightLbs"}
+      }
+    },
     "ResourceType":{
       "type":"string",
-      "enum":["OUTPOST"]
+      "enum":[
+        "OUTPOST",
+        "ORDER"
+      ]
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -636,7 +1264,12 @@
         "Name":{"shape":"SiteName"},
         "Description":{"shape":"SiteDescription"},
         "Tags":{"shape":"TagMap"},
-        "SiteArn":{"shape":"SiteArn"}
+        "SiteArn":{"shape":"SiteArn"},
+        "Notes":{"shape":"SiteNotes"},
+        "OperatingAddressCountryCode":{"shape":"CountryCode"},
+        "OperatingAddressStateOrRegion":{"shape":"StateOrRegion"},
+        "OperatingAddressCity":{"shape":"City"},
+        "RackPhysicalProperties":{"shape":"RackPhysicalProperties"}
       }
     },
     "SiteArn":{
@@ -663,23 +1296,45 @@
       "min":1,
       "pattern":"^[\\S ]+$"
     },
+    "SiteNotes":{
+      "type":"string",
+      "max":2000,
+      "min":1,
+      "pattern":"^[\\S \\n]+$"
+    },
     "SkuCode":{
       "type":"string",
       "max":10,
       "min":1,
       "pattern":"OR-[A-Z0-9]{7}"
     },
-    "Status":{
+    "StateOrRegion":{
       "type":"string",
-      "max":1000,
+      "max":50,
       "min":1,
-      "pattern":"^[\\S ]+$"
+      "pattern":"^\\S[\\S ]*$"
     },
     "String":{
       "type":"string",
       "max":1000,
       "min":1,
       "pattern":"^[\\S \\n]+$"
+    },
+    "SupportedStorageEnum":{
+      "type":"string",
+      "enum":[
+        "EBS",
+        "S3"
+      ]
+    },
+    "SupportedStorageList":{
+      "type":"list",
+      "member":{"shape":"SupportedStorageEnum"}
+    },
+    "SupportedUplinkGbps":{"type":"integer"},
+    "SupportedUplinkGbpsListDefinition":{
+      "type":"list",
+      "member":{"shape":"SupportedUplinkGbps"}
     },
     "TagKey":{
       "type":"string",
@@ -754,6 +1409,100 @@
       "type":"structure",
       "members":{
       }
+    },
+    "UpdateSiteAddressInput":{
+      "type":"structure",
+      "required":[
+        "SiteId",
+        "AddressType",
+        "Address"
+      ],
+      "members":{
+        "SiteId":{
+          "shape":"SiteId",
+          "location":"uri",
+          "locationName":"SiteId"
+        },
+        "AddressType":{"shape":"AddressType"},
+        "Address":{"shape":"Address"}
+      }
+    },
+    "UpdateSiteAddressOutput":{
+      "type":"structure",
+      "members":{
+        "AddressType":{"shape":"AddressType"},
+        "Address":{"shape":"Address"}
+      }
+    },
+    "UpdateSiteInput":{
+      "type":"structure",
+      "required":["SiteId"],
+      "members":{
+        "SiteId":{
+          "shape":"SiteId",
+          "location":"uri",
+          "locationName":"SiteId"
+        },
+        "Name":{"shape":"SiteName"},
+        "Description":{"shape":"SiteDescription"},
+        "Notes":{"shape":"SiteNotes"}
+      }
+    },
+    "UpdateSiteOutput":{
+      "type":"structure",
+      "members":{
+        "Site":{"shape":"Site"}
+      }
+    },
+    "UpdateSiteRackPhysicalPropertiesInput":{
+      "type":"structure",
+      "required":["SiteId"],
+      "members":{
+        "SiteId":{
+          "shape":"SiteId",
+          "location":"uri",
+          "locationName":"SiteId"
+        },
+        "PowerDrawKva":{"shape":"PowerDrawKva"},
+        "PowerPhase":{"shape":"PowerPhase"},
+        "PowerConnector":{"shape":"PowerConnector"},
+        "PowerFeedDrop":{"shape":"PowerFeedDrop"},
+        "UplinkGbps":{"shape":"UplinkGbps"},
+        "UplinkCount":{"shape":"UplinkCount"},
+        "FiberOpticCableType":{"shape":"FiberOpticCableType"},
+        "OpticalStandard":{"shape":"OpticalStandard"},
+        "MaximumSupportedWeightLbs":{"shape":"MaximumSupportedWeightLbs"}
+      }
+    },
+    "UpdateSiteRackPhysicalPropertiesOutput":{
+      "type":"structure",
+      "members":{
+        "Site":{"shape":"Site"}
+      }
+    },
+    "UplinkCount":{
+      "type":"string",
+      "enum":[
+        "UPLINK_COUNT_1",
+        "UPLINK_COUNT_2",
+        "UPLINK_COUNT_3",
+        "UPLINK_COUNT_4",
+        "UPLINK_COUNT_5",
+        "UPLINK_COUNT_6",
+        "UPLINK_COUNT_7",
+        "UPLINK_COUNT_8",
+        "UPLINK_COUNT_12",
+        "UPLINK_COUNT_16"
+      ]
+    },
+    "UplinkGbps":{
+      "type":"string",
+      "enum":[
+        "UPLINK_1G",
+        "UPLINK_10G",
+        "UPLINK_40G",
+        "UPLINK_100G"
+      ]
     },
     "ValidationException":{
       "type":"structure",

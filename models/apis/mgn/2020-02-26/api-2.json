@@ -92,6 +92,21 @@
       ],
       "idempotent":true
     },
+    "DeleteVcenterClient":{
+      "name":"DeleteVcenterClient",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteVcenterClient",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteVcenterClientRequest"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
+    },
     "DescribeJobLogItems":{
       "name":"DescribeJobLogItems",
       "http":{
@@ -146,6 +161,21 @@
       "output":{"shape":"DescribeSourceServersResponse"},
       "errors":[
         {"shape":"UninitializedAccountException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "DescribeVcenterClients":{
+      "name":"DescribeVcenterClients",
+      "http":{
+        "method":"GET",
+        "requestUri":"/DescribeVcenterClients",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeVcenterClientsRequest"},
+      "output":{"shape":"DescribeVcenterClientsResponse"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ]
     },
@@ -284,6 +314,23 @@
         {"shape":"ConflictException"}
       ]
     },
+    "StartReplication":{
+      "name":"StartReplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/StartReplication",
+        "responseCode":200
+      },
+      "input":{"shape":"StartReplicationRequest"},
+      "output":{"shape":"SourceServer"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "StartTest":{
       "name":"StartTest",
       "http":{
@@ -397,6 +444,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UpdateSourceServerReplicationType":{
+      "name":"UpdateSourceServerReplicationType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/UpdateSourceServerReplicationType",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateSourceServerReplicationTypeRequest"},
+      "output":{"shape":"SourceServer"},
+      "errors":[
+        {"shape":"UninitializedAccountException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     }
   },
@@ -534,7 +597,9 @@
         "FAILED_TO_ATTACH_STAGING_DISKS",
         "FAILED_TO_PAIR_REPLICATION_SERVER_WITH_AGENT",
         "FAILED_TO_CONNECT_AGENT_TO_REPLICATION_SERVER",
-        "FAILED_TO_START_DATA_TRANSFER"
+        "FAILED_TO_START_DATA_TRANSFER",
+        "UNSUPPORTED_VM_CONFIGURATION",
+        "LAST_SNAPSHOT_JOB_FAILED"
       ]
     },
     "DataReplicationInfo":{
@@ -545,6 +610,7 @@
         "dataReplicationState":{"shape":"DataReplicationState"},
         "etaDateTime":{"shape":"ISO8601DatetimeString"},
         "lagDuration":{"shape":"ISO8601DatetimeString"},
+        "lastSnapshotDateTime":{"shape":"ISO8601DatetimeString"},
         "replicatedDisks":{"shape":"DataReplicationInfoReplicatedDisks"}
       }
     },
@@ -621,7 +687,9 @@
         "PAUSED",
         "RESCAN",
         "STALLED",
-        "DISCONNECTED"
+        "DISCONNECTED",
+        "PENDING_SNAPSHOT_SHIPPING",
+        "SHIPPING_SNAPSHOT"
       ]
     },
     "DeleteJobRequest":{
@@ -658,6 +726,13 @@
     "DeleteSourceServerResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteVcenterClientRequest":{
+      "type":"structure",
+      "required":["vcenterClientID"],
+      "members":{
+        "vcenterClientID":{"shape":"VcenterClientID"}
       }
     },
     "DescribeJobLogItemsRequest":{
@@ -735,6 +810,8 @@
       "type":"structure",
       "members":{
         "isArchived":{"shape":"Boolean"},
+        "lifeCycleStates":{"shape":"LifeCycleStates"},
+        "replicationTypes":{"shape":"ReplicationTypes"},
         "sourceServerIDs":{"shape":"DescribeSourceServersRequestFiltersIDs"}
       }
     },
@@ -748,6 +825,28 @@
       "type":"structure",
       "members":{
         "items":{"shape":"SourceServersList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "DescribeVcenterClientsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"StrictlyPositiveInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeVcenterClientsResponse":{
+      "type":"structure",
+      "members":{
+        "items":{"shape":"VcenterClientList"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -828,6 +927,7 @@
         "awsInstanceID":{"shape":"EC2InstanceID"},
         "fqdn":{"shape":"BoundedString"},
         "hostname":{"shape":"BoundedString"},
+        "vmPath":{"shape":"BoundedString"},
         "vmWareUuid":{"shape":"BoundedString"}
       }
     },
@@ -1072,8 +1172,15 @@
         "READY_FOR_CUTOVER",
         "CUTTING_OVER",
         "CUTOVER",
-        "DISCONNECTED"
+        "DISCONNECTED",
+        "DISCOVERED"
       ]
+    },
+    "LifeCycleStates":{
+      "type":"list",
+      "member":{"shape":"LifeCycleState"},
+      "max":10,
+      "min":0
     },
     "ListTagsForResourceRequest":{
       "type":"structure",
@@ -1249,6 +1356,19 @@
       "max":32,
       "min":0
     },
+    "ReplicationType":{
+      "type":"string",
+      "enum":[
+        "AGENT_BASED",
+        "SNAPSHOT_SHIPPING"
+      ]
+    },
+    "ReplicationTypes":{
+      "type":"list",
+      "member":{"shape":"ReplicationType"},
+      "max":2,
+      "min":0
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -1276,6 +1396,22 @@
       "min":0,
       "pattern":"^sg-[0-9a-fA-F]{8,}$"
     },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"LargeBoundedString"},
+        "message":{"shape":"LargeBoundedString"},
+        "quotaCode":{"shape":"LargeBoundedString"},
+        "resourceId":{"shape":"LargeBoundedString"},
+        "resourceType":{"shape":"LargeBoundedString"},
+        "serviceCode":{"shape":"LargeBoundedString"}
+      },
+      "error":{
+        "httpStatusCode":402,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "SmallBoundedString":{
       "type":"string",
       "max":128,
@@ -1302,9 +1438,11 @@
         "isArchived":{"shape":"Boolean"},
         "launchedInstance":{"shape":"LaunchedInstance"},
         "lifeCycle":{"shape":"LifeCycle"},
+        "replicationType":{"shape":"ReplicationType"},
         "sourceProperties":{"shape":"SourceProperties"},
         "sourceServerID":{"shape":"SourceServerID"},
-        "tags":{"shape":"TagsMap"}
+        "tags":{"shape":"TagsMap"},
+        "vcenterClientID":{"shape":"VcenterClientID"}
       }
     },
     "SourceServerID":{
@@ -1335,6 +1473,13 @@
       "type":"structure",
       "members":{
         "job":{"shape":"Job"}
+      }
+    },
+    "StartReplicationRequest":{
+      "type":"structure",
+      "required":["sourceServerID"],
+      "members":{
+        "sourceServerID":{"shape":"SourceServerID"}
       }
     },
     "StartTestRequest":{
@@ -1534,6 +1679,17 @@
         "useDedicatedReplicationServer":{"shape":"Boolean"}
       }
     },
+    "UpdateSourceServerReplicationTypeRequest":{
+      "type":"structure",
+      "required":[
+        "replicationType",
+        "sourceServerID"
+      ],
+      "members":{
+        "replicationType":{"shape":"ReplicationType"},
+        "sourceServerID":{"shape":"SourceServerID"}
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "members":{
@@ -1567,6 +1723,29 @@
         "fieldValidationFailed",
         "other"
       ]
+    },
+    "VcenterClient":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"ARN"},
+        "datacenterName":{"shape":"BoundedString"},
+        "hostname":{"shape":"BoundedString"},
+        "lastSeenDatetime":{"shape":"ISO8601DatetimeString"},
+        "sourceServerTags":{"shape":"TagsMap"},
+        "tags":{"shape":"TagsMap"},
+        "vcenterClientID":{"shape":"VcenterClientID"},
+        "vcenterUUID":{"shape":"BoundedString"}
+      }
+    },
+    "VcenterClientID":{
+      "type":"string",
+      "max":21,
+      "min":21,
+      "pattern":"^vcc-[0-9a-zA-Z]{17}$"
+    },
+    "VcenterClientList":{
+      "type":"list",
+      "member":{"shape":"VcenterClient"}
     }
   }
 }

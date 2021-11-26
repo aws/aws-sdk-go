@@ -1,3 +1,17 @@
+Release v1.42.13 (2021-11-26)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates for Amazon EC2 Auto Scaling.
+* `service/ec2`: Updates service documentation
+  * Documentation updates for EC2.
+* `service/iotdeviceadvisor`: Updates service documentation
+* `service/mgn`: Updates service API, documentation, and paginators
+* `service/outposts`: Updates service API, documentation, and paginators
+* `service/pinpoint`: Updates service API and documentation
+  * Added a One-Time Password (OTP) management feature. You can use the Amazon Pinpoint API to generate OTP codes and send them to your users as SMS messages. Your apps can then call the API to verify the OTP codes that your users input
+
 Release v1.42.12 (2021-11-24)
 ===
 

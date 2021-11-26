@@ -3283,6 +3283,43 @@
         }
       ]
     },
+    "SendOTPMessage": {
+      "name": "SendOTPMessage",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/apps/{application-id}/otp",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "SendOTPMessageRequest"
+      },
+      "output": {
+        "shape": "SendOTPMessageResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "SendUsersMessages": {
       "name": "SendUsersMessages",
       "http": {
@@ -4235,6 +4272,43 @@
         }
       ]
     }
+  },
+  "VerifyOTPMessage": {
+    "name": "VerifyOTPMessage",
+    "http": {
+      "method": "POST",
+      "requestUri": "/v1/apps/{application-id}/verify-otp",
+      "responseCode": 200
+    },
+    "input": {
+      "shape": "VerifyOTPMessageRequest"
+    },
+    "output": {
+      "shape": "VerifyOTPMessageResponse"
+    },
+    "errors": [
+      {
+        "shape": "BadRequestException"
+      },
+      {
+        "shape": "InternalServerErrorException"
+      },
+      {
+        "shape": "PayloadTooLargeException"
+      },
+      {
+        "shape": "ForbiddenException"
+      },
+      {
+        "shape": "NotFoundException"
+      },
+      {
+        "shape": "MethodNotAllowedException"
+      },
+      {
+        "shape": "TooManyRequestsException"
+      }
+    ]
   },
   "shapes": {
     "ADMChannelRequest": {
@@ -11218,6 +11292,81 @@
       ],
       "payload": "MessageResponse"
     },
+    "SendOTPMessageRequest": {
+      "type": "structure",
+      "members": {
+        "ApplicationId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "application-id"
+        },
+        "SendOTPMessageRequestParameters": {
+          "shape": "SendOTPMessageRequestParameters"
+        }
+      },
+      "required": [
+        "ApplicationId",
+        "SendOTPMessageRequestParameters"
+      ],
+      "payload": "SendOTPMessageRequestParameters"
+    },
+    "SendOTPMessageRequestParameters": {
+      "type": "structure",
+      "members": {
+        "AllowedAttempts": {
+          "shape": "__integer"
+        },
+        "BrandName": {
+          "shape": "__string"
+        },
+        "Channel": {
+          "shape": "__string"
+        },
+        "CodeLength": {
+          "shape": "__integer"
+        },
+        "DestinationIdentity": {
+          "shape": "__string"
+        },
+        "EntityId": {
+          "shape": "__string"
+        },
+        "Language": {
+          "shape": "__string"
+        },
+        "OriginationIdentity": {
+          "shape": "__string"
+        },
+        "ReferenceId": {
+          "shape": "__string"
+        },
+        "TemplateId": {
+          "shape": "__string"
+        },
+        "ValidityPeriod": {
+          "shape": "__integer"
+        }
+      },
+      "required": [
+        "BrandName",
+        "ReferenceId",
+        "Channel",
+        "DestinationIdentity",
+        "OriginationIdentity"
+      ]
+    },
+    "SendOTPMessageResponse": {
+      "type": "structure",
+      "members": {
+        "MessageResponse": {
+          "shape": "MessageResponse"
+        }
+      },
+      "required": [
+        "MessageResponse"
+      ],
+      "payload": "MessageResponse"
+    },
     "SendUsersMessageRequest": {
       "type": "structure",
       "members": {
@@ -12519,6 +12668,63 @@
         "MessageBody"
       ],
       "payload": "MessageBody"
+    },
+    "VerificationResponse": {
+      "type": "structure",
+      "members": {
+        "Valid": {
+          "shape": "__boolean"
+        }
+      }
+    },
+    "VerifyOTPMessageRequest": {
+      "type": "structure",
+      "members": {
+        "ApplicationId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "application-id"
+        },
+        "VerifyOTPMessageRequestParameters": {
+          "shape": "VerifyOTPMessageRequestParameters"
+        }
+      },
+      "required": [
+        "ApplicationId",
+        "VerifyOTPMessageRequestParameters"
+      ],
+      "payload": "VerifyOTPMessageRequestParameters"
+    },
+    "VerifyOTPMessageRequestParameters": {
+      "type": "structure",
+      "members": {
+        "DestinationIdentity": {
+        "shape": "__string"
+      },
+      "Otp": {
+        "shape": "__string"
+      },
+      "ReferenceId": {
+        "shape": "__string"
+      }
+      },
+      "required": [
+        "ReferenceId",
+        "Otp",
+        "DestinationIdentity"
+      ]
+    },
+    "VerifyOTPMessageResponse": {
+      "type": "structure",
+      "members": {
+        "VerificationResponse": {
+          "shape": "VerificationResponse"
+        }
+      },
+      "required": [
+        "VerificationResponse"
+      ],
+      "payload": "VerificationResponse"
     },
     "VoiceChannelRequest": {
       "type": "structure",

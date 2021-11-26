@@ -450,6 +450,92 @@ func (c *Mgn) DeleteSourceServerWithContext(ctx aws.Context, input *DeleteSource
 	return out, req.Send()
 }
 
+const opDeleteVcenterClient = "DeleteVcenterClient"
+
+// DeleteVcenterClientRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVcenterClient operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVcenterClient for more information on using the DeleteVcenterClient
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteVcenterClientRequest method.
+//    req, resp := client.DeleteVcenterClientRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DeleteVcenterClient
+func (c *Mgn) DeleteVcenterClientRequest(input *DeleteVcenterClientInput) (req *request.Request, output *DeleteVcenterClientOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVcenterClient,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteVcenterClient",
+	}
+
+	if input == nil {
+		input = &DeleteVcenterClientInput{}
+	}
+
+	output = &DeleteVcenterClientOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteVcenterClient API operation for Application Migration Service.
+//
+// Deletes a single vCenter client by ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation DeleteVcenterClient for usage and error information.
+//
+// Returned Error Types:
+//   * UninitializedAccountException
+//   Unitialized account exception.
+//
+//   * ResourceNotFoundException
+//   Resource not found exception.
+//
+//   * ValidationException
+//   Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DeleteVcenterClient
+func (c *Mgn) DeleteVcenterClient(input *DeleteVcenterClientInput) (*DeleteVcenterClientOutput, error) {
+	req, out := c.DeleteVcenterClientRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVcenterClientWithContext is the same as DeleteVcenterClient with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVcenterClient for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) DeleteVcenterClientWithContext(ctx aws.Context, input *DeleteVcenterClientInput, opts ...request.Option) (*DeleteVcenterClientOutput, error) {
+	req, out := c.DeleteVcenterClientRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeJobLogItems = "DescribeJobLogItems"
 
 // DescribeJobLogItemsRequest generates a "aws/request.Request" representing the
@@ -1011,6 +1097,149 @@ func (c *Mgn) DescribeSourceServersPagesWithContext(ctx aws.Context, input *Desc
 
 	for p.Next() {
 		if !fn(p.Page().(*DescribeSourceServersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeVcenterClients = "DescribeVcenterClients"
+
+// DescribeVcenterClientsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVcenterClients operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVcenterClients for more information on using the DescribeVcenterClients
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeVcenterClientsRequest method.
+//    req, resp := client.DescribeVcenterClientsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DescribeVcenterClients
+func (c *Mgn) DescribeVcenterClientsRequest(input *DescribeVcenterClientsInput) (req *request.Request, output *DescribeVcenterClientsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVcenterClients,
+		HTTPMethod: "GET",
+		HTTPPath:   "/DescribeVcenterClients",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeVcenterClientsInput{}
+	}
+
+	output = &DescribeVcenterClientsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVcenterClients API operation for Application Migration Service.
+//
+// Lists all vCenter clients.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation DescribeVcenterClients for usage and error information.
+//
+// Returned Error Types:
+//   * UninitializedAccountException
+//   Unitialized account exception.
+//
+//   * ResourceNotFoundException
+//   Resource not found exception.
+//
+//   * ValidationException
+//   Validate exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/DescribeVcenterClients
+func (c *Mgn) DescribeVcenterClients(input *DescribeVcenterClientsInput) (*DescribeVcenterClientsOutput, error) {
+	req, out := c.DescribeVcenterClientsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVcenterClientsWithContext is the same as DescribeVcenterClients with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVcenterClients for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) DescribeVcenterClientsWithContext(ctx aws.Context, input *DescribeVcenterClientsInput, opts ...request.Option) (*DescribeVcenterClientsOutput, error) {
+	req, out := c.DescribeVcenterClientsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeVcenterClientsPages iterates over the pages of a DescribeVcenterClients operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeVcenterClients method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeVcenterClients operation.
+//    pageNum := 0
+//    err := client.DescribeVcenterClientsPages(params,
+//        func(page *mgn.DescribeVcenterClientsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Mgn) DescribeVcenterClientsPages(input *DescribeVcenterClientsInput, fn func(*DescribeVcenterClientsOutput, bool) bool) error {
+	return c.DescribeVcenterClientsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeVcenterClientsPagesWithContext same as DescribeVcenterClientsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) DescribeVcenterClientsPagesWithContext(ctx aws.Context, input *DescribeVcenterClientsInput, fn func(*DescribeVcenterClientsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeVcenterClientsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeVcenterClientsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeVcenterClientsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1816,6 +2045,98 @@ func (c *Mgn) StartCutoverWithContext(ctx aws.Context, input *StartCutoverInput,
 	return out, req.Send()
 }
 
+const opStartReplication = "StartReplication"
+
+// StartReplicationRequest generates a "aws/request.Request" representing the
+// client's request for the StartReplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartReplication for more information on using the StartReplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartReplicationRequest method.
+//    req, resp := client.StartReplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/StartReplication
+func (c *Mgn) StartReplicationRequest(input *StartReplicationInput) (req *request.Request, output *StartReplicationOutput) {
+	op := &request.Operation{
+		Name:       opStartReplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartReplication",
+	}
+
+	if input == nil {
+		input = &StartReplicationInput{}
+	}
+
+	output = &StartReplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartReplication API operation for Application Migration Service.
+//
+// Starts replication on source server by ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation StartReplication for usage and error information.
+//
+// Returned Error Types:
+//   * UninitializedAccountException
+//   Unitialized account exception.
+//
+//   * ResourceNotFoundException
+//   Resource not found exception.
+//
+//   * ValidationException
+//   Validate exception.
+//
+//   * ServiceQuotaExceededException
+//   The request could not be completed because its exceeded the service quota.
+//
+//   * ConflictException
+//   The request could not be completed due to a conflict with the current state
+//   of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/StartReplication
+func (c *Mgn) StartReplication(input *StartReplicationInput) (*StartReplicationOutput, error) {
+	req, out := c.StartReplicationRequest(input)
+	return out, req.Send()
+}
+
+// StartReplicationWithContext is the same as StartReplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartReplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) StartReplicationWithContext(ctx aws.Context, input *StartReplicationInput, opts ...request.Option) (*StartReplicationOutput, error) {
+	req, out := c.StartReplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartTest = "StartTest"
 
 // StartTestRequest generates a "aws/request.Request" representing the
@@ -2452,6 +2773,95 @@ func (c *Mgn) UpdateReplicationConfigurationTemplateWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opUpdateSourceServerReplicationType = "UpdateSourceServerReplicationType"
+
+// UpdateSourceServerReplicationTypeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSourceServerReplicationType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSourceServerReplicationType for more information on using the UpdateSourceServerReplicationType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSourceServerReplicationTypeRequest method.
+//    req, resp := client.UpdateSourceServerReplicationTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/UpdateSourceServerReplicationType
+func (c *Mgn) UpdateSourceServerReplicationTypeRequest(input *UpdateSourceServerReplicationTypeInput) (req *request.Request, output *UpdateSourceServerReplicationTypeOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSourceServerReplicationType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdateSourceServerReplicationType",
+	}
+
+	if input == nil {
+		input = &UpdateSourceServerReplicationTypeInput{}
+	}
+
+	output = &UpdateSourceServerReplicationTypeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSourceServerReplicationType API operation for Application Migration Service.
+//
+// Updates source server Replication Type by ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Application Migration Service's
+// API operation UpdateSourceServerReplicationType for usage and error information.
+//
+// Returned Error Types:
+//   * UninitializedAccountException
+//   Unitialized account exception.
+//
+//   * ResourceNotFoundException
+//   Resource not found exception.
+//
+//   * ValidationException
+//   Validate exception.
+//
+//   * ConflictException
+//   The request could not be completed due to a conflict with the current state
+//   of the target resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/UpdateSourceServerReplicationType
+func (c *Mgn) UpdateSourceServerReplicationType(input *UpdateSourceServerReplicationTypeInput) (*UpdateSourceServerReplicationTypeOutput, error) {
+	req, out := c.UpdateSourceServerReplicationTypeRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSourceServerReplicationTypeWithContext is the same as UpdateSourceServerReplicationType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSourceServerReplicationType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Mgn) UpdateSourceServerReplicationTypeWithContext(ctx aws.Context, input *UpdateSourceServerReplicationTypeInput, opts ...request.Option) (*UpdateSourceServerReplicationTypeOutput, error) {
+	req, out := c.UpdateSourceServerReplicationTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Operating denied due to a file permission or access check error.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -2646,6 +3056,9 @@ type ChangeServerLifeCycleStateOutput struct {
 	// Source server lifecycle state.
 	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
 
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
 	// Source server properties.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -2658,6 +3071,9 @@ type ChangeServerLifeCycleStateOutput struct {
 	// replaced with "sensitive" in string returned by ChangeServerLifeCycleStateOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
 }
 
 // String returns the string representation.
@@ -2708,6 +3124,12 @@ func (s *ChangeServerLifeCycleStateOutput) SetLifeCycle(v *LifeCycle) *ChangeSer
 	return s
 }
 
+// SetReplicationType sets the ReplicationType field's value.
+func (s *ChangeServerLifeCycleStateOutput) SetReplicationType(v string) *ChangeServerLifeCycleStateOutput {
+	s.ReplicationType = &v
+	return s
+}
+
 // SetSourceProperties sets the SourceProperties field's value.
 func (s *ChangeServerLifeCycleStateOutput) SetSourceProperties(v *SourceProperties) *ChangeServerLifeCycleStateOutput {
 	s.SourceProperties = v
@@ -2723,6 +3145,12 @@ func (s *ChangeServerLifeCycleStateOutput) SetSourceServerID(v string) *ChangeSe
 // SetTags sets the Tags field's value.
 func (s *ChangeServerLifeCycleStateOutput) SetTags(v map[string]*string) *ChangeServerLifeCycleStateOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *ChangeServerLifeCycleStateOutput) SetVcenterClientID(v string) *ChangeServerLifeCycleStateOutput {
+	s.VcenterClientID = &v
 	return s
 }
 
@@ -3299,6 +3727,9 @@ type DataReplicationInfo struct {
 	// Request to query data replication lag durating.
 	LagDuration *string `locationName:"lagDuration" min:"19" type:"string"`
 
+	// Request to query data replication last snapshot time.
+	LastSnapshotDateTime *string `locationName:"lastSnapshotDateTime" min:"19" type:"string"`
+
 	// Request to query disks replicated.
 	ReplicatedDisks []*DataReplicationInfoReplicatedDisk `locationName:"replicatedDisks" type:"list"`
 }
@@ -3348,6 +3779,12 @@ func (s *DataReplicationInfo) SetEtaDateTime(v string) *DataReplicationInfo {
 // SetLagDuration sets the LagDuration field's value.
 func (s *DataReplicationInfo) SetLagDuration(v string) *DataReplicationInfo {
 	s.LagDuration = &v
+	return s
+}
+
+// SetLastSnapshotDateTime sets the LastSnapshotDateTime field's value.
+func (s *DataReplicationInfo) SetLastSnapshotDateTime(v string) *DataReplicationInfo {
+	s.LastSnapshotDateTime = &v
 	return s
 }
 
@@ -3727,6 +4164,77 @@ func (s DeleteSourceServerOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteSourceServerOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteVcenterClientInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of resource to be deleted.
+	//
+	// VcenterClientID is a required field
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVcenterClientInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVcenterClientInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVcenterClientInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVcenterClientInput"}
+	if s.VcenterClientID == nil {
+		invalidParams.Add(request.NewErrParamRequired("VcenterClientID"))
+	}
+	if s.VcenterClientID != nil && len(*s.VcenterClientID) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("VcenterClientID", 21))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *DeleteVcenterClientInput) SetVcenterClientID(v string) *DeleteVcenterClientInput {
+	s.VcenterClientID = &v
+	return s
+}
+
+type DeleteVcenterClientOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVcenterClientOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteVcenterClientOutput) GoString() string {
 	return s.String()
 }
 
@@ -4239,6 +4747,12 @@ type DescribeSourceServersRequestFilters struct {
 	// Request to filter Source Servers list by archived.
 	IsArchived *bool `locationName:"isArchived" type:"boolean"`
 
+	// Request to filter Source Servers list by life cycle states.
+	LifeCycleStates []*string `locationName:"lifeCycleStates" type:"list"`
+
+	// Request to filter Source Servers list by replication type.
+	ReplicationTypes []*string `locationName:"replicationTypes" type:"list"`
+
 	// Request to filter Source Servers list by Source Server ID.
 	SourceServerIDs []*string `locationName:"sourceServerIDs" type:"list"`
 }
@@ -4267,9 +4781,114 @@ func (s *DescribeSourceServersRequestFilters) SetIsArchived(v bool) *DescribeSou
 	return s
 }
 
+// SetLifeCycleStates sets the LifeCycleStates field's value.
+func (s *DescribeSourceServersRequestFilters) SetLifeCycleStates(v []*string) *DescribeSourceServersRequestFilters {
+	s.LifeCycleStates = v
+	return s
+}
+
+// SetReplicationTypes sets the ReplicationTypes field's value.
+func (s *DescribeSourceServersRequestFilters) SetReplicationTypes(v []*string) *DescribeSourceServersRequestFilters {
+	s.ReplicationTypes = v
+	return s
+}
+
 // SetSourceServerIDs sets the SourceServerIDs field's value.
 func (s *DescribeSourceServersRequestFilters) SetSourceServerIDs(v []*string) *DescribeSourceServersRequestFilters {
 	s.SourceServerIDs = v
+	return s
+}
+
+type DescribeVcenterClientsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// Maximum results to be returned in DescribeVcenterClients.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// Next pagination token to be provided for DescribeVcenterClients.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVcenterClientsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVcenterClientsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVcenterClientsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVcenterClientsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeVcenterClientsInput) SetMaxResults(v int64) *DescribeVcenterClientsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVcenterClientsInput) SetNextToken(v string) *DescribeVcenterClientsInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeVcenterClientsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of items returned by DescribeVcenterClients.
+	Items []*VcenterClient `locationName:"items" type:"list"`
+
+	// Next pagination token returned from DescribeVcenterClients.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVcenterClientsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeVcenterClientsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *DescribeVcenterClientsOutput) SetItems(v []*VcenterClient) *DescribeVcenterClientsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVcenterClientsOutput) SetNextToken(v string) *DescribeVcenterClientsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -4340,6 +4959,9 @@ type DisconnectFromServiceOutput struct {
 	// Source server lifecycle state.
 	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
 
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
 	// Source server properties.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -4352,6 +4974,9 @@ type DisconnectFromServiceOutput struct {
 	// replaced with "sensitive" in string returned by DisconnectFromServiceOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
 }
 
 // String returns the string representation.
@@ -4402,6 +5027,12 @@ func (s *DisconnectFromServiceOutput) SetLifeCycle(v *LifeCycle) *DisconnectFrom
 	return s
 }
 
+// SetReplicationType sets the ReplicationType field's value.
+func (s *DisconnectFromServiceOutput) SetReplicationType(v string) *DisconnectFromServiceOutput {
+	s.ReplicationType = &v
+	return s
+}
+
 // SetSourceProperties sets the SourceProperties field's value.
 func (s *DisconnectFromServiceOutput) SetSourceProperties(v *SourceProperties) *DisconnectFromServiceOutput {
 	s.SourceProperties = v
@@ -4417,6 +5048,12 @@ func (s *DisconnectFromServiceOutput) SetSourceServerID(v string) *DisconnectFro
 // SetTags sets the Tags field's value.
 func (s *DisconnectFromServiceOutput) SetTags(v map[string]*string) *DisconnectFromServiceOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *DisconnectFromServiceOutput) SetVcenterClientID(v string) *DisconnectFromServiceOutput {
+	s.VcenterClientID = &v
 	return s
 }
 
@@ -4528,6 +5165,9 @@ type FinalizeCutoverOutput struct {
 	// Source server lifecycle state.
 	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
 
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
 	// Source server properties.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -4540,6 +5180,9 @@ type FinalizeCutoverOutput struct {
 	// replaced with "sensitive" in string returned by FinalizeCutoverOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
 }
 
 // String returns the string representation.
@@ -4590,6 +5233,12 @@ func (s *FinalizeCutoverOutput) SetLifeCycle(v *LifeCycle) *FinalizeCutoverOutpu
 	return s
 }
 
+// SetReplicationType sets the ReplicationType field's value.
+func (s *FinalizeCutoverOutput) SetReplicationType(v string) *FinalizeCutoverOutput {
+	s.ReplicationType = &v
+	return s
+}
+
 // SetSourceProperties sets the SourceProperties field's value.
 func (s *FinalizeCutoverOutput) SetSourceProperties(v *SourceProperties) *FinalizeCutoverOutput {
 	s.SourceProperties = v
@@ -4605,6 +5254,12 @@ func (s *FinalizeCutoverOutput) SetSourceServerID(v string) *FinalizeCutoverOutp
 // SetTags sets the Tags field's value.
 func (s *FinalizeCutoverOutput) SetTags(v map[string]*string) *FinalizeCutoverOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *FinalizeCutoverOutput) SetVcenterClientID(v string) *FinalizeCutoverOutput {
+	s.VcenterClientID = &v
 	return s
 }
 
@@ -4975,6 +5630,9 @@ type IdentificationHints struct {
 	// Hostname identification hint.
 	Hostname *string `locationName:"hostname" type:"string"`
 
+	// vCenter VM path identification hint.
+	VmPath *string `locationName:"vmPath" type:"string"`
+
 	// vmWare UUID identification hint.
 	VmWareUuid *string `locationName:"vmWareUuid" type:"string"`
 }
@@ -5012,6 +5670,12 @@ func (s *IdentificationHints) SetFqdn(v string) *IdentificationHints {
 // SetHostname sets the Hostname field's value.
 func (s *IdentificationHints) SetHostname(v string) *IdentificationHints {
 	s.Hostname = &v
+	return s
+}
+
+// SetVmPath sets the VmPath field's value.
+func (s *IdentificationHints) SetVmPath(v string) *IdentificationHints {
+	s.VmPath = &v
 	return s
 }
 
@@ -5981,6 +6645,9 @@ type MarkAsArchivedOutput struct {
 	// Source server lifecycle state.
 	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
 
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
 	// Source server properties.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -5993,6 +6660,9 @@ type MarkAsArchivedOutput struct {
 	// replaced with "sensitive" in string returned by MarkAsArchivedOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
 }
 
 // String returns the string representation.
@@ -6043,6 +6713,12 @@ func (s *MarkAsArchivedOutput) SetLifeCycle(v *LifeCycle) *MarkAsArchivedOutput 
 	return s
 }
 
+// SetReplicationType sets the ReplicationType field's value.
+func (s *MarkAsArchivedOutput) SetReplicationType(v string) *MarkAsArchivedOutput {
+	s.ReplicationType = &v
+	return s
+}
+
 // SetSourceProperties sets the SourceProperties field's value.
 func (s *MarkAsArchivedOutput) SetSourceProperties(v *SourceProperties) *MarkAsArchivedOutput {
 	s.SourceProperties = v
@@ -6058,6 +6734,12 @@ func (s *MarkAsArchivedOutput) SetSourceServerID(v string) *MarkAsArchivedOutput
 // SetTags sets the Tags field's value.
 func (s *MarkAsArchivedOutput) SetTags(v map[string]*string) *MarkAsArchivedOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *MarkAsArchivedOutput) SetVcenterClientID(v string) *MarkAsArchivedOutput {
+	s.VcenterClientID = &v
 	return s
 }
 
@@ -6550,6 +7232,9 @@ type RetryDataReplicationOutput struct {
 	// Source server lifecycle state.
 	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
 
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
 	// Source server properties.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -6562,6 +7247,9 @@ type RetryDataReplicationOutput struct {
 	// replaced with "sensitive" in string returned by RetryDataReplicationOutput's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
 }
 
 // String returns the string representation.
@@ -6612,6 +7300,12 @@ func (s *RetryDataReplicationOutput) SetLifeCycle(v *LifeCycle) *RetryDataReplic
 	return s
 }
 
+// SetReplicationType sets the ReplicationType field's value.
+func (s *RetryDataReplicationOutput) SetReplicationType(v string) *RetryDataReplicationOutput {
+	s.ReplicationType = &v
+	return s
+}
+
 // SetSourceProperties sets the SourceProperties field's value.
 func (s *RetryDataReplicationOutput) SetSourceProperties(v *SourceProperties) *RetryDataReplicationOutput {
 	s.SourceProperties = v
@@ -6628,6 +7322,90 @@ func (s *RetryDataReplicationOutput) SetSourceServerID(v string) *RetryDataRepli
 func (s *RetryDataReplicationOutput) SetTags(v map[string]*string) *RetryDataReplicationOutput {
 	s.Tags = v
 	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *RetryDataReplicationOutput) SetVcenterClientID(v string) *RetryDataReplicationOutput {
+	s.VcenterClientID = &v
+	return s
+}
+
+// The request could not be completed because its exceeded the service quota.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"code" type:"string"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	// Exceeded the service quota code.
+	QuotaCode *string `locationName:"quotaCode" type:"string"`
+
+	// Exceeded the service quota resource Id.
+	ResourceId *string `locationName:"resourceId" type:"string"`
+
+	// Exceeded the service quota resource type.
+	ResourceType *string `locationName:"resourceType" type:"string"`
+
+	// Exceeded the service quota service code.
+	ServiceCode *string `locationName:"serviceCode" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Source server properties.
@@ -6743,6 +7521,9 @@ type SourceServer struct {
 	// Source server lifecycle state.
 	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
 
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
 	// Source server properties.
 	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
 
@@ -6755,6 +7536,9 @@ type SourceServer struct {
 	// replaced with "sensitive" in string returned by SourceServer's
 	// String and GoString methods.
 	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
 }
 
 // String returns the string representation.
@@ -6805,6 +7589,12 @@ func (s *SourceServer) SetLifeCycle(v *LifeCycle) *SourceServer {
 	return s
 }
 
+// SetReplicationType sets the ReplicationType field's value.
+func (s *SourceServer) SetReplicationType(v string) *SourceServer {
+	s.ReplicationType = &v
+	return s
+}
+
 // SetSourceProperties sets the SourceProperties field's value.
 func (s *SourceServer) SetSourceProperties(v *SourceProperties) *SourceServer {
 	s.SourceProperties = v
@@ -6820,6 +7610,12 @@ func (s *SourceServer) SetSourceServerID(v string) *SourceServer {
 // SetTags sets the Tags field's value.
 func (s *SourceServer) SetTags(v map[string]*string) *SourceServer {
 	s.Tags = v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *SourceServer) SetVcenterClientID(v string) *SourceServer {
+	s.VcenterClientID = &v
 	return s
 }
 
@@ -6913,6 +7709,171 @@ func (s StartCutoverOutput) GoString() string {
 // SetJob sets the Job field's value.
 func (s *StartCutoverOutput) SetJob(v *Job) *StartCutoverOutput {
 	s.Job = v
+	return s
+}
+
+type StartReplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of source server on which to start replication.
+	//
+	// SourceServerID is a required field
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartReplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartReplicationInput"}
+	if s.SourceServerID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
+	}
+	if s.SourceServerID != nil && len(*s.SourceServerID) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceServerID", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *StartReplicationInput) SetSourceServerID(v string) *StartReplicationInput {
+	s.SourceServerID = &v
+	return s
+}
+
+type StartReplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Source server ARN.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Source server data replication info.
+	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
+
+	// Source server archived status.
+	IsArchived *bool `locationName:"isArchived" type:"boolean"`
+
+	// Source server launched instance.
+	LaunchedInstance *LaunchedInstance `locationName:"launchedInstance" type:"structure"`
+
+	// Source server lifecycle state.
+	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
+
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
+	// Source server properties.
+	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
+
+	// Source server ID.
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
+
+	// Source server Tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartReplicationOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartReplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *StartReplicationOutput) SetArn(v string) *StartReplicationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDataReplicationInfo sets the DataReplicationInfo field's value.
+func (s *StartReplicationOutput) SetDataReplicationInfo(v *DataReplicationInfo) *StartReplicationOutput {
+	s.DataReplicationInfo = v
+	return s
+}
+
+// SetIsArchived sets the IsArchived field's value.
+func (s *StartReplicationOutput) SetIsArchived(v bool) *StartReplicationOutput {
+	s.IsArchived = &v
+	return s
+}
+
+// SetLaunchedInstance sets the LaunchedInstance field's value.
+func (s *StartReplicationOutput) SetLaunchedInstance(v *LaunchedInstance) *StartReplicationOutput {
+	s.LaunchedInstance = v
+	return s
+}
+
+// SetLifeCycle sets the LifeCycle field's value.
+func (s *StartReplicationOutput) SetLifeCycle(v *LifeCycle) *StartReplicationOutput {
+	s.LifeCycle = v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *StartReplicationOutput) SetReplicationType(v string) *StartReplicationOutput {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetSourceProperties sets the SourceProperties field's value.
+func (s *StartReplicationOutput) SetSourceProperties(v *SourceProperties) *StartReplicationOutput {
+	s.SourceProperties = v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *StartReplicationOutput) SetSourceServerID(v string) *StartReplicationOutput {
+	s.SourceServerID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StartReplicationOutput) SetTags(v map[string]*string) *StartReplicationOutput {
+	s.Tags = v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *StartReplicationOutput) SetVcenterClientID(v string) *StartReplicationOutput {
+	s.VcenterClientID = &v
 	return s
 }
 
@@ -8310,6 +9271,185 @@ func (s *UpdateReplicationConfigurationTemplateOutput) SetUseDedicatedReplicatio
 	return s
 }
 
+type UpdateSourceServerReplicationTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// Replication type to which to update source server.
+	//
+	// ReplicationType is a required field
+	ReplicationType *string `locationName:"replicationType" type:"string" required:"true" enum:"ReplicationType"`
+
+	// ID of source server on which to update replication type.
+	//
+	// SourceServerID is a required field
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceServerReplicationTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceServerReplicationTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSourceServerReplicationTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSourceServerReplicationTypeInput"}
+	if s.ReplicationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplicationType"))
+	}
+	if s.SourceServerID == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceServerID"))
+	}
+	if s.SourceServerID != nil && len(*s.SourceServerID) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceServerID", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *UpdateSourceServerReplicationTypeInput) SetReplicationType(v string) *UpdateSourceServerReplicationTypeInput {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *UpdateSourceServerReplicationTypeInput) SetSourceServerID(v string) *UpdateSourceServerReplicationTypeInput {
+	s.SourceServerID = &v
+	return s
+}
+
+type UpdateSourceServerReplicationTypeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Source server ARN.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Source server data replication info.
+	DataReplicationInfo *DataReplicationInfo `locationName:"dataReplicationInfo" type:"structure"`
+
+	// Source server archived status.
+	IsArchived *bool `locationName:"isArchived" type:"boolean"`
+
+	// Source server launched instance.
+	LaunchedInstance *LaunchedInstance `locationName:"launchedInstance" type:"structure"`
+
+	// Source server lifecycle state.
+	LifeCycle *LifeCycle `locationName:"lifeCycle" type:"structure"`
+
+	// Source server replication type.
+	ReplicationType *string `locationName:"replicationType" type:"string" enum:"ReplicationType"`
+
+	// Source server properties.
+	SourceProperties *SourceProperties `locationName:"sourceProperties" type:"structure"`
+
+	// Source server ID.
+	SourceServerID *string `locationName:"sourceServerID" min:"19" type:"string"`
+
+	// Source server Tags.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by UpdateSourceServerReplicationTypeOutput's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// Source server vCenter client id.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceServerReplicationTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSourceServerReplicationTypeOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetArn(v string) *UpdateSourceServerReplicationTypeOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDataReplicationInfo sets the DataReplicationInfo field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetDataReplicationInfo(v *DataReplicationInfo) *UpdateSourceServerReplicationTypeOutput {
+	s.DataReplicationInfo = v
+	return s
+}
+
+// SetIsArchived sets the IsArchived field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetIsArchived(v bool) *UpdateSourceServerReplicationTypeOutput {
+	s.IsArchived = &v
+	return s
+}
+
+// SetLaunchedInstance sets the LaunchedInstance field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetLaunchedInstance(v *LaunchedInstance) *UpdateSourceServerReplicationTypeOutput {
+	s.LaunchedInstance = v
+	return s
+}
+
+// SetLifeCycle sets the LifeCycle field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetLifeCycle(v *LifeCycle) *UpdateSourceServerReplicationTypeOutput {
+	s.LifeCycle = v
+	return s
+}
+
+// SetReplicationType sets the ReplicationType field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetReplicationType(v string) *UpdateSourceServerReplicationTypeOutput {
+	s.ReplicationType = &v
+	return s
+}
+
+// SetSourceProperties sets the SourceProperties field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetSourceProperties(v *SourceProperties) *UpdateSourceServerReplicationTypeOutput {
+	s.SourceProperties = v
+	return s
+}
+
+// SetSourceServerID sets the SourceServerID field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetSourceServerID(v string) *UpdateSourceServerReplicationTypeOutput {
+	s.SourceServerID = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetTags(v map[string]*string) *UpdateSourceServerReplicationTypeOutput {
+	s.Tags = v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *UpdateSourceServerReplicationTypeOutput) SetVcenterClientID(v string) *UpdateSourceServerReplicationTypeOutput {
+	s.VcenterClientID = &v
+	return s
+}
+
 // Validate exception.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -8423,6 +9563,109 @@ func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	return s
 }
 
+// vCenter client.
+type VcenterClient struct {
+	_ struct{} `type:"structure"`
+
+	// Arn of vCenter client.
+	Arn *string `locationName:"arn" min:"20" type:"string"`
+
+	// Datacenter name of vCenter client.
+	DatacenterName *string `locationName:"datacenterName" type:"string"`
+
+	// Hostname of vCenter client .
+	Hostname *string `locationName:"hostname" type:"string"`
+
+	// Last seen time of vCenter client.
+	LastSeenDatetime *string `locationName:"lastSeenDatetime" min:"19" type:"string"`
+
+	// Tags for Source Server of vCenter client.
+	//
+	// SourceServerTags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VcenterClient's
+	// String and GoString methods.
+	SourceServerTags map[string]*string `locationName:"sourceServerTags" type:"map" sensitive:"true"`
+
+	// Tags for vCenter client.
+	//
+	// Tags is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by VcenterClient's
+	// String and GoString methods.
+	Tags map[string]*string `locationName:"tags" type:"map" sensitive:"true"`
+
+	// ID of vCenter client.
+	VcenterClientID *string `locationName:"vcenterClientID" min:"21" type:"string"`
+
+	// Vcenter UUID of vCenter client.
+	VcenterUUID *string `locationName:"vcenterUUID" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VcenterClient) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VcenterClient) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *VcenterClient) SetArn(v string) *VcenterClient {
+	s.Arn = &v
+	return s
+}
+
+// SetDatacenterName sets the DatacenterName field's value.
+func (s *VcenterClient) SetDatacenterName(v string) *VcenterClient {
+	s.DatacenterName = &v
+	return s
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *VcenterClient) SetHostname(v string) *VcenterClient {
+	s.Hostname = &v
+	return s
+}
+
+// SetLastSeenDatetime sets the LastSeenDatetime field's value.
+func (s *VcenterClient) SetLastSeenDatetime(v string) *VcenterClient {
+	s.LastSeenDatetime = &v
+	return s
+}
+
+// SetSourceServerTags sets the SourceServerTags field's value.
+func (s *VcenterClient) SetSourceServerTags(v map[string]*string) *VcenterClient {
+	s.SourceServerTags = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *VcenterClient) SetTags(v map[string]*string) *VcenterClient {
+	s.Tags = v
+	return s
+}
+
+// SetVcenterClientID sets the VcenterClientID field's value.
+func (s *VcenterClient) SetVcenterClientID(v string) *VcenterClient {
+	s.VcenterClientID = &v
+	return s
+}
+
+// SetVcenterUUID sets the VcenterUUID field's value.
+func (s *VcenterClient) SetVcenterUUID(v string) *VcenterClient {
+	s.VcenterUUID = &v
+	return s
+}
+
 const (
 	// ChangeServerLifeCycleStateSourceServerLifecycleStateReadyForTest is a ChangeServerLifeCycleStateSourceServerLifecycleState enum value
 	ChangeServerLifeCycleStateSourceServerLifecycleStateReadyForTest = "READY_FOR_TEST"
@@ -8485,6 +9728,12 @@ const (
 
 	// DataReplicationErrorStringFailedToStartDataTransfer is a DataReplicationErrorString enum value
 	DataReplicationErrorStringFailedToStartDataTransfer = "FAILED_TO_START_DATA_TRANSFER"
+
+	// DataReplicationErrorStringUnsupportedVmConfiguration is a DataReplicationErrorString enum value
+	DataReplicationErrorStringUnsupportedVmConfiguration = "UNSUPPORTED_VM_CONFIGURATION"
+
+	// DataReplicationErrorStringLastSnapshotJobFailed is a DataReplicationErrorString enum value
+	DataReplicationErrorStringLastSnapshotJobFailed = "LAST_SNAPSHOT_JOB_FAILED"
 )
 
 // DataReplicationErrorString_Values returns all elements of the DataReplicationErrorString enum
@@ -8504,6 +9753,8 @@ func DataReplicationErrorString_Values() []string {
 		DataReplicationErrorStringFailedToPairReplicationServerWithAgent,
 		DataReplicationErrorStringFailedToConnectAgentToReplicationServer,
 		DataReplicationErrorStringFailedToStartDataTransfer,
+		DataReplicationErrorStringUnsupportedVmConfiguration,
+		DataReplicationErrorStringLastSnapshotJobFailed,
 	}
 }
 
@@ -8617,6 +9868,12 @@ const (
 
 	// DataReplicationStateDisconnected is a DataReplicationState enum value
 	DataReplicationStateDisconnected = "DISCONNECTED"
+
+	// DataReplicationStatePendingSnapshotShipping is a DataReplicationState enum value
+	DataReplicationStatePendingSnapshotShipping = "PENDING_SNAPSHOT_SHIPPING"
+
+	// DataReplicationStateShippingSnapshot is a DataReplicationState enum value
+	DataReplicationStateShippingSnapshot = "SHIPPING_SNAPSHOT"
 )
 
 // DataReplicationState_Values returns all elements of the DataReplicationState enum
@@ -8632,6 +9889,8 @@ func DataReplicationState_Values() []string {
 		DataReplicationStateRescan,
 		DataReplicationStateStalled,
 		DataReplicationStateDisconnected,
+		DataReplicationStatePendingSnapshotShipping,
+		DataReplicationStateShippingSnapshot,
 	}
 }
 
@@ -8859,6 +10118,9 @@ const (
 
 	// LifeCycleStateDisconnected is a LifeCycleState enum value
 	LifeCycleStateDisconnected = "DISCONNECTED"
+
+	// LifeCycleStateDiscovered is a LifeCycleState enum value
+	LifeCycleStateDiscovered = "DISCOVERED"
 )
 
 // LifeCycleState_Values returns all elements of the LifeCycleState enum
@@ -8872,6 +10134,7 @@ func LifeCycleState_Values() []string {
 		LifeCycleStateCuttingOver,
 		LifeCycleStateCutover,
 		LifeCycleStateDisconnected,
+		LifeCycleStateDiscovered,
 	}
 }
 
@@ -8952,6 +10215,22 @@ func ReplicationConfigurationReplicatedDiskStagingDiskType_Values() []string {
 		ReplicationConfigurationReplicatedDiskStagingDiskTypeSc1,
 		ReplicationConfigurationReplicatedDiskStagingDiskTypeSt1,
 		ReplicationConfigurationReplicatedDiskStagingDiskTypeStandard,
+	}
+}
+
+const (
+	// ReplicationTypeAgentBased is a ReplicationType enum value
+	ReplicationTypeAgentBased = "AGENT_BASED"
+
+	// ReplicationTypeSnapshotShipping is a ReplicationType enum value
+	ReplicationTypeSnapshotShipping = "SNAPSHOT_SHIPPING"
+)
+
+// ReplicationType_Values returns all elements of the ReplicationType enum
+func ReplicationType_Values() []string {
+	return []string{
+		ReplicationTypeAgentBased,
+		ReplicationTypeSnapshotShipping,
 	}
 }
 
