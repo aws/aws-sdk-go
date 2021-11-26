@@ -80,6 +80,10 @@ type MgnAPI interface {
 	DeleteSourceServerWithContext(aws.Context, *mgn.DeleteSourceServerInput, ...request.Option) (*mgn.DeleteSourceServerOutput, error)
 	DeleteSourceServerRequest(*mgn.DeleteSourceServerInput) (*request.Request, *mgn.DeleteSourceServerOutput)
 
+	DeleteVcenterClient(*mgn.DeleteVcenterClientInput) (*mgn.DeleteVcenterClientOutput, error)
+	DeleteVcenterClientWithContext(aws.Context, *mgn.DeleteVcenterClientInput, ...request.Option) (*mgn.DeleteVcenterClientOutput, error)
+	DeleteVcenterClientRequest(*mgn.DeleteVcenterClientInput) (*request.Request, *mgn.DeleteVcenterClientOutput)
+
 	DescribeJobLogItems(*mgn.DescribeJobLogItemsInput) (*mgn.DescribeJobLogItemsOutput, error)
 	DescribeJobLogItemsWithContext(aws.Context, *mgn.DescribeJobLogItemsInput, ...request.Option) (*mgn.DescribeJobLogItemsOutput, error)
 	DescribeJobLogItemsRequest(*mgn.DescribeJobLogItemsInput) (*request.Request, *mgn.DescribeJobLogItemsOutput)
@@ -107,6 +111,13 @@ type MgnAPI interface {
 
 	DescribeSourceServersPages(*mgn.DescribeSourceServersInput, func(*mgn.DescribeSourceServersOutput, bool) bool) error
 	DescribeSourceServersPagesWithContext(aws.Context, *mgn.DescribeSourceServersInput, func(*mgn.DescribeSourceServersOutput, bool) bool, ...request.Option) error
+
+	DescribeVcenterClients(*mgn.DescribeVcenterClientsInput) (*mgn.DescribeVcenterClientsOutput, error)
+	DescribeVcenterClientsWithContext(aws.Context, *mgn.DescribeVcenterClientsInput, ...request.Option) (*mgn.DescribeVcenterClientsOutput, error)
+	DescribeVcenterClientsRequest(*mgn.DescribeVcenterClientsInput) (*request.Request, *mgn.DescribeVcenterClientsOutput)
+
+	DescribeVcenterClientsPages(*mgn.DescribeVcenterClientsInput, func(*mgn.DescribeVcenterClientsOutput, bool) bool) error
+	DescribeVcenterClientsPagesWithContext(aws.Context, *mgn.DescribeVcenterClientsInput, func(*mgn.DescribeVcenterClientsOutput, bool) bool, ...request.Option) error
 
 	DisconnectFromService(*mgn.DisconnectFromServiceInput) (*mgn.DisconnectFromServiceOutput, error)
 	DisconnectFromServiceWithContext(aws.Context, *mgn.DisconnectFromServiceInput, ...request.Option) (*mgn.DisconnectFromServiceOutput, error)
@@ -144,6 +155,10 @@ type MgnAPI interface {
 	StartCutoverWithContext(aws.Context, *mgn.StartCutoverInput, ...request.Option) (*mgn.StartCutoverOutput, error)
 	StartCutoverRequest(*mgn.StartCutoverInput) (*request.Request, *mgn.StartCutoverOutput)
 
+	StartReplication(*mgn.StartReplicationInput) (*mgn.StartReplicationOutput, error)
+	StartReplicationWithContext(aws.Context, *mgn.StartReplicationInput, ...request.Option) (*mgn.StartReplicationOutput, error)
+	StartReplicationRequest(*mgn.StartReplicationInput) (*request.Request, *mgn.StartReplicationOutput)
+
 	StartTest(*mgn.StartTestInput) (*mgn.StartTestOutput, error)
 	StartTestWithContext(aws.Context, *mgn.StartTestInput, ...request.Option) (*mgn.StartTestOutput, error)
 	StartTestRequest(*mgn.StartTestInput) (*request.Request, *mgn.StartTestOutput)
@@ -171,6 +186,10 @@ type MgnAPI interface {
 	UpdateReplicationConfigurationTemplate(*mgn.UpdateReplicationConfigurationTemplateInput) (*mgn.UpdateReplicationConfigurationTemplateOutput, error)
 	UpdateReplicationConfigurationTemplateWithContext(aws.Context, *mgn.UpdateReplicationConfigurationTemplateInput, ...request.Option) (*mgn.UpdateReplicationConfigurationTemplateOutput, error)
 	UpdateReplicationConfigurationTemplateRequest(*mgn.UpdateReplicationConfigurationTemplateInput) (*request.Request, *mgn.UpdateReplicationConfigurationTemplateOutput)
+
+	UpdateSourceServerReplicationType(*mgn.UpdateSourceServerReplicationTypeInput) (*mgn.UpdateSourceServerReplicationTypeOutput, error)
+	UpdateSourceServerReplicationTypeWithContext(aws.Context, *mgn.UpdateSourceServerReplicationTypeInput, ...request.Option) (*mgn.UpdateSourceServerReplicationTypeOutput, error)
+	UpdateSourceServerReplicationTypeRequest(*mgn.UpdateSourceServerReplicationTypeInput) (*request.Request, *mgn.UpdateSourceServerReplicationTypeOutput)
 }
 
 var _ MgnAPI = (*mgn.Mgn)(nil)

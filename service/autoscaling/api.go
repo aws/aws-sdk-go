@@ -172,6 +172,9 @@ func (c *AutoScaling) AttachLoadBalancerTargetGroupsRequest(input *AttachLoadBal
 // API. To detach the target group from the Auto Scaling group, call the DetachLoadBalancerTargetGroups
 // API.
 //
+// This operation is additive and does not detach existing target groups or
+// Classic Load Balancers from the Auto Scaling group.
+//
 // For more information, see Elastic Load Balancing and Amazon EC2 Auto Scaling
 // (https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html)
 // in the Amazon EC2 Auto Scaling User Guide.
@@ -269,6 +272,9 @@ func (c *AutoScaling) AttachLoadBalancersRequest(input *AttachLoadBalancersInput
 // To describe the load balancers for an Auto Scaling group, call the DescribeLoadBalancers
 // API. To detach the load balancer from the Auto Scaling group, call the DetachLoadBalancers
 // API.
+//
+// This operation is additive and does not detach existing Classic Load Balancers
+// or target groups from the Auto Scaling group.
 //
 // For more information, see Elastic Load Balancing and Amazon EC2 Auto Scaling
 // (https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-load-balancer.html)
@@ -629,7 +635,7 @@ func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleAct
 // This step is a part of the procedure for adding a lifecycle hook to an Auto
 // Scaling group:
 //
-// (Optional) Create a Lambda function and a rule that allows CloudWatch Events
+// (Optional) Create a Lambda function and a rule that allows Amazon EventBridge
 // to invoke your Lambda function when Amazon EC2 Auto Scaling launches or terminates
 // instances.
 //
@@ -643,7 +649,8 @@ func (c *AutoScaling) CompleteLifecycleActionRequest(input *CompleteLifecycleAct
 // If you need more time, record the lifecycle action heartbeat to keep the
 // instance in a pending state.
 //
-// If you finish before the timeout period ends, complete the lifecycle action.
+// If you finish before the timeout period ends, send a callback by using the
+// CompleteLifecycleAction API call.
 //
 // For more information, see Amazon EC2 Auto Scaling lifecycle hooks (https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html)
 // in the Amazon EC2 Auto Scaling User Guide.
@@ -4801,14 +4808,14 @@ func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req
 //
 // Creates or updates a lifecycle hook for the specified Auto Scaling group.
 //
-// A lifecycle hook tells Amazon EC2 Auto Scaling to perform an action on an
-// instance when the instance launches (before it is put into service) or as
-// the instance terminates (before it is fully terminated).
+// A lifecycle hook enables an Auto Scaling group to be aware of events in the
+// Auto Scaling instance lifecycle, and then perform a custom action when the
+// corresponding lifecycle event occurs.
 //
 // This step is a part of the procedure for adding a lifecycle hook to an Auto
 // Scaling group:
 //
-// (Optional) Create a Lambda function and a rule that allows CloudWatch Events
+// (Optional) Create a Lambda function and a rule that allows Amazon EventBridge
 // to invoke your Lambda function when Amazon EC2 Auto Scaling launches or terminates
 // instances.
 //
@@ -4823,8 +4830,8 @@ func (c *AutoScaling) PutLifecycleHookRequest(input *PutLifecycleHookInput) (req
 // instance in a pending state using the RecordLifecycleActionHeartbeat API
 // call.
 //
-// If you finish before the timeout period ends, complete the lifecycle action
-// using the CompleteLifecycleAction API call.
+// If you finish before the timeout period ends, send a callback by using the
+// CompleteLifecycleAction API call.
 //
 // For more information, see Amazon EC2 Auto Scaling lifecycle hooks (https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html)
 // in the Amazon EC2 Auto Scaling User Guide.
@@ -5334,7 +5341,7 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecyc
 // This step is a part of the procedure for adding a lifecycle hook to an Auto
 // Scaling group:
 //
-// (Optional) Create a Lambda function and a rule that allows CloudWatch Events
+// (Optional) Create a Lambda function and a rule that allows Amazon EventBridge
 // to invoke your Lambda function when Amazon EC2 Auto Scaling launches or terminates
 // instances.
 //
@@ -5348,7 +5355,8 @@ func (c *AutoScaling) RecordLifecycleActionHeartbeatRequest(input *RecordLifecyc
 // If you need more time, record the lifecycle action heartbeat to keep the
 // instance in a pending state.
 //
-// If you finish before the timeout period ends, complete the lifecycle action.
+// If you finish before the timeout period ends, send a callback by using the
+// CompleteLifecycleAction API call.
 //
 // For more information, see Amazon EC2 Auto Scaling lifecycle hooks (https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html)
 // in the Amazon EC2 Auto Scaling User Guide.
@@ -5700,8 +5708,8 @@ func (c *AutoScaling) SetInstanceProtectionRequest(input *SetInstanceProtectionI
 // operation cannot be called on instances in a warm pool.
 //
 // For more information about preventing instances that are part of an Auto
-// Scaling group from terminating on scale in, see Instance scale-in protection
-// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection)
+// Scaling group from terminating on scale in, see Using instance scale-in protection
+// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 //
 // If you exceed your maximum limit of instance IDs, which is 50 per Auto Scaling
@@ -7346,7 +7354,7 @@ type CreateAutoScalingGroupInput struct {
 	// attempts to launch a Spot Instance whenever Amazon EC2 notifies that a Spot
 	// Instance is at an elevated risk of interruption. After launching a new instance,
 	// it then terminates an old instance. For more information, see Amazon EC2
-	// Auto Scaling Capacity Rebalancing (https://docs.aws.amazon.com/autoscaling/ec2/userguide/capacity-rebalance.html)
+	// Auto Scaling Capacity Rebalancing (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-capacity-rebalancing.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	CapacityRebalance *bool `type:"boolean"`
 
@@ -7382,10 +7390,9 @@ type CreateAutoScalingGroupInput struct {
 	DesiredCapacityType *string `min:"1" type:"string"`
 
 	// The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before
-	// checking the health status of an EC2 instance that has come into service.
-	// During this time, any health check failures for the instance are ignored.
-	// The default value is 0. For more information, see Health check grace period
-	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period)
+	// checking the health status of an EC2 instance that has come into service
+	// and marking it unhealthy due to a failed health check. The default value
+	// is 0. For more information, see Health check grace period (https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	//
 	// Conditional: Required if you are adding an ELB health check.
@@ -7463,14 +7470,14 @@ type CreateAutoScalingGroupInput struct {
 	// An embedded object that specifies a mixed instances policy.
 	//
 	// For more information, see Auto Scaling groups with multiple instance types
-	// and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
+	// and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	MixedInstancesPolicy *MixedInstancesPolicy `type:"structure"`
 
 	// Indicates whether newly launched instances are protected from termination
 	// by Amazon EC2 Auto Scaling when scaling in. For more information about preventing
-	// instances from terminating on scale in, see Instance scale-in protection
-	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection)
+	// instances from terminating on scale in, see Using instance scale-in protection
+	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	NewInstancesProtectedFromScaleIn *bool `type:"boolean"`
 
@@ -8265,7 +8272,7 @@ func (s CreateOrUpdateTagsOutput) GoString() string {
 //    * Add values for each required parameter from CloudWatch. You can use
 //    an existing metric, or a new metric that you create. To use your own metric,
 //    you must first publish the metric to CloudWatch. For more information,
-//    see Publish Custom Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
+//    see Publish custom metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
 //    in the Amazon CloudWatch User Guide.
 //
 //    * Choose a metric that changes proportionally with capacity. The value
@@ -8273,7 +8280,13 @@ func (s CreateOrUpdateTagsOutput) GoString() string {
 //    number of capacity units. That is, the value of the metric should decrease
 //    when capacity increases.
 //
-// For more information about CloudWatch, see Amazon CloudWatch Concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html).
+// For more information about the CloudWatch terminology below, see Amazon CloudWatch
+// concepts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html).
+//
+// Each individual service provides information about the metrics, namespace,
+// and dimensions they use. For more information, see Amazon Web Services services
+// that publish CloudWatch metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
+// in the Amazon CloudWatch User Guide.
 type CustomizedMetricSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -8283,7 +8296,9 @@ type CustomizedMetricSpecification struct {
 	// the same dimensions in your scaling policy.
 	Dimensions []*MetricDimension `type:"list"`
 
-	// The name of the metric.
+	// The name of the metric. To get the exact metric name, namespace, and dimensions,
+	// inspect the Metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_Metric.html)
+	// object that is returned by a call to ListMetrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_ListMetrics.html).
 	//
 	// MetricName is a required field
 	MetricName *string `type:"string" required:"true"`
@@ -8298,7 +8313,9 @@ type CustomizedMetricSpecification struct {
 	// Statistic is a required field
 	Statistic *string `type:"string" required:"true" enum:"MetricStatistic"`
 
-	// The unit of the metric.
+	// The unit of the metric. For a complete list of the units that CloudWatch
+	// supports, see the MetricDatum (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html)
+	// data type in the Amazon CloudWatch API Reference.
 	Unit *string `type:"string"`
 }
 
@@ -8629,8 +8646,7 @@ type DeleteNotificationConfigurationInput struct {
 	// AutoScalingGroupName is a required field
 	AutoScalingGroupName *string `min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-	// (Amazon SNS) topic.
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic.
 	//
 	// TopicARN is a required field
 	TopicARN *string `min:"1" type:"string" required:"true"`
@@ -10924,7 +10940,7 @@ type DesiredConfiguration struct {
 	// instance types that Amazon EC2 Auto Scaling can launch and other information
 	// that Amazon EC2 Auto Scaling can use to launch instances and help optimize
 	// your costs. For more information, see Auto Scaling groups with multiple instance
-	// types and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
+	// types and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	MixedInstancesPolicy *MixedInstancesPolicy `type:"structure"`
 }
@@ -12437,7 +12453,8 @@ type Group struct {
 	EnabledMetrics []*EnabledMetric `type:"list"`
 
 	// The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before
-	// checking the health status of an EC2 instance that has come into service.
+	// checking the health status of an EC2 instance that has come into service
+	// and marking it unhealthy due to a failed health check.
 	HealthCheckGracePeriod *int64 `type:"integer"`
 
 	// The service to use for the health checks. The valid values are EC2 and ELB.
@@ -14225,7 +14242,7 @@ func (s *LaunchTemplate) SetOverrides(v []*LaunchTemplateOverrides) *LaunchTempl
 }
 
 // Describes an override for a launch template. For more information, see Configuring
-// overrides (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-override-options.html)
+// overrides (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-configuring-overrides.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 type LaunchTemplateOverrides struct {
 	_ struct{} `type:"structure"`
@@ -14248,7 +14265,7 @@ type LaunchTemplateOverrides struct {
 	// a launch template with a different AMI. If not provided, Amazon EC2 Auto
 	// Scaling uses the launch template that's defined for your mixed instances
 	// policy. For more information, see Specifying a different launch template
-	// for an instance type (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-template-overrides.html)
+	// for an instance type (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups-launch-template-overrides.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	LaunchTemplateSpecification *LaunchTemplateSpecification `type:"structure"`
 
@@ -14261,7 +14278,7 @@ type LaunchTemplateOverrides struct {
 	// to fulfill capacity, and Amazon EC2 Auto Scaling can only launch an instance
 	// with a WeightedCapacity of five units, the instance is launched, and the
 	// desired capacity is exceeded by three units. For more information, see Instance
-	// weighting for Amazon EC2 Auto Scaling (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-instance-weighting.html)
+	// weighting for Amazon EC2 Auto Scaling (https://docs.aws.amazon.com/ec2-auto-scaling-mixed-instances-groups-instance-weighting.html)
 	// in the Amazon EC2 Auto Scaling User Guide. Value must be in the range of
 	// 1–999.
 	WeightedCapacity *string `min:"1" type:"string"`
@@ -14426,8 +14443,9 @@ func (s *LaunchTemplateSpecification) SetVersion(v string) *LaunchTemplateSpecif
 	return s
 }
 
-// Describes a lifecycle hook, which tells Amazon EC2 Auto Scaling that you
-// want to perform an action whenever it launches instances or terminates instances.
+// Describes a lifecycle hook, which enables an Auto Scaling group to be aware
+// of events in the Auto Scaling instance lifecycle, and then perform a custom
+// action when the corresponding lifecycle event occurs.
 type LifecycleHook struct {
 	_ struct{} `type:"structure"`
 
@@ -14548,29 +14566,6 @@ func (s *LifecycleHook) SetRoleARN(v string) *LifecycleHook {
 
 // Describes information used to specify a lifecycle hook for an Auto Scaling
 // group.
-//
-// A lifecycle hook tells Amazon EC2 Auto Scaling to perform an action on an
-// instance when the instance launches (before it is put into service) or as
-// the instance terminates (before it is fully terminated).
-//
-// This step is a part of the procedure for creating a lifecycle hook for an
-// Auto Scaling group:
-//
-// (Optional) Create a Lambda function and a rule that allows CloudWatch Events
-// to invoke your Lambda function when Amazon EC2 Auto Scaling launches or terminates
-// instances.
-//
-// (Optional) Create a notification target and an IAM role. The target can be
-// either an Amazon SQS queue or an Amazon SNS topic. The role allows Amazon
-// EC2 Auto Scaling to publish lifecycle notifications to the target.
-//
-// Create the lifecycle hook. Specify whether the hook is used when the instances
-// launch or terminate.
-//
-// If you need more time, record the lifecycle action heartbeat to keep the
-// instance in a pending state.
-//
-// If you finish before the timeout period ends, complete the lifecycle action.
 //
 // For more information, see Amazon EC2 Auto Scaling lifecycle hooks (https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html)
 // in the Amazon EC2 Auto Scaling User Guide.
@@ -15140,7 +15135,7 @@ func (s *MetricCollectionType) SetMetric(v string) *MetricCollectionType {
 // series is a series of data points, each of which is associated with a timestamp.
 //
 // For more information and examples, see Advanced predictive scaling policy
-// configurations using customized metrics (https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-customized-metric-specification.html)
+// configurations using custom metrics (https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-customized-metric-specification.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 type MetricDataQuery struct {
 	_ struct{} `type:"structure"`
@@ -15149,10 +15144,6 @@ type MetricDataQuery struct {
 	// a math expression. This expression can use the Id of the other metrics to
 	// refer to those metrics, and can also use the Id of other expressions to use
 	// the result of those expressions.
-	//
-	// For example, to use search expressions, use the SEARCH() function in your
-	// metric math expression to combine multiple metrics from Auto Scaling groups
-	// that use a specific name prefix.
 	//
 	// Conditional: Within each MetricDataQuery object, you must specify either
 	// Expression or MetricStat, but not both.
@@ -15180,13 +15171,13 @@ type MetricDataQuery struct {
 
 	// Indicates whether to return the timestamps and raw data values of this metric.
 	//
-	// If you use any math expressions, specify True for this value for only the
+	// If you use any math expressions, specify true for this value for only the
 	// final math expression that the metric specification is based on. You must
-	// specify False for ReturnData for all the other metrics and expressions used
+	// specify false for ReturnData for all the other metrics and expressions used
 	// in the metric specification.
 	//
 	// If you are only retrieving metrics and not performing any math expressions,
-	// do not specify anything for ReturnData. This sets it to its default (True).
+	// do not specify anything for ReturnData. This sets it to its default (true).
 	ReturnData *bool `type:"boolean"`
 }
 
@@ -15451,7 +15442,7 @@ func (s *MetricStat) SetUnit(v string) *MetricStat {
 // instance types that Amazon EC2 Auto Scaling can launch and other information
 // that Amazon EC2 Auto Scaling can use to launch instances and help optimize
 // your costs. For more information, see Auto Scaling groups with multiple instance
-// types and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
+// types and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 type MixedInstancesPolicy struct {
 	_ struct{} `type:"structure"`
@@ -15572,8 +15563,7 @@ type NotificationConfiguration struct {
 	//    * autoscaling:TEST_NOTIFICATION
 	NotificationType *string `min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-	// (Amazon SNS) topic.
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic.
 	TopicARN *string `min:"1" type:"string"`
 }
 
@@ -15899,7 +15889,7 @@ func (s *PredictiveScalingCustomizedCapacityMetric) SetMetricDataQueries(v []*Me
 	return s
 }
 
-// Describes a customized load metric for a predictive scaling policy.
+// Describes a custom load metric for a predictive scaling policy.
 type PredictiveScalingCustomizedLoadMetric struct {
 	_ struct{} `type:"structure"`
 
@@ -15958,7 +15948,7 @@ func (s *PredictiveScalingCustomizedLoadMetric) SetMetricDataQueries(v []*Metric
 	return s
 }
 
-// Describes a customized scaling metric for a predictive scaling policy.
+// Describes a custom scaling metric for a predictive scaling policy.
 type PredictiveScalingCustomizedScalingMetric struct {
 	_ struct{} `type:"structure"`
 
@@ -16054,9 +16044,8 @@ func (s *PredictiveScalingCustomizedScalingMetric) SetMetricDataQueries(v []*Met
 //    received by each instance is as close to 1000 requests per minute as possible
 //    at all times.
 //
-// For information about using customized metrics with predictive scaling, see
-// Advanced predictive scaling policy configurations using customized metrics
-// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-customized-metric-specification.html)
+// For information about using custom metrics with predictive scaling, see Advanced
+// predictive scaling policy configurations using custom metrics (https://docs.aws.amazon.com/autoscaling/ec2/userguide/predictive-scaling-customized-metric-specification.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 type PredictiveScalingMetricSpecification struct {
 	_ struct{} `type:"structure"`
@@ -16706,8 +16695,7 @@ type PutNotificationConfigurationInput struct {
 	// NotificationTypes is a required field
 	NotificationTypes []*string `type:"list" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-	// (Amazon SNS) topic.
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic.
 	//
 	// TopicARN is a required field
 	TopicARN *string `min:"1" type:"string" required:"true"`
@@ -16876,9 +16864,9 @@ type PutScalingPolicyInput struct {
 	//    * PredictiveScaling
 	PolicyType *string `min:"1" type:"string"`
 
-	// A predictive scaling policy. Provides support for only predefined metrics.
+	// A predictive scaling policy. Provides support for predefined and custom metrics.
 	//
-	// Predictive scaling works with CPU utilization, network in/out, and the Application
+	// Predefined metrics include CPU utilization, network in/out, and the Application
 	// Load Balancer request count.
 	//
 	// For more information, see PredictiveScalingConfiguration (https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_PredictiveScalingConfiguration.html)
@@ -16902,7 +16890,7 @@ type PutScalingPolicyInput struct {
 	// type.)
 	StepAdjustments []*StepAdjustment `type:"list"`
 
-	// A target tracking scaling policy. Provides support for predefined or customized
+	// A target tracking scaling policy. Provides support for predefined or custom
 	// metrics.
 	//
 	// The following predefined metrics are available:
@@ -19193,7 +19181,7 @@ type UpdateAutoScalingGroupInput struct {
 	AvailabilityZones []*string `type:"list"`
 
 	// Enables or disables Capacity Rebalancing. For more information, see Amazon
-	// EC2 Auto Scaling Capacity Rebalancing (https://docs.aws.amazon.com/autoscaling/ec2/userguide/capacity-rebalance.html)
+	// EC2 Auto Scaling Capacity Rebalancing (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-capacity-rebalancing.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	CapacityRebalance *bool `type:"boolean"`
 
@@ -19227,9 +19215,9 @@ type UpdateAutoScalingGroupInput struct {
 	DesiredCapacityType *string `min:"1" type:"string"`
 
 	// The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before
-	// checking the health status of an EC2 instance that has come into service.
-	// The default value is 0. For more information, see Health check grace period
-	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period)
+	// checking the health status of an EC2 instance that has come into service
+	// and marking it unhealthy due to a failed health check. The default value
+	// is 0. For more information, see Health check grace period (https://docs.aws.amazon.com/autoscaling/ec2/userguide/healthcheck.html#health-check-grace-period)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	//
 	// Conditional: Required if you are adding an ELB health check.
@@ -19272,14 +19260,14 @@ type UpdateAutoScalingGroupInput struct {
 
 	// An embedded object that specifies a mixed instances policy. For more information,
 	// see Auto Scaling groups with multiple instance types and purchase options
-	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
+	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-mixed-instances-groups.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	MixedInstancesPolicy *MixedInstancesPolicy `type:"structure"`
 
 	// Indicates whether newly launched instances are protected from termination
 	// by Amazon EC2 Auto Scaling when scaling in. For more information about preventing
-	// instances from terminating on scale in, see Instance scale-in protection
-	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html#instance-protection)
+	// instances from terminating on scale in, see Using instance scale-in protection
+	// (https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-instance-protection.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	NewInstancesProtectedFromScaleIn *bool `type:"boolean"`
 

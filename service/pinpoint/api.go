@@ -8747,6 +8747,103 @@ func (c *Pinpoint) SendMessagesWithContext(ctx aws.Context, input *SendMessagesI
 	return out, req.Send()
 }
 
+const opSendOTPMessage = "SendOTPMessage"
+
+// SendOTPMessageRequest generates a "aws/request.Request" representing the
+// client's request for the SendOTPMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendOTPMessage for more information on using the SendOTPMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SendOTPMessageRequest method.
+//    req, resp := client.SendOTPMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendOTPMessage
+func (c *Pinpoint) SendOTPMessageRequest(input *SendOTPMessageInput) (req *request.Request, output *SendOTPMessageOutput) {
+	op := &request.Operation{
+		Name:       opSendOTPMessage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/apps/{application-id}/otp",
+	}
+
+	if input == nil {
+		input = &SendOTPMessageInput{}
+	}
+
+	output = &SendOTPMessageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SendOTPMessage API operation for Amazon Pinpoint.
+//
+// Send an OTP message
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation SendOTPMessage for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Provides information about an API request or response.
+//
+//   * InternalServerErrorException
+//   Provides information about an API request or response.
+//
+//   * PayloadTooLargeException
+//   Provides information about an API request or response.
+//
+//   * ForbiddenException
+//   Provides information about an API request or response.
+//
+//   * NotFoundException
+//   Provides information about an API request or response.
+//
+//   * MethodNotAllowedException
+//   Provides information about an API request or response.
+//
+//   * TooManyRequestsException
+//   Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/SendOTPMessage
+func (c *Pinpoint) SendOTPMessage(input *SendOTPMessageInput) (*SendOTPMessageOutput, error) {
+	req, out := c.SendOTPMessageRequest(input)
+	return out, req.Send()
+}
+
+// SendOTPMessageWithContext is the same as SendOTPMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendOTPMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) SendOTPMessageWithContext(ctx aws.Context, input *SendOTPMessageInput, opts ...request.Option) (*SendOTPMessageOutput, error) {
+	req, out := c.SendOTPMessageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSendUsersMessages = "SendUsersMessages"
 
 // SendUsersMessagesRequest generates a "aws/request.Request" representing the
@@ -35078,6 +35175,264 @@ func (s SendMessagesOutput) GoString() string {
 // SetMessageResponse sets the MessageResponse field's value.
 func (s *SendMessagesOutput) SetMessageResponse(v *MessageResponse) *SendMessagesOutput {
 	s.MessageResponse = v
+	return s
+}
+
+type SendOTPMessageInput struct {
+	_ struct{} `type:"structure" payload:"SendOTPMessageRequestParameters"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+
+	// Send OTP message request parameters.
+	//
+	// SendOTPMessageRequestParameters is a required field
+	SendOTPMessageRequestParameters *SendOTPMessageRequestParameters `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendOTPMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendOTPMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendOTPMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendOTPMessageInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.SendOTPMessageRequestParameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("SendOTPMessageRequestParameters"))
+	}
+	if s.SendOTPMessageRequestParameters != nil {
+		if err := s.SendOTPMessageRequestParameters.Validate(); err != nil {
+			invalidParams.AddNested("SendOTPMessageRequestParameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *SendOTPMessageInput) SetApplicationId(v string) *SendOTPMessageInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetSendOTPMessageRequestParameters sets the SendOTPMessageRequestParameters field's value.
+func (s *SendOTPMessageInput) SetSendOTPMessageRequestParameters(v *SendOTPMessageRequestParameters) *SendOTPMessageInput {
+	s.SendOTPMessageRequestParameters = v
+	return s
+}
+
+type SendOTPMessageOutput struct {
+	_ struct{} `type:"structure" payload:"MessageResponse"`
+
+	// Provides information about the results of a request to send a message to
+	// an endpoint address.
+	//
+	// MessageResponse is a required field
+	MessageResponse *MessageResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendOTPMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendOTPMessageOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessageResponse sets the MessageResponse field's value.
+func (s *SendOTPMessageOutput) SetMessageResponse(v *MessageResponse) *SendOTPMessageOutput {
+	s.MessageResponse = v
+	return s
+}
+
+// Send OTP message request parameters.
+type SendOTPMessageRequestParameters struct {
+	_ struct{} `type:"structure"`
+
+	// The attempts allowed to validate an OTP.
+	AllowedAttempts *int64 `type:"integer"`
+
+	// The brand name that will be substituted into the OTP message body. Should
+	// be owned by calling AWS account.
+	//
+	// BrandName is a required field
+	BrandName *string `type:"string" required:"true"`
+
+	// Channel type for the OTP message. Supported values: [SMS].
+	//
+	// Channel is a required field
+	Channel *string `type:"string" required:"true"`
+
+	// The number of characters in the generated OTP.
+	CodeLength *int64 `type:"integer"`
+
+	// The destination identity to send OTP to.
+	//
+	// DestinationIdentity is a required field
+	DestinationIdentity *string `type:"string" required:"true"`
+
+	// A unique Entity ID received from DLT after entity registration is approved.
+	EntityId *string `type:"string"`
+
+	// The language to be used for the outgoing message body containing the OTP.
+	Language *string `type:"string"`
+
+	// The origination identity used to send OTP from.
+	//
+	// OriginationIdentity is a required field
+	OriginationIdentity *string `type:"string" required:"true"`
+
+	// Developer-specified reference identifier. Required to match during OTP verification.
+	//
+	// ReferenceId is a required field
+	ReferenceId *string `type:"string" required:"true"`
+
+	// A unique Template ID received from DLT after entity registration is approved.
+	TemplateId *string `type:"string"`
+
+	// The time in minutes before the OTP is no longer valid.
+	ValidityPeriod *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendOTPMessageRequestParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendOTPMessageRequestParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendOTPMessageRequestParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendOTPMessageRequestParameters"}
+	if s.BrandName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BrandName"))
+	}
+	if s.Channel == nil {
+		invalidParams.Add(request.NewErrParamRequired("Channel"))
+	}
+	if s.DestinationIdentity == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationIdentity"))
+	}
+	if s.OriginationIdentity == nil {
+		invalidParams.Add(request.NewErrParamRequired("OriginationIdentity"))
+	}
+	if s.ReferenceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReferenceId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowedAttempts sets the AllowedAttempts field's value.
+func (s *SendOTPMessageRequestParameters) SetAllowedAttempts(v int64) *SendOTPMessageRequestParameters {
+	s.AllowedAttempts = &v
+	return s
+}
+
+// SetBrandName sets the BrandName field's value.
+func (s *SendOTPMessageRequestParameters) SetBrandName(v string) *SendOTPMessageRequestParameters {
+	s.BrandName = &v
+	return s
+}
+
+// SetChannel sets the Channel field's value.
+func (s *SendOTPMessageRequestParameters) SetChannel(v string) *SendOTPMessageRequestParameters {
+	s.Channel = &v
+	return s
+}
+
+// SetCodeLength sets the CodeLength field's value.
+func (s *SendOTPMessageRequestParameters) SetCodeLength(v int64) *SendOTPMessageRequestParameters {
+	s.CodeLength = &v
+	return s
+}
+
+// SetDestinationIdentity sets the DestinationIdentity field's value.
+func (s *SendOTPMessageRequestParameters) SetDestinationIdentity(v string) *SendOTPMessageRequestParameters {
+	s.DestinationIdentity = &v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *SendOTPMessageRequestParameters) SetEntityId(v string) *SendOTPMessageRequestParameters {
+	s.EntityId = &v
+	return s
+}
+
+// SetLanguage sets the Language field's value.
+func (s *SendOTPMessageRequestParameters) SetLanguage(v string) *SendOTPMessageRequestParameters {
+	s.Language = &v
+	return s
+}
+
+// SetOriginationIdentity sets the OriginationIdentity field's value.
+func (s *SendOTPMessageRequestParameters) SetOriginationIdentity(v string) *SendOTPMessageRequestParameters {
+	s.OriginationIdentity = &v
+	return s
+}
+
+// SetReferenceId sets the ReferenceId field's value.
+func (s *SendOTPMessageRequestParameters) SetReferenceId(v string) *SendOTPMessageRequestParameters {
+	s.ReferenceId = &v
+	return s
+}
+
+// SetTemplateId sets the TemplateId field's value.
+func (s *SendOTPMessageRequestParameters) SetTemplateId(v string) *SendOTPMessageRequestParameters {
+	s.TemplateId = &v
+	return s
+}
+
+// SetValidityPeriod sets the ValidityPeriod field's value.
+func (s *SendOTPMessageRequestParameters) SetValidityPeriod(v int64) *SendOTPMessageRequestParameters {
+	s.ValidityPeriod = &v
 	return s
 }
 

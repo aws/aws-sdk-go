@@ -13,6 +13,98 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCancelOrder = "CancelOrder"
+
+// CancelOrderRequest generates a "aws/request.Request" representing the
+// client's request for the CancelOrder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelOrder for more information on using the CancelOrder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelOrderRequest method.
+//    req, resp := client.CancelOrderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CancelOrder
+func (c *Outposts) CancelOrderRequest(input *CancelOrderInput) (req *request.Request, output *CancelOrderOutput) {
+	op := &request.Operation{
+		Name:       opCancelOrder,
+		HTTPMethod: "POST",
+		HTTPPath:   "/orders/{OrderId}/cancel",
+	}
+
+	if input == nil {
+		input = &CancelOrderInput{}
+	}
+
+	output = &CancelOrderOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelOrder API operation for AWS Outposts.
+//
+// Cancels an order for an Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation CancelOrder for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CancelOrder
+func (c *Outposts) CancelOrder(input *CancelOrderInput) (*CancelOrderOutput, error) {
+	req, out := c.CancelOrderRequest(input)
+	return out, req.Send()
+}
+
+// CancelOrderWithContext is the same as CancelOrder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelOrder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) CancelOrderWithContext(ctx aws.Context, input *CancelOrderInput, opts ...request.Option) (*CancelOrderOutput, error) {
+	req, out := c.CancelOrderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateOrder = "CreateOrder"
 
 // CreateOrderRequest generates a "aws/request.Request" representing the
@@ -203,6 +295,97 @@ func (c *Outposts) CreateOutpostWithContext(ctx aws.Context, input *CreateOutpos
 	return out, req.Send()
 }
 
+const opCreateSite = "CreateSite"
+
+// CreateSiteRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSite operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSite for more information on using the CreateSite
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSiteRequest method.
+//    req, resp := client.CreateSiteRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CreateSite
+func (c *Outposts) CreateSiteRequest(input *CreateSiteInput) (req *request.Request, output *CreateSiteOutput) {
+	op := &request.Operation{
+		Name:       opCreateSite,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sites",
+	}
+
+	if input == nil {
+		input = &CreateSiteInput{}
+	}
+
+	output = &CreateSiteOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSite API operation for AWS Outposts.
+//
+// Creates a site for an Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation CreateSite for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+//   * ServiceQuotaExceededException
+//   You have exceeded a service quota.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CreateSite
+func (c *Outposts) CreateSite(input *CreateSiteInput) (*CreateSiteOutput, error) {
+	req, out := c.CreateSiteRequest(input)
+	return out, req.Send()
+}
+
+// CreateSiteWithContext is the same as CreateSite with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSite for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) CreateSiteWithContext(ctx aws.Context, input *CreateSiteInput, opts ...request.Option) (*CreateSiteOutput, error) {
+	req, out := c.CreateSiteRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteOutpost = "DeleteOutpost"
 
 // DeleteOutpostRequest generates a "aws/request.Request" representing the
@@ -387,6 +570,176 @@ func (c *Outposts) DeleteSiteWithContext(ctx aws.Context, input *DeleteSiteInput
 	return out, req.Send()
 }
 
+const opGetCatalogItem = "GetCatalogItem"
+
+// GetCatalogItemRequest generates a "aws/request.Request" representing the
+// client's request for the GetCatalogItem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCatalogItem for more information on using the GetCatalogItem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCatalogItemRequest method.
+//    req, resp := client.GetCatalogItemRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetCatalogItem
+func (c *Outposts) GetCatalogItemRequest(input *GetCatalogItemInput) (req *request.Request, output *GetCatalogItemOutput) {
+	op := &request.Operation{
+		Name:       opGetCatalogItem,
+		HTTPMethod: "GET",
+		HTTPPath:   "/catalog/item/{CatalogItemId}",
+	}
+
+	if input == nil {
+		input = &GetCatalogItemInput{}
+	}
+
+	output = &GetCatalogItemOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCatalogItem API operation for AWS Outposts.
+//
+// Gets information about a catalog item.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation GetCatalogItem for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetCatalogItem
+func (c *Outposts) GetCatalogItem(input *GetCatalogItemInput) (*GetCatalogItemOutput, error) {
+	req, out := c.GetCatalogItemRequest(input)
+	return out, req.Send()
+}
+
+// GetCatalogItemWithContext is the same as GetCatalogItem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCatalogItem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) GetCatalogItemWithContext(ctx aws.Context, input *GetCatalogItemInput, opts ...request.Option) (*GetCatalogItemOutput, error) {
+	req, out := c.GetCatalogItemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetOrder = "GetOrder"
+
+// GetOrderRequest generates a "aws/request.Request" representing the
+// client's request for the GetOrder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetOrder for more information on using the GetOrder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetOrderRequest method.
+//    req, resp := client.GetOrderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetOrder
+func (c *Outposts) GetOrderRequest(input *GetOrderInput) (req *request.Request, output *GetOrderOutput) {
+	op := &request.Operation{
+		Name:       opGetOrder,
+		HTTPMethod: "GET",
+		HTTPPath:   "/orders/{OrderId}",
+	}
+
+	if input == nil {
+		input = &GetOrderInput{}
+	}
+
+	output = &GetOrderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetOrder API operation for AWS Outposts.
+//
+// Gets an order.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation GetOrder for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetOrder
+func (c *Outposts) GetOrder(input *GetOrderInput) (*GetOrderOutput, error) {
+	req, out := c.GetOrderRequest(input)
+	return out, req.Send()
+}
+
+// GetOrderWithContext is the same as GetOrder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetOrder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) GetOrderWithContext(ctx aws.Context, input *GetOrderInput, opts ...request.Option) (*GetOrderOutput, error) {
+	req, out := c.GetOrderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetOutpost = "GetOutpost"
 
 // GetOutpostRequest generates a "aws/request.Request" representing the
@@ -563,6 +916,478 @@ func (c *Outposts) GetOutpostInstanceTypesWithContext(ctx aws.Context, input *Ge
 	return out, req.Send()
 }
 
+const opGetSite = "GetSite"
+
+// GetSiteRequest generates a "aws/request.Request" representing the
+// client's request for the GetSite operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSite for more information on using the GetSite
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSiteRequest method.
+//    req, resp := client.GetSiteRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetSite
+func (c *Outposts) GetSiteRequest(input *GetSiteInput) (req *request.Request, output *GetSiteOutput) {
+	op := &request.Operation{
+		Name:       opGetSite,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sites/{SiteId}",
+	}
+
+	if input == nil {
+		input = &GetSiteInput{}
+	}
+
+	output = &GetSiteOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSite API operation for AWS Outposts.
+//
+// Gets information about the specified Outpost site.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation GetSite for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetSite
+func (c *Outposts) GetSite(input *GetSiteInput) (*GetSiteOutput, error) {
+	req, out := c.GetSiteRequest(input)
+	return out, req.Send()
+}
+
+// GetSiteWithContext is the same as GetSite with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSite for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) GetSiteWithContext(ctx aws.Context, input *GetSiteInput, opts ...request.Option) (*GetSiteOutput, error) {
+	req, out := c.GetSiteRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSiteAddress = "GetSiteAddress"
+
+// GetSiteAddressRequest generates a "aws/request.Request" representing the
+// client's request for the GetSiteAddress operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSiteAddress for more information on using the GetSiteAddress
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSiteAddressRequest method.
+//    req, resp := client.GetSiteAddressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetSiteAddress
+func (c *Outposts) GetSiteAddressRequest(input *GetSiteAddressInput) (req *request.Request, output *GetSiteAddressOutput) {
+	op := &request.Operation{
+		Name:       opGetSiteAddress,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sites/{SiteId}/address",
+	}
+
+	if input == nil {
+		input = &GetSiteAddressInput{}
+	}
+
+	output = &GetSiteAddressOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSiteAddress API operation for AWS Outposts.
+//
+// Gets the site address.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation GetSiteAddress for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/GetSiteAddress
+func (c *Outposts) GetSiteAddress(input *GetSiteAddressInput) (*GetSiteAddressOutput, error) {
+	req, out := c.GetSiteAddressRequest(input)
+	return out, req.Send()
+}
+
+// GetSiteAddressWithContext is the same as GetSiteAddress with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSiteAddress for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) GetSiteAddressWithContext(ctx aws.Context, input *GetSiteAddressInput, opts ...request.Option) (*GetSiteAddressOutput, error) {
+	req, out := c.GetSiteAddressRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListCatalogItems = "ListCatalogItems"
+
+// ListCatalogItemsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCatalogItems operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCatalogItems for more information on using the ListCatalogItems
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCatalogItemsRequest method.
+//    req, resp := client.ListCatalogItemsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListCatalogItems
+func (c *Outposts) ListCatalogItemsRequest(input *ListCatalogItemsInput) (req *request.Request, output *ListCatalogItemsOutput) {
+	op := &request.Operation{
+		Name:       opListCatalogItems,
+		HTTPMethod: "GET",
+		HTTPPath:   "/catalog/items",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCatalogItemsInput{}
+	}
+
+	output = &ListCatalogItemsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCatalogItems API operation for AWS Outposts.
+//
+// Use to create a list of every item in the catalog. Add filters to your request
+// to return a more specific list of results. Use filters to match an item class,
+// storage option, or EC2 family.
+//
+// If you specify multiple filters, the filters are joined with an AND, and
+// the request returns only results that match all of the specified filters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation ListCatalogItems for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListCatalogItems
+func (c *Outposts) ListCatalogItems(input *ListCatalogItemsInput) (*ListCatalogItemsOutput, error) {
+	req, out := c.ListCatalogItemsRequest(input)
+	return out, req.Send()
+}
+
+// ListCatalogItemsWithContext is the same as ListCatalogItems with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCatalogItems for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) ListCatalogItemsWithContext(ctx aws.Context, input *ListCatalogItemsInput, opts ...request.Option) (*ListCatalogItemsOutput, error) {
+	req, out := c.ListCatalogItemsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCatalogItemsPages iterates over the pages of a ListCatalogItems operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCatalogItems method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCatalogItems operation.
+//    pageNum := 0
+//    err := client.ListCatalogItemsPages(params,
+//        func(page *outposts.ListCatalogItemsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Outposts) ListCatalogItemsPages(input *ListCatalogItemsInput, fn func(*ListCatalogItemsOutput, bool) bool) error {
+	return c.ListCatalogItemsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCatalogItemsPagesWithContext same as ListCatalogItemsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) ListCatalogItemsPagesWithContext(ctx aws.Context, input *ListCatalogItemsInput, fn func(*ListCatalogItemsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCatalogItemsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCatalogItemsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCatalogItemsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListOrders = "ListOrders"
+
+// ListOrdersRequest generates a "aws/request.Request" representing the
+// client's request for the ListOrders operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOrders for more information on using the ListOrders
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListOrdersRequest method.
+//    req, resp := client.ListOrdersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListOrders
+func (c *Outposts) ListOrdersRequest(input *ListOrdersInput) (req *request.Request, output *ListOrdersOutput) {
+	op := &request.Operation{
+		Name:       opListOrders,
+		HTTPMethod: "GET",
+		HTTPPath:   "/list-orders",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOrdersInput{}
+	}
+
+	output = &ListOrdersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOrders API operation for AWS Outposts.
+//
+// Create a list of the Outpost orders for your Amazon Web Services account.
+// You can filter your request by Outpost to return a more specific list of
+// results.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation ListOrders for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/ListOrders
+func (c *Outposts) ListOrders(input *ListOrdersInput) (*ListOrdersOutput, error) {
+	req, out := c.ListOrdersRequest(input)
+	return out, req.Send()
+}
+
+// ListOrdersWithContext is the same as ListOrders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOrders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) ListOrdersWithContext(ctx aws.Context, input *ListOrdersInput, opts ...request.Option) (*ListOrdersOutput, error) {
+	req, out := c.ListOrdersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOrdersPages iterates over the pages of a ListOrders operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOrders method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListOrders operation.
+//    pageNum := 0
+//    err := client.ListOrdersPages(params,
+//        func(page *outposts.ListOrdersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Outposts) ListOrdersPages(input *ListOrdersInput, fn func(*ListOrdersOutput, bool) bool) error {
+	return c.ListOrdersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOrdersPagesWithContext same as ListOrdersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) ListOrdersPagesWithContext(ctx aws.Context, input *ListOrdersInput, fn func(*ListOrdersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOrdersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOrdersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOrdersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListOutposts = "ListOutposts"
 
 // ListOutpostsRequest generates a "aws/request.Request" representing the
@@ -613,9 +1438,10 @@ func (c *Outposts) ListOutpostsRequest(input *ListOutpostsInput) (req *request.R
 
 // ListOutposts API operation for AWS Outposts.
 //
-// Create a list of the Outposts for your AWS account. Add filters to your request
-// to return a more specific list of results. Use filters to match an Outpost
-// lifecycle status, Availibility Zone (us-east-1a), and AZ ID (use1-az1).
+// Create a list of the Outposts for your Amazon Web Services account. Add filters
+// to your request to return a more specific list of results. Use filters to
+// match an Outpost lifecycle status, Availability Zone (us-east-1a), and AZ
+// ID (use1-az1).
 //
 // If you specify multiple filters, the filters are joined with an AND, and
 // the request returns only results that match all of the specified filters.
@@ -761,7 +1587,7 @@ func (c *Outposts) ListSitesRequest(input *ListSitesInput) (req *request.Request
 
 // ListSites API operation for AWS Outposts.
 //
-// Lists the sites for the specified AWS account.
+// Lists the sites for your Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1111,6 +1937,291 @@ func (c *Outposts) UntagResourceWithContext(ctx aws.Context, input *UntagResourc
 	return out, req.Send()
 }
 
+const opUpdateSite = "UpdateSite"
+
+// UpdateSiteRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSite operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSite for more information on using the UpdateSite
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSiteRequest method.
+//    req, resp := client.UpdateSiteRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/UpdateSite
+func (c *Outposts) UpdateSiteRequest(input *UpdateSiteInput) (req *request.Request, output *UpdateSiteOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSite,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/sites/{SiteId}",
+	}
+
+	if input == nil {
+		input = &UpdateSiteInput{}
+	}
+
+	output = &UpdateSiteOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSite API operation for AWS Outposts.
+//
+// Updates the site.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation UpdateSite for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/UpdateSite
+func (c *Outposts) UpdateSite(input *UpdateSiteInput) (*UpdateSiteOutput, error) {
+	req, out := c.UpdateSiteRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSiteWithContext is the same as UpdateSite with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSite for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) UpdateSiteWithContext(ctx aws.Context, input *UpdateSiteInput, opts ...request.Option) (*UpdateSiteOutput, error) {
+	req, out := c.UpdateSiteRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSiteAddress = "UpdateSiteAddress"
+
+// UpdateSiteAddressRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSiteAddress operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSiteAddress for more information on using the UpdateSiteAddress
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSiteAddressRequest method.
+//    req, resp := client.UpdateSiteAddressRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/UpdateSiteAddress
+func (c *Outposts) UpdateSiteAddressRequest(input *UpdateSiteAddressInput) (req *request.Request, output *UpdateSiteAddressOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSiteAddress,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/sites/{SiteId}/address",
+	}
+
+	if input == nil {
+		input = &UpdateSiteAddressInput{}
+	}
+
+	output = &UpdateSiteAddressOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSiteAddress API operation for AWS Outposts.
+//
+// Updates the site address.
+//
+// To update a site address with an order IN_PROGRESS, you must wait for the
+// order to complete or cancel the order.
+//
+// You can update the operating address before you place an order at the site,
+// or after all Outposts that belong to the site have been deactivated.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation UpdateSiteAddress for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/UpdateSiteAddress
+func (c *Outposts) UpdateSiteAddress(input *UpdateSiteAddressInput) (*UpdateSiteAddressOutput, error) {
+	req, out := c.UpdateSiteAddressRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSiteAddressWithContext is the same as UpdateSiteAddress with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSiteAddress for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) UpdateSiteAddressWithContext(ctx aws.Context, input *UpdateSiteAddressInput, opts ...request.Option) (*UpdateSiteAddressOutput, error) {
+	req, out := c.UpdateSiteAddressRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSiteRackPhysicalProperties = "UpdateSiteRackPhysicalProperties"
+
+// UpdateSiteRackPhysicalPropertiesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSiteRackPhysicalProperties operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSiteRackPhysicalProperties for more information on using the UpdateSiteRackPhysicalProperties
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSiteRackPhysicalPropertiesRequest method.
+//    req, resp := client.UpdateSiteRackPhysicalPropertiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/UpdateSiteRackPhysicalProperties
+func (c *Outposts) UpdateSiteRackPhysicalPropertiesRequest(input *UpdateSiteRackPhysicalPropertiesInput) (req *request.Request, output *UpdateSiteRackPhysicalPropertiesOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSiteRackPhysicalProperties,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/sites/{SiteId}/rackPhysicalProperties",
+	}
+
+	if input == nil {
+		input = &UpdateSiteRackPhysicalPropertiesInput{}
+	}
+
+	output = &UpdateSiteRackPhysicalPropertiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSiteRackPhysicalProperties API operation for AWS Outposts.
+//
+// Update the physical and logistical details for a rack at a site. For more
+// information about hardware requirements for racks, see Network readiness
+// checklist (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#checklist)
+// in the Amazon Web Services Outposts User Guide.
+//
+// To update a rack at a site with an order of IN_PROGRESS, you must wait for
+// the order to complete or cancel the order.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation UpdateSiteRackPhysicalProperties for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/UpdateSiteRackPhysicalProperties
+func (c *Outposts) UpdateSiteRackPhysicalProperties(input *UpdateSiteRackPhysicalPropertiesInput) (*UpdateSiteRackPhysicalPropertiesOutput, error) {
+	req, out := c.UpdateSiteRackPhysicalPropertiesRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSiteRackPhysicalPropertiesWithContext is the same as UpdateSiteRackPhysicalProperties with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSiteRackPhysicalProperties for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) UpdateSiteRackPhysicalPropertiesWithContext(ctx aws.Context, input *UpdateSiteRackPhysicalPropertiesInput, opts ...request.Option) (*UpdateSiteRackPhysicalPropertiesOutput, error) {
+	req, out := c.UpdateSiteRackPhysicalPropertiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // You do not have permission to perform this operation.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -1173,6 +2284,344 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about an address.
+type Address struct {
+	_ struct{} `type:"structure"`
+
+	// The first line of the address.
+	//
+	// AddressLine1 is a required field
+	AddressLine1 *string `min:"1" type:"string" required:"true"`
+
+	// The second line of the address.
+	AddressLine2 *string `type:"string"`
+
+	// The third line of the address.
+	AddressLine3 *string `type:"string"`
+
+	// The city for the address.
+	//
+	// City is a required field
+	City *string `min:"1" type:"string" required:"true"`
+
+	// The name of the contact.
+	ContactName *string `min:"1" type:"string"`
+
+	// The phone number of the contact.
+	ContactPhoneNumber *string `min:"1" type:"string"`
+
+	// The ISO-3166 two-letter country code for the address.
+	//
+	// CountryCode is a required field
+	CountryCode *string `min:"2" type:"string" required:"true"`
+
+	// The district or county for the address.
+	DistrictOrCounty *string `min:"1" type:"string"`
+
+	// The municipality for the address.
+	Municipality *string `type:"string"`
+
+	// The postal code for the address.
+	//
+	// PostalCode is a required field
+	PostalCode *string `min:"1" type:"string" required:"true"`
+
+	// The state for the address.
+	//
+	// StateOrRegion is a required field
+	StateOrRegion *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Address) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Address) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Address) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Address"}
+	if s.AddressLine1 == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddressLine1"))
+	}
+	if s.AddressLine1 != nil && len(*s.AddressLine1) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AddressLine1", 1))
+	}
+	if s.City == nil {
+		invalidParams.Add(request.NewErrParamRequired("City"))
+	}
+	if s.City != nil && len(*s.City) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("City", 1))
+	}
+	if s.ContactName != nil && len(*s.ContactName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactName", 1))
+	}
+	if s.ContactPhoneNumber != nil && len(*s.ContactPhoneNumber) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactPhoneNumber", 1))
+	}
+	if s.CountryCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("CountryCode"))
+	}
+	if s.CountryCode != nil && len(*s.CountryCode) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("CountryCode", 2))
+	}
+	if s.DistrictOrCounty != nil && len(*s.DistrictOrCounty) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DistrictOrCounty", 1))
+	}
+	if s.PostalCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("PostalCode"))
+	}
+	if s.PostalCode != nil && len(*s.PostalCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PostalCode", 1))
+	}
+	if s.StateOrRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("StateOrRegion"))
+	}
+	if s.StateOrRegion != nil && len(*s.StateOrRegion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StateOrRegion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddressLine1 sets the AddressLine1 field's value.
+func (s *Address) SetAddressLine1(v string) *Address {
+	s.AddressLine1 = &v
+	return s
+}
+
+// SetAddressLine2 sets the AddressLine2 field's value.
+func (s *Address) SetAddressLine2(v string) *Address {
+	s.AddressLine2 = &v
+	return s
+}
+
+// SetAddressLine3 sets the AddressLine3 field's value.
+func (s *Address) SetAddressLine3(v string) *Address {
+	s.AddressLine3 = &v
+	return s
+}
+
+// SetCity sets the City field's value.
+func (s *Address) SetCity(v string) *Address {
+	s.City = &v
+	return s
+}
+
+// SetContactName sets the ContactName field's value.
+func (s *Address) SetContactName(v string) *Address {
+	s.ContactName = &v
+	return s
+}
+
+// SetContactPhoneNumber sets the ContactPhoneNumber field's value.
+func (s *Address) SetContactPhoneNumber(v string) *Address {
+	s.ContactPhoneNumber = &v
+	return s
+}
+
+// SetCountryCode sets the CountryCode field's value.
+func (s *Address) SetCountryCode(v string) *Address {
+	s.CountryCode = &v
+	return s
+}
+
+// SetDistrictOrCounty sets the DistrictOrCounty field's value.
+func (s *Address) SetDistrictOrCounty(v string) *Address {
+	s.DistrictOrCounty = &v
+	return s
+}
+
+// SetMunicipality sets the Municipality field's value.
+func (s *Address) SetMunicipality(v string) *Address {
+	s.Municipality = &v
+	return s
+}
+
+// SetPostalCode sets the PostalCode field's value.
+func (s *Address) SetPostalCode(v string) *Address {
+	s.PostalCode = &v
+	return s
+}
+
+// SetStateOrRegion sets the StateOrRegion field's value.
+func (s *Address) SetStateOrRegion(v string) *Address {
+	s.StateOrRegion = &v
+	return s
+}
+
+type CancelOrderInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the order to cancel.
+	//
+	// OrderId is a required field
+	OrderId *string `location:"uri" locationName:"OrderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelOrderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelOrderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelOrderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelOrderInput"}
+	if s.OrderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrderId"))
+	}
+	if s.OrderId != nil && len(*s.OrderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrderId sets the OrderId field's value.
+func (s *CancelOrderInput) SetOrderId(v string) *CancelOrderInput {
+	s.OrderId = &v
+	return s
+}
+
+type CancelOrderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelOrderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelOrderOutput) GoString() string {
+	return s.String()
+}
+
+// Information about a catalog item.
+type CatalogItem struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the catalog item.
+	CatalogItemId *string `min:"1" type:"string"`
+
+	// Information about the EC2 capacity of an item.
+	EC2Capacities []*EC2Capacity `type:"list"`
+
+	// The status of a catalog item.
+	ItemStatus *string `type:"string" enum:"CatalogItemStatus"`
+
+	// Information about the power draw of an item.
+	PowerKva *float64 `type:"float"`
+
+	// The supported storage options for the catalog item.
+	SupportedStorage []*string `type:"list"`
+
+	// The uplink speed this catalog item requires for the connection to the Region.
+	SupportedUplinkGbps []*int64 `type:"list"`
+
+	// The weight of the item in pounds.
+	WeightLbs *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CatalogItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CatalogItem) GoString() string {
+	return s.String()
+}
+
+// SetCatalogItemId sets the CatalogItemId field's value.
+func (s *CatalogItem) SetCatalogItemId(v string) *CatalogItem {
+	s.CatalogItemId = &v
+	return s
+}
+
+// SetEC2Capacities sets the EC2Capacities field's value.
+func (s *CatalogItem) SetEC2Capacities(v []*EC2Capacity) *CatalogItem {
+	s.EC2Capacities = v
+	return s
+}
+
+// SetItemStatus sets the ItemStatus field's value.
+func (s *CatalogItem) SetItemStatus(v string) *CatalogItem {
+	s.ItemStatus = &v
+	return s
+}
+
+// SetPowerKva sets the PowerKva field's value.
+func (s *CatalogItem) SetPowerKva(v float64) *CatalogItem {
+	s.PowerKva = &v
+	return s
+}
+
+// SetSupportedStorage sets the SupportedStorage field's value.
+func (s *CatalogItem) SetSupportedStorage(v []*string) *CatalogItem {
+	s.SupportedStorage = v
+	return s
+}
+
+// SetSupportedUplinkGbps sets the SupportedUplinkGbps field's value.
+func (s *CatalogItem) SetSupportedUplinkGbps(v []*int64) *CatalogItem {
+	s.SupportedUplinkGbps = v
+	return s
+}
+
+// SetWeightLbs sets the WeightLbs field's value.
+func (s *CatalogItem) SetWeightLbs(v int64) *CatalogItem {
+	s.WeightLbs = &v
+	return s
 }
 
 // Updating or deleting this resource can cause an inconsistent state.
@@ -1517,6 +2966,166 @@ func (s *CreateOutpostOutput) SetOutpost(v *Outpost) *CreateOutpostOutput {
 	return s
 }
 
+type CreateSiteInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the site.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the site.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Additional information that you provide about site access requirements, electrician
+	// scheduling, personal protective equipment, or regulation of equipment materials
+	// that could affect your installation process.
+	Notes *string `min:"1" type:"string"`
+
+	// The location to install and power on the hardware. This address might be
+	// different from the shipping address.
+	OperatingAddress *Address `type:"structure"`
+
+	// Information about the physical and logistical details for the rack at this
+	// site. For more information about hardware requirements for racks, see Network
+	// readiness checklist (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#checklist)
+	// in the Amazon Web Services Outposts User Guide.
+	RackPhysicalProperties *RackPhysicalProperties `type:"structure"`
+
+	// The location to ship the hardware. This address might be different from the
+	// operating address.
+	ShippingAddress *Address `type:"structure"`
+
+	// The tags to apply to a site.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSiteInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSiteInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSiteInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSiteInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Notes != nil && len(*s.Notes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Notes", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.OperatingAddress != nil {
+		if err := s.OperatingAddress.Validate(); err != nil {
+			invalidParams.AddNested("OperatingAddress", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ShippingAddress != nil {
+		if err := s.ShippingAddress.Validate(); err != nil {
+			invalidParams.AddNested("ShippingAddress", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateSiteInput) SetDescription(v string) *CreateSiteInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSiteInput) SetName(v string) *CreateSiteInput {
+	s.Name = &v
+	return s
+}
+
+// SetNotes sets the Notes field's value.
+func (s *CreateSiteInput) SetNotes(v string) *CreateSiteInput {
+	s.Notes = &v
+	return s
+}
+
+// SetOperatingAddress sets the OperatingAddress field's value.
+func (s *CreateSiteInput) SetOperatingAddress(v *Address) *CreateSiteInput {
+	s.OperatingAddress = v
+	return s
+}
+
+// SetRackPhysicalProperties sets the RackPhysicalProperties field's value.
+func (s *CreateSiteInput) SetRackPhysicalProperties(v *RackPhysicalProperties) *CreateSiteInput {
+	s.RackPhysicalProperties = v
+	return s
+}
+
+// SetShippingAddress sets the ShippingAddress field's value.
+func (s *CreateSiteInput) SetShippingAddress(v *Address) *CreateSiteInput {
+	s.ShippingAddress = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateSiteInput) SetTags(v map[string]*string) *CreateSiteInput {
+	s.Tags = v
+	return s
+}
+
+type CreateSiteOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a site.
+	Site *Site `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSiteOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateSiteOutput) GoString() string {
+	return s.String()
+}
+
+// SetSite sets the Site field's value.
+func (s *CreateSiteOutput) SetSite(v *Site) *CreateSiteOutput {
+	s.Site = v
+	return s
+}
+
 type DeleteOutpostInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -1657,6 +3266,216 @@ func (s DeleteSiteOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteSiteOutput) GoString() string {
 	return s.String()
+}
+
+// Information about EC2 capacity.
+type EC2Capacity struct {
+	_ struct{} `type:"structure"`
+
+	// The family of the EC2 capacity.
+	Family *string `min:"1" type:"string"`
+
+	// The maximum size of the EC2 capacity.
+	MaxSize *string `type:"string"`
+
+	// The quantity of the EC2 capacity.
+	Quantity *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EC2Capacity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EC2Capacity) GoString() string {
+	return s.String()
+}
+
+// SetFamily sets the Family field's value.
+func (s *EC2Capacity) SetFamily(v string) *EC2Capacity {
+	s.Family = &v
+	return s
+}
+
+// SetMaxSize sets the MaxSize field's value.
+func (s *EC2Capacity) SetMaxSize(v string) *EC2Capacity {
+	s.MaxSize = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *EC2Capacity) SetQuantity(v string) *EC2Capacity {
+	s.Quantity = &v
+	return s
+}
+
+type GetCatalogItemInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the catalog item.
+	//
+	// CatalogItemId is a required field
+	CatalogItemId *string `location:"uri" locationName:"CatalogItemId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCatalogItemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCatalogItemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCatalogItemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCatalogItemInput"}
+	if s.CatalogItemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CatalogItemId"))
+	}
+	if s.CatalogItemId != nil && len(*s.CatalogItemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogItemId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogItemId sets the CatalogItemId field's value.
+func (s *GetCatalogItemInput) SetCatalogItemId(v string) *GetCatalogItemInput {
+	s.CatalogItemId = &v
+	return s
+}
+
+type GetCatalogItemOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about this catalog item.
+	CatalogItem *CatalogItem `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCatalogItemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetCatalogItemOutput) GoString() string {
+	return s.String()
+}
+
+// SetCatalogItem sets the CatalogItem field's value.
+func (s *GetCatalogItemOutput) SetCatalogItem(v *CatalogItem) *GetCatalogItemOutput {
+	s.CatalogItem = v
+	return s
+}
+
+type GetOrderInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the order.
+	//
+	// OrderId is a required field
+	OrderId *string `location:"uri" locationName:"OrderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOrderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOrderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetOrderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetOrderInput"}
+	if s.OrderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrderId"))
+	}
+	if s.OrderId != nil && len(*s.OrderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OrderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrderId sets the OrderId field's value.
+func (s *GetOrderInput) SetOrderId(v string) *GetOrderInput {
+	s.OrderId = &v
+	return s
+}
+
+type GetOrderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about an order.
+	Order *Order `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOrderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetOrderOutput) GoString() string {
+	return s.String()
+}
+
+// SetOrder sets the Order field's value.
+func (s *GetOrderOutput) SetOrder(v *Order) *GetOrderOutput {
+	s.Order = v
+	return s
 }
 
 type GetOutpostInput struct {
@@ -1870,6 +3689,198 @@ func (s *GetOutpostOutput) SetOutpost(v *Outpost) *GetOutpostOutput {
 	return s
 }
 
+type GetSiteAddressInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The type of the address you request.
+	//
+	// AddressType is a required field
+	AddressType *string `location:"querystring" locationName:"AddressType" type:"string" required:"true" enum:"AddressType"`
+
+	// The ID of the site.
+	//
+	// SiteId is a required field
+	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSiteAddressInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSiteAddressInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSiteAddressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSiteAddressInput"}
+	if s.AddressType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddressType"))
+	}
+	if s.SiteId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteId"))
+	}
+	if s.SiteId != nil && len(*s.SiteId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SiteId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddressType sets the AddressType field's value.
+func (s *GetSiteAddressInput) SetAddressType(v string) *GetSiteAddressInput {
+	s.AddressType = &v
+	return s
+}
+
+// SetSiteId sets the SiteId field's value.
+func (s *GetSiteAddressInput) SetSiteId(v string) *GetSiteAddressInput {
+	s.SiteId = &v
+	return s
+}
+
+type GetSiteAddressOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the address.
+	Address *Address `type:"structure"`
+
+	// The type of the address you receive.
+	AddressType *string `type:"string" enum:"AddressType"`
+
+	// The ID of the site.
+	SiteId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSiteAddressOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSiteAddressOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *GetSiteAddressOutput) SetAddress(v *Address) *GetSiteAddressOutput {
+	s.Address = v
+	return s
+}
+
+// SetAddressType sets the AddressType field's value.
+func (s *GetSiteAddressOutput) SetAddressType(v string) *GetSiteAddressOutput {
+	s.AddressType = &v
+	return s
+}
+
+// SetSiteId sets the SiteId field's value.
+func (s *GetSiteAddressOutput) SetSiteId(v string) *GetSiteAddressOutput {
+	s.SiteId = &v
+	return s
+}
+
+type GetSiteInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The ID of the site.
+	//
+	// SiteId is a required field
+	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSiteInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSiteInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSiteInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSiteInput"}
+	if s.SiteId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteId"))
+	}
+	if s.SiteId != nil && len(*s.SiteId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SiteId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSiteId sets the SiteId field's value.
+func (s *GetSiteInput) SetSiteId(v string) *GetSiteInput {
+	s.SiteId = &v
+	return s
+}
+
+type GetSiteOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a site.
+	Site *Site `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSiteOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSiteOutput) GoString() string {
+	return s.String()
+}
+
+// SetSite sets the Site field's value.
+func (s *GetSiteOutput) SetSite(v *Site) *GetSiteOutput {
+	s.Site = v
+	return s
+}
+
 // Information about an instance type.
 type InstanceTypeItem struct {
 	_ struct{} `type:"structure"`
@@ -1980,7 +3991,7 @@ type LineItem struct {
 	Quantity *int64 `min:"1" type:"integer"`
 
 	// The status of the line item.
-	Status *string `min:"1" type:"string"`
+	Status *string `type:"string" enum:"LineItemStatus"`
 }
 
 // String returns the string representation.
@@ -2082,10 +4093,253 @@ func (s *LineItemRequest) SetQuantity(v int64) *LineItemRequest {
 	return s
 }
 
+type ListCatalogItemsInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// A filter for EC2 family options for items in the catalog.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	EC2FamilyFilter []*string `location:"querystring" locationName:"EC2FamilyFilter" type:"list"`
+
+	// A filter for the class of items in the catalog.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	ItemClassFilter []*string `location:"querystring" locationName:"ItemClassFilter" type:"list"`
+
+	// The maximum page size.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The pagination token.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+
+	// A filter for the storage options of items in the catalog.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	SupportedStorageFilter []*string `location:"querystring" locationName:"SupportedStorageFilter" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCatalogItemsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCatalogItemsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCatalogItemsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCatalogItemsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEC2FamilyFilter sets the EC2FamilyFilter field's value.
+func (s *ListCatalogItemsInput) SetEC2FamilyFilter(v []*string) *ListCatalogItemsInput {
+	s.EC2FamilyFilter = v
+	return s
+}
+
+// SetItemClassFilter sets the ItemClassFilter field's value.
+func (s *ListCatalogItemsInput) SetItemClassFilter(v []*string) *ListCatalogItemsInput {
+	s.ItemClassFilter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCatalogItemsInput) SetMaxResults(v int64) *ListCatalogItemsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCatalogItemsInput) SetNextToken(v string) *ListCatalogItemsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSupportedStorageFilter sets the SupportedStorageFilter field's value.
+func (s *ListCatalogItemsInput) SetSupportedStorageFilter(v []*string) *ListCatalogItemsInput {
+	s.SupportedStorageFilter = v
+	return s
+}
+
+type ListCatalogItemsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the catalog items.
+	CatalogItems []*CatalogItem `type:"list"`
+
+	// The pagination token.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCatalogItemsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListCatalogItemsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCatalogItems sets the CatalogItems field's value.
+func (s *ListCatalogItemsOutput) SetCatalogItems(v []*CatalogItem) *ListCatalogItemsOutput {
+	s.CatalogItems = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCatalogItemsOutput) SetNextToken(v string) *ListCatalogItemsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListOrdersInput struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// The maximum page size.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// The pagination token.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
+
+	// The ID or the Amazon Resource Name (ARN) of the Outpost.
+	OutpostIdentifierFilter *string `location:"querystring" locationName:"OutpostIdentifierFilter" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrdersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrdersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOrdersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOrdersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OutpostIdentifierFilter != nil && len(*s.OutpostIdentifierFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostIdentifierFilter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOrdersInput) SetMaxResults(v int64) *ListOrdersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOrdersInput) SetNextToken(v string) *ListOrdersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutpostIdentifierFilter sets the OutpostIdentifierFilter field's value.
+func (s *ListOrdersInput) SetOutpostIdentifierFilter(v string) *ListOrdersInput {
+	s.OutpostIdentifierFilter = &v
+	return s
+}
+
+type ListOrdersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token.
+	NextToken *string `min:"1" type:"string"`
+
+	// Information about the orders.
+	Orders []*OrderSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrdersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListOrdersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOrdersOutput) SetNextToken(v string) *ListOrdersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrders sets the Orders field's value.
+func (s *ListOrdersOutput) SetOrders(v []*OrderSummary) *ListOrdersOutput {
+	s.Orders = v
+	return s
+}
+
 type ListOutpostsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
-	// A filter for the Availibility Zone (us-east-1a) of the Outpost.
+	// A filter for the Availability Zone (us-east-1a) of the Outpost.
 	//
 	// Filter values are case sensitive. If you specify multiple values for a filter,
 	// the values are joined with an OR, and the request returns all results that
@@ -2482,13 +4736,27 @@ type Order struct {
 	// The submission date for the order.
 	OrderSubmissionDate *time.Time `type:"timestamp"`
 
-	// The ID of the Outpost.
+	// The ID of the Outpost in the order.
 	OutpostId *string `min:"1" type:"string"`
 
 	// The payment option for the order.
 	PaymentOption *string `type:"string" enum:"PaymentOption"`
 
-	// The status of the order
+	// The status of the order.
+	//
+	//    * PREPARING - Order is received and being prepared.
+	//
+	//    * IN_PROGRESS - Order is either being built, shipped, or installed. To
+	//    get more details, see the LineItem status.
+	//
+	//    * COMPLETED - Order is complete.
+	//
+	//    * CANCELLED - Order is cancelled.
+	//
+	//    * ERROR - Customer should contact support.
+	//
+	// The following status are deprecated: RECEIVED, PENDING, PROCESSING, INSTALLING,
+	// and FULFILLED.
 	Status *string `type:"string" enum:"OrderStatus"`
 }
 
@@ -2552,6 +4820,106 @@ func (s *Order) SetStatus(v string) *Order {
 	return s
 }
 
+// A summary of line items in your order.
+type OrderSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The status of all line items in the order.
+	LineItemCountsByStatus map[string]*int64 `type:"map"`
+
+	// Fulfilment date for the order.
+	OrderFulfilledDate *time.Time `type:"timestamp"`
+
+	// The ID of the order.
+	OrderId *string `min:"1" type:"string"`
+
+	// Submission date for the order.
+	OrderSubmissionDate *time.Time `type:"timestamp"`
+
+	// The type of order.
+	OrderType *string `type:"string" enum:"OrderType"`
+
+	// The ID of the Outpost.
+	OutpostId *string `min:"1" type:"string"`
+
+	// The status of the order.
+	//
+	//    * PREPARING - Order is received and is being prepared.
+	//
+	//    * IN_PROGRESS - Order is either being built, shipped, or installed. For
+	//    more information, see the LineItem status.
+	//
+	//    * COMPLETED - Order is complete.
+	//
+	//    * CANCELLED - Order is cancelled.
+	//
+	//    * ERROR - Customer should contact support.
+	//
+	// The following statuses are deprecated: RECEIVED, PENDING, PROCESSING, INSTALLING,
+	// and FULFILLED.
+	Status *string `type:"string" enum:"OrderStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrderSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OrderSummary) GoString() string {
+	return s.String()
+}
+
+// SetLineItemCountsByStatus sets the LineItemCountsByStatus field's value.
+func (s *OrderSummary) SetLineItemCountsByStatus(v map[string]*int64) *OrderSummary {
+	s.LineItemCountsByStatus = v
+	return s
+}
+
+// SetOrderFulfilledDate sets the OrderFulfilledDate field's value.
+func (s *OrderSummary) SetOrderFulfilledDate(v time.Time) *OrderSummary {
+	s.OrderFulfilledDate = &v
+	return s
+}
+
+// SetOrderId sets the OrderId field's value.
+func (s *OrderSummary) SetOrderId(v string) *OrderSummary {
+	s.OrderId = &v
+	return s
+}
+
+// SetOrderSubmissionDate sets the OrderSubmissionDate field's value.
+func (s *OrderSummary) SetOrderSubmissionDate(v time.Time) *OrderSummary {
+	s.OrderSubmissionDate = &v
+	return s
+}
+
+// SetOrderType sets the OrderType field's value.
+func (s *OrderSummary) SetOrderType(v string) *OrderSummary {
+	s.OrderType = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *OrderSummary) SetOutpostId(v string) *OrderSummary {
+	s.OutpostId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *OrderSummary) SetStatus(v string) *OrderSummary {
+	s.Status = &v
+	return s
+}
+
 // Information about an Outpost.
 type Outpost struct {
 	_ struct{} `type:"structure"`
@@ -2577,7 +4945,7 @@ type Outpost struct {
 	// The ID of the Outpost.
 	OutpostId *string `min:"1" type:"string"`
 
-	// The AWS account ID of the Outpost owner.
+	// The Amazon Web Services account ID of the Outpost owner.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the site.
@@ -2674,6 +5042,118 @@ func (s *Outpost) SetTags(v map[string]*string) *Outpost {
 	return s
 }
 
+// Information about the physical and logistical details for racks at sites.
+// For more information about hardware requirements for racks, see Network readiness
+// checklist (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#checklist)
+// in the Amazon Web Services Outposts User Guide.
+type RackPhysicalProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The type of fiber used to attach the Outpost to the network.
+	FiberOpticCableType *string `type:"string" enum:"FiberOpticCableType"`
+
+	// The maximum rack weight that this site can support. NO_LIMIT is over 2000
+	// lbs (907 kg).
+	MaximumSupportedWeightLbs *string `type:"string" enum:"MaximumSupportedWeightLbs"`
+
+	// The type of optical standard used to attach the Outpost to the network. This
+	// field is dependent on uplink speed, fiber type, and distance to the upstream
+	// device. For more information about networking requirements for racks, see
+	// Network (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#facility-networking)
+	// in the Amazon Web Services Outposts User Guide.
+	OpticalStandard *string `type:"string" enum:"OpticalStandard"`
+
+	// The power connector for the hardware.
+	PowerConnector *string `type:"string" enum:"PowerConnector"`
+
+	// The power draw available at the hardware placement position for the rack.
+	PowerDrawKva *string `type:"string" enum:"PowerDrawKva"`
+
+	// The position of the power feed.
+	PowerFeedDrop *string `type:"string" enum:"PowerFeedDrop"`
+
+	// The power option that you can provide for hardware.
+	PowerPhase *string `type:"string" enum:"PowerPhase"`
+
+	// The number of uplinks each Outpost network device.
+	UplinkCount *string `type:"string" enum:"UplinkCount"`
+
+	// The uplink speed the rack supports for the connection to the Region.
+	UplinkGbps *string `type:"string" enum:"UplinkGbps"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RackPhysicalProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RackPhysicalProperties) GoString() string {
+	return s.String()
+}
+
+// SetFiberOpticCableType sets the FiberOpticCableType field's value.
+func (s *RackPhysicalProperties) SetFiberOpticCableType(v string) *RackPhysicalProperties {
+	s.FiberOpticCableType = &v
+	return s
+}
+
+// SetMaximumSupportedWeightLbs sets the MaximumSupportedWeightLbs field's value.
+func (s *RackPhysicalProperties) SetMaximumSupportedWeightLbs(v string) *RackPhysicalProperties {
+	s.MaximumSupportedWeightLbs = &v
+	return s
+}
+
+// SetOpticalStandard sets the OpticalStandard field's value.
+func (s *RackPhysicalProperties) SetOpticalStandard(v string) *RackPhysicalProperties {
+	s.OpticalStandard = &v
+	return s
+}
+
+// SetPowerConnector sets the PowerConnector field's value.
+func (s *RackPhysicalProperties) SetPowerConnector(v string) *RackPhysicalProperties {
+	s.PowerConnector = &v
+	return s
+}
+
+// SetPowerDrawKva sets the PowerDrawKva field's value.
+func (s *RackPhysicalProperties) SetPowerDrawKva(v string) *RackPhysicalProperties {
+	s.PowerDrawKva = &v
+	return s
+}
+
+// SetPowerFeedDrop sets the PowerFeedDrop field's value.
+func (s *RackPhysicalProperties) SetPowerFeedDrop(v string) *RackPhysicalProperties {
+	s.PowerFeedDrop = &v
+	return s
+}
+
+// SetPowerPhase sets the PowerPhase field's value.
+func (s *RackPhysicalProperties) SetPowerPhase(v string) *RackPhysicalProperties {
+	s.PowerPhase = &v
+	return s
+}
+
+// SetUplinkCount sets the UplinkCount field's value.
+func (s *RackPhysicalProperties) SetUplinkCount(v string) *RackPhysicalProperties {
+	s.UplinkCount = &v
+	return s
+}
+
+// SetUplinkGbps sets the UplinkGbps field's value.
+func (s *RackPhysicalProperties) SetUplinkGbps(v string) *RackPhysicalProperties {
+	s.UplinkGbps = &v
+	return s
+}
+
 // You have exceeded a service quota.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -2742,7 +5222,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type Site struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account.
+	// The ID of the Amazon Web Services account.
 	AccountId *string `min:"12" type:"string"`
 
 	// The description of the site.
@@ -2750,6 +5230,22 @@ type Site struct {
 
 	// The name of the site.
 	Name *string `min:"1" type:"string"`
+
+	// Notes about a site.
+	Notes *string `min:"1" type:"string"`
+
+	// City where the hardware is installed and powered on.
+	OperatingAddressCity *string `min:"1" type:"string"`
+
+	// The ISO-3166 two-letter country code where the hardware is installed and
+	// powered on.
+	OperatingAddressCountryCode *string `min:"2" type:"string"`
+
+	// State or region where the hardware is installed and powered on.
+	OperatingAddressStateOrRegion *string `min:"1" type:"string"`
+
+	// Information about the physical and logistical details for a rack at the site.
+	RackPhysicalProperties *RackPhysicalProperties `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the site.
 	SiteArn *string `min:"1" type:"string"`
@@ -2794,6 +5290,36 @@ func (s *Site) SetDescription(v string) *Site {
 // SetName sets the Name field's value.
 func (s *Site) SetName(v string) *Site {
 	s.Name = &v
+	return s
+}
+
+// SetNotes sets the Notes field's value.
+func (s *Site) SetNotes(v string) *Site {
+	s.Notes = &v
+	return s
+}
+
+// SetOperatingAddressCity sets the OperatingAddressCity field's value.
+func (s *Site) SetOperatingAddressCity(v string) *Site {
+	s.OperatingAddressCity = &v
+	return s
+}
+
+// SetOperatingAddressCountryCode sets the OperatingAddressCountryCode field's value.
+func (s *Site) SetOperatingAddressCountryCode(v string) *Site {
+	s.OperatingAddressCountryCode = &v
+	return s
+}
+
+// SetOperatingAddressStateOrRegion sets the OperatingAddressStateOrRegion field's value.
+func (s *Site) SetOperatingAddressStateOrRegion(v string) *Site {
+	s.OperatingAddressStateOrRegion = &v
+	return s
+}
+
+// SetRackPhysicalProperties sets the RackPhysicalProperties field's value.
+func (s *Site) SetRackPhysicalProperties(v *RackPhysicalProperties) *Site {
+	s.RackPhysicalProperties = v
 	return s
 }
 
@@ -2991,6 +5517,461 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateSiteAddressInput struct {
+	_ struct{} `type:"structure"`
+
+	// The address for the site.
+	//
+	// Address is a required field
+	Address *Address `type:"structure" required:"true"`
+
+	// The type of the address.
+	//
+	// AddressType is a required field
+	AddressType *string `type:"string" required:"true" enum:"AddressType"`
+
+	// The ID of the site.
+	//
+	// SiteId is a required field
+	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteAddressInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteAddressInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSiteAddressInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSiteAddressInput"}
+	if s.Address == nil {
+		invalidParams.Add(request.NewErrParamRequired("Address"))
+	}
+	if s.AddressType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AddressType"))
+	}
+	if s.SiteId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteId"))
+	}
+	if s.SiteId != nil && len(*s.SiteId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SiteId", 1))
+	}
+	if s.Address != nil {
+		if err := s.Address.Validate(); err != nil {
+			invalidParams.AddNested("Address", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddress sets the Address field's value.
+func (s *UpdateSiteAddressInput) SetAddress(v *Address) *UpdateSiteAddressInput {
+	s.Address = v
+	return s
+}
+
+// SetAddressType sets the AddressType field's value.
+func (s *UpdateSiteAddressInput) SetAddressType(v string) *UpdateSiteAddressInput {
+	s.AddressType = &v
+	return s
+}
+
+// SetSiteId sets the SiteId field's value.
+func (s *UpdateSiteAddressInput) SetSiteId(v string) *UpdateSiteAddressInput {
+	s.SiteId = &v
+	return s
+}
+
+type UpdateSiteAddressOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about an address.
+	Address *Address `type:"structure"`
+
+	// The type of the address.
+	AddressType *string `type:"string" enum:"AddressType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteAddressOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteAddressOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *UpdateSiteAddressOutput) SetAddress(v *Address) *UpdateSiteAddressOutput {
+	s.Address = v
+	return s
+}
+
+// SetAddressType sets the AddressType field's value.
+func (s *UpdateSiteAddressOutput) SetAddressType(v string) *UpdateSiteAddressOutput {
+	s.AddressType = &v
+	return s
+}
+
+type UpdateSiteInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the site.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the site.
+	Name *string `min:"1" type:"string"`
+
+	// Notes about a site.
+	Notes *string `min:"1" type:"string"`
+
+	// The ID of the site.
+	//
+	// SiteId is a required field
+	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSiteInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSiteInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Notes != nil && len(*s.Notes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Notes", 1))
+	}
+	if s.SiteId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteId"))
+	}
+	if s.SiteId != nil && len(*s.SiteId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SiteId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateSiteInput) SetDescription(v string) *UpdateSiteInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateSiteInput) SetName(v string) *UpdateSiteInput {
+	s.Name = &v
+	return s
+}
+
+// SetNotes sets the Notes field's value.
+func (s *UpdateSiteInput) SetNotes(v string) *UpdateSiteInput {
+	s.Notes = &v
+	return s
+}
+
+// SetSiteId sets the SiteId field's value.
+func (s *UpdateSiteInput) SetSiteId(v string) *UpdateSiteInput {
+	s.SiteId = &v
+	return s
+}
+
+type UpdateSiteOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a site.
+	Site *Site `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteOutput) GoString() string {
+	return s.String()
+}
+
+// SetSite sets the Site field's value.
+func (s *UpdateSiteOutput) SetSite(v *Site) *UpdateSiteOutput {
+	s.Site = v
+	return s
+}
+
+type UpdateSiteRackPhysicalPropertiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the type of fiber that you will use to attach the Outpost to your
+	// network.
+	FiberOpticCableType *string `type:"string" enum:"FiberOpticCableType"`
+
+	// Specify the maximum rack weight that this site can support. NO_LIMIT is over
+	// 2000lbs.
+	MaximumSupportedWeightLbs *string `type:"string" enum:"MaximumSupportedWeightLbs"`
+
+	// Specify the type of optical standard that you will use to attach the Outpost
+	// to your network. This field is dependent on uplink speed, fiber type, and
+	// distance to the upstream device. For more information about networking requirements
+	// for racks, see Network (https://docs.aws.amazon.com/outposts/latest/userguide/outposts-requirements.html#facility-networking)
+	// in the Amazon Web Services Outposts User Guide.
+	//
+	//    * OPTIC_10GBASE_SR: 10GBASE-SR
+	//
+	//    * OPTIC_10GBASE_IR: 10GBASE-IR
+	//
+	//    * OPTIC_10GBASE_LR: 10GBASE-LR
+	//
+	//    * OPTIC_40GBASE_SR: 40GBASE-SR
+	//
+	//    * OPTIC_40GBASE_ESR: 40GBASE-ESR
+	//
+	//    * OPTIC_40GBASE_IR4_LR4L: 40GBASE-IR (LR4L)
+	//
+	//    * OPTIC_40GBASE_LR4: 40GBASE-LR4
+	//
+	//    * OPTIC_100GBASE_SR4: 100GBASE-SR4
+	//
+	//    * OPTIC_100GBASE_CWDM4: 100GBASE-CWDM4
+	//
+	//    * OPTIC_100GBASE_LR4: 100GBASE-LR4
+	//
+	//    * OPTIC_100G_PSM4_MSA: 100G PSM4 MSA
+	//
+	//    * OPTIC_1000BASE_LX: 1000Base-LX
+	//
+	//    * OPTIC_1000BASE_SX : 1000Base-SX
+	OpticalStandard *string `type:"string" enum:"OpticalStandard"`
+
+	// Specify the power connector that Amazon Web Services should plan to provide
+	// for connections to the hardware. Note the correlation between PowerPhase
+	// and PowerConnector.
+	//
+	//    * Single-phase AC feed L6-30P – (common in US); 30A; single phase IEC309
+	//    (blue) – P+N+E, 6hr; 32 A; single phase
+	//
+	//    * Three-phase AC feed AH530P7W (red) – 3P+N+E, 7hr; 30A; three phase
+	//    AH532P6W (red) – 3P+N+E, 6hr; 32A; three phase
+	PowerConnector *string `type:"string" enum:"PowerConnector"`
+
+	// Specify in kVA the power draw available at the hardware placement position
+	// for the rack.
+	PowerDrawKva *string `type:"string" enum:"PowerDrawKva"`
+
+	// Specify whether the power feed comes above or below the rack.
+	PowerFeedDrop *string `type:"string" enum:"PowerFeedDrop"`
+
+	// Specify the power option that you can provide for hardware.
+	//
+	//    * Single-phase AC feed: 200 V to 277 V, 50 Hz or 60 Hz
+	//
+	//    * Three-phase AC feed: 346 V to 480 V, 50 Hz or 60 Hz
+	PowerPhase *string `type:"string" enum:"PowerPhase"`
+
+	// The ID of the site.
+	//
+	// SiteId is a required field
+	SiteId *string `location:"uri" locationName:"SiteId" min:"1" type:"string" required:"true"`
+
+	// Racks come with two Outpost network devices. Depending on the supported uplink
+	// speed at the site, the Outpost network devices provide a variable number
+	// of uplinks. Specify the number of uplinks for each Outpost network device
+	// that you intend to use to connect the rack to your network. Note the correlation
+	// between UplinkGbps and UplinkCount.
+	//
+	//    * 1Gbps - Uplinks available: 1, 2, 4, 6, 8
+	//
+	//    * 10Gbps - Uplinks available: 1, 2, 4, 8, 12, 16
+	//
+	//    * 40 and 100 Gbps- Uplinks available: 1, 2, 4
+	UplinkCount *string `type:"string" enum:"UplinkCount"`
+
+	// Specify the uplink speed the rack should support for the connection to the
+	// Region.
+	UplinkGbps *string `type:"string" enum:"UplinkGbps"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteRackPhysicalPropertiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteRackPhysicalPropertiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSiteRackPhysicalPropertiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSiteRackPhysicalPropertiesInput"}
+	if s.SiteId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteId"))
+	}
+	if s.SiteId != nil && len(*s.SiteId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SiteId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFiberOpticCableType sets the FiberOpticCableType field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetFiberOpticCableType(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.FiberOpticCableType = &v
+	return s
+}
+
+// SetMaximumSupportedWeightLbs sets the MaximumSupportedWeightLbs field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetMaximumSupportedWeightLbs(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.MaximumSupportedWeightLbs = &v
+	return s
+}
+
+// SetOpticalStandard sets the OpticalStandard field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetOpticalStandard(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.OpticalStandard = &v
+	return s
+}
+
+// SetPowerConnector sets the PowerConnector field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetPowerConnector(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.PowerConnector = &v
+	return s
+}
+
+// SetPowerDrawKva sets the PowerDrawKva field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetPowerDrawKva(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.PowerDrawKva = &v
+	return s
+}
+
+// SetPowerFeedDrop sets the PowerFeedDrop field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetPowerFeedDrop(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.PowerFeedDrop = &v
+	return s
+}
+
+// SetPowerPhase sets the PowerPhase field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetPowerPhase(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.PowerPhase = &v
+	return s
+}
+
+// SetSiteId sets the SiteId field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetSiteId(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.SiteId = &v
+	return s
+}
+
+// SetUplinkCount sets the UplinkCount field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetUplinkCount(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.UplinkCount = &v
+	return s
+}
+
+// SetUplinkGbps sets the UplinkGbps field's value.
+func (s *UpdateSiteRackPhysicalPropertiesInput) SetUplinkGbps(v string) *UpdateSiteRackPhysicalPropertiesInput {
+	s.UplinkGbps = &v
+	return s
+}
+
+type UpdateSiteRackPhysicalPropertiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a site.
+	Site *Site `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteRackPhysicalPropertiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateSiteRackPhysicalPropertiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetSite sets the Site field's value.
+func (s *UpdateSiteRackPhysicalPropertiesOutput) SetSite(v *Site) *UpdateSiteRackPhysicalPropertiesOutput {
+	s.Site = v
+	return s
+}
+
 // A parameter is not valid.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -3056,6 +6037,198 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AddressTypeShippingAddress is a AddressType enum value
+	AddressTypeShippingAddress = "SHIPPING_ADDRESS"
+
+	// AddressTypeOperatingAddress is a AddressType enum value
+	AddressTypeOperatingAddress = "OPERATING_ADDRESS"
+)
+
+// AddressType_Values returns all elements of the AddressType enum
+func AddressType_Values() []string {
+	return []string{
+		AddressTypeShippingAddress,
+		AddressTypeOperatingAddress,
+	}
+}
+
+const (
+	// CatalogItemClassRack is a CatalogItemClass enum value
+	CatalogItemClassRack = "RACK"
+
+	// CatalogItemClassServer is a CatalogItemClass enum value
+	CatalogItemClassServer = "SERVER"
+)
+
+// CatalogItemClass_Values returns all elements of the CatalogItemClass enum
+func CatalogItemClass_Values() []string {
+	return []string{
+		CatalogItemClassRack,
+		CatalogItemClassServer,
+	}
+}
+
+const (
+	// CatalogItemStatusAvailable is a CatalogItemStatus enum value
+	CatalogItemStatusAvailable = "AVAILABLE"
+
+	// CatalogItemStatusDiscontinued is a CatalogItemStatus enum value
+	CatalogItemStatusDiscontinued = "DISCONTINUED"
+)
+
+// CatalogItemStatus_Values returns all elements of the CatalogItemStatus enum
+func CatalogItemStatus_Values() []string {
+	return []string{
+		CatalogItemStatusAvailable,
+		CatalogItemStatusDiscontinued,
+	}
+}
+
+const (
+	// FiberOpticCableTypeSingleMode is a FiberOpticCableType enum value
+	FiberOpticCableTypeSingleMode = "SINGLE_MODE"
+
+	// FiberOpticCableTypeMultiMode is a FiberOpticCableType enum value
+	FiberOpticCableTypeMultiMode = "MULTI_MODE"
+)
+
+// FiberOpticCableType_Values returns all elements of the FiberOpticCableType enum
+func FiberOpticCableType_Values() []string {
+	return []string{
+		FiberOpticCableTypeSingleMode,
+		FiberOpticCableTypeMultiMode,
+	}
+}
+
+const (
+	// LineItemStatusPreparing is a LineItemStatus enum value
+	LineItemStatusPreparing = "PREPARING"
+
+	// LineItemStatusBuilding is a LineItemStatus enum value
+	LineItemStatusBuilding = "BUILDING"
+
+	// LineItemStatusShipped is a LineItemStatus enum value
+	LineItemStatusShipped = "SHIPPED"
+
+	// LineItemStatusDelivered is a LineItemStatus enum value
+	LineItemStatusDelivered = "DELIVERED"
+
+	// LineItemStatusInstalling is a LineItemStatus enum value
+	LineItemStatusInstalling = "INSTALLING"
+
+	// LineItemStatusInstalled is a LineItemStatus enum value
+	LineItemStatusInstalled = "INSTALLED"
+
+	// LineItemStatusError is a LineItemStatus enum value
+	LineItemStatusError = "ERROR"
+
+	// LineItemStatusCancelled is a LineItemStatus enum value
+	LineItemStatusCancelled = "CANCELLED"
+)
+
+// LineItemStatus_Values returns all elements of the LineItemStatus enum
+func LineItemStatus_Values() []string {
+	return []string{
+		LineItemStatusPreparing,
+		LineItemStatusBuilding,
+		LineItemStatusShipped,
+		LineItemStatusDelivered,
+		LineItemStatusInstalling,
+		LineItemStatusInstalled,
+		LineItemStatusError,
+		LineItemStatusCancelled,
+	}
+}
+
+const (
+	// MaximumSupportedWeightLbsNoLimit is a MaximumSupportedWeightLbs enum value
+	MaximumSupportedWeightLbsNoLimit = "NO_LIMIT"
+
+	// MaximumSupportedWeightLbsMax1400Lbs is a MaximumSupportedWeightLbs enum value
+	MaximumSupportedWeightLbsMax1400Lbs = "MAX_1400_LBS"
+
+	// MaximumSupportedWeightLbsMax1600Lbs is a MaximumSupportedWeightLbs enum value
+	MaximumSupportedWeightLbsMax1600Lbs = "MAX_1600_LBS"
+
+	// MaximumSupportedWeightLbsMax1800Lbs is a MaximumSupportedWeightLbs enum value
+	MaximumSupportedWeightLbsMax1800Lbs = "MAX_1800_LBS"
+
+	// MaximumSupportedWeightLbsMax2000Lbs is a MaximumSupportedWeightLbs enum value
+	MaximumSupportedWeightLbsMax2000Lbs = "MAX_2000_LBS"
+)
+
+// MaximumSupportedWeightLbs_Values returns all elements of the MaximumSupportedWeightLbs enum
+func MaximumSupportedWeightLbs_Values() []string {
+	return []string{
+		MaximumSupportedWeightLbsNoLimit,
+		MaximumSupportedWeightLbsMax1400Lbs,
+		MaximumSupportedWeightLbsMax1600Lbs,
+		MaximumSupportedWeightLbsMax1800Lbs,
+		MaximumSupportedWeightLbsMax2000Lbs,
+	}
+}
+
+const (
+	// OpticalStandardOptic10gbaseSr is a OpticalStandard enum value
+	OpticalStandardOptic10gbaseSr = "OPTIC_10GBASE_SR"
+
+	// OpticalStandardOptic10gbaseIr is a OpticalStandard enum value
+	OpticalStandardOptic10gbaseIr = "OPTIC_10GBASE_IR"
+
+	// OpticalStandardOptic10gbaseLr is a OpticalStandard enum value
+	OpticalStandardOptic10gbaseLr = "OPTIC_10GBASE_LR"
+
+	// OpticalStandardOptic40gbaseSr is a OpticalStandard enum value
+	OpticalStandardOptic40gbaseSr = "OPTIC_40GBASE_SR"
+
+	// OpticalStandardOptic40gbaseEsr is a OpticalStandard enum value
+	OpticalStandardOptic40gbaseEsr = "OPTIC_40GBASE_ESR"
+
+	// OpticalStandardOptic40gbaseIr4Lr4l is a OpticalStandard enum value
+	OpticalStandardOptic40gbaseIr4Lr4l = "OPTIC_40GBASE_IR4_LR4L"
+
+	// OpticalStandardOptic40gbaseLr4 is a OpticalStandard enum value
+	OpticalStandardOptic40gbaseLr4 = "OPTIC_40GBASE_LR4"
+
+	// OpticalStandardOptic100gbaseSr4 is a OpticalStandard enum value
+	OpticalStandardOptic100gbaseSr4 = "OPTIC_100GBASE_SR4"
+
+	// OpticalStandardOptic100gbaseCwdm4 is a OpticalStandard enum value
+	OpticalStandardOptic100gbaseCwdm4 = "OPTIC_100GBASE_CWDM4"
+
+	// OpticalStandardOptic100gbaseLr4 is a OpticalStandard enum value
+	OpticalStandardOptic100gbaseLr4 = "OPTIC_100GBASE_LR4"
+
+	// OpticalStandardOptic100gPsm4Msa is a OpticalStandard enum value
+	OpticalStandardOptic100gPsm4Msa = "OPTIC_100G_PSM4_MSA"
+
+	// OpticalStandardOptic1000baseLx is a OpticalStandard enum value
+	OpticalStandardOptic1000baseLx = "OPTIC_1000BASE_LX"
+
+	// OpticalStandardOptic1000baseSx is a OpticalStandard enum value
+	OpticalStandardOptic1000baseSx = "OPTIC_1000BASE_SX"
+)
+
+// OpticalStandard_Values returns all elements of the OpticalStandard enum
+func OpticalStandard_Values() []string {
+	return []string{
+		OpticalStandardOptic10gbaseSr,
+		OpticalStandardOptic10gbaseIr,
+		OpticalStandardOptic10gbaseLr,
+		OpticalStandardOptic40gbaseSr,
+		OpticalStandardOptic40gbaseEsr,
+		OpticalStandardOptic40gbaseIr4Lr4l,
+		OpticalStandardOptic40gbaseLr4,
+		OpticalStandardOptic100gbaseSr4,
+		OpticalStandardOptic100gbaseCwdm4,
+		OpticalStandardOptic100gbaseLr4,
+		OpticalStandardOptic100gPsm4Msa,
+		OpticalStandardOptic1000baseLx,
+		OpticalStandardOptic1000baseSx,
+	}
+}
+
+const (
 	// OrderStatusReceived is a OrderStatus enum value
 	OrderStatusReceived = "RECEIVED"
 
@@ -3073,6 +6246,18 @@ const (
 
 	// OrderStatusCancelled is a OrderStatus enum value
 	OrderStatusCancelled = "CANCELLED"
+
+	// OrderStatusPreparing is a OrderStatus enum value
+	OrderStatusPreparing = "PREPARING"
+
+	// OrderStatusInProgress is a OrderStatus enum value
+	OrderStatusInProgress = "IN_PROGRESS"
+
+	// OrderStatusCompleted is a OrderStatus enum value
+	OrderStatusCompleted = "COMPLETED"
+
+	// OrderStatusError is a OrderStatus enum value
+	OrderStatusError = "ERROR"
 )
 
 // OrderStatus_Values returns all elements of the OrderStatus enum
@@ -3084,6 +6269,26 @@ func OrderStatus_Values() []string {
 		OrderStatusInstalling,
 		OrderStatusFulfilled,
 		OrderStatusCancelled,
+		OrderStatusPreparing,
+		OrderStatusInProgress,
+		OrderStatusCompleted,
+		OrderStatusError,
+	}
+}
+
+const (
+	// OrderTypeOutpost is a OrderType enum value
+	OrderTypeOutpost = "OUTPOST"
+
+	// OrderTypeReplacement is a OrderType enum value
+	OrderTypeReplacement = "REPLACEMENT"
+)
+
+// OrderType_Values returns all elements of the OrderType enum
+func OrderType_Values() []string {
+	return []string{
+		OrderTypeOutpost,
+		OrderTypeReplacement,
 	}
 }
 
@@ -3120,13 +6325,181 @@ func PaymentTerm_Values() []string {
 }
 
 const (
+	// PowerConnectorL630p is a PowerConnector enum value
+	PowerConnectorL630p = "L6_30P"
+
+	// PowerConnectorIec309 is a PowerConnector enum value
+	PowerConnectorIec309 = "IEC309"
+
+	// PowerConnectorAh530p7w is a PowerConnector enum value
+	PowerConnectorAh530p7w = "AH530P7W"
+
+	// PowerConnectorAh532p6w is a PowerConnector enum value
+	PowerConnectorAh532p6w = "AH532P6W"
+)
+
+// PowerConnector_Values returns all elements of the PowerConnector enum
+func PowerConnector_Values() []string {
+	return []string{
+		PowerConnectorL630p,
+		PowerConnectorIec309,
+		PowerConnectorAh530p7w,
+		PowerConnectorAh532p6w,
+	}
+}
+
+const (
+	// PowerDrawKvaPower5Kva is a PowerDrawKva enum value
+	PowerDrawKvaPower5Kva = "POWER_5_KVA"
+
+	// PowerDrawKvaPower10Kva is a PowerDrawKva enum value
+	PowerDrawKvaPower10Kva = "POWER_10_KVA"
+
+	// PowerDrawKvaPower15Kva is a PowerDrawKva enum value
+	PowerDrawKvaPower15Kva = "POWER_15_KVA"
+)
+
+// PowerDrawKva_Values returns all elements of the PowerDrawKva enum
+func PowerDrawKva_Values() []string {
+	return []string{
+		PowerDrawKvaPower5Kva,
+		PowerDrawKvaPower10Kva,
+		PowerDrawKvaPower15Kva,
+	}
+}
+
+const (
+	// PowerFeedDropAboveRack is a PowerFeedDrop enum value
+	PowerFeedDropAboveRack = "ABOVE_RACK"
+
+	// PowerFeedDropBelowRack is a PowerFeedDrop enum value
+	PowerFeedDropBelowRack = "BELOW_RACK"
+)
+
+// PowerFeedDrop_Values returns all elements of the PowerFeedDrop enum
+func PowerFeedDrop_Values() []string {
+	return []string{
+		PowerFeedDropAboveRack,
+		PowerFeedDropBelowRack,
+	}
+}
+
+const (
+	// PowerPhaseSinglePhase is a PowerPhase enum value
+	PowerPhaseSinglePhase = "SINGLE_PHASE"
+
+	// PowerPhaseThreePhase is a PowerPhase enum value
+	PowerPhaseThreePhase = "THREE_PHASE"
+)
+
+// PowerPhase_Values returns all elements of the PowerPhase enum
+func PowerPhase_Values() []string {
+	return []string{
+		PowerPhaseSinglePhase,
+		PowerPhaseThreePhase,
+	}
+}
+
+const (
 	// ResourceTypeOutpost is a ResourceType enum value
 	ResourceTypeOutpost = "OUTPOST"
+
+	// ResourceTypeOrder is a ResourceType enum value
+	ResourceTypeOrder = "ORDER"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
 func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeOutpost,
+		ResourceTypeOrder,
+	}
+}
+
+const (
+	// SupportedStorageEnumEbs is a SupportedStorageEnum enum value
+	SupportedStorageEnumEbs = "EBS"
+
+	// SupportedStorageEnumS3 is a SupportedStorageEnum enum value
+	SupportedStorageEnumS3 = "S3"
+)
+
+// SupportedStorageEnum_Values returns all elements of the SupportedStorageEnum enum
+func SupportedStorageEnum_Values() []string {
+	return []string{
+		SupportedStorageEnumEbs,
+		SupportedStorageEnumS3,
+	}
+}
+
+const (
+	// UplinkCountUplinkCount1 is a UplinkCount enum value
+	UplinkCountUplinkCount1 = "UPLINK_COUNT_1"
+
+	// UplinkCountUplinkCount2 is a UplinkCount enum value
+	UplinkCountUplinkCount2 = "UPLINK_COUNT_2"
+
+	// UplinkCountUplinkCount3 is a UplinkCount enum value
+	UplinkCountUplinkCount3 = "UPLINK_COUNT_3"
+
+	// UplinkCountUplinkCount4 is a UplinkCount enum value
+	UplinkCountUplinkCount4 = "UPLINK_COUNT_4"
+
+	// UplinkCountUplinkCount5 is a UplinkCount enum value
+	UplinkCountUplinkCount5 = "UPLINK_COUNT_5"
+
+	// UplinkCountUplinkCount6 is a UplinkCount enum value
+	UplinkCountUplinkCount6 = "UPLINK_COUNT_6"
+
+	// UplinkCountUplinkCount7 is a UplinkCount enum value
+	UplinkCountUplinkCount7 = "UPLINK_COUNT_7"
+
+	// UplinkCountUplinkCount8 is a UplinkCount enum value
+	UplinkCountUplinkCount8 = "UPLINK_COUNT_8"
+
+	// UplinkCountUplinkCount12 is a UplinkCount enum value
+	UplinkCountUplinkCount12 = "UPLINK_COUNT_12"
+
+	// UplinkCountUplinkCount16 is a UplinkCount enum value
+	UplinkCountUplinkCount16 = "UPLINK_COUNT_16"
+)
+
+// UplinkCount_Values returns all elements of the UplinkCount enum
+func UplinkCount_Values() []string {
+	return []string{
+		UplinkCountUplinkCount1,
+		UplinkCountUplinkCount2,
+		UplinkCountUplinkCount3,
+		UplinkCountUplinkCount4,
+		UplinkCountUplinkCount5,
+		UplinkCountUplinkCount6,
+		UplinkCountUplinkCount7,
+		UplinkCountUplinkCount8,
+		UplinkCountUplinkCount12,
+		UplinkCountUplinkCount16,
+	}
+}
+
+const (
+	// UplinkGbpsUplink1g is a UplinkGbps enum value
+	UplinkGbpsUplink1g = "UPLINK_1G"
+
+	// UplinkGbpsUplink10g is a UplinkGbps enum value
+	UplinkGbpsUplink10g = "UPLINK_10G"
+
+	// UplinkGbpsUplink40g is a UplinkGbps enum value
+	UplinkGbpsUplink40g = "UPLINK_40G"
+
+	// UplinkGbpsUplink100g is a UplinkGbps enum value
+	UplinkGbpsUplink100g = "UPLINK_100G"
+)
+
+// UplinkGbps_Values returns all elements of the UplinkGbps enum
+func UplinkGbps_Values() []string {
+	return []string{
+		UplinkGbpsUplink1g,
+		UplinkGbpsUplink10g,
+		UplinkGbpsUplink40g,
+		UplinkGbpsUplink100g,
 	}
 }

@@ -7,10 +7,12 @@
     "DeleteJob": "<p>Deletes a single Job by ID.</p>",
     "DeleteReplicationConfigurationTemplate": "<p>Deletes a single Replication Configuration Template by ID</p>",
     "DeleteSourceServer": "<p>Deletes a single source server by ID.</p>",
+    "DeleteVcenterClient": "<p>Deletes a single vCenter client by ID.</p>",
     "DescribeJobLogItems": "<p>Retrieves detailed Job log with paging.</p>",
     "DescribeJobs": "<p>Returns a list of Jobs. Use the JobsID and fromDate and toData filters to limit which jobs are returned. The response is sorted by creationDataTime - latest date first. Jobs are normaly created by the StartTest, StartCutover, and TerminateTargetInstances APIs. Jobs are also created by DiagnosticLaunch and TerminateDiagnosticInstances, which are APIs available only to *Support* and only used in response to relevant support tickets.</p>",
     "DescribeReplicationConfigurationTemplates": "<p>Lists all ReplicationConfigurationTemplates, filtered by Source Server IDs.</p>",
     "DescribeSourceServers": "<p>Retrieves all SourceServers or multiple SourceServers by ID.</p>",
+    "DescribeVcenterClients": "<p>Lists all vCenter clients.</p>",
     "DisconnectFromService": "<p>Disconnects specific Source Servers from Application Migration Service. Data replication is stopped immediately. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. If the agent on the source server has not been prevented from communciating with the Application Migration Service service, then it will receive a command to uninstall itself (within approximately 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be set to DISCONNECTED; The totalStorageBytes property for each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill be nullified.</p>",
     "FinalizeCutover": "<p>Finalizes the cutover immediately for specific Source Servers. All AWS resources created by Application Migration Service for enabling the replication of these source servers will be terminated / deleted within 90 minutes. Launched Test or Cutover instances will NOT be terminated. The AWS Replication Agent will receive a command to uninstall itself (within 10 minutes). The following properties of the SourceServer will be changed immediately: dataReplicationInfo.dataReplicationState will be to DISCONNECTED; The SourceServer.lifeCycle.state will be changed to CUTOVER; The totalStorageBytes property fo each of dataReplicationInfo.replicatedDisks will be set to zero; dataReplicationInfo.lagDuration and dataReplicationInfo.lagDurationwill be nullified.</p>",
     "GetLaunchConfiguration": "<p>Lists all LaunchConfigurations available, filtered by Source Server IDs.</p>",
@@ -20,13 +22,15 @@
     "MarkAsArchived": "<p>Archives specific Source Servers by setting the SourceServer.isArchived property to true for specified SourceServers by ID. This command only works for SourceServers with a lifecycle.state which equals DISCONNECTED or CUTOVER.</p>",
     "RetryDataReplication": "<p>Causes the data replication initiation sequence to begin immediately upon next Handshake for specified SourceServer IDs, regardless of when the previous initiation started. This command will not work if the SourceServer is not stalled or is in a DISCONNECTED or STOPPED state.</p>",
     "StartCutover": "<p>Launches a Cutover Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartCutover and changes the SourceServer.lifeCycle.state property to CUTTING_OVER.</p>",
+    "StartReplication": "<p>Starts replication on source server by ID.</p>",
     "StartTest": "<p>Lauches a Test Instance for specific Source Servers. This command starts a LAUNCH job whose initiatedBy property is StartTest and changes the SourceServer.lifeCycle.state property to TESTING.</p>",
     "TagResource": "<p>Adds or overwrites only the specified tags for the specified Application Migration Service resource or resources. When you specify an existing tag key, the value is overwritten with the new value. Each resource can have a maximum of 50 tags. Each tag consists of a key and optional value.</p>",
     "TerminateTargetInstances": "<p>Starts a job that terminates specific launched EC2 Test and Cutover instances. This command will not work for any Source Server with a lifecycle.state of TESTING, CUTTING_OVER, or CUTOVER.</p>",
     "UntagResource": "<p>Deletes the specified set of tags from the specified set of Application Migration Service resources.</p>",
     "UpdateLaunchConfiguration": "<p>Updates multiple LaunchConfigurations by Source Server ID.</p>",
     "UpdateReplicationConfiguration": "<p>Allows you to update multiple ReplicationConfigurations by Source Server ID.</p>",
-    "UpdateReplicationConfigurationTemplate": "<p>Updates multiple ReplicationConfigurationTemplates by ID.</p>"
+    "UpdateReplicationConfigurationTemplate": "<p>Updates multiple ReplicationConfigurationTemplates by ID.</p>",
+    "UpdateSourceServerReplicationType": "<p>Updates source server Replication Type by ID.</p>"
   },
   "shapes": {
     "ARN": {
@@ -43,7 +47,8 @@
         "UntagResourceRequest$resourceArn": "<p>Untag resource by ARN.</p>",
         "UpdateReplicationConfigurationRequest$ebsEncryptionKeyArn": "<p>Update replication configuration EBS encryption key ARN request.</p>",
         "UpdateReplicationConfigurationTemplateRequest$arn": "<p>Update replication configuration template ARN request.</p>",
-        "UpdateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>Update replication configuration template EBS encryption key ARN request.</p>"
+        "UpdateReplicationConfigurationTemplateRequest$ebsEncryptionKeyArn": "<p>Update replication configuration template EBS encryption key ARN request.</p>",
+        "VcenterClient$arn": "<p>Arn of vCenter client.</p>"
       }
     },
     "AccessDeniedException": {
@@ -89,11 +94,15 @@
         "IPsList$member": null,
         "IdentificationHints$fqdn": "<p>FQDN address identification hint.</p>",
         "IdentificationHints$hostname": "<p>Hostname identification hint.</p>",
+        "IdentificationHints$vmPath": "<p>vCenter VM path identification hint.</p>",
         "IdentificationHints$vmWareUuid": "<p>vmWare UUID identification hint.</p>",
         "LaunchConfiguration$ec2LaunchTemplateID": "<p>Configure EC2 lauch configuration template ID.</p>",
         "NetworkInterface$macAddress": "<p>Network interface Mac address.</p>",
         "OS$fullString": "<p>OS full string.</p>",
-        "ReplicationConfigurationReplicatedDisk$deviceName": "<p>Replication Configuration replicated disk device name.</p>"
+        "ReplicationConfigurationReplicatedDisk$deviceName": "<p>Replication Configuration replicated disk device name.</p>",
+        "VcenterClient$datacenterName": "<p>Datacenter name of vCenter client.</p>",
+        "VcenterClient$hostname": "<p>Hostname of vCenter client .</p>",
+        "VcenterClient$vcenterUUID": "<p>Vcenter UUID of vCenter client.</p>"
       }
     },
     "CPU": {
@@ -231,6 +240,11 @@
       "refs": {
       }
     },
+    "DeleteVcenterClientRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeJobLogItemsRequest": {
       "base": null,
       "refs": {
@@ -291,6 +305,16 @@
       }
     },
     "DescribeSourceServersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeVcenterClientsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeVcenterClientsResponse": {
       "base": null,
       "refs": {
       }
@@ -364,6 +388,7 @@
       "refs": {
         "DataReplicationInfo$etaDateTime": "<p>Request to query the time when data replication will be complete.</p>",
         "DataReplicationInfo$lagDuration": "<p>Request to query data replication lag durating.</p>",
+        "DataReplicationInfo$lastSnapshotDateTime": "<p>Request to query data replication last snapshot time.</p>",
         "DataReplicationInitiation$nextAttemptDateTime": "<p>Request to query next data initiation date and time.</p>",
         "DataReplicationInitiation$startDateTime": "<p>Request to query data initiation start date and time.</p>",
         "DescribeJobsRequestFilters$fromDate": "<p>Request to describe Job log filters by date.</p>",
@@ -381,7 +406,8 @@
         "LifeCycleLastTestFinalized$apiCallDateTime": "<p>Lifecycle Test failed API call date and time.</p>",
         "LifeCycleLastTestInitiated$apiCallDateTime": "<p>Lifecycle last Test initiated API call date and time.</p>",
         "LifeCycleLastTestReverted$apiCallDateTime": "<p>Lifecycle last Test reverted API call date and time.</p>",
-        "SourceProperties$lastUpdatedDateTime": "<p>Source server last update date and time.</p>"
+        "SourceProperties$lastUpdatedDateTime": "<p>Source server last update date and time.</p>",
+        "VcenterClient$lastSeenDatetime": "<p>Last seen time of vCenter client.</p>"
       }
     },
     "IdentificationHints": {
@@ -490,6 +516,12 @@
         "ResourceNotFoundException$message": null,
         "ResourceNotFoundException$resourceId": "<p>Resource ID not found error.</p>",
         "ResourceNotFoundException$resourceType": "<p>Resource type not found error.</p>",
+        "ServiceQuotaExceededException$code": null,
+        "ServiceQuotaExceededException$message": null,
+        "ServiceQuotaExceededException$quotaCode": "<p>Exceeded the service quota code.</p>",
+        "ServiceQuotaExceededException$resourceId": "<p>Exceeded the service quota resource Id.</p>",
+        "ServiceQuotaExceededException$resourceType": "<p>Exceeded the service quota resource type.</p>",
+        "ServiceQuotaExceededException$serviceCode": "<p>Exceeded the service quota service code.</p>",
         "ThrottlingException$message": null,
         "ThrottlingException$quotaCode": "<p>Reached throttling quota exception.</p>",
         "ThrottlingException$retryAfterSeconds": "<p>Reached throttling quota exception will retry after x seconds.</p>",
@@ -590,7 +622,14 @@
     "LifeCycleState": {
       "base": null,
       "refs": {
-        "LifeCycle$state": "<p>Lifecycle state.</p>"
+        "LifeCycle$state": "<p>Lifecycle state.</p>",
+        "LifeCycleStates$member": null
+      }
+    },
+    "LifeCycleStates": {
+      "base": null,
+      "refs": {
+        "DescribeSourceServersRequestFilters$lifeCycleStates": "<p>Request to filter Source Servers list by life cycle states.</p>"
       }
     },
     "ListTagsForResourceRequest": {
@@ -636,7 +675,9 @@
         "DescribeReplicationConfigurationTemplatesRequest$nextToken": "<p>Request to describe Replication Configuration template by next token.</p>",
         "DescribeReplicationConfigurationTemplatesResponse$nextToken": "<p>Request to describe Replication Configuration template by next token.</p>",
         "DescribeSourceServersRequest$nextToken": "<p>Request to filter Source Servers list by next token.</p>",
-        "DescribeSourceServersResponse$nextToken": "<p>Request to filter Source Servers next token.</p>"
+        "DescribeSourceServersResponse$nextToken": "<p>Request to filter Source Servers next token.</p>",
+        "DescribeVcenterClientsRequest$nextToken": "<p>Next pagination token to be provided for DescribeVcenterClients.</p>",
+        "DescribeVcenterClientsResponse$nextToken": "<p>Next pagination token returned from DescribeVcenterClients.</p>"
       }
     },
     "ParticipatingServer": {
@@ -761,6 +802,20 @@
         "UpdateReplicationConfigurationTemplateRequest$replicationServersSecurityGroupsIDs": "<p>Update replication configuration template Replication Server Security groups IDs request.</p>"
       }
     },
+    "ReplicationType": {
+      "base": null,
+      "refs": {
+        "ReplicationTypes$member": null,
+        "SourceServer$replicationType": "<p>Source server replication type.</p>",
+        "UpdateSourceServerReplicationTypeRequest$replicationType": "<p>Replication type to which to update source server.</p>"
+      }
+    },
+    "ReplicationTypes": {
+      "base": null,
+      "refs": {
+        "DescribeSourceServersRequestFilters$replicationTypes": "<p>Request to filter Source Servers list by replication type.</p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>Resource not found exception.</p>",
       "refs": {
@@ -775,6 +830,11 @@
       "base": null,
       "refs": {
         "ReplicationServersSecurityGroupsIDs$member": null
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>The request could not be completed because its exceeded the service quota.</p>",
+      "refs": {
       }
     },
     "SmallBoundedString": {
@@ -816,10 +876,12 @@
         "RetryDataReplicationRequest$sourceServerID": "<p>Retry data replication for Source Server ID.</p>",
         "SourceServer$sourceServerID": "<p>Source server ID.</p>",
         "StartCutoverRequestSourceServerIDs$member": null,
+        "StartReplicationRequest$sourceServerID": "<p>ID of source server on which to start replication.</p>",
         "StartTestRequestSourceServerIDs$member": null,
         "TerminateTargetInstancesRequestSourceServerIDs$member": null,
         "UpdateLaunchConfigurationRequest$sourceServerID": "<p>Update Launch configuration by Source Server ID request.</p>",
-        "UpdateReplicationConfigurationRequest$sourceServerID": "<p>Update replication configuration Source Server ID request.</p>"
+        "UpdateReplicationConfigurationRequest$sourceServerID": "<p>Update replication configuration Source Server ID request.</p>",
+        "UpdateSourceServerReplicationTypeRequest$sourceServerID": "<p>ID of source server on which to update replication type.</p>"
       }
     },
     "SourceServersList": {
@@ -840,6 +902,11 @@
       }
     },
     "StartCutoverResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartReplicationRequest": {
       "base": null,
       "refs": {
       }
@@ -866,7 +933,8 @@
         "DescribeJobLogItemsRequest$maxResults": "<p>Request to describe Job log item maximum results.</p>",
         "DescribeJobsRequest$maxResults": "<p>Request to describe Job log by max results.</p>",
         "DescribeReplicationConfigurationTemplatesRequest$maxResults": "<p>Request to describe Replication Configuration template by max results.</p>",
-        "DescribeSourceServersRequest$maxResults": "<p>Request to filter Source Servers list by maximum results.</p>"
+        "DescribeSourceServersRequest$maxResults": "<p>Request to filter Source Servers list by maximum results.</p>",
+        "DescribeVcenterClientsRequest$maxResults": "<p>Maximum results to be returned in DescribeVcenterClients.</p>"
       }
     },
     "SubnetID": {
@@ -919,7 +987,9 @@
         "TagResourceRequest$tags": "<p>Tag resource by Tags.</p>",
         "TerminateTargetInstancesRequest$tags": "<p>Terminate Target instance by Tags.</p>",
         "UpdateReplicationConfigurationRequest$stagingAreaTags": "<p>Update replication configuration Staging Area Tags request.</p>",
-        "UpdateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>Update replication configuration template Staging Area Tags request.</p>"
+        "UpdateReplicationConfigurationTemplateRequest$stagingAreaTags": "<p>Update replication configuration template Staging Area Tags request.</p>",
+        "VcenterClient$sourceServerTags": "<p>Tags for Source Server of vCenter client.</p>",
+        "VcenterClient$tags": "<p>Tags for vCenter client.</p>"
       }
     },
     "TargetInstanceTypeRightSizingMethod": {
@@ -975,6 +1045,11 @@
       "refs": {
       }
     },
+    "UpdateSourceServerReplicationTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ValidationException": {
       "base": "<p>Validate exception.</p>",
       "refs": {
@@ -996,6 +1071,26 @@
       "base": null,
       "refs": {
         "ValidationException$reason": "<p>Validate exception reason.</p>"
+      }
+    },
+    "VcenterClient": {
+      "base": "<p>vCenter client.</p>",
+      "refs": {
+        "VcenterClientList$member": null
+      }
+    },
+    "VcenterClientID": {
+      "base": null,
+      "refs": {
+        "DeleteVcenterClientRequest$vcenterClientID": "<p>ID of resource to be deleted.</p>",
+        "SourceServer$vcenterClientID": "<p>Source server vCenter client id.</p>",
+        "VcenterClient$vcenterClientID": "<p>ID of vCenter client.</p>"
+      }
+    },
+    "VcenterClientList": {
+      "base": null,
+      "refs": {
+        "DescribeVcenterClientsResponse$items": "<p>List of items returned by DescribeVcenterClients.</p>"
       }
     }
   }

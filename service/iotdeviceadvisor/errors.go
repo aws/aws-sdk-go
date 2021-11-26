@@ -11,25 +11,25 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// Sends Conflict Exception.
+	// Sends a Conflict Exception.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
 	// "InternalServerException".
 	//
-	// Sends Internal Failure Exception.
+	// Sends an Internal Failure exception.
 	ErrCodeInternalServerException = "InternalServerException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// Sends Resource Not Found Exception.
+	// Sends a Resource Not Found exception.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// Sends invalid request exception.
+	// Sends a validation exception.
 	ErrCodeValidationException = "ValidationException"
 )
 

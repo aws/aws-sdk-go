@@ -4,12 +4,12 @@
   "operations": {
     "CreateSuiteDefinition": "<p>Creates a Device Advisor test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateSuiteDefinition</a> action.</p>",
     "DeleteSuiteDefinition": "<p>Deletes a Device Advisor test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteSuiteDefinition</a> action.</p>",
-    "GetEndpoint": null,
+    "GetEndpoint": "<p>Gets information about an Device Advisor endpoint.</p>",
     "GetSuiteDefinition": "<p>Gets information about a Device Advisor test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetSuiteDefinition</a> action.</p>",
     "GetSuiteRun": "<p>Gets information about a Device Advisor test suite run.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetSuiteRun</a> action.</p>",
     "GetSuiteRunReport": "<p>Gets a report download link for a successful Device Advisor qualifying test suite run.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetSuiteRunReport</a> action.</p>",
     "ListSuiteDefinitions": "<p>Lists the Device Advisor test suites you have created.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSuiteDefinitions</a> action.</p>",
-    "ListSuiteRuns": "<p>Lists the runs of the specified Device Advisor test suite. You can list all runs of the test suite, or the runs of a specific version of the test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSuiteRuns</a> action.</p>",
+    "ListSuiteRuns": "<p>Lists runs of the specified Device Advisor test suite. You can list all runs of the test suite, or the runs of a specific version of the test suite.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSuiteRuns</a> action.</p>",
     "ListTagsForResource": "<p>Lists the tags attached to an IoT Device Advisor resource.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTagsForResource</a> action.</p>",
     "StartSuiteRun": "<p>Starts a Device Advisor test suite run.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StartSuiteRun</a> action.</p>",
     "StopSuiteRun": "<p>Stops a Device Advisor test suite run that is currently running.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StopSuiteRun</a> action.</p>",
@@ -24,20 +24,20 @@
         "CreateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Creates a Device Advisor test suite with Amazon Resource Name (ARN).</p>",
         "DeviceUnderTest$thingArn": "<p>Lists devices thing ARN.</p>",
         "DeviceUnderTest$certificateArn": "<p>Lists devices certificate ARN.</p>",
-        "GetEndpointRequest$thingArn": null,
-        "GetEndpointRequest$certificateArn": null,
+        "GetEndpointRequest$thingArn": "<p>The thing ARN of the device. This is an optional parameter.</p>",
+        "GetEndpointRequest$certificateArn": "<p>The certificate ARN of the device. This is an optional parameter.</p>",
         "GetSuiteDefinitionResponse$suiteDefinitionArn": "<p>The ARN of the suite definition.</p>",
         "GetSuiteRunResponse$suiteRunArn": "<p>The ARN of the suite run.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the IoT Device Advisor resource.</p>",
         "StartSuiteRunResponse$suiteRunArn": "<p>Amazon Resource Name (ARN) of the started suite run.</p>",
-        "SuiteDefinitionConfiguration$devicePermissionRoleArn": "<p>Gets device permission ARN.</p>",
+        "SuiteDefinitionConfiguration$devicePermissionRoleArn": "<p>Gets the device permission ARN.</p>",
         "TagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The resource ARN of an IoT Device Advisor resource.</p>",
         "UpdateSuiteDefinitionResponse$suiteDefinitionArn": "<p>Amazon Resource Name (ARN) of the updated test suite.</p>"
       }
     },
     "ConflictException": {
-      "base": "<p>Sends Conflict Exception.</p>",
+      "base": "<p>Sends a Conflict Exception.</p>",
       "refs": {
       }
     },
@@ -62,7 +62,7 @@
       }
     },
     "DeviceUnderTest": {
-      "base": "<p>Information of a test device. Required to provide either a thing ARN or a certificate ARN.</p>",
+      "base": "<p>Information of a test device. A thing ARN or a certificate ARN is required.</p>",
       "refs": {
         "DeviceUnderTestList$member": null,
         "SuiteRunConfiguration$primaryDevice": "<p>Gets the primary device for suite run.</p>"
@@ -72,13 +72,13 @@
       "base": null,
       "refs": {
         "SuiteDefinitionConfiguration$devices": "<p>Gets the devices configured.</p>",
-        "SuiteDefinitionInformation$defaultDevices": "<p>Specifies the devices under test for the test suite.</p>"
+        "SuiteDefinitionInformation$defaultDevices": "<p>Specifies the devices that are under test for the test suite.</p>"
       }
     },
     "Endpoint": {
       "base": null,
       "refs": {
-        "GetEndpointResponse$endpoint": null
+        "GetEndpointResponse$endpoint": "<p>The response of an Device Advisor endpoint.</p>"
       }
     },
     "ErrorReason": {
@@ -159,7 +159,7 @@
       }
     },
     "InternalServerException": {
-      "base": "<p>Sends Internal Failure Exception.</p>",
+      "base": "<p>Sends an Internal Failure exception.</p>",
       "refs": {
       }
     },
@@ -196,7 +196,7 @@
     "LogUrl": {
       "base": null,
       "refs": {
-        "TestCaseRun$logUrl": "<p>Provides test case run log Url.</p>"
+        "TestCaseRun$logUrl": "<p>Provides test case run log URL.</p>"
       }
     },
     "MaxResults": {
@@ -209,16 +209,16 @@
     "Message": {
       "base": null,
       "refs": {
-        "ConflictException$message": "<p>Sends Conflict Exception message.</p>",
-        "InternalServerException$message": "<p>Sends Internal Failure Exception message.</p>",
-        "ResourceNotFoundException$message": "<p>Sends Resource Not Found Exception message.</p>",
-        "ValidationException$message": "<p>Sends invalid request exception message.</p>"
+        "ConflictException$message": "<p>Sends a Conflict Exception message.</p>",
+        "InternalServerException$message": "<p>Sends an Internal Failure Exception message.</p>",
+        "ResourceNotFoundException$message": "<p>Sends a Resource Not Found Exception message.</p>",
+        "ValidationException$message": "<p>Sends a Validation Exception message.</p>"
       }
     },
     "ParallelRun": {
       "base": null,
       "refs": {
-        "SuiteRunConfiguration$parallelRun": null
+        "SuiteRunConfiguration$parallelRun": "<p>TRUE if multiple test suites run in parallel.</p>"
       }
     },
     "QualificationReportDownloadUrl": {
@@ -228,7 +228,7 @@
       }
     },
     "ResourceNotFoundException": {
-      "base": "<p>Sends Resource Not Found Exception.</p>",
+      "base": "<p>Sends a Resource Not Found exception.</p>",
       "refs": {
       }
     },
@@ -257,7 +257,7 @@
     "Status": {
       "base": null,
       "refs": {
-        "TestCaseRun$status": "<p>Provides test case run status.</p> <ul> <li> <p> <code>PASS</code>: Test passed.</p> </li> <li> <p> <code>FAIL</code>: Test failed.</p> </li> <li> <p> <code>PENDING</code>: Test has not started running but is scheduled.</p> </li> <li> <p> <code>RUNNING</code>: Test is running</p> </li> <li> <p> <code>STOPPING</code>: Test is performing cleanup steps. You will see this status only if you stop a suite run.</p> </li> <li> <p> <code>STOPPED</code> Test is stopped. You will see this status only if you stop a suite run.</p> </li> <li> <p> <code>PASS_WITH_WARNINGS</code>: Test passed with warnings.</p> </li> <li> <p> <code>ERORR</code>: Test faced an error when running due to an internal issue.</p> </li> </ul>"
+        "TestCaseRun$status": "<p>Provides the test case run status. Status is one of the following:</p> <ul> <li> <p> <code>PASS</code>: Test passed.</p> </li> <li> <p> <code>FAIL</code>: Test failed.</p> </li> <li> <p> <code>PENDING</code>: Test has not started running but is scheduled.</p> </li> <li> <p> <code>RUNNING</code>: Test is running.</p> </li> <li> <p> <code>STOPPING</code>: Test is performing cleanup steps. You will see this status only if you stop a suite run.</p> </li> <li> <p> <code>STOPPED</code> Test is stopped. You will see this status only if you stop a suite run.</p> </li> <li> <p> <code>PASS_WITH_WARNINGS</code>: Test passed with warnings.</p> </li> <li> <p> <code>ERORR</code>: Test faced an error when running due to an internal issue.</p> </li> </ul>"
       }
     },
     "StopSuiteRunRequest": {
@@ -320,7 +320,7 @@
         "GetSuiteDefinitionResponse$suiteDefinitionVersion": "<p>Suite definition version of the suite definition.</p>",
         "GetSuiteDefinitionResponse$latestVersion": "<p>Latest suite definition version of the suite definition.</p>",
         "GetSuiteRunResponse$suiteDefinitionVersion": "<p>Suite definition version for the test suite run.</p>",
-        "ListSuiteRunsRequest$suiteDefinitionVersion": "<p>Must be passed along with suiteDefinitionId. Lists the test suite runs of the specified test suite based on suite definition version.</p>",
+        "ListSuiteRunsRequest$suiteDefinitionVersion": "<p>Must be passed along with <code>suiteDefinitionId</code>. Lists the test suite runs of the specified test suite based on suite definition version.</p>",
         "StartSuiteRunRequest$suiteDefinitionVersion": "<p>Suite definition version of the test suite.</p>",
         "SuiteRunInformation$suiteDefinitionVersion": "<p>Suite definition version of the suite run.</p>",
         "UpdateSuiteDefinitionResponse$suiteDefinitionVersion": "<p>Suite definition version of the updated test suite.</p>"
@@ -389,11 +389,11 @@
     "TestCaseDefinitionName": {
       "base": null,
       "refs": {
-        "TestCaseRun$testCaseDefinitionName": "<p>Provides test case run definition Name.</p>"
+        "TestCaseRun$testCaseDefinitionName": "<p>Provides the test case run definition name.</p>"
       }
     },
     "TestCaseRun": {
-      "base": "<p>Provides test case run.</p>",
+      "base": "<p>Provides the test case run.</p>",
       "refs": {
         "TestCaseRuns$member": null
       }
@@ -416,7 +416,7 @@
         "CreateSuiteDefinitionResponse$createdAt": "<p>Creates a Device Advisor test suite with TimeStamp of when it was created.</p>",
         "GetSuiteDefinitionResponse$createdAt": "<p>Date (in Unix epoch time) when the suite definition was created.</p>",
         "GetSuiteDefinitionResponse$lastModifiedAt": "<p>Date (in Unix epoch time) when the suite definition was last modified.</p>",
-        "GetSuiteRunResponse$startTime": "<p>Date (in Unix epoch time) when the test suite run was started.</p>",
+        "GetSuiteRunResponse$startTime": "<p>Date (in Unix epoch time) when the test suite run started.</p>",
         "GetSuiteRunResponse$endTime": "<p>Date (in Unix epoch time) when the test suite run ended.</p>",
         "StartSuiteRunResponse$createdAt": "<p>Starts a Device Advisor test suite run based on suite create time.</p>",
         "SuiteDefinitionInformation$createdAt": "<p>Date (in Unix epoch time) when the test suite was created.</p>",
@@ -461,8 +461,8 @@
         "SuiteDefinitionInformation$suiteDefinitionId": "<p>Suite definition ID of the test suite.</p>",
         "SuiteRunInformation$suiteDefinitionId": "<p>Suite definition ID of the suite run.</p>",
         "SuiteRunInformation$suiteRunId": "<p>Suite run ID of the suite run.</p>",
-        "TestCaseRun$testCaseRunId": "<p>Provides test case run ID.</p>",
-        "TestCaseRun$testCaseDefinitionId": "<p>Provides test case run definition ID.</p>",
+        "TestCaseRun$testCaseRunId": "<p>Provides the test case run ID.</p>",
+        "TestCaseRun$testCaseDefinitionId": "<p>Provides the test case run definition ID.</p>",
         "UpdateSuiteDefinitionRequest$suiteDefinitionId": "<p>Suite definition ID of the test suite to be updated.</p>",
         "UpdateSuiteDefinitionResponse$suiteDefinitionId": "<p>Suite definition ID of the updated test suite.</p>"
       }
@@ -488,7 +488,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p>Sends invalid request exception.</p>",
+      "base": "<p>Sends a validation exception.</p>",
       "refs": {
       }
     },

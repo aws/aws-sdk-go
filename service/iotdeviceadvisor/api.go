@@ -71,10 +71,10 @@ func (c *IoTDeviceAdvisor) CreateSuiteDefinitionRequest(input *CreateSuiteDefini
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/CreateSuiteDefinition
 func (c *IoTDeviceAdvisor) CreateSuiteDefinition(input *CreateSuiteDefinitionInput) (*CreateSuiteDefinitionOutput, error) {
@@ -157,10 +157,10 @@ func (c *IoTDeviceAdvisor) DeleteSuiteDefinitionRequest(input *DeleteSuiteDefini
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/DeleteSuiteDefinition
 func (c *IoTDeviceAdvisor) DeleteSuiteDefinition(input *DeleteSuiteDefinitionInput) (*DeleteSuiteDefinitionOutput, error) {
@@ -228,6 +228,8 @@ func (c *IoTDeviceAdvisor) GetEndpointRequest(input *GetEndpointInput) (req *req
 
 // GetEndpoint API operation for AWS IoT Core Device Advisor.
 //
+// Gets information about an Device Advisor endpoint.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -237,13 +239,13 @@ func (c *IoTDeviceAdvisor) GetEndpointRequest(input *GetEndpointInput) (req *req
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 //   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetEndpoint
 func (c *IoTDeviceAdvisor) GetEndpoint(input *GetEndpointInput) (*GetEndpointOutput, error) {
@@ -325,13 +327,13 @@ func (c *IoTDeviceAdvisor) GetSuiteDefinitionRequest(input *GetSuiteDefinitionIn
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 //   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetSuiteDefinition
 func (c *IoTDeviceAdvisor) GetSuiteDefinition(input *GetSuiteDefinitionInput) (*GetSuiteDefinitionOutput, error) {
@@ -413,13 +415,13 @@ func (c *IoTDeviceAdvisor) GetSuiteRunRequest(input *GetSuiteRunInput) (req *req
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 //   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetSuiteRun
 func (c *IoTDeviceAdvisor) GetSuiteRun(input *GetSuiteRunInput) (*GetSuiteRunOutput, error) {
@@ -502,13 +504,13 @@ func (c *IoTDeviceAdvisor) GetSuiteRunReportRequest(input *GetSuiteRunReportInpu
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 //   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/GetSuiteRunReport
 func (c *IoTDeviceAdvisor) GetSuiteRunReport(input *GetSuiteRunReportInput) (*GetSuiteRunReportOutput, error) {
@@ -596,10 +598,10 @@ func (c *IoTDeviceAdvisor) ListSuiteDefinitionsRequest(input *ListSuiteDefinitio
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/ListSuiteDefinitions
 func (c *IoTDeviceAdvisor) ListSuiteDefinitions(input *ListSuiteDefinitionsInput) (*ListSuiteDefinitionsOutput, error) {
@@ -725,8 +727,8 @@ func (c *IoTDeviceAdvisor) ListSuiteRunsRequest(input *ListSuiteRunsInput) (req 
 
 // ListSuiteRuns API operation for AWS IoT Core Device Advisor.
 //
-// Lists the runs of the specified Device Advisor test suite. You can list all
-// runs of the test suite, or the runs of a specific version of the test suite.
+// Lists runs of the specified Device Advisor test suite. You can list all runs
+// of the test suite, or the runs of a specific version of the test suite.
 //
 // Requires permission to access the ListSuiteRuns (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
 // action.
@@ -740,10 +742,10 @@ func (c *IoTDeviceAdvisor) ListSuiteRunsRequest(input *ListSuiteRunsInput) (req 
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/ListSuiteRuns
 func (c *IoTDeviceAdvisor) ListSuiteRuns(input *ListSuiteRunsInput) (*ListSuiteRunsOutput, error) {
@@ -877,13 +879,13 @@ func (c *IoTDeviceAdvisor) ListTagsForResourceRequest(input *ListTagsForResource
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/ListTagsForResource
 func (c *IoTDeviceAdvisor) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -965,13 +967,13 @@ func (c *IoTDeviceAdvisor) StartSuiteRunRequest(input *StartSuiteRunInput) (req 
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 //   * ConflictException
-//   Sends Conflict Exception.
+//   Sends a Conflict Exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/StartSuiteRun
 func (c *IoTDeviceAdvisor) StartSuiteRun(input *StartSuiteRunInput) (*StartSuiteRunOutput, error) {
@@ -1054,13 +1056,13 @@ func (c *IoTDeviceAdvisor) StopSuiteRunRequest(input *StopSuiteRunInput) (req *r
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   Sends a Resource Not Found exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/StopSuiteRun
 func (c *IoTDeviceAdvisor) StopSuiteRun(input *StopSuiteRunInput) (*StopSuiteRunOutput, error) {
@@ -1143,13 +1145,13 @@ func (c *IoTDeviceAdvisor) TagResourceRequest(input *TagResourceInput) (req *req
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/TagResource
 func (c *IoTDeviceAdvisor) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -1232,13 +1234,13 @@ func (c *IoTDeviceAdvisor) UntagResourceRequest(input *UntagResourceInput) (req 
 //
 // Returned Error Types:
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * ResourceNotFoundException
-//   Sends Resource Not Found Exception.
+//   Sends a Resource Not Found exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/UntagResource
 func (c *IoTDeviceAdvisor) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -1320,10 +1322,10 @@ func (c *IoTDeviceAdvisor) UpdateSuiteDefinitionRequest(input *UpdateSuiteDefini
 //
 // Returned Error Types:
 //   * ValidationException
-//   Sends invalid request exception.
+//   Sends a validation exception.
 //
 //   * InternalServerException
-//   Sends Internal Failure Exception.
+//   Sends an Internal Failure exception.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotdeviceadvisor-2020-09-18/UpdateSuiteDefinition
 func (c *IoTDeviceAdvisor) UpdateSuiteDefinition(input *UpdateSuiteDefinitionInput) (*UpdateSuiteDefinitionOutput, error) {
@@ -1347,12 +1349,12 @@ func (c *IoTDeviceAdvisor) UpdateSuiteDefinitionWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
-// Sends Conflict Exception.
+// Sends a Conflict Exception.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Sends Conflict Exception message.
+	// Sends a Conflict Exception message.
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
@@ -1596,8 +1598,7 @@ func (s DeleteSuiteDefinitionOutput) GoString() string {
 	return s.String()
 }
 
-// Information of a test device. Required to provide either a thing ARN or a
-// certificate ARN.
+// Information of a test device. A thing ARN or a certificate ARN is required.
 type DeviceUnderTest struct {
 	_ struct{} `type:"structure"`
 
@@ -1657,8 +1658,10 @@ func (s *DeviceUnderTest) SetThingArn(v string) *DeviceUnderTest {
 type GetEndpointInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
+	// The certificate ARN of the device. This is an optional parameter.
 	CertificateArn *string `location:"querystring" locationName:"certificateArn" min:"20" type:"string"`
 
+	// The thing ARN of the device. This is an optional parameter.
 	ThingArn *string `location:"querystring" locationName:"thingArn" min:"20" type:"string"`
 }
 
@@ -1711,6 +1714,7 @@ func (s *GetEndpointInput) SetThingArn(v string) *GetEndpointInput {
 type GetEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The response of an Device Advisor endpoint.
 	Endpoint *string `locationName:"endpoint" min:"45" type:"string"`
 }
 
@@ -1968,7 +1972,7 @@ type GetSuiteRunOutput struct {
 	// Error reason for any test suite run failure.
 	ErrorReason *string `locationName:"errorReason" type:"string"`
 
-	// Date (in Unix epoch time) when the test suite run was started.
+	// Date (in Unix epoch time) when the test suite run started.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
 	// Status for the test suite run.
@@ -2227,12 +2231,12 @@ func (s *GroupResult) SetTests(v []*TestCaseRun) *GroupResult {
 	return s
 }
 
-// Sends Internal Failure Exception.
+// Sends an Internal Failure exception.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Sends Internal Failure Exception message.
+	// Sends an Internal Failure Exception message.
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
@@ -2586,12 +2590,12 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Sends Resource Not Found Exception.
+// Sends a Resource Not Found exception.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Sends Resource Not Found Exception message.
+	// Sends a Resource Not Found Exception message.
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
@@ -2876,7 +2880,7 @@ func (s StopSuiteRunOutput) GoString() string {
 type SuiteDefinitionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Gets device permission ARN.
+	// Gets the device permission ARN.
 	DevicePermissionRoleArn *string `locationName:"devicePermissionRoleArn" min:"20" type:"string"`
 
 	// Gets the devices configured.
@@ -2976,7 +2980,7 @@ type SuiteDefinitionInformation struct {
 	// Date (in Unix epoch time) when the test suite was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
-	// Specifies the devices under test for the test suite.
+	// Specifies the devices that are under test for the test suite.
 	DefaultDevices []*DeviceUnderTest `locationName:"defaultDevices" type:"list"`
 
 	// Specifies if the test suite is intended for qualification.
@@ -3041,6 +3045,7 @@ func (s *SuiteDefinitionInformation) SetSuiteDefinitionName(v string) *SuiteDefi
 type SuiteRunConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// TRUE if multiple test suites run in parallel.
 	ParallelRun *bool `locationName:"parallelRun" type:"boolean"`
 
 	// Gets the primary device for suite run.
@@ -3302,7 +3307,7 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Provides test case run.
+// Provides the test case run.
 type TestCaseRun struct {
 	_ struct{} `type:"structure"`
 
@@ -3312,13 +3317,13 @@ type TestCaseRun struct {
 	// Provides test case run failure result.
 	Failure *string `locationName:"failure" type:"string"`
 
-	// Provides test case run log Url.
+	// Provides test case run log URL.
 	LogUrl *string `locationName:"logUrl" type:"string"`
 
 	// Provides test case run start time.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
-	// Provides test case run status.
+	// Provides the test case run status. Status is one of the following:
 	//
 	//    * PASS: Test passed.
 	//
@@ -3326,7 +3331,7 @@ type TestCaseRun struct {
 	//
 	//    * PENDING: Test has not started running but is scheduled.
 	//
-	//    * RUNNING: Test is running
+	//    * RUNNING: Test is running.
 	//
 	//    * STOPPING: Test is performing cleanup steps. You will see this status
 	//    only if you stop a suite run.
@@ -3339,13 +3344,13 @@ type TestCaseRun struct {
 	//    * ERORR: Test faced an error when running due to an internal issue.
 	Status *string `locationName:"status" type:"string" enum:"Status"`
 
-	// Provides test case run definition ID.
+	// Provides the test case run definition ID.
 	TestCaseDefinitionId *string `locationName:"testCaseDefinitionId" min:"12" type:"string"`
 
-	// Provides test case run definition Name.
+	// Provides the test case run definition name.
 	TestCaseDefinitionName *string `locationName:"testCaseDefinitionName" type:"string"`
 
-	// Provides test case run ID.
+	// Provides the test case run ID.
 	TestCaseRunId *string `locationName:"testCaseRunId" min:"12" type:"string"`
 
 	// Provides test case run warnings.
@@ -3680,12 +3685,12 @@ func (s *UpdateSuiteDefinitionOutput) SetSuiteDefinitionVersion(v string) *Updat
 	return s
 }
 
-// Sends invalid request exception.
+// Sends a validation exception.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// Sends invalid request exception message.
+	// Sends a Validation Exception message.
 	Message_ *string `locationName:"message" min:"1" type:"string"`
 }
 
