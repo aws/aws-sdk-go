@@ -109,8 +109,8 @@ const (
 	// "UnsupportedDocumentException".
 	//
 	// The format of the input document isn't supported. Documents for synchronous
-	// operations can be in PNG or JPEG format. Documents for asynchronous operations
-	// can also be in PDF format.
+	// operations can be in PNG or JPEG format only. Documents for asynchronous
+	// operations can be in PDF format.
 	ErrCodeUnsupportedDocumentException = "UnsupportedDocumentException"
 )
 

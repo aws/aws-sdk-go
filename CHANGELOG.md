@@ -1,3 +1,12 @@
+Release v1.42.14 (2021-11-29)
+===
+
+### Service Client Updates
+* `service/migration-hub-refactor-spaces`: Adds new service
+* `service/personalize`: Updates service API, documentation, and paginators
+* `service/personalize-runtime`: Updates service API and documentation
+* `service/textract`: Updates service API and documentation
+
 Release v1.42.13 (2021-11-26)
 ===
 

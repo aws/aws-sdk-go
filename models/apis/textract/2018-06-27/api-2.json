@@ -53,6 +53,26 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "AnalyzeID":{
+      "name":"AnalyzeID",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AnalyzeIDRequest"},
+      "output":{"shape":"AnalyzeIDResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"UnsupportedDocumentException"},
+        {"shape":"DocumentTooLargeException"},
+        {"shape":"BadDocumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DetectDocumentText":{
       "name":"DetectDocumentText",
       "http":{
@@ -242,6 +262,30 @@
         "ExpenseDocuments":{"shape":"ExpenseDocumentList"}
       }
     },
+    "AnalyzeIDDetections":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{"shape":"String"},
+        "NormalizedValue":{"shape":"NormalizedValue"},
+        "Confidence":{"shape":"Percent"}
+      }
+    },
+    "AnalyzeIDRequest":{
+      "type":"structure",
+      "required":["DocumentPages"],
+      "members":{
+        "DocumentPages":{"shape":"DocumentPages"}
+      }
+    },
+    "AnalyzeIDResponse":{
+      "type":"structure",
+      "members":{
+        "IdentityDocuments":{"shape":"IdentityDocumentList"},
+        "DocumentMetadata":{"shape":"DocumentMetadata"},
+        "AnalyzeIDModelVersion":{"shape":"String"}
+      }
+    },
     "BadDocumentException":{
       "type":"structure",
       "members":{
@@ -343,6 +387,12 @@
       "members":{
         "Pages":{"shape":"UInteger"}
       }
+    },
+    "DocumentPages":{
+      "type":"list",
+      "member":{"shape":"Document"},
+      "max":2,
+      "min":1
     },
     "DocumentTooLargeException":{
       "type":"structure",
@@ -556,6 +606,28 @@
       },
       "exception":true
     },
+    "IdentityDocument":{
+      "type":"structure",
+      "members":{
+        "DocumentIndex":{"shape":"UInteger"},
+        "IdentityDocumentFields":{"shape":"IdentityDocumentFieldList"}
+      }
+    },
+    "IdentityDocumentField":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"AnalyzeIDDetections"},
+        "ValueDetection":{"shape":"AnalyzeIDDetections"}
+      }
+    },
+    "IdentityDocumentFieldList":{
+      "type":"list",
+      "member":{"shape":"IdentityDocumentField"}
+    },
+    "IdentityDocumentList":{
+      "type":"list",
+      "member":{"shape":"IdentityDocument"}
+    },
     "ImageBlob":{
       "type":"blob",
       "max":10485760,
@@ -653,6 +725,13 @@
     "NonEmptyString":{
       "type":"string",
       "pattern":".*\\S.*"
+    },
+    "NormalizedValue":{
+      "type":"structure",
+      "members":{
+        "Value":{"shape":"String"},
+        "ValueType":{"shape":"ValueType"}
+      }
     },
     "NotificationChannel":{
       "type":"structure",
@@ -852,6 +931,10 @@
       "members":{
       },
       "exception":true
+    },
+    "ValueType":{
+      "type":"string",
+      "enum":["DATE"]
     },
     "Warning":{
       "type":"structure",

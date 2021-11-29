@@ -105,7 +105,6 @@
     },
     "GetRecommendationsRequest":{
       "type":"structure",
-      "required":["campaignArn"],
       "members":{
         "campaignArn":{"shape":"Arn"},
         "itemId":{"shape":"ItemID"},
@@ -113,7 +112,8 @@
         "numResults":{"shape":"NumResults"},
         "context":{"shape":"Context"},
         "filterArn":{"shape":"Arn"},
-        "filterValues":{"shape":"FilterValues"}
+        "filterValues":{"shape":"FilterValues"},
+        "recommenderArn":{"shape":"Arn"}
       }
     },
     "GetRecommendationsResponse":{

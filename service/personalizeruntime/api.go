@@ -141,15 +141,21 @@ func (c *PersonalizeRuntime) GetRecommendationsRequest(input *GetRecommendations
 
 // GetRecommendations API operation for Amazon Personalize Runtime.
 //
-// Returns a list of recommended items. The required input depends on the recipe
-// type used to create the solution backing the campaign, as follows:
+// Returns a list of recommended items. For campaigns, the campaign's Amazon
+// Resource Name (ARN) is required and the required user and item input depends
+// on the recipe type used to create the solution backing the campaign as follows:
+//
+//    * USER_PERSONALIZATION - userId required, itemId not used
 //
 //    * RELATED_ITEMS - itemId required, userId not used
 //
-//    * USER_PERSONALIZATION - itemId optional, userId required
-//
 // Campaigns that are backed by a solution created using a recipe of type PERSONALIZED_RANKING
 // use the API.
+//
+// For recommenders, the recommender's ARN is required and the required item
+// and user input depends on the use case (domain-based recipe) backing the
+// recommender. For information on use case requirements see Choosing recommender
+// use cases (https://docs.aws.amazon.com/personalize/latest/dg/domain-use-cases.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -351,9 +357,7 @@ type GetRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the campaign to use for getting recommendations.
-	//
-	// CampaignArn is a required field
-	CampaignArn *string `locationName:"campaignArn" type:"string" required:"true"`
+	CampaignArn *string `locationName:"campaignArn" type:"string"`
 
 	// The contextual metadata to use when getting recommendations. Contextual metadata
 	// includes any interaction information that might be relevant when getting
@@ -388,6 +392,11 @@ type GetRecommendationsInput struct {
 	// The number of results to return. The default is 25. The maximum is 500.
 	NumResults *int64 `locationName:"numResults" type:"integer"`
 
+	// The Amazon Resource Name (ARN) of the recommender to use to get recommendations.
+	// Provide a recommender ARN if you created a Domain dataset group with a recommender
+	// for a domain use case.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+
 	// The user ID to provide recommendations for.
 	//
 	// Required for USER_PERSONALIZATION recipe type.
@@ -410,19 +419,6 @@ func (s GetRecommendationsInput) String() string {
 // value will be replaced with "sensitive".
 func (s GetRecommendationsInput) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *GetRecommendationsInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "GetRecommendationsInput"}
-	if s.CampaignArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("CampaignArn"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetCampaignArn sets the CampaignArn field's value.
@@ -461,6 +457,12 @@ func (s *GetRecommendationsInput) SetNumResults(v int64) *GetRecommendationsInpu
 	return s
 }
 
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *GetRecommendationsInput) SetRecommenderArn(v string) *GetRecommendationsInput {
+	s.RecommenderArn = &v
+	return s
+}
+
 // SetUserId sets the UserId field's value.
 func (s *GetRecommendationsInput) SetUserId(v string) *GetRecommendationsInput {
 	s.UserId = &v
@@ -470,7 +472,7 @@ func (s *GetRecommendationsInput) SetUserId(v string) *GetRecommendationsInput {
 type GetRecommendationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of recommendations sorted in ascending order by prediction score.
+	// A list of recommendations sorted in descending order by prediction score.
 	// There can be a maximum of 500 items in the list.
 	ItemList []*PredictedItem `locationName:"itemList" type:"list"`
 
