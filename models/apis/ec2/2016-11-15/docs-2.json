@@ -260,6 +260,7 @@
     "DescribeSecurityGroupRules": "<p>Describes one or more of your security group rules.</p>",
     "DescribeSecurityGroups": "<p>Describes the specified security groups or all of your security groups.</p> <p>A security group is for use with instances either in the EC2-Classic platform or in a specific VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html\">Amazon EC2 security groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i> and <a href=\"https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html\">Security groups for your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DescribeSnapshotAttribute": "<p>Describes the specified attribute of the specified snapshot. You can specify only one attribute at a time.</p> <p>For more information about EBS snapshots, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html\">Amazon EBS snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "DescribeSnapshotTierStatus": "<p>Describes the storage tier status of one or more Amazon EBS snapshots.</p>",
     "DescribeSnapshots": "<p>Describes the specified EBS snapshots available to you or all of the EBS snapshots available to you.</p> <p>The snapshots available to you include public snapshots, private snapshots that you own, and private snapshots owned by other Amazon Web Services accounts for which you have explicit create volume permissions.</p> <p>The create volume permissions fall into the following categories:</p> <ul> <li> <p> <i>public</i>: The owner of the snapshot granted create volume permissions for the snapshot to the <code>all</code> group. All Amazon Web Services accounts have create volume permissions for these snapshots.</p> </li> <li> <p> <i>explicit</i>: The owner of the snapshot granted create volume permissions to a specific Amazon Web Services account.</p> </li> <li> <p> <i>implicit</i>: An Amazon Web Services account has implicit create volume permissions for all snapshots it owns.</p> </li> </ul> <p>The list of snapshots returned can be filtered by specifying snapshot IDs, snapshot owners, or Amazon Web Services accounts with create volume permissions. If no options are specified, Amazon EC2 returns all snapshots for which you have create volume permissions.</p> <p>If you specify one or more snapshot IDs, only snapshots that have the specified IDs are returned. If you specify an invalid snapshot ID, an error is returned. If you specify a snapshot ID for which you do not have access, it is not included in the returned results.</p> <p>If you specify one or more snapshot owners using the <code>OwnerIds</code> option, only snapshots from the specified owners and for which you have access are returned. The results can include the Amazon Web Services account IDs of the specified owners, <code>amazon</code> for snapshots owned by Amazon, or <code>self</code> for snapshots that you own.</p> <p>If you specify a list of restorable users, only snapshots with create snapshot permissions for those users are returned. You can specify Amazon Web Services account IDs (if you own the snapshots), <code>self</code> for snapshots for which you own or have explicit permissions, or <code>all</code> for public snapshots.</p> <p>If you are describing a long list of snapshots, we recommend that you paginate the output to make the list more manageable. The <code>MaxResults</code> parameter sets the maximum number of results returned in a single page. If the list of results exceeds your <code>MaxResults</code> value, then that number of results is returned along with a <code>NextToken</code> value that can be passed to a subsequent <code>DescribeSnapshots</code> request to retrieve the remaining results.</p> <p>To get the state of fast snapshot restores for a snapshot, use <a>DescribeFastSnapshotRestores</a>.</p> <p>For more information about EBS snapshots, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html\">Amazon EBS snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeSpotDatafeedSubscription": "<p>Describes the data feed for Spot Instances. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-data-feeds.html\">Spot Instance data feed</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
     "DescribeSpotFleetInstances": "<p>Describes the running instances for the specified Spot Fleet.</p>",
@@ -371,6 +372,7 @@
     "ImportKeyPair": "<p>Imports the public key from an RSA or ED25519 key pair that you created with a third-party tool. Compare this with <a>CreateKeyPair</a>, in which Amazon Web Services creates the key pair and gives the keys to you (Amazon Web Services keeps a copy of the public key). With ImportKeyPair, you create the key pair and give Amazon Web Services just the public key. The private key is never transferred between you and Amazon Web Services.</p> <p>For more information about key pairs, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Amazon EC2 key pairs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ImportSnapshot": "<p>Imports a disk into an EBS snapshot.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-import-snapshot.html\">Importing a disk as a snapshot using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>",
     "ImportVolume": "<p>Creates an import volume task using metadata from the specified disk image.</p> <p>This API action supports only single-volume VMs. To import multi-volume VMs, use <a>ImportImage</a> instead. To import a disk to a snapshot, use <a>ImportSnapshot</a> instead.</p> <p>This API action is not supported by the Command Line Interface (CLI). For information about using the Amazon EC2 CLI, which is deprecated, see <a href=\"https://awsdocs.s3.amazonaws.com/EC2/ec2-clt.pdf#importing-your-volumes-into-amazon-ebs\">Importing Disks to Amazon EBS</a> in the <i>Amazon EC2 CLI Reference</i> PDF file.</p> <p>For information about the import manifest referenced by this API action, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/manifest.html\">VM Import Manifest</a>.</p>",
+    "ListSnapshotsInRecycleBin": "<p>Lists one or more snapshots that are currently in the Recycle Bin.</p>",
     "ModifyAddressAttribute": "<p>Modifies an attribute of the specified Elastic IP address. For requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS\">Using reverse DNS for email applications</a>.</p>",
     "ModifyAvailabilityZoneGroup": "<p>Changes the opt-in status of the Local Zone and Wavelength Zone group for your account.</p> <p>Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html\"> DescribeAvailabilityZones</a> to view the value for <code>GroupName</code>.</p>",
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
@@ -398,6 +400,7 @@
     "ModifyReservedInstances": "<p>Modifies the Availability Zone, instance count, instance type, or network platform (EC2-Classic or EC2-VPC) of your Reserved Instances. The Reserved Instances to be modified must be identical, except for Availability Zone, network platform, and instance type.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html\">Modifying Reserved Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "ModifySecurityGroupRules": "<p>Modifies the rules of a security group.</p>",
     "ModifySnapshotAttribute": "<p>Adds or removes permission settings for the specified snapshot. You may add or remove specified Amazon Web Services account IDs from a snapshot's list of create volume permissions, but you cannot do both in a single operation. If you need to both add and remove account IDs for a snapshot, you must use multiple operations. You can make up to 500 modifications to a snapshot in a single operation.</p> <p>Encrypted snapshots and snapshots with Amazon Web Services Marketplace product codes cannot be made public. Snapshots encrypted with your default KMS key cannot be shared with other accounts.</p> <p>For more information about modifying snapshot permissions, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html\">Share a snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "ModifySnapshotTier": "<p>Archives an Amazon EBS snapshot. When you archive a snapshot, it is converted to a full snapshot that includes all of the blocks of data that were written to the volume at the time the snapshot was created, and moved from the standard tier to the archive tier. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-archive.html\">Archive Amazon EBS snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "ModifySpotFleetRequest": "<p>Modifies the specified Spot Fleet request.</p> <p>You can only modify a Spot Fleet request of type <code>maintain</code>.</p> <p>While the Spot Fleet request is being modified, it is in the <code>modifying</code> state.</p> <p>To scale up your Spot Fleet, increase its target capacity. The Spot Fleet launches the additional Spot Instances according to the allocation strategy for the Spot Fleet request. If the allocation strategy is <code>lowestPrice</code>, the Spot Fleet launches instances using the Spot Instance pool with the lowest price. If the allocation strategy is <code>diversified</code>, the Spot Fleet distributes the instances across the Spot Instance pools. If the allocation strategy is <code>capacityOptimized</code>, Spot Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p> <p>To scale down your Spot Fleet, decrease its target capacity. First, the Spot Fleet cancels any open requests that exceed the new target capacity. You can request that the Spot Fleet terminate Spot Instances until the size of the fleet no longer exceeds the new target capacity. If the allocation strategy is <code>lowestPrice</code>, the Spot Fleet terminates the instances with the highest price per unit. If the allocation strategy is <code>capacityOptimized</code>, the Spot Fleet terminates the instances in the Spot Instance pools that have the least available Spot Instance capacity. If the allocation strategy is <code>diversified</code>, the Spot Fleet terminates instances across the Spot Instance pools. Alternatively, you can request that the Spot Fleet keep the fleet at its current size, but not replace any Spot Instances that are interrupted or that you terminate manually.</p> <p>If you are finished with your Spot Fleet for now, but will use it again later, you can set the target capacity to 0.</p>",
     "ModifySubnetAttribute": "<p>Modifies a subnet attribute. You can only modify one attribute at a time.</p>",
     "ModifyTrafficMirrorFilterNetworkServices": "<p>Allows or restricts mirroring network services.</p> <p> By default, Amazon DNS network services are not eligible for Traffic Mirror. Use <code>AddNetworkServices</code> to add network services to a Traffic Mirror filter. When a network service is added to the Traffic Mirror filter, all traffic related to that network service will be mirrored. When you no longer want to mirror network services, use <code>RemoveNetworkServices</code> to remove the network services from the Traffic Mirror filter. </p>",
@@ -455,6 +458,8 @@
     "ResetSnapshotAttribute": "<p>Resets permission settings for the specified snapshot.</p> <p>For more information about modifying snapshot permissions, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modifying-snapshot-permissions.html\">Share a snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "RestoreAddressToClassic": "<p>Restores an Elastic IP address that was previously moved to the EC2-VPC platform back to the EC2-Classic platform. You cannot move an Elastic IP address that was originally allocated for use in EC2-VPC. The Elastic IP address must not be associated with an instance or network interface.</p>",
     "RestoreManagedPrefixListVersion": "<p>Restores the entries from a previous version of a managed prefix list to a new version of the prefix list.</p>",
+    "RestoreSnapshotFromRecycleBin": "<p>Restores a snapshot from the Recycle Bin. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin-working-with-snaps.html#recycle-bin-restore-snaps\">Restore snapshots from the Recycle Bin</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "RestoreSnapshotTier": "<p>Restores an archived Amazon EBS snapshot for use temporarily or permanently, or modifies the restore period or restore type for a snapshot that was previously temporarily restored.</p> <p>For more information see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-snapshot-archiving.html#restore-archived-snapshot\"> Restore an archived snapshot</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/working-with-snapshot-archiving.html#modify-temp-restore-period\"> modify the restore period or restore type for a temporarily restored snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "RevokeClientVpnIngress": "<p>Removes an ingress authorization rule from a Client VPN endpoint. </p>",
     "RevokeSecurityGroupEgress": "<p>[VPC only] Removes the specified outbound (egress) rules from a security group for EC2-VPC. This action does not apply to security groups for use in EC2-Classic.</p> <p>You can specify rules using either rule IDs or security group rule properties. If you use rule properties, the values that you specify (for example, ports) must match the existing rule's values exactly. Each rule has a protocol, from and to ports, and destination (CIDR range, security group, or prefix list). For the TCP and UDP protocols, you must also specify the destination port or range of ports. For the ICMP protocol, you must also specify the ICMP type and code. If the security group rule has a description, you do not need to specify the description to revoke the rule.</p> <p>[Default VPC] If the values you specify do not match the existing rule's values, no error is returned, and the output describes the security group rules that were not revoked.</p> <p>Amazon Web Services recommends that you describe the security group to verify that the rules were removed.</p> <p>Rule changes are propagated to instances within the security group as quickly as possible. However, a small delay might occur.</p>",
     "RevokeSecurityGroupIngress": "<p>Removes the specified inbound (ingress) rules from a security group.</p> <p>You can specify rules using either rule IDs or security group rule properties. If you use rule properties, the values that you specify (for example, ports) must match the existing rule's values exactly. Each rule has a protocol, from and to ports, and source (CIDR range, security group, or prefix list). For the TCP and UDP protocols, you must also specify the destination port or range of ports. For the ICMP protocol, you must also specify the ICMP type and code. If the security group rule has a description, you do not need to specify the description to revoke the rule.</p> <p>[EC2-Classic, default VPC] If the values you specify do not match the existing rule's values, no error is returned, and the output describes the security group rules that were not revoked.</p> <p>Amazon Web Services recommends that you describe the security group to verify that the rules were removed.</p> <p>Rule changes are propagated to instances within the security group as quickly as possible. However, a small delay might occur.</p>",
@@ -1786,6 +1791,7 @@
         "DescribeSecurityGroupRulesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSecurityGroupsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSnapshotAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeSnapshotTierStatusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSnapshotsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSpotDatafeedSubscriptionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeSpotFleetInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1974,6 +1980,7 @@
         "LaunchTemplateVersion$DefaultVersion": "<p>Indicates whether the version is the default version.</p>",
         "LaunchTemplatesMonitoring$Enabled": "<p>Indicates whether detailed monitoring is enabled. Otherwise, basic monitoring is enabled.</p>",
         "LaunchTemplatesMonitoringRequest$Enabled": "<p>Specify <code>true</code> to enable detailed monitoring. Otherwise, basic monitoring is enabled.</p>",
+        "ListSnapshotsInRecycleBinRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAddressAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAvailabilityZoneGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAvailabilityZoneGroupResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
@@ -2012,6 +2019,7 @@
         "ModifySecurityGroupRulesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifySecurityGroupRulesResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
         "ModifySnapshotAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifySnapshotTierRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifySpotFleetRequestResponse$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
         "ModifyTrafficMirrorFilterNetworkServicesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyTrafficMirrorFilterRuleRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2119,6 +2127,11 @@
         "ResponseLaunchTemplateData$DisableApiTermination": "<p>If set to <code>true</code>, indicates that the instance cannot be terminated using the Amazon EC2 console, command line tool, or API.</p>",
         "RestoreAddressToClassicRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RestoreManagedPrefixListVersionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "RestoreSnapshotFromRecycleBinRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "RestoreSnapshotFromRecycleBinResult$Encrypted": "<p>Indicates whether the snapshot is encrypted.</p>",
+        "RestoreSnapshotTierRequest$PermanentRestore": "<p>Indicates whether to permanently restore an archived snapshot. To permanently restore an archived snapshot, specify <code>true</code> and omit the <b>RestoreSnapshotTierRequest$TemporaryRestoreDays</b> parameter.</p>",
+        "RestoreSnapshotTierRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "RestoreSnapshotTierResult$IsPermanentRestore": "<p>Indicates whether the snapshot is permanently restored. <code>true</code> indicates a permanent restore. <code>false</code> indicates a temporary restore.</p>",
         "RevokeClientVpnIngressRequest$RevokeAllGroups": "<p>Indicates whether access should be revoked for all clients.</p>",
         "RevokeClientVpnIngressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RevokeSecurityGroupEgressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -5774,6 +5787,22 @@
       "refs": {
       }
     },
+    "DescribeSnapshotTierStatusMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeSnapshotTierStatusRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "DescribeSnapshotTierStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeSnapshotTierStatusResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeSnapshotsRequest": {
       "base": null,
       "refs": {
@@ -7429,7 +7458,8 @@
         "DescribeScheduledInstancesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone (for example, <code>us-west-2a</code>).</p> </li> <li> <p> <code>instance-type</code> - The instance type (for example, <code>c4.large</code>).</p> </li> <li> <p> <code>network-platform</code> - The network platform (<code>EC2-Classic</code> or <code>EC2-VPC</code>).</p> </li> <li> <p> <code>platform</code> - The platform (<code>Linux/UNIX</code> or <code>Windows</code>).</p> </li> </ul>",
         "DescribeSecurityGroupRulesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>group-id</code> - The ID of the security group.</p> </li> <li> <p> <code>security-group-rule-id</code> - The ID of the security group rule.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> </ul>",
         "DescribeSecurityGroupsRequest$Filters": "<p>The filters. If using multiple filters for rules, the results include security groups for which any combination of rules - not necessarily a single rule - match all filters.</p> <ul> <li> <p> <code>description</code> - The description of the security group.</p> </li> <li> <p> <code>egress.ip-permission.cidr</code> - An IPv4 CIDR block for an outbound security group rule.</p> </li> <li> <p> <code>egress.ip-permission.from-port</code> - For an outbound rule, the start of port range for the TCP and UDP protocols, or an ICMP type number.</p> </li> <li> <p> <code>egress.ip-permission.group-id</code> - The ID of a security group that has been referenced in an outbound security group rule.</p> </li> <li> <p> <code>egress.ip-permission.group-name</code> - The name of a security group that is referenced in an outbound security group rule.</p> </li> <li> <p> <code>egress.ip-permission.ipv6-cidr</code> - An IPv6 CIDR block for an outbound security group rule.</p> </li> <li> <p> <code>egress.ip-permission.prefix-list-id</code> - The ID of a prefix list to which a security group rule allows outbound access.</p> </li> <li> <p> <code>egress.ip-permission.protocol</code> - The IP protocol for an outbound security group rule (<code>tcp</code> | <code>udp</code> | <code>icmp</code>, a protocol number, or -1 for all protocols).</p> </li> <li> <p> <code>egress.ip-permission.to-port</code> - For an outbound rule, the end of port range for the TCP and UDP protocols, or an ICMP code.</p> </li> <li> <p> <code>egress.ip-permission.user-id</code> - The ID of an Amazon Web Services account that has been referenced in an outbound security group rule.</p> </li> <li> <p> <code>group-id</code> - The ID of the security group. </p> </li> <li> <p> <code>group-name</code> - The name of the security group.</p> </li> <li> <p> <code>ip-permission.cidr</code> - An IPv4 CIDR block for an inbound security group rule.</p> </li> <li> <p> <code>ip-permission.from-port</code> - For an inbound rule, the start of port range for the TCP and UDP protocols, or an ICMP type number.</p> </li> <li> <p> <code>ip-permission.group-id</code> - The ID of a security group that has been referenced in an inbound security group rule.</p> </li> <li> <p> <code>ip-permission.group-name</code> - The name of a security group that is referenced in an inbound security group rule.</p> </li> <li> <p> <code>ip-permission.ipv6-cidr</code> - An IPv6 CIDR block for an inbound security group rule.</p> </li> <li> <p> <code>ip-permission.prefix-list-id</code> - The ID of a prefix list from which a security group rule allows inbound access.</p> </li> <li> <p> <code>ip-permission.protocol</code> - The IP protocol for an inbound security group rule (<code>tcp</code> | <code>udp</code> | <code>icmp</code>, a protocol number, or -1 for all protocols).</p> </li> <li> <p> <code>ip-permission.to-port</code> - For an inbound rule, the end of port range for the TCP and UDP protocols, or an ICMP code.</p> </li> <li> <p> <code>ip-permission.user-id</code> - The ID of an Amazon Web Services account that has been referenced in an inbound security group rule.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the owner of the security group.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC specified when the security group was created.</p> </li> </ul>",
-        "DescribeSnapshotsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>description</code> - A description of the snapshot.</p> </li> <li> <p> <code>encrypted</code> - Indicates whether the snapshot is encrypted (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>owner-alias</code> - The owner alias, from an Amazon-maintained list (<code>amazon</code>). This is not the user-configured Amazon Web Services account alias set using the IAM console. We recommend that you use the related parameter instead of this filter.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the owner. We recommend that you use the related parameter instead of this filter.</p> </li> <li> <p> <code>progress</code> - The progress of the snapshot, as a percentage (for example, 80%).</p> </li> <li> <p> <code>snapshot-id</code> - The snapshot ID.</p> </li> <li> <p> <code>start-time</code> - The time stamp when the snapshot was initiated.</p> </li> <li> <p> <code>status</code> - The status of the snapshot (<code>pending</code> | <code>completed</code> | <code>error</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>volume-id</code> - The ID of the volume the snapshot is for.</p> </li> <li> <p> <code>volume-size</code> - The size of the volume, in GiB.</p> </li> </ul>",
+        "DescribeSnapshotTierStatusRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>snapshot-id</code> - The snapshot ID.</p> </li> <li> <p> <code>volume-id</code> - The ID of the volume the snapshot is for.</p> </li> <li> <p> <code>last-tiering-operation</code> - The state of the last archive or restore action. (<code>archiving</code> | <code>archival_error</code> | <code>archival_complete</code> | <code>restoring</code> | <code>restore_error</code> | <code>restore_complete</code>)</p> </li> </ul>",
+        "DescribeSnapshotsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>description</code> - A description of the snapshot.</p> </li> <li> <p> <code>encrypted</code> - Indicates whether the snapshot is encrypted (<code>true</code> | <code>false</code>)</p> </li> <li> <p> <code>owner-alias</code> - The owner alias, from an Amazon-maintained list (<code>amazon</code>). This is not the user-configured Amazon Web Services account alias set using the IAM console. We recommend that you use the related parameter instead of this filter.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the owner. We recommend that you use the related parameter instead of this filter.</p> </li> <li> <p> <code>progress</code> - The progress of the snapshot, as a percentage (for example, 80%).</p> </li> <li> <p> <code>snapshot-id</code> - The snapshot ID.</p> </li> <li> <p> <code>start-time</code> - The time stamp when the snapshot was initiated.</p> </li> <li> <p> <code>status</code> - The status of the snapshot (<code>pending</code> | <code>completed</code> | <code>error</code>).</p> </li> <li> <p> <code>storage-tier</code> - The storage tier of the snapshot (<code>archive</code> | <code>standard</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>volume-id</code> - The ID of the volume the snapshot is for.</p> </li> <li> <p> <code>volume-size</code> - The size of the volume, in GiB.</p> </li> </ul>",
         "DescribeSpotInstanceRequestsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>availability-zone-group</code> - The Availability Zone group.</p> </li> <li> <p> <code>create-time</code> - The time stamp when the Spot Instance request was created.</p> </li> <li> <p> <code>fault-code</code> - The fault code related to the request.</p> </li> <li> <p> <code>fault-message</code> - The fault message related to the request.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance that fulfilled the request.</p> </li> <li> <p> <code>launch-group</code> - The Spot Instance launch group.</p> </li> <li> <p> <code>launch.block-device-mapping.delete-on-termination</code> - Indicates whether the EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>launch.block-device-mapping.device-name</code> - The device name for the volume in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>launch.block-device-mapping.snapshot-id</code> - The ID of the snapshot for the EBS volume.</p> </li> <li> <p> <code>launch.block-device-mapping.volume-size</code> - The size of the EBS volume, in GiB.</p> </li> <li> <p> <code>launch.block-device-mapping.volume-type</code> - The type of EBS volume: <code>gp2</code> for General Purpose SSD, <code>io1</code> or <code>io2</code> for Provisioned IOPS SSD, <code>st1</code> for Throughput Optimized HDD, <code>sc1</code>for Cold HDD, or <code>standard</code> for Magnetic.</p> </li> <li> <p> <code>launch.group-id</code> - The ID of the security group for the instance.</p> </li> <li> <p> <code>launch.group-name</code> - The name of the security group for the instance.</p> </li> <li> <p> <code>launch.image-id</code> - The ID of the AMI.</p> </li> <li> <p> <code>launch.instance-type</code> - The type of instance (for example, <code>m3.medium</code>).</p> </li> <li> <p> <code>launch.kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>launch.key-name</code> - The name of the key pair the instance launched with.</p> </li> <li> <p> <code>launch.monitoring-enabled</code> - Whether detailed monitoring is enabled for the Spot Instance.</p> </li> <li> <p> <code>launch.ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>launched-availability-zone</code> - The Availability Zone in which the request is launched.</p> </li> <li> <p> <code>network-interface.addresses.primary</code> - Indicates whether the IP address is the primary private IP address.</p> </li> <li> <p> <code>network-interface.delete-on-termination</code> - Indicates whether the network interface is deleted when the instance is terminated.</p> </li> <li> <p> <code>network-interface.description</code> - A description of the network interface.</p> </li> <li> <p> <code>network-interface.device-index</code> - The index of the device for the network interface attachment on the instance.</p> </li> <li> <p> <code>network-interface.group-id</code> - The ID of the security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface.private-ip-address</code> - The primary private IP address of the network interface.</p> </li> <li> <p> <code>network-interface.subnet-id</code> - The ID of the subnet for the instance.</p> </li> <li> <p> <code>product-description</code> - The product description associated with the instance (<code>Linux/UNIX</code> | <code>Windows</code>).</p> </li> <li> <p> <code>spot-instance-request-id</code> - The Spot Instance request ID.</p> </li> <li> <p> <code>spot-price</code> - The maximum hourly price for any Spot Instance launched to fulfill the request.</p> </li> <li> <p> <code>state</code> - The state of the Spot Instance request (<code>open</code> | <code>active</code> | <code>closed</code> | <code>cancelled</code> | <code>failed</code>). Spot request status information can help you track your Amazon EC2 Spot Instance requests. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-bid-status.html\">Spot request status</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p> </li> <li> <p> <code>status-code</code> - The short code describing the most recent evaluation of your Spot Instance request.</p> </li> <li> <p> <code>status-message</code> - The message explaining the status of the Spot Instance request.</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>type</code> - The type of Spot Instance request (<code>one-time</code> | <code>persistent</code>).</p> </li> <li> <p> <code>valid-from</code> - The start date of the request.</p> </li> <li> <p> <code>valid-until</code> - The end date of the request.</p> </li> </ul>",
         "DescribeSpotPriceHistoryRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone for which prices should be returned.</p> </li> <li> <p> <code>instance-type</code> - The type of instance (for example, <code>m3.medium</code>).</p> </li> <li> <p> <code>product-description</code> - The product description for the Spot price (<code>Linux/UNIX</code> | <code>Red Hat Enterprise Linux</code> | <code>SUSE Linux</code> | <code>Windows</code> | <code>Linux/UNIX (Amazon VPC)</code> | <code>Red Hat Enterprise Linux (Amazon VPC)</code> | <code>SUSE Linux (Amazon VPC)</code> | <code>Windows (Amazon VPC)</code>).</p> </li> <li> <p> <code>spot-price</code> - The Spot price. The value must match exactly (or use wildcards; greater than or less than comparison is not supported).</p> </li> <li> <p> <code>timestamp</code> - The time stamp of the Spot price history, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). You can use wildcards (* and ?). Greater than or less than comparison is not supported.</p> </li> </ul>",
         "DescribeStoreImageTasksRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>task-state</code> - Returns tasks in a certain state (<code>InProgress</code> | <code>Completed</code> | <code>Failed</code>)</p> </li> <li> <p> <code>bucket</code> - Returns task information for tasks that targeted a specific bucket. For the filter value, specify the bucket name.</p> </li> </ul>",
@@ -9766,6 +9796,8 @@
         "RequestSpotInstancesRequest$InstanceCount": "<p>The maximum number of Spot Instances to launch.</p> <p>Default: 1</p>",
         "ReservedInstances$InstanceCount": "<p>The number of reservations purchased.</p>",
         "ReservedInstancesConfiguration$InstanceCount": "<p>The number of modified Reserved Instances.</p> <note> <p>This is a required field for a request.</p> </note>",
+        "RestoreSnapshotFromRecycleBinResult$VolumeSize": "<p>The size of the volume, in GiB.</p>",
+        "RestoreSnapshotTierResult$RestoreDuration": "<p>For temporary restores only. The number of days for which the archived snapshot is temporarily restored.</p>",
         "RevokeSecurityGroupEgressRequest$FromPort": "<p>Not supported. Use a set of IP permissions to specify the port.</p>",
         "RevokeSecurityGroupEgressRequest$ToPort": "<p>Not supported. Use a set of IP permissions to specify the port.</p>",
         "RevokeSecurityGroupIngressRequest$FromPort": "<p>The start of port range for the TCP and UDP protocols, or an ICMP type number. For the ICMP type number, use <code>-1</code> to specify all ICMP types.</p>",
@@ -9795,6 +9827,7 @@
         "SecurityGroupRuleRequest$ToPort": "<p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of <code>-1</code> indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes. </p>",
         "Snapshot$VolumeSize": "<p>The size of the volume, in GiB.</p>",
         "SnapshotInfo$VolumeSize": "<p>Size of the volume from which this snapshot was created.</p>",
+        "SnapshotTierStatus$LastTieringProgress": "<p>The progress of the last archive or restore process, as a percentage.</p>",
         "SpotCapacityRebalance$TerminationDelay": "<p>The amount of time (in seconds) that Amazon EC2 waits before terminating the old Spot Instance after launching a new replacement Spot Instance.</p> <p>Valid only when <code>ReplacementStrategy</code> is set to <code>launch-before-terminate</code>.</p> <p>Valid values: Minimum value of <code>120</code> seconds. Maximum value of <code>7200</code> seconds.</p>",
         "SpotFleetRequestConfigData$TargetCapacity": "<p>The number of units to request for the Spot Fleet. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p>",
         "SpotFleetRequestConfigData$OnDemandTargetCapacity": "<p>The number of On-Demand units to request. You can choose to set the target capacity in terms of instances or a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p>",
@@ -10730,6 +10763,22 @@
         "RunInstancesRequest$LicenseSpecifications": "<p>The license configurations.</p>"
       }
     },
+    "ListSnapshotsInRecycleBinMaxResults": {
+      "base": null,
+      "refs": {
+        "ListSnapshotsInRecycleBinRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "ListSnapshotsInRecycleBinRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSnapshotsInRecycleBinResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListingState": {
       "base": null,
       "refs": {
@@ -11212,9 +11261,18 @@
         "FlowLog$CreationTime": "<p>The date and time the flow log was created.</p>",
         "Instance$UsageOperationUpdateTime": "<p>The time that the usage operation was last updated.</p>",
         "ModifyCapacityReservationFleetRequest$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires. When the Capacity Reservation Fleet expires, its state changes to <code>expired</code> and all of the Capacity Reservations in the Fleet expire.</p> <p>The Capacity Reservation Fleet expires within an hour after the specified time. For example, if you specify <code>5/31/2019</code>, <code>13:30:55</code>, the Capacity Reservation Fleet is guaranteed to expire between <code>13:30:55</code> and <code>14:30:55</code> on <code>5/31/2019</code>.</p> <p>You can't specify <b>EndDate</b> and <b> RemoveEndDate</b> in the same request.</p>",
+        "ModifySnapshotTierResult$TieringStartTime": "<p>The date and time when the archive process was started.</p>",
         "NetworkInsightsAnalysis$StartDate": "<p>The time the analysis started.</p>",
         "NetworkInsightsPath$CreatedDate": "<p>The time stamp when the path was created.</p>",
+        "RestoreSnapshotFromRecycleBinResult$StartTime": "<p>The time stamp when the snapshot was initiated.</p>",
+        "RestoreSnapshotTierResult$RestoreStartTime": "<p>The date and time when the snapshot restore process started.</p>",
+        "Snapshot$RestoreExpiryTime": "<p>Only for archived snapshots that are temporarily restored. Indicates the date and time when a temporarily restored snapshot will be automatically re-archived.</p>",
         "SnapshotInfo$StartTime": "<p>Time this snapshot was started. This is the same for all snapshots initiated by the same request.</p>",
+        "SnapshotRecycleBinInfo$RecycleBinEnterTime": "<p>The date and time when the snaphsot entered the Recycle Bin.</p>",
+        "SnapshotRecycleBinInfo$RecycleBinExitTime": "<p>The date and time when the snapshot is to be permanently deleted from the Recycle Bin.</p>",
+        "SnapshotTierStatus$LastTieringStartTime": "<p>The date and time when the last archive or restore process was started.</p>",
+        "SnapshotTierStatus$ArchivalCompleteTime": "<p>The date and time when the last archive process was completed.</p>",
+        "SnapshotTierStatus$RestoreExpiryTime": "<p>Only for archived snapshots that are temporarily restored. Indicates the date and time when a temporarily restored snapshot will be automatically re-archived.</p>",
         "SpotFleetRequestConfig$CreateTime": "<p>The creation date and time of the request.</p>",
         "StoreImageTaskResult$TaskStartTime": "<p>The time the task started.</p>",
         "VolumeStatusEvent$NotAfter": "<p>The latest end time of the event.</p>",
@@ -11465,6 +11523,16 @@
       }
     },
     "ModifySnapshotAttributeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifySnapshotTierRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifySnapshotTierResult": {
       "base": null,
       "refs": {
       }
@@ -13792,6 +13860,32 @@
       "refs": {
       }
     },
+    "RestoreSnapshotFromRecycleBinRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestoreSnapshotFromRecycleBinResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestoreSnapshotTierRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RestoreSnapshotTierRequestTemporaryRestoreDays": {
+      "base": null,
+      "refs": {
+        "RestoreSnapshotTierRequest$TemporaryRestoreDays": "<p>Specifies the number of days for which to temporarily restore an archived snapshot. Required for temporary restores only. The snapshot will be automatically re-archived after this period.</p> <p>To temporarily restore an archived snapshot, specify the number of days and omit the <b>PermanentRestore</b> parameter or set it to <code>false</code>.</p>"
+      }
+    },
+    "RestoreSnapshotTierResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ResultRange": {
       "base": null,
       "refs": {
@@ -14426,9 +14520,13 @@
         "LaunchTemplateEbsBlockDevice$SnapshotId": "<p>The ID of the snapshot.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
         "ModifySnapshotAttributeRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "ModifySnapshotTierRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
         "ResetSnapshotAttributeRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "RestoreSnapshotFromRecycleBinRequest$SnapshotId": "<p>The ID of the snapshot to restore.</p>",
+        "RestoreSnapshotTierRequest$SnapshotId": "<p>The ID of the snapshot to restore.</p>",
         "ScheduledInstancesEbs$SnapshotId": "<p>The ID of the snapshot.</p>",
-        "SnapshotIdStringList$member": null
+        "SnapshotIdStringList$member": null,
+        "SnapshotTierStatus$SnapshotId": "<p>The ID of the snapshot.</p>"
       }
     },
     "SnapshotIdStringList": {
@@ -14436,7 +14534,8 @@
       "refs": {
         "DescribeSnapshotsRequest$SnapshotIds": "<p>The snapshot IDs.</p> <p>Default: Describes the snapshots for which you have create volume permissions.</p>",
         "DisableFastSnapshotRestoresRequest$SourceSnapshotIds": "<p>The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>.</p>",
-        "EnableFastSnapshotRestoresRequest$SourceSnapshotIds": "<p>The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>. You can specify a snapshot that was shared with you from another Amazon Web Services account.</p>"
+        "EnableFastSnapshotRestoresRequest$SourceSnapshotIds": "<p>The IDs of one or more snapshots. For example, <code>snap-1234567890abcdef0</code>. You can specify a snapshot that was shared with you from another Amazon Web Services account.</p>",
+        "ListSnapshotsInRecycleBinRequest$SnapshotIds": "<p>The IDs of the snapshots to list. Omit this parameter to list all of the snapshots that are in the Recycle Bin.</p>"
       }
     },
     "SnapshotInfo": {
@@ -14451,6 +14550,18 @@
         "DescribeSnapshotsResult$Snapshots": "<p>Information about the snapshots.</p>"
       }
     },
+    "SnapshotRecycleBinInfo": {
+      "base": "<p>Information about a snapshot that is currently in the Recycle Bin.</p>",
+      "refs": {
+        "SnapshotRecycleBinInfoList$member": null
+      }
+    },
+    "SnapshotRecycleBinInfoList": {
+      "base": null,
+      "refs": {
+        "ListSnapshotsInRecycleBinResult$Snapshots": "<p>Information about the snapshots.</p>"
+      }
+    },
     "SnapshotSet": {
       "base": null,
       "refs": {
@@ -14460,8 +14571,10 @@
     "SnapshotState": {
       "base": null,
       "refs": {
+        "RestoreSnapshotFromRecycleBinResult$State": "<p>The state of the snapshot.</p>",
         "Snapshot$State": "<p>The snapshot state.</p>",
-        "SnapshotInfo$State": "<p>Current state of the snapshot.</p>"
+        "SnapshotInfo$State": "<p>Current state of the snapshot.</p>",
+        "SnapshotTierStatus$Status": "<p>The state of the snapshot.</p>"
       }
     },
     "SnapshotTaskDetail": {
@@ -14469,6 +14582,12 @@
       "refs": {
         "ImportSnapshotResult$SnapshotTaskDetail": "<p>Information about the import snapshot task.</p>",
         "ImportSnapshotTask$SnapshotTaskDetail": "<p>Describes an import snapshot task.</p>"
+      }
+    },
+    "SnapshotTierStatus": {
+      "base": "<p>Provides information about a snapshot's storage tier.</p>",
+      "refs": {
+        "snapshotTierStatusSet$member": null
       }
     },
     "SpotAllocationStrategy": {
@@ -14797,6 +14916,13 @@
       "refs": {
         "CreateFpgaImageRequest$InputStorageLocation": "<p>The location of the encrypted design checkpoint in Amazon S3. The input must be a tarball.</p>",
         "CreateFpgaImageRequest$LogsStorageLocation": "<p>The location in Amazon S3 for the output logs.</p>"
+      }
+    },
+    "StorageTier": {
+      "base": null,
+      "refs": {
+        "Snapshot$StorageTier": "<p>The storage tier in which the snapshot is stored. <code>standard</code> indicates that the snapshot is stored in the standard snapshot storage tier and that it is ready for use. <code>archive</code> indicates that the snapshot is currently archived and that it must be restored before it can be used.</p>",
+        "SnapshotTierStatus$StorageTier": "<p>The storage tier in which the snapshot is stored. <code>standard</code> indicates that the snapshot is stored in the standard snapshot storage tier and that it is ready for use. <code>archive</code> indicates that the snapshot is currently archived and that it must be restored before it can be used.</p>"
       }
     },
     "StoreImageTaskResult": {
@@ -15319,6 +15445,8 @@
         "DescribeSecurityGroupsRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribeSecurityGroupsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeSnapshotAttributeResult$SnapshotId": "<p>The ID of the EBS snapshot.</p>",
+        "DescribeSnapshotTierStatusRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "DescribeSnapshotTierStatusResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeSnapshotsRequest$NextToken": "<p>The <code>NextToken</code> value returned from a previous paginated <code>DescribeSnapshots</code> request where <code>MaxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>NextToken</code> value. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeSnapshotsResult$NextToken": "<p>The <code>NextToken</code> value to include in a future <code>DescribeSnapshots</code> request. When the results of a <code>DescribeSnapshots</code> request exceed <code>MaxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeSpotFleetInstancesRequest$NextToken": "<p>The token for the next set of results.</p>",
@@ -15818,6 +15946,8 @@
         "LaunchTemplateVersion$CreatedBy": "<p>The principal that created the version.</p>",
         "LicenseConfiguration$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
         "LicenseConfigurationRequest$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
+        "ListSnapshotsInRecycleBinRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "ListSnapshotsInRecycleBinResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "LoadPermission$UserId": "<p>The Amazon Web Services account ID.</p>",
         "LoadPermissionRequest$UserId": "<p>The Amazon Web Services account ID.</p>",
         "LocalGateway$OutpostArn": "<p>The Amazon Resource Name (ARN) of the Outpost.</p>",
@@ -15875,6 +16005,7 @@
         "ModifyManagedPrefixListRequest$PrefixListName": "<p>A name for the prefix list.</p>",
         "ModifyReservedInstancesRequest$ClientToken": "<p>A unique, case-sensitive token you provide to ensure idempotency of your modification request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "ModifyReservedInstancesResult$ReservedInstancesModificationId": "<p>The ID for the modification.</p>",
+        "ModifySnapshotTierResult$SnapshotId": "<p>The ID of the snapshot.</p>",
         "ModifySpotFleetRequestRequest$Context": "<p>Reserved.</p>",
         "ModifyTrafficMirrorFilterRuleRequest$DestinationCidrBlock": "<p>The destination CIDR block to assign to the Traffic Mirror rule.</p>",
         "ModifyTrafficMirrorFilterRuleRequest$SourceCidrBlock": "<p>The source CIDR block to assign to the Traffic Mirror rule.</p>",
@@ -16108,6 +16239,13 @@
         "RestorableByStringList$member": null,
         "RestoreAddressToClassicRequest$PublicIp": "<p>The Elastic IP address.</p>",
         "RestoreAddressToClassicResult$PublicIp": "<p>The Elastic IP address.</p>",
+        "RestoreSnapshotFromRecycleBinResult$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "RestoreSnapshotFromRecycleBinResult$OutpostArn": "<p>The ARN of the Outpost on which the snapshot is stored. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html\">Amazon EBS local snapshots on Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+        "RestoreSnapshotFromRecycleBinResult$Description": "<p>The description for the snapshot.</p>",
+        "RestoreSnapshotFromRecycleBinResult$OwnerId": "<p>The ID of the Amazon Web Services account that owns the EBS snapshot.</p>",
+        "RestoreSnapshotFromRecycleBinResult$Progress": "<p>The progress of the snapshot, as a percentage.</p>",
+        "RestoreSnapshotFromRecycleBinResult$VolumeId": "<p>The ID of the volume that was used to create the snapshot.</p>",
+        "RestoreSnapshotTierResult$SnapshotId": "<p>The ID of the snapshot.</p>",
         "RevokeClientVpnIngressRequest$TargetNetworkCidr": "<p>The IPv4 address range, in CIDR notation, of the network for which access is being removed.</p>",
         "RevokeClientVpnIngressRequest$AccessGroupId": "<p>The ID of the Active Directory group for which to revoke access. </p>",
         "RevokeSecurityGroupEgressRequest$CidrIp": "<p>Not supported. Use a set of IP permissions to specify the CIDR.</p>",
@@ -16237,6 +16375,9 @@
         "SnapshotInfo$OwnerId": "<p>Account id used when creating this snapshot.</p>",
         "SnapshotInfo$SnapshotId": "<p>Snapshot id that can be used to describe this snapshot.</p>",
         "SnapshotInfo$OutpostArn": "<p>The ARN of the Outpost on which the snapshot is stored. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html\">Amazon EBS local snapshots on Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+        "SnapshotRecycleBinInfo$SnapshotId": "<p>The ID of the snapshot.</p>",
+        "SnapshotRecycleBinInfo$Description": "<p>The description for the snapshot.</p>",
+        "SnapshotRecycleBinInfo$VolumeId": "<p>The ID of the volume from which the snapshot was created.</p>",
         "SnapshotTaskDetail$Description": "<p>The description of the snapshot.</p>",
         "SnapshotTaskDetail$Format": "<p>The format of the disk image from which the snapshot is created.</p>",
         "SnapshotTaskDetail$KmsKeyId": "<p>The identifier for the KMS key that was used to create the encrypted snapshot.</p>",
@@ -16245,6 +16386,8 @@
         "SnapshotTaskDetail$Status": "<p>A brief status for the import snapshot task.</p>",
         "SnapshotTaskDetail$StatusMessage": "<p>A detailed status message for the import snapshot task.</p>",
         "SnapshotTaskDetail$Url": "<p>The URL of the disk image from which the snapshot is created.</p>",
+        "SnapshotTierStatus$OwnerId": "<p>The ID of the Amazon Web Services account that owns the snapshot.</p>",
+        "SnapshotTierStatus$LastTieringOperationStatusDetail": "<p>A message describing the status of the last archive or restore process.</p>",
         "SpotDatafeedSubscription$Bucket": "<p>The name of the Amazon S3 bucket where the Spot Instance data feed is located.</p>",
         "SpotDatafeedSubscription$OwnerId": "<p>The Amazon Web Services account ID of the account.</p>",
         "SpotDatafeedSubscription$Prefix": "<p>The prefix for the data feed files.</p>",
@@ -16780,6 +16923,7 @@
         "ServiceDetail$Tags": "<p>Any tags assigned to the service.</p>",
         "Snapshot$Tags": "<p>Any tags assigned to the snapshot.</p>",
         "SnapshotInfo$Tags": "<p>Tags associated with this snapshot.</p>",
+        "SnapshotTierStatus$Tags": "<p>The tags that are assigned to the snapshot.</p>",
         "SpotFleetRequestConfig$Tags": "<p>The tags for a Spot Fleet resource.</p>",
         "SpotFleetTagSpecification$Tags": "<p>The tags.</p>",
         "SpotInstanceRequest$Tags": "<p>Any tags assigned to the resource.</p>",
@@ -16970,6 +17114,12 @@
         "GetReservedInstancesExchangeQuoteResult$TargetConfigurationValueSet": "<p>The values of the target Convertible Reserved Instances.</p>"
       }
     },
+    "TargetStorageTier": {
+      "base": null,
+      "refs": {
+        "ModifySnapshotTierRequest$StorageTier": "<p>The name of the storage tier. You must specify <code>archive</code>.</p>"
+      }
+    },
     "TelemetryStatus": {
       "base": null,
       "refs": {
@@ -17033,6 +17183,12 @@
       "base": null,
       "refs": {
         "VCpuInfo$ValidThreadsPerCore": "<p>The valid number of threads per core that can be configured for the instance type. </p>"
+      }
+    },
+    "TieringOperationStatus": {
+      "base": null,
+      "refs": {
+        "SnapshotTierStatus$LastTieringOperationStatus": "<p>The status of the last archive or restore process.</p>"
       }
     },
     "TotalLocalStorageGB": {
@@ -18272,6 +18428,7 @@
         "EnableVolumeIORequest$VolumeId": "<p>The ID of the volume.</p>",
         "ModifyVolumeAttributeRequest$VolumeId": "<p>The ID of the volume.</p>",
         "ModifyVolumeRequest$VolumeId": "<p>The ID of the volume.</p>",
+        "SnapshotTierStatus$VolumeId": "<p>The ID of the volume from which the snapshot was created.</p>",
         "VolumeIdStringList$member": null
       }
     },
@@ -18915,6 +19072,12 @@
         "ReservedInstances$Scope": "<p>The scope of the Reserved Instance.</p>",
         "ReservedInstancesConfiguration$Scope": "<p>Whether the Reserved Instance is applied to instances in a Region or instances in a specific Availability Zone.</p>",
         "ReservedInstancesOffering$Scope": "<p>Whether the Reserved Instance is applied to instances in a Region or an Availability Zone.</p>"
+      }
+    },
+    "snapshotTierStatusSet": {
+      "base": null,
+      "refs": {
+        "DescribeSnapshotTierStatusResult$SnapshotTierStatuses": "<p>Information about the snapshot's storage tier.</p>"
       }
     },
     "totalFpgaMemory": {

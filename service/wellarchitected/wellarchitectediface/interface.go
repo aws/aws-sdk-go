@@ -64,6 +64,14 @@ type WellArchitectedAPI interface {
 	AssociateLensesWithContext(aws.Context, *wellarchitected.AssociateLensesInput, ...request.Option) (*wellarchitected.AssociateLensesOutput, error)
 	AssociateLensesRequest(*wellarchitected.AssociateLensesInput) (*request.Request, *wellarchitected.AssociateLensesOutput)
 
+	CreateLensShare(*wellarchitected.CreateLensShareInput) (*wellarchitected.CreateLensShareOutput, error)
+	CreateLensShareWithContext(aws.Context, *wellarchitected.CreateLensShareInput, ...request.Option) (*wellarchitected.CreateLensShareOutput, error)
+	CreateLensShareRequest(*wellarchitected.CreateLensShareInput) (*request.Request, *wellarchitected.CreateLensShareOutput)
+
+	CreateLensVersion(*wellarchitected.CreateLensVersionInput) (*wellarchitected.CreateLensVersionOutput, error)
+	CreateLensVersionWithContext(aws.Context, *wellarchitected.CreateLensVersionInput, ...request.Option) (*wellarchitected.CreateLensVersionOutput, error)
+	CreateLensVersionRequest(*wellarchitected.CreateLensVersionInput) (*request.Request, *wellarchitected.CreateLensVersionOutput)
+
 	CreateMilestone(*wellarchitected.CreateMilestoneInput) (*wellarchitected.CreateMilestoneOutput, error)
 	CreateMilestoneWithContext(aws.Context, *wellarchitected.CreateMilestoneInput, ...request.Option) (*wellarchitected.CreateMilestoneOutput, error)
 	CreateMilestoneRequest(*wellarchitected.CreateMilestoneInput) (*request.Request, *wellarchitected.CreateMilestoneOutput)
@@ -75,6 +83,14 @@ type WellArchitectedAPI interface {
 	CreateWorkloadShare(*wellarchitected.CreateWorkloadShareInput) (*wellarchitected.CreateWorkloadShareOutput, error)
 	CreateWorkloadShareWithContext(aws.Context, *wellarchitected.CreateWorkloadShareInput, ...request.Option) (*wellarchitected.CreateWorkloadShareOutput, error)
 	CreateWorkloadShareRequest(*wellarchitected.CreateWorkloadShareInput) (*request.Request, *wellarchitected.CreateWorkloadShareOutput)
+
+	DeleteLens(*wellarchitected.DeleteLensInput) (*wellarchitected.DeleteLensOutput, error)
+	DeleteLensWithContext(aws.Context, *wellarchitected.DeleteLensInput, ...request.Option) (*wellarchitected.DeleteLensOutput, error)
+	DeleteLensRequest(*wellarchitected.DeleteLensInput) (*request.Request, *wellarchitected.DeleteLensOutput)
+
+	DeleteLensShare(*wellarchitected.DeleteLensShareInput) (*wellarchitected.DeleteLensShareOutput, error)
+	DeleteLensShareWithContext(aws.Context, *wellarchitected.DeleteLensShareInput, ...request.Option) (*wellarchitected.DeleteLensShareOutput, error)
+	DeleteLensShareRequest(*wellarchitected.DeleteLensShareInput) (*request.Request, *wellarchitected.DeleteLensShareOutput)
 
 	DeleteWorkload(*wellarchitected.DeleteWorkloadInput) (*wellarchitected.DeleteWorkloadOutput, error)
 	DeleteWorkloadWithContext(aws.Context, *wellarchitected.DeleteWorkloadInput, ...request.Option) (*wellarchitected.DeleteWorkloadOutput, error)
@@ -88,9 +104,17 @@ type WellArchitectedAPI interface {
 	DisassociateLensesWithContext(aws.Context, *wellarchitected.DisassociateLensesInput, ...request.Option) (*wellarchitected.DisassociateLensesOutput, error)
 	DisassociateLensesRequest(*wellarchitected.DisassociateLensesInput) (*request.Request, *wellarchitected.DisassociateLensesOutput)
 
+	ExportLens(*wellarchitected.ExportLensInput) (*wellarchitected.ExportLensOutput, error)
+	ExportLensWithContext(aws.Context, *wellarchitected.ExportLensInput, ...request.Option) (*wellarchitected.ExportLensOutput, error)
+	ExportLensRequest(*wellarchitected.ExportLensInput) (*request.Request, *wellarchitected.ExportLensOutput)
+
 	GetAnswer(*wellarchitected.GetAnswerInput) (*wellarchitected.GetAnswerOutput, error)
 	GetAnswerWithContext(aws.Context, *wellarchitected.GetAnswerInput, ...request.Option) (*wellarchitected.GetAnswerOutput, error)
 	GetAnswerRequest(*wellarchitected.GetAnswerInput) (*request.Request, *wellarchitected.GetAnswerOutput)
+
+	GetLens(*wellarchitected.GetLensInput) (*wellarchitected.GetLensOutput, error)
+	GetLensWithContext(aws.Context, *wellarchitected.GetLensInput, ...request.Option) (*wellarchitected.GetLensOutput, error)
+	GetLensRequest(*wellarchitected.GetLensInput) (*request.Request, *wellarchitected.GetLensOutput)
 
 	GetLensReview(*wellarchitected.GetLensReviewInput) (*wellarchitected.GetLensReviewOutput, error)
 	GetLensReviewWithContext(aws.Context, *wellarchitected.GetLensReviewInput, ...request.Option) (*wellarchitected.GetLensReviewOutput, error)
@@ -112,6 +136,10 @@ type WellArchitectedAPI interface {
 	GetWorkloadWithContext(aws.Context, *wellarchitected.GetWorkloadInput, ...request.Option) (*wellarchitected.GetWorkloadOutput, error)
 	GetWorkloadRequest(*wellarchitected.GetWorkloadInput) (*request.Request, *wellarchitected.GetWorkloadOutput)
 
+	ImportLens(*wellarchitected.ImportLensInput) (*wellarchitected.ImportLensOutput, error)
+	ImportLensWithContext(aws.Context, *wellarchitected.ImportLensInput, ...request.Option) (*wellarchitected.ImportLensOutput, error)
+	ImportLensRequest(*wellarchitected.ImportLensInput) (*request.Request, *wellarchitected.ImportLensOutput)
+
 	ListAnswers(*wellarchitected.ListAnswersInput) (*wellarchitected.ListAnswersOutput, error)
 	ListAnswersWithContext(aws.Context, *wellarchitected.ListAnswersInput, ...request.Option) (*wellarchitected.ListAnswersOutput, error)
 	ListAnswersRequest(*wellarchitected.ListAnswersInput) (*request.Request, *wellarchitected.ListAnswersOutput)
@@ -132,6 +160,13 @@ type WellArchitectedAPI interface {
 
 	ListLensReviewsPages(*wellarchitected.ListLensReviewsInput, func(*wellarchitected.ListLensReviewsOutput, bool) bool) error
 	ListLensReviewsPagesWithContext(aws.Context, *wellarchitected.ListLensReviewsInput, func(*wellarchitected.ListLensReviewsOutput, bool) bool, ...request.Option) error
+
+	ListLensShares(*wellarchitected.ListLensSharesInput) (*wellarchitected.ListLensSharesOutput, error)
+	ListLensSharesWithContext(aws.Context, *wellarchitected.ListLensSharesInput, ...request.Option) (*wellarchitected.ListLensSharesOutput, error)
+	ListLensSharesRequest(*wellarchitected.ListLensSharesInput) (*request.Request, *wellarchitected.ListLensSharesOutput)
+
+	ListLensSharesPages(*wellarchitected.ListLensSharesInput, func(*wellarchitected.ListLensSharesOutput, bool) bool) error
+	ListLensSharesPagesWithContext(aws.Context, *wellarchitected.ListLensSharesInput, func(*wellarchitected.ListLensSharesOutput, bool) bool, ...request.Option) error
 
 	ListLenses(*wellarchitected.ListLensesInput) (*wellarchitected.ListLensesOutput, error)
 	ListLensesWithContext(aws.Context, *wellarchitected.ListLensesInput, ...request.Option) (*wellarchitected.ListLensesOutput, error)

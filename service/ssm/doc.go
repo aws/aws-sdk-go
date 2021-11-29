@@ -8,15 +8,20 @@
 // applying operating system (OS) patches, automating the creation of Amazon
 // Machine Images (AMIs), and configuring operating systems (OSs) and applications
 // at scale. Systems Manager lets you remotely and securely manage the configuration
-// of your managed instances. A managed instance is any Amazon Elastic Compute
-// Cloud instance (EC2 instance), or any on-premises server or virtual machine
-// (VM) in your hybrid environment that has been configured for Systems Manager.
+// of your managed nodes. A managed node is any Amazon Elastic Compute Cloud
+// (Amazon EC2) instance, edge device, or on-premises server or virtual machine
+// (VM) that has been configured for Systems Manager.
+//
+// With support for IoT Greengrass Version 2 devices, the phrase managed instance
+// has been changed to managed node in most of the Systems Manager documentation.
+// The Systems Manager console, API calls, error messages, and SSM documents
+// still use the term instance.
 //
 // This reference is intended to be used with the Amazon Web Services Systems
 // Manager User Guide (https://docs.aws.amazon.com/systems-manager/latest/userguide/).
 //
-// To get started, verify prerequisites and configure managed instances. For
-// more information, see Setting up Amazon Web Services Systems Manager (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html)
+// To get started, verify prerequisites and configure managed nodes. For more
+// information, see Setting up Amazon Web Services Systems Manager (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html)
 // in the Amazon Web Services Systems Manager User Guide.
 //
 // Related resources

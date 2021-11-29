@@ -22,6 +22,7 @@
     "ListJobs" : "<p>This operation lists your jobs sorted by CreatedAt in descending order.</p>",
     "ListRevisionAssets" : "<p>This operation lists a revision's assets sorted alphabetically in descending order.</p>",
     "ListTagsForResource" : "<p>This operation lists the tags on the resource.</p>",
+    "SendApiAsset" : "<p>This operation invokes an API Gateway API asset. The request is proxied to the provider’s API Gateway API.</p>",
     "StartJob" : "<p>This operation starts a job.</p>",
     "TagResource" : "<p>This operation tags a resource.</p>",
     "UntagResource" : "<p>This operation removes one or more tags from a resource.</p>",
@@ -44,6 +45,20 @@
         "UpdateEventActionRequest$Action" : "<p>What occurs after a certain event.</p>"
       }
     },
+    "ApiDescription" : {
+      "base" : "<p>The description of the API.</p>",
+      "refs" : {
+        "ApiGatewayApiAsset$ApiDescription" : "<p>The API description of the API asset.</p>",
+        "ImportAssetFromApiGatewayApiRequestDetails$ApiDescription" : "<p>The API description. Markdown supported.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$ApiDescription" : "<p>The API description.</p>"
+      }
+    },
+    "ApiGatewayApiAsset" : {
+      "base" : "<p>The API Gateway API that is the asset.</p>",
+      "refs" : {
+        "AssetDetails$ApiGatewayApiAsset" : "<p>Information about the API Gateway API asset.</p>"
+      }
+    },
     "Arn" : {
       "base" : "<p>An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.</p>",
       "refs" : {
@@ -62,7 +77,7 @@
       }
     },
     "Asset" : {
-      "base" : "<p>An asset in AWS Data Exchange is a piece of data. The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, or an Amazon Redshift datashare (Preview). When you create an import job for your files, you create an asset in AWS Data Exchange for each of those files.</p>",
+      "base" : "<p>An asset in AWS Data Exchange is a piece of data (S3 object) or a means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon Redshift datashare (Preview). When you create an import job for your files, API Gateway APIs, or Amazon Redshift datashares, you create an asset in AWS Data Exchange.</p>",
       "refs" : { }
     },
     "AssetDestinationEntry" : {
@@ -79,20 +94,20 @@
       }
     },
     "AssetEntry" : {
-      "base" : "<p>An asset in AWS Data Exchange is a piece of data. The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, or an Amazon Redshift datashare (Preview). When you create an import job for your files, you create an asset in AWS Data Exchange for each of those files.</p>",
+      "base" : "<p>An asset in AWS Data Exchange is a piece of data (S3 object) or a means of fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The asset can be a structured data file, an image file, or some other data file that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon Redshift datashare (Preview). When you create an import job for your files, API Gateway APIs, or Amazon Redshift datashares, you create an asset in AWS Data Exchange.</p>",
       "refs" : {
         "ListOfAssetEntry$member" : null
       }
     },
     "AssetName" : {
-      "base" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.</p>",
+      "base" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name.</p>",
       "refs" : {
-        "Asset$Name" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.</p>",
-        "AssetEntry$Name" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.</p>",
+        "Asset$Name" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name.</p>",
+        "AssetEntry$Name" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name.</p>",
         "ImportAssetFromSignedUrlJobErrorDetails$AssetName" : "<p>Information about the job error.</p>",
         "ImportAssetFromSignedUrlRequestDetails$AssetName" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name.</p>",
         "ImportAssetFromSignedUrlResponseDetails$AssetName" : "<p>The name for the asset associated with this import job.</p>",
-        "UpdateAssetRequest$Name" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key.</p>"
+        "UpdateAssetRequest$Name" : "<p>The name of the asset. When importing from Amazon S3, the S3 object key is used as the asset name. When exporting to Amazon S3, the asset name is used as default target S3 object key. When importing from Amazon API Gateway API, the API name is used as the asset name. When importing from Amazon Redshift, the datashare name is used as the asset name.</p>"
       }
     },
     "AssetSourceEntry" : {
@@ -123,6 +138,10 @@
       "refs" : {
         "Action$ExportRevisionToS3" : "<p>Details for the export revision to Amazon S3 action.</p>"
       }
+    },
+    "Body" : {
+      "base" : "<p>The API request body should be exactly what you to send to the provider's asset. There is no need to wrap it or to send JSON.</p>",
+      "refs" : { }
     },
     "Code" : {
       "base" : null,
@@ -276,6 +295,10 @@
         "ExportAssetsToS3ResponseDetails$RevisionId" : "<p>The unique identifier for the revision associated with this export response.</p>",
         "ExportRevisionsToS3RequestDetails$DataSetId" : "<p>The unique identifier for the data set associated with this export job.</p>",
         "ExportRevisionsToS3ResponseDetails$DataSetId" : "<p>The unique identifier for the data set associated with this export job.</p>",
+        "ImportAssetFromApiGatewayApiRequestDetails$DataSetId" : "<p>The data set ID.</p>",
+        "ImportAssetFromApiGatewayApiRequestDetails$RevisionId" : "<p>The revision ID.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$DataSetId" : "<p>The data set ID.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$RevisionId" : "<p>The revision ID.</p>",
         "ImportAssetFromSignedUrlRequestDetails$DataSetId" : "<p>The unique identifier for the data set associated with this import job.</p>",
         "ImportAssetFromSignedUrlRequestDetails$RevisionId" : "<p>The unique identifier for the revision associated with this import request.</p>",
         "ImportAssetFromSignedUrlResponseDetails$DataSetId" : "<p>The unique identifier for the data set associated with this import job.</p>",
@@ -303,6 +326,18 @@
         "TaggedRevision$DataSetId" : "<p>The unique identifier for the data set associated with this revision.</p>",
         "TaggedRevision$Id" : "<p>The unique identifier for the revision.</p>",
         "TaggedRevision$SourceId" : "<p>The revision ID of the owned revision corresponding to the entitled revision being viewed. This parameter is returned when a revision owner is viewing the entitled copy of its owned revision.</p>"
+      }
+    },
+    "ImportAssetFromApiGatewayApiRequestDetails" : {
+      "base" : "<p>The request details.</p>",
+      "refs" : {
+        "RequestDetails$ImportAssetFromApiGatewayApi" : "<p>Information about the import asset from API Gateway API request.</p>"
+      }
+    },
+    "ImportAssetFromApiGatewayApiResponseDetails" : {
+      "base" : "<p>The response details.</p>",
+      "refs" : {
+        "ResponseDetails$ImportAssetFromApiGatewayApi" : "<p>The response details.</p>"
       }
     },
     "ImportAssetFromSignedUrlJobErrorDetails" : {
@@ -470,6 +505,14 @@
         "TaggedDataSet$OriginDetails" : "<p>If the origin of this data set is ENTITLED, includes the details for the product on AWS Marketplace.</p>"
       }
     },
+    "ProtocolType" : {
+      "base" : null,
+      "refs" : {
+        "ApiGatewayApiAsset$ProtocolType" : "<p>The protocol type of the API asset.</p>",
+        "ImportAssetFromApiGatewayApiRequestDetails$ProtocolType" : "<p>The protocol type.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$ProtocolType" : "<p>The protocol type.</p>"
+      }
+    },
     "RedshiftDataShareAsset" : {
       "base" : "The Amazon Redshift datashare asset.",
       "refs" : {
@@ -534,6 +577,10 @@
         "AssetDetails$S3SnapshotAsset" : "<p>The S3 object that is the asset.</p>"
       }
     },
+    "SendApiAssetResponse" : {
+      "base" : "<p>The details of the send API asset response.</p>",
+      "refs" : { }
+    },
     "ServerSideEncryptionTypes" : {
       "base" : "<p>The types of encryption supported in export jobs to Amazon S3.</p>",
       "refs" : {
@@ -574,6 +621,7 @@
     "Timestamp" : {
       "base" : "<p>Dates and times in AWS Data Exchange are recorded in ISO 8601 format.</p>",
       "refs" : {
+        "ApiGatewayApiAsset$ApiSpecificationDownloadUrlExpiresAt" : "<p>The date and time that the upload URL expires, in ISO 8601 format.</p>",
         "Asset$CreatedAt" : "<p>The date and time that the asset was created, in ISO 8601 format.</p>",
         "Asset$UpdatedAt" : "<p>The date and time that the asset was last updated, in ISO 8601 format.</p>",
         "AssetEntry$CreatedAt" : "<p>The date and time that the asset was created, in ISO 8601 format.</p>",
@@ -587,6 +635,7 @@
         "EventActionEntry$CreatedAt" : "<p>The date and time that the event action was created, in ISO 8601 format.</p>",
         "EventActionEntry$UpdatedAt" : "<p>The date and time that the event action was last updated, in ISO 8601 format.</p>",
         "ExportAssetToSignedUrlResponseDetails$SignedUrlExpiresAt" : "<p>The date and time that the signed URL expires, in ISO 8601 format.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$ApiSpecificationUploadUrlExpiresAt" : "<p>The date and time that the upload URL expires, in ISO 8601 format.</p>",
         "ImportAssetFromSignedUrlResponseDetails$SignedUrlExpiresAt" : "<p>The time and date at which the signed URL expires, in ISO 8601 format.</p>",
         "Job$CreatedAt" : "<p>The date and time that the job was created, in ISO 8601 format.</p>",
         "Job$UpdatedAt" : "<p>The date and time that the job was last updated, in ISO 8601 format.</p>",
@@ -694,6 +743,7 @@
       "refs" : {
         "CreateDataSetRequest$Tags" : "<p>A data set tag is an optional label that you can assign to a data set when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to these data sets and revisions.</p>",
         "CreateRevisionRequest$Tags" : "<p>A revision tag is an optional label that you can assign to a revision when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to these data sets and revisions.</p>",
+        "SendApiAssetResponse$ResponseHeaders" : "<p>The response headers from the underlying API tracked by the API asset.</p>",
         "TaggedDataSet$Tags" : "<p>The tags for the data set.</p>",
         "TaggedRevision$Tags" : "<p>The tags for the revision.</p>",
         "TagsModel$Tags" : "A label that consists of a customer-defined key and an optional value."
@@ -703,17 +753,33 @@
       "base" : null,
       "refs" : {
         "AccessDeniedException$Message" : "<p>Access to the resource is denied.</p>",
+        "ApiGatewayApiAsset$ApiEndpoint" : "<p>The API endpoint of the API asset.</p>",
+        "ApiGatewayApiAsset$ApiId" : "<p>The unique identifier of the API asset.</p>",
+        "ApiGatewayApiAsset$ApiKey" : "<p>The API key of the API asset.</p>",
+        "ApiGatewayApiAsset$ApiName" : "<p>The API name of the API asset.</p>",
+        "ApiGatewayApiAsset$ApiSpecificationDownloadUrl" : "<p>The download URL of the API specification of the API asset.</p>",
+        "ApiGatewayApiAsset$Stage" : "<p>The stage of the API asset.</p>",
         "AssetDestinationEntry$Bucket" : "<p>The S3 bucket that is the destination for the asset.</p>",
         "AssetDestinationEntry$Key" : "<p>The name of the object in Amazon S3 for the asset.</p>",
         "AssetSourceEntry$Bucket" : "<p>The S3 bucket that's part of the source of the asset.</p>",
         "AssetSourceEntry$Key" : "<p>The name of the object in Amazon S3 for the asset.</p>",
         "AutoExportRevisionDestinationEntry$Bucket" : "<p>The S3 bucket that is the destination for the event action.</p>",
         "AutoExportRevisionDestinationEntry$KeyPattern" : "<p>A string representing the pattern for generated names of the individual assets in the revision. For more information about key patterns, see <a href=\"https://docs.aws.amazon.com/data-exchange/latest/userguide/jobs.html#revision-export-keypatterns\">Key patterns when exporting revisions</a>.</p>",
+        "Body$Body" : "<p>The request body.</p>",
         "ConflictException$Message" : "<p>The request couldn't be completed because it conflicted with the current state of the resource.</p>",
         "ConflictException$ResourceId" : "<p>The unique identifier for the resource with the conflict.</p>",
         "ExportAssetToSignedUrlResponseDetails$SignedUrl" : "<p>The signed URL for the export request.</p>",
         "ExportRevisionsToS3ResponseDetails$EventActionArn" : "<p>The Amazon Resource Name (ARN) of the event action.</p>",
         "ExportServerSideEncryption$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the AWS KMS key you want to use to encrypt the Amazon S3 objects. This parameter is required if you choose aws:kms as an encryption type.</p>",
+        "ImportAssetFromApiGatewayApiRequestDetails$ApiId" : "<p>The API Gateway API ID.</p>",
+        "ImportAssetFromApiGatewayApiRequestDetails$ApiKey" : "<p>The API Gateway API key.</p>",
+        "ImportAssetFromApiGatewayApiRequestDetails$ApiName" : "<p>The API name.</p>",
+        "ImportAssetFromApiGatewayApiRequestDetails$Stage" : "<p>The API stage.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$ApiId" : "<p>The API ID.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$ApiKey" : "<p>The API key.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$ApiName" : "<p>The API name.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$ApiSpecificationUploadUrl" : "<p>The upload URL of the API specification.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$Stage" : "<p>The API stage.</p>",
         "ImportAssetFromSignedUrlResponseDetails$SignedUrl" : "<p>The signed URL.</p>",
         "InternalServerException$Message" : "The message identifying the service exception that occurred.",
         "JobError$Message" : "The message related to the job error.",
@@ -725,6 +791,7 @@
         "ResourceNotFoundException$ResourceId" : "<p>The unique identifier for the resource that couldn't be found.</p>",
         "RevisionDestinationEntry$Bucket" : "<p>The S3 bucket that is the destination for the assets in the revision.</p>",
         "RevisionDestinationEntry$KeyPattern" : "<p>A string representing the pattern for generated names of the individual assets in the revision. For more information about key patterns, see <a href=\"https://docs.aws.amazon.com/data-exchange/latest/userguide/jobs.html#revision-export-keypatterns\">Key patterns when exporting revisions</a>.</p>",
+        "SendApiAssetResponse$Body" : "<p>The response body from the underlying API tracked by the API asset.</p>",
         "ServiceQuotaExceededException$Message" : "<p>The request has exceeded the quotas imposed by the service.</p>",
         "ThrottlingException$Message" : "<p>The limit on the number of requests per second was exceeded.</p>",
         "ValidationException$Message" : "<p>The message that informs you about what was invalid about the request.</p>",
@@ -744,6 +811,8 @@
     "__stringMin24Max24PatternAZaZ094AZaZ092AZaZ093" : {
       "base" : null,
       "refs" : {
+        "ImportAssetFromApiGatewayApiRequestDetails$ApiSpecificationMd5Hash" : "<p>The Base64-encoded MD5 hash of the OpenAPI 3.0 JSON API specification file. It is used to ensure the integrity of the file.</p>",
+        "ImportAssetFromApiGatewayApiResponseDetails$ApiSpecificationMd5Hash" : "<p>The Base64-encoded Md5 hash for the API asset, used to ensure the integrity of the API at that location.</p>",
         "ImportAssetFromSignedUrlRequestDetails$Md5Hash" : "<p>The Base64-encoded Md5 hash for the asset, used to ensure the integrity of the file at that location.</p>",
         "ImportAssetFromSignedUrlResponseDetails$Md5Hash" : "<p>The Base64-encoded Md5 hash for the asset, used to ensure the integrity of the file at that location.</p>"
       }

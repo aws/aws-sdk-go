@@ -1272,6 +1272,13 @@ type EC2API interface {
 	DescribeSnapshotAttributeWithContext(aws.Context, *ec2.DescribeSnapshotAttributeInput, ...request.Option) (*ec2.DescribeSnapshotAttributeOutput, error)
 	DescribeSnapshotAttributeRequest(*ec2.DescribeSnapshotAttributeInput) (*request.Request, *ec2.DescribeSnapshotAttributeOutput)
 
+	DescribeSnapshotTierStatus(*ec2.DescribeSnapshotTierStatusInput) (*ec2.DescribeSnapshotTierStatusOutput, error)
+	DescribeSnapshotTierStatusWithContext(aws.Context, *ec2.DescribeSnapshotTierStatusInput, ...request.Option) (*ec2.DescribeSnapshotTierStatusOutput, error)
+	DescribeSnapshotTierStatusRequest(*ec2.DescribeSnapshotTierStatusInput) (*request.Request, *ec2.DescribeSnapshotTierStatusOutput)
+
+	DescribeSnapshotTierStatusPages(*ec2.DescribeSnapshotTierStatusInput, func(*ec2.DescribeSnapshotTierStatusOutput, bool) bool) error
+	DescribeSnapshotTierStatusPagesWithContext(aws.Context, *ec2.DescribeSnapshotTierStatusInput, func(*ec2.DescribeSnapshotTierStatusOutput, bool) bool, ...request.Option) error
+
 	DescribeSnapshots(*ec2.DescribeSnapshotsInput) (*ec2.DescribeSnapshotsOutput, error)
 	DescribeSnapshotsWithContext(aws.Context, *ec2.DescribeSnapshotsInput, ...request.Option) (*ec2.DescribeSnapshotsOutput, error)
 	DescribeSnapshotsRequest(*ec2.DescribeSnapshotsInput) (*request.Request, *ec2.DescribeSnapshotsOutput)
@@ -1845,6 +1852,13 @@ type EC2API interface {
 	ImportVolumeWithContext(aws.Context, *ec2.ImportVolumeInput, ...request.Option) (*ec2.ImportVolumeOutput, error)
 	ImportVolumeRequest(*ec2.ImportVolumeInput) (*request.Request, *ec2.ImportVolumeOutput)
 
+	ListSnapshotsInRecycleBin(*ec2.ListSnapshotsInRecycleBinInput) (*ec2.ListSnapshotsInRecycleBinOutput, error)
+	ListSnapshotsInRecycleBinWithContext(aws.Context, *ec2.ListSnapshotsInRecycleBinInput, ...request.Option) (*ec2.ListSnapshotsInRecycleBinOutput, error)
+	ListSnapshotsInRecycleBinRequest(*ec2.ListSnapshotsInRecycleBinInput) (*request.Request, *ec2.ListSnapshotsInRecycleBinOutput)
+
+	ListSnapshotsInRecycleBinPages(*ec2.ListSnapshotsInRecycleBinInput, func(*ec2.ListSnapshotsInRecycleBinOutput, bool) bool) error
+	ListSnapshotsInRecycleBinPagesWithContext(aws.Context, *ec2.ListSnapshotsInRecycleBinInput, func(*ec2.ListSnapshotsInRecycleBinOutput, bool) bool, ...request.Option) error
+
 	ModifyAddressAttribute(*ec2.ModifyAddressAttributeInput) (*ec2.ModifyAddressAttributeOutput, error)
 	ModifyAddressAttributeWithContext(aws.Context, *ec2.ModifyAddressAttributeInput, ...request.Option) (*ec2.ModifyAddressAttributeOutput, error)
 	ModifyAddressAttributeRequest(*ec2.ModifyAddressAttributeInput) (*request.Request, *ec2.ModifyAddressAttributeOutput)
@@ -1952,6 +1966,10 @@ type EC2API interface {
 	ModifySnapshotAttribute(*ec2.ModifySnapshotAttributeInput) (*ec2.ModifySnapshotAttributeOutput, error)
 	ModifySnapshotAttributeWithContext(aws.Context, *ec2.ModifySnapshotAttributeInput, ...request.Option) (*ec2.ModifySnapshotAttributeOutput, error)
 	ModifySnapshotAttributeRequest(*ec2.ModifySnapshotAttributeInput) (*request.Request, *ec2.ModifySnapshotAttributeOutput)
+
+	ModifySnapshotTier(*ec2.ModifySnapshotTierInput) (*ec2.ModifySnapshotTierOutput, error)
+	ModifySnapshotTierWithContext(aws.Context, *ec2.ModifySnapshotTierInput, ...request.Option) (*ec2.ModifySnapshotTierOutput, error)
+	ModifySnapshotTierRequest(*ec2.ModifySnapshotTierInput) (*request.Request, *ec2.ModifySnapshotTierOutput)
 
 	ModifySpotFleetRequest(*ec2.ModifySpotFleetRequestInput) (*ec2.ModifySpotFleetRequestOutput, error)
 	ModifySpotFleetRequestWithContext(aws.Context, *ec2.ModifySpotFleetRequestInput, ...request.Option) (*ec2.ModifySpotFleetRequestOutput, error)
@@ -2180,6 +2198,14 @@ type EC2API interface {
 	RestoreManagedPrefixListVersion(*ec2.RestoreManagedPrefixListVersionInput) (*ec2.RestoreManagedPrefixListVersionOutput, error)
 	RestoreManagedPrefixListVersionWithContext(aws.Context, *ec2.RestoreManagedPrefixListVersionInput, ...request.Option) (*ec2.RestoreManagedPrefixListVersionOutput, error)
 	RestoreManagedPrefixListVersionRequest(*ec2.RestoreManagedPrefixListVersionInput) (*request.Request, *ec2.RestoreManagedPrefixListVersionOutput)
+
+	RestoreSnapshotFromRecycleBin(*ec2.RestoreSnapshotFromRecycleBinInput) (*ec2.RestoreSnapshotFromRecycleBinOutput, error)
+	RestoreSnapshotFromRecycleBinWithContext(aws.Context, *ec2.RestoreSnapshotFromRecycleBinInput, ...request.Option) (*ec2.RestoreSnapshotFromRecycleBinOutput, error)
+	RestoreSnapshotFromRecycleBinRequest(*ec2.RestoreSnapshotFromRecycleBinInput) (*request.Request, *ec2.RestoreSnapshotFromRecycleBinOutput)
+
+	RestoreSnapshotTier(*ec2.RestoreSnapshotTierInput) (*ec2.RestoreSnapshotTierOutput, error)
+	RestoreSnapshotTierWithContext(aws.Context, *ec2.RestoreSnapshotTierInput, ...request.Option) (*ec2.RestoreSnapshotTierOutput, error)
+	RestoreSnapshotTierRequest(*ec2.RestoreSnapshotTierInput) (*request.Request, *ec2.RestoreSnapshotTierOutput)
 
 	RevokeClientVpnIngress(*ec2.RevokeClientVpnIngressInput) (*ec2.RevokeClientVpnIngressOutput, error)
 	RevokeClientVpnIngressWithContext(aws.Context, *ec2.RevokeClientVpnIngressInput, ...request.Option) (*ec2.RevokeClientVpnIngressOutput, error)

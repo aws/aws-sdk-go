@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Compute Optimizer.
 //    func myFunc(svc computeoptimizeriface.ComputeOptimizerAPI) bool {
-//        // Make svc.DescribeRecommendationExportJobs request
+//        // Make svc.DeleteRecommendationPreferences request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockComputeOptimizerClient struct {
 //        computeoptimizeriface.ComputeOptimizerAPI
 //    }
-//    func (m *mockComputeOptimizerClient) DescribeRecommendationExportJobs(input *computeoptimizer.DescribeRecommendationExportJobsInput) (*computeoptimizer.DescribeRecommendationExportJobsOutput, error) {
+//    func (m *mockComputeOptimizerClient) DeleteRecommendationPreferences(input *computeoptimizer.DeleteRecommendationPreferencesInput) (*computeoptimizer.DeleteRecommendationPreferencesOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type ComputeOptimizerAPI interface {
+	DeleteRecommendationPreferences(*computeoptimizer.DeleteRecommendationPreferencesInput) (*computeoptimizer.DeleteRecommendationPreferencesOutput, error)
+	DeleteRecommendationPreferencesWithContext(aws.Context, *computeoptimizer.DeleteRecommendationPreferencesInput, ...request.Option) (*computeoptimizer.DeleteRecommendationPreferencesOutput, error)
+	DeleteRecommendationPreferencesRequest(*computeoptimizer.DeleteRecommendationPreferencesInput) (*request.Request, *computeoptimizer.DeleteRecommendationPreferencesOutput)
+
 	DescribeRecommendationExportJobs(*computeoptimizer.DescribeRecommendationExportJobsInput) (*computeoptimizer.DescribeRecommendationExportJobsOutput, error)
 	DescribeRecommendationExportJobsWithContext(aws.Context, *computeoptimizer.DescribeRecommendationExportJobsInput, ...request.Option) (*computeoptimizer.DescribeRecommendationExportJobsOutput, error)
 	DescribeRecommendationExportJobsRequest(*computeoptimizer.DescribeRecommendationExportJobsInput) (*request.Request, *computeoptimizer.DescribeRecommendationExportJobsOutput)
@@ -96,6 +100,10 @@ type ComputeOptimizerAPI interface {
 	GetEC2RecommendationProjectedMetricsWithContext(aws.Context, *computeoptimizer.GetEC2RecommendationProjectedMetricsInput, ...request.Option) (*computeoptimizer.GetEC2RecommendationProjectedMetricsOutput, error)
 	GetEC2RecommendationProjectedMetricsRequest(*computeoptimizer.GetEC2RecommendationProjectedMetricsInput) (*request.Request, *computeoptimizer.GetEC2RecommendationProjectedMetricsOutput)
 
+	GetEffectiveRecommendationPreferences(*computeoptimizer.GetEffectiveRecommendationPreferencesInput) (*computeoptimizer.GetEffectiveRecommendationPreferencesOutput, error)
+	GetEffectiveRecommendationPreferencesWithContext(aws.Context, *computeoptimizer.GetEffectiveRecommendationPreferencesInput, ...request.Option) (*computeoptimizer.GetEffectiveRecommendationPreferencesOutput, error)
+	GetEffectiveRecommendationPreferencesRequest(*computeoptimizer.GetEffectiveRecommendationPreferencesInput) (*request.Request, *computeoptimizer.GetEffectiveRecommendationPreferencesOutput)
+
 	GetEnrollmentStatus(*computeoptimizer.GetEnrollmentStatusInput) (*computeoptimizer.GetEnrollmentStatusOutput, error)
 	GetEnrollmentStatusWithContext(aws.Context, *computeoptimizer.GetEnrollmentStatusInput, ...request.Option) (*computeoptimizer.GetEnrollmentStatusOutput, error)
 	GetEnrollmentStatusRequest(*computeoptimizer.GetEnrollmentStatusInput) (*request.Request, *computeoptimizer.GetEnrollmentStatusOutput)
@@ -108,9 +116,17 @@ type ComputeOptimizerAPI interface {
 	GetLambdaFunctionRecommendationsWithContext(aws.Context, *computeoptimizer.GetLambdaFunctionRecommendationsInput, ...request.Option) (*computeoptimizer.GetLambdaFunctionRecommendationsOutput, error)
 	GetLambdaFunctionRecommendationsRequest(*computeoptimizer.GetLambdaFunctionRecommendationsInput) (*request.Request, *computeoptimizer.GetLambdaFunctionRecommendationsOutput)
 
+	GetRecommendationPreferences(*computeoptimizer.GetRecommendationPreferencesInput) (*computeoptimizer.GetRecommendationPreferencesOutput, error)
+	GetRecommendationPreferencesWithContext(aws.Context, *computeoptimizer.GetRecommendationPreferencesInput, ...request.Option) (*computeoptimizer.GetRecommendationPreferencesOutput, error)
+	GetRecommendationPreferencesRequest(*computeoptimizer.GetRecommendationPreferencesInput) (*request.Request, *computeoptimizer.GetRecommendationPreferencesOutput)
+
 	GetRecommendationSummaries(*computeoptimizer.GetRecommendationSummariesInput) (*computeoptimizer.GetRecommendationSummariesOutput, error)
 	GetRecommendationSummariesWithContext(aws.Context, *computeoptimizer.GetRecommendationSummariesInput, ...request.Option) (*computeoptimizer.GetRecommendationSummariesOutput, error)
 	GetRecommendationSummariesRequest(*computeoptimizer.GetRecommendationSummariesInput) (*request.Request, *computeoptimizer.GetRecommendationSummariesOutput)
+
+	PutRecommendationPreferences(*computeoptimizer.PutRecommendationPreferencesInput) (*computeoptimizer.PutRecommendationPreferencesOutput, error)
+	PutRecommendationPreferencesWithContext(aws.Context, *computeoptimizer.PutRecommendationPreferencesInput, ...request.Option) (*computeoptimizer.PutRecommendationPreferencesOutput, error)
+	PutRecommendationPreferencesRequest(*computeoptimizer.PutRecommendationPreferencesInput) (*request.Request, *computeoptimizer.PutRecommendationPreferencesOutput)
 
 	UpdateEnrollmentStatus(*computeoptimizer.UpdateEnrollmentStatusInput) (*computeoptimizer.UpdateEnrollmentStatusOutput, error)
 	UpdateEnrollmentStatusWithContext(aws.Context, *computeoptimizer.UpdateEnrollmentStatusInput, ...request.Option) (*computeoptimizer.UpdateEnrollmentStatusOutput, error)

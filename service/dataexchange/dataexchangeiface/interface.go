@@ -155,6 +155,10 @@ type DataExchangeAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *dataexchange.ListTagsForResourceInput, ...request.Option) (*dataexchange.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*dataexchange.ListTagsForResourceInput) (*request.Request, *dataexchange.ListTagsForResourceOutput)
 
+	SendApiAsset(*dataexchange.SendApiAssetInput) (*dataexchange.SendApiAssetOutput, error)
+	SendApiAssetWithContext(aws.Context, *dataexchange.SendApiAssetInput, ...request.Option) (*dataexchange.SendApiAssetOutput, error)
+	SendApiAssetRequest(*dataexchange.SendApiAssetInput) (*request.Request, *dataexchange.SendApiAssetOutput)
+
 	StartJob(*dataexchange.StartJobInput) (*dataexchange.StartJobOutput, error)
 	StartJobWithContext(aws.Context, *dataexchange.StartJobInput, ...request.Option) (*dataexchange.StartJobOutput, error)
 	StartJobRequest(*dataexchange.StartJobInput) (*request.Request, *dataexchange.StartJobOutput)

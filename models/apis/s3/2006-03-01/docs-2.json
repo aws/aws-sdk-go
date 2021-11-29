@@ -1277,6 +1277,12 @@
         "TopicConfigurationDeprecated$Event": "<p>Bucket event for which to send notifications.</p>"
       }
     },
+    "EventBridgeConfiguration": {
+      "base": "<p>A container for specifying the configuration for Amazon EventBridge.</p>",
+      "refs": {
+        "NotificationConfiguration$EventBridgeConfiguration": "<p>Enables delivery of events to Amazon EventBridge.</p>"
+      }
+    },
     "EventList": {
       "base": null,
       "refs": {
@@ -3732,6 +3738,12 @@
         "Object$Size": "<p>Size in bytes of the object</p>",
         "ObjectVersion$Size": "<p>Size in bytes of the object.</p>",
         "Part$Size": "<p>Size in bytes of the uploaded part data.</p>"
+      }
+    },
+    "SkipValidation": {
+      "base": null,
+      "refs": {
+        "PutBucketNotificationConfigurationRequest$SkipDestinationValidation": "<p>Skips validation of Amazon SQS, Amazon SNS, and Lambda destinations. True or false value.</p>"
       }
     },
     "SourceSelectionCriteria": {
