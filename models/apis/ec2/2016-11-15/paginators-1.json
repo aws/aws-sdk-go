@@ -398,6 +398,12 @@
       "output_token": "NextToken",
       "result_key": "SecurityGroups"
     },
+    "DescribeSnapshotTierStatus": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "SnapshotTierStatuses"
+    },
     "DescribeSnapshots": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -661,6 +667,12 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "VpnConnectionDeviceTypes"
+    },
+    "ListSnapshotsInRecycleBin": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Snapshots"
     },
     "SearchLocalGatewayRoutes": {
       "input_token": "NextToken",

@@ -2601,6 +2601,7 @@
         "storageType":{"shape":"StorageType"},
         "multiLayerStorage":{"shape":"MultiLayerStorage"},
         "disassociatedDataStorage":{"shape":"DisassociatedDataStorageState"},
+        "retentionPeriod":{"shape":"RetentionPeriod"},
         "configurationStatus":{"shape":"ConfigurationStatus"},
         "lastUpdateDate":{"shape":"Timestamp"}
       }
@@ -3752,6 +3753,10 @@
       "min":1,
       "pattern":"[A-Za-z0-9+/=]+"
     },
+    "NumberOfDays":{
+      "type":"integer",
+      "min":30
+    },
     "Offset":{
       "type":"string",
       "max":25,
@@ -3977,7 +3982,8 @@
       "members":{
         "storageType":{"shape":"StorageType"},
         "multiLayerStorage":{"shape":"MultiLayerStorage"},
-        "disassociatedDataStorage":{"shape":"DisassociatedDataStorageState"}
+        "disassociatedDataStorage":{"shape":"DisassociatedDataStorageState"},
+        "retentionPeriod":{"shape":"RetentionPeriod"}
       }
     },
     "PutStorageConfigurationResponse":{
@@ -3990,6 +3996,7 @@
         "storageType":{"shape":"StorageType"},
         "multiLayerStorage":{"shape":"MultiLayerStorage"},
         "disassociatedDataStorage":{"shape":"DisassociatedDataStorageState"},
+        "retentionPeriod":{"shape":"RetentionPeriod"},
         "configurationStatus":{"shape":"ConfigurationStatus"}
       }
     },
@@ -4052,6 +4059,13 @@
         "PORTAL",
         "PROJECT"
       ]
+    },
+    "RetentionPeriod":{
+      "type":"structure",
+      "members":{
+        "numberOfDays":{"shape":"NumberOfDays"},
+        "unlimited":{"shape":"Unlimited"}
+      }
     },
     "SSOApplicationId":{
       "type":"string",
@@ -4238,6 +4252,7 @@
       "error":{"httpStatusCode":401},
       "exception":true
     },
+    "Unlimited":{"type":"boolean"},
     "UntagResourceRequest":{
       "type":"structure",
       "required":[

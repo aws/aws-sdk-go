@@ -1,3 +1,24 @@
+Release v1.42.15 (2021-11-29)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/dataexchange`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release adds support for G5g and M6a instances. This release also adds support for Amazon EBS Snapshots Archive, a feature that enables you to archive your EBS snapshots; and Recycle Bin, a feature that enables you to protect your EBS snapshots against accidental deletion.
+* `service/ecr`: Updates service API, documentation, and paginators
+  * This release adds supports for pull through cache rules and enhanced scanning.
+* `service/evidently`: Updates service API, documentation, paginators, and examples
+* `service/inspector2`: Adds new service
+* `service/iotsitewise`: Updates service API and documentation
+* `service/rbin`: Updates service API, documentation, paginators, and examples
+* `service/rum`: Updates service API, documentation, paginators, and examples
+* `service/s3`: Updates service API, documentation, and examples
+  * Amazon S3 Event Notifications adds Amazon EventBridge as a destination and supports additional event types. The PutBucketNotificationConfiguration API can now skip validation of Amazon SQS, Amazon SNS and AWS Lambda destinations.
+* `service/ssm`: Updates service API and documentation
+  * Added two new attributes to DescribeInstanceInformation called SourceId and SourceType along with new string filters SourceIds and SourceTypes to filter instance records.
+* `service/wellarchitected`: Updates service API, documentation, and paginators
+
 Release v1.42.14 (2021-11-29)
 ===
 

@@ -2306,6 +2306,15 @@
       "input":{"shape":"DescribeSnapshotAttributeRequest"},
       "output":{"shape":"DescribeSnapshotAttributeResult"}
     },
+    "DescribeSnapshotTierStatus":{
+      "name":"DescribeSnapshotTierStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSnapshotTierStatusRequest"},
+      "output":{"shape":"DescribeSnapshotTierStatusResult"}
+    },
     "DescribeSnapshots":{
       "name":"DescribeSnapshots",
       "http":{
@@ -3297,6 +3306,15 @@
       "input":{"shape":"ImportVolumeRequest"},
       "output":{"shape":"ImportVolumeResult"}
     },
+    "ListSnapshotsInRecycleBin":{
+      "name":"ListSnapshotsInRecycleBin",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSnapshotsInRecycleBinRequest"},
+      "output":{"shape":"ListSnapshotsInRecycleBinResult"}
+    },
     "ModifyAddressAttribute":{
       "name":"ModifyAddressAttribute",
       "http":{
@@ -3533,6 +3551,15 @@
         "requestUri":"/"
       },
       "input":{"shape":"ModifySnapshotAttributeRequest"}
+    },
+    "ModifySnapshotTier":{
+      "name":"ModifySnapshotTier",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifySnapshotTierRequest"},
+      "output":{"shape":"ModifySnapshotTierResult"}
     },
     "ModifySpotFleetRequest":{
       "name":"ModifySpotFleetRequest",
@@ -4034,6 +4061,24 @@
       },
       "input":{"shape":"RestoreManagedPrefixListVersionRequest"},
       "output":{"shape":"RestoreManagedPrefixListVersionResult"}
+    },
+    "RestoreSnapshotFromRecycleBin":{
+      "name":"RestoreSnapshotFromRecycleBin",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RestoreSnapshotFromRecycleBinRequest"},
+      "output":{"shape":"RestoreSnapshotFromRecycleBinResult"}
+    },
+    "RestoreSnapshotTier":{
+      "name":"RestoreSnapshotTier",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RestoreSnapshotTierRequest"},
+      "output":{"shape":"RestoreSnapshotTierResult"}
     },
     "RevokeClientVpnIngress":{
       "name":"RevokeClientVpnIngress",
@@ -14178,6 +14223,32 @@
         }
       }
     },
+    "DescribeSnapshotTierStatusMaxResults":{"type":"integer"},
+    "DescribeSnapshotTierStatusRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "DryRun":{"shape":"Boolean"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeSnapshotTierStatusMaxResults"}
+      }
+    },
+    "DescribeSnapshotTierStatusResult":{
+      "type":"structure",
+      "members":{
+        "SnapshotTierStatuses":{
+          "shape":"snapshotTierStatusSet",
+          "locationName":"snapshotTierStatusSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeSnapshotsRequest":{
       "type":"structure",
       "members":{
@@ -22403,6 +22474,16 @@
         "m6gd.8xlarge",
         "m6gd.12xlarge",
         "m6gd.16xlarge",
+        "m6a.large",
+        "m6a.xlarge",
+        "m6a.2xlarge",
+        "m6a.4xlarge",
+        "m6a.8xlarge",
+        "m6a.12xlarge",
+        "m6a.16xlarge",
+        "m6a.24xlarge",
+        "m6a.32xlarge",
+        "m6a.48xlarge",
         "m6i.large",
         "m6i.xlarge",
         "m6i.2xlarge",
@@ -22425,6 +22506,12 @@
         "vt1.3xlarge",
         "vt1.6xlarge",
         "vt1.24xlarge",
+        "g5g.xlarge",
+        "g5g.2xlarge",
+        "g5g.4xlarge",
+        "g5g.8xlarge",
+        "g5g.16xlarge",
+        "g5g.metal",
         "g5.xlarge",
         "g5.2xlarge",
         "g5.4xlarge",
@@ -24047,6 +24134,36 @@
         "locationName":"item"
       }
     },
+    "ListSnapshotsInRecycleBinMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
+    "ListSnapshotsInRecycleBinRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"ListSnapshotsInRecycleBinMaxResults"},
+        "NextToken":{"shape":"String"},
+        "SnapshotIds":{
+          "shape":"SnapshotIdStringList",
+          "locationName":"SnapshotId"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ListSnapshotsInRecycleBinResult":{
+      "type":"structure",
+      "members":{
+        "Snapshots":{
+          "shape":"SnapshotRecycleBinInfoList",
+          "locationName":"snapshotSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "ListingState":{
       "type":"string",
       "enum":[
@@ -25335,6 +25452,28 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
+        }
+      }
+    },
+    "ModifySnapshotTierRequest":{
+      "type":"structure",
+      "required":["SnapshotId"],
+      "members":{
+        "SnapshotId":{"shape":"SnapshotId"},
+        "StorageTier":{"shape":"TargetStorageTier"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifySnapshotTierResult":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "TieringStartTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"tieringStartTime"
         }
       }
     },
@@ -30026,6 +30165,91 @@
         }
       }
     },
+    "RestoreSnapshotFromRecycleBinRequest":{
+      "type":"structure",
+      "required":["SnapshotId"],
+      "members":{
+        "SnapshotId":{"shape":"SnapshotId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "RestoreSnapshotFromRecycleBinResult":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "OutpostArn":{
+          "shape":"String",
+          "locationName":"outpostArn"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "Encrypted":{
+          "shape":"Boolean",
+          "locationName":"encrypted"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "Progress":{
+          "shape":"String",
+          "locationName":"progress"
+        },
+        "StartTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"startTime"
+        },
+        "State":{
+          "shape":"SnapshotState",
+          "locationName":"status"
+        },
+        "VolumeId":{
+          "shape":"String",
+          "locationName":"volumeId"
+        },
+        "VolumeSize":{
+          "shape":"Integer",
+          "locationName":"volumeSize"
+        }
+      }
+    },
+    "RestoreSnapshotTierRequest":{
+      "type":"structure",
+      "required":["SnapshotId"],
+      "members":{
+        "SnapshotId":{"shape":"SnapshotId"},
+        "TemporaryRestoreDays":{"shape":"RestoreSnapshotTierRequestTemporaryRestoreDays"},
+        "PermanentRestore":{"shape":"Boolean"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "RestoreSnapshotTierRequestTemporaryRestoreDays":{"type":"integer"},
+    "RestoreSnapshotTierResult":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "RestoreStartTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"restoreStartTime"
+        },
+        "RestoreDuration":{
+          "shape":"Integer",
+          "locationName":"restoreDuration"
+        },
+        "IsPermanentRestore":{
+          "shape":"Boolean",
+          "locationName":"isPermanentRestore"
+        }
+      }
+    },
     "ResultRange":{
       "type":"integer",
       "max":500,
@@ -31415,6 +31639,14 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "StorageTier":{
+          "shape":"StorageTier",
+          "locationName":"storageTier"
+        },
+        "RestoreExpiryTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"restoreExpiryTime"
         }
       }
     },
@@ -31550,6 +31782,38 @@
         "locationName":"item"
       }
     },
+    "SnapshotRecycleBinInfo":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"String",
+          "locationName":"snapshotId"
+        },
+        "RecycleBinEnterTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"recycleBinEnterTime"
+        },
+        "RecycleBinExitTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"recycleBinExitTime"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "VolumeId":{
+          "shape":"String",
+          "locationName":"volumeId"
+        }
+      }
+    },
+    "SnapshotRecycleBinInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"SnapshotRecycleBinInfo",
+        "locationName":"item"
+      }
+    },
     "SnapshotSet":{
       "type":"list",
       "member":{
@@ -31562,7 +31826,9 @@
       "enum":[
         "pending",
         "completed",
-        "error"
+        "error",
+        "recoverable",
+        "recovering"
       ]
     },
     "SnapshotTaskDetail":{
@@ -31611,6 +31877,59 @@
         "UserBucket":{
           "shape":"UserBucketDetails",
           "locationName":"userBucket"
+        }
+      }
+    },
+    "SnapshotTierStatus":{
+      "type":"structure",
+      "members":{
+        "SnapshotId":{
+          "shape":"SnapshotId",
+          "locationName":"snapshotId"
+        },
+        "VolumeId":{
+          "shape":"VolumeId",
+          "locationName":"volumeId"
+        },
+        "Status":{
+          "shape":"SnapshotState",
+          "locationName":"status"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        },
+        "StorageTier":{
+          "shape":"StorageTier",
+          "locationName":"storageTier"
+        },
+        "LastTieringStartTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"lastTieringStartTime"
+        },
+        "LastTieringProgress":{
+          "shape":"Integer",
+          "locationName":"lastTieringProgress"
+        },
+        "LastTieringOperationStatus":{
+          "shape":"TieringOperationStatus",
+          "locationName":"lastTieringOperationStatus"
+        },
+        "LastTieringOperationStatusDetail":{
+          "shape":"String",
+          "locationName":"lastTieringOperationStatusDetail"
+        },
+        "ArchivalCompleteTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"archivalCompleteTime"
+        },
+        "RestoreExpiryTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"restoreExpiryTime"
         }
       }
     },
@@ -32474,6 +32793,13 @@
         "Key":{"shape":"String"}
       }
     },
+    "StorageTier":{
+      "type":"string",
+      "enum":[
+        "archive",
+        "standard"
+      ]
+    },
     "StoreImageTaskResult":{
       "type":"structure",
       "members":{
@@ -33012,6 +33338,10 @@
         "locationName":"item"
       }
     },
+    "TargetStorageTier":{
+      "type":"string",
+      "enum":["archive"]
+    },
     "TelemetryStatus":{
       "type":"string",
       "enum":[
@@ -33108,6 +33438,20 @@
         "shape":"ThreadsPerCore",
         "locationName":"item"
       }
+    },
+    "TieringOperationStatus":{
+      "type":"string",
+      "enum":[
+        "archival-in-progress",
+        "archival-completed",
+        "archival-failed",
+        "temporary-restore-in-progress",
+        "temporary-restore-completed",
+        "temporary-restore-failed",
+        "permanent-restore-in-progress",
+        "permanent-restore-completed",
+        "permanent-restore-failed"
+      ]
     },
     "TotalLocalStorageGB":{
       "type":"structure",
@@ -36455,6 +36799,13 @@
         "Availability Zone",
         "Region"
       ]
+    },
+    "snapshotTierStatusSet":{
+      "type":"list",
+      "member":{
+        "shape":"SnapshotTierStatus",
+        "locationName":"item"
+      }
     },
     "totalFpgaMemory":{"type":"integer"},
     "totalGpuMemory":{"type":"integer"}

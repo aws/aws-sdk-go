@@ -2626,8 +2626,23 @@
         "s3:Replication:OperationFailedReplication",
         "s3:Replication:OperationNotTracked",
         "s3:Replication:OperationMissedThreshold",
-        "s3:Replication:OperationReplicatedAfterThreshold"
+        "s3:Replication:OperationReplicatedAfterThreshold",
+        "s3:ObjectRestore:Delete",
+        "s3:LifecycleTransition",
+        "s3:IntelligentTiering",
+        "s3:ObjectAcl:Put",
+        "s3:LifecycleExpiration:*",
+        "s3:LifecycleExpiration:Delete",
+        "s3:LifecycleExpiration:DeleteMarkerCreated",
+        "s3:ObjectTagging:*",
+        "s3:ObjectTagging:Put",
+        "s3:ObjectTagging:Delete"
       ]
+    },
+    "EventBridgeConfiguration":{
+      "type":"structure",
+      "members":{
+      }
     },
     "EventList":{
       "type":"list",
@@ -5054,7 +5069,8 @@
         "LambdaFunctionConfigurations":{
           "shape":"LambdaFunctionConfigurationList",
           "locationName":"CloudFunctionConfiguration"
-        }
+        },
+        "EventBridgeConfiguration":{"shape":"EventBridgeConfiguration"}
       }
     },
     "NotificationConfigurationDeprecated":{
@@ -5738,6 +5754,11 @@
           "shape":"AccountId",
           "location":"header",
           "locationName":"x-amz-expected-bucket-owner"
+        },
+        "SkipDestinationValidation":{
+          "shape":"SkipValidation",
+          "location":"header",
+          "locationName":"x-amz-skip-destination-validation"
         }
       },
       "payload":"NotificationConfiguration"
@@ -7071,6 +7092,7 @@
     },
     "Setting":{"type":"boolean"},
     "Size":{"type":"integer"},
+    "SkipValidation":{"type":"boolean"},
     "SourceSelectionCriteria":{
       "type":"structure",
       "members":{

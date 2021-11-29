@@ -2096,6 +2096,100 @@ func (c *DataExchange) ListTagsForResourceWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
+const opSendApiAsset = "SendApiAsset"
+
+// SendApiAssetRequest generates a "aws/request.Request" representing the
+// client's request for the SendApiAsset operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendApiAsset for more information on using the SendApiAsset
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SendApiAssetRequest method.
+//    req, resp := client.SendApiAssetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/SendApiAsset
+func (c *DataExchange) SendApiAssetRequest(input *SendApiAssetInput) (req *request.Request, output *SendApiAssetOutput) {
+	op := &request.Operation{
+		Name:       opSendApiAsset,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1",
+	}
+
+	if input == nil {
+		input = &SendApiAssetInput{}
+	}
+
+	output = &SendApiAssetOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api-fulfill.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// SendApiAsset API operation for AWS Data Exchange.
+//
+// This operation invokes an API Gateway API asset. The request is proxied to
+// the provider’s API Gateway API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation SendApiAsset for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource couldn't be found.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
+//   * ValidationException
+//   The request was invalid.
+//
+//   * InternalServerException
+//   An exception occurred with the service.
+//
+//   * AccessDeniedException
+//   Access to the resource is denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/SendApiAsset
+func (c *DataExchange) SendApiAsset(input *SendApiAssetInput) (*SendApiAssetOutput, error) {
+	req, out := c.SendApiAssetRequest(input)
+	return out, req.Send()
+}
+
+// SendApiAssetWithContext is the same as SendApiAsset with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendApiAsset for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) SendApiAssetWithContext(ctx aws.Context, input *SendApiAssetInput, opts ...request.Option) (*SendApiAssetOutput, error) {
+	req, out := c.SendApiAssetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartJob = "StartJob"
 
 // StartJobRequest generates a "aws/request.Request" representing the
@@ -2826,6 +2920,110 @@ func (s *Action) SetExportRevisionToS3(v *AutoExportRevisionToS3RequestDetails) 
 	return s
 }
 
+// The API Gateway API that is the asset.
+type ApiGatewayApiAsset struct {
+	_ struct{} `type:"structure"`
+
+	// The API description of the API asset.
+	ApiDescription *string `type:"string"`
+
+	// The API endpoint of the API asset.
+	ApiEndpoint *string `type:"string"`
+
+	// The unique identifier of the API asset.
+	ApiId *string `type:"string"`
+
+	// The API key of the API asset.
+	ApiKey *string `type:"string"`
+
+	// The API name of the API asset.
+	ApiName *string `type:"string"`
+
+	// The download URL of the API specification of the API asset.
+	ApiSpecificationDownloadUrl *string `type:"string"`
+
+	// The date and time that the upload URL expires, in ISO 8601 format.
+	ApiSpecificationDownloadUrlExpiresAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The protocol type of the API asset.
+	ProtocolType *string `type:"string" enum:"ProtocolType"`
+
+	// The stage of the API asset.
+	Stage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApiGatewayApiAsset) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ApiGatewayApiAsset) GoString() string {
+	return s.String()
+}
+
+// SetApiDescription sets the ApiDescription field's value.
+func (s *ApiGatewayApiAsset) SetApiDescription(v string) *ApiGatewayApiAsset {
+	s.ApiDescription = &v
+	return s
+}
+
+// SetApiEndpoint sets the ApiEndpoint field's value.
+func (s *ApiGatewayApiAsset) SetApiEndpoint(v string) *ApiGatewayApiAsset {
+	s.ApiEndpoint = &v
+	return s
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *ApiGatewayApiAsset) SetApiId(v string) *ApiGatewayApiAsset {
+	s.ApiId = &v
+	return s
+}
+
+// SetApiKey sets the ApiKey field's value.
+func (s *ApiGatewayApiAsset) SetApiKey(v string) *ApiGatewayApiAsset {
+	s.ApiKey = &v
+	return s
+}
+
+// SetApiName sets the ApiName field's value.
+func (s *ApiGatewayApiAsset) SetApiName(v string) *ApiGatewayApiAsset {
+	s.ApiName = &v
+	return s
+}
+
+// SetApiSpecificationDownloadUrl sets the ApiSpecificationDownloadUrl field's value.
+func (s *ApiGatewayApiAsset) SetApiSpecificationDownloadUrl(v string) *ApiGatewayApiAsset {
+	s.ApiSpecificationDownloadUrl = &v
+	return s
+}
+
+// SetApiSpecificationDownloadUrlExpiresAt sets the ApiSpecificationDownloadUrlExpiresAt field's value.
+func (s *ApiGatewayApiAsset) SetApiSpecificationDownloadUrlExpiresAt(v time.Time) *ApiGatewayApiAsset {
+	s.ApiSpecificationDownloadUrlExpiresAt = &v
+	return s
+}
+
+// SetProtocolType sets the ProtocolType field's value.
+func (s *ApiGatewayApiAsset) SetProtocolType(v string) *ApiGatewayApiAsset {
+	s.ProtocolType = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *ApiGatewayApiAsset) SetStage(v string) *ApiGatewayApiAsset {
+	s.Stage = &v
+	return s
+}
+
 // The destination for the asset.
 type AssetDestinationEntry struct {
 	_ struct{} `type:"structure"`
@@ -2900,6 +3098,9 @@ func (s *AssetDestinationEntry) SetKey(v string) *AssetDestinationEntry {
 type AssetDetails struct {
 	_ struct{} `type:"structure"`
 
+	// Information about the API Gateway API asset.
+	ApiGatewayApiAsset *ApiGatewayApiAsset `type:"structure"`
+
 	// The Amazon Redshift datashare that is the asset.
 	RedshiftDataShareAsset *RedshiftDataShareAsset `type:"structure"`
 
@@ -2925,6 +3126,12 @@ func (s AssetDetails) GoString() string {
 	return s.String()
 }
 
+// SetApiGatewayApiAsset sets the ApiGatewayApiAsset field's value.
+func (s *AssetDetails) SetApiGatewayApiAsset(v *ApiGatewayApiAsset) *AssetDetails {
+	s.ApiGatewayApiAsset = v
+	return s
+}
+
 // SetRedshiftDataShareAsset sets the RedshiftDataShareAsset field's value.
 func (s *AssetDetails) SetRedshiftDataShareAsset(v *RedshiftDataShareAsset) *AssetDetails {
 	s.RedshiftDataShareAsset = v
@@ -2937,11 +3144,13 @@ func (s *AssetDetails) SetS3SnapshotAsset(v *S3SnapshotAsset) *AssetDetails {
 	return s
 }
 
-// An asset in AWS Data Exchange is a piece of data. The asset can be a structured
-// data file, an image file, or some other data file that can be stored as an
-// S3 object, or an Amazon Redshift datashare (Preview). When you create an
-// import job for your files, you create an asset in AWS Data Exchange for each
-// of those files.
+// An asset in AWS Data Exchange is a piece of data (S3 object) or a means of
+// fulfilling data (Amazon Redshift datashare or Amazon API Gateway API). The
+// asset can be a structured data file, an image file, or some other data file
+// that can be stored as an S3 object, an Amazon API Gateway API, or an Amazon
+// Redshift datashare (Preview). When you create an import job for your files,
+// API Gateway APIs, or Amazon Redshift datashares, you create an asset in AWS
+// Data Exchange.
 type AssetEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -2977,7 +3186,9 @@ type AssetEntry struct {
 
 	// The name of the asset. When importing from Amazon S3, the S3 object key is
 	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// as default target S3 object key. When importing from Amazon API Gateway API,
+	// the API name is used as the asset name. When importing from Amazon Redshift,
+	// the datashare name is used as the asset name.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -5350,7 +5561,9 @@ type GetAssetOutput struct {
 
 	// The name of the asset. When importing from Amazon S3, the S3 object key is
 	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// as default target S3 object key. When importing from Amazon API Gateway API,
+	// the API name is used as the asset name. When importing from Amazon Redshift,
+	// the datashare name is used as the asset name.
 	Name *string `type:"string"`
 
 	// A unique identifier.
@@ -6031,6 +6244,300 @@ func (s *GetRevisionOutput) SetTags(v map[string]*string) *GetRevisionOutput {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *GetRevisionOutput) SetUpdatedAt(v time.Time) *GetRevisionOutput {
 	s.UpdatedAt = &v
+	return s
+}
+
+// The request details.
+type ImportAssetFromApiGatewayApiRequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The API description. Markdown supported.
+	ApiDescription *string `type:"string"`
+
+	// The API Gateway API ID.
+	//
+	// ApiId is a required field
+	ApiId *string `type:"string" required:"true"`
+
+	// The API Gateway API key.
+	ApiKey *string `type:"string"`
+
+	// The API name.
+	//
+	// ApiName is a required field
+	ApiName *string `type:"string" required:"true"`
+
+	// The Base64-encoded MD5 hash of the OpenAPI 3.0 JSON API specification file.
+	// It is used to ensure the integrity of the file.
+	//
+	// ApiSpecificationMd5Hash is a required field
+	ApiSpecificationMd5Hash *string `min:"24" type:"string" required:"true"`
+
+	// The data set ID.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The protocol type.
+	//
+	// ProtocolType is a required field
+	ProtocolType *string `type:"string" required:"true" enum:"ProtocolType"`
+
+	// The revision ID.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+
+	// The API stage.
+	//
+	// Stage is a required field
+	Stage *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetFromApiGatewayApiRequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetFromApiGatewayApiRequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportAssetFromApiGatewayApiRequestDetails"}
+	if s.ApiId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiId"))
+	}
+	if s.ApiName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiName"))
+	}
+	if s.ApiSpecificationMd5Hash == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApiSpecificationMd5Hash"))
+	}
+	if s.ApiSpecificationMd5Hash != nil && len(*s.ApiSpecificationMd5Hash) < 24 {
+		invalidParams.Add(request.NewErrParamMinLen("ApiSpecificationMd5Hash", 24))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.ProtocolType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProtocolType"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+	if s.Stage == nil {
+		invalidParams.Add(request.NewErrParamRequired("Stage"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApiDescription sets the ApiDescription field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiDescription(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiDescription = &v
+	return s
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiId(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiId = &v
+	return s
+}
+
+// SetApiKey sets the ApiKey field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiKey(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiKey = &v
+	return s
+}
+
+// SetApiName sets the ApiName field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiName(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiName = &v
+	return s
+}
+
+// SetApiSpecificationMd5Hash sets the ApiSpecificationMd5Hash field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetApiSpecificationMd5Hash(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ApiSpecificationMd5Hash = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetDataSetId(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetProtocolType sets the ProtocolType field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetProtocolType(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.ProtocolType = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetRevisionId(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *ImportAssetFromApiGatewayApiRequestDetails) SetStage(v string) *ImportAssetFromApiGatewayApiRequestDetails {
+	s.Stage = &v
+	return s
+}
+
+// The response details.
+type ImportAssetFromApiGatewayApiResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The API description.
+	ApiDescription *string `type:"string"`
+
+	// The API ID.
+	//
+	// ApiId is a required field
+	ApiId *string `type:"string" required:"true"`
+
+	// The API key.
+	ApiKey *string `type:"string"`
+
+	// The API name.
+	//
+	// ApiName is a required field
+	ApiName *string `type:"string" required:"true"`
+
+	// The Base64-encoded Md5 hash for the API asset, used to ensure the integrity
+	// of the API at that location.
+	//
+	// ApiSpecificationMd5Hash is a required field
+	ApiSpecificationMd5Hash *string `min:"24" type:"string" required:"true"`
+
+	// The upload URL of the API specification.
+	//
+	// ApiSpecificationUploadUrl is a required field
+	ApiSpecificationUploadUrl *string `type:"string" required:"true"`
+
+	// The date and time that the upload URL expires, in ISO 8601 format.
+	//
+	// ApiSpecificationUploadUrlExpiresAt is a required field
+	ApiSpecificationUploadUrlExpiresAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The data set ID.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+
+	// The protocol type.
+	//
+	// ProtocolType is a required field
+	ProtocolType *string `type:"string" required:"true" enum:"ProtocolType"`
+
+	// The revision ID.
+	//
+	// RevisionId is a required field
+	RevisionId *string `type:"string" required:"true"`
+
+	// The API stage.
+	//
+	// Stage is a required field
+	Stage *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetFromApiGatewayApiResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ImportAssetFromApiGatewayApiResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetApiDescription sets the ApiDescription field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiDescription(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiDescription = &v
+	return s
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiId(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiId = &v
+	return s
+}
+
+// SetApiKey sets the ApiKey field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiKey(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiKey = &v
+	return s
+}
+
+// SetApiName sets the ApiName field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiName(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiName = &v
+	return s
+}
+
+// SetApiSpecificationMd5Hash sets the ApiSpecificationMd5Hash field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiSpecificationMd5Hash(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiSpecificationMd5Hash = &v
+	return s
+}
+
+// SetApiSpecificationUploadUrl sets the ApiSpecificationUploadUrl field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiSpecificationUploadUrl(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiSpecificationUploadUrl = &v
+	return s
+}
+
+// SetApiSpecificationUploadUrlExpiresAt sets the ApiSpecificationUploadUrlExpiresAt field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetApiSpecificationUploadUrlExpiresAt(v time.Time) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ApiSpecificationUploadUrlExpiresAt = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetDataSetId(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.DataSetId = &v
+	return s
+}
+
+// SetProtocolType sets the ProtocolType field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetProtocolType(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.ProtocolType = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetRevisionId(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.RevisionId = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *ImportAssetFromApiGatewayApiResponseDetails) SetStage(v string) *ImportAssetFromApiGatewayApiResponseDetails {
+	s.Stage = &v
 	return s
 }
 
@@ -7534,6 +8041,9 @@ type RequestDetails struct {
 	// Details about the export to Amazon S3 request.
 	ExportRevisionsToS3 *ExportRevisionsToS3RequestDetails `type:"structure"`
 
+	// Information about the import asset from API Gateway API request.
+	ImportAssetFromApiGatewayApi *ImportAssetFromApiGatewayApiRequestDetails `type:"structure"`
+
 	// Details about the import from signed URL request.
 	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlRequestDetails `type:"structure"`
 
@@ -7580,6 +8090,11 @@ func (s *RequestDetails) Validate() error {
 			invalidParams.AddNested("ExportRevisionsToS3", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ImportAssetFromApiGatewayApi != nil {
+		if err := s.ImportAssetFromApiGatewayApi.Validate(); err != nil {
+			invalidParams.AddNested("ImportAssetFromApiGatewayApi", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ImportAssetFromSignedUrl != nil {
 		if err := s.ImportAssetFromSignedUrl.Validate(); err != nil {
 			invalidParams.AddNested("ImportAssetFromSignedUrl", err.(request.ErrInvalidParams))
@@ -7617,6 +8132,12 @@ func (s *RequestDetails) SetExportAssetsToS3(v *ExportAssetsToS3RequestDetails) 
 // SetExportRevisionsToS3 sets the ExportRevisionsToS3 field's value.
 func (s *RequestDetails) SetExportRevisionsToS3(v *ExportRevisionsToS3RequestDetails) *RequestDetails {
 	s.ExportRevisionsToS3 = v
+	return s
+}
+
+// SetImportAssetFromApiGatewayApi sets the ImportAssetFromApiGatewayApi field's value.
+func (s *RequestDetails) SetImportAssetFromApiGatewayApi(v *ImportAssetFromApiGatewayApiRequestDetails) *RequestDetails {
+	s.ImportAssetFromApiGatewayApi = v
 	return s
 }
 
@@ -7722,6 +8243,9 @@ type ResponseDetails struct {
 	// Details for the export revisions to Amazon S3 response.
 	ExportRevisionsToS3 *ExportRevisionsToS3ResponseDetails `type:"structure"`
 
+	// The response details.
+	ImportAssetFromApiGatewayApi *ImportAssetFromApiGatewayApiResponseDetails `type:"structure"`
+
 	// Details for the import from signed URL response.
 	ImportAssetFromSignedUrl *ImportAssetFromSignedUrlResponseDetails `type:"structure"`
 
@@ -7765,6 +8289,12 @@ func (s *ResponseDetails) SetExportAssetsToS3(v *ExportAssetsToS3ResponseDetails
 // SetExportRevisionsToS3 sets the ExportRevisionsToS3 field's value.
 func (s *ResponseDetails) SetExportRevisionsToS3(v *ExportRevisionsToS3ResponseDetails) *ResponseDetails {
 	s.ExportRevisionsToS3 = v
+	return s
+}
+
+// SetImportAssetFromApiGatewayApi sets the ImportAssetFromApiGatewayApi field's value.
+func (s *ResponseDetails) SetImportAssetFromApiGatewayApi(v *ImportAssetFromApiGatewayApiResponseDetails) *ResponseDetails {
+	s.ImportAssetFromApiGatewayApi = v
 	return s
 }
 
@@ -8051,6 +8581,159 @@ func (s S3SnapshotAsset) GoString() string {
 // SetSize sets the Size field's value.
 func (s *S3SnapshotAsset) SetSize(v float64) *S3SnapshotAsset {
 	s.Size = &v
+	return s
+}
+
+type SendApiAssetInput struct {
+	_ struct{} `type:"structure" payload:"Body"`
+
+	// AssetId is a required field
+	AssetId *string `location:"header" locationName:"x-amzn-dataexchange-asset-id" type:"string" required:"true"`
+
+	Body *string `type:"string"`
+
+	// DataSetId is a required field
+	DataSetId *string `location:"header" locationName:"x-amzn-dataexchange-data-set-id" type:"string" required:"true"`
+
+	Method *string `location:"header" locationName:"x-amzn-dataexchange-http-method" type:"string"`
+
+	Path *string `location:"header" locationName:"x-amzn-dataexchange-path" type:"string"`
+
+	QueryStringParameters map[string]*string `location:"querystring" type:"map"`
+
+	RequestHeaders map[string]*string `location:"headers" locationName:"x-amzn-dataexchange-header-" type:"map"`
+
+	// RevisionId is a required field
+	RevisionId *string `location:"header" locationName:"x-amzn-dataexchange-revision-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendApiAssetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendApiAssetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendApiAssetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendApiAssetInput"}
+	if s.AssetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssetId"))
+	}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+	if s.RevisionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *SendApiAssetInput) SetAssetId(v string) *SendApiAssetInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetBody sets the Body field's value.
+func (s *SendApiAssetInput) SetBody(v string) *SendApiAssetInput {
+	s.Body = &v
+	return s
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *SendApiAssetInput) SetDataSetId(v string) *SendApiAssetInput {
+	s.DataSetId = &v
+	return s
+}
+
+// SetMethod sets the Method field's value.
+func (s *SendApiAssetInput) SetMethod(v string) *SendApiAssetInput {
+	s.Method = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *SendApiAssetInput) SetPath(v string) *SendApiAssetInput {
+	s.Path = &v
+	return s
+}
+
+// SetQueryStringParameters sets the QueryStringParameters field's value.
+func (s *SendApiAssetInput) SetQueryStringParameters(v map[string]*string) *SendApiAssetInput {
+	s.QueryStringParameters = v
+	return s
+}
+
+// SetRequestHeaders sets the RequestHeaders field's value.
+func (s *SendApiAssetInput) SetRequestHeaders(v map[string]*string) *SendApiAssetInput {
+	s.RequestHeaders = v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *SendApiAssetInput) SetRevisionId(v string) *SendApiAssetInput {
+	s.RevisionId = &v
+	return s
+}
+
+// The details of the send API asset response.
+type SendApiAssetOutput struct {
+	_ struct{} `type:"structure" payload:"Body"`
+
+	// The response body from the underlying API tracked by the API asset.
+	Body *string `type:"string"`
+
+	// The response headers from the underlying API tracked by the API asset.
+	//
+	// By default unmarshaled keys are written as a map keys in following canonicalized format:
+	// the first letter and any letter following a hyphen will be capitalized, and the rest as lowercase.
+	// Set `aws.Config.LowerCaseHeaderMaps` to `true` to write unmarshaled keys to the map as lowercase.
+	ResponseHeaders map[string]*string `location:"headers" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendApiAssetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SendApiAssetOutput) GoString() string {
+	return s.String()
+}
+
+// SetBody sets the Body field's value.
+func (s *SendApiAssetOutput) SetBody(v string) *SendApiAssetOutput {
+	s.Body = &v
+	return s
+}
+
+// SetResponseHeaders sets the ResponseHeaders field's value.
+func (s *SendApiAssetOutput) SetResponseHeaders(v map[string]*string) *SendApiAssetOutput {
+	s.ResponseHeaders = v
 	return s
 }
 
@@ -8430,7 +9113,9 @@ type UpdateAssetInput struct {
 
 	// The name of the asset. When importing from Amazon S3, the S3 object key is
 	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// as default target S3 object key. When importing from Amazon API Gateway API,
+	// the API name is used as the asset name. When importing from Amazon Redshift,
+	// the datashare name is used as the asset name.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -8535,7 +9220,9 @@ type UpdateAssetOutput struct {
 
 	// The name of the asset. When importing from Amazon S3, the S3 object key is
 	// used as the asset name. When exporting to Amazon S3, the asset name is used
-	// as default target S3 object key.
+	// as default target S3 object key. When importing from Amazon API Gateway API,
+	// the API name is used as the asset name. When importing from Amazon Redshift,
+	// the datashare name is used as the asset name.
 	Name *string `type:"string"`
 
 	// A unique identifier.
@@ -9195,6 +9882,9 @@ const (
 
 	// AssetTypeRedshiftDataShare is a AssetType enum value
 	AssetTypeRedshiftDataShare = "REDSHIFT_DATA_SHARE"
+
+	// AssetTypeApiGatewayApi is a AssetType enum value
+	AssetTypeApiGatewayApi = "API_GATEWAY_API"
 )
 
 // AssetType_Values returns all elements of the AssetType enum
@@ -9202,6 +9892,7 @@ func AssetType_Values() []string {
 	return []string{
 		AssetTypeS3Snapshot,
 		AssetTypeRedshiftDataShare,
+		AssetTypeApiGatewayApi,
 	}
 }
 
@@ -9356,6 +10047,15 @@ const (
 
 	// LimitNameAmazonRedshiftdatashareassetsperrevision is a LimitName enum value
 	LimitNameAmazonRedshiftdatashareassetsperrevision = "Amazon Redshift datashare assets per revision"
+
+	// LimitNameConcurrentinprogressjobstoimportassetsfromanApigatewayApi is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoimportassetsfromanApigatewayApi = "Concurrent in progress jobs to import assets from an API Gateway API"
+
+	// LimitNameAmazonApigatewayApiassetsperrevision is a LimitName enum value
+	LimitNameAmazonApigatewayApiassetsperrevision = "Amazon API Gateway API assets per revision"
+
+	// LimitNameRevisionsperAmazonApigatewayApidataset is a LimitName enum value
+	LimitNameRevisionsperAmazonApigatewayApidataset = "Revisions per Amazon API Gateway API data set"
 )
 
 // LimitName_Values returns all elements of the LimitName enum
@@ -9380,6 +10080,9 @@ func LimitName_Values() []string {
 		LimitNameConcurrentinprogressjobstoimportassetsfromAmazonRedshiftdatashares,
 		LimitNameRevisionsperAmazonRedshiftdatasharedataset,
 		LimitNameAmazonRedshiftdatashareassetsperrevision,
+		LimitNameConcurrentinprogressjobstoimportassetsfromanApigatewayApi,
+		LimitNameAmazonApigatewayApiassetsperrevision,
+		LimitNameRevisionsperAmazonApigatewayApidataset,
 	}
 }
 
@@ -9400,6 +10103,18 @@ func Origin_Values() []string {
 	return []string{
 		OriginOwned,
 		OriginEntitled,
+	}
+}
+
+const (
+	// ProtocolTypeRest is a ProtocolType enum value
+	ProtocolTypeRest = "REST"
+)
+
+// ProtocolType_Values returns all elements of the ProtocolType enum
+func ProtocolType_Values() []string {
+	return []string{
+		ProtocolTypeRest,
 	}
 }
 
@@ -9498,6 +10213,9 @@ const (
 
 	// TypeImportAssetsFromRedshiftDataShares is a Type enum value
 	TypeImportAssetsFromRedshiftDataShares = "IMPORT_ASSETS_FROM_REDSHIFT_DATA_SHARES"
+
+	// TypeImportAssetFromApiGatewayApi is a Type enum value
+	TypeImportAssetFromApiGatewayApi = "IMPORT_ASSET_FROM_API_GATEWAY_API"
 )
 
 // Type_Values returns all elements of the Type enum
@@ -9509,5 +10227,6 @@ func Type_Values() []string {
 		TypeExportAssetToSignedUrl,
 		TypeExportRevisionsToS3,
 		TypeImportAssetsFromRedshiftDataShares,
+		TypeImportAssetFromApiGatewayApi,
 	}
 }

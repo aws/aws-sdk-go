@@ -10,7 +10,113 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
+
+const opDeleteRecommendationPreferences = "DeleteRecommendationPreferences"
+
+// DeleteRecommendationPreferencesRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRecommendationPreferences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRecommendationPreferences for more information on using the DeleteRecommendationPreferences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRecommendationPreferencesRequest method.
+//    req, resp := client.DeleteRecommendationPreferencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/DeleteRecommendationPreferences
+func (c *ComputeOptimizer) DeleteRecommendationPreferencesRequest(input *DeleteRecommendationPreferencesInput) (req *request.Request, output *DeleteRecommendationPreferencesOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRecommendationPreferences,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteRecommendationPreferencesInput{}
+	}
+
+	output = &DeleteRecommendationPreferencesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRecommendationPreferences API operation for AWS Compute Optimizer.
+//
+// Deletes a recommendation preference, such as enhanced infrastructure metrics.
+//
+// For more information, see Activating enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+// in the Compute Optimizer User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation DeleteRecommendationPreferences for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   The value supplied for the input parameter is out of range or not valid.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/DeleteRecommendationPreferences
+func (c *ComputeOptimizer) DeleteRecommendationPreferences(input *DeleteRecommendationPreferencesInput) (*DeleteRecommendationPreferencesOutput, error) {
+	req, out := c.DeleteRecommendationPreferencesRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRecommendationPreferencesWithContext is the same as DeleteRecommendationPreferences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRecommendationPreferences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) DeleteRecommendationPreferencesWithContext(ctx aws.Context, input *DeleteRecommendationPreferencesInput, opts ...request.Option) (*DeleteRecommendationPreferencesOutput, error) {
+	req, out := c.DeleteRecommendationPreferencesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
 
 const opDescribeRecommendationExportJobs = "DescribeRecommendationExportJobs"
 
@@ -982,6 +1088,113 @@ func (c *ComputeOptimizer) GetEC2RecommendationProjectedMetricsWithContext(ctx a
 	return out, req.Send()
 }
 
+const opGetEffectiveRecommendationPreferences = "GetEffectiveRecommendationPreferences"
+
+// GetEffectiveRecommendationPreferencesRequest generates a "aws/request.Request" representing the
+// client's request for the GetEffectiveRecommendationPreferences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEffectiveRecommendationPreferences for more information on using the GetEffectiveRecommendationPreferences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetEffectiveRecommendationPreferencesRequest method.
+//    req, resp := client.GetEffectiveRecommendationPreferencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEffectiveRecommendationPreferences
+func (c *ComputeOptimizer) GetEffectiveRecommendationPreferencesRequest(input *GetEffectiveRecommendationPreferencesInput) (req *request.Request, output *GetEffectiveRecommendationPreferencesOutput) {
+	op := &request.Operation{
+		Name:       opGetEffectiveRecommendationPreferences,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetEffectiveRecommendationPreferencesInput{}
+	}
+
+	output = &GetEffectiveRecommendationPreferencesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEffectiveRecommendationPreferences API operation for AWS Compute Optimizer.
+//
+// Returns the recommendation preferences that are in effect for a given resource,
+// such as enhanced infrastructure metrics. Considers all applicable preferences
+// that you might have set at the resource, account, and organization level.
+//
+// When you create a recommendation preference, you can set its status to Active
+// or Inactive. Use this action to view the recommendation preferences that
+// are in effect, or Active.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation GetEffectiveRecommendationPreferences for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   The value supplied for the input parameter is out of range or not valid.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEffectiveRecommendationPreferences
+func (c *ComputeOptimizer) GetEffectiveRecommendationPreferences(input *GetEffectiveRecommendationPreferencesInput) (*GetEffectiveRecommendationPreferencesOutput, error) {
+	req, out := c.GetEffectiveRecommendationPreferencesRequest(input)
+	return out, req.Send()
+}
+
+// GetEffectiveRecommendationPreferencesWithContext is the same as GetEffectiveRecommendationPreferences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEffectiveRecommendationPreferences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) GetEffectiveRecommendationPreferencesWithContext(ctx aws.Context, input *GetEffectiveRecommendationPreferencesInput, opts ...request.Option) (*GetEffectiveRecommendationPreferencesOutput, error) {
+	req, out := c.GetEffectiveRecommendationPreferencesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetEnrollmentStatus = "GetEnrollmentStatus"
 
 // GetEnrollmentStatusRequest generates a "aws/request.Request" representing the
@@ -1288,6 +1501,115 @@ func (c *ComputeOptimizer) GetLambdaFunctionRecommendationsWithContext(ctx aws.C
 	return out, req.Send()
 }
 
+const opGetRecommendationPreferences = "GetRecommendationPreferences"
+
+// GetRecommendationPreferencesRequest generates a "aws/request.Request" representing the
+// client's request for the GetRecommendationPreferences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRecommendationPreferences for more information on using the GetRecommendationPreferences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRecommendationPreferencesRequest method.
+//    req, resp := client.GetRecommendationPreferencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRecommendationPreferences
+func (c *ComputeOptimizer) GetRecommendationPreferencesRequest(input *GetRecommendationPreferencesInput) (req *request.Request, output *GetRecommendationPreferencesOutput) {
+	op := &request.Operation{
+		Name:       opGetRecommendationPreferences,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetRecommendationPreferencesInput{}
+	}
+
+	output = &GetRecommendationPreferencesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRecommendationPreferences API operation for AWS Compute Optimizer.
+//
+// Returns existing recommendation preferences, such as enhanced infrastructure
+// metrics.
+//
+// Use the scope parameter to specify which preferences to return. You can specify
+// to return preferences for an organization, a specific account ID, or a specific
+// EC2 instance or Auto Scaling group Amazon Resource Name (ARN).
+//
+// For more information, see Activating enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+// in the Compute Optimizer User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation GetRecommendationPreferences for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   The value supplied for the input parameter is out of range or not valid.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetRecommendationPreferences
+func (c *ComputeOptimizer) GetRecommendationPreferences(input *GetRecommendationPreferencesInput) (*GetRecommendationPreferencesOutput, error) {
+	req, out := c.GetRecommendationPreferencesRequest(input)
+	return out, req.Send()
+}
+
+// GetRecommendationPreferencesWithContext is the same as GetRecommendationPreferences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRecommendationPreferences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) GetRecommendationPreferencesWithContext(ctx aws.Context, input *GetRecommendationPreferencesInput, opts ...request.Option) (*GetRecommendationPreferencesOutput, error) {
+	req, out := c.GetRecommendationPreferencesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetRecommendationSummaries = "GetRecommendationSummaries"
 
 // GetRecommendationSummariesRequest generates a "aws/request.Request" representing the
@@ -1392,6 +1714,112 @@ func (c *ComputeOptimizer) GetRecommendationSummaries(input *GetRecommendationSu
 // for more information on using Contexts.
 func (c *ComputeOptimizer) GetRecommendationSummariesWithContext(ctx aws.Context, input *GetRecommendationSummariesInput, opts ...request.Option) (*GetRecommendationSummariesOutput, error) {
 	req, out := c.GetRecommendationSummariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutRecommendationPreferences = "PutRecommendationPreferences"
+
+// PutRecommendationPreferencesRequest generates a "aws/request.Request" representing the
+// client's request for the PutRecommendationPreferences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutRecommendationPreferences for more information on using the PutRecommendationPreferences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutRecommendationPreferencesRequest method.
+//    req, resp := client.PutRecommendationPreferencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/PutRecommendationPreferences
+func (c *ComputeOptimizer) PutRecommendationPreferencesRequest(input *PutRecommendationPreferencesInput) (req *request.Request, output *PutRecommendationPreferencesOutput) {
+	op := &request.Operation{
+		Name:       opPutRecommendationPreferences,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutRecommendationPreferencesInput{}
+	}
+
+	output = &PutRecommendationPreferencesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutRecommendationPreferences API operation for AWS Compute Optimizer.
+//
+// Creates a new recommendation preference or updates an existing recommendation
+// preference, such as enhanced infrastructure metrics.
+//
+// For more information, see Activating enhanced infrastructure metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+// in the Compute Optimizer User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation PutRecommendationPreferences for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   The value supplied for the input parameter is out of range or not valid.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/PutRecommendationPreferences
+func (c *ComputeOptimizer) PutRecommendationPreferences(input *PutRecommendationPreferencesInput) (*PutRecommendationPreferencesOutput, error) {
+	req, out := c.PutRecommendationPreferencesRequest(input)
+	return out, req.Send()
+}
+
+// PutRecommendationPreferencesWithContext is the same as PutRecommendationPreferences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutRecommendationPreferences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) PutRecommendationPreferencesWithContext(ctx aws.Context, input *PutRecommendationPreferencesInput, opts ...request.Option) (*PutRecommendationPreferencesOutput, error) {
+	req, out := c.PutRecommendationPreferencesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1710,6 +2138,15 @@ type AutoScalingGroupRecommendation struct {
 	// group.
 	CurrentConfiguration *AutoScalingGroupConfiguration `locationName:"currentConfiguration" type:"structure"`
 
+	// The risk of the current Auto Scaling group not meeting the performance needs
+	// of its workloads. The higher the risk, the more likely the current Auto Scaling
+	// group configuration has insufficient capacity and cannot meet workload requirements.
+	CurrentPerformanceRisk *string `locationName:"currentPerformanceRisk" type:"string" enum:"CurrentPerformanceRisk"`
+
+	// An object that describes the effective recommendation preferences for the
+	// Auto Scaling group.
+	EffectiveRecommendationPreferences *EffectiveRecommendationPreferences `locationName:"effectiveRecommendationPreferences" type:"structure"`
+
 	// The finding classification of the Auto Scaling group.
 	//
 	// Findings for Auto Scaling groups include:
@@ -1724,7 +2161,7 @@ type AutoScalingGroupRecommendation struct {
 	//    Optimizer might recommend a new generation instance type.
 	Finding *string `locationName:"finding" type:"string" enum:"Finding"`
 
-	// The timestamp of when the Auto Scaling group recommendation was last refreshed.
+	// The timestamp of when the Auto Scaling group recommendation was last generated.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
 	// The number of days for which utilization metrics were analyzed for the Auto
@@ -1779,6 +2216,18 @@ func (s *AutoScalingGroupRecommendation) SetAutoScalingGroupName(v string) *Auto
 // SetCurrentConfiguration sets the CurrentConfiguration field's value.
 func (s *AutoScalingGroupRecommendation) SetCurrentConfiguration(v *AutoScalingGroupConfiguration) *AutoScalingGroupRecommendation {
 	s.CurrentConfiguration = v
+	return s
+}
+
+// SetCurrentPerformanceRisk sets the CurrentPerformanceRisk field's value.
+func (s *AutoScalingGroupRecommendation) SetCurrentPerformanceRisk(v string) *AutoScalingGroupRecommendation {
+	s.CurrentPerformanceRisk = &v
+	return s
+}
+
+// SetEffectiveRecommendationPreferences sets the EffectiveRecommendationPreferences field's value.
+func (s *AutoScalingGroupRecommendation) SetEffectiveRecommendationPreferences(v *EffectiveRecommendationPreferences) *AutoScalingGroupRecommendation {
+	s.EffectiveRecommendationPreferences = v
 	return s
 }
 
@@ -1849,6 +2298,11 @@ type AutoScalingGroupRecommendationOption struct {
 	//
 	// The top recommendation option is ranked as 1.
 	Rank *int64 `locationName:"rank" type:"integer"`
+
+	// An object that describes the savings opportunity for the Auto Scaling group
+	// recommendation option. Savings opportunity includes the estimated monthly
+	// savings amount and percentage.
+	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
 }
 
 // String returns the string representation.
@@ -1891,6 +2345,181 @@ func (s *AutoScalingGroupRecommendationOption) SetProjectedUtilizationMetrics(v 
 func (s *AutoScalingGroupRecommendationOption) SetRank(v int64) *AutoScalingGroupRecommendationOption {
 	s.Rank = &v
 	return s
+}
+
+// SetSavingsOpportunity sets the SavingsOpportunity field's value.
+func (s *AutoScalingGroupRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *AutoScalingGroupRecommendationOption {
+	s.SavingsOpportunity = v
+	return s
+}
+
+// Describes the performance risk ratings for a given resource type.
+//
+// Resources with a high or medium rating are at risk of not meeting the performance
+// needs of their workloads, while resources with a low rating are performing
+// well in their workloads.
+type CurrentPerformanceRiskRatings struct {
+	_ struct{} `type:"structure"`
+
+	// A count of the applicable resource types with a high performance risk rating.
+	High *int64 `locationName:"high" type:"long"`
+
+	// A count of the applicable resource types with a low performance risk rating.
+	Low *int64 `locationName:"low" type:"long"`
+
+	// A count of the applicable resource types with a medium performance risk rating.
+	Medium *int64 `locationName:"medium" type:"long"`
+
+	// A count of the applicable resource types with a very low performance risk
+	// rating.
+	VeryLow *int64 `locationName:"veryLow" type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CurrentPerformanceRiskRatings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CurrentPerformanceRiskRatings) GoString() string {
+	return s.String()
+}
+
+// SetHigh sets the High field's value.
+func (s *CurrentPerformanceRiskRatings) SetHigh(v int64) *CurrentPerformanceRiskRatings {
+	s.High = &v
+	return s
+}
+
+// SetLow sets the Low field's value.
+func (s *CurrentPerformanceRiskRatings) SetLow(v int64) *CurrentPerformanceRiskRatings {
+	s.Low = &v
+	return s
+}
+
+// SetMedium sets the Medium field's value.
+func (s *CurrentPerformanceRiskRatings) SetMedium(v int64) *CurrentPerformanceRiskRatings {
+	s.Medium = &v
+	return s
+}
+
+// SetVeryLow sets the VeryLow field's value.
+func (s *CurrentPerformanceRiskRatings) SetVeryLow(v int64) *CurrentPerformanceRiskRatings {
+	s.VeryLow = &v
+	return s
+}
+
+type DeleteRecommendationPreferencesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the recommendation preference to delete.
+	//
+	// Enhanced infrastructure metrics (EnhancedInfrastructureMetrics) is the only
+	// feature that can be activated through preferences. Therefore, it is also
+	// the only recommendation preference that can be deleted.
+	//
+	// RecommendationPreferenceNames is a required field
+	RecommendationPreferenceNames []*string `locationName:"recommendationPreferenceNames" type:"list" required:"true"`
+
+	// The target resource type of the recommendation preference to delete.
+	//
+	// The Ec2Instance option encompasses standalone instances and instances that
+	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
+	// only instances that are part of an Auto Scaling group.
+	//
+	// ResourceType is a required field
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+
+	// An object that describes the scope of the recommendation preference to delete.
+	//
+	// You can delete recommendation preferences that are created at the organization
+	// level (for management accounts of an organization only), account level, and
+	// resource level. For more information, see Activating enhanced infrastructure
+	// metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
+	Scope *Scope `locationName:"scope" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommendationPreferencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommendationPreferencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRecommendationPreferencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRecommendationPreferencesInput"}
+	if s.RecommendationPreferenceNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommendationPreferenceNames"))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommendationPreferenceNames sets the RecommendationPreferenceNames field's value.
+func (s *DeleteRecommendationPreferencesInput) SetRecommendationPreferenceNames(v []*string) *DeleteRecommendationPreferencesInput {
+	s.RecommendationPreferenceNames = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *DeleteRecommendationPreferencesInput) SetResourceType(v string) *DeleteRecommendationPreferencesInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *DeleteRecommendationPreferencesInput) SetScope(v *Scope) *DeleteRecommendationPreferencesInput {
+	s.Scope = v
+	return s
+}
+
+type DeleteRecommendationPreferencesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommendationPreferencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommendationPreferencesOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeRecommendationExportJobsInput struct {
@@ -2137,6 +2766,66 @@ func (s *EBSUtilizationMetric) SetValue(v float64) *EBSUtilizationMetric {
 	return s
 }
 
+// Describes the effective recommendation preferences for a resource.
+type EffectiveRecommendationPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the CPU vendor and architecture for an instance or Auto Scaling
+	// group recommendations.
+	//
+	// For example, when you specify AWS_ARM64 with:
+	//
+	//    * A GetEC2InstanceRecommendations or GetAutoScalingGroupRecommendations
+	//    request, Compute Optimizer returns recommendations that consist of Graviton2
+	//    instance types only.
+	//
+	//    * A GetEC2RecommendationProjectedMetrics request, Compute Optimizer returns
+	//    projected utilization metrics for Graviton2 instance type recommendations
+	//    only.
+	//
+	//    * A ExportEC2InstanceRecommendations or ExportAutoScalingGroupRecommendations
+	//    request, Compute Optimizer exports recommendations that consist of Graviton2
+	//    instance types only.
+	CpuVendorArchitectures []*string `locationName:"cpuVendorArchitectures" type:"list"`
+
+	// Describes the activation status of the enhanced infrastructure metrics preference.
+	//
+	// A status of Active confirms that the preference is applied in the latest
+	// recommendation refresh, and a status of Inactive confirms that it's not yet
+	// applied.
+	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectiveRecommendationPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EffectiveRecommendationPreferences) GoString() string {
+	return s.String()
+}
+
+// SetCpuVendorArchitectures sets the CpuVendorArchitectures field's value.
+func (s *EffectiveRecommendationPreferences) SetCpuVendorArchitectures(v []*string) *EffectiveRecommendationPreferences {
+	s.CpuVendorArchitectures = v
+	return s
+}
+
+// SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
+func (s *EffectiveRecommendationPreferences) SetEnhancedInfrastructureMetrics(v string) *EffectiveRecommendationPreferences {
+	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
 // Describes a filter that returns a more specific list of account enrollment
 // statuses. Use this filter with the GetEnrollmentStatusesForOrganization action.
 type EnrollmentFilter struct {
@@ -2181,6 +2870,52 @@ func (s *EnrollmentFilter) SetName(v string) *EnrollmentFilter {
 // SetValues sets the Values field's value.
 func (s *EnrollmentFilter) SetValues(v []*string) *EnrollmentFilter {
 	s.Values = v
+	return s
+}
+
+// Describes the estimated monthly savings amount possible for a given resource
+// based on On-Demand instance pricing
+//
+// For more information, see Estimated monthly savings and savings opportunities
+// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/view-ec2-recommendations.html#ec2-savings-calculation)
+// in the Compute Optimizer User Guide.
+type EstimatedMonthlySavings struct {
+	_ struct{} `type:"structure"`
+
+	// The currency of the estimated monthly savings.
+	Currency *string `locationName:"currency" type:"string" enum:"Currency"`
+
+	// The value of the estimated monthly savings.
+	Value *float64 `locationName:"value" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EstimatedMonthlySavings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EstimatedMonthlySavings) GoString() string {
+	return s.String()
+}
+
+// SetCurrency sets the Currency field's value.
+func (s *EstimatedMonthlySavings) SetCurrency(v string) *EstimatedMonthlySavings {
+	s.Currency = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *EstimatedMonthlySavings) SetValue(v float64) *EstimatedMonthlySavings {
+	s.Value = &v
 	return s
 }
 
@@ -2648,10 +3383,10 @@ type ExportEC2InstanceRecommendationsInput struct {
 	// You must create the destination Amazon S3 bucket for your recommendations
 	// export before you create the export job. Compute Optimizer does not create
 	// the S3 bucket for you. After you create the S3 bucket, ensure that it has
-	// the required permissions policy policy to allow Compute Optimizer to write
-	// the export file to it. If you plan to specify an object prefix when you create
-	// the export job, you must include the object prefix in the that you add to
-	// the S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
+	// the required permissions policy to allow Compute Optimizer to write the export
+	// file to it. If you plan to specify an object prefix when you create the export
+	// job, you must include the object prefix in the policy that you add to the
+	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
 	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
 	// in the Compute Optimizer User Guide.
 	//
@@ -3631,6 +4366,96 @@ func (s *GetEC2RecommendationProjectedMetricsOutput) SetRecommendedOptionProject
 	return s
 }
 
+type GetEffectiveRecommendationPreferencesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource for which to confirm effective
+	// recommendation preferences. Only EC2 instance and Auto Scaling group ARNs
+	// are currently supported.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEffectiveRecommendationPreferencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEffectiveRecommendationPreferencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEffectiveRecommendationPreferencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEffectiveRecommendationPreferencesInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetEffectiveRecommendationPreferencesInput) SetResourceArn(v string) *GetEffectiveRecommendationPreferencesInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type GetEffectiveRecommendationPreferencesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the enhanced infrastructure metrics recommendation preference.
+	// Considers all applicable preferences that you might have set at the resource,
+	// account, and organization level.
+	//
+	// A status of Active confirms that the preference is applied in the latest
+	// recommendation refresh, and a status of Inactive confirms that it's not yet
+	// applied.
+	//
+	// To validate whether the preference is applied to your last generated set
+	// of recommendations, review the effectiveRecommendationPreferences value in
+	// the response of the GetAutoScalingGroupRecommendations and GetEC2InstanceRecommendations
+	// actions.
+	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEffectiveRecommendationPreferencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEffectiveRecommendationPreferencesOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
+func (s *GetEffectiveRecommendationPreferencesOutput) SetEnhancedInfrastructureMetrics(v string) *GetEffectiveRecommendationPreferencesOutput {
+	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
 type GetEnrollmentStatusInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -4005,6 +4830,137 @@ func (s *GetRecommendationError) SetMessage(v string) *GetRecommendationError {
 	return s
 }
 
+type GetRecommendationPreferencesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of recommendation preferences to return with a single
+	// request.
+	//
+	// To retrieve the remaining results, make another request with the returned
+	// nextToken value.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token to advance to the next page of recommendation preferences.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The target resource type of the recommendation preference for which to return
+	// preferences.
+	//
+	// The Ec2Instance option encompasses standalone instances and instances that
+	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
+	// only instances that are part of an Auto Scaling group.
+	//
+	// ResourceType is a required field
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+
+	// An object that describes the scope of the recommendation preference to return.
+	//
+	// You can return recommendation preferences that are created at the organization
+	// level (for management accounts of an organization only), account level, and
+	// resource level. For more information, see Activating enhanced infrastructure
+	// metrics (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
+	Scope *Scope `locationName:"scope" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRecommendationPreferencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRecommendationPreferencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRecommendationPreferencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRecommendationPreferencesInput"}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetRecommendationPreferencesInput) SetMaxResults(v int64) *GetRecommendationPreferencesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetRecommendationPreferencesInput) SetNextToken(v string) *GetRecommendationPreferencesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetRecommendationPreferencesInput) SetResourceType(v string) *GetRecommendationPreferencesInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *GetRecommendationPreferencesInput) SetScope(v *Scope) *GetRecommendationPreferencesInput {
+	s.Scope = v
+	return s
+}
+
+type GetRecommendationPreferencesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to advance to the next page of recommendation preferences.
+	//
+	// This value is null when there are no more pages of recommendation preferences
+	// to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An array of objects that describe recommendation preferences.
+	RecommendationPreferencesDetails []*RecommendationPreferencesDetail `locationName:"recommendationPreferencesDetails" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRecommendationPreferencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetRecommendationPreferencesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetRecommendationPreferencesOutput) SetNextToken(v string) *GetRecommendationPreferencesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommendationPreferencesDetails sets the RecommendationPreferencesDetails field's value.
+func (s *GetRecommendationPreferencesOutput) SetRecommendationPreferencesDetails(v []*RecommendationPreferencesDetail) *GetRecommendationPreferencesOutput {
+	s.RecommendationPreferencesDetails = v
+	return s
+}
+
 type GetRecommendationSummariesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4116,6 +5072,15 @@ type InstanceRecommendation struct {
 
 	// The instance type of the current instance.
 	CurrentInstanceType *string `locationName:"currentInstanceType" type:"string"`
+
+	// The risk of the current instance not meeting the performance needs of its
+	// workloads. The higher the risk, the more likely the current Lambda function
+	// requires more memory.
+	CurrentPerformanceRisk *string `locationName:"currentPerformanceRisk" type:"string" enum:"CurrentPerformanceRisk"`
+
+	// An object that describes the effective recommendation preferences for the
+	// instance.
+	EffectiveRecommendationPreferences *EffectiveRecommendationPreferences `locationName:"effectiveRecommendationPreferences" type:"structure"`
 
 	// The finding classification of the instance.
 	//
@@ -4258,7 +5223,7 @@ type InstanceRecommendation struct {
 	// The name of the current instance.
 	InstanceName *string `locationName:"instanceName" type:"string"`
 
-	// The timestamp of when the instance recommendation was last refreshed.
+	// The timestamp of when the instance recommendation was last generated.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
 	// The number of days for which utilization metrics were analyzed for the instance.
@@ -4301,6 +5266,18 @@ func (s *InstanceRecommendation) SetAccountId(v string) *InstanceRecommendation 
 // SetCurrentInstanceType sets the CurrentInstanceType field's value.
 func (s *InstanceRecommendation) SetCurrentInstanceType(v string) *InstanceRecommendation {
 	s.CurrentInstanceType = &v
+	return s
+}
+
+// SetCurrentPerformanceRisk sets the CurrentPerformanceRisk field's value.
+func (s *InstanceRecommendation) SetCurrentPerformanceRisk(v string) *InstanceRecommendation {
+	s.CurrentPerformanceRisk = &v
+	return s
+}
+
+// SetEffectiveRecommendationPreferences sets the EffectiveRecommendationPreferences field's value.
+func (s *InstanceRecommendation) SetEffectiveRecommendationPreferences(v *EffectiveRecommendationPreferences) *InstanceRecommendation {
+	s.EffectiveRecommendationPreferences = v
 	return s
 }
 
@@ -4472,6 +5449,11 @@ type InstanceRecommendationOption struct {
 	//
 	// The top recommendation option is ranked as 1.
 	Rank *int64 `locationName:"rank" type:"integer"`
+
+	// An object that describes the savings opportunity for the instance recommendation
+	// option. Savings opportunity includes the estimated monthly savings amount
+	// and percentage.
+	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
 }
 
 // String returns the string representation.
@@ -4519,6 +5501,12 @@ func (s *InstanceRecommendationOption) SetProjectedUtilizationMetrics(v []*Utili
 // SetRank sets the Rank field's value.
 func (s *InstanceRecommendationOption) SetRank(v int64) *InstanceRecommendationOption {
 	s.Rank = &v
+	return s
+}
+
+// SetSavingsOpportunity sets the SavingsOpportunity field's value.
+func (s *InstanceRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *InstanceRecommendationOption {
+	s.SavingsOpportunity = v
 	return s
 }
 
@@ -4777,6 +5765,11 @@ type LambdaFunctionMemoryRecommendationOption struct {
 	//
 	// The top recommendation option is ranked as 1.
 	Rank *int64 `locationName:"rank" type:"integer"`
+
+	// An object that describes the savings opportunity for the Lambda function
+	// recommendation option. Savings opportunity includes the estimated monthly
+	// savings amount and percentage.
+	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
 }
 
 // String returns the string representation.
@@ -4815,6 +5808,12 @@ func (s *LambdaFunctionMemoryRecommendationOption) SetRank(v int64) *LambdaFunct
 	return s
 }
 
+// SetSavingsOpportunity sets the SavingsOpportunity field's value.
+func (s *LambdaFunctionMemoryRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *LambdaFunctionMemoryRecommendationOption {
+	s.SavingsOpportunity = v
+	return s
+}
+
 // Describes an Lambda function recommendation.
 type LambdaFunctionRecommendation struct {
 	_ struct{} `type:"structure"`
@@ -4824,6 +5823,11 @@ type LambdaFunctionRecommendation struct {
 
 	// The amount of memory, in MB, that's allocated to the current function.
 	CurrentMemorySize *int64 `locationName:"currentMemorySize" type:"integer"`
+
+	// The risk of the current Lambda function not meeting the performance needs
+	// of its workloads. The higher the risk, the more likely the current Lambda
+	// function configuration is underperforming in its workload.
+	CurrentPerformanceRisk *string `locationName:"currentPerformanceRisk" type:"string" enum:"CurrentPerformanceRisk"`
 
 	// The finding classification of the function.
 	//
@@ -4887,7 +5891,7 @@ type LambdaFunctionRecommendation struct {
 	// The version number of the current function.
 	FunctionVersion *string `locationName:"functionVersion" type:"string"`
 
-	// The timestamp of when the function recommendation was last refreshed.
+	// The timestamp of when the function recommendation was last generated.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
 	// The number of days for which utilization metrics were analyzed for the function.
@@ -4931,6 +5935,12 @@ func (s *LambdaFunctionRecommendation) SetAccountId(v string) *LambdaFunctionRec
 // SetCurrentMemorySize sets the CurrentMemorySize field's value.
 func (s *LambdaFunctionRecommendation) SetCurrentMemorySize(v int64) *LambdaFunctionRecommendation {
 	s.CurrentMemorySize = &v
+	return s
+}
+
+// SetCurrentPerformanceRisk sets the CurrentPerformanceRisk field's value.
+func (s *LambdaFunctionRecommendation) SetCurrentPerformanceRisk(v string) *LambdaFunctionRecommendation {
+	s.CurrentPerformanceRisk = &v
 	return s
 }
 
@@ -5391,6 +6401,114 @@ func (s *ProjectedMetric) SetValues(v []*float64) *ProjectedMetric {
 	return s
 }
 
+type PutRecommendationPreferencesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the enhanced infrastructure metrics recommendation preference
+	// to create or update.
+	//
+	// A status of Active confirms that the preference is applied in the latest
+	// recommendation refresh, and a status of Inactive confirms that it's not yet
+	// applied.
+	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
+
+	// The target resource type of the recommendation preference to create.
+	//
+	// The Ec2Instance option encompasses standalone instances and instances that
+	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
+	// only instances that are part of an Auto Scaling group.
+	//
+	// ResourceType is a required field
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+
+	// An object that describes the scope of the recommendation preference to create.
+	//
+	// You can create recommendation preferences at the organization level (for
+	// management accounts of an organization only), account level, and resource
+	// level. For more information, see Activating enhanced infrastructure metrics
+	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
+	//
+	// You cannot create recommendation preferences for Auto Scaling groups at the
+	// organization and account levels. You can create recommendation preferences
+	// for Auto Scaling groups only at the resource level by specifying a scope
+	// name of ResourceArn and a scope value of the Auto Scaling group Amazon Resource
+	// Name (ARN). This will configure the preference for all instances that are
+	// part of the specified the Auto Scaling group.
+	Scope *Scope `locationName:"scope" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRecommendationPreferencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRecommendationPreferencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutRecommendationPreferencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutRecommendationPreferencesInput"}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
+func (s *PutRecommendationPreferencesInput) SetEnhancedInfrastructureMetrics(v string) *PutRecommendationPreferencesInput {
+	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *PutRecommendationPreferencesInput) SetResourceType(v string) *PutRecommendationPreferencesInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *PutRecommendationPreferencesInput) SetScope(v *Scope) *PutRecommendationPreferencesInput {
+	s.Scope = v
+	return s
+}
+
+type PutRecommendationPreferencesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRecommendationPreferencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRecommendationPreferencesOutput) GoString() string {
+	return s.String()
+}
+
 // A summary of a finding reason code.
 type ReasonCodeSummary struct {
 	_ struct{} `type:"structure"`
@@ -5524,7 +6642,8 @@ func (s *RecommendationExportJob) SetStatus(v string) *RecommendationExportJob {
 	return s
 }
 
-// Describes preferences for recommendations.
+// Describes the recommendation preferences to return in the response of a GetAutoScalingGroupRecommendations,
+// GetEC2InstanceRecommendations, and GetEC2RecommendationProjectedMetrics request.
 type RecommendationPreferences struct {
 	_ struct{} `type:"structure"`
 
@@ -5568,6 +6687,70 @@ func (s RecommendationPreferences) GoString() string {
 // SetCpuVendorArchitectures sets the CpuVendorArchitectures field's value.
 func (s *RecommendationPreferences) SetCpuVendorArchitectures(v []*string) *RecommendationPreferences {
 	s.CpuVendorArchitectures = v
+	return s
+}
+
+// Describes a recommendation preference.
+type RecommendationPreferencesDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the enhanced infrastructure metrics recommendation preference.
+	//
+	// A status of Active confirms that the preference is applied in the latest
+	// recommendation refresh, and a status of Inactive confirms that it's not yet
+	// applied.
+	EnhancedInfrastructureMetrics *string `locationName:"enhancedInfrastructureMetrics" type:"string" enum:"EnhancedInfrastructureMetrics"`
+
+	// The target resource type of the recommendation preference to create.
+	//
+	// The Ec2Instance option encompasses standalone instances and instances that
+	// are part of Auto Scaling groups. The AutoScalingGroup option encompasses
+	// only instances that are part of an Auto Scaling group.
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	// An object that describes the scope of the recommendation preference.
+	//
+	// Recommendation preferences can be created at the organization level (for
+	// management accounts of an organization only), account level, and resource
+	// level. For more information, see Activating enhanced infrastructure metrics
+	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+	// in the Compute Optimizer User Guide.
+	Scope *Scope `locationName:"scope" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationPreferencesDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationPreferencesDetail) GoString() string {
+	return s.String()
+}
+
+// SetEnhancedInfrastructureMetrics sets the EnhancedInfrastructureMetrics field's value.
+func (s *RecommendationPreferencesDetail) SetEnhancedInfrastructureMetrics(v string) *RecommendationPreferencesDetail {
+	s.EnhancedInfrastructureMetrics = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *RecommendationPreferencesDetail) SetResourceType(v string) *RecommendationPreferencesDetail {
+	s.ResourceType = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *RecommendationPreferencesDetail) SetScope(v *Scope) *RecommendationPreferencesDetail {
+	s.Scope = v
 	return s
 }
 
@@ -5620,8 +6803,16 @@ type RecommendationSummary struct {
 	// The Amazon Web Services account ID of the recommendation summary.
 	AccountId *string `locationName:"accountId" type:"string"`
 
-	// The resource type of the recommendation.
+	// An object that describes the performance risk ratings for a given resource
+	// type.
+	CurrentPerformanceRiskRatings *CurrentPerformanceRiskRatings `locationName:"currentPerformanceRiskRatings" type:"structure"`
+
+	// The resource type that the recommendation summary applies to.
 	RecommendationResourceType *string `locationName:"recommendationResourceType" type:"string" enum:"RecommendationSourceType"`
+
+	// An object that describes the savings opportunity for a given resource type.
+	// Savings opportunity includes the estimated monthly savings amount and percentage.
+	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
 
 	// An array of objects that describe a recommendation summary.
 	Summaries []*Summary `locationName:"summaries" type:"list"`
@@ -5651,9 +6842,21 @@ func (s *RecommendationSummary) SetAccountId(v string) *RecommendationSummary {
 	return s
 }
 
+// SetCurrentPerformanceRiskRatings sets the CurrentPerformanceRiskRatings field's value.
+func (s *RecommendationSummary) SetCurrentPerformanceRiskRatings(v *CurrentPerformanceRiskRatings) *RecommendationSummary {
+	s.CurrentPerformanceRiskRatings = v
+	return s
+}
+
 // SetRecommendationResourceType sets the RecommendationResourceType field's value.
 func (s *RecommendationSummary) SetRecommendationResourceType(v string) *RecommendationSummary {
 	s.RecommendationResourceType = &v
+	return s
+}
+
+// SetSavingsOpportunity sets the SavingsOpportunity field's value.
+func (s *RecommendationSummary) SetSavingsOpportunity(v *SavingsOpportunity) *RecommendationSummary {
+	s.SavingsOpportunity = v
 	return s
 }
 
@@ -5895,6 +7098,140 @@ func (s *S3DestinationConfig) SetBucket(v string) *S3DestinationConfig {
 // SetKeyPrefix sets the KeyPrefix field's value.
 func (s *S3DestinationConfig) SetKeyPrefix(v string) *S3DestinationConfig {
 	s.KeyPrefix = &v
+	return s
+}
+
+// Describes the savings opportunity for recommendations of a given resource
+// type or for the recommendation option of an individual resource.
+//
+// Savings opportunity represents the estimated monthly savings you can achieve
+// by implementing a given Compute Optimizer recommendation.
+//
+// Savings opportunity data requires that you opt in to Cost Explorer, as well
+// as activate Receive Amazon EC2 resource recommendations in the Cost Explorer
+// preferences page. That creates a connection between Cost Explorer and Compute
+// Optimizer. With this connection, Cost Explorer generates savings estimates
+// considering the price of existing resources, the price of recommended resources,
+// and historical usage data. Estimated monthly savings reflects the projected
+// dollar savings associated with each of the recommendations generated. For
+// more information, see Enabling Cost Explorer (https://docs.aws.amazon.com/cost-management/latest/userguide/ce-enable.html)
+// and Optimizing your cost with Rightsizing Recommendations (https://docs.aws.amazon.com/cost-management/latest/userguide/ce-rightsizing.html)
+// in the Cost Management User Guide.
+type SavingsOpportunity struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the estimated monthly savings amount possible based
+	// on On-Demand instance pricing.
+	EstimatedMonthlySavings *EstimatedMonthlySavings `locationName:"estimatedMonthlySavings" type:"structure"`
+
+	// The estimated monthly savings possible as a percentage of monthly cost.
+	SavingsOpportunityPercentage *float64 `locationName:"savingsOpportunityPercentage" type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SavingsOpportunity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SavingsOpportunity) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedMonthlySavings sets the EstimatedMonthlySavings field's value.
+func (s *SavingsOpportunity) SetEstimatedMonthlySavings(v *EstimatedMonthlySavings) *SavingsOpportunity {
+	s.EstimatedMonthlySavings = v
+	return s
+}
+
+// SetSavingsOpportunityPercentage sets the SavingsOpportunityPercentage field's value.
+func (s *SavingsOpportunity) SetSavingsOpportunityPercentage(v float64) *SavingsOpportunity {
+	s.SavingsOpportunityPercentage = &v
+	return s
+}
+
+// Describes the scope of a recommendation preference.
+//
+// Recommendation preferences can be created at the organization level (for
+// management accounts of an organization only), account level, and resource
+// level. For more information, see Activating enhanced infrastructure metrics
+// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/enhanced-infrastructure-metrics.html)
+// in the Compute Optimizer User Guide.
+//
+// You cannot create recommendation preferences for Auto Scaling groups at the
+// organization and account levels. You can create recommendation preferences
+// for Auto Scaling groups only at the resource level by specifying a scope
+// name of ResourceArn and a scope value of the Auto Scaling group Amazon Resource
+// Name (ARN). This will configure the preference for all instances that are
+// part of the specified the Auto Scaling group.
+type Scope struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the scope.
+	//
+	// The following scopes are possible:
+	//
+	//    * Organization - Specifies that the recommendation preference applies
+	//    at the organization level, for all member accounts of an organization.
+	//
+	//    * AccountId - Specifies that the recommendation preference applies at
+	//    the account level, for all resources of a given resource type in an account.
+	//
+	//    * ResourceArn - Specifies that the recommendation preference applies at
+	//    the individual resource level.
+	Name *string `locationName:"name" type:"string" enum:"ScopeName"`
+
+	// The value of the scope.
+	//
+	// If you specified the name of the scope as:
+	//
+	//    * Organization - The value must be ALL_ACCOUNTS.
+	//
+	//    * AccountId - The value must be a 12-digit Amazon Web Services account
+	//    ID.
+	//
+	//    * ResourceArn - The value must be the Amazon Resource Name (ARN) of an
+	//    EC2 instance or an Auto Scaling group.
+	//
+	// Only EC2 instance and Auto Scaling group ARNs are currently supported.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Scope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Scope) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Scope) SetName(v string) *Scope {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Scope) SetValue(v string) *Scope {
+	s.Value = &v
 	return s
 }
 
@@ -6417,6 +7754,11 @@ type VolumeRecommendation struct {
 	// An array of objects that describe the current configuration of the volume.
 	CurrentConfiguration *VolumeConfiguration `locationName:"currentConfiguration" type:"structure"`
 
+	// The risk of the current EBS volume not meeting the performance needs of its
+	// workloads. The higher the risk, the more likely the current EBS volume doesn't
+	// have sufficient capacity.
+	CurrentPerformanceRisk *string `locationName:"currentPerformanceRisk" type:"string" enum:"CurrentPerformanceRisk"`
+
 	// The finding classification of the volume.
 	//
 	// Findings for volumes include:
@@ -6431,7 +7773,7 @@ type VolumeRecommendation struct {
 	//    might recommend a new generation volume type.
 	Finding *string `locationName:"finding" type:"string" enum:"EBSFinding"`
 
-	// The timestamp of when the volume recommendation was last refreshed.
+	// The timestamp of when the volume recommendation was last generated.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
 	// The number of days for which utilization metrics were analyzed for the volume.
@@ -6474,6 +7816,12 @@ func (s *VolumeRecommendation) SetAccountId(v string) *VolumeRecommendation {
 // SetCurrentConfiguration sets the CurrentConfiguration field's value.
 func (s *VolumeRecommendation) SetCurrentConfiguration(v *VolumeConfiguration) *VolumeRecommendation {
 	s.CurrentConfiguration = v
+	return s
+}
+
+// SetCurrentPerformanceRisk sets the CurrentPerformanceRisk field's value.
+func (s *VolumeRecommendation) SetCurrentPerformanceRisk(v string) *VolumeRecommendation {
+	s.CurrentPerformanceRisk = &v
 	return s
 }
 
@@ -6537,6 +7885,11 @@ type VolumeRecommendationOption struct {
 	//
 	// The top recommendation option is ranked as 1.
 	Rank *int64 `locationName:"rank" type:"integer"`
+
+	// An object that describes the savings opportunity for the EBS volume recommendation
+	// option. Savings opportunity includes the estimated monthly savings amount
+	// and percentage.
+	SavingsOpportunity *SavingsOpportunity `locationName:"savingsOpportunity" type:"structure"`
 }
 
 // String returns the string representation.
@@ -6575,6 +7928,12 @@ func (s *VolumeRecommendationOption) SetRank(v int64) *VolumeRecommendationOptio
 	return s
 }
 
+// SetSavingsOpportunity sets the SavingsOpportunity field's value.
+func (s *VolumeRecommendationOption) SetSavingsOpportunity(v *SavingsOpportunity) *VolumeRecommendationOption {
+	s.SavingsOpportunity = v
+	return s
+}
+
 const (
 	// CpuVendorArchitectureAwsArm64 is a CpuVendorArchitecture enum value
 	CpuVendorArchitectureAwsArm64 = "AWS_ARM64"
@@ -6588,6 +7947,46 @@ func CpuVendorArchitecture_Values() []string {
 	return []string{
 		CpuVendorArchitectureAwsArm64,
 		CpuVendorArchitectureCurrent,
+	}
+}
+
+const (
+	// CurrencyUsd is a Currency enum value
+	CurrencyUsd = "USD"
+
+	// CurrencyCny is a Currency enum value
+	CurrencyCny = "CNY"
+)
+
+// Currency_Values returns all elements of the Currency enum
+func Currency_Values() []string {
+	return []string{
+		CurrencyUsd,
+		CurrencyCny,
+	}
+}
+
+const (
+	// CurrentPerformanceRiskVeryLow is a CurrentPerformanceRisk enum value
+	CurrentPerformanceRiskVeryLow = "VeryLow"
+
+	// CurrentPerformanceRiskLow is a CurrentPerformanceRisk enum value
+	CurrentPerformanceRiskLow = "Low"
+
+	// CurrentPerformanceRiskMedium is a CurrentPerformanceRisk enum value
+	CurrentPerformanceRiskMedium = "Medium"
+
+	// CurrentPerformanceRiskHigh is a CurrentPerformanceRisk enum value
+	CurrentPerformanceRiskHigh = "High"
+)
+
+// CurrentPerformanceRisk_Values returns all elements of the CurrentPerformanceRisk enum
+func CurrentPerformanceRisk_Values() []string {
+	return []string{
+		CurrentPerformanceRiskVeryLow,
+		CurrentPerformanceRiskLow,
+		CurrentPerformanceRiskMedium,
+		CurrentPerformanceRiskHigh,
 	}
 }
 
@@ -6640,6 +8039,22 @@ func EBSMetricName_Values() []string {
 		EBSMetricNameVolumeWriteOpsPerSecond,
 		EBSMetricNameVolumeReadBytesPerSecond,
 		EBSMetricNameVolumeWriteBytesPerSecond,
+	}
+}
+
+const (
+	// EnhancedInfrastructureMetricsActive is a EnhancedInfrastructureMetrics enum value
+	EnhancedInfrastructureMetricsActive = "Active"
+
+	// EnhancedInfrastructureMetricsInactive is a EnhancedInfrastructureMetrics enum value
+	EnhancedInfrastructureMetricsInactive = "Inactive"
+)
+
+// EnhancedInfrastructureMetrics_Values returns all elements of the EnhancedInfrastructureMetrics enum
+func EnhancedInfrastructureMetrics_Values() []string {
+	return []string{
+		EnhancedInfrastructureMetricsActive,
+		EnhancedInfrastructureMetricsInactive,
 	}
 }
 
@@ -6790,6 +8205,24 @@ const (
 
 	// ExportableAutoScalingGroupFieldLastRefreshTimestamp is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+
+	// ExportableAutoScalingGroupFieldCurrentPerformanceRisk is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldCurrentPerformanceRisk = "CurrentPerformanceRisk"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsSavingsOpportunityPercentage is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsSavingsOpportunityPercentage = "RecommendationOptionsSavingsOpportunityPercentage"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsCurrency is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsCurrency = "RecommendationOptionsEstimatedMonthlySavingsCurrency"
+
+	// ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValue = "RecommendationOptionsEstimatedMonthlySavingsValue"
+
+	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesCpuVendorArchitectures is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesCpuVendorArchitectures = "EffectiveRecommendationPreferencesCpuVendorArchitectures"
+
+	// ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics = "EffectiveRecommendationPreferencesEnhancedInfrastructureMetrics"
 )
 
 // ExportableAutoScalingGroupField_Values returns all elements of the ExportableAutoScalingGroupField enum
@@ -6840,6 +8273,12 @@ func ExportableAutoScalingGroupField_Values() []string {
 		ExportableAutoScalingGroupFieldRecommendationOptionsStorage,
 		ExportableAutoScalingGroupFieldRecommendationOptionsNetwork,
 		ExportableAutoScalingGroupFieldLastRefreshTimestamp,
+		ExportableAutoScalingGroupFieldCurrentPerformanceRisk,
+		ExportableAutoScalingGroupFieldRecommendationOptionsSavingsOpportunityPercentage,
+		ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
+		ExportableAutoScalingGroupFieldRecommendationOptionsEstimatedMonthlySavingsValue,
+		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesCpuVendorArchitectures,
+		ExportableAutoScalingGroupFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics,
 	}
 }
 
@@ -6972,6 +8411,24 @@ const (
 
 	// ExportableInstanceFieldLastRefreshTimestamp is a ExportableInstanceField enum value
 	ExportableInstanceFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+
+	// ExportableInstanceFieldCurrentPerformanceRisk is a ExportableInstanceField enum value
+	ExportableInstanceFieldCurrentPerformanceRisk = "CurrentPerformanceRisk"
+
+	// ExportableInstanceFieldRecommendationOptionsSavingsOpportunityPercentage is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsSavingsOpportunityPercentage = "RecommendationOptionsSavingsOpportunityPercentage"
+
+	// ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsCurrency is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsCurrency = "RecommendationOptionsEstimatedMonthlySavingsCurrency"
+
+	// ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsValue = "RecommendationOptionsEstimatedMonthlySavingsValue"
+
+	// ExportableInstanceFieldEffectiveRecommendationPreferencesCpuVendorArchitectures is a ExportableInstanceField enum value
+	ExportableInstanceFieldEffectiveRecommendationPreferencesCpuVendorArchitectures = "EffectiveRecommendationPreferencesCpuVendorArchitectures"
+
+	// ExportableInstanceFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics is a ExportableInstanceField enum value
+	ExportableInstanceFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics = "EffectiveRecommendationPreferencesEnhancedInfrastructureMetrics"
 )
 
 // ExportableInstanceField_Values returns all elements of the ExportableInstanceField enum
@@ -7020,6 +8477,12 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldRecommendationsSourcesRecommendationSourceArn,
 		ExportableInstanceFieldRecommendationsSourcesRecommendationSourceType,
 		ExportableInstanceFieldLastRefreshTimestamp,
+		ExportableInstanceFieldCurrentPerformanceRisk,
+		ExportableInstanceFieldRecommendationOptionsSavingsOpportunityPercentage,
+		ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
+		ExportableInstanceFieldRecommendationOptionsEstimatedMonthlySavingsValue,
+		ExportableInstanceFieldEffectiveRecommendationPreferencesCpuVendorArchitectures,
+		ExportableInstanceFieldEffectiveRecommendationPreferencesEnhancedInfrastructureMetrics,
 	}
 }
 
@@ -7089,6 +8552,18 @@ const (
 
 	// ExportableLambdaFunctionFieldLastRefreshTimestamp is a ExportableLambdaFunctionField enum value
 	ExportableLambdaFunctionFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+
+	// ExportableLambdaFunctionFieldCurrentPerformanceRisk is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldCurrentPerformanceRisk = "CurrentPerformanceRisk"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsSavingsOpportunityPercentage is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsSavingsOpportunityPercentage = "RecommendationOptionsSavingsOpportunityPercentage"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsCurrency is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsCurrency = "RecommendationOptionsEstimatedMonthlySavingsCurrency"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValue = "RecommendationOptionsEstimatedMonthlySavingsValue"
 )
 
 // ExportableLambdaFunctionField_Values returns all elements of the ExportableLambdaFunctionField enum
@@ -7116,6 +8591,10 @@ func ExportableLambdaFunctionField_Values() []string {
 		ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationUpperBound,
 		ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationExpected,
 		ExportableLambdaFunctionFieldLastRefreshTimestamp,
+		ExportableLambdaFunctionFieldCurrentPerformanceRisk,
+		ExportableLambdaFunctionFieldRecommendationOptionsSavingsOpportunityPercentage,
+		ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
+		ExportableLambdaFunctionFieldRecommendationOptionsEstimatedMonthlySavingsValue,
 	}
 }
 
@@ -7191,6 +8670,18 @@ const (
 
 	// ExportableVolumeFieldLastRefreshTimestamp is a ExportableVolumeField enum value
 	ExportableVolumeFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+
+	// ExportableVolumeFieldCurrentPerformanceRisk is a ExportableVolumeField enum value
+	ExportableVolumeFieldCurrentPerformanceRisk = "CurrentPerformanceRisk"
+
+	// ExportableVolumeFieldRecommendationOptionsSavingsOpportunityPercentage is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsSavingsOpportunityPercentage = "RecommendationOptionsSavingsOpportunityPercentage"
+
+	// ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrency is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrency = "RecommendationOptionsEstimatedMonthlySavingsCurrency"
+
+	// ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue = "RecommendationOptionsEstimatedMonthlySavingsValue"
 )
 
 // ExportableVolumeField_Values returns all elements of the ExportableVolumeField enum
@@ -7220,6 +8711,10 @@ func ExportableVolumeField_Values() []string {
 		ExportableVolumeFieldRecommendationOptionsMonthlyPrice,
 		ExportableVolumeFieldRecommendationOptionsPerformanceRisk,
 		ExportableVolumeFieldLastRefreshTimestamp,
+		ExportableVolumeFieldCurrentPerformanceRisk,
+		ExportableVolumeFieldRecommendationOptionsSavingsOpportunityPercentage,
+		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsCurrency,
+		ExportableVolumeFieldRecommendationOptionsEstimatedMonthlySavingsValue,
 	}
 }
 
@@ -7644,6 +9139,18 @@ func PlatformDifference_Values() []string {
 }
 
 const (
+	// RecommendationPreferenceNameEnhancedInfrastructureMetrics is a RecommendationPreferenceName enum value
+	RecommendationPreferenceNameEnhancedInfrastructureMetrics = "EnhancedInfrastructureMetrics"
+)
+
+// RecommendationPreferenceName_Values returns all elements of the RecommendationPreferenceName enum
+func RecommendationPreferenceName_Values() []string {
+	return []string{
+		RecommendationPreferenceNameEnhancedInfrastructureMetrics,
+	}
+}
+
+const (
 	// RecommendationSourceTypeEc2instance is a RecommendationSourceType enum value
 	RecommendationSourceTypeEc2instance = "Ec2Instance"
 
@@ -7688,6 +9195,26 @@ func ResourceType_Values() []string {
 		ResourceTypeAutoScalingGroup,
 		ResourceTypeEbsVolume,
 		ResourceTypeLambdaFunction,
+	}
+}
+
+const (
+	// ScopeNameOrganization is a ScopeName enum value
+	ScopeNameOrganization = "Organization"
+
+	// ScopeNameAccountId is a ScopeName enum value
+	ScopeNameAccountId = "AccountId"
+
+	// ScopeNameResourceArn is a ScopeName enum value
+	ScopeNameResourceArn = "ResourceArn"
+)
+
+// ScopeName_Values returns all elements of the ScopeName enum
+func ScopeName_Values() []string {
+	return []string{
+		ScopeNameOrganization,
+		ScopeNameAccountId,
+		ScopeNameResourceArn,
 	}
 }
 

@@ -17821,6 +17821,29 @@ func (s *ErrorDocument) SetKey(v string) *ErrorDocument {
 	return s
 }
 
+// A container for specifying the configuration for Amazon EventBridge.
+type EventBridgeConfiguration struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventBridgeConfiguration) GoString() string {
+	return s.String()
+}
+
 // Optional configuration to replicate existing source bucket objects. For more
 // information, see Replicating Existing Objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-what-is-isnot-replicated.html#existing-object-replication)
 // in the Amazon S3 User Guide.
@@ -28048,6 +28071,9 @@ func (s *NoncurrentVersionTransition) SetStorageClass(v string) *NoncurrentVersi
 type NotificationConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Enables delivery of events to Amazon EventBridge.
+	EventBridgeConfiguration *EventBridgeConfiguration `type:"structure"`
+
 	// Describes the Lambda functions to invoke and the events for which to invoke
 	// them.
 	LambdaFunctionConfigurations []*LambdaFunctionConfiguration `locationName:"CloudFunctionConfiguration" type:"list" flattened:"true"`
@@ -28117,6 +28143,12 @@ func (s *NotificationConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEventBridgeConfiguration sets the EventBridgeConfiguration field's value.
+func (s *NotificationConfiguration) SetEventBridgeConfiguration(v *EventBridgeConfiguration) *NotificationConfiguration {
+	s.EventBridgeConfiguration = v
+	return s
 }
 
 // SetLambdaFunctionConfigurations sets the LambdaFunctionConfigurations field's value.
@@ -30780,6 +30812,10 @@ type PutBucketNotificationConfigurationInput struct {
 	//
 	// NotificationConfiguration is a required field
 	NotificationConfiguration *NotificationConfiguration `locationName:"NotificationConfiguration" type:"structure" required:"true" xmlURI:"http://s3.amazonaws.com/doc/2006-03-01/"`
+
+	// Skips validation of Amazon SQS, Amazon SNS, and Lambda destinations. True
+	// or false value.
+	SkipDestinationValidation *bool `location:"header" locationName:"x-amz-skip-destination-validation" type:"boolean"`
 }
 
 // String returns the string representation.
@@ -30846,6 +30882,12 @@ func (s *PutBucketNotificationConfigurationInput) SetExpectedBucketOwner(v strin
 // SetNotificationConfiguration sets the NotificationConfiguration field's value.
 func (s *PutBucketNotificationConfigurationInput) SetNotificationConfiguration(v *NotificationConfiguration) *PutBucketNotificationConfigurationInput {
 	s.NotificationConfiguration = v
+	return s
+}
+
+// SetSkipDestinationValidation sets the SkipDestinationValidation field's value.
+func (s *PutBucketNotificationConfigurationInput) SetSkipDestinationValidation(v bool) *PutBucketNotificationConfigurationInput {
+	s.SkipDestinationValidation = &v
 	return s
 }
 
@@ -38691,6 +38733,36 @@ const (
 
 	// EventS3ReplicationOperationReplicatedAfterThreshold is a Event enum value
 	EventS3ReplicationOperationReplicatedAfterThreshold = "s3:Replication:OperationReplicatedAfterThreshold"
+
+	// EventS3ObjectRestoreDelete is a Event enum value
+	EventS3ObjectRestoreDelete = "s3:ObjectRestore:Delete"
+
+	// EventS3LifecycleTransition is a Event enum value
+	EventS3LifecycleTransition = "s3:LifecycleTransition"
+
+	// EventS3IntelligentTiering is a Event enum value
+	EventS3IntelligentTiering = "s3:IntelligentTiering"
+
+	// EventS3ObjectAclPut is a Event enum value
+	EventS3ObjectAclPut = "s3:ObjectAcl:Put"
+
+	// EventS3LifecycleExpiration is a Event enum value
+	EventS3LifecycleExpiration = "s3:LifecycleExpiration:*"
+
+	// EventS3LifecycleExpirationDelete is a Event enum value
+	EventS3LifecycleExpirationDelete = "s3:LifecycleExpiration:Delete"
+
+	// EventS3LifecycleExpirationDeleteMarkerCreated is a Event enum value
+	EventS3LifecycleExpirationDeleteMarkerCreated = "s3:LifecycleExpiration:DeleteMarkerCreated"
+
+	// EventS3ObjectTagging is a Event enum value
+	EventS3ObjectTagging = "s3:ObjectTagging:*"
+
+	// EventS3ObjectTaggingPut is a Event enum value
+	EventS3ObjectTaggingPut = "s3:ObjectTagging:Put"
+
+	// EventS3ObjectTaggingDelete is a Event enum value
+	EventS3ObjectTaggingDelete = "s3:ObjectTagging:Delete"
 )
 
 // Event_Values returns all elements of the Event enum
@@ -38713,6 +38785,16 @@ func Event_Values() []string {
 		EventS3ReplicationOperationNotTracked,
 		EventS3ReplicationOperationMissedThreshold,
 		EventS3ReplicationOperationReplicatedAfterThreshold,
+		EventS3ObjectRestoreDelete,
+		EventS3LifecycleTransition,
+		EventS3IntelligentTiering,
+		EventS3ObjectAclPut,
+		EventS3LifecycleExpiration,
+		EventS3LifecycleExpirationDelete,
+		EventS3LifecycleExpirationDeleteMarkerCreated,
+		EventS3ObjectTagging,
+		EventS3ObjectTaggingPut,
+		EventS3ObjectTaggingDelete,
 	}
 }
 

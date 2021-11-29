@@ -29,6 +29,42 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "CreateLensShare":{
+      "name":"CreateLensShare",
+      "http":{
+        "method":"POST",
+        "requestUri":"/lenses/{LensAlias}/shares"
+      },
+      "input":{"shape":"CreateLensShareInput"},
+      "output":{"shape":"CreateLensShareOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "CreateLensVersion":{
+      "name":"CreateLensVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/lenses/{LensAlias}/versions"
+      },
+      "input":{"shape":"CreateLensVersionInput"},
+      "output":{"shape":"CreateLensVersionOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateMilestone":{
       "name":"CreateMilestone",
       "http":{
@@ -82,6 +118,38 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DeleteLens":{
+      "name":"DeleteLens",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/lenses/{LensAlias}"
+      },
+      "input":{"shape":"DeleteLensInput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DeleteLensShare":{
+      "name":"DeleteLensShare",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/lenses/{LensAlias}/shares/{ShareId}"
+      },
+      "input":{"shape":"DeleteLensShareInput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DeleteWorkload":{
       "name":"DeleteWorkload",
       "http":{
@@ -130,6 +198,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ExportLens":{
+      "name":"ExportLens",
+      "http":{
+        "method":"GET",
+        "requestUri":"/lenses/{LensAlias}/export"
+      },
+      "input":{"shape":"ExportLensInput"},
+      "output":{"shape":"ExportLensOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetAnswer":{
       "name":"GetAnswer",
       "http":{
@@ -138,6 +222,22 @@
       },
       "input":{"shape":"GetAnswerInput"},
       "output":{"shape":"GetAnswerOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetLens":{
+      "name":"GetLens",
+      "http":{
+        "method":"GET",
+        "requestUri":"/lenses/{LensAlias}"
+      },
+      "input":{"shape":"GetLensInput"},
+      "output":{"shape":"GetLensOutput"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -226,6 +326,24 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ImportLens":{
+      "name":"ImportLens",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/importLens"
+      },
+      "input":{"shape":"ImportLensInput"},
+      "output":{"shape":"ImportLensOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "ListAnswers":{
       "name":"ListAnswers",
       "http":{
@@ -266,6 +384,22 @@
       },
       "input":{"shape":"ListLensReviewsInput"},
       "output":{"shape":"ListLensReviewsOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListLensShares":{
+      "name":"ListLensShares",
+      "http":{
+        "method":"GET",
+        "requestUri":"/lenses/{LensAlias}/shares"
+      },
+      "input":{"shape":"ListLensSharesInput"},
+      "output":{"shape":"ListLensSharesOutput"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
@@ -526,6 +660,7 @@
         "QuestionDescription":{"shape":"QuestionDescription"},
         "ImprovementPlanUrl":{"shape":"ImprovementPlanUrl"},
         "HelpfulResourceUrl":{"shape":"HelpfulResourceUrl"},
+        "HelpfulResourceDisplayText":{"shape":"DisplayText"},
         "Choices":{"shape":"Choices"},
         "SelectedChoices":{"shape":"SelectedChoices"},
         "ChoiceAnswers":{"shape":"ChoiceAnswers"},
@@ -592,7 +727,9 @@
       "members":{
         "ChoiceId":{"shape":"ChoiceId"},
         "Title":{"shape":"ChoiceTitle"},
-        "Description":{"shape":"ChoiceDescription"}
+        "Description":{"shape":"ChoiceDescription"},
+        "HelpfulResource":{"shape":"ChoiceContent"},
+        "ImprovementPlan":{"shape":"ChoiceContent"}
       }
     },
     "ChoiceAnswer":{
@@ -620,6 +757,23 @@
       "type":"list",
       "member":{"shape":"ChoiceAnswer"}
     },
+    "ChoiceContent":{
+      "type":"structure",
+      "members":{
+        "DisplayText":{"shape":"ChoiceContentDisplayText"},
+        "Url":{"shape":"ChoiceContentUrl"}
+      }
+    },
+    "ChoiceContentDisplayText":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "ChoiceContentUrl":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ChoiceDescription":{
       "type":"string",
       "max":1024,
@@ -629,6 +783,18 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "ChoiceImprovementPlan":{
+      "type":"structure",
+      "members":{
+        "ChoiceId":{"shape":"ChoiceId"},
+        "DisplayText":{"shape":"DisplayText"},
+        "ImprovementPlanUrl":{"shape":"ImprovementPlanUrl"}
+      }
+    },
+    "ChoiceImprovementPlans":{
+      "type":"list",
+      "member":{"shape":"ChoiceImprovementPlan"}
     },
     "ChoiceNotes":{
       "type":"string",
@@ -694,6 +860,60 @@
     "Count":{
       "type":"integer",
       "min":0
+    },
+    "CreateLensShareInput":{
+      "type":"structure",
+      "required":[
+        "LensAlias",
+        "SharedWith",
+        "ClientRequestToken"
+      ],
+      "members":{
+        "LensAlias":{
+          "shape":"LensAlias",
+          "location":"uri",
+          "locationName":"LensAlias"
+        },
+        "SharedWith":{"shape":"SharedWith"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateLensShareOutput":{
+      "type":"structure",
+      "members":{
+        "ShareId":{"shape":"ShareId"}
+      }
+    },
+    "CreateLensVersionInput":{
+      "type":"structure",
+      "required":[
+        "LensAlias",
+        "LensVersion",
+        "ClientRequestToken"
+      ],
+      "members":{
+        "LensAlias":{
+          "shape":"LensAlias",
+          "location":"uri",
+          "locationName":"LensAlias"
+        },
+        "LensVersion":{"shape":"LensVersion"},
+        "IsMajorVersion":{"shape":"IsMajorVersion"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateLensVersionOutput":{
+      "type":"structure",
+      "members":{
+        "LensArn":{"shape":"LensArn"},
+        "LensVersion":{"shape":"LensVersion"}
+      }
     },
     "CreateMilestoneInput":{
       "type":"structure",
@@ -789,6 +1009,58 @@
         "ShareId":{"shape":"ShareId"}
       }
     },
+    "DeleteLensInput":{
+      "type":"structure",
+      "required":[
+        "LensAlias",
+        "ClientRequestToken",
+        "LensStatus"
+      ],
+      "members":{
+        "LensAlias":{
+          "shape":"LensAlias",
+          "location":"uri",
+          "locationName":"LensAlias"
+        },
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"ClientRequestToken"
+        },
+        "LensStatus":{
+          "shape":"LensStatusType",
+          "location":"querystring",
+          "locationName":"LensStatus"
+        }
+      }
+    },
+    "DeleteLensShareInput":{
+      "type":"structure",
+      "required":[
+        "ShareId",
+        "LensAlias",
+        "ClientRequestToken"
+      ],
+      "members":{
+        "ShareId":{
+          "shape":"ShareId",
+          "location":"uri",
+          "locationName":"ShareId"
+        },
+        "LensAlias":{
+          "shape":"LensAlias",
+          "location":"uri",
+          "locationName":"LensAlias"
+        },
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"ClientRequestToken"
+        }
+      }
+    },
     "DeleteWorkloadInput":{
       "type":"structure",
       "required":[
@@ -858,9 +1130,36 @@
         "LensAliases":{"shape":"LensAliases"}
       }
     },
+    "DisplayText":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
     "ExceptionMessage":{"type":"string"},
     "ExceptionResourceId":{"type":"string"},
     "ExceptionResourceType":{"type":"string"},
+    "ExportLensInput":{
+      "type":"structure",
+      "required":["LensAlias"],
+      "members":{
+        "LensAlias":{
+          "shape":"LensAlias",
+          "location":"uri",
+          "locationName":"LensAlias"
+        },
+        "LensVersion":{
+          "shape":"LensVersion",
+          "location":"querystring",
+          "locationName":"LensVersion"
+        }
+      }
+    },
+    "ExportLensOutput":{
+      "type":"structure",
+      "members":{
+        "LensJSON":{"shape":"LensJSON"}
+      }
+    },
     "GetAnswerInput":{
       "type":"structure",
       "required":[
@@ -897,7 +1196,30 @@
         "WorkloadId":{"shape":"WorkloadId"},
         "MilestoneNumber":{"shape":"MilestoneNumber"},
         "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"},
         "Answer":{"shape":"Answer"}
+      }
+    },
+    "GetLensInput":{
+      "type":"structure",
+      "required":["LensAlias"],
+      "members":{
+        "LensAlias":{
+          "shape":"LensAlias",
+          "location":"uri",
+          "locationName":"LensAlias"
+        },
+        "LensVersion":{
+          "shape":"LensVersion",
+          "location":"querystring",
+          "locationName":"LensVersion"
+        }
+      }
+    },
+    "GetLensOutput":{
+      "type":"structure",
+      "members":{
+        "Lens":{"shape":"Lens"}
       }
     },
     "GetLensReviewInput":{
@@ -966,10 +1288,7 @@
     },
     "GetLensVersionDifferenceInput":{
       "type":"structure",
-      "required":[
-        "LensAlias",
-        "BaseLensVersion"
-      ],
+      "required":["LensAlias"],
       "members":{
         "LensAlias":{
           "shape":"LensAlias",
@@ -980,6 +1299,11 @@
           "shape":"LensVersion",
           "location":"querystring",
           "locationName":"BaseLensVersion"
+        },
+        "TargetLensVersion":{
+          "shape":"LensVersion",
+          "location":"querystring",
+          "locationName":"TargetLensVersion"
         }
       }
     },
@@ -987,7 +1311,9 @@
       "type":"structure",
       "members":{
         "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"},
         "BaseLensVersion":{"shape":"LensVersion"},
+        "TargetLensVersion":{"shape":"LensVersion"},
         "LatestLensVersion":{"shape":"LensVersion"},
         "VersionDifferences":{"shape":"VersionDifferences"}
       }
@@ -1040,6 +1366,37 @@
       "max":2048,
       "min":1
     },
+    "ImportLensInput":{
+      "type":"structure",
+      "required":[
+        "JSONString",
+        "ClientRequestToken"
+      ],
+      "members":{
+        "LensAlias":{"shape":"LensAlias"},
+        "JSONString":{"shape":"LensJSON"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "ImportLensOutput":{
+      "type":"structure",
+      "members":{
+        "LensArn":{"shape":"LensArn"},
+        "Status":{"shape":"ImportLensStatus"}
+      }
+    },
+    "ImportLensStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETE",
+        "ERROR"
+      ]
+    },
     "ImprovementPlanUrl":{
       "type":"string",
       "max":2048,
@@ -1056,7 +1413,8 @@
         "PillarId":{"shape":"PillarId"},
         "QuestionTitle":{"shape":"QuestionTitle"},
         "Risk":{"shape":"Risk"},
-        "ImprovementPlanUrl":{"shape":"ImprovementPlanUrl"}
+        "ImprovementPlanUrl":{"shape":"ImprovementPlanUrl"},
+        "ImprovementPlans":{"shape":"ChoiceImprovementPlans"}
       }
     },
     "InternalServerException":{
@@ -1070,10 +1428,22 @@
       "fault":true
     },
     "IsApplicable":{"type":"boolean"},
+    "IsMajorVersion":{"type":"boolean"},
     "IsReviewOwnerUpdateAcknowledged":{"type":"boolean"},
+    "Lens":{
+      "type":"structure",
+      "members":{
+        "LensArn":{"shape":"LensArn"},
+        "LensVersion":{"shape":"LensVersion"},
+        "Name":{"shape":"LensName"},
+        "Description":{"shape":"LensDescription"},
+        "Owner":{"shape":"LensOwner"},
+        "ShareInvitationId":{"shape":"ShareInvitationId"}
+      }
+    },
     "LensAlias":{
       "type":"string",
-      "max":64,
+      "max":128,
       "min":1
     },
     "LensAliases":{
@@ -1081,20 +1451,32 @@
       "member":{"shape":"LensAlias"},
       "min":1
     },
+    "LensArn":{"type":"string"},
     "LensDescription":{
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "LensJSON":{
+      "type":"string",
+      "max":500000,
+      "min":2
     },
     "LensName":{
       "type":"string",
       "max":128,
       "min":1
     },
+    "LensNamePrefix":{
+      "type":"string",
+      "max":100
+    },
+    "LensOwner":{"type":"string"},
     "LensReview":{
       "type":"structure",
       "members":{
         "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"},
         "LensVersion":{"shape":"LensVersion"},
         "LensName":{"shape":"LensName"},
         "LensStatus":{"shape":"LensStatus"},
@@ -1109,6 +1491,7 @@
       "type":"structure",
       "members":{
         "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"},
         "Base64String":{"shape":"Base64String"}
       }
     },
@@ -1120,6 +1503,7 @@
       "type":"structure",
       "members":{
         "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"},
         "LensVersion":{"shape":"LensVersion"},
         "LensName":{"shape":"LensName"},
         "LensStatus":{"shape":"LensStatus"},
@@ -1127,12 +1511,34 @@
         "RiskCounts":{"shape":"RiskCounts"}
       }
     },
+    "LensShareSummaries":{
+      "type":"list",
+      "member":{"shape":"LensShareSummary"}
+    },
+    "LensShareSummary":{
+      "type":"structure",
+      "members":{
+        "ShareId":{"shape":"ShareId"},
+        "SharedWith":{"shape":"SharedWith"},
+        "Status":{"shape":"ShareStatus"}
+      }
+    },
     "LensStatus":{
       "type":"string",
       "enum":[
         "CURRENT",
         "NOT_CURRENT",
-        "DEPRECATED"
+        "DEPRECATED",
+        "DELETED",
+        "UNSHARED"
+      ]
+    },
+    "LensStatusType":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "DRAFT",
+        "PUBLISHED"
       ]
     },
     "LensSummaries":{
@@ -1142,11 +1548,25 @@
     "LensSummary":{
       "type":"structure",
       "members":{
+        "LensArn":{"shape":"LensArn"},
         "LensAlias":{"shape":"LensAlias"},
-        "LensVersion":{"shape":"LensVersion"},
         "LensName":{"shape":"LensName"},
-        "Description":{"shape":"LensDescription"}
+        "LensType":{"shape":"LensType"},
+        "Description":{"shape":"LensDescription"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"},
+        "LensVersion":{"shape":"LensVersion"},
+        "Owner":{"shape":"AwsAccountId"},
+        "LensStatus":{"shape":"LensStatus"}
       }
+    },
+    "LensType":{
+      "type":"string",
+      "enum":[
+        "AWS_OFFICIAL",
+        "CUSTOM_SHARED",
+        "CUSTOM_SELF"
+      ]
     },
     "LensUpgradeSummary":{
       "type":"structure",
@@ -1154,13 +1574,14 @@
         "WorkloadId":{"shape":"WorkloadId"},
         "WorkloadName":{"shape":"WorkloadName"},
         "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"},
         "CurrentLensVersion":{"shape":"LensVersion"},
         "LatestLensVersion":{"shape":"LensVersion"}
       }
     },
     "LensVersion":{
       "type":"string",
-      "max":128,
+      "max":32,
       "min":1
     },
     "ListAnswersInput":{
@@ -1213,6 +1634,7 @@
         "WorkloadId":{"shape":"WorkloadId"},
         "MilestoneNumber":{"shape":"MilestoneNumber"},
         "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"},
         "AnswerSummaries":{"shape":"AnswerSummaries"},
         "NextToken":{"shape":"NextToken"}
       }
@@ -1267,6 +1689,7 @@
         "WorkloadId":{"shape":"WorkloadId"},
         "MilestoneNumber":{"shape":"MilestoneNumber"},
         "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"},
         "ImprovementSummaries":{"shape":"ImprovementSummaries"},
         "NextToken":{"shape":"NextToken"}
       }
@@ -1306,6 +1729,39 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListLensSharesInput":{
+      "type":"structure",
+      "required":["LensAlias"],
+      "members":{
+        "LensAlias":{
+          "shape":"LensAlias",
+          "location":"uri",
+          "locationName":"LensAlias"
+        },
+        "SharedWithPrefix":{
+          "shape":"SharedWithPrefix",
+          "location":"querystring",
+          "locationName":"SharedWithPrefix"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"ListWorkloadSharesMaxResults",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        }
+      }
+    },
+    "ListLensSharesOutput":{
+      "type":"structure",
+      "members":{
+        "LensShareSummaries":{"shape":"LensShareSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListLensesInput":{
       "type":"structure",
       "members":{
@@ -1318,6 +1774,21 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"MaxResults"
+        },
+        "LensType":{
+          "shape":"LensType",
+          "location":"querystring",
+          "locationName":"LensType"
+        },
+        "LensStatus":{
+          "shape":"LensStatusType",
+          "location":"querystring",
+          "locationName":"LensStatus"
+        },
+        "LensName":{
+          "shape":"LensName",
+          "location":"querystring",
+          "locationName":"LensName"
         }
       }
     },
@@ -1376,6 +1847,16 @@
           "shape":"WorkloadNamePrefix",
           "location":"querystring",
           "locationName":"WorkloadNamePrefix"
+        },
+        "LensNamePrefix":{
+          "shape":"LensNamePrefix",
+          "location":"querystring",
+          "locationName":"LensNamePrefix"
+        },
+        "ShareResourceType":{
+          "shape":"ShareResourceType",
+          "location":"querystring",
+          "locationName":"ShareResourceType"
         },
         "NextToken":{
           "shape":"NextToken",
@@ -1548,6 +2029,7 @@
       "type":"structure",
       "members":{
         "PillarId":{"shape":"PillarId"},
+        "PillarName":{"shape":"PillarName"},
         "DifferenceStatus":{"shape":"DifferenceStatus"},
         "QuestionDifferences":{"shape":"QuestionDifferences"}
       }
@@ -1672,7 +2154,10 @@
       "type":"structure",
       "members":{
         "ShareInvitationId":{"shape":"ShareInvitationId"},
-        "WorkloadId":{"shape":"WorkloadId"}
+        "ShareResourceType":{"shape":"ShareResourceType"},
+        "WorkloadId":{"shape":"WorkloadId"},
+        "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"}
       }
     },
     "ShareInvitationAction":{
@@ -1697,9 +2182,19 @@
         "SharedBy":{"shape":"AwsAccountId"},
         "SharedWith":{"shape":"SharedWith"},
         "PermissionType":{"shape":"PermissionType"},
+        "ShareResourceType":{"shape":"ShareResourceType"},
         "WorkloadName":{"shape":"WorkloadName"},
-        "WorkloadId":{"shape":"WorkloadId"}
+        "WorkloadId":{"shape":"WorkloadId"},
+        "LensName":{"shape":"LensName"},
+        "LensArn":{"shape":"LensArn"}
       }
+    },
+    "ShareResourceType":{
+      "type":"string",
+      "enum":[
+        "WORKLOAD",
+        "LENS"
+      ]
     },
     "ShareStatus":{
       "type":"string",
@@ -1834,6 +2329,7 @@
       "members":{
         "WorkloadId":{"shape":"WorkloadId"},
         "LensAlias":{"shape":"LensAlias"},
+        "LensArn":{"shape":"LensArn"},
         "Answer":{"shape":"Answer"}
       }
     },

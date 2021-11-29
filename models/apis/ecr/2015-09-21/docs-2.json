@@ -5,15 +5,19 @@
     "BatchCheckLayerAvailability": "<p>Checks the availability of one or more image layers in a repository.</p> <p>When an image is pushed to a repository, each image layer is checked to verify if it has been uploaded before. If it has been uploaded, then the image layer is skipped.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "BatchDeleteImage": "<p>Deletes a list of specified images within a repository. Images are specified with either an <code>imageTag</code> or <code>imageDigest</code>.</p> <p>You can remove a tag from an image by specifying the image's tag in your request. When you remove the last tag from an image, the image is deleted from your repository.</p> <p>You can completely delete an image (and all of its tags) by specifying the image's digest in your request.</p>",
     "BatchGetImage": "<p>Gets detailed information for an image. Images are specified with either an <code>imageTag</code> or <code>imageDigest</code>.</p> <p>When an image is pulled, the BatchGetImage API is called once to retrieve the image manifest.</p>",
+    "BatchGetRepositoryScanningConfiguration": "<p>Gets the scanning configuration for one or more repositories.</p>",
     "CompleteLayerUpload": "<p>Informs Amazon ECR that the image layer upload has completed for a specified registry, repository name, and upload ID. You can optionally provide a <code>sha256</code> digest of the image layer for data validation purposes.</p> <p>When an image is pushed, the CompleteLayerUpload API is called once per each new image layer to verify that the upload has completed.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
+    "CreatePullThroughCacheRule": "<p>Creates a pull through cache rule. A pull through cache rule provides a way to cache images from an external public registry in your Amazon ECR private registry.</p>",
     "CreateRepository": "<p>Creates a repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html\">Amazon ECR repositories</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "DeleteLifecyclePolicy": "<p>Deletes the lifecycle policy associated with the specified repository.</p>",
+    "DeletePullThroughCacheRule": "<p>Deletes a pull through cache rule.</p>",
     "DeleteRegistryPolicy": "<p>Deletes the registry permissions policy.</p>",
     "DeleteRepository": "<p>Deletes a repository. If the repository contains images, you must either delete all images in the repository or use the <code>force</code> option to delete the repository.</p>",
     "DeleteRepositoryPolicy": "<p>Deletes the repository policy associated with the specified repository.</p>",
     "DescribeImageReplicationStatus": "<p>Returns the replication status for a specified image.</p>",
     "DescribeImageScanFindings": "<p>Returns the scan findings for the specified image.</p>",
     "DescribeImages": "<p>Returns metadata about the images in a repository.</p> <note> <p>Beginning with Docker version 1.9, the Docker client compresses image layers before pushing them to a V2 Docker registry. The output of the <code>docker images</code> command shows the uncompressed image size, so it may return a larger image size than the image sizes returned by <a>DescribeImages</a>.</p> </note>",
+    "DescribePullThroughCacheRules": "<p>Returns the pull through cache rules for a registry.</p>",
     "DescribeRegistry": "<p>Describes the settings for a registry. The replication configuration for a repository can be created or updated with the <a>PutReplicationConfiguration</a> API action.</p>",
     "DescribeRepositories": "<p>Describes image repositories in a registry.</p>",
     "GetAuthorizationToken": "<p>Retrieves an authorization token. An authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that your IAM principal has access to. The authorization token is valid for 12 hours.</p> <p>The <code>authorizationToken</code> returned is a base64 encoded string that can be decoded and used in a <code>docker login</code> command to authenticate to a registry. The CLI offers an <code>get-login-password</code> command that simplifies the login process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth\">Registry authentication</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
@@ -21,6 +25,7 @@
     "GetLifecyclePolicy": "<p>Retrieves the lifecycle policy for the specified repository.</p>",
     "GetLifecyclePolicyPreview": "<p>Retrieves the results of the lifecycle policy preview request for the specified repository.</p>",
     "GetRegistryPolicy": "<p>Retrieves the permissions policy for a registry.</p>",
+    "GetRegistryScanningConfiguration": "<p>Retrieves the scanning configuration for a registry.</p>",
     "GetRepositoryPolicy": "<p>Retrieves the repository policy for the specified repository.</p>",
     "InitiateLayerUpload": "<p>Notifies Amazon ECR that you intend to upload an image layer.</p> <p>When an image is pushed, the InitiateLayerUpload API is called once per image layer that has not already been uploaded. Whether or not an image layer has been uploaded is determined by the BatchCheckLayerAvailability API action.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "ListImages": "<p>Lists all the image IDs for the specified repository.</p> <p>You can filter images based on whether or not they are tagged by using the <code>tagStatus</code> filter and specifying either <code>TAGGED</code>, <code>UNTAGGED</code> or <code>ANY</code>. For example, you can filter your results to return only <code>UNTAGGED</code> images and then pipe that result to a <a>BatchDeleteImage</a> operation to delete them. Or, you can filter your results to return only <code>TAGGED</code> images to list all of the tags in your repository.</p>",
@@ -30,6 +35,7 @@
     "PutImageTagMutability": "<p>Updates the image tag mutability settings for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html\">Image tag mutability</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "PutLifecyclePolicy": "<p>Creates or updates the lifecycle policy for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html\">Lifecycle policy template</a>.</p>",
     "PutRegistryPolicy": "<p>Creates or updates the permissions policy for your registry.</p> <p>A registry policy is used to specify permissions for another Amazon Web Services account and is used when configuring cross-account replication. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html\">Registry permissions</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "PutRegistryScanningConfiguration": "<p>Creates or updates the scanning configuration for your private registry.</p>",
     "PutReplicationConfiguration": "<p>Creates or updates the replication configuration for a registry. The existing replication configuration for a repository can be retrieved with the <a>DescribeRegistry</a> API action. The first time the PutReplicationConfiguration API is called, a service-linked IAM role is created in your account for the replication process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/using-service-linked-roles.html\">Using service-linked roles for Amazon ECR</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p> <note> <p>When configuring cross-account replication, the destination account must grant the source account permission to replicate. This permission is controlled using a registry permissions policy. For more information, see <a>PutRegistryPolicy</a>.</p> </note>",
     "SetRepositoryPolicy": "<p>Applies a repository policy to the specified repository to control access permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html\">Amazon ECR Repository policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "StartImageScan": "<p>Starts an image vulnerability scan. An image scan can only be started once per 24 hours on an individual image. This limit includes if an image was scanned on initial push. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html\">Image scanning</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
@@ -39,11 +45,19 @@
     "UploadLayerPart": "<p>Uploads an image layer part to Amazon ECR.</p> <p>When an image is pushed, each new image layer is uploaded in parts. The maximum size of each image layer part can be 20971520 bytes (or about 20MB). The UploadLayerPart API is called once per each new image layer part.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>"
   },
   "shapes": {
+    "Arch": {
+      "base": null,
+      "refs": {
+        "AwsEcrContainerImageDetails$architecture": "<p>The architecture of the Amazon ECR container image.</p>",
+        "VulnerablePackage$arch": "<p>The architecture of the vulnerable package.</p>"
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the only supported resource is an Amazon ECR repository.</p>",
         "Repository$repositoryArn": "<p>The Amazon Resource Name (ARN) that identifies the repository. The ARN contains the <code>arn:aws:ecr</code> namespace, followed by the region of the repository, Amazon Web Services account ID of the repository owner, repository namespace, and repository name. For example, <code>arn:aws:ecr:region:012345678910:repository/test</code>.</p>",
+        "RepositoryScanningConfiguration$repositoryArn": "<p>The ARN of the repository.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the the resource to which to add tags. Currently, the only supported resource is an Amazon ECR repository.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to remove tags. Currently, the only supported resource is an Amazon ECR repository.</p>"
       }
@@ -72,6 +86,12 @@
         "Attribute$value": "<p>The value assigned to the attribute key.</p>"
       }
     },
+    "Author": {
+      "base": null,
+      "refs": {
+        "AwsEcrContainerImageDetails$author": "<p>The image author of the Amazon ECR container image.</p>"
+      }
+    },
     "AuthorizationData": {
       "base": "<p>An object representing authorization data for an Amazon ECR registry.</p>",
       "refs": {
@@ -84,10 +104,22 @@
         "GetAuthorizationTokenResponse$authorizationData": "<p>A list of authorization token data objects that correspond to the <code>registryIds</code> values in the request.</p>"
       }
     },
+    "AwsEcrContainerImageDetails": {
+      "base": "<p>The image details of the Amazon ECR container image.</p>",
+      "refs": {
+        "ResourceDetails$awsEcrContainerImage": "<p>An object that contains details about the Amazon ECR container image involved in the finding.</p>"
+      }
+    },
     "Base64": {
       "base": null,
       "refs": {
         "AuthorizationData$authorizationToken": "<p>A base64-encoded string that contains authorization data for the specified Amazon ECR registry. When the string is decoded, it is presented in the format <code>user:password</code> for private registry authentication using <code>docker login</code>.</p>"
+      }
+    },
+    "BaseScore": {
+      "base": null,
+      "refs": {
+        "CvssScore$baseScore": "<p>The base CVSS score used for the finding.</p>"
       }
     },
     "BatchCheckLayerAvailabilityRequest": {
@@ -120,6 +152,16 @@
       "refs": {
       }
     },
+    "BatchGetRepositoryScanningConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetRepositoryScanningConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "BatchedOperationLayerDigest": {
       "base": null,
       "refs": {
@@ -143,6 +185,16 @@
       "refs": {
       }
     },
+    "CreatePullThroughCacheRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatePullThroughCacheRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateRepositoryRequest": {
       "base": null,
       "refs": {
@@ -156,7 +208,51 @@
     "CreationTimestamp": {
       "base": null,
       "refs": {
+        "CreatePullThroughCacheRuleResponse$createdAt": "<p>The date and time, in JavaScript date format, when the pull through cache rule was created.</p>",
+        "DeletePullThroughCacheRuleResponse$createdAt": "<p>The timestamp associated with the pull through cache rule.</p>",
+        "PullThroughCacheRule$createdAt": "<p>The date and time the pull through cache was created.</p>",
         "Repository$createdAt": "<p>The date and time, in JavaScript date format, when the repository was created.</p>"
+      }
+    },
+    "CvssScore": {
+      "base": "<p>The CVSS score for a finding.</p>",
+      "refs": {
+        "CvssScoreList$member": null
+      }
+    },
+    "CvssScoreAdjustment": {
+      "base": "<p>Details on adjustments Amazon Inspector made to the CVSS score for a finding.</p>",
+      "refs": {
+        "CvssScoreAdjustmentList$member": null
+      }
+    },
+    "CvssScoreAdjustmentList": {
+      "base": null,
+      "refs": {
+        "CvssScoreDetails$adjustments": "<p>An object that contains details about adjustment Amazon Inspector made to the CVSS score.</p>"
+      }
+    },
+    "CvssScoreDetails": {
+      "base": "<p>Information about the CVSS score.</p>",
+      "refs": {
+        "ScoreDetails$cvss": "<p>An object that contains details about the CVSS score given to a finding.</p>"
+      }
+    },
+    "CvssScoreList": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$cvss": "<p>An object that contains details about the CVSS score of a finding.</p>"
+      }
+    },
+    "Date": {
+      "base": null,
+      "refs": {
+        "AwsEcrContainerImageDetails$pushedAt": "<p>The date and time the Amazon ECR container image was pushed.</p>",
+        "EnhancedImageScanFinding$firstObservedAt": "<p>The date and time that the finding was first observed.</p>",
+        "EnhancedImageScanFinding$lastObservedAt": "<p>The date and time that the finding was last observed.</p>",
+        "EnhancedImageScanFinding$updatedAt": "<p>The date and time the finding was last updated at.</p>",
+        "PackageVulnerabilityDetails$vendorCreatedAt": "<p>The date and time that this vulnerability was first added to the vendor's database.</p>",
+        "PackageVulnerabilityDetails$vendorUpdatedAt": "<p>The date and time the vendor last updated this vulnerability in their database.</p>"
       }
     },
     "DeleteLifecyclePolicyRequest": {
@@ -165,6 +261,16 @@
       }
     },
     "DeleteLifecyclePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePullThroughCacheRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeletePullThroughCacheRuleResponse": {
       "base": null,
       "refs": {
       }
@@ -235,6 +341,16 @@
       "refs": {
       }
     },
+    "DescribePullThroughCacheRulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribePullThroughCacheRulesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeRegistryRequest": {
       "base": null,
       "refs": {
@@ -270,7 +386,25 @@
     "EncryptionType": {
       "base": null,
       "refs": {
-        "EncryptionConfiguration$encryptionType": "<p>The encryption type to use.</p> <p>If you use the <code>KMS</code> encryption type, the contents of the repository will be encrypted using server-side encryption with Key Management Service key stored in KMS. When you use KMS to encrypt your data, you can either use the default Amazon Web Services managed KMS key for Amazon ECR, or specify your own KMS key, which you already created. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">Protecting data using server-side encryption with an KMS key stored in Key Management Service (SSE-KMS)</a> in the <i>Amazon Simple Storage Service Console Developer Guide.</i>.</p> <p>If you use the <code>AES256</code> encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES-256 encryption algorithm. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html\">Protecting data using server-side encryption with Amazon S3-managed encryption keys (SSE-S3)</a> in the <i>Amazon Simple Storage Service Console Developer Guide.</i>.</p>"
+        "EncryptionConfiguration$encryptionType": "<p>The encryption type to use.</p> <p>If you use the <code>KMS</code> encryption type, the contents of the repository will be encrypted using server-side encryption with Key Management Service key stored in KMS. When you use KMS to encrypt your data, you can either use the default Amazon Web Services managed KMS key for Amazon ECR, or specify your own KMS key, which you already created. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">Protecting data using server-side encryption with an KMS key stored in Key Management Service (SSE-KMS)</a> in the <i>Amazon Simple Storage Service Console Developer Guide</i>.</p> <p>If you use the <code>AES256</code> encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES-256 encryption algorithm. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html\">Protecting data using server-side encryption with Amazon S3-managed encryption keys (SSE-S3)</a> in the <i>Amazon Simple Storage Service Console Developer Guide</i>.</p>"
+      }
+    },
+    "EnhancedImageScanFinding": {
+      "base": "<p>The details of an enhanced image scan. This is returned when enhanced scanning is enabled for your private registry.</p>",
+      "refs": {
+        "EnhancedImageScanFindingList$member": null
+      }
+    },
+    "EnhancedImageScanFindingList": {
+      "base": null,
+      "refs": {
+        "ImageScanFindings$enhancedFindings": "<p>Details about the enhanced scan findings from Amazon Inspector.</p>"
+      }
+    },
+    "Epoch": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$epoch": "<p>The epoch of the vulnerable package.</p>"
       }
     },
     "EvaluationTimestamp": {
@@ -301,6 +435,8 @@
         "LifecyclePolicyPreviewInProgressException$message": null,
         "LifecyclePolicyPreviewNotFoundException$message": null,
         "LimitExceededException$message": "<p>The error message associated with the exception.</p>",
+        "PullThroughCacheRuleAlreadyExistsException$message": null,
+        "PullThroughCacheRuleNotFoundException$message": null,
         "ReferencedImagesNotFoundException$message": null,
         "RegistryPolicyNotFoundException$message": null,
         "RepositoryAlreadyExistsException$message": "<p>The error message associated with the exception.</p>",
@@ -311,6 +447,7 @@
         "ServerException$message": "<p>The error message associated with the exception.</p>",
         "TooManyTagsException$message": null,
         "UnsupportedImageTypeException$message": null,
+        "UnsupportedUpstreamRegistryException$message": null,
         "UploadNotFoundException$message": "<p>The error message associated with the exception.</p>",
         "ValidationException$message": null
       }
@@ -321,9 +458,22 @@
         "AuthorizationData$expiresAt": "<p>The Unix time in seconds and milliseconds when the authorization token expires. Authorization tokens are valid for 12 hours.</p>"
       }
     },
+    "FilePath": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$filePath": "<p>The file path of the vulnerable package.</p>"
+      }
+    },
+    "FindingArn": {
+      "base": null,
+      "refs": {
+        "EnhancedImageScanFinding$findingArn": "<p>The Amazon Resource Number (ARN) of the finding.</p>"
+      }
+    },
     "FindingDescription": {
       "base": null,
       "refs": {
+        "EnhancedImageScanFinding$description": "<p>The description of the finding.</p>",
         "ImageScanFinding$description": "<p>The description of the finding.</p>"
       }
     },
@@ -410,6 +560,16 @@
       "refs": {
       }
     },
+    "GetRegistryScanningConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRegistryScanningConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetRepositoryPolicyRequest": {
       "base": null,
       "refs": {
@@ -459,6 +619,7 @@
     "ImageDigest": {
       "base": null,
       "refs": {
+        "AwsEcrContainerImageDetails$imageHash": "<p>The image hash of the Amazon ECR container image.</p>",
         "ImageDetail$imageDigest": "<p>The <code>sha256</code> digest of the image manifest.</p>",
         "ImageIdentifier$imageDigest": "<p>The <code>sha256</code> digest of the image manifest.</p>",
         "LifecyclePolicyPreviewResult$imageDigest": "<p>The <code>sha256</code> digest of the image manifest.</p>",
@@ -602,6 +763,7 @@
       "refs": {
         "ImageIdentifier$imageTag": "<p>The tag used for the image.</p>",
         "ImageTagList$member": null,
+        "ImageTagsList$member": null,
         "PutImageRequest$imageTag": "<p>The tag to associate with the image. This parameter is required for images that use the Docker Image Manifest V2 Schema 2 or Open Container Initiative (OCI) formats.</p>"
       }
     },
@@ -624,6 +786,12 @@
         "PutImageTagMutabilityRequest$imageTagMutability": "<p>The tag mutability setting for the repository. If <code>MUTABLE</code> is specified, image tags can be overwritten. If <code>IMMUTABLE</code> is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.</p>",
         "PutImageTagMutabilityResponse$imageTagMutability": "<p>The image tag mutability setting for the repository.</p>",
         "Repository$imageTagMutability": "<p>The tag mutability setting for the repository.</p>"
+      }
+    },
+    "ImageTagsList": {
+      "base": null,
+      "refs": {
+        "AwsEcrContainerImageDetails$imageTags": "<p>The image tags attached to the Amazon ECR container image.</p>"
       }
     },
     "InitiateLayerUploadRequest": {
@@ -875,6 +1043,7 @@
       "refs": {
         "DescribeImageScanFindingsRequest$maxResults": "<p>The maximum number of image scan results returned by <code>DescribeImageScanFindings</code> in paginated output. When this parameter is used, <code>DescribeImageScanFindings</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribeImageScanFindings</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>DescribeImageScanFindings</code> returns up to 100 results and a <code>nextToken</code> value, if applicable.</p>",
         "DescribeImagesRequest$maxResults": "<p>The maximum number of repository results returned by <code>DescribeImages</code> in paginated output. When this parameter is used, <code>DescribeImages</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribeImages</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>DescribeImages</code> returns up to 100 results and a <code>nextToken</code> value, if applicable. This option cannot be used when you specify images with <code>imageIds</code>.</p>",
+        "DescribePullThroughCacheRulesRequest$maxResults": "<p>The maximum number of pull through cache rules returned by <code>DescribePullThroughCacheRulesRequest</code> in paginated output. When this parameter is used, <code>DescribePullThroughCacheRulesRequest</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribePullThroughCacheRulesRequest</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>DescribePullThroughCacheRulesRequest</code> returns up to 100 results and a <code>nextToken</code> value, if applicable.</p>",
         "DescribeRepositoriesRequest$maxResults": "<p>The maximum number of repository results returned by <code>DescribeRepositories</code> in paginated output. When this parameter is used, <code>DescribeRepositories</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribeRepositories</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>DescribeRepositories</code> returns up to 100 results and a <code>nextToken</code> value, if applicable. This option cannot be used when you specify repositories with <code>repositoryNames</code>.</p>",
         "ListImagesRequest$maxResults": "<p>The maximum number of image results returned by <code>ListImages</code> in paginated output. When this parameter is used, <code>ListImages</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListImages</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 1000. If this parameter is not used, then <code>ListImages</code> returns up to 100 results and a <code>nextToken</code> value, if applicable.</p>"
       }
@@ -896,6 +1065,12 @@
         "BatchGetImageRequest$acceptedMediaTypes": "<p>The accepted media types for the request.</p> <p>Valid values: <code>application/vnd.docker.distribution.manifest.v1+json</code> | <code>application/vnd.docker.distribution.manifest.v2+json</code> | <code>application/vnd.oci.image.manifest.v1+json</code> </p>"
       }
     },
+    "Metric": {
+      "base": null,
+      "refs": {
+        "CvssScoreAdjustment$metric": "<p>The metric used to adjust the CVSS score.</p>"
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -903,12 +1078,26 @@
         "DescribeImageScanFindingsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeImageScanFindings</code> request. When the results of a <code>DescribeImageScanFindings</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "DescribeImagesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribeImages</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return. This option cannot be used when you specify images with <code>imageIds</code>.</p>",
         "DescribeImagesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeImages</code> request. When the results of a <code>DescribeImages</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribePullThroughCacheRulesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribePullThroughCacheRulesRequest</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is null when there are no more results to return.</p>",
+        "DescribePullThroughCacheRulesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribePullThroughCacheRulesRequest</code> request. When the results of a <code>DescribePullThroughCacheRulesRequest</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "DescribeRepositoriesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribeRepositories</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return. This option cannot be used when you specify repositories with <code>repositoryNames</code>.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "DescribeRepositoriesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeRepositories</code> request. When the results of a <code>DescribeRepositories</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "GetLifecyclePolicyPreviewRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated&#x2028; <code>GetLifecyclePolicyPreviewRequest</code> request where <code>maxResults</code> was used and the&#x2028; results exceeded the value of that parameter. Pagination continues from the end of the&#x2028; previous results that returned the <code>nextToken</code> value. This value is&#x2028; <code>null</code> when there are no more results to return. This option cannot be used when you specify images with <code>imageIds</code>.</p>",
         "GetLifecyclePolicyPreviewResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>GetLifecyclePolicyPreview</code> request. When the results of a <code>GetLifecyclePolicyPreview</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "ListImagesRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListImages</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "ListImagesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListImages</code> request. When the results of a <code>ListImages</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>"
+      }
+    },
+    "PackageManager": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$packageManager": "<p>The package manager of the vulnerable package.</p>"
+      }
+    },
+    "PackageVulnerabilityDetails": {
+      "base": "<p>Information about a package vulnerability finding.</p>",
+      "refs": {
+        "EnhancedImageScanFinding$packageVulnerabilityDetails": "<p>An object that contains the details of a package vulnerability finding.</p>"
       }
     },
     "PartSize": {
@@ -921,10 +1110,55 @@
         "UploadLayerPartResponse$lastByteReceived": "<p>The integer value of the last byte received in the request.</p>"
       }
     },
+    "Platform": {
+      "base": null,
+      "refs": {
+        "AwsEcrContainerImageDetails$platform": "<p>The platform of the Amazon ECR container image.</p>"
+      }
+    },
     "ProxyEndpoint": {
       "base": null,
       "refs": {
         "AuthorizationData$proxyEndpoint": "<p>The registry URL to use for this authorization token in a <code>docker login</code> command. The Amazon ECR registry URL format is <code>https://aws_account_id.dkr.ecr.region.amazonaws.com</code>. For example, <code>https://012345678910.dkr.ecr.us-east-1.amazonaws.com</code>.. </p>"
+      }
+    },
+    "PullThroughCacheRule": {
+      "base": "<p>The details of a pull through cache rule.</p>",
+      "refs": {
+        "PullThroughCacheRuleList$member": null
+      }
+    },
+    "PullThroughCacheRuleAlreadyExistsException": {
+      "base": "<p>A pull through cache rule with these settings already exists for the private registry.</p>",
+      "refs": {
+      }
+    },
+    "PullThroughCacheRuleList": {
+      "base": null,
+      "refs": {
+        "DescribePullThroughCacheRulesResponse$pullThroughCacheRules": "<p>The details of the pull through cache rules.</p>"
+      }
+    },
+    "PullThroughCacheRuleNotFoundException": {
+      "base": "<p>The pull through cache rule was not found. Specify a valid pull through cache rule and try again.</p>",
+      "refs": {
+      }
+    },
+    "PullThroughCacheRuleRepositoryPrefix": {
+      "base": null,
+      "refs": {
+        "CreatePullThroughCacheRuleRequest$ecrRepositoryPrefix": "<p>The repository name prefix to use when caching images from the source registry.</p>",
+        "CreatePullThroughCacheRuleResponse$ecrRepositoryPrefix": "<p>The Amazon ECR repository prefix associated with the pull through cache rule.</p>",
+        "DeletePullThroughCacheRuleRequest$ecrRepositoryPrefix": "<p>The Amazon ECR repository prefix associated with the pull through cache rule to delete.</p>",
+        "DeletePullThroughCacheRuleResponse$ecrRepositoryPrefix": "<p>The Amazon ECR repository prefix associated with the request.</p>",
+        "PullThroughCacheRule$ecrRepositoryPrefix": "<p>The Amazon ECR repository prefix associated with the pull through cache rule.</p>",
+        "PullThroughCacheRuleRepositoryPrefixList$member": null
+      }
+    },
+    "PullThroughCacheRuleRepositoryPrefixList": {
+      "base": null,
+      "refs": {
+        "DescribePullThroughCacheRulesRequest$ecrRepositoryPrefixes": "<p>The Amazon ECR repository prefixes associated with the pull through cache rules to return. If no repository prefix value is specified, all pull through cache rules are returned.</p>"
       }
     },
     "PushTimestamp": {
@@ -984,6 +1218,16 @@
       "refs": {
       }
     },
+    "PutRegistryScanningConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutRegistryScanningConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutReplicationConfigurationRequest": {
       "base": null,
       "refs": {
@@ -992,6 +1236,30 @@
     "PutReplicationConfigurationResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Reason": {
+      "base": null,
+      "refs": {
+        "CvssScoreAdjustment$reason": "<p>The reason the CVSS score has been adjustment.</p>"
+      }
+    },
+    "Recommendation": {
+      "base": "<p>Details about the recommended course of action to remediate the finding.</p>",
+      "refs": {
+        "Remediation$recommendation": "<p>An object that contains information about the recommended course of action to remediate the finding.</p>"
+      }
+    },
+    "RecommendationText": {
+      "base": null,
+      "refs": {
+        "Recommendation$text": "<p>The recommended course of action to remediate the finding.</p>"
+      }
+    },
+    "ReferenceUrlsList": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$referenceUrls": "<p>One or more URLs that contain details about this vulnerability type.</p>"
       }
     },
     "ReferencedImagesNotFoundException": {
@@ -1009,14 +1277,19 @@
     "RegistryId": {
       "base": null,
       "refs": {
+        "AwsEcrContainerImageDetails$registry": "<p>The registry the Amazon ECR container image belongs to.</p>",
         "BatchCheckLayerAvailabilityRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the image layers to check. If you do not specify a registry, the default registry is assumed.</p>",
         "BatchDeleteImageRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the image to delete. If you do not specify a registry, the default registry is assumed.</p>",
         "BatchGetImageRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the images to describe. If you do not specify a registry, the default registry is assumed.</p>",
         "CompleteLayerUploadRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to which to upload layers. If you do not specify a registry, the default registry is assumed.</p>",
         "CompleteLayerUploadResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "CreateRepositoryRequest$registryId": "<p>The AWS account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed.</p>",
+        "CreatePullThroughCacheRuleRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed.</p>",
+        "CreatePullThroughCacheRuleResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "CreateRepositoryRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "DeletePullThroughCacheRuleRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the pull through cache rule. If you do not specify a registry, the default registry is assumed.</p>",
+        "DeletePullThroughCacheRuleResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRegistryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository policy to delete. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
@@ -1025,8 +1298,10 @@
         "DescribeImageScanFindingsRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to describe the image scan findings for. If you do not specify a registry, the default registry is assumed.</p>",
         "DescribeImageScanFindingsResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DescribeImagesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to describe images. If you do not specify a registry, the default registry is assumed.</p>",
+        "DescribePullThroughCacheRulesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to return the pull through cache rules for. If you do not specify a registry, the default registry is assumed.</p>",
         "DescribeRegistryResponse$registryId": "<p>The ID of the registry.</p>",
         "DescribeRepositoriesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repositories to be described. If you do not specify a registry, the default registry is assumed.</p>",
+        "EnhancedImageScanFinding$awsAccountId": "<p>The Amazon Web Services account ID associated with the image.</p>",
         "GetAuthorizationTokenRegistryIdList$member": null,
         "GetDownloadUrlForLayerRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the image layer to download. If you do not specify a registry, the default registry is assumed.</p>",
         "GetLifecyclePolicyPreviewRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
@@ -1034,14 +1309,16 @@
         "GetLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "GetLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "GetRegistryPolicyResponse$registryId": "<p>The ID of the registry.</p>",
+        "GetRegistryScanningConfigurationResponse$registryId": "<p>The ID of the registry.</p>",
         "GetRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "GetRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "Image$registryId": "<p>The Amazon Web Services account ID associated with the registry containing the image.</p>",
         "ImageDetail$registryId": "<p>The Amazon Web Services account ID associated with the registry to which this image belongs.</p>",
-        "ImageReplicationStatus$registryId": "<p>The AWS account ID associated with the registry to which the image belongs.</p>",
+        "ImageReplicationStatus$registryId": "<p>The Amazon Web Services account ID associated with the registry to which the image belongs.</p>",
         "InitiateLayerUploadRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to which you intend to upload layers. If you do not specify a registry, the default registry is assumed.</p>",
         "InvalidLayerPartException$registryId": "<p>The registry ID associated with the exception.</p>",
         "ListImagesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to list images. If you do not specify a registry, the default registry is assumed.</p>",
+        "PullThroughCacheRule$registryId": "<p>The Amazon Web Services account ID associated with the registry the pull through cache rule is associated with.</p>",
         "PutImageRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to put the image. If you do not specify a registry, the default registry is assumed.</p>",
         "PutImageScanningConfigurationRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to update the image scanning configuration setting. If you do not specify a registry, the default registry is assumed.</p>",
         "PutImageScanningConfigurationResponse$registryId": "<p>The registry ID associated with the request.</p>",
@@ -1074,6 +1351,50 @@
         "GetRegistryPolicyResponse$policyText": "<p>The JSON text of the permissions policy for a registry.</p>",
         "PutRegistryPolicyRequest$policyText": "<p>The JSON policy text to apply to your registry. The policy text follows the same format as IAM policy text. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html\">Registry permissions</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
         "PutRegistryPolicyResponse$policyText": "<p>The JSON policy text for your registry.</p>"
+      }
+    },
+    "RegistryScanningConfiguration": {
+      "base": "<p>The scanning configuration for a private registry.</p>",
+      "refs": {
+        "GetRegistryScanningConfigurationResponse$scanningConfiguration": "<p>The scanning configuration for the registry.</p>",
+        "PutRegistryScanningConfigurationResponse$registryScanningConfiguration": "<p>The scanning configuration for your registry.</p>"
+      }
+    },
+    "RegistryScanningRule": {
+      "base": "<p>The details of a scanning rule for a private registry.</p>",
+      "refs": {
+        "RegistryScanningRuleList$member": null
+      }
+    },
+    "RegistryScanningRuleList": {
+      "base": null,
+      "refs": {
+        "PutRegistryScanningConfigurationRequest$rules": "<p>The scanning rules to use for the registry. A scanning rule is used to determine which repository filters are used and at what frequency scanning will occur.</p>",
+        "RegistryScanningConfiguration$rules": "<p>The scanning rules associated with the registry.</p>"
+      }
+    },
+    "RelatedVulnerabilitiesList": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$relatedVulnerabilities": "<p>One or more vulnerabilities related to the one identified in this finding.</p>"
+      }
+    },
+    "RelatedVulnerability": {
+      "base": null,
+      "refs": {
+        "RelatedVulnerabilitiesList$member": null
+      }
+    },
+    "Release": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$release": "<p>The release of the vulnerable package.</p>"
+      }
+    },
+    "Remediation": {
+      "base": "<p>Information on how to remediate a finding.</p>",
+      "refs": {
+        "EnhancedImageScanFinding$remediation": "<p>An object that contains the details about how to remediate a finding.</p>"
       }
     },
     "ReplicationConfiguration": {
@@ -1166,6 +1487,7 @@
     "RepositoryName": {
       "base": null,
       "refs": {
+        "AwsEcrContainerImageDetails$repositoryName": "<p>The name of the repository the Amazon ECR container image resides in.</p>",
         "BatchCheckLayerAvailabilityRequest$repositoryName": "<p>The name of the repository that is associated with the image layers to check.</p>",
         "BatchDeleteImageRequest$repositoryName": "<p>The repository that contains the image to delete.</p>",
         "BatchGetImageRequest$repositoryName": "<p>The repository that contains the images to describe.</p>",
@@ -1203,6 +1525,9 @@
         "PutLifecyclePolicyResponse$repositoryName": "<p>The repository name associated with the request.</p>",
         "Repository$repositoryName": "<p>The name of the repository.</p>",
         "RepositoryNameList$member": null,
+        "RepositoryScanningConfiguration$repositoryName": "<p>The name of the repository.</p>",
+        "RepositoryScanningConfigurationFailure$repositoryName": "<p>The name of the repository.</p>",
+        "ScanningConfigurationRepositoryNameList$member": null,
         "SetRepositoryPolicyRequest$repositoryName": "<p>The name of the repository to receive the policy.</p>",
         "SetRepositoryPolicyResponse$repositoryName": "<p>The repository name associated with the request.</p>",
         "StartImageScanRequest$repositoryName": "<p>The name of the repository that contains the images to scan.</p>",
@@ -1243,6 +1568,61 @@
         "SetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text applied to the repository.</p>"
       }
     },
+    "RepositoryScanningConfiguration": {
+      "base": "<p>The details of the scanning configuration for a repository.</p>",
+      "refs": {
+        "RepositoryScanningConfigurationList$member": null
+      }
+    },
+    "RepositoryScanningConfigurationFailure": {
+      "base": "<p>The details about any failures associated with the scanning configuration of a repository.</p>",
+      "refs": {
+        "RepositoryScanningConfigurationFailureList$member": null
+      }
+    },
+    "RepositoryScanningConfigurationFailureList": {
+      "base": null,
+      "refs": {
+        "BatchGetRepositoryScanningConfigurationResponse$failures": "<p>Any failures associated with the call.</p>"
+      }
+    },
+    "RepositoryScanningConfigurationList": {
+      "base": null,
+      "refs": {
+        "BatchGetRepositoryScanningConfigurationResponse$scanningConfigurations": "<p>The scanning configuration for the requested repositories.</p>"
+      }
+    },
+    "Resource": {
+      "base": "<p>Details about the resource involved in a finding.</p>",
+      "refs": {
+        "ResourceList$member": null
+      }
+    },
+    "ResourceDetails": {
+      "base": "<p>Contains details about the resource involved in the finding.</p>",
+      "refs": {
+        "Resource$details": "<p>An object that contains details about the resource involved in a finding.</p>"
+      }
+    },
+    "ResourceId": {
+      "base": null,
+      "refs": {
+        "Resource$id": "<p>The ID of the resource.</p>"
+      }
+    },
+    "ResourceList": {
+      "base": null,
+      "refs": {
+        "EnhancedImageScanFinding$resources": "<p>Contains information on the resources involved in a finding.</p>"
+      }
+    },
+    "ScanFrequency": {
+      "base": null,
+      "refs": {
+        "RegistryScanningRule$scanFrequency": "<p>The frequency that scans are performed at for a private registry.</p>",
+        "RepositoryScanningConfiguration$scanFrequency": "<p>The scan frequency for the repository.</p>"
+      }
+    },
     "ScanNotFoundException": {
       "base": "<p>The specified image scan could not be found. Ensure that image scanning is enabled on the repository and try again.</p>",
       "refs": {
@@ -1251,7 +1631,8 @@
     "ScanOnPushFlag": {
       "base": null,
       "refs": {
-        "ImageScanningConfiguration$scanOnPush": "<p>The setting that determines whether images are scanned after being pushed to a repository. If set to <code>true</code>, images will be scanned after being pushed. If this parameter is not specified, it will default to <code>false</code> and images will not be scanned unless a scan is manually started with the <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_StartImageScan.html\">API_StartImageScan</a> API.</p>"
+        "ImageScanningConfiguration$scanOnPush": "<p>The setting that determines whether images are scanned after being pushed to a repository. If set to <code>true</code>, images will be scanned after being pushed. If this parameter is not specified, it will default to <code>false</code> and images will not be scanned unless a scan is manually started with the <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_StartImageScan.html\">API_StartImageScan</a> API.</p>",
+        "RepositoryScanningConfiguration$scanOnPush": "<p>Whether or not scan on push is configured for the repository.</p>"
       }
     },
     "ScanStatus": {
@@ -1273,6 +1654,76 @@
         "ImageScanFindingsSummary$imageScanCompletedAt": "<p>The time of the last completed image scan.</p>"
       }
     },
+    "ScanType": {
+      "base": null,
+      "refs": {
+        "PutRegistryScanningConfigurationRequest$scanType": "<p>The scanning type to set for the registry.</p> <p>By default, the <code>BASIC</code> scan type is used. When basic scanning is set, you may specify filters to determine which individual repositories, or all repositories, are scanned when new images are pushed. Alternatively, you can do manual scans of images with basic scanning.</p> <p>When the <code>ENHANCED</code> scan type is set, Amazon Inspector provides automated, continuous scanning of all repositories in your registry.</p>",
+        "RegistryScanningConfiguration$scanType": "<p>The type of scanning configured for the registry.</p>"
+      }
+    },
+    "ScanningConfigurationFailureCode": {
+      "base": null,
+      "refs": {
+        "RepositoryScanningConfigurationFailure$failureCode": "<p>The failure code.</p>"
+      }
+    },
+    "ScanningConfigurationFailureReason": {
+      "base": null,
+      "refs": {
+        "RepositoryScanningConfigurationFailure$failureReason": "<p>The reason for the failure.</p>"
+      }
+    },
+    "ScanningConfigurationRepositoryNameList": {
+      "base": null,
+      "refs": {
+        "BatchGetRepositoryScanningConfigurationRequest$repositoryNames": "<p>One or more repository names to get the scanning configuration for.</p>"
+      }
+    },
+    "ScanningRepositoryFilter": {
+      "base": "<p>The details of a scanning repository filter.</p>",
+      "refs": {
+        "ScanningRepositoryFilterList$member": null
+      }
+    },
+    "ScanningRepositoryFilterList": {
+      "base": null,
+      "refs": {
+        "RegistryScanningRule$repositoryFilters": "<p>The repository filters associated with the scanning configuration for a private registry.</p>",
+        "RepositoryScanningConfiguration$appliedScanFilters": "<p>The scan filters applied to the repository.</p>"
+      }
+    },
+    "ScanningRepositoryFilterType": {
+      "base": null,
+      "refs": {
+        "ScanningRepositoryFilter$filterType": "<p>The type associated with the filter.</p>"
+      }
+    },
+    "ScanningRepositoryFilterValue": {
+      "base": null,
+      "refs": {
+        "ScanningRepositoryFilter$filter": "<p>The filter to use when scanning.</p>"
+      }
+    },
+    "Score": {
+      "base": null,
+      "refs": {
+        "CvssScoreDetails$score": "<p>The CVSS score.</p>",
+        "EnhancedImageScanFinding$score": "<p>The Amazon Inspector score given to the finding.</p>"
+      }
+    },
+    "ScoreDetails": {
+      "base": "<p>Information about the Amazon Inspector score given to a finding.</p>",
+      "refs": {
+        "EnhancedImageScanFinding$scoreDetails": "<p>An object that contains details of the Amazon Inspector score.</p>"
+      }
+    },
+    "ScoringVector": {
+      "base": null,
+      "refs": {
+        "CvssScore$scoringVector": "<p>The vector string of the CVSS score.</p>",
+        "CvssScoreDetails$scoringVector": "<p>The vector for the CVSS score.</p>"
+      }
+    },
     "ServerException": {
       "base": "<p>These errors are usually caused by a server-side issue.</p>",
       "refs": {
@@ -1288,10 +1739,31 @@
       "refs": {
       }
     },
+    "Severity": {
+      "base": null,
+      "refs": {
+        "EnhancedImageScanFinding$severity": "<p>The severity of the finding.</p>",
+        "PackageVulnerabilityDetails$vendorSeverity": "<p>The severity the vendor has given to this vulnerability type.</p>"
+      }
+    },
     "SeverityCount": {
       "base": null,
       "refs": {
         "FindingSeverityCounts$value": null
+      }
+    },
+    "Source": {
+      "base": null,
+      "refs": {
+        "CvssScore$source": "<p>The source of the CVSS score.</p>",
+        "CvssScoreDetails$scoreSource": "<p>The source for the CVSS score.</p>",
+        "PackageVulnerabilityDetails$source": "<p>The source of the vulnerability information.</p>"
+      }
+    },
+    "SourceLayerHash": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$sourceLayerHash": "<p>The source layer hash of the vulnerable package.</p>"
       }
     },
     "StartImageScanRequest": {
@@ -1314,6 +1786,12 @@
       "refs": {
       }
     },
+    "Status": {
+      "base": null,
+      "refs": {
+        "EnhancedImageScanFinding$status": "<p>The status of the finding.</p>"
+      }
+    },
     "Tag": {
       "base": "<p>The metadata that you apply to a resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.</p>",
       "refs": {
@@ -1324,7 +1802,8 @@
       "base": null,
       "refs": {
         "Tag$Key": "<p>One part of a key-value pair that make up a tag. A <code>key</code> is a general label that acts like a category for more specific tag values.</p>",
-        "TagKeyList$member": null
+        "TagKeyList$member": null,
+        "Tags$key": null
       }
     },
     "TagKeyList": {
@@ -1362,7 +1841,20 @@
     "TagValue": {
       "base": null,
       "refs": {
-        "Tag$Value": "<p>The optional part of a key-value pair that make up a tag. A <code>value</code> acts as a descriptor within a tag category (key).</p>"
+        "Tag$Value": "<p>The optional part of a key-value pair that make up a tag. A <code>value</code> acts as a descriptor within a tag category (key).</p>",
+        "Tags$value": null
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "Resource$tags": "<p>The tags attached to the resource.</p>"
+      }
+    },
+    "Title": {
+      "base": null,
+      "refs": {
+        "EnhancedImageScanFinding$title": "<p>The title of the finding.</p>"
       }
     },
     "TooManyTagsException": {
@@ -1370,8 +1862,20 @@
       "refs": {
       }
     },
+    "Type": {
+      "base": null,
+      "refs": {
+        "EnhancedImageScanFinding$type": "<p>The type of the finding.</p>",
+        "Resource$type": "<p>The type of resource.</p>"
+      }
+    },
     "UnsupportedImageTypeException": {
       "base": "<p>The image is of a type that cannot be scanned.</p>",
+      "refs": {
+      }
+    },
+    "UnsupportedUpstreamRegistryException": {
+      "base": "<p>The specified upstream registry isn't supported.</p>",
       "refs": {
       }
     },
@@ -1414,8 +1918,15 @@
     "Url": {
       "base": null,
       "refs": {
+        "CreatePullThroughCacheRuleRequest$upstreamRegistryUrl": "<p>The registry URL of the upstream public registry to use as the source for the pull through cache rule.</p>",
+        "CreatePullThroughCacheRuleResponse$upstreamRegistryUrl": "<p>The upstream registry URL associated with the pull through cache rule.</p>",
+        "DeletePullThroughCacheRuleResponse$upstreamRegistryUrl": "<p>The upstream registry URL associated with the pull through cache rule.</p>",
         "GetDownloadUrlForLayerResponse$downloadUrl": "<p>The pre-signed Amazon S3 download URL for the requested layer.</p>",
         "ImageScanFinding$uri": "<p>A link containing additional details about the security vulnerability.</p>",
+        "PackageVulnerabilityDetails$sourceUrl": "<p>A URL to the source of the vulnerability information.</p>",
+        "PullThroughCacheRule$upstreamRegistryUrl": "<p>The upstream registry URL associated with the pull through cache rule.</p>",
+        "Recommendation$url": "<p>The URL address to the CVE remediation recommendations.</p>",
+        "ReferenceUrlsList$member": null,
         "Repository$repositoryUri": "<p>The URI for the repository. You can use this URI for container image <code>push</code> and <code>pull</code> operations.</p>"
       }
     },
@@ -1424,11 +1935,43 @@
       "refs": {
       }
     },
+    "Version": {
+      "base": null,
+      "refs": {
+        "CvssScore$version": "<p>The version of CVSS used for the score.</p>",
+        "CvssScoreDetails$version": "<p>The CVSS version used in scoring.</p>",
+        "VulnerablePackage$version": "<p>The version of the vulnerable package.</p>"
+      }
+    },
+    "VulnerabilityId": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$vulnerabilityId": "<p>The ID given to this vulnerability.</p>"
+      }
+    },
     "VulnerabilitySourceUpdateTimestamp": {
       "base": null,
       "refs": {
         "ImageScanFindings$vulnerabilitySourceUpdatedAt": "<p>The time when the vulnerability data was last scanned.</p>",
         "ImageScanFindingsSummary$vulnerabilitySourceUpdatedAt": "<p>The time when the vulnerability data was last scanned.</p>"
+      }
+    },
+    "VulnerablePackage": {
+      "base": "<p>Information on the vulnerable package identified by a finding.</p>",
+      "refs": {
+        "VulnerablePackagesList$member": null
+      }
+    },
+    "VulnerablePackageName": {
+      "base": null,
+      "refs": {
+        "VulnerablePackage$name": "<p>The name of the vulnerable package.</p>"
+      }
+    },
+    "VulnerablePackagesList": {
+      "base": null,
+      "refs": {
+        "PackageVulnerabilityDetails$vulnerablePackages": "<p>The packages impacted by this vulnerability.</p>"
       }
     }
   }

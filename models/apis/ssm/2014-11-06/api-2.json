@@ -5540,7 +5540,9 @@
         "AssociationStatus":{"shape":"StatusName"},
         "LastAssociationExecutionDate":{"shape":"DateTime"},
         "LastSuccessfulAssociationExecutionDate":{"shape":"DateTime"},
-        "AssociationOverview":{"shape":"InstanceAggregatedAssociationOverview"}
+        "AssociationOverview":{"shape":"InstanceAggregatedAssociationOverview"},
+        "SourceId":{"shape":"SourceId"},
+        "SourceType":{"shape":"SourceType"}
       }
     },
     "InstanceInformationFilter":{
@@ -8636,7 +8638,8 @@
       "type":"string",
       "enum":[
         "Windows",
-        "Linux"
+        "Linux",
+        "MacOS"
       ]
     },
     "PlatformTypeList":{
@@ -9569,6 +9572,20 @@
       "max":36,
       "min":36,
       "pattern":"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "SourceId":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9:_-]*$"
+    },
+    "SourceType":{
+      "type":"string",
+      "enum":[
+        "AWS::EC2::Instance",
+        "AWS::IoT::Thing",
+        "AWS::SSM::ManagedInstance"
+      ]
     },
     "StandardErrorContent":{
       "type":"string",

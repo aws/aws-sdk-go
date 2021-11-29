@@ -11068,8 +11068,7 @@ type CreatePortalInput struct {
 	//    Web Services Regions other than the China Regions.
 	//
 	//    * IAM – The portal uses Identity and Access Management to authenticate
-	//    users and manage user permissions. This option is only available in the
-	//    China Regions.
+	//    users and manage user permissions.
 	//
 	// You can't change this value after you create a portal.
 	//
@@ -14039,15 +14038,19 @@ type DescribeStorageConfigurationOutput struct {
 	// Contains information about the storage destination.
 	MultiLayerStorage *MultiLayerStorage `locationName:"multiLayerStorage" type:"structure"`
 
-	// The type of storage that you specified for your data. The storage type can
-	// be one of the following values:
+	// How many days your data is kept in the hot tier. By default, your data is
+	// kept indefinitely in the hot tier.
+	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
+
+	// The storage tier that you specified for your data. The storageType parameter
+	// can be one of the following values:
 	//
-	//    * SITEWISE_DEFAULT_STORAGE – IoT SiteWise replicates your data into
-	//    a service managed database.
+	//    * SITEWISE_DEFAULT_STORAGE – IoT SiteWise saves your data into the hot
+	//    tier. The hot tier is a service-managed database.
 	//
-	//    * MULTI_LAYER_STORAGE – IoT SiteWise replicates your data into a service
-	//    managed database and saves a copy of your raw data and metadata in an
-	//    Amazon S3 object that you specified.
+	//    * MULTI_LAYER_STORAGE – IoT SiteWise saves your data in both the cold
+	//    tier and the cold tier. The cold tier is a customer-managed Amazon S3
+	//    bucket.
 	//
 	// StorageType is a required field
 	StorageType *string `locationName:"storageType" type:"string" required:"true" enum:"StorageType"`
@@ -14092,6 +14095,12 @@ func (s *DescribeStorageConfigurationOutput) SetLastUpdateDate(v time.Time) *Des
 // SetMultiLayerStorage sets the MultiLayerStorage field's value.
 func (s *DescribeStorageConfigurationOutput) SetMultiLayerStorage(v *MultiLayerStorage) *DescribeStorageConfigurationOutput {
 	s.MultiLayerStorage = v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *DescribeStorageConfigurationOutput) SetRetentionPeriod(v *RetentionPeriod) *DescribeStorageConfigurationOutput {
+	s.RetentionPeriod = v
 	return s
 }
 
@@ -19348,15 +19357,19 @@ type PutStorageConfigurationInput struct {
 	// the storage type, you must specify a MultiLayerStorage object.
 	MultiLayerStorage *MultiLayerStorage `locationName:"multiLayerStorage" type:"structure"`
 
-	// The type of storage that you specified for your data. The storage type can
-	// be one of the following values:
+	// How many days your data is kept in the hot tier. By default, your data is
+	// kept indefinitely in the hot tier.
+	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
+
+	// The storage tier that you specified for your data. The storageType parameter
+	// can be one of the following values:
 	//
-	//    * SITEWISE_DEFAULT_STORAGE – IoT SiteWise replicates your data into
-	//    a service managed database.
+	//    * SITEWISE_DEFAULT_STORAGE – IoT SiteWise saves your data into the hot
+	//    tier. The hot tier is a service-managed database.
 	//
-	//    * MULTI_LAYER_STORAGE – IoT SiteWise replicates your data into a service
-	//    managed database and saves a copy of your raw data and metadata in an
-	//    Amazon S3 object that you specified.
+	//    * MULTI_LAYER_STORAGE – IoT SiteWise saves your data in both the cold
+	//    tier and the cold tier. The cold tier is a customer-managed Amazon S3
+	//    bucket.
 	//
 	// StorageType is a required field
 	StorageType *string `locationName:"storageType" type:"string" required:"true" enum:"StorageType"`
@@ -19391,6 +19404,11 @@ func (s *PutStorageConfigurationInput) Validate() error {
 			invalidParams.AddNested("MultiLayerStorage", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RetentionPeriod != nil {
+		if err := s.RetentionPeriod.Validate(); err != nil {
+			invalidParams.AddNested("RetentionPeriod", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -19407,6 +19425,12 @@ func (s *PutStorageConfigurationInput) SetDisassociatedDataStorage(v string) *Pu
 // SetMultiLayerStorage sets the MultiLayerStorage field's value.
 func (s *PutStorageConfigurationInput) SetMultiLayerStorage(v *MultiLayerStorage) *PutStorageConfigurationInput {
 	s.MultiLayerStorage = v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *PutStorageConfigurationInput) SetRetentionPeriod(v *RetentionPeriod) *PutStorageConfigurationInput {
+	s.RetentionPeriod = v
 	return s
 }
 
@@ -19442,15 +19466,19 @@ type PutStorageConfigurationOutput struct {
 	// Contains information about the storage destination.
 	MultiLayerStorage *MultiLayerStorage `locationName:"multiLayerStorage" type:"structure"`
 
-	// The type of storage that you specified for your data. The storage type can
-	// be one of the following values:
+	// How many days your data is kept in the hot tier. By default, your data is
+	// kept indefinitely in the hot tier.
+	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
+
+	// The storage tier that you specified for your data. The storageType parameter
+	// can be one of the following values:
 	//
-	//    * SITEWISE_DEFAULT_STORAGE – IoT SiteWise replicates your data into
-	//    a service managed database.
+	//    * SITEWISE_DEFAULT_STORAGE – IoT SiteWise saves your data into the hot
+	//    tier. The hot tier is a service-managed database.
 	//
-	//    * MULTI_LAYER_STORAGE – IoT SiteWise replicates your data into a service
-	//    managed database and saves a copy of your raw data and metadata in an
-	//    Amazon S3 object that you specified.
+	//    * MULTI_LAYER_STORAGE – IoT SiteWise saves your data in both the cold
+	//    tier and the cold tier. The cold tier is a customer-managed Amazon S3
+	//    bucket.
 	//
 	// StorageType is a required field
 	StorageType *string `locationName:"storageType" type:"string" required:"true" enum:"StorageType"`
@@ -19489,6 +19517,12 @@ func (s *PutStorageConfigurationOutput) SetDisassociatedDataStorage(v string) *P
 // SetMultiLayerStorage sets the MultiLayerStorage field's value.
 func (s *PutStorageConfigurationOutput) SetMultiLayerStorage(v *MultiLayerStorage) *PutStorageConfigurationOutput {
 	s.MultiLayerStorage = v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *PutStorageConfigurationOutput) SetRetentionPeriod(v *RetentionPeriod) *PutStorageConfigurationOutput {
+	s.RetentionPeriod = v
 	return s
 }
 
@@ -19695,6 +19729,67 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// How many days your data is kept in the hot tier. By default, your data is
+// kept indefinitely in the hot tier.
+type RetentionPeriod struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days that your data is kept.
+	//
+	// If you specified a value for this parameter, the unlimited parameter must
+	// be false.
+	NumberOfDays *int64 `locationName:"numberOfDays" min:"30" type:"integer"`
+
+	// If true, your data is kept indefinitely.
+	//
+	// If configured to true, you must not specify a value for the numberOfDays
+	// parameter.
+	Unlimited *bool `locationName:"unlimited" type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetentionPeriod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetentionPeriod) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetentionPeriod) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetentionPeriod"}
+	if s.NumberOfDays != nil && *s.NumberOfDays < 30 {
+		invalidParams.Add(request.NewErrParamMinValue("NumberOfDays", 30))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNumberOfDays sets the NumberOfDays field's value.
+func (s *RetentionPeriod) SetNumberOfDays(v int64) *RetentionPeriod {
+	s.NumberOfDays = &v
+	return s
+}
+
+// SetUnlimited sets the Unlimited field's value.
+func (s *RetentionPeriod) SetUnlimited(v bool) *RetentionPeriod {
+	s.Unlimited = &v
+	return s
 }
 
 // The requested service is unavailable.
