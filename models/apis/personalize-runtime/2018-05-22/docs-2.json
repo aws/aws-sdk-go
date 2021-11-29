@@ -3,7 +3,7 @@
   "service": "<p/>",
   "operations": {
     "GetPersonalizedRanking": "<p>Re-ranks a list of recommended items for the given user. The first item in the list is deemed the most likely item to be of interest to the user.</p> <note> <p>The solution backing the campaign must have been created using a recipe of type PERSONALIZED_RANKING.</p> </note>",
-    "GetRecommendations": "<p>Returns a list of recommended items. The required input depends on the recipe type used to create the solution backing the campaign, as follows:</p> <ul> <li> <p>RELATED_ITEMS - <code>itemId</code> required, <code>userId</code> not used</p> </li> <li> <p>USER_PERSONALIZATION - <code>itemId</code> optional, <code>userId</code> required</p> </li> </ul> <note> <p>Campaigns that are backed by a solution created using a recipe of type PERSONALIZED_RANKING use the API.</p> </note>"
+    "GetRecommendations": "<p>Returns a list of recommended items. For campaigns, the campaign's Amazon Resource Name (ARN) is required and the required user and item input depends on the recipe type used to create the solution backing the campaign as follows:</p> <ul> <li> <p>USER_PERSONALIZATION - <code>userId</code> required, <code>itemId</code> not used</p> </li> <li> <p>RELATED_ITEMS - <code>itemId</code> required, <code>userId</code> not used</p> </li> </ul> <note> <p>Campaigns that are backed by a solution created using a recipe of type PERSONALIZED_RANKING use the API.</p> </note> <p> For recommenders, the recommender's ARN is required and the required item and user input depends on the use case (domain-based recipe) backing the recommender. For information on use case requirements see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/domain-use-cases.html\">Choosing recommender use cases</a>. </p>"
   },
   "shapes": {
     "Arn": {
@@ -12,7 +12,8 @@
         "GetPersonalizedRankingRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign to use for generating the personalized ranking.</p>",
         "GetPersonalizedRankingRequest$filterArn": "<p>The Amazon Resource Name (ARN) of a filter you created to include items or exclude items from recommendations for a given user. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/filter.html\">Filtering Recommendations</a>.</p>",
         "GetRecommendationsRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign to use for getting recommendations.</p>",
-        "GetRecommendationsRequest$filterArn": "<p>The ARN of the filter to apply to the returned recommendations. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/filter.html\">Filtering Recommendations</a>.</p> <p>When using this parameter, be sure the filter resource is <code>ACTIVE</code>.</p>"
+        "GetRecommendationsRequest$filterArn": "<p>The ARN of the filter to apply to the returned recommendations. For more information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/filter.html\">Filtering Recommendations</a>.</p> <p>When using this parameter, be sure the filter resource is <code>ACTIVE</code>.</p>",
+        "GetRecommendationsRequest$recommenderArn": "<p>The Amazon Resource Name (ARN) of the recommender to use to get recommendations. Provide a recommender ARN if you created a Domain dataset group with a recommender for a domain use case.</p>"
       }
     },
     "AttributeName": {
@@ -103,7 +104,7 @@
       "base": null,
       "refs": {
         "GetPersonalizedRankingResponse$personalizedRanking": "<p>A list of items in order of most likely interest to the user. The maximum is 500.</p>",
-        "GetRecommendationsResponse$itemList": "<p>A list of recommendations sorted in ascending order by prediction score. There can be a maximum of 500 items in the list.</p>"
+        "GetRecommendationsResponse$itemList": "<p>A list of recommendations sorted in descending order by prediction score. There can be a maximum of 500 items in the list.</p>"
       }
     },
     "NumResults": {

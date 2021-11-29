@@ -108,8 +108,8 @@ func (c *Textract) AnalyzeDocumentRequest(input *AnalyzeDocumentInput) (req *req
 //
 //   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
-//   operations can be in PNG or JPEG format. Documents for asynchronous operations
-//   can also be in PDF format.
+//   operations can be in PNG or JPEG format only. Documents for asynchronous
+//   operations can be in PDF format.
 //
 //   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
@@ -205,8 +205,8 @@ func (c *Textract) AnalyzeExpenseRequest(input *AnalyzeExpenseInput) (req *reque
 
 // AnalyzeExpense API operation for Amazon Textract.
 //
-// Analyzes an input document for financially related relationships between
-// text.
+// AnalyzeExpense synchronously analyzes an input document for financially related
+// relationships between text.
 //
 // Information is returned as ExpenseDocuments and seperated as follows.
 //
@@ -238,8 +238,8 @@ func (c *Textract) AnalyzeExpenseRequest(input *AnalyzeExpenseInput) (req *reque
 //
 //   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
-//   operations can be in PNG or JPEG format. Documents for asynchronous operations
-//   can also be in PDF format.
+//   operations can be in PNG or JPEG format only. Documents for asynchronous
+//   operations can be in PDF format.
 //
 //   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
@@ -282,6 +282,124 @@ func (c *Textract) AnalyzeExpense(input *AnalyzeExpenseInput) (*AnalyzeExpenseOu
 // for more information on using Contexts.
 func (c *Textract) AnalyzeExpenseWithContext(ctx aws.Context, input *AnalyzeExpenseInput, opts ...request.Option) (*AnalyzeExpenseOutput, error) {
 	req, out := c.AnalyzeExpenseRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAnalyzeID = "AnalyzeID"
+
+// AnalyzeIDRequest generates a "aws/request.Request" representing the
+// client's request for the AnalyzeID operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AnalyzeID for more information on using the AnalyzeID
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AnalyzeIDRequest method.
+//    req, resp := client.AnalyzeIDRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/AnalyzeID
+func (c *Textract) AnalyzeIDRequest(input *AnalyzeIDInput) (req *request.Request, output *AnalyzeIDOutput) {
+	op := &request.Operation{
+		Name:       opAnalyzeID,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AnalyzeIDInput{}
+	}
+
+	output = &AnalyzeIDOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AnalyzeID API operation for Amazon Textract.
+//
+// Analyzes identity documents for relevant information. This information is
+// extracted and returned as IdentityDocumentFields, which records both the
+// normalized field and value of the extracted text.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Textract's
+// API operation AnalyzeID for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   An input parameter violated a constraint. For example, in synchronous operations,
+//   an InvalidParameterException exception occurs when neither of the S3Object
+//   or Bytes values are supplied in the Document request parameter. Validate
+//   your parameter before calling the API operation again.
+//
+//   * InvalidS3ObjectException
+//   Amazon Textract is unable to access the S3 object that's specified in the
+//   request. for more information, Configure Access to Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html)
+//   For troubleshooting information, see Troubleshooting Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/troubleshooting.html)
+//
+//   * UnsupportedDocumentException
+//   The format of the input document isn't supported. Documents for synchronous
+//   operations can be in PNG or JPEG format only. Documents for asynchronous
+//   operations can be in PDF format.
+//
+//   * DocumentTooLargeException
+//   The document can't be processed because it's too large. The maximum document
+//   size for synchronous operations 10 MB. The maximum document size for asynchronous
+//   operations is 500 MB for PDF files.
+//
+//   * BadDocumentException
+//   Amazon Textract isn't able to read the document. For more information on
+//   the document limits in Amazon Textract, see limits.
+//
+//   * AccessDeniedException
+//   You aren't authorized to perform the action. Use the Amazon Resource Name
+//   (ARN) of an authorized user or IAM role to perform the operation.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Textract.
+//
+//   * InternalServerError
+//   Amazon Textract experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Textract is temporarily unable to process the request. Try your call
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/textract-2018-06-27/AnalyzeID
+func (c *Textract) AnalyzeID(input *AnalyzeIDInput) (*AnalyzeIDOutput, error) {
+	req, out := c.AnalyzeIDRequest(input)
+	return out, req.Send()
+}
+
+// AnalyzeIDWithContext is the same as AnalyzeID with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AnalyzeID for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Textract) AnalyzeIDWithContext(ctx aws.Context, input *AnalyzeIDInput, opts ...request.Option) (*AnalyzeIDOutput, error) {
+	req, out := c.AnalyzeIDRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -367,8 +485,8 @@ func (c *Textract) DetectDocumentTextRequest(input *DetectDocumentTextInput) (re
 //
 //   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
-//   operations can be in PNG or JPEG format. Documents for asynchronous operations
-//   can also be in PDF format.
+//   operations can be in PNG or JPEG format only. Documents for asynchronous
+//   operations can be in PDF format.
 //
 //   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
@@ -916,8 +1034,8 @@ func (c *Textract) StartDocumentAnalysisRequest(input *StartDocumentAnalysisInpu
 //
 //   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
-//   operations can be in PNG or JPEG format. Documents for asynchronous operations
-//   can also be in PDF format.
+//   operations can be in PNG or JPEG format only. Documents for asynchronous
+//   operations can be in PDF format.
 //
 //   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
@@ -1063,8 +1181,8 @@ func (c *Textract) StartDocumentTextDetectionRequest(input *StartDocumentTextDet
 //
 //   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
-//   operations can be in PNG or JPEG format. Documents for asynchronous operations
-//   can also be in PDF format.
+//   operations can be in PNG or JPEG format only. Documents for asynchronous
+//   operations can be in PDF format.
 //
 //   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
@@ -1212,8 +1330,8 @@ func (c *Textract) StartExpenseAnalysisRequest(input *StartExpenseAnalysisInput)
 //
 //   * UnsupportedDocumentException
 //   The format of the input document isn't supported. Documents for synchronous
-//   operations can be in PNG or JPEG format. Documents for asynchronous operations
-//   can also be in PDF format.
+//   operations can be in PNG or JPEG format only. Documents for asynchronous
+//   operations can be in PDF format.
 //
 //   * DocumentTooLargeException
 //   The document can't be processed because it's too large. The maximum document
@@ -1594,6 +1712,168 @@ func (s *AnalyzeExpenseOutput) SetDocumentMetadata(v *DocumentMetadata) *Analyze
 // SetExpenseDocuments sets the ExpenseDocuments field's value.
 func (s *AnalyzeExpenseOutput) SetExpenseDocuments(v []*ExpenseDocument) *AnalyzeExpenseOutput {
 	s.ExpenseDocuments = v
+	return s
+}
+
+// Used to contain the information detected by an AnalyzeID operation.
+type AnalyzeIDDetections struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence score of the detected text.
+	Confidence *float64 `type:"float"`
+
+	// Only returned for dates, returns the type of value detected and the date
+	// written in a more machine readable way.
+	NormalizedValue *NormalizedValue `type:"structure"`
+
+	// Text of either the normalized field or value associated with it.
+	//
+	// Text is a required field
+	Text *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzeIDDetections) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzeIDDetections) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *AnalyzeIDDetections) SetConfidence(v float64) *AnalyzeIDDetections {
+	s.Confidence = &v
+	return s
+}
+
+// SetNormalizedValue sets the NormalizedValue field's value.
+func (s *AnalyzeIDDetections) SetNormalizedValue(v *NormalizedValue) *AnalyzeIDDetections {
+	s.NormalizedValue = v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *AnalyzeIDDetections) SetText(v string) *AnalyzeIDDetections {
+	s.Text = &v
+	return s
+}
+
+type AnalyzeIDInput struct {
+	_ struct{} `type:"structure"`
+
+	// The document being passed to AnalyzeID.
+	//
+	// DocumentPages is a required field
+	DocumentPages []*Document `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzeIDInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzeIDInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AnalyzeIDInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AnalyzeIDInput"}
+	if s.DocumentPages == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentPages"))
+	}
+	if s.DocumentPages != nil && len(s.DocumentPages) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentPages", 1))
+	}
+	if s.DocumentPages != nil {
+		for i, v := range s.DocumentPages {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DocumentPages", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentPages sets the DocumentPages field's value.
+func (s *AnalyzeIDInput) SetDocumentPages(v []*Document) *AnalyzeIDInput {
+	s.DocumentPages = v
+	return s
+}
+
+type AnalyzeIDOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The version of the AnalyzeIdentity API being used to process documents.
+	AnalyzeIDModelVersion *string `type:"string"`
+
+	// Information about the input document.
+	DocumentMetadata *DocumentMetadata `type:"structure"`
+
+	// The list of documents processed by AnalyzeID. Includes a number denoting
+	// their place in the list and the response structure for the document.
+	IdentityDocuments []*IdentityDocument `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzeIDOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnalyzeIDOutput) GoString() string {
+	return s.String()
+}
+
+// SetAnalyzeIDModelVersion sets the AnalyzeIDModelVersion field's value.
+func (s *AnalyzeIDOutput) SetAnalyzeIDModelVersion(v string) *AnalyzeIDOutput {
+	s.AnalyzeIDModelVersion = &v
+	return s
+}
+
+// SetDocumentMetadata sets the DocumentMetadata field's value.
+func (s *AnalyzeIDOutput) SetDocumentMetadata(v *DocumentMetadata) *AnalyzeIDOutput {
+	s.DocumentMetadata = v
+	return s
+}
+
+// SetIdentityDocuments sets the IdentityDocuments field's value.
+func (s *AnalyzeIDOutput) SetIdentityDocuments(v []*IdentityDocument) *AnalyzeIDOutput {
+	s.IdentityDocuments = v
 	return s
 }
 
@@ -2410,7 +2690,7 @@ func (s *ExpenseDocument) SetSummaryFields(v []*ExpenseField) *ExpenseDocument {
 	return s
 }
 
-// Breakdown of detected information, seperated into the catagories Type, LableDetection,
+// Breakdown of detected information, seperated into the catagories Type, LabelDetection,
 // and ValueDetection
 type ExpenseField struct {
 	_ struct{} `type:"structure"`
@@ -3362,6 +3642,91 @@ func (s *IdempotentParameterMismatchException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The structure that lists each document processed in an AnalyzeID operation.
+type IdentityDocument struct {
+	_ struct{} `type:"structure"`
+
+	// Denotes the placement of a document in the IdentityDocument list. The first
+	// document is marked 1, the second 2 and so on.
+	DocumentIndex *int64 `type:"integer"`
+
+	// The structure used to record information extracted from identity documents.
+	// Contains both normalized field and value of the extracted text.
+	IdentityDocumentFields []*IdentityDocumentField `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdentityDocument) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdentityDocument) GoString() string {
+	return s.String()
+}
+
+// SetDocumentIndex sets the DocumentIndex field's value.
+func (s *IdentityDocument) SetDocumentIndex(v int64) *IdentityDocument {
+	s.DocumentIndex = &v
+	return s
+}
+
+// SetIdentityDocumentFields sets the IdentityDocumentFields field's value.
+func (s *IdentityDocument) SetIdentityDocumentFields(v []*IdentityDocumentField) *IdentityDocument {
+	s.IdentityDocumentFields = v
+	return s
+}
+
+// Structure containing both the normalized type of the extracted information
+// and the text associated with it. These are extracted as Type and Value respectively.
+type IdentityDocumentField struct {
+	_ struct{} `type:"structure"`
+
+	// Used to contain the information detected by an AnalyzeID operation.
+	Type *AnalyzeIDDetections `type:"structure"`
+
+	// Used to contain the information detected by an AnalyzeID operation.
+	ValueDetection *AnalyzeIDDetections `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdentityDocumentField) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s IdentityDocumentField) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *IdentityDocumentField) SetType(v *AnalyzeIDDetections) *IdentityDocumentField {
+	s.Type = v
+	return s
+}
+
+// SetValueDetection sets the ValueDetection field's value.
+func (s *IdentityDocumentField) SetValueDetection(v *AnalyzeIDDetections) *IdentityDocumentField {
+	s.ValueDetection = v
+	return s
+}
+
 // Amazon Textract experienced a service issue. Try your call again.
 type InternalServerError struct {
 	_            struct{}                  `type:"structure"`
@@ -3829,6 +4194,48 @@ func (s *LineItemGroup) SetLineItemGroupIndex(v int64) *LineItemGroup {
 // SetLineItems sets the LineItems field's value.
 func (s *LineItemGroup) SetLineItems(v []*LineItemFields) *LineItemGroup {
 	s.LineItems = v
+	return s
+}
+
+// Contains information relating to dates in a document, including the type
+// of value, and the value.
+type NormalizedValue struct {
+	_ struct{} `type:"structure"`
+
+	// The value of the date, written as Year-Month-DayTHour:Minute:Second.
+	Value *string `type:"string"`
+
+	// The normalized type of the value detected. In this case, DATE.
+	ValueType *string `type:"string" enum:"ValueType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NormalizedValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s NormalizedValue) GoString() string {
+	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *NormalizedValue) SetValue(v string) *NormalizedValue {
+	s.Value = &v
+	return s
+}
+
+// SetValueType sets the ValueType field's value.
+func (s *NormalizedValue) SetValueType(v string) *NormalizedValue {
+	s.ValueType = &v
 	return s
 }
 
@@ -4797,8 +5204,8 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 // The format of the input document isn't supported. Documents for synchronous
-// operations can be in PNG or JPEG format. Documents for asynchronous operations
-// can also be in PDF format.
+// operations can be in PNG or JPEG format only. Documents for asynchronous
+// operations can be in PDF format.
 type UnsupportedDocumentException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5061,5 +5468,17 @@ func TextType_Values() []string {
 	return []string{
 		TextTypeHandwriting,
 		TextTypePrinted,
+	}
+}
+
+const (
+	// ValueTypeDate is a ValueType enum value
+	ValueTypeDate = "DATE"
+)
+
+// ValueType_Values returns all elements of the ValueType enum
+func ValueType_Values() []string {
+	return []string{
+		ValueTypeDate,
 	}
 }

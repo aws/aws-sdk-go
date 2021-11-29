@@ -106,6 +106,98 @@ func (c *Personalize) CreateBatchInferenceJobWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opCreateBatchSegmentJob = "CreateBatchSegmentJob"
+
+// CreateBatchSegmentJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBatchSegmentJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBatchSegmentJob for more information on using the CreateBatchSegmentJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateBatchSegmentJobRequest method.
+//    req, resp := client.CreateBatchSegmentJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchSegmentJob
+func (c *Personalize) CreateBatchSegmentJobRequest(input *CreateBatchSegmentJobInput) (req *request.Request, output *CreateBatchSegmentJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateBatchSegmentJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateBatchSegmentJobInput{}
+	}
+
+	output = &CreateBatchSegmentJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateBatchSegmentJob API operation for Amazon Personalize.
+//
+// Creates a batch segment job. The operation can handle up to 50 million records
+// and the input file must be in JSON format. For more information, see recommendations-batch.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation CreateBatchSegmentJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceAlreadyExistsException
+//   The specified resource already exists.
+//
+//   * LimitExceededException
+//   The limit on the number of requests per second has been exceeded.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateBatchSegmentJob
+func (c *Personalize) CreateBatchSegmentJob(input *CreateBatchSegmentJobInput) (*CreateBatchSegmentJobOutput, error) {
+	req, out := c.CreateBatchSegmentJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateBatchSegmentJobWithContext is the same as CreateBatchSegmentJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBatchSegmentJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) CreateBatchSegmentJobWithContext(ctx aws.Context, input *CreateBatchSegmentJobInput, opts ...request.Option) (*CreateBatchSegmentJobOutput, error) {
+	req, out := c.CreateBatchSegmentJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCampaign = "CreateCampaign"
 
 // CreateCampaignRequest generates a "aws/request.Request" representing the
@@ -150,7 +242,7 @@ func (c *Personalize) CreateCampaignRequest(input *CreateCampaignInput) (req *re
 
 // CreateCampaign API operation for Amazon Personalize.
 //
-// Creates a campaign by deploying a solution version. When a client calls the
+// Creates a campaign that deploys a solution version. When a client calls the
 // GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
 // and GetPersonalizedRanking (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html)
 // APIs, a campaign is specified in the request.
@@ -515,9 +607,9 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 
 // CreateDatasetGroup API operation for Amazon Personalize.
 //
-// Creates an empty dataset group. A dataset group contains related datasets
-// that supply data for training a model. A dataset group can contain at most
-// three datasets, one for each type of dataset:
+// Creates an empty dataset group. A dataset group is a container for Amazon
+// Personalize resources. A dataset group can contain at most three datasets,
+// one for each type of dataset:
 //
 //    * Interactions
 //
@@ -525,8 +617,12 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 //
 //    * Users
 //
-// To train a model (create a solution), a dataset group that contains an Interactions
-// dataset is required. Call CreateDataset to add a dataset to the group.
+// A dataset group can be a Domain dataset group, where you specify a domain
+// and use pre-configured resources like recommenders, or a Custom dataset group,
+// where you use custom resources, such as a solution with a solution version,
+// that you deploy with a campaign. If you start with a Domain dataset group,
+// you can still add custom resources such as solutions and solution versions
+// trained with recipes for custom use cases and deployed with campaigns.
 //
 // A dataset group can be in one of the following states:
 //
@@ -929,6 +1025,121 @@ func (c *Personalize) CreateFilterWithContext(ctx aws.Context, input *CreateFilt
 	return out, req.Send()
 }
 
+const opCreateRecommender = "CreateRecommender"
+
+// CreateRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRecommender for more information on using the CreateRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateRecommenderRequest method.
+//    req, resp := client.CreateRecommenderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateRecommender
+func (c *Personalize) CreateRecommenderRequest(input *CreateRecommenderInput) (req *request.Request, output *CreateRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opCreateRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateRecommenderInput{}
+	}
+
+	output = &CreateRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRecommender API operation for Amazon Personalize.
+//
+// Creates a recommender with the recipe (a Domain dataset group use case) you
+// specify. You create recommenders for a Domain dataset group and specify the
+// recommender's Amazon Resource Name (ARN) when you make a GetRecommendations
+// (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
+// request.
+//
+// Status
+//
+// A recommender can be in one of the following states:
+//
+//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//
+//    * DELETE PENDING > DELETE IN_PROGRESS
+//
+// To get the recommender status, call DescribeRecommender.
+//
+// Wait until the status of the recommender is ACTIVE before asking the recommender
+// for recommendations.
+//
+// Related APIs
+//
+//    * ListRecommenders
+//
+//    * DescribeRecommender
+//
+//    * UpdateRecommender
+//
+//    * DeleteRecommender
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation CreateRecommender for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceAlreadyExistsException
+//   The specified resource already exists.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * LimitExceededException
+//   The limit on the number of requests per second has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateRecommender
+func (c *Personalize) CreateRecommender(input *CreateRecommenderInput) (*CreateRecommenderOutput, error) {
+	req, out := c.CreateRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// CreateRecommenderWithContext is the same as CreateRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) CreateRecommenderWithContext(ctx aws.Context, input *CreateRecommenderInput, opts ...request.Option) (*CreateRecommenderOutput, error) {
+	req, out := c.CreateRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateSchema = "CreateSchema"
 
 // CreateSchemaRequest generates a "aws/request.Request" representing the
@@ -977,8 +1188,10 @@ func (c *Personalize) CreateSchemaRequest(input *CreateSchemaInput) (req *reques
 // schema you create must be in Avro JSON format.
 //
 // Amazon Personalize recognizes three schema variants. Each schema is associated
-// with a dataset type and has a set of required field and keywords. You specify
-// a schema when you call CreateDataset.
+// with a dataset type and has a set of required field and keywords. If you
+// are creating a schema for a dataset in a Domain dataset group, you provide
+// the domain of the Domain dataset group. You specify a schema when you call
+// CreateDataset.
 //
 // Related APIs
 //
@@ -1207,9 +1420,10 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 
 // CreateSolutionVersion API operation for Amazon Personalize.
 //
-// Trains or retrains an active solution. A solution is created using the CreateSolution
-// operation and must be in the ACTIVE state before calling CreateSolutionVersion.
-// A new version of the solution is created every time you call this operation.
+// Trains or retrains an active solution in a Custom dataset group. A solution
+// is created using the CreateSolution operation and must be in the ACTIVE state
+// before calling CreateSolutionVersion. A new version of the solution is created
+// every time you call this operation.
 //
 // Status
 //
@@ -1733,6 +1947,94 @@ func (c *Personalize) DeleteFilterWithContext(ctx aws.Context, input *DeleteFilt
 	return out, req.Send()
 }
 
+const opDeleteRecommender = "DeleteRecommender"
+
+// DeleteRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRecommender for more information on using the DeleteRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRecommenderRequest method.
+//    req, resp := client.DeleteRecommenderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteRecommender
+func (c *Personalize) DeleteRecommenderRequest(input *DeleteRecommenderInput) (req *request.Request, output *DeleteRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteRecommenderInput{}
+	}
+
+	output = &DeleteRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRecommender API operation for Amazon Personalize.
+//
+// Deactivates and removes a recommender. A deleted recommender can no longer
+// be specified in a GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
+// request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DeleteRecommender for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DeleteRecommender
+func (c *Personalize) DeleteRecommender(input *DeleteRecommenderInput) (*DeleteRecommenderOutput, error) {
+	req, out := c.DeleteRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRecommenderWithContext is the same as DeleteRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DeleteRecommenderWithContext(ctx aws.Context, input *DeleteRecommenderInput, opts ...request.Option) (*DeleteRecommenderOutput, error) {
+	req, out := c.DeleteRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteSchema = "DeleteSchema"
 
 // DeleteSchemaRequest generates a "aws/request.Request" representing the
@@ -2072,6 +2374,90 @@ func (c *Personalize) DescribeBatchInferenceJob(input *DescribeBatchInferenceJob
 // for more information on using Contexts.
 func (c *Personalize) DescribeBatchInferenceJobWithContext(ctx aws.Context, input *DescribeBatchInferenceJobInput, opts ...request.Option) (*DescribeBatchInferenceJobOutput, error) {
 	req, out := c.DescribeBatchInferenceJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeBatchSegmentJob = "DescribeBatchSegmentJob"
+
+// DescribeBatchSegmentJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeBatchSegmentJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeBatchSegmentJob for more information on using the DescribeBatchSegmentJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeBatchSegmentJobRequest method.
+//    req, resp := client.DescribeBatchSegmentJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchSegmentJob
+func (c *Personalize) DescribeBatchSegmentJobRequest(input *DescribeBatchSegmentJobInput) (req *request.Request, output *DescribeBatchSegmentJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeBatchSegmentJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeBatchSegmentJobInput{}
+	}
+
+	output = &DescribeBatchSegmentJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeBatchSegmentJob API operation for Amazon Personalize.
+//
+// Gets the properties of a batch segment job including name, Amazon Resource
+// Name (ARN), status, input and output configurations, and the ARN of the solution
+// version used to generate segments.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DescribeBatchSegmentJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeBatchSegmentJob
+func (c *Personalize) DescribeBatchSegmentJob(input *DescribeBatchSegmentJobInput) (*DescribeBatchSegmentJobOutput, error) {
+	req, out := c.DescribeBatchSegmentJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeBatchSegmentJobWithContext is the same as DescribeBatchSegmentJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeBatchSegmentJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DescribeBatchSegmentJobWithContext(ctx aws.Context, input *DescribeBatchSegmentJobInput, opts ...request.Option) (*DescribeBatchSegmentJobOutput, error) {
+	req, out := c.DescribeBatchSegmentJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2846,6 +3232,99 @@ func (c *Personalize) DescribeRecipeWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+const opDescribeRecommender = "DescribeRecommender"
+
+// DescribeRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRecommender for more information on using the DescribeRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRecommenderRequest method.
+//    req, resp := client.DescribeRecommenderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecommender
+func (c *Personalize) DescribeRecommenderRequest(input *DescribeRecommenderInput) (req *request.Request, output *DescribeRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeRecommenderInput{}
+	}
+
+	output = &DescribeRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRecommender API operation for Amazon Personalize.
+//
+// Describes the given recommender, including its status.
+//
+// A recommender can be in one of the following states:
+//
+//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//
+//    * DELETE PENDING > DELETE IN_PROGRESS
+//
+// When the status is CREATE FAILED, the response includes the failureReason
+// key, which describes why.
+//
+// For more information on recommenders, see CreateRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateRecommender.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DescribeRecommender for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeRecommender
+func (c *Personalize) DescribeRecommender(input *DescribeRecommenderInput) (*DescribeRecommenderOutput, error) {
+	req, out := c.DescribeRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRecommenderWithContext is the same as DescribeRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DescribeRecommenderWithContext(ctx aws.Context, input *DescribeRecommenderInput, opts ...request.Option) (*DescribeRecommenderOutput, error) {
+	req, out := c.DescribeRecommenderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeSchema = "DescribeSchema"
 
 // DescribeSchemaRequest generates a "aws/request.Request" representing the
@@ -3312,6 +3791,147 @@ func (c *Personalize) ListBatchInferenceJobsPagesWithContext(ctx aws.Context, in
 
 	for p.Next() {
 		if !fn(p.Page().(*ListBatchInferenceJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListBatchSegmentJobs = "ListBatchSegmentJobs"
+
+// ListBatchSegmentJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBatchSegmentJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBatchSegmentJobs for more information on using the ListBatchSegmentJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListBatchSegmentJobsRequest method.
+//    req, resp := client.ListBatchSegmentJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchSegmentJobs
+func (c *Personalize) ListBatchSegmentJobsRequest(input *ListBatchSegmentJobsInput) (req *request.Request, output *ListBatchSegmentJobsOutput) {
+	op := &request.Operation{
+		Name:       opListBatchSegmentJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListBatchSegmentJobsInput{}
+	}
+
+	output = &ListBatchSegmentJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListBatchSegmentJobs API operation for Amazon Personalize.
+//
+// Gets a list of the batch segment jobs that have been performed off of a solution
+// version that you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListBatchSegmentJobs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * InvalidNextTokenException
+//   The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListBatchSegmentJobs
+func (c *Personalize) ListBatchSegmentJobs(input *ListBatchSegmentJobsInput) (*ListBatchSegmentJobsOutput, error) {
+	req, out := c.ListBatchSegmentJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListBatchSegmentJobsWithContext is the same as ListBatchSegmentJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBatchSegmentJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListBatchSegmentJobsWithContext(ctx aws.Context, input *ListBatchSegmentJobsInput, opts ...request.Option) (*ListBatchSegmentJobsOutput, error) {
+	req, out := c.ListBatchSegmentJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListBatchSegmentJobsPages iterates over the pages of a ListBatchSegmentJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBatchSegmentJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListBatchSegmentJobs operation.
+//    pageNum := 0
+//    err := client.ListBatchSegmentJobsPages(params,
+//        func(page *personalize.ListBatchSegmentJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Personalize) ListBatchSegmentJobsPages(input *ListBatchSegmentJobsInput, fn func(*ListBatchSegmentJobsOutput, bool) bool) error {
+	return c.ListBatchSegmentJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListBatchSegmentJobsPagesWithContext same as ListBatchSegmentJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListBatchSegmentJobsPagesWithContext(ctx aws.Context, input *ListBatchSegmentJobsInput, fn func(*ListBatchSegmentJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListBatchSegmentJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListBatchSegmentJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListBatchSegmentJobsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4379,6 +4999,9 @@ func (c *Personalize) ListRecipesRequest(input *ListRecipesInput) (req *request.
 //   * InvalidNextTokenException
 //   The token is not valid.
 //
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecipes
 func (c *Personalize) ListRecipes(input *ListRecipesInput) (*ListRecipesOutput, error) {
 	req, out := c.ListRecipesRequest(input)
@@ -4446,6 +5069,150 @@ func (c *Personalize) ListRecipesPagesWithContext(ctx aws.Context, input *ListRe
 
 	for p.Next() {
 		if !fn(p.Page().(*ListRecipesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRecommenders = "ListRecommenders"
+
+// ListRecommendersRequest generates a "aws/request.Request" representing the
+// client's request for the ListRecommenders operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRecommenders for more information on using the ListRecommenders
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRecommendersRequest method.
+//    req, resp := client.ListRecommendersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecommenders
+func (c *Personalize) ListRecommendersRequest(input *ListRecommendersInput) (req *request.Request, output *ListRecommendersOutput) {
+	op := &request.Operation{
+		Name:       opListRecommenders,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRecommendersInput{}
+	}
+
+	output = &ListRecommendersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRecommenders API operation for Amazon Personalize.
+//
+// Returns a list of recommenders in a given Domain dataset group. When a Domain
+// dataset group is not specified, all the recommenders associated with the
+// account are listed. The response provides the properties for each recommender,
+// including the Amazon Resource Name (ARN). For more information on recommenders,
+// see CreateRecommender (https://docs.aws.amazon.com/personalize/latest/dg/API_CreateRecommender.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListRecommenders for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * InvalidNextTokenException
+//   The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListRecommenders
+func (c *Personalize) ListRecommenders(input *ListRecommendersInput) (*ListRecommendersOutput, error) {
+	req, out := c.ListRecommendersRequest(input)
+	return out, req.Send()
+}
+
+// ListRecommendersWithContext is the same as ListRecommenders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRecommenders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListRecommendersWithContext(ctx aws.Context, input *ListRecommendersInput, opts ...request.Option) (*ListRecommendersOutput, error) {
+	req, out := c.ListRecommendersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRecommendersPages iterates over the pages of a ListRecommenders operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRecommenders method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRecommenders operation.
+//    pageNum := 0
+//    err := client.ListRecommendersPages(params,
+//        func(page *personalize.ListRecommendersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Personalize) ListRecommendersPages(input *ListRecommendersInput, fn func(*ListRecommendersOutput, bool) bool) error {
+	return c.ListRecommendersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRecommendersPagesWithContext same as ListRecommendersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListRecommendersPagesWithContext(ctx aws.Context, input *ListRecommendersInput, fn func(*ListRecommendersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRecommendersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRecommendersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRecommendersOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -5068,6 +5835,91 @@ func (c *Personalize) UpdateCampaign(input *UpdateCampaignInput) (*UpdateCampaig
 // for more information on using Contexts.
 func (c *Personalize) UpdateCampaignWithContext(ctx aws.Context, input *UpdateCampaignInput, opts ...request.Option) (*UpdateCampaignOutput, error) {
 	req, out := c.UpdateCampaignRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateRecommender = "UpdateRecommender"
+
+// UpdateRecommenderRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRecommender operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRecommender for more information on using the UpdateRecommender
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateRecommenderRequest method.
+//    req, resp := client.UpdateRecommenderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateRecommender
+func (c *Personalize) UpdateRecommenderRequest(input *UpdateRecommenderInput) (req *request.Request, output *UpdateRecommenderOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRecommender,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateRecommenderInput{}
+	}
+
+	output = &UpdateRecommenderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateRecommender API operation for Amazon Personalize.
+//
+// Updates the recommender to modify the recommender configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation UpdateRecommender for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/UpdateRecommender
+func (c *Personalize) UpdateRecommender(input *UpdateRecommenderInput) (*UpdateRecommenderOutput, error) {
+	req, out := c.UpdateRecommenderRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRecommenderWithContext is the same as UpdateRecommender with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRecommender for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) UpdateRecommenderWithContext(ctx aws.Context, input *UpdateRecommenderInput, opts ...request.Option) (*UpdateRecommenderOutput, error) {
+	req, out := c.UpdateRecommenderRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5700,8 +6552,352 @@ func (s *BatchInferenceJobSummary) SetStatus(v string) *BatchInferenceJobSummary
 	return s
 }
 
-// Describes a deployed solution version, otherwise known as a campaign. For
-// more information on campaigns, see CreateCampaign.
+// Contains information on a batch segment job.
+type BatchSegmentJob struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the batch segment job.
+	BatchSegmentJobArn *string `locationName:"batchSegmentJobArn" type:"string"`
+
+	// The time at which the batch segment job was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// If the batch segment job failed, the reason for the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The ARN of the filter used on the batch segment job.
+	FilterArn *string `locationName:"filterArn" type:"string"`
+
+	// The Amazon S3 path that leads to the input data used to generate the batch
+	// segment job.
+	JobInput *BatchSegmentJobInput_ `locationName:"jobInput" type:"structure"`
+
+	// The name of the batch segment job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The Amazon S3 bucket that contains the output data generated by the batch
+	// segment job.
+	JobOutput *BatchSegmentJobOutput_ `locationName:"jobOutput" type:"structure"`
+
+	// The time at which the batch segment job last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The number of predicted users generated by the batch segment job for each
+	// line of input data.
+	NumResults *int64 `locationName:"numResults" type:"integer"`
+
+	// The ARN of the Amazon Identity and Access Management (IAM) role that requested
+	// the batch segment job.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the solution version used by the batch
+	// segment job to generate batch segments.
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
+
+	// The status of the batch segment job. The status is one of the following values:
+	//
+	//    * PENDING
+	//
+	//    * IN PROGRESS
+	//
+	//    * ACTIVE
+	//
+	//    * CREATE FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJob) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJobArn sets the BatchSegmentJobArn field's value.
+func (s *BatchSegmentJob) SetBatchSegmentJobArn(v string) *BatchSegmentJob {
+	s.BatchSegmentJobArn = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *BatchSegmentJob) SetCreationDateTime(v time.Time) *BatchSegmentJob {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *BatchSegmentJob) SetFailureReason(v string) *BatchSegmentJob {
+	s.FailureReason = &v
+	return s
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *BatchSegmentJob) SetFilterArn(v string) *BatchSegmentJob {
+	s.FilterArn = &v
+	return s
+}
+
+// SetJobInput sets the JobInput field's value.
+func (s *BatchSegmentJob) SetJobInput(v *BatchSegmentJobInput_) *BatchSegmentJob {
+	s.JobInput = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *BatchSegmentJob) SetJobName(v string) *BatchSegmentJob {
+	s.JobName = &v
+	return s
+}
+
+// SetJobOutput sets the JobOutput field's value.
+func (s *BatchSegmentJob) SetJobOutput(v *BatchSegmentJobOutput_) *BatchSegmentJob {
+	s.JobOutput = v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *BatchSegmentJob) SetLastUpdatedDateTime(v time.Time) *BatchSegmentJob {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetNumResults sets the NumResults field's value.
+func (s *BatchSegmentJob) SetNumResults(v int64) *BatchSegmentJob {
+	s.NumResults = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *BatchSegmentJob) SetRoleArn(v string) *BatchSegmentJob {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *BatchSegmentJob) SetSolutionVersionArn(v string) *BatchSegmentJob {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchSegmentJob) SetStatus(v string) *BatchSegmentJob {
+	s.Status = &v
+	return s
+}
+
+// The input configuration of a batch segment job.
+type BatchSegmentJobInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration details of an Amazon S3 input or output bucket.
+	//
+	// S3DataSource is a required field
+	S3DataSource *S3DataConfig `locationName:"s3DataSource" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchSegmentJobInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchSegmentJobInput_"}
+	if s.S3DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DataSource"))
+	}
+	if s.S3DataSource != nil {
+		if err := s.S3DataSource.Validate(); err != nil {
+			invalidParams.AddNested("S3DataSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3DataSource sets the S3DataSource field's value.
+func (s *BatchSegmentJobInput_) SetS3DataSource(v *S3DataConfig) *BatchSegmentJobInput_ {
+	s.S3DataSource = v
+	return s
+}
+
+// The output configuration parameters of a batch segment job.
+type BatchSegmentJobOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration details of an Amazon S3 input or output bucket.
+	//
+	// S3DataDestination is a required field
+	S3DataDestination *S3DataConfig `locationName:"s3DataDestination" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobOutput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchSegmentJobOutput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchSegmentJobOutput_"}
+	if s.S3DataDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DataDestination"))
+	}
+	if s.S3DataDestination != nil {
+		if err := s.S3DataDestination.Validate(); err != nil {
+			invalidParams.AddNested("S3DataDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3DataDestination sets the S3DataDestination field's value.
+func (s *BatchSegmentJobOutput_) SetS3DataDestination(v *S3DataConfig) *BatchSegmentJobOutput_ {
+	s.S3DataDestination = v
+	return s
+}
+
+// A truncated version of the BatchSegmentJob datatype. The ListBatchSegmentJobs
+// operation returns a list of batch segment job summaries.
+type BatchSegmentJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the batch segment job.
+	BatchSegmentJobArn *string `locationName:"batchSegmentJobArn" type:"string"`
+
+	// The time at which the batch segment job was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// If the batch segment job failed, the reason for the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The name of the batch segment job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The time at which the batch segment job was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the solution version used by the batch
+	// segment job to generate batch segments.
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
+
+	// The status of the batch segment job. The status is one of the following values:
+	//
+	//    * PENDING
+	//
+	//    * IN PROGRESS
+	//
+	//    * ACTIVE
+	//
+	//    * CREATE FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s BatchSegmentJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJobArn sets the BatchSegmentJobArn field's value.
+func (s *BatchSegmentJobSummary) SetBatchSegmentJobArn(v string) *BatchSegmentJobSummary {
+	s.BatchSegmentJobArn = &v
+	return s
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *BatchSegmentJobSummary) SetCreationDateTime(v time.Time) *BatchSegmentJobSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *BatchSegmentJobSummary) SetFailureReason(v string) *BatchSegmentJobSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *BatchSegmentJobSummary) SetJobName(v string) *BatchSegmentJobSummary {
+	s.JobName = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *BatchSegmentJobSummary) SetLastUpdatedDateTime(v time.Time) *BatchSegmentJobSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *BatchSegmentJobSummary) SetSolutionVersionArn(v string) *BatchSegmentJobSummary {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchSegmentJobSummary) SetStatus(v string) *BatchSegmentJobSummary {
+	s.Status = &v
+	return s
+}
+
+// An object that describes the deployment of a solution version. For more information
+// on campaigns, see CreateCampaign.
 type Campaign struct {
 	_ struct{} `type:"structure"`
 
@@ -5826,11 +7022,11 @@ func (s *Campaign) SetStatus(v string) *Campaign {
 type CampaignConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A string to string map specifying the exploration configuration hyperparameters,
-	// including explorationWeight and explorationItemAgeCutOff, you want to use
-	// to configure the amount of item exploration Amazon Personalize uses when
-	// recommending items. Provide itemExplorationConfig data only if your solution
-	// uses the User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
+	// Specifies the exploration configuration hyperparameters, including explorationWeight
+	// and explorationItemAgeCutOff, you want to use to configure the amount of
+	// item exploration Amazon Personalize uses when recommending items. Provide
+	// itemExplorationConfig data only if your solution uses the User-Personalization
+	// (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html)
 	// recipe.
 	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
 }
@@ -6321,6 +7517,175 @@ func (s *CreateBatchInferenceJobOutput) SetBatchInferenceJobArn(v string) *Creat
 	return s
 }
 
+type CreateBatchSegmentJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the filter to apply to the batch segment job. For more information
+	// on using filters, see filter-batch.
+	FilterArn *string `locationName:"filterArn" type:"string"`
+
+	// The Amazon S3 path for the input data used to generate the batch segment
+	// job.
+	//
+	// JobInput is a required field
+	JobInput *BatchSegmentJobInput_ `locationName:"jobInput" type:"structure" required:"true"`
+
+	// The name of the batch segment job to create.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The Amazon S3 path for the bucket where the job's output will be stored.
+	//
+	// JobOutput is a required field
+	JobOutput *BatchSegmentJobOutput_ `locationName:"jobOutput" type:"structure" required:"true"`
+
+	// The number of predicted users generated by the batch segment job for each
+	// line of input data.
+	NumResults *int64 `locationName:"numResults" type:"integer"`
+
+	// The ARN of the Amazon Identity and Access Management role that has permissions
+	// to read and write to your input and output Amazon S3 buckets respectively.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the solution version you want the batch
+	// segment job to use to generate batch segments.
+	//
+	// SolutionVersionArn is a required field
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchSegmentJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchSegmentJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBatchSegmentJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBatchSegmentJobInput"}
+	if s.JobInput == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobInput"))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.JobOutput == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobOutput"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.SolutionVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SolutionVersionArn"))
+	}
+	if s.JobInput != nil {
+		if err := s.JobInput.Validate(); err != nil {
+			invalidParams.AddNested("JobInput", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.JobOutput != nil {
+		if err := s.JobOutput.Validate(); err != nil {
+			invalidParams.AddNested("JobOutput", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilterArn sets the FilterArn field's value.
+func (s *CreateBatchSegmentJobInput) SetFilterArn(v string) *CreateBatchSegmentJobInput {
+	s.FilterArn = &v
+	return s
+}
+
+// SetJobInput sets the JobInput field's value.
+func (s *CreateBatchSegmentJobInput) SetJobInput(v *BatchSegmentJobInput_) *CreateBatchSegmentJobInput {
+	s.JobInput = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateBatchSegmentJobInput) SetJobName(v string) *CreateBatchSegmentJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobOutput sets the JobOutput field's value.
+func (s *CreateBatchSegmentJobInput) SetJobOutput(v *BatchSegmentJobOutput_) *CreateBatchSegmentJobInput {
+	s.JobOutput = v
+	return s
+}
+
+// SetNumResults sets the NumResults field's value.
+func (s *CreateBatchSegmentJobInput) SetNumResults(v int64) *CreateBatchSegmentJobInput {
+	s.NumResults = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateBatchSegmentJobInput) SetRoleArn(v string) *CreateBatchSegmentJobInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *CreateBatchSegmentJobInput) SetSolutionVersionArn(v string) *CreateBatchSegmentJobInput {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+type CreateBatchSegmentJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the batch segment job.
+	BatchSegmentJobArn *string `locationName:"batchSegmentJobArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchSegmentJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateBatchSegmentJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJobArn sets the BatchSegmentJobArn field's value.
+func (s *CreateBatchSegmentJobOutput) SetBatchSegmentJobArn(v string) *CreateBatchSegmentJobOutput {
+	s.BatchSegmentJobArn = &v
+	return s
+}
+
 type CreateCampaignInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6581,6 +7946,13 @@ func (s *CreateDatasetExportJobOutput) SetDatasetExportJobArn(v string) *CreateD
 type CreateDatasetGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// The domain of the dataset group. Specify a domain to create a Domain dataset
+	// group. The domain you specify determines the default schemas for datasets
+	// and the use cases available for recommenders. If you don't specify a domain,
+	// you create a Custom dataset group with solution versions that you deploy
+	// with a campaign.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
+
 	// The Amazon Resource Name (ARN) of a Key Management Service (KMS) key used
 	// to encrypt the datasets.
 	KmsKeyArn *string `locationName:"kmsKeyArn" type:"string"`
@@ -6630,6 +8002,12 @@ func (s *CreateDatasetGroupInput) Validate() error {
 	return nil
 }
 
+// SetDomain sets the Domain field's value.
+func (s *CreateDatasetGroupInput) SetDomain(v string) *CreateDatasetGroupInput {
+	s.Domain = &v
+	return s
+}
+
 // SetKmsKeyArn sets the KmsKeyArn field's value.
 func (s *CreateDatasetGroupInput) SetKmsKeyArn(v string) *CreateDatasetGroupInput {
 	s.KmsKeyArn = &v
@@ -6653,6 +8031,9 @@ type CreateDatasetGroupOutput struct {
 
 	// The Amazon Resource Name (ARN) of the new dataset group.
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The domain for the new Domain dataset group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 }
 
 // String returns the string representation.
@@ -6676,6 +8057,12 @@ func (s CreateDatasetGroupOutput) GoString() string {
 // SetDatasetGroupArn sets the DatasetGroupArn field's value.
 func (s *CreateDatasetGroupOutput) SetDatasetGroupArn(v string) *CreateDatasetGroupOutput {
 	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *CreateDatasetGroupOutput) SetDomain(v string) *CreateDatasetGroupOutput {
+	s.Domain = &v
 	return s
 }
 
@@ -7156,8 +8543,134 @@ func (s *CreateFilterOutput) SetFilterArn(v string) *CreateFilterOutput {
 	return s
 }
 
+type CreateRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the destination domain dataset group for
+	// the recommender.
+	//
+	// DatasetGroupArn is a required field
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string" required:"true"`
+
+	// The name of the recommender.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the recipe that the recommender will use.
+	// For a recommender, a recipe is a Domain dataset group use case. Only Domain
+	// dataset group use cases can be used to create a recommender. For information
+	// about use cases see Choosing recommender use cases (https://docs.aws.amazon.com/personalize/latest/dg/domain-use-cases.html).
+	//
+	// RecipeArn is a required field
+	RecipeArn *string `locationName:"recipeArn" type:"string" required:"true"`
+
+	// The configuration details of the recommender.
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRecommenderInput"}
+	if s.DatasetGroupArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetGroupArn"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RecipeArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecipeArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *CreateRecommenderInput) SetDatasetGroupArn(v string) *CreateRecommenderInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRecommenderInput) SetName(v string) *CreateRecommenderInput {
+	s.Name = &v
+	return s
+}
+
+// SetRecipeArn sets the RecipeArn field's value.
+func (s *CreateRecommenderInput) SetRecipeArn(v string) *CreateRecommenderInput {
+	s.RecipeArn = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *CreateRecommenderInput) SetRecommenderConfig(v *RecommenderConfig) *CreateRecommenderInput {
+	s.RecommenderConfig = v
+	return s
+}
+
+type CreateRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *CreateRecommenderOutput) SetRecommenderArn(v string) *CreateRecommenderOutput {
+	s.RecommenderArn = &v
+	return s
+}
+
 type CreateSchemaInput struct {
 	_ struct{} `type:"structure"`
+
+	// The domain for the schema. If you are creating a schema for a dataset in
+	// a Domain dataset group, specify the domain you chose when you created the
+	// Domain dataset group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
 
 	// The name for the schema.
 	//
@@ -7205,6 +8718,12 @@ func (s *CreateSchemaInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *CreateSchemaInput) SetDomain(v string) *CreateSchemaInput {
+	s.Domain = &v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -7937,6 +9456,9 @@ type DatasetGroup struct {
 	// The Amazon Resource Name (ARN) of the dataset group.
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
 
+	// The domain of a Domain dataset group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
+
 	// If creating a dataset group fails, provides the reason why.
 	FailureReason *string `locationName:"failureReason" type:"string"`
 
@@ -7993,6 +9515,12 @@ func (s *DatasetGroup) SetDatasetGroupArn(v string) *DatasetGroup {
 	return s
 }
 
+// SetDomain sets the Domain field's value.
+func (s *DatasetGroup) SetDomain(v string) *DatasetGroup {
+	s.Domain = &v
+	return s
+}
+
 // SetFailureReason sets the FailureReason field's value.
 func (s *DatasetGroup) SetFailureReason(v string) *DatasetGroup {
 	s.FailureReason = &v
@@ -8040,6 +9568,9 @@ type DatasetGroupSummary struct {
 	// The Amazon Resource Name (ARN) of the dataset group.
 	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
 
+	// The domain of a Domain dataset group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
+
 	// If creating a dataset group fails, the reason behind the failure.
 	FailureReason *string `locationName:"failureReason" type:"string"`
 
@@ -8086,6 +9617,12 @@ func (s *DatasetGroupSummary) SetCreationDateTime(v time.Time) *DatasetGroupSumm
 // SetDatasetGroupArn sets the DatasetGroupArn field's value.
 func (s *DatasetGroupSummary) SetDatasetGroupArn(v string) *DatasetGroupSummary {
 	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DatasetGroupSummary) SetDomain(v string) *DatasetGroupSummary {
+	s.Domain = &v
 	return s
 }
 
@@ -8319,6 +9856,10 @@ type DatasetSchema struct {
 	// The date and time (in Unix time) that the schema was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
 
+	// The domain of a schema that you created for a dataset in a Domain dataset
+	// group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
+
 	// The date and time (in Unix time) that the schema was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
@@ -8356,6 +9897,12 @@ func (s *DatasetSchema) SetCreationDateTime(v time.Time) *DatasetSchema {
 	return s
 }
 
+// SetDomain sets the Domain field's value.
+func (s *DatasetSchema) SetDomain(v string) *DatasetSchema {
+	s.Domain = &v
+	return s
+}
+
 // SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
 func (s *DatasetSchema) SetLastUpdatedDateTime(v time.Time) *DatasetSchema {
 	s.LastUpdatedDateTime = &v
@@ -8388,6 +9935,10 @@ type DatasetSchemaSummary struct {
 	// The date and time (in Unix time) that the schema was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
 
+	// The domain of a schema that you created for a dataset in a Domain dataset
+	// group.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
+
 	// The date and time (in Unix time) that the schema was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
@@ -8419,6 +9970,12 @@ func (s DatasetSchemaSummary) GoString() string {
 // SetCreationDateTime sets the CreationDateTime field's value.
 func (s *DatasetSchemaSummary) SetCreationDateTime(v time.Time) *DatasetSchemaSummary {
 	s.CreationDateTime = &v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DatasetSchemaSummary) SetDomain(v string) *DatasetSchemaSummary {
+	s.Domain = &v
 	return s
 }
 
@@ -9097,6 +10654,74 @@ func (s DeleteFilterOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to delete.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *DeleteRecommenderInput) SetRecommenderArn(v string) *DeleteRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type DeleteRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRecommenderOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteSchemaInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9384,6 +11009,83 @@ func (s DescribeBatchInferenceJobOutput) GoString() string {
 // SetBatchInferenceJob sets the BatchInferenceJob field's value.
 func (s *DescribeBatchInferenceJobOutput) SetBatchInferenceJob(v *BatchInferenceJob) *DescribeBatchInferenceJobOutput {
 	s.BatchInferenceJob = v
+	return s
+}
+
+type DescribeBatchSegmentJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the batch segment job to describe.
+	//
+	// BatchSegmentJobArn is a required field
+	BatchSegmentJobArn *string `locationName:"batchSegmentJobArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchSegmentJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchSegmentJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeBatchSegmentJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeBatchSegmentJobInput"}
+	if s.BatchSegmentJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("BatchSegmentJobArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBatchSegmentJobArn sets the BatchSegmentJobArn field's value.
+func (s *DescribeBatchSegmentJobInput) SetBatchSegmentJobArn(v string) *DescribeBatchSegmentJobInput {
+	s.BatchSegmentJobArn = &v
+	return s
+}
+
+type DescribeBatchSegmentJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information on the specified batch segment job.
+	BatchSegmentJob *BatchSegmentJob `locationName:"batchSegmentJob" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchSegmentJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeBatchSegmentJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJob sets the BatchSegmentJob field's value.
+func (s *DescribeBatchSegmentJobOutput) SetBatchSegmentJob(v *BatchSegmentJob) *DescribeBatchSegmentJobOutput {
+	s.BatchSegmentJob = v
 	return s
 }
 
@@ -10097,6 +11799,83 @@ func (s DescribeRecipeOutput) GoString() string {
 // SetRecipe sets the Recipe field's value.
 func (s *DescribeRecipeOutput) SetRecipe(v *Recipe) *DescribeRecipeOutput {
 	s.Recipe = v
+	return s
+}
+
+type DescribeRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to describe.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *DescribeRecommenderInput) SetRecommenderArn(v string) *DescribeRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+type DescribeRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the recommender.
+	Recommender *Recommender `locationName:"recommender" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommender sets the Recommender field's value.
+func (s *DescribeRecommenderOutput) SetRecommender(v *Recommender) *DescribeRecommenderOutput {
+	s.Recommender = v
 	return s
 }
 
@@ -11469,6 +13248,111 @@ func (s *ListBatchInferenceJobsOutput) SetNextToken(v string) *ListBatchInferenc
 	return s
 }
 
+type ListBatchSegmentJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of batch segment job results to return in each page. The
+	// default value is 100.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to request the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the solution version that the batch segment
+	// jobs used to generate batch segments.
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchSegmentJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchSegmentJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBatchSegmentJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBatchSegmentJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBatchSegmentJobsInput) SetMaxResults(v int64) *ListBatchSegmentJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBatchSegmentJobsInput) SetNextToken(v string) *ListBatchSegmentJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *ListBatchSegmentJobsInput) SetSolutionVersionArn(v string) *ListBatchSegmentJobsInput {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+type ListBatchSegmentJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list containing information on each job that is returned.
+	BatchSegmentJobs []*BatchSegmentJobSummary `locationName:"batchSegmentJobs" type:"list"`
+
+	// The token to use to retrieve the next page of results. The value is null
+	// when there are no more results to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchSegmentJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListBatchSegmentJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchSegmentJobs sets the BatchSegmentJobs field's value.
+func (s *ListBatchSegmentJobsOutput) SetBatchSegmentJobs(v []*BatchSegmentJobSummary) *ListBatchSegmentJobsOutput {
+	s.BatchSegmentJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBatchSegmentJobsOutput) SetNextToken(v string) *ListBatchSegmentJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListCampaignsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12189,6 +14073,11 @@ func (s *ListFiltersOutput) SetNextToken(v string) *ListFiltersOutput {
 type ListRecipesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Filters returned recipes by domain for a Domain dataset group. Only recipes
+	// (Domain dataset group use cases) for this domain are included in the response.
+	// If you don't specify a domain, only non-domain recipes are returned.
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
+
 	// The maximum number of recipes to return.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
@@ -12229,6 +14118,12 @@ func (s *ListRecipesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *ListRecipesInput) SetDomain(v string) *ListRecipesInput {
+	s.Domain = &v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -12286,6 +14181,111 @@ func (s *ListRecipesOutput) SetNextToken(v string) *ListRecipesOutput {
 // SetRecipes sets the Recipes field's value.
 func (s *ListRecipesOutput) SetRecipes(v []*RecipeSummary) *ListRecipesOutput {
 	s.Recipes = v
+	return s
+}
+
+type ListRecommendersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Domain dataset group to list the recommenders
+	// for. When a Domain dataset group is not specified, all the recommenders associated
+	// with the account are listed.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The maximum number of recommenders to return.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token returned from the previous call to ListRecommenders for getting the
+	// next set of recommenders (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRecommendersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRecommendersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *ListRecommendersInput) SetDatasetGroupArn(v string) *ListRecommendersInput {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRecommendersInput) SetMaxResults(v int64) *ListRecommendersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendersInput) SetNextToken(v string) *ListRecommendersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRecommendersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token for getting the next set of recommenders (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of the recommenders.
+	Recommenders []*RecommenderSummary `locationName:"recommenders" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRecommendersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecommendersOutput) SetNextToken(v string) *ListRecommendersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecommenders sets the Recommenders field's value.
+func (s *ListRecommendersOutput) SetRecommenders(v []*RecommenderSummary) *ListRecommendersOutput {
+	s.Recommenders = v
 	return s
 }
 
@@ -12769,6 +14769,9 @@ type RecipeSummary struct {
 	// The date and time (in Unix time) that the recipe was created.
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
 
+	// The domain of the recipe (if the recipe is a Domain dataset group use case).
+	Domain *string `locationName:"domain" type:"string" enum:"Domain"`
+
 	// The date and time (in Unix time) that the recipe was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
@@ -12806,6 +14809,12 @@ func (s *RecipeSummary) SetCreationDateTime(v time.Time) *RecipeSummary {
 	return s
 }
 
+// SetDomain sets the Domain field's value.
+func (s *RecipeSummary) SetDomain(v string) *RecipeSummary {
+	s.Domain = &v
+	return s
+}
+
 // SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
 func (s *RecipeSummary) SetLastUpdatedDateTime(v time.Time) *RecipeSummary {
 	s.LastUpdatedDateTime = &v
@@ -12826,6 +14835,343 @@ func (s *RecipeSummary) SetRecipeArn(v string) *RecipeSummary {
 
 // SetStatus sets the Status field's value.
 func (s *RecipeSummary) SetStatus(v string) *RecipeSummary {
+	s.Status = &v
+	return s
+}
+
+// Describes a recommendation generator for a Domain dataset group. You create
+// a recommender in a Domain dataset group for a specific domain use case (domain
+// recipe), and specify the recommender in a GetRecommendations (https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html)
+// request.
+type Recommender struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (in Unix format) that the recommender was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the Domain dataset group that contains
+	// the recommender.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// If a recommender fails, the reason behind the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The date and time (in Unix format) that the recommender was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// Provides a summary of the latest updates to the recommender.
+	LatestRecommenderUpdate *RecommenderUpdateSummary `locationName:"latestRecommenderUpdate" type:"structure"`
+
+	// The name of the recommender.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recipe (Domain dataset group use case)
+	// that the recommender was created for.
+	RecipeArn *string `locationName:"recipeArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recommender.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+
+	// The configuration details of the recommender.
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure"`
+
+	// The status of the recommender.
+	//
+	// A recommender can be in one of the following states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	//
+	//    * DELETE PENDING > DELETE IN_PROGRESS
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommender) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Recommender) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *Recommender) SetCreationDateTime(v time.Time) *Recommender {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *Recommender) SetDatasetGroupArn(v string) *Recommender {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *Recommender) SetFailureReason(v string) *Recommender {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *Recommender) SetLastUpdatedDateTime(v time.Time) *Recommender {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetLatestRecommenderUpdate sets the LatestRecommenderUpdate field's value.
+func (s *Recommender) SetLatestRecommenderUpdate(v *RecommenderUpdateSummary) *Recommender {
+	s.LatestRecommenderUpdate = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Recommender) SetName(v string) *Recommender {
+	s.Name = &v
+	return s
+}
+
+// SetRecipeArn sets the RecipeArn field's value.
+func (s *Recommender) SetRecipeArn(v string) *Recommender {
+	s.RecipeArn = &v
+	return s
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *Recommender) SetRecommenderArn(v string) *Recommender {
+	s.RecommenderArn = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *Recommender) SetRecommenderConfig(v *RecommenderConfig) *Recommender {
+	s.RecommenderConfig = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Recommender) SetStatus(v string) *Recommender {
+	s.Status = &v
+	return s
+}
+
+// The configuration details of the recommender.
+type RecommenderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the exploration configuration hyperparameters, including explorationWeight
+	// and explorationItemAgeCutOff, you want to use to configure the amount of
+	// item exploration Amazon Personalize uses when recommending items. Provide
+	// itemExplorationConfig data only if your recommenders generate personalized
+	// recommendations for a user (not popular items or similar items).
+	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderConfig) GoString() string {
+	return s.String()
+}
+
+// SetItemExplorationConfig sets the ItemExplorationConfig field's value.
+func (s *RecommenderConfig) SetItemExplorationConfig(v map[string]*string) *RecommenderConfig {
+	s.ItemExplorationConfig = v
+	return s
+}
+
+// Provides a summary of the properties of the recommender.
+type RecommenderSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (in Unix format) that the recommender was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the Domain dataset group that contains
+	// the recommender.
+	DatasetGroupArn *string `locationName:"datasetGroupArn" type:"string"`
+
+	// The date and time (in Unix format) that the recommender was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The name of the recommender.
+	Name *string `locationName:"name" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recipe (Domain dataset group use case)
+	// that the recommender was created for.
+	RecipeArn *string `locationName:"recipeArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recommender.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+
+	// The configuration details of the recommender.
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure"`
+
+	// The status of the recommender. A recommender can be in one of the following
+	// states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	//
+	//    * DELETE PENDING > DELETE IN_PROGRESS
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *RecommenderSummary) SetCreationDateTime(v time.Time) *RecommenderSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetGroupArn sets the DatasetGroupArn field's value.
+func (s *RecommenderSummary) SetDatasetGroupArn(v string) *RecommenderSummary {
+	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *RecommenderSummary) SetLastUpdatedDateTime(v time.Time) *RecommenderSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RecommenderSummary) SetName(v string) *RecommenderSummary {
+	s.Name = &v
+	return s
+}
+
+// SetRecipeArn sets the RecipeArn field's value.
+func (s *RecommenderSummary) SetRecipeArn(v string) *RecommenderSummary {
+	s.RecipeArn = &v
+	return s
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *RecommenderSummary) SetRecommenderArn(v string) *RecommenderSummary {
+	s.RecommenderArn = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *RecommenderSummary) SetRecommenderConfig(v *RecommenderConfig) *RecommenderSummary {
+	s.RecommenderConfig = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RecommenderSummary) SetStatus(v string) *RecommenderSummary {
+	s.Status = &v
+	return s
+}
+
+// Provides a summary of the properties of a recommender update. For a complete
+// listing, call the DescribeRecommender API.
+type RecommenderUpdateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (in Unix format) that the recommender update was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// If a recommender update fails, the reason behind the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The date and time (in Unix time) that the recommender update was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The configuration details of the recommender update.
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure"`
+
+	// The status of the recommender update.
+	//
+	// A recommender can be in one of the following states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	//
+	//    * DELETE PENDING > DELETE IN_PROGRESS
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderUpdateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommenderUpdateSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *RecommenderUpdateSummary) SetCreationDateTime(v time.Time) *RecommenderUpdateSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *RecommenderUpdateSummary) SetFailureReason(v string) *RecommenderUpdateSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *RecommenderUpdateSummary) SetLastUpdatedDateTime(v time.Time) *RecommenderUpdateSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *RecommenderUpdateSummary) SetRecommenderConfig(v *RecommenderConfig) *RecommenderUpdateSummary {
+	s.RecommenderConfig = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RecommenderUpdateSummary) SetStatus(v string) *RecommenderUpdateSummary {
 	s.Status = &v
 	return s
 }
@@ -13411,7 +15757,8 @@ func (s *SolutionSummary) SetStatus(v string) *SolutionSummary {
 	return s
 }
 
-// An object that provides information about a specific version of a Solution.
+// An object that provides information about a specific version of a Solution
+// in a Custom dataset group.
 type SolutionVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -13882,6 +16229,113 @@ func (s UpdateCampaignOutput) GoString() string {
 func (s *UpdateCampaignOutput) SetCampaignArn(v string) *UpdateCampaignOutput {
 	s.CampaignArn = &v
 	return s
+}
+
+type UpdateRecommenderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommender to modify.
+	//
+	// RecommenderArn is a required field
+	RecommenderArn *string `locationName:"recommenderArn" type:"string" required:"true"`
+
+	// The configuration details of the recommender.
+	//
+	// RecommenderConfig is a required field
+	RecommenderConfig *RecommenderConfig `locationName:"recommenderConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommenderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommenderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRecommenderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRecommenderInput"}
+	if s.RecommenderArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderArn"))
+	}
+	if s.RecommenderConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecommenderConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *UpdateRecommenderInput) SetRecommenderArn(v string) *UpdateRecommenderInput {
+	s.RecommenderArn = &v
+	return s
+}
+
+// SetRecommenderConfig sets the RecommenderConfig field's value.
+func (s *UpdateRecommenderInput) SetRecommenderConfig(v *RecommenderConfig) *UpdateRecommenderInput {
+	s.RecommenderConfig = v
+	return s
+}
+
+type UpdateRecommenderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The same recommender Amazon Resource Name (ARN) as given in the request.
+	RecommenderArn *string `locationName:"recommenderArn" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommenderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateRecommenderOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecommenderArn sets the RecommenderArn field's value.
+func (s *UpdateRecommenderOutput) SetRecommenderArn(v string) *UpdateRecommenderOutput {
+	s.RecommenderArn = &v
+	return s
+}
+
+const (
+	// DomainEcommerce is a Domain enum value
+	DomainEcommerce = "ECOMMERCE"
+
+	// DomainVideoOnDemand is a Domain enum value
+	DomainVideoOnDemand = "VIDEO_ON_DEMAND"
+)
+
+// Domain_Values returns all elements of the Domain enum
+func Domain_Values() []string {
+	return []string{
+		DomainEcommerce,
+		DomainVideoOnDemand,
+	}
 }
 
 const (

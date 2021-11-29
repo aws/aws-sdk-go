@@ -29,6 +29,22 @@
         {"shape":"ResourceInUseException"}
       ]
     },
+    "CreateBatchSegmentJob":{
+      "name":"CreateBatchSegmentJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateBatchSegmentJobRequest"},
+      "output":{"shape":"CreateBatchSegmentJobResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ]
+    },
     "CreateCampaign":{
       "name":"CreateCampaign",
       "http":{
@@ -141,6 +157,22 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"}
       ]
+    },
+    "CreateRecommender":{
+      "name":"CreateRecommender",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateRecommenderRequest"},
+      "output":{"shape":"CreateRecommenderResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"}
+      ],
+      "idempotent":true
     },
     "CreateSchema":{
       "name":"CreateSchema",
@@ -257,6 +289,20 @@
         {"shape":"ResourceInUseException"}
       ]
     },
+    "DeleteRecommender":{
+      "name":"DeleteRecommender",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRecommenderRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
     "DeleteSchema":{
       "name":"DeleteSchema",
       "http":{
@@ -307,6 +353,20 @@
       },
       "input":{"shape":"DescribeBatchInferenceJobRequest"},
       "output":{"shape":"DescribeBatchInferenceJobResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "DescribeBatchSegmentJob":{
+      "name":"DescribeBatchSegmentJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeBatchSegmentJobRequest"},
+      "output":{"shape":"DescribeBatchSegmentJobResponse"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"}
@@ -439,6 +499,20 @@
       ],
       "idempotent":true
     },
+    "DescribeRecommender":{
+      "name":"DescribeRecommender",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRecommenderRequest"},
+      "output":{"shape":"DescribeRecommenderResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "DescribeSchema":{
       "name":"DescribeSchema",
       "http":{
@@ -503,6 +577,20 @@
       },
       "input":{"shape":"ListBatchInferenceJobsRequest"},
       "output":{"shape":"ListBatchInferenceJobsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidNextTokenException"}
+      ],
+      "idempotent":true
+    },
+    "ListBatchSegmentJobs":{
+      "name":"ListBatchSegmentJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListBatchSegmentJobsRequest"},
+      "output":{"shape":"ListBatchSegmentJobsResponse"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"InvalidNextTokenException"}
@@ -615,6 +703,21 @@
       "input":{"shape":"ListRecipesRequest"},
       "output":{"shape":"ListRecipesResponse"},
       "errors":[
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidInputException"}
+      ],
+      "idempotent":true
+    },
+    "ListRecommenders":{
+      "name":"ListRecommenders",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListRecommendersRequest"},
+      "output":{"shape":"ListRecommendersResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
         {"shape":"InvalidNextTokenException"}
       ],
       "idempotent":true
@@ -683,6 +786,21 @@
       },
       "input":{"shape":"UpdateCampaignRequest"},
       "output":{"shape":"UpdateCampaignResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateRecommender":{
+      "name":"UpdateRecommender",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateRecommenderRequest"},
+      "output":{"shape":"UpdateRecommenderResponse"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
@@ -799,6 +917,54 @@
     "BatchInferenceJobs":{
       "type":"list",
       "member":{"shape":"BatchInferenceJobSummary"},
+      "max":100
+    },
+    "BatchSegmentJob":{
+      "type":"structure",
+      "members":{
+        "jobName":{"shape":"Name"},
+        "batchSegmentJobArn":{"shape":"Arn"},
+        "filterArn":{"shape":"Arn"},
+        "failureReason":{"shape":"FailureReason"},
+        "solutionVersionArn":{"shape":"Arn"},
+        "numResults":{"shape":"NumBatchResults"},
+        "jobInput":{"shape":"BatchSegmentJobInput"},
+        "jobOutput":{"shape":"BatchSegmentJobOutput"},
+        "roleArn":{"shape":"RoleArn"},
+        "status":{"shape":"Status"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"}
+      }
+    },
+    "BatchSegmentJobInput":{
+      "type":"structure",
+      "required":["s3DataSource"],
+      "members":{
+        "s3DataSource":{"shape":"S3DataConfig"}
+      }
+    },
+    "BatchSegmentJobOutput":{
+      "type":"structure",
+      "required":["s3DataDestination"],
+      "members":{
+        "s3DataDestination":{"shape":"S3DataConfig"}
+      }
+    },
+    "BatchSegmentJobSummary":{
+      "type":"structure",
+      "members":{
+        "batchSegmentJobArn":{"shape":"Arn"},
+        "jobName":{"shape":"Name"},
+        "status":{"shape":"Status"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "failureReason":{"shape":"FailureReason"},
+        "solutionVersionArn":{"shape":"Arn"}
+      }
+    },
+    "BatchSegmentJobs":{
+      "type":"list",
+      "member":{"shape":"BatchSegmentJobSummary"},
       "max":100
     },
     "Boolean":{"type":"boolean"},
@@ -919,6 +1085,31 @@
         "batchInferenceJobArn":{"shape":"Arn"}
       }
     },
+    "CreateBatchSegmentJobRequest":{
+      "type":"structure",
+      "required":[
+        "jobName",
+        "solutionVersionArn",
+        "jobInput",
+        "jobOutput",
+        "roleArn"
+      ],
+      "members":{
+        "jobName":{"shape":"Name"},
+        "solutionVersionArn":{"shape":"Arn"},
+        "filterArn":{"shape":"Arn"},
+        "numResults":{"shape":"NumBatchResults"},
+        "jobInput":{"shape":"BatchSegmentJobInput"},
+        "jobOutput":{"shape":"BatchSegmentJobOutput"},
+        "roleArn":{"shape":"RoleArn"}
+      }
+    },
+    "CreateBatchSegmentJobResponse":{
+      "type":"structure",
+      "members":{
+        "batchSegmentJobArn":{"shape":"Arn"}
+      }
+    },
     "CreateCampaignRequest":{
       "type":"structure",
       "required":[
@@ -966,13 +1157,15 @@
       "members":{
         "name":{"shape":"Name"},
         "roleArn":{"shape":"RoleArn"},
-        "kmsKeyArn":{"shape":"KmsKeyArn"}
+        "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "domain":{"shape":"Domain"}
       }
     },
     "CreateDatasetGroupResponse":{
       "type":"structure",
       "members":{
-        "datasetGroupArn":{"shape":"Arn"}
+        "datasetGroupArn":{"shape":"Arn"},
+        "domain":{"shape":"Domain"}
       }
     },
     "CreateDatasetImportJobRequest":{
@@ -1054,6 +1247,26 @@
         "filterArn":{"shape":"Arn"}
       }
     },
+    "CreateRecommenderRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "datasetGroupArn",
+        "recipeArn"
+      ],
+      "members":{
+        "name":{"shape":"Name"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "recipeArn":{"shape":"Arn"},
+        "recommenderConfig":{"shape":"RecommenderConfig"}
+      }
+    },
+    "CreateRecommenderResponse":{
+      "type":"structure",
+      "members":{
+        "recommenderArn":{"shape":"Arn"}
+      }
+    },
     "CreateSchemaRequest":{
       "type":"structure",
       "required":[
@@ -1062,7 +1275,8 @@
       ],
       "members":{
         "name":{"shape":"Name"},
-        "schema":{"shape":"AvroSchema"}
+        "schema":{"shape":"AvroSchema"},
+        "domain":{"shape":"Domain"}
       }
     },
     "CreateSchemaResponse":{
@@ -1174,7 +1388,8 @@
         "kmsKeyArn":{"shape":"KmsKeyArn"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
-        "failureReason":{"shape":"FailureReason"}
+        "failureReason":{"shape":"FailureReason"},
+        "domain":{"shape":"Domain"}
       }
     },
     "DatasetGroupSummary":{
@@ -1185,7 +1400,8 @@
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"},
-        "failureReason":{"shape":"FailureReason"}
+        "failureReason":{"shape":"FailureReason"},
+        "domain":{"shape":"Domain"}
       }
     },
     "DatasetGroups":{
@@ -1230,7 +1446,8 @@
         "schemaArn":{"shape":"Arn"},
         "schema":{"shape":"AvroSchema"},
         "creationDateTime":{"shape":"Date"},
-        "lastUpdatedDateTime":{"shape":"Date"}
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "domain":{"shape":"Domain"}
       }
     },
     "DatasetSchemaSummary":{
@@ -1239,7 +1456,8 @@
         "name":{"shape":"Name"},
         "schemaArn":{"shape":"Arn"},
         "creationDateTime":{"shape":"Date"},
-        "lastUpdatedDateTime":{"shape":"Date"}
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "domain":{"shape":"Domain"}
       }
     },
     "DatasetSummary":{
@@ -1347,6 +1565,13 @@
         "filterArn":{"shape":"Arn"}
       }
     },
+    "DeleteRecommenderRequest":{
+      "type":"structure",
+      "required":["recommenderArn"],
+      "members":{
+        "recommenderArn":{"shape":"Arn"}
+      }
+    },
     "DeleteSchemaRequest":{
       "type":"structure",
       "required":["schemaArn"],
@@ -1385,6 +1610,19 @@
       "type":"structure",
       "members":{
         "batchInferenceJob":{"shape":"BatchInferenceJob"}
+      }
+    },
+    "DescribeBatchSegmentJobRequest":{
+      "type":"structure",
+      "required":["batchSegmentJobArn"],
+      "members":{
+        "batchSegmentJobArn":{"shape":"Arn"}
+      }
+    },
+    "DescribeBatchSegmentJobResponse":{
+      "type":"structure",
+      "members":{
+        "batchSegmentJob":{"shape":"BatchSegmentJob"}
       }
     },
     "DescribeCampaignRequest":{
@@ -1504,6 +1742,19 @@
         "recipe":{"shape":"Recipe"}
       }
     },
+    "DescribeRecommenderRequest":{
+      "type":"structure",
+      "required":["recommenderArn"],
+      "members":{
+        "recommenderArn":{"shape":"Arn"}
+      }
+    },
+    "DescribeRecommenderResponse":{
+      "type":"structure",
+      "members":{
+        "recommender":{"shape":"Recommender"}
+      }
+    },
     "DescribeSchemaRequest":{
       "type":"structure",
       "required":["schemaArn"],
@@ -1547,6 +1798,13 @@
     "DockerURI":{
       "type":"string",
       "max":256
+    },
+    "Domain":{
+      "type":"string",
+      "enum":[
+        "ECOMMERCE",
+        "VIDEO_ON_DEMAND"
+      ]
     },
     "ErrorMessage":{"type":"string"},
     "EventTracker":{
@@ -1754,6 +2012,7 @@
     },
     "KmsKeyArn":{
       "type":"string",
+      "max":2048,
       "pattern":"arn:aws.*:kms:.*:[0-9]{12}:key/.*"
     },
     "LimitExceededException":{
@@ -1775,6 +2034,21 @@
       "type":"structure",
       "members":{
         "batchInferenceJobs":{"shape":"BatchInferenceJobs"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListBatchSegmentJobsRequest":{
+      "type":"structure",
+      "members":{
+        "solutionVersionArn":{"shape":"Arn"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListBatchSegmentJobsResponse":{
+      "type":"structure",
+      "members":{
+        "batchSegmentJobs":{"shape":"BatchSegmentJobs"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1887,13 +2161,29 @@
       "members":{
         "recipeProvider":{"shape":"RecipeProvider"},
         "nextToken":{"shape":"NextToken"},
-        "maxResults":{"shape":"MaxResults"}
+        "maxResults":{"shape":"MaxResults"},
+        "domain":{"shape":"Domain"}
       }
     },
     "ListRecipesResponse":{
       "type":"structure",
       "members":{
         "recipes":{"shape":"Recipes"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListRecommendersRequest":{
+      "type":"structure",
+      "members":{
+        "datasetGroupArn":{"shape":"Arn"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListRecommendersResponse":{
+      "type":"structure",
+      "members":{
+        "recommenders":{"shape":"Recommenders"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1969,7 +2259,7 @@
     },
     "NextToken":{
       "type":"string",
-      "max":1300
+      "max":1500
     },
     "NumBatchResults":{"type":"integer"},
     "ObjectiveSensitivity":{
@@ -2023,7 +2313,8 @@
         "recipeArn":{"shape":"Arn"},
         "status":{"shape":"Status"},
         "creationDateTime":{"shape":"Date"},
-        "lastUpdatedDateTime":{"shape":"Date"}
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "domain":{"shape":"Domain"}
       }
     },
     "RecipeType":{
@@ -2033,6 +2324,55 @@
     "Recipes":{
       "type":"list",
       "member":{"shape":"RecipeSummary"},
+      "max":100
+    },
+    "Recommender":{
+      "type":"structure",
+      "members":{
+        "recommenderArn":{"shape":"Arn"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "name":{"shape":"Name"},
+        "recipeArn":{"shape":"Arn"},
+        "recommenderConfig":{"shape":"RecommenderConfig"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "status":{"shape":"Status"},
+        "failureReason":{"shape":"FailureReason"},
+        "latestRecommenderUpdate":{"shape":"RecommenderUpdateSummary"}
+      }
+    },
+    "RecommenderConfig":{
+      "type":"structure",
+      "members":{
+        "itemExplorationConfig":{"shape":"HyperParameters"}
+      }
+    },
+    "RecommenderSummary":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"Name"},
+        "recommenderArn":{"shape":"Arn"},
+        "datasetGroupArn":{"shape":"Arn"},
+        "recipeArn":{"shape":"Arn"},
+        "recommenderConfig":{"shape":"RecommenderConfig"},
+        "status":{"shape":"Status"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"}
+      }
+    },
+    "RecommenderUpdateSummary":{
+      "type":"structure",
+      "members":{
+        "recommenderConfig":{"shape":"RecommenderConfig"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "status":{"shape":"Status"},
+        "failureReason":{"shape":"FailureReason"}
+      }
+    },
+    "Recommenders":{
+      "type":"list",
+      "member":{"shape":"RecommenderSummary"},
       "max":100
     },
     "ResourceAlreadyExistsException":{
@@ -2219,6 +2559,23 @@
       "type":"structure",
       "members":{
         "campaignArn":{"shape":"Arn"}
+      }
+    },
+    "UpdateRecommenderRequest":{
+      "type":"structure",
+      "required":[
+        "recommenderArn",
+        "recommenderConfig"
+      ],
+      "members":{
+        "recommenderArn":{"shape":"Arn"},
+        "recommenderConfig":{"shape":"RecommenderConfig"}
+      }
+    },
+    "UpdateRecommenderResponse":{
+      "type":"structure",
+      "members":{
+        "recommenderArn":{"shape":"Arn"}
       }
     }
   }
