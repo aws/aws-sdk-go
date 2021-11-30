@@ -1846,6 +1846,11 @@
           "shape":"ObjectLockEnabledForBucket",
           "location":"header",
           "locationName":"x-amz-bucket-object-lock-enabled"
+        },
+        "ObjectOwnership":{
+          "shape":"ObjectOwnership",
+          "location":"header",
+          "locationName":"x-amz-object-ownership"
         }
       },
       "payload":"CreateBucketConfiguration"
@@ -5209,7 +5214,8 @@
       "type":"string",
       "enum":[
         "BucketOwnerPreferred",
-        "ObjectWriter"
+        "ObjectWriter",
+        "BucketOwnerEnforced"
       ]
     },
     "ObjectSizeGreaterThanBytes":{"type":"long"},
@@ -5224,7 +5230,8 @@
         "ONEZONE_IA",
         "INTELLIGENT_TIERING",
         "DEEP_ARCHIVE",
-        "OUTPOSTS"
+        "OUTPOSTS",
+        "GLACIER_IR"
       ]
     },
     "ObjectVersion":{
@@ -7144,7 +7151,8 @@
         "INTELLIGENT_TIERING",
         "GLACIER",
         "DEEP_ARCHIVE",
-        "OUTPOSTS"
+        "OUTPOSTS",
+        "GLACIER_IR"
       ]
     },
     "StorageClassAnalysis":{
@@ -7304,7 +7312,8 @@
         "STANDARD_IA",
         "ONEZONE_IA",
         "INTELLIGENT_TIERING",
-        "DEEP_ARCHIVE"
+        "DEEP_ARCHIVE",
+        "GLACIER_IR"
       ]
     },
     "Type":{

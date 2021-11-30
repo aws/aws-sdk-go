@@ -4,13 +4,14 @@ package lakeformation
 
 import (
 	"fmt"
+	"io"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
-	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opAddLFTagsToResource = "AddLFTagsToResource"
@@ -43,7 +44,7 @@ func (c *LakeFormation) AddLFTagsToResourceRequest(input *AddLFTagsToResourceInp
 	op := &request.Operation{
 		Name:       opAddLFTagsToResource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/AddLFTagsToResource",
 	}
 
 	if input == nil {
@@ -57,7 +58,7 @@ func (c *LakeFormation) AddLFTagsToResourceRequest(input *AddLFTagsToResourceInp
 
 // AddLFTagsToResource API operation for AWS Lake Formation.
 //
-// Attaches one or more tags to an existing resource.
+// Attaches one or more LF-tags to an existing resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -137,7 +138,7 @@ func (c *LakeFormation) BatchGrantPermissionsRequest(input *BatchGrantPermission
 	op := &request.Operation{
 		Name:       opBatchGrantPermissions,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/BatchGrantPermissions",
 	}
 
 	if input == nil {
@@ -219,7 +220,7 @@ func (c *LakeFormation) BatchRevokePermissionsRequest(input *BatchRevokePermissi
 	op := &request.Operation{
 		Name:       opBatchRevokePermissions,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/BatchRevokePermissions",
 	}
 
 	if input == nil {
@@ -271,6 +272,302 @@ func (c *LakeFormation) BatchRevokePermissionsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opCancelTransaction = "CancelTransaction"
+
+// CancelTransactionRequest generates a "aws/request.Request" representing the
+// client's request for the CancelTransaction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelTransaction for more information on using the CancelTransaction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelTransactionRequest method.
+//    req, resp := client.CancelTransactionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CancelTransaction
+func (c *LakeFormation) CancelTransactionRequest(input *CancelTransactionInput) (req *request.Request, output *CancelTransactionOutput) {
+	op := &request.Operation{
+		Name:       opCancelTransaction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CancelTransaction",
+	}
+
+	if input == nil {
+		input = &CancelTransactionInput{}
+	}
+
+	output = &CancelTransactionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelTransaction API operation for AWS Lake Formation.
+//
+// Attempts to cancel the specified transaction. Returns an exception if the
+// transaction was previously committed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation CancelTransaction for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * TransactionCommittedException
+//   Contains details about an error where the specified transaction has already
+//   been committed and cannot be used for UpdateTableObjects.
+//
+//   * TransactionCommitInProgressException
+//   Contains details about an error related to a transaction commit that was
+//   in progress.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CancelTransaction
+func (c *LakeFormation) CancelTransaction(input *CancelTransactionInput) (*CancelTransactionOutput, error) {
+	req, out := c.CancelTransactionRequest(input)
+	return out, req.Send()
+}
+
+// CancelTransactionWithContext is the same as CancelTransaction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelTransaction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) CancelTransactionWithContext(ctx aws.Context, input *CancelTransactionInput, opts ...request.Option) (*CancelTransactionOutput, error) {
+	req, out := c.CancelTransactionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCommitTransaction = "CommitTransaction"
+
+// CommitTransactionRequest generates a "aws/request.Request" representing the
+// client's request for the CommitTransaction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CommitTransaction for more information on using the CommitTransaction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CommitTransactionRequest method.
+//    req, resp := client.CommitTransactionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CommitTransaction
+func (c *LakeFormation) CommitTransactionRequest(input *CommitTransactionInput) (req *request.Request, output *CommitTransactionOutput) {
+	op := &request.Operation{
+		Name:       opCommitTransaction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CommitTransaction",
+	}
+
+	if input == nil {
+		input = &CommitTransactionInput{}
+	}
+
+	output = &CommitTransactionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CommitTransaction API operation for AWS Lake Formation.
+//
+// Attempts to commit the specified transaction. Returns an exception if the
+// transaction was previously aborted. This API action is idempotent if called
+// multiple times for the same transaction.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation CommitTransaction for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * TransactionCanceledException
+//   Contains details about an error related to a transaction that was cancelled.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CommitTransaction
+func (c *LakeFormation) CommitTransaction(input *CommitTransactionInput) (*CommitTransactionOutput, error) {
+	req, out := c.CommitTransactionRequest(input)
+	return out, req.Send()
+}
+
+// CommitTransactionWithContext is the same as CommitTransaction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CommitTransaction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) CommitTransactionWithContext(ctx aws.Context, input *CommitTransactionInput, opts ...request.Option) (*CommitTransactionOutput, error) {
+	req, out := c.CommitTransactionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateDataCellsFilter = "CreateDataCellsFilter"
+
+// CreateDataCellsFilterRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataCellsFilter operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataCellsFilter for more information on using the CreateDataCellsFilter
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDataCellsFilterRequest method.
+//    req, resp := client.CreateDataCellsFilterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateDataCellsFilter
+func (c *LakeFormation) CreateDataCellsFilterRequest(input *CreateDataCellsFilterInput) (req *request.Request, output *CreateDataCellsFilterOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataCellsFilter,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateDataCellsFilter",
+	}
+
+	if input == nil {
+		input = &CreateDataCellsFilterInput{}
+	}
+
+	output = &CreateDataCellsFilterOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateDataCellsFilter API operation for AWS Lake Formation.
+//
+// Creates a data cell filter to allow one to grant access to certain columns
+// on certain rows.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation CreateDataCellsFilter for usage and error information.
+//
+// Returned Error Types:
+//   * AlreadyExistsException
+//   A resource to be created or added already exists.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * ResourceNumberLimitExceededException
+//   A resource numerical limit was exceeded.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateDataCellsFilter
+func (c *LakeFormation) CreateDataCellsFilter(input *CreateDataCellsFilterInput) (*CreateDataCellsFilterOutput, error) {
+	req, out := c.CreateDataCellsFilterRequest(input)
+	return out, req.Send()
+}
+
+// CreateDataCellsFilterWithContext is the same as CreateDataCellsFilter with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataCellsFilter for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) CreateDataCellsFilterWithContext(ctx aws.Context, input *CreateDataCellsFilterInput, opts ...request.Option) (*CreateDataCellsFilterOutput, error) {
+	req, out := c.CreateDataCellsFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLFTag = "CreateLFTag"
 
 // CreateLFTagRequest generates a "aws/request.Request" representing the
@@ -301,7 +598,7 @@ func (c *LakeFormation) CreateLFTagRequest(input *CreateLFTagInput) (req *reques
 	op := &request.Operation{
 		Name:       opCreateLFTag,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/CreateLFTag",
 	}
 
 	if input == nil {
@@ -310,13 +607,13 @@ func (c *LakeFormation) CreateLFTagRequest(input *CreateLFTagInput) (req *reques
 
 	output = &CreateLFTagOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // CreateLFTag API operation for AWS Lake Formation.
 //
-// Creates a tag with the specified name and values.
+// Creates an LF-tag with the specified name and values.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -366,6 +663,98 @@ func (c *LakeFormation) CreateLFTagWithContext(ctx aws.Context, input *CreateLFT
 	return out, req.Send()
 }
 
+const opDeleteDataCellsFilter = "DeleteDataCellsFilter"
+
+// DeleteDataCellsFilterRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataCellsFilter operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataCellsFilter for more information on using the DeleteDataCellsFilter
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDataCellsFilterRequest method.
+//    req, resp := client.DeleteDataCellsFilterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteDataCellsFilter
+func (c *LakeFormation) DeleteDataCellsFilterRequest(input *DeleteDataCellsFilterInput) (req *request.Request, output *DeleteDataCellsFilterOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataCellsFilter,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteDataCellsFilter",
+	}
+
+	if input == nil {
+		input = &DeleteDataCellsFilterInput{}
+	}
+
+	output = &DeleteDataCellsFilterOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDataCellsFilter API operation for AWS Lake Formation.
+//
+// Deletes a data cell filter.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation DeleteDataCellsFilter for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteDataCellsFilter
+func (c *LakeFormation) DeleteDataCellsFilter(input *DeleteDataCellsFilterInput) (*DeleteDataCellsFilterOutput, error) {
+	req, out := c.DeleteDataCellsFilterRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDataCellsFilterWithContext is the same as DeleteDataCellsFilter with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataCellsFilter for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) DeleteDataCellsFilterWithContext(ctx aws.Context, input *DeleteDataCellsFilterInput, opts ...request.Option) (*DeleteDataCellsFilterOutput, error) {
+	req, out := c.DeleteDataCellsFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteLFTag = "DeleteLFTag"
 
 // DeleteLFTagRequest generates a "aws/request.Request" representing the
@@ -396,7 +785,7 @@ func (c *LakeFormation) DeleteLFTagRequest(input *DeleteLFTagInput) (req *reques
 	op := &request.Operation{
 		Name:       opDeleteLFTag,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/DeleteLFTag",
 	}
 
 	if input == nil {
@@ -405,18 +794,18 @@ func (c *LakeFormation) DeleteLFTagRequest(input *DeleteLFTagInput) (req *reques
 
 	output = &DeleteLFTagOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // DeleteLFTag API operation for AWS Lake Formation.
 //
-// Deletes the specified tag key name. If the attribute key does not exist or
-// the tag does not exist, then the operation will not do anything. If the attribute
-// key exists, then the operation checks if any resources are tagged with this
-// attribute key, if yes, the API throws a 400 Exception with the message "Delete
-// not allowed" as the tag key is still attached with resources. You can consider
-// untagging resources with this tag key.
+// Deletes the specified LF-tag key name. If the attribute key does not exist
+// or the LF-tag does not exist, then the operation will not do anything. If
+// the attribute key exists, then the operation checks if any resources are
+// tagged with this attribute key, if yes, the API throws a 400 Exception with
+// the message "Delete not allowed" as the LF-tag key is still attached with
+// resources. You can consider untagging resources with this LF-tag key.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -463,6 +852,116 @@ func (c *LakeFormation) DeleteLFTagWithContext(ctx aws.Context, input *DeleteLFT
 	return out, req.Send()
 }
 
+const opDeleteObjectsOnCancel = "DeleteObjectsOnCancel"
+
+// DeleteObjectsOnCancelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteObjectsOnCancel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteObjectsOnCancel for more information on using the DeleteObjectsOnCancel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteObjectsOnCancelRequest method.
+//    req, resp := client.DeleteObjectsOnCancelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteObjectsOnCancel
+func (c *LakeFormation) DeleteObjectsOnCancelRequest(input *DeleteObjectsOnCancelInput) (req *request.Request, output *DeleteObjectsOnCancelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteObjectsOnCancel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteObjectsOnCancel",
+	}
+
+	if input == nil {
+		input = &DeleteObjectsOnCancelInput{}
+	}
+
+	output = &DeleteObjectsOnCancelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteObjectsOnCancel API operation for AWS Lake Formation.
+//
+// For a specific governed table, provides a list of Amazon S3 objects that
+// will be written during the current transaction and that can be automatically
+// deleted if the transaction is canceled. Without this call, no Amazon S3 objects
+// are automatically deleted when a transaction cancels.
+//
+// The Glue ETL library function write_dynamic_frame.from_catalog() includes
+// an option to automatically call DeleteObjectsOnCancel before writes. For
+// more information, see Rolling Back Amazon S3 Writes (https://docs.aws.amazon.com/lake-formation/latest/dg/transactions-data-operations.html#rolling-back-writes).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation DeleteObjectsOnCancel for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * TransactionCommittedException
+//   Contains details about an error where the specified transaction has already
+//   been committed and cannot be used for UpdateTableObjects.
+//
+//   * TransactionCanceledException
+//   Contains details about an error related to a transaction that was cancelled.
+//
+//   * ResourceNotReadyException
+//   Contains details about an error related to a resource which is not ready
+//   for a transaction.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteObjectsOnCancel
+func (c *LakeFormation) DeleteObjectsOnCancel(input *DeleteObjectsOnCancelInput) (*DeleteObjectsOnCancelOutput, error) {
+	req, out := c.DeleteObjectsOnCancelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteObjectsOnCancelWithContext is the same as DeleteObjectsOnCancel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteObjectsOnCancel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) DeleteObjectsOnCancelWithContext(ctx aws.Context, input *DeleteObjectsOnCancelInput, opts ...request.Option) (*DeleteObjectsOnCancelOutput, error) {
+	req, out := c.DeleteObjectsOnCancelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeregisterResource = "DeregisterResource"
 
 // DeregisterResourceRequest generates a "aws/request.Request" representing the
@@ -493,7 +992,7 @@ func (c *LakeFormation) DeregisterResourceRequest(input *DeregisterResourceInput
 	op := &request.Operation{
 		Name:       opDeregisterResource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/DeregisterResource",
 	}
 
 	if input == nil {
@@ -502,7 +1001,7 @@ func (c *LakeFormation) DeregisterResourceRequest(input *DeregisterResourceInput
 
 	output = &DeregisterResourceOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -585,7 +1084,7 @@ func (c *LakeFormation) DescribeResourceRequest(input *DescribeResourceInput) (r
 	op := &request.Operation{
 		Name:       opDescribeResource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/DescribeResource",
 	}
 
 	if input == nil {
@@ -600,7 +1099,7 @@ func (c *LakeFormation) DescribeResourceRequest(input *DescribeResourceInput) (r
 // DescribeResource API operation for AWS Lake Formation.
 //
 // Retrieves the current data access role for the given resource registered
-// in AWS Lake Formation.
+// in Lake Formation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -644,6 +1143,198 @@ func (c *LakeFormation) DescribeResourceWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+const opDescribeTransaction = "DescribeTransaction"
+
+// DescribeTransactionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeTransaction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeTransaction for more information on using the DescribeTransaction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeTransactionRequest method.
+//    req, resp := client.DescribeTransactionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DescribeTransaction
+func (c *LakeFormation) DescribeTransactionRequest(input *DescribeTransactionInput) (req *request.Request, output *DescribeTransactionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeTransaction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DescribeTransaction",
+	}
+
+	if input == nil {
+		input = &DescribeTransactionInput{}
+	}
+
+	output = &DescribeTransactionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeTransaction API operation for AWS Lake Formation.
+//
+// Returns the details of a single transaction.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation DescribeTransaction for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DescribeTransaction
+func (c *LakeFormation) DescribeTransaction(input *DescribeTransactionInput) (*DescribeTransactionOutput, error) {
+	req, out := c.DescribeTransactionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeTransactionWithContext is the same as DescribeTransaction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeTransaction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) DescribeTransactionWithContext(ctx aws.Context, input *DescribeTransactionInput, opts ...request.Option) (*DescribeTransactionOutput, error) {
+	req, out := c.DescribeTransactionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opExtendTransaction = "ExtendTransaction"
+
+// ExtendTransactionRequest generates a "aws/request.Request" representing the
+// client's request for the ExtendTransaction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExtendTransaction for more information on using the ExtendTransaction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ExtendTransactionRequest method.
+//    req, resp := client.ExtendTransactionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ExtendTransaction
+func (c *LakeFormation) ExtendTransactionRequest(input *ExtendTransactionInput) (req *request.Request, output *ExtendTransactionOutput) {
+	op := &request.Operation{
+		Name:       opExtendTransaction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ExtendTransaction",
+	}
+
+	if input == nil {
+		input = &ExtendTransactionInput{}
+	}
+
+	output = &ExtendTransactionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ExtendTransaction API operation for AWS Lake Formation.
+//
+// Indicates to the service that the specified transaction is still active and
+// should not be treated as idle and aborted.
+//
+// Write transactions that remain idle for a long period are automatically aborted
+// unless explicitly extended.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation ExtendTransaction for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * TransactionCommittedException
+//   Contains details about an error where the specified transaction has already
+//   been committed and cannot be used for UpdateTableObjects.
+//
+//   * TransactionCanceledException
+//   Contains details about an error related to a transaction that was cancelled.
+//
+//   * TransactionCommitInProgressException
+//   Contains details about an error related to a transaction commit that was
+//   in progress.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ExtendTransaction
+func (c *LakeFormation) ExtendTransaction(input *ExtendTransactionInput) (*ExtendTransactionOutput, error) {
+	req, out := c.ExtendTransactionRequest(input)
+	return out, req.Send()
+}
+
+// ExtendTransactionWithContext is the same as ExtendTransaction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExtendTransaction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ExtendTransactionWithContext(ctx aws.Context, input *ExtendTransactionInput, opts ...request.Option) (*ExtendTransactionOutput, error) {
+	req, out := c.ExtendTransactionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetDataLakeSettings = "GetDataLakeSettings"
 
 // GetDataLakeSettingsRequest generates a "aws/request.Request" representing the
@@ -674,7 +1365,7 @@ func (c *LakeFormation) GetDataLakeSettingsRequest(input *GetDataLakeSettingsInp
 	op := &request.Operation{
 		Name:       opGetDataLakeSettings,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/GetDataLakeSettings",
 	}
 
 	if input == nil {
@@ -760,7 +1451,7 @@ func (c *LakeFormation) GetEffectivePermissionsForPathRequest(input *GetEffectiv
 	op := &request.Operation{
 		Name:       opGetEffectivePermissionsForPath,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/GetEffectivePermissionsForPath",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -908,7 +1599,7 @@ func (c *LakeFormation) GetLFTagRequest(input *GetLFTagInput) (req *request.Requ
 	op := &request.Operation{
 		Name:       opGetLFTag,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/GetLFTag",
 	}
 
 	if input == nil {
@@ -922,7 +1613,7 @@ func (c *LakeFormation) GetLFTagRequest(input *GetLFTagInput) (req *request.Requ
 
 // GetLFTag API operation for AWS Lake Formation.
 //
-// Returns a tag definition.
+// Returns an LF-tag definition.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -969,6 +1660,192 @@ func (c *LakeFormation) GetLFTagWithContext(ctx aws.Context, input *GetLFTagInpu
 	return out, req.Send()
 }
 
+const opGetQueryState = "GetQueryState"
+
+// GetQueryStateRequest generates a "aws/request.Request" representing the
+// client's request for the GetQueryState operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetQueryState for more information on using the GetQueryState
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetQueryStateRequest method.
+//    req, resp := client.GetQueryStateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetQueryState
+func (c *LakeFormation) GetQueryStateRequest(input *GetQueryStateInput) (req *request.Request, output *GetQueryStateOutput) {
+	op := &request.Operation{
+		Name:       opGetQueryState,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetQueryState",
+	}
+
+	if input == nil {
+		input = &GetQueryStateInput{}
+	}
+
+	output = &GetQueryStateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("query-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetQueryState API operation for AWS Lake Formation.
+//
+// Returns the state of a query previously submitted. Clients are expected to
+// poll GetQueryState to monitor the current state of the planning before retrieving
+// the work units. A query state is only visible to the principal that made
+// the initial call to StartQueryPlanning.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetQueryState for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetQueryState
+func (c *LakeFormation) GetQueryState(input *GetQueryStateInput) (*GetQueryStateOutput, error) {
+	req, out := c.GetQueryStateRequest(input)
+	return out, req.Send()
+}
+
+// GetQueryStateWithContext is the same as GetQueryState with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetQueryState for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetQueryStateWithContext(ctx aws.Context, input *GetQueryStateInput, opts ...request.Option) (*GetQueryStateOutput, error) {
+	req, out := c.GetQueryStateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetQueryStatistics = "GetQueryStatistics"
+
+// GetQueryStatisticsRequest generates a "aws/request.Request" representing the
+// client's request for the GetQueryStatistics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetQueryStatistics for more information on using the GetQueryStatistics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetQueryStatisticsRequest method.
+//    req, resp := client.GetQueryStatisticsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetQueryStatistics
+func (c *LakeFormation) GetQueryStatisticsRequest(input *GetQueryStatisticsInput) (req *request.Request, output *GetQueryStatisticsOutput) {
+	op := &request.Operation{
+		Name:       opGetQueryStatistics,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetQueryStatistics",
+	}
+
+	if input == nil {
+		input = &GetQueryStatisticsInput{}
+	}
+
+	output = &GetQueryStatisticsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("query-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetQueryStatistics API operation for AWS Lake Formation.
+//
+// Retrieves statistics on the planning and execution of a query.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetQueryStatistics for usage and error information.
+//
+// Returned Error Types:
+//   * StatisticsNotReadyYetException
+//   Contains details about an error related to statistics not being ready.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * ExpiredException
+//   Contains details about an error where the query request expired.
+//
+//   * ThrottledException
+//   Contains details about an error where the query request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetQueryStatistics
+func (c *LakeFormation) GetQueryStatistics(input *GetQueryStatisticsInput) (*GetQueryStatisticsOutput, error) {
+	req, out := c.GetQueryStatisticsRequest(input)
+	return out, req.Send()
+}
+
+// GetQueryStatisticsWithContext is the same as GetQueryStatistics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetQueryStatistics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetQueryStatisticsWithContext(ctx aws.Context, input *GetQueryStatisticsInput, opts ...request.Option) (*GetQueryStatisticsOutput, error) {
+	req, out := c.GetQueryStatisticsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetResourceLFTags = "GetResourceLFTags"
 
 // GetResourceLFTagsRequest generates a "aws/request.Request" representing the
@@ -999,7 +1876,7 @@ func (c *LakeFormation) GetResourceLFTagsRequest(input *GetResourceLFTagsInput) 
 	op := &request.Operation{
 		Name:       opGetResourceLFTags,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/GetResourceLFTags",
 	}
 
 	if input == nil {
@@ -1013,7 +1890,7 @@ func (c *LakeFormation) GetResourceLFTagsRequest(input *GetResourceLFTagsInput) 
 
 // GetResourceLFTags API operation for AWS Lake Formation.
 //
-// Returns the tags applied to a resource.
+// Returns the LF-tags applied to a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1063,6 +1940,409 @@ func (c *LakeFormation) GetResourceLFTagsWithContext(ctx aws.Context, input *Get
 	return out, req.Send()
 }
 
+const opGetTableObjects = "GetTableObjects"
+
+// GetTableObjectsRequest generates a "aws/request.Request" representing the
+// client's request for the GetTableObjects operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetTableObjects for more information on using the GetTableObjects
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetTableObjectsRequest method.
+//    req, resp := client.GetTableObjectsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetTableObjects
+func (c *LakeFormation) GetTableObjectsRequest(input *GetTableObjectsInput) (req *request.Request, output *GetTableObjectsOutput) {
+	op := &request.Operation{
+		Name:       opGetTableObjects,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetTableObjects",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetTableObjectsInput{}
+	}
+
+	output = &GetTableObjectsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetTableObjects API operation for AWS Lake Formation.
+//
+// Returns the set of Amazon S3 objects that make up the specified governed
+// table. A transaction ID or timestamp can be specified for time-travel queries.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetTableObjects for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * TransactionCommittedException
+//   Contains details about an error where the specified transaction has already
+//   been committed and cannot be used for UpdateTableObjects.
+//
+//   * TransactionCanceledException
+//   Contains details about an error related to a transaction that was cancelled.
+//
+//   * ResourceNotReadyException
+//   Contains details about an error related to a resource which is not ready
+//   for a transaction.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetTableObjects
+func (c *LakeFormation) GetTableObjects(input *GetTableObjectsInput) (*GetTableObjectsOutput, error) {
+	req, out := c.GetTableObjectsRequest(input)
+	return out, req.Send()
+}
+
+// GetTableObjectsWithContext is the same as GetTableObjects with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetTableObjects for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetTableObjectsWithContext(ctx aws.Context, input *GetTableObjectsInput, opts ...request.Option) (*GetTableObjectsOutput, error) {
+	req, out := c.GetTableObjectsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetTableObjectsPages iterates over the pages of a GetTableObjects operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetTableObjects method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetTableObjects operation.
+//    pageNum := 0
+//    err := client.GetTableObjectsPages(params,
+//        func(page *lakeformation.GetTableObjectsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LakeFormation) GetTableObjectsPages(input *GetTableObjectsInput, fn func(*GetTableObjectsOutput, bool) bool) error {
+	return c.GetTableObjectsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetTableObjectsPagesWithContext same as GetTableObjectsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetTableObjectsPagesWithContext(ctx aws.Context, input *GetTableObjectsInput, fn func(*GetTableObjectsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetTableObjectsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetTableObjectsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetTableObjectsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetWorkUnitResults = "GetWorkUnitResults"
+
+// GetWorkUnitResultsRequest generates a "aws/request.Request" representing the
+// client's request for the GetWorkUnitResults operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetWorkUnitResults for more information on using the GetWorkUnitResults
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetWorkUnitResultsRequest method.
+//    req, resp := client.GetWorkUnitResultsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetWorkUnitResults
+func (c *LakeFormation) GetWorkUnitResultsRequest(input *GetWorkUnitResultsInput) (req *request.Request, output *GetWorkUnitResultsOutput) {
+	op := &request.Operation{
+		Name:       opGetWorkUnitResults,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetWorkUnitResults",
+	}
+
+	if input == nil {
+		input = &GetWorkUnitResultsInput{}
+	}
+
+	output = &GetWorkUnitResultsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetWorkUnitResults API operation for AWS Lake Formation.
+//
+// Returns the work units resulting from the query. Work units can be executed
+// in any order and in parallel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetWorkUnitResults for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * ExpiredException
+//   Contains details about an error where the query request expired.
+//
+//   * ThrottledException
+//   Contains details about an error where the query request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetWorkUnitResults
+func (c *LakeFormation) GetWorkUnitResults(input *GetWorkUnitResultsInput) (*GetWorkUnitResultsOutput, error) {
+	req, out := c.GetWorkUnitResultsRequest(input)
+	return out, req.Send()
+}
+
+// GetWorkUnitResultsWithContext is the same as GetWorkUnitResults with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetWorkUnitResults for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetWorkUnitResultsWithContext(ctx aws.Context, input *GetWorkUnitResultsInput, opts ...request.Option) (*GetWorkUnitResultsOutput, error) {
+	req, out := c.GetWorkUnitResultsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetWorkUnits = "GetWorkUnits"
+
+// GetWorkUnitsRequest generates a "aws/request.Request" representing the
+// client's request for the GetWorkUnits operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetWorkUnits for more information on using the GetWorkUnits
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetWorkUnitsRequest method.
+//    req, resp := client.GetWorkUnitsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetWorkUnits
+func (c *LakeFormation) GetWorkUnitsRequest(input *GetWorkUnitsInput) (req *request.Request, output *GetWorkUnitsOutput) {
+	op := &request.Operation{
+		Name:       opGetWorkUnits,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetWorkUnits",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetWorkUnitsInput{}
+	}
+
+	output = &GetWorkUnitsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("query-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetWorkUnits API operation for AWS Lake Formation.
+//
+// Retrieves the work units generated by the StartQueryPlanning operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetWorkUnits for usage and error information.
+//
+// Returned Error Types:
+//   * WorkUnitsNotReadyYetException
+//   Contains details about an error related to work units not being ready.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * ExpiredException
+//   Contains details about an error where the query request expired.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetWorkUnits
+func (c *LakeFormation) GetWorkUnits(input *GetWorkUnitsInput) (*GetWorkUnitsOutput, error) {
+	req, out := c.GetWorkUnitsRequest(input)
+	return out, req.Send()
+}
+
+// GetWorkUnitsWithContext is the same as GetWorkUnits with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetWorkUnits for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetWorkUnitsWithContext(ctx aws.Context, input *GetWorkUnitsInput, opts ...request.Option) (*GetWorkUnitsOutput, error) {
+	req, out := c.GetWorkUnitsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetWorkUnitsPages iterates over the pages of a GetWorkUnits operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetWorkUnits method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetWorkUnits operation.
+//    pageNum := 0
+//    err := client.GetWorkUnitsPages(params,
+//        func(page *lakeformation.GetWorkUnitsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LakeFormation) GetWorkUnitsPages(input *GetWorkUnitsInput, fn func(*GetWorkUnitsOutput, bool) bool) error {
+	return c.GetWorkUnitsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetWorkUnitsPagesWithContext same as GetWorkUnitsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetWorkUnitsPagesWithContext(ctx aws.Context, input *GetWorkUnitsInput, fn func(*GetWorkUnitsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetWorkUnitsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetWorkUnitsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetWorkUnitsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGrantPermissions = "GrantPermissions"
 
 // GrantPermissionsRequest generates a "aws/request.Request" representing the
@@ -1093,7 +2373,7 @@ func (c *LakeFormation) GrantPermissionsRequest(input *GrantPermissionsInput) (r
 	op := &request.Operation{
 		Name:       opGrantPermissions,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/GrantPermissions",
 	}
 
 	if input == nil {
@@ -1102,7 +2382,7 @@ func (c *LakeFormation) GrantPermissionsRequest(input *GrantPermissionsInput) (r
 
 	output = &GrantPermissionsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1153,6 +2433,152 @@ func (c *LakeFormation) GrantPermissionsWithContext(ctx aws.Context, input *Gran
 	return out, req.Send()
 }
 
+const opListDataCellsFilter = "ListDataCellsFilter"
+
+// ListDataCellsFilterRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataCellsFilter operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataCellsFilter for more information on using the ListDataCellsFilter
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDataCellsFilterRequest method.
+//    req, resp := client.ListDataCellsFilterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListDataCellsFilter
+func (c *LakeFormation) ListDataCellsFilterRequest(input *ListDataCellsFilterInput) (req *request.Request, output *ListDataCellsFilterOutput) {
+	op := &request.Operation{
+		Name:       opListDataCellsFilter,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListDataCellsFilter",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDataCellsFilterInput{}
+	}
+
+	output = &ListDataCellsFilterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataCellsFilter API operation for AWS Lake Formation.
+//
+// Lists all the data cell filters on a table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation ListDataCellsFilter for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListDataCellsFilter
+func (c *LakeFormation) ListDataCellsFilter(input *ListDataCellsFilterInput) (*ListDataCellsFilterOutput, error) {
+	req, out := c.ListDataCellsFilterRequest(input)
+	return out, req.Send()
+}
+
+// ListDataCellsFilterWithContext is the same as ListDataCellsFilter with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataCellsFilter for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListDataCellsFilterWithContext(ctx aws.Context, input *ListDataCellsFilterInput, opts ...request.Option) (*ListDataCellsFilterOutput, error) {
+	req, out := c.ListDataCellsFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDataCellsFilterPages iterates over the pages of a ListDataCellsFilter operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDataCellsFilter method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDataCellsFilter operation.
+//    pageNum := 0
+//    err := client.ListDataCellsFilterPages(params,
+//        func(page *lakeformation.ListDataCellsFilterOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LakeFormation) ListDataCellsFilterPages(input *ListDataCellsFilterInput, fn func(*ListDataCellsFilterOutput, bool) bool) error {
+	return c.ListDataCellsFilterPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDataCellsFilterPagesWithContext same as ListDataCellsFilterPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListDataCellsFilterPagesWithContext(ctx aws.Context, input *ListDataCellsFilterInput, fn func(*ListDataCellsFilterOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDataCellsFilterInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDataCellsFilterRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDataCellsFilterOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListLFTags = "ListLFTags"
 
 // ListLFTagsRequest generates a "aws/request.Request" representing the
@@ -1183,7 +2609,13 @@ func (c *LakeFormation) ListLFTagsRequest(input *ListLFTagsInput) (req *request.
 	op := &request.Operation{
 		Name:       opListLFTags,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/ListLFTags",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1197,7 +2629,7 @@ func (c *LakeFormation) ListLFTagsRequest(input *ListLFTagsInput) (req *request.
 
 // ListLFTags API operation for AWS Lake Formation.
 //
-// Lists tags that the requester has permission to view.
+// Lists LF-tags that the requester has permission to view.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1219,6 +2651,9 @@ func (c *LakeFormation) ListLFTagsRequest(input *ListLFTagsInput) (req *request.
 //   * OperationTimeoutException
 //   The operation timed out.
 //
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListLFTags
 func (c *LakeFormation) ListLFTags(input *ListLFTagsInput) (*ListLFTagsOutput, error) {
 	req, out := c.ListLFTagsRequest(input)
@@ -1239,6 +2674,58 @@ func (c *LakeFormation) ListLFTagsWithContext(ctx aws.Context, input *ListLFTags
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListLFTagsPages iterates over the pages of a ListLFTags operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLFTags method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListLFTags operation.
+//    pageNum := 0
+//    err := client.ListLFTagsPages(params,
+//        func(page *lakeformation.ListLFTagsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LakeFormation) ListLFTagsPages(input *ListLFTagsInput, fn func(*ListLFTagsOutput, bool) bool) error {
+	return c.ListLFTagsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLFTagsPagesWithContext same as ListLFTagsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListLFTagsPagesWithContext(ctx aws.Context, input *ListLFTagsInput, fn func(*ListLFTagsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLFTagsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLFTagsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLFTagsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListPermissions = "ListPermissions"
@@ -1271,7 +2758,7 @@ func (c *LakeFormation) ListPermissionsRequest(input *ListPermissionsInput) (req
 	op := &request.Operation{
 		Name:       opListPermissions,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/ListPermissions",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -1421,7 +2908,7 @@ func (c *LakeFormation) ListResourcesRequest(input *ListResourcesInput) (req *re
 	op := &request.Operation{
 		Name:       opListResources,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/ListResources",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -1534,6 +3021,301 @@ func (c *LakeFormation) ListResourcesPagesWithContext(ctx aws.Context, input *Li
 	return p.Err()
 }
 
+const opListTableStorageOptimizers = "ListTableStorageOptimizers"
+
+// ListTableStorageOptimizersRequest generates a "aws/request.Request" representing the
+// client's request for the ListTableStorageOptimizers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTableStorageOptimizers for more information on using the ListTableStorageOptimizers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTableStorageOptimizersRequest method.
+//    req, resp := client.ListTableStorageOptimizersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListTableStorageOptimizers
+func (c *LakeFormation) ListTableStorageOptimizersRequest(input *ListTableStorageOptimizersInput) (req *request.Request, output *ListTableStorageOptimizersOutput) {
+	op := &request.Operation{
+		Name:       opListTableStorageOptimizers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListTableStorageOptimizers",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTableStorageOptimizersInput{}
+	}
+
+	output = &ListTableStorageOptimizersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTableStorageOptimizers API operation for AWS Lake Formation.
+//
+// Returns the configuration of all storage optimizers associated with a specified
+// table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation ListTableStorageOptimizers for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListTableStorageOptimizers
+func (c *LakeFormation) ListTableStorageOptimizers(input *ListTableStorageOptimizersInput) (*ListTableStorageOptimizersOutput, error) {
+	req, out := c.ListTableStorageOptimizersRequest(input)
+	return out, req.Send()
+}
+
+// ListTableStorageOptimizersWithContext is the same as ListTableStorageOptimizers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTableStorageOptimizers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListTableStorageOptimizersWithContext(ctx aws.Context, input *ListTableStorageOptimizersInput, opts ...request.Option) (*ListTableStorageOptimizersOutput, error) {
+	req, out := c.ListTableStorageOptimizersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTableStorageOptimizersPages iterates over the pages of a ListTableStorageOptimizers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTableStorageOptimizers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTableStorageOptimizers operation.
+//    pageNum := 0
+//    err := client.ListTableStorageOptimizersPages(params,
+//        func(page *lakeformation.ListTableStorageOptimizersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LakeFormation) ListTableStorageOptimizersPages(input *ListTableStorageOptimizersInput, fn func(*ListTableStorageOptimizersOutput, bool) bool) error {
+	return c.ListTableStorageOptimizersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTableStorageOptimizersPagesWithContext same as ListTableStorageOptimizersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListTableStorageOptimizersPagesWithContext(ctx aws.Context, input *ListTableStorageOptimizersInput, fn func(*ListTableStorageOptimizersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTableStorageOptimizersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTableStorageOptimizersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTableStorageOptimizersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTransactions = "ListTransactions"
+
+// ListTransactionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListTransactions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTransactions for more information on using the ListTransactions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTransactionsRequest method.
+//    req, resp := client.ListTransactionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListTransactions
+func (c *LakeFormation) ListTransactionsRequest(input *ListTransactionsInput) (req *request.Request, output *ListTransactionsOutput) {
+	op := &request.Operation{
+		Name:       opListTransactions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListTransactions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListTransactionsInput{}
+	}
+
+	output = &ListTransactionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTransactions API operation for AWS Lake Formation.
+//
+// Returns metadata about transactions and their status. To prevent the response
+// from growing indefinitely, only uncommitted transactions and those available
+// for time-travel queries are returned.
+//
+// This operation can help you identify uncommitted transactions or to get information
+// about transactions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation ListTransactions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListTransactions
+func (c *LakeFormation) ListTransactions(input *ListTransactionsInput) (*ListTransactionsOutput, error) {
+	req, out := c.ListTransactionsRequest(input)
+	return out, req.Send()
+}
+
+// ListTransactionsWithContext is the same as ListTransactions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTransactions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListTransactionsWithContext(ctx aws.Context, input *ListTransactionsInput, opts ...request.Option) (*ListTransactionsOutput, error) {
+	req, out := c.ListTransactionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListTransactionsPages iterates over the pages of a ListTransactions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTransactions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTransactions operation.
+//    pageNum := 0
+//    err := client.ListTransactionsPages(params,
+//        func(page *lakeformation.ListTransactionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LakeFormation) ListTransactionsPages(input *ListTransactionsInput, fn func(*ListTransactionsOutput, bool) bool) error {
+	return c.ListTransactionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTransactionsPagesWithContext same as ListTransactionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListTransactionsPagesWithContext(ctx aws.Context, input *ListTransactionsInput, fn func(*ListTransactionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTransactionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTransactionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTransactionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opPutDataLakeSettings = "PutDataLakeSettings"
 
 // PutDataLakeSettingsRequest generates a "aws/request.Request" representing the
@@ -1564,7 +3346,7 @@ func (c *LakeFormation) PutDataLakeSettingsRequest(input *PutDataLakeSettingsInp
 	op := &request.Operation{
 		Name:       opPutDataLakeSettings,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/PutDataLakeSettings",
 	}
 
 	if input == nil {
@@ -1573,7 +3355,7 @@ func (c *LakeFormation) PutDataLakeSettingsRequest(input *PutDataLakeSettingsInp
 
 	output = &PutDataLakeSettingsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1653,7 +3435,7 @@ func (c *LakeFormation) RegisterResourceRequest(input *RegisterResourceInput) (r
 	op := &request.Operation{
 		Name:       opRegisterResource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/RegisterResource",
 	}
 
 	if input == nil {
@@ -1662,7 +3444,7 @@ func (c *LakeFormation) RegisterResourceRequest(input *RegisterResourceInput) (r
 
 	output = &RegisterResourceOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1679,8 +3461,8 @@ func (c *LakeFormation) RegisterResourceRequest(input *RegisterResourceInput) (r
 // you register subsequent paths, Lake Formation adds the path to the existing
 // policy.
 //
-// The following request registers a new location and gives AWS Lake Formation
-// permission to use the service-linked role to access that location.
+// The following request registers a new location and gives Lake Formation permission
+// to use the service-linked role to access that location.
 //
 // ResourceArn = arn:aws:s3:::my-bucket UseServiceLinkedRole = true
 //
@@ -1707,6 +3489,15 @@ func (c *LakeFormation) RegisterResourceRequest(input *RegisterResourceInput) (r
 //
 //   * AlreadyExistsException
 //   A resource to be created or added already exists.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * ResourceNumberLimitExceededException
+//   A resource numerical limit was exceeded.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/RegisterResource
 func (c *LakeFormation) RegisterResource(input *RegisterResourceInput) (*RegisterResourceOutput, error) {
@@ -1760,7 +3551,7 @@ func (c *LakeFormation) RemoveLFTagsFromResourceRequest(input *RemoveLFTagsFromR
 	op := &request.Operation{
 		Name:       opRemoveLFTagsFromResource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/RemoveLFTagsFromResource",
 	}
 
 	if input == nil {
@@ -1774,7 +3565,7 @@ func (c *LakeFormation) RemoveLFTagsFromResourceRequest(input *RemoveLFTagsFromR
 
 // RemoveLFTagsFromResource API operation for AWS Lake Formation.
 //
-// Removes a tag from the resource. Only database, table, or tableWithColumns
+// Removes an LF-tag from the resource. Only database, table, or tableWithColumns
 // resource are allowed. To tag columns, use the column inclusion list in tableWithColumns
 // to specify column input.
 //
@@ -1859,7 +3650,7 @@ func (c *LakeFormation) RevokePermissionsRequest(input *RevokePermissionsInput) 
 	op := &request.Operation{
 		Name:       opRevokePermissions,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/RevokePermissions",
 	}
 
 	if input == nil {
@@ -1868,7 +3659,7 @@ func (c *LakeFormation) RevokePermissionsRequest(input *RevokePermissionsInput) 
 
 	output = &RevokePermissionsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -1946,7 +3737,13 @@ func (c *LakeFormation) SearchDatabasesByLFTagsRequest(input *SearchDatabasesByL
 	op := &request.Operation{
 		Name:       opSearchDatabasesByLFTags,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/SearchDatabasesByLFTags",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2014,6 +3811,58 @@ func (c *LakeFormation) SearchDatabasesByLFTagsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+// SearchDatabasesByLFTagsPages iterates over the pages of a SearchDatabasesByLFTags operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchDatabasesByLFTags method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchDatabasesByLFTags operation.
+//    pageNum := 0
+//    err := client.SearchDatabasesByLFTagsPages(params,
+//        func(page *lakeformation.SearchDatabasesByLFTagsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LakeFormation) SearchDatabasesByLFTagsPages(input *SearchDatabasesByLFTagsInput, fn func(*SearchDatabasesByLFTagsOutput, bool) bool) error {
+	return c.SearchDatabasesByLFTagsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchDatabasesByLFTagsPagesWithContext same as SearchDatabasesByLFTagsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) SearchDatabasesByLFTagsPagesWithContext(ctx aws.Context, input *SearchDatabasesByLFTagsInput, fn func(*SearchDatabasesByLFTagsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchDatabasesByLFTagsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchDatabasesByLFTagsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchDatabasesByLFTagsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opSearchTablesByLFTags = "SearchTablesByLFTags"
 
 // SearchTablesByLFTagsRequest generates a "aws/request.Request" representing the
@@ -2044,7 +3893,13 @@ func (c *LakeFormation) SearchTablesByLFTagsRequest(input *SearchTablesByLFTagsI
 	op := &request.Operation{
 		Name:       opSearchTablesByLFTags,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/SearchTablesByLFTags",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2059,7 +3914,7 @@ func (c *LakeFormation) SearchTablesByLFTagsRequest(input *SearchTablesByLFTagsI
 // SearchTablesByLFTags API operation for AWS Lake Formation.
 //
 // This operation allows a search on TABLE resources by LFTags. This will be
-// used by admins who want to grant user permissions on certain LFTags. Before
+// used by admins who want to grant user permissions on certain LF-tags. Before
 // making a grant, the admin can use SearchTablesByLFTags to find all resources
 // where the given LFTags are valid to verify whether the returned resources
 // can be shared.
@@ -2112,6 +3967,234 @@ func (c *LakeFormation) SearchTablesByLFTagsWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// SearchTablesByLFTagsPages iterates over the pages of a SearchTablesByLFTags operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchTablesByLFTags method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchTablesByLFTags operation.
+//    pageNum := 0
+//    err := client.SearchTablesByLFTagsPages(params,
+//        func(page *lakeformation.SearchTablesByLFTagsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LakeFormation) SearchTablesByLFTagsPages(input *SearchTablesByLFTagsInput, fn func(*SearchTablesByLFTagsOutput, bool) bool) error {
+	return c.SearchTablesByLFTagsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchTablesByLFTagsPagesWithContext same as SearchTablesByLFTagsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) SearchTablesByLFTagsPagesWithContext(ctx aws.Context, input *SearchTablesByLFTagsInput, fn func(*SearchTablesByLFTagsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchTablesByLFTagsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchTablesByLFTagsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchTablesByLFTagsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opStartQueryPlanning = "StartQueryPlanning"
+
+// StartQueryPlanningRequest generates a "aws/request.Request" representing the
+// client's request for the StartQueryPlanning operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartQueryPlanning for more information on using the StartQueryPlanning
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartQueryPlanningRequest method.
+//    req, resp := client.StartQueryPlanningRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/StartQueryPlanning
+func (c *LakeFormation) StartQueryPlanningRequest(input *StartQueryPlanningInput) (req *request.Request, output *StartQueryPlanningOutput) {
+	op := &request.Operation{
+		Name:       opStartQueryPlanning,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartQueryPlanning",
+	}
+
+	if input == nil {
+		input = &StartQueryPlanningInput{}
+	}
+
+	output = &StartQueryPlanningOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("query-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// StartQueryPlanning API operation for AWS Lake Formation.
+//
+// Submits a request to process a query statement.
+//
+// This operation generates work units that can be retrieved with the GetWorkUnits
+// operation as soon as the query state is WORKUNITS_AVAILABLE or FINISHED.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation StartQueryPlanning for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * ThrottledException
+//   Contains details about an error where the query request was throttled.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/StartQueryPlanning
+func (c *LakeFormation) StartQueryPlanning(input *StartQueryPlanningInput) (*StartQueryPlanningOutput, error) {
+	req, out := c.StartQueryPlanningRequest(input)
+	return out, req.Send()
+}
+
+// StartQueryPlanningWithContext is the same as StartQueryPlanning with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartQueryPlanning for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) StartQueryPlanningWithContext(ctx aws.Context, input *StartQueryPlanningInput, opts ...request.Option) (*StartQueryPlanningOutput, error) {
+	req, out := c.StartQueryPlanningRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartTransaction = "StartTransaction"
+
+// StartTransactionRequest generates a "aws/request.Request" representing the
+// client's request for the StartTransaction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartTransaction for more information on using the StartTransaction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartTransactionRequest method.
+//    req, resp := client.StartTransactionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/StartTransaction
+func (c *LakeFormation) StartTransactionRequest(input *StartTransactionInput) (req *request.Request, output *StartTransactionOutput) {
+	op := &request.Operation{
+		Name:       opStartTransaction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/StartTransaction",
+	}
+
+	if input == nil {
+		input = &StartTransactionInput{}
+	}
+
+	output = &StartTransactionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartTransaction API operation for AWS Lake Formation.
+//
+// Starts a new transaction and returns its transaction ID. Transaction IDs
+// are opaque objects that you can use to identify a transaction.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation StartTransaction for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/StartTransaction
+func (c *LakeFormation) StartTransaction(input *StartTransactionInput) (*StartTransactionOutput, error) {
+	req, out := c.StartTransactionRequest(input)
+	return out, req.Send()
+}
+
+// StartTransactionWithContext is the same as StartTransaction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartTransaction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) StartTransactionWithContext(ctx aws.Context, input *StartTransactionInput, opts ...request.Option) (*StartTransactionOutput, error) {
+	req, out := c.StartTransactionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateLFTag = "UpdateLFTag"
 
 // UpdateLFTagRequest generates a "aws/request.Request" representing the
@@ -2142,7 +4225,7 @@ func (c *LakeFormation) UpdateLFTagRequest(input *UpdateLFTagInput) (req *reques
 	op := &request.Operation{
 		Name:       opUpdateLFTag,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/UpdateLFTag",
 	}
 
 	if input == nil {
@@ -2151,18 +4234,18 @@ func (c *LakeFormation) UpdateLFTagRequest(input *UpdateLFTagInput) (req *reques
 
 	output = &UpdateLFTagOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // UpdateLFTag API operation for AWS Lake Formation.
 //
-// Updates the list of possible values for the specified tag key. If the tag
-// does not exist, the operation throws an EntityNotFoundException. The values
-// in the delete key values will be deleted from list of possible values. If
-// any value in the delete key values is attached to a resource, then API errors
-// out with a 400 Exception - "Update not allowed". Untag the attribute before
-// deleting the tag key's value.
+// Updates the list of possible values for the specified LF-tag key. If the
+// LF-tag does not exist, the operation throws an EntityNotFoundException. The
+// values in the delete key values will be deleted from list of possible values.
+// If any value in the delete key values is attached to a resource, then API
+// errors out with a 400 Exception - "Update not allowed". Untag the attribute
+// before deleting the LF-tag key's value.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2242,7 +4325,7 @@ func (c *LakeFormation) UpdateResourceRequest(input *UpdateResourceInput) (req *
 	op := &request.Operation{
 		Name:       opUpdateResource,
 		HTTPMethod: "POST",
-		HTTPPath:   "/",
+		HTTPPath:   "/UpdateResource",
 	}
 
 	if input == nil {
@@ -2251,14 +4334,14 @@ func (c *LakeFormation) UpdateResourceRequest(input *UpdateResourceInput) (req *
 
 	output = &UpdateResourceOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
 // UpdateResource API operation for AWS Lake Formation.
 //
 // Updates the data access role used for vending access to the given (registered)
-// resource in AWS Lake Formation.
+// resource in Lake Formation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2297,6 +4380,202 @@ func (c *LakeFormation) UpdateResource(input *UpdateResourceInput) (*UpdateResou
 // for more information on using Contexts.
 func (c *LakeFormation) UpdateResourceWithContext(ctx aws.Context, input *UpdateResourceInput, opts ...request.Option) (*UpdateResourceOutput, error) {
 	req, out := c.UpdateResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateTableObjects = "UpdateTableObjects"
+
+// UpdateTableObjectsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTableObjects operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTableObjects for more information on using the UpdateTableObjects
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateTableObjectsRequest method.
+//    req, resp := client.UpdateTableObjectsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/UpdateTableObjects
+func (c *LakeFormation) UpdateTableObjectsRequest(input *UpdateTableObjectsInput) (req *request.Request, output *UpdateTableObjectsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTableObjects,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdateTableObjects",
+	}
+
+	if input == nil {
+		input = &UpdateTableObjectsInput{}
+	}
+
+	output = &UpdateTableObjectsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateTableObjects API operation for AWS Lake Formation.
+//
+// Updates the manifest of Amazon S3 objects that make up the specified governed
+// table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation UpdateTableObjects for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * TransactionCommittedException
+//   Contains details about an error where the specified transaction has already
+//   been committed and cannot be used for UpdateTableObjects.
+//
+//   * TransactionCanceledException
+//   Contains details about an error related to a transaction that was cancelled.
+//
+//   * TransactionCommitInProgressException
+//   Contains details about an error related to a transaction commit that was
+//   in progress.
+//
+//   * ResourceNotReadyException
+//   Contains details about an error related to a resource which is not ready
+//   for a transaction.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/UpdateTableObjects
+func (c *LakeFormation) UpdateTableObjects(input *UpdateTableObjectsInput) (*UpdateTableObjectsOutput, error) {
+	req, out := c.UpdateTableObjectsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTableObjectsWithContext is the same as UpdateTableObjects with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTableObjects for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) UpdateTableObjectsWithContext(ctx aws.Context, input *UpdateTableObjectsInput, opts ...request.Option) (*UpdateTableObjectsOutput, error) {
+	req, out := c.UpdateTableObjectsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateTableStorageOptimizer = "UpdateTableStorageOptimizer"
+
+// UpdateTableStorageOptimizerRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTableStorageOptimizer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTableStorageOptimizer for more information on using the UpdateTableStorageOptimizer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateTableStorageOptimizerRequest method.
+//    req, resp := client.UpdateTableStorageOptimizerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/UpdateTableStorageOptimizer
+func (c *LakeFormation) UpdateTableStorageOptimizerRequest(input *UpdateTableStorageOptimizerInput) (req *request.Request, output *UpdateTableStorageOptimizerOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTableStorageOptimizer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/UpdateTableStorageOptimizer",
+	}
+
+	if input == nil {
+		input = &UpdateTableStorageOptimizerInput{}
+	}
+
+	output = &UpdateTableStorageOptimizerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateTableStorageOptimizer API operation for AWS Lake Formation.
+//
+// Updates the configuration of the storage optimizers for a table.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation UpdateTableStorageOptimizer for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/UpdateTableStorageOptimizer
+func (c *LakeFormation) UpdateTableStorageOptimizer(input *UpdateTableStorageOptimizerInput) (*UpdateTableStorageOptimizerOutput, error) {
+	req, out := c.UpdateTableStorageOptimizerRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTableStorageOptimizerWithContext is the same as UpdateTableStorageOptimizer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTableStorageOptimizer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) UpdateTableStorageOptimizerWithContext(ctx aws.Context, input *UpdateTableStorageOptimizerInput, opts ...request.Option) (*UpdateTableStorageOptimizerOutput, error) {
+	req, out := c.UpdateTableStorageOptimizerRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2372,16 +4651,16 @@ type AddLFTagsToResourceInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The tags to attach to the resource.
+	// The LF-tags to attach to the resource.
 	//
 	// LFTags is a required field
 	LFTags []*LFTagPair `min:"1" type:"list" required:"true"`
 
-	// The resource to which to attach a tag.
+	// The database, table, or column resource to which to attach an LF-tag.
 	//
 	// Resource is a required field
 	Resource *Resource `type:"structure" required:"true"`
@@ -2491,6 +4770,127 @@ func (s *AddLFTagsToResourceOutput) SetFailures(v []*LFTagError) *AddLFTagsToRes
 	return s
 }
 
+// A new object to add to the governed table.
+type AddObjectInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 ETag of the object. Returned by GetTableObjects for validation
+	// and used to identify changes to the underlying data.
+	//
+	// ETag is a required field
+	ETag *string `min:"1" type:"string" required:"true"`
+
+	// A list of partition values for the object. A value must be specified for
+	// each partition key associated with the table.
+	//
+	// The supported data types are integer, long, date(yyyy-MM-dd), timestamp(yyyy-MM-dd
+	// HH:mm:ssXXX or yyyy-MM-dd HH:mm:ss"), string and decimal.
+	PartitionValues []*string `min:"1" type:"list"`
+
+	// The size of the Amazon S3 object in bytes.
+	//
+	// Size is a required field
+	Size *int64 `type:"long" required:"true"`
+
+	// The Amazon S3 location of the object.
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddObjectInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AddObjectInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddObjectInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddObjectInput_"}
+	if s.ETag == nil {
+		invalidParams.Add(request.NewErrParamRequired("ETag"))
+	}
+	if s.ETag != nil && len(*s.ETag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ETag", 1))
+	}
+	if s.PartitionValues != nil && len(s.PartitionValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PartitionValues", 1))
+	}
+	if s.Size == nil {
+		invalidParams.Add(request.NewErrParamRequired("Size"))
+	}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetETag sets the ETag field's value.
+func (s *AddObjectInput_) SetETag(v string) *AddObjectInput_ {
+	s.ETag = &v
+	return s
+}
+
+// SetPartitionValues sets the PartitionValues field's value.
+func (s *AddObjectInput_) SetPartitionValues(v []*string) *AddObjectInput_ {
+	s.PartitionValues = v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *AddObjectInput_) SetSize(v int64) *AddObjectInput_ {
+	s.Size = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *AddObjectInput_) SetUri(v string) *AddObjectInput_ {
+	s.Uri = &v
+	return s
+}
+
+// A structure that you pass to indicate you want all rows in a filter.
+type AllRowsWildcard struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllRowsWildcard) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AllRowsWildcard) GoString() string {
+	return s.String()
+}
+
 // A resource to be created or added already exists.
 type AlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
@@ -2561,8 +4961,8 @@ type BatchGrantPermissionsInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
 	// A list of up to 20 entries for resource permissions to be granted by batch
@@ -2801,8 +5201,8 @@ type BatchRevokePermissionsInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
 	// A list of up to 20 entries for resource permissions to be revoked by batch
@@ -2899,6 +5299,77 @@ func (s *BatchRevokePermissionsOutput) SetFailures(v []*BatchPermissionsFailureE
 	return s
 }
 
+type CancelTransactionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The transaction to cancel.
+	//
+	// TransactionId is a required field
+	TransactionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelTransactionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelTransactionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelTransactionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelTransactionInput"}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *CancelTransactionInput) SetTransactionId(v string) *CancelTransactionInput {
+	s.TransactionId = &v
+	return s
+}
+
+type CancelTransactionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelTransactionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CancelTransactionOutput) GoString() string {
+	return s.String()
+}
+
 // A structure for the catalog object.
 type CatalogResource struct {
 	_ struct{} `type:"structure"`
@@ -2922,12 +5393,12 @@ func (s CatalogResource) GoString() string {
 	return s.String()
 }
 
-// A structure containing the name of a column resource and the tags attached
+// A structure containing the name of a column resource and the LF-tags attached
 // to it.
 type ColumnLFTag struct {
 	_ struct{} `type:"structure"`
 
-	// The tags attached to a column resource.
+	// The LF-tags attached to a column resource.
 	LFTags []*LFTagPair `min:"1" type:"list"`
 
 	// The name of a column resource.
@@ -2997,6 +5468,86 @@ func (s *ColumnWildcard) SetExcludedColumnNames(v []*string) *ColumnWildcard {
 	return s
 }
 
+type CommitTransactionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The transaction to commit.
+	//
+	// TransactionId is a required field
+	TransactionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommitTransactionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommitTransactionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CommitTransactionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CommitTransactionInput"}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *CommitTransactionInput) SetTransactionId(v string) *CommitTransactionInput {
+	s.TransactionId = &v
+	return s
+}
+
+type CommitTransactionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the transaction.
+	TransactionStatus *string `type:"string" enum:"TransactionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommitTransactionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CommitTransactionOutput) GoString() string {
+	return s.String()
+}
+
+// SetTransactionStatus sets the TransactionStatus field's value.
+func (s *CommitTransactionOutput) SetTransactionStatus(v string) *CommitTransactionOutput {
+	s.TransactionStatus = &v
+	return s
+}
+
 // Two processes are trying to modify a resource simultaneously.
 type ConcurrentModificationException struct {
 	_            struct{}                  `type:"structure"`
@@ -3062,16 +5613,89 @@ func (s *ConcurrentModificationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateDataCellsFilterInput struct {
+	_ struct{} `type:"structure"`
+
+	// A DataCellsFilter structure containing information about the data cells filter.
+	//
+	// TableData is a required field
+	TableData *DataCellsFilter `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataCellsFilterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataCellsFilterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataCellsFilterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataCellsFilterInput"}
+	if s.TableData == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableData"))
+	}
+	if s.TableData != nil {
+		if err := s.TableData.Validate(); err != nil {
+			invalidParams.AddNested("TableData", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTableData sets the TableData field's value.
+func (s *CreateDataCellsFilterInput) SetTableData(v *DataCellsFilter) *CreateDataCellsFilterInput {
+	s.TableData = v
+	return s
+}
+
+type CreateDataCellsFilterOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataCellsFilterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataCellsFilterOutput) GoString() string {
+	return s.String()
+}
+
 type CreateLFTagInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The key-name for the tag.
+	// The key-name for the LF-tag.
 	//
 	// TagKey is a required field
 	TagKey *string `min:"1" type:"string" required:"true"`
@@ -3165,12 +5789,221 @@ func (s CreateLFTagOutput) GoString() string {
 	return s.String()
 }
 
+// A structure that describes certain columns on certain rows.
+type DataCellsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A list of column names.
+	ColumnNames []*string `type:"list"`
+
+	// A wildcard with exclusions.
+	ColumnWildcard *ColumnWildcard `type:"structure"`
+
+	// A database in the Glue Data Catalog.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The name given by the user to the data filter cell.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// A PartiQL predicate.
+	RowFilter *RowFilter `type:"structure"`
+
+	// The ID of the catalog to which the table belongs.
+	//
+	// TableCatalogId is a required field
+	TableCatalogId *string `min:"1" type:"string" required:"true"`
+
+	// A table in the database.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataCellsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataCellsFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataCellsFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataCellsFilter"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TableCatalogId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableCatalogId"))
+	}
+	if s.TableCatalogId != nil && len(*s.TableCatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableCatalogId", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumnNames sets the ColumnNames field's value.
+func (s *DataCellsFilter) SetColumnNames(v []*string) *DataCellsFilter {
+	s.ColumnNames = v
+	return s
+}
+
+// SetColumnWildcard sets the ColumnWildcard field's value.
+func (s *DataCellsFilter) SetColumnWildcard(v *ColumnWildcard) *DataCellsFilter {
+	s.ColumnWildcard = v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DataCellsFilter) SetDatabaseName(v string) *DataCellsFilter {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataCellsFilter) SetName(v string) *DataCellsFilter {
+	s.Name = &v
+	return s
+}
+
+// SetRowFilter sets the RowFilter field's value.
+func (s *DataCellsFilter) SetRowFilter(v *RowFilter) *DataCellsFilter {
+	s.RowFilter = v
+	return s
+}
+
+// SetTableCatalogId sets the TableCatalogId field's value.
+func (s *DataCellsFilter) SetTableCatalogId(v string) *DataCellsFilter {
+	s.TableCatalogId = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DataCellsFilter) SetTableName(v string) *DataCellsFilter {
+	s.TableName = &v
+	return s
+}
+
+// A structure for a data cells filter resource.
+type DataCellsFilterResource struct {
+	_ struct{} `type:"structure"`
+
+	// A database in the Glue Data Catalog.
+	DatabaseName *string `min:"1" type:"string"`
+
+	// The name of the data cells filter.
+	Name *string `min:"1" type:"string"`
+
+	// The ID of the catalog to which the table belongs.
+	TableCatalogId *string `min:"1" type:"string"`
+
+	// The name of the table.
+	TableName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataCellsFilterResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataCellsFilterResource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataCellsFilterResource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataCellsFilterResource"}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TableCatalogId != nil && len(*s.TableCatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableCatalogId", 1))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DataCellsFilterResource) SetDatabaseName(v string) *DataCellsFilterResource {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataCellsFilterResource) SetName(v string) *DataCellsFilterResource {
+	s.Name = &v
+	return s
+}
+
+// SetTableCatalogId sets the TableCatalogId field's value.
+func (s *DataCellsFilterResource) SetTableCatalogId(v string) *DataCellsFilterResource {
+	s.TableCatalogId = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DataCellsFilterResource) SetTableName(v string) *DataCellsFilterResource {
+	s.TableName = &v
+	return s
+}
+
 // The AWS Lake Formation principal. Supported principals are IAM users or IAM
 // roles.
 type DataLakePrincipal struct {
 	_ struct{} `type:"structure"`
 
-	// An identifier for the AWS Lake Formation principal.
+	// An identifier for the Lake Formation principal.
 	DataLakePrincipalIdentifier *string `min:"1" type:"string"`
 }
 
@@ -3211,27 +6044,52 @@ func (s *DataLakePrincipal) SetDataLakePrincipalIdentifier(v string) *DataLakePr
 	return s
 }
 
-// A structure representing a list of AWS Lake Formation principals designated
-// as data lake administrators and lists of principal permission entries for
-// default create database and default create table permissions.
+// A structure representing a list of Lake Formation principals designated as
+// data lake administrators and lists of principal permission entries for default
+// create database and default create table permissions.
 type DataLakeSettings struct {
 	_ struct{} `type:"structure"`
 
-	// A structure representing a list of up to three principal permissions entries
-	// for default create database permissions.
+	// Specifies whether access control on newly created database is managed by
+	// Lake Formation permissions or exclusively by IAM permissions. You can override
+	// this default setting when you create a database.
+	//
+	// A null value indicates access control by Lake Formation permissions. A value
+	// that assigns ALL to IAM_ALLOWED_PRINCIPALS indicates access control by IAM
+	// permissions. This is referred to as the setting "Use only IAM access control,"
+	// and is for backward compatibility with the Glue permission model implemented
+	// by IAM permissions.
+	//
+	// The only permitted values are an empty array or an array that contains a
+	// single JSON object that grants ALL to IAM_ALLOWED_PRINCIPALS.
+	//
+	// For more information, see Changing the Default Security Settings for Your
+	// Data Lake (https://docs.aws.amazon.com/lake-formation/latest/dg/change-settings.html).
 	CreateDatabaseDefaultPermissions []*PrincipalPermissions `type:"list"`
 
-	// A structure representing a list of up to three principal permissions entries
-	// for default create table permissions.
+	// Specifies whether access control on newly created table is managed by Lake
+	// Formation permissions or exclusively by IAM permissions.
+	//
+	// A null value indicates access control by Lake Formation permissions. A value
+	// that assigns ALL to IAM_ALLOWED_PRINCIPALS indicates access control by IAM
+	// permissions. This is referred to as the setting "Use only IAM access control,"
+	// and is for backward compatibility with the Glue permission model implemented
+	// by IAM permissions.
+	//
+	// The only permitted values are an empty array or an array that contains a
+	// single JSON object that grants ALL to IAM_ALLOWED_PRINCIPALS.
+	//
+	// For more information, see Changing the Default Security Settings for Your
+	// Data Lake (https://docs.aws.amazon.com/lake-formation/latest/dg/change-settings.html).
 	CreateTableDefaultPermissions []*PrincipalPermissions `type:"list"`
 
-	// A list of AWS Lake Formation principals. Supported principals are IAM users
-	// or IAM roles.
+	// A list of Lake Formation principals. Supported principals are IAM users or
+	// IAM roles.
 	DataLakeAdmins []*DataLakePrincipal `type:"list"`
 
 	// A list of the resource-owning account IDs that the caller's account can use
 	// to share their user access details (user ARNs). The user ARNs can be logged
-	// in the resource owner's AWS CloudTrail log.
+	// in the resource owner's CloudTrail log.
 	//
 	// You may want to specify this property when you are in a high-trust boundary,
 	// such as the same team or company.
@@ -3325,7 +6183,7 @@ type DataLocationResource struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog where the location is registered with
-	// AWS Lake Formation. By default, it is the account ID of the caller.
+	// Lake Formation. By default, it is the account ID of the caller.
 	CatalogId *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) that uniquely identifies the data location
@@ -3444,16 +6302,118 @@ func (s *DatabaseResource) SetName(v string) *DatabaseResource {
 	return s
 }
 
+type DeleteDataCellsFilterInput struct {
+	_ struct{} `type:"structure"`
+
+	// A database in the Glue Data Catalog.
+	DatabaseName *string `min:"1" type:"string"`
+
+	// The name given by the user to the data filter cell.
+	Name *string `min:"1" type:"string"`
+
+	// The ID of the catalog to which the table belongs.
+	TableCatalogId *string `min:"1" type:"string"`
+
+	// A table in the database.
+	TableName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataCellsFilterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataCellsFilterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDataCellsFilterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataCellsFilterInput"}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TableCatalogId != nil && len(*s.TableCatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableCatalogId", 1))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DeleteDataCellsFilterInput) SetDatabaseName(v string) *DeleteDataCellsFilterInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteDataCellsFilterInput) SetName(v string) *DeleteDataCellsFilterInput {
+	s.Name = &v
+	return s
+}
+
+// SetTableCatalogId sets the TableCatalogId field's value.
+func (s *DeleteDataCellsFilterInput) SetTableCatalogId(v string) *DeleteDataCellsFilterInput {
+	s.TableCatalogId = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DeleteDataCellsFilterInput) SetTableName(v string) *DeleteDataCellsFilterInput {
+	s.TableName = &v
+	return s
+}
+
+type DeleteDataCellsFilterOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataCellsFilterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataCellsFilterOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteLFTagInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The key-name for the tag to delete.
+	// The key-name for the LF-tag to delete.
 	//
 	// TagKey is a required field
 	TagKey *string `min:"1" type:"string" required:"true"`
@@ -3527,6 +6487,228 @@ func (s DeleteLFTagOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s DeleteLFTagOutput) GoString() string {
+	return s.String()
+}
+
+// An object to delete from the governed table.
+type DeleteObjectInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 ETag of the object. Returned by GetTableObjects for validation
+	// and used to identify changes to the underlying data.
+	ETag *string `min:"1" type:"string"`
+
+	// A list of partition values for the object. A value must be specified for
+	// each partition key associated with the governed table.
+	PartitionValues []*string `min:"1" type:"list"`
+
+	// The Amazon S3 location of the object to delete.
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteObjectInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteObjectInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteObjectInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteObjectInput_"}
+	if s.ETag != nil && len(*s.ETag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ETag", 1))
+	}
+	if s.PartitionValues != nil && len(s.PartitionValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PartitionValues", 1))
+	}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetETag sets the ETag field's value.
+func (s *DeleteObjectInput_) SetETag(v string) *DeleteObjectInput_ {
+	s.ETag = &v
+	return s
+}
+
+// SetPartitionValues sets the PartitionValues field's value.
+func (s *DeleteObjectInput_) SetPartitionValues(v []*string) *DeleteObjectInput_ {
+	s.PartitionValues = v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *DeleteObjectInput_) SetUri(v string) *DeleteObjectInput_ {
+	s.Uri = &v
+	return s
+}
+
+type DeleteObjectsOnCancelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Glue data catalog that contains the governed table. Defaults to the current
+	// account ID.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The database that contains the governed table.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// A list of VirtualObject structures, which indicates the Amazon S3 objects
+	// to be deleted if the transaction cancels.
+	//
+	// Objects is a required field
+	Objects []*VirtualObject `min:"1" type:"list" required:"true"`
+
+	// The name of the governed table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+
+	// ID of the transaction that the writes occur in.
+	//
+	// TransactionId is a required field
+	TransactionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteObjectsOnCancelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteObjectsOnCancelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteObjectsOnCancelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteObjectsOnCancelInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.Objects == nil {
+		invalidParams.Add(request.NewErrParamRequired("Objects"))
+	}
+	if s.Objects != nil && len(s.Objects) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Objects", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+	if s.Objects != nil {
+		for i, v := range s.Objects {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Objects", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DeleteObjectsOnCancelInput) SetCatalogId(v string) *DeleteObjectsOnCancelInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DeleteObjectsOnCancelInput) SetDatabaseName(v string) *DeleteObjectsOnCancelInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetObjects sets the Objects field's value.
+func (s *DeleteObjectsOnCancelInput) SetObjects(v []*VirtualObject) *DeleteObjectsOnCancelInput {
+	s.Objects = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DeleteObjectsOnCancelInput) SetTableName(v string) *DeleteObjectsOnCancelInput {
+	s.TableName = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *DeleteObjectsOnCancelInput) SetTransactionId(v string) *DeleteObjectsOnCancelInput {
+	s.TransactionId = &v
+	return s
+}
+
+type DeleteObjectsOnCancelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteObjectsOnCancelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteObjectsOnCancelOutput) GoString() string {
 	return s.String()
 }
 
@@ -3647,7 +6829,7 @@ func (s *DescribeResourceInput) SetResourceArn(v string) *DescribeResourceInput 
 type DescribeResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A structure containing information about an AWS Lake Formation resource.
+	// A structure containing information about an Lake Formation resource.
 	ResourceInfo *ResourceInfo `type:"structure"`
 }
 
@@ -3675,16 +6857,96 @@ func (s *DescribeResourceOutput) SetResourceInfo(v *ResourceInfo) *DescribeResou
 	return s
 }
 
+type DescribeTransactionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The transaction for which to return status.
+	//
+	// TransactionId is a required field
+	TransactionId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTransactionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTransactionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeTransactionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeTransactionInput"}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *DescribeTransactionInput) SetTransactionId(v string) *DescribeTransactionInput {
+	s.TransactionId = &v
+	return s
+}
+
+type DescribeTransactionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a TransactionDescription object containing information about the
+	// transaction.
+	TransactionDescription *TransactionDescription `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTransactionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeTransactionOutput) GoString() string {
+	return s.String()
+}
+
+// SetTransactionDescription sets the TransactionDescription field's value.
+func (s *DescribeTransactionOutput) SetTransactionDescription(v *TransactionDescription) *DescribeTransactionOutput {
+	s.TransactionDescription = v
+	return s
+}
+
 // A structure containing the additional details to be returned in the AdditionalDetails
 // attribute of PrincipalResourcePermissions.
 //
-// If a catalog resource is shared through AWS Resource Access Manager (AWS
-// RAM), then there will exist a corresponding RAM resource share ARN.
+// If a catalog resource is shared through Resource Access Manager (RAM), then
+// there will exist a corresponding RAM resource share ARN.
 type DetailsMap struct {
 	_ struct{} `type:"structure"`
 
-	// A resource share ARN for a catalog resource shared through AWS Resource Access
-	// Manager (AWS RAM).
+	// A resource share ARN for a catalog resource shared through RAM.
 	ResourceShare []*string `type:"list"`
 }
 
@@ -3818,6 +7080,187 @@ func (s *ErrorDetail) SetErrorMessage(v string) *ErrorDetail {
 	return s
 }
 
+// Statistics related to the processing of a query statement.
+type ExecutionStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The average time the request took to be executed.
+	AverageExecutionTimeMillis *int64 `type:"long"`
+
+	// The amount of data that was scanned in bytes.
+	DataScannedBytes *int64 `type:"long"`
+
+	// The number of work units executed.
+	WorkUnitsExecutedCount *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExecutionStatistics) GoString() string {
+	return s.String()
+}
+
+// SetAverageExecutionTimeMillis sets the AverageExecutionTimeMillis field's value.
+func (s *ExecutionStatistics) SetAverageExecutionTimeMillis(v int64) *ExecutionStatistics {
+	s.AverageExecutionTimeMillis = &v
+	return s
+}
+
+// SetDataScannedBytes sets the DataScannedBytes field's value.
+func (s *ExecutionStatistics) SetDataScannedBytes(v int64) *ExecutionStatistics {
+	s.DataScannedBytes = &v
+	return s
+}
+
+// SetWorkUnitsExecutedCount sets the WorkUnitsExecutedCount field's value.
+func (s *ExecutionStatistics) SetWorkUnitsExecutedCount(v int64) *ExecutionStatistics {
+	s.WorkUnitsExecutedCount = &v
+	return s
+}
+
+// Contains details about an error where the query request expired.
+type ExpiredException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the error.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpiredException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExpiredException) GoString() string {
+	return s.String()
+}
+
+func newErrorExpiredException(v protocol.ResponseMetadata) error {
+	return &ExpiredException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ExpiredException) Code() string {
+	return "ExpiredException"
+}
+
+// Message returns the exception's message.
+func (s *ExpiredException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ExpiredException) OrigErr() error {
+	return nil
+}
+
+func (s *ExpiredException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ExpiredException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ExpiredException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type ExtendTransactionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The transaction to extend.
+	TransactionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtendTransactionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtendTransactionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExtendTransactionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExtendTransactionInput"}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *ExtendTransactionInput) SetTransactionId(v string) *ExtendTransactionInput {
+	s.TransactionId = &v
+	return s
+}
+
+type ExtendTransactionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtendTransactionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExtendTransactionOutput) GoString() string {
+	return s.String()
+}
+
 // This structure describes the filtering of columns in a table based on a filter
 // condition.
 type FilterCondition struct {
@@ -3874,8 +7317,8 @@ type GetDataLakeSettingsInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 }
 
@@ -3919,8 +7362,8 @@ func (s *GetDataLakeSettingsInput) SetCatalogId(v string) *GetDataLakeSettingsIn
 type GetDataLakeSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A structure representing a list of AWS Lake Formation principals designated
-	// as data lake administrators.
+	// A structure representing a list of Lake Formation principals designated as
+	// data lake administrators.
 	DataLakeSettings *DataLakeSettings `type:"structure"`
 }
 
@@ -3953,8 +7396,8 @@ type GetEffectivePermissionsForPathInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
 	// The maximum number of results to return.
@@ -4077,11 +7520,11 @@ type GetLFTagInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The key-name for the tag.
+	// The key-name for the LF-tag.
 	//
 	// TagKey is a required field
 	TagKey *string `min:"1" type:"string" required:"true"`
@@ -4141,11 +7584,11 @@ type GetLFTagOutput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The key-name for the tag.
+	// The key-name for the LF-tag.
 	TagKey *string `min:"1" type:"string"`
 
 	// A list of possible values an attribute can take.
@@ -4188,21 +7631,221 @@ func (s *GetLFTagOutput) SetTagValues(v []*string) *GetLFTagOutput {
 	return s
 }
 
+type GetQueryStateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the plan query operation.
+	//
+	// QueryId is a required field
+	QueryId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetQueryStateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetQueryStateInput"}
+	if s.QueryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryId"))
+	}
+	if s.QueryId != nil && len(*s.QueryId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *GetQueryStateInput) SetQueryId(v string) *GetQueryStateInput {
+	s.QueryId = &v
+	return s
+}
+
+// A structure for the output.
+type GetQueryStateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An error message when the operation fails.
+	Error *string `type:"string"`
+
+	// The state of a query previously submitted. The possible states are:
+	//
+	//    * PENDING: the query is pending.
+	//
+	//    * WORKUNITS_AVAILABLE: some work units are ready for retrieval and execution.
+	//
+	//    * FINISHED: the query planning finished successfully, and all work units
+	//    are ready for retrieval and execution.
+	//
+	//    * ERROR: an error occurred with the query, such as an invalid query ID
+	//    or a backend error.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"QueryStateString"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStateOutput) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *GetQueryStateOutput) SetError(v string) *GetQueryStateOutput {
+	s.Error = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *GetQueryStateOutput) SetState(v string) *GetQueryStateOutput {
+	s.State = &v
+	return s
+}
+
+type GetQueryStatisticsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the plan query operation.
+	//
+	// QueryId is a required field
+	QueryId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStatisticsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStatisticsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetQueryStatisticsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetQueryStatisticsInput"}
+	if s.QueryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryId"))
+	}
+	if s.QueryId != nil && len(*s.QueryId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *GetQueryStatisticsInput) SetQueryId(v string) *GetQueryStatisticsInput {
+	s.QueryId = &v
+	return s
+}
+
+type GetQueryStatisticsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An ExecutionStatistics structure containing execution statistics.
+	ExecutionStatistics *ExecutionStatistics `type:"structure"`
+
+	// A PlanningStatistics structure containing query planning statistics.
+	PlanningStatistics *PlanningStatistics `type:"structure"`
+
+	// The time that the query was submitted.
+	QuerySubmissionTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStatisticsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetQueryStatisticsOutput) GoString() string {
+	return s.String()
+}
+
+// SetExecutionStatistics sets the ExecutionStatistics field's value.
+func (s *GetQueryStatisticsOutput) SetExecutionStatistics(v *ExecutionStatistics) *GetQueryStatisticsOutput {
+	s.ExecutionStatistics = v
+	return s
+}
+
+// SetPlanningStatistics sets the PlanningStatistics field's value.
+func (s *GetQueryStatisticsOutput) SetPlanningStatistics(v *PlanningStatistics) *GetQueryStatisticsOutput {
+	s.PlanningStatistics = v
+	return s
+}
+
+// SetQuerySubmissionTime sets the QuerySubmissionTime field's value.
+func (s *GetQueryStatisticsOutput) SetQuerySubmissionTime(v time.Time) *GetQueryStatisticsOutput {
+	s.QuerySubmissionTime = &v
+	return s
+}
+
 type GetResourceLFTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The resource for which you want to return tags.
+	// The database, table, or column resource for which you want to return LF-tags.
 	//
 	// Resource is a required field
 	Resource *Resource `type:"structure" required:"true"`
 
-	// Indicates whether to show the assigned tags.
+	// Indicates whether to show the assigned LF-tags.
 	ShowAssignedLFTags *bool `type:"boolean"`
 }
 
@@ -4266,13 +7909,13 @@ func (s *GetResourceLFTagsInput) SetShowAssignedLFTags(v bool) *GetResourceLFTag
 type GetResourceLFTagsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of tags applied to a database resource.
+	// A list of LF-tags applied to a database resource.
 	LFTagOnDatabase []*LFTagPair `min:"1" type:"list"`
 
-	// A list of tags applied to a column resource.
+	// A list of LF-tags applied to a column resource.
 	LFTagsOnColumns []*ColumnLFTag `type:"list"`
 
-	// A list of tags applied to a table resource.
+	// A list of LF-tags applied to a table resource.
 	LFTagsOnTable []*LFTagPair `min:"1" type:"list"`
 }
 
@@ -4309,6 +7952,433 @@ func (s *GetResourceLFTagsOutput) SetLFTagsOnColumns(v []*ColumnLFTag) *GetResou
 // SetLFTagsOnTable sets the LFTagsOnTable field's value.
 func (s *GetResourceLFTagsOutput) SetLFTagsOnTable(v []*LFTagPair) *GetResourceLFTagsOutput {
 	s.LFTagsOnTable = v
+	return s
+}
+
+type GetTableObjectsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The catalog containing the governed table. Defaults to the caller’s account.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The database containing the governed table.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// Specifies how many values to return in a page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token if this is not the first call to retrieve these objects.
+	NextToken *string `type:"string"`
+
+	// A predicate to filter the objects returned based on the partition keys defined
+	// in the governed table.
+	//
+	//    * The comparison operators supported are: =, >, <, >=, <=
+	//
+	//    * The logical operators supported are: AND
+	//
+	//    * The data types supported are integer, long, date(yyyy-MM-dd), timestamp(yyyy-MM-dd
+	//    HH:mm:ssXXX or yyyy-MM-dd HH:mm:ss"), string and decimal.
+	PartitionPredicate *string `type:"string"`
+
+	// The time as of when to read the governed table contents. If not set, the
+	// most recent transaction commit time is used. Cannot be specified along with
+	// TransactionId.
+	QueryAsOfTime *time.Time `type:"timestamp"`
+
+	// The governed table for which to retrieve objects.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+
+	// The transaction ID at which to read the governed table contents. If this
+	// transaction has aborted, an error is returned. If not set, defaults to the
+	// most recent committed transaction. Cannot be specified along with QueryAsOfTime.
+	TransactionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableObjectsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableObjectsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetTableObjectsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetTableObjectsInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *GetTableObjectsInput) SetCatalogId(v string) *GetTableObjectsInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GetTableObjectsInput) SetDatabaseName(v string) *GetTableObjectsInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetTableObjectsInput) SetMaxResults(v int64) *GetTableObjectsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetTableObjectsInput) SetNextToken(v string) *GetTableObjectsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPartitionPredicate sets the PartitionPredicate field's value.
+func (s *GetTableObjectsInput) SetPartitionPredicate(v string) *GetTableObjectsInput {
+	s.PartitionPredicate = &v
+	return s
+}
+
+// SetQueryAsOfTime sets the QueryAsOfTime field's value.
+func (s *GetTableObjectsInput) SetQueryAsOfTime(v time.Time) *GetTableObjectsInput {
+	s.QueryAsOfTime = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *GetTableObjectsInput) SetTableName(v string) *GetTableObjectsInput {
+	s.TableName = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *GetTableObjectsInput) SetTransactionId(v string) *GetTableObjectsInput {
+	s.TransactionId = &v
+	return s
+}
+
+type GetTableObjectsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A continuation token indicating whether additional data is available.
+	NextToken *string `type:"string"`
+
+	// A list of objects organized by partition keys.
+	Objects []*PartitionObjects `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableObjectsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetTableObjectsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetTableObjectsOutput) SetNextToken(v string) *GetTableObjectsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetObjects sets the Objects field's value.
+func (s *GetTableObjectsOutput) SetObjects(v []*PartitionObjects) *GetTableObjectsOutput {
+	s.Objects = v
+	return s
+}
+
+type GetWorkUnitResultsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the plan query operation for which to get results.
+	//
+	// QueryId is a required field
+	QueryId *string `min:"36" type:"string" required:"true"`
+
+	// The work unit ID for which to get results. Value generated by enumerating
+	// WorkUnitIdMin to WorkUnitIdMax (inclusive) from the WorkUnitRange in the
+	// output of GetWorkUnits.
+	//
+	// WorkUnitId is a required field
+	WorkUnitId *int64 `type:"long" required:"true"`
+
+	// A work token used to query the execution service. Token output from GetWorkUnits.
+	//
+	// WorkUnitToken is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by GetWorkUnitResultsInput's
+	// String and GoString methods.
+	//
+	// WorkUnitToken is a required field
+	WorkUnitToken *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkUnitResultsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkUnitResultsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetWorkUnitResultsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetWorkUnitResultsInput"}
+	if s.QueryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryId"))
+	}
+	if s.QueryId != nil && len(*s.QueryId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryId", 36))
+	}
+	if s.WorkUnitId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkUnitId"))
+	}
+	if s.WorkUnitToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkUnitToken"))
+	}
+	if s.WorkUnitToken != nil && len(*s.WorkUnitToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkUnitToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *GetWorkUnitResultsInput) SetQueryId(v string) *GetWorkUnitResultsInput {
+	s.QueryId = &v
+	return s
+}
+
+// SetWorkUnitId sets the WorkUnitId field's value.
+func (s *GetWorkUnitResultsInput) SetWorkUnitId(v int64) *GetWorkUnitResultsInput {
+	s.WorkUnitId = &v
+	return s
+}
+
+// SetWorkUnitToken sets the WorkUnitToken field's value.
+func (s *GetWorkUnitResultsInput) SetWorkUnitToken(v string) *GetWorkUnitResultsInput {
+	s.WorkUnitToken = &v
+	return s
+}
+
+// A structure for the output.
+type GetWorkUnitResultsOutput struct {
+	_ struct{} `type:"structure" payload:"ResultStream"`
+
+	// Rows returned from the GetWorkUnitResults operation as a stream of Apache
+	// Arrow v1.0 messages.
+	ResultStream io.ReadCloser `type:"blob"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkUnitResultsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkUnitResultsOutput) GoString() string {
+	return s.String()
+}
+
+// SetResultStream sets the ResultStream field's value.
+func (s *GetWorkUnitResultsOutput) SetResultStream(v io.ReadCloser) *GetWorkUnitResultsOutput {
+	s.ResultStream = v
+	return s
+}
+
+type GetWorkUnitsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A continuation token, if this is a continuation call.
+	NextToken *string `type:"string"`
+
+	// The size of each page to get in the Amazon Web Services service call. This
+	// does not affect the number of items returned in the command's output. Setting
+	// a smaller page size results in more calls to the Amazon Web Services service,
+	// retrieving fewer items in each call. This can help prevent the Amazon Web
+	// Services service calls from timing out.
+	PageSize *int64 `type:"integer"`
+
+	// The ID of the plan query operation.
+	//
+	// QueryId is a required field
+	QueryId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkUnitsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkUnitsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetWorkUnitsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetWorkUnitsInput"}
+	if s.QueryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryId"))
+	}
+	if s.QueryId != nil && len(*s.QueryId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetWorkUnitsInput) SetNextToken(v string) *GetWorkUnitsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *GetWorkUnitsInput) SetPageSize(v int64) *GetWorkUnitsInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *GetWorkUnitsInput) SetQueryId(v string) *GetWorkUnitsInput {
+	s.QueryId = &v
+	return s
+}
+
+// A structure for the output.
+type GetWorkUnitsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A continuation token for paginating the returned list of tokens, returned
+	// if the current segment of the list is not the last.
+	NextToken *string `type:"string"`
+
+	// The ID of the plan query operation.
+	//
+	// QueryId is a required field
+	QueryId *string `type:"string" required:"true"`
+
+	// A WorkUnitRangeList object that specifies the valid range of work unit IDs
+	// for querying the execution service.
+	//
+	// WorkUnitRanges is a required field
+	WorkUnitRanges []*WorkUnitRange `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkUnitsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetWorkUnitsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetWorkUnitsOutput) SetNextToken(v string) *GetWorkUnitsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *GetWorkUnitsOutput) SetQueryId(v string) *GetWorkUnitsOutput {
+	s.QueryId = &v
+	return s
+}
+
+// SetWorkUnitRanges sets the WorkUnitRanges field's value.
+func (s *GetWorkUnitsOutput) SetWorkUnitRanges(v []*WorkUnitRange) *GetWorkUnitsOutput {
+	s.WorkUnitRanges = v
 	return s
 }
 
@@ -4382,15 +8452,15 @@ type GrantPermissionsInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The permissions granted to the principal on the resource. AWS Lake Formation
+	// The permissions granted to the principal on the resource. Lake Formation
 	// defines privileges to grant and revoke access to metadata in the Data Catalog
-	// and data organized in underlying data storage such as Amazon S3. AWS Lake
-	// Formation requires that each principal be authorized to perform a specific
-	// task on AWS Lake Formation resources.
+	// and data organized in underlying data storage such as Amazon S3. Lake Formation
+	// requires that each principal be authorized to perform a specific task on
+	// Lake Formation resources.
 	//
 	// Permissions is a required field
 	Permissions []*string `type:"list" required:"true"`
@@ -4411,8 +8481,8 @@ type GrantPermissionsInput struct {
 	// Principal is a required field
 	Principal *DataLakePrincipal `type:"structure" required:"true"`
 
-	// The resource to which permissions are to be granted. Resources in AWS Lake
-	// Formation are the Data Catalog, databases, and tables.
+	// The resource to which permissions are to be granted. Resources in Lake Formation
+	// are the Data Catalog, databases, and tables.
 	//
 	// Resource is a required field
 	Resource *Resource `type:"structure" required:"true"`
@@ -4651,12 +8721,12 @@ func (s *InvalidInputException) RequestID() string {
 }
 
 // A structure that allows an admin to grant user permissions on certain conditions.
-// For example, granting a role access to all columns not tagged 'PII' of tables
-// tagged 'Prod'.
+// For example, granting a role access to all columns that do not have the LF-tag
+// 'PII' in tables that have the LF-tag 'Prod'.
 type LFTag struct {
 	_ struct{} `type:"structure"`
 
-	// The key-name for the tag.
+	// The key-name for the LF-tag.
 	//
 	// TagKey is a required field
 	TagKey *string `min:"1" type:"string" required:"true"`
@@ -4724,10 +8794,10 @@ func (s *LFTag) SetTagValues(v []*string) *LFTag {
 type LFTagError struct {
 	_ struct{} `type:"structure"`
 
-	// An error that occurred with the attachment or detachment of the tag.
+	// An error that occurred with the attachment or detachment of the LF-tag.
 	Error *ErrorDetail `type:"structure"`
 
-	// The key-name of the tag.
+	// The key-name of the LF-tag.
 	LFTag *LFTagPair `type:"structure"`
 }
 
@@ -4761,17 +8831,17 @@ func (s *LFTagError) SetLFTag(v *LFTagPair) *LFTagError {
 	return s
 }
 
-// A structure containing a tag key and values for a resource.
+// A structure containing an LF-tag key and values for a resource.
 type LFTagKeyResource struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The key-name for the tag.
+	// The key-name for the LF-tag.
 	//
 	// TagKey is a required field
 	TagKey *string `min:"1" type:"string" required:"true"`
@@ -4843,17 +8913,17 @@ func (s *LFTagKeyResource) SetTagValues(v []*string) *LFTagKeyResource {
 	return s
 }
 
-// A structure containing a tag key-value pair.
+// A structure containing an LF-tag key-value pair.
 type LFTagPair struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The key-name for the tag.
+	// The key-name for the LF-tag.
 	//
 	// TagKey is a required field
 	TagKey *string `min:"1" type:"string" required:"true"`
@@ -4925,23 +8995,23 @@ func (s *LFTagPair) SetTagValues(v []*string) *LFTagPair {
 	return s
 }
 
-// A structure containing a list of tag conditions that apply to a resource's
-// tag policy.
+// A structure containing a list of LF-tag conditions that apply to a resource's
+// LF-tag policy.
 type LFTagPolicyResource struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// A list of tag conditions that apply to the resource's tag policy.
+	// A list of LF-tag conditions that apply to the resource's LF-tag policy.
 	//
 	// Expression is a required field
 	Expression []*LFTag `min:"1" type:"list" required:"true"`
 
-	// The resource type for which the tag policy applies.
+	// The resource type for which the LF-tag policy applies.
 	//
 	// ResourceType is a required field
 	ResourceType *string `type:"string" required:"true" enum:"ResourceType"`
@@ -5015,13 +9085,120 @@ func (s *LFTagPolicyResource) SetResourceType(v string) *LFTagPolicyResource {
 	return s
 }
 
+type ListDataCellsFilterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is a continuation call.
+	NextToken *string `type:"string"`
+
+	// A table in the Glue Data Catalog.
+	Table *TableResource `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataCellsFilterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataCellsFilterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataCellsFilterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataCellsFilterInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Table != nil {
+		if err := s.Table.Validate(); err != nil {
+			invalidParams.AddNested("Table", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataCellsFilterInput) SetMaxResults(v int64) *ListDataCellsFilterInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataCellsFilterInput) SetNextToken(v string) *ListDataCellsFilterInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *ListDataCellsFilterInput) SetTable(v *TableResource) *ListDataCellsFilterInput {
+	s.Table = v
+	return s
+}
+
+type ListDataCellsFilterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of DataCellFilter structures.
+	DataCellsFilters []*DataCellsFilter `type:"list"`
+
+	// A continuation token, if not all requested data cell filters have been returned.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataCellsFilterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataCellsFilterOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataCellsFilters sets the DataCellsFilters field's value.
+func (s *ListDataCellsFilterOutput) SetDataCellsFilters(v []*DataCellsFilter) *ListDataCellsFilterOutput {
+	s.DataCellsFilters = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataCellsFilterOutput) SetNextToken(v string) *ListDataCellsFilterOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListLFTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
 	// The maximum number of results to return.
@@ -5030,11 +9207,11 @@ type ListLFTagsInput struct {
 	// A continuation token, if this is not the first call to retrieve this list.
 	NextToken *string `type:"string"`
 
-	// If resource share type is ALL, returns both in-account tags and shared tags
-	// that the requester has permission to view. If resource share type is FOREIGN,
-	// returns all share tags that the requester can view. If no resource share
-	// type is passed, lists tags in the given catalog ID that the requester has
-	// permission to view.
+	// If resource share type is ALL, returns both in-account LF-tags and shared
+	// LF-tags that the requester has permission to view. If resource share type
+	// is FOREIGN, returns all share LF-tags that the requester can view. If no
+	// resource share type is passed, lists LF-tags in the given catalog ID that
+	// the requester has permission to view.
 	ResourceShareType *string `type:"string" enum:"ResourceShareType"`
 }
 
@@ -5099,7 +9276,7 @@ func (s *ListLFTagsInput) SetResourceShareType(v string) *ListLFTagsInput {
 type ListLFTagsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of tags that the requested has permission to view.
+	// A list of LF-tags that the requested has permission to view.
 	LFTags []*LFTagPair `min:"1" type:"list"`
 
 	// A continuation token, present if the current list segment is not the last.
@@ -5141,9 +9318,12 @@ type ListPermissionsInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
+
+	// Indicates that related permissions should be included in the results.
+	IncludeRelated *string `min:"1" type:"string"`
 
 	// The maximum number of results to return.
 	MaxResults *int64 `min:"1" type:"integer"`
@@ -5189,6 +9369,9 @@ func (s *ListPermissionsInput) Validate() error {
 	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
 	}
+	if s.IncludeRelated != nil && len(*s.IncludeRelated) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludeRelated", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -5212,6 +9395,12 @@ func (s *ListPermissionsInput) Validate() error {
 // SetCatalogId sets the CatalogId field's value.
 func (s *ListPermissionsInput) SetCatalogId(v string) *ListPermissionsInput {
 	s.CatalogId = &v
+	return s
+}
+
+// SetIncludeRelated sets the IncludeRelated field's value.
+func (s *ListPermissionsInput) SetIncludeRelated(v string) *ListPermissionsInput {
+	s.IncludeRelated = &v
 	return s
 }
 
@@ -5392,6 +9581,272 @@ func (s *ListResourcesOutput) SetResourceInfoList(v []*ResourceInfo) *ListResour
 	return s
 }
 
+type ListTableStorageOptimizersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	CatalogId *string `min:"1" type:"string"`
+
+	// Name of the database where the table is present.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The number of storage optimizers to return on each call.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is a continuation call.
+	NextToken *string `type:"string"`
+
+	// The specific type of storage optimizers to list. The supported value is compaction.
+	StorageOptimizerType *string `type:"string" enum:"OptimizerType"`
+
+	// Name of the table.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableStorageOptimizersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableStorageOptimizersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTableStorageOptimizersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTableStorageOptimizersInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *ListTableStorageOptimizersInput) SetCatalogId(v string) *ListTableStorageOptimizersInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *ListTableStorageOptimizersInput) SetDatabaseName(v string) *ListTableStorageOptimizersInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTableStorageOptimizersInput) SetMaxResults(v int64) *ListTableStorageOptimizersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTableStorageOptimizersInput) SetNextToken(v string) *ListTableStorageOptimizersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageOptimizerType sets the StorageOptimizerType field's value.
+func (s *ListTableStorageOptimizersInput) SetStorageOptimizerType(v string) *ListTableStorageOptimizersInput {
+	s.StorageOptimizerType = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *ListTableStorageOptimizersInput) SetTableName(v string) *ListTableStorageOptimizersInput {
+	s.TableName = &v
+	return s
+}
+
+type ListTableStorageOptimizersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A continuation token for paginating the returned list of tokens, returned
+	// if the current segment of the list is not the last.
+	NextToken *string `type:"string"`
+
+	// A list of the storage optimizers associated with a table.
+	StorageOptimizerList []*StorageOptimizer `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableStorageOptimizersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTableStorageOptimizersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTableStorageOptimizersOutput) SetNextToken(v string) *ListTableStorageOptimizersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageOptimizerList sets the StorageOptimizerList field's value.
+func (s *ListTableStorageOptimizersOutput) SetStorageOptimizerList(v []*StorageOptimizer) *ListTableStorageOptimizersOutput {
+	s.StorageOptimizerList = v
+	return s
+}
+
+type ListTransactionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The catalog for which to list transactions. Defaults to the account ID of
+	// the caller.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The maximum number of transactions to return in a single call.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token if this is not the first call to retrieve transactions.
+	NextToken *string `type:"string"`
+
+	// A filter indicating the status of transactions to return. Options are ALL
+	// | COMPLETED | COMMITTED | ABORTED | ACTIVE. The default is ALL.
+	StatusFilter *string `type:"string" enum:"TransactionStatusFilter"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTransactionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTransactionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTransactionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTransactionsInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *ListTransactionsInput) SetCatalogId(v string) *ListTransactionsInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListTransactionsInput) SetMaxResults(v int64) *ListTransactionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTransactionsInput) SetNextToken(v string) *ListTransactionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatusFilter sets the StatusFilter field's value.
+func (s *ListTransactionsInput) SetStatusFilter(v string) *ListTransactionsInput {
+	s.StatusFilter = &v
+	return s
+}
+
+type ListTransactionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A continuation token indicating whether additional data is available.
+	NextToken *string `type:"string"`
+
+	// A list of transactions. The record for each transaction is a TransactionDescription
+	// object.
+	Transactions []*TransactionDescription `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTransactionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListTransactionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListTransactionsOutput) SetNextToken(v string) *ListTransactionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTransactions sets the Transactions field's value.
+func (s *ListTransactionsOutput) SetTransactions(v []*TransactionDescription) *ListTransactionsOutput {
+	s.Transactions = v
+	return s
+}
+
 // The operation timed out.
 type OperationTimeoutException struct {
 	_            struct{}                  `type:"structure"`
@@ -5455,6 +9910,106 @@ func (s *OperationTimeoutException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *OperationTimeoutException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A structure containing a list of partition values and table objects.
+type PartitionObjects struct {
+	_ struct{} `type:"structure"`
+
+	// A list of table objects
+	Objects []*TableObject `type:"list"`
+
+	// A list of partition values.
+	PartitionValues []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PartitionObjects) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PartitionObjects) GoString() string {
+	return s.String()
+}
+
+// SetObjects sets the Objects field's value.
+func (s *PartitionObjects) SetObjects(v []*TableObject) *PartitionObjects {
+	s.Objects = v
+	return s
+}
+
+// SetPartitionValues sets the PartitionValues field's value.
+func (s *PartitionObjects) SetPartitionValues(v []*string) *PartitionObjects {
+	s.PartitionValues = v
+	return s
+}
+
+// Statistics related to the processing of a query statement.
+type PlanningStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// An estimate of the data that was scanned in bytes.
+	EstimatedDataToScanBytes *int64 `type:"long"`
+
+	// The time that it took to process the request.
+	PlanningTimeMillis *int64 `type:"long"`
+
+	// The time the request was in queue to be processed.
+	QueueTimeMillis *int64 `type:"long"`
+
+	// The number of work units generated.
+	WorkUnitsGeneratedCount *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlanningStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PlanningStatistics) GoString() string {
+	return s.String()
+}
+
+// SetEstimatedDataToScanBytes sets the EstimatedDataToScanBytes field's value.
+func (s *PlanningStatistics) SetEstimatedDataToScanBytes(v int64) *PlanningStatistics {
+	s.EstimatedDataToScanBytes = &v
+	return s
+}
+
+// SetPlanningTimeMillis sets the PlanningTimeMillis field's value.
+func (s *PlanningStatistics) SetPlanningTimeMillis(v int64) *PlanningStatistics {
+	s.PlanningTimeMillis = &v
+	return s
+}
+
+// SetQueueTimeMillis sets the QueueTimeMillis field's value.
+func (s *PlanningStatistics) SetQueueTimeMillis(v int64) *PlanningStatistics {
+	s.QueueTimeMillis = &v
+	return s
+}
+
+// SetWorkUnitsGeneratedCount sets the WorkUnitsGeneratedCount field's value.
+func (s *PlanningStatistics) SetWorkUnitsGeneratedCount(v int64) *PlanningStatistics {
+	s.WorkUnitsGeneratedCount = &v
+	return s
 }
 
 // Permissions granted to a principal.
@@ -5588,12 +10143,12 @@ type PutDataLakeSettingsInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// A structure representing a list of AWS Lake Formation principals designated
-	// as data lake administrators.
+	// A structure representing a list of Lake Formation principals designated as
+	// data lake administrators.
 	//
 	// DataLakeSettings is a required field
 	DataLakeSettings *DataLakeSettings `type:"structure" required:"true"`
@@ -5672,6 +10227,104 @@ func (s PutDataLakeSettingsOutput) GoString() string {
 	return s.String()
 }
 
+// A structure containing information about the query plan.
+type QueryPlanningContext struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Data Catalog where the partition in question resides. If none
+	// is provided, the Amazon Web Services account ID is used by default.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The database containing the table.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The time as of when to read the table contents. If not set, the most recent
+	// transaction commit time will be used. Cannot be specified along with TransactionId.
+	QueryAsOfTime *time.Time `type:"timestamp"`
+
+	// A map consisting of key-value pairs.
+	QueryParameters map[string]*string `type:"map"`
+
+	// The transaction ID at which to read the table contents. If this transaction
+	// is not committed, the read will be treated as part of that transaction and
+	// will see its writes. If this transaction has aborted, an error will be returned.
+	// If not set, defaults to the most recent committed transaction. Cannot be
+	// specified along with QueryAsOfTime.
+	TransactionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryPlanningContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryPlanningContext) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QueryPlanningContext) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QueryPlanningContext"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *QueryPlanningContext) SetCatalogId(v string) *QueryPlanningContext {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *QueryPlanningContext) SetDatabaseName(v string) *QueryPlanningContext {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetQueryAsOfTime sets the QueryAsOfTime field's value.
+func (s *QueryPlanningContext) SetQueryAsOfTime(v time.Time) *QueryPlanningContext {
+	s.QueryAsOfTime = &v
+	return s
+}
+
+// SetQueryParameters sets the QueryParameters field's value.
+func (s *QueryPlanningContext) SetQueryParameters(v map[string]*string) *QueryPlanningContext {
+	s.QueryParameters = v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *QueryPlanningContext) SetTransactionId(v string) *QueryPlanningContext {
+	s.TransactionId = &v
+	return s
+}
+
 type RegisterResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5683,9 +10336,9 @@ type RegisterResourceInput struct {
 	// The identifier for the role that registers the resource.
 	RoleArn *string `type:"string"`
 
-	// Designates an AWS Identity and Access Management (IAM) service-linked role
-	// by registering this role with the Data Catalog. A service-linked role is
-	// a unique type of IAM role that is linked directly to Lake Formation.
+	// Designates an Identity and Access Management (IAM) service-linked role by
+	// registering this role with the Data Catalog. A service-linked role is a unique
+	// type of IAM role that is linked directly to Lake Formation.
 	//
 	// For more information, see Using Service-Linked Roles for Lake Formation (https://docs-aws.amazon.com/lake-formation/latest/dg/service-linked-roles.html).
 	UseServiceLinkedRole *bool `type:"boolean"`
@@ -5767,16 +10420,16 @@ type RemoveLFTagsFromResourceInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The tags to be removed from the resource.
+	// The LF-tags to be removed from the resource.
 	//
 	// LFTags is a required field
 	LFTags []*LFTagPair `min:"1" type:"list" required:"true"`
 
-	// The resource where you want to remove a tag.
+	// The database, table, or column resource where you want to remove an LF-tag.
 	//
 	// Resource is a required field
 	Resource *Resource `type:"structure" required:"true"`
@@ -5892,9 +10545,12 @@ type Resource struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	Catalog *CatalogResource `type:"structure"`
+
+	// A data cell filter.
+	DataCellsFilter *DataCellsFilterResource `type:"structure"`
 
 	// The location of an Amazon S3 path where permissions are granted or revoked.
 	DataLocation *DataLocationResource `type:"structure"`
@@ -5904,10 +10560,10 @@ type Resource struct {
 	// can Grant and Revoke database permissions to a principal.
 	Database *DatabaseResource `type:"structure"`
 
-	// The tag key and values attached to a resource.
+	// The LF-tag key and values attached to a resource.
 	LFTag *LFTagKeyResource `type:"structure"`
 
-	// A list of tag conditions that define a resource's tag policy.
+	// A list of LF-tag conditions that define a resource's LF-tag policy.
 	LFTagPolicy *LFTagPolicyResource `type:"structure"`
 
 	// The table for the resource. A table is a metadata definition that represents
@@ -5941,6 +10597,11 @@ func (s Resource) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Resource) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Resource"}
+	if s.DataCellsFilter != nil {
+		if err := s.DataCellsFilter.Validate(); err != nil {
+			invalidParams.AddNested("DataCellsFilter", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DataLocation != nil {
 		if err := s.DataLocation.Validate(); err != nil {
 			invalidParams.AddNested("DataLocation", err.(request.ErrInvalidParams))
@@ -5984,6 +10645,12 @@ func (s *Resource) SetCatalog(v *CatalogResource) *Resource {
 	return s
 }
 
+// SetDataCellsFilter sets the DataCellsFilter field's value.
+func (s *Resource) SetDataCellsFilter(v *DataCellsFilterResource) *Resource {
+	s.DataCellsFilter = v
+	return s
+}
+
 // SetDataLocation sets the DataLocation field's value.
 func (s *Resource) SetDataLocation(v *DataLocationResource) *Resource {
 	s.DataLocation = v
@@ -6020,7 +10687,7 @@ func (s *Resource) SetTableWithColumns(v *TableWithColumnsResource) *Resource {
 	return s
 }
 
-// A structure containing information about an AWS Lake Formation resource.
+// A structure containing information about an Lake Formation resource.
 type ResourceInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -6068,6 +10735,72 @@ func (s *ResourceInfo) SetResourceArn(v string) *ResourceInfo {
 func (s *ResourceInfo) SetRoleArn(v string) *ResourceInfo {
 	s.RoleArn = &v
 	return s
+}
+
+// Contains details about an error related to a resource which is not ready
+// for a transaction.
+type ResourceNotReadyException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the error.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotReadyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotReadyException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotReadyException(v protocol.ResponseMetadata) error {
+	return &ResourceNotReadyException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotReadyException) Code() string {
+	return "ResourceNotReadyException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotReadyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotReadyException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotReadyException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotReadyException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotReadyException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // A resource numerical limit was exceeded.
@@ -6140,8 +10873,8 @@ type RevokePermissionsInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
 	// The permissions revoked to the principal on the resource. For information
@@ -6267,13 +11000,54 @@ func (s RevokePermissionsOutput) GoString() string {
 	return s.String()
 }
 
+// A PartiQL predicate.
+type RowFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A wildcard for all rows.
+	AllRowsWildcard *AllRowsWildcard `type:"structure"`
+
+	// A filter expression.
+	FilterExpression *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RowFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RowFilter) GoString() string {
+	return s.String()
+}
+
+// SetAllRowsWildcard sets the AllRowsWildcard field's value.
+func (s *RowFilter) SetAllRowsWildcard(v *AllRowsWildcard) *RowFilter {
+	s.AllRowsWildcard = v
+	return s
+}
+
+// SetFilterExpression sets the FilterExpression field's value.
+func (s *RowFilter) SetFilterExpression(v string) *RowFilter {
+	s.FilterExpression = &v
+	return s
+}
+
 type SearchDatabasesByLFTagsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
 	// A list of conditions (LFTag structures) to search for in database resources.
@@ -6365,7 +11139,7 @@ func (s *SearchDatabasesByLFTagsInput) SetNextToken(v string) *SearchDatabasesBy
 type SearchDatabasesByLFTagsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of databases that meet the tag conditions.
+	// A list of databases that meet the LF-tag conditions.
 	DatabaseList []*TaggedDatabase `type:"list"`
 
 	// A continuation token, present if the current list segment is not the last.
@@ -6407,8 +11181,8 @@ type SearchTablesByLFTagsInput struct {
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
 	// A list of conditions (LFTag structures) to search for in table resources.
@@ -6503,7 +11277,7 @@ type SearchTablesByLFTagsOutput struct {
 	// A continuation token, present if the current list segment is not the last.
 	NextToken *string `type:"string"`
 
-	// A list of tables that meet the tag conditions.
+	// A list of tables that meet the LF-tag conditions.
 	TableList []*TaggedTable `type:"list"`
 }
 
@@ -6534,6 +11308,369 @@ func (s *SearchTablesByLFTagsOutput) SetNextToken(v string) *SearchTablesByLFTag
 // SetTableList sets the TableList field's value.
 func (s *SearchTablesByLFTagsOutput) SetTableList(v []*TaggedTable) *SearchTablesByLFTagsOutput {
 	s.TableList = v
+	return s
+}
+
+type StartQueryPlanningInput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure containing information about the query plan.
+	//
+	// QueryPlanningContext is a required field
+	QueryPlanningContext *QueryPlanningContext `type:"structure" required:"true"`
+
+	// A PartiQL query statement used as an input to the planner service.
+	//
+	// QueryString is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by StartQueryPlanningInput's
+	// String and GoString methods.
+	//
+	// QueryString is a required field
+	QueryString *string `min:"1" type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartQueryPlanningInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartQueryPlanningInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartQueryPlanningInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartQueryPlanningInput"}
+	if s.QueryPlanningContext == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryPlanningContext"))
+	}
+	if s.QueryString == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryString"))
+	}
+	if s.QueryString != nil && len(*s.QueryString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryString", 1))
+	}
+	if s.QueryPlanningContext != nil {
+		if err := s.QueryPlanningContext.Validate(); err != nil {
+			invalidParams.AddNested("QueryPlanningContext", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetQueryPlanningContext sets the QueryPlanningContext field's value.
+func (s *StartQueryPlanningInput) SetQueryPlanningContext(v *QueryPlanningContext) *StartQueryPlanningInput {
+	s.QueryPlanningContext = v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *StartQueryPlanningInput) SetQueryString(v string) *StartQueryPlanningInput {
+	s.QueryString = &v
+	return s
+}
+
+// A structure for the output.
+type StartQueryPlanningOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the plan query operation can be used to fetch the actual work unit
+	// descriptors that are produced as the result of the operation. The ID is also
+	// used to get the query state and as an input to the Execute operation.
+	//
+	// QueryId is a required field
+	QueryId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartQueryPlanningOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartQueryPlanningOutput) GoString() string {
+	return s.String()
+}
+
+// SetQueryId sets the QueryId field's value.
+func (s *StartQueryPlanningOutput) SetQueryId(v string) *StartQueryPlanningOutput {
+	s.QueryId = &v
+	return s
+}
+
+type StartTransactionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether this transaction should be read only or read and write.
+	// Writes made using a read-only transaction ID will be rejected. Read-only
+	// transactions do not need to be committed.
+	TransactionType *string `type:"string" enum:"TransactionType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTransactionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTransactionInput) GoString() string {
+	return s.String()
+}
+
+// SetTransactionType sets the TransactionType field's value.
+func (s *StartTransactionInput) SetTransactionType(v string) *StartTransactionInput {
+	s.TransactionType = &v
+	return s
+}
+
+type StartTransactionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An opaque identifier for the transaction.
+	TransactionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTransactionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StartTransactionOutput) GoString() string {
+	return s.String()
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *StartTransactionOutput) SetTransactionId(v string) *StartTransactionOutput {
+	s.TransactionId = &v
+	return s
+}
+
+// Contains details about an error related to statistics not being ready.
+type StatisticsNotReadyYetException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the error.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatisticsNotReadyYetException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatisticsNotReadyYetException) GoString() string {
+	return s.String()
+}
+
+func newErrorStatisticsNotReadyYetException(v protocol.ResponseMetadata) error {
+	return &StatisticsNotReadyYetException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *StatisticsNotReadyYetException) Code() string {
+	return "StatisticsNotReadyYetException"
+}
+
+// Message returns the exception's message.
+func (s *StatisticsNotReadyYetException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *StatisticsNotReadyYetException) OrigErr() error {
+	return nil
+}
+
+func (s *StatisticsNotReadyYetException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *StatisticsNotReadyYetException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *StatisticsNotReadyYetException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A structure describing the configuration and details of a storage optimizer.
+type StorageOptimizer struct {
+	_ struct{} `type:"structure"`
+
+	// A map of the storage optimizer configuration. Currently contains only one
+	// key-value pair: is_enabled indicates true or false for acceleration.
+	Config map[string]*string `type:"map"`
+
+	// A message that contains information about any error (if present).
+	//
+	// When an acceleration result has an enabled status, the error message is empty.
+	//
+	// When an acceleration result has a disabled status, the message describes
+	// an error or simply indicates "disabled by the user".
+	ErrorMessage *string `type:"string"`
+
+	// When an acceleration result has an enabled status, contains the details of
+	// the last job run.
+	LastRunDetails *string `type:"string"`
+
+	// The specific type of storage optimizer. The supported value is compaction.
+	StorageOptimizerType *string `type:"string" enum:"OptimizerType"`
+
+	// A message that contains information about any warnings (if present).
+	Warnings *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageOptimizer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StorageOptimizer) GoString() string {
+	return s.String()
+}
+
+// SetConfig sets the Config field's value.
+func (s *StorageOptimizer) SetConfig(v map[string]*string) *StorageOptimizer {
+	s.Config = v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *StorageOptimizer) SetErrorMessage(v string) *StorageOptimizer {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetLastRunDetails sets the LastRunDetails field's value.
+func (s *StorageOptimizer) SetLastRunDetails(v string) *StorageOptimizer {
+	s.LastRunDetails = &v
+	return s
+}
+
+// SetStorageOptimizerType sets the StorageOptimizerType field's value.
+func (s *StorageOptimizer) SetStorageOptimizerType(v string) *StorageOptimizer {
+	s.StorageOptimizerType = &v
+	return s
+}
+
+// SetWarnings sets the Warnings field's value.
+func (s *StorageOptimizer) SetWarnings(v string) *StorageOptimizer {
+	s.Warnings = &v
+	return s
+}
+
+// Specifies the details of a governed table.
+type TableObject struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 ETag of the object. Returned by GetTableObjects for validation
+	// and used to identify changes to the underlying data.
+	ETag *string `min:"1" type:"string"`
+
+	// The size of the Amazon S3 object in bytes.
+	Size *int64 `type:"long"`
+
+	// The Amazon S3 location of the object.
+	Uri *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableObject) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableObject) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *TableObject) SetETag(v string) *TableObject {
+	s.ETag = &v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *TableObject) SetSize(v int64) *TableObject {
+	s.Size = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *TableObject) SetUri(v string) *TableObject {
+	s.Uri = &v
 	return s
 }
 
@@ -6756,14 +11893,14 @@ func (s *TableWithColumnsResource) SetName(v string) *TableWithColumnsResource {
 	return s
 }
 
-// A structure describing a database resource with tags.
+// A structure describing a database resource with LF-tags.
 type TaggedDatabase struct {
 	_ struct{} `type:"structure"`
 
-	// A database that has tags attached to it.
+	// A database that has LF-tags attached to it.
 	Database *DatabaseResource `type:"structure"`
 
-	// A list of tags attached to the database.
+	// A list of LF-tags attached to the database.
 	LFTags []*LFTagPair `min:"1" type:"list"`
 }
 
@@ -6797,20 +11934,20 @@ func (s *TaggedDatabase) SetLFTags(v []*LFTagPair) *TaggedDatabase {
 	return s
 }
 
-// A structure describing a table resource with tags.
+// A structure describing a table resource with LF-tags.
 type TaggedTable struct {
 	_ struct{} `type:"structure"`
 
-	// A list of tags attached to the database where the table resides.
+	// A list of LF-tags attached to the database where the table resides.
 	LFTagOnDatabase []*LFTagPair `min:"1" type:"list"`
 
-	// A list of tags attached to columns in the table.
+	// A list of LF-tags attached to columns in the table.
 	LFTagsOnColumns []*ColumnLFTag `type:"list"`
 
-	// A list of tags attached to the table.
+	// A list of LF-tags attached to the table.
 	LFTagsOnTable []*LFTagPair `min:"1" type:"list"`
 
-	// A table that has tags attached to it.
+	// A table that has LF-tags attached to it.
 	Table *TableResource `type:"structure"`
 }
 
@@ -6856,24 +11993,346 @@ func (s *TaggedTable) SetTable(v *TableResource) *TaggedTable {
 	return s
 }
 
+// Contains details about an error where the query request was throttled.
+type ThrottledException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the error.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ThrottledException) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottledException(v protocol.ResponseMetadata) error {
+	return &ThrottledException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ThrottledException) Code() string {
+	return "ThrottledException"
+}
+
+// Message returns the exception's message.
+func (s *ThrottledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ThrottledException) OrigErr() error {
+	return nil
+}
+
+func (s *ThrottledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ThrottledException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ThrottledException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Contains details about an error related to a transaction that was cancelled.
+type TransactionCanceledException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the error.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionCanceledException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionCanceledException) GoString() string {
+	return s.String()
+}
+
+func newErrorTransactionCanceledException(v protocol.ResponseMetadata) error {
+	return &TransactionCanceledException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TransactionCanceledException) Code() string {
+	return "TransactionCanceledException"
+}
+
+// Message returns the exception's message.
+func (s *TransactionCanceledException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TransactionCanceledException) OrigErr() error {
+	return nil
+}
+
+func (s *TransactionCanceledException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TransactionCanceledException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TransactionCanceledException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Contains details about an error related to a transaction commit that was
+// in progress.
+type TransactionCommitInProgressException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the error.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionCommitInProgressException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionCommitInProgressException) GoString() string {
+	return s.String()
+}
+
+func newErrorTransactionCommitInProgressException(v protocol.ResponseMetadata) error {
+	return &TransactionCommitInProgressException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TransactionCommitInProgressException) Code() string {
+	return "TransactionCommitInProgressException"
+}
+
+// Message returns the exception's message.
+func (s *TransactionCommitInProgressException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TransactionCommitInProgressException) OrigErr() error {
+	return nil
+}
+
+func (s *TransactionCommitInProgressException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TransactionCommitInProgressException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TransactionCommitInProgressException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Contains details about an error where the specified transaction has already
+// been committed and cannot be used for UpdateTableObjects.
+type TransactionCommittedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the error.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionCommittedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionCommittedException) GoString() string {
+	return s.String()
+}
+
+func newErrorTransactionCommittedException(v protocol.ResponseMetadata) error {
+	return &TransactionCommittedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *TransactionCommittedException) Code() string {
+	return "TransactionCommittedException"
+}
+
+// Message returns the exception's message.
+func (s *TransactionCommittedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *TransactionCommittedException) OrigErr() error {
+	return nil
+}
+
+func (s *TransactionCommittedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *TransactionCommittedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *TransactionCommittedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A structure that contains information about a transaction.
+type TransactionDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the transaction committed or aborted, if it is not currently
+	// active.
+	TransactionEndTime *time.Time `type:"timestamp"`
+
+	// The ID of the transaction.
+	TransactionId *string `min:"1" type:"string"`
+
+	// The time when the transaction started.
+	TransactionStartTime *time.Time `type:"timestamp"`
+
+	// A status of ACTIVE, COMMITTED, or ABORTED.
+	TransactionStatus *string `type:"string" enum:"TransactionStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TransactionDescription) GoString() string {
+	return s.String()
+}
+
+// SetTransactionEndTime sets the TransactionEndTime field's value.
+func (s *TransactionDescription) SetTransactionEndTime(v time.Time) *TransactionDescription {
+	s.TransactionEndTime = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *TransactionDescription) SetTransactionId(v string) *TransactionDescription {
+	s.TransactionId = &v
+	return s
+}
+
+// SetTransactionStartTime sets the TransactionStartTime field's value.
+func (s *TransactionDescription) SetTransactionStartTime(v time.Time) *TransactionDescription {
+	s.TransactionStartTime = &v
+	return s
+}
+
+// SetTransactionStatus sets the TransactionStatus field's value.
+func (s *TransactionDescription) SetTransactionStatus(v string) *TransactionDescription {
+	s.TransactionStatus = &v
+	return s
+}
+
 type UpdateLFTagInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier for the Data Catalog. By default, the account ID. The Data
 	// Catalog is the persistent metadata store. It contains database definitions,
-	// table definitions, and other control information to manage your AWS Lake
-	// Formation environment.
+	// table definitions, and other control information to manage your Lake Formation
+	// environment.
 	CatalogId *string `min:"1" type:"string"`
 
-	// The key-name for the tag for which to add or delete values.
+	// The key-name for the LF-tag for which to add or delete values.
 	//
 	// TagKey is a required field
 	TagKey *string `min:"1" type:"string" required:"true"`
 
-	// A list of tag values to add from the tag.
+	// A list of LF-tag values to add from the LF-tag.
 	TagValuesToAdd []*string `min:"1" type:"list"`
 
-	// A list of tag values to delete from the tag.
+	// A list of LF-tag values to delete from the LF-tag.
 	TagValuesToDelete []*string `min:"1" type:"list"`
 }
 
@@ -6974,7 +12433,7 @@ type UpdateResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
-	// The new role to use for the given resource registered in AWS Lake Formation.
+	// The new role to use for the given resource registered in Lake Formation.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`
@@ -7046,6 +12505,520 @@ func (s UpdateResourceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateResourceOutput) GoString() string {
 	return s.String()
+}
+
+type UpdateTableObjectsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The catalog containing the governed table to update. Defaults to the caller’s
+	// account ID.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The database containing the governed table to update.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// The governed table to update.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+
+	// The transaction at which to do the write.
+	//
+	// TransactionId is a required field
+	TransactionId *string `min:"1" type:"string" required:"true"`
+
+	// A list of WriteOperation objects that define an object to add to or delete
+	// from the manifest for a governed table.
+	//
+	// WriteOperations is a required field
+	WriteOperations []*WriteOperation `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableObjectsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableObjectsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTableObjectsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTableObjectsInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+	if s.WriteOperations == nil {
+		invalidParams.Add(request.NewErrParamRequired("WriteOperations"))
+	}
+	if s.WriteOperations != nil && len(s.WriteOperations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WriteOperations", 1))
+	}
+	if s.WriteOperations != nil {
+		for i, v := range s.WriteOperations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WriteOperations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *UpdateTableObjectsInput) SetCatalogId(v string) *UpdateTableObjectsInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *UpdateTableObjectsInput) SetDatabaseName(v string) *UpdateTableObjectsInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *UpdateTableObjectsInput) SetTableName(v string) *UpdateTableObjectsInput {
+	s.TableName = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *UpdateTableObjectsInput) SetTransactionId(v string) *UpdateTableObjectsInput {
+	s.TransactionId = &v
+	return s
+}
+
+// SetWriteOperations sets the WriteOperations field's value.
+func (s *UpdateTableObjectsInput) SetWriteOperations(v []*WriteOperation) *UpdateTableObjectsInput {
+	s.WriteOperations = v
+	return s
+}
+
+type UpdateTableObjectsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableObjectsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableObjectsOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateTableStorageOptimizerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Catalog ID of the table.
+	CatalogId *string `min:"1" type:"string"`
+
+	// Name of the database where the table is present.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// Name of the table for which to enable the storage optimizer.
+	//
+	// StorageOptimizerConfig is a required field
+	StorageOptimizerConfig map[string]map[string]*string `type:"map" required:"true"`
+
+	// Name of the table for which to enable the storage optimizer.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableStorageOptimizerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableStorageOptimizerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTableStorageOptimizerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTableStorageOptimizerInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.StorageOptimizerConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageOptimizerConfig"))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *UpdateTableStorageOptimizerInput) SetCatalogId(v string) *UpdateTableStorageOptimizerInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *UpdateTableStorageOptimizerInput) SetDatabaseName(v string) *UpdateTableStorageOptimizerInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetStorageOptimizerConfig sets the StorageOptimizerConfig field's value.
+func (s *UpdateTableStorageOptimizerInput) SetStorageOptimizerConfig(v map[string]map[string]*string) *UpdateTableStorageOptimizerInput {
+	s.StorageOptimizerConfig = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *UpdateTableStorageOptimizerInput) SetTableName(v string) *UpdateTableStorageOptimizerInput {
+	s.TableName = &v
+	return s
+}
+
+type UpdateTableStorageOptimizerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A response indicating the success of failure of the operation.
+	Result *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableStorageOptimizerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTableStorageOptimizerOutput) GoString() string {
+	return s.String()
+}
+
+// SetResult sets the Result field's value.
+func (s *UpdateTableStorageOptimizerOutput) SetResult(v string) *UpdateTableStorageOptimizerOutput {
+	s.Result = &v
+	return s
+}
+
+// An object that defines an Amazon S3 object to be deleted if a transaction
+// cancels, provided that VirtualPut was called before writing the object.
+type VirtualObject struct {
+	_ struct{} `type:"structure"`
+
+	// The ETag of the Amazon S3 object.
+	ETag *string `min:"1" type:"string"`
+
+	// The path to the Amazon S3 object. Must start with s3://
+	//
+	// Uri is a required field
+	Uri *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VirtualObject) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VirtualObject) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VirtualObject) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VirtualObject"}
+	if s.ETag != nil && len(*s.ETag) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ETag", 1))
+	}
+	if s.Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("Uri"))
+	}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetETag sets the ETag field's value.
+func (s *VirtualObject) SetETag(v string) *VirtualObject {
+	s.ETag = &v
+	return s
+}
+
+// SetUri sets the Uri field's value.
+func (s *VirtualObject) SetUri(v string) *VirtualObject {
+	s.Uri = &v
+	return s
+}
+
+// Defines the valid range of work unit IDs for querying the execution service.
+type WorkUnitRange struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the maximum work unit ID in the range. The maximum value is inclusive.
+	//
+	// WorkUnitIdMax is a required field
+	WorkUnitIdMax *int64 `type:"long" required:"true"`
+
+	// Defines the minimum work unit ID in the range.
+	//
+	// WorkUnitIdMin is a required field
+	WorkUnitIdMin *int64 `type:"long" required:"true"`
+
+	// A work token used to query the execution service.
+	//
+	// WorkUnitToken is a required field
+	WorkUnitToken *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkUnitRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkUnitRange) GoString() string {
+	return s.String()
+}
+
+// SetWorkUnitIdMax sets the WorkUnitIdMax field's value.
+func (s *WorkUnitRange) SetWorkUnitIdMax(v int64) *WorkUnitRange {
+	s.WorkUnitIdMax = &v
+	return s
+}
+
+// SetWorkUnitIdMin sets the WorkUnitIdMin field's value.
+func (s *WorkUnitRange) SetWorkUnitIdMin(v int64) *WorkUnitRange {
+	s.WorkUnitIdMin = &v
+	return s
+}
+
+// SetWorkUnitToken sets the WorkUnitToken field's value.
+func (s *WorkUnitRange) SetWorkUnitToken(v string) *WorkUnitRange {
+	s.WorkUnitToken = &v
+	return s
+}
+
+// Contains details about an error related to work units not being ready.
+type WorkUnitsNotReadyYetException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the error.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkUnitsNotReadyYetException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WorkUnitsNotReadyYetException) GoString() string {
+	return s.String()
+}
+
+func newErrorWorkUnitsNotReadyYetException(v protocol.ResponseMetadata) error {
+	return &WorkUnitsNotReadyYetException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *WorkUnitsNotReadyYetException) Code() string {
+	return "WorkUnitsNotReadyYetException"
+}
+
+// Message returns the exception's message.
+func (s *WorkUnitsNotReadyYetException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *WorkUnitsNotReadyYetException) OrigErr() error {
+	return nil
+}
+
+func (s *WorkUnitsNotReadyYetException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *WorkUnitsNotReadyYetException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *WorkUnitsNotReadyYetException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Defines an object to add to or delete from a governed table.
+type WriteOperation struct {
+	_ struct{} `type:"structure"`
+
+	// A new object to add to the governed table.
+	AddObject *AddObjectInput_ `type:"structure"`
+
+	// An object to delete from the governed table.
+	DeleteObject *DeleteObjectInput_ `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WriteOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s WriteOperation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WriteOperation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WriteOperation"}
+	if s.AddObject != nil {
+		if err := s.AddObject.Validate(); err != nil {
+			invalidParams.AddNested("AddObject", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DeleteObject != nil {
+		if err := s.DeleteObject.Validate(); err != nil {
+			invalidParams.AddNested("DeleteObject", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddObject sets the AddObject field's value.
+func (s *WriteOperation) SetAddObject(v *AddObjectInput_) *WriteOperation {
+	s.AddObject = v
+	return s
+}
+
+// SetDeleteObject sets the DeleteObject field's value.
+func (s *WriteOperation) SetDeleteObject(v *DeleteObjectInput_) *WriteOperation {
+	s.DeleteObject = v
+	return s
 }
 
 const (
@@ -7161,6 +13134,26 @@ func FieldNameString_Values() []string {
 }
 
 const (
+	// OptimizerTypeCompaction is a OptimizerType enum value
+	OptimizerTypeCompaction = "COMPACTION"
+
+	// OptimizerTypeGarbageCollection is a OptimizerType enum value
+	OptimizerTypeGarbageCollection = "GARBAGE_COLLECTION"
+
+	// OptimizerTypeAll is a OptimizerType enum value
+	OptimizerTypeAll = "ALL"
+)
+
+// OptimizerType_Values returns all elements of the OptimizerType enum
+func OptimizerType_Values() []string {
+	return []string{
+		OptimizerTypeCompaction,
+		OptimizerTypeGarbageCollection,
+		OptimizerTypeAll,
+	}
+}
+
+const (
 	// PermissionAll is a Permission enum value
 	PermissionAll = "ALL"
 
@@ -7229,6 +13222,34 @@ func Permission_Values() []string {
 }
 
 const (
+	// QueryStateStringPending is a QueryStateString enum value
+	QueryStateStringPending = "PENDING"
+
+	// QueryStateStringWorkunitsAvailable is a QueryStateString enum value
+	QueryStateStringWorkunitsAvailable = "WORKUNITS_AVAILABLE"
+
+	// QueryStateStringError is a QueryStateString enum value
+	QueryStateStringError = "ERROR"
+
+	// QueryStateStringFinished is a QueryStateString enum value
+	QueryStateStringFinished = "FINISHED"
+
+	// QueryStateStringExpired is a QueryStateString enum value
+	QueryStateStringExpired = "EXPIRED"
+)
+
+// QueryStateString_Values returns all elements of the QueryStateString enum
+func QueryStateString_Values() []string {
+	return []string{
+		QueryStateStringPending,
+		QueryStateStringWorkunitsAvailable,
+		QueryStateStringError,
+		QueryStateStringFinished,
+		QueryStateStringExpired,
+	}
+}
+
+const (
 	// ResourceShareTypeForeign is a ResourceShareType enum value
 	ResourceShareTypeForeign = "FOREIGN"
 
@@ -7257,5 +13278,73 @@ func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeDatabase,
 		ResourceTypeTable,
+	}
+}
+
+const (
+	// TransactionStatusActive is a TransactionStatus enum value
+	TransactionStatusActive = "ACTIVE"
+
+	// TransactionStatusCommitted is a TransactionStatus enum value
+	TransactionStatusCommitted = "COMMITTED"
+
+	// TransactionStatusAborted is a TransactionStatus enum value
+	TransactionStatusAborted = "ABORTED"
+
+	// TransactionStatusCommitInProgress is a TransactionStatus enum value
+	TransactionStatusCommitInProgress = "COMMIT_IN_PROGRESS"
+)
+
+// TransactionStatus_Values returns all elements of the TransactionStatus enum
+func TransactionStatus_Values() []string {
+	return []string{
+		TransactionStatusActive,
+		TransactionStatusCommitted,
+		TransactionStatusAborted,
+		TransactionStatusCommitInProgress,
+	}
+}
+
+const (
+	// TransactionStatusFilterAll is a TransactionStatusFilter enum value
+	TransactionStatusFilterAll = "ALL"
+
+	// TransactionStatusFilterCompleted is a TransactionStatusFilter enum value
+	TransactionStatusFilterCompleted = "COMPLETED"
+
+	// TransactionStatusFilterActive is a TransactionStatusFilter enum value
+	TransactionStatusFilterActive = "ACTIVE"
+
+	// TransactionStatusFilterCommitted is a TransactionStatusFilter enum value
+	TransactionStatusFilterCommitted = "COMMITTED"
+
+	// TransactionStatusFilterAborted is a TransactionStatusFilter enum value
+	TransactionStatusFilterAborted = "ABORTED"
+)
+
+// TransactionStatusFilter_Values returns all elements of the TransactionStatusFilter enum
+func TransactionStatusFilter_Values() []string {
+	return []string{
+		TransactionStatusFilterAll,
+		TransactionStatusFilterCompleted,
+		TransactionStatusFilterActive,
+		TransactionStatusFilterCommitted,
+		TransactionStatusFilterAborted,
+	}
+}
+
+const (
+	// TransactionTypeReadAndWrite is a TransactionType enum value
+	TransactionTypeReadAndWrite = "READ_AND_WRITE"
+
+	// TransactionTypeReadOnly is a TransactionType enum value
+	TransactionTypeReadOnly = "READ_ONLY"
+)
+
+// TransactionType_Values returns all elements of the TransactionType enum
+func TransactionType_Values() []string {
+	return []string{
+		TransactionTypeReadAndWrite,
+		TransactionTypeReadOnly,
 	}
 }

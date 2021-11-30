@@ -658,7 +658,8 @@
       "type":"structure",
       "members":{
         "Status":{"shape":"ShippingLabelStatus"},
-        "ExpirationDate":{"shape":"Timestamp"}
+        "ExpirationDate":{"shape":"Timestamp"},
+        "ReturnShippingLabelURI":{"shape":"String"}
       }
     },
     "DeviceConfiguration":{
@@ -1063,7 +1064,8 @@
     "OnDeviceServiceConfiguration":{
       "type":"structure",
       "members":{
-        "NFSOnDeviceService":{"shape":"NFSOnDeviceServiceConfiguration"}
+        "NFSOnDeviceService":{"shape":"NFSOnDeviceServiceConfiguration"},
+        "TGWOnDeviceService":{"shape":"TGWOnDeviceServiceConfiguration"}
       }
     },
     "RemoteManagement":{
@@ -1190,6 +1192,13 @@
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "TGWOnDeviceServiceConfiguration":{
+      "type":"structure",
+      "members":{
+        "StorageLimit":{"shape":"StorageLimit"},
+        "StorageUnit":{"shape":"StorageUnit"}
+      }
     },
     "TargetOnDeviceService":{
       "type":"structure",

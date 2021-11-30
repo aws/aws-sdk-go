@@ -3,7 +3,7 @@
 // Package lakeformation provides the client and types for making API
 // requests to AWS Lake Formation.
 //
-// Defines the public endpoint for the AWS Lake Formation service.
+// Defines the public endpoint for the Lake Formation service.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31 for more information on this service.
 //

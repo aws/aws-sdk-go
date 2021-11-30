@@ -2105,7 +2105,8 @@
         "SoftwareUpdatesEndDate":{"shape":"SoftwareUpdatesEndDate"},
         "DeprecationDate":{"shape":"DeprecationDate"},
         "GatewayCapacity":{"shape":"GatewayCapacity"},
-        "SupportedGatewayCapacities":{"shape":"SupportedGatewayCapacities"}
+        "SupportedGatewayCapacities":{"shape":"SupportedGatewayCapacities"},
+        "HostEnvironmentId":{"shape":"HostEnvironmentId"}
       }
     },
     "DescribeMaintenanceStartTimeInput":{
@@ -2662,7 +2663,9 @@
         "GatewayOperationalState":{"shape":"GatewayOperationalState"},
         "GatewayName":{"shape":"string"},
         "Ec2InstanceId":{"shape":"Ec2InstanceId"},
-        "Ec2InstanceRegion":{"shape":"Ec2InstanceRegion"}
+        "Ec2InstanceRegion":{"shape":"Ec2InstanceRegion"},
+        "HostEnvironment":{"shape":"HostEnvironment"},
+        "HostEnvironmentId":{"shape":"HostEnvironmentId"}
       }
     },
     "GatewayName":{
@@ -2712,8 +2715,14 @@
         "HYPER-V",
         "EC2",
         "KVM",
-        "OTHER"
+        "OTHER",
+        "SNOWBALL"
       ]
+    },
+    "HostEnvironmentId":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "Hosts":{
       "type":"list",

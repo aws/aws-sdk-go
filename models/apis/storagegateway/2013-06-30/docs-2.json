@@ -1355,7 +1355,7 @@
     "GatewayType": {
       "base": null,
       "refs": {
-        "ActivateGatewayInput$GatewayType": "<p>A value that defines the type of gateway to activate. The type specified is critical to all later functions of the gateway and cannot be changed after activation. The default value is <code>CACHED</code>.</p> <p>Valid Values: <code>STORED</code> | <code>CACHED</code> | <code>VTL</code> | <code>FILE_S3</code> | <code>FILE_FSX_SMB|</code> </p>",
+        "ActivateGatewayInput$GatewayType": "<p>A value that defines the type of gateway to activate. The type specified is critical to all later functions of the gateway and cannot be changed after activation. The default value is <code>CACHED</code>.</p> <p>Valid Values: <code>STORED</code> | <code>CACHED</code> | <code>VTL</code> | <code>VTL_SNOW</code> | <code>FILE_S3</code> | <code>FILE_FSX_SMB</code> </p>",
         "DescribeGatewayInformationOutput$GatewayType": "<p>The type of the gateway.</p>",
         "GatewayInfo$GatewayType": "<p>The type of the gateway.</p>"
       }
@@ -1375,7 +1375,15 @@
     "HostEnvironment": {
       "base": null,
       "refs": {
-        "DescribeGatewayInformationOutput$HostEnvironment": "<p>The type of hypervisor environment used by the host.</p>"
+        "DescribeGatewayInformationOutput$HostEnvironment": "<p>The type of hardware or software platform on which the gateway is running.</p>",
+        "GatewayInfo$HostEnvironment": "<p>The type of hardware or software platform on which the gateway is running.</p>"
+      }
+    },
+    "HostEnvironmentId": {
+      "base": null,
+      "refs": {
+        "DescribeGatewayInformationOutput$HostEnvironmentId": "<p>A unique identifier for the specific instance of the host platform running the gateway. This value is only available for certain host environments, and its format depends on the host environment type.</p>",
+        "GatewayInfo$HostEnvironmentId": "<p>A unique identifier for the specific instance of the host platform running the gateway. This value is only available for certain host environments, and its format depends on the host environment type.</p>"
       }
     },
     "Hosts": {

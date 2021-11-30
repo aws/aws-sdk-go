@@ -72,6 +72,10 @@ type KafkaAPI interface {
 	CreateClusterWithContext(aws.Context, *kafka.CreateClusterInput, ...request.Option) (*kafka.CreateClusterOutput, error)
 	CreateClusterRequest(*kafka.CreateClusterInput) (*request.Request, *kafka.CreateClusterOutput)
 
+	CreateClusterV2(*kafka.CreateClusterV2Input) (*kafka.CreateClusterV2Output, error)
+	CreateClusterV2WithContext(aws.Context, *kafka.CreateClusterV2Input, ...request.Option) (*kafka.CreateClusterV2Output, error)
+	CreateClusterV2Request(*kafka.CreateClusterV2Input) (*request.Request, *kafka.CreateClusterV2Output)
+
 	CreateConfiguration(*kafka.CreateConfigurationInput) (*kafka.CreateConfigurationOutput, error)
 	CreateConfigurationWithContext(aws.Context, *kafka.CreateConfigurationInput, ...request.Option) (*kafka.CreateConfigurationOutput, error)
 	CreateConfigurationRequest(*kafka.CreateConfigurationInput) (*request.Request, *kafka.CreateConfigurationOutput)
@@ -91,6 +95,10 @@ type KafkaAPI interface {
 	DescribeClusterOperation(*kafka.DescribeClusterOperationInput) (*kafka.DescribeClusterOperationOutput, error)
 	DescribeClusterOperationWithContext(aws.Context, *kafka.DescribeClusterOperationInput, ...request.Option) (*kafka.DescribeClusterOperationOutput, error)
 	DescribeClusterOperationRequest(*kafka.DescribeClusterOperationInput) (*request.Request, *kafka.DescribeClusterOperationOutput)
+
+	DescribeClusterV2(*kafka.DescribeClusterV2Input) (*kafka.DescribeClusterV2Output, error)
+	DescribeClusterV2WithContext(aws.Context, *kafka.DescribeClusterV2Input, ...request.Option) (*kafka.DescribeClusterV2Output, error)
+	DescribeClusterV2Request(*kafka.DescribeClusterV2Input) (*request.Request, *kafka.DescribeClusterV2Output)
 
 	DescribeConfiguration(*kafka.DescribeConfigurationInput) (*kafka.DescribeConfigurationOutput, error)
 	DescribeConfigurationWithContext(aws.Context, *kafka.DescribeConfigurationInput, ...request.Option) (*kafka.DescribeConfigurationOutput, error)
@@ -121,6 +129,13 @@ type KafkaAPI interface {
 
 	ListClustersPages(*kafka.ListClustersInput, func(*kafka.ListClustersOutput, bool) bool) error
 	ListClustersPagesWithContext(aws.Context, *kafka.ListClustersInput, func(*kafka.ListClustersOutput, bool) bool, ...request.Option) error
+
+	ListClustersV2(*kafka.ListClustersV2Input) (*kafka.ListClustersV2Output, error)
+	ListClustersV2WithContext(aws.Context, *kafka.ListClustersV2Input, ...request.Option) (*kafka.ListClustersV2Output, error)
+	ListClustersV2Request(*kafka.ListClustersV2Input) (*request.Request, *kafka.ListClustersV2Output)
+
+	ListClustersV2Pages(*kafka.ListClustersV2Input, func(*kafka.ListClustersV2Output, bool) bool) error
+	ListClustersV2PagesWithContext(aws.Context, *kafka.ListClustersV2Input, func(*kafka.ListClustersV2Output, bool) bool, ...request.Option) error
 
 	ListConfigurationRevisions(*kafka.ListConfigurationRevisionsInput) (*kafka.ListConfigurationRevisionsOutput, error)
 	ListConfigurationRevisionsWithContext(aws.Context, *kafka.ListConfigurationRevisionsInput, ...request.Option) (*kafka.ListConfigurationRevisionsOutput, error)

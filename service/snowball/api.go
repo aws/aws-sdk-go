@@ -71,7 +71,7 @@ func (c *Snowball) CancelClusterRequest(input *CancelClusterInput) (req *request
 //
 // Returned Error Types:
 //   * KMSRequestFailedException
-//   The provided AWS Key Management Service key lacks the permissions to perform
+//   The provided Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
 //   * InvalidJobStateException
@@ -170,7 +170,7 @@ func (c *Snowball) CancelJobRequest(input *CancelJobInput) (req *request.Request
 //   that action to be performed.
 //
 //   * KMSRequestFailedException
-//   The provided AWS Key Management Service key lacks the permissions to perform
+//   The provided Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/CancelJob
@@ -259,7 +259,7 @@ func (c *Snowball) CreateAddressRequest(input *CreateAddressInput) (req *request
 //   * UnsupportedAddressException
 //   The address is either outside the serviceable area for your region, or an
 //   error occurred. Check the address with your region's carrier and try again.
-//   If the issue persists, contact AWS Support.
+//   If the issue persists, contact Amazon Web Services Support.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/CreateAddress
 func (c *Snowball) CreateAddress(input *CreateAddressInput) (*CreateAddressOutput, error) {
@@ -344,7 +344,7 @@ func (c *Snowball) CreateClusterRequest(input *CreateClusterInput) (req *request
 //   in your last request, and try again.
 //
 //   * KMSRequestFailedException
-//   The provided AWS Key Management Service key lacks the permissions to perform
+//   The provided Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
 //   * InvalidInputCombinationException
@@ -423,20 +423,21 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 // CreateJob API operation for Amazon Import/Export Snowball.
 //
 // Creates a job to import or export data between Amazon S3 and your on-premises
-// data center. Your AWS account must have the right trust policies and permissions
-// in place to create a job for a Snow device. If you're creating a job for
-// a node in a cluster, you only need to provide the clusterId value; the other
-// job attributes are inherited from the cluster.
+// data center. Your Amazon Web Services account must have the right trust policies
+// and permissions in place to create a job for a Snow device. If you're creating
+// a job for a node in a cluster, you only need to provide the clusterId value;
+// the other job attributes are inherited from the cluster.
 //
 // Only the Snowball; Edge device type is supported when ordering clustered
 // jobs.
 //
 // The device capacity is optional.
 //
-// Availability of device types differ by AWS Region. For more information about
-// Region availability, see AWS Regional Services (https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&loc=4).
+// Availability of device types differ by Amazon Web Services Region. For more
+// information about Region availability, see Amazon Web Services Regional Services
+// (https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&loc=4).
 //
-// AWS Snow Family device types and their capacities.
+// Snow Family Devices and their capacities.
 //
 //    * Snow Family device type: SNC1_SSD Capacity: T14 Description: Snowcone
 //
@@ -455,12 +456,12 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //    Optimized with EC2 Compute
 //
 //    * Device type: STANDARD Capacity: T50 Description: Original Snowball device
-//    This device is only available in the Ningxia, Beijing, and Singapore AWS
-//    Regions.
+//    This device is only available in the Ningxia, Beijing, and Singapore Amazon
+//    Web Services Region
 //
 //    * Device type: STANDARD Capacity: T80 Description: Original Snowball device
-//    This device is only available in the Ningxia, Beijing, and Singapore AWS
-//    Regions.
+//    This device is only available in the Ningxia, Beijing, and Singapore Amazon
+//    Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -475,7 +476,7 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //   in your last request, and try again.
 //
 //   * KMSRequestFailedException
-//   The provided AWS Key Management Service key lacks the permissions to perform
+//   The provided Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
 //   * InvalidInputCombinationException
@@ -561,7 +562,8 @@ func (c *Snowball) CreateLongTermPricingRequest(input *CreateLongTermPricingInpu
 //
 // Creates a job with the long-term usage option for a device. The long-term
 // usage is a 1-year or 3-year long-term pricing type for the device. You are
-// billed upfront, and AWS provides discounts for long-term pricing.
+// billed upfront, and Amazon Web Services provides discounts for long-term
+// pricing.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -641,7 +643,8 @@ func (c *Snowball) CreateReturnShippingLabelRequest(input *CreateReturnShippingL
 
 // CreateReturnShippingLabel API operation for Amazon Import/Export Snowball.
 //
-// Creates a shipping label that will be used to return the Snow device to AWS.
+// Creates a shipping label that will be used to return the Snow device to Amazon
+// Web Services.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -671,7 +674,7 @@ func (c *Snowball) CreateReturnShippingLabelRequest(input *CreateReturnShippingL
 //   * ReturnShippingLabelAlreadyExistsException
 //   You get this exception if you call CreateReturnShippingLabel and a valid
 //   return shipping label already exists. In this case, use DescribeReturnShippingLabel
-//   to get the url.
+//   to get the URL.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/CreateReturnShippingLabel
 func (c *Snowball) CreateReturnShippingLabel(input *CreateReturnShippingLabelInput) (*CreateReturnShippingLabelOutput, error) {
@@ -1127,7 +1130,7 @@ func (c *Snowball) DescribeReturnShippingLabelRequest(input *DescribeReturnShipp
 // DescribeReturnShippingLabel API operation for Amazon Import/Export Snowball.
 //
 // Information on the shipping label of a Snow device that is being returned
-// to AWS.
+// to Amazon Web Services.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1416,8 +1419,8 @@ func (c *Snowball) GetSnowballUsageRequest(input *GetSnowballUsageInput) (req *r
 // and also the number of Snow devices your account has in use.
 //
 // The default service limit for the number of Snow devices that you can have
-// at one time is 1. If you want to increase your service limit, contact AWS
-// Support.
+// at one time is 1. If you want to increase your service limit, contact Amazon
+// Web Services Support.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1745,10 +1748,10 @@ func (c *Snowball) ListCompatibleImagesRequest(input *ListCompatibleImagesInput)
 // ListCompatibleImages API operation for Amazon Import/Export Snowball.
 //
 // This action returns a list of the different Amazon EC2 Amazon Machine Images
-// (AMIs) that are owned by your AWS account that would be supported for use
-// on a Snow device. Currently, supported AMIs are based on the CentOS 7 (x86_64)
-// - with Updates HVM, Ubuntu Server 14.04 LTS (HVM), and Ubuntu 16.04 LTS -
-// Xenial (HVM) images, available on the AWS Marketplace.
+// (AMIs) that are owned by your Amazon Web Services accountthat would be supported
+// for use on a Snow device. Currently, supported AMIs are based on the CentOS
+// 7 (x86_64) - with Updates HVM, Ubuntu Server 14.04 LTS (HVM), and Ubuntu
+// 16.04 LTS - Xenial (HVM) images, available on the Amazon Web Services Marketplace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2081,7 +2084,7 @@ func (c *Snowball) UpdateClusterRequest(input *UpdateClusterInput) (req *request
 //   that action to be performed.
 //
 //   * KMSRequestFailedException
-//   The provided AWS Key Management Service key lacks the permissions to perform
+//   The provided Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
 //   * InvalidInputCombinationException
@@ -2181,7 +2184,7 @@ func (c *Snowball) UpdateJobRequest(input *UpdateJobInput) (req *request.Request
 //   that action to be performed.
 //
 //   * KMSRequestFailedException
-//   The provided AWS Key Management Service key lacks the permissions to perform
+//   The provided Key Management Service key lacks the permissions to perform
 //   the specified CreateJob or UpdateJob action.
 //
 //   * InvalidInputCombinationException
@@ -2896,15 +2899,15 @@ type ClusterMetadata struct {
 
 	// The KmsKeyARN Amazon Resource Name (ARN) associated with this cluster. This
 	// ARN was created using the CreateKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html)
-	// API action in AWS Key Management Service (AWS KMS).
+	// API action in Key Management Service (KMS.
 	KmsKeyARN *string `type:"string"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) notification settings
 	// for this cluster.
 	Notification *Notification `type:"structure"`
 
-	// Represents metadata and configuration settings for services on an AWS Snow
-	// Family device.
+	// Represents metadata and configuration settings for services on an Amazon
+	// Web Services Snow Family device.
 	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
 	// The arrays of JobResource objects that can include updated S3Resource objects
@@ -2913,7 +2916,7 @@ type ClusterMetadata struct {
 
 	// The role ARN associated with this cluster. This ARN was created using the
 	// CreateRole (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)
-	// API action in AWS Identity and Access Management (IAM).
+	// API action in Identity and Access Management (IAM).
 	RoleARN *string `type:"string"`
 
 	// The shipping speed for each node in this cluster. This speed doesn't dictate
@@ -2934,13 +2937,13 @@ type ClusterMetadata struct {
 	//    * In the US, you have access to one-day shipping and two-day shipping.
 	ShippingOption *string `type:"string" enum:"ShippingOption"`
 
-	// The type of AWS Snow device to use for this cluster.
+	// The type of Snowcone device to use for this cluster.
 	//
-	// For cluster jobs, AWS Snow Family currently supports only the EDGE device
-	// type.
+	// For cluster jobs, Amazon Web Services Snow Family currently supports only
+	// the EDGE device type.
 	SnowballType *string `type:"string" enum:"Type"`
 
-	// The tax documents required in your AWS Region.
+	// The tax documents required in your Amazon Web Services Region.
 	TaxDocuments *TaxDocuments `type:"structure"`
 }
 
@@ -3275,7 +3278,7 @@ type CreateClusterInput struct {
 
 	// The KmsKeyARN value that you want to associate with this cluster. KmsKeyARN
 	// values are created by using the CreateKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html)
-	// API action in AWS Key Management Service (AWS KMS).
+	// API action in Key Management Service (KMS).
 	KmsKeyARN *string `type:"string"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) notification settings
@@ -3283,8 +3286,8 @@ type CreateClusterInput struct {
 	Notification *Notification `type:"structure"`
 
 	// Specifies the service or services on the Snow Family device that your transferred
-	// data will be exported from or imported into. AWS Snow Family supports Amazon
-	// S3 and NFS (Network File System).
+	// data will be exported from or imported into. Amazon Web Services Snow Family
+	// device clusters support Amazon S3 and NFS (Network File System).
 	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
 	// Allows you to securely operate and manage Snow devices in a cluster remotely
@@ -3294,14 +3297,14 @@ type CreateClusterInput struct {
 	RemoteManagement *string `type:"string" enum:"RemoteManagement"`
 
 	// The resources associated with the cluster job. These resources include Amazon
-	// S3 buckets and optional AWS Lambda functions written in the Python language.
+	// S3 buckets and optional Lambda functions written in the Python language.
 	//
 	// Resources is a required field
 	Resources *JobResource `type:"structure" required:"true"`
 
 	// The RoleARN that you want to associate with this cluster. RoleArn values
 	// are created by using the CreateRole (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)
-	// API action in AWS Identity and Access Management (IAM).
+	// API action in Identity and Access Management (IAM).
 	//
 	// RoleARN is a required field
 	RoleARN *string `type:"string" required:"true"`
@@ -3339,10 +3342,10 @@ type CreateClusterInput struct {
 	// ShippingOption is a required field
 	ShippingOption *string `type:"string" required:"true" enum:"ShippingOption"`
 
-	// The type of AWS Snow Family device to use for this cluster.
+	// The type of Snow Family Devices to use for this cluster.
 	//
-	// For cluster jobs, AWS Snow Family currently supports only the EDGE device
-	// type.
+	// For cluster jobs, Amazon Web Services Snow Family currently supports only
+	// the EDGE device type.
 	//
 	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
 	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
@@ -3351,7 +3354,7 @@ type CreateClusterInput struct {
 	// SnowballType is a required field
 	SnowballType *string `type:"string" required:"true" enum:"Type"`
 
-	// The tax documents required in your AWS Region.
+	// The tax documents required in your Amazon Web Services Region.
 	TaxDocuments *TaxDocuments `type:"structure"`
 }
 
@@ -3539,7 +3542,7 @@ type CreateJobInput struct {
 	// Photos 2016-08-11.
 	Description *string `min:"1" type:"string"`
 
-	// Defines the device configuration for an AWS Snowcone job.
+	// Defines the device configuration for an Snowcone job.
 	//
 	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
 	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
@@ -3555,7 +3558,7 @@ type CreateJobInput struct {
 
 	// The KmsKeyARN that you want to associate with this job. KmsKeyARNs are created
 	// using the CreateKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html)
-	// AWS Key Management Service (KMS) API action.
+	// Key Management Service (KMS) API action.
 	KmsKeyARN *string `type:"string"`
 
 	// The ID of the long-term pricing type for the device.
@@ -3566,8 +3569,9 @@ type CreateJobInput struct {
 	Notification *Notification `type:"structure"`
 
 	// Specifies the service or services on the Snow Family device that your transferred
-	// data will be exported from or imported into. AWS Snow Family supports Amazon
-	// S3 and NFS (Network File System).
+	// data will be exported from or imported into. Amazon Web Services Snow Family
+	// supports Amazon S3 and NFS (Network File System) and the Amazon Web Services
+	// Storage Gateway service Tape Gateway type.
 	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
 	// Allows you to securely operate and manage Snowcone devices remotely from
@@ -3590,7 +3594,7 @@ type CreateJobInput struct {
 
 	// The RoleARN that you want to associate with this job. RoleArns are created
 	// using the CreateRole (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)
-	// AWS Identity and Access Management (IAM) API action.
+	// Identity and Access Management (IAM) API action.
 	RoleARN *string `type:"string"`
 
 	// The shipping speed for this job. This speed doesn't dictate how soon you'll
@@ -3619,13 +3623,13 @@ type CreateJobInput struct {
 	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
 	SnowballCapacityPreference *string `type:"string" enum:"Capacity"`
 
-	// The type of AWS Snow Family device to use for this job.
+	// The type of Snow Family Devices to use for this job.
 	//
-	// For cluster jobs, AWS Snow Family currently supports only the EDGE device
-	// type.
+	// For cluster jobs, Amazon Web Services Snow Family currently supports only
+	// the EDGE device type.
 	//
-	// The type of AWS Snow device to use for this job. Currently, the only supported
-	// device type for cluster jobs is EDGE.
+	// The type of Amazon Web Services Snow device to use for this job. Currently,
+	// the only supported device type for cluster jobs is EDGE.
 	//
 	// For more information, see Snowball Edge Device Options (https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html)
 	// in the Snowball Edge Developer Guide.
@@ -3635,7 +3639,7 @@ type CreateJobInput struct {
 	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
 	SnowballType *string `type:"string" enum:"Type"`
 
-	// The tax documents required in your AWS Region.
+	// The tax documents required in your Amazon Web Services Region.
 	TaxDocuments *TaxDocuments `type:"structure"`
 }
 
@@ -3833,7 +3837,7 @@ type CreateLongTermPricingInput struct {
 	// LongTermPricingType is a required field
 	LongTermPricingType *string `type:"string" required:"true" enum:"LongTermPricingType"`
 
-	// The type of AWS Snow Family device to use for the long-term pricing job.
+	// The type of Snow Family Devices to use for the long-term pricing job.
 	SnowballType *string `type:"string" enum:"Type"`
 }
 
@@ -3927,8 +3931,9 @@ type CreateReturnShippingLabelInput struct {
 	JobId *string `min:"39" type:"string" required:"true"`
 
 	// The shipping speed for a particular job. This speed doesn't dictate how soon
-	// the device is returned to AWS. This speed represents how quickly it moves
-	// to its destination while in transit. Regional shipping speeds are as follows:
+	// the device is returned to Amazon Web Services. This speed represents how
+	// quickly it moves to its destination while in transit. Regional shipping speeds
+	// are as follows:
 	ShippingOption *string `type:"string" enum:"ShippingOption"`
 }
 
@@ -3982,7 +3987,7 @@ type CreateReturnShippingLabelOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The status information of the task on a Snow device that is being returned
-	// to AWS.
+	// to Amazon Web Services.
 	Status *string `type:"string" enum:"ShippingLabelStatus"`
 }
 
@@ -4011,8 +4016,8 @@ func (s *CreateReturnShippingLabelOutput) SetStatus(v string) *CreateReturnShipp
 }
 
 // Defines the real-time status of a Snow device's data transfer while the device
-// is at AWS. This data is only available while a job has a JobState value of
-// InProgress, for both import and export jobs.
+// is at Amazon Web Services. This data is only available while a job has a
+// JobState value of InProgress, for both import and export jobs.
 type DataTransfer struct {
 	_ struct{} `type:"structure"`
 
@@ -4480,8 +4485,11 @@ type DescribeReturnShippingLabelOutput struct {
 	// The expiration date of the current return shipping label.
 	ExpirationDate *time.Time `type:"timestamp"`
 
+	// The pre-signed Amazon S3 URI used to download the return shipping label.
+	ReturnShippingLabelURI *string `min:"1" type:"string"`
+
 	// The status information of the task on a Snow device that is being returned
-	// to AWS.
+	// to Amazon Web Services.
 	Status *string `type:"string" enum:"ShippingLabelStatus"`
 }
 
@@ -4509,6 +4517,12 @@ func (s *DescribeReturnShippingLabelOutput) SetExpirationDate(v time.Time) *Desc
 	return s
 }
 
+// SetReturnShippingLabelURI sets the ReturnShippingLabelURI field's value.
+func (s *DescribeReturnShippingLabelOutput) SetReturnShippingLabelURI(v string) *DescribeReturnShippingLabelOutput {
+	s.ReturnShippingLabelURI = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *DescribeReturnShippingLabelOutput) SetStatus(v string) *DescribeReturnShippingLabelOutput {
 	s.Status = &v
@@ -4519,7 +4533,7 @@ func (s *DescribeReturnShippingLabelOutput) SetStatus(v string) *DescribeReturnS
 type DeviceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Returns information about the device configuration for an AWS Snowcone job.
+	// Returns information about the device configuration for an Snowcone job.
 	SnowconeDeviceConfiguration *SnowconeDeviceConfiguration `type:"structure"`
 }
 
@@ -4549,8 +4563,8 @@ func (s *DeviceConfiguration) SetSnowconeDeviceConfiguration(v *SnowconeDeviceCo
 
 // A JSON-formatted object that contains the IDs for an Amazon Machine Image
 // (AMI), including the Amazon EC2 AMI ID and the Snow device AMI ID. Each AMI
-// has these two IDs to simplify identifying the AMI in both the AWS Cloud and
-// on the device.
+// has these two IDs to simplify identifying the AMI in both the Amazon Web
+// Services Cloud and on the device.
 type Ec2AmiResource struct {
 	_ struct{} `type:"structure"`
 
@@ -4682,7 +4696,7 @@ type EventTriggerDefinition struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for any local Amazon S3 resource that is an
-	// AWS Lambda function's event trigger associated with this job.
+	// Lambda function's event trigger associated with this job.
 	EventResourceARN *string `type:"string"`
 }
 
@@ -5021,11 +5035,12 @@ func (s *GetSoftwareUpdatesOutput) SetUpdatesURI(v string) *GetSoftwareUpdatesOu
 	return s
 }
 
-// The tax documents required in AWS Regions in India.
+// The tax documents required in Amazon Web Services Region in India.
 type INDTaxDocuments struct {
 	_ struct{} `type:"structure"`
 
-	// The Goods and Services Tax (GST) documents required in AWS Regions in India.
+	// The Goods and Services Tax (GST) documents required in Amazon Web Services
+	// Region in India.
 	GSTIN *string `type:"string"`
 }
 
@@ -5560,8 +5575,8 @@ type JobMetadata struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A value that defines the real-time status of a Snow device's data transfer
-	// while the device is at AWS. This data is only available while a job has a
-	// JobState value of InProgress, for both import and export jobs.
+	// while the device is at Amazon Web Services. This data is only available while
+	// a job has a JobState value of InProgress, for both import and export jobs.
 	DataTransferProgress *DataTransfer `type:"structure"`
 
 	// The description of the job, provided at job creation.
@@ -5589,9 +5604,9 @@ type JobMetadata struct {
 	// The type of job.
 	JobType *string `type:"string" enum:"JobType"`
 
-	// The Amazon Resource Name (ARN) for the AWS Key Management Service (AWS KMS)
-	// key associated with this job. This ARN was created using the CreateKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html)
-	// API action in AWS KMS.
+	// The Amazon Resource Name (ARN) for the Key Management Service (KMS) key associated
+	// with this job. This ARN was created using the CreateKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html)
+	// API action in KMS.
 	KmsKeyARN *string `type:"string"`
 
 	// The ID of the long-term pricing type for the device.
@@ -5603,8 +5618,8 @@ type JobMetadata struct {
 	// data type.
 	Notification *Notification `type:"structure"`
 
-	// Represents metadata and configuration settings for services on an AWS Snow
-	// Family device.
+	// Represents metadata and configuration settings for services on an Amazon
+	// Web Services Snow Family device.
 	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
 	// Allows you to securely operate and manage Snowcone devices remotely from
@@ -5619,7 +5634,7 @@ type JobMetadata struct {
 
 	// The role ARN associated with this job. This ARN was created using the CreateRole
 	// (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)
-	// API action in AWS Identity and Access Management (IAM).
+	// API action in Identity and Access Management.
 	RoleARN *string `type:"string"`
 
 	// A job's shipping information, including inbound and outbound tracking numbers
@@ -5638,7 +5653,8 @@ type JobMetadata struct {
 	// The type of device used with this job.
 	SnowballType *string `type:"string" enum:"Type"`
 
-	// The metadata associated with the tax documents required in your AWS Region.
+	// The metadata associated with the tax documents required in your Amazon Web
+	// Services Region.
 	TaxDocuments *TaxDocuments `type:"structure"`
 }
 
@@ -5792,9 +5808,9 @@ func (s *JobMetadata) SetTaxDocuments(v *TaxDocuments) *JobMetadata {
 	return s
 }
 
-// Contains an array of AWS resource objects. Each object represents an Amazon
-// S3 bucket, an AWS Lambda function, or an Amazon Machine Image (AMI) based
-// on Amazon EC2 that is associated with a particular job.
+// Contains an array of Amazon Web Services resource objects. Each object represents
+// an Amazon S3 bucket, an Lambda function, or an Amazon Machine Image (AMI)
+// based on Amazon EC2 that is associated with a particular job.
 type JobResource struct {
 	_ struct{} `type:"structure"`
 
@@ -5874,7 +5890,7 @@ func (s *JobResource) SetS3Resources(v []*S3Resource) *JobResource {
 	return s
 }
 
-// The provided AWS Key Management Service key lacks the permissions to perform
+// The provided Key Management Service key lacks the permissions to perform
 // the specified CreateJob or UpdateJob action.
 type KMSRequestFailedException struct {
 	_            struct{}                  `type:"structure"`
@@ -6009,8 +6025,8 @@ type LambdaResource struct {
 	// associated with this job.
 	EventTriggers []*EventTriggerDefinition `type:"list"`
 
-	// An Amazon Resource Name (ARN) that represents an AWS Lambda function to be
-	// triggered by PUT object actions on the associated local Amazon S3 resource.
+	// An Amazon Resource Name (ARN) that represents an Lambda function to be triggered
+	// by PUT object actions on the associated local Amazon S3 resource.
 	LambdaArn *string `type:"string"`
 }
 
@@ -6583,8 +6599,7 @@ type LongTermPricingListEntry struct {
 	// A new device that replaces a device that is ordered with long-term pricing.
 	ReplacementJob *string `min:"39" type:"string"`
 
-	// The type of AWS Snow Family device associated with this long-term pricing
-	// job.
+	// The type of Snow Family Devices associated with this long-term pricing job.
 	SnowballType *string `type:"string" enum:"Type"`
 }
 
@@ -6666,12 +6681,12 @@ func (s *LongTermPricingListEntry) SetSnowballType(v string) *LongTermPricingLis
 	return s
 }
 
-// An object that represents metadata and configuration settings for NFS service
-// on an AWS Snow Family device.
+// An object that represents the metadata and configuration settings for the
+// NFS (Network File System) service on an Amazon Web Services Snow Family device.
 type NFSOnDeviceServiceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum NFS storage for one Snowball Family device.
+	// The maximum NFS storage for one Snow Family device.
 	StorageLimit *int64 `type:"integer"`
 
 	// The scale unit of the NFS storage on the device.
@@ -6732,8 +6747,8 @@ type Notification struct {
 	// Amazon Resource Names (ARNs) for topics by using the CreateTopic (https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html)
 	// Amazon SNS API action.
 	//
-	// You can subscribe email addresses to an Amazon SNS topic through the AWS
-	// Management Console, or by using the Subscribe (https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html)
+	// You can subscribe email addresses to an Amazon SNS topic through the Amazon
+	// Web Services Management Console, or by using the Subscribe (https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html)
 	// Amazon Simple Notification Service (Amazon SNS) API action.
 	SnsTopicARN *string `type:"string"`
 }
@@ -6774,13 +6789,17 @@ func (s *Notification) SetSnsTopicARN(v string) *Notification {
 	return s
 }
 
-// An object that represents metadata and configuration settings for services
-// on an AWS Snow Family device.
+// An object that represents the metadata and configuration settings for services
+// on an Amazon Web Services Snow Family device.
 type OnDeviceServiceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Represents the NFS service on a Snow Family device.
+	// Represents the NFS (Network File System) service on a Snow Family device.
 	NFSOnDeviceService *NFSOnDeviceServiceConfiguration `type:"structure"`
+
+	// Represents the Storage Gateway service Tape Gateway type on a Snow Family
+	// device.
+	TGWOnDeviceService *TGWOnDeviceServiceConfiguration `type:"structure"`
 }
 
 // String returns the string representation.
@@ -6807,9 +6826,15 @@ func (s *OnDeviceServiceConfiguration) SetNFSOnDeviceService(v *NFSOnDeviceServi
 	return s
 }
 
+// SetTGWOnDeviceService sets the TGWOnDeviceService field's value.
+func (s *OnDeviceServiceConfiguration) SetTGWOnDeviceService(v *TGWOnDeviceServiceConfiguration) *OnDeviceServiceConfiguration {
+	s.TGWOnDeviceService = v
+	return s
+}
+
 // You get this exception if you call CreateReturnShippingLabel and a valid
 // return shipping label already exists. In this case, use DescribeReturnShippingLabel
-// to get the url.
+// to get the URL.
 type ReturnShippingLabelAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6891,8 +6916,8 @@ type S3Resource struct {
 	KeyRange *KeyRange `type:"structure"`
 
 	// Specifies the service or services on the Snow Family device that your transferred
-	// data will be exported from or imported into. AWS Snow Family supports Amazon
-	// S3 and NFS (Network File System).
+	// data will be exported from or imported into. Amazon Web Services Snow Family
+	// supports Amazon S3 and NFS (Network File System).
 	TargetOnDeviceServices []*TargetOnDeviceService `type:"list"`
 }
 
@@ -6999,7 +7024,7 @@ type ShippingDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The Status and TrackingNumber values for a Snow device being returned to
-	// AWS for a particular job.
+	// Amazon Web Services for a particular job.
 	InboundShipment *Shipment `type:"structure"`
 
 	// The Status and TrackingNumber values for a Snow device being delivered to
@@ -7062,11 +7087,11 @@ func (s *ShippingDetails) SetShippingOption(v string) *ShippingDetails {
 	return s
 }
 
-// Specifies the device configuration for an AWS Snowcone job.
+// Specifies the device configuration for an Snowcone job.
 type SnowconeDeviceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Configures the wireless connection for the AWS Snowcone device.
+	// Configures the wireless connection for the Snowcone device.
 	WirelessConnection *WirelessConnection `type:"structure"`
 }
 
@@ -7094,9 +7119,54 @@ func (s *SnowconeDeviceConfiguration) SetWirelessConnection(v *WirelessConnectio
 	return s
 }
 
+// An object that represents the metadata and configuration settings for the
+// Storage Gateway service Tape Gateway type on an Amazon Web Services Snow
+// Family device.
+type TGWOnDeviceServiceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of virtual tapes to store on one Snow Family device. Due
+	// to physical resource limitations, this value must be set to 80 for Snowball
+	// Edge.
+	StorageLimit *int64 `type:"integer"`
+
+	// The scale unit of the virtual tapes on the device.
+	StorageUnit *string `type:"string" enum:"StorageUnit"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TGWOnDeviceServiceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TGWOnDeviceServiceConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetStorageLimit sets the StorageLimit field's value.
+func (s *TGWOnDeviceServiceConfiguration) SetStorageLimit(v int64) *TGWOnDeviceServiceConfiguration {
+	s.StorageLimit = &v
+	return s
+}
+
+// SetStorageUnit sets the StorageUnit field's value.
+func (s *TGWOnDeviceServiceConfiguration) SetStorageUnit(v string) *TGWOnDeviceServiceConfiguration {
+	s.StorageUnit = &v
+	return s
+}
+
 // An object that represents the service or services on the Snow Family device
-// that your transferred data will be exported from or imported into. AWS Snow
-// Family supports Amazon S3 and NFS (Network File System).
+// that your transferred data will be exported from or imported into. Amazon
+// Web Services Snow Family supports Amazon S3 and NFS (Network File System).
 type TargetOnDeviceService struct {
 	_ struct{} `type:"structure"`
 
@@ -7139,11 +7209,11 @@ func (s *TargetOnDeviceService) SetTransferOption(v string) *TargetOnDeviceServi
 	return s
 }
 
-// The tax documents required in your AWS Region.
+// The tax documents required in your Amazon Web Services Region.
 type TaxDocuments struct {
 	_ struct{} `type:"structure"`
 
-	// The tax documents required in AWS Regions in India.
+	// The tax documents required in Amazon Web Services Region in India.
 	IND *INDTaxDocuments `type:"structure"`
 }
 
@@ -7173,7 +7243,7 @@ func (s *TaxDocuments) SetIND(v *INDTaxDocuments) *TaxDocuments {
 
 // The address is either outside the serviceable area for your region, or an
 // error occurred. Check the address with your region's carrier and try again.
-// If the issue persists, contact AWS Support.
+// If the issue persists, contact Amazon Web Services Support.
 type UnsupportedAddressException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7259,8 +7329,8 @@ type UpdateClusterInput struct {
 	Notification *Notification `type:"structure"`
 
 	// Specifies the service or services on the Snow Family device that your transferred
-	// data will be exported from or imported into. AWS Snow Family supports Amazon
-	// S3 and NFS (Network File System).
+	// data will be exported from or imported into. Amazon Web Services Snow Family
+	// device clusters support Amazon S3 and NFS (Network File System).
 	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
 	// The updated arrays of JobResource objects that can include updated S3Resource
@@ -7269,7 +7339,7 @@ type UpdateClusterInput struct {
 
 	// The new role Amazon Resource Name (ARN) that you want to associate with this
 	// cluster. To create a role ARN, use the CreateRole (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)
-	// API action in AWS Identity and Access Management (IAM).
+	// API action in Identity and Access Management (IAM).
 	RoleARN *string `type:"string"`
 
 	// The updated shipping option value of this cluster's ShippingDetails object.
@@ -7422,16 +7492,17 @@ type UpdateJobInput struct {
 	Notification *Notification `type:"structure"`
 
 	// Specifies the service or services on the Snow Family device that your transferred
-	// data will be exported from or imported into. AWS Snow Family supports Amazon
-	// S3 and NFS (Network File System).
+	// data will be exported from or imported into. Amazon Web Services Snow Family
+	// supports Amazon S3 and NFS (Network File System) and the Amazon Web Services
+	// Storage Gateway service Tape Gateway type.
 	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
 	// The updated JobResource object, or the updated JobResource object.
 	Resources *JobResource `type:"structure"`
 
 	// The new role Amazon Resource Name (ARN) that you want to associate with this
-	// job. To create a role ARN, use the CreateRole (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)AWS
-	// Identity and Access Management (IAM) API action.
+	// job. To create a role ARN, use the CreateRole (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html)Identity
+	// and Access Management (IAM) API action.
 	RoleARN *string `type:"string"`
 
 	// The updated shipping option value of this job's ShippingDetails object.
@@ -7589,7 +7660,7 @@ type UpdateJobShipmentStateInput struct {
 	//
 	// Set to RECEIVED when the device arrives at your location.
 	//
-	// Set to RETURNED when you have returned the device to AWS.
+	// Set to RETURNED when you have returned the device to Amazon Web Services.
 	//
 	// ShipmentState is a required field
 	ShipmentState *string `type:"string" required:"true" enum:"ShipmentState"`
@@ -7761,11 +7832,11 @@ func (s UpdateLongTermPricingOutput) GoString() string {
 	return s.String()
 }
 
-// Configures the wireless connection on an AWS Snowcone device.
+// Configures the wireless connection on an Snowcone device.
 type WirelessConnection struct {
 	_ struct{} `type:"structure"`
 
-	// Enables the Wi-Fi adapter on an AWS Snowcone device.
+	// Enables the Wi-Fi adapter on an Snowcone device.
 	IsWifiEnabled *bool `type:"boolean"`
 }
 

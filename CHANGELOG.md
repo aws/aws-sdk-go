@@ -1,3 +1,31 @@
+Release v1.42.16 (2021-11-30)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/backup-gateway`: Adds new service
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for Is4gen and Im4gn instances. This release also adds a new subnet attribute, enableLniAtDeviceIndex, to support local network interfaces, which are logical networking components that connect an EC2 instance to your on-premises network.
+* `service/fsx`: Updates service API, documentation, and paginators
+* `service/glue`: Updates service API and documentation
+  * Support for DataLake transactions
+* `service/iot`: Updates service API and documentation
+  * Added the ability to enable/disable IoT Fleet Indexing for Device Defender and Named Shadow information, and search them through IoT Fleet Indexing APIs.
+* `service/iottwinmaker`: Adds new service
+* `service/kafka`: Updates service API, documentation, and paginators
+* `service/kinesis`: Updates service API and documentation
+  * Amazon Kinesis Data Streams now supports on demand streams.
+* `service/lakeformation`: Updates service API, documentation, and paginators
+* `service/outposts`: Updates service API and documentation
+* `service/redshift-data`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * Introduce Amazon S3 Glacier Instant Retrieval storage class and a new setting in S3 Object Ownership to disable ACLs for bucket and the objects in it.
+* `service/snowball`: Updates service API and documentation
+  * Tapeball is to integrate tape gateway onto snowball, it enables customer to transfer local data on the tape to snowball,and then ingest the data into tape gateway on the cloud.
+* `service/storagegateway`: Updates service API and documentation
+  * Added gateway type VTL_SNOW. Added new SNOWBALL HostEnvironment for gateways running on a Snowball device. Added new field HostEnvironmentId to serve as an identifier for the HostEnvironment on which the gateway is running.
+* `service/workspaces-web`: Adds new service
+
 Release v1.42.15 (2021-11-29)
 ===
 

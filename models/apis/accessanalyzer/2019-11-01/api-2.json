@@ -2151,8 +2151,18 @@
           "locationName":"nextToken"
         },
         "policyDocument":{"shape":"PolicyDocument"},
-        "policyType":{"shape":"PolicyType"}
+        "policyType":{"shape":"PolicyType"},
+        "validatePolicyResourceType":{"shape":"ValidatePolicyResourceType"}
       }
+    },
+    "ValidatePolicyResourceType":{
+      "type":"string",
+      "enum":[
+        "AWS::S3::Bucket",
+        "AWS::S3::AccessPoint",
+        "AWS::S3::MultiRegionAccessPoint",
+        "AWS::S3ObjectLambda::AccessPoint"
+      ]
     },
     "ValidatePolicyResponse":{
       "type":"structure",

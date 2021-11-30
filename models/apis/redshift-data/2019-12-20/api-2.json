@@ -38,7 +38,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"DatabaseConnectionException"}
       ]
     },
     "DescribeStatement":{
@@ -65,7 +66,8 @@
       "output":{"shape":"DescribeTableResponse"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"DatabaseConnectionException"}
       ]
     },
     "ExecuteStatement":{
@@ -106,7 +108,8 @@
       "output":{"shape":"ListDatabasesResponse"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"DatabaseConnectionException"}
       ]
     },
     "ListSchemas":{
@@ -119,7 +122,8 @@
       "output":{"shape":"ListSchemasResponse"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"DatabaseConnectionException"}
       ]
     },
     "ListStatements":{
@@ -145,7 +149,8 @@
       "output":{"shape":"ListTablesResponse"},
       "errors":[
         {"shape":"ValidationException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"DatabaseConnectionException"}
       ]
     }
   },
@@ -173,7 +178,6 @@
     "BatchExecuteStatementInput":{
       "type":"structure",
       "required":[
-        "ClusterIdentifier",
         "Database",
         "Sqls"
       ],
@@ -254,6 +258,15 @@
       "type":"list",
       "member":{"shape":"ColumnMetadata"}
     },
+    "DatabaseConnectionException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true,
+      "fault":true
+    },
     "DatabaseList":{
       "type":"list",
       "member":{"shape":"String"}
@@ -291,10 +304,7 @@
     },
     "DescribeTableRequest":{
       "type":"structure",
-      "required":[
-        "ClusterIdentifier",
-        "Database"
-      ],
+      "required":["Database"],
       "members":{
         "ClusterIdentifier":{"shape":"Location"},
         "ConnectedDatabase":{"shape":"String"},
@@ -331,7 +341,6 @@
     "ExecuteStatementInput":{
       "type":"structure",
       "required":[
-        "ClusterIdentifier",
         "Database",
         "Sql"
       ],
@@ -403,10 +412,7 @@
     },
     "ListDatabasesRequest":{
       "type":"structure",
-      "required":[
-        "ClusterIdentifier",
-        "Database"
-      ],
+      "required":["Database"],
       "members":{
         "ClusterIdentifier":{"shape":"Location"},
         "Database":{"shape":"String"},
@@ -425,10 +431,7 @@
     },
     "ListSchemasRequest":{
       "type":"structure",
-      "required":[
-        "ClusterIdentifier",
-        "Database"
-      ],
+      "required":["Database"],
       "members":{
         "ClusterIdentifier":{"shape":"Location"},
         "ConnectedDatabase":{"shape":"String"},
@@ -472,10 +475,7 @@
     },
     "ListTablesRequest":{
       "type":"structure",
-      "required":[
-        "ClusterIdentifier",
-        "Database"
-      ],
+      "required":["Database"],
       "members":{
         "ClusterIdentifier":{"shape":"Location"},
         "ConnectedDatabase":{"shape":"String"},

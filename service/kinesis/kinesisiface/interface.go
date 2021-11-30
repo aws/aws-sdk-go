@@ -181,6 +181,10 @@ type KinesisAPI interface {
 	UpdateShardCountWithContext(aws.Context, *kinesis.UpdateShardCountInput, ...request.Option) (*kinesis.UpdateShardCountOutput, error)
 	UpdateShardCountRequest(*kinesis.UpdateShardCountInput) (*request.Request, *kinesis.UpdateShardCountOutput)
 
+	UpdateStreamMode(*kinesis.UpdateStreamModeInput) (*kinesis.UpdateStreamModeOutput, error)
+	UpdateStreamModeWithContext(aws.Context, *kinesis.UpdateStreamModeInput, ...request.Option) (*kinesis.UpdateStreamModeOutput, error)
+	UpdateStreamModeRequest(*kinesis.UpdateStreamModeInput) (*request.Request, *kinesis.UpdateStreamModeOutput)
+
 	WaitUntilStreamExists(*kinesis.DescribeStreamInput) error
 	WaitUntilStreamExistsWithContext(aws.Context, *kinesis.DescribeStreamInput, ...request.WaiterOption) error
 

@@ -45,6 +45,12 @@ const (
 	// A generic error indicating a failure with a client request.
 	ErrCodeBadRequest = "BadRequest"
 
+	// ErrCodeDataRepositoryAssociationNotFound for service response error code
+	// "DataRepositoryAssociationNotFound".
+	//
+	// No data repository associations were found based upon the supplied parameters.
+	ErrCodeDataRepositoryAssociationNotFound = "DataRepositoryAssociationNotFound"
+
 	// ErrCodeDataRepositoryTaskEnded for service response error code
 	// "DataRepositoryTaskEnded".
 	//
@@ -92,10 +98,16 @@ const (
 	// A generic error indicating a server-side failure.
 	ErrCodeInternalServerError = "InternalServerError"
 
+	// ErrCodeInvalidDataRepositoryType for service response error code
+	// "InvalidDataRepositoryType".
+	//
+	// You have filtered the response to a data repository type that is not supported.
+	ErrCodeInvalidDataRepositoryType = "InvalidDataRepositoryType"
+
 	// ErrCodeInvalidDestinationKmsKey for service response error code
 	// "InvalidDestinationKmsKey".
 	//
-	// The Key Management Service (KMS) key of the destination backup is invalid.
+	// The Key Management Service (KMS) key of the destination backup is not valid.
 	ErrCodeInvalidDestinationKmsKey = "InvalidDestinationKmsKey"
 
 	// ErrCodeInvalidExportPath for service response error code
@@ -126,14 +138,14 @@ const (
 	// ErrCodeInvalidRegion for service response error code
 	// "InvalidRegion".
 	//
-	// The Region provided for Source Region is invalid or is in a different Amazon
+	// The Region provided for SourceRegion is not valid or is in a different Amazon
 	// Web Services partition.
 	ErrCodeInvalidRegion = "InvalidRegion"
 
 	// ErrCodeInvalidSourceKmsKey for service response error code
 	// "InvalidSourceKmsKey".
 	//
-	// The Key Management Service (KMS) key of the source backup is invalid.
+	// The Key Management Service (KMS) key of the source backup is not valid.
 	ErrCodeInvalidSourceKmsKey = "InvalidSourceKmsKey"
 
 	// ErrCodeMissingFileSystemConfiguration for service response error code
@@ -174,11 +186,17 @@ const (
 	// increase some service limits by contacting Amazon Web Services Support.
 	ErrCodeServiceLimitExceeded = "ServiceLimitExceeded"
 
+	// ErrCodeSnapshotNotFound for service response error code
+	// "SnapshotNotFound".
+	//
+	// No Amazon FSx snapshots were found based on the supplied parameters.
+	ErrCodeSnapshotNotFound = "SnapshotNotFound"
+
 	// ErrCodeSourceBackupUnavailable for service response error code
 	// "SourceBackupUnavailable".
 	//
 	// The request was rejected because the lifecycle status of the source backup
-	// is not AVAILABLE.
+	// isn't AVAILABLE.
 	ErrCodeSourceBackupUnavailable = "SourceBackupUnavailable"
 
 	// ErrCodeStorageVirtualMachineNotFound for service response error code
@@ -202,34 +220,37 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"ActiveDirectoryError":            newErrorActiveDirectoryError,
-	"BackupBeingCopied":               newErrorBackupBeingCopied,
-	"BackupInProgress":                newErrorBackupInProgress,
-	"BackupNotFound":                  newErrorBackupNotFound,
-	"BackupRestoring":                 newErrorBackupRestoring,
-	"BadRequest":                      newErrorBadRequest,
-	"DataRepositoryTaskEnded":         newErrorDataRepositoryTaskEnded,
-	"DataRepositoryTaskExecuting":     newErrorDataRepositoryTaskExecuting,
-	"DataRepositoryTaskNotFound":      newErrorDataRepositoryTaskNotFound,
-	"FileSystemNotFound":              newErrorFileSystemNotFound,
-	"IncompatibleParameterError":      newErrorIncompatibleParameterError,
-	"IncompatibleRegionForMultiAZ":    newErrorIncompatibleRegionForMultiAZ,
-	"InternalServerError":             newErrorInternalServerError,
-	"InvalidDestinationKmsKey":        newErrorInvalidDestinationKmsKey,
-	"InvalidExportPath":               newErrorInvalidExportPath,
-	"InvalidImportPath":               newErrorInvalidImportPath,
-	"InvalidNetworkSettings":          newErrorInvalidNetworkSettings,
-	"InvalidPerUnitStorageThroughput": newErrorInvalidPerUnitStorageThroughput,
-	"InvalidRegion":                   newErrorInvalidRegion,
-	"InvalidSourceKmsKey":             newErrorInvalidSourceKmsKey,
-	"MissingFileSystemConfiguration":  newErrorMissingFileSystemConfiguration,
-	"MissingVolumeConfiguration":      newErrorMissingVolumeConfiguration,
-	"NotServiceResourceError":         newErrorNotServiceResourceError,
-	"ResourceDoesNotSupportTagging":   newErrorResourceDoesNotSupportTagging,
-	"ResourceNotFound":                newErrorResourceNotFound,
-	"ServiceLimitExceeded":            newErrorServiceLimitExceeded,
-	"SourceBackupUnavailable":         newErrorSourceBackupUnavailable,
-	"StorageVirtualMachineNotFound":   newErrorStorageVirtualMachineNotFound,
-	"UnsupportedOperation":            newErrorUnsupportedOperation,
-	"VolumeNotFound":                  newErrorVolumeNotFound,
+	"ActiveDirectoryError":              newErrorActiveDirectoryError,
+	"BackupBeingCopied":                 newErrorBackupBeingCopied,
+	"BackupInProgress":                  newErrorBackupInProgress,
+	"BackupNotFound":                    newErrorBackupNotFound,
+	"BackupRestoring":                   newErrorBackupRestoring,
+	"BadRequest":                        newErrorBadRequest,
+	"DataRepositoryAssociationNotFound": newErrorDataRepositoryAssociationNotFound,
+	"DataRepositoryTaskEnded":           newErrorDataRepositoryTaskEnded,
+	"DataRepositoryTaskExecuting":       newErrorDataRepositoryTaskExecuting,
+	"DataRepositoryTaskNotFound":        newErrorDataRepositoryTaskNotFound,
+	"FileSystemNotFound":                newErrorFileSystemNotFound,
+	"IncompatibleParameterError":        newErrorIncompatibleParameterError,
+	"IncompatibleRegionForMultiAZ":      newErrorIncompatibleRegionForMultiAZ,
+	"InternalServerError":               newErrorInternalServerError,
+	"InvalidDataRepositoryType":         newErrorInvalidDataRepositoryType,
+	"InvalidDestinationKmsKey":          newErrorInvalidDestinationKmsKey,
+	"InvalidExportPath":                 newErrorInvalidExportPath,
+	"InvalidImportPath":                 newErrorInvalidImportPath,
+	"InvalidNetworkSettings":            newErrorInvalidNetworkSettings,
+	"InvalidPerUnitStorageThroughput":   newErrorInvalidPerUnitStorageThroughput,
+	"InvalidRegion":                     newErrorInvalidRegion,
+	"InvalidSourceKmsKey":               newErrorInvalidSourceKmsKey,
+	"MissingFileSystemConfiguration":    newErrorMissingFileSystemConfiguration,
+	"MissingVolumeConfiguration":        newErrorMissingVolumeConfiguration,
+	"NotServiceResourceError":           newErrorNotServiceResourceError,
+	"ResourceDoesNotSupportTagging":     newErrorResourceDoesNotSupportTagging,
+	"ResourceNotFound":                  newErrorResourceNotFound,
+	"ServiceLimitExceeded":              newErrorServiceLimitExceeded,
+	"SnapshotNotFound":                  newErrorSnapshotNotFound,
+	"SourceBackupUnavailable":           newErrorSourceBackupUnavailable,
+	"StorageVirtualMachineNotFound":     newErrorStorageVirtualMachineNotFound,
+	"UnsupportedOperation":              newErrorUnsupportedOperation,
+	"VolumeNotFound":                    newErrorVolumeNotFound,
 }

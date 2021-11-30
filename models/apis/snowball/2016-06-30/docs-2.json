@@ -1,26 +1,26 @@
 {
   "version": "2.0",
-  "service": "<p>AWS Snow Family is a petabyte-scale data transport solution that uses secure devices to transfer large amounts of data between your on-premises data centers and Amazon Simple Storage Service (Amazon S3). The Snow commands described here provide access to the same functionality that is available in the AWS Snow Family Management Console, which enables you to create and manage jobs for a Snow device. To transfer data locally with a Snow device, you'll need to use the Snowball Edge client or the Amazon S3 API Interface for Snowball or AWS OpsHub for Snow Family. For more information, see the <a href=\"https://docs.aws.amazon.com/AWSImportExport/latest/ug/api-reference.html\">User Guide</a>.</p>",
+  "service": "<p>The Amazon Web Services Snow Family provides a petabyte-scale data transport solution that uses secure devices to transfer large amounts of data between your on-premises data centers and Amazon Simple Storage Service (Amazon S3). The Snow Family commands described here provide access to the same functionality that is available in the Amazon Web Services Snow Family Management Console, which enables you to create and manage jobs for a Snow Family device. To transfer data locally with a Snow Family device, you'll need to use the Snowball Edge client or the Amazon S3 API Interface for Snowball or OpsHub for Snow Family. For more information, see the <a href=\"https://docs.aws.amazon.com/AWSImportExport/latest/ug/api-reference.html\">User Guide</a>.</p>",
   "operations": {
     "CancelCluster": "<p>Cancels a cluster job. You can only cancel a cluster job while it's in the <code>AwaitingQuorum</code> status. You'll have at least an hour after creating a cluster job to cancel it.</p>",
     "CancelJob": "<p>Cancels the specified job. You can only cancel a job before its <code>JobState</code> value changes to <code>PreparingAppliance</code>. Requesting the <code>ListJobs</code> or <code>DescribeJob</code> action returns a job's <code>JobState</code> as part of the response element data returned.</p>",
     "CreateAddress": "<p>Creates an address for a Snow device to be shipped to. In most regions, addresses are validated at the time of creation. The address you provide must be located within the serviceable area of your region. If the address is invalid or unsupported, then an exception is thrown.</p>",
     "CreateCluster": "<p>Creates an empty cluster. Each cluster supports five nodes. You use the <a>CreateJob</a> action separately to create the jobs for each of these nodes. The cluster does not ship until these five node jobs have been created.</p>",
-    "CreateJob": "<p>Creates a job to import or export data between Amazon S3 and your on-premises data center. Your AWS account must have the right trust policies and permissions in place to create a job for a Snow device. If you're creating a job for a node in a cluster, you only need to provide the <code>clusterId</code> value; the other job attributes are inherited from the cluster. </p> <note> <p>Only the Snowball; Edge device type is supported when ordering clustered jobs.</p> <p>The device capacity is optional.</p> <p>Availability of device types differ by AWS Region. For more information about Region availability, see <a href=\"https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&amp;loc=4\">AWS Regional Services</a>.</p> </note> <p/> <p class=\"title\"> <b>AWS Snow Family device types and their capacities.</b> </p> <ul> <li> <p>Snow Family device type: <b>SNC1_SSD</b> </p> <ul> <li> <p>Capacity: T14</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Snow Family device type: <b>SNC1_HDD</b> </p> <ul> <li> <p>Capacity: T8</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_S</b> </p> <ul> <li> <p>Capacity: T98</p> </li> <li> <p>Description: Snowball Edge Storage Optimized for data transfer only </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_CG</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized with GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_C</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized without GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE</b> </p> <ul> <li> <p>Capacity: T100</p> </li> <li> <p>Description: Snowball Edge Storage Optimized with EC2 Compute</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T50</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore AWS Regions. </p> </note> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T80</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore AWS Regions. </p> </note> </li> </ul> <p/> </li> </ul>",
-    "CreateLongTermPricing": "<p>Creates a job with the long-term usage option for a device. The long-term usage is a 1-year or 3-year long-term pricing type for the device. You are billed upfront, and AWS provides discounts for long-term pricing. </p>",
-    "CreateReturnShippingLabel": "<p>Creates a shipping label that will be used to return the Snow device to AWS.</p>",
+    "CreateJob": "<p>Creates a job to import or export data between Amazon S3 and your on-premises data center. Your Amazon Web Services account must have the right trust policies and permissions in place to create a job for a Snow device. If you're creating a job for a node in a cluster, you only need to provide the <code>clusterId</code> value; the other job attributes are inherited from the cluster. </p> <note> <p>Only the Snowball; Edge device type is supported when ordering clustered jobs.</p> <p>The device capacity is optional.</p> <p>Availability of device types differ by Amazon Web Services Region. For more information about Region availability, see <a href=\"https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&amp;loc=4\">Amazon Web Services Regional Services</a>.</p> </note> <p/> <p class=\"title\"> <b>Snow Family Devices and their capacities.</b> </p> <ul> <li> <p>Snow Family device type: <b>SNC1_SSD</b> </p> <ul> <li> <p>Capacity: T14</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Snow Family device type: <b>SNC1_HDD</b> </p> <ul> <li> <p>Capacity: T8</p> </li> <li> <p>Description: Snowcone </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_S</b> </p> <ul> <li> <p>Capacity: T98</p> </li> <li> <p>Description: Snowball Edge Storage Optimized for data transfer only </p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_CG</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized with GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE_C</b> </p> <ul> <li> <p>Capacity: T42</p> </li> <li> <p>Description: Snowball Edge Compute Optimized without GPU</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>EDGE</b> </p> <ul> <li> <p>Capacity: T100</p> </li> <li> <p>Description: Snowball Edge Storage Optimized with EC2 Compute</p> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T50</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region </p> </note> </li> </ul> <p/> </li> <li> <p>Device type: <b>STANDARD</b> </p> <ul> <li> <p>Capacity: T80</p> </li> <li> <p>Description: Original Snowball device</p> <note> <p>This device is only available in the Ningxia, Beijing, and Singapore Amazon Web Services Region. </p> </note> </li> </ul> <p/> </li> </ul>",
+    "CreateLongTermPricing": "<p>Creates a job with the long-term usage option for a device. The long-term usage is a 1-year or 3-year long-term pricing type for the device. You are billed upfront, and Amazon Web Services provides discounts for long-term pricing. </p>",
+    "CreateReturnShippingLabel": "<p>Creates a shipping label that will be used to return the Snow device to Amazon Web Services.</p>",
     "DescribeAddress": "<p>Takes an <code>AddressId</code> and returns specific details about that address in the form of an <code>Address</code> object.</p>",
     "DescribeAddresses": "<p>Returns a specified number of <code>ADDRESS</code> objects. Calling this API in one of the US regions will return addresses from the list of all addresses associated with this account in all US regions.</p>",
     "DescribeCluster": "<p>Returns information about a specific cluster including shipping information, cluster status, and other important metadata.</p>",
     "DescribeJob": "<p>Returns information about a specific job including shipping information, job status, and other important metadata. </p>",
-    "DescribeReturnShippingLabel": "<p>Information on the shipping label of a Snow device that is being returned to AWS.</p>",
+    "DescribeReturnShippingLabel": "<p>Information on the shipping label of a Snow device that is being returned to Amazon Web Services.</p>",
     "GetJobManifest": "<p>Returns a link to an Amazon S3 presigned URL for the manifest file associated with the specified <code>JobId</code> value. You can access the manifest file for up to 60 minutes after this request has been made. To access the manifest file after 60 minutes have passed, you'll have to make another call to the <code>GetJobManifest</code> action.</p> <p>The manifest is an encrypted file that you can download after your job enters the <code>WithCustomer</code> status. The manifest is decrypted by using the <code>UnlockCode</code> code value, when you pass both values to the Snow device through the Snowball client when the client is started for the first time.</p> <p>As a best practice, we recommend that you don't save a copy of an <code>UnlockCode</code> value in the same location as the manifest file for that job. Saving these separately helps prevent unauthorized parties from gaining access to the Snow device associated with that job.</p> <p>The credentials of a given job, including its manifest file and unlock code, expire 360 days after the job is created.</p>",
     "GetJobUnlockCode": "<p>Returns the <code>UnlockCode</code> code value for the specified job. A particular <code>UnlockCode</code> value can be accessed for up to 360 days after the associated job has been created.</p> <p>The <code>UnlockCode</code> value is a 29-character code with 25 alphanumeric characters and 4 hyphens. This code is used to decrypt the manifest file when it is passed along with the manifest to the Snow device through the Snowball client when the client is started for the first time.</p> <p>As a best practice, we recommend that you don't save a copy of the <code>UnlockCode</code> in the same location as the manifest file for that job. Saving these separately helps prevent unauthorized parties from gaining access to the Snow device associated with that job.</p>",
-    "GetSnowballUsage": "<p>Returns information about the Snow Family service limit for your account, and also the number of Snow devices your account has in use.</p> <p>The default service limit for the number of Snow devices that you can have at one time is 1. If you want to increase your service limit, contact AWS Support.</p>",
+    "GetSnowballUsage": "<p>Returns information about the Snow Family service limit for your account, and also the number of Snow devices your account has in use.</p> <p>The default service limit for the number of Snow devices that you can have at one time is 1. If you want to increase your service limit, contact Amazon Web Services Support.</p>",
     "GetSoftwareUpdates": "<p>Returns an Amazon S3 presigned URL for an update file associated with a specified <code>JobId</code>.</p>",
     "ListClusterJobs": "<p>Returns an array of <code>JobListEntry</code> objects of the specified length. Each <code>JobListEntry</code> object is for a job in the specified cluster and contains a job's state, a job's ID, and other information.</p>",
     "ListClusters": "<p>Returns an array of <code>ClusterListEntry</code> objects of the specified length. Each <code>ClusterListEntry</code> object contains a cluster's state, a cluster's ID, and other important status information.</p>",
-    "ListCompatibleImages": "<p>This action returns a list of the different Amazon EC2 Amazon Machine Images (AMIs) that are owned by your AWS account that would be supported for use on a Snow device. Currently, supported AMIs are based on the CentOS 7 (x86_64) - with Updates HVM, Ubuntu Server 14.04 LTS (HVM), and Ubuntu 16.04 LTS - Xenial (HVM) images, available on the AWS Marketplace.</p>",
+    "ListCompatibleImages": "<p>This action returns a list of the different Amazon EC2 Amazon Machine Images (AMIs) that are owned by your Amazon Web Services accountthat would be supported for use on a Snow device. Currently, supported AMIs are based on the CentOS 7 (x86_64) - with Updates HVM, Ubuntu Server 14.04 LTS (HVM), and Ubuntu 16.04 LTS - Xenial (HVM) images, available on the Amazon Web Services Marketplace.</p>",
     "ListJobs": "<p>Returns an array of <code>JobListEntry</code> objects of the specified length. Each <code>JobListEntry</code> object contains a job's state, a job's ID, and a value that indicates whether the job is a job part, in the case of export jobs. Calling this API action in one of the US regions will return jobs from the list of all jobs associated with this account in all US regions.</p>",
     "ListLongTermPricing": "<p>Lists all long-term pricing types.</p>",
     "UpdateCluster": "<p>While a cluster's <code>ClusterState</code> value is in the <code>AwaitingQuorum</code> state, you can update some of the information associated with a cluster. Once the cluster changes to a different job state, usually 60 minutes after the cluster being created, this action is no longer available.</p>",
@@ -74,7 +74,7 @@
         "Address$IsRestricted": "<p>If the address you are creating is a primary address, then set this option to true. This field is not supported in most regions.</p>",
         "JobListEntry$IsMaster": "<p>A value that indicates that this job is a main job. A main job represents a successful request to create an export job. Main jobs aren't associated with any Snowballs. Instead, each main job will have at least one job part, and each job part is associated with a Snowball. It might take some time before the job parts associated with a particular main job are listed, because they are created after the main job is created.</p>",
         "Notification$NotifyAll": "<p>Any change in job state will trigger a notification for this job.</p>",
-        "WirelessConnection$IsWifiEnabled": "<p>Enables the Wi-Fi adapter on an AWS Snowcone device.</p>"
+        "WirelessConnection$IsWifiEnabled": "<p>Enables the Wi-Fi adapter on an Snowcone device.</p>"
       }
     },
     "CancelClusterRequest": {
@@ -206,9 +206,9 @@
       }
     },
     "DataTransfer": {
-      "base": "<p>Defines the real-time status of a Snow device's data transfer while the device is at AWS. This data is only available while a job has a <code>JobState</code> value of <code>InProgress</code>, for both import and export jobs.</p>",
+      "base": "<p>Defines the real-time status of a Snow device's data transfer while the device is at Amazon Web Services. This data is only available while a job has a <code>JobState</code> value of <code>InProgress</code>, for both import and export jobs.</p>",
       "refs": {
-        "JobMetadata$DataTransferProgress": "<p>A value that defines the real-time status of a Snow device's data transfer while the device is at AWS. This data is only available while a job has a <code>JobState</code> value of <code>InProgress</code>, for both import and export jobs.</p>"
+        "JobMetadata$DataTransferProgress": "<p>A value that defines the real-time status of a Snow device's data transfer while the device is at Amazon Web Services. This data is only available while a job has a <code>JobState</code> value of <code>InProgress</code>, for both import and export jobs.</p>"
       }
     },
     "DescribeAddressRequest": {
@@ -264,7 +264,7 @@
     "DeviceConfiguration": {
       "base": "<p>The container for <code>SnowconeDeviceConfiguration</code>. </p>",
       "refs": {
-        "CreateJobRequest$DeviceConfiguration": "<p>Defines the device configuration for an AWS Snowcone job.</p> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>",
+        "CreateJobRequest$DeviceConfiguration": "<p>Defines the device configuration for an Snowcone job.</p> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>",
         "JobMetadata$DeviceConfiguration": null
       }
     },
@@ -275,7 +275,7 @@
       }
     },
     "Ec2AmiResource": {
-      "base": "<p>A JSON-formatted object that contains the IDs for an Amazon Machine Image (AMI), including the Amazon EC2 AMI ID and the Snow device AMI ID. Each AMI has these two IDs to simplify identifying the AMI in both the AWS Cloud and on the device.</p>",
+      "base": "<p>A JSON-formatted object that contains the IDs for an Amazon Machine Image (AMI), including the Amazon EC2 AMI ID and the Snow device AMI ID. Each AMI has these two IDs to simplify identifying the AMI in both the Amazon Web Services Cloud and on the device.</p>",
       "refs": {
         "Ec2AmiResourceList$member": null
       }
@@ -306,7 +306,7 @@
     "GSTIN": {
       "base": null,
       "refs": {
-        "INDTaxDocuments$GSTIN": "<p>The Goods and Services Tax (GST) documents required in AWS Regions in India.</p>"
+        "INDTaxDocuments$GSTIN": "<p>The Goods and Services Tax (GST) documents required in Amazon Web Services Region in India.</p>"
       }
     },
     "GetJobManifestRequest": {
@@ -350,7 +350,7 @@
       }
     },
     "INDTaxDocuments": {
-      "base": "<p>The tax documents required in AWS Regions in India.</p>",
+      "base": "<p>The tax documents required in Amazon Web Services Region in India.</p>",
       "refs": {
         "TaxDocuments$IND": null
       }
@@ -447,10 +447,10 @@
       }
     },
     "JobResource": {
-      "base": "<p>Contains an array of AWS resource objects. Each object represents an Amazon S3 bucket, an AWS Lambda function, or an Amazon Machine Image (AMI) based on Amazon EC2 that is associated with a particular job.</p>",
+      "base": "<p>Contains an array of Amazon Web Services resource objects. Each object represents an Amazon S3 bucket, an Lambda function, or an Amazon Machine Image (AMI) based on Amazon EC2 that is associated with a particular job.</p>",
       "refs": {
         "ClusterMetadata$Resources": "<p>The arrays of <a>JobResource</a> objects that can include updated <a>S3Resource</a> objects or <a>LambdaResource</a> objects.</p>",
-        "CreateClusterRequest$Resources": "<p>The resources associated with the cluster job. These resources include Amazon S3 buckets and optional AWS Lambda functions written in the Python language. </p>",
+        "CreateClusterRequest$Resources": "<p>The resources associated with the cluster job. These resources include Amazon S3 buckets and optional Lambda functions written in the Python language. </p>",
         "CreateJobRequest$Resources": "<p>Defines the Amazon S3 buckets associated with this job.</p> <p>With <code>IMPORT</code> jobs, you specify the bucket or buckets that your transferred data will be imported into.</p> <p>With <code>EXPORT</code> jobs, you specify the bucket or buckets that your transferred data will be exported from. Optionally, you can also specify a <code>KeyRange</code> value. If you choose to export a range, you define the length of the range by providing either an inclusive <code>BeginMarker</code> value, an inclusive <code>EndMarker</code> value, or both. Ranges are UTF-8 binary sorted.</p>",
         "JobMetadata$Resources": "<p>An array of <code>S3Resource</code> objects. Each <code>S3Resource</code> object represents an Amazon S3 bucket that your transferred data will be exported from or imported into.</p>",
         "UpdateClusterRequest$Resources": "<p>The updated arrays of <a>JobResource</a> objects that can include updated <a>S3Resource</a> objects or <a>LambdaResource</a> objects.</p>",
@@ -482,7 +482,7 @@
       }
     },
     "KMSRequestFailedException": {
-      "base": "<p>The provided AWS Key Management Service key lacks the permissions to perform the specified <a>CreateJob</a> or <a>UpdateJob</a> action.</p>",
+      "base": "<p>The provided Key Management Service key lacks the permissions to perform the specified <a>CreateJob</a> or <a>UpdateJob</a> action.</p>",
       "refs": {
       }
     },
@@ -495,10 +495,10 @@
     "KmsKeyARN": {
       "base": null,
       "refs": {
-        "ClusterMetadata$KmsKeyARN": "<p>The <code>KmsKeyARN</code> Amazon Resource Name (ARN) associated with this cluster. This ARN was created using the <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html\">CreateKey</a> API action in AWS Key Management Service (AWS KMS).</p>",
-        "CreateClusterRequest$KmsKeyARN": "<p>The <code>KmsKeyARN</code> value that you want to associate with this cluster. <code>KmsKeyARN</code> values are created by using the <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html\">CreateKey</a> API action in AWS Key Management Service (AWS KMS). </p>",
-        "CreateJobRequest$KmsKeyARN": "<p>The <code>KmsKeyARN</code> that you want to associate with this job. <code>KmsKeyARN</code>s are created using the <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html\">CreateKey</a> AWS Key Management Service (KMS) API action.</p>",
-        "JobMetadata$KmsKeyARN": "<p>The Amazon Resource Name (ARN) for the AWS Key Management Service (AWS KMS) key associated with this job. This ARN was created using the <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html\">CreateKey</a> API action in AWS KMS.</p>"
+        "ClusterMetadata$KmsKeyARN": "<p>The <code>KmsKeyARN</code> Amazon Resource Name (ARN) associated with this cluster. This ARN was created using the <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html\">CreateKey</a> API action in Key Management Service (KMS.</p>",
+        "CreateClusterRequest$KmsKeyARN": "<p>The <code>KmsKeyARN</code> value that you want to associate with this cluster. <code>KmsKeyARN</code> values are created by using the <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html\">CreateKey</a> API action in Key Management Service (KMS). </p>",
+        "CreateJobRequest$KmsKeyARN": "<p>The <code>KmsKeyARN</code> that you want to associate with this job. <code>KmsKeyARN</code>s are created using the <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html\">CreateKey</a> Key Management Service (KMS) API action.</p>",
+        "JobMetadata$KmsKeyARN": "<p>The Amazon Resource Name (ARN) for the Key Management Service (KMS) key associated with this job. This ARN was created using the <a href=\"https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html\">CreateKey</a> API action in KMS.</p>"
       }
     },
     "LambdaResource": {
@@ -619,9 +619,9 @@
       }
     },
     "NFSOnDeviceServiceConfiguration": {
-      "base": "<p>An object that represents metadata and configuration settings for NFS service on an AWS Snow Family device.</p>",
+      "base": "<p>An object that represents the metadata and configuration settings for the NFS (Network File System) service on an Amazon Web Services Snow Family device.</p>",
       "refs": {
-        "OnDeviceServiceConfiguration$NFSOnDeviceService": "<p>Represents the NFS service on a Snow Family device.</p>"
+        "OnDeviceServiceConfiguration$NFSOnDeviceService": "<p>Represents the NFS (Network File System) service on a Snow Family device.</p>"
       }
     },
     "Notification": {
@@ -636,14 +636,14 @@
       }
     },
     "OnDeviceServiceConfiguration": {
-      "base": "<p>An object that represents metadata and configuration settings for services on an AWS Snow Family device.</p>",
+      "base": "<p>An object that represents the metadata and configuration settings for services on an Amazon Web Services Snow Family device.</p>",
       "refs": {
-        "ClusterMetadata$OnDeviceServiceConfiguration": "<p>Represents metadata and configuration settings for services on an AWS Snow Family device.</p>",
-        "CreateClusterRequest$OnDeviceServiceConfiguration": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. AWS Snow Family supports Amazon S3 and NFS (Network File System).</p>",
-        "CreateJobRequest$OnDeviceServiceConfiguration": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. AWS Snow Family supports Amazon S3 and NFS (Network File System).</p>",
-        "JobMetadata$OnDeviceServiceConfiguration": "<p>Represents metadata and configuration settings for services on an AWS Snow Family device.</p>",
-        "UpdateClusterRequest$OnDeviceServiceConfiguration": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. AWS Snow Family supports Amazon S3 and NFS (Network File System).</p>",
-        "UpdateJobRequest$OnDeviceServiceConfiguration": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. AWS Snow Family supports Amazon S3 and NFS (Network File System).</p>"
+        "ClusterMetadata$OnDeviceServiceConfiguration": "<p>Represents metadata and configuration settings for services on an Amazon Web Services Snow Family device.</p>",
+        "CreateClusterRequest$OnDeviceServiceConfiguration": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family device clusters support Amazon S3 and NFS (Network File System).</p>",
+        "CreateJobRequest$OnDeviceServiceConfiguration": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family supports Amazon S3 and NFS (Network File System) and the Amazon Web Services Storage Gateway service Tape Gateway type.</p>",
+        "JobMetadata$OnDeviceServiceConfiguration": "<p>Represents metadata and configuration settings for services on an Amazon Web Services Snow Family device.</p>",
+        "UpdateClusterRequest$OnDeviceServiceConfiguration": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family device clusters support Amazon S3 and NFS (Network File System).</p>",
+        "UpdateJobRequest$OnDeviceServiceConfiguration": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family supports Amazon S3 and NFS (Network File System) and the Amazon Web Services Storage Gateway service Tape Gateway type.</p>"
       }
     },
     "RemoteManagement": {
@@ -657,25 +657,25 @@
     "ResourceARN": {
       "base": null,
       "refs": {
-        "EventTriggerDefinition$EventResourceARN": "<p>The Amazon Resource Name (ARN) for any local Amazon S3 resource that is an AWS Lambda function's event trigger associated with this job.</p>",
-        "LambdaResource$LambdaArn": "<p>An Amazon Resource Name (ARN) that represents an AWS Lambda function to be triggered by PUT object actions on the associated local Amazon S3 resource.</p>",
+        "EventTriggerDefinition$EventResourceARN": "<p>The Amazon Resource Name (ARN) for any local Amazon S3 resource that is an Lambda function's event trigger associated with this job.</p>",
+        "LambdaResource$LambdaArn": "<p>An Amazon Resource Name (ARN) that represents an Lambda function to be triggered by PUT object actions on the associated local Amazon S3 resource.</p>",
         "S3Resource$BucketArn": "<p>The Amazon Resource Name (ARN) of an Amazon S3 bucket.</p>"
       }
     },
     "ReturnShippingLabelAlreadyExistsException": {
-      "base": "<p>You get this exception if you call <code>CreateReturnShippingLabel</code> and a valid return shipping label already exists. In this case, use <code>DescribeReturnShippingLabel</code> to get the url.</p>",
+      "base": "<p>You get this exception if you call <code>CreateReturnShippingLabel</code> and a valid return shipping label already exists. In this case, use <code>DescribeReturnShippingLabel</code> to get the URL.</p>",
       "refs": {
       }
     },
     "RoleARN": {
       "base": null,
       "refs": {
-        "ClusterMetadata$RoleARN": "<p>The role ARN associated with this cluster. This ARN was created using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> API action in AWS Identity and Access Management (IAM).</p>",
-        "CreateClusterRequest$RoleARN": "<p>The <code>RoleARN</code> that you want to associate with this cluster. <code>RoleArn</code> values are created by using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> API action in AWS Identity and Access Management (IAM).</p>",
-        "CreateJobRequest$RoleARN": "<p>The <code>RoleARN</code> that you want to associate with this job. <code>RoleArn</code>s are created using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> AWS Identity and Access Management (IAM) API action.</p>",
-        "JobMetadata$RoleARN": "<p>The role ARN associated with this job. This ARN was created using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> API action in AWS Identity and Access Management (IAM).</p>",
-        "UpdateClusterRequest$RoleARN": "<p>The new role Amazon Resource Name (ARN) that you want to associate with this cluster. To create a role ARN, use the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> API action in AWS Identity and Access Management (IAM).</p>",
-        "UpdateJobRequest$RoleARN": "<p>The new role Amazon Resource Name (ARN) that you want to associate with this job. To create a role ARN, use the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a>AWS Identity and Access Management (IAM) API action.</p>"
+        "ClusterMetadata$RoleARN": "<p>The role ARN associated with this cluster. This ARN was created using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> API action in Identity and Access Management (IAM).</p>",
+        "CreateClusterRequest$RoleARN": "<p>The <code>RoleARN</code> that you want to associate with this cluster. <code>RoleArn</code> values are created by using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> API action in Identity and Access Management (IAM).</p>",
+        "CreateJobRequest$RoleARN": "<p>The <code>RoleARN</code> that you want to associate with this job. <code>RoleArn</code>s are created using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> Identity and Access Management (IAM) API action.</p>",
+        "JobMetadata$RoleARN": "<p>The role ARN associated with this job. This ARN was created using the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> API action in Identity and Access Management.</p>",
+        "UpdateClusterRequest$RoleARN": "<p>The new role Amazon Resource Name (ARN) that you want to associate with this cluster. To create a role ARN, use the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a> API action in Identity and Access Management (IAM).</p>",
+        "UpdateJobRequest$RoleARN": "<p>The new role Amazon Resource Name (ARN) that you want to associate with this job. To create a role ARN, use the <a href=\"https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreateRole.html\">CreateRole</a>Identity and Access Management (IAM) API action.</p>"
       }
     },
     "S3Resource": {
@@ -693,14 +693,14 @@
     "Shipment": {
       "base": "<p>The <code>Status</code> and <code>TrackingNumber</code> information for an inbound or outbound shipment.</p>",
       "refs": {
-        "ShippingDetails$InboundShipment": "<p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snow device being returned to AWS for a particular job.</p>",
+        "ShippingDetails$InboundShipment": "<p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snow device being returned to Amazon Web Services for a particular job.</p>",
         "ShippingDetails$OutboundShipment": "<p>The <code>Status</code> and <code>TrackingNumber</code> values for a Snow device being delivered to the address that you specified for a particular job.</p>"
       }
     },
     "ShipmentState": {
       "base": null,
       "refs": {
-        "UpdateJobShipmentStateRequest$ShipmentState": "<p>The state of a device when it is being shipped. </p> <p>Set to <code>RECEIVED</code> when the device arrives at your location.</p> <p>Set to <code>RETURNED</code> when you have returned the device to AWS.</p>"
+        "UpdateJobShipmentStateRequest$ShipmentState": "<p>The state of a device when it is being shipped. </p> <p>Set to <code>RECEIVED</code> when the device arrives at your location.</p> <p>Set to <code>RETURNED</code> when you have returned the device to Amazon Web Services.</p>"
       }
     },
     "ShippingDetails": {
@@ -712,8 +712,8 @@
     "ShippingLabelStatus": {
       "base": null,
       "refs": {
-        "CreateReturnShippingLabelResult$Status": "<p>The status information of the task on a Snow device that is being returned to AWS.</p>",
-        "DescribeReturnShippingLabelResult$Status": "<p>The status information of the task on a Snow device that is being returned to AWS.</p>"
+        "CreateReturnShippingLabelResult$Status": "<p>The status information of the task on a Snow device that is being returned to Amazon Web Services.</p>",
+        "DescribeReturnShippingLabelResult$Status": "<p>The status information of the task on a Snow device that is being returned to Amazon Web Services.</p>"
       }
     },
     "ShippingOption": {
@@ -722,7 +722,7 @@
         "ClusterMetadata$ShippingOption": "<p>The shipping speed for each node in this cluster. This speed doesn't dictate how soon you'll get each device, rather it represents how quickly each device moves to its destination while in transit. Regional shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access to express shipping. Typically, devices shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snow devices shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snow devices are delivered in one to seven days.</p> </li> <li> <p>In the US, you have access to one-day shipping and two-day shipping.</p> </li> </ul>",
         "CreateClusterRequest$ShippingOption": "<p>The shipping speed for each node in this cluster. This speed doesn't dictate how soon you'll get each Snowball Edge device, rather it represents how quickly each device moves to its destination while in transit. Regional shipping speeds are as follows: </p> <ul> <li> <p>In Australia, you have access to express shipping. Typically, Snow devices shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snow devices shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snow devices are delivered in one to seven days.</p> </li> <li> <p>In the United States of America (US), you have access to one-day shipping and two-day shipping.</p> </li> </ul> <ul> <li> <p>In Australia, you have access to express shipping. Typically, devices shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snow devices shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snow devices are delivered in one to seven days.</p> </li> <li> <p>In the US, you have access to one-day shipping and two-day shipping.</p> </li> </ul>",
         "CreateJobRequest$ShippingOption": "<p>The shipping speed for this job. This speed doesn't dictate how soon you'll get the Snow device, rather it represents how quickly the Snow device moves to its destination while in transit. Regional shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access to express shipping. Typically, Snow devices shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snow devices shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snow devices are delivered in one to seven days.</p> </li> <li> <p>In the US, you have access to one-day shipping and two-day shipping.</p> </li> </ul>",
-        "CreateReturnShippingLabelRequest$ShippingOption": "<p>The shipping speed for a particular job. This speed doesn't dictate how soon the device is returned to AWS. This speed represents how quickly it moves to its destination while in transit. Regional shipping speeds are as follows:</p>",
+        "CreateReturnShippingLabelRequest$ShippingOption": "<p>The shipping speed for a particular job. This speed doesn't dictate how soon the device is returned to Amazon Web Services. This speed represents how quickly it moves to its destination while in transit. Regional shipping speeds are as follows:</p>",
         "ShippingDetails$ShippingOption": "<p>The shipping speed for a particular job. This speed doesn't dictate how soon you'll get the Snow device from the job's creation date. This speed represents how quickly it moves to its destination while in transit. Regional shipping speeds are as follows:</p> <ul> <li> <p>In Australia, you have access to express shipping. Typically, Snow devices shipped express are delivered in about a day.</p> </li> <li> <p>In the European Union (EU), you have access to express shipping. Typically, Snow devices shipped express are delivered in about a day. In addition, most countries in the EU have access to standard shipping, which typically takes less than a week, one way.</p> </li> <li> <p>In India, Snow devices are delivered in one to seven days.</p> </li> <li> <p>In the United States of America (US), you have access to one-day shipping and two-day shipping.</p> </li> </ul>",
         "UpdateClusterRequest$ShippingOption": "<p>The updated shipping option value of this cluster's <a>ShippingDetails</a> object.</p>",
         "UpdateJobRequest$ShippingOption": "<p>The updated shipping option value of this job's <a>ShippingDetails</a> object.</p>"
@@ -739,37 +739,39 @@
     "SnowballType": {
       "base": null,
       "refs": {
-        "ClusterMetadata$SnowballType": "<p>The type of AWS Snow device to use for this cluster. </p> <note> <p>For cluster jobs, AWS Snow Family currently supports only the <code>EDGE</code> device type.</p> </note>",
-        "CreateClusterRequest$SnowballType": "<p>The type of AWS Snow Family device to use for this cluster. </p> <note> <p>For cluster jobs, AWS Snow Family currently supports only the <code>EDGE</code> device type.</p> </note> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>",
-        "CreateJobRequest$SnowballType": "<p>The type of AWS Snow Family device to use for this job. </p> <note> <p>For cluster jobs, AWS Snow Family currently supports only the <code>EDGE</code> device type.</p> </note> <p>The type of AWS Snow device to use for this job. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html\">Snowball Edge Device Options</a> in the Snowball Edge Developer Guide.</p> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>",
-        "CreateLongTermPricingRequest$SnowballType": "<p>The type of AWS Snow Family device to use for the long-term pricing job.</p>",
+        "ClusterMetadata$SnowballType": "<p>The type of Snowcone device to use for this cluster. </p> <note> <p>For cluster jobs, Amazon Web Services Snow Family currently supports only the <code>EDGE</code> device type.</p> </note>",
+        "CreateClusterRequest$SnowballType": "<p>The type of Snow Family Devices to use for this cluster. </p> <note> <p>For cluster jobs, Amazon Web Services Snow Family currently supports only the <code>EDGE</code> device type.</p> </note> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>",
+        "CreateJobRequest$SnowballType": "<p>The type of Snow Family Devices to use for this job. </p> <note> <p>For cluster jobs, Amazon Web Services Snow Family currently supports only the <code>EDGE</code> device type.</p> </note> <p>The type of Amazon Web Services Snow device to use for this job. Currently, the only supported device type for cluster jobs is <code>EDGE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html\">Snowball Edge Device Options</a> in the Snowball Edge Developer Guide.</p> <p>For more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i> or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the <i>Snowcone User Guide</i>.</p>",
+        "CreateLongTermPricingRequest$SnowballType": "<p>The type of Snow Family Devices to use for the long-term pricing job.</p>",
         "JobListEntry$SnowballType": "<p>The type of device used with this job.</p>",
         "JobMetadata$SnowballType": "<p>The type of device used with this job.</p>",
-        "LongTermPricingListEntry$SnowballType": "<p>The type of AWS Snow Family device associated with this long-term pricing job.</p>"
+        "LongTermPricingListEntry$SnowballType": "<p>The type of Snow Family Devices associated with this long-term pricing job.</p>"
       }
     },
     "SnowconeDeviceConfiguration": {
-      "base": "<p>Specifies the device configuration for an AWS Snowcone job. </p>",
+      "base": "<p>Specifies the device configuration for an Snowcone job.</p>",
       "refs": {
-        "DeviceConfiguration$SnowconeDeviceConfiguration": "<p>Returns information about the device configuration for an AWS Snowcone job.</p>"
+        "DeviceConfiguration$SnowconeDeviceConfiguration": "<p>Returns information about the device configuration for an Snowcone job.</p>"
       }
     },
     "SnsTopicARN": {
       "base": null,
       "refs": {
-        "Notification$SnsTopicARN": "<p>The new SNS <code>TopicArn</code> that you want to associate with this job. You can create Amazon Resource Names (ARNs) for topics by using the <a href=\"https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html\">CreateTopic</a> Amazon SNS API action.</p> <p>You can subscribe email addresses to an Amazon SNS topic through the AWS Management Console, or by using the <a href=\"https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html\">Subscribe</a> Amazon Simple Notification Service (Amazon SNS) API action.</p>"
+        "Notification$SnsTopicARN": "<p>The new SNS <code>TopicArn</code> that you want to associate with this job. You can create Amazon Resource Names (ARNs) for topics by using the <a href=\"https://docs.aws.amazon.com/sns/latest/api/API_CreateTopic.html\">CreateTopic</a> Amazon SNS API action.</p> <p>You can subscribe email addresses to an Amazon SNS topic through the Amazon Web Services Management Console, or by using the <a href=\"https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html\">Subscribe</a> Amazon Simple Notification Service (Amazon SNS) API action.</p>"
       }
     },
     "StorageLimit": {
       "base": null,
       "refs": {
-        "NFSOnDeviceServiceConfiguration$StorageLimit": "<p>The maximum NFS storage for one Snowball Family device.</p>"
+        "NFSOnDeviceServiceConfiguration$StorageLimit": "<p>The maximum NFS storage for one Snow Family device.</p>",
+        "TGWOnDeviceServiceConfiguration$StorageLimit": "<p>The maximum number of virtual tapes to store on one Snow Family device. Due to physical resource limitations, this value must be set to 80 for Snowball Edge.</p>"
       }
     },
     "StorageUnit": {
       "base": null,
       "refs": {
-        "NFSOnDeviceServiceConfiguration$StorageUnit": "<p>The scale unit of the NFS storage on the device.</p> <p>Valid values: TB.</p>"
+        "NFSOnDeviceServiceConfiguration$StorageUnit": "<p>The scale unit of the NFS storage on the device.</p> <p>Valid values: TB.</p>",
+        "TGWOnDeviceServiceConfiguration$StorageUnit": "<p>The scale unit of the virtual tapes on the device.</p>"
       }
     },
     "String": {
@@ -801,6 +803,7 @@
         "CreateJobRequest$Description": "<p>Defines an optional description of this specific job, for example <code>Important Photos 2016-08-11</code>.</p>",
         "DescribeAddressesRequest$NextToken": "<p>HTTP requests are stateless. To identify what object comes \"next\" in the list of <code>ADDRESS</code> objects, you have the option of specifying a value for <code>NextToken</code> as the starting point for your list of returned addresses.</p>",
         "DescribeAddressesResult$NextToken": "<p>HTTP requests are stateless. If you use the automatically generated <code>NextToken</code> value in your next <code>DescribeAddresses</code> call, your list of returned addresses will start from this point in the array.</p>",
+        "DescribeReturnShippingLabelResult$ReturnShippingLabelURI": "<p>The pre-signed Amazon S3 URI used to download the return shipping label.</p>",
         "Ec2AmiResource$SnowballAmiId": "<p>The ID of the AMI on the Snow device.</p>",
         "Ec2RequestFailedException$Message": null,
         "GetJobManifestResult$ManifestURI": "<p>The Amazon S3 presigned URL for the manifest file associated with the specified <code>JobId</code> value.</p>",
@@ -842,8 +845,14 @@
         "UpdateJobRequest$Description": "<p>The updated description of this job's <a>JobMetadata</a> object.</p>"
       }
     },
+    "TGWOnDeviceServiceConfiguration": {
+      "base": "<p>An object that represents the metadata and configuration settings for the Storage Gateway service Tape Gateway type on an Amazon Web Services Snow Family device.</p>",
+      "refs": {
+        "OnDeviceServiceConfiguration$TGWOnDeviceService": "<p>Represents the Storage Gateway service Tape Gateway type on a Snow Family device.</p>"
+      }
+    },
     "TargetOnDeviceService": {
-      "base": "<p>An object that represents the service or services on the Snow Family device that your transferred data will be exported from or imported into. AWS Snow Family supports Amazon S3 and NFS (Network File System).</p>",
+      "base": "<p>An object that represents the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family supports Amazon S3 and NFS (Network File System).</p>",
       "refs": {
         "TargetOnDeviceServiceList$member": null
       }
@@ -851,16 +860,16 @@
     "TargetOnDeviceServiceList": {
       "base": null,
       "refs": {
-        "S3Resource$TargetOnDeviceServices": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. AWS Snow Family supports Amazon S3 and NFS (Network File System).</p>"
+        "S3Resource$TargetOnDeviceServices": "<p>Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family supports Amazon S3 and NFS (Network File System).</p>"
       }
     },
     "TaxDocuments": {
-      "base": "<p>The tax documents required in your AWS Region.</p>",
+      "base": "<p>The tax documents required in your Amazon Web Services Region.</p>",
       "refs": {
-        "ClusterMetadata$TaxDocuments": "<p>The tax documents required in your AWS Region.</p>",
-        "CreateClusterRequest$TaxDocuments": "<p>The tax documents required in your AWS Region.</p>",
-        "CreateJobRequest$TaxDocuments": "<p>The tax documents required in your AWS Region.</p>",
-        "JobMetadata$TaxDocuments": "<p>The metadata associated with the tax documents required in your AWS Region.</p>"
+        "ClusterMetadata$TaxDocuments": "<p>The tax documents required in your Amazon Web Services Region.</p>",
+        "CreateClusterRequest$TaxDocuments": "<p>The tax documents required in your Amazon Web Services Region.</p>",
+        "CreateJobRequest$TaxDocuments": "<p>The tax documents required in your Amazon Web Services Region.</p>",
+        "JobMetadata$TaxDocuments": "<p>The metadata associated with the tax documents required in your Amazon Web Services Region.</p>"
       }
     },
     "Timestamp": {
@@ -882,7 +891,7 @@
       }
     },
     "UnsupportedAddressException": {
-      "base": "<p>The address is either outside the serviceable area for your region, or an error occurred. Check the address with your region's carrier and try again. If the issue persists, contact AWS Support.</p>",
+      "base": "<p>The address is either outside the serviceable area for your region, or an error occurred. Check the address with your region's carrier and try again. If the issue persists, contact Amazon Web Services Support.</p>",
       "refs": {
       }
     },
@@ -927,9 +936,9 @@
       }
     },
     "WirelessConnection": {
-      "base": "<p>Configures the wireless connection on an AWS Snowcone device.</p>",
+      "base": "<p>Configures the wireless connection on an Snowcone device.</p>",
       "refs": {
-        "SnowconeDeviceConfiguration$WirelessConnection": "<p>Configures the wireless connection for the AWS Snowcone device.</p>"
+        "SnowconeDeviceConfiguration$WirelessConnection": "<p>Configures the wireless connection for the Snowcone device.</p>"
       }
     }
   }

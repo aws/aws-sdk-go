@@ -102,6 +102,12 @@ const (
 	// The input provided was not valid.
 	ErrCodeInvalidInputException = "InvalidInputException"
 
+	// ErrCodeInvalidStateException for service response error code
+	// "InvalidStateException".
+	//
+	// An error that indicates your data is in an invalid state.
+	ErrCodeInvalidStateException = "InvalidStateException"
+
 	// ErrCodeMLTransformNotReadyException for service response error code
 	// "MLTransformNotReadyException".
 	//
@@ -119,6 +125,12 @@ const (
 	//
 	// The operation timed out.
 	ErrCodeOperationTimeoutException = "OperationTimeoutException"
+
+	// ErrCodeResourceNotReadyException for service response error code
+	// "ResourceNotReadyException".
+	//
+	// A resource was not ready for a transaction.
+	ErrCodeResourceNotReadyException = "ResourceNotReadyException"
 
 	// ErrCodeResourceNumberLimitExceededException for service response error code
 	// "ResourceNumberLimitExceededException".
@@ -174,9 +186,11 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"IllegalWorkflowStateException":        newErrorIllegalWorkflowStateException,
 	"InternalServiceException":             newErrorInternalServiceException,
 	"InvalidInputException":                newErrorInvalidInputException,
+	"InvalidStateException":                newErrorInvalidStateException,
 	"MLTransformNotReadyException":         newErrorMLTransformNotReadyException,
 	"NoScheduleException":                  newErrorNoScheduleException,
 	"OperationTimeoutException":            newErrorOperationTimeoutException,
+	"ResourceNotReadyException":            newErrorResourceNotReadyException,
 	"ResourceNumberLimitExceededException": newErrorResourceNumberLimitExceededException,
 	"SchedulerNotRunningException":         newErrorSchedulerNotRunningException,
 	"SchedulerRunningException":            newErrorSchedulerRunningException,

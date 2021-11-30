@@ -8889,7 +8889,7 @@ type ActivateGatewayInput struct {
 	// is critical to all later functions of the gateway and cannot be changed after
 	// activation. The default value is CACHED.
 	//
-	// Valid Values: STORED | CACHED | VTL | FILE_S3 | FILE_FSX_SMB|
+	// Valid Values: STORED | CACHED | VTL | VTL_SNOW | FILE_S3 | FILE_FSX_SMB
 	GatewayType *string `min:"2" type:"string"`
 
 	// The value that indicates the type of medium changer to use for tape gateway.
@@ -14771,8 +14771,13 @@ type DescribeGatewayInformationOutput struct {
 	// The type of the gateway.
 	GatewayType *string `min:"2" type:"string"`
 
-	// The type of hypervisor environment used by the host.
+	// The type of hardware or software platform on which the gateway is running.
 	HostEnvironment *string `type:"string" enum:"HostEnvironment"`
+
+	// A unique identifier for the specific instance of the host platform running
+	// the gateway. This value is only available for certain host environments,
+	// and its format depends on the host environment type.
+	HostEnvironmentId *string `min:"1" type:"string"`
 
 	// The date on which the last software update was applied to the gateway. If
 	// the gateway has never been updated, this field does not return a value in
@@ -14900,6 +14905,12 @@ func (s *DescribeGatewayInformationOutput) SetGatewayType(v string) *DescribeGat
 // SetHostEnvironment sets the HostEnvironment field's value.
 func (s *DescribeGatewayInformationOutput) SetHostEnvironment(v string) *DescribeGatewayInformationOutput {
 	s.HostEnvironment = &v
+	return s
+}
+
+// SetHostEnvironmentId sets the HostEnvironmentId field's value.
+func (s *DescribeGatewayInformationOutput) SetHostEnvironmentId(v string) *DescribeGatewayInformationOutput {
+	s.HostEnvironmentId = &v
 	return s
 }
 
@@ -17269,6 +17280,14 @@ type GatewayInfo struct {
 
 	// The type of the gateway.
 	GatewayType *string `min:"2" type:"string"`
+
+	// The type of hardware or software platform on which the gateway is running.
+	HostEnvironment *string `type:"string" enum:"HostEnvironment"`
+
+	// A unique identifier for the specific instance of the host platform running
+	// the gateway. This value is only available for certain host environments,
+	// and its format depends on the host environment type.
+	HostEnvironmentId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -17328,6 +17347,18 @@ func (s *GatewayInfo) SetGatewayOperationalState(v string) *GatewayInfo {
 // SetGatewayType sets the GatewayType field's value.
 func (s *GatewayInfo) SetGatewayType(v string) *GatewayInfo {
 	s.GatewayType = &v
+	return s
+}
+
+// SetHostEnvironment sets the HostEnvironment field's value.
+func (s *GatewayInfo) SetHostEnvironment(v string) *GatewayInfo {
+	s.HostEnvironment = &v
+	return s
+}
+
+// SetHostEnvironmentId sets the HostEnvironmentId field's value.
+func (s *GatewayInfo) SetHostEnvironmentId(v string) *GatewayInfo {
+	s.HostEnvironmentId = &v
 	return s
 }
 
@@ -24595,6 +24626,9 @@ const (
 
 	// HostEnvironmentOther is a HostEnvironment enum value
 	HostEnvironmentOther = "OTHER"
+
+	// HostEnvironmentSnowball is a HostEnvironment enum value
+	HostEnvironmentSnowball = "SNOWBALL"
 )
 
 // HostEnvironment_Values returns all elements of the HostEnvironment enum
@@ -24605,6 +24639,7 @@ func HostEnvironment_Values() []string {
 		HostEnvironmentEc2,
 		HostEnvironmentKvm,
 		HostEnvironmentOther,
+		HostEnvironmentSnowball,
 	}
 }
 

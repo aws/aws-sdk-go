@@ -4,10 +4,12 @@
   "operations" : {
     "BatchAssociateScramSecret" : "<p>Associates one or more Scram Secrets with an Amazon MSK cluster.</p>",
     "CreateCluster" : "<p>Creates a new MSK cluster.</p>",
+    "CreateClusterV2" : "<p>Creates a new Amazon MSK cluster of either the provisioned or the serverless type.</p>",
     "CreateConfiguration" : "<p>Creates a new MSK configuration.</p>",
     "DeleteCluster" : "<p>Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request.</p>",
     "DeleteConfiguration" : "<p>Deletes the specified MSK configuration. The configuration must be in the ACTIVE or DELETE_FAILED state.</p>",
     "DescribeCluster" : "<p>Returns a description of the MSK cluster whose Amazon Resource Name (ARN) is specified in the request.</p>",
+    "DescribeClusterV2" : "<p>Returns a description of the MSK cluster of either the provisioned or the serverless type whose Amazon Resource Name (ARN) is specified in the request.</p>",
     "DescribeClusterOperation" : "<p>Returns a description of the cluster operation specified by the ARN.</p>",
     "DescribeConfiguration" : "<p>Returns a description of this MSK configuration.</p>",
     "DescribeConfigurationRevision" : "<p>Returns a description of this revision of the configuration.</p>",
@@ -16,6 +18,7 @@
     "GetCompatibleKafkaVersions" : "<p>Gets the Apache Kafka versions to which you can update the MSK cluster.</p>",
     "ListClusterOperations" : "<p>Returns a list of all the operations that have been performed on the specified MSK cluster.</p>",
     "ListClusters" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
+    "ListClustersV2" : "<p>Returns a list of all the MSK clusters in the current Region.</p>",
     "ListConfigurationRevisions" : "<p>Returns a list of all the revisions of an MSK configuration.</p>",
     "ListConfigurations" : "<p>Returns a list of all the MSK configurations in this Region.</p>",
     "ListKafkaVersions" : "<p>Returns a list of Apache Kafka versions.</p>",
@@ -70,7 +73,46 @@
       "base" : "<p>Describes the setup to be used for Apache Kafka broker nodes in the cluster.</p>",
       "refs" : {
         "ClusterInfo$BrokerNodeGroupInfo" : "<p>Information about the brokers.</p>",
-        "CreateClusterRequest$BrokerNodeGroupInfo" : "<p>Information about the brokers.</p>"
+        "Provisioned$BrokerNodeGroupInfo" : "<p>Information about the brokers.</p>",
+        "CreateClusterRequest$BrokerNodeGroupInfo" : "<p>Information about the brokers.</p>",
+        "ProvisionedRequest$BrokerNodeGroupInfo" : "<p>Information about the brokers.</p>"
+      }
+    },
+    "Provisioned" : {
+      "base" : "<p>Describes the provisioned cluster.</p>",
+      "refs" : {
+        "Cluster$Provisioned" : "<p>Information about the provisioned cluster.</p>"
+      }
+    },
+    "ProvisionedRequest" : {
+      "base" : "<p>Creates a provisioned cluster.</p>",
+      "refs" : {
+        "CreateClusterV2Request$Provisioned" : "<p>Creates a provisioned cluster.</p>"
+      }
+    },
+    "ServerlessRequest" : {
+      "base" : "<p>Creates serverless cluster.</p>",
+      "refs" : {
+        "CreateClusterV2Request$Serverless" : "<p>Creates a serverless cluster.</p>"
+      }
+    },
+    "Serverless" : {
+      "base" : "<p>Describes the serverless cluster.</p>",
+      "refs" : {
+        "Cluster$Serverless" : "<p>Information about the serverless cluster.</p>"
+      }
+    },
+    "ServerlessClientAuthentication" : {
+      "base" : "<p>Describes the serverless cluster client authentication.</p>",
+      "refs" : {
+        "Serverless$ClientAuthentication" : "<p>Information about the serverless cluster client authentication.</p>",
+        "ServerlessRequest$ClientAuthentication" : "<p>Information about the serverless cluster client authentication.</p>"
+      }
+    },
+    "ServerlessSasl" : {
+      "base" : "<p>Describes the serverless cluster SASL information.</p>",
+      "refs" : {
+        "ServerlessClientAuthentication$Sasl" : "<p>Serverless cluster SASL information.</p>"
       }
     },
     "BrokerNodeInfo" : {
@@ -83,14 +125,17 @@
       "base" : "<p>Information about the current software installed on the cluster.</p>",
       "refs" : {
         "BrokerNodeInfo$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Apache Kafka brokers in the cluster.</p>",
-        "ClusterInfo$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Apache Kafka brokers in the cluster.</p>"
+        "ClusterInfo$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Apache Kafka brokers in the cluster.</p>",
+        "Provisioned$CurrentBrokerSoftwareInfo" : "<p>Information about the version of software currently deployed on the Apache Kafka brokers in the cluster.</p>"
       }
     },
     "ClientAuthentication" : {
       "base" : "<p>Includes all client authentication information.</p>",
       "refs" : {
         "ClusterInfo$ClientAuthentication" : "<p>Includes all client authentication information.</p>",
+        "Provisioned$ClientAuthentication" : "<p>Includes all client authentication information.</p>",
         "CreateClusterRequest$ClientAuthentication" : "<p>Includes all client authentication related information.</p>",
+        "ProvisionedRequest$ClientAuthentication" : "<p>Includes all client authentication related information.</p>",
         "MutableClusterInfo$ClientAuthentication" : "<p>Includes all client authentication related information.</p>",
         "UpdateSecurityRequest$ClientAuthentication" : "<p>Includes all client authentication related information.</p>"
       }
@@ -112,6 +157,13 @@
       "refs" : {
         "DescribeClusterResponse$ClusterInfo" : "<p>The cluster information.</p>",
         "__listOfClusterInfo$member" : null
+      }
+    },
+    "Cluster" : {
+      "base" : "<p>Returns information about a cluster of either the provisioned or the serverless type.</p>",
+      "refs" : {
+        "DescribeClusterV2Response$ClusterInfo" : "<p>The cluster information.</p>",
+        "__listOfCluster$member" : null
       }
     },
     "ClusterOperationInfo" : {
@@ -138,6 +190,7 @@
       "refs" : {
         "ClusterInfo$State" : "<p>The state of the cluster. The possible states are ACTIVE, CREATING, DELETING, FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.</p>",
         "CreateClusterResponse$State" : "<p>The state of the cluster. The possible states are ACTIVE, CREATING, DELETING, FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.</p>",
+        "CreateClusterV2Response$State" : "<p>The state of the cluster. The possible states are ACTIVE, CREATING, DELETING, FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.</p>",
         "DeleteClusterResponse$State" : "<p>The state of the cluster. The possible states are ACTIVE, CREATING, DELETING, FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.</p>"
       }
     },
@@ -157,6 +210,7 @@
       "base" : "<p>Specifies the configuration to use for the brokers.</p>",
       "refs" : {
         "CreateClusterRequest$ConfigurationInfo" : "<p>Represents the configuration that you want MSK to use for the cluster.</p>",
+        "ProvisionedRequest$ConfigurationInfo" : "<p>Represents the configuration that you want MSK to use for the cluster.</p>",
         "MutableClusterInfo$ConfigurationInfo" : "<p>Information about the changes in the configuration of the brokers.</p>",
         "UpdateClusterConfigurationRequest$ConfigurationInfo" : "<p>Represents the configuration that you want MSK to use for the cluster.</p>"
       }
@@ -195,8 +249,16 @@
       "base" : "<p>Creates a cluster.</p>",
       "refs" : { }
     },
+    "CreateClusterV2Request" : {
+      "base" : "<p>Creates a new Amazon MSK cluster of either the provisioned or the serverless type.</p>",
+      "refs" : { }
+    },
     "CreateClusterResponse" : {
       "base" : "<p>Returns information about the created cluster.</p>",
+      "refs" : { }
+    },
+    "CreateClusterV2Response" : {
+      "base" : "<p>Returns information about the created cluster of either the provisioned or the serverless type.</p>",
       "refs" : { }
     },
     "CreateConfigurationRequest" : {
@@ -225,6 +287,10 @@
     },
     "DescribeClusterResponse" : {
       "base" : "<p>Returns information about a cluster.</p>",
+      "refs" : { }
+    },
+    "DescribeClusterV2Response" : {
+      "base" : "<p>Returns information about a cluster of either the provisioned or the serverless type.</p>",
       "refs" : { }
     },
     "DescribeConfigurationResponse" : {
@@ -265,7 +331,9 @@
       "base" : "<p>Includes encryption-related information, such as the AWS KMS key used for encrypting data at rest and whether you want MSK to encrypt your data in transit.</p>",
       "refs" : {
         "ClusterInfo$EncryptionInfo" : "<p>Includes all encryption-related information.</p>",
+        "Provisioned$EncryptionInfo" : "<p>Includes all encryption-related information.</p>",
         "CreateClusterRequest$EncryptionInfo" : "<p>Includes all encryption-related information.</p>",
+        "ProvisionedRequest$EncryptionInfo" : "<p>Includes all encryption-related information.</p>",
         "MutableClusterInfo$EncryptionInfo" : "<p>Includes all encryption-related information.</p>",
         "UpdateSecurityRequest$EncryptionInfo" : "<p>Includes all encryption-related information.</p>"
       }
@@ -274,7 +342,9 @@
       "base" : "<p>Specifies which metrics are gathered for the MSK cluster. This property has the following possible values: DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION. For a list of the metrics associated with each of these levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>",
       "refs" : {
         "ClusterInfo$EnhancedMonitoring" : "<p>Specifies which metrics are gathered for the MSK cluster. This property has the following possible values: DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION. For a list of the metrics associated with each of these levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>",
+        "Provisioned$EnhancedMonitoring" : "<p>Specifies which metrics are gathered for the MSK cluster. This property has the following possible values: DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION. For a list of the metrics associated with each of these levels of monitoring, see <a href=\"https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html\">Monitoring</a>.</p>",
         "CreateClusterRequest$EnhancedMonitoring" : "<p>Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION.</p>",
+        "ProvisionedRequest$EnhancedMonitoring" : "<p>Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION.</p>",
         "MutableClusterInfo$EnhancedMonitoring" : "<p>Specifies which Apache Kafka metrics Amazon MSK gathers and sends to Amazon CloudWatch for this cluster.</p>",
         "UpdateMonitoringRequest$EnhancedMonitoring" : "<p>Specifies which Apache Kafka metrics Amazon MSK gathers and sends to Amazon CloudWatch for this cluster.</p>"
       }
@@ -343,6 +413,10 @@
       "base" : "<p>The response contains an array containing cluster information and a next token if the response is truncated.</p>",
       "refs" : { }
     },
+    "ListClustersV2Response" : {
+      "base" : "<p>The response contains an array containing cluster information and a next token if the response is truncated.</p>",
+      "refs" : { }
+    },
     "ListConfigurationRevisionsResponse" : {
       "base" : "<p>Information about revisions of an MSK configuration.</p>",
       "refs" : { }
@@ -371,7 +445,9 @@
       "base" : "<p>You can configure your MSK cluster to send broker logs to different destination types. This is a container for the configuration details related to broker logs.</p>",
       "refs" : {
         "ClusterInfo$LoggingInfo" : "<p>You can configure your MSK cluster to send broker logs to different destination types. This is a container for the configuration details related to broker logs.</p>",
+        "Provisioned$LoggingInfo" : "<p>You can configure your MSK cluster to send broker logs to different destination types. This is a container for the configuration details related to broker logs.</p>",
         "CreateClusterRequest$LoggingInfo" : "<p>LoggingInfo details.</p>",
+        "ProvisionedRequest$LoggingInfo" : "<p>LoggingInfo details.</p>",
         "MutableClusterInfo$LoggingInfo" : "<p>LoggingInfo details.</p>",
         "UpdateMonitoringRequest$LoggingInfo" : "<p>LoggingInfo details.</p>"
       }
@@ -415,6 +491,7 @@
       "base" : "<p>JMX and Node monitoring for the MSK cluster.</p>",
       "refs" : {
         "ClusterInfo$OpenMonitoring" : "<p>Settings for open monitoring using Prometheus.</p>",
+        "Provisioned$OpenMonitoring" : "<p>Settings for open monitoring using Prometheus.</p>",
         "MutableClusterInfo$OpenMonitoring" : "<p>Settings for open monitoring using Prometheus.</p>"
       }
     },
@@ -422,6 +499,7 @@
       "base" : "<p>JMX and Node monitoring for the MSK cluster.</p>",
       "refs" : {
         "CreateClusterRequest$OpenMonitoring" : "<p>The settings for open monitoring.</p>",
+        "ProvisionedRequest$OpenMonitoring" : "<p>The settings for open monitoring.</p>",
         "UpdateMonitoringRequest$OpenMonitoring" : "<p>The settings for open monitoring.</p>"
       }
     },
@@ -575,6 +653,10 @@
         "NodeInfo$ZookeeperNodeInfo" : "<p>The ZookeeperNodeInfo.</p>"
       }
     },
+    "VpcConfig" : {
+      "base" : "<p>The configuration of the Amazon VPCs for the cluster.</p>",
+      "refs" : { }
+    },
     "__boolean" : {
       "base" : null,
       "refs" : {
@@ -632,6 +714,19 @@
       "base" : null,
       "refs" : {
         "ListClustersResponse$ClusterInfoList" : "<p>Information on each of the MSK clusters in the response.</p>"
+      }
+    },
+    "__listOfCluster" : {
+      "base" : null,
+      "refs" : {
+        "ListClustersV2Response$ClusterInfoList" : "<p>Information on each of the MSK clusters in the response.</p>"
+      }
+    },
+    "__listOfVpcConfig" : {
+      "base" : null,
+      "refs" : {
+        "ServerlessRequest$VpcConfigs" : "<p>Information on vpc config for the serverless cluster.</p>",
+        "Serverless$VpcConfigs" : "<p>Information on vpc config for the serverless cluster.</p>"
       }
     },
     "__listOfClusterOperationInfo" : {

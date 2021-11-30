@@ -70,7 +70,7 @@ const (
 	// ErrCodeKMSRequestFailedException for service response error code
 	// "KMSRequestFailedException".
 	//
-	// The provided AWS Key Management Service key lacks the permissions to perform
+	// The provided Key Management Service key lacks the permissions to perform
 	// the specified CreateJob or UpdateJob action.
 	ErrCodeKMSRequestFailedException = "KMSRequestFailedException"
 
@@ -79,7 +79,7 @@ const (
 	//
 	// You get this exception if you call CreateReturnShippingLabel and a valid
 	// return shipping label already exists. In this case, use DescribeReturnShippingLabel
-	// to get the url.
+	// to get the URL.
 	ErrCodeReturnShippingLabelAlreadyExistsException = "ReturnShippingLabelAlreadyExistsException"
 
 	// ErrCodeUnsupportedAddressException for service response error code
@@ -87,7 +87,7 @@ const (
 	//
 	// The address is either outside the serviceable area for your region, or an
 	// error occurred. Check the address with your region's carrier and try again.
-	// If the issue persists, contact AWS Support.
+	// If the issue persists, contact Amazon Web Services Support.
 	ErrCodeUnsupportedAddressException = "UnsupportedAddressException"
 )
 

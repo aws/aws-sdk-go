@@ -563,7 +563,8 @@
         "SiteId":{"shape":"SiteId"},
         "AvailabilityZone":{"shape":"AvailabilityZone"},
         "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "SupportedHardwareType":{"shape":"SupportedHardwareType"}
       }
     },
     "CreateOutpostOutput":{
@@ -1132,7 +1133,8 @@
         "AvailabilityZone":{"shape":"AvailabilityZone"},
         "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
         "Tags":{"shape":"TagMap"},
-        "SiteArn":{"shape":"SiteArn"}
+        "SiteArn":{"shape":"SiteArn"},
+        "SupportedHardwareType":{"shape":"SupportedHardwareType"}
       }
     },
     "OutpostArn":{
@@ -1319,6 +1321,13 @@
       "max":1000,
       "min":1,
       "pattern":"^[\\S \\n]+$"
+    },
+    "SupportedHardwareType":{
+      "type":"string",
+      "enum":[
+        "RACK",
+        "SERVER"
+      ]
     },
     "SupportedStorageEnum":{
       "type":"string",
