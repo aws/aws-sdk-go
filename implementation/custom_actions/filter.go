@@ -12,10 +12,10 @@ type FullStatement struct {
 }
 
 type Statement struct {
-	Effect    string                         `json:"Effect"`
-	Action    interface{}                    `json:"Action"`
-	Resource  interface{}                    `json:"Resource"`
-	Condition map[string]map[string][]string `json:"Condition,omitempty"`
+	Effect    string                            `json:"Effect"`
+	Action    interface{}                       `json:"Action"`
+	Resource  interface{}                       `json:"Resource"`
+	Condition map[string]map[string]interface{} `json:"Condition,omitempty"`
 }
 
 type OutputPolicyDetail struct {
@@ -23,12 +23,22 @@ type OutputPolicyDetail struct {
 	PolicyName     *string
 }
 
-func filterTagConditions(conditions map[string][]string) map[string][]string {
+func filterTagConditions(conditions map[string]interface{}) map[string][]string {
 	tags := map[string][]string{}
 
 	for key, val := range conditions {
 		if strings.Contains(key, "aws:PrincipalTag") {
-			tags[key] = val
+			switch val.(type) {
+			case []interface{}:
+				interfaceSlice := val.([]interface{})
+				newArray := make([]string, len(interfaceSlice))
+				for _, obj := range interfaceSlice {
+					newArray = append(newArray, obj.(string))
+				}
+				tags[key] = newArray
+			default:
+				tags[key] = []string{val.(string)}
+			}
 		}
 	}
 
