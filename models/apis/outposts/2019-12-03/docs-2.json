@@ -789,6 +789,13 @@
         "ConflictException$ResourceId": "<p>The ID of the resource causing the conflict.</p>"
       }
     },
+    "SupportedHardwareType": {
+      "base": null,
+      "refs": {
+        "CreateOutpostInput$SupportedHardwareType": "<p> The type of hardware for this Outpost. </p>",
+        "Outpost$SupportedHardwareType": "<p> The hardware type. </p>"
+      }
+    },
     "SupportedStorageEnum": {
       "base": null,
       "refs": {

@@ -39821,6 +39821,9 @@ type DescribeIndexOutput struct {
 	//
 	//    * REGISTRY_AND_SHADOW_AND_CONNECTIVITY_STATUS - Your thing index contains
 	//    registry data, shadow data, and thing connectivity status data.
+	//
+	//    * MULTI_INDEXING_MODE - Your thing index contains multiple data sources.
+	//    For more information, see GetIndexingConfiguration (https://docs.aws.amazon.com/iot/latest/apireference/API_GetIndexingConfiguration.html).
 	Schema *string `locationName:"schema" type:"string"`
 }
 
@@ -61465,7 +61468,14 @@ type ThingDocument struct {
 	// service.
 	Connectivity *ThingConnectivity `locationName:"connectivity" type:"structure"`
 
-	// The shadow.
+	// Contains Device Defender data.
+	//
+	// For more information about Device Defender, see Device Defender (https://docs.aws.amazon.com/iot/latest/developerguide/device-defender.html).
+	DeviceDefender *string `locationName:"deviceDefender" type:"string"`
+
+	// The unnamed shadow and named shadow.
+	//
+	// For more information about shadows, see IoT Device Shadow service. (https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
 	Shadow *string `locationName:"shadow" type:"string"`
 
 	// Thing group names.
@@ -61508,6 +61518,12 @@ func (s *ThingDocument) SetAttributes(v map[string]*string) *ThingDocument {
 // SetConnectivity sets the Connectivity field's value.
 func (s *ThingDocument) SetConnectivity(v *ThingConnectivity) *ThingDocument {
 	s.Connectivity = v
+	return s
+}
+
+// SetDeviceDefender sets the DeviceDefender field's value.
+func (s *ThingDocument) SetDeviceDefender(v string) *ThingDocument {
+	s.DeviceDefender = &v
 	return s
 }
 
@@ -61777,9 +61793,31 @@ type ThingIndexingConfiguration struct {
 	// Contains custom field names and their data type.
 	CustomFields []*Field `locationName:"customFields" type:"list"`
 
+	// Device Defender indexing mode. Valid values are:
+	//
+	//    * VIOLATIONS – Your thing index contains Device Defender violations.
+	//    To enable Device Defender indexing, deviceDefenderIndexingMode must not
+	//    be set to OFF.
+	//
+	//    * OFF - Device Defender indexing is disabled.
+	//
+	// For more information about Device Defender violations, see Device Defender
+	// Detect. (https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-detect.html)
+	DeviceDefenderIndexingMode *string `locationName:"deviceDefenderIndexingMode" type:"string" enum:"DeviceDefenderIndexingMode"`
+
 	// Contains fields that are indexed and whose types are already known by the
 	// Fleet Indexing service.
 	ManagedFields []*Field `locationName:"managedFields" type:"list"`
+
+	// Named shadow indexing mode. Valid values are:
+	//
+	//    * ON – Your thing index contains named shadow. To enable thing named
+	//    shadow indexing, namedShadowIndexingMode must not be set to OFF.
+	//
+	//    * OFF - Named shadow indexing is disabled.
+	//
+	// For more information about Shadows, see IoT Device Shadow service. (https://docs.aws.amazon.com/iot/latest/developerguide/iot-device-shadows.html)
+	NamedShadowIndexingMode *string `locationName:"namedShadowIndexingMode" type:"string" enum:"NamedShadowIndexingMode"`
 
 	// Thing connectivity indexing mode. Valid values are:
 	//
@@ -61839,9 +61877,21 @@ func (s *ThingIndexingConfiguration) SetCustomFields(v []*Field) *ThingIndexingC
 	return s
 }
 
+// SetDeviceDefenderIndexingMode sets the DeviceDefenderIndexingMode field's value.
+func (s *ThingIndexingConfiguration) SetDeviceDefenderIndexingMode(v string) *ThingIndexingConfiguration {
+	s.DeviceDefenderIndexingMode = &v
+	return s
+}
+
 // SetManagedFields sets the ManagedFields field's value.
 func (s *ThingIndexingConfiguration) SetManagedFields(v []*Field) *ThingIndexingConfiguration {
 	s.ManagedFields = v
+	return s
+}
+
+// SetNamedShadowIndexingMode sets the NamedShadowIndexingMode field's value.
+func (s *ThingIndexingConfiguration) SetNamedShadowIndexingMode(v string) *ThingIndexingConfiguration {
+	s.NamedShadowIndexingMode = &v
 	return s
 }
 
@@ -64850,7 +64900,7 @@ type UpdateFleetMetricInput struct {
 	QueryVersion *string `locationName:"queryVersion" type:"string"`
 
 	// Used to support unit transformation such as milliseconds to seconds. The
-	// unit must be supported by CW metric (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
+	// unit must be supported by CW metric (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
 	Unit *string `locationName:"unit" type:"string" enum:"FleetMetricUnit"`
 }
 
@@ -67936,6 +67986,22 @@ func DeviceCertificateUpdateAction_Values() []string {
 }
 
 const (
+	// DeviceDefenderIndexingModeOff is a DeviceDefenderIndexingMode enum value
+	DeviceDefenderIndexingModeOff = "OFF"
+
+	// DeviceDefenderIndexingModeViolations is a DeviceDefenderIndexingMode enum value
+	DeviceDefenderIndexingModeViolations = "VIOLATIONS"
+)
+
+// DeviceDefenderIndexingMode_Values returns all elements of the DeviceDefenderIndexingMode enum
+func DeviceDefenderIndexingMode_Values() []string {
+	return []string{
+		DeviceDefenderIndexingModeOff,
+		DeviceDefenderIndexingModeViolations,
+	}
+}
+
+const (
 	// DimensionTypeTopicFilter is a DimensionType enum value
 	DimensionTypeTopicFilter = "TOPIC_FILTER"
 )
@@ -68440,6 +68506,22 @@ func ModelStatus_Values() []string {
 		ModelStatusPendingBuild,
 		ModelStatusActive,
 		ModelStatusExpired,
+	}
+}
+
+const (
+	// NamedShadowIndexingModeOff is a NamedShadowIndexingMode enum value
+	NamedShadowIndexingModeOff = "OFF"
+
+	// NamedShadowIndexingModeOn is a NamedShadowIndexingMode enum value
+	NamedShadowIndexingModeOn = "ON"
+)
+
+// NamedShadowIndexingMode_Values returns all elements of the NamedShadowIndexingMode enum
+func NamedShadowIndexingMode_Values() []string {
+	return []string{
+		NamedShadowIndexingModeOff,
+		NamedShadowIndexingModeOn,
 	}
 }
 

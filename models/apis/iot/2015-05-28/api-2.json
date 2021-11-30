@@ -7478,6 +7478,13 @@
       "type":"string",
       "enum":["DEACTIVATE"]
     },
+    "DeviceDefenderIndexingMode":{
+      "type":"string",
+      "enum":[
+        "OFF",
+        "VIOLATIONS"
+      ]
+    },
     "DeviceDefenderThingName":{
       "type":"string",
       "max":128,
@@ -10665,6 +10672,13 @@
       "max":65535,
       "min":1
     },
+    "NamedShadowIndexingMode":{
+      "type":"string",
+      "enum":[
+        "OFF",
+        "ON"
+      ]
+    },
     "NamespaceId":{
       "type":"string",
       "max":64,
@@ -12290,6 +12304,7 @@
         "thingGroupNames":{"shape":"ThingGroupNameList"},
         "attributes":{"shape":"Attributes"},
         "shadow":{"shape":"JsonDocument"},
+        "deviceDefender":{"shape":"JsonDocument"},
         "connectivity":{"shape":"ThingConnectivity"}
       }
     },
@@ -12385,6 +12400,8 @@
       "members":{
         "thingIndexingMode":{"shape":"ThingIndexingMode"},
         "thingConnectivityIndexingMode":{"shape":"ThingConnectivityIndexingMode"},
+        "deviceDefenderIndexingMode":{"shape":"DeviceDefenderIndexingMode"},
+        "namedShadowIndexingMode":{"shape":"NamedShadowIndexingMode"},
         "managedFields":{"shape":"Fields"},
         "customFields":{"shape":"Fields"}
       }

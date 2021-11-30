@@ -22506,6 +22506,18 @@
         "vt1.3xlarge",
         "vt1.6xlarge",
         "vt1.24xlarge",
+        "im4gn.16xlarge",
+        "im4gn.2xlarge",
+        "im4gn.4xlarge",
+        "im4gn.8xlarge",
+        "im4gn.large",
+        "im4gn.xlarge",
+        "is4gen.2xlarge",
+        "is4gen.4xlarge",
+        "is4gen.8xlarge",
+        "is4gen.large",
+        "is4gen.medium",
+        "is4gen.xlarge",
         "g5g.xlarge",
         "g5g.2xlarge",
         "g5g.4xlarge",
@@ -25525,7 +25537,9 @@
         "EnableDns64":{"shape":"AttributeBooleanValue"},
         "PrivateDnsHostnameTypeOnLaunch":{"shape":"HostnameType"},
         "EnableResourceNameDnsARecordOnLaunch":{"shape":"AttributeBooleanValue"},
-        "EnableResourceNameDnsAAAARecordOnLaunch":{"shape":"AttributeBooleanValue"}
+        "EnableResourceNameDnsAAAARecordOnLaunch":{"shape":"AttributeBooleanValue"},
+        "EnableLniAtDeviceIndex":{"shape":"Integer"},
+        "DisableLniAtDeviceIndex":{"shape":"AttributeBooleanValue"}
       }
     },
     "ModifyTrafficMirrorFilterNetworkServicesRequest":{
@@ -32870,6 +32884,10 @@
         "DefaultForAz":{
           "shape":"Boolean",
           "locationName":"defaultForAz"
+        },
+        "EnableLniAtDeviceIndex":{
+          "shape":"Integer",
+          "locationName":"enableLniAtDeviceIndex"
         },
         "MapPublicIpOnLaunch":{
           "shape":"Boolean",

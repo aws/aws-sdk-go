@@ -281,7 +281,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
         {"shape":"InvalidArgumentException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"ValidationException"}
       ]
     },
     "PutRecord":{
@@ -364,7 +365,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceInUseException"},
         {"shape":"InvalidArgumentException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"ValidationException"}
       ]
     },
     "StartStreamEncryption":{
@@ -424,6 +426,21 @@
       },
       "input":{"shape":"UpdateShardCountInput"},
       "output":{"shape":"UpdateShardCountOutput"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "UpdateStreamMode":{
+      "name":"UpdateStreamMode",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateStreamModeInput"},
       "errors":[
         {"shape":"InvalidArgumentException"},
         {"shape":"LimitExceededException"},
@@ -525,13 +542,11 @@
     },
     "CreateStreamInput":{
       "type":"structure",
-      "required":[
-        "StreamName",
-        "ShardCount"
-      ],
+      "required":["StreamName"],
       "members":{
         "StreamName":{"shape":"StreamName"},
-        "ShardCount":{"shape":"PositiveIntegerObject"}
+        "ShardCount":{"shape":"PositiveIntegerObject"},
+        "StreamModeDetails":{"shape":"StreamModeDetails"}
       }
     },
     "Data":{
@@ -575,11 +590,15 @@
       "type":"structure",
       "required":[
         "ShardLimit",
-        "OpenShardCount"
+        "OpenShardCount",
+        "OnDemandStreamCount",
+        "OnDemandStreamCountLimit"
       ],
       "members":{
         "ShardLimit":{"shape":"ShardCountObject"},
-        "OpenShardCount":{"shape":"ShardCountObject"}
+        "OpenShardCount":{"shape":"ShardCountObject"},
+        "OnDemandStreamCount":{"shape":"OnDemandStreamCountObject"},
+        "OnDemandStreamCountLimit":{"shape":"OnDemandStreamCountLimitObject"}
       }
     },
     "DescribeStreamConsumerInput":{
@@ -968,6 +987,16 @@
       "max":1048576,
       "min":1
     },
+    "OnDemandStreamCountLimitObject":{
+      "type":"integer",
+      "max":1000000,
+      "min":0
+    },
+    "OnDemandStreamCountObject":{
+      "type":"integer",
+      "max":1000000,
+      "min":0
+    },
     "PartitionKey":{
       "type":"string",
       "max":256,
@@ -1282,6 +1311,7 @@
         "StreamName":{"shape":"StreamName"},
         "StreamARN":{"shape":"StreamARN"},
         "StreamStatus":{"shape":"StreamStatus"},
+        "StreamModeDetails":{"shape":"StreamModeDetails"},
         "Shards":{"shape":"ShardList"},
         "HasMoreShards":{"shape":"BooleanObject"},
         "RetentionPeriodHours":{"shape":"RetentionPeriodHours"},
@@ -1306,6 +1336,7 @@
         "StreamName":{"shape":"StreamName"},
         "StreamARN":{"shape":"StreamARN"},
         "StreamStatus":{"shape":"StreamStatus"},
+        "StreamModeDetails":{"shape":"StreamModeDetails"},
         "RetentionPeriodHours":{"shape":"RetentionPeriodHours"},
         "StreamCreationTimestamp":{"shape":"Timestamp"},
         "EnhancedMonitoring":{"shape":"EnhancedMonitoringList"},
@@ -1313,6 +1344,20 @@
         "KeyId":{"shape":"KeyId"},
         "OpenShardCount":{"shape":"ShardCountObject"},
         "ConsumerCount":{"shape":"ConsumerCountObject"}
+      }
+    },
+    "StreamMode":{
+      "type":"string",
+      "enum":[
+        "PROVISIONED",
+        "ON_DEMAND"
+      ]
+    },
+    "StreamModeDetails":{
+      "type":"structure",
+      "required":["StreamMode"],
+      "members":{
+        "StreamMode":{"shape":"StreamMode"}
       }
     },
     "StreamName":{
@@ -1444,6 +1489,24 @@
         "CurrentShardCount":{"shape":"PositiveIntegerObject"},
         "TargetShardCount":{"shape":"PositiveIntegerObject"}
       }
+    },
+    "UpdateStreamModeInput":{
+      "type":"structure",
+      "required":[
+        "StreamARN",
+        "StreamModeDetails"
+      ],
+      "members":{
+        "StreamARN":{"shape":"StreamARN"},
+        "StreamModeDetails":{"shape":"StreamModeDetails"}
+      }
+    },
+    "ValidationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     }
   }
 }

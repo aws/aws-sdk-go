@@ -128,13 +128,17 @@ func ExampleS3_CopyObject_shared00() {
 	fmt.Println(result)
 }
 
-// To create a bucket
+// To create a bucket in a specific region
 //
-// The following example creates a bucket.
+// The following example creates a bucket. The request specifies an AWS region where
+// to create the bucket.
 func ExampleS3_CreateBucket_shared00() {
 	svc := s3.New(session.New())
 	input := &s3.CreateBucketInput{
 		Bucket: aws.String("examplebucket"),
+		CreateBucketConfiguration: &s3.CreateBucketConfiguration{
+			LocationConstraint: aws.String("eu-west-1"),
+		},
 	}
 
 	result, err := svc.CreateBucket(input)
@@ -159,17 +163,13 @@ func ExampleS3_CreateBucket_shared00() {
 	fmt.Println(result)
 }
 
-// To create a bucket in a specific region
+// To create a bucket
 //
-// The following example creates a bucket. The request specifies an AWS region where
-// to create the bucket.
+// The following example creates a bucket.
 func ExampleS3_CreateBucket_shared01() {
 	svc := s3.New(session.New())
 	input := &s3.CreateBucketInput{
 		Bucket: aws.String("examplebucket"),
-		CreateBucketConfiguration: &s3.CreateBucketConfiguration{
-			LocationConstraint: aws.String("eu-west-1"),
-		},
 	}
 
 	result, err := svc.CreateBucket(input)
@@ -411,14 +411,14 @@ func ExampleS3_DeleteBucketWebsite_shared00() {
 	fmt.Println(result)
 }
 
-// To delete an object (from a non-versioned bucket)
+// To delete an object
 //
-// The following example deletes an object from a non-versioned bucket.
+// The following example deletes an object from an S3 bucket.
 func ExampleS3_DeleteObject_shared00() {
 	svc := s3.New(session.New())
 	input := &s3.DeleteObjectInput{
-		Bucket: aws.String("ExampleBucket"),
-		Key:    aws.String("HappyFace.jpg"),
+		Bucket: aws.String("examplebucket"),
+		Key:    aws.String("objectkey.jpg"),
 	}
 
 	result, err := svc.DeleteObject(input)
@@ -439,14 +439,14 @@ func ExampleS3_DeleteObject_shared00() {
 	fmt.Println(result)
 }
 
-// To delete an object
+// To delete an object (from a non-versioned bucket)
 //
-// The following example deletes an object from an S3 bucket.
+// The following example deletes an object from a non-versioned bucket.
 func ExampleS3_DeleteObject_shared01() {
 	svc := s3.New(session.New())
 	input := &s3.DeleteObjectInput{
-		Bucket: aws.String("examplebucket"),
-		Key:    aws.String("objectkey.jpg"),
+		Bucket: aws.String("ExampleBucket"),
+		Key:    aws.String("HappyFace.jpg"),
 	}
 
 	result, err := svc.DeleteObject(input)
@@ -1808,17 +1808,18 @@ func ExampleS3_PutBucketWebsite_shared00() {
 	fmt.Println(result)
 }
 
-// To upload an object and specify optional tags
+// To upload an object (specify optional headers)
 //
-// The following example uploads an object. The request specifies optional object tags.
-// The bucket is versioned, therefore S3 returns version ID of the newly created object.
+// The following example uploads an object. The request specifies optional request headers
+// to directs S3 to use specific storage class and use server-side encryption.
 func ExampleS3_PutObject_shared00() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
-		Body:    aws.ReadSeekCloser(strings.NewReader("c:\\HappyFace.jpg")),
-		Bucket:  aws.String("examplebucket"),
-		Key:     aws.String("HappyFace.jpg"),
-		Tagging: aws.String("key1=value1&key2=value2"),
+		Body:                 aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
+		Bucket:               aws.String("examplebucket"),
+		Key:                  aws.String("HappyFace.jpg"),
+		ServerSideEncryption: aws.String("AES256"),
+		StorageClass:         aws.String("STANDARD_IA"),
 	}
 
 	result, err := svc.PutObject(input)
@@ -1871,12 +1872,108 @@ func ExampleS3_PutObject_shared01() {
 	fmt.Println(result)
 }
 
+// To upload an object
+//
+// The following example uploads an object to a versioning-enabled bucket. The source
+// file is specified using Windows file syntax. S3 returns VersionId of the newly created
+// object.
+func ExampleS3_PutObject_shared02() {
+	svc := s3.New(session.New())
+	input := &s3.PutObjectInput{
+		Body:   aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
+		Bucket: aws.String("examplebucket"),
+		Key:    aws.String("HappyFace.jpg"),
+	}
+
+	result, err := svc.PutObject(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To upload an object and specify optional tags
+//
+// The following example uploads an object. The request specifies optional object tags.
+// The bucket is versioned, therefore S3 returns version ID of the newly created object.
+func ExampleS3_PutObject_shared03() {
+	svc := s3.New(session.New())
+	input := &s3.PutObjectInput{
+		Body:    aws.ReadSeekCloser(strings.NewReader("c:\\HappyFace.jpg")),
+		Bucket:  aws.String("examplebucket"),
+		Key:     aws.String("HappyFace.jpg"),
+		Tagging: aws.String("key1=value1&key2=value2"),
+	}
+
+	result, err := svc.PutObject(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// To upload object and specify user-defined metadata
+//
+// The following example creates an object. The request also specifies optional metadata.
+// If the bucket is versioning enabled, S3 returns version ID in response.
+func ExampleS3_PutObject_shared04() {
+	svc := s3.New(session.New())
+	input := &s3.PutObjectInput{
+		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
+		Bucket: aws.String("examplebucket"),
+		Key:    aws.String("exampleobject"),
+		Metadata: map[string]*string{
+			"metadata1": aws.String("value1"),
+			"metadata2": aws.String("value2"),
+		},
+	}
+
+	result, err := svc.PutObject(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To upload an object and specify server-side encryption and object tags
 //
 // The following example uploads and object. The request specifies the optional server-side
 // encryption option. The request also specifies optional object tags. If the bucket
 // is versioning enabled, S3 returns version ID in response.
-func ExampleS3_PutObject_shared02() {
+func ExampleS3_PutObject_shared05() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
 		Body:                 aws.ReadSeekCloser(strings.NewReader("filetoupload")),
@@ -1908,109 +2005,12 @@ func ExampleS3_PutObject_shared02() {
 //
 // The following example creates an object. If the bucket is versioning enabled, S3
 // returns version ID in response.
-func ExampleS3_PutObject_shared03() {
-	svc := s3.New(session.New())
-	input := &s3.PutObjectInput{
-		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
-		Bucket: aws.String("examplebucket"),
-		Key:    aws.String("objectkey"),
-	}
-
-	result, err := svc.PutObject(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To upload an object
-//
-// The following example uploads an object to a versioning-enabled bucket. The source
-// file is specified using Windows file syntax. S3 returns VersionId of the newly created
-// object.
-func ExampleS3_PutObject_shared04() {
-	svc := s3.New(session.New())
-	input := &s3.PutObjectInput{
-		Body:   aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
-		Bucket: aws.String("examplebucket"),
-		Key:    aws.String("HappyFace.jpg"),
-	}
-
-	result, err := svc.PutObject(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To upload an object (specify optional headers)
-//
-// The following example uploads an object. The request specifies optional request headers
-// to directs S3 to use specific storage class and use server-side encryption.
-func ExampleS3_PutObject_shared05() {
-	svc := s3.New(session.New())
-	input := &s3.PutObjectInput{
-		Body:                 aws.ReadSeekCloser(strings.NewReader("HappyFace.jpg")),
-		Bucket:               aws.String("examplebucket"),
-		Key:                  aws.String("HappyFace.jpg"),
-		ServerSideEncryption: aws.String("AES256"),
-		StorageClass:         aws.String("STANDARD_IA"),
-	}
-
-	result, err := svc.PutObject(input)
-	if err != nil {
-		if aerr, ok := err.(awserr.Error); ok {
-			switch aerr.Code() {
-			default:
-				fmt.Println(aerr.Error())
-			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
-		}
-		return
-	}
-
-	fmt.Println(result)
-}
-
-// To upload object and specify user-defined metadata
-//
-// The following example creates an object. The request also specifies optional metadata.
-// If the bucket is versioning enabled, S3 returns version ID in response.
 func ExampleS3_PutObject_shared06() {
 	svc := s3.New(session.New())
 	input := &s3.PutObjectInput{
 		Body:   aws.ReadSeekCloser(strings.NewReader("filetoupload")),
 		Bucket: aws.String("examplebucket"),
-		Key:    aws.String("exampleobject"),
-		Metadata: map[string]*string{
-			"metadata1": aws.String("value1"),
-			"metadata2": aws.String("value2"),
-		},
+		Key:    aws.String("objectkey"),
 	}
 
 	result, err := svc.PutObject(input)

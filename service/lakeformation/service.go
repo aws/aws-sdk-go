@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/aws/signer/v4"
 	"github.com/aws/aws-sdk-go/private/protocol"
-	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 // LakeFormation provides the API operation methods for making requests to
@@ -69,8 +69,6 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 				Endpoint:       endpoint,
 				APIVersion:     "2017-03-31",
 				ResolvedRegion: resolvedRegion,
-				JSONVersion:    "1.1",
-				TargetPrefix:   "AWSLakeFormation",
 			},
 			handlers,
 		),
@@ -78,11 +76,11 @@ func newClient(cfg aws.Config, handlers request.Handlers, partitionID, endpoint,
 
 	// Handlers
 	svc.Handlers.Sign.PushBackNamed(v4.SignRequestHandler)
-	svc.Handlers.Build.PushBackNamed(jsonrpc.BuildHandler)
-	svc.Handlers.Unmarshal.PushBackNamed(jsonrpc.UnmarshalHandler)
-	svc.Handlers.UnmarshalMeta.PushBackNamed(jsonrpc.UnmarshalMetaHandler)
+	svc.Handlers.Build.PushBackNamed(restjson.BuildHandler)
+	svc.Handlers.Unmarshal.PushBackNamed(restjson.UnmarshalHandler)
+	svc.Handlers.UnmarshalMeta.PushBackNamed(restjson.UnmarshalMetaHandler)
 	svc.Handlers.UnmarshalError.PushBackNamed(
-		protocol.NewUnmarshalErrorHandler(jsonrpc.NewUnmarshalTypedError(exceptionFromCode)).NamedHandler(),
+		protocol.NewUnmarshalErrorHandler(restjson.NewUnmarshalTypedError(exceptionFromCode)).NamedHandler(),
 	)
 
 	// Run custom client initialization if present

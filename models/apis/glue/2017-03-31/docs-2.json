@@ -2965,6 +2965,11 @@
       "refs": {
       }
     },
+    "InvalidStateException": {
+      "base": "<p>An error that indicates your data is in an invalid state.</p>",
+      "refs": {
+      }
+    },
     "IsVersionValid": {
       "base": null,
       "refs": {
@@ -3439,9 +3444,11 @@
         "IllegalWorkflowStateException$Message": "<p>A message describing the problem.</p>",
         "InternalServiceException$Message": "<p>A message describing the problem.</p>",
         "InvalidInputException$Message": "<p>A message describing the problem.</p>",
+        "InvalidStateException$Message": "<p>A message describing the problem.</p>",
         "MLTransformNotReadyException$Message": "<p>A message describing the problem.</p>",
         "NoScheduleException$Message": "<p>A message describing the problem.</p>",
         "OperationTimeoutException$Message": "<p>A message describing the problem.</p>",
+        "ResourceNotReadyException$Message": "<p>A message describing the problem.</p>",
         "ResourceNumberLimitExceededException$Message": "<p>A message describing the problem.</p>",
         "SchedulerNotRunningException$Message": "<p>A message describing the problem.</p>",
         "SchedulerRunningException$Message": "<p>A message describing the problem.</p>",
@@ -4393,6 +4400,11 @@
       "refs": {
       }
     },
+    "ResourceNotReadyException": {
+      "base": "<p>A resource was not ready for a transaction.</p>",
+      "refs": {
+      }
+    },
     "ResourceNumberLimitExceededException": {
       "base": "<p>A resource numerical limit was exceeded.</p>",
       "refs": {
@@ -5226,8 +5238,11 @@
         "GetMLTaskRunResponse$CompletedOn": "<p>The date and time when this task run was completed.</p>",
         "GetMLTransformResponse$CreatedOn": "<p>The date and time when the transform was created.</p>",
         "GetMLTransformResponse$LastModifiedOn": "<p>The date and time when the transform was last modified.</p>",
+        "GetPartitionsRequest$QueryAsOfTime": "<p>The time as of when to read the partition contents. If not set, the most recent transaction commit time will be used. Cannot be specified along with <code>TransactionId</code>.</p>",
         "GetResourcePolicyResponse$CreateTime": "<p>The date and time at which the policy was created.</p>",
         "GetResourcePolicyResponse$UpdateTime": "<p>The date and time at which the policy was last updated.</p>",
+        "GetTableRequest$QueryAsOfTime": "<p>The time as of when to read the table contents. If not set, the most recent transaction commit time will be used. Cannot be specified along with <code>TransactionId</code>.</p>",
+        "GetTablesRequest$QueryAsOfTime": "<p>The time as of when to read the table contents. If not set, the most recent transaction commit time will be used. Cannot be specified along with <code>TransactionId</code>.</p>",
         "GluePolicy$CreateTime": "<p>The date and time at which the policy was created.</p>",
         "GluePolicy$UpdateTime": "<p>The date and time at which the policy was last updated.</p>",
         "GrokClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
@@ -5323,6 +5338,18 @@
       "base": null,
       "refs": {
         "Segment$TotalSegments": "<p>The total number of segments.</p>"
+      }
+    },
+    "TransactionIdString": {
+      "base": null,
+      "refs": {
+        "BatchDeleteTableRequest$TransactionId": "<p>The transaction ID at which to delete the table contents.</p>",
+        "CreateTableRequest$TransactionId": "<p>The ID of the transaction.</p>",
+        "DeleteTableRequest$TransactionId": "<p>The transaction ID at which to delete the table contents.</p>",
+        "GetPartitionsRequest$TransactionId": "<p>The transaction ID at which to read the partition contents.</p>",
+        "GetTableRequest$TransactionId": "<p>The transaction ID at which to read the table contents. </p>",
+        "GetTablesRequest$TransactionId": "<p>The transaction ID at which to read the table contents.</p>",
+        "UpdateTableRequest$TransactionId": "<p>The transaction ID at which to update the table contents. </p>"
       }
     },
     "TransformEncryption": {

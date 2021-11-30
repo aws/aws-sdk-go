@@ -355,6 +355,12 @@ func (c *Glue) BatchDeleteTableRequest(input *BatchDeleteTableInput) (req *reque
 //   * OperationTimeoutException
 //   The operation timed out.
 //
+//   * EncryptionException
+//   An encryption operation failed.
+//
+//   * ResourceNotReadyException
+//   A resource was not ready for a transaction.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchDeleteTable
 func (c *Glue) BatchDeleteTable(input *BatchDeleteTableInput) (*BatchDeleteTableOutput, error) {
 	req, out := c.BatchDeleteTableRequest(input)
@@ -882,6 +888,9 @@ func (c *Glue) BatchGetPartitionRequest(input *BatchGetPartitionInput) (req *req
 //
 //   * EncryptionException
 //   An encryption operation failed.
+//
+//   * InvalidStateException
+//   An error that indicates your data is in an invalid state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetPartition
 func (c *Glue) BatchGetPartition(input *BatchGetPartitionInput) (*BatchGetPartitionOutput, error) {
@@ -2852,6 +2861,9 @@ func (c *Glue) CreateTableRequest(input *CreateTableInput) (req *request.Request
 //   * ConcurrentModificationException
 //   Two processes are trying to modify a resource simultaneously.
 //
+//   * ResourceNotReadyException
+//   A resource was not ready for a transaction.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateTable
 func (c *Glue) CreateTable(input *CreateTableInput) (*CreateTableOutput, error) {
 	req, out := c.CreateTableRequest(input)
@@ -4797,6 +4809,9 @@ func (c *Glue) DeleteTableRequest(input *DeleteTableInput) (req *request.Request
 //
 //   * ConcurrentModificationException
 //   Two processes are trying to modify a resource simultaneously.
+//
+//   * ResourceNotReadyException
+//   A resource was not ready for a transaction.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteTable
 func (c *Glue) DeleteTable(input *DeleteTableInput) (*DeleteTableOutput, error) {
@@ -8672,6 +8687,12 @@ func (c *Glue) GetPartitionsRequest(input *GetPartitionsInput) (req *request.Req
 //   * EncryptionException
 //   An encryption operation failed.
 //
+//   * InvalidStateException
+//   An error that indicates your data is in an invalid state.
+//
+//   * ResourceNotReadyException
+//   A resource was not ready for a transaction.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetPartitions
 func (c *Glue) GetPartitions(input *GetPartitionsInput) (*GetPartitionsOutput, error) {
 	req, out := c.GetPartitionsRequest(input)
@@ -9824,6 +9845,9 @@ func (c *Glue) GetTableRequest(input *GetTableInput) (req *request.Request, outp
 //
 //   * EncryptionException
 //   An encryption operation failed.
+//
+//   * ResourceNotReadyException
+//   A resource was not ready for a transaction.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetTable
 func (c *Glue) GetTable(input *GetTableInput) (*GetTableOutput, error) {
@@ -16657,6 +16681,9 @@ func (c *Glue) UpdateTableRequest(input *UpdateTableInput) (req *request.Request
 //   * EncryptionException
 //   An encryption operation failed.
 //
+//   * ResourceNotReadyException
+//   A resource was not ready for a transaction.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateTable
 func (c *Glue) UpdateTable(input *UpdateTableInput) (*UpdateTableOutput, error) {
 	req, out := c.UpdateTableRequest(input)
@@ -17647,6 +17674,9 @@ type BatchDeleteTableInput struct {
 	//
 	// TablesToDelete is a required field
 	TablesToDelete []*string `type:"list" required:"true"`
+
+	// The transaction ID at which to delete the table contents.
+	TransactionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -17682,6 +17712,9 @@ func (s *BatchDeleteTableInput) Validate() error {
 	if s.TablesToDelete == nil {
 		invalidParams.Add(request.NewErrParamRequired("TablesToDelete"))
 	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -17704,6 +17737,12 @@ func (s *BatchDeleteTableInput) SetDatabaseName(v string) *BatchDeleteTableInput
 // SetTablesToDelete sets the TablesToDelete field's value.
 func (s *BatchDeleteTableInput) SetTablesToDelete(v []*string) *BatchDeleteTableInput {
 	s.TablesToDelete = v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *BatchDeleteTableInput) SetTransactionId(v string) *BatchDeleteTableInput {
+	s.TransactionId = &v
 	return s
 }
 
@@ -25099,6 +25138,9 @@ type CreateTableInput struct {
 	//
 	// TableInput is a required field
 	TableInput *TableInput `type:"structure" required:"true"`
+
+	// The ID of the transaction.
+	TransactionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -25133,6 +25175,9 @@ func (s *CreateTableInput) Validate() error {
 	}
 	if s.TableInput == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableInput"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
 	}
 	if s.PartitionIndexes != nil {
 		for i, v := range s.PartitionIndexes {
@@ -25177,6 +25222,12 @@ func (s *CreateTableInput) SetPartitionIndexes(v []*PartitionIndex) *CreateTable
 // SetTableInput sets the TableInput field's value.
 func (s *CreateTableInput) SetTableInput(v *TableInput) *CreateTableInput {
 	s.TableInput = v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *CreateTableInput) SetTransactionId(v string) *CreateTableInput {
+	s.TransactionId = &v
 	return s
 }
 
@@ -28015,6 +28066,9 @@ type DeleteTableInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// The transaction ID at which to delete the table contents.
+	TransactionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -28053,6 +28107,9 @@ func (s *DeleteTableInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -28075,6 +28132,12 @@ func (s *DeleteTableInput) SetDatabaseName(v string) *DeleteTableInput {
 // SetName sets the Name field's value.
 func (s *DeleteTableInput) SetName(v string) *DeleteTableInput {
 	s.Name = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *DeleteTableInput) SetTransactionId(v string) *DeleteTableInput {
+	s.TransactionId = &v
 	return s
 }
 
@@ -33372,6 +33435,11 @@ type GetPartitionsInput struct {
 	// A continuation token, if this is not the first call to retrieve these partitions.
 	NextToken *string `type:"string"`
 
+	// The time as of when to read the partition contents. If not set, the most
+	// recent transaction commit time will be used. Cannot be specified along with
+	// TransactionId.
+	QueryAsOfTime *time.Time `type:"timestamp"`
+
 	// The segment of the table's partitions to scan in this request.
 	Segment *Segment `type:"structure"`
 
@@ -33379,6 +33447,9 @@ type GetPartitionsInput struct {
 	//
 	// TableName is a required field
 	TableName *string `min:"1" type:"string" required:"true"`
+
+	// The transaction ID at which to read the partition contents.
+	TransactionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -33419,6 +33490,9 @@ func (s *GetPartitionsInput) Validate() error {
 	}
 	if s.TableName != nil && len(*s.TableName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
 	}
 	if s.Segment != nil {
 		if err := s.Segment.Validate(); err != nil {
@@ -33468,6 +33542,12 @@ func (s *GetPartitionsInput) SetNextToken(v string) *GetPartitionsInput {
 	return s
 }
 
+// SetQueryAsOfTime sets the QueryAsOfTime field's value.
+func (s *GetPartitionsInput) SetQueryAsOfTime(v time.Time) *GetPartitionsInput {
+	s.QueryAsOfTime = &v
+	return s
+}
+
 // SetSegment sets the Segment field's value.
 func (s *GetPartitionsInput) SetSegment(v *Segment) *GetPartitionsInput {
 	s.Segment = v
@@ -33477,6 +33557,12 @@ func (s *GetPartitionsInput) SetSegment(v *Segment) *GetPartitionsInput {
 // SetTableName sets the TableName field's value.
 func (s *GetPartitionsInput) SetTableName(v string) *GetPartitionsInput {
 	s.TableName = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *GetPartitionsInput) SetTransactionId(v string) *GetPartitionsInput {
+	s.TransactionId = &v
 	return s
 }
 
@@ -34850,6 +34936,13 @@ type GetTableInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// The time as of when to read the table contents. If not set, the most recent
+	// transaction commit time will be used. Cannot be specified along with TransactionId.
+	QueryAsOfTime *time.Time `type:"timestamp"`
+
+	// The transaction ID at which to read the table contents.
+	TransactionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -34888,6 +34981,9 @@ func (s *GetTableInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -34910,6 +35006,18 @@ func (s *GetTableInput) SetDatabaseName(v string) *GetTableInput {
 // SetName sets the Name field's value.
 func (s *GetTableInput) SetName(v string) *GetTableInput {
 	s.Name = &v
+	return s
+}
+
+// SetQueryAsOfTime sets the QueryAsOfTime field's value.
+func (s *GetTableInput) SetQueryAsOfTime(v time.Time) *GetTableInput {
+	s.QueryAsOfTime = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *GetTableInput) SetTransactionId(v string) *GetTableInput {
+	s.TransactionId = &v
 	return s
 }
 
@@ -35232,6 +35340,13 @@ type GetTablesInput struct {
 
 	// A continuation token, included if this is a continuation call.
 	NextToken *string `type:"string"`
+
+	// The time as of when to read the table contents. If not set, the most recent
+	// transaction commit time will be used. Cannot be specified along with TransactionId.
+	QueryAsOfTime *time.Time `type:"timestamp"`
+
+	// The transaction ID at which to read the table contents.
+	TransactionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -35267,6 +35382,9 @@ func (s *GetTablesInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -35301,6 +35419,18 @@ func (s *GetTablesInput) SetMaxResults(v int64) *GetTablesInput {
 // SetNextToken sets the NextToken field's value.
 func (s *GetTablesInput) SetNextToken(v string) *GetTablesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetQueryAsOfTime sets the QueryAsOfTime field's value.
+func (s *GetTablesInput) SetQueryAsOfTime(v time.Time) *GetTablesInput {
+	s.QueryAsOfTime = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *GetTablesInput) SetTransactionId(v string) *GetTablesInput {
+	s.TransactionId = &v
 	return s
 }
 
@@ -36854,6 +36984,71 @@ func (s *InvalidInputException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidInputException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// An error that indicates your data is in an invalid state.
+type InvalidStateException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidStateException(v protocol.ResponseMetadata) error {
+	return &InvalidStateException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidStateException) Code() string {
+	return "InvalidStateException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidStateException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidStateException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidStateException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -42486,6 +42681,71 @@ func (s ResetJobBookmarkOutput) GoString() string {
 func (s *ResetJobBookmarkOutput) SetJobBookmarkEntry(v *JobBookmarkEntry) *ResetJobBookmarkOutput {
 	s.JobBookmarkEntry = v
 	return s
+}
+
+// A resource was not ready for a transaction.
+type ResourceNotReadyException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotReadyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ResourceNotReadyException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotReadyException(v protocol.ResponseMetadata) error {
+	return &ResourceNotReadyException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotReadyException) Code() string {
+	return "ResourceNotReadyException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotReadyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotReadyException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotReadyException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotReadyException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotReadyException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // A resource numerical limit was exceeded.
@@ -49517,6 +49777,9 @@ type UpdateTableInput struct {
 	//
 	// TableInput is a required field
 	TableInput *TableInput `type:"structure" required:"true"`
+
+	// The transaction ID at which to update the table contents.
+	TransactionId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation.
@@ -49552,6 +49815,9 @@ func (s *UpdateTableInput) Validate() error {
 	if s.TableInput == nil {
 		invalidParams.Add(request.NewErrParamRequired("TableInput"))
 	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
 	if s.TableInput != nil {
 		if err := s.TableInput.Validate(); err != nil {
 			invalidParams.AddNested("TableInput", err.(request.ErrInvalidParams))
@@ -49585,6 +49851,12 @@ func (s *UpdateTableInput) SetSkipArchive(v bool) *UpdateTableInput {
 // SetTableInput sets the TableInput field's value.
 func (s *UpdateTableInput) SetTableInput(v *TableInput) *UpdateTableInput {
 	s.TableInput = v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *UpdateTableInput) SetTransactionId(v string) *UpdateTableInput {
+	s.TransactionId = &v
 	return s
 }
 

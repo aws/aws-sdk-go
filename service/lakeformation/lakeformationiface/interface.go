@@ -72,13 +72,33 @@ type LakeFormationAPI interface {
 	BatchRevokePermissionsWithContext(aws.Context, *lakeformation.BatchRevokePermissionsInput, ...request.Option) (*lakeformation.BatchRevokePermissionsOutput, error)
 	BatchRevokePermissionsRequest(*lakeformation.BatchRevokePermissionsInput) (*request.Request, *lakeformation.BatchRevokePermissionsOutput)
 
+	CancelTransaction(*lakeformation.CancelTransactionInput) (*lakeformation.CancelTransactionOutput, error)
+	CancelTransactionWithContext(aws.Context, *lakeformation.CancelTransactionInput, ...request.Option) (*lakeformation.CancelTransactionOutput, error)
+	CancelTransactionRequest(*lakeformation.CancelTransactionInput) (*request.Request, *lakeformation.CancelTransactionOutput)
+
+	CommitTransaction(*lakeformation.CommitTransactionInput) (*lakeformation.CommitTransactionOutput, error)
+	CommitTransactionWithContext(aws.Context, *lakeformation.CommitTransactionInput, ...request.Option) (*lakeformation.CommitTransactionOutput, error)
+	CommitTransactionRequest(*lakeformation.CommitTransactionInput) (*request.Request, *lakeformation.CommitTransactionOutput)
+
+	CreateDataCellsFilter(*lakeformation.CreateDataCellsFilterInput) (*lakeformation.CreateDataCellsFilterOutput, error)
+	CreateDataCellsFilterWithContext(aws.Context, *lakeformation.CreateDataCellsFilterInput, ...request.Option) (*lakeformation.CreateDataCellsFilterOutput, error)
+	CreateDataCellsFilterRequest(*lakeformation.CreateDataCellsFilterInput) (*request.Request, *lakeformation.CreateDataCellsFilterOutput)
+
 	CreateLFTag(*lakeformation.CreateLFTagInput) (*lakeformation.CreateLFTagOutput, error)
 	CreateLFTagWithContext(aws.Context, *lakeformation.CreateLFTagInput, ...request.Option) (*lakeformation.CreateLFTagOutput, error)
 	CreateLFTagRequest(*lakeformation.CreateLFTagInput) (*request.Request, *lakeformation.CreateLFTagOutput)
 
+	DeleteDataCellsFilter(*lakeformation.DeleteDataCellsFilterInput) (*lakeformation.DeleteDataCellsFilterOutput, error)
+	DeleteDataCellsFilterWithContext(aws.Context, *lakeformation.DeleteDataCellsFilterInput, ...request.Option) (*lakeformation.DeleteDataCellsFilterOutput, error)
+	DeleteDataCellsFilterRequest(*lakeformation.DeleteDataCellsFilterInput) (*request.Request, *lakeformation.DeleteDataCellsFilterOutput)
+
 	DeleteLFTag(*lakeformation.DeleteLFTagInput) (*lakeformation.DeleteLFTagOutput, error)
 	DeleteLFTagWithContext(aws.Context, *lakeformation.DeleteLFTagInput, ...request.Option) (*lakeformation.DeleteLFTagOutput, error)
 	DeleteLFTagRequest(*lakeformation.DeleteLFTagInput) (*request.Request, *lakeformation.DeleteLFTagOutput)
+
+	DeleteObjectsOnCancel(*lakeformation.DeleteObjectsOnCancelInput) (*lakeformation.DeleteObjectsOnCancelOutput, error)
+	DeleteObjectsOnCancelWithContext(aws.Context, *lakeformation.DeleteObjectsOnCancelInput, ...request.Option) (*lakeformation.DeleteObjectsOnCancelOutput, error)
+	DeleteObjectsOnCancelRequest(*lakeformation.DeleteObjectsOnCancelInput) (*request.Request, *lakeformation.DeleteObjectsOnCancelOutput)
 
 	DeregisterResource(*lakeformation.DeregisterResourceInput) (*lakeformation.DeregisterResourceOutput, error)
 	DeregisterResourceWithContext(aws.Context, *lakeformation.DeregisterResourceInput, ...request.Option) (*lakeformation.DeregisterResourceOutput, error)
@@ -87,6 +107,14 @@ type LakeFormationAPI interface {
 	DescribeResource(*lakeformation.DescribeResourceInput) (*lakeformation.DescribeResourceOutput, error)
 	DescribeResourceWithContext(aws.Context, *lakeformation.DescribeResourceInput, ...request.Option) (*lakeformation.DescribeResourceOutput, error)
 	DescribeResourceRequest(*lakeformation.DescribeResourceInput) (*request.Request, *lakeformation.DescribeResourceOutput)
+
+	DescribeTransaction(*lakeformation.DescribeTransactionInput) (*lakeformation.DescribeTransactionOutput, error)
+	DescribeTransactionWithContext(aws.Context, *lakeformation.DescribeTransactionInput, ...request.Option) (*lakeformation.DescribeTransactionOutput, error)
+	DescribeTransactionRequest(*lakeformation.DescribeTransactionInput) (*request.Request, *lakeformation.DescribeTransactionOutput)
+
+	ExtendTransaction(*lakeformation.ExtendTransactionInput) (*lakeformation.ExtendTransactionOutput, error)
+	ExtendTransactionWithContext(aws.Context, *lakeformation.ExtendTransactionInput, ...request.Option) (*lakeformation.ExtendTransactionOutput, error)
+	ExtendTransactionRequest(*lakeformation.ExtendTransactionInput) (*request.Request, *lakeformation.ExtendTransactionOutput)
 
 	GetDataLakeSettings(*lakeformation.GetDataLakeSettingsInput) (*lakeformation.GetDataLakeSettingsOutput, error)
 	GetDataLakeSettingsWithContext(aws.Context, *lakeformation.GetDataLakeSettingsInput, ...request.Option) (*lakeformation.GetDataLakeSettingsOutput, error)
@@ -103,17 +131,53 @@ type LakeFormationAPI interface {
 	GetLFTagWithContext(aws.Context, *lakeformation.GetLFTagInput, ...request.Option) (*lakeformation.GetLFTagOutput, error)
 	GetLFTagRequest(*lakeformation.GetLFTagInput) (*request.Request, *lakeformation.GetLFTagOutput)
 
+	GetQueryState(*lakeformation.GetQueryStateInput) (*lakeformation.GetQueryStateOutput, error)
+	GetQueryStateWithContext(aws.Context, *lakeformation.GetQueryStateInput, ...request.Option) (*lakeformation.GetQueryStateOutput, error)
+	GetQueryStateRequest(*lakeformation.GetQueryStateInput) (*request.Request, *lakeformation.GetQueryStateOutput)
+
+	GetQueryStatistics(*lakeformation.GetQueryStatisticsInput) (*lakeformation.GetQueryStatisticsOutput, error)
+	GetQueryStatisticsWithContext(aws.Context, *lakeformation.GetQueryStatisticsInput, ...request.Option) (*lakeformation.GetQueryStatisticsOutput, error)
+	GetQueryStatisticsRequest(*lakeformation.GetQueryStatisticsInput) (*request.Request, *lakeformation.GetQueryStatisticsOutput)
+
 	GetResourceLFTags(*lakeformation.GetResourceLFTagsInput) (*lakeformation.GetResourceLFTagsOutput, error)
 	GetResourceLFTagsWithContext(aws.Context, *lakeformation.GetResourceLFTagsInput, ...request.Option) (*lakeformation.GetResourceLFTagsOutput, error)
 	GetResourceLFTagsRequest(*lakeformation.GetResourceLFTagsInput) (*request.Request, *lakeformation.GetResourceLFTagsOutput)
+
+	GetTableObjects(*lakeformation.GetTableObjectsInput) (*lakeformation.GetTableObjectsOutput, error)
+	GetTableObjectsWithContext(aws.Context, *lakeformation.GetTableObjectsInput, ...request.Option) (*lakeformation.GetTableObjectsOutput, error)
+	GetTableObjectsRequest(*lakeformation.GetTableObjectsInput) (*request.Request, *lakeformation.GetTableObjectsOutput)
+
+	GetTableObjectsPages(*lakeformation.GetTableObjectsInput, func(*lakeformation.GetTableObjectsOutput, bool) bool) error
+	GetTableObjectsPagesWithContext(aws.Context, *lakeformation.GetTableObjectsInput, func(*lakeformation.GetTableObjectsOutput, bool) bool, ...request.Option) error
+
+	GetWorkUnitResults(*lakeformation.GetWorkUnitResultsInput) (*lakeformation.GetWorkUnitResultsOutput, error)
+	GetWorkUnitResultsWithContext(aws.Context, *lakeformation.GetWorkUnitResultsInput, ...request.Option) (*lakeformation.GetWorkUnitResultsOutput, error)
+	GetWorkUnitResultsRequest(*lakeformation.GetWorkUnitResultsInput) (*request.Request, *lakeformation.GetWorkUnitResultsOutput)
+
+	GetWorkUnits(*lakeformation.GetWorkUnitsInput) (*lakeformation.GetWorkUnitsOutput, error)
+	GetWorkUnitsWithContext(aws.Context, *lakeformation.GetWorkUnitsInput, ...request.Option) (*lakeformation.GetWorkUnitsOutput, error)
+	GetWorkUnitsRequest(*lakeformation.GetWorkUnitsInput) (*request.Request, *lakeformation.GetWorkUnitsOutput)
+
+	GetWorkUnitsPages(*lakeformation.GetWorkUnitsInput, func(*lakeformation.GetWorkUnitsOutput, bool) bool) error
+	GetWorkUnitsPagesWithContext(aws.Context, *lakeformation.GetWorkUnitsInput, func(*lakeformation.GetWorkUnitsOutput, bool) bool, ...request.Option) error
 
 	GrantPermissions(*lakeformation.GrantPermissionsInput) (*lakeformation.GrantPermissionsOutput, error)
 	GrantPermissionsWithContext(aws.Context, *lakeformation.GrantPermissionsInput, ...request.Option) (*lakeformation.GrantPermissionsOutput, error)
 	GrantPermissionsRequest(*lakeformation.GrantPermissionsInput) (*request.Request, *lakeformation.GrantPermissionsOutput)
 
+	ListDataCellsFilter(*lakeformation.ListDataCellsFilterInput) (*lakeformation.ListDataCellsFilterOutput, error)
+	ListDataCellsFilterWithContext(aws.Context, *lakeformation.ListDataCellsFilterInput, ...request.Option) (*lakeformation.ListDataCellsFilterOutput, error)
+	ListDataCellsFilterRequest(*lakeformation.ListDataCellsFilterInput) (*request.Request, *lakeformation.ListDataCellsFilterOutput)
+
+	ListDataCellsFilterPages(*lakeformation.ListDataCellsFilterInput, func(*lakeformation.ListDataCellsFilterOutput, bool) bool) error
+	ListDataCellsFilterPagesWithContext(aws.Context, *lakeformation.ListDataCellsFilterInput, func(*lakeformation.ListDataCellsFilterOutput, bool) bool, ...request.Option) error
+
 	ListLFTags(*lakeformation.ListLFTagsInput) (*lakeformation.ListLFTagsOutput, error)
 	ListLFTagsWithContext(aws.Context, *lakeformation.ListLFTagsInput, ...request.Option) (*lakeformation.ListLFTagsOutput, error)
 	ListLFTagsRequest(*lakeformation.ListLFTagsInput) (*request.Request, *lakeformation.ListLFTagsOutput)
+
+	ListLFTagsPages(*lakeformation.ListLFTagsInput, func(*lakeformation.ListLFTagsOutput, bool) bool) error
+	ListLFTagsPagesWithContext(aws.Context, *lakeformation.ListLFTagsInput, func(*lakeformation.ListLFTagsOutput, bool) bool, ...request.Option) error
 
 	ListPermissions(*lakeformation.ListPermissionsInput) (*lakeformation.ListPermissionsOutput, error)
 	ListPermissionsWithContext(aws.Context, *lakeformation.ListPermissionsInput, ...request.Option) (*lakeformation.ListPermissionsOutput, error)
@@ -128,6 +192,20 @@ type LakeFormationAPI interface {
 
 	ListResourcesPages(*lakeformation.ListResourcesInput, func(*lakeformation.ListResourcesOutput, bool) bool) error
 	ListResourcesPagesWithContext(aws.Context, *lakeformation.ListResourcesInput, func(*lakeformation.ListResourcesOutput, bool) bool, ...request.Option) error
+
+	ListTableStorageOptimizers(*lakeformation.ListTableStorageOptimizersInput) (*lakeformation.ListTableStorageOptimizersOutput, error)
+	ListTableStorageOptimizersWithContext(aws.Context, *lakeformation.ListTableStorageOptimizersInput, ...request.Option) (*lakeformation.ListTableStorageOptimizersOutput, error)
+	ListTableStorageOptimizersRequest(*lakeformation.ListTableStorageOptimizersInput) (*request.Request, *lakeformation.ListTableStorageOptimizersOutput)
+
+	ListTableStorageOptimizersPages(*lakeformation.ListTableStorageOptimizersInput, func(*lakeformation.ListTableStorageOptimizersOutput, bool) bool) error
+	ListTableStorageOptimizersPagesWithContext(aws.Context, *lakeformation.ListTableStorageOptimizersInput, func(*lakeformation.ListTableStorageOptimizersOutput, bool) bool, ...request.Option) error
+
+	ListTransactions(*lakeformation.ListTransactionsInput) (*lakeformation.ListTransactionsOutput, error)
+	ListTransactionsWithContext(aws.Context, *lakeformation.ListTransactionsInput, ...request.Option) (*lakeformation.ListTransactionsOutput, error)
+	ListTransactionsRequest(*lakeformation.ListTransactionsInput) (*request.Request, *lakeformation.ListTransactionsOutput)
+
+	ListTransactionsPages(*lakeformation.ListTransactionsInput, func(*lakeformation.ListTransactionsOutput, bool) bool) error
+	ListTransactionsPagesWithContext(aws.Context, *lakeformation.ListTransactionsInput, func(*lakeformation.ListTransactionsOutput, bool) bool, ...request.Option) error
 
 	PutDataLakeSettings(*lakeformation.PutDataLakeSettingsInput) (*lakeformation.PutDataLakeSettingsOutput, error)
 	PutDataLakeSettingsWithContext(aws.Context, *lakeformation.PutDataLakeSettingsInput, ...request.Option) (*lakeformation.PutDataLakeSettingsOutput, error)
@@ -149,9 +227,23 @@ type LakeFormationAPI interface {
 	SearchDatabasesByLFTagsWithContext(aws.Context, *lakeformation.SearchDatabasesByLFTagsInput, ...request.Option) (*lakeformation.SearchDatabasesByLFTagsOutput, error)
 	SearchDatabasesByLFTagsRequest(*lakeformation.SearchDatabasesByLFTagsInput) (*request.Request, *lakeformation.SearchDatabasesByLFTagsOutput)
 
+	SearchDatabasesByLFTagsPages(*lakeformation.SearchDatabasesByLFTagsInput, func(*lakeformation.SearchDatabasesByLFTagsOutput, bool) bool) error
+	SearchDatabasesByLFTagsPagesWithContext(aws.Context, *lakeformation.SearchDatabasesByLFTagsInput, func(*lakeformation.SearchDatabasesByLFTagsOutput, bool) bool, ...request.Option) error
+
 	SearchTablesByLFTags(*lakeformation.SearchTablesByLFTagsInput) (*lakeformation.SearchTablesByLFTagsOutput, error)
 	SearchTablesByLFTagsWithContext(aws.Context, *lakeformation.SearchTablesByLFTagsInput, ...request.Option) (*lakeformation.SearchTablesByLFTagsOutput, error)
 	SearchTablesByLFTagsRequest(*lakeformation.SearchTablesByLFTagsInput) (*request.Request, *lakeformation.SearchTablesByLFTagsOutput)
+
+	SearchTablesByLFTagsPages(*lakeformation.SearchTablesByLFTagsInput, func(*lakeformation.SearchTablesByLFTagsOutput, bool) bool) error
+	SearchTablesByLFTagsPagesWithContext(aws.Context, *lakeformation.SearchTablesByLFTagsInput, func(*lakeformation.SearchTablesByLFTagsOutput, bool) bool, ...request.Option) error
+
+	StartQueryPlanning(*lakeformation.StartQueryPlanningInput) (*lakeformation.StartQueryPlanningOutput, error)
+	StartQueryPlanningWithContext(aws.Context, *lakeformation.StartQueryPlanningInput, ...request.Option) (*lakeformation.StartQueryPlanningOutput, error)
+	StartQueryPlanningRequest(*lakeformation.StartQueryPlanningInput) (*request.Request, *lakeformation.StartQueryPlanningOutput)
+
+	StartTransaction(*lakeformation.StartTransactionInput) (*lakeformation.StartTransactionOutput, error)
+	StartTransactionWithContext(aws.Context, *lakeformation.StartTransactionInput, ...request.Option) (*lakeformation.StartTransactionOutput, error)
+	StartTransactionRequest(*lakeformation.StartTransactionInput) (*request.Request, *lakeformation.StartTransactionOutput)
 
 	UpdateLFTag(*lakeformation.UpdateLFTagInput) (*lakeformation.UpdateLFTagOutput, error)
 	UpdateLFTagWithContext(aws.Context, *lakeformation.UpdateLFTagInput, ...request.Option) (*lakeformation.UpdateLFTagOutput, error)
@@ -160,6 +252,14 @@ type LakeFormationAPI interface {
 	UpdateResource(*lakeformation.UpdateResourceInput) (*lakeformation.UpdateResourceOutput, error)
 	UpdateResourceWithContext(aws.Context, *lakeformation.UpdateResourceInput, ...request.Option) (*lakeformation.UpdateResourceOutput, error)
 	UpdateResourceRequest(*lakeformation.UpdateResourceInput) (*request.Request, *lakeformation.UpdateResourceOutput)
+
+	UpdateTableObjects(*lakeformation.UpdateTableObjectsInput) (*lakeformation.UpdateTableObjectsOutput, error)
+	UpdateTableObjectsWithContext(aws.Context, *lakeformation.UpdateTableObjectsInput, ...request.Option) (*lakeformation.UpdateTableObjectsOutput, error)
+	UpdateTableObjectsRequest(*lakeformation.UpdateTableObjectsInput) (*request.Request, *lakeformation.UpdateTableObjectsOutput)
+
+	UpdateTableStorageOptimizer(*lakeformation.UpdateTableStorageOptimizerInput) (*lakeformation.UpdateTableStorageOptimizerOutput, error)
+	UpdateTableStorageOptimizerWithContext(aws.Context, *lakeformation.UpdateTableStorageOptimizerInput, ...request.Option) (*lakeformation.UpdateTableStorageOptimizerOutput, error)
+	UpdateTableStorageOptimizerRequest(*lakeformation.UpdateTableStorageOptimizerInput) (*request.Request, *lakeformation.UpdateTableStorageOptimizerOutput)
 }
 
 var _ LakeFormationAPI = (*lakeformation.LakeFormation)(nil)

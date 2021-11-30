@@ -70,7 +70,9 @@
         {"shape":"InvalidInputException"},
         {"shape":"EntityNotFoundException"},
         {"shape":"InternalServiceException"},
-        {"shape":"OperationTimeoutException"}
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"},
+        {"shape":"ResourceNotReadyException"}
       ]
     },
     "BatchDeleteTableVersion":{
@@ -157,7 +159,8 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"InternalServiceException"},
-        {"shape":"GlueEncryptionException"}
+        {"shape":"GlueEncryptionException"},
+        {"shape":"InvalidStateException"}
       ]
     },
     "BatchGetTriggers":{
@@ -496,7 +499,8 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"GlueEncryptionException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotReadyException"}
       ]
     },
     "CreateTrigger":{
@@ -821,7 +825,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotReadyException"}
       ]
     },
     "DeleteTableVersion":{
@@ -1350,7 +1355,9 @@
         {"shape":"InvalidInputException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"InternalServiceException"},
-        {"shape":"GlueEncryptionException"}
+        {"shape":"GlueEncryptionException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"ResourceNotReadyException"}
       ]
     },
     "GetPlan":{
@@ -1515,7 +1522,8 @@
         {"shape":"InvalidInputException"},
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
-        {"shape":"GlueEncryptionException"}
+        {"shape":"GlueEncryptionException"},
+        {"shape":"ResourceNotReadyException"}
       ]
     },
     "GetTableVersion":{
@@ -2509,7 +2517,8 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"ResourceNumberLimitExceededException"},
-        {"shape":"GlueEncryptionException"}
+        {"shape":"GlueEncryptionException"},
+        {"shape":"ResourceNotReadyException"}
       ]
     },
     "UpdateTrigger":{
@@ -2698,7 +2707,8 @@
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
-        "TablesToDelete":{"shape":"BatchDeleteTableNameList"}
+        "TablesToDelete":{"shape":"BatchDeleteTableNameList"},
+        "TransactionId":{"shape":"TransactionIdString"}
       }
     },
     "BatchDeleteTableResponse":{
@@ -4062,7 +4072,8 @@
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
         "TableInput":{"shape":"TableInput"},
-        "PartitionIndexes":{"shape":"PartitionIndexList"}
+        "PartitionIndexes":{"shape":"PartitionIndexList"},
+        "TransactionId":{"shape":"TransactionIdString"}
       }
     },
     "CreateTableResponse":{
@@ -4571,7 +4582,8 @@
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
-        "Name":{"shape":"NameString"}
+        "Name":{"shape":"NameString"},
+        "TransactionId":{"shape":"TransactionIdString"}
       }
     },
     "DeleteTableResponse":{
@@ -5426,7 +5438,9 @@
         "NextToken":{"shape":"Token"},
         "Segment":{"shape":"Segment"},
         "MaxResults":{"shape":"PageSize"},
-        "ExcludeColumnSchema":{"shape":"BooleanNullable"}
+        "ExcludeColumnSchema":{"shape":"BooleanNullable"},
+        "TransactionId":{"shape":"TransactionIdString"},
+        "QueryAsOfTime":{"shape":"Timestamp"}
       }
     },
     "GetPartitionsResponse":{
@@ -5632,7 +5646,9 @@
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
-        "Name":{"shape":"NameString"}
+        "Name":{"shape":"NameString"},
+        "TransactionId":{"shape":"TransactionIdString"},
+        "QueryAsOfTime":{"shape":"Timestamp"}
       }
     },
     "GetTableResponse":{
@@ -5693,7 +5709,9 @@
         "DatabaseName":{"shape":"NameString"},
         "Expression":{"shape":"FilterString"},
         "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"CatalogGetterPageSize"}
+        "MaxResults":{"shape":"CatalogGetterPageSize"},
+        "TransactionId":{"shape":"TransactionIdString"},
+        "QueryAsOfTime":{"shape":"Timestamp"}
       }
     },
     "GetTablesResponse":{
@@ -5983,6 +6001,13 @@
       "fault":true
     },
     "InvalidInputException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
+    "InvalidStateException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"MessageString"}
@@ -7137,6 +7162,13 @@
         "JobBookmarkEntry":{"shape":"JobBookmarkEntry"}
       }
     },
+    "ResourceNotReadyException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
     "ResourceNumberLimitExceededException":{
       "type":"structure",
       "members":{
@@ -7988,6 +8020,12 @@
       "max":10,
       "min":1
     },
+    "TransactionIdString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\p{L}\\p{N}\\p{P}]*"
+    },
     "TransformEncryption":{
       "type":"structure",
       "members":{
@@ -8468,7 +8506,8 @@
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
         "TableInput":{"shape":"TableInput"},
-        "SkipArchive":{"shape":"BooleanNullable"}
+        "SkipArchive":{"shape":"BooleanNullable"},
+        "TransactionId":{"shape":"TransactionIdString"}
       }
     },
     "UpdateTableResponse":{

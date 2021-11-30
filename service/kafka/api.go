@@ -304,6 +304,104 @@ func (c *Kafka) CreateClusterWithContext(ctx aws.Context, input *CreateClusterIn
 	return out, req.Send()
 }
 
+const opCreateClusterV2 = "CreateClusterV2"
+
+// CreateClusterV2Request generates a "aws/request.Request" representing the
+// client's request for the CreateClusterV2 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateClusterV2 for more information on using the CreateClusterV2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateClusterV2Request method.
+//    req, resp := client.CreateClusterV2Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/CreateClusterV2
+func (c *Kafka) CreateClusterV2Request(input *CreateClusterV2Input) (req *request.Request, output *CreateClusterV2Output) {
+	op := &request.Operation{
+		Name:       opCreateClusterV2,
+		HTTPMethod: "POST",
+		HTTPPath:   "/api/v2/clusters",
+	}
+
+	if input == nil {
+		input = &CreateClusterV2Input{}
+	}
+
+	output = &CreateClusterV2Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateClusterV2 API operation for Managed Streaming for Kafka.
+//
+// Creates a new Amazon MSK cluster of either the provisioned or the serverless
+// type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation CreateClusterV2 for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Returns information about an error.
+//
+//   * InternalServerErrorException
+//   Returns information about an error.
+//
+//   * UnauthorizedException
+//   Returns information about an error.
+//
+//   * ForbiddenException
+//   Returns information about an error.
+//
+//   * ServiceUnavailableException
+//   Returns information about an error.
+//
+//   * TooManyRequestsException
+//   Returns information about an error.
+//
+//   * ConflictException
+//   Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/CreateClusterV2
+func (c *Kafka) CreateClusterV2(input *CreateClusterV2Input) (*CreateClusterV2Output, error) {
+	req, out := c.CreateClusterV2Request(input)
+	return out, req.Send()
+}
+
+// CreateClusterV2WithContext is the same as CreateClusterV2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateClusterV2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) CreateClusterV2WithContext(ctx aws.Context, input *CreateClusterV2Input, opts ...request.Option) (*CreateClusterV2Output, error) {
+	req, out := c.CreateClusterV2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateConfiguration = "CreateConfiguration"
 
 // CreateConfigurationRequest generates a "aws/request.Request" representing the
@@ -757,6 +855,98 @@ func (c *Kafka) DescribeClusterOperation(input *DescribeClusterOperationInput) (
 // for more information on using Contexts.
 func (c *Kafka) DescribeClusterOperationWithContext(ctx aws.Context, input *DescribeClusterOperationInput, opts ...request.Option) (*DescribeClusterOperationOutput, error) {
 	req, out := c.DescribeClusterOperationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeClusterV2 = "DescribeClusterV2"
+
+// DescribeClusterV2Request generates a "aws/request.Request" representing the
+// client's request for the DescribeClusterV2 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeClusterV2 for more information on using the DescribeClusterV2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeClusterV2Request method.
+//    req, resp := client.DescribeClusterV2Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeClusterV2
+func (c *Kafka) DescribeClusterV2Request(input *DescribeClusterV2Input) (req *request.Request, output *DescribeClusterV2Output) {
+	op := &request.Operation{
+		Name:       opDescribeClusterV2,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/v2/clusters/{clusterArn}",
+	}
+
+	if input == nil {
+		input = &DescribeClusterV2Input{}
+	}
+
+	output = &DescribeClusterV2Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeClusterV2 API operation for Managed Streaming for Kafka.
+//
+// Returns a description of the MSK cluster of either the provisioned or the
+// serverless type whose Amazon Resource Name (ARN) is specified in the request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation DescribeClusterV2 for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   Returns information about an error.
+//
+//   * BadRequestException
+//   Returns information about an error.
+//
+//   * UnauthorizedException
+//   Returns information about an error.
+//
+//   * InternalServerErrorException
+//   Returns information about an error.
+//
+//   * ForbiddenException
+//   Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/DescribeClusterV2
+func (c *Kafka) DescribeClusterV2(input *DescribeClusterV2Input) (*DescribeClusterV2Output, error) {
+	req, out := c.DescribeClusterV2Request(input)
+	return out, req.Send()
+}
+
+// DescribeClusterV2WithContext is the same as DescribeClusterV2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeClusterV2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) DescribeClusterV2WithContext(ctx aws.Context, input *DescribeClusterV2Input, opts ...request.Option) (*DescribeClusterV2Output, error) {
+	req, out := c.DescribeClusterV2Request(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1424,6 +1614,152 @@ func (c *Kafka) ListClustersPagesWithContext(ctx aws.Context, input *ListCluster
 
 	for p.Next() {
 		if !fn(p.Page().(*ListClustersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListClustersV2 = "ListClustersV2"
+
+// ListClustersV2Request generates a "aws/request.Request" representing the
+// client's request for the ListClustersV2 operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListClustersV2 for more information on using the ListClustersV2
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListClustersV2Request method.
+//    req, resp := client.ListClustersV2Request(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListClustersV2
+func (c *Kafka) ListClustersV2Request(input *ListClustersV2Input) (req *request.Request, output *ListClustersV2Output) {
+	op := &request.Operation{
+		Name:       opListClustersV2,
+		HTTPMethod: "GET",
+		HTTPPath:   "/api/v2/clusters",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListClustersV2Input{}
+	}
+
+	output = &ListClustersV2Output{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListClustersV2 API operation for Managed Streaming for Kafka.
+//
+// Returns a list of all the MSK clusters in the current Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation ListClustersV2 for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Returns information about an error.
+//
+//   * InternalServerErrorException
+//   Returns information about an error.
+//
+//   * UnauthorizedException
+//   Returns information about an error.
+//
+//   * ForbiddenException
+//   Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/ListClustersV2
+func (c *Kafka) ListClustersV2(input *ListClustersV2Input) (*ListClustersV2Output, error) {
+	req, out := c.ListClustersV2Request(input)
+	return out, req.Send()
+}
+
+// ListClustersV2WithContext is the same as ListClustersV2 with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListClustersV2 for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListClustersV2WithContext(ctx aws.Context, input *ListClustersV2Input, opts ...request.Option) (*ListClustersV2Output, error) {
+	req, out := c.ListClustersV2Request(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListClustersV2Pages iterates over the pages of a ListClustersV2 operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClustersV2 method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListClustersV2 operation.
+//    pageNum := 0
+//    err := client.ListClustersV2Pages(params,
+//        func(page *kafka.ListClustersV2Output, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Kafka) ListClustersV2Pages(input *ListClustersV2Input, fn func(*ListClustersV2Output, bool) bool) error {
+	return c.ListClustersV2PagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListClustersV2PagesWithContext same as ListClustersV2Pages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) ListClustersV2PagesWithContext(ctx aws.Context, input *ListClustersV2Input, fn func(*ListClustersV2Output, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListClustersV2Input
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListClustersV2Request(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListClustersV2Output), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4145,6 +4481,122 @@ func (s *CloudWatchLogs) SetLogGroup(v string) *CloudWatchLogs {
 	return s
 }
 
+// Returns information about a cluster of either the provisioned or the serverless
+// type.
+type Cluster struct {
+	_ struct{} `type:"structure"`
+
+	ActiveOperationArn *string `locationName:"activeOperationArn" type:"string"`
+
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
+
+	ClusterName *string `locationName:"clusterName" type:"string"`
+
+	ClusterType *string `locationName:"clusterType" type:"string" enum:"ClusterType"`
+
+	CreationTime *time.Time `locationName:"creationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	CurrentVersion *string `locationName:"currentVersion" type:"string"`
+
+	// Information about the provisioned cluster.
+	Provisioned *Provisioned `locationName:"provisioned" type:"structure"`
+
+	// Information about the serverless cluster.
+	Serverless *Serverless `locationName:"serverless" type:"structure"`
+
+	// The state of an Apache Kafka cluster.
+	State *string `locationName:"state" type:"string" enum:"ClusterState"`
+
+	// Contains information about the state of the Amazon MSK cluster.
+	StateInfo *StateInfo `locationName:"stateInfo" type:"structure"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cluster) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Cluster) GoString() string {
+	return s.String()
+}
+
+// SetActiveOperationArn sets the ActiveOperationArn field's value.
+func (s *Cluster) SetActiveOperationArn(v string) *Cluster {
+	s.ActiveOperationArn = &v
+	return s
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *Cluster) SetClusterArn(v string) *Cluster {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *Cluster) SetClusterName(v string) *Cluster {
+	s.ClusterName = &v
+	return s
+}
+
+// SetClusterType sets the ClusterType field's value.
+func (s *Cluster) SetClusterType(v string) *Cluster {
+	s.ClusterType = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Cluster) SetCreationTime(v time.Time) *Cluster {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *Cluster) SetCurrentVersion(v string) *Cluster {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetProvisioned sets the Provisioned field's value.
+func (s *Cluster) SetProvisioned(v *Provisioned) *Cluster {
+	s.Provisioned = v
+	return s
+}
+
+// SetServerless sets the Serverless field's value.
+func (s *Cluster) SetServerless(v *Serverless) *Cluster {
+	s.Serverless = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Cluster) SetState(v string) *Cluster {
+	s.State = &v
+	return s
+}
+
+// SetStateInfo sets the StateInfo field's value.
+func (s *Cluster) SetStateInfo(v *StateInfo) *Cluster {
+	s.StateInfo = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Cluster) SetTags(v map[string]*string) *Cluster {
+	s.Tags = v
+	return s
+}
+
 // Returns information about a cluster.
 type ClusterInfo struct {
 	_ struct{} `type:"structure"`
@@ -5126,6 +5578,149 @@ func (s *CreateClusterOutput) SetState(v string) *CreateClusterOutput {
 	return s
 }
 
+// Creates a new Amazon MSK cluster of either the provisioned or the serverless
+// type.
+type CreateClusterV2Input struct {
+	_ struct{} `type:"structure"`
+
+	// ClusterName is a required field
+	ClusterName *string `locationName:"clusterName" min:"1" type:"string" required:"true"`
+
+	// Creates a provisioned cluster.
+	Provisioned *ProvisionedRequest `locationName:"provisioned" type:"structure"`
+
+	// Creates a serverless cluster.
+	Serverless *ServerlessRequest `locationName:"serverless" type:"structure"`
+
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClusterV2Input) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClusterV2Input) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateClusterV2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateClusterV2Input"}
+	if s.ClusterName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterName"))
+	}
+	if s.ClusterName != nil && len(*s.ClusterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterName", 1))
+	}
+	if s.Provisioned != nil {
+		if err := s.Provisioned.Validate(); err != nil {
+			invalidParams.AddNested("Provisioned", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Serverless != nil {
+		if err := s.Serverless.Validate(); err != nil {
+			invalidParams.AddNested("Serverless", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *CreateClusterV2Input) SetClusterName(v string) *CreateClusterV2Input {
+	s.ClusterName = &v
+	return s
+}
+
+// SetProvisioned sets the Provisioned field's value.
+func (s *CreateClusterV2Input) SetProvisioned(v *ProvisionedRequest) *CreateClusterV2Input {
+	s.Provisioned = v
+	return s
+}
+
+// SetServerless sets the Serverless field's value.
+func (s *CreateClusterV2Input) SetServerless(v *ServerlessRequest) *CreateClusterV2Input {
+	s.Serverless = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateClusterV2Input) SetTags(v map[string]*string) *CreateClusterV2Input {
+	s.Tags = v
+	return s
+}
+
+// Returns information about the created cluster of either the provisioned or
+// the serverless type.
+type CreateClusterV2Output struct {
+	_ struct{} `type:"structure"`
+
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
+
+	ClusterName *string `locationName:"clusterName" type:"string"`
+
+	ClusterType *string `locationName:"clusterType" type:"string" enum:"ClusterType"`
+
+	// The state of the cluster. The possible states are ACTIVE, CREATING, DELETING,
+	// FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
+	State *string `locationName:"state" type:"string" enum:"ClusterState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClusterV2Output) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateClusterV2Output) GoString() string {
+	return s.String()
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *CreateClusterV2Output) SetClusterArn(v string) *CreateClusterV2Output {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetClusterName sets the ClusterName field's value.
+func (s *CreateClusterV2Output) SetClusterName(v string) *CreateClusterV2Output {
+	s.ClusterName = &v
+	return s
+}
+
+// SetClusterType sets the ClusterType field's value.
+func (s *CreateClusterV2Output) SetClusterType(v string) *CreateClusterV2Output {
+	s.ClusterType = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CreateClusterV2Output) SetState(v string) *CreateClusterV2Output {
+	s.State = &v
+	return s
+}
+
 // Request body for CreateConfiguration.
 type CreateConfigurationInput struct {
 	_ struct{} `type:"structure"`
@@ -5619,6 +6214,86 @@ func (s DescribeClusterOutput) GoString() string {
 
 // SetClusterInfo sets the ClusterInfo field's value.
 func (s *DescribeClusterOutput) SetClusterInfo(v *ClusterInfo) *DescribeClusterOutput {
+	s.ClusterInfo = v
+	return s
+}
+
+type DescribeClusterV2Input struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClusterV2Input) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClusterV2Input) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeClusterV2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeClusterV2Input"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *DescribeClusterV2Input) SetClusterArn(v string) *DescribeClusterV2Input {
+	s.ClusterArn = &v
+	return s
+}
+
+// Returns information about a cluster of either the provisioned or the serverless
+// type.
+type DescribeClusterV2Output struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster information.
+	ClusterInfo *Cluster `locationName:"clusterInfo" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClusterV2Output) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeClusterV2Output) GoString() string {
+	return s.String()
+}
+
+// SetClusterInfo sets the ClusterInfo field's value.
+func (s *DescribeClusterV2Output) SetClusterInfo(v *Cluster) *DescribeClusterV2Output {
 	s.ClusterInfo = v
 	return s
 }
@@ -6896,6 +7571,114 @@ func (s *ListClustersOutput) SetNextToken(v string) *ListClustersOutput {
 	return s
 }
 
+type ListClustersV2Input struct {
+	_ struct{} `type:"structure" nopayload:"true"`
+
+	ClusterNameFilter *string `location:"querystring" locationName:"clusterNameFilter" type:"string"`
+
+	ClusterTypeFilter *string `location:"querystring" locationName:"clusterTypeFilter" type:"string"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClustersV2Input) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClustersV2Input) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListClustersV2Input) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListClustersV2Input"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterNameFilter sets the ClusterNameFilter field's value.
+func (s *ListClustersV2Input) SetClusterNameFilter(v string) *ListClustersV2Input {
+	s.ClusterNameFilter = &v
+	return s
+}
+
+// SetClusterTypeFilter sets the ClusterTypeFilter field's value.
+func (s *ListClustersV2Input) SetClusterTypeFilter(v string) *ListClustersV2Input {
+	s.ClusterTypeFilter = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListClustersV2Input) SetMaxResults(v int64) *ListClustersV2Input {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClustersV2Input) SetNextToken(v string) *ListClustersV2Input {
+	s.NextToken = &v
+	return s
+}
+
+// The response contains an array containing cluster information and a next
+// token if the response is truncated.
+type ListClustersV2Output struct {
+	_ struct{} `type:"structure"`
+
+	// Information on each of the MSK clusters in the response.
+	ClusterInfoList []*Cluster `locationName:"clusterInfoList" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClustersV2Output) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListClustersV2Output) GoString() string {
+	return s.String()
+}
+
+// SetClusterInfoList sets the ClusterInfoList field's value.
+func (s *ListClustersV2Output) SetClusterInfoList(v []*Cluster) *ListClustersV2Output {
+	s.ClusterInfoList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClustersV2Output) SetNextToken(v string) *ListClustersV2Output {
+	s.NextToken = &v
+	return s
+}
+
 type ListConfigurationRevisionsInput struct {
 	_ struct{} `type:"structure" nopayload:"true"`
 
@@ -8073,6 +8856,282 @@ func (s *PrometheusInfo) SetNodeExporter(v *NodeExporterInfo) *PrometheusInfo {
 	return s
 }
 
+// Describes the provisioned cluster.
+type Provisioned struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the brokers.
+	//
+	// BrokerNodeGroupInfo is a required field
+	BrokerNodeGroupInfo *BrokerNodeGroupInfo `locationName:"brokerNodeGroupInfo" type:"structure" required:"true"`
+
+	// Includes all client authentication information.
+	ClientAuthentication *ClientAuthentication `locationName:"clientAuthentication" type:"structure"`
+
+	// Information about the version of software currently deployed on the Apache
+	// Kafka brokers in the cluster.
+	CurrentBrokerSoftwareInfo *BrokerSoftwareInfo `locationName:"currentBrokerSoftwareInfo" type:"structure"`
+
+	// Includes all encryption-related information.
+	EncryptionInfo *EncryptionInfo `locationName:"encryptionInfo" type:"structure"`
+
+	// Specifies which metrics are gathered for the MSK cluster. This property has
+	// the following possible values: DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER,
+	// and PER_TOPIC_PER_PARTITION. For a list of the metrics associated with each
+	// of these levels of monitoring, see Monitoring (https://docs.aws.amazon.com/msk/latest/developerguide/monitoring.html).
+	EnhancedMonitoring *string `locationName:"enhancedMonitoring" type:"string" enum:"EnhancedMonitoring"`
+
+	// You can configure your MSK cluster to send broker logs to different destination
+	// types. This is a container for the configuration details related to broker
+	// logs.
+	LoggingInfo *LoggingInfo `locationName:"loggingInfo" type:"structure"`
+
+	// NumberOfBrokerNodes is a required field
+	NumberOfBrokerNodes *int64 `locationName:"numberOfBrokerNodes" min:"1" type:"integer" required:"true"`
+
+	// JMX and Node monitoring for the MSK cluster.
+	OpenMonitoring *OpenMonitoringInfo `locationName:"openMonitoring" type:"structure"`
+
+	ZookeeperConnectString *string `locationName:"zookeeperConnectString" type:"string"`
+
+	ZookeeperConnectStringTls *string `locationName:"zookeeperConnectStringTls" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Provisioned) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Provisioned) GoString() string {
+	return s.String()
+}
+
+// SetBrokerNodeGroupInfo sets the BrokerNodeGroupInfo field's value.
+func (s *Provisioned) SetBrokerNodeGroupInfo(v *BrokerNodeGroupInfo) *Provisioned {
+	s.BrokerNodeGroupInfo = v
+	return s
+}
+
+// SetClientAuthentication sets the ClientAuthentication field's value.
+func (s *Provisioned) SetClientAuthentication(v *ClientAuthentication) *Provisioned {
+	s.ClientAuthentication = v
+	return s
+}
+
+// SetCurrentBrokerSoftwareInfo sets the CurrentBrokerSoftwareInfo field's value.
+func (s *Provisioned) SetCurrentBrokerSoftwareInfo(v *BrokerSoftwareInfo) *Provisioned {
+	s.CurrentBrokerSoftwareInfo = v
+	return s
+}
+
+// SetEncryptionInfo sets the EncryptionInfo field's value.
+func (s *Provisioned) SetEncryptionInfo(v *EncryptionInfo) *Provisioned {
+	s.EncryptionInfo = v
+	return s
+}
+
+// SetEnhancedMonitoring sets the EnhancedMonitoring field's value.
+func (s *Provisioned) SetEnhancedMonitoring(v string) *Provisioned {
+	s.EnhancedMonitoring = &v
+	return s
+}
+
+// SetLoggingInfo sets the LoggingInfo field's value.
+func (s *Provisioned) SetLoggingInfo(v *LoggingInfo) *Provisioned {
+	s.LoggingInfo = v
+	return s
+}
+
+// SetNumberOfBrokerNodes sets the NumberOfBrokerNodes field's value.
+func (s *Provisioned) SetNumberOfBrokerNodes(v int64) *Provisioned {
+	s.NumberOfBrokerNodes = &v
+	return s
+}
+
+// SetOpenMonitoring sets the OpenMonitoring field's value.
+func (s *Provisioned) SetOpenMonitoring(v *OpenMonitoringInfo) *Provisioned {
+	s.OpenMonitoring = v
+	return s
+}
+
+// SetZookeeperConnectString sets the ZookeeperConnectString field's value.
+func (s *Provisioned) SetZookeeperConnectString(v string) *Provisioned {
+	s.ZookeeperConnectString = &v
+	return s
+}
+
+// SetZookeeperConnectStringTls sets the ZookeeperConnectStringTls field's value.
+func (s *Provisioned) SetZookeeperConnectStringTls(v string) *Provisioned {
+	s.ZookeeperConnectStringTls = &v
+	return s
+}
+
+// Creates a provisioned cluster.
+type ProvisionedRequest struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the brokers.
+	//
+	// BrokerNodeGroupInfo is a required field
+	BrokerNodeGroupInfo *BrokerNodeGroupInfo `locationName:"brokerNodeGroupInfo" type:"structure" required:"true"`
+
+	// Includes all client authentication related information.
+	ClientAuthentication *ClientAuthentication `locationName:"clientAuthentication" type:"structure"`
+
+	// Represents the configuration that you want MSK to use for the cluster.
+	ConfigurationInfo *ConfigurationInfo `locationName:"configurationInfo" type:"structure"`
+
+	// Includes all encryption-related information.
+	EncryptionInfo *EncryptionInfo `locationName:"encryptionInfo" type:"structure"`
+
+	// Specifies the level of monitoring for the MSK cluster. The possible values
+	// are DEFAULT, PER_BROKER, PER_TOPIC_PER_BROKER, and PER_TOPIC_PER_PARTITION.
+	EnhancedMonitoring *string `locationName:"enhancedMonitoring" type:"string" enum:"EnhancedMonitoring"`
+
+	// KafkaVersion is a required field
+	KafkaVersion *string `locationName:"kafkaVersion" min:"1" type:"string" required:"true"`
+
+	// LoggingInfo details.
+	LoggingInfo *LoggingInfo `locationName:"loggingInfo" type:"structure"`
+
+	// NumberOfBrokerNodes is a required field
+	NumberOfBrokerNodes *int64 `locationName:"numberOfBrokerNodes" min:"1" type:"integer" required:"true"`
+
+	// The settings for open monitoring.
+	OpenMonitoring *OpenMonitoringInfo `locationName:"openMonitoring" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionedRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProvisionedRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProvisionedRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProvisionedRequest"}
+	if s.BrokerNodeGroupInfo == nil {
+		invalidParams.Add(request.NewErrParamRequired("BrokerNodeGroupInfo"))
+	}
+	if s.KafkaVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("KafkaVersion"))
+	}
+	if s.KafkaVersion != nil && len(*s.KafkaVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KafkaVersion", 1))
+	}
+	if s.NumberOfBrokerNodes == nil {
+		invalidParams.Add(request.NewErrParamRequired("NumberOfBrokerNodes"))
+	}
+	if s.NumberOfBrokerNodes != nil && *s.NumberOfBrokerNodes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("NumberOfBrokerNodes", 1))
+	}
+	if s.BrokerNodeGroupInfo != nil {
+		if err := s.BrokerNodeGroupInfo.Validate(); err != nil {
+			invalidParams.AddNested("BrokerNodeGroupInfo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ConfigurationInfo != nil {
+		if err := s.ConfigurationInfo.Validate(); err != nil {
+			invalidParams.AddNested("ConfigurationInfo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EncryptionInfo != nil {
+		if err := s.EncryptionInfo.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionInfo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LoggingInfo != nil {
+		if err := s.LoggingInfo.Validate(); err != nil {
+			invalidParams.AddNested("LoggingInfo", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OpenMonitoring != nil {
+		if err := s.OpenMonitoring.Validate(); err != nil {
+			invalidParams.AddNested("OpenMonitoring", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBrokerNodeGroupInfo sets the BrokerNodeGroupInfo field's value.
+func (s *ProvisionedRequest) SetBrokerNodeGroupInfo(v *BrokerNodeGroupInfo) *ProvisionedRequest {
+	s.BrokerNodeGroupInfo = v
+	return s
+}
+
+// SetClientAuthentication sets the ClientAuthentication field's value.
+func (s *ProvisionedRequest) SetClientAuthentication(v *ClientAuthentication) *ProvisionedRequest {
+	s.ClientAuthentication = v
+	return s
+}
+
+// SetConfigurationInfo sets the ConfigurationInfo field's value.
+func (s *ProvisionedRequest) SetConfigurationInfo(v *ConfigurationInfo) *ProvisionedRequest {
+	s.ConfigurationInfo = v
+	return s
+}
+
+// SetEncryptionInfo sets the EncryptionInfo field's value.
+func (s *ProvisionedRequest) SetEncryptionInfo(v *EncryptionInfo) *ProvisionedRequest {
+	s.EncryptionInfo = v
+	return s
+}
+
+// SetEnhancedMonitoring sets the EnhancedMonitoring field's value.
+func (s *ProvisionedRequest) SetEnhancedMonitoring(v string) *ProvisionedRequest {
+	s.EnhancedMonitoring = &v
+	return s
+}
+
+// SetKafkaVersion sets the KafkaVersion field's value.
+func (s *ProvisionedRequest) SetKafkaVersion(v string) *ProvisionedRequest {
+	s.KafkaVersion = &v
+	return s
+}
+
+// SetLoggingInfo sets the LoggingInfo field's value.
+func (s *ProvisionedRequest) SetLoggingInfo(v *LoggingInfo) *ProvisionedRequest {
+	s.LoggingInfo = v
+	return s
+}
+
+// SetNumberOfBrokerNodes sets the NumberOfBrokerNodes field's value.
+func (s *ProvisionedRequest) SetNumberOfBrokerNodes(v int64) *ProvisionedRequest {
+	s.NumberOfBrokerNodes = &v
+	return s
+}
+
+// SetOpenMonitoring sets the OpenMonitoring field's value.
+func (s *ProvisionedRequest) SetOpenMonitoring(v *OpenMonitoringInfo) *ProvisionedRequest {
+	s.OpenMonitoring = v
+	return s
+}
+
 // Broker public access control.
 type PublicAccess struct {
 	_ struct{} `type:"structure"`
@@ -8340,6 +9399,178 @@ func (s Scram) GoString() string {
 // SetEnabled sets the Enabled field's value.
 func (s *Scram) SetEnabled(v bool) *Scram {
 	s.Enabled = &v
+	return s
+}
+
+// Describes the serverless cluster.
+type Serverless struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the serverless cluster client authentication.
+	ClientAuthentication *ServerlessClientAuthentication `locationName:"clientAuthentication" type:"structure"`
+
+	// Information on vpc config for the serverless cluster.
+	//
+	// VpcConfigs is a required field
+	VpcConfigs []*VpcConfig `locationName:"vpcConfigs" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Serverless) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Serverless) GoString() string {
+	return s.String()
+}
+
+// SetClientAuthentication sets the ClientAuthentication field's value.
+func (s *Serverless) SetClientAuthentication(v *ServerlessClientAuthentication) *Serverless {
+	s.ClientAuthentication = v
+	return s
+}
+
+// SetVpcConfigs sets the VpcConfigs field's value.
+func (s *Serverless) SetVpcConfigs(v []*VpcConfig) *Serverless {
+	s.VpcConfigs = v
+	return s
+}
+
+// Describes the serverless cluster client authentication.
+type ServerlessClientAuthentication struct {
+	_ struct{} `type:"structure"`
+
+	// Serverless cluster SASL information.
+	Sasl *ServerlessSasl `locationName:"sasl" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessClientAuthentication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessClientAuthentication) GoString() string {
+	return s.String()
+}
+
+// SetSasl sets the Sasl field's value.
+func (s *ServerlessClientAuthentication) SetSasl(v *ServerlessSasl) *ServerlessClientAuthentication {
+	s.Sasl = v
+	return s
+}
+
+// Creates serverless cluster.
+type ServerlessRequest struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the serverless cluster client authentication.
+	ClientAuthentication *ServerlessClientAuthentication `locationName:"clientAuthentication" type:"structure"`
+
+	// Information on vpc config for the serverless cluster.
+	//
+	// VpcConfigs is a required field
+	VpcConfigs []*VpcConfig `locationName:"vpcConfigs" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ServerlessRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ServerlessRequest"}
+	if s.VpcConfigs == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcConfigs"))
+	}
+	if s.VpcConfigs != nil {
+		for i, v := range s.VpcConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VpcConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientAuthentication sets the ClientAuthentication field's value.
+func (s *ServerlessRequest) SetClientAuthentication(v *ServerlessClientAuthentication) *ServerlessRequest {
+	s.ClientAuthentication = v
+	return s
+}
+
+// SetVpcConfigs sets the VpcConfigs field's value.
+func (s *ServerlessRequest) SetVpcConfigs(v []*VpcConfig) *ServerlessRequest {
+	s.VpcConfigs = v
+	return s
+}
+
+// Describes the serverless cluster SASL information.
+type ServerlessSasl struct {
+	_ struct{} `type:"structure"`
+
+	Iam *Iam `locationName:"iam" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessSasl) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ServerlessSasl) GoString() string {
+	return s.String()
+}
+
+// SetIam sets the Iam field's value.
+func (s *ServerlessSasl) SetIam(v *Iam) *ServerlessSasl {
+	s.Iam = v
 	return s
 }
 
@@ -10043,6 +11274,59 @@ func (s *UpdateSecurityOutput) SetClusterOperationArn(v string) *UpdateSecurityO
 	return s
 }
 
+// The configuration of the Amazon VPCs for the cluster.
+type VpcConfig struct {
+	_ struct{} `type:"structure"`
+
+	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
+
+	// SubnetIds is a required field
+	SubnetIds []*string `locationName:"subnetIds" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VpcConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VpcConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VpcConfig"}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VpcConfig) SetSecurityGroupIds(v []*string) *VpcConfig {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcConfig) SetSubnetIds(v []*string) *VpcConfig {
+	s.SubnetIds = v
+	return s
+}
+
 // Zookeeper node information.
 type ZookeeperNodeInfo struct {
 	_ struct{} `type:"structure"`
@@ -10186,6 +11470,22 @@ func ClusterState_Values() []string {
 		ClusterStateMaintenance,
 		ClusterStateRebootingBroker,
 		ClusterStateUpdating,
+	}
+}
+
+const (
+	// ClusterTypeProvisioned is a ClusterType enum value
+	ClusterTypeProvisioned = "PROVISIONED"
+
+	// ClusterTypeServerless is a ClusterType enum value
+	ClusterTypeServerless = "SERVERLESS"
+)
+
+// ClusterType_Values returns all elements of the ClusterType enum
+func ClusterType_Values() []string {
+	return []string{
+		ClusterTypeProvisioned,
+		ClusterTypeServerless,
 	}
 }
 

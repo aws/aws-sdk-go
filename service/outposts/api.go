@@ -2846,6 +2846,9 @@ type CreateOutpostInput struct {
 	// SiteId is a required field
 	SiteId *string `min:"1" type:"string" required:"true"`
 
+	// The type of hardware for this Outpost.
+	SupportedHardwareType *string `type:"string" enum:"SupportedHardwareType"`
+
 	// The tags to apply to the Outpost.
 	Tags map[string]*string `min:"1" type:"map"`
 }
@@ -2926,6 +2929,12 @@ func (s *CreateOutpostInput) SetName(v string) *CreateOutpostInput {
 // SetSiteId sets the SiteId field's value.
 func (s *CreateOutpostInput) SetSiteId(v string) *CreateOutpostInput {
 	s.SiteId = &v
+	return s
+}
+
+// SetSupportedHardwareType sets the SupportedHardwareType field's value.
+func (s *CreateOutpostInput) SetSupportedHardwareType(v string) *CreateOutpostInput {
+	s.SupportedHardwareType = &v
 	return s
 }
 
@@ -4954,6 +4963,9 @@ type Outpost struct {
 	// The ID of the site.
 	SiteId *string `min:"1" type:"string"`
 
+	// The hardware type.
+	SupportedHardwareType *string `type:"string" enum:"SupportedHardwareType"`
+
 	// The Outpost tags.
 	Tags map[string]*string `min:"1" type:"map"`
 }
@@ -5033,6 +5045,12 @@ func (s *Outpost) SetSiteArn(v string) *Outpost {
 // SetSiteId sets the SiteId field's value.
 func (s *Outpost) SetSiteId(v string) *Outpost {
 	s.SiteId = &v
+	return s
+}
+
+// SetSupportedHardwareType sets the SupportedHardwareType field's value.
+func (s *Outpost) SetSupportedHardwareType(v string) *Outpost {
+	s.SupportedHardwareType = &v
 	return s
 }
 
@@ -6413,6 +6431,22 @@ func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeOutpost,
 		ResourceTypeOrder,
+	}
+}
+
+const (
+	// SupportedHardwareTypeRack is a SupportedHardwareType enum value
+	SupportedHardwareTypeRack = "RACK"
+
+	// SupportedHardwareTypeServer is a SupportedHardwareType enum value
+	SupportedHardwareTypeServer = "SERVER"
+)
+
+// SupportedHardwareType_Values returns all elements of the SupportedHardwareType enum
+func SupportedHardwareType_Values() []string {
+	return []string{
+		SupportedHardwareTypeRack,
+		SupportedHardwareTypeServer,
 	}
 }
 

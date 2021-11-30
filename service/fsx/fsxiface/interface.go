@@ -76,6 +76,10 @@ type FSxAPI interface {
 	CreateBackupWithContext(aws.Context, *fsx.CreateBackupInput, ...request.Option) (*fsx.CreateBackupOutput, error)
 	CreateBackupRequest(*fsx.CreateBackupInput) (*request.Request, *fsx.CreateBackupOutput)
 
+	CreateDataRepositoryAssociation(*fsx.CreateDataRepositoryAssociationInput) (*fsx.CreateDataRepositoryAssociationOutput, error)
+	CreateDataRepositoryAssociationWithContext(aws.Context, *fsx.CreateDataRepositoryAssociationInput, ...request.Option) (*fsx.CreateDataRepositoryAssociationOutput, error)
+	CreateDataRepositoryAssociationRequest(*fsx.CreateDataRepositoryAssociationInput) (*request.Request, *fsx.CreateDataRepositoryAssociationOutput)
+
 	CreateDataRepositoryTask(*fsx.CreateDataRepositoryTaskInput) (*fsx.CreateDataRepositoryTaskOutput, error)
 	CreateDataRepositoryTaskWithContext(aws.Context, *fsx.CreateDataRepositoryTaskInput, ...request.Option) (*fsx.CreateDataRepositoryTaskOutput, error)
 	CreateDataRepositoryTaskRequest(*fsx.CreateDataRepositoryTaskInput) (*request.Request, *fsx.CreateDataRepositoryTaskOutput)
@@ -87,6 +91,10 @@ type FSxAPI interface {
 	CreateFileSystemFromBackup(*fsx.CreateFileSystemFromBackupInput) (*fsx.CreateFileSystemFromBackupOutput, error)
 	CreateFileSystemFromBackupWithContext(aws.Context, *fsx.CreateFileSystemFromBackupInput, ...request.Option) (*fsx.CreateFileSystemFromBackupOutput, error)
 	CreateFileSystemFromBackupRequest(*fsx.CreateFileSystemFromBackupInput) (*request.Request, *fsx.CreateFileSystemFromBackupOutput)
+
+	CreateSnapshot(*fsx.CreateSnapshotInput) (*fsx.CreateSnapshotOutput, error)
+	CreateSnapshotWithContext(aws.Context, *fsx.CreateSnapshotInput, ...request.Option) (*fsx.CreateSnapshotOutput, error)
+	CreateSnapshotRequest(*fsx.CreateSnapshotInput) (*request.Request, *fsx.CreateSnapshotOutput)
 
 	CreateStorageVirtualMachine(*fsx.CreateStorageVirtualMachineInput) (*fsx.CreateStorageVirtualMachineOutput, error)
 	CreateStorageVirtualMachineWithContext(aws.Context, *fsx.CreateStorageVirtualMachineInput, ...request.Option) (*fsx.CreateStorageVirtualMachineOutput, error)
@@ -104,9 +112,17 @@ type FSxAPI interface {
 	DeleteBackupWithContext(aws.Context, *fsx.DeleteBackupInput, ...request.Option) (*fsx.DeleteBackupOutput, error)
 	DeleteBackupRequest(*fsx.DeleteBackupInput) (*request.Request, *fsx.DeleteBackupOutput)
 
+	DeleteDataRepositoryAssociation(*fsx.DeleteDataRepositoryAssociationInput) (*fsx.DeleteDataRepositoryAssociationOutput, error)
+	DeleteDataRepositoryAssociationWithContext(aws.Context, *fsx.DeleteDataRepositoryAssociationInput, ...request.Option) (*fsx.DeleteDataRepositoryAssociationOutput, error)
+	DeleteDataRepositoryAssociationRequest(*fsx.DeleteDataRepositoryAssociationInput) (*request.Request, *fsx.DeleteDataRepositoryAssociationOutput)
+
 	DeleteFileSystem(*fsx.DeleteFileSystemInput) (*fsx.DeleteFileSystemOutput, error)
 	DeleteFileSystemWithContext(aws.Context, *fsx.DeleteFileSystemInput, ...request.Option) (*fsx.DeleteFileSystemOutput, error)
 	DeleteFileSystemRequest(*fsx.DeleteFileSystemInput) (*request.Request, *fsx.DeleteFileSystemOutput)
+
+	DeleteSnapshot(*fsx.DeleteSnapshotInput) (*fsx.DeleteSnapshotOutput, error)
+	DeleteSnapshotWithContext(aws.Context, *fsx.DeleteSnapshotInput, ...request.Option) (*fsx.DeleteSnapshotOutput, error)
+	DeleteSnapshotRequest(*fsx.DeleteSnapshotInput) (*request.Request, *fsx.DeleteSnapshotOutput)
 
 	DeleteStorageVirtualMachine(*fsx.DeleteStorageVirtualMachineInput) (*fsx.DeleteStorageVirtualMachineOutput, error)
 	DeleteStorageVirtualMachineWithContext(aws.Context, *fsx.DeleteStorageVirtualMachineInput, ...request.Option) (*fsx.DeleteStorageVirtualMachineOutput, error)
@@ -122,6 +138,13 @@ type FSxAPI interface {
 
 	DescribeBackupsPages(*fsx.DescribeBackupsInput, func(*fsx.DescribeBackupsOutput, bool) bool) error
 	DescribeBackupsPagesWithContext(aws.Context, *fsx.DescribeBackupsInput, func(*fsx.DescribeBackupsOutput, bool) bool, ...request.Option) error
+
+	DescribeDataRepositoryAssociations(*fsx.DescribeDataRepositoryAssociationsInput) (*fsx.DescribeDataRepositoryAssociationsOutput, error)
+	DescribeDataRepositoryAssociationsWithContext(aws.Context, *fsx.DescribeDataRepositoryAssociationsInput, ...request.Option) (*fsx.DescribeDataRepositoryAssociationsOutput, error)
+	DescribeDataRepositoryAssociationsRequest(*fsx.DescribeDataRepositoryAssociationsInput) (*request.Request, *fsx.DescribeDataRepositoryAssociationsOutput)
+
+	DescribeDataRepositoryAssociationsPages(*fsx.DescribeDataRepositoryAssociationsInput, func(*fsx.DescribeDataRepositoryAssociationsOutput, bool) bool) error
+	DescribeDataRepositoryAssociationsPagesWithContext(aws.Context, *fsx.DescribeDataRepositoryAssociationsInput, func(*fsx.DescribeDataRepositoryAssociationsOutput, bool) bool, ...request.Option) error
 
 	DescribeDataRepositoryTasks(*fsx.DescribeDataRepositoryTasksInput) (*fsx.DescribeDataRepositoryTasksOutput, error)
 	DescribeDataRepositoryTasksWithContext(aws.Context, *fsx.DescribeDataRepositoryTasksInput, ...request.Option) (*fsx.DescribeDataRepositoryTasksOutput, error)
@@ -143,6 +166,13 @@ type FSxAPI interface {
 
 	DescribeFileSystemsPages(*fsx.DescribeFileSystemsInput, func(*fsx.DescribeFileSystemsOutput, bool) bool) error
 	DescribeFileSystemsPagesWithContext(aws.Context, *fsx.DescribeFileSystemsInput, func(*fsx.DescribeFileSystemsOutput, bool) bool, ...request.Option) error
+
+	DescribeSnapshots(*fsx.DescribeSnapshotsInput) (*fsx.DescribeSnapshotsOutput, error)
+	DescribeSnapshotsWithContext(aws.Context, *fsx.DescribeSnapshotsInput, ...request.Option) (*fsx.DescribeSnapshotsOutput, error)
+	DescribeSnapshotsRequest(*fsx.DescribeSnapshotsInput) (*request.Request, *fsx.DescribeSnapshotsOutput)
+
+	DescribeSnapshotsPages(*fsx.DescribeSnapshotsInput, func(*fsx.DescribeSnapshotsOutput, bool) bool) error
+	DescribeSnapshotsPagesWithContext(aws.Context, *fsx.DescribeSnapshotsInput, func(*fsx.DescribeSnapshotsOutput, bool) bool, ...request.Option) error
 
 	DescribeStorageVirtualMachines(*fsx.DescribeStorageVirtualMachinesInput) (*fsx.DescribeStorageVirtualMachinesOutput, error)
 	DescribeStorageVirtualMachinesWithContext(aws.Context, *fsx.DescribeStorageVirtualMachinesInput, ...request.Option) (*fsx.DescribeStorageVirtualMachinesOutput, error)
@@ -169,6 +199,14 @@ type FSxAPI interface {
 	ListTagsForResourcePages(*fsx.ListTagsForResourceInput, func(*fsx.ListTagsForResourceOutput, bool) bool) error
 	ListTagsForResourcePagesWithContext(aws.Context, *fsx.ListTagsForResourceInput, func(*fsx.ListTagsForResourceOutput, bool) bool, ...request.Option) error
 
+	ReleaseFileSystemNfsV3Locks(*fsx.ReleaseFileSystemNfsV3LocksInput) (*fsx.ReleaseFileSystemNfsV3LocksOutput, error)
+	ReleaseFileSystemNfsV3LocksWithContext(aws.Context, *fsx.ReleaseFileSystemNfsV3LocksInput, ...request.Option) (*fsx.ReleaseFileSystemNfsV3LocksOutput, error)
+	ReleaseFileSystemNfsV3LocksRequest(*fsx.ReleaseFileSystemNfsV3LocksInput) (*request.Request, *fsx.ReleaseFileSystemNfsV3LocksOutput)
+
+	RestoreVolumeFromSnapshot(*fsx.RestoreVolumeFromSnapshotInput) (*fsx.RestoreVolumeFromSnapshotOutput, error)
+	RestoreVolumeFromSnapshotWithContext(aws.Context, *fsx.RestoreVolumeFromSnapshotInput, ...request.Option) (*fsx.RestoreVolumeFromSnapshotOutput, error)
+	RestoreVolumeFromSnapshotRequest(*fsx.RestoreVolumeFromSnapshotInput) (*request.Request, *fsx.RestoreVolumeFromSnapshotOutput)
+
 	TagResource(*fsx.TagResourceInput) (*fsx.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *fsx.TagResourceInput, ...request.Option) (*fsx.TagResourceOutput, error)
 	TagResourceRequest(*fsx.TagResourceInput) (*request.Request, *fsx.TagResourceOutput)
@@ -177,9 +215,17 @@ type FSxAPI interface {
 	UntagResourceWithContext(aws.Context, *fsx.UntagResourceInput, ...request.Option) (*fsx.UntagResourceOutput, error)
 	UntagResourceRequest(*fsx.UntagResourceInput) (*request.Request, *fsx.UntagResourceOutput)
 
+	UpdateDataRepositoryAssociation(*fsx.UpdateDataRepositoryAssociationInput) (*fsx.UpdateDataRepositoryAssociationOutput, error)
+	UpdateDataRepositoryAssociationWithContext(aws.Context, *fsx.UpdateDataRepositoryAssociationInput, ...request.Option) (*fsx.UpdateDataRepositoryAssociationOutput, error)
+	UpdateDataRepositoryAssociationRequest(*fsx.UpdateDataRepositoryAssociationInput) (*request.Request, *fsx.UpdateDataRepositoryAssociationOutput)
+
 	UpdateFileSystem(*fsx.UpdateFileSystemInput) (*fsx.UpdateFileSystemOutput, error)
 	UpdateFileSystemWithContext(aws.Context, *fsx.UpdateFileSystemInput, ...request.Option) (*fsx.UpdateFileSystemOutput, error)
 	UpdateFileSystemRequest(*fsx.UpdateFileSystemInput) (*request.Request, *fsx.UpdateFileSystemOutput)
+
+	UpdateSnapshot(*fsx.UpdateSnapshotInput) (*fsx.UpdateSnapshotOutput, error)
+	UpdateSnapshotWithContext(aws.Context, *fsx.UpdateSnapshotInput, ...request.Option) (*fsx.UpdateSnapshotOutput, error)
+	UpdateSnapshotRequest(*fsx.UpdateSnapshotInput) (*request.Request, *fsx.UpdateSnapshotOutput)
 
 	UpdateStorageVirtualMachine(*fsx.UpdateStorageVirtualMachineInput) (*fsx.UpdateStorageVirtualMachineOutput, error)
 	UpdateStorageVirtualMachineWithContext(aws.Context, *fsx.UpdateStorageVirtualMachineInput, ...request.Option) (*fsx.UpdateStorageVirtualMachineOutput, error)
