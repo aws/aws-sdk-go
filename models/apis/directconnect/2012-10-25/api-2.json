@@ -1821,6 +1821,7 @@
       },
       "exception":true
     },
+    "EnableSiteLink":{"type":"boolean"},
     "EncryptionMode":{"type":"string"},
     "EndTime":{"type":"timestamp"},
     "ErrorMessage":{"type":"string"},
@@ -2039,7 +2040,8 @@
         "addressFamily":{"shape":"AddressFamily"},
         "virtualGatewayId":{"shape":"VirtualGatewayId"},
         "directConnectGatewayId":{"shape":"DirectConnectGatewayId"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "enableSiteLink":{"shape":"EnableSiteLink"}
       }
     },
     "NewPrivateVirtualInterfaceAllocation":{
@@ -2111,7 +2113,8 @@
         "customerAddress":{"shape":"CustomerAddress"},
         "addressFamily":{"shape":"AddressFamily"},
         "directConnectGatewayId":{"shape":"DirectConnectGatewayId"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "enableSiteLink":{"shape":"EnableSiteLink"}
       }
     },
     "NewTransitVirtualInterfaceAllocation":{
@@ -2189,6 +2192,7 @@
     },
     "RouterTypeIdentifier":{"type":"string"},
     "SecretARN":{"type":"string"},
+    "SiteLinkEnabled":{"type":"boolean"},
     "Software":{"type":"string"},
     "StartBgpFailoverTestRequest":{
       "type":"structure",
@@ -2353,7 +2357,9 @@
       "required":["virtualInterfaceId"],
       "members":{
         "virtualInterfaceId":{"shape":"VirtualInterfaceId"},
-        "mtu":{"shape":"MTU"}
+        "mtu":{"shape":"MTU"},
+        "enableSiteLink":{"shape":"EnableSiteLink"},
+        "virtualInterfaceName":{"shape":"VirtualInterfaceName"}
       }
     },
     "VLAN":{"type":"integer"},
@@ -2408,7 +2414,8 @@
         "region":{"shape":"Region"},
         "awsDeviceV2":{"shape":"AwsDeviceV2"},
         "awsLogicalDeviceId":{"shape":"AwsLogicalDeviceId"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "siteLinkEnabled":{"shape":"SiteLinkEnabled"}
       }
     },
     "VirtualInterfaceId":{"type":"string"},

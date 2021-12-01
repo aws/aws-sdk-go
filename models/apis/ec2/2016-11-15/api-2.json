@@ -93,6 +93,15 @@
       "input":{"shape":"AllocateHostsRequest"},
       "output":{"shape":"AllocateHostsResult"}
     },
+    "AllocateIpamPoolCidr":{
+      "name":"AllocateIpamPoolCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AllocateIpamPoolCidrRequest"},
+      "output":{"shape":"AllocateIpamPoolCidrResult"}
+    },
     "ApplySecurityGroupsToClientVpnTargetNetwork":{
       "name":"ApplySecurityGroupsToClientVpnTargetNetwork",
       "http":{
@@ -575,6 +584,33 @@
       "input":{"shape":"CreateInternetGatewayRequest"},
       "output":{"shape":"CreateInternetGatewayResult"}
     },
+    "CreateIpam":{
+      "name":"CreateIpam",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateIpamRequest"},
+      "output":{"shape":"CreateIpamResult"}
+    },
+    "CreateIpamPool":{
+      "name":"CreateIpamPool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateIpamPoolRequest"},
+      "output":{"shape":"CreateIpamPoolResult"}
+    },
+    "CreateIpamScope":{
+      "name":"CreateIpamScope",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateIpamScopeRequest"},
+      "output":{"shape":"CreateIpamScopeResult"}
+    },
     "CreateKeyPair":{
       "name":"CreateKeyPair",
       "http":{
@@ -655,6 +691,15 @@
       },
       "input":{"shape":"CreateNetworkAclEntryRequest"}
     },
+    "CreateNetworkInsightsAccessScope":{
+      "name":"CreateNetworkInsightsAccessScope",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateNetworkInsightsAccessScopeRequest"},
+      "output":{"shape":"CreateNetworkInsightsAccessScopeResult"}
+    },
     "CreateNetworkInsightsPath":{
       "name":"CreateNetworkInsightsPath",
       "http":{
@@ -690,6 +735,15 @@
       },
       "input":{"shape":"CreatePlacementGroupRequest"},
       "output":{"shape":"CreatePlacementGroupResult"}
+    },
+    "CreatePublicIpv4Pool":{
+      "name":"CreatePublicIpv4Pool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreatePublicIpv4PoolRequest"},
+      "output":{"shape":"CreatePublicIpv4PoolResult"}
     },
     "CreateReplaceRootVolumeTask":{
       "name":"CreateReplaceRootVolumeTask",
@@ -1100,6 +1154,33 @@
       },
       "input":{"shape":"DeleteInternetGatewayRequest"}
     },
+    "DeleteIpam":{
+      "name":"DeleteIpam",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteIpamRequest"},
+      "output":{"shape":"DeleteIpamResult"}
+    },
+    "DeleteIpamPool":{
+      "name":"DeleteIpamPool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteIpamPoolRequest"},
+      "output":{"shape":"DeleteIpamPoolResult"}
+    },
+    "DeleteIpamScope":{
+      "name":"DeleteIpamScope",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteIpamScopeRequest"},
+      "output":{"shape":"DeleteIpamScopeResult"}
+    },
     "DeleteKeyPair":{
       "name":"DeleteKeyPair",
       "http":{
@@ -1178,6 +1259,24 @@
       },
       "input":{"shape":"DeleteNetworkAclEntryRequest"}
     },
+    "DeleteNetworkInsightsAccessScope":{
+      "name":"DeleteNetworkInsightsAccessScope",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteNetworkInsightsAccessScopeRequest"},
+      "output":{"shape":"DeleteNetworkInsightsAccessScopeResult"}
+    },
+    "DeleteNetworkInsightsAccessScopeAnalysis":{
+      "name":"DeleteNetworkInsightsAccessScopeAnalysis",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteNetworkInsightsAccessScopeAnalysisRequest"},
+      "output":{"shape":"DeleteNetworkInsightsAccessScopeAnalysisResult"}
+    },
     "DeleteNetworkInsightsAnalysis":{
       "name":"DeleteNetworkInsightsAnalysis",
       "http":{
@@ -1220,6 +1319,15 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeletePlacementGroupRequest"}
+    },
+    "DeletePublicIpv4Pool":{
+      "name":"DeletePublicIpv4Pool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePublicIpv4PoolRequest"},
+      "output":{"shape":"DeletePublicIpv4PoolResult"}
     },
     "DeleteQueuedReservedInstances":{
       "name":"DeleteQueuedReservedInstances",
@@ -1496,6 +1604,24 @@
       },
       "input":{"shape":"DeprovisionByoipCidrRequest"},
       "output":{"shape":"DeprovisionByoipCidrResult"}
+    },
+    "DeprovisionIpamPoolCidr":{
+      "name":"DeprovisionIpamPoolCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeprovisionIpamPoolCidrRequest"},
+      "output":{"shape":"DeprovisionIpamPoolCidrResult"}
+    },
+    "DeprovisionPublicIpv4PoolCidr":{
+      "name":"DeprovisionPublicIpv4PoolCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeprovisionPublicIpv4PoolCidrRequest"},
+      "output":{"shape":"DeprovisionPublicIpv4PoolCidrResult"}
     },
     "DeregisterImage":{
       "name":"DeregisterImage",
@@ -1982,6 +2108,33 @@
       "input":{"shape":"DescribeInternetGatewaysRequest"},
       "output":{"shape":"DescribeInternetGatewaysResult"}
     },
+    "DescribeIpamPools":{
+      "name":"DescribeIpamPools",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeIpamPoolsRequest"},
+      "output":{"shape":"DescribeIpamPoolsResult"}
+    },
+    "DescribeIpamScopes":{
+      "name":"DescribeIpamScopes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeIpamScopesRequest"},
+      "output":{"shape":"DescribeIpamScopesResult"}
+    },
+    "DescribeIpams":{
+      "name":"DescribeIpams",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeIpamsRequest"},
+      "output":{"shape":"DescribeIpamsResult"}
+    },
     "DescribeIpv6Pools":{
       "name":"DescribeIpv6Pools",
       "http":{
@@ -2107,6 +2260,24 @@
       },
       "input":{"shape":"DescribeNetworkAclsRequest"},
       "output":{"shape":"DescribeNetworkAclsResult"}
+    },
+    "DescribeNetworkInsightsAccessScopeAnalyses":{
+      "name":"DescribeNetworkInsightsAccessScopeAnalyses",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeNetworkInsightsAccessScopeAnalysesRequest"},
+      "output":{"shape":"DescribeNetworkInsightsAccessScopeAnalysesResult"}
+    },
+    "DescribeNetworkInsightsAccessScopes":{
+      "name":"DescribeNetworkInsightsAccessScopes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeNetworkInsightsAccessScopesRequest"},
+      "output":{"shape":"DescribeNetworkInsightsAccessScopesResult"}
     },
     "DescribeNetworkInsightsAnalyses":{
       "name":"DescribeNetworkInsightsAnalyses",
@@ -2744,6 +2915,15 @@
       "input":{"shape":"DisableImageDeprecationRequest"},
       "output":{"shape":"DisableImageDeprecationResult"}
     },
+    "DisableIpamOrganizationAdminAccount":{
+      "name":"DisableIpamOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableIpamOrganizationAdminAccountRequest"},
+      "output":{"shape":"DisableIpamOrganizationAdminAccountResult"}
+    },
     "DisableSerialConsoleAccess":{
       "name":"DisableSerialConsoleAccess",
       "http":{
@@ -2911,6 +3091,15 @@
       },
       "input":{"shape":"EnableImageDeprecationRequest"},
       "output":{"shape":"EnableImageDeprecationResult"}
+    },
+    "EnableIpamOrganizationAdminAccount":{
+      "name":"EnableIpamOrganizationAdminAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableIpamOrganizationAdminAccountRequest"},
+      "output":{"shape":"EnableIpamOrganizationAdminAccountResult"}
     },
     "EnableSerialConsoleAccess":{
       "name":"EnableSerialConsoleAccess",
@@ -3117,6 +3306,42 @@
       "input":{"shape":"GetInstanceTypesFromInstanceRequirementsRequest"},
       "output":{"shape":"GetInstanceTypesFromInstanceRequirementsResult"}
     },
+    "GetIpamAddressHistory":{
+      "name":"GetIpamAddressHistory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetIpamAddressHistoryRequest"},
+      "output":{"shape":"GetIpamAddressHistoryResult"}
+    },
+    "GetIpamPoolAllocations":{
+      "name":"GetIpamPoolAllocations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetIpamPoolAllocationsRequest"},
+      "output":{"shape":"GetIpamPoolAllocationsResult"}
+    },
+    "GetIpamPoolCidrs":{
+      "name":"GetIpamPoolCidrs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetIpamPoolCidrsRequest"},
+      "output":{"shape":"GetIpamPoolCidrsResult"}
+    },
+    "GetIpamResourceCidrs":{
+      "name":"GetIpamResourceCidrs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetIpamResourceCidrsRequest"},
+      "output":{"shape":"GetIpamResourceCidrsResult"}
+    },
     "GetLaunchTemplateData":{
       "name":"GetLaunchTemplateData",
       "http":{
@@ -3143,6 +3368,24 @@
       },
       "input":{"shape":"GetManagedPrefixListEntriesRequest"},
       "output":{"shape":"GetManagedPrefixListEntriesResult"}
+    },
+    "GetNetworkInsightsAccessScopeAnalysisFindings":{
+      "name":"GetNetworkInsightsAccessScopeAnalysisFindings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetNetworkInsightsAccessScopeAnalysisFindingsRequest"},
+      "output":{"shape":"GetNetworkInsightsAccessScopeAnalysisFindingsResult"}
+    },
+    "GetNetworkInsightsAccessScopeContent":{
+      "name":"GetNetworkInsightsAccessScopeContent",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetNetworkInsightsAccessScopeContentRequest"},
+      "output":{"shape":"GetNetworkInsightsAccessScopeContentResult"}
     },
     "GetPasswordData":{
       "name":"GetPasswordData",
@@ -3491,6 +3734,42 @@
       "input":{"shape":"ModifyInstancePlacementRequest"},
       "output":{"shape":"ModifyInstancePlacementResult"}
     },
+    "ModifyIpam":{
+      "name":"ModifyIpam",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyIpamRequest"},
+      "output":{"shape":"ModifyIpamResult"}
+    },
+    "ModifyIpamPool":{
+      "name":"ModifyIpamPool",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyIpamPoolRequest"},
+      "output":{"shape":"ModifyIpamPoolResult"}
+    },
+    "ModifyIpamResourceCidr":{
+      "name":"ModifyIpamResourceCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyIpamResourceCidrRequest"},
+      "output":{"shape":"ModifyIpamResourceCidrResult"}
+    },
+    "ModifyIpamScope":{
+      "name":"ModifyIpamScope",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyIpamScopeRequest"},
+      "output":{"shape":"ModifyIpamScopeResult"}
+    },
     "ModifyLaunchTemplate":{
       "name":"ModifyLaunchTemplate",
       "http":{
@@ -3765,6 +4044,15 @@
       "input":{"shape":"MoveAddressToVpcRequest"},
       "output":{"shape":"MoveAddressToVpcResult"}
     },
+    "MoveByoipCidrToIpam":{
+      "name":"MoveByoipCidrToIpam",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"MoveByoipCidrToIpamRequest"},
+      "output":{"shape":"MoveByoipCidrToIpamResult"}
+    },
     "ProvisionByoipCidr":{
       "name":"ProvisionByoipCidr",
       "http":{
@@ -3773,6 +4061,24 @@
       },
       "input":{"shape":"ProvisionByoipCidrRequest"},
       "output":{"shape":"ProvisionByoipCidrResult"}
+    },
+    "ProvisionIpamPoolCidr":{
+      "name":"ProvisionIpamPoolCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ProvisionIpamPoolCidrRequest"},
+      "output":{"shape":"ProvisionIpamPoolCidrResult"}
+    },
+    "ProvisionPublicIpv4PoolCidr":{
+      "name":"ProvisionPublicIpv4PoolCidr",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ProvisionPublicIpv4PoolCidrRequest"},
+      "output":{"shape":"ProvisionPublicIpv4PoolCidrResult"}
     },
     "PurchaseHostReservation":{
       "name":"PurchaseHostReservation",
@@ -3906,6 +4212,15 @@
       },
       "input":{"shape":"ReleaseHostsRequest"},
       "output":{"shape":"ReleaseHostsResult"}
+    },
+    "ReleaseIpamPoolAllocation":{
+      "name":"ReleaseIpamPoolAllocation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ReleaseIpamPoolAllocationRequest"},
+      "output":{"shape":"ReleaseIpamPoolAllocationResult"}
     },
     "ReplaceIamInstanceProfileAssociation":{
       "name":"ReplaceIamInstanceProfileAssociation",
@@ -4168,6 +4483,15 @@
       },
       "input":{"shape":"StartInstancesRequest"},
       "output":{"shape":"StartInstancesResult"}
+    },
+    "StartNetworkInsightsAccessScopeAnalysis":{
+      "name":"StartNetworkInsightsAccessScopeAnalysis",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartNetworkInsightsAccessScopeAnalysisRequest"},
+      "output":{"shape":"StartNetworkInsightsAccessScopeAnalysisResult"}
     },
     "StartNetworkInsightsAnalysis":{
       "name":"StartNetworkInsightsAnalysis",
@@ -4481,6 +4805,76 @@
         }
       }
     },
+    "AccessScopeAnalysisFinding":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeAnalysisId":{
+          "shape":"NetworkInsightsAccessScopeAnalysisId",
+          "locationName":"networkInsightsAccessScopeAnalysisId"
+        },
+        "NetworkInsightsAccessScopeId":{
+          "shape":"NetworkInsightsAccessScopeId",
+          "locationName":"networkInsightsAccessScopeId"
+        },
+        "FindingId":{
+          "shape":"String",
+          "locationName":"findingId"
+        },
+        "FindingComponents":{
+          "shape":"PathComponentList",
+          "locationName":"findingComponentSet"
+        }
+      }
+    },
+    "AccessScopeAnalysisFindingList":{
+      "type":"list",
+      "member":{
+        "shape":"AccessScopeAnalysisFinding",
+        "locationName":"item"
+      }
+    },
+    "AccessScopePath":{
+      "type":"structure",
+      "members":{
+        "Source":{
+          "shape":"PathStatement",
+          "locationName":"source"
+        },
+        "Destination":{
+          "shape":"PathStatement",
+          "locationName":"destination"
+        },
+        "ThroughResources":{
+          "shape":"ThroughResourcesStatementList",
+          "locationName":"throughResourceSet"
+        }
+      }
+    },
+    "AccessScopePathList":{
+      "type":"list",
+      "member":{
+        "shape":"AccessScopePath",
+        "locationName":"item"
+      }
+    },
+    "AccessScopePathListRequest":{
+      "type":"list",
+      "member":{
+        "shape":"AccessScopePathRequest",
+        "locationName":"item"
+      }
+    },
+    "AccessScopePathRequest":{
+      "type":"structure",
+      "members":{
+        "Source":{"shape":"PathStatementRequest"},
+        "Destination":{"shape":"PathStatementRequest"},
+        "ThroughResources":{
+          "shape":"ThroughResourcesStatementRequestList",
+          "locationName":"ThroughResource"
+        }
+      }
+    },
     "AccountAttribute":{
       "type":"structure",
       "members":{
@@ -4567,6 +4961,18 @@
         "pending_termination",
         "fulfilled"
       ]
+    },
+    "AddIpamOperatingRegion":{
+      "type":"structure",
+      "members":{
+        "RegionName":{"shape":"String"}
+      }
+    },
+    "AddIpamOperatingRegionSet":{
+      "type":"list",
+      "member":{"shape":"AddIpamOperatingRegion"},
+      "max":50,
+      "min":0
     },
     "AddPrefixListEntries":{
       "type":"list",
@@ -4667,6 +5073,13 @@
     "AddressAttributeName":{
       "type":"string",
       "enum":["domain-name"]
+    },
+    "AddressFamily":{
+      "type":"string",
+      "enum":[
+        "ipv4",
+        "ipv6"
+      ]
     },
     "AddressList":{
       "type":"list",
@@ -4810,6 +5223,35 @@
         }
       }
     },
+    "AllocateIpamPoolCidrRequest":{
+      "type":"structure",
+      "required":["IpamPoolId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "Cidr":{"shape":"String"},
+        "NetmaskLength":{"shape":"Integer"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "Description":{"shape":"String"},
+        "PreviewNextCidr":{"shape":"Boolean"},
+        "DisallowedCidrs":{
+          "shape":"IpamPoolAllocationDisallowedCidrs",
+          "locationName":"DisallowedCidr"
+        }
+      }
+    },
+    "AllocateIpamPoolCidrResult":{
+      "type":"structure",
+      "members":{
+        "IpamPoolAllocation":{
+          "shape":"IpamPoolAllocation",
+          "locationName":"ipamPoolAllocation"
+        }
+      }
+    },
     "AllocationId":{"type":"string"},
     "AllocationIdList":{
       "type":"list",
@@ -4931,6 +5373,10 @@
         "Arn":{
           "shape":"String",
           "locationName":"arn"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
         }
       }
     },
@@ -5546,7 +5992,11 @@
         },
         "Ipv6CidrBlockNetworkBorderGroup":{"shape":"String"},
         "Ipv6Pool":{"shape":"Ipv6PoolEc2Id"},
-        "Ipv6CidrBlock":{"shape":"String"}
+        "Ipv6CidrBlock":{"shape":"String"},
+        "Ipv4IpamPoolId":{"shape":"IpamPoolId"},
+        "Ipv4NetmaskLength":{"shape":"NetmaskLength"},
+        "Ipv6IpamPoolId":{"shape":"IpamPoolId"},
+        "Ipv6NetmaskLength":{"shape":"NetmaskLength"}
       }
     },
     "AssociateVpcCidrBlockResult":{
@@ -6255,6 +6705,7 @@
         "uefi"
       ]
     },
+    "BoxedDouble":{"type":"double"},
     "BundleId":{"type":"string"},
     "BundleIdStringList":{
       "type":"list",
@@ -8670,6 +9121,99 @@
         }
       }
     },
+    "CreateIpamPoolRequest":{
+      "type":"structure",
+      "required":["IpamScopeId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamScopeId":{"shape":"IpamScopeId"},
+        "Locale":{"shape":"String"},
+        "SourceIpamPoolId":{"shape":"IpamPoolId"},
+        "Description":{"shape":"String"},
+        "AddressFamily":{"shape":"AddressFamily"},
+        "AutoImport":{"shape":"Boolean"},
+        "PubliclyAdvertisable":{"shape":"Boolean"},
+        "AllocationMinNetmaskLength":{"shape":"IpamNetmaskLength"},
+        "AllocationMaxNetmaskLength":{"shape":"IpamNetmaskLength"},
+        "AllocationDefaultNetmaskLength":{"shape":"IpamNetmaskLength"},
+        "AllocationResourceTags":{
+          "shape":"RequestIpamResourceTagList",
+          "locationName":"AllocationResourceTag"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "AwsService":{"shape":"IpamPoolAwsService"}
+      }
+    },
+    "CreateIpamPoolResult":{
+      "type":"structure",
+      "members":{
+        "IpamPool":{
+          "shape":"IpamPool",
+          "locationName":"ipamPool"
+        }
+      }
+    },
+    "CreateIpamRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Description":{"shape":"String"},
+        "OperatingRegions":{
+          "shape":"AddIpamOperatingRegionSet",
+          "locationName":"OperatingRegion"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateIpamResult":{
+      "type":"structure",
+      "members":{
+        "Ipam":{
+          "shape":"Ipam",
+          "locationName":"ipam"
+        }
+      }
+    },
+    "CreateIpamScopeRequest":{
+      "type":"structure",
+      "required":["IpamId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamId":{"shape":"IpamId"},
+        "Description":{"shape":"String"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateIpamScopeResult":{
+      "type":"structure",
+      "members":{
+        "IpamScope":{
+          "shape":"IpamScope",
+          "locationName":"ipamScope"
+        }
+      }
+    },
     "CreateKeyPairRequest":{
       "type":"structure",
       "required":["KeyName"],
@@ -8936,6 +9480,42 @@
         }
       }
     },
+    "CreateNetworkInsightsAccessScopeRequest":{
+      "type":"structure",
+      "required":["ClientToken"],
+      "members":{
+        "MatchPaths":{
+          "shape":"AccessScopePathListRequest",
+          "locationName":"MatchPath"
+        },
+        "ExcludePaths":{
+          "shape":"AccessScopePathListRequest",
+          "locationName":"ExcludePath"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateNetworkInsightsAccessScopeResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScope":{
+          "shape":"NetworkInsightsAccessScope",
+          "locationName":"networkInsightsAccessScope"
+        },
+        "NetworkInsightsAccessScopeContent":{
+          "shape":"NetworkInsightsAccessScopeContent",
+          "locationName":"networkInsightsAccessScopeContent"
+        }
+      }
+    },
     "CreateNetworkInsightsPathRequest":{
       "type":"structure",
       "required":[
@@ -9096,6 +9676,25 @@
         "PlacementGroup":{
           "shape":"PlacementGroup",
           "locationName":"placementGroup"
+        }
+      }
+    },
+    "CreatePublicIpv4PoolRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
+      }
+    },
+    "CreatePublicIpv4PoolResult":{
+      "type":"structure",
+      "members":{
+        "PoolId":{
+          "shape":"Ipv4PoolEc2Id",
+          "locationName":"poolId"
         }
       }
     },
@@ -10062,7 +10661,6 @@
     },
     "CreateVpcRequest":{
       "type":"structure",
-      "required":["CidrBlock"],
       "members":{
         "CidrBlock":{"shape":"String"},
         "AmazonProvidedIpv6CidrBlock":{
@@ -10071,6 +10669,10 @@
         },
         "Ipv6Pool":{"shape":"Ipv6PoolEc2Id"},
         "Ipv6CidrBlock":{"shape":"String"},
+        "Ipv4IpamPoolId":{"shape":"IpamPoolId"},
+        "Ipv4NetmaskLength":{"shape":"NetmaskLength"},
+        "Ipv6IpamPoolId":{"shape":"IpamPoolId"},
+        "Ipv6NetmaskLength":{"shape":"NetmaskLength"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -10547,6 +11149,57 @@
         }
       }
     },
+    "DeleteIpamPoolRequest":{
+      "type":"structure",
+      "required":["IpamPoolId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamPoolId":{"shape":"IpamPoolId"}
+      }
+    },
+    "DeleteIpamPoolResult":{
+      "type":"structure",
+      "members":{
+        "IpamPool":{
+          "shape":"IpamPool",
+          "locationName":"ipamPool"
+        }
+      }
+    },
+    "DeleteIpamRequest":{
+      "type":"structure",
+      "required":["IpamId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamId":{"shape":"IpamId"}
+      }
+    },
+    "DeleteIpamResult":{
+      "type":"structure",
+      "members":{
+        "Ipam":{
+          "shape":"Ipam",
+          "locationName":"ipam"
+        }
+      }
+    },
+    "DeleteIpamScopeRequest":{
+      "type":"structure",
+      "required":["IpamScopeId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamScopeId":{"shape":"IpamScopeId"}
+      }
+    },
+    "DeleteIpamScopeResult":{
+      "type":"structure",
+      "members":{
+        "IpamScope":{
+          "shape":"IpamScope",
+          "locationName":"ipamScope"
+        }
+      }
+    },
     "DeleteKeyPairRequest":{
       "type":"structure",
       "members":{
@@ -10765,6 +11418,40 @@
         }
       }
     },
+    "DeleteNetworkInsightsAccessScopeAnalysisRequest":{
+      "type":"structure",
+      "required":["NetworkInsightsAccessScopeAnalysisId"],
+      "members":{
+        "NetworkInsightsAccessScopeAnalysisId":{"shape":"NetworkInsightsAccessScopeAnalysisId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DeleteNetworkInsightsAccessScopeAnalysisResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeAnalysisId":{
+          "shape":"NetworkInsightsAccessScopeAnalysisId",
+          "locationName":"networkInsightsAccessScopeAnalysisId"
+        }
+      }
+    },
+    "DeleteNetworkInsightsAccessScopeRequest":{
+      "type":"structure",
+      "required":["NetworkInsightsAccessScopeId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "NetworkInsightsAccessScopeId":{"shape":"NetworkInsightsAccessScopeId"}
+      }
+    },
+    "DeleteNetworkInsightsAccessScopeResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeId":{
+          "shape":"NetworkInsightsAccessScopeId",
+          "locationName":"networkInsightsAccessScopeId"
+        }
+      }
+    },
     "DeleteNetworkInsightsAnalysisRequest":{
       "type":"structure",
       "required":["NetworkInsightsAnalysisId"],
@@ -10842,6 +11529,23 @@
         "GroupName":{
           "shape":"PlacementGroupName",
           "locationName":"groupName"
+        }
+      }
+    },
+    "DeletePublicIpv4PoolRequest":{
+      "type":"structure",
+      "required":["PoolId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "PoolId":{"shape":"Ipv4PoolEc2Id"}
+      }
+    },
+    "DeletePublicIpv4PoolResult":{
+      "type":"structure",
+      "members":{
+        "ReturnValue":{
+          "shape":"Boolean",
+          "locationName":"returnValue"
         }
       }
     },
@@ -11395,6 +12099,56 @@
           "shape":"ByoipCidr",
           "locationName":"byoipCidr"
         }
+      }
+    },
+    "DeprovisionIpamPoolCidrRequest":{
+      "type":"structure",
+      "required":["IpamPoolId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "Cidr":{"shape":"String"}
+      }
+    },
+    "DeprovisionIpamPoolCidrResult":{
+      "type":"structure",
+      "members":{
+        "IpamPoolCidr":{
+          "shape":"IpamPoolCidr",
+          "locationName":"ipamPoolCidr"
+        }
+      }
+    },
+    "DeprovisionPublicIpv4PoolCidrRequest":{
+      "type":"structure",
+      "required":[
+        "PoolId",
+        "Cidr"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "PoolId":{"shape":"Ipv4PoolEc2Id"},
+        "Cidr":{"shape":"String"}
+      }
+    },
+    "DeprovisionPublicIpv4PoolCidrResult":{
+      "type":"structure",
+      "members":{
+        "PoolId":{
+          "shape":"Ipv4PoolEc2Id",
+          "locationName":"poolId"
+        },
+        "DeprovisionedAddresses":{
+          "shape":"DeprovisionedAddressSet",
+          "locationName":"deprovisionedAddressSet"
+        }
+      }
+    },
+    "DeprovisionedAddressSet":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
       }
     },
     "DeregisterImageRequest":{
@@ -13057,6 +13811,93 @@
         }
       }
     },
+    "DescribeIpamPoolsRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"IpamMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "IpamPoolIds":{
+          "shape":"ValueStringList",
+          "locationName":"IpamPoolId"
+        }
+      }
+    },
+    "DescribeIpamPoolsResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        },
+        "IpamPools":{
+          "shape":"IpamPoolSet",
+          "locationName":"ipamPoolSet"
+        }
+      }
+    },
+    "DescribeIpamScopesRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"IpamMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "IpamScopeIds":{
+          "shape":"ValueStringList",
+          "locationName":"IpamScopeId"
+        }
+      }
+    },
+    "DescribeIpamScopesResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        },
+        "IpamScopes":{
+          "shape":"IpamScopeSet",
+          "locationName":"ipamScopeSet"
+        }
+      }
+    },
+    "DescribeIpamsRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"IpamMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "IpamIds":{
+          "shape":"ValueStringList",
+          "locationName":"IpamId"
+        }
+      }
+    },
+    "DescribeIpamsResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        },
+        "Ipams":{
+          "shape":"IpamSet",
+          "locationName":"ipamSet"
+        }
+      }
+    },
     "DescribeIpv6PoolsRequest":{
       "type":"structure",
       "members":{
@@ -13494,6 +14335,67 @@
         "NetworkAcls":{
           "shape":"NetworkAclList",
           "locationName":"networkAclSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeNetworkInsightsAccessScopeAnalysesRequest":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeAnalysisIds":{
+          "shape":"NetworkInsightsAccessScopeAnalysisIdList",
+          "locationName":"NetworkInsightsAccessScopeAnalysisId"
+        },
+        "NetworkInsightsAccessScopeId":{"shape":"NetworkInsightsAccessScopeId"},
+        "AnalysisStartTimeBegin":{"shape":"MillisecondDateTime"},
+        "AnalysisStartTimeEnd":{"shape":"MillisecondDateTime"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"NetworkInsightsMaxResults"},
+        "DryRun":{"shape":"Boolean"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeNetworkInsightsAccessScopeAnalysesResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeAnalyses":{
+          "shape":"NetworkInsightsAccessScopeAnalysisList",
+          "locationName":"networkInsightsAccessScopeAnalysisSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeNetworkInsightsAccessScopesRequest":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeIds":{
+          "shape":"NetworkInsightsAccessScopeIdList",
+          "locationName":"NetworkInsightsAccessScopeId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"NetworkInsightsMaxResults"},
+        "DryRun":{"shape":"Boolean"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeNetworkInsightsAccessScopesResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopes":{
+          "shape":"NetworkInsightsAccessScopeList",
+          "locationName":"networkInsightsAccessScopeSet"
         },
         "NextToken":{
           "shape":"String",
@@ -15909,6 +16811,23 @@
         }
       }
     },
+    "DisableIpamOrganizationAdminAccountRequest":{
+      "type":"structure",
+      "required":["DelegatedAdminAccountId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "DelegatedAdminAccountId":{"shape":"String"}
+      }
+    },
+    "DisableIpamOrganizationAdminAccountResult":{
+      "type":"structure",
+      "members":{
+        "Success":{
+          "shape":"Boolean",
+          "locationName":"success"
+        }
+      }
+    },
     "DisableSerialConsoleAccessRequest":{
       "type":"structure",
       "members":{
@@ -16929,6 +17848,23 @@
         }
       }
     },
+    "EnableIpamOrganizationAdminAccountRequest":{
+      "type":"structure",
+      "required":["DelegatedAdminAccountId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "DelegatedAdminAccountId":{"shape":"String"}
+      }
+    },
+    "EnableIpamOrganizationAdminAccountResult":{
+      "type":"structure",
+      "members":{
+        "Success":{
+          "shape":"Boolean",
+          "locationName":"success"
+        }
+      }
+    },
     "EnableSerialConsoleAccessRequest":{
       "type":"structure",
       "members":{
@@ -17730,6 +18666,14 @@
         "shape":"Filter",
         "locationName":"Filter"
       }
+    },
+    "FindingsFound":{
+      "type":"string",
+      "enum":[
+        "true",
+        "false",
+        "unknown"
+      ]
     },
     "FleetActivityStatus":{
       "type":"string",
@@ -18760,6 +19704,128 @@
         }
       }
     },
+    "GetIpamAddressHistoryRequest":{
+      "type":"structure",
+      "required":[
+        "Cidr",
+        "IpamScopeId"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Cidr":{"shape":"String"},
+        "IpamScopeId":{"shape":"IpamScopeId"},
+        "VpcId":{"shape":"String"},
+        "StartTime":{"shape":"MillisecondDateTime"},
+        "EndTime":{"shape":"MillisecondDateTime"},
+        "MaxResults":{"shape":"IpamAddressHistoryMaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetIpamAddressHistoryResult":{
+      "type":"structure",
+      "members":{
+        "HistoryRecords":{
+          "shape":"IpamAddressHistoryRecordSet",
+          "locationName":"historyRecordSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetIpamPoolAllocationsMaxResults":{
+      "type":"integer",
+      "max":100000,
+      "min":1000
+    },
+    "GetIpamPoolAllocationsRequest":{
+      "type":"structure",
+      "required":["IpamPoolId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "IpamPoolAllocationId":{"shape":"IpamPoolAllocationId"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"GetIpamPoolAllocationsMaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetIpamPoolAllocationsResult":{
+      "type":"structure",
+      "members":{
+        "IpamPoolAllocations":{
+          "shape":"IpamPoolAllocationSet",
+          "locationName":"ipamPoolAllocationSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetIpamPoolCidrsRequest":{
+      "type":"structure",
+      "required":["IpamPoolId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"IpamMaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetIpamPoolCidrsResult":{
+      "type":"structure",
+      "members":{
+        "IpamPoolCidrs":{
+          "shape":"IpamPoolCidrSet",
+          "locationName":"ipamPoolCidrSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetIpamResourceCidrsRequest":{
+      "type":"structure",
+      "required":["IpamScopeId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"IpamMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "IpamScopeId":{"shape":"IpamScopeId"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "ResourceId":{"shape":"String"},
+        "ResourceType":{"shape":"IpamResourceType"},
+        "ResourceTag":{"shape":"RequestIpamResourceTag"},
+        "ResourceOwner":{"shape":"String"}
+      }
+    },
+    "GetIpamResourceCidrsResult":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        },
+        "IpamResourceCidrs":{
+          "shape":"IpamResourceCidrSet",
+          "locationName":"ipamResourceCidrSet"
+        }
+      }
+    },
     "GetLaunchTemplateDataRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -18826,6 +19892,54 @@
         "NextToken":{
           "shape":"NextToken",
           "locationName":"nextToken"
+        }
+      }
+    },
+    "GetNetworkInsightsAccessScopeAnalysisFindingsRequest":{
+      "type":"structure",
+      "required":["NetworkInsightsAccessScopeAnalysisId"],
+      "members":{
+        "NetworkInsightsAccessScopeAnalysisId":{"shape":"NetworkInsightsAccessScopeAnalysisId"},
+        "MaxResults":{"shape":"NetworkInsightsMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetNetworkInsightsAccessScopeAnalysisFindingsResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeAnalysisId":{
+          "shape":"NetworkInsightsAccessScopeAnalysisId",
+          "locationName":"networkInsightsAccessScopeAnalysisId"
+        },
+        "AnalysisStatus":{
+          "shape":"AnalysisStatus",
+          "locationName":"analysisStatus"
+        },
+        "AnalysisFindings":{
+          "shape":"AccessScopeAnalysisFindingList",
+          "locationName":"analysisFindingSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetNetworkInsightsAccessScopeContentRequest":{
+      "type":"structure",
+      "required":["NetworkInsightsAccessScopeId"],
+      "members":{
+        "NetworkInsightsAccessScopeId":{"shape":"NetworkInsightsAccessScopeId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetNetworkInsightsAccessScopeContentResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeContent":{
+          "shape":"NetworkInsightsAccessScopeContent",
+          "locationName":"networkInsightsAccessScopeContent"
         }
       }
     },
@@ -22890,6 +24004,616 @@
         "locationName":"item"
       }
     },
+    "Ipam":{
+      "type":"structure",
+      "members":{
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "IpamId":{
+          "shape":"IpamId",
+          "locationName":"ipamId"
+        },
+        "IpamArn":{
+          "shape":"ResourceArn",
+          "locationName":"ipamArn"
+        },
+        "IpamRegion":{
+          "shape":"String",
+          "locationName":"ipamRegion"
+        },
+        "PublicDefaultScopeId":{
+          "shape":"IpamScopeId",
+          "locationName":"publicDefaultScopeId"
+        },
+        "PrivateDefaultScopeId":{
+          "shape":"IpamScopeId",
+          "locationName":"privateDefaultScopeId"
+        },
+        "ScopeCount":{
+          "shape":"Integer",
+          "locationName":"scopeCount"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "OperatingRegions":{
+          "shape":"IpamOperatingRegionSet",
+          "locationName":"operatingRegionSet"
+        },
+        "State":{
+          "shape":"IpamState",
+          "locationName":"state"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "IpamAddressHistoryMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "IpamAddressHistoryRecord":{
+      "type":"structure",
+      "members":{
+        "ResourceOwnerId":{
+          "shape":"String",
+          "locationName":"resourceOwnerId"
+        },
+        "ResourceRegion":{
+          "shape":"String",
+          "locationName":"resourceRegion"
+        },
+        "ResourceType":{
+          "shape":"IpamAddressHistoryResourceType",
+          "locationName":"resourceType"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
+        },
+        "ResourceCidr":{
+          "shape":"String",
+          "locationName":"resourceCidr"
+        },
+        "ResourceName":{
+          "shape":"String",
+          "locationName":"resourceName"
+        },
+        "ResourceComplianceStatus":{
+          "shape":"IpamComplianceStatus",
+          "locationName":"resourceComplianceStatus"
+        },
+        "ResourceOverlapStatus":{
+          "shape":"IpamOverlapStatus",
+          "locationName":"resourceOverlapStatus"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "SampledStartTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"sampledStartTime"
+        },
+        "SampledEndTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"sampledEndTime"
+        }
+      }
+    },
+    "IpamAddressHistoryRecordSet":{
+      "type":"list",
+      "member":{
+        "shape":"IpamAddressHistoryRecord",
+        "locationName":"item"
+      }
+    },
+    "IpamAddressHistoryResourceType":{
+      "type":"string",
+      "enum":[
+        "eip",
+        "vpc",
+        "subnet",
+        "network-interface",
+        "instance"
+      ]
+    },
+    "IpamCidrAuthorizationContext":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"},
+        "Signature":{"shape":"String"}
+      }
+    },
+    "IpamComplianceStatus":{
+      "type":"string",
+      "enum":[
+        "compliant",
+        "noncompliant",
+        "unmanaged",
+        "ignored"
+      ]
+    },
+    "IpamId":{"type":"string"},
+    "IpamManagementState":{
+      "type":"string",
+      "enum":[
+        "managed",
+        "unmanaged",
+        "ignored"
+      ]
+    },
+    "IpamMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
+    "IpamNetmaskLength":{
+      "type":"integer",
+      "max":128,
+      "min":0
+    },
+    "IpamOperatingRegion":{
+      "type":"structure",
+      "members":{
+        "RegionName":{
+          "shape":"String",
+          "locationName":"regionName"
+        }
+      }
+    },
+    "IpamOperatingRegionSet":{
+      "type":"list",
+      "member":{
+        "shape":"IpamOperatingRegion",
+        "locationName":"item"
+      }
+    },
+    "IpamOverlapStatus":{
+      "type":"string",
+      "enum":[
+        "overlapping",
+        "nonoverlapping",
+        "ignored"
+      ]
+    },
+    "IpamPool":{
+      "type":"structure",
+      "members":{
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "IpamPoolId":{
+          "shape":"IpamPoolId",
+          "locationName":"ipamPoolId"
+        },
+        "SourceIpamPoolId":{
+          "shape":"IpamPoolId",
+          "locationName":"sourceIpamPoolId"
+        },
+        "IpamPoolArn":{
+          "shape":"ResourceArn",
+          "locationName":"ipamPoolArn"
+        },
+        "IpamScopeArn":{
+          "shape":"ResourceArn",
+          "locationName":"ipamScopeArn"
+        },
+        "IpamScopeType":{
+          "shape":"IpamScopeType",
+          "locationName":"ipamScopeType"
+        },
+        "IpamArn":{
+          "shape":"ResourceArn",
+          "locationName":"ipamArn"
+        },
+        "IpamRegion":{
+          "shape":"String",
+          "locationName":"ipamRegion"
+        },
+        "Locale":{
+          "shape":"String",
+          "locationName":"locale"
+        },
+        "PoolDepth":{
+          "shape":"Integer",
+          "locationName":"poolDepth"
+        },
+        "State":{
+          "shape":"IpamPoolState",
+          "locationName":"state"
+        },
+        "StateMessage":{
+          "shape":"String",
+          "locationName":"stateMessage"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "AutoImport":{
+          "shape":"Boolean",
+          "locationName":"autoImport"
+        },
+        "PubliclyAdvertisable":{
+          "shape":"Boolean",
+          "locationName":"publiclyAdvertisable"
+        },
+        "AddressFamily":{
+          "shape":"AddressFamily",
+          "locationName":"addressFamily"
+        },
+        "AllocationMinNetmaskLength":{
+          "shape":"IpamNetmaskLength",
+          "locationName":"allocationMinNetmaskLength"
+        },
+        "AllocationMaxNetmaskLength":{
+          "shape":"IpamNetmaskLength",
+          "locationName":"allocationMaxNetmaskLength"
+        },
+        "AllocationDefaultNetmaskLength":{
+          "shape":"IpamNetmaskLength",
+          "locationName":"allocationDefaultNetmaskLength"
+        },
+        "AllocationResourceTags":{
+          "shape":"IpamResourceTagList",
+          "locationName":"allocationResourceTagSet"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        },
+        "AwsService":{
+          "shape":"IpamPoolAwsService",
+          "locationName":"awsService"
+        }
+      }
+    },
+    "IpamPoolAllocation":{
+      "type":"structure",
+      "members":{
+        "Cidr":{
+          "shape":"String",
+          "locationName":"cidr"
+        },
+        "IpamPoolAllocationId":{
+          "shape":"IpamPoolAllocationId",
+          "locationName":"ipamPoolAllocationId"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
+        },
+        "ResourceType":{
+          "shape":"IpamPoolAllocationResourceType",
+          "locationName":"resourceType"
+        },
+        "ResourceRegion":{
+          "shape":"String",
+          "locationName":"resourceRegion"
+        },
+        "ResourceOwner":{
+          "shape":"String",
+          "locationName":"resourceOwner"
+        }
+      }
+    },
+    "IpamPoolAllocationDisallowedCidrs":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "IpamPoolAllocationId":{"type":"string"},
+    "IpamPoolAllocationResourceType":{
+      "type":"string",
+      "enum":[
+        "ipam-pool",
+        "vpc",
+        "ec2-public-ipv4-pool",
+        "custom"
+      ]
+    },
+    "IpamPoolAllocationSet":{
+      "type":"list",
+      "member":{
+        "shape":"IpamPoolAllocation",
+        "locationName":"item"
+      }
+    },
+    "IpamPoolAwsService":{
+      "type":"string",
+      "enum":["ec2"]
+    },
+    "IpamPoolCidr":{
+      "type":"structure",
+      "members":{
+        "Cidr":{
+          "shape":"String",
+          "locationName":"cidr"
+        },
+        "State":{
+          "shape":"IpamPoolCidrState",
+          "locationName":"state"
+        },
+        "FailureReason":{
+          "shape":"IpamPoolCidrFailureReason",
+          "locationName":"failureReason"
+        }
+      }
+    },
+    "IpamPoolCidrFailureCode":{
+      "type":"string",
+      "enum":["cidr-not-available"]
+    },
+    "IpamPoolCidrFailureReason":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"IpamPoolCidrFailureCode",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      }
+    },
+    "IpamPoolCidrSet":{
+      "type":"list",
+      "member":{
+        "shape":"IpamPoolCidr",
+        "locationName":"item"
+      }
+    },
+    "IpamPoolCidrState":{
+      "type":"string",
+      "enum":[
+        "pending-provision",
+        "provisioned",
+        "failed-provision",
+        "pending-deprovision",
+        "deprovisioned",
+        "failed-deprovision",
+        "pending-import",
+        "failed-import"
+      ]
+    },
+    "IpamPoolId":{"type":"string"},
+    "IpamPoolSet":{
+      "type":"list",
+      "member":{
+        "shape":"IpamPool",
+        "locationName":"item"
+      }
+    },
+    "IpamPoolState":{
+      "type":"string",
+      "enum":[
+        "create-in-progress",
+        "create-complete",
+        "create-failed",
+        "modify-in-progress",
+        "modify-complete",
+        "modify-failed",
+        "delete-in-progress",
+        "delete-complete",
+        "delete-failed"
+      ]
+    },
+    "IpamResourceCidr":{
+      "type":"structure",
+      "members":{
+        "IpamId":{
+          "shape":"IpamId",
+          "locationName":"ipamId"
+        },
+        "IpamScopeId":{
+          "shape":"IpamScopeId",
+          "locationName":"ipamScopeId"
+        },
+        "IpamPoolId":{
+          "shape":"IpamPoolId",
+          "locationName":"ipamPoolId"
+        },
+        "ResourceRegion":{
+          "shape":"String",
+          "locationName":"resourceRegion"
+        },
+        "ResourceOwnerId":{
+          "shape":"String",
+          "locationName":"resourceOwnerId"
+        },
+        "ResourceId":{
+          "shape":"String",
+          "locationName":"resourceId"
+        },
+        "ResourceName":{
+          "shape":"String",
+          "locationName":"resourceName"
+        },
+        "ResourceCidr":{
+          "shape":"String",
+          "locationName":"resourceCidr"
+        },
+        "ResourceType":{
+          "shape":"IpamResourceType",
+          "locationName":"resourceType"
+        },
+        "ResourceTags":{
+          "shape":"IpamResourceTagList",
+          "locationName":"resourceTagSet"
+        },
+        "IpUsage":{
+          "shape":"BoxedDouble",
+          "locationName":"ipUsage"
+        },
+        "ComplianceStatus":{
+          "shape":"IpamComplianceStatus",
+          "locationName":"complianceStatus"
+        },
+        "ManagementState":{
+          "shape":"IpamManagementState",
+          "locationName":"managementState"
+        },
+        "OverlapStatus":{
+          "shape":"IpamOverlapStatus",
+          "locationName":"overlapStatus"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        }
+      }
+    },
+    "IpamResourceCidrSet":{
+      "type":"list",
+      "member":{
+        "shape":"IpamResourceCidr",
+        "locationName":"item"
+      }
+    },
+    "IpamResourceTag":{
+      "type":"structure",
+      "members":{
+        "Key":{
+          "shape":"String",
+          "locationName":"key"
+        },
+        "Value":{
+          "shape":"String",
+          "locationName":"value"
+        }
+      }
+    },
+    "IpamResourceTagList":{
+      "type":"list",
+      "member":{
+        "shape":"IpamResourceTag",
+        "locationName":"item"
+      }
+    },
+    "IpamResourceType":{
+      "type":"string",
+      "enum":[
+        "vpc",
+        "subnet",
+        "eip",
+        "public-ipv4-pool",
+        "ipv6-pool"
+      ]
+    },
+    "IpamScope":{
+      "type":"structure",
+      "members":{
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
+        "IpamScopeId":{
+          "shape":"IpamScopeId",
+          "locationName":"ipamScopeId"
+        },
+        "IpamScopeArn":{
+          "shape":"ResourceArn",
+          "locationName":"ipamScopeArn"
+        },
+        "IpamArn":{
+          "shape":"ResourceArn",
+          "locationName":"ipamArn"
+        },
+        "IpamRegion":{
+          "shape":"String",
+          "locationName":"ipamRegion"
+        },
+        "IpamScopeType":{
+          "shape":"IpamScopeType",
+          "locationName":"ipamScopeType"
+        },
+        "IsDefault":{
+          "shape":"Boolean",
+          "locationName":"isDefault"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "PoolCount":{
+          "shape":"Integer",
+          "locationName":"poolCount"
+        },
+        "State":{
+          "shape":"IpamScopeState",
+          "locationName":"state"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "IpamScopeId":{"type":"string"},
+    "IpamScopeSet":{
+      "type":"list",
+      "member":{
+        "shape":"IpamScope",
+        "locationName":"item"
+      }
+    },
+    "IpamScopeState":{
+      "type":"string",
+      "enum":[
+        "create-in-progress",
+        "create-complete",
+        "create-failed",
+        "modify-in-progress",
+        "modify-complete",
+        "modify-failed",
+        "delete-in-progress",
+        "delete-complete",
+        "delete-failed"
+      ]
+    },
+    "IpamScopeType":{
+      "type":"string",
+      "enum":[
+        "public",
+        "private"
+      ]
+    },
+    "IpamSet":{
+      "type":"list",
+      "member":{
+        "shape":"Ipam",
+        "locationName":"item"
+      }
+    },
+    "IpamState":{
+      "type":"string",
+      "enum":[
+        "create-in-progress",
+        "create-complete",
+        "create-failed",
+        "modify-in-progress",
+        "modify-complete",
+        "modify-failed",
+        "delete-in-progress",
+        "delete-complete",
+        "delete-failed"
+      ]
+    },
     "Ipv4PoolEc2Id":{"type":"string"},
     "Ipv4PrefixList":{
       "type":"list",
@@ -25292,6 +27016,109 @@
         }
       }
     },
+    "ModifyIpamPoolRequest":{
+      "type":"structure",
+      "required":["IpamPoolId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "Description":{"shape":"String"},
+        "AutoImport":{"shape":"Boolean"},
+        "AllocationMinNetmaskLength":{"shape":"IpamNetmaskLength"},
+        "AllocationMaxNetmaskLength":{"shape":"IpamNetmaskLength"},
+        "AllocationDefaultNetmaskLength":{"shape":"IpamNetmaskLength"},
+        "ClearAllocationDefaultNetmaskLength":{"shape":"Boolean"},
+        "AddAllocationResourceTags":{
+          "shape":"RequestIpamResourceTagList",
+          "locationName":"AddAllocationResourceTag"
+        },
+        "RemoveAllocationResourceTags":{
+          "shape":"RequestIpamResourceTagList",
+          "locationName":"RemoveAllocationResourceTag"
+        }
+      }
+    },
+    "ModifyIpamPoolResult":{
+      "type":"structure",
+      "members":{
+        "IpamPool":{
+          "shape":"IpamPool",
+          "locationName":"ipamPool"
+        }
+      }
+    },
+    "ModifyIpamRequest":{
+      "type":"structure",
+      "required":["IpamId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamId":{"shape":"IpamId"},
+        "Description":{"shape":"String"},
+        "AddOperatingRegions":{
+          "shape":"AddIpamOperatingRegionSet",
+          "locationName":"AddOperatingRegion"
+        },
+        "RemoveOperatingRegions":{
+          "shape":"RemoveIpamOperatingRegionSet",
+          "locationName":"RemoveOperatingRegion"
+        }
+      }
+    },
+    "ModifyIpamResourceCidrRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceId",
+        "ResourceCidr",
+        "ResourceRegion",
+        "CurrentIpamScopeId",
+        "Monitored"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "ResourceId":{"shape":"String"},
+        "ResourceCidr":{"shape":"String"},
+        "ResourceRegion":{"shape":"String"},
+        "CurrentIpamScopeId":{"shape":"IpamScopeId"},
+        "DestinationIpamScopeId":{"shape":"IpamScopeId"},
+        "Monitored":{"shape":"Boolean"}
+      }
+    },
+    "ModifyIpamResourceCidrResult":{
+      "type":"structure",
+      "members":{
+        "IpamResourceCidr":{
+          "shape":"IpamResourceCidr",
+          "locationName":"ipamResourceCidr"
+        }
+      }
+    },
+    "ModifyIpamResult":{
+      "type":"structure",
+      "members":{
+        "Ipam":{
+          "shape":"Ipam",
+          "locationName":"ipam"
+        }
+      }
+    },
+    "ModifyIpamScopeRequest":{
+      "type":"structure",
+      "required":["IpamScopeId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamScopeId":{"shape":"IpamScopeId"},
+        "Description":{"shape":"String"}
+      }
+    },
+    "ModifyIpamScopeResult":{
+      "type":"structure",
+      "members":{
+        "IpamScope":{
+          "shape":"IpamScope",
+          "locationName":"ipamScope"
+        }
+      }
+    },
     "ModifyLaunchTemplateRequest":{
       "type":"structure",
       "members":{
@@ -26113,6 +27940,24 @@
         }
       }
     },
+    "MoveByoipCidrToIpamRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Cidr":{"shape":"String"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "IpamPoolOwner":{"shape":"String"}
+      }
+    },
+    "MoveByoipCidrToIpamResult":{
+      "type":"structure",
+      "members":{
+        "ByoipCidr":{
+          "shape":"ByoipCidr",
+          "locationName":"byoipCidr"
+        }
+      }
+    },
     "MoveStatus":{
       "type":"string",
       "enum":[
@@ -26253,6 +28098,7 @@
         "deleted"
       ]
     },
+    "NetmaskLength":{"type":"integer"},
     "NetworkAcl":{
       "type":"structure",
       "members":{
@@ -26448,6 +28294,127 @@
         }
       }
     },
+    "NetworkInsightsAccessScope":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeId":{
+          "shape":"NetworkInsightsAccessScopeId",
+          "locationName":"networkInsightsAccessScopeId"
+        },
+        "NetworkInsightsAccessScopeArn":{
+          "shape":"ResourceArn",
+          "locationName":"networkInsightsAccessScopeArn"
+        },
+        "CreatedDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"createdDate"
+        },
+        "UpdatedDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"updatedDate"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "NetworkInsightsAccessScopeAnalysis":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeAnalysisId":{
+          "shape":"NetworkInsightsAccessScopeAnalysisId",
+          "locationName":"networkInsightsAccessScopeAnalysisId"
+        },
+        "NetworkInsightsAccessScopeAnalysisArn":{
+          "shape":"ResourceArn",
+          "locationName":"networkInsightsAccessScopeAnalysisArn"
+        },
+        "NetworkInsightsAccessScopeId":{
+          "shape":"NetworkInsightsAccessScopeId",
+          "locationName":"networkInsightsAccessScopeId"
+        },
+        "Status":{
+          "shape":"AnalysisStatus",
+          "locationName":"status"
+        },
+        "StatusMessage":{
+          "shape":"String",
+          "locationName":"statusMessage"
+        },
+        "WarningMessage":{
+          "shape":"String",
+          "locationName":"warningMessage"
+        },
+        "StartDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"startDate"
+        },
+        "EndDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"endDate"
+        },
+        "FindingsFound":{
+          "shape":"FindingsFound",
+          "locationName":"findingsFound"
+        },
+        "AnalyzedEniCount":{
+          "shape":"Integer",
+          "locationName":"analyzedEniCount"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "NetworkInsightsAccessScopeAnalysisId":{"type":"string"},
+    "NetworkInsightsAccessScopeAnalysisIdList":{
+      "type":"list",
+      "member":{
+        "shape":"NetworkInsightsAccessScopeAnalysisId",
+        "locationName":"item"
+      }
+    },
+    "NetworkInsightsAccessScopeAnalysisList":{
+      "type":"list",
+      "member":{
+        "shape":"NetworkInsightsAccessScopeAnalysis",
+        "locationName":"item"
+      }
+    },
+    "NetworkInsightsAccessScopeContent":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeId":{
+          "shape":"NetworkInsightsAccessScopeId",
+          "locationName":"networkInsightsAccessScopeId"
+        },
+        "MatchPaths":{
+          "shape":"AccessScopePathList",
+          "locationName":"matchPathSet"
+        },
+        "ExcludePaths":{
+          "shape":"AccessScopePathList",
+          "locationName":"excludePathSet"
+        }
+      }
+    },
+    "NetworkInsightsAccessScopeId":{"type":"string"},
+    "NetworkInsightsAccessScopeIdList":{
+      "type":"list",
+      "member":{
+        "shape":"NetworkInsightsAccessScopeId",
+        "locationName":"item"
+      }
+    },
+    "NetworkInsightsAccessScopeList":{
+      "type":"list",
+      "member":{
+        "shape":"NetworkInsightsAccessScope",
+        "locationName":"item"
+      }
+    },
     "NetworkInsightsAnalysis":{
       "type":"structure",
       "members":{
@@ -26478,6 +28445,10 @@
         "StatusMessage":{
           "shape":"String",
           "locationName":"statusMessage"
+        },
+        "WarningMessage":{
+          "shape":"String",
+          "locationName":"warningMessage"
         },
         "NetworkPathFound":{
           "shape":"Boolean",
@@ -27090,6 +29061,72 @@
         "locationName":"Owner"
       }
     },
+    "PacketHeaderStatement":{
+      "type":"structure",
+      "members":{
+        "SourceAddresses":{
+          "shape":"ValueStringList",
+          "locationName":"sourceAddressSet"
+        },
+        "DestinationAddresses":{
+          "shape":"ValueStringList",
+          "locationName":"destinationAddressSet"
+        },
+        "SourcePorts":{
+          "shape":"ValueStringList",
+          "locationName":"sourcePortSet"
+        },
+        "DestinationPorts":{
+          "shape":"ValueStringList",
+          "locationName":"destinationPortSet"
+        },
+        "SourcePrefixLists":{
+          "shape":"ValueStringList",
+          "locationName":"sourcePrefixListSet"
+        },
+        "DestinationPrefixLists":{
+          "shape":"ValueStringList",
+          "locationName":"destinationPrefixListSet"
+        },
+        "Protocols":{
+          "shape":"ProtocolList",
+          "locationName":"protocolSet"
+        }
+      }
+    },
+    "PacketHeaderStatementRequest":{
+      "type":"structure",
+      "members":{
+        "SourceAddresses":{
+          "shape":"ValueStringList",
+          "locationName":"SourceAddress"
+        },
+        "DestinationAddresses":{
+          "shape":"ValueStringList",
+          "locationName":"DestinationAddress"
+        },
+        "SourcePorts":{
+          "shape":"ValueStringList",
+          "locationName":"SourcePort"
+        },
+        "DestinationPorts":{
+          "shape":"ValueStringList",
+          "locationName":"DestinationPort"
+        },
+        "SourcePrefixLists":{
+          "shape":"ValueStringList",
+          "locationName":"SourcePrefixList"
+        },
+        "DestinationPrefixLists":{
+          "shape":"ValueStringList",
+          "locationName":"DestinationPrefixList"
+        },
+        "Protocols":{
+          "shape":"ProtocolList",
+          "locationName":"Protocol"
+        }
+      }
+    },
     "PartitionLoadFrequency":{
       "type":"string",
       "enum":[
@@ -27109,6 +29146,10 @@
         "AclRule":{
           "shape":"AnalysisAclRule",
           "locationName":"aclRule"
+        },
+        "AttachedTo":{
+          "shape":"AnalysisComponent",
+          "locationName":"attachedTo"
         },
         "Component":{
           "shape":"AnalysisComponent",
@@ -27153,6 +29194,26 @@
       "member":{
         "shape":"PathComponent",
         "locationName":"item"
+      }
+    },
+    "PathStatement":{
+      "type":"structure",
+      "members":{
+        "PacketHeaderStatement":{
+          "shape":"PacketHeaderStatement",
+          "locationName":"packetHeaderStatement"
+        },
+        "ResourceStatement":{
+          "shape":"ResourceStatement",
+          "locationName":"resourceStatement"
+        }
+      }
+    },
+    "PathStatementRequest":{
+      "type":"structure",
+      "members":{
+        "PacketHeaderStatement":{"shape":"PacketHeaderStatementRequest"},
+        "ResourceStatement":{"shape":"ResourceStatementRequest"}
       }
     },
     "PaymentOption":{
@@ -28003,6 +30064,13 @@
         "udp"
       ]
     },
+    "ProtocolList":{
+      "type":"list",
+      "member":{
+        "shape":"Protocol",
+        "locationName":"item"
+      }
+    },
     "ProtocolValue":{
       "type":"string",
       "enum":["gre"]
@@ -28029,6 +30097,52 @@
         "ByoipCidr":{
           "shape":"ByoipCidr",
           "locationName":"byoipCidr"
+        }
+      }
+    },
+    "ProvisionIpamPoolCidrRequest":{
+      "type":"structure",
+      "required":["IpamPoolId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "Cidr":{"shape":"String"},
+        "CidrAuthorizationContext":{"shape":"IpamCidrAuthorizationContext"}
+      }
+    },
+    "ProvisionIpamPoolCidrResult":{
+      "type":"structure",
+      "members":{
+        "IpamPoolCidr":{
+          "shape":"IpamPoolCidr",
+          "locationName":"ipamPoolCidr"
+        }
+      }
+    },
+    "ProvisionPublicIpv4PoolCidrRequest":{
+      "type":"structure",
+      "required":[
+        "IpamPoolId",
+        "PoolId",
+        "NetmaskLength"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "PoolId":{"shape":"Ipv4PoolEc2Id"},
+        "NetmaskLength":{"shape":"Integer"}
+      }
+    },
+    "ProvisionPublicIpv4PoolCidrResult":{
+      "type":"structure",
+      "members":{
+        "PoolId":{
+          "shape":"Ipv4PoolEc2Id",
+          "locationName":"poolId"
+        },
+        "PoolAddressRange":{
+          "shape":"PublicIpv4PoolRange",
+          "locationName":"poolAddressRange"
         }
       }
     },
@@ -28701,6 +30815,40 @@
         }
       }
     },
+    "ReleaseIpamPoolAllocationRequest":{
+      "type":"structure",
+      "required":[
+        "IpamPoolId",
+        "Cidr"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "IpamPoolId":{"shape":"IpamPoolId"},
+        "Cidr":{"shape":"String"},
+        "IpamPoolAllocationId":{"shape":"IpamPoolAllocationId"}
+      }
+    },
+    "ReleaseIpamPoolAllocationResult":{
+      "type":"structure",
+      "members":{
+        "Success":{
+          "shape":"Boolean",
+          "locationName":"success"
+        }
+      }
+    },
+    "RemoveIpamOperatingRegion":{
+      "type":"structure",
+      "members":{
+        "RegionName":{"shape":"String"}
+      }
+    },
+    "RemoveIpamOperatingRegionSet":{
+      "type":"list",
+      "member":{"shape":"RemoveIpamOperatingRegion"},
+      "max":50,
+      "min":0
+    },
     "RemovePrefixListEntries":{
       "type":"list",
       "member":{"shape":"RemovePrefixListEntry"},
@@ -29067,6 +31215,20 @@
       "locationName":"InstanceType",
       "max":100,
       "min":0
+    },
+    "RequestIpamResourceTag":{
+      "type":"structure",
+      "members":{
+        "Key":{"shape":"String"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "RequestIpamResourceTagList":{
+      "type":"list",
+      "member":{
+        "shape":"RequestIpamResourceTag",
+        "locationName":"item"
+      }
     },
     "RequestLaunchTemplateData":{
       "type":"structure",
@@ -29910,6 +32072,32 @@
         "locationName":"item"
       }
     },
+    "ResourceStatement":{
+      "type":"structure",
+      "members":{
+        "Resources":{
+          "shape":"ValueStringList",
+          "locationName":"resourceSet"
+        },
+        "ResourceTypes":{
+          "shape":"ValueStringList",
+          "locationName":"resourceTypeSet"
+        }
+      }
+    },
+    "ResourceStatementRequest":{
+      "type":"structure",
+      "members":{
+        "Resources":{
+          "shape":"ValueStringList",
+          "locationName":"Resource"
+        },
+        "ResourceTypes":{
+          "shape":"ValueStringList",
+          "locationName":"ResourceType"
+        }
+      }
+    },
     "ResourceType":{
       "type":"string",
       "enum":[
@@ -29933,6 +32121,9 @@
         "instance",
         "instance-event-window",
         "internet-gateway",
+        "ipam",
+        "ipam-pool",
+        "ipam-scope",
         "ipv4pool-ec2",
         "ipv6pool-ec2",
         "key-pair",
@@ -29948,6 +32139,8 @@
         "network-interface",
         "network-insights-analysis",
         "network-insights-path",
+        "network-insights-access-scope",
+        "network-insights-access-scope-analysis",
         "placement-group",
         "prefix-list",
         "replace-root-volume-task",
@@ -32663,6 +34856,34 @@
         }
       }
     },
+    "StartNetworkInsightsAccessScopeAnalysisRequest":{
+      "type":"structure",
+      "required":[
+        "NetworkInsightsAccessScopeId",
+        "ClientToken"
+      ],
+      "members":{
+        "NetworkInsightsAccessScopeId":{"shape":"NetworkInsightsAccessScopeId"},
+        "DryRun":{"shape":"Boolean"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartNetworkInsightsAccessScopeAnalysisResult":{
+      "type":"structure",
+      "members":{
+        "NetworkInsightsAccessScopeAnalysis":{
+          "shape":"NetworkInsightsAccessScopeAnalysis",
+          "locationName":"networkInsightsAccessScopeAnalysis"
+        }
+      }
+    },
     "StartNetworkInsightsAnalysisRequest":{
       "type":"structure",
       "required":[
@@ -33454,6 +35675,35 @@
       "type":"list",
       "member":{
         "shape":"ThreadsPerCore",
+        "locationName":"item"
+      }
+    },
+    "ThroughResourcesStatement":{
+      "type":"structure",
+      "members":{
+        "ResourceStatement":{
+          "shape":"ResourceStatement",
+          "locationName":"resourceStatement"
+        }
+      }
+    },
+    "ThroughResourcesStatementList":{
+      "type":"list",
+      "member":{
+        "shape":"ThroughResourcesStatement",
+        "locationName":"item"
+      }
+    },
+    "ThroughResourcesStatementRequest":{
+      "type":"structure",
+      "members":{
+        "ResourceStatement":{"shape":"ResourceStatementRequest"}
+      }
+    },
+    "ThroughResourcesStatementRequestList":{
+      "type":"list",
+      "member":{
+        "shape":"ThroughResourcesStatementRequest",
         "locationName":"item"
       }
     },

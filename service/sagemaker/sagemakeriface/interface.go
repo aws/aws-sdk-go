@@ -164,6 +164,10 @@ type SageMakerAPI interface {
 	CreateImageVersionWithContext(aws.Context, *sagemaker.CreateImageVersionInput, ...request.Option) (*sagemaker.CreateImageVersionOutput, error)
 	CreateImageVersionRequest(*sagemaker.CreateImageVersionInput) (*request.Request, *sagemaker.CreateImageVersionOutput)
 
+	CreateInferenceRecommendationsJob(*sagemaker.CreateInferenceRecommendationsJobInput) (*sagemaker.CreateInferenceRecommendationsJobOutput, error)
+	CreateInferenceRecommendationsJobWithContext(aws.Context, *sagemaker.CreateInferenceRecommendationsJobInput, ...request.Option) (*sagemaker.CreateInferenceRecommendationsJobOutput, error)
+	CreateInferenceRecommendationsJobRequest(*sagemaker.CreateInferenceRecommendationsJobInput) (*request.Request, *sagemaker.CreateInferenceRecommendationsJobOutput)
+
 	CreateLabelingJob(*sagemaker.CreateLabelingJobInput) (*sagemaker.CreateLabelingJobOutput, error)
 	CreateLabelingJobWithContext(aws.Context, *sagemaker.CreateLabelingJobInput, ...request.Option) (*sagemaker.CreateLabelingJobOutput, error)
 	CreateLabelingJobRequest(*sagemaker.CreateLabelingJobInput) (*request.Request, *sagemaker.CreateLabelingJobOutput)
@@ -504,9 +508,17 @@ type SageMakerAPI interface {
 	DescribeImageVersionWithContext(aws.Context, *sagemaker.DescribeImageVersionInput, ...request.Option) (*sagemaker.DescribeImageVersionOutput, error)
 	DescribeImageVersionRequest(*sagemaker.DescribeImageVersionInput) (*request.Request, *sagemaker.DescribeImageVersionOutput)
 
+	DescribeInferenceRecommendationsJob(*sagemaker.DescribeInferenceRecommendationsJobInput) (*sagemaker.DescribeInferenceRecommendationsJobOutput, error)
+	DescribeInferenceRecommendationsJobWithContext(aws.Context, *sagemaker.DescribeInferenceRecommendationsJobInput, ...request.Option) (*sagemaker.DescribeInferenceRecommendationsJobOutput, error)
+	DescribeInferenceRecommendationsJobRequest(*sagemaker.DescribeInferenceRecommendationsJobInput) (*request.Request, *sagemaker.DescribeInferenceRecommendationsJobOutput)
+
 	DescribeLabelingJob(*sagemaker.DescribeLabelingJobInput) (*sagemaker.DescribeLabelingJobOutput, error)
 	DescribeLabelingJobWithContext(aws.Context, *sagemaker.DescribeLabelingJobInput, ...request.Option) (*sagemaker.DescribeLabelingJobOutput, error)
 	DescribeLabelingJobRequest(*sagemaker.DescribeLabelingJobInput) (*request.Request, *sagemaker.DescribeLabelingJobOutput)
+
+	DescribeLineageGroup(*sagemaker.DescribeLineageGroupInput) (*sagemaker.DescribeLineageGroupOutput, error)
+	DescribeLineageGroupWithContext(aws.Context, *sagemaker.DescribeLineageGroupInput, ...request.Option) (*sagemaker.DescribeLineageGroupOutput, error)
+	DescribeLineageGroupRequest(*sagemaker.DescribeLineageGroupInput) (*request.Request, *sagemaker.DescribeLineageGroupOutput)
 
 	DescribeModel(*sagemaker.DescribeModelInput) (*sagemaker.DescribeModelOutput, error)
 	DescribeModelWithContext(aws.Context, *sagemaker.DescribeModelInput, ...request.Option) (*sagemaker.DescribeModelOutput, error)
@@ -615,6 +627,10 @@ type SageMakerAPI interface {
 	GetDeviceFleetReport(*sagemaker.GetDeviceFleetReportInput) (*sagemaker.GetDeviceFleetReportOutput, error)
 	GetDeviceFleetReportWithContext(aws.Context, *sagemaker.GetDeviceFleetReportInput, ...request.Option) (*sagemaker.GetDeviceFleetReportOutput, error)
 	GetDeviceFleetReportRequest(*sagemaker.GetDeviceFleetReportInput) (*request.Request, *sagemaker.GetDeviceFleetReportOutput)
+
+	GetLineageGroupPolicy(*sagemaker.GetLineageGroupPolicyInput) (*sagemaker.GetLineageGroupPolicyOutput, error)
+	GetLineageGroupPolicyWithContext(aws.Context, *sagemaker.GetLineageGroupPolicyInput, ...request.Option) (*sagemaker.GetLineageGroupPolicyOutput, error)
+	GetLineageGroupPolicyRequest(*sagemaker.GetLineageGroupPolicyInput) (*request.Request, *sagemaker.GetLineageGroupPolicyOutput)
 
 	GetModelPackageGroupPolicy(*sagemaker.GetModelPackageGroupPolicyInput) (*sagemaker.GetModelPackageGroupPolicyOutput, error)
 	GetModelPackageGroupPolicyWithContext(aws.Context, *sagemaker.GetModelPackageGroupPolicyInput, ...request.Option) (*sagemaker.GetModelPackageGroupPolicyOutput, error)
@@ -803,6 +819,13 @@ type SageMakerAPI interface {
 	ListImagesPages(*sagemaker.ListImagesInput, func(*sagemaker.ListImagesOutput, bool) bool) error
 	ListImagesPagesWithContext(aws.Context, *sagemaker.ListImagesInput, func(*sagemaker.ListImagesOutput, bool) bool, ...request.Option) error
 
+	ListInferenceRecommendationsJobs(*sagemaker.ListInferenceRecommendationsJobsInput) (*sagemaker.ListInferenceRecommendationsJobsOutput, error)
+	ListInferenceRecommendationsJobsWithContext(aws.Context, *sagemaker.ListInferenceRecommendationsJobsInput, ...request.Option) (*sagemaker.ListInferenceRecommendationsJobsOutput, error)
+	ListInferenceRecommendationsJobsRequest(*sagemaker.ListInferenceRecommendationsJobsInput) (*request.Request, *sagemaker.ListInferenceRecommendationsJobsOutput)
+
+	ListInferenceRecommendationsJobsPages(*sagemaker.ListInferenceRecommendationsJobsInput, func(*sagemaker.ListInferenceRecommendationsJobsOutput, bool) bool) error
+	ListInferenceRecommendationsJobsPagesWithContext(aws.Context, *sagemaker.ListInferenceRecommendationsJobsInput, func(*sagemaker.ListInferenceRecommendationsJobsOutput, bool) bool, ...request.Option) error
+
 	ListLabelingJobs(*sagemaker.ListLabelingJobsInput) (*sagemaker.ListLabelingJobsOutput, error)
 	ListLabelingJobsWithContext(aws.Context, *sagemaker.ListLabelingJobsInput, ...request.Option) (*sagemaker.ListLabelingJobsOutput, error)
 	ListLabelingJobsRequest(*sagemaker.ListLabelingJobsInput) (*request.Request, *sagemaker.ListLabelingJobsOutput)
@@ -817,6 +840,13 @@ type SageMakerAPI interface {
 	ListLabelingJobsForWorkteamPages(*sagemaker.ListLabelingJobsForWorkteamInput, func(*sagemaker.ListLabelingJobsForWorkteamOutput, bool) bool) error
 	ListLabelingJobsForWorkteamPagesWithContext(aws.Context, *sagemaker.ListLabelingJobsForWorkteamInput, func(*sagemaker.ListLabelingJobsForWorkteamOutput, bool) bool, ...request.Option) error
 
+	ListLineageGroups(*sagemaker.ListLineageGroupsInput) (*sagemaker.ListLineageGroupsOutput, error)
+	ListLineageGroupsWithContext(aws.Context, *sagemaker.ListLineageGroupsInput, ...request.Option) (*sagemaker.ListLineageGroupsOutput, error)
+	ListLineageGroupsRequest(*sagemaker.ListLineageGroupsInput) (*request.Request, *sagemaker.ListLineageGroupsOutput)
+
+	ListLineageGroupsPages(*sagemaker.ListLineageGroupsInput, func(*sagemaker.ListLineageGroupsOutput, bool) bool) error
+	ListLineageGroupsPagesWithContext(aws.Context, *sagemaker.ListLineageGroupsInput, func(*sagemaker.ListLineageGroupsOutput, bool) bool, ...request.Option) error
+
 	ListModelBiasJobDefinitions(*sagemaker.ListModelBiasJobDefinitionsInput) (*sagemaker.ListModelBiasJobDefinitionsOutput, error)
 	ListModelBiasJobDefinitionsWithContext(aws.Context, *sagemaker.ListModelBiasJobDefinitionsInput, ...request.Option) (*sagemaker.ListModelBiasJobDefinitionsOutput, error)
 	ListModelBiasJobDefinitionsRequest(*sagemaker.ListModelBiasJobDefinitionsInput) (*request.Request, *sagemaker.ListModelBiasJobDefinitionsOutput)
@@ -830,6 +860,13 @@ type SageMakerAPI interface {
 
 	ListModelExplainabilityJobDefinitionsPages(*sagemaker.ListModelExplainabilityJobDefinitionsInput, func(*sagemaker.ListModelExplainabilityJobDefinitionsOutput, bool) bool) error
 	ListModelExplainabilityJobDefinitionsPagesWithContext(aws.Context, *sagemaker.ListModelExplainabilityJobDefinitionsInput, func(*sagemaker.ListModelExplainabilityJobDefinitionsOutput, bool) bool, ...request.Option) error
+
+	ListModelMetadata(*sagemaker.ListModelMetadataInput) (*sagemaker.ListModelMetadataOutput, error)
+	ListModelMetadataWithContext(aws.Context, *sagemaker.ListModelMetadataInput, ...request.Option) (*sagemaker.ListModelMetadataOutput, error)
+	ListModelMetadataRequest(*sagemaker.ListModelMetadataInput) (*request.Request, *sagemaker.ListModelMetadataOutput)
+
+	ListModelMetadataPages(*sagemaker.ListModelMetadataInput, func(*sagemaker.ListModelMetadataOutput, bool) bool) error
+	ListModelMetadataPagesWithContext(aws.Context, *sagemaker.ListModelMetadataInput, func(*sagemaker.ListModelMetadataOutput, bool) bool, ...request.Option) error
 
 	ListModelPackageGroups(*sagemaker.ListModelPackageGroupsInput) (*sagemaker.ListModelPackageGroupsOutput, error)
 	ListModelPackageGroupsWithContext(aws.Context, *sagemaker.ListModelPackageGroupsInput, ...request.Option) (*sagemaker.ListModelPackageGroupsOutput, error)
@@ -1010,6 +1047,13 @@ type SageMakerAPI interface {
 	PutModelPackageGroupPolicyWithContext(aws.Context, *sagemaker.PutModelPackageGroupPolicyInput, ...request.Option) (*sagemaker.PutModelPackageGroupPolicyOutput, error)
 	PutModelPackageGroupPolicyRequest(*sagemaker.PutModelPackageGroupPolicyInput) (*request.Request, *sagemaker.PutModelPackageGroupPolicyOutput)
 
+	QueryLineage(*sagemaker.QueryLineageInput) (*sagemaker.QueryLineageOutput, error)
+	QueryLineageWithContext(aws.Context, *sagemaker.QueryLineageInput, ...request.Option) (*sagemaker.QueryLineageOutput, error)
+	QueryLineageRequest(*sagemaker.QueryLineageInput) (*request.Request, *sagemaker.QueryLineageOutput)
+
+	QueryLineagePages(*sagemaker.QueryLineageInput, func(*sagemaker.QueryLineageOutput, bool) bool) error
+	QueryLineagePagesWithContext(aws.Context, *sagemaker.QueryLineageInput, func(*sagemaker.QueryLineageOutput, bool) bool, ...request.Option) error
+
 	RegisterDevices(*sagemaker.RegisterDevicesInput) (*sagemaker.RegisterDevicesOutput, error)
 	RegisterDevicesWithContext(aws.Context, *sagemaker.RegisterDevicesInput, ...request.Option) (*sagemaker.RegisterDevicesOutput, error)
 	RegisterDevicesRequest(*sagemaker.RegisterDevicesInput) (*request.Request, *sagemaker.RegisterDevicesOutput)
@@ -1064,6 +1108,10 @@ type SageMakerAPI interface {
 	StopHyperParameterTuningJob(*sagemaker.StopHyperParameterTuningJobInput) (*sagemaker.StopHyperParameterTuningJobOutput, error)
 	StopHyperParameterTuningJobWithContext(aws.Context, *sagemaker.StopHyperParameterTuningJobInput, ...request.Option) (*sagemaker.StopHyperParameterTuningJobOutput, error)
 	StopHyperParameterTuningJobRequest(*sagemaker.StopHyperParameterTuningJobInput) (*request.Request, *sagemaker.StopHyperParameterTuningJobOutput)
+
+	StopInferenceRecommendationsJob(*sagemaker.StopInferenceRecommendationsJobInput) (*sagemaker.StopInferenceRecommendationsJobOutput, error)
+	StopInferenceRecommendationsJobWithContext(aws.Context, *sagemaker.StopInferenceRecommendationsJobInput, ...request.Option) (*sagemaker.StopInferenceRecommendationsJobOutput, error)
+	StopInferenceRecommendationsJobRequest(*sagemaker.StopInferenceRecommendationsJobInput) (*request.Request, *sagemaker.StopInferenceRecommendationsJobOutput)
 
 	StopLabelingJob(*sagemaker.StopLabelingJobInput) (*sagemaker.StopLabelingJobOutput, error)
 	StopLabelingJobWithContext(aws.Context, *sagemaker.StopLabelingJobInput, ...request.Option) (*sagemaker.StopLabelingJobOutput, error)

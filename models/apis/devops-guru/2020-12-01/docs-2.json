@@ -11,10 +11,10 @@
     "DescribeOrganizationHealth": "<p>Returns active insights, predictive insights, and resource hours analyzed in last hour.</p>",
     "DescribeOrganizationOverview": "<p>Returns an overview of your organization's history based on the specified time range. The overview includes the total reactive and proactive insights.</p>",
     "DescribeOrganizationResourceCollectionHealth": "<p>Provides an overview of your system's health. If additional member accounts are part of your organization, you can filter those accounts using the <code>AccountIds</code> field.</p>",
-    "DescribeResourceCollectionHealth": "<p> Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of Amazon Web Services resources collection. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
+    "DescribeResourceCollectionHealth": "<p> Returns the number of open proactive insights, open reactive insights, and the Mean Time to Recover (MTTR) for all closed insights in resource collections in your account. You specify the type of Amazon Web Services resources collection. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
     "DescribeServiceIntegration": "<p> Returns the integration status of services that are integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem for each generated insight. </p>",
     "GetCostEstimation": "<p>Returns an estimate of the monthly cost for DevOps Guru to analyze your Amazon Web Services resources. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html\">Estimate your Amazon DevOps Guru costs</a> and <a href=\"http://aws.amazon.com/devops-guru/pricing/\">Amazon DevOps Guru pricing</a>.</p>",
-    "GetResourceCollection": "<p> Returns lists Amazon Web Services resources that are of the specified resource collection type. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
+    "GetResourceCollection": "<p> Returns lists Amazon Web Services resources that are of the specified resource collection type. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
     "ListAnomaliesForInsight": "<p> Returns a list of the anomalies that belong to an insight that you specify using its ID. </p>",
     "ListEvents": "<p> Returns a list of the events emitted by the resources that are evaluated by DevOps Guru. You can use filters to specify which events are returned. </p>",
     "ListInsights": "<p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned by their start time and status (<code>ONGOING</code>, <code>CLOSED</code>, or <code>ANY</code>). </p>",
@@ -26,7 +26,7 @@
     "SearchInsights": "<p> Returns a list of insights in your Amazon Web Services account. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>",
     "SearchOrganizationInsights": "<p> Returns a list of insights in your organization. You can specify which insights are returned by their start time, one or more statuses (<code>ONGOING</code>, <code>CLOSED</code>, and <code>CLOSED</code>), one or more severities (<code>LOW</code>, <code>MEDIUM</code>, and <code>HIGH</code>), and type (<code>REACTIVE</code> or <code>PROACTIVE</code>). </p> <p> Use the <code>Filters</code> parameter to specify status and severity search parameters. Use the <code>Type</code> parameter to specify <code>REACTIVE</code> or <code>PROACTIVE</code> in your search. </p>",
     "StartCostEstimation": "<p>Starts the creation of an estimate of the monthly cost to analyze your Amazon Web Services resources.</p>",
-    "UpdateResourceCollection": "<p> Updates the collection of resources that DevOps Guru analyzes. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. This method also creates the IAM role required for you to use DevOps Guru. </p>",
+    "UpdateResourceCollection": "<p> Updates the collection of resources that DevOps Guru analyzes. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. This method also creates the IAM role required for you to use DevOps Guru. </p>",
     "UpdateServiceIntegration": "<p> Enables or disables integration with a service that can be integrated with DevOps Guru. The one service that can be integrated with DevOps Guru is Amazon Web Services Systems Manager, which can be used to create an OpsItem for each generated insight. </p>"
   },
   "shapes": {
@@ -71,6 +71,13 @@
       "refs": {
       }
     },
+    "AnomalyDescription": {
+      "base": null,
+      "refs": {
+        "ReactiveAnomaly$Description": "<p>A description of the reactive anomaly.</p>",
+        "ReactiveAnomalySummary$Description": "<p>A description of the reactive anomaly.</p>"
+      }
+    },
     "AnomalyId": {
       "base": null,
       "refs": {
@@ -78,7 +85,10 @@
         "ProactiveAnomaly$Id": "<p> The ID of a proactive anomaly. </p>",
         "ProactiveAnomalySummary$Id": "<p>The ID of the anomaly.</p>",
         "ReactiveAnomaly$Id": "<p>The ID of the reactive anomaly. </p>",
-        "ReactiveAnomalySummary$Id": "<p> The ID of the reactive anomaly. </p>"
+        "ReactiveAnomaly$CausalAnomalyId": "<p>The ID of the causal anomaly that is associated with this reactive anomaly. The ID of a `CAUSAL` anomaly is always `NULL`.</p>",
+        "ReactiveAnomalySummary$Id": "<p> The ID of the reactive anomaly. </p>",
+        "ReactiveAnomalySummary$CausalAnomalyId": "<p>The ID of the causal anomaly that is associated with this reactive anomaly. The ID of a `CAUSAL` anomaly is always `NULL`.</p>",
+        "RecommendationRelatedAnomaly$AnomalyId": "<p>The ID of an anomaly that generated the insight with this recommendation.</p>"
       }
     },
     "AnomalyLimit": {
@@ -88,26 +98,46 @@
         "ProactiveAnomalySummary$Limit": "<p> A threshold that was exceeded by behavior in analyzed resources. Exceeding this threshold is related to the anomalous behavior that generated this anomaly. </p>"
       }
     },
+    "AnomalyName": {
+      "base": null,
+      "refs": {
+        "ReactiveAnomaly$Name": "<p>The name of the reactive anomaly.</p>",
+        "ReactiveAnomalySummary$Name": "<p>The name of the reactive anomaly.</p>"
+      }
+    },
     "AnomalyReportedTimeRange": {
       "base": "<p> A time range that specifies when DevOps Guru opens and then closes an anomaly. This is different from <code>AnomalyTimeRange</code>, which specifies the time range when DevOps Guru actually observes the anomalous behavior. </p>",
       "refs": {
-        "ProactiveAnomaly$AnomalyReportedTimeRange": "<p> A <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>",
-        "ProactiveAnomalySummary$AnomalyReportedTimeRange": "<p> A <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>",
-        "ReactiveAnomaly$AnomalyReportedTimeRange": "<p> A <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>",
-        "ReactiveAnomalySummary$AnomalyReportedTimeRange": "<p> A <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>"
+        "ProactiveAnomaly$AnomalyReportedTimeRange": "<p> An <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>",
+        "ProactiveAnomalySummary$AnomalyReportedTimeRange": "<p> An <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>",
+        "ReactiveAnomaly$AnomalyReportedTimeRange": "<p> An <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>",
+        "ReactiveAnomalySummary$AnomalyReportedTimeRange": "<p> An <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>"
+      }
+    },
+    "AnomalyResource": {
+      "base": "<p>The Amazon Web Services resources in which DevOps Guru detected unusual behavior that resulted in the generation of an anomaly. When DevOps Guru detects multiple related anomalies, it creates and insight with details about the anomalous behavior and suggestions about how to correct the problem.</p>",
+      "refs": {
+        "AnomalyResources$member": null
+      }
+    },
+    "AnomalyResources": {
+      "base": null,
+      "refs": {
+        "ReactiveAnomaly$AnomalyResources": "<p>The Amazon Web Services resources in which anomalous behavior was detected by DevOps Guru.</p>",
+        "ReactiveAnomalySummary$AnomalyResources": "<p>The Amazon Web Services resources in which anomalous behavior was detected by DevOps Guru.</p>"
       }
     },
     "AnomalySeverity": {
       "base": null,
       "refs": {
-        "ProactiveAnomaly$Severity": "<p> The severity of a proactive anomaly. </p>",
-        "ProactiveAnomalySummary$Severity": "<p>The severity of the anomaly.</p>",
-        "ReactiveAnomaly$Severity": "<p>The severity of the anomaly. </p>",
-        "ReactiveAnomalySummary$Severity": "<p> The severity of the reactive anomaly. </p>"
+        "ProactiveAnomaly$Severity": "<p>The severity of the anomaly. The severity of anomalies that generate an insight determine that insight's severity. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>",
+        "ProactiveAnomalySummary$Severity": "<p>The severity of the anomaly. The severity of anomalies that generate an insight determine that insight's severity. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>",
+        "ReactiveAnomaly$Severity": "<p>The severity of the anomaly. The severity of anomalies that generate an insight determine that insight's severity. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>",
+        "ReactiveAnomalySummary$Severity": "<p>The severity of the anomaly. The severity of anomalies that generate an insight determine that insight's severity. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>"
       }
     },
     "AnomalySourceDetails": {
-      "base": "<p> Details about the source of the anomalous operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. </p>",
+      "base": "<p> Details about the source of the anomalous operational data that triggered the anomaly.</p>",
       "refs": {
         "ProactiveAnomaly$SourceDetails": "<p> Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. </p>",
         "ProactiveAnomalySummary$SourceDetails": "<p> Details about the source of the analyzed operational data that triggered the anomaly. The one supported source is Amazon CloudWatch metrics. </p>",
@@ -133,6 +163,30 @@
         "ReactiveAnomalySummary$AnomalyTimeRange": null
       }
     },
+    "AnomalyType": {
+      "base": null,
+      "refs": {
+        "ReactiveAnomaly$Type": "<p>The type of the reactive anomaly. It can be one of the following types.</p> <ul> <li> <p> <code>CAUSAL</code> - the anomaly can cause a new insight.</p> </li> <li> <p> <code>CONTEXTUAL</code> - the anomaly contains additional information about an insight or its causal anomaly.</p> </li> </ul>",
+        "ReactiveAnomalySummary$Type": "<p>The type of the reactive anomaly. It can be one of the following types.</p> <ul> <li> <p> <code>CAUSAL</code> - the anomaly can cause a new insight.</p> </li> <li> <p> <code>CONTEXTUAL</code> - the anomaly contains additional information about an insight or its causal anomaly.</p> </li> </ul>"
+      }
+    },
+    "AppBoundaryKey": {
+      "base": null,
+      "refs": {
+        "TagCollection$AppBoundaryKey": "<p>An Amazon Web Services tag <i>key</i> that is used to identify the Amazon Web Services resources that DevOps Guru analyzes. All Amazon Web Services resources in your account and Region tagged with this <i>key</i> make up your DevOps Guru application and analysis boundary.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>",
+        "TagCollectionFilter$AppBoundaryKey": "<p>An Amazon Web Services tag <i>key</i> that is used to identify the Amazon Web Services resources that DevOps Guru analyzes. All Amazon Web Services resources in your account and Region tagged with this <i>key</i> make up your DevOps Guru application and analysis boundary.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>",
+        "TagCostEstimationResourceCollectionFilter$AppBoundaryKey": "<p>An Amazon Web Services tag <i>key</i> that is used to identify the Amazon Web Services resources that DevOps Guru analyzes. All Amazon Web Services resources in your account and Region tagged with this <i>key</i> make up your DevOps Guru application and analysis boundary.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>",
+        "TagHealth$AppBoundaryKey": "<p>An Amazon Web Services tag <i>key</i> that is used to identify the Amazon Web Services resources that DevOps Guru analyzes. All Amazon Web Services resources in your account and Region tagged with this <i>key</i> make up your DevOps Guru application and analysis boundary.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>",
+        "UpdateTagCollectionFilter$AppBoundaryKey": "<p>An Amazon Web Services tag <i>key</i> that is used to identify the Amazon Web Services resources that DevOps Guru analyzes. All Amazon Web Services resources in your account and Region tagged with this <i>key</i> make up your DevOps Guru application and analysis boundary.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>"
+      }
+    },
+    "AssociatedResourceArns": {
+      "base": null,
+      "refs": {
+        "ProactiveInsightSummary$AssociatedResourceArns": "<p>The Amazon Resource Names (ARNs) of the Amazon Web Services resources that generated this insight.</p>",
+        "ReactiveInsightSummary$AssociatedResourceArns": "<p>The Amazon Resource Names (ARNs) of the Amazon Web Services resources that generated this insight.</p>"
+      }
+    },
     "AwsAccountId": {
       "base": null,
       "refs": {
@@ -145,7 +199,7 @@
         "ListInsightsAccountIdList$member": null,
         "ListRecommendationsRequest$AccountId": "<p>The ID of the Amazon Web Services account. </p>",
         "ProactiveOrganizationInsightSummary$AccountId": "<p>The ID of the Amazon Web Services account.</p>",
-        "ReactiveOrganizationInsightSummary$AccountId": "<p>The ID of the Amazon Web Services account.</p>",
+        "ReactiveOrganizationInsightSummary$AccountId": "<p>The ID of the Amazon Web Services account. </p>",
         "SearchInsightsAccountIdList$member": null
       }
     },
@@ -195,7 +249,7 @@
     "CloudWatchMetricDataStatusCode": {
       "base": null,
       "refs": {
-        "CloudWatchMetricsDataSummary$StatusCode": "<p>This is enum of the status showing whether the metric value pair list has Partial or Complete data or there was an error.</p>"
+        "CloudWatchMetricsDataSummary$StatusCode": "<p>This is an enum of the status showing whether the metric value pair list has partial or complete data, or if there was an error.</p>"
       }
     },
     "CloudWatchMetricsDataSummary": {
@@ -213,11 +267,11 @@
     "CloudWatchMetricsDetails": {
       "base": null,
       "refs": {
-        "AnomalySourceDetails$CloudWatchMetrics": "<p> An array of <code>CloudWatchMetricsDetail</code> object that contains information about the analyzed metrics that displayed anomalous behavior. </p>"
+        "AnomalySourceDetails$CloudWatchMetrics": "<p>An array of <code>CloudWatchMetricsDetail</code> objects that contain information about analyzed CloudWatch metrics that show anomalous behavior. </p>"
       }
     },
     "CloudWatchMetricsDimension": {
-      "base": "<p> The dimension of a Amazon CloudWatch metric that is used when DevOps Guru analyzes the resources in your account for operational problems and anomalous behavior. A dimension is a name/value pair that is part of the identity of a metric. A metric can have up to 10 dimensions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension\">Dimensions</a> in the <i>Amazon CloudWatch User Guide</i>. </p>",
+      "base": "<p> The dimension of am Amazon CloudWatch metric that is used when DevOps Guru analyzes the resources in your account for operational problems and anomalous behavior. A dimension is a name/value pair that is part of the identity of a metric. A metric can have up to 10 dimensions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Dimension\">Dimensions</a> in the <i>Amazon CloudWatch User Guide</i>. </p>",
       "refs": {
         "CloudWatchMetricsDimensions$member": null
       }
@@ -312,6 +366,12 @@
       "base": null,
       "refs": {
         "GetCostEstimationResponse$Status": "<p>The status of creating this cost estimate. If it's still in progress, the status <code>ONGOING</code> is returned. If it is finished, the status <code>COMPLETED</code> is returned.</p>"
+      }
+    },
+    "CostEstimationTagValues": {
+      "base": null,
+      "refs": {
+        "TagCostEstimationResourceCollectionFilter$TagValues": "<p>The values in an Amazon Web Services tag collection.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>"
       }
     },
     "CostEstimationTimeRange": {
@@ -574,7 +634,8 @@
     "InsightHealth": {
       "base": "<p> Information about the number of open reactive and proactive insights that can be used to gauge the health of your system. </p>",
       "refs": {
-        "CloudFormationHealth$Insight": "<p> Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. </p>"
+        "CloudFormationHealth$Insight": "<p> Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services CloudFormation stack, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. </p>",
+        "TagHealth$Insight": "<p>Information about the health of the Amazon Web Services resources in your account that are specified by an Amazon Web Services tag, including the number of open proactive, open reactive insights, and the Mean Time to Recover (MTTR) of closed insights. </p>"
       }
     },
     "InsightId": {
@@ -620,12 +681,12 @@
       "base": null,
       "refs": {
         "InsightSeverities$member": null,
-        "ProactiveInsight$Severity": "<p>The severity of the proactive insight. </p>",
-        "ProactiveInsightSummary$Severity": "<p>The severity of the proactive insight. </p>",
-        "ProactiveOrganizationInsightSummary$Severity": "<p> An array of severity values used to search for insights. </p>",
-        "ReactiveInsight$Severity": "<p> The severity of a reactive insight. </p>",
-        "ReactiveInsightSummary$Severity": "<p> The severity of a reactive insight. </p>",
-        "ReactiveOrganizationInsightSummary$Severity": "<p> An array of severity values used to search for insights. </p>"
+        "ProactiveInsight$Severity": "<p>The severity of the insight. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>",
+        "ProactiveInsightSummary$Severity": "<p>The severity of the insight. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>",
+        "ProactiveOrganizationInsightSummary$Severity": "<p> An array of severity values used to search for insights. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>",
+        "ReactiveInsight$Severity": "<p>The severity of the insight. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>",
+        "ReactiveInsightSummary$Severity": "<p>The severity of the insight. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>",
+        "ReactiveOrganizationInsightSummary$Severity": "<p> An array of severity values used to search for insights. For more information, see <a href=\"https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities\">Understanding insight severities</a> in the <i>Amazon DevOps Guru User Guide</i>.</p>"
       }
     },
     "InsightStatus": {
@@ -904,7 +965,7 @@
     "OrganizationResourceCollectionType": {
       "base": null,
       "refs": {
-        "DescribeOrganizationResourceCollectionHealthRequest$OrganizationResourceCollectionType": "<p> An Amazon Web Services resource collection type. This type specifies how analyzed Amazon Web Services resources are defined. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
+        "DescribeOrganizationResourceCollectionHealthRequest$OrganizationResourceCollectionType": "<p> An Amazon Web Services resource collection type. This type specifies how analyzed Amazon Web Services resources are defined. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
       }
     },
     "OrganizationalUnitId": {
@@ -922,6 +983,153 @@
         "DescribeOrganizationHealthRequest$OrganizationalUnitIds": "<p>The ID of the organizational unit.</p>",
         "DescribeOrganizationOverviewRequest$OrganizationalUnitIds": "<p>The ID of the organizational unit.</p>",
         "DescribeOrganizationResourceCollectionHealthRequest$OrganizationalUnitIds": "<p>The ID of the organizational unit.</p>"
+      }
+    },
+    "PerformanceInsightsMetricDimension": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricDimensions$member": null
+      }
+    },
+    "PerformanceInsightsMetricDimensionGroup": {
+      "base": "<p>A logical grouping of Performance Insights metrics for a related subject area. For example, the <code>db.sql</code> dimension group consists of the following dimensions: <code>db.sql.id</code>, <code>db.sql.db_id</code>, <code>db.sql.statement</code>, and <code>db.sql.tokenized_id</code>.</p> <note> <p>Each response element returns a maximum of 500 bytes. For larger elements, such as SQL statements, only the first 500 bytes are returned.</p> </note> <p>Amazon RDS Performance Insights enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. DB load is measured as average active sessions. Performance Insights provides the data to API consumers as a two-dimensional time-series dataset. The time dimension provides DB load data for each time point in the queried time range. Each time point decomposes overall load in relation to the requested dimensions, measured at that time point. Examples include SQL, Wait event, User, and Host. </p> <ul> <li> <p>To learn more about Performance Insights and Amazon Aurora DB instances, go to the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html\"> Amazon Aurora User Guide</a>. </p> </li> <li> <p>To learn more about Performance Insights and Amazon RDS DB instances, go to the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html\"> Amazon RDS User Guide</a>. </p> </li> </ul>",
+      "refs": {
+        "PerformanceInsightsMetricQuery$GroupBy": "<p>The specification for how to aggregate the data points from a Performance Insights <code>GetResourceMetrics</code> API query. The Performance Insights query returns all of the dimensions within that group, unless you provide the names of specific dimensions within that group. You can also request that Performance Insights return a limited number of values for a dimension.</p>"
+      }
+    },
+    "PerformanceInsightsMetricDimensions": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricDimensionGroup$Dimensions": "<p>A list of specific dimensions from a dimension group. If this parameter is not present, then it signifies that all of the dimensions in the group were requested or are present in the response.</p> <p>Valid values for elements in the <code>Dimensions</code> array are:</p> <ul> <li> <p> <code>db.application.name</code> - The name of the application that is connected to the database (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.host.id</code> - The host ID of the connected client (all engines)</p> </li> <li> <p> <code>db.host.name</code> - The host name of the connected client (all engines)</p> </li> <li> <p> <code>db.name</code> - The name of the database to which the client is connected (only Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS MySQL, and MariaDB)</p> </li> <li> <p> <code>db.session_type.name</code> - The type of the current session (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.sql.id</code> - The SQL ID generated by Performance Insights (all engines)</p> </li> <li> <p> <code>db.sql.db_id</code> - The SQL ID generated by the database (all engines)</p> </li> <li> <p> <code>db.sql.statement</code> - The SQL text that is being executed (all engines)</p> </li> <li> <p> <code>db.sql.tokenized_id</code> </p> </li> <li> <p> <code>db.sql_tokenized.id</code> - The SQL digest ID generated by Performance Insights (all engines)</p> </li> <li> <p> <code>db.sql_tokenized.db_id</code> - SQL digest ID generated by the database (all engines)</p> </li> <li> <p> <code>db.sql_tokenized.statement</code> - The SQL digest text (all engines)</p> </li> <li> <p> <code>db.user.id</code> - The ID of the user logged in to the database (all engines)</p> </li> <li> <p> <code>db.user.name</code> - The name of the user logged in to the database (all engines)</p> </li> <li> <p> <code>db.wait_event.name</code> - The event for which the backend is waiting (all engines)</p> </li> <li> <p> <code>db.wait_event.type</code> - The type of event for which the backend is waiting (all engines)</p> </li> <li> <p> <code>db.wait_event_type.name</code> - The name of the event type for which the backend is waiting (all engines)</p> </li> </ul>"
+      }
+    },
+    "PerformanceInsightsMetricDisplayName": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricsDetail$MetricDisplayName": "<p>The name used for a specific Performance Insights metric.</p>"
+      }
+    },
+    "PerformanceInsightsMetricFilterKey": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricFilterMap$key": null
+      }
+    },
+    "PerformanceInsightsMetricFilterMap": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricQuery$Filter": "<p>One or more filters to apply to a Performance Insights <code>GetResourceMetrics</code> API query. Restrictions:</p> <ul> <li> <p>Any number of filters by the same dimension, as specified in the <code>GroupBy</code> parameter.</p> </li> <li> <p>A single filter for any other dimension in this dimension group.</p> </li> </ul>"
+      }
+    },
+    "PerformanceInsightsMetricFilterValue": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricFilterMap$value": null
+      }
+    },
+    "PerformanceInsightsMetricGroup": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricDimensionGroup$Group": "<p>The name of the dimension group. Its valid values are:</p> <ul> <li> <p> <code>db</code> - The name of the database to which the client is connected (only Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS MySQL, and MariaDB)</p> </li> <li> <p> <code>db.application</code> - The name of the application that is connected to the database (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.host</code> - The host name of the connected client (all engines)</p> </li> <li> <p> <code>db.session_type</code> - The type of the current session (only Aurora PostgreSQL and RDS PostgreSQL)</p> </li> <li> <p> <code>db.sql</code> - The SQL that is currently executing (all engines)</p> </li> <li> <p> <code>db.sql_tokenized</code> - The SQL digest (all engines)</p> </li> <li> <p> <code>db.wait_event</code> - The event for which the database backend is waiting (all engines)</p> </li> <li> <p> <code>db.wait_event_type</code> - The type of event for which the database backend is waiting (all engines)</p> </li> <li> <p> <code>db.user</code> - The user logged in to the database (all engines)</p> </li> </ul>"
+      }
+    },
+    "PerformanceInsightsMetricLimitInteger": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricDimensionGroup$Limit": "<p>The maximum number of items to fetch for this dimension group.</p>"
+      }
+    },
+    "PerformanceInsightsMetricName": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricQuery$Metric": "<p>The name of the meteric used used when querying an Performance Insights <code>GetResourceMetrics</code> API for anomaly metrics.</p> <p>Valid values for <code>Metric</code> are:</p> <ul> <li> <p> <code>db.load.avg</code> - a scaled representation of the number of active sessions for the database engine.</p> </li> <li> <p> <code>db.sampledload.avg</code> - the raw number of active sessions for the database engine.</p> </li> </ul> <p>If the number of active sessions is less than an internal Performance Insights threshold, <code>db.load.avg</code> and <code>db.sampledload.avg</code> are the same value. If the number of active sessions is greater than the internal threshold, Performance Insights samples the active sessions, with <code>db.load.avg</code> showing the scaled values, <code>db.sampledload.avg</code> showing the raw values, and <code>db.sampledload.avg</code> less than <code>db.load.avg</code>. For most use cases, you can query <code>db.load.avg</code> only. </p>"
+      }
+    },
+    "PerformanceInsightsMetricQuery": {
+      "base": "<p>A single query to be processed. Use these parameters to query the Performance Insights <code>GetResourceMetrics</code> API to retrieve the metrics for an anomaly. For more information, see <code> <a href=\"https://docs.aws.amazon.com/performance-insights/latest/APIReference/API_GetResourceMetrics.html\">GetResourceMetrics</a> </code> in the <i>Amazon RDS Performance Insights API Reference</i>.</p> <p>Amazon RDS Performance Insights enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. DB load is measured as average active sessions. Performance Insights provides the data to API consumers as a two-dimensional time-series dataset. The time dimension provides DB load data for each time point in the queried time range. Each time point decomposes overall load in relation to the requested dimensions, measured at that time point. Examples include SQL, Wait event, User, and Host. </p> <ul> <li> <p>To learn more about Performance Insights and Amazon Aurora DB instances, go to the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html\"> Amazon Aurora User Guide</a>. </p> </li> <li> <p>To learn more about Performance Insights and Amazon RDS DB instances, go to the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html\"> Amazon RDS User Guide</a>. </p> </li> </ul>",
+      "refs": {
+        "PerformanceInsightsMetricsDetail$MetricQuery": "<p>A single query to be processed for the metric. For more information, see <code> <a href=\"https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsMetricQuery.html\">PerformanceInsightsMetricQuery</a> </code>.</p>",
+        "PerformanceInsightsReferenceMetric$MetricQuery": "<p>A query to be processed on the metric.</p>"
+      }
+    },
+    "PerformanceInsightsMetricUnit": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricsDetail$Unit": "<p>The unit of measure for a metric. For example, a session or a process.</p>"
+      }
+    },
+    "PerformanceInsightsMetricsDetail": {
+      "base": "<p>Details about Performance Insights metrics.</p> <p>Amazon RDS Performance Insights enables you to monitor and explore different dimensions of database load based on data captured from a running DB instance. DB load is measured as average active sessions. Performance Insights provides the data to API consumers as a two-dimensional time-series dataset. The time dimension provides DB load data for each time point in the queried time range. Each time point decomposes overall load in relation to the requested dimensions, measured at that time point. Examples include SQL, Wait event, User, and Host. </p> <ul> <li> <p>To learn more about Performance Insights and Amazon Aurora DB instances, go to the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html\"> Amazon Aurora User Guide</a>. </p> </li> <li> <p>To learn more about Performance Insights and Amazon RDS DB instances, go to the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html\"> Amazon RDS User Guide</a>. </p> </li> </ul>",
+      "refs": {
+        "PerformanceInsightsMetricsDetails$member": null
+      }
+    },
+    "PerformanceInsightsMetricsDetails": {
+      "base": null,
+      "refs": {
+        "AnomalySourceDetails$PerformanceInsightsMetrics": "<p>An array of <code>PerformanceInsightsMetricsDetail</code> objects that contain information about analyzed Performance Insights metrics that show anomalous behavior.</p>"
+      }
+    },
+    "PerformanceInsightsReferenceComparisonValues": {
+      "base": "<p>Reference scalar values and other metrics that DevOps Guru displays on a graph in its console along with the actual metrics it analyzed. Compare these reference values to your actual metrics to help you understand anomalous behavior that DevOps Guru detected.</p>",
+      "refs": {
+        "PerformanceInsightsReferenceData$ComparisonValues": "<p>The specific reference values used to evaluate the Performance Insights. For more information, see <code> <a href=\"https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceComparisonValues.html\">PerformanceInsightsReferenceComparisonValues</a> </code>. </p>"
+      }
+    },
+    "PerformanceInsightsReferenceData": {
+      "base": "<p>Reference data used to evaluate Performance Insights to determine if its performance is anomalous or not.</p>",
+      "refs": {
+        "PerformanceInsightsReferenceDataList$member": null
+      }
+    },
+    "PerformanceInsightsReferenceDataList": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricsDetail$ReferenceData": "<p> For more information, see <code> <a href=\"https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceData.html\">PerformanceInsightsReferenceData</a> </code>. </p>"
+      }
+    },
+    "PerformanceInsightsReferenceMetric": {
+      "base": "<p>Information about a reference metric used to evaluate Performance Insights.</p>",
+      "refs": {
+        "PerformanceInsightsReferenceComparisonValues$ReferenceMetric": "<p>A metric that DevOps Guru compares to actual metric values. This reference metric is used to determine if an actual metric should be considered anomalous.</p>"
+      }
+    },
+    "PerformanceInsightsReferenceName": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsReferenceData$Name": "<p>The name of the reference data.</p>"
+      }
+    },
+    "PerformanceInsightsReferenceScalar": {
+      "base": "<p>A reference value to compare Performance Insights metrics against to determine if the metrics demonstrate anomalous behavior.</p>",
+      "refs": {
+        "PerformanceInsightsReferenceComparisonValues$ReferenceScalar": "<p>A scalar value DevOps Guru for a metric that DevOps Guru compares to actual metric values. This reference value is used to determine if an actual metric value should be considered anomalous.</p>"
+      }
+    },
+    "PerformanceInsightsStat": {
+      "base": "<p>A statistic in a Performance Insights collection.</p>",
+      "refs": {
+        "PerformanceInsightsStats$member": null
+      }
+    },
+    "PerformanceInsightsStatType": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsStat$Type": "<p>The statistic type.</p>"
+      }
+    },
+    "PerformanceInsightsStats": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsMetricsDetail$StatsAtAnomaly": "<p>The metric statistics during the anomalous period detected by DevOps Guru;</p>",
+        "PerformanceInsightsMetricsDetail$StatsAtBaseline": "<p>Typical metric statistics that are not considered anomalous. When DevOps Guru analyzes metrics, it compares them to <code>StatsAtBaseline</code> to help determine if they are anomalous.</p>"
+      }
+    },
+    "PerformanceInsightsValueDouble": {
+      "base": null,
+      "refs": {
+        "PerformanceInsightsReferenceScalar$Value": "<p>The reference value.</p>",
+        "PerformanceInsightsStat$Value": "<p>The value of the statistic.</p>"
       }
     },
     "PredictionTimeRange": {
@@ -943,7 +1151,7 @@
     "ProactiveAnomaly": {
       "base": "<p>Information about an anomaly. This object is returned by <code>ListAnomalies</code>.</p>",
       "refs": {
-        "DescribeAnomalyResponse$ProactiveAnomaly": "<p> A <code>ReactiveAnomaly</code> object that represents the requested anomaly. </p>"
+        "DescribeAnomalyResponse$ProactiveAnomaly": "<p> A <code>ProactiveAnomaly</code> object that represents the requested anomaly. </p>"
       }
     },
     "ProactiveAnomalySummary": {
@@ -1003,7 +1211,7 @@
     "ReactiveAnomaly": {
       "base": "<p>Details about a reactive anomaly. This object is returned by <code>ListAnomalies</code>.</p>",
       "refs": {
-        "DescribeAnomalyResponse$ReactiveAnomaly": "<p> A <code>ProactiveAnomaly</code> object that represents the requested anomaly. </p>"
+        "DescribeAnomalyResponse$ReactiveAnomaly": "<p> A <code>ReactiveAnomaly</code> object that represents the requested anomaly. </p>"
       }
     },
     "ReactiveAnomalySummary": {
@@ -1101,7 +1309,7 @@
     "RecommendationRelatedAnomalyResourceType": {
       "base": null,
       "refs": {
-        "RecommendationRelatedAnomalyResource$Type": "<p> The type of the resource. </p>"
+        "RecommendationRelatedAnomalyResource$Type": "<p> The type of the resource. Resource types take the same form that is used by Amazon Web Services CloudFormation resource type identifiers, <code>service-provider::service-name::data-type-name</code>. For example, <code>AWS::RDS::DBCluster</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">Amazon Web Services resource and property types reference</a> in the <i>Amazon Web Services CloudFormation User Guide</i>.</p>"
       }
     },
     "RecommendationRelatedAnomalyResources": {
@@ -1204,8 +1412,14 @@
       "refs": {
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "AssociatedResourceArns$member": null
+      }
+    },
     "ResourceCollection": {
-      "base": "<p> A collection of Amazon Web Services resources supported by DevOps Guru. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
+      "base": "<p> A collection of Amazon Web Services resources supported by DevOps Guru. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
       "refs": {
         "Event$ResourceCollection": null,
         "ListEventsFilters$ResourceCollection": null,
@@ -1226,13 +1440,13 @@
     "ResourceCollectionFilter": {
       "base": "<p> Information about a filter used to specify which Amazon Web Services resources are analyzed for anomalous behavior by DevOps Guru. </p>",
       "refs": {
-        "GetResourceCollectionResponse$ResourceCollection": "<p> The requested list of Amazon Web Services resource collections. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
+        "GetResourceCollectionResponse$ResourceCollection": "<p> The requested list of Amazon Web Services resource collections. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
       }
     },
     "ResourceCollectionType": {
       "base": null,
       "refs": {
-        "DescribeResourceCollectionHealthRequest$ResourceCollectionType": "<p> An Amazon Web Services resource collection type. This type specifies how analyzed Amazon Web Services resources are defined. The one type of Amazon Web Services resource collection supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be configured to analyze only the Amazon Web Services resources that are defined in the stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
+        "DescribeResourceCollectionHealthRequest$ResourceCollectionType": "<p> An Amazon Web Services resource collection type. This type specifies how analyzed Amazon Web Services resources are defined. The two types of Amazon Web Services resource collections supported are Amazon Web Services CloudFormation stacks and Amazon Web Services resources that contain the same Amazon Web Services tag. DevOps Guru can be configured to analyze the Amazon Web Services resources that are defined in the stacks or that are tagged using the same tag <i>key</i>. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>",
         "GetResourceCollectionRequest$ResourceCollectionType": "<p> The type of Amazon Web Services resource collections to return. The one valid value is <code>CLOUD_FORMATION</code> for Amazon Web Services CloudFormation stacks. </p>"
       }
     },
@@ -1257,6 +1471,12 @@
         "ResourceNotFoundException$ResourceType": "<p> The type of the Amazon Web Services resource that could not be found. </p>"
       }
     },
+    "ResourceName": {
+      "base": null,
+      "refs": {
+        "AnomalyResource$Name": "<p>The name of the Amazon Web Services resource.</p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>A requested resource could not be found</p>",
       "refs": {
@@ -1265,6 +1485,7 @@
     "ResourceType": {
       "base": null,
       "refs": {
+        "AnomalyResource$Type": "<p>The type of the Amazon Web Services resource.</p>",
         "ServiceResourceCost$Type": "<p>The type of the Amazon Web Services resource.</p>"
       }
     },
@@ -1439,6 +1660,70 @@
         "SearchOrganizationInsightsRequest$StartTimeRange": null
       }
     },
+    "TagCollection": {
+      "base": "<p>A collection of Amazon Web Services stags.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href=\"https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf\">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>",
+      "refs": {
+        "TagCollections$member": null
+      }
+    },
+    "TagCollectionFilter": {
+      "base": "<p>A collection of Amazon Web Services tags used to filter insights. This is used to return insights generated from only resources that contain the tags in the tag collection.</p>",
+      "refs": {
+        "TagCollectionFilters$member": null
+      }
+    },
+    "TagCollectionFilters": {
+      "base": null,
+      "refs": {
+        "ResourceCollectionFilter$Tags": "<p>The Amazon Web Services tags used to filter the resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href=\"https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf\">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>"
+      }
+    },
+    "TagCollections": {
+      "base": null,
+      "refs": {
+        "ResourceCollection$Tags": "<p>The Amazon Web Services tags that are used by resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href=\"https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf\">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>"
+      }
+    },
+    "TagCostEstimationResourceCollectionFilter": {
+      "base": "<p>Information about a collection of Amazon Web Services resources that are identified by an Amazon Web Services tag. This collection of resources is used to create a monthly cost estimate for DevOps Guru to analyze Amazon Web Services resources. The maximum number of tags you can specify for a cost estimate is one. The estimate created is for the cost to analyze the Amazon Web Services resources defined by the tag. For more information, see <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html\">Stacks</a> in the <i>Amazon Web Services CloudFormation User Guide</i>.</p>",
+      "refs": {
+        "TagCostEstimationResourceCollectionFilters$member": null
+      }
+    },
+    "TagCostEstimationResourceCollectionFilters": {
+      "base": null,
+      "refs": {
+        "CostEstimationResourceCollectionFilter$Tags": "<p>The Amazon Web Services tags used to filter the resource collection that is used for a cost estimate.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href=\"https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf\">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>"
+      }
+    },
+    "TagHealth": {
+      "base": "<p> Information about the health of Amazon Web Services resources in your account that are specified by an Amazon Web Services tag <i>key</i>. </p>",
+      "refs": {
+        "TagHealths$member": null
+      }
+    },
+    "TagHealths": {
+      "base": null,
+      "refs": {
+        "DescribeResourceCollectionHealthResponse$Tags": "<p>The Amazon Web Services tags that are used by resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href=\"https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf\">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>"
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "CostEstimationTagValues$member": null,
+        "TagHealth$TagValue": "<p>The value in an Amazon Web Services tag.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>",
+        "TagValues$member": null,
+        "UpdateTagValues$member": null
+      }
+    },
+    "TagValues": {
+      "base": null,
+      "refs": {
+        "TagCollection$TagValues": "<p>The values in an Amazon Web Services tag collection.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>",
+        "TagCollectionFilter$TagValues": "<p>The values in an Amazon Web Services tag collection.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>The request was denied due to a request throttling.</p>",
       "refs": {
@@ -1482,7 +1767,7 @@
     "TimestampMetricValuePairList": {
       "base": null,
       "refs": {
-        "CloudWatchMetricsDataSummary$TimestampMetricValuePairList": "<p>This is a list of cloudwatch metric values at given timestamp.</p>"
+        "CloudWatchMetricsDataSummary$TimestampMetricValuePairList": "<p>This is a list of Amazon CloudWatch metric values at given timestamp.</p>"
       }
     },
     "TopicArn": {
@@ -1494,7 +1779,7 @@
     "UpdateCloudFormationCollectionFilter": {
       "base": "<p> Contains the names of Amazon Web Services CloudFormation stacks used to update a collection of stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks.</p>",
       "refs": {
-        "UpdateResourceCollectionFilter$CloudFormation": "<p> An collection of Amazon Web Services CloudFormation stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
+        "UpdateResourceCollectionFilter$CloudFormation": "<p> A collection of Amazon Web Services CloudFormation stacks. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
       }
     },
     "UpdateResourceCollectionAction": {
@@ -1539,6 +1824,24 @@
       "base": null,
       "refs": {
         "UpdateCloudFormationCollectionFilter$StackNames": "<p> An array of the names of the Amazon Web Services CloudFormation stacks to update. You can specify up to 500 Amazon Web Services CloudFormation stacks. </p>"
+      }
+    },
+    "UpdateTagCollectionFilter": {
+      "base": "<p>A new collection of Amazon Web Services resources that are defined by an Amazon Web Services tag or tag <i>key</i>/<i>value</i> pair.</p>",
+      "refs": {
+        "UpdateTagCollectionFilters$member": null
+      }
+    },
+    "UpdateTagCollectionFilters": {
+      "base": null,
+      "refs": {
+        "UpdateResourceCollectionFilter$Tags": "<p>The updated Amazon Web Services tags used to filter the resources in the resource collection.</p> <p>Tags help you identify and organize your Amazon Web Services resources. Many Amazon Web Services services support tagging, so you can assign the same tag to resources from different services to indicate that the resources are related. For example, you can assign the same tag to an Amazon DynamoDB table resource that you assign to an Lambda function. For more information about using tags, see the <a href=\"https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf\">Tagging best practices</a> whitepaper. </p> <p>Each Amazon Web Services tag has two parts. </p> <ul> <li> <p>A tag <i>key</i> (for example, <code>CostCenter</code>, <code>Environment</code>, <code>Project</code>, or <code>Secret</code>). Tag <i>keys</i> are case-sensitive.</p> </li> <li> <p>An optional field known as a tag <i>value</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive.</p> </li> </ul> <p>Together these are known as <i>key</i>-<i>value</i> pairs.</p> <important> <p>The string used for a <i>key</i> in a tag that you use to define your resource coverage must begin with the prefix <code>Devops-guru-</code>. The tag <i>key</i> might be <code>Devops-guru-deployment-application</code> or <code>Devops-guru-rds-application</code>. While <i>keys</i> are case-sensitive, the case of <i>key</i> characters don't matter to DevOps Guru. For example, DevOps Guru works with a <i>key</i> named <code>devops-guru-rds</code> and a <i>key</i> named <code>DevOps-Guru-RDS</code>. Possible <i>key</i>/<i>value</i> pairs in your application might be <code>Devops-Guru-production-application/RDS</code> or <code>Devops-Guru-production-application/containers</code>.</p> </important>"
+      }
+    },
+    "UpdateTagValues": {
+      "base": null,
+      "refs": {
+        "UpdateTagCollectionFilter$TagValues": "<p>The values in an Amazon Web Services tag collection.</p> <p>The tag's <i>value</i> is an optional field used to associate a string with the tag <i>key</i> (for example, <code>111122223333</code>, <code>Production</code>, or a team name). The <i>key</i> and <i>value</i> are the tag's <i>key</i> pair. Omitting the tag <i>value</i> is the same as using an empty string. Like tag <i>keys</i>, tag <i>values</i> are case-sensitive. You can specify a maximum of 256 characters for a tag value.</p>"
       }
     },
     "UuidNextToken": {

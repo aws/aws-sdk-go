@@ -10451,7 +10451,7 @@ type DescribeRouterConfigurationOutput struct {
 	// The ID assigned to the virtual interface.
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 
-	// The name of the virtual interface assigned by the customer network.
+	// Provides the details about a virtual interface's router.
 	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string"`
 }
 
@@ -12159,6 +12159,9 @@ type NewPrivateVirtualInterface struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
+	// Indicates whether to enable or disable SiteLink.
+	EnableSiteLink *bool `locationName:"enableSiteLink" type:"boolean"`
+
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
@@ -12265,6 +12268,12 @@ func (s *NewPrivateVirtualInterface) SetCustomerAddress(v string) *NewPrivateVir
 // SetDirectConnectGatewayId sets the DirectConnectGatewayId field's value.
 func (s *NewPrivateVirtualInterface) SetDirectConnectGatewayId(v string) *NewPrivateVirtualInterface {
 	s.DirectConnectGatewayId = &v
+	return s
+}
+
+// SetEnableSiteLink sets the EnableSiteLink field's value.
+func (s *NewPrivateVirtualInterface) SetEnableSiteLink(v bool) *NewPrivateVirtualInterface {
+	s.EnableSiteLink = &v
 	return s
 }
 
@@ -12767,6 +12776,9 @@ type NewTransitVirtualInterface struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
+	// Indicates whether to enable or disable SiteLink.
+	EnableSiteLink *bool `locationName:"enableSiteLink" type:"boolean"`
+
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
@@ -12857,6 +12869,12 @@ func (s *NewTransitVirtualInterface) SetCustomerAddress(v string) *NewTransitVir
 // SetDirectConnectGatewayId sets the DirectConnectGatewayId field's value.
 func (s *NewTransitVirtualInterface) SetDirectConnectGatewayId(v string) *NewTransitVirtualInterface {
 	s.DirectConnectGatewayId = &v
+	return s
+}
+
+// SetEnableSiteLink sets the EnableSiteLink field's value.
+func (s *NewTransitVirtualInterface) SetEnableSiteLink(v bool) *NewTransitVirtualInterface {
+	s.EnableSiteLink = &v
 	return s
 }
 
@@ -14282,6 +14300,9 @@ func (s *UpdateLagInput) SetMinimumLinks(v int64) *UpdateLagInput {
 type UpdateVirtualInterfaceAttributesInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether to enable or disable SiteLink.
+	EnableSiteLink *bool `locationName:"enableSiteLink" type:"boolean"`
+
 	// The maximum transmission unit (MTU), in bytes. The supported values are 1500
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
@@ -14290,6 +14311,9 @@ type UpdateVirtualInterfaceAttributesInput struct {
 	//
 	// VirtualInterfaceId is a required field
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string" required:"true"`
+
+	// The name of the virtual private interface.
+	VirtualInterfaceName *string `locationName:"virtualInterfaceName" type:"string"`
 }
 
 // String returns the string representation.
@@ -14323,6 +14347,12 @@ func (s *UpdateVirtualInterfaceAttributesInput) Validate() error {
 	return nil
 }
 
+// SetEnableSiteLink sets the EnableSiteLink field's value.
+func (s *UpdateVirtualInterfaceAttributesInput) SetEnableSiteLink(v bool) *UpdateVirtualInterfaceAttributesInput {
+	s.EnableSiteLink = &v
+	return s
+}
+
 // SetMtu sets the Mtu field's value.
 func (s *UpdateVirtualInterfaceAttributesInput) SetMtu(v int64) *UpdateVirtualInterfaceAttributesInput {
 	s.Mtu = &v
@@ -14332,6 +14362,12 @@ func (s *UpdateVirtualInterfaceAttributesInput) SetMtu(v int64) *UpdateVirtualIn
 // SetVirtualInterfaceId sets the VirtualInterfaceId field's value.
 func (s *UpdateVirtualInterfaceAttributesInput) SetVirtualInterfaceId(v string) *UpdateVirtualInterfaceAttributesInput {
 	s.VirtualInterfaceId = &v
+	return s
+}
+
+// SetVirtualInterfaceName sets the VirtualInterfaceName field's value.
+func (s *UpdateVirtualInterfaceAttributesInput) SetVirtualInterfaceName(v string) *UpdateVirtualInterfaceAttributesInput {
+	s.VirtualInterfaceName = &v
 	return s
 }
 
@@ -14398,6 +14434,9 @@ type UpdateVirtualInterfaceAttributesOutput struct {
 	// The routes to be advertised to the Amazon Web Services network in this Region.
 	// Applies to public virtual interfaces.
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
+
+	// Indicates whether SiteLink is enabled.
+	SiteLinkEnabled *bool `locationName:"siteLinkEnabled" type:"boolean"`
 
 	// The tags associated with the virtual interface.
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
@@ -14578,6 +14617,12 @@ func (s *UpdateVirtualInterfaceAttributesOutput) SetRouteFilterPrefixes(v []*Rou
 	return s
 }
 
+// SetSiteLinkEnabled sets the SiteLinkEnabled field's value.
+func (s *UpdateVirtualInterfaceAttributesOutput) SetSiteLinkEnabled(v bool) *UpdateVirtualInterfaceAttributesOutput {
+	s.SiteLinkEnabled = &v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *UpdateVirtualInterfaceAttributesOutput) SetTags(v []*Tag) *UpdateVirtualInterfaceAttributesOutput {
 	s.Tags = v
@@ -14734,6 +14779,9 @@ type VirtualInterface struct {
 	// The routes to be advertised to the Amazon Web Services network in this Region.
 	// Applies to public virtual interfaces.
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
+
+	// Indicates whether SiteLink is enabled.
+	SiteLinkEnabled *bool `locationName:"siteLinkEnabled" type:"boolean"`
 
 	// The tags associated with the virtual interface.
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
@@ -14911,6 +14959,12 @@ func (s *VirtualInterface) SetRegion(v string) *VirtualInterface {
 // SetRouteFilterPrefixes sets the RouteFilterPrefixes field's value.
 func (s *VirtualInterface) SetRouteFilterPrefixes(v []*RouteFilterPrefix) *VirtualInterface {
 	s.RouteFilterPrefixes = v
+	return s
+}
+
+// SetSiteLinkEnabled sets the SiteLinkEnabled field's value.
+func (s *VirtualInterface) SetSiteLinkEnabled(v bool) *VirtualInterface {
+	s.SiteLinkEnabled = &v
 	return s
 }
 

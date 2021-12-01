@@ -24,7 +24,9 @@
         {"shape":"InternalFailure"},
         {"shape":"ServiceUnavailable"},
         {"shape":"ValidationError"},
-        {"shape":"ModelError"}
+        {"shape":"ModelError"},
+        {"shape":"InternalDependencyException"},
+        {"shape":"ModelNotReadyException"}
       ]
     },
     "InvokeEndpointAsync":{
@@ -76,6 +78,16 @@
       "max":1024,
       "min":1,
       "pattern":"^(https|s3)://([^/]+)/?(.*)$"
+    },
+    "InternalDependencyException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":530},
+      "exception":true,
+      "fault":true,
+      "synthetic":true
     },
     "InternalFailure":{
       "type":"structure",
@@ -231,6 +243,15 @@
       },
       "error":{"httpStatusCode":424},
       "exception":true
+    },
+    "ModelNotReadyException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"}
+      },
+      "error":{"httpStatusCode":429},
+      "exception":true,
+      "synthetic":true
     },
     "RequestTTLSecondsHeader":{
       "type":"integer",

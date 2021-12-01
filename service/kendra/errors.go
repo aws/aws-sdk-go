@@ -20,6 +20,12 @@ const (
 	// "InternalServerException".
 	ErrCodeInternalServerException = "InternalServerException"
 
+	// ErrCodeInvalidRequestException for service response error code
+	// "InvalidRequestException".
+	//
+	// The input to the request is not valid.
+	ErrCodeInvalidRequestException = "InvalidRequestException"
+
 	// ErrCodeResourceAlreadyExistException for service response error code
 	// "ResourceAlreadyExistException".
 	ErrCodeResourceAlreadyExistException = "ResourceAlreadyExistException"
@@ -53,6 +59,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":         newErrorAccessDeniedException,
 	"ConflictException":             newErrorConflictException,
 	"InternalServerException":       newErrorInternalServerException,
+	"InvalidRequestException":       newErrorInvalidRequestException,
 	"ResourceAlreadyExistException": newErrorResourceAlreadyExistException,
 	"ResourceInUseException":        newErrorResourceInUseException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,

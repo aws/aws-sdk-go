@@ -14,6 +14,40 @@
     "uid":"kendra-2019-02-03"
   },
   "operations":{
+    "AssociateEntitiesToExperience":{
+      "name":"AssociateEntitiesToExperience",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateEntitiesToExperienceRequest"},
+      "output":{"shape":"AssociateEntitiesToExperienceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "AssociatePersonasToEntities":{
+      "name":"AssociatePersonasToEntities",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociatePersonasToEntitiesRequest"},
+      "output":{"shape":"AssociatePersonasToEntitiesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "BatchDeleteDocument":{
       "name":"BatchDeleteDocument",
       "http":{
@@ -101,6 +135,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateExperience":{
+      "name":"CreateExperience",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateExperienceRequest"},
+      "output":{"shape":"CreateExperienceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateFaq":{
       "name":"CreateFaq",
       "http":{
@@ -180,6 +232,23 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteDataSourceRequest"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteExperience":{
+      "name":"DeleteExperience",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteExperienceRequest"},
+      "output":{"shape":"DeleteExperienceResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
@@ -285,6 +354,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeExperience":{
+      "name":"DescribeExperience",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeExperienceRequest"},
+      "output":{"shape":"DescribeExperienceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeFaq":{
       "name":"DescribeFaq",
       "http":{
@@ -381,6 +466,38 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DisassociateEntitiesFromExperience":{
+      "name":"DisassociateEntitiesFromExperience",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateEntitiesFromExperienceRequest"},
+      "output":{"shape":"DisassociateEntitiesFromExperienceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DisassociatePersonasFromEntities":{
+      "name":"DisassociatePersonasFromEntities",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociatePersonasFromEntitiesRequest"},
+      "output":{"shape":"DisassociatePersonasFromEntitiesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetQuerySuggestions":{
       "name":"GetQuerySuggestions",
       "http":{
@@ -396,6 +513,21 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetSnapshots":{
+      "name":"GetSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSnapshotsRequest"},
+      "output":{"shape":"GetSnapshotsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -424,6 +556,54 @@
       },
       "input":{"shape":"ListDataSourcesRequest"},
       "output":{"shape":"ListDataSourcesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListEntityPersonas":{
+      "name":"ListEntityPersonas",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListEntityPersonasRequest"},
+      "output":{"shape":"ListEntityPersonasResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListExperienceEntities":{
+      "name":"ListExperienceEntities",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListExperienceEntitiesRequest"},
+      "output":{"shape":"ListExperienceEntitiesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListExperiences":{
+      "name":"ListExperiences",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListExperiencesRequest"},
+      "output":{"shape":"ListExperiencesResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -660,6 +840,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "UpdateExperience":{
+      "name":"UpdateExperience",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateExperienceRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateIndex":{
       "name":"UpdateIndex",
       "http":{
@@ -779,6 +975,56 @@
       "max":1011,
       "min":1
     },
+    "AssociateEntitiesToExperienceFailedEntityList":{
+      "type":"list",
+      "member":{"shape":"FailedEntity"},
+      "max":20,
+      "min":1
+    },
+    "AssociateEntitiesToExperienceRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId",
+        "EntityList"
+      ],
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "IndexId":{"shape":"IndexId"},
+        "EntityList":{"shape":"AssociateEntityList"}
+      }
+    },
+    "AssociateEntitiesToExperienceResponse":{
+      "type":"structure",
+      "members":{
+        "FailedEntityList":{"shape":"AssociateEntitiesToExperienceFailedEntityList"}
+      }
+    },
+    "AssociateEntityList":{
+      "type":"list",
+      "member":{"shape":"EntityConfiguration"},
+      "max":20,
+      "min":1
+    },
+    "AssociatePersonasToEntitiesRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId",
+        "Personas"
+      ],
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "IndexId":{"shape":"IndexId"},
+        "Personas":{"shape":"EntityPersonaConfigurationList"}
+      }
+    },
+    "AssociatePersonasToEntitiesResponse":{
+      "type":"structure",
+      "members":{
+        "FailedEntityList":{"shape":"FailedEntityList"}
+      }
+    },
     "AttributeFilter":{
       "type":"structure",
       "members":{
@@ -892,7 +1138,8 @@
       "members":{
         "IndexId":{"shape":"IndexId"},
         "RoleArn":{"shape":"RoleArn"},
-        "Documents":{"shape":"DocumentList"}
+        "Documents":{"shape":"DocumentList"},
+        "CustomDocumentEnrichmentConfiguration":{"shape":"CustomDocumentEnrichmentConfiguration"}
       }
     },
     "BatchPutDocumentResponse":{
@@ -985,6 +1232,22 @@
       "max":100,
       "min":1,
       "pattern":"^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "ConditionOperator":{
+      "type":"string",
+      "enum":[
+        "GreaterThan",
+        "GreaterThanOrEquals",
+        "LessThan",
+        "LessThanOrEquals",
+        "Equals",
+        "NotEquals",
+        "Contains",
+        "NotContains",
+        "Exists",
+        "NotExists",
+        "BeginsWith"
+      ]
     },
     "ConflictException":{
       "type":"structure",
@@ -1189,6 +1452,14 @@
         "SecretArn":{"shape":"SecretArn"}
       }
     },
+    "ContentSourceConfiguration":{
+      "type":"structure",
+      "members":{
+        "DataSourceIds":{"shape":"DataSourceIdList"},
+        "FaqIds":{"shape":"FaqIdsList"},
+        "DirectPutContent":{"shape":"Boolean"}
+      }
+    },
     "ContentType":{
       "type":"string",
       "enum":[
@@ -1224,7 +1495,8 @@
           "shape":"ClientTokenName",
           "idempotencyToken":true
         },
-        "LanguageCode":{"shape":"LanguageCode"}
+        "LanguageCode":{"shape":"LanguageCode"},
+        "CustomDocumentEnrichmentConfiguration":{"shape":"CustomDocumentEnrichmentConfiguration"}
       }
     },
     "CreateDataSourceResponse":{
@@ -1232,6 +1504,31 @@
       "required":["Id"],
       "members":{
         "Id":{"shape":"DataSourceId"}
+      }
+    },
+    "CreateExperienceRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "IndexId"
+      ],
+      "members":{
+        "Name":{"shape":"ExperienceName"},
+        "IndexId":{"shape":"IndexId"},
+        "RoleArn":{"shape":"RoleArn"},
+        "Configuration":{"shape":"ExperienceConfiguration"},
+        "Description":{"shape":"Description"},
+        "ClientToken":{
+          "shape":"ClientTokenName",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateExperienceResponse":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{"shape":"ExperienceId"}
       }
     },
     "CreateFaqRequest":{
@@ -1345,6 +1642,15 @@
         "Id":{"shape":"ThesaurusId"}
       }
     },
+    "CustomDocumentEnrichmentConfiguration":{
+      "type":"structure",
+      "members":{
+        "InlineConfigurations":{"shape":"InlineCustomDocumentEnrichmentConfigurationList"},
+        "PreExtractionHookConfiguration":{"shape":"HookConfiguration"},
+        "PostExtractionHookConfiguration":{"shape":"HookConfiguration"},
+        "RoleArn":{"shape":"RoleArn"}
+      }
+    },
     "DataSourceConfiguration":{
       "type":"structure",
       "members":{
@@ -1394,6 +1700,12 @@
       "max":100,
       "min":1,
       "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
+    },
+    "DataSourceIdList":{
+      "type":"list",
+      "member":{"shape":"DataSourceId"},
+      "max":100,
+      "min":1
     },
     "DataSourceInclusionsExclusionsStrings":{
       "type":"list",
@@ -1588,6 +1900,22 @@
         "IndexId":{"shape":"IndexId"}
       }
     },
+    "DeleteExperienceRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId"
+      ],
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "IndexId":{"shape":"IndexId"}
+      }
+    },
+    "DeleteExperienceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteFaqRequest":{
       "type":"structure",
       "required":[
@@ -1667,7 +1995,35 @@
         "Schedule":{"shape":"ScanSchedule"},
         "RoleArn":{"shape":"RoleArn"},
         "ErrorMessage":{"shape":"ErrorMessage"},
-        "LanguageCode":{"shape":"LanguageCode"}
+        "LanguageCode":{"shape":"LanguageCode"},
+        "CustomDocumentEnrichmentConfiguration":{"shape":"CustomDocumentEnrichmentConfiguration"}
+      }
+    },
+    "DescribeExperienceRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId"
+      ],
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "IndexId":{"shape":"IndexId"}
+      }
+    },
+    "DescribeExperienceResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "IndexId":{"shape":"IndexId"},
+        "Name":{"shape":"ExperienceName"},
+        "Endpoints":{"shape":"ExperienceEndpoints"},
+        "Configuration":{"shape":"ExperienceConfiguration"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"},
+        "Description":{"shape":"Description"},
+        "Status":{"shape":"ExperienceStatus"},
+        "RoleArn":{"shape":"RoleArn"},
+        "ErrorMessage":{"shape":"ErrorMessage"}
       }
     },
     "DescribeFaqRequest":{
@@ -1831,6 +2187,50 @@
       "min":0,
       "pattern":"^\\P{C}*$"
     },
+    "DisassociateEntitiesFromExperienceRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId",
+        "EntityList"
+      ],
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "IndexId":{"shape":"IndexId"},
+        "EntityList":{"shape":"DisassociateEntityList"}
+      }
+    },
+    "DisassociateEntitiesFromExperienceResponse":{
+      "type":"structure",
+      "members":{
+        "FailedEntityList":{"shape":"FailedEntityList"}
+      }
+    },
+    "DisassociateEntityList":{
+      "type":"list",
+      "member":{"shape":"EntityConfiguration"},
+      "max":40,
+      "min":1
+    },
+    "DisassociatePersonasFromEntitiesRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId",
+        "EntityIds"
+      ],
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "IndexId":{"shape":"IndexId"},
+        "EntityIds":{"shape":"EntityIdsList"}
+      }
+    },
+    "DisassociatePersonasFromEntitiesResponse":{
+      "type":"structure",
+      "members":{
+        "FailedEntityList":{"shape":"FailedEntityList"}
+      }
+    },
     "Document":{
       "type":"structure",
       "required":["Id"],
@@ -1854,6 +2254,18 @@
       "members":{
         "Key":{"shape":"DocumentAttributeKey"},
         "Value":{"shape":"DocumentAttributeValue"}
+      }
+    },
+    "DocumentAttributeCondition":{
+      "type":"structure",
+      "required":[
+        "ConditionDocumentAttributeKey",
+        "Operator"
+      ],
+      "members":{
+        "ConditionDocumentAttributeKey":{"shape":"DocumentAttributeKey"},
+        "Operator":{"shape":"ConditionOperator"},
+        "ConditionOnValue":{"shape":"DocumentAttributeValue"}
       }
     },
     "DocumentAttributeKey":{
@@ -1880,6 +2292,14 @@
       "type":"string",
       "max":2048,
       "min":1
+    },
+    "DocumentAttributeTarget":{
+      "type":"structure",
+      "members":{
+        "TargetDocumentAttributeKey":{"shape":"DocumentAttributeKey"},
+        "TargetDocumentAttributeValueDeletion":{"shape":"Boolean"},
+        "TargetDocumentAttributeValue":{"shape":"DocumentAttributeValue"}
+      }
     },
     "DocumentAttributeValue":{
       "type":"structure",
@@ -2010,6 +2430,73 @@
       "min":1,
       "pattern":"[0-9]+[s]"
     },
+    "Endpoint":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
+    "EndpointType":{
+      "type":"string",
+      "enum":["HOME"]
+    },
+    "EntityConfiguration":{
+      "type":"structure",
+      "required":[
+        "EntityId",
+        "EntityType"
+      ],
+      "members":{
+        "EntityId":{"shape":"EntityId"},
+        "EntityType":{"shape":"EntityType"}
+      }
+    },
+    "EntityDisplayData":{
+      "type":"structure",
+      "members":{
+        "UserName":{"shape":"NameType"},
+        "GroupName":{"shape":"NameType"},
+        "IdentifiedUserName":{"shape":"NameType"},
+        "FirstName":{"shape":"NameType"},
+        "LastName":{"shape":"NameType"}
+      }
+    },
+    "EntityId":{
+      "type":"string",
+      "max":47,
+      "min":1,
+      "pattern":"^([0-9a-f]{10}-|)[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$"
+    },
+    "EntityIdsList":{
+      "type":"list",
+      "member":{"shape":"EntityId"},
+      "max":25,
+      "min":1
+    },
+    "EntityPersonaConfiguration":{
+      "type":"structure",
+      "required":[
+        "EntityId",
+        "Persona"
+      ],
+      "members":{
+        "EntityId":{"shape":"EntityId"},
+        "Persona":{"shape":"Persona"}
+      }
+    },
+    "EntityPersonaConfigurationList":{
+      "type":"list",
+      "member":{"shape":"EntityPersonaConfiguration"},
+      "max":25,
+      "min":1
+    },
+    "EntityType":{
+      "type":"string",
+      "enum":[
+        "USER",
+        "GROUP"
+      ]
+    },
     "ErrorCode":{
       "type":"string",
       "enum":[
@@ -2041,6 +2528,73 @@
       "max":100,
       "min":0
     },
+    "ExperienceConfiguration":{
+      "type":"structure",
+      "members":{
+        "ContentSourceConfiguration":{"shape":"ContentSourceConfiguration"},
+        "UserIdentityConfiguration":{"shape":"UserIdentityConfiguration"}
+      }
+    },
+    "ExperienceEndpoint":{
+      "type":"structure",
+      "members":{
+        "EndpointType":{"shape":"EndpointType"},
+        "Endpoint":{"shape":"Endpoint"}
+      }
+    },
+    "ExperienceEndpoints":{
+      "type":"list",
+      "member":{"shape":"ExperienceEndpoint"},
+      "max":2,
+      "min":1
+    },
+    "ExperienceEntitiesSummary":{
+      "type":"structure",
+      "members":{
+        "EntityId":{"shape":"EntityId"},
+        "EntityType":{"shape":"EntityType"},
+        "DisplayData":{"shape":"EntityDisplayData"}
+      }
+    },
+    "ExperienceEntitiesSummaryList":{
+      "type":"list",
+      "member":{"shape":"ExperienceEntitiesSummary"}
+    },
+    "ExperienceId":{
+      "type":"string",
+      "max":36,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
+    },
+    "ExperienceName":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
+    },
+    "ExperienceStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "FAILED"
+      ]
+    },
+    "ExperiencesSummary":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"ExperienceName"},
+        "Id":{"shape":"ExperienceId"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "Status":{"shape":"ExperienceStatus"},
+        "Endpoints":{"shape":"ExperienceEndpoints"}
+      }
+    },
+    "ExperiencesSummaryList":{
+      "type":"list",
+      "member":{"shape":"ExperiencesSummary"}
+    },
     "Facet":{
       "type":"structure",
       "members":{
@@ -2063,6 +2617,19 @@
       "type":"list",
       "member":{"shape":"FacetResult"}
     },
+    "FailedEntity":{
+      "type":"structure",
+      "members":{
+        "EntityId":{"shape":"EntityId"},
+        "ErrorMessage":{"shape":"ErrorMessage"}
+      }
+    },
+    "FailedEntityList":{
+      "type":"list",
+      "member":{"shape":"FailedEntity"},
+      "max":25,
+      "min":1
+    },
     "FailureReason":{
       "type":"string",
       "max":2048,
@@ -2082,6 +2649,12 @@
       "max":100,
       "min":1,
       "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
+    },
+    "FaqIdsList":{
+      "type":"list",
+      "member":{"shape":"FaqId"},
+      "max":100,
+      "min":1
     },
     "FaqName":{
       "type":"string",
@@ -2145,6 +2718,30 @@
       "members":{
         "QuerySuggestionsId":{"shape":"QuerySuggestionsId"},
         "Suggestions":{"shape":"SuggestionList"}
+      }
+    },
+    "GetSnapshotsRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Interval",
+        "MetricType"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Interval":{"shape":"Interval"},
+        "MetricType":{"shape":"MetricType"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"Integer"}
+      }
+    },
+    "GetSnapshotsResponse":{
+      "type":"structure",
+      "members":{
+        "SnapShotTimeFilter":{"shape":"TimeRange"},
+        "SnapshotsDataHeader":{"shape":"SnapshotsDataHeaderFields"},
+        "SnapshotsData":{"shape":"SnapshotsDataRecords"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "GoogleDriveConfiguration":{
@@ -2245,11 +2842,29 @@
         "THESAURUS_SYNONYM"
       ]
     },
+    "HookConfiguration":{
+      "type":"structure",
+      "required":[
+        "LambdaArn",
+        "S3Bucket"
+      ],
+      "members":{
+        "InvocationCondition":{"shape":"DocumentAttributeCondition"},
+        "LambdaArn":{"shape":"LambdaArn"},
+        "S3Bucket":{"shape":"S3BucketName"}
+      }
+    },
     "Host":{
       "type":"string",
       "max":253,
       "min":1,
       "pattern":"([^\\s]*)"
+    },
+    "IdentityAttributeName":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
     },
     "Importance":{
       "type":"integer",
@@ -2335,6 +2950,20 @@
       "type":"integer",
       "min":0
     },
+    "InlineCustomDocumentEnrichmentConfiguration":{
+      "type":"structure",
+      "members":{
+        "Condition":{"shape":"DocumentAttributeCondition"},
+        "Target":{"shape":"DocumentAttributeTarget"},
+        "DocumentContentDeletion":{"shape":"Boolean"}
+      }
+    },
+    "InlineCustomDocumentEnrichmentConfigurationList":{
+      "type":"list",
+      "member":{"shape":"InlineCustomDocumentEnrichmentConfiguration"},
+      "max":100,
+      "min":0
+    },
     "Integer":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
@@ -2343,6 +2972,24 @@
       },
       "exception":true,
       "fault":true
+    },
+    "Interval":{
+      "type":"string",
+      "enum":[
+        "THIS_MONTH",
+        "THIS_WEEK",
+        "ONE_WEEK_AGO",
+        "TWO_WEEKS_AGO",
+        "ONE_MONTH_AGO",
+        "TWO_MONTHS_AGO"
+      ]
+    },
+    "InvalidRequestException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "Issuer":{
       "type":"string",
@@ -2387,6 +3034,12 @@
       "min":1,
       "sensitive":true
     },
+    "LambdaArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"/arn:aws[a-zA-Z-]*:lambda:[a-z]+-[a-z]+-[0-9]:[0-9]{12}:function:[a-zA-Z0-9-_]+(\\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})?(:[a-zA-Z0-9-_]+)?/"
+    },
     "LanguageCode":{
       "type":"string",
       "max":10,
@@ -2428,6 +3081,61 @@
       "type":"structure",
       "members":{
         "SummaryItems":{"shape":"DataSourceSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListEntityPersonasRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId"
+      ],
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "IndexId":{"shape":"IndexId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsIntegerForListEntityPersonasRequest"}
+      }
+    },
+    "ListEntityPersonasResponse":{
+      "type":"structure",
+      "members":{
+        "SummaryItems":{"shape":"PersonasSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListExperienceEntitiesRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId"
+      ],
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "IndexId":{"shape":"IndexId"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListExperienceEntitiesResponse":{
+      "type":"structure",
+      "members":{
+        "SummaryItems":{"shape":"ExperienceEntitiesSummaryList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListExperiencesRequest":{
+      "type":"structure",
+      "required":["IndexId"],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsIntegerForListExperiencesRequest"}
+      }
+    },
+    "ListExperiencesResponse":{
+      "type":"structure",
+      "members":{
+        "SummaryItems":{"shape":"ExperiencesSummaryList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2552,6 +3260,16 @@
       "max":100,
       "min":1
     },
+    "MaxResultsIntegerForListEntityPersonasRequest":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "MaxResultsIntegerForListExperiencesRequest":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "MaxResultsIntegerForListFaqsRequest":{
       "type":"integer",
       "max":100,
@@ -2609,6 +3327,17 @@
       "max":1000,
       "min":1
     },
+    "MetricType":{
+      "type":"string",
+      "enum":[
+        "QUERIES_BY_COUNT",
+        "QUERIES_BY_ZERO_CLICK_RATE",
+        "QUERIES_BY_ZERO_RESULT_RATE",
+        "DOCS_BY_CLICK_COUNT",
+        "AGG_QUERY_DOC_METRICS",
+        "TREND_QUERY_DOC_METRICS"
+      ]
+    },
     "MetricValue":{
       "type":"string",
       "pattern":"(([1-9][0-9]*)|0)"
@@ -2635,6 +3364,13 @@
         "ENABLED",
         "LEARN_ONLY"
       ]
+    },
+    "NameType":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[\\S\\s]*$",
+      "sensitive":true
     },
     "NextToken":{
       "type":"string",
@@ -2690,6 +3426,26 @@
       "max":12,
       "min":12,
       "pattern":"d-[0-9a-fA-F]{10}"
+    },
+    "Persona":{
+      "type":"string",
+      "enum":[
+        "OWNER",
+        "VIEWER"
+      ]
+    },
+    "PersonasSummary":{
+      "type":"structure",
+      "members":{
+        "EntityId":{"shape":"EntityId"},
+        "Persona":{"shape":"Persona"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"}
+      }
+    },
+    "PersonasSummaryList":{
+      "type":"list",
+      "member":{"shape":"PersonasSummary"}
     },
     "Port":{
       "type":"integer",
@@ -2975,7 +3731,7 @@
     "RoleArn":{
       "type":"string",
       "max":1284,
-      "min":1,
+      "min":0,
       "pattern":"arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}"
     },
     "S3BucketName":{
@@ -3357,6 +4113,18 @@
       "max":3,
       "min":0
     },
+    "SnapshotsDataHeaderFields":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "SnapshotsDataRecord":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "SnapshotsDataRecords":{
+      "type":"list",
+      "member":{"shape":"SnapshotsDataRecord"}
+    },
     "SortOrder":{
       "type":"string",
       "enum":[
@@ -3659,7 +4427,23 @@
         "Description":{"shape":"Description"},
         "Schedule":{"shape":"ScanSchedule"},
         "RoleArn":{"shape":"RoleArn"},
-        "LanguageCode":{"shape":"LanguageCode"}
+        "LanguageCode":{"shape":"LanguageCode"},
+        "CustomDocumentEnrichmentConfiguration":{"shape":"CustomDocumentEnrichmentConfiguration"}
+      }
+    },
+    "UpdateExperienceRequest":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "IndexId"
+      ],
+      "members":{
+        "Id":{"shape":"ExperienceId"},
+        "Name":{"shape":"ExperienceName"},
+        "IndexId":{"shape":"IndexId"},
+        "RoleArn":{"shape":"RoleArn"},
+        "Configuration":{"shape":"ExperienceConfiguration"},
+        "Description":{"shape":"Description"}
       }
     },
     "UpdateIndexRequest":{
@@ -3773,6 +4557,12 @@
       "max":1024,
       "min":1,
       "pattern":"^\\P{C}*$"
+    },
+    "UserIdentityConfiguration":{
+      "type":"structure",
+      "members":{
+        "IdentityAttributeName":{"shape":"IdentityAttributeName"}
+      }
     },
     "UserNameAttributeField":{
       "type":"string",

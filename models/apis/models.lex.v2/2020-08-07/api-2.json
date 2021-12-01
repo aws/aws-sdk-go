@@ -484,6 +484,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeBotRecommendation":{
+      "name":"DescribeBotRecommendation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeBotRecommendationRequest"},
+      "output":{"shape":"DescribeBotRecommendationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeBotVersion":{
       "name":"DescribeBotVersion",
       "http":{
@@ -647,6 +663,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListBotRecommendations":{
+      "name":"ListBotRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListBotRecommendationsRequest"},
+      "output":{"shape":"ListBotRecommendationsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListBotVersions":{
       "name":"ListBotVersions",
       "http":{
@@ -757,6 +789,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListRecommendedIntents":{
+      "name":"ListRecommendedIntents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/intents",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRecommendedIntentsRequest"},
+      "output":{"shape":"ListRecommendedIntentsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ListSlotTypes":{
       "name":"ListSlotTypes",
       "http":{
@@ -803,6 +852,43 @@
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "SearchAssociatedTranscripts":{
+      "name":"SearchAssociatedTranscripts",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/associatedtranscripts",
+        "responseCode":200
+      },
+      "input":{"shape":"SearchAssociatedTranscriptsRequest"},
+      "output":{"shape":"SearchAssociatedTranscriptsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "StartBotRecommendation":{
+      "name":"StartBotRecommendation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/",
+        "responseCode":202
+      },
+      "input":{"shape":"StartBotRecommendationRequest"},
+      "output":{"shape":"StartBotRecommendationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "StartImport":{
@@ -904,6 +990,26 @@
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateBotRecommendation":{
+      "name":"UpdateBotRecommendation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/bots/{botId}/botversions/{botVersion}/botlocales/{localeId}/botrecommendations/{botRecommendationId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateBotRecommendationRequest"},
+      "output":{"shape":"UpdateBotRecommendationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"PreconditionFailedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
@@ -1068,6 +1174,40 @@
       "type":"string",
       "max":1011,
       "min":1
+    },
+    "AssociatedTranscript":{
+      "type":"structure",
+      "members":{
+        "transcript":{"shape":"Transcript"}
+      }
+    },
+    "AssociatedTranscriptFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "values"
+      ],
+      "members":{
+        "name":{"shape":"AssociatedTranscriptFilterName"},
+        "values":{"shape":"FilterValues"}
+      }
+    },
+    "AssociatedTranscriptFilterName":{
+      "type":"string",
+      "enum":[
+        "IntentId",
+        "SlotTypeId"
+      ]
+    },
+    "AssociatedTranscriptFilters":{
+      "type":"list",
+      "member":{"shape":"AssociatedTranscriptFilter"},
+      "max":1,
+      "min":1
+    },
+    "AssociatedTranscriptList":{
+      "type":"list",
+      "member":{"shape":"AssociatedTranscript"}
     },
     "AttachmentTitle":{
       "type":"string",
@@ -1317,7 +1457,8 @@
         "Failed",
         "Deleting",
         "NotBuilt",
-        "Importing"
+        "Importing",
+        "Processing"
       ]
     },
     "BotLocaleSummary":{
@@ -1334,6 +1475,50 @@
     "BotLocaleSummaryList":{
       "type":"list",
       "member":{"shape":"BotLocaleSummary"}
+    },
+    "BotRecommendationResultStatistics":{
+      "type":"structure",
+      "members":{
+        "intents":{"shape":"IntentStatistics"},
+        "slotTypes":{"shape":"SlotTypeStatistics"}
+      }
+    },
+    "BotRecommendationResults":{
+      "type":"structure",
+      "members":{
+        "botLocaleExportUrl":{"shape":"PresignedS3Url"},
+        "associatedTranscriptsUrl":{"shape":"PresignedS3Url"},
+        "statistics":{"shape":"BotRecommendationResultStatistics"}
+      }
+    },
+    "BotRecommendationStatus":{
+      "type":"string",
+      "enum":[
+        "Processing",
+        "Deleting",
+        "Deleted",
+        "Downloading",
+        "Updating",
+        "Available",
+        "Failed"
+      ]
+    },
+    "BotRecommendationSummary":{
+      "type":"structure",
+      "required":[
+        "botRecommendationStatus",
+        "botRecommendationId"
+      ],
+      "members":{
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "BotRecommendationSummaryList":{
+      "type":"list",
+      "member":{"shape":"BotRecommendationSummary"}
     },
     "BotSortAttribute":{
       "type":"string",
@@ -1643,6 +1828,7 @@
         "audioLogSettings":{"shape":"AudioLogSettingsList"}
       }
     },
+    "Count":{"type":"integer"},
     "CreateBotAliasRequest":{
       "type":"structure",
       "required":[
@@ -2048,6 +2234,17 @@
       "required":["childDirected"],
       "members":{
         "childDirected":{"shape":"ChildDirected"}
+      }
+    },
+    "DateRangeFilter":{
+      "type":"structure",
+      "required":[
+        "startDateTime",
+        "endDateTime"
+      ],
+      "members":{
+        "startDateTime":{"shape":"Timestamp"},
+        "endDateTime":{"shape":"Timestamp"}
       }
     },
     "DeleteBotAliasRequest":{
@@ -2472,6 +2669,53 @@
         "botLocaleHistoryEvents":{"shape":"BotLocaleHistoryEventsList"}
       }
     },
+    "DescribeBotRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        }
+      }
+    },
+    "DescribeBotRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"},
+        "failureReasons":{"shape":"FailureReasons"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "transcriptSourceSetting":{"shape":"TranscriptSourceSetting"},
+        "encryptionSetting":{"shape":"EncryptionSetting"},
+        "botRecommendationResults":{"shape":"BotRecommendationResults"}
+      }
+    },
     "DescribeBotRequest":{
       "type":"structure",
       "required":["botId"],
@@ -2780,6 +3024,14 @@
         "Deny"
       ]
     },
+    "EncryptionSetting":{
+      "type":"structure",
+      "members":{
+        "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "botLocaleExportPassword":{"shape":"FilePassword"},
+        "associatedTranscriptsPassword":{"shape":"FilePassword"}
+      }
+    },
     "ExceptionMessage":{"type":"string"},
     "ExportFilter":{
       "type":"structure",
@@ -2861,6 +3113,12 @@
     "FailureReasons":{
       "type":"list",
       "member":{"shape":"FailureReason"}
+    },
+    "FilePassword":{
+      "type":"string",
+      "max":1024,
+      "min":0,
+      "sensitive":true
     },
     "FilterValue":{
       "type":"string",
@@ -3124,6 +3382,12 @@
         "order":{"shape":"SortOrder"}
       }
     },
+    "IntentStatistics":{
+      "type":"structure",
+      "members":{
+        "discoveredIntentCount":{"shape":"Count"}
+      }
+    },
     "IntentSummary":{
       "type":"structure",
       "members":{
@@ -3185,6 +3449,12 @@
       "members":{
         "lambdaARN":{"shape":"LambdaARN"},
         "codeHookInterfaceVersion":{"shape":"CodeHookInterfaceVersion"}
+      }
+    },
+    "LexTranscriptFilter":{
+      "type":"structure",
+      "members":{
+        "dateRangeFilter":{"shape":"DateRangeFilter"}
       }
     },
     "ListAggregatedUtterancesRequest":{
@@ -3276,6 +3546,43 @@
         "botVersion":{"shape":"BotVersion"},
         "nextToken":{"shape":"NextToken"},
         "botLocaleSummaries":{"shape":"BotLocaleSummaryList"}
+      }
+    },
+    "ListBotRecommendationsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListBotRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationSummaries":{"shape":"BotRecommendationSummaryList"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListBotVersionsRequest":{
@@ -3439,6 +3746,50 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "ListRecommendedIntentsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        },
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListRecommendedIntentsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationId":{"shape":"Id"},
+        "summaryList":{"shape":"RecommendedIntentSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListSlotTypesRequest":{
       "type":"structure",
       "required":[
@@ -3557,7 +3908,8 @@
       "type":"string",
       "enum":[
         "Overwrite",
-        "FailOnConflict"
+        "FailOnConflict",
+        "Append"
       ]
     },
     "Message":{
@@ -3602,6 +3954,12 @@
       "min":1,
       "pattern":"^([0-9a-zA-Z][_-]?)+$"
     },
+    "NextIndex":{
+      "type":"integer",
+      "box":true,
+      "max":10000000,
+      "min":0
+    },
     "NextToken":{"type":"string"},
     "NumericalBotVersion":{
       "type":"string",
@@ -3622,6 +3980,17 @@
         "None",
         "DefaultObfuscation"
       ]
+    },
+    "ObjectPrefix":{
+      "type":"string",
+      "min":1,
+      "pattern":"^[\\/]?+[a-zA-Z0-9!_.*'()-]+(\\/[a-zA-Z0-9!_.*'()-]+)*$"
+    },
+    "ObjectPrefixes":{
+      "type":"list",
+      "member":{"shape":"ObjectPrefix"},
+      "max":2,
+      "min":1
     },
     "Operation":{
       "type":"string",
@@ -3651,6 +4020,12 @@
       "member":{"shape":"OutputContext"},
       "max":10,
       "min":0
+    },
+    "PathFormat":{
+      "type":"structure",
+      "members":{
+        "objectPrefixes":{"shape":"ObjectPrefixes"}
+      }
     },
     "PlainTextMessage":{
       "type":"structure",
@@ -3733,6 +4108,18 @@
       "max":5000,
       "min":1
     },
+    "RecommendedIntentSummary":{
+      "type":"structure",
+      "members":{
+        "intentId":{"shape":"Id"},
+        "intentName":{"shape":"Name"},
+        "sampleUtterancesCount":{"shape":"SampleUtterancesCount"}
+      }
+    },
+    "RecommendedIntentSummaryList":{
+      "type":"list",
+      "member":{"shape":"RecommendedIntentSummary"}
+    },
     "RegexPattern":{
       "type":"string",
       "max":300,
@@ -3797,6 +4184,26 @@
         "logPrefix":{"shape":"LogPrefix"}
       }
     },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$"
+    },
+    "S3BucketTranscriptSource":{
+      "type":"structure",
+      "required":[
+        "s3BucketName",
+        "transcriptFormat"
+      ],
+      "members":{
+        "s3BucketName":{"shape":"S3BucketName"},
+        "pathFormat":{"shape":"PathFormat"},
+        "transcriptFormat":{"shape":"TranscriptFormat"},
+        "transcriptFilter":{"shape":"TranscriptFilter"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
     "SSMLMessage":{
       "type":"structure",
       "required":["value"],
@@ -3816,6 +4223,7 @@
         "utterance":{"shape":"Utterance"}
       }
     },
+    "SampleUtterancesCount":{"type":"integer"},
     "SampleUtterancesList":{
       "type":"list",
       "member":{"shape":"SampleUtterance"}
@@ -3826,6 +4234,61 @@
       "members":{
         "value":{"shape":"Value"}
       }
+    },
+    "SearchAssociatedTranscriptsRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId",
+        "filters"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"BotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        },
+        "searchOrder":{"shape":"SearchOrder"},
+        "filters":{"shape":"AssociatedTranscriptFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextIndex":{"shape":"NextIndex"}
+      }
+    },
+    "SearchAssociatedTranscriptsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationId":{"shape":"Id"},
+        "nextIndex":{"shape":"NextIndex"},
+        "associatedTranscripts":{"shape":"AssociatedTranscriptList"},
+        "totalResults":{"shape":"MaxResults"}
+      }
+    },
+    "SearchOrder":{
+      "type":"string",
+      "enum":[
+        "Ascending",
+        "Descending"
+      ]
     },
     "SentimentAnalysisSettings":{
       "type":"structure",
@@ -4020,6 +4483,12 @@
         "order":{"shape":"SortOrder"}
       }
     },
+    "SlotTypeStatistics":{
+      "type":"structure",
+      "members":{
+        "discoveredSlotTypeCount":{"shape":"Count"}
+      }
+    },
     "SlotTypeSummary":{
       "type":"structure",
       "members":{
@@ -4086,6 +4555,47 @@
         "Ascending",
         "Descending"
       ]
+    },
+    "StartBotRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "transcriptSourceSetting"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "transcriptSourceSetting":{"shape":"TranscriptSourceSetting"},
+        "encryptionSetting":{"shape":"EncryptionSetting"}
+      }
+    },
+    "StartBotRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "transcriptSourceSetting":{"shape":"TranscriptSourceSetting"},
+        "encryptionSetting":{"shape":"EncryptionSetting"}
+      }
     },
     "StartImportRequest":{
       "type":"structure",
@@ -4235,6 +4745,28 @@
       "min":1
     },
     "Timestamp":{"type":"timestamp"},
+    "Transcript":{
+      "type":"string",
+      "max":6000000,
+      "min":1,
+      "pattern":".*"
+    },
+    "TranscriptFilter":{
+      "type":"structure",
+      "members":{
+        "lexTranscriptFilter":{"shape":"LexTranscriptFilter"}
+      }
+    },
+    "TranscriptFormat":{
+      "type":"string",
+      "enum":["Lex"]
+    },
+    "TranscriptSourceSetting":{
+      "type":"structure",
+      "members":{
+        "s3BucketTranscriptSource":{"shape":"S3BucketTranscriptSource"}
+      }
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -4344,6 +4876,53 @@
         "failureReasons":{"shape":"FailureReasons"},
         "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateBotRecommendationRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId",
+        "botRecommendationId",
+        "encryptionSetting"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botVersion":{
+          "shape":"DraftBotVersion",
+          "location":"uri",
+          "locationName":"botVersion"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"uri",
+          "locationName":"localeId"
+        },
+        "botRecommendationId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botRecommendationId"
+        },
+        "encryptionSetting":{"shape":"EncryptionSetting"}
+      }
+    },
+    "UpdateBotRecommendationResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "botRecommendationStatus":{"shape":"BotRecommendationStatus"},
+        "botRecommendationId":{"shape":"Id"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "transcriptSourceSetting":{"shape":"TranscriptSourceSetting"},
+        "encryptionSetting":{"shape":"EncryptionSetting"}
       }
     },
     "UpdateBotRequest":{

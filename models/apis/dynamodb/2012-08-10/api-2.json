@@ -1436,7 +1436,8 @@
         "RegionName":{"shape":"RegionName"},
         "KMSMasterKeyId":{"shape":"KMSMasterKeyId"},
         "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"},
-        "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexList"}
+        "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexList"},
+        "TableClassOverride":{"shape":"TableClass"}
       }
     },
     "CreateTableInput":{
@@ -1456,7 +1457,8 @@
         "ProvisionedThroughput":{"shape":"ProvisionedThroughput"},
         "StreamSpecification":{"shape":"StreamSpecification"},
         "SSESpecification":{"shape":"SSESpecification"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "TableClass":{"shape":"TableClass"}
       }
     },
     "CreateTableOutput":{
@@ -2761,7 +2763,8 @@
         "KMSMasterKeyId":{"shape":"KMSMasterKeyId"},
         "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"},
         "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexDescriptionList"},
-        "ReplicaInaccessibleDateTime":{"shape":"Date"}
+        "ReplicaInaccessibleDateTime":{"shape":"Date"},
+        "ReplicaTableClassSummary":{"shape":"TableClassSummary"}
       }
     },
     "ReplicaDescriptionList":{
@@ -2869,7 +2872,8 @@
         "ReplicaProvisionedReadCapacityAutoScalingSettings":{"shape":"AutoScalingSettingsDescription"},
         "ReplicaProvisionedWriteCapacityUnits":{"shape":"NonNegativeLongObject"},
         "ReplicaProvisionedWriteCapacityAutoScalingSettings":{"shape":"AutoScalingSettingsDescription"},
-        "ReplicaGlobalSecondaryIndexSettings":{"shape":"ReplicaGlobalSecondaryIndexSettingsDescriptionList"}
+        "ReplicaGlobalSecondaryIndexSettings":{"shape":"ReplicaGlobalSecondaryIndexSettingsDescriptionList"},
+        "ReplicaTableClassSummary":{"shape":"TableClassSummary"}
       }
     },
     "ReplicaSettingsDescriptionList":{
@@ -2883,7 +2887,8 @@
         "RegionName":{"shape":"RegionName"},
         "ReplicaProvisionedReadCapacityUnits":{"shape":"PositiveLongObject"},
         "ReplicaProvisionedReadCapacityAutoScalingSettingsUpdate":{"shape":"AutoScalingSettingsUpdate"},
-        "ReplicaGlobalSecondaryIndexSettingsUpdate":{"shape":"ReplicaGlobalSecondaryIndexSettingsUpdateList"}
+        "ReplicaGlobalSecondaryIndexSettingsUpdate":{"shape":"ReplicaGlobalSecondaryIndexSettingsUpdateList"},
+        "ReplicaTableClass":{"shape":"TableClass"}
       }
     },
     "ReplicaSettingsUpdateList":{
@@ -3236,6 +3241,20 @@
         "Replicas":{"shape":"ReplicaAutoScalingDescriptionList"}
       }
     },
+    "TableClass":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "STANDARD_INFREQUENT_ACCESS"
+      ]
+    },
+    "TableClassSummary":{
+      "type":"structure",
+      "members":{
+        "TableClass":{"shape":"TableClass"},
+        "LastUpdateDateTime":{"shape":"Date"}
+      }
+    },
     "TableCreationDateTime":{"type":"timestamp"},
     "TableDescription":{
       "type":"structure",
@@ -3260,7 +3279,8 @@
         "Replicas":{"shape":"ReplicaDescriptionList"},
         "RestoreSummary":{"shape":"RestoreSummary"},
         "SSEDescription":{"shape":"SSEDescription"},
-        "ArchivalSummary":{"shape":"ArchivalSummary"}
+        "ArchivalSummary":{"shape":"ArchivalSummary"},
+        "TableClassSummary":{"shape":"TableClassSummary"}
       }
     },
     "TableId":{
@@ -3612,7 +3632,8 @@
         "RegionName":{"shape":"RegionName"},
         "KMSMasterKeyId":{"shape":"KMSMasterKeyId"},
         "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"},
-        "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexList"}
+        "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexList"},
+        "TableClassOverride":{"shape":"TableClass"}
       }
     },
     "UpdateTableInput":{
@@ -3626,7 +3647,8 @@
         "GlobalSecondaryIndexUpdates":{"shape":"GlobalSecondaryIndexUpdateList"},
         "StreamSpecification":{"shape":"StreamSpecification"},
         "SSESpecification":{"shape":"SSESpecification"},
-        "ReplicaUpdates":{"shape":"ReplicationGroupUpdateList"}
+        "ReplicaUpdates":{"shape":"ReplicationGroupUpdateList"},
+        "TableClass":{"shape":"TableClass"}
       }
     },
     "UpdateTableOutput":{

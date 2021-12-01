@@ -13,6 +13,189 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAssociateEntitiesToExperience = "AssociateEntitiesToExperience"
+
+// AssociateEntitiesToExperienceRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateEntitiesToExperience operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateEntitiesToExperience for more information on using the AssociateEntitiesToExperience
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateEntitiesToExperienceRequest method.
+//    req, resp := client.AssociateEntitiesToExperienceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/AssociateEntitiesToExperience
+func (c *Kendra) AssociateEntitiesToExperienceRequest(input *AssociateEntitiesToExperienceInput) (req *request.Request, output *AssociateEntitiesToExperienceOutput) {
+	op := &request.Operation{
+		Name:       opAssociateEntitiesToExperience,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateEntitiesToExperienceInput{}
+	}
+
+	output = &AssociateEntitiesToExperienceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateEntitiesToExperience API operation for AWSKendraFrontendService.
+//
+// Grants users or groups in your Amazon Web Services SSO identity source access
+// to your Amazon Kendra experience. You can create an Amazon Kendra experience
+// such as a search application. For more information on creating a search application
+// experience, see Building a search experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation AssociateEntitiesToExperience for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ResourceAlreadyExistException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/AssociateEntitiesToExperience
+func (c *Kendra) AssociateEntitiesToExperience(input *AssociateEntitiesToExperienceInput) (*AssociateEntitiesToExperienceOutput, error) {
+	req, out := c.AssociateEntitiesToExperienceRequest(input)
+	return out, req.Send()
+}
+
+// AssociateEntitiesToExperienceWithContext is the same as AssociateEntitiesToExperience with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateEntitiesToExperience for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) AssociateEntitiesToExperienceWithContext(ctx aws.Context, input *AssociateEntitiesToExperienceInput, opts ...request.Option) (*AssociateEntitiesToExperienceOutput, error) {
+	req, out := c.AssociateEntitiesToExperienceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociatePersonasToEntities = "AssociatePersonasToEntities"
+
+// AssociatePersonasToEntitiesRequest generates a "aws/request.Request" representing the
+// client's request for the AssociatePersonasToEntities operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociatePersonasToEntities for more information on using the AssociatePersonasToEntities
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociatePersonasToEntitiesRequest method.
+//    req, resp := client.AssociatePersonasToEntitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/AssociatePersonasToEntities
+func (c *Kendra) AssociatePersonasToEntitiesRequest(input *AssociatePersonasToEntitiesInput) (req *request.Request, output *AssociatePersonasToEntitiesOutput) {
+	op := &request.Operation{
+		Name:       opAssociatePersonasToEntities,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociatePersonasToEntitiesInput{}
+	}
+
+	output = &AssociatePersonasToEntitiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociatePersonasToEntities API operation for AWSKendraFrontendService.
+//
+// Defines the specific permissions of users or groups in your Amazon Web Services
+// SSO identity source with access to your Amazon Kendra experience. You can
+// create an Amazon Kendra experience such as a search application. For more
+// information on creating a search application experience, see Building a search
+// experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation AssociatePersonasToEntities for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ResourceAlreadyExistException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/AssociatePersonasToEntities
+func (c *Kendra) AssociatePersonasToEntities(input *AssociatePersonasToEntitiesInput) (*AssociatePersonasToEntitiesOutput, error) {
+	req, out := c.AssociatePersonasToEntitiesRequest(input)
+	return out, req.Send()
+}
+
+// AssociatePersonasToEntitiesWithContext is the same as AssociatePersonasToEntities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociatePersonasToEntities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) AssociatePersonasToEntitiesWithContext(ctx aws.Context, input *AssociatePersonasToEntitiesInput, opts ...request.Option) (*AssociatePersonasToEntitiesOutput, error) {
+	req, out := c.AssociatePersonasToEntitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchDeleteDocument = "BatchDeleteDocument"
 
 // BatchDeleteDocumentRequest generates a "aws/request.Request" representing the
@@ -359,6 +542,9 @@ func (c *Kendra) ClearQuerySuggestionsRequest(input *ClearQuerySuggestionsInput)
 // If you do not see any new suggestions, then please allow Amazon Kendra to
 // collect enough queries to learn new suggestions.
 //
+// ClearQuerySuggestions is currently not supported in the Amazon Web Services
+// GovCloud (US-West) region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -453,6 +639,10 @@ func (c *Kendra) CreateDataSourceRequest(input *CreateDataSourceInput) (req *req
 // CreateDataSource is a synchronous operation. The operation returns 200 if
 // the data source was successfully created. Otherwise, an exception is raised.
 //
+// Amazon S3 and custom (https://docs.aws.amazon.com/kendra/latest/dg/data-source-custom.html)
+// data sources are the only supported data sources in the Amazon Web Services
+// GovCloud (US-West) region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -494,6 +684,98 @@ func (c *Kendra) CreateDataSource(input *CreateDataSourceInput) (*CreateDataSour
 // for more information on using Contexts.
 func (c *Kendra) CreateDataSourceWithContext(ctx aws.Context, input *CreateDataSourceInput, opts ...request.Option) (*CreateDataSourceOutput, error) {
 	req, out := c.CreateDataSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateExperience = "CreateExperience"
+
+// CreateExperienceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateExperience operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateExperience for more information on using the CreateExperience
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateExperienceRequest method.
+//    req, resp := client.CreateExperienceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateExperience
+func (c *Kendra) CreateExperienceRequest(input *CreateExperienceInput) (req *request.Request, output *CreateExperienceOutput) {
+	op := &request.Operation{
+		Name:       opCreateExperience,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateExperienceInput{}
+	}
+
+	output = &CreateExperienceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateExperience API operation for AWSKendraFrontendService.
+//
+// Creates an Amazon Kendra experience such as a search application. For more
+// information on creating a search application experience, see Building a search
+// experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation CreateExperience for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ServiceQuotaExceededException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateExperience
+func (c *Kendra) CreateExperience(input *CreateExperienceInput) (*CreateExperienceOutput, error) {
+	req, out := c.CreateExperienceRequest(input)
+	return out, req.Send()
+}
+
+// CreateExperienceWithContext is the same as CreateExperience with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateExperience for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) CreateExperienceWithContext(ctx aws.Context, input *CreateExperienceInput, opts ...request.Option) (*CreateExperienceOutput, error) {
+	req, out := c.CreateExperienceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -741,6 +1023,9 @@ func (c *Kendra) CreateQuerySuggestionsBlockListRequest(input *CreateQuerySugges
 // For information on the current quota limits for block lists, see Quotas for
 // Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
 //
+// CreateQuerySuggestionsBlockList is currently not supported in the Amazon
+// Web Services GovCloud (US-West) region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -963,6 +1248,97 @@ func (c *Kendra) DeleteDataSource(input *DeleteDataSourceInput) (*DeleteDataSour
 // for more information on using Contexts.
 func (c *Kendra) DeleteDataSourceWithContext(ctx aws.Context, input *DeleteDataSourceInput, opts ...request.Option) (*DeleteDataSourceOutput, error) {
 	req, out := c.DeleteDataSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteExperience = "DeleteExperience"
+
+// DeleteExperienceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteExperience operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteExperience for more information on using the DeleteExperience
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteExperienceRequest method.
+//    req, resp := client.DeleteExperienceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteExperience
+func (c *Kendra) DeleteExperienceRequest(input *DeleteExperienceInput) (req *request.Request, output *DeleteExperienceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteExperience,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteExperienceInput{}
+	}
+
+	output = &DeleteExperienceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteExperience API operation for AWSKendraFrontendService.
+//
+// Deletes your Amazon Kendra experience such as a search application. For more
+// information on creating a search application experience, see Building a search
+// experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DeleteExperience for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteExperience
+func (c *Kendra) DeleteExperience(input *DeleteExperienceInput) (*DeleteExperienceOutput, error) {
+	req, out := c.DeleteExperienceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteExperienceWithContext is the same as DeleteExperience with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteExperience for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DeleteExperienceWithContext(ctx aws.Context, input *DeleteExperienceInput, opts ...request.Option) (*DeleteExperienceOutput, error) {
+	req, out := c.DeleteExperienceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1206,6 +1582,9 @@ func (c *Kendra) DeletePrincipalMappingRequest(input *DeletePrincipalMappingInpu
 // group when calling PutPrincipalMapping. You can update your internal list
 // of users or sub groups and input this list when calling PutPrincipalMapping.
 //
+// DeletePrincipalMapping is currently not supported in the Amazon Web Services
+// GovCloud (US-West) region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1298,6 +1677,9 @@ func (c *Kendra) DeleteQuerySuggestionsBlockListRequest(input *DeleteQuerySugges
 // A deleted block list might not take effect right away. Amazon Kendra needs
 // to refresh the entire suggestions list to add back the queries that were
 // previously blocked.
+//
+// DeleteQuerySuggestionsBlockList is currently not supported in the Amazon
+// Web Services GovCloud (US-West) region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1511,6 +1893,94 @@ func (c *Kendra) DescribeDataSource(input *DescribeDataSourceInput) (*DescribeDa
 // for more information on using Contexts.
 func (c *Kendra) DescribeDataSourceWithContext(ctx aws.Context, input *DescribeDataSourceInput, opts ...request.Option) (*DescribeDataSourceOutput, error) {
 	req, out := c.DescribeDataSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeExperience = "DescribeExperience"
+
+// DescribeExperienceRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeExperience operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeExperience for more information on using the DescribeExperience
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeExperienceRequest method.
+//    req, resp := client.DescribeExperienceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeExperience
+func (c *Kendra) DescribeExperienceRequest(input *DescribeExperienceInput) (req *request.Request, output *DescribeExperienceOutput) {
+	op := &request.Operation{
+		Name:       opDescribeExperience,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeExperienceInput{}
+	}
+
+	output = &DescribeExperienceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeExperience API operation for AWSKendraFrontendService.
+//
+// Gets information about your Amazon Kendra experience such as a search application.
+// For more information on creating a search application experience, see Building
+// a search experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DescribeExperience for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeExperience
+func (c *Kendra) DescribeExperience(input *DescribeExperienceInput) (*DescribeExperienceOutput, error) {
+	req, out := c.DescribeExperienceRequest(input)
+	return out, req.Send()
+}
+
+// DescribeExperienceWithContext is the same as DescribeExperience with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeExperience for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DescribeExperienceWithContext(ctx aws.Context, input *DescribeExperienceInput, opts ...request.Option) (*DescribeExperienceOutput, error) {
+	req, out := c.DescribeExperienceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1739,6 +2209,9 @@ func (c *Kendra) DescribePrincipalMappingRequest(input *DescribePrincipalMapping
 // after other actions, and useful error messages if an action could not be
 // processed.
 //
+// DescribePrincipalMapping is currently not supported in the Amazon Web Services
+// GovCloud (US-West) region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1827,6 +2300,9 @@ func (c *Kendra) DescribeQuerySuggestionsBlockListRequest(input *DescribeQuerySu
 //
 // This is used to check the current settings that are applied to a block list.
 //
+// DescribeQuerySuggestionsBlockList is currently not supported in the Amazon
+// Web Services GovCloud (US-West) region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1914,6 +2390,9 @@ func (c *Kendra) DescribeQuerySuggestionsConfigRequest(input *DescribeQuerySugge
 // Describes the settings of query suggestions for an index.
 //
 // This is used to check the current settings applied to query suggestions.
+//
+// DescribeQuerySuggestionsConfig is currently not supported in the Amazon Web
+// Services GovCloud (US-West) region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2041,6 +2520,186 @@ func (c *Kendra) DescribeThesaurusWithContext(ctx aws.Context, input *DescribeTh
 	return out, req.Send()
 }
 
+const opDisassociateEntitiesFromExperience = "DisassociateEntitiesFromExperience"
+
+// DisassociateEntitiesFromExperienceRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateEntitiesFromExperience operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateEntitiesFromExperience for more information on using the DisassociateEntitiesFromExperience
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateEntitiesFromExperienceRequest method.
+//    req, resp := client.DisassociateEntitiesFromExperienceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DisassociateEntitiesFromExperience
+func (c *Kendra) DisassociateEntitiesFromExperienceRequest(input *DisassociateEntitiesFromExperienceInput) (req *request.Request, output *DisassociateEntitiesFromExperienceOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateEntitiesFromExperience,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateEntitiesFromExperienceInput{}
+	}
+
+	output = &DisassociateEntitiesFromExperienceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateEntitiesFromExperience API operation for AWSKendraFrontendService.
+//
+// Prevents users or groups in your Amazon Web Services SSO identity source
+// from accessing your Amazon Kendra experience. You can create an Amazon Kendra
+// experience such as a search application. For more information on creating
+// a search application experience, see Building a search experience with no
+// code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DisassociateEntitiesFromExperience for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DisassociateEntitiesFromExperience
+func (c *Kendra) DisassociateEntitiesFromExperience(input *DisassociateEntitiesFromExperienceInput) (*DisassociateEntitiesFromExperienceOutput, error) {
+	req, out := c.DisassociateEntitiesFromExperienceRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateEntitiesFromExperienceWithContext is the same as DisassociateEntitiesFromExperience with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateEntitiesFromExperience for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DisassociateEntitiesFromExperienceWithContext(ctx aws.Context, input *DisassociateEntitiesFromExperienceInput, opts ...request.Option) (*DisassociateEntitiesFromExperienceOutput, error) {
+	req, out := c.DisassociateEntitiesFromExperienceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDisassociatePersonasFromEntities = "DisassociatePersonasFromEntities"
+
+// DisassociatePersonasFromEntitiesRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociatePersonasFromEntities operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociatePersonasFromEntities for more information on using the DisassociatePersonasFromEntities
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociatePersonasFromEntitiesRequest method.
+//    req, resp := client.DisassociatePersonasFromEntitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DisassociatePersonasFromEntities
+func (c *Kendra) DisassociatePersonasFromEntitiesRequest(input *DisassociatePersonasFromEntitiesInput) (req *request.Request, output *DisassociatePersonasFromEntitiesOutput) {
+	op := &request.Operation{
+		Name:       opDisassociatePersonasFromEntities,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociatePersonasFromEntitiesInput{}
+	}
+
+	output = &DisassociatePersonasFromEntitiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociatePersonasFromEntities API operation for AWSKendraFrontendService.
+//
+// Removes the specific permissions of users or groups in your Amazon Web Services
+// SSO identity source with access to your Amazon Kendra experience. You can
+// create an Amazon Kendra experience such as a search application. For more
+// information on creating a search application experience, see Building a search
+// experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DisassociatePersonasFromEntities for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DisassociatePersonasFromEntities
+func (c *Kendra) DisassociatePersonasFromEntities(input *DisassociatePersonasFromEntitiesInput) (*DisassociatePersonasFromEntitiesOutput, error) {
+	req, out := c.DisassociatePersonasFromEntitiesRequest(input)
+	return out, req.Send()
+}
+
+// DisassociatePersonasFromEntitiesWithContext is the same as DisassociatePersonasFromEntities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociatePersonasFromEntities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DisassociatePersonasFromEntitiesWithContext(ctx aws.Context, input *DisassociatePersonasFromEntitiesInput, opts ...request.Option) (*DisassociatePersonasFromEntitiesOutput, error) {
+	req, out := c.DisassociatePersonasFromEntitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetQuerySuggestions = "GetQuerySuggestions"
 
 // GetQuerySuggestionsRequest generates a "aws/request.Request" representing the
@@ -2087,6 +2746,9 @@ func (c *Kendra) GetQuerySuggestionsRequest(input *GetQuerySuggestionsInput) (re
 //
 // Fetches the queries that are suggested to your users.
 //
+// GetQuerySuggestions is currently not supported in the Amazon Web Services
+// GovCloud (US-West) region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2126,6 +2788,92 @@ func (c *Kendra) GetQuerySuggestions(input *GetQuerySuggestionsInput) (*GetQuery
 // for more information on using Contexts.
 func (c *Kendra) GetQuerySuggestionsWithContext(ctx aws.Context, input *GetQuerySuggestionsInput, opts ...request.Option) (*GetQuerySuggestionsOutput, error) {
 	req, out := c.GetQuerySuggestionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSnapshots = "GetSnapshots"
+
+// GetSnapshotsRequest generates a "aws/request.Request" representing the
+// client's request for the GetSnapshots operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSnapshots for more information on using the GetSnapshots
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSnapshotsRequest method.
+//    req, resp := client.GetSnapshotsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/GetSnapshots
+func (c *Kendra) GetSnapshotsRequest(input *GetSnapshotsInput) (req *request.Request, output *GetSnapshotsOutput) {
+	op := &request.Operation{
+		Name:       opGetSnapshots,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSnapshotsInput{}
+	}
+
+	output = &GetSnapshotsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSnapshots API operation for AWSKendraFrontendService.
+//
+// Retrieves search metrics data. The data provides a snapshot of how your users
+// interact with your search application and how effective the application is.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation GetSnapshots for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The input to the request is not valid.
+//
+//   * ResourceNotFoundException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/GetSnapshots
+func (c *Kendra) GetSnapshots(input *GetSnapshotsInput) (*GetSnapshotsOutput, error) {
+	req, out := c.GetSnapshotsRequest(input)
+	return out, req.Send()
+}
+
+// GetSnapshotsWithContext is the same as GetSnapshots with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSnapshots for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) GetSnapshotsWithContext(ctx aws.Context, input *GetSnapshotsInput, opts ...request.Option) (*GetSnapshotsOutput, error) {
+	req, out := c.GetSnapshotsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2421,6 +3169,446 @@ func (c *Kendra) ListDataSourcesPagesWithContext(ctx aws.Context, input *ListDat
 	return p.Err()
 }
 
+const opListEntityPersonas = "ListEntityPersonas"
+
+// ListEntityPersonasRequest generates a "aws/request.Request" representing the
+// client's request for the ListEntityPersonas operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEntityPersonas for more information on using the ListEntityPersonas
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEntityPersonasRequest method.
+//    req, resp := client.ListEntityPersonasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListEntityPersonas
+func (c *Kendra) ListEntityPersonasRequest(input *ListEntityPersonasInput) (req *request.Request, output *ListEntityPersonasOutput) {
+	op := &request.Operation{
+		Name:       opListEntityPersonas,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEntityPersonasInput{}
+	}
+
+	output = &ListEntityPersonasOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEntityPersonas API operation for AWSKendraFrontendService.
+//
+// Lists specific permissions of users and groups with access to your Amazon
+// Kendra experience.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation ListEntityPersonas for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * AccessDeniedException
+//
+//   * ThrottlingException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListEntityPersonas
+func (c *Kendra) ListEntityPersonas(input *ListEntityPersonasInput) (*ListEntityPersonasOutput, error) {
+	req, out := c.ListEntityPersonasRequest(input)
+	return out, req.Send()
+}
+
+// ListEntityPersonasWithContext is the same as ListEntityPersonas with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEntityPersonas for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListEntityPersonasWithContext(ctx aws.Context, input *ListEntityPersonasInput, opts ...request.Option) (*ListEntityPersonasOutput, error) {
+	req, out := c.ListEntityPersonasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEntityPersonasPages iterates over the pages of a ListEntityPersonas operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEntityPersonas method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEntityPersonas operation.
+//    pageNum := 0
+//    err := client.ListEntityPersonasPages(params,
+//        func(page *kendra.ListEntityPersonasOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Kendra) ListEntityPersonasPages(input *ListEntityPersonasInput, fn func(*ListEntityPersonasOutput, bool) bool) error {
+	return c.ListEntityPersonasPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEntityPersonasPagesWithContext same as ListEntityPersonasPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListEntityPersonasPagesWithContext(ctx aws.Context, input *ListEntityPersonasInput, fn func(*ListEntityPersonasOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEntityPersonasInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEntityPersonasRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEntityPersonasOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListExperienceEntities = "ListExperienceEntities"
+
+// ListExperienceEntitiesRequest generates a "aws/request.Request" representing the
+// client's request for the ListExperienceEntities operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExperienceEntities for more information on using the ListExperienceEntities
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListExperienceEntitiesRequest method.
+//    req, resp := client.ListExperienceEntitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListExperienceEntities
+func (c *Kendra) ListExperienceEntitiesRequest(input *ListExperienceEntitiesInput) (req *request.Request, output *ListExperienceEntitiesOutput) {
+	op := &request.Operation{
+		Name:       opListExperienceEntities,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExperienceEntitiesInput{}
+	}
+
+	output = &ListExperienceEntitiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExperienceEntities API operation for AWSKendraFrontendService.
+//
+// Lists users or groups in your Amazon Web Services SSO identity source that
+// are granted access to your Amazon Kendra experience. You can create an Amazon
+// Kendra experience such as a search application. For more information on creating
+// a search application experience, see Building a search experience with no
+// code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation ListExperienceEntities for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * AccessDeniedException
+//
+//   * ThrottlingException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListExperienceEntities
+func (c *Kendra) ListExperienceEntities(input *ListExperienceEntitiesInput) (*ListExperienceEntitiesOutput, error) {
+	req, out := c.ListExperienceEntitiesRequest(input)
+	return out, req.Send()
+}
+
+// ListExperienceEntitiesWithContext is the same as ListExperienceEntities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExperienceEntities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListExperienceEntitiesWithContext(ctx aws.Context, input *ListExperienceEntitiesInput, opts ...request.Option) (*ListExperienceEntitiesOutput, error) {
+	req, out := c.ListExperienceEntitiesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExperienceEntitiesPages iterates over the pages of a ListExperienceEntities operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExperienceEntities method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListExperienceEntities operation.
+//    pageNum := 0
+//    err := client.ListExperienceEntitiesPages(params,
+//        func(page *kendra.ListExperienceEntitiesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Kendra) ListExperienceEntitiesPages(input *ListExperienceEntitiesInput, fn func(*ListExperienceEntitiesOutput, bool) bool) error {
+	return c.ListExperienceEntitiesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExperienceEntitiesPagesWithContext same as ListExperienceEntitiesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListExperienceEntitiesPagesWithContext(ctx aws.Context, input *ListExperienceEntitiesInput, fn func(*ListExperienceEntitiesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExperienceEntitiesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExperienceEntitiesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExperienceEntitiesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListExperiences = "ListExperiences"
+
+// ListExperiencesRequest generates a "aws/request.Request" representing the
+// client's request for the ListExperiences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExperiences for more information on using the ListExperiences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListExperiencesRequest method.
+//    req, resp := client.ListExperiencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListExperiences
+func (c *Kendra) ListExperiencesRequest(input *ListExperiencesInput) (req *request.Request, output *ListExperiencesOutput) {
+	op := &request.Operation{
+		Name:       opListExperiences,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExperiencesInput{}
+	}
+
+	output = &ListExperiencesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExperiences API operation for AWSKendraFrontendService.
+//
+// Lists one or more Amazon Kendra experiences. You can create an Amazon Kendra
+// experience such as a search application. For more information on creating
+// a search application experience, see Building a search experience with no
+// code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation ListExperiences for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * AccessDeniedException
+//
+//   * ThrottlingException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListExperiences
+func (c *Kendra) ListExperiences(input *ListExperiencesInput) (*ListExperiencesOutput, error) {
+	req, out := c.ListExperiencesRequest(input)
+	return out, req.Send()
+}
+
+// ListExperiencesWithContext is the same as ListExperiences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExperiences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListExperiencesWithContext(ctx aws.Context, input *ListExperiencesInput, opts ...request.Option) (*ListExperiencesOutput, error) {
+	req, out := c.ListExperiencesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExperiencesPages iterates over the pages of a ListExperiences operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExperiences method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListExperiences operation.
+//    pageNum := 0
+//    err := client.ListExperiencesPages(params,
+//        func(page *kendra.ListExperiencesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Kendra) ListExperiencesPages(input *ListExperiencesInput, fn func(*ListExperiencesOutput, bool) bool) error {
+	return c.ListExperiencesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExperiencesPagesWithContext same as ListExperiencesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListExperiencesPagesWithContext(ctx aws.Context, input *ListExperiencesInput, fn func(*ListExperiencesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExperiencesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExperiencesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExperiencesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListFaqs = "ListFaqs"
 
 // ListFaqsRequest generates a "aws/request.Request" representing the
@@ -2553,6 +3741,9 @@ func (c *Kendra) ListGroupsOlderThanOrderingIdRequest(input *ListGroupsOlderThan
 //
 // Provides a list of groups that are mapped to users before a given ordering
 // or timestamp identifier.
+//
+// ListGroupsOlderThanOrderingId is currently not supported in the Amazon Web
+// Services GovCloud (US-West) region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2786,6 +3977,9 @@ func (c *Kendra) ListQuerySuggestionsBlockListsRequest(input *ListQuerySuggestio
 //
 // For information on the current quota limits for block lists, see Quotas for
 // Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
+//
+// ListQuerySuggestionsBlockLists is currently not supported in the Amazon Web
+// Services GovCloud (US-West) region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3062,6 +4256,9 @@ func (c *Kendra) PutPrincipalMappingRequest(input *PutPrincipalMappingInput) (re
 //
 // If more than five PUT actions for a group are currently processing, a validation
 // exception is thrown.
+//
+// PutPrincipalMapping is currently not supported in the Amazon Web Services
+// GovCloud (US-West) region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3443,6 +4640,9 @@ func (c *Kendra) SubmitFeedbackRequest(input *SubmitFeedbackInput) (req *request
 // Enables you to provide feedback to Amazon Kendra to improve the performance
 // of your index.
 //
+// SubmitFeedback is currently not supported in the Amazon Web Services GovCloud
+// (US-West) region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3749,6 +4949,97 @@ func (c *Kendra) UpdateDataSourceWithContext(ctx aws.Context, input *UpdateDataS
 	return out, req.Send()
 }
 
+const opUpdateExperience = "UpdateExperience"
+
+// UpdateExperienceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateExperience operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateExperience for more information on using the UpdateExperience
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateExperienceRequest method.
+//    req, resp := client.UpdateExperienceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateExperience
+func (c *Kendra) UpdateExperienceRequest(input *UpdateExperienceInput) (req *request.Request, output *UpdateExperienceOutput) {
+	op := &request.Operation{
+		Name:       opUpdateExperience,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateExperienceInput{}
+	}
+
+	output = &UpdateExperienceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateExperience API operation for AWSKendraFrontendService.
+//
+// Updates your Amazon Kendra experience such as a search application. For more
+// information on creating a search application experience, see Building a search
+// experience with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation UpdateExperience for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateExperience
+func (c *Kendra) UpdateExperience(input *UpdateExperienceInput) (*UpdateExperienceOutput, error) {
+	req, out := c.UpdateExperienceRequest(input)
+	return out, req.Send()
+}
+
+// UpdateExperienceWithContext is the same as UpdateExperience with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateExperience for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) UpdateExperienceWithContext(ctx aws.Context, input *UpdateExperienceInput, opts ...request.Option) (*UpdateExperienceOutput, error) {
+	req, out := c.UpdateExperienceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateIndex = "UpdateIndex"
 
 // UpdateIndexRequest generates a "aws/request.Request" representing the
@@ -3897,6 +5188,9 @@ func (c *Kendra) UpdateQuerySuggestionsBlockListRequest(input *UpdateQuerySugges
 // Amazon Kendra supports partial updates, so you only need to provide the fields
 // you want to update.
 //
+// UpdateQuerySuggestionsBlockList is currently not supported in the Amazon
+// Web Services GovCloud (US-West) region.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3997,6 +5291,9 @@ func (c *Kendra) UpdateQuerySuggestionsConfigRequest(input *UpdateQuerySuggestio
 // and the number of search queries in your index.
 //
 // You can still enable/disable query suggestions at any time.
+//
+// UpdateQuerySuggestionsConfig is currently not supported in the Amazon Web
+// Services GovCloud (US-West) region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4380,6 +5677,259 @@ func (s *AdditionalResultAttributeValue) SetTextWithHighlightsValue(v *TextWithH
 	return s
 }
 
+type AssociateEntitiesToExperienceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists users or groups in your Amazon Web Services SSO identity source.
+	//
+	// EntityList is a required field
+	EntityList []*EntityConfiguration `min:"1" type:"list" required:"true"`
+
+	// The identifier of your Amazon Kendra experience.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index for your Amazon Kendra experience.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateEntitiesToExperienceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateEntitiesToExperienceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateEntitiesToExperienceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateEntitiesToExperienceInput"}
+	if s.EntityList == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityList"))
+	}
+	if s.EntityList != nil && len(s.EntityList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityList", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.EntityList != nil {
+		for i, v := range s.EntityList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EntityList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityList sets the EntityList field's value.
+func (s *AssociateEntitiesToExperienceInput) SetEntityList(v []*EntityConfiguration) *AssociateEntitiesToExperienceInput {
+	s.EntityList = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AssociateEntitiesToExperienceInput) SetId(v string) *AssociateEntitiesToExperienceInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *AssociateEntitiesToExperienceInput) SetIndexId(v string) *AssociateEntitiesToExperienceInput {
+	s.IndexId = &v
+	return s
+}
+
+type AssociateEntitiesToExperienceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the users or groups in your Amazon Web Services SSO identity source
+	// that failed to properly configure with your Amazon Kendra experience.
+	FailedEntityList []*FailedEntity `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateEntitiesToExperienceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociateEntitiesToExperienceOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedEntityList sets the FailedEntityList field's value.
+func (s *AssociateEntitiesToExperienceOutput) SetFailedEntityList(v []*FailedEntity) *AssociateEntitiesToExperienceOutput {
+	s.FailedEntityList = v
+	return s
+}
+
+type AssociatePersonasToEntitiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of your Amazon Kendra experience.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index for your Amazon Kendra experience.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The personas that define the specific permissions of users or groups in your
+	// Amazon Web Services SSO identity source. The available personas or access
+	// roles are Owner and Viewer. For more information on these personas, see Providing
+	// access to your search page (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience).
+	//
+	// Personas is a required field
+	Personas []*EntityPersonaConfiguration `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatePersonasToEntitiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatePersonasToEntitiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociatePersonasToEntitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociatePersonasToEntitiesInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.Personas == nil {
+		invalidParams.Add(request.NewErrParamRequired("Personas"))
+	}
+	if s.Personas != nil && len(s.Personas) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Personas", 1))
+	}
+	if s.Personas != nil {
+		for i, v := range s.Personas {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Personas", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *AssociatePersonasToEntitiesInput) SetId(v string) *AssociatePersonasToEntitiesInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *AssociatePersonasToEntitiesInput) SetIndexId(v string) *AssociatePersonasToEntitiesInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetPersonas sets the Personas field's value.
+func (s *AssociatePersonasToEntitiesInput) SetPersonas(v []*EntityPersonaConfiguration) *AssociatePersonasToEntitiesInput {
+	s.Personas = v
+	return s
+}
+
+type AssociatePersonasToEntitiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the users or groups in your Amazon Web Services SSO identity source
+	// that failed to properly configure with your Amazon Kendra experience.
+	FailedEntityList []*FailedEntity `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatePersonasToEntitiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AssociatePersonasToEntitiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedEntityList sets the FailedEntityList field's value.
+func (s *AssociatePersonasToEntitiesOutput) SetFailedEntityList(v []*FailedEntity) *AssociatePersonasToEntitiesOutput {
+	s.FailedEntityList = v
+	return s
+}
+
 // Provides filtering the query results based on document attributes.
 //
 // When you use the AndAllFilters or OrAllFilters, filters you can use 2 layers
@@ -4389,7 +5939,7 @@ func (s *AdditionalResultAttributeValue) SetTextWithHighlightsValue(v *TextWithH
 //
 // <OrAllFilters>
 //
-// <EqualTo>
+// <EqualsTo>
 //
 // If you use more than 2 layers, you receive a ValidationException exception
 // with the message "AttributeFilter cannot have a depth of more than 2."
@@ -4636,7 +6186,7 @@ func (s *AuthenticationConfiguration) SetBasicAuthentication(v []*BasicAuthentic
 type BasicAuthenticationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Your secret ARN, which you can create in AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	// Your secret ARN, which you can create in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
 	//
 	// You use a secret if basic authentication credentials are required to connect
 	// to a website. The secret stores your credentials of user name and password.
@@ -5069,6 +6619,14 @@ func (s *BatchGetDocumentStatusResponseError) SetErrorMessage(v string) *BatchGe
 type BatchPutDocumentInput struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration information for altering your document metadata and content
+	// during the document ingestion process when you use the BatchPutDocument operation.
+	//
+	// For more information on how to create, modify and delete document metadata,
+	// or make other content alterations when you ingest documents into Amazon Kendra,
+	// see Customizing document metadata during the ingestion process (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html).
+	CustomDocumentEnrichmentConfiguration *CustomDocumentEnrichmentConfiguration `type:"structure"`
+
 	// One or more documents to add to the index.
 	//
 	// Documents can include custom attributes. For example, 'DataSourceId' and
@@ -5099,7 +6657,7 @@ type BatchPutDocumentInput struct {
 
 	// The Amazon Resource Name (ARN) of a role that is allowed to run the BatchPutDocument
 	// operation. For more information, see IAM Roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -5135,8 +6693,10 @@ func (s *BatchPutDocumentInput) Validate() error {
 	if s.IndexId != nil && len(*s.IndexId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
 	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	if s.CustomDocumentEnrichmentConfiguration != nil {
+		if err := s.CustomDocumentEnrichmentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CustomDocumentEnrichmentConfiguration", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Documents != nil {
 		for i, v := range s.Documents {
@@ -5153,6 +6713,12 @@ func (s *BatchPutDocumentInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCustomDocumentEnrichmentConfiguration sets the CustomDocumentEnrichmentConfiguration field's value.
+func (s *BatchPutDocumentInput) SetCustomDocumentEnrichmentConfiguration(v *CustomDocumentEnrichmentConfiguration) *BatchPutDocumentInput {
+	s.CustomDocumentEnrichmentConfiguration = v
+	return s
 }
 
 // SetDocuments sets the Documents field's value.
@@ -5966,7 +7532,7 @@ type ConfluenceConfiguration struct {
 	// Specifies configuration information for indexing Confluence pages.
 	PageConfiguration *ConfluencePageConfiguration `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an Secrets Managersecret that contains
+	// The Amazon Resource Name (ARN) of an Secrets Manager secret that contains
 	// the key/value pairs required to connect to your Confluence server. The secret
 	// must contain a JSON structure with the following keys:
 	//
@@ -6566,6 +8132,74 @@ func (s *ConnectionConfiguration) SetTableName(v string) *ConnectionConfiguratio
 	return s
 }
 
+// Configuration information for your content sources, such as data sources,
+// FAQs, and content indexed directly via BatchPutDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html).
+type ContentSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the data sources you want to use for your Amazon Kendra
+	// experience.
+	DataSourceIds []*string `min:"1" type:"list"`
+
+	// TRUE to use documents you indexed directly using the BatchPutDocument operation.
+	DirectPutContent *bool `type:"boolean"`
+
+	// The identifier of the FAQs that you want to use for your Amazon Kendra experience.
+	FaqIds []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContentSourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContentSourceConfiguration"}
+	if s.DataSourceIds != nil && len(s.DataSourceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceIds", 1))
+	}
+	if s.FaqIds != nil && len(s.FaqIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FaqIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceIds sets the DataSourceIds field's value.
+func (s *ContentSourceConfiguration) SetDataSourceIds(v []*string) *ContentSourceConfiguration {
+	s.DataSourceIds = v
+	return s
+}
+
+// SetDirectPutContent sets the DirectPutContent field's value.
+func (s *ContentSourceConfiguration) SetDirectPutContent(v bool) *ContentSourceConfiguration {
+	s.DirectPutContent = &v
+	return s
+}
+
+// SetFaqIds sets the FaqIds field's value.
+func (s *ContentSourceConfiguration) SetFaqIds(v []*string) *ContentSourceConfiguration {
+	s.FaqIds = v
+	return s
+}
+
 type CreateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6581,6 +8215,14 @@ type CreateDataSourceInput struct {
 	//
 	// The Configuration parameter is required for all other data sources.
 	Configuration *DataSourceConfiguration `type:"structure"`
+
+	// Configuration information for altering document metadata and content during
+	// the document ingestion process when you create a data source.
+	//
+	// For more information on how to create, modify and delete document metadata,
+	// or make other content alterations when you ingest documents into Amazon Kendra,
+	// see Customizing document metadata during the ingestion process (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html).
+	CustomDocumentEnrichmentConfiguration *CustomDocumentEnrichmentConfiguration `type:"structure"`
 
 	// A description for the data source.
 	Description *string `type:"string"`
@@ -6609,7 +8251,7 @@ type CreateDataSourceInput struct {
 	// CUSTOM. If you do, you receive a ValidationException exception.
 	//
 	// The RoleArn parameter is required for all other data sources.
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 
 	// Sets the frequency that Amazon Kendra will check the documents in your repository
 	// and update the index. If you don't set a schedule Amazon Kendra will not
@@ -6669,15 +8311,17 @@ func (s *CreateDataSourceInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
-	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
 	if s.Configuration != nil {
 		if err := s.Configuration.Validate(); err != nil {
 			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomDocumentEnrichmentConfiguration != nil {
+		if err := s.CustomDocumentEnrichmentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CustomDocumentEnrichmentConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Tags != nil {
@@ -6706,6 +8350,12 @@ func (s *CreateDataSourceInput) SetClientToken(v string) *CreateDataSourceInput 
 // SetConfiguration sets the Configuration field's value.
 func (s *CreateDataSourceInput) SetConfiguration(v *DataSourceConfiguration) *CreateDataSourceInput {
 	s.Configuration = v
+	return s
+}
+
+// SetCustomDocumentEnrichmentConfiguration sets the CustomDocumentEnrichmentConfiguration field's value.
+func (s *CreateDataSourceInput) SetCustomDocumentEnrichmentConfiguration(v *CustomDocumentEnrichmentConfiguration) *CreateDataSourceInput {
+	s.CustomDocumentEnrichmentConfiguration = v
 	return s
 }
 
@@ -6790,6 +8440,157 @@ func (s *CreateDataSourceOutput) SetId(v string) *CreateDataSourceOutput {
 	return s
 }
 
+type CreateExperienceInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that you provide to identify the request to create your Amazon Kendra
+	// experience. Multiple calls to the CreateExperience operation with the same
+	// client token creates only one Amazon Kendra experience.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Provides the configuration information for your Amazon Kendra experience.
+	// This includes ContentSourceConfiguration, which specifies the data source
+	// IDs and/or FAQ IDs, and UserIdentityConfiguration, which specifies the user
+	// or group information to grant access to your Amazon Kendra experience.
+	Configuration *ExperienceConfiguration `type:"structure"`
+
+	// A description for your Amazon Kendra experience.
+	Description *string `type:"string"`
+
+	// The identifier of the index for your Amazon Kendra experience.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// A name for your Amazon Kendra experience.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of a role with permission to access Query
+	// operations, QuerySuggestions operations, SubmitFeedback operations, and Amazon
+	// Web Services SSO that stores your user and group information. For more information,
+	// see IAM roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	RoleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExperienceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExperienceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateExperienceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateExperienceInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateExperienceInput) SetClientToken(v string) *CreateExperienceInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *CreateExperienceInput) SetConfiguration(v *ExperienceConfiguration) *CreateExperienceInput {
+	s.Configuration = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateExperienceInput) SetDescription(v string) *CreateExperienceInput {
+	s.Description = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *CreateExperienceInput) SetIndexId(v string) *CreateExperienceInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateExperienceInput) SetName(v string) *CreateExperienceInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateExperienceInput) SetRoleArn(v string) *CreateExperienceInput {
+	s.RoleArn = &v
+	return s
+}
+
+type CreateExperienceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for your created Amazon Kendra experience.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExperienceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateExperienceOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *CreateExperienceOutput) SetId(v string) *CreateExperienceOutput {
+	s.Id = &v
+	return s
+}
+
 type CreateFaqInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6832,7 +8633,7 @@ type CreateFaqInput struct {
 	// Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	//
 	// RoleArn is a required field
-	RoleArn *string `min:"1" type:"string" required:"true"`
+	RoleArn *string `type:"string" required:"true"`
 
 	// The S3 location of the FAQ input data.
 	//
@@ -6885,9 +8686,6 @@ func (s *CreateFaqInput) Validate() error {
 	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
 	if s.S3Path == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3Path"))
@@ -7033,7 +8831,7 @@ type CreateIndexInput struct {
 	// an Amazon S3 bucket.
 	//
 	// RoleArn is a required field
-	RoleArn *string `min:"1" type:"string" required:"true"`
+	RoleArn *string `type:"string" required:"true"`
 
 	// The identifier of the KMScustomer managed key (CMK) to use to encrypt data
 	// indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.
@@ -7059,8 +8857,8 @@ type CreateIndexInput struct {
 	// to the user will be searchable and displayable.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
-	// Enables fetching access levels of groups and users from an AWS Single Sign-On
-	// identity source. To configure this, see UserGroupResolutionConfiguration
+	// Enables fetching access levels of groups and users from an Amazon Web Services
+	// Single Sign On identity source. To configure this, see UserGroupResolutionConfiguration
 	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
@@ -7100,9 +8898,6 @@ func (s *CreateIndexInput) Validate() error {
 	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
 	if s.ServerSideEncryptionConfiguration != nil {
 		if err := s.ServerSideEncryptionConfiguration.Validate(); err != nil {
@@ -7268,7 +9063,7 @@ type CreateQuerySuggestionsBlockListInput struct {
 	// Service) assume role permissions to Amazon Kendra.
 	//
 	// RoleArn is a required field
-	RoleArn *string `min:"1" type:"string" required:"true"`
+	RoleArn *string `type:"string" required:"true"`
 
 	// The S3 path to your block list text file in your S3 bucket.
 	//
@@ -7322,9 +9117,6 @@ func (s *CreateQuerySuggestionsBlockListInput) Validate() error {
 	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
 	if s.SourceS3Path == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceS3Path"))
@@ -7445,11 +9237,11 @@ type CreateThesaurusInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// An AWS Identity and Access Management (IAM) role that gives Amazon Kendra
-	// permissions to access thesaurus file specified in SourceS3Path.
+	// An IAM role that gives Amazon Kendra permissions to access thesaurus file
+	// specified in SourceS3Path.
 	//
 	// RoleArn is a required field
-	RoleArn *string `min:"1" type:"string" required:"true"`
+	RoleArn *string `type:"string" required:"true"`
 
 	// The thesaurus file Amazon S3 source path.
 	//
@@ -7499,9 +9291,6 @@ func (s *CreateThesaurusInput) Validate() error {
 	}
 	if s.RoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
 	if s.SourceS3Path == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceS3Path"))
@@ -7601,7 +9390,112 @@ func (s *CreateThesaurusOutput) SetId(v string) *CreateThesaurusOutput {
 	return s
 }
 
-// Configuration information for a Amazon Kendra data source.
+// Provides the configuration information for altering document metadata and
+// content during the document ingestion process.
+//
+// For more information, see Customizing document metadata during the ingestion
+// process (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html).
+type CustomDocumentEnrichmentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information to alter document attributes or metadata fields
+	// and content when ingesting documents into Amazon Kendra.
+	InlineConfigurations []*InlineCustomDocumentEnrichmentConfiguration `type:"list"`
+
+	// Configuration information for invoking a Lambda function in Lambda on the
+	// structured documents with their metadata and text extracted. You can use
+	// a Lambda function to apply advanced logic for creating, modifying, or deleting
+	// document metadata and content. For more information, see Advanced data manipulation
+	// (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html#advanced-data-manipulation).
+	PostExtractionHookConfiguration *HookConfiguration `type:"structure"`
+
+	// Configuration information for invoking a Lambda function in Lambda on the
+	// original or raw documents before extracting their metadata and text. You
+	// can use a Lambda function to apply advanced logic for creating, modifying,
+	// or deleting document metadata and content. For more information, see Advanced
+	// data manipulation (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html#advanced-data-manipulation).
+	PreExtractionHookConfiguration *HookConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a role with permission to run PreExtractionHookConfiguration
+	// and PostExtractionHookConfiguration for altering document metadata and content
+	// during the document ingestion process. For more information, see IAM roles
+	// for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	RoleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomDocumentEnrichmentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CustomDocumentEnrichmentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomDocumentEnrichmentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomDocumentEnrichmentConfiguration"}
+	if s.InlineConfigurations != nil {
+		for i, v := range s.InlineConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InlineConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PostExtractionHookConfiguration != nil {
+		if err := s.PostExtractionHookConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PostExtractionHookConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PreExtractionHookConfiguration != nil {
+		if err := s.PreExtractionHookConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PreExtractionHookConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInlineConfigurations sets the InlineConfigurations field's value.
+func (s *CustomDocumentEnrichmentConfiguration) SetInlineConfigurations(v []*InlineCustomDocumentEnrichmentConfiguration) *CustomDocumentEnrichmentConfiguration {
+	s.InlineConfigurations = v
+	return s
+}
+
+// SetPostExtractionHookConfiguration sets the PostExtractionHookConfiguration field's value.
+func (s *CustomDocumentEnrichmentConfiguration) SetPostExtractionHookConfiguration(v *HookConfiguration) *CustomDocumentEnrichmentConfiguration {
+	s.PostExtractionHookConfiguration = v
+	return s
+}
+
+// SetPreExtractionHookConfiguration sets the PreExtractionHookConfiguration field's value.
+func (s *CustomDocumentEnrichmentConfiguration) SetPreExtractionHookConfiguration(v *HookConfiguration) *CustomDocumentEnrichmentConfiguration {
+	s.PreExtractionHookConfiguration = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CustomDocumentEnrichmentConfiguration) SetRoleArn(v string) *CustomDocumentEnrichmentConfiguration {
+	s.RoleArn = &v
+	return s
+}
+
+// Configuration information for an Amazon Kendra data source.
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7632,7 +9526,7 @@ type DataSourceConfiguration struct {
 	// SharePoint site.
 	SharePointConfiguration *SharePointConfiguration `type:"structure"`
 
-	// Provides the configuration information required for Amazon Kendra web crawler.
+	// Provides the configuration information required for Amazon Kendra Web Crawler.
 	WebCrawlerConfiguration *WebCrawlerConfiguration `type:"structure"`
 
 	// Provides the configuration information to connect to WorkDocs as your data
@@ -8550,6 +10444,95 @@ func (s DeleteDataSourceOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteExperienceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of your Amazon Kendra experience you want to delete.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index for your Amazon Kendra experience you want to
+	// delete.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExperienceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExperienceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteExperienceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteExperienceInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteExperienceInput) SetId(v string) *DeleteExperienceInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DeleteExperienceInput) SetIndexId(v string) *DeleteExperienceInput {
+	s.IndexId = &v
+	return s
+}
+
+type DeleteExperienceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExperienceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteExperienceOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteFaqInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9093,6 +11076,14 @@ type DescribeDataSourceOutput struct {
 	// The Unix timestamp of when the data source was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
+	// Configuration information for altering document metadata and content during
+	// the document ingestion process when you describe a data source.
+	//
+	// For more information on how to create, modify and delete document metadata,
+	// or make other content alterations when you ingest documents into Amazon Kendra,
+	// see Customizing document metadata during the ingestion process (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html).
+	CustomDocumentEnrichmentConfiguration *CustomDocumentEnrichmentConfiguration `type:"structure"`
+
 	// The description of the data source.
 	Description *string `type:"string"`
 
@@ -9117,7 +11108,7 @@ type DescribeDataSourceOutput struct {
 
 	// The Amazon Resource Name (ARN) of the role that enables the data source to
 	// access its resources.
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 
 	// The schedule that Amazon Kendra will update the data source.
 	Schedule *string `type:"string"`
@@ -9161,6 +11152,12 @@ func (s *DescribeDataSourceOutput) SetConfiguration(v *DataSourceConfiguration) 
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *DescribeDataSourceOutput) SetCreatedAt(v time.Time) *DescribeDataSourceOutput {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetCustomDocumentEnrichmentConfiguration sets the CustomDocumentEnrichmentConfiguration field's value.
+func (s *DescribeDataSourceOutput) SetCustomDocumentEnrichmentConfiguration(v *CustomDocumentEnrichmentConfiguration) *DescribeDataSourceOutput {
+	s.CustomDocumentEnrichmentConfiguration = v
 	return s
 }
 
@@ -9226,6 +11223,203 @@ func (s *DescribeDataSourceOutput) SetType(v string) *DescribeDataSourceOutput {
 
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *DescribeDataSourceOutput) SetUpdatedAt(v time.Time) *DescribeDataSourceOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type DescribeExperienceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of your Amazon Kendra experience you want to get information
+	// on.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index for your Amazon Kendra experience you want to
+	// get information on.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeExperienceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeExperienceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeExperienceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeExperienceInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DescribeExperienceInput) SetId(v string) *DescribeExperienceInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DescribeExperienceInput) SetIndexId(v string) *DescribeExperienceInput {
+	s.IndexId = &v
+	return s
+}
+
+type DescribeExperienceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Shows the configuration information for your Amazon Kendra experience. This
+	// includes ContentSourceConfiguration, which specifies the data source IDs
+	// and/or FAQ IDs, and UserIdentityConfiguration, which specifies the user or
+	// group information to grant access to your Amazon Kendra experience.
+	Configuration *ExperienceConfiguration `type:"structure"`
+
+	// Shows the date-time your Amazon Kendra experience was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// Shows the description for your Amazon Kendra experience.
+	Description *string `type:"string"`
+
+	// Shows the endpoint URLs for your Amazon Kendra experiences. The URLs are
+	// unique and fully hosted by Amazon Web Services.
+	Endpoints []*ExperienceEndpoint `min:"1" type:"list"`
+
+	// The reason your Amazon Kendra experience could not properly process.
+	ErrorMessage *string `min:"1" type:"string"`
+
+	// Shows the identifier of your Amazon Kendra experience.
+	Id *string `min:"1" type:"string"`
+
+	// Shows the identifier of the index for your Amazon Kendra experience.
+	IndexId *string `min:"36" type:"string"`
+
+	// Shows the name of your Amazon Kendra experience.
+	Name *string `min:"1" type:"string"`
+
+	// Shows the Amazon Resource Name (ARN) of a role with permission to access
+	// Query operations, QuerySuggestions operations, SubmitFeedback operations,
+	// and Amazon Web Services SSO that stores your user and group information.
+	RoleArn *string `type:"string"`
+
+	// The current processing status of your Amazon Kendra experience. When the
+	// status is ACTIVE, your Amazon Kendra experience is ready to use. When the
+	// status is FAILED, the ErrorMessage field contains the reason that this failed.
+	Status *string `type:"string" enum:"ExperienceStatus"`
+
+	// Shows the date-time your Amazon Kendra experience was last updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeExperienceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeExperienceOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *DescribeExperienceOutput) SetConfiguration(v *ExperienceConfiguration) *DescribeExperienceOutput {
+	s.Configuration = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribeExperienceOutput) SetCreatedAt(v time.Time) *DescribeExperienceOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeExperienceOutput) SetDescription(v string) *DescribeExperienceOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *DescribeExperienceOutput) SetEndpoints(v []*ExperienceEndpoint) *DescribeExperienceOutput {
+	s.Endpoints = v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *DescribeExperienceOutput) SetErrorMessage(v string) *DescribeExperienceOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DescribeExperienceOutput) SetId(v string) *DescribeExperienceOutput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DescribeExperienceOutput) SetIndexId(v string) *DescribeExperienceOutput {
+	s.IndexId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeExperienceOutput) SetName(v string) *DescribeExperienceOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeExperienceOutput) SetRoleArn(v string) *DescribeExperienceOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeExperienceOutput) SetStatus(v string) *DescribeExperienceOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *DescribeExperienceOutput) SetUpdatedAt(v time.Time) *DescribeExperienceOutput {
 	s.UpdatedAt = &v
 	return s
 }
@@ -9329,7 +11523,7 @@ type DescribeFaqOutput struct {
 
 	// The Amazon Resource Name (ARN) of the role that provides access to the S3
 	// bucket containing the input files for the FAQ.
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 
 	// Information required to find a specific file in an Amazon S3 bucket.
 	S3Path *S3Path `type:"structure"`
@@ -9518,7 +11712,7 @@ type DescribeIndexOutput struct {
 
 	// The Amazon Resource Name (ARN) of the IAM role that gives Amazon Kendra permission
 	// to write to your Amazon Cloudwatch logs.
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 
 	// The identifier of the KMScustomer master key (CMK) used to encrypt your data.
 	// Amazon Kendra doesn't support asymmetric CMKs.
@@ -9536,7 +11730,7 @@ type DescribeIndexOutput struct {
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
 	// Shows whether you have enabled the configuration for fetching access levels
-	// of groups and users from an AWS Single Sign-On identity source.
+	// of groups and users from an Amazon Web Services Single Sign On identity source.
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
 	// The user token configuration for the Amazon Kendra index.
@@ -9912,7 +12106,7 @@ type DescribeQuerySuggestionsBlockListOutput struct {
 	//
 	// The role needs S3 read permissions to your file in S3 and needs to give STS
 	// (Security Token Service) assume role permissions to Amazon Kendra.
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 
 	// Shows the current S3 path to your block list text file in your S3 bucket.
 	//
@@ -10285,9 +12479,9 @@ type DescribeThesaurusOutput struct {
 	// The thesaurus name.
 	Name *string `min:"1" type:"string"`
 
-	// An AWS Identity and Access Management (IAM) role that gives Amazon Kendra
-	// permissions to access thesaurus file specified in SourceS3Path.
-	RoleArn *string `min:"1" type:"string"`
+	// An IAM role that gives Amazon Kendra permissions to access thesaurus file
+	// specified in SourceS3Path.
+	RoleArn *string `type:"string"`
 
 	// Information required to find a specific file in an Amazon S3 bucket.
 	SourceS3Path *S3Path `type:"structure"`
@@ -10404,6 +12598,247 @@ func (s *DescribeThesaurusOutput) SetTermCount(v int64) *DescribeThesaurusOutput
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *DescribeThesaurusOutput) SetUpdatedAt(v time.Time) *DescribeThesaurusOutput {
 	s.UpdatedAt = &v
+	return s
+}
+
+type DisassociateEntitiesFromExperienceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists users or groups in your Amazon Web Services SSO identity source.
+	//
+	// EntityList is a required field
+	EntityList []*EntityConfiguration `min:"1" type:"list" required:"true"`
+
+	// The identifier of your Amazon Kendra experience.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index for your Amazon Kendra experience.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateEntitiesFromExperienceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateEntitiesFromExperienceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateEntitiesFromExperienceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateEntitiesFromExperienceInput"}
+	if s.EntityList == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityList"))
+	}
+	if s.EntityList != nil && len(s.EntityList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityList", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.EntityList != nil {
+		for i, v := range s.EntityList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EntityList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityList sets the EntityList field's value.
+func (s *DisassociateEntitiesFromExperienceInput) SetEntityList(v []*EntityConfiguration) *DisassociateEntitiesFromExperienceInput {
+	s.EntityList = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DisassociateEntitiesFromExperienceInput) SetId(v string) *DisassociateEntitiesFromExperienceInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DisassociateEntitiesFromExperienceInput) SetIndexId(v string) *DisassociateEntitiesFromExperienceInput {
+	s.IndexId = &v
+	return s
+}
+
+type DisassociateEntitiesFromExperienceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the users or groups in your Amazon Web Services SSO identity source
+	// that failed to properly remove access to your Amazon Kendra experience.
+	FailedEntityList []*FailedEntity `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateEntitiesFromExperienceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociateEntitiesFromExperienceOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedEntityList sets the FailedEntityList field's value.
+func (s *DisassociateEntitiesFromExperienceOutput) SetFailedEntityList(v []*FailedEntity) *DisassociateEntitiesFromExperienceOutput {
+	s.FailedEntityList = v
+	return s
+}
+
+type DisassociatePersonasFromEntitiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifiers of users or groups in your Amazon Web Services SSO identity
+	// source. For example, user IDs could be user emails.
+	//
+	// EntityIds is a required field
+	EntityIds []*string `min:"1" type:"list" required:"true"`
+
+	// The identifier of your Amazon Kendra experience.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index for your Amazon Kendra experience.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatePersonasFromEntitiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatePersonasFromEntitiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociatePersonasFromEntitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociatePersonasFromEntitiesInput"}
+	if s.EntityIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityIds"))
+	}
+	if s.EntityIds != nil && len(s.EntityIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityIds", 1))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityIds sets the EntityIds field's value.
+func (s *DisassociatePersonasFromEntitiesInput) SetEntityIds(v []*string) *DisassociatePersonasFromEntitiesInput {
+	s.EntityIds = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DisassociatePersonasFromEntitiesInput) SetId(v string) *DisassociatePersonasFromEntitiesInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DisassociatePersonasFromEntitiesInput) SetIndexId(v string) *DisassociatePersonasFromEntitiesInput {
+	s.IndexId = &v
+	return s
+}
+
+type DisassociatePersonasFromEntitiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the users or groups in your Amazon Web Services SSO identity source
+	// that failed to properly remove access to your Amazon Kendra experience.
+	FailedEntityList []*FailedEntity `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatePersonasFromEntitiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DisassociatePersonasFromEntitiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailedEntityList sets the FailedEntityList field's value.
+func (s *DisassociatePersonasFromEntitiesOutput) SetFailedEntityList(v []*FailedEntity) *DisassociatePersonasFromEntitiesOutput {
+	s.FailedEntityList = v
 	return s
 }
 
@@ -10636,6 +13071,199 @@ func (s *DocumentAttribute) SetKey(v string) *DocumentAttribute {
 // SetValue sets the Value field's value.
 func (s *DocumentAttribute) SetValue(v *DocumentAttributeValue) *DocumentAttribute {
 	s.Value = v
+	return s
+}
+
+// The condition used for the target document attribute or metadata field when
+// ingesting documents into Amazon Kendra. You use this with DocumentAttributeTarget
+// to apply the condition (https://docs.aws.amazon.com/kendra/latest/dg/API_DocumentAttributeTarget.html).
+//
+// For example, you can create the 'Department' target field and have it prefill
+// department names associated with the documents based on information in the
+// 'Source_URI' field. Set the condition that if the 'Source_URI' field contains
+// 'financial' in its URI value, then prefill the target field 'Department'
+// with the target value 'Finance' for the document.
+//
+// Amazon Kendra cannot create a target field if it has not already been created
+// as an index field. After you create your index field, you can create a document
+// metadata field using DocumentAttributeTarget. Amazon Kendra then will map
+// your newly created metadata field to your index field.
+type DocumentAttributeCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the document attribute used for the condition.
+	//
+	// For example, 'Source_URI' could be an identifier for the attribute or metadata
+	// field that contains source URIs associated with the documents.
+	//
+	// Amazon Kendra currently does not support _document_body as an attribute key
+	// used for the condition.
+	//
+	// ConditionDocumentAttributeKey is a required field
+	ConditionDocumentAttributeKey *string `min:"1" type:"string" required:"true"`
+
+	// The value used by the operator.
+	//
+	// For example, you can specify the value 'financial' for strings in the 'Source_URI'
+	// field that partially match or contain this value.
+	ConditionOnValue *DocumentAttributeValue `type:"structure"`
+
+	// The condition operator.
+	//
+	// For example, you can use 'Contains' to partially match a string.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"ConditionOperator"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentAttributeCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentAttributeCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentAttributeCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentAttributeCondition"}
+	if s.ConditionDocumentAttributeKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConditionDocumentAttributeKey"))
+	}
+	if s.ConditionDocumentAttributeKey != nil && len(*s.ConditionDocumentAttributeKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConditionDocumentAttributeKey", 1))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.ConditionOnValue != nil {
+		if err := s.ConditionOnValue.Validate(); err != nil {
+			invalidParams.AddNested("ConditionOnValue", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConditionDocumentAttributeKey sets the ConditionDocumentAttributeKey field's value.
+func (s *DocumentAttributeCondition) SetConditionDocumentAttributeKey(v string) *DocumentAttributeCondition {
+	s.ConditionDocumentAttributeKey = &v
+	return s
+}
+
+// SetConditionOnValue sets the ConditionOnValue field's value.
+func (s *DocumentAttributeCondition) SetConditionOnValue(v *DocumentAttributeValue) *DocumentAttributeCondition {
+	s.ConditionOnValue = v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *DocumentAttributeCondition) SetOperator(v string) *DocumentAttributeCondition {
+	s.Operator = &v
+	return s
+}
+
+// The target document attribute or metadata field you want to alter when ingesting
+// documents into Amazon Kendra.
+//
+// For example, you can delete customer identification numbers associated with
+// the documents, stored in the document metadata field called 'Customer_ID'.
+// You set the target key as 'Customer_ID' and the deletion flag to TRUE. This
+// removes all customer ID values in the field 'Customer_ID'. This would scrub
+// personally identifiable information from each document's metadata.
+//
+// Amazon Kendra cannot create a target field if it has not already been created
+// as an index field. After you create your index field, you can create a document
+// metadata field using DocumentAttributeTarget. Amazon Kendra then will map
+// your newly created metadata field to your index field.
+//
+// You can also use this with DocumentAttributeCondition (https://docs.aws.amazon.com/kendra/latest/dg/API_DocumentAttributeCondition.html).
+type DocumentAttributeTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the target document attribute or metadata field.
+	//
+	// For example, 'Department' could be an identifier for the target attribute
+	// or metadata field that includes the department names associated with the
+	// documents.
+	TargetDocumentAttributeKey *string `min:"1" type:"string"`
+
+	// The target value you want to create for the target attribute.
+	//
+	// For example, 'Finance' could be the target value for the target attribute
+	// key 'Department'.
+	TargetDocumentAttributeValue *DocumentAttributeValue `type:"structure"`
+
+	// TRUE to delete the existing target value for your specified target attribute
+	// key. You cannot create a target value and set this to TRUE. To create a target
+	// value (TargetDocumentAttributeValue), set this to FALSE.
+	TargetDocumentAttributeValueDeletion *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentAttributeTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentAttributeTarget) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentAttributeTarget) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentAttributeTarget"}
+	if s.TargetDocumentAttributeKey != nil && len(*s.TargetDocumentAttributeKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetDocumentAttributeKey", 1))
+	}
+	if s.TargetDocumentAttributeValue != nil {
+		if err := s.TargetDocumentAttributeValue.Validate(); err != nil {
+			invalidParams.AddNested("TargetDocumentAttributeValue", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTargetDocumentAttributeKey sets the TargetDocumentAttributeKey field's value.
+func (s *DocumentAttributeTarget) SetTargetDocumentAttributeKey(v string) *DocumentAttributeTarget {
+	s.TargetDocumentAttributeKey = &v
+	return s
+}
+
+// SetTargetDocumentAttributeValue sets the TargetDocumentAttributeValue field's value.
+func (s *DocumentAttributeTarget) SetTargetDocumentAttributeValue(v *DocumentAttributeValue) *DocumentAttributeTarget {
+	s.TargetDocumentAttributeValue = v
+	return s
+}
+
+// SetTargetDocumentAttributeValueDeletion sets the TargetDocumentAttributeValueDeletion field's value.
+func (s *DocumentAttributeTarget) SetTargetDocumentAttributeValueDeletion(v bool) *DocumentAttributeTarget {
+	s.TargetDocumentAttributeValueDeletion = &v
 	return s
 }
 
@@ -11054,6 +13682,468 @@ func (s *DocumentsMetadataConfiguration) SetS3Prefix(v string) *DocumentsMetadat
 	return s
 }
 
+// Provides the configuration information of users or groups in your Amazon
+// Web Services SSO identity source to grant access your Amazon Kendra experience.
+type EntityConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of a user or group in your Amazon Web Services SSO identity
+	// source. For example, a user ID could be an email.
+	//
+	// EntityId is a required field
+	EntityId *string `min:"1" type:"string" required:"true"`
+
+	// Specifies whether you are configuring a User or a Group.
+	//
+	// EntityType is a required field
+	EntityType *string `type:"string" required:"true" enum:"EntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityConfiguration"}
+	if s.EntityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityId"))
+	}
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
+	}
+	if s.EntityType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *EntityConfiguration) SetEntityId(v string) *EntityConfiguration {
+	s.EntityId = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *EntityConfiguration) SetEntityType(v string) *EntityConfiguration {
+	s.EntityType = &v
+	return s
+}
+
+// Information about the user entity.
+type EntityDisplayData struct {
+	_ struct{} `type:"structure"`
+
+	// The first name of the user.
+	//
+	// FirstName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EntityDisplayData's
+	// String and GoString methods.
+	FirstName *string `min:"1" type:"string" sensitive:"true"`
+
+	// The name of the group.
+	//
+	// GroupName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EntityDisplayData's
+	// String and GoString methods.
+	GroupName *string `min:"1" type:"string" sensitive:"true"`
+
+	// The user name of the user.
+	//
+	// IdentifiedUserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EntityDisplayData's
+	// String and GoString methods.
+	IdentifiedUserName *string `min:"1" type:"string" sensitive:"true"`
+
+	// The last name of the user.
+	//
+	// LastName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EntityDisplayData's
+	// String and GoString methods.
+	LastName *string `min:"1" type:"string" sensitive:"true"`
+
+	// The name of the user.
+	//
+	// UserName is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by EntityDisplayData's
+	// String and GoString methods.
+	UserName *string `min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityDisplayData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityDisplayData) GoString() string {
+	return s.String()
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *EntityDisplayData) SetFirstName(v string) *EntityDisplayData {
+	s.FirstName = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *EntityDisplayData) SetGroupName(v string) *EntityDisplayData {
+	s.GroupName = &v
+	return s
+}
+
+// SetIdentifiedUserName sets the IdentifiedUserName field's value.
+func (s *EntityDisplayData) SetIdentifiedUserName(v string) *EntityDisplayData {
+	s.IdentifiedUserName = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *EntityDisplayData) SetLastName(v string) *EntityDisplayData {
+	s.LastName = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *EntityDisplayData) SetUserName(v string) *EntityDisplayData {
+	s.UserName = &v
+	return s
+}
+
+// Provides the configuration information of users or groups in your Amazon
+// Web Services SSO identity source for access to your Amazon Kendra experience.
+// Specific permissions are defined for each user or group once they are granted
+// access to your Amazon Kendra experience.
+type EntityPersonaConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of a user or group in your Amazon Web Services SSO identity
+	// source. For example, a user ID could be an email.
+	//
+	// EntityId is a required field
+	EntityId *string `min:"1" type:"string" required:"true"`
+
+	// The persona that defines the specific permissions of the user or group in
+	// your Amazon Web Services SSO identity source. The available personas or access
+	// roles are Owner and Viewer. For more information on these personas, see Providing
+	// access to your search page (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience).
+	//
+	// Persona is a required field
+	Persona *string `type:"string" required:"true" enum:"Persona"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityPersonaConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityPersonaConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EntityPersonaConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EntityPersonaConfiguration"}
+	if s.EntityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityId"))
+	}
+	if s.EntityId != nil && len(*s.EntityId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 1))
+	}
+	if s.Persona == nil {
+		invalidParams.Add(request.NewErrParamRequired("Persona"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *EntityPersonaConfiguration) SetEntityId(v string) *EntityPersonaConfiguration {
+	s.EntityId = &v
+	return s
+}
+
+// SetPersona sets the Persona field's value.
+func (s *EntityPersonaConfiguration) SetPersona(v string) *EntityPersonaConfiguration {
+	s.Persona = &v
+	return s
+}
+
+// Specifies the configuration information for your Amazon Kendra experience.
+// This includes the data source IDs and/or FAQ IDs, and user or group information
+// to grant access to your Amazon Kendra experience.
+type ExperienceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The identifiers of your data sources and FAQs. Or, you can specify that you
+	// want to use documents indexed via the BatchPutDocument operation. This is
+	// the content you want to use for your Amazon Kendra experience.
+	ContentSourceConfiguration *ContentSourceConfiguration `type:"structure"`
+
+	// The Amazon Web Services SSO field name that contains the identifiers of your
+	// users, such as their emails.
+	UserIdentityConfiguration *UserIdentityConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperienceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperienceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExperienceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExperienceConfiguration"}
+	if s.ContentSourceConfiguration != nil {
+		if err := s.ContentSourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ContentSourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UserIdentityConfiguration != nil {
+		if err := s.UserIdentityConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("UserIdentityConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentSourceConfiguration sets the ContentSourceConfiguration field's value.
+func (s *ExperienceConfiguration) SetContentSourceConfiguration(v *ContentSourceConfiguration) *ExperienceConfiguration {
+	s.ContentSourceConfiguration = v
+	return s
+}
+
+// SetUserIdentityConfiguration sets the UserIdentityConfiguration field's value.
+func (s *ExperienceConfiguration) SetUserIdentityConfiguration(v *UserIdentityConfiguration) *ExperienceConfiguration {
+	s.UserIdentityConfiguration = v
+	return s
+}
+
+// Provides the configuration information of the endpoint for your Amazon Kendra
+// experience.
+type ExperienceEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of your Amazon Kendra experience.
+	Endpoint *string `min:"1" type:"string"`
+
+	// The type of endpoint for your Amazon Kendra experience. The type currently
+	// available is HOME, which is a unique and fully hosted URL to the home page
+	// of your Amazon Kendra experience.
+	EndpointType *string `type:"string" enum:"EndpointType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperienceEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperienceEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *ExperienceEndpoint) SetEndpoint(v string) *ExperienceEndpoint {
+	s.Endpoint = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *ExperienceEndpoint) SetEndpointType(v string) *ExperienceEndpoint {
+	s.EndpointType = &v
+	return s
+}
+
+// Summary information for users or groups in your Amazon Web Services SSO identity
+// source with granted access to your Amazon Kendra experience. You can create
+// an Amazon Kendra experience such as a search application. For more information
+// on creating a search application experience, see Building a search experience
+// with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+type ExperienceEntitiesSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the user entity.
+	DisplayData *EntityDisplayData `type:"structure"`
+
+	// The identifier of a user or group in your Amazon Web Services SSO identity
+	// source. For example, a user ID could be an email.
+	EntityId *string `min:"1" type:"string"`
+
+	// Shows the type as User or Group.
+	EntityType *string `type:"string" enum:"EntityType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperienceEntitiesSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperienceEntitiesSummary) GoString() string {
+	return s.String()
+}
+
+// SetDisplayData sets the DisplayData field's value.
+func (s *ExperienceEntitiesSummary) SetDisplayData(v *EntityDisplayData) *ExperienceEntitiesSummary {
+	s.DisplayData = v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *ExperienceEntitiesSummary) SetEntityId(v string) *ExperienceEntitiesSummary {
+	s.EntityId = &v
+	return s
+}
+
+// SetEntityType sets the EntityType field's value.
+func (s *ExperienceEntitiesSummary) SetEntityType(v string) *ExperienceEntitiesSummary {
+	s.EntityType = &v
+	return s
+}
+
+// Summary information for your Amazon Kendra experience. You can create an
+// Amazon Kendra experience such as a search application. For more information
+// on creating a search application experience, see Building a search experience
+// with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+type ExperiencesSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date-time your Amazon Kendra experience was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The endpoint URLs for your Amazon Kendra experiences. The URLs are unique
+	// and fully hosted by Amazon Web Services.
+	Endpoints []*ExperienceEndpoint `min:"1" type:"list"`
+
+	// The identifier of your Amazon Kendra experience.
+	Id *string `min:"1" type:"string"`
+
+	// The name of your Amazon Kendra experience.
+	Name *string `min:"1" type:"string"`
+
+	// The processing status of your Amazon Kendra experience.
+	Status *string `type:"string" enum:"ExperienceStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperiencesSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ExperiencesSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ExperiencesSummary) SetCreatedAt(v time.Time) *ExperiencesSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *ExperiencesSummary) SetEndpoints(v []*ExperienceEndpoint) *ExperiencesSummary {
+	s.Endpoints = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ExperiencesSummary) SetId(v string) *ExperiencesSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ExperiencesSummary) SetName(v string) *ExperiencesSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ExperiencesSummary) SetStatus(v string) *ExperiencesSummary {
+	s.Status = &v
+	return s
+}
+
 // Information about a document attribute
 type Facet struct {
 	_ struct{} `type:"structure"`
@@ -11149,6 +14239,50 @@ func (s *FacetResult) SetDocumentAttributeValueCountPairs(v []*DocumentAttribute
 // SetDocumentAttributeValueType sets the DocumentAttributeValueType field's value.
 func (s *FacetResult) SetDocumentAttributeValueType(v string) *FacetResult {
 	s.DocumentAttributeValueType = &v
+	return s
+}
+
+// Information on the users or groups in your Amazon Web Services SSO identity
+// source that failed to properly configure with your Amazon Kendra experience.
+type FailedEntity struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the user or group in your Amazon Web Services SSO identity
+	// source. For example, a user ID could be an email.
+	EntityId *string `min:"1" type:"string"`
+
+	// The reason the user or group in your Amazon Web Services SSO identity source
+	// failed to properly configure with your Amazon Kendra experience.
+	ErrorMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FailedEntity) GoString() string {
+	return s.String()
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *FailedEntity) SetEntityId(v string) *FailedEntity {
+	s.EntityId = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *FailedEntity) SetErrorMessage(v string) *FailedEntity {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -11394,6 +14528,190 @@ func (s *GetQuerySuggestionsOutput) SetQuerySuggestionsId(v string) *GetQuerySug
 // SetSuggestions sets the Suggestions field's value.
 func (s *GetQuerySuggestionsOutput) SetSuggestions(v []*Suggestion) *GetQuerySuggestionsOutput {
 	s.Suggestions = v
+	return s
+}
+
+type GetSnapshotsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the index to get search metrics data.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The time interval or time window to get search metrics data. The time interval
+	// uses the time zone of your index. You can view data in the following time
+	// windows:
+	//
+	//    * THIS_WEEK: The current week, starting on the Sunday and ending on the
+	//    day before the current date.
+	//
+	//    * ONE_WEEK_AGO: The previous week, starting on the Sunday and ending on
+	//    the following Saturday.
+	//
+	//    * TWO_WEEKS_AGO: The week before the previous week, starting on the Sunday
+	//    and ending on the following Saturday.
+	//
+	//    * THIS_MONTH: The current month, starting on the first day of the month
+	//    and ending on the day before the current date.
+	//
+	//    * ONE_MONTH_AGO: The previous month, starting on the first day of the
+	//    month and ending on the last day of the month.
+	//
+	//    * TWO_MONTHS_AGO: The month before the previous month, starting on the
+	//    first day of the month and ending on last day of the month.
+	//
+	// Interval is a required field
+	Interval *string `type:"string" required:"true" enum:"Interval"`
+
+	// The maximum number of returned data for the metric.
+	MaxResults *int64 `type:"integer"`
+
+	// The metric you want to retrieve. You can specify only one metric per call.
+	//
+	// For more information about the metrics you can view, see Gaining insights
+	// with search analytics (https://docs.aws.amazon.com/kendra/latest/dg/search-analytics.html).
+	//
+	// MetricType is a required field
+	MetricType *string `type:"string" required:"true" enum:"MetricType"`
+
+	// If the previous response was incomplete (because there is more data to retrieve),
+	// Amazon Kendra returns a pagination token in the response. You can use this
+	// pagination token to retrieve the next set of search metrics data.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSnapshotsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSnapshotsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSnapshotsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSnapshotsInput"}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.Interval == nil {
+		invalidParams.Add(request.NewErrParamRequired("Interval"))
+	}
+	if s.MetricType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricType"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *GetSnapshotsInput) SetIndexId(v string) *GetSnapshotsInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *GetSnapshotsInput) SetInterval(v string) *GetSnapshotsInput {
+	s.Interval = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetSnapshotsInput) SetMaxResults(v int64) *GetSnapshotsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMetricType sets the MetricType field's value.
+func (s *GetSnapshotsInput) SetMetricType(v string) *GetSnapshotsInput {
+	s.MetricType = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSnapshotsInput) SetNextToken(v string) *GetSnapshotsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetSnapshotsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the response is truncated, Amazon Kendra returns this token, which you
+	// can use in a later request to retrieve the next set of search metrics data.
+	NextToken *string `min:"1" type:"string"`
+
+	// The date-time for the beginning and end of the time window for the search
+	// metrics data.
+	SnapShotTimeFilter *TimeRange `type:"structure"`
+
+	// The search metrics data. The data returned depends on the metric type you
+	// requested.
+	SnapshotsData [][]*string `type:"list"`
+
+	// The column headers for the search metrics data.
+	SnapshotsDataHeader []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSnapshotsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetSnapshotsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetSnapshotsOutput) SetNextToken(v string) *GetSnapshotsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSnapShotTimeFilter sets the SnapShotTimeFilter field's value.
+func (s *GetSnapshotsOutput) SetSnapShotTimeFilter(v *TimeRange) *GetSnapshotsOutput {
+	s.SnapShotTimeFilter = v
+	return s
+}
+
+// SetSnapshotsData sets the SnapshotsData field's value.
+func (s *GetSnapshotsOutput) SetSnapshotsData(v [][]*string) *GetSnapshotsOutput {
+	s.SnapshotsData = v
+	return s
+}
+
+// SetSnapshotsDataHeader sets the SnapshotsDataHeader field's value.
+func (s *GetSnapshotsOutput) SetSnapshotsDataHeader(v []*string) *GetSnapshotsOutput {
+	s.SnapshotsDataHeader = v
 	return s
 }
 
@@ -11883,6 +15201,107 @@ func (s *Highlight) SetType(v string) *Highlight {
 	return s
 }
 
+// Provides the configuration information for invoking a Lambda function in
+// Lambda to alter document metadata and content when ingesting documents into
+// Amazon Kendra. You can configure your Lambda function using PreExtractionHookConfiguration
+// (https://docs.aws.amazon.com/kendra/latest/dg/API_PreExtractionHookConfiguration.html)
+// if you want to apply advanced alterations on the original or raw documents.
+// If you want to apply advanced alterations on the Amazon Kendra structured
+// documents, you must configure your Lambda function using PostExtractionHookConfiguration
+// (https://docs.aws.amazon.com/kendra/latest/dg/API_PostExtractionHookConfiguration.html).
+// You can only invoke one Lambda function. However, this function can invoke
+// other functions it requires.
+//
+// For more information, see Customizing document metadata during the ingestion
+// process (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html).
+type HookConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The condition used for when a Lambda function should be invoked.
+	//
+	// For example, you can specify a condition that if there are empty date-time
+	// values, then Amazon Kendra should invoke a function that inserts the current
+	// date-time.
+	InvocationCondition *DocumentAttributeCondition `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a role with permission to run a Lambda
+	// function during ingestion. For more information, see IAM roles for Amazon
+	// Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	//
+	// LambdaArn is a required field
+	LambdaArn *string `min:"1" type:"string" required:"true"`
+
+	// Stores the original, raw documents or the structured, parsed documents before
+	// and after altering them. For more information, see Data contracts for Lambda
+	// functions (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html#cde-data-contracts-lambda).
+	//
+	// S3Bucket is a required field
+	S3Bucket *string `min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HookConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HookConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HookConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HookConfiguration"}
+	if s.LambdaArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LambdaArn"))
+	}
+	if s.LambdaArn != nil && len(*s.LambdaArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LambdaArn", 1))
+	}
+	if s.S3Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Bucket"))
+	}
+	if s.S3Bucket != nil && len(*s.S3Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("S3Bucket", 3))
+	}
+	if s.InvocationCondition != nil {
+		if err := s.InvocationCondition.Validate(); err != nil {
+			invalidParams.AddNested("InvocationCondition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInvocationCondition sets the InvocationCondition field's value.
+func (s *HookConfiguration) SetInvocationCondition(v *DocumentAttributeCondition) *HookConfiguration {
+	s.InvocationCondition = v
+	return s
+}
+
+// SetLambdaArn sets the LambdaArn field's value.
+func (s *HookConfiguration) SetLambdaArn(v string) *HookConfiguration {
+	s.LambdaArn = &v
+	return s
+}
+
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *HookConfiguration) SetS3Bucket(v string) *HookConfiguration {
+	s.S3Bucket = &v
+	return s
+}
+
 // A summary of information about an index.
 type IndexConfigurationSummary struct {
 	_ struct{} `type:"structure"`
@@ -12015,6 +15434,85 @@ func (s *IndexStatistics) SetTextDocumentStatistics(v *TextDocumentStatistics) *
 	return s
 }
 
+// Provides the configuration information for applying basic logic to alter
+// document metadata and content when ingesting documents into Amazon Kendra.
+// To apply advanced logic, to go beyond what you can do with basic logic, see
+// HookConfiguration (https://docs.aws.amazon.com/kendra/latest/dg/API_HookConfiguration.html).
+//
+// For more information, see Customizing document metadata during the ingestion
+// process (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html).
+type InlineCustomDocumentEnrichmentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration of the condition used for the target document attribute or
+	// metadata field when ingesting documents into Amazon Kendra.
+	Condition *DocumentAttributeCondition `type:"structure"`
+
+	// TRUE to delete content if the condition used for the target attribute is
+	// met.
+	DocumentContentDeletion *bool `type:"boolean"`
+
+	// Configuration of the target document attribute or metadata field when ingesting
+	// documents into Amazon Kendra. You can also include a value.
+	Target *DocumentAttributeTarget `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InlineCustomDocumentEnrichmentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InlineCustomDocumentEnrichmentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InlineCustomDocumentEnrichmentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InlineCustomDocumentEnrichmentConfiguration"}
+	if s.Condition != nil {
+		if err := s.Condition.Validate(); err != nil {
+			invalidParams.AddNested("Condition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Target != nil {
+		if err := s.Target.Validate(); err != nil {
+			invalidParams.AddNested("Target", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCondition sets the Condition field's value.
+func (s *InlineCustomDocumentEnrichmentConfiguration) SetCondition(v *DocumentAttributeCondition) *InlineCustomDocumentEnrichmentConfiguration {
+	s.Condition = v
+	return s
+}
+
+// SetDocumentContentDeletion sets the DocumentContentDeletion field's value.
+func (s *InlineCustomDocumentEnrichmentConfiguration) SetDocumentContentDeletion(v bool) *InlineCustomDocumentEnrichmentConfiguration {
+	s.DocumentContentDeletion = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *InlineCustomDocumentEnrichmentConfiguration) SetTarget(v *DocumentAttributeTarget) *InlineCustomDocumentEnrichmentConfiguration {
+	s.Target = v
+	return s
+}
+
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12075,6 +15573,70 @@ func (s *InternalServerException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The input to the request is not valid.
+type InvalidRequestException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidRequestException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InvalidRequestException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidRequestException(v protocol.ResponseMetadata) error {
+	return &InvalidRequestException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidRequestException) Code() string {
+	return "InvalidRequestException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidRequestException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidRequestException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidRequestException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidRequestException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -12164,7 +15726,7 @@ type JwtTokenTypeConfiguration struct {
 	KeyLocation *string `type:"string" required:"true" enum:"KeyLocation"`
 
 	// The Amazon Resource Name (arn) of the secret.
-	SecretManagerArn *string `min:"1" type:"string"`
+	SecretManagerArn *string `type:"string"`
 
 	// The signing key URL.
 	URL *string `min:"1" type:"string"`
@@ -12205,9 +15767,6 @@ func (s *JwtTokenTypeConfiguration) Validate() error {
 	}
 	if s.KeyLocation == nil {
 		invalidParams.Add(request.NewErrParamRequired("KeyLocation"))
-	}
-	if s.SecretManagerArn != nil && len(*s.SecretManagerArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SecretManagerArn", 1))
 	}
 	if s.URL != nil && len(*s.URL) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("URL", 1))
@@ -12531,6 +16090,376 @@ func (s *ListDataSourcesOutput) SetNextToken(v string) *ListDataSourcesOutput {
 
 // SetSummaryItems sets the SummaryItems field's value.
 func (s *ListDataSourcesOutput) SetSummaryItems(v []*DataSourceSummary) *ListDataSourcesOutput {
+	s.SummaryItems = v
+	return s
+}
+
+type ListEntityPersonasInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of your Amazon Kendra experience.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index for your Amazon Kendra experience.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The maximum number of returned users or groups.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there is more data to retrieve),
+	// Amazon Kendra returns a pagination token in the response. You can use this
+	// pagination token to retrieve the next set of users or groups.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntityPersonasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntityPersonasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEntityPersonasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEntityPersonasInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *ListEntityPersonasInput) SetId(v string) *ListEntityPersonasInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *ListEntityPersonasInput) SetIndexId(v string) *ListEntityPersonasInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEntityPersonasInput) SetMaxResults(v int64) *ListEntityPersonasInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntityPersonasInput) SetNextToken(v string) *ListEntityPersonasInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEntityPersonasOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the response is truncated, Amazon Kendra returns this token, which you
+	// can use in a later request to retrieve the next set of users or groups.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of summary information for one or more users or groups.
+	SummaryItems []*PersonasSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntityPersonasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntityPersonasOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntityPersonasOutput) SetNextToken(v string) *ListEntityPersonasOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSummaryItems sets the SummaryItems field's value.
+func (s *ListEntityPersonasOutput) SetSummaryItems(v []*PersonasSummary) *ListEntityPersonasOutput {
+	s.SummaryItems = v
+	return s
+}
+
+type ListExperienceEntitiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of your Amazon Kendra experience.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index for your Amazon Kendra experience.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// If the previous response was incomplete (because there is more data to retrieve),
+	// Amazon Kendra returns a pagination token in the response. You can use this
+	// pagination token to retrieve the next set of users or groups.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperienceEntitiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperienceEntitiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExperienceEntitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExperienceEntitiesInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *ListExperienceEntitiesInput) SetId(v string) *ListExperienceEntitiesInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *ListExperienceEntitiesInput) SetIndexId(v string) *ListExperienceEntitiesInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExperienceEntitiesInput) SetNextToken(v string) *ListExperienceEntitiesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListExperienceEntitiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the response is truncated, Amazon Kendra returns this token, which you
+	// can use in a later request to retrieve the next set of users or groups.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of summary information for one or more users or groups.
+	SummaryItems []*ExperienceEntitiesSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperienceEntitiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperienceEntitiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExperienceEntitiesOutput) SetNextToken(v string) *ListExperienceEntitiesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSummaryItems sets the SummaryItems field's value.
+func (s *ListExperienceEntitiesOutput) SetSummaryItems(v []*ExperienceEntitiesSummary) *ListExperienceEntitiesOutput {
+	s.SummaryItems = v
+	return s
+}
+
+type ListExperiencesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the index for your Amazon Kendra experience.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The maximum number of returned Amazon Kendra experiences.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there is more data to retrieve),
+	// Amazon Kendra returns a pagination token in the response. You can use this
+	// pagination token to retrieve the next set of Amazon Kendra experiences.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperiencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperiencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExperiencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExperiencesInput"}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *ListExperiencesInput) SetIndexId(v string) *ListExperiencesInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExperiencesInput) SetMaxResults(v int64) *ListExperiencesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExperiencesInput) SetNextToken(v string) *ListExperiencesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListExperiencesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the response is truncated, Amazon Kendra returns this token, which you
+	// can use in a later request to retrieve the next set of Amazon Kendra experiences.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of summary information for one or more Amazon Kendra experiences.
+	SummaryItems []*ExperiencesSummary `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperiencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListExperiencesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExperiencesOutput) SetNextToken(v string) *ListExperiencesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSummaryItems sets the SummaryItems field's value.
+func (s *ListExperiencesOutput) SetSummaryItems(v []*ExperiencesSummary) *ListExperiencesOutput {
 	s.SummaryItems = v
 	return s
 }
@@ -13550,6 +17479,74 @@ func (s *OneDriveUsers) SetOneDriveUserS3Path(v *S3Path) *OneDriveUsers {
 	return s
 }
 
+// Summary information for users or groups in your Amazon Web Services SSO identity
+// source. This applies to users and groups with specific permissions that define
+// their level of access to your Amazon Kendra experience. You can create an
+// Amazon Kendra experience such as a search application. For more information
+// on creating a search application experience, see Building a search experience
+// with no code (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html).
+type PersonasSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date-time the summary information was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The identifier of a user or group in your Amazon Web Services SSO identity
+	// source. For example, a user ID could be an email.
+	EntityId *string `min:"1" type:"string"`
+
+	// The persona that defines the specific permissions of the user or group in
+	// your Amazon Web Services SSO identity source. The available personas or access
+	// roles are Owner and Viewer. For more information on these personas, see Providing
+	// access to your search page (https://docs.aws.amazon.com/kendra/latest/dg/deploying-search-experience-no-code.html#access-search-experience).
+	Persona *string `type:"string" enum:"Persona"`
+
+	// The date-time the summary information was last updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PersonasSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PersonasSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PersonasSummary) SetCreatedAt(v time.Time) *PersonasSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *PersonasSummary) SetEntityId(v string) *PersonasSummary {
+	s.EntityId = &v
+	return s
+}
+
+// SetPersona sets the Persona field's value.
+func (s *PersonasSummary) SetPersona(v string) *PersonasSummary {
+	s.Persona = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *PersonasSummary) SetUpdatedAt(v time.Time) *PersonasSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
 // Provides user and group information for document access filtering.
 type Principal struct {
 	_ struct{} `type:"structure"`
@@ -13645,7 +17642,7 @@ func (s *Principal) SetType(v string) *Principal {
 type ProxyConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Your secret ARN, which you can create in AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	// Your secret ARN, which you can create in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
 	//
 	// The credentials are optional. You use a secret if web proxy credentials are
 	// required to connect to a website host. Amazon Kendra currently support basic
@@ -13787,7 +17784,7 @@ type PutPrincipalMappingInput struct {
 	// contains your list of users or sub groups that belong to a group.
 	//
 	// For more information, see IAM roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-ds).
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -13828,9 +17825,6 @@ func (s *PutPrincipalMappingInput) Validate() error {
 	}
 	if s.IndexId != nil && len(*s.IndexId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
 	if s.GroupMembers != nil {
 		if err := s.GroupMembers.Validate(); err != nil {
@@ -15899,7 +19893,7 @@ func (s *Search) SetSortable(v bool) *Search {
 //
 // When selecting websites to index, you must adhere to the Amazon Acceptable
 // Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
-// that you must only use the Amazon Kendra web crawler to index your own webpages,
+// that you must only use Amazon Kendra Web Crawler to index your own webpages,
 // or webpages that you have authorization to index.
 type SeedUrlConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -16029,10 +20023,10 @@ type ServiceNowConfiguration struct {
 
 	// Determines the type of authentication used to connect to the ServiceNow instance.
 	// If you choose HTTP_BASIC, Amazon Kendra is authenticated using the user name
-	// and password provided in the AWS Secrets Manager secret in the SecretArn
-	// field. When you choose OAUTH2, Amazon Kendra is authenticated using the OAuth
-	// token and secret provided in the Secrets Manager secret, and the user name
-	// and password are used to determine which information Amazon Kendra has access
+	// and password provided in the Secrets Manager secret in the SecretArn field.
+	// When you choose OAUTH2, Amazon Kendra is authenticated using the OAuth token
+	// and secret provided in the Secrets Manager secret, and the user name and
+	// password are used to determine which information Amazon Kendra has access
 	// to.
 	//
 	// When you use OAUTH2 authentication, you must generate a token and a client
@@ -16523,7 +20517,7 @@ type SharePointConfiguration struct {
 	// The credentials should be a user/password pair. If you use SharePoint Server,
 	// you also need to provide the sever domain name as part of the credentials.
 	// For more information, see Using a Microsoft SharePoint Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html).
-	// For more information about Secrets Manager, see What Is Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	// For more information about Secrets Manager see What Is Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
 	// in the Secrets Manager user guide.
 	//
 	// SecretArn is a required field
@@ -16699,7 +20693,7 @@ func (s *SharePointConfiguration) SetVpcConfiguration(v *DataSourceVpcConfigurat
 //
 // When selecting websites to index, you must adhere to the Amazon Acceptable
 // Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
-// that you must only use the Amazon Kendra web crawler to index your own webpages,
+// that you must only use Amazon Kendra Web Crawler to index your own webpages,
 // or webpages that you have authorization to index.
 type SiteMapsConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -17936,8 +21930,16 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration information for a Amazon Kendra data source.
+	// Configuration information for an Amazon Kendra data source.
 	Configuration *DataSourceConfiguration `type:"structure"`
+
+	// Configuration information for altering document metadata and content during
+	// the document ingestion process when you update a data source.
+	//
+	// For more information on how to create, modify and delete document metadata,
+	// or make other content alterations when you ingest documents into Amazon Kendra,
+	// see Customizing document metadata during the ingestion process (https://docs.aws.amazon.com/kendra/latest/dg/custom-document-enrichment.html).
+	CustomDocumentEnrichmentConfiguration *CustomDocumentEnrichmentConfiguration `type:"structure"`
 
 	// The new description for the data source.
 	Description *string `type:"string"`
@@ -17965,7 +21967,7 @@ type UpdateDataSourceInput struct {
 
 	// The Amazon Resource Name (ARN) of the new role to use when the data source
 	// is accessing resources on your behalf.
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 
 	// The new update schedule for the data source.
 	Schedule *string `type:"string"`
@@ -18010,12 +22012,14 @@ func (s *UpdateDataSourceInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
-	}
 	if s.Configuration != nil {
 		if err := s.Configuration.Validate(); err != nil {
 			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomDocumentEnrichmentConfiguration != nil {
+		if err := s.CustomDocumentEnrichmentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CustomDocumentEnrichmentConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -18028,6 +22032,12 @@ func (s *UpdateDataSourceInput) Validate() error {
 // SetConfiguration sets the Configuration field's value.
 func (s *UpdateDataSourceInput) SetConfiguration(v *DataSourceConfiguration) *UpdateDataSourceInput {
 	s.Configuration = v
+	return s
+}
+
+// SetCustomDocumentEnrichmentConfiguration sets the CustomDocumentEnrichmentConfiguration field's value.
+func (s *UpdateDataSourceInput) SetCustomDocumentEnrichmentConfiguration(v *CustomDocumentEnrichmentConfiguration) *UpdateDataSourceInput {
+	s.CustomDocumentEnrichmentConfiguration = v
 	return s
 }
 
@@ -18095,6 +22105,144 @@ func (s UpdateDataSourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateExperienceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the user configuration information. This includes the Amazon Web
+	// Services SSO field name that contains the identifiers of your users, such
+	// as their emails.
+	Configuration *ExperienceConfiguration `type:"structure"`
+
+	// The description of your Amazon Kendra experience you want to update.
+	Description *string `type:"string"`
+
+	// The identifier of your Amazon Kendra experience you want to update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index for your Amazon Kendra experience you want to
+	// update.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The name of your Amazon Kendra experience you want to update.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of a role with permission to access Query
+	// operations, QuerySuggestions operations, SubmitFeedback operations, and Amazon
+	// Web Services SSO that stores your user and group information. For more information,
+	// see IAM roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
+	RoleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExperienceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExperienceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateExperienceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateExperienceInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *UpdateExperienceInput) SetConfiguration(v *ExperienceConfiguration) *UpdateExperienceInput {
+	s.Configuration = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateExperienceInput) SetDescription(v string) *UpdateExperienceInput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateExperienceInput) SetId(v string) *UpdateExperienceInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *UpdateExperienceInput) SetIndexId(v string) *UpdateExperienceInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateExperienceInput) SetName(v string) *UpdateExperienceInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateExperienceInput) SetRoleArn(v string) *UpdateExperienceInput {
+	s.RoleArn = &v
+	return s
+}
+
+type UpdateExperienceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExperienceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateExperienceOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateIndexInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18122,13 +22270,13 @@ type UpdateIndexInput struct {
 
 	// A new IAM role that gives Amazon Kendra permission to access your Amazon
 	// CloudWatch logs.
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 
 	// The user context policy.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
-	// Enables fetching access levels of groups and users from an AWS Single Sign-On
-	// identity source. To configure this, see UserGroupResolutionConfiguration
+	// Enables fetching access levels of groups and users from an Amazon Web Services
+	// Single Sign On identity source. To configure this, see UserGroupResolutionConfiguration
 	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
 	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
@@ -18165,9 +22313,6 @@ func (s *UpdateIndexInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
 	if s.CapacityUnits != nil {
 		if err := s.CapacityUnits.Validate(); err != nil {
@@ -18303,7 +22448,7 @@ type UpdateQuerySuggestionsBlockListInput struct {
 
 	// The IAM (Identity and Access Management) role used to access the block list
 	// text file in S3.
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 
 	// The S3 path where your block list text file sits in S3.
 	//
@@ -18353,9 +22498,6 @@ func (s *UpdateQuerySuggestionsBlockListInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
 	if s.SourceS3Path != nil {
 		if err := s.SourceS3Path.Validate(); err != nil {
@@ -18607,7 +22749,7 @@ type UpdateThesaurusInput struct {
 	Name *string `min:"1" type:"string"`
 
 	// The updated role ARN of the thesaurus.
-	RoleArn *string `min:"1" type:"string"`
+	RoleArn *string `type:"string"`
 
 	// Information required to find a specific file in an Amazon S3 bucket.
 	SourceS3Path *S3Path `type:"structure"`
@@ -18648,9 +22790,6 @@ func (s *UpdateThesaurusInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
 	if s.SourceS3Path != nil {
 		if err := s.SourceS3Path.Validate(); err != nil {
@@ -18730,7 +22869,7 @@ func (s UpdateThesaurusOutput) GoString() string {
 //
 // When selecting websites to index, you must adhere to the Amazon Acceptable
 // Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
-// that you must only use the Amazon Kendra web crawler to index your own webpages,
+// that you must only use Amazon Kendra Web Crawler to index your own webpages,
 // or webpages that you have authorization to index.
 type Urls struct {
 	_ struct{} `type:"structure"`
@@ -18911,23 +23050,25 @@ func (s *UserContext) SetUserId(v string) *UserContext {
 }
 
 // Provides the configuration information to fetch access levels of groups and
-// users from an AWS Single Sign-On identity source. This is useful for setting
-// up user context filtering, where Amazon Kendra filters search results for
-// different users based on their group's access to documents. You can also
-// map your users to their groups for user context filtering using the PutPrincipalMapping
-// operation (https://docs.aws.amazon.com/latest/dg/API_PutPrincipalMapping.html).
+// users from an Amazon Web Services Single Sign On identity source. This is
+// useful for setting up user context filtering, where Amazon Kendra filters
+// search results for different users based on their group's access to documents.
+// You can also map your users to their groups for user context filtering using
+// the PutPrincipalMapping operation (https://docs.aws.amazon.com/kendra/latest/dg/API_PutPrincipalMapping.html).
 //
-// To set up an AWS SSO identity source in the console to use with Amazon Kendra,
-// see Getting started with an AWS SSO identity source (https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html).
-// You must also grant the required permissions to use AWS SSO with Amazon Kendra.
-// For more information, see IAM roles for AWS Single Sign-On (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso).
+// To set up an Amazon Web Services SSO identity source in the console to use
+// with Amazon Kendra, see Getting started with an Amazon Web Services SSO identity
+// source (https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html).
+// You must also grant the required permissions to use Amazon Web Services SSO
+// with Amazon Kendra. For more information, see IAM roles for Amazon Web Services
+// SSO (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso).
 type UserGroupResolutionConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The identity store provider (mode) you want to use to fetch access levels
-	// of groups and users. AWS Single Sign-On is currently the only available mode.
-	// Your users and groups must exist in an AWS SSO identity source in order to
-	// use this mode.
+	// of groups and users. Amazon Web Services Single Sign On is currently the
+	// only available mode. Your users and groups must exist in an Amazon Web Services
+	// SSO identity source in order to use this mode.
 	//
 	// UserGroupResolutionMode is a required field
 	UserGroupResolutionMode *string `type:"string" required:"true" enum:"UserGroupResolutionMode"`
@@ -18967,6 +23108,57 @@ func (s *UserGroupResolutionConfiguration) Validate() error {
 // SetUserGroupResolutionMode sets the UserGroupResolutionMode field's value.
 func (s *UserGroupResolutionConfiguration) SetUserGroupResolutionMode(v string) *UserGroupResolutionConfiguration {
 	s.UserGroupResolutionMode = &v
+	return s
+}
+
+// Configuration information for the identifiers of your users.
+type UserIdentityConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services SSO field name that contains the identifiers of your
+	// users, such as their emails. This is used for user context filtering (https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html)
+	// and for granting access to your Amazon Kendra experience. You must set up
+	// Amazon Web Services SSO with Amazon Kendra. You must include your users and
+	// groups in your Access Control List when you ingest documents into your index.
+	// For more information, see Getting started with an Amazon Web Services SSO
+	// identity source (https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html).
+	IdentityAttributeName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserIdentityConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserIdentityConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserIdentityConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserIdentityConfiguration"}
+	if s.IdentityAttributeName != nil && len(*s.IdentityAttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdentityAttributeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentityAttributeName sets the IdentityAttributeName field's value.
+func (s *UserIdentityConfiguration) SetIdentityAttributeName(v string) *UserIdentityConfiguration {
+	s.IdentityAttributeName = &v
 	return s
 }
 
@@ -19094,7 +23286,7 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides the configuration information required for Amazon Kendra web crawler.
+// Provides the configuration information required for Amazon Kendra Web Crawler.
 type WebCrawlerConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -19105,8 +23297,8 @@ type WebCrawlerConfiguration struct {
 	//
 	// You must provide the website host name and port number. For example, the
 	// host name of https://a.example.com/page1.html is "a.example.com" and the
-	// port is 443, the standard port for HTTPS. You use a secret in AWS Secrets
-	// Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	// port is 443, the standard port for HTTPS. You use a secret in Secrets Manager
+	// (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
 	// to store your authentication credentials.
 	AuthenticationConfiguration *AuthenticationConfiguration `type:"structure"`
 
@@ -19154,7 +23346,7 @@ type WebCrawlerConfiguration struct {
 	//
 	// Web proxy credentials are optional and you can use them to connect to a web
 	// proxy server that requires basic authentication. To store web proxy credentials,
-	// you use a secret in AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
+	// you use a secret in Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
 	ProxyConfiguration *ProxyConfiguration `type:"structure"`
 
 	// The regular expression pattern to exclude certain URLs to crawl.
@@ -19181,7 +23373,7 @@ type WebCrawlerConfiguration struct {
 	//
 	// When selecting websites to index, you must adhere to the Amazon Acceptable
 	// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
-	// that you must only use the Amazon Kendra web crawler to index your own webpages,
+	// that you must only use Amazon Kendra Web Crawler to index your own webpages,
 	// or webpages that you have authorization to index.
 	//
 	// Urls is a required field
@@ -19337,10 +23529,10 @@ type WorkDocsConfiguration struct {
 	// The identifier of the directory corresponding to your Amazon WorkDocs site
 	// repository.
 	//
-	// You can find the organization ID in the AWS Directory Service (https://console.aws.amazon.com/directoryservicev2/)
+	// You can find the organization ID in the Directory Service (https://console.aws.amazon.com/directoryservicev2/)
 	// by going to Active Directory, then Directories. Your Amazon WorkDocs site
 	// directory has an ID, which is the organization ID. You can also set up a
-	// new Amazon WorkDocs directory in the AWS Directory Service console and enable
+	// new Amazon WorkDocs directory in the Directory Service console and enable
 	// a Amazon WorkDocs site for the directory in the Amazon WorkDocs console.
 	//
 	// OrganizationId is a required field
@@ -19449,6 +23641,58 @@ const (
 func AdditionalResultAttributeValueType_Values() []string {
 	return []string{
 		AdditionalResultAttributeValueTypeTextWithHighlightsValue,
+	}
+}
+
+const (
+	// ConditionOperatorGreaterThan is a ConditionOperator enum value
+	ConditionOperatorGreaterThan = "GreaterThan"
+
+	// ConditionOperatorGreaterThanOrEquals is a ConditionOperator enum value
+	ConditionOperatorGreaterThanOrEquals = "GreaterThanOrEquals"
+
+	// ConditionOperatorLessThan is a ConditionOperator enum value
+	ConditionOperatorLessThan = "LessThan"
+
+	// ConditionOperatorLessThanOrEquals is a ConditionOperator enum value
+	ConditionOperatorLessThanOrEquals = "LessThanOrEquals"
+
+	// ConditionOperatorEquals is a ConditionOperator enum value
+	ConditionOperatorEquals = "Equals"
+
+	// ConditionOperatorNotEquals is a ConditionOperator enum value
+	ConditionOperatorNotEquals = "NotEquals"
+
+	// ConditionOperatorContains is a ConditionOperator enum value
+	ConditionOperatorContains = "Contains"
+
+	// ConditionOperatorNotContains is a ConditionOperator enum value
+	ConditionOperatorNotContains = "NotContains"
+
+	// ConditionOperatorExists is a ConditionOperator enum value
+	ConditionOperatorExists = "Exists"
+
+	// ConditionOperatorNotExists is a ConditionOperator enum value
+	ConditionOperatorNotExists = "NotExists"
+
+	// ConditionOperatorBeginsWith is a ConditionOperator enum value
+	ConditionOperatorBeginsWith = "BeginsWith"
+)
+
+// ConditionOperator_Values returns all elements of the ConditionOperator enum
+func ConditionOperator_Values() []string {
+	return []string{
+		ConditionOperatorGreaterThan,
+		ConditionOperatorGreaterThanOrEquals,
+		ConditionOperatorLessThan,
+		ConditionOperatorLessThanOrEquals,
+		ConditionOperatorEquals,
+		ConditionOperatorNotEquals,
+		ConditionOperatorContains,
+		ConditionOperatorNotContains,
+		ConditionOperatorExists,
+		ConditionOperatorNotExists,
+		ConditionOperatorBeginsWith,
 	}
 }
 
@@ -19869,6 +24113,34 @@ func DocumentStatus_Values() []string {
 }
 
 const (
+	// EndpointTypeHome is a EndpointType enum value
+	EndpointTypeHome = "HOME"
+)
+
+// EndpointType_Values returns all elements of the EndpointType enum
+func EndpointType_Values() []string {
+	return []string{
+		EndpointTypeHome,
+	}
+}
+
+const (
+	// EntityTypeUser is a EntityType enum value
+	EntityTypeUser = "USER"
+
+	// EntityTypeGroup is a EntityType enum value
+	EntityTypeGroup = "GROUP"
+)
+
+// EntityType_Values returns all elements of the EntityType enum
+func EntityType_Values() []string {
+	return []string{
+		EntityTypeUser,
+		EntityTypeGroup,
+	}
+}
+
+const (
 	// ErrorCodeInternalError is a ErrorCode enum value
 	ErrorCodeInternalError = "InternalError"
 
@@ -19881,6 +24153,30 @@ func ErrorCode_Values() []string {
 	return []string{
 		ErrorCodeInternalError,
 		ErrorCodeInvalidRequest,
+	}
+}
+
+const (
+	// ExperienceStatusCreating is a ExperienceStatus enum value
+	ExperienceStatusCreating = "CREATING"
+
+	// ExperienceStatusActive is a ExperienceStatus enum value
+	ExperienceStatusActive = "ACTIVE"
+
+	// ExperienceStatusDeleting is a ExperienceStatus enum value
+	ExperienceStatusDeleting = "DELETING"
+
+	// ExperienceStatusFailed is a ExperienceStatus enum value
+	ExperienceStatusFailed = "FAILED"
+)
+
+// ExperienceStatus_Values returns all elements of the ExperienceStatus enum
+func ExperienceStatus_Values() []string {
+	return []string{
+		ExperienceStatusCreating,
+		ExperienceStatusActive,
+		ExperienceStatusDeleting,
+		ExperienceStatusFailed,
 	}
 }
 
@@ -19997,6 +24293,38 @@ func IndexStatus_Values() []string {
 }
 
 const (
+	// IntervalThisMonth is a Interval enum value
+	IntervalThisMonth = "THIS_MONTH"
+
+	// IntervalThisWeek is a Interval enum value
+	IntervalThisWeek = "THIS_WEEK"
+
+	// IntervalOneWeekAgo is a Interval enum value
+	IntervalOneWeekAgo = "ONE_WEEK_AGO"
+
+	// IntervalTwoWeeksAgo is a Interval enum value
+	IntervalTwoWeeksAgo = "TWO_WEEKS_AGO"
+
+	// IntervalOneMonthAgo is a Interval enum value
+	IntervalOneMonthAgo = "ONE_MONTH_AGO"
+
+	// IntervalTwoMonthsAgo is a Interval enum value
+	IntervalTwoMonthsAgo = "TWO_MONTHS_AGO"
+)
+
+// Interval_Values returns all elements of the Interval enum
+func Interval_Values() []string {
+	return []string{
+		IntervalThisMonth,
+		IntervalThisWeek,
+		IntervalOneWeekAgo,
+		IntervalTwoWeeksAgo,
+		IntervalOneMonthAgo,
+		IntervalTwoMonthsAgo,
+	}
+}
+
+const (
 	// KeyLocationUrl is a KeyLocation enum value
 	KeyLocationUrl = "URL"
 
@@ -20009,6 +24337,38 @@ func KeyLocation_Values() []string {
 	return []string{
 		KeyLocationUrl,
 		KeyLocationSecretManager,
+	}
+}
+
+const (
+	// MetricTypeQueriesByCount is a MetricType enum value
+	MetricTypeQueriesByCount = "QUERIES_BY_COUNT"
+
+	// MetricTypeQueriesByZeroClickRate is a MetricType enum value
+	MetricTypeQueriesByZeroClickRate = "QUERIES_BY_ZERO_CLICK_RATE"
+
+	// MetricTypeQueriesByZeroResultRate is a MetricType enum value
+	MetricTypeQueriesByZeroResultRate = "QUERIES_BY_ZERO_RESULT_RATE"
+
+	// MetricTypeDocsByClickCount is a MetricType enum value
+	MetricTypeDocsByClickCount = "DOCS_BY_CLICK_COUNT"
+
+	// MetricTypeAggQueryDocMetrics is a MetricType enum value
+	MetricTypeAggQueryDocMetrics = "AGG_QUERY_DOC_METRICS"
+
+	// MetricTypeTrendQueryDocMetrics is a MetricType enum value
+	MetricTypeTrendQueryDocMetrics = "TREND_QUERY_DOC_METRICS"
+)
+
+// MetricType_Values returns all elements of the MetricType enum
+func MetricType_Values() []string {
+	return []string{
+		MetricTypeQueriesByCount,
+		MetricTypeQueriesByZeroClickRate,
+		MetricTypeQueriesByZeroResultRate,
+		MetricTypeDocsByClickCount,
+		MetricTypeAggQueryDocMetrics,
+		MetricTypeTrendQueryDocMetrics,
 	}
 }
 
@@ -20041,6 +24401,22 @@ func Order_Values() []string {
 	return []string{
 		OrderAscending,
 		OrderDescending,
+	}
+}
+
+const (
+	// PersonaOwner is a Persona enum value
+	PersonaOwner = "OWNER"
+
+	// PersonaViewer is a Persona enum value
+	PersonaViewer = "VIEWER"
+)
+
+// Persona_Values returns all elements of the Persona enum
+func Persona_Values() []string {
+	return []string{
+		PersonaOwner,
+		PersonaViewer,
 	}
 }
 

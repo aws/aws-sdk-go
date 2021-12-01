@@ -43,7 +43,8 @@ const (
 	// "InvalidPaginationTokenException".
 	//
 	// Exception that indicates that the NextToken specified in the request is invalid.
-	// Submit the request using the NextToken value that was returned in the response.
+	// Submit the request using the NextToken value that was returned in the prior
+	// response.
 	ErrCodeInvalidPaginationTokenException = "InvalidPaginationTokenException"
 
 	// ErrCodeInvalidParameterException for service response error code

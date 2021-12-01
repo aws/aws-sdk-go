@@ -216,6 +216,24 @@
       "output_token": "NextToken",
       "result_key": "InternetGateways"
     },
+    "DescribeIpamPools": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IpamPools"
+    },
+    "DescribeIpamScopes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IpamScopes"
+    },
+    "DescribeIpams": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Ipams"
+    },
     "DescribeIpv6Pools": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -296,6 +314,18 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "NetworkAcls"
+    },
+    "DescribeNetworkInsightsAccessScopeAnalyses": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "NetworkInsightsAccessScopeAnalyses"
+    },
+    "DescribeNetworkInsightsAccessScopes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "NetworkInsightsAccessScopes"
     },
     "DescribeNetworkInsightsAnalyses": {
       "input_token": "NextToken",
@@ -613,6 +643,30 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "InstanceTypes"
+    },
+    "GetIpamAddressHistory": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "HistoryRecords"
+    },
+    "GetIpamPoolAllocations": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IpamPoolAllocations"
+    },
+    "GetIpamPoolCidrs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IpamPoolCidrs"
+    },
+    "GetIpamResourceCidrs": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "IpamResourceCidrs"
     },
     "GetManagedPrefixListAssociations": {
       "input_token": "NextToken",

@@ -1,3 +1,23 @@
+Release v1.42.17 (2021-12-01)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API, documentation, and paginators
+* `service/directconnect`: Updates service API and documentation
+  * Adds SiteLink support to private and transit virtual interfaces. SiteLink is a new Direct Connect feature that allows routing between Direct Connect points of presence.
+* `service/dynamodb`: Updates service API, documentation, waiters, paginators, and examples
+  * Add support for Table Classes and introduce the Standard Infrequent Access table class.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release adds support for Amazon VPC IP Address Manager (IPAM), which enables you to plan, track, and monitor IP addresses for your workloads. This release also adds support for VPC Network Access Analyzer, which enables you to analyze network access to resources in your Virtual Private Clouds.
+* `service/kendra`: Updates service API, documentation, and paginators
+  * Experience Builder allows customers to build search applications without writing code. Analytics Dashboard provides quality and usability metrics for Kendra indexes. Custom Document Enrichment allows customers to build a custom ingestion pipeline to pre-process documents and generate metadata.
+* `service/models.lex.v2`: Updates service API, documentation, and paginators
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * This release enables - 1/ Inference endpoint configuration recommendations and ability to run custom load tests to meet performance needs. 2/ Deploy serverless inference endpoints. 3/ Query, filter and retrieve end-to-end ML lineage graph, and incorporate model quality/bias detection in ML workflow.
+* `service/shield`: Updates service API and documentation
+  * This release adds API support for Automatic Application Layer DDoS Mitigation for AWS Shield Advanced. Customers can now enable automatic DDoS mitigation in count or block mode for layer 7 protected resources.
+
 Release v1.42.16 (2021-11-30)
 ===
 

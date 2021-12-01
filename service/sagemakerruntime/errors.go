@@ -8,6 +8,13 @@ import (
 
 const (
 
+	// ErrCodeInternalDependencyException for service response error code
+	// "InternalDependencyException".
+	//
+	// Your request caused an exception with an internal dependency. Contact customer
+	// support.
+	ErrCodeInternalDependencyException = "InternalDependencyException"
+
 	// ErrCodeInternalFailure for service response error code
 	// "InternalFailure".
 	//
@@ -20,6 +27,14 @@ const (
 	// Model (owned by the customer in the container) returned 4xx or 5xx error
 	// code.
 	ErrCodeModelError = "ModelError"
+
+	// ErrCodeModelNotReadyException for service response error code
+	// "ModelNotReadyException".
+	//
+	// Either a serverless endpoint variant's resources are still being provisioned,
+	// or a multi-model endpoint is still downloading or loading the target model.
+	// Wait and try your request again.
+	ErrCodeModelNotReadyException = "ModelNotReadyException"
 
 	// ErrCodeServiceUnavailable for service response error code
 	// "ServiceUnavailable".
@@ -35,8 +50,10 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"InternalFailure":    newErrorInternalFailure,
-	"ModelError":         newErrorModelError,
-	"ServiceUnavailable": newErrorServiceUnavailable,
-	"ValidationError":    newErrorValidationError,
+	"InternalDependencyException": newErrorInternalDependencyException,
+	"InternalFailure":             newErrorInternalFailure,
+	"ModelError":                  newErrorModelError,
+	"ModelNotReadyException":      newErrorModelNotReadyException,
+	"ServiceUnavailable":          newErrorServiceUnavailable,
+	"ValidationError":             newErrorValidationError,
 }
