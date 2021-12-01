@@ -150,6 +150,12 @@
       "limit_key": "MaxResults",
       "result_key": "Images"
     },
+    "ListInferenceRecommendationsJobs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "InferenceRecommendationsJobs"
+    },
     "ListLabelingJobs": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -162,6 +168,12 @@
       "limit_key": "MaxResults",
       "result_key": "LabelingJobSummaryList"
     },
+    "ListLineageGroups": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "LineageGroupSummaries"
+    },
     "ListModelBiasJobDefinitions": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -173,6 +185,12 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "JobDefinitionSummaries"
+    },
+    "ListModelMetadata": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "ModelMetadataSummaries"
     },
     "ListModelPackageGroups": {
       "input_token": "NextToken",
@@ -322,6 +340,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults",
       "result_key": "Workteams"
+    },
+    "QueryLineage": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
     },
     "Search": {
       "input_token": "NextToken",

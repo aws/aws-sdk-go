@@ -21031,6 +21031,19 @@ var awsPartition = partition{
 				},
 			},
 		},
+		"workspaces-web": service{
+			Endpoints: serviceEndpoints{
+				endpointKey{
+					Region: "eu-west-1",
+				}: endpoint{},
+				endpointKey{
+					Region: "us-east-1",
+				}: endpoint{},
+				endpointKey{
+					Region: "us-west-2",
+				}: endpoint{},
+			},
+		},
 		"xray": service{
 			Endpoints: serviceEndpoints{
 				endpointKey{

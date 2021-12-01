@@ -717,6 +717,7 @@
         "RestoreSummary$RestoreDateTime": "<p>Point in time or source backup time.</p>",
         "RestoreTableToPointInTimeInput$RestoreDateTime": "<p>Time in the past to restore the table to.</p>",
         "SSEDescription$InaccessibleEncryptionDateTime": "<p>Indicates the time, in UNIX epoch date format, when DynamoDB detected that the table's KMS key was inaccessible. This attribute will automatically be cleared when DynamoDB detects that the table's KMS key is accessible again. DynamoDB will initiate the table archival process when table's KMS key remains inaccessible for more than seven days from this date.</p>",
+        "TableClassSummary$LastUpdateDateTime": "<p>The date and time at which the table class was last updated.</p>",
         "TableDescription$CreationDateTime": "<p>The date and time when the table was created, in <a href=\"http://www.epochconverter.com/\">UNIX epoch time</a> format.</p>"
       }
     },
@@ -2501,6 +2502,25 @@
       "refs": {
         "DescribeTableReplicaAutoScalingOutput$TableAutoScalingDescription": "<p>Represents the auto scaling properties of the table.</p>",
         "UpdateTableReplicaAutoScalingOutput$TableAutoScalingDescription": "<p>Returns information about the auto scaling settings of a table with replicas.</p>"
+      }
+    },
+    "TableClass": {
+      "base": null,
+      "refs": {
+        "CreateReplicationGroupMemberAction$TableClassOverride": "<p>Replica-specific table class. If not specified, uses the source table's table class.</p>",
+        "CreateTableInput$TableClass": "<p>The table class of the new table. Valid values are <code>STANDARD</code> and <code>STANDARD_INFREQUENT_ACCESS</code>.</p>",
+        "ReplicaSettingsUpdate$ReplicaTableClass": "<p>Replica-specific table class. If not specified, uses the source table's table class.</p>",
+        "TableClassSummary$TableClass": "<p>The table class of the specified table. Valid values are <code>STANDARD</code> and <code>STANDARD_INFREQUENT_ACCESS</code>.</p>",
+        "UpdateReplicationGroupMemberAction$TableClassOverride": "<p>Replica-specific table class. If not specified, uses the source table's table class.</p>",
+        "UpdateTableInput$TableClass": "<p>The table class of the table to be updated. Valid values are <code>STANDARD</code> and <code>STANDARD_INFREQUENT_ACCESS</code>.</p>"
+      }
+    },
+    "TableClassSummary": {
+      "base": "<p>Contains details of the table class.</p>",
+      "refs": {
+        "ReplicaDescription$ReplicaTableClassSummary": null,
+        "ReplicaSettingsDescription$ReplicaTableClassSummary": null,
+        "TableDescription$TableClassSummary": "<p>Contains details of the table class.</p>"
       }
     },
     "TableCreationDateTime": {

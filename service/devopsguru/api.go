@@ -826,7 +826,7 @@ func (c *DevOpsGuru) DescribeOrganizationResourceCollectionHealthRequest(input *
 	op := &request.Operation{
 		Name:       opDescribeOrganizationResourceCollectionHealth,
 		HTTPMethod: "POST",
-		HTTPPath:   "/organization/health/resource-collection/",
+		HTTPPath:   "/organization/health/resource-collection",
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
@@ -1002,10 +1002,12 @@ func (c *DevOpsGuru) DescribeResourceCollectionHealthRequest(input *DescribeReso
 // Returns the number of open proactive insights, open reactive insights, and
 // the Mean Time to Recover (MTTR) for all closed insights in resource collections
 // in your account. You specify the type of Amazon Web Services resources collection.
-// The one type of Amazon Web Services resource collection supported is Amazon
-// Web Services CloudFormation stacks. DevOps Guru can be configured to analyze
-// only the Amazon Web Services resources that are defined in the stacks. You
-// can specify up to 500 Amazon Web Services CloudFormation stacks.
+// The two types of Amazon Web Services resource collections supported are Amazon
+// Web Services CloudFormation stacks and Amazon Web Services resources that
+// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+// analyze the Amazon Web Services resources that are defined in the stacks
+// or that are tagged using the same tag key. You can specify up to 500 Amazon
+// Web Services CloudFormation stacks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1410,11 +1412,12 @@ func (c *DevOpsGuru) GetResourceCollectionRequest(input *GetResourceCollectionIn
 // GetResourceCollection API operation for Amazon DevOps Guru.
 //
 // Returns lists Amazon Web Services resources that are of the specified resource
-// collection type. The one type of Amazon Web Services resource collection
-// supported is Amazon Web Services CloudFormation stacks. DevOps Guru can be
-// configured to analyze only the Amazon Web Services resources that are defined
-// in the stacks. You can specify up to 500 Amazon Web Services CloudFormation
-// stacks.
+// collection type. The two types of Amazon Web Services resource collections
+// supported are Amazon Web Services CloudFormation stacks and Amazon Web Services
+// resources that contain the same Amazon Web Services tag. DevOps Guru can
+// be configured to analyze the Amazon Web Services resources that are defined
+// in the stacks or that are tagged using the same tag key. You can specify
+// up to 500 Amazon Web Services CloudFormation stacks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3104,12 +3107,14 @@ func (c *DevOpsGuru) UpdateResourceCollectionRequest(input *UpdateResourceCollec
 
 // UpdateResourceCollection API operation for Amazon DevOps Guru.
 //
-// Updates the collection of resources that DevOps Guru analyzes. The one type
-// of Amazon Web Services resource collection supported is Amazon Web Services
-// CloudFormation stacks. DevOps Guru can be configured to analyze only the
-// Amazon Web Services resources that are defined in the stacks. You can specify
-// up to 500 Amazon Web Services CloudFormation stacks. This method also creates
-// the IAM role required for you to use DevOps Guru.
+// Updates the collection of resources that DevOps Guru analyzes. The two types
+// of Amazon Web Services resource collections supported are Amazon Web Services
+// CloudFormation stacks and Amazon Web Services resources that contain the
+// same Amazon Web Services tag. DevOps Guru can be configured to analyze the
+// Amazon Web Services resources that are defined in the stacks or that are
+// tagged using the same tag key. You can specify up to 500 Amazon Web Services
+// CloudFormation stacks. This method also creates the IAM role required for
+// you to use DevOps Guru.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3550,14 +3555,62 @@ func (s *AnomalyReportedTimeRange) SetOpenTime(v time.Time) *AnomalyReportedTime
 	return s
 }
 
+// The Amazon Web Services resources in which DevOps Guru detected unusual behavior
+// that resulted in the generation of an anomaly. When DevOps Guru detects multiple
+// related anomalies, it creates and insight with details about the anomalous
+// behavior and suggestions about how to correct the problem.
+type AnomalyResource struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon Web Services resource.
+	Name *string `type:"string"`
+
+	// The type of the Amazon Web Services resource.
+	Type *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnomalyResource) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AnomalyResource) SetName(v string) *AnomalyResource {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AnomalyResource) SetType(v string) *AnomalyResource {
+	s.Type = &v
+	return s
+}
+
 // Details about the source of the anomalous operational data that triggered
-// the anomaly. The one supported source is Amazon CloudWatch metrics.
+// the anomaly.
 type AnomalySourceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// An array of CloudWatchMetricsDetail object that contains information about
-	// the analyzed metrics that displayed anomalous behavior.
+	// An array of CloudWatchMetricsDetail objects that contain information about
+	// analyzed CloudWatch metrics that show anomalous behavior.
 	CloudWatchMetrics []*CloudWatchMetricsDetail `type:"list"`
+
+	// An array of PerformanceInsightsMetricsDetail objects that contain information
+	// about analyzed Performance Insights metrics that show anomalous behavior.
+	PerformanceInsightsMetrics []*PerformanceInsightsMetricsDetail `type:"list"`
 }
 
 // String returns the string representation.
@@ -3581,6 +3634,12 @@ func (s AnomalySourceDetails) GoString() string {
 // SetCloudWatchMetrics sets the CloudWatchMetrics field's value.
 func (s *AnomalySourceDetails) SetCloudWatchMetrics(v []*CloudWatchMetricsDetail) *AnomalySourceDetails {
 	s.CloudWatchMetrics = v
+	return s
+}
+
+// SetPerformanceInsightsMetrics sets the PerformanceInsightsMetrics field's value.
+func (s *AnomalySourceDetails) SetPerformanceInsightsMetrics(v []*PerformanceInsightsMetricsDetail) *AnomalySourceDetails {
+	s.PerformanceInsightsMetrics = v
 	return s
 }
 
@@ -3799,11 +3858,11 @@ func (s *CloudFormationHealth) SetStackName(v string) *CloudFormationHealth {
 type CloudWatchMetricsDataSummary struct {
 	_ struct{} `type:"structure"`
 
-	// This is enum of the status showing whether the metric value pair list has
-	// Partial or Complete data or there was an error.
+	// This is an enum of the status showing whether the metric value pair list
+	// has partial or complete data, or if there was an error.
 	StatusCode *string `type:"string" enum:"CloudWatchMetricDataStatusCode"`
 
-	// This is a list of cloudwatch metric values at given timestamp.
+	// This is a list of Amazon CloudWatch metric values at given timestamp.
 	TimestampMetricValuePairList []*TimestampMetricValuePair `type:"list"`
 }
 
@@ -3927,7 +3986,7 @@ func (s *CloudWatchMetricsDetail) SetUnit(v string) *CloudWatchMetricsDetail {
 	return s
 }
 
-// The dimension of a Amazon CloudWatch metric that is used when DevOps Guru
+// The dimension of am Amazon CloudWatch metric that is used when DevOps Guru
 // analyzes the resources in your account for operational problems and anomalous
 // behavior. A dimension is a name/value pair that is part of the identity of
 // a metric. A metric can have up to 10 dimensions. For more information, see
@@ -4057,6 +4116,37 @@ type CostEstimationResourceCollectionFilter struct {
 	// An object that specifies the CloudFormation stack that defines the Amazon
 	// Web Services resources used to create a monthly estimate for DevOps Guru.
 	CloudFormation *CloudFormationCostEstimationResourceCollectionFilter `type:"structure"`
+
+	// The Amazon Web Services tags used to filter the resource collection that
+	// is used for a cost estimate.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*TagCostEstimationResourceCollectionFilter `type:"list"`
 }
 
 // String returns the string representation.
@@ -4085,6 +4175,16 @@ func (s *CostEstimationResourceCollectionFilter) Validate() error {
 			invalidParams.AddNested("CloudFormation", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4095,6 +4195,12 @@ func (s *CostEstimationResourceCollectionFilter) Validate() error {
 // SetCloudFormation sets the CloudFormation field's value.
 func (s *CostEstimationResourceCollectionFilter) SetCloudFormation(v *CloudFormationCostEstimationResourceCollectionFilter) *CostEstimationResourceCollectionFilter {
 	s.CloudFormation = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CostEstimationResourceCollectionFilter) SetTags(v []*TagCostEstimationResourceCollectionFilter) *CostEstimationResourceCollectionFilter {
+	s.Tags = v
 	return s
 }
 
@@ -4412,10 +4518,10 @@ func (s *DescribeAnomalyInput) SetId(v string) *DescribeAnomalyInput {
 type DescribeAnomalyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A ReactiveAnomaly object that represents the requested anomaly.
+	// A ProactiveAnomaly object that represents the requested anomaly.
 	ProactiveAnomaly *ProactiveAnomaly `type:"structure"`
 
-	// A ProactiveAnomaly object that represents the requested anomaly.
+	// A ReactiveAnomaly object that represents the requested anomaly.
 	ReactiveAnomaly *ReactiveAnomaly `type:"structure"`
 }
 
@@ -4873,11 +4979,12 @@ type DescribeOrganizationResourceCollectionHealthInput struct {
 	NextToken *string `min:"36" type:"string"`
 
 	// An Amazon Web Services resource collection type. This type specifies how
-	// analyzed Amazon Web Services resources are defined. The one type of Amazon
-	// Web Services resource collection supported is Amazon Web Services CloudFormation
-	// stacks. DevOps Guru can be configured to analyze only the Amazon Web Services
-	// resources that are defined in the stacks. You can specify up to 500 Amazon
-	// Web Services CloudFormation stacks.
+	// analyzed Amazon Web Services resources are defined. The two types of Amazon
+	// Web Services resource collections supported are Amazon Web Services CloudFormation
+	// stacks and Amazon Web Services resources that contain the same Amazon Web
+	// Services tag. DevOps Guru can be configured to analyze the Amazon Web Services
+	// resources that are defined in the stacks or that are tagged using the same
+	// tag key. You can specify up to 500 Amazon Web Services CloudFormation stacks.
 	//
 	// OrganizationResourceCollectionType is a required field
 	OrganizationResourceCollectionType *string `type:"string" required:"true" enum:"OrganizationResourceCollectionType"`
@@ -5022,11 +5129,12 @@ type DescribeResourceCollectionHealthInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"36" type:"string"`
 
 	// An Amazon Web Services resource collection type. This type specifies how
-	// analyzed Amazon Web Services resources are defined. The one type of Amazon
-	// Web Services resource collection supported is Amazon Web Services CloudFormation
-	// stacks. DevOps Guru can be configured to analyze only the Amazon Web Services
-	// resources that are defined in the stacks. You can specify up to 500 Amazon
-	// Web Services CloudFormation stacks.
+	// analyzed Amazon Web Services resources are defined. The two types of Amazon
+	// Web Services resource collections supported are Amazon Web Services CloudFormation
+	// stacks and Amazon Web Services resources that contain the same Amazon Web
+	// Services tag. DevOps Guru can be configured to analyze the Amazon Web Services
+	// resources that are defined in the stacks or that are tagged using the same
+	// tag key. You can specify up to 500 Amazon Web Services CloudFormation stacks.
 	//
 	// ResourceCollectionType is a required field
 	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true" enum:"ResourceCollectionType"`
@@ -5086,9 +5194,7 @@ type DescribeResourceCollectionHealthOutput struct {
 
 	// The returned CloudFormationHealthOverview object that contains an InsightHealthOverview
 	// object with the requested system health information.
-	//
-	// CloudFormation is a required field
-	CloudFormation []*CloudFormationHealth `type:"list" required:"true"`
+	CloudFormation []*CloudFormationHealth `type:"list"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If there are no more pages, this value is null.
@@ -5097,6 +5203,36 @@ type DescribeResourceCollectionHealthOutput struct {
 	// An array of ServiceHealth objects that describes the health of the Amazon
 	// Web Services services associated with the resources in the collection.
 	Service []*ServiceHealth `type:"list"`
+
+	// The Amazon Web Services tags that are used by resources in the resource collection.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*TagHealth `type:"list"`
 }
 
 // String returns the string representation.
@@ -5132,6 +5268,12 @@ func (s *DescribeResourceCollectionHealthOutput) SetNextToken(v string) *Describ
 // SetService sets the Service field's value.
 func (s *DescribeResourceCollectionHealthOutput) SetService(v []*ServiceHealth) *DescribeResourceCollectionHealthOutput {
 	s.Service = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeResourceCollectionHealthOutput) SetTags(v []*TagHealth) *DescribeResourceCollectionHealthOutput {
+	s.Tags = v
 	return s
 }
 
@@ -5255,10 +5397,12 @@ type Event struct {
 	Name *string `type:"string"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// An EventResource object that contains information about the resource that
@@ -5648,11 +5792,13 @@ type GetResourceCollectionOutput struct {
 	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
 
-	// The requested list of Amazon Web Services resource collections. The one type
-	// of Amazon Web Services resource collection supported is Amazon Web Services
-	// CloudFormation stacks. DevOps Guru can be configured to analyze only the
-	// Amazon Web Services resources that are defined in the stacks. You can specify
-	// up to 500 Amazon Web Services CloudFormation stacks.
+	// The requested list of Amazon Web Services resource collections. The two types
+	// of Amazon Web Services resource collections supported are Amazon Web Services
+	// CloudFormation stacks and Amazon Web Services resources that contain the
+	// same Amazon Web Services tag. DevOps Guru can be configured to analyze the
+	// Amazon Web Services resources that are defined in the stacks or that are
+	// tagged using the same tag key. You can specify up to 500 Amazon Web Services
+	// CloudFormation stacks.
 	ResourceCollection *ResourceCollectionFilter `type:"structure"`
 }
 
@@ -6074,10 +6220,12 @@ type ListEventsFilters struct {
 	InsightId *string `min:"1" type:"string"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 }
 
@@ -6111,6 +6259,11 @@ func (s *ListEventsFilters) Validate() error {
 	if s.EventTimeRange != nil {
 		if err := s.EventTimeRange.Validate(); err != nil {
 			invalidParams.AddNested("EventTimeRange", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ResourceCollection != nil {
+		if err := s.ResourceCollection.Validate(); err != nil {
+			invalidParams.AddNested("ResourceCollection", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -7209,6 +7362,532 @@ func (s *OpsCenterIntegrationConfig) SetOptInStatus(v string) *OpsCenterIntegrat
 	return s
 }
 
+// A logical grouping of Performance Insights metrics for a related subject
+// area. For example, the db.sql dimension group consists of the following dimensions:
+// db.sql.id, db.sql.db_id, db.sql.statement, and db.sql.tokenized_id.
+//
+// Each response element returns a maximum of 500 bytes. For larger elements,
+// such as SQL statements, only the first 500 bytes are returned.
+//
+// Amazon RDS Performance Insights enables you to monitor and explore different
+// dimensions of database load based on data captured from a running DB instance.
+// DB load is measured as average active sessions. Performance Insights provides
+// the data to API consumers as a two-dimensional time-series dataset. The time
+// dimension provides DB load data for each time point in the queried time range.
+// Each time point decomposes overall load in relation to the requested dimensions,
+// measured at that time point. Examples include SQL, Wait event, User, and
+// Host.
+//
+//    * To learn more about Performance Insights and Amazon Aurora DB instances,
+//    go to the Amazon Aurora User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html).
+//
+//    * To learn more about Performance Insights and Amazon RDS DB instances,
+//    go to the Amazon RDS User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html).
+type PerformanceInsightsMetricDimensionGroup struct {
+	_ struct{} `type:"structure"`
+
+	// A list of specific dimensions from a dimension group. If this parameter is
+	// not present, then it signifies that all of the dimensions in the group were
+	// requested or are present in the response.
+	//
+	// Valid values for elements in the Dimensions array are:
+	//
+	//    * db.application.name - The name of the application that is connected
+	//    to the database (only Aurora PostgreSQL and RDS PostgreSQL)
+	//
+	//    * db.host.id - The host ID of the connected client (all engines)
+	//
+	//    * db.host.name - The host name of the connected client (all engines)
+	//
+	//    * db.name - The name of the database to which the client is connected
+	//    (only Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS
+	//    MySQL, and MariaDB)
+	//
+	//    * db.session_type.name - The type of the current session (only Aurora
+	//    PostgreSQL and RDS PostgreSQL)
+	//
+	//    * db.sql.id - The SQL ID generated by Performance Insights (all engines)
+	//
+	//    * db.sql.db_id - The SQL ID generated by the database (all engines)
+	//
+	//    * db.sql.statement - The SQL text that is being executed (all engines)
+	//
+	//    * db.sql.tokenized_id
+	//
+	//    * db.sql_tokenized.id - The SQL digest ID generated by Performance Insights
+	//    (all engines)
+	//
+	//    * db.sql_tokenized.db_id - SQL digest ID generated by the database (all
+	//    engines)
+	//
+	//    * db.sql_tokenized.statement - The SQL digest text (all engines)
+	//
+	//    * db.user.id - The ID of the user logged in to the database (all engines)
+	//
+	//    * db.user.name - The name of the user logged in to the database (all engines)
+	//
+	//    * db.wait_event.name - The event for which the backend is waiting (all
+	//    engines)
+	//
+	//    * db.wait_event.type - The type of event for which the backend is waiting
+	//    (all engines)
+	//
+	//    * db.wait_event_type.name - The name of the event type for which the backend
+	//    is waiting (all engines)
+	Dimensions []*string `type:"list"`
+
+	// The name of the dimension group. Its valid values are:
+	//
+	//    * db - The name of the database to which the client is connected (only
+	//    Aurora PostgreSQL, Amazon RDS PostgreSQL, Aurora MySQL, Amazon RDS MySQL,
+	//    and MariaDB)
+	//
+	//    * db.application - The name of the application that is connected to the
+	//    database (only Aurora PostgreSQL and RDS PostgreSQL)
+	//
+	//    * db.host - The host name of the connected client (all engines)
+	//
+	//    * db.session_type - The type of the current session (only Aurora PostgreSQL
+	//    and RDS PostgreSQL)
+	//
+	//    * db.sql - The SQL that is currently executing (all engines)
+	//
+	//    * db.sql_tokenized - The SQL digest (all engines)
+	//
+	//    * db.wait_event - The event for which the database backend is waiting
+	//    (all engines)
+	//
+	//    * db.wait_event_type - The type of event for which the database backend
+	//    is waiting (all engines)
+	//
+	//    * db.user - The user logged in to the database (all engines)
+	Group *string `type:"string"`
+
+	// The maximum number of items to fetch for this dimension group.
+	Limit *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricDimensionGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricDimensionGroup) GoString() string {
+	return s.String()
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *PerformanceInsightsMetricDimensionGroup) SetDimensions(v []*string) *PerformanceInsightsMetricDimensionGroup {
+	s.Dimensions = v
+	return s
+}
+
+// SetGroup sets the Group field's value.
+func (s *PerformanceInsightsMetricDimensionGroup) SetGroup(v string) *PerformanceInsightsMetricDimensionGroup {
+	s.Group = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *PerformanceInsightsMetricDimensionGroup) SetLimit(v int64) *PerformanceInsightsMetricDimensionGroup {
+	s.Limit = &v
+	return s
+}
+
+// A single query to be processed. Use these parameters to query the Performance
+// Insights GetResourceMetrics API to retrieve the metrics for an anomaly. For
+// more information, see GetResourceMetrics (https://docs.aws.amazon.com/performance-insights/latest/APIReference/API_GetResourceMetrics.html)
+// in the Amazon RDS Performance Insights API Reference.
+//
+// Amazon RDS Performance Insights enables you to monitor and explore different
+// dimensions of database load based on data captured from a running DB instance.
+// DB load is measured as average active sessions. Performance Insights provides
+// the data to API consumers as a two-dimensional time-series dataset. The time
+// dimension provides DB load data for each time point in the queried time range.
+// Each time point decomposes overall load in relation to the requested dimensions,
+// measured at that time point. Examples include SQL, Wait event, User, and
+// Host.
+//
+//    * To learn more about Performance Insights and Amazon Aurora DB instances,
+//    go to the Amazon Aurora User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html).
+//
+//    * To learn more about Performance Insights and Amazon RDS DB instances,
+//    go to the Amazon RDS User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html).
+type PerformanceInsightsMetricQuery struct {
+	_ struct{} `type:"structure"`
+
+	// One or more filters to apply to a Performance Insights GetResourceMetrics
+	// API query. Restrictions:
+	//
+	//    * Any number of filters by the same dimension, as specified in the GroupBy
+	//    parameter.
+	//
+	//    * A single filter for any other dimension in this dimension group.
+	Filter map[string]*string `type:"map"`
+
+	// The specification for how to aggregate the data points from a Performance
+	// Insights GetResourceMetrics API query. The Performance Insights query returns
+	// all of the dimensions within that group, unless you provide the names of
+	// specific dimensions within that group. You can also request that Performance
+	// Insights return a limited number of values for a dimension.
+	GroupBy *PerformanceInsightsMetricDimensionGroup `type:"structure"`
+
+	// The name of the meteric used used when querying an Performance Insights GetResourceMetrics
+	// API for anomaly metrics.
+	//
+	// Valid values for Metric are:
+	//
+	//    * db.load.avg - a scaled representation of the number of active sessions
+	//    for the database engine.
+	//
+	//    * db.sampledload.avg - the raw number of active sessions for the database
+	//    engine.
+	//
+	// If the number of active sessions is less than an internal Performance Insights
+	// threshold, db.load.avg and db.sampledload.avg are the same value. If the
+	// number of active sessions is greater than the internal threshold, Performance
+	// Insights samples the active sessions, with db.load.avg showing the scaled
+	// values, db.sampledload.avg showing the raw values, and db.sampledload.avg
+	// less than db.load.avg. For most use cases, you can query db.load.avg only.
+	Metric *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricQuery) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricQuery) GoString() string {
+	return s.String()
+}
+
+// SetFilter sets the Filter field's value.
+func (s *PerformanceInsightsMetricQuery) SetFilter(v map[string]*string) *PerformanceInsightsMetricQuery {
+	s.Filter = v
+	return s
+}
+
+// SetGroupBy sets the GroupBy field's value.
+func (s *PerformanceInsightsMetricQuery) SetGroupBy(v *PerformanceInsightsMetricDimensionGroup) *PerformanceInsightsMetricQuery {
+	s.GroupBy = v
+	return s
+}
+
+// SetMetric sets the Metric field's value.
+func (s *PerformanceInsightsMetricQuery) SetMetric(v string) *PerformanceInsightsMetricQuery {
+	s.Metric = &v
+	return s
+}
+
+// Details about Performance Insights metrics.
+//
+// Amazon RDS Performance Insights enables you to monitor and explore different
+// dimensions of database load based on data captured from a running DB instance.
+// DB load is measured as average active sessions. Performance Insights provides
+// the data to API consumers as a two-dimensional time-series dataset. The time
+// dimension provides DB load data for each time point in the queried time range.
+// Each time point decomposes overall load in relation to the requested dimensions,
+// measured at that time point. Examples include SQL, Wait event, User, and
+// Host.
+//
+//    * To learn more about Performance Insights and Amazon Aurora DB instances,
+//    go to the Amazon Aurora User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_PerfInsights.html).
+//
+//    * To learn more about Performance Insights and Amazon RDS DB instances,
+//    go to the Amazon RDS User Guide (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html).
+type PerformanceInsightsMetricsDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The name used for a specific Performance Insights metric.
+	MetricDisplayName *string `type:"string"`
+
+	// A single query to be processed for the metric. For more information, see
+	// PerformanceInsightsMetricQuery (https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsMetricQuery.html) .
+	MetricQuery *PerformanceInsightsMetricQuery `type:"structure"`
+
+	// For more information, see PerformanceInsightsReferenceData (https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceData.html) .
+	ReferenceData []*PerformanceInsightsReferenceData `type:"list"`
+
+	// The metric statistics during the anomalous period detected by DevOps Guru;
+	StatsAtAnomaly []*PerformanceInsightsStat `type:"list"`
+
+	// Typical metric statistics that are not considered anomalous. When DevOps
+	// Guru analyzes metrics, it compares them to StatsAtBaseline to help determine
+	// if they are anomalous.
+	StatsAtBaseline []*PerformanceInsightsStat `type:"list"`
+
+	// The unit of measure for a metric. For example, a session or a process.
+	Unit *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricsDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsMetricsDetail) GoString() string {
+	return s.String()
+}
+
+// SetMetricDisplayName sets the MetricDisplayName field's value.
+func (s *PerformanceInsightsMetricsDetail) SetMetricDisplayName(v string) *PerformanceInsightsMetricsDetail {
+	s.MetricDisplayName = &v
+	return s
+}
+
+// SetMetricQuery sets the MetricQuery field's value.
+func (s *PerformanceInsightsMetricsDetail) SetMetricQuery(v *PerformanceInsightsMetricQuery) *PerformanceInsightsMetricsDetail {
+	s.MetricQuery = v
+	return s
+}
+
+// SetReferenceData sets the ReferenceData field's value.
+func (s *PerformanceInsightsMetricsDetail) SetReferenceData(v []*PerformanceInsightsReferenceData) *PerformanceInsightsMetricsDetail {
+	s.ReferenceData = v
+	return s
+}
+
+// SetStatsAtAnomaly sets the StatsAtAnomaly field's value.
+func (s *PerformanceInsightsMetricsDetail) SetStatsAtAnomaly(v []*PerformanceInsightsStat) *PerformanceInsightsMetricsDetail {
+	s.StatsAtAnomaly = v
+	return s
+}
+
+// SetStatsAtBaseline sets the StatsAtBaseline field's value.
+func (s *PerformanceInsightsMetricsDetail) SetStatsAtBaseline(v []*PerformanceInsightsStat) *PerformanceInsightsMetricsDetail {
+	s.StatsAtBaseline = v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *PerformanceInsightsMetricsDetail) SetUnit(v string) *PerformanceInsightsMetricsDetail {
+	s.Unit = &v
+	return s
+}
+
+// Reference scalar values and other metrics that DevOps Guru displays on a
+// graph in its console along with the actual metrics it analyzed. Compare these
+// reference values to your actual metrics to help you understand anomalous
+// behavior that DevOps Guru detected.
+type PerformanceInsightsReferenceComparisonValues struct {
+	_ struct{} `type:"structure"`
+
+	// A metric that DevOps Guru compares to actual metric values. This reference
+	// metric is used to determine if an actual metric should be considered anomalous.
+	ReferenceMetric *PerformanceInsightsReferenceMetric `type:"structure"`
+
+	// A scalar value DevOps Guru for a metric that DevOps Guru compares to actual
+	// metric values. This reference value is used to determine if an actual metric
+	// value should be considered anomalous.
+	ReferenceScalar *PerformanceInsightsReferenceScalar `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceComparisonValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceComparisonValues) GoString() string {
+	return s.String()
+}
+
+// SetReferenceMetric sets the ReferenceMetric field's value.
+func (s *PerformanceInsightsReferenceComparisonValues) SetReferenceMetric(v *PerformanceInsightsReferenceMetric) *PerformanceInsightsReferenceComparisonValues {
+	s.ReferenceMetric = v
+	return s
+}
+
+// SetReferenceScalar sets the ReferenceScalar field's value.
+func (s *PerformanceInsightsReferenceComparisonValues) SetReferenceScalar(v *PerformanceInsightsReferenceScalar) *PerformanceInsightsReferenceComparisonValues {
+	s.ReferenceScalar = v
+	return s
+}
+
+// Reference data used to evaluate Performance Insights to determine if its
+// performance is anomalous or not.
+type PerformanceInsightsReferenceData struct {
+	_ struct{} `type:"structure"`
+
+	// The specific reference values used to evaluate the Performance Insights.
+	// For more information, see PerformanceInsightsReferenceComparisonValues (https://docs.aws.amazon.com/devops-guru/latest/APIReference/API_PerformanceInsightsReferenceComparisonValues.html) .
+	ComparisonValues *PerformanceInsightsReferenceComparisonValues `type:"structure"`
+
+	// The name of the reference data.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceData) GoString() string {
+	return s.String()
+}
+
+// SetComparisonValues sets the ComparisonValues field's value.
+func (s *PerformanceInsightsReferenceData) SetComparisonValues(v *PerformanceInsightsReferenceComparisonValues) *PerformanceInsightsReferenceData {
+	s.ComparisonValues = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PerformanceInsightsReferenceData) SetName(v string) *PerformanceInsightsReferenceData {
+	s.Name = &v
+	return s
+}
+
+// Information about a reference metric used to evaluate Performance Insights.
+type PerformanceInsightsReferenceMetric struct {
+	_ struct{} `type:"structure"`
+
+	// A query to be processed on the metric.
+	MetricQuery *PerformanceInsightsMetricQuery `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceMetric) GoString() string {
+	return s.String()
+}
+
+// SetMetricQuery sets the MetricQuery field's value.
+func (s *PerformanceInsightsReferenceMetric) SetMetricQuery(v *PerformanceInsightsMetricQuery) *PerformanceInsightsReferenceMetric {
+	s.MetricQuery = v
+	return s
+}
+
+// A reference value to compare Performance Insights metrics against to determine
+// if the metrics demonstrate anomalous behavior.
+type PerformanceInsightsReferenceScalar struct {
+	_ struct{} `type:"structure"`
+
+	// The reference value.
+	Value *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceScalar) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsReferenceScalar) GoString() string {
+	return s.String()
+}
+
+// SetValue sets the Value field's value.
+func (s *PerformanceInsightsReferenceScalar) SetValue(v float64) *PerformanceInsightsReferenceScalar {
+	s.Value = &v
+	return s
+}
+
+// A statistic in a Performance Insights collection.
+type PerformanceInsightsStat struct {
+	_ struct{} `type:"structure"`
+
+	// The statistic type.
+	Type *string `type:"string"`
+
+	// The value of the statistic.
+	Value *float64 `type:"double"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsStat) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PerformanceInsightsStat) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *PerformanceInsightsStat) SetType(v string) *PerformanceInsightsStat {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *PerformanceInsightsStat) SetValue(v float64) *PerformanceInsightsStat {
+	s.Value = &v
+	return s
+}
+
 // The time range during which anomalous behavior in a proactive anomaly or
 // an insight is expected to occur.
 type PredictionTimeRange struct {
@@ -7258,8 +7937,8 @@ func (s *PredictionTimeRange) SetStartTime(v time.Time) *PredictionTimeRange {
 type ProactiveAnomaly struct {
 	_ struct{} `type:"structure"`
 
-	// A AnomalyReportedTimeRange object that specifies the time range between when
-	// the anomaly is opened and the time when it is closed.
+	// An AnomalyReportedTimeRange object that specifies the time range between
+	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
 
 	// A time range that specifies when the observed unusual behavior in an anomaly
@@ -7283,13 +7962,18 @@ type ProactiveAnomaly struct {
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of a proactive anomaly.
+	// The severity of the anomaly. The severity of anomalies that generate an insight
+	// determine that insight's severity. For more information, see Understanding
+	// insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
 	// Details about the source of the analyzed operational data that triggered
@@ -7391,8 +8075,8 @@ func (s *ProactiveAnomaly) SetUpdateTime(v time.Time) *ProactiveAnomaly {
 type ProactiveAnomalySummary struct {
 	_ struct{} `type:"structure"`
 
-	// A AnomalyReportedTimeRange object that specifies the time range between when
-	// the anomaly is opened and the time when it is closed.
+	// An AnomalyReportedTimeRange object that specifies the time range between
+	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
 
 	// A time range that specifies when the observed unusual behavior in an anomaly
@@ -7416,13 +8100,18 @@ type ProactiveAnomalySummary struct {
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of the anomaly.
+	// The severity of the anomaly. The severity of anomalies that generate an insight
+	// determine that insight's severity. For more information, see Understanding
+	// insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
 	// Details about the source of the analyzed operational data that triggered
@@ -7539,13 +8228,17 @@ type ProactiveInsight struct {
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of the proactive insight.
+	// The severity of the insight. For more information, see Understanding insight
+	// severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
 	// The ID of the Amazon Web Services System Manager OpsItem created for this
@@ -7627,6 +8320,10 @@ func (s *ProactiveInsight) SetStatus(v string) *ProactiveInsight {
 type ProactiveInsightSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Names (ARNs) of the Amazon Web Services resources that
+	// generated this insight.
+	AssociatedResourceArns []*string `type:"list"`
+
 	// The ID of the proactive insight.
 	Id *string `min:"1" type:"string"`
 
@@ -7642,16 +8339,20 @@ type ProactiveInsightSummary struct {
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
-	// The severity of the proactive insight.
+	// The severity of the insight. For more information, see Understanding insight
+	// severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
 	// The status of the proactive insight.
@@ -7674,6 +8375,12 @@ func (s ProactiveInsightSummary) String() string {
 // value will be replaced with "sensitive".
 func (s ProactiveInsightSummary) GoString() string {
 	return s.String()
+}
+
+// SetAssociatedResourceArns sets the AssociatedResourceArns field's value.
+func (s *ProactiveInsightSummary) SetAssociatedResourceArns(v []*string) *ProactiveInsightSummary {
+	s.AssociatedResourceArns = v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -7749,16 +8456,20 @@ type ProactiveOrganizationInsightSummary struct {
 	PredictionTimeRange *PredictionTimeRange `type:"structure"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
-	// An array of severity values used to search for insights.
+	// An array of severity values used to search for insights. For more information,
+	// see Understanding insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
 	// An array of status values used to search for insights.
@@ -7915,9 +8626,13 @@ func (s PutFeedbackOutput) GoString() string {
 type ReactiveAnomaly struct {
 	_ struct{} `type:"structure"`
 
-	// A AnomalyReportedTimeRange object that specifies the time range between when
-	// the anomaly is opened and the time when it is closed.
+	// An AnomalyReportedTimeRange object that specifies the time range between
+	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
+	// The Amazon Web Services resources in which anomalous behavior was detected
+	// by DevOps Guru.
+	AnomalyResources []*AnomalyResource `type:"list"`
 
 	// A time range that specifies when the observed unusual behavior in an anomaly
 	// started and ended. This is different from AnomalyReportedTimeRange, which
@@ -7928,17 +8643,32 @@ type ReactiveAnomaly struct {
 	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
 
+	// The ID of the causal anomaly that is associated with this reactive anomaly.
+	// The ID of a `CAUSAL` anomaly is always `NULL`.
+	CausalAnomalyId *string `min:"1" type:"string"`
+
+	// A description of the reactive anomaly.
+	Description *string `type:"string"`
+
 	// The ID of the reactive anomaly.
 	Id *string `min:"1" type:"string"`
 
+	// The name of the reactive anomaly.
+	Name *string `type:"string"`
+
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of the anomaly.
+	// The severity of the anomaly. The severity of anomalies that generate an insight
+	// determine that insight's severity. For more information, see Understanding
+	// insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
 	// Details about the source of the analyzed operational data that triggered
@@ -7947,6 +8677,14 @@ type ReactiveAnomaly struct {
 
 	// The status of the anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
+
+	// The type of the reactive anomaly. It can be one of the following types.
+	//
+	//    * CAUSAL - the anomaly can cause a new insight.
+	//
+	//    * CONTEXTUAL - the anomaly contains additional information about an insight
+	//    or its causal anomaly.
+	Type *string `type:"string" enum:"AnomalyType"`
 }
 
 // String returns the string representation.
@@ -7973,6 +8711,12 @@ func (s *ReactiveAnomaly) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRang
 	return s
 }
 
+// SetAnomalyResources sets the AnomalyResources field's value.
+func (s *ReactiveAnomaly) SetAnomalyResources(v []*AnomalyResource) *ReactiveAnomaly {
+	s.AnomalyResources = v
+	return s
+}
+
 // SetAnomalyTimeRange sets the AnomalyTimeRange field's value.
 func (s *ReactiveAnomaly) SetAnomalyTimeRange(v *AnomalyTimeRange) *ReactiveAnomaly {
 	s.AnomalyTimeRange = v
@@ -7985,9 +8729,27 @@ func (s *ReactiveAnomaly) SetAssociatedInsightId(v string) *ReactiveAnomaly {
 	return s
 }
 
+// SetCausalAnomalyId sets the CausalAnomalyId field's value.
+func (s *ReactiveAnomaly) SetCausalAnomalyId(v string) *ReactiveAnomaly {
+	s.CausalAnomalyId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ReactiveAnomaly) SetDescription(v string) *ReactiveAnomaly {
+	s.Description = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *ReactiveAnomaly) SetId(v string) *ReactiveAnomaly {
 	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ReactiveAnomaly) SetName(v string) *ReactiveAnomaly {
+	s.Name = &v
 	return s
 }
 
@@ -8015,13 +8777,23 @@ func (s *ReactiveAnomaly) SetStatus(v string) *ReactiveAnomaly {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *ReactiveAnomaly) SetType(v string) *ReactiveAnomaly {
+	s.Type = &v
+	return s
+}
+
 // Details about a reactive anomaly. This object is returned by DescribeAnomaly.
 type ReactiveAnomalySummary struct {
 	_ struct{} `type:"structure"`
 
-	// A AnomalyReportedTimeRange object that specifies the time range between when
-	// the anomaly is opened and the time when it is closed.
+	// An AnomalyReportedTimeRange object that specifies the time range between
+	// when the anomaly is opened and the time when it is closed.
 	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
+	// The Amazon Web Services resources in which anomalous behavior was detected
+	// by DevOps Guru.
+	AnomalyResources []*AnomalyResource `type:"list"`
 
 	// A time range that specifies when the observed unusual behavior in an anomaly
 	// started and ended. This is different from AnomalyReportedTimeRange, which
@@ -8032,17 +8804,32 @@ type ReactiveAnomalySummary struct {
 	// of related anomalies.
 	AssociatedInsightId *string `min:"1" type:"string"`
 
+	// The ID of the causal anomaly that is associated with this reactive anomaly.
+	// The ID of a `CAUSAL` anomaly is always `NULL`.
+	CausalAnomalyId *string `min:"1" type:"string"`
+
+	// A description of the reactive anomaly.
+	Description *string `type:"string"`
+
 	// The ID of the reactive anomaly.
 	Id *string `min:"1" type:"string"`
 
+	// The name of the reactive anomaly.
+	Name *string `type:"string"`
+
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of the reactive anomaly.
+	// The severity of the anomaly. The severity of anomalies that generate an insight
+	// determine that insight's severity. For more information, see Understanding
+	// insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"AnomalySeverity"`
 
 	// Details about the source of the analyzed operational data that triggered
@@ -8051,6 +8838,14 @@ type ReactiveAnomalySummary struct {
 
 	// The status of the reactive anomaly.
 	Status *string `type:"string" enum:"AnomalyStatus"`
+
+	// The type of the reactive anomaly. It can be one of the following types.
+	//
+	//    * CAUSAL - the anomaly can cause a new insight.
+	//
+	//    * CONTEXTUAL - the anomaly contains additional information about an insight
+	//    or its causal anomaly.
+	Type *string `type:"string" enum:"AnomalyType"`
 }
 
 // String returns the string representation.
@@ -8077,6 +8872,12 @@ func (s *ReactiveAnomalySummary) SetAnomalyReportedTimeRange(v *AnomalyReportedT
 	return s
 }
 
+// SetAnomalyResources sets the AnomalyResources field's value.
+func (s *ReactiveAnomalySummary) SetAnomalyResources(v []*AnomalyResource) *ReactiveAnomalySummary {
+	s.AnomalyResources = v
+	return s
+}
+
 // SetAnomalyTimeRange sets the AnomalyTimeRange field's value.
 func (s *ReactiveAnomalySummary) SetAnomalyTimeRange(v *AnomalyTimeRange) *ReactiveAnomalySummary {
 	s.AnomalyTimeRange = v
@@ -8089,9 +8890,27 @@ func (s *ReactiveAnomalySummary) SetAssociatedInsightId(v string) *ReactiveAnoma
 	return s
 }
 
+// SetCausalAnomalyId sets the CausalAnomalyId field's value.
+func (s *ReactiveAnomalySummary) SetCausalAnomalyId(v string) *ReactiveAnomalySummary {
+	s.CausalAnomalyId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ReactiveAnomalySummary) SetDescription(v string) *ReactiveAnomalySummary {
+	s.Description = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *ReactiveAnomalySummary) SetId(v string) *ReactiveAnomalySummary {
 	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ReactiveAnomalySummary) SetName(v string) *ReactiveAnomalySummary {
+	s.Name = &v
 	return s
 }
 
@@ -8119,6 +8938,12 @@ func (s *ReactiveAnomalySummary) SetStatus(v string) *ReactiveAnomalySummary {
 	return s
 }
 
+// SetType sets the Type field's value.
+func (s *ReactiveAnomalySummary) SetType(v string) *ReactiveAnomalySummary {
+	s.Type = &v
+	return s
+}
+
 // Information about a reactive insight. This object is returned by ListInsights.
 type ReactiveInsight struct {
 	_ struct{} `type:"structure"`
@@ -8134,13 +8959,17 @@ type ReactiveInsight struct {
 	Name *string `min:"1" type:"string"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
-	// The severity of a reactive insight.
+	// The severity of the insight. For more information, see Understanding insight
+	// severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
 	// The ID of the Amazon Web Services System Manager OpsItem created for this
@@ -8216,6 +9045,10 @@ func (s *ReactiveInsight) SetStatus(v string) *ReactiveInsight {
 type ReactiveInsightSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Names (ARNs) of the Amazon Web Services resources that
+	// generated this insight.
+	AssociatedResourceArns []*string `type:"list"`
+
 	// The ID of a reactive summary.
 	Id *string `min:"1" type:"string"`
 
@@ -8227,16 +9060,20 @@ type ReactiveInsightSummary struct {
 	Name *string `min:"1" type:"string"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
-	// The severity of a reactive insight.
+	// The severity of the insight. For more information, see Understanding insight
+	// severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
 	// The status of a reactive insight.
@@ -8259,6 +9096,12 @@ func (s ReactiveInsightSummary) String() string {
 // value will be replaced with "sensitive".
 func (s ReactiveInsightSummary) GoString() string {
 	return s.String()
+}
+
+// SetAssociatedResourceArns sets the AssociatedResourceArns field's value.
+func (s *ReactiveInsightSummary) SetAssociatedResourceArns(v []*string) *ReactiveInsightSummary {
+	s.AssociatedResourceArns = v
+	return s
 }
 
 // SetId sets the Id field's value.
@@ -8324,16 +9167,20 @@ type ReactiveOrganizationInsightSummary struct {
 	OrganizationalUnitId *string `type:"string"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// A collection of the names of Amazon Web Services services.
 	ServiceCollection *ServiceCollection `type:"structure"`
 
-	// An array of severity values used to search for insights.
+	// An array of severity values used to search for insights. For more information,
+	// see Understanding insight severities (https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-insights.html#understanding-insights-severities)
+	// in the Amazon DevOps Guru User Guide.
 	Severity *string `type:"string" enum:"InsightSeverity"`
 
 	// An array of status values used to search for insights.
@@ -8496,6 +9343,9 @@ func (s *Recommendation) SetRelatedEvents(v []*RecommendationRelatedEvent) *Reco
 type RecommendationRelatedAnomaly struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of an anomaly that generated the insight with this recommendation.
+	AnomalyId *string `min:"1" type:"string"`
+
 	// An array of objects that represent resources in which DevOps Guru detected
 	// anomalous behavior. Each object contains the name and type of the resource.
 	Resources []*RecommendationRelatedAnomalyResource `type:"list"`
@@ -8523,6 +9373,12 @@ func (s RecommendationRelatedAnomaly) GoString() string {
 	return s.String()
 }
 
+// SetAnomalyId sets the AnomalyId field's value.
+func (s *RecommendationRelatedAnomaly) SetAnomalyId(v string) *RecommendationRelatedAnomaly {
+	s.AnomalyId = &v
+	return s
+}
+
 // SetResources sets the Resources field's value.
 func (s *RecommendationRelatedAnomaly) SetResources(v []*RecommendationRelatedAnomalyResource) *RecommendationRelatedAnomaly {
 	s.Resources = v
@@ -8542,7 +9398,11 @@ type RecommendationRelatedAnomalyResource struct {
 	// The name of the resource.
 	Name *string `type:"string"`
 
-	// The type of the resource.
+	// The type of the resource. Resource types take the same form that is used
+	// by Amazon Web Services CloudFormation resource type identifiers, service-provider::service-name::data-type-name.
+	// For example, AWS::RDS::DBCluster. For more information, see Amazon Web Services
+	// resource and property types reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// in the Amazon Web Services CloudFormation User Guide.
 	Type *string `type:"string"`
 }
 
@@ -8812,10 +9672,12 @@ func (s RemoveNotificationChannelOutput) GoString() string {
 }
 
 // A collection of Amazon Web Services resources supported by DevOps Guru. The
-// one type of Amazon Web Services resource collection supported is Amazon Web
-// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-// only the Amazon Web Services resources that are defined in the stacks. You
-// can specify up to 500 Amazon Web Services CloudFormation stacks.
+// two types of Amazon Web Services resource collections supported are Amazon
+// Web Services CloudFormation stacks and Amazon Web Services resources that
+// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+// analyze the Amazon Web Services resources that are defined in the stacks
+// or that are tagged using the same tag key. You can specify up to 500 Amazon
+// Web Services CloudFormation stacks.
 type ResourceCollection struct {
 	_ struct{} `type:"structure"`
 
@@ -8823,6 +9685,36 @@ type ResourceCollection struct {
 	// define Amazon Web Services resources that DevOps Guru analyzes. You can specify
 	// up to 500 Amazon Web Services CloudFormation stacks.
 	CloudFormation *CloudFormationCollection `type:"structure"`
+
+	// The Amazon Web Services tags that are used by resources in the resource collection.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*TagCollection `type:"list"`
 }
 
 // String returns the string representation.
@@ -8843,9 +9735,35 @@ func (s ResourceCollection) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResourceCollection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResourceCollection"}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetCloudFormation sets the CloudFormation field's value.
 func (s *ResourceCollection) SetCloudFormation(v *CloudFormationCollection) *ResourceCollection {
 	s.CloudFormation = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ResourceCollection) SetTags(v []*TagCollection) *ResourceCollection {
+	s.Tags = v
 	return s
 }
 
@@ -8859,6 +9777,37 @@ type ResourceCollectionFilter struct {
 	// to analyze. For more information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
 	// in the Amazon Web Services CloudFormation User Guide.
 	CloudFormation *CloudFormationCollectionFilter `type:"structure"`
+
+	// The Amazon Web Services tags used to filter the resources in the resource
+	// collection.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*TagCollectionFilter `type:"list"`
 }
 
 // String returns the string representation.
@@ -8882,6 +9831,12 @@ func (s ResourceCollectionFilter) GoString() string {
 // SetCloudFormation sets the CloudFormation field's value.
 func (s *ResourceCollectionFilter) SetCloudFormation(v *CloudFormationCollectionFilter) *ResourceCollectionFilter {
 	s.CloudFormation = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ResourceCollectionFilter) SetTags(v []*TagCollectionFilter) *ResourceCollectionFilter {
+	s.Tags = v
 	return s
 }
 
@@ -8965,10 +9920,12 @@ type SearchInsightsFilters struct {
 	_ struct{} `type:"structure"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// A collection of the names of Amazon Web Services services.
@@ -8997,6 +9954,21 @@ func (s SearchInsightsFilters) String() string {
 // value will be replaced with "sensitive".
 func (s SearchInsightsFilters) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchInsightsFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchInsightsFilters"}
+	if s.ResourceCollection != nil {
+		if err := s.ResourceCollection.Validate(); err != nil {
+			invalidParams.AddNested("ResourceCollection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetResourceCollection sets the ResourceCollection field's value.
@@ -9082,6 +10054,11 @@ func (s *SearchInsightsInput) Validate() error {
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -9176,10 +10153,12 @@ type SearchOrganizationInsightsFilters struct {
 	_ struct{} `type:"structure"`
 
 	// A collection of Amazon Web Services resources supported by DevOps Guru. The
-	// one type of Amazon Web Services resource collection supported is Amazon Web
-	// Services CloudFormation stacks. DevOps Guru can be configured to analyze
-	// only the Amazon Web Services resources that are defined in the stacks. You
-	// can specify up to 500 Amazon Web Services CloudFormation stacks.
+	// two types of Amazon Web Services resource collections supported are Amazon
+	// Web Services CloudFormation stacks and Amazon Web Services resources that
+	// contain the same Amazon Web Services tag. DevOps Guru can be configured to
+	// analyze the Amazon Web Services resources that are defined in the stacks
+	// or that are tagged using the same tag key. You can specify up to 500 Amazon
+	// Web Services CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// A collection of the names of Amazon Web Services services.
@@ -9208,6 +10187,21 @@ func (s SearchOrganizationInsightsFilters) String() string {
 // value will be replaced with "sensitive".
 func (s SearchOrganizationInsightsFilters) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchOrganizationInsightsFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchOrganizationInsightsFilters"}
+	if s.ResourceCollection != nil {
+		if err := s.ResourceCollection.Validate(); err != nil {
+			invalidParams.AddNested("ResourceCollection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetResourceCollection sets the ResourceCollection field's value.
@@ -9303,6 +10297,11 @@ func (s *SearchOrganizationInsightsInput) Validate() error {
 	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -9877,6 +10876,340 @@ func (s *StartTimeRange) SetToTime(v time.Time) *StartTimeRange {
 	return s
 }
 
+// A collection of Amazon Web Services stags.
+//
+// Tags help you identify and organize your Amazon Web Services resources. Many
+// Amazon Web Services services support tagging, so you can assign the same
+// tag to resources from different services to indicate that the resources are
+// related. For example, you can assign the same tag to an Amazon DynamoDB table
+// resource that you assign to an Lambda function. For more information about
+// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+// whitepaper.
+//
+// Each Amazon Web Services tag has two parts.
+//
+//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+//    Tag keys are case-sensitive.
+//
+//    * An optional field known as a tag value (for example, 111122223333, Production,
+//    or a team name). Omitting the tag value is the same as using an empty
+//    string. Like tag keys, tag values are case-sensitive.
+//
+// Together these are known as key-value pairs.
+//
+// The string used for a key in a tag that you use to define your resource coverage
+// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+// key/value pairs in your application might be Devops-Guru-production-application/RDS
+// or Devops-Guru-production-application/containers.
+type TagCollection struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	//
+	// AppBoundaryKey is a required field
+	AppBoundaryKey *string `min:"1" type:"string" required:"true"`
+
+	// The values in an Amazon Web Services tag collection.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	//
+	// TagValues is a required field
+	TagValues []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCollection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCollection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagCollection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagCollection"}
+	if s.AppBoundaryKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppBoundaryKey"))
+	}
+	if s.AppBoundaryKey != nil && len(*s.AppBoundaryKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppBoundaryKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *TagCollection) SetAppBoundaryKey(v string) *TagCollection {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *TagCollection) SetTagValues(v []*string) *TagCollection {
+	s.TagValues = v
+	return s
+}
+
+// A collection of Amazon Web Services tags used to filter insights. This is
+// used to return insights generated from only resources that contain the tags
+// in the tag collection.
+type TagCollectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	//
+	// AppBoundaryKey is a required field
+	AppBoundaryKey *string `min:"1" type:"string" required:"true"`
+
+	// The values in an Amazon Web Services tag collection.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	//
+	// TagValues is a required field
+	TagValues []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCollectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCollectionFilter) GoString() string {
+	return s.String()
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *TagCollectionFilter) SetAppBoundaryKey(v string) *TagCollectionFilter {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *TagCollectionFilter) SetTagValues(v []*string) *TagCollectionFilter {
+	s.TagValues = v
+	return s
+}
+
+// Information about a collection of Amazon Web Services resources that are
+// identified by an Amazon Web Services tag. This collection of resources is
+// used to create a monthly cost estimate for DevOps Guru to analyze Amazon
+// Web Services resources. The maximum number of tags you can specify for a
+// cost estimate is one. The estimate created is for the cost to analyze the
+// Amazon Web Services resources defined by the tag. For more information, see
+// Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the Amazon Web Services CloudFormation User Guide.
+type TagCostEstimationResourceCollectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	//
+	// AppBoundaryKey is a required field
+	AppBoundaryKey *string `min:"1" type:"string" required:"true"`
+
+	// The values in an Amazon Web Services tag collection.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	//
+	// TagValues is a required field
+	TagValues []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCostEstimationResourceCollectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagCostEstimationResourceCollectionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagCostEstimationResourceCollectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagCostEstimationResourceCollectionFilter"}
+	if s.AppBoundaryKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppBoundaryKey"))
+	}
+	if s.AppBoundaryKey != nil && len(*s.AppBoundaryKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppBoundaryKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+	if s.TagValues != nil && len(s.TagValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *TagCostEstimationResourceCollectionFilter) SetAppBoundaryKey(v string) *TagCostEstimationResourceCollectionFilter {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *TagCostEstimationResourceCollectionFilter) SetTagValues(v []*string) *TagCostEstimationResourceCollectionFilter {
+	s.TagValues = v
+	return s
+}
+
+// Information about the health of Amazon Web Services resources in your account
+// that are specified by an Amazon Web Services tag key.
+type TagHealth struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	AppBoundaryKey *string `min:"1" type:"string"`
+
+	// Information about the health of the Amazon Web Services resources in your
+	// account that are specified by an Amazon Web Services tag, including the number
+	// of open proactive, open reactive insights, and the Mean Time to Recover (MTTR)
+	// of closed insights.
+	Insight *InsightHealth `type:"structure"`
+
+	// The value in an Amazon Web Services tag.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	TagValue *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TagHealth) GoString() string {
+	return s.String()
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *TagHealth) SetAppBoundaryKey(v string) *TagHealth {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetInsight sets the Insight field's value.
+func (s *TagHealth) SetInsight(v *InsightHealth) *TagHealth {
+	s.Insight = v
+	return s
+}
+
+// SetTagValue sets the TagValue field's value.
+func (s *TagHealth) SetTagValue(v string) *TagHealth {
+	s.TagValue = &v
+	return s
+}
+
 // The request was denied due to a request throttling.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -10031,9 +11364,40 @@ func (s *UpdateCloudFormationCollectionFilter) SetStackNames(v []*string) *Updat
 type UpdateResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// An collection of Amazon Web Services CloudFormation stacks. You can specify
+	// A collection of Amazon Web Services CloudFormation stacks. You can specify
 	// up to 500 Amazon Web Services CloudFormation stacks.
 	CloudFormation *UpdateCloudFormationCollectionFilter `type:"structure"`
+
+	// The updated Amazon Web Services tags used to filter the resources in the
+	// resource collection.
+	//
+	// Tags help you identify and organize your Amazon Web Services resources. Many
+	// Amazon Web Services services support tagging, so you can assign the same
+	// tag to resources from different services to indicate that the resources are
+	// related. For example, you can assign the same tag to an Amazon DynamoDB table
+	// resource that you assign to an Lambda function. For more information about
+	// using tags, see the Tagging best practices (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf)
+	// whitepaper.
+	//
+	// Each Amazon Web Services tag has two parts.
+	//
+	//    * A tag key (for example, CostCenter, Environment, Project, or Secret).
+	//    Tag keys are case-sensitive.
+	//
+	//    * An optional field known as a tag value (for example, 111122223333, Production,
+	//    or a team name). Omitting the tag value is the same as using an empty
+	//    string. Like tag keys, tag values are case-sensitive.
+	//
+	// Together these are known as key-value pairs.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	Tags []*UpdateTagCollectionFilter `type:"list"`
 }
 
 // String returns the string representation.
@@ -10054,9 +11418,35 @@ func (s UpdateResourceCollectionFilter) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResourceCollectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResourceCollectionFilter"}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetCloudFormation sets the CloudFormation field's value.
 func (s *UpdateResourceCollectionFilter) SetCloudFormation(v *UpdateCloudFormationCollectionFilter) *UpdateResourceCollectionFilter {
 	s.CloudFormation = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateResourceCollectionFilter) SetTags(v []*UpdateTagCollectionFilter) *UpdateResourceCollectionFilter {
+	s.Tags = v
 	return s
 }
 
@@ -10101,6 +11491,11 @@ func (s *UpdateResourceCollectionInput) Validate() error {
 	}
 	if s.ResourceCollection == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceCollection"))
+	}
+	if s.ResourceCollection != nil {
+		if err := s.ResourceCollection.Validate(); err != nil {
+			invalidParams.AddNested("ResourceCollection", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10244,6 +11639,88 @@ func (s UpdateServiceIntegrationOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateServiceIntegrationOutput) GoString() string {
 	return s.String()
+}
+
+// A new collection of Amazon Web Services resources that are defined by an
+// Amazon Web Services tag or tag key/value pair.
+type UpdateTagCollectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Web Services tag key that is used to identify the Amazon Web Services
+	// resources that DevOps Guru analyzes. All Amazon Web Services resources in
+	// your account and Region tagged with this key make up your DevOps Guru application
+	// and analysis boundary.
+	//
+	// The string used for a key in a tag that you use to define your resource coverage
+	// must begin with the prefix Devops-guru-. The tag key might be Devops-guru-deployment-application
+	// or Devops-guru-rds-application. While keys are case-sensitive, the case of
+	// key characters don't matter to DevOps Guru. For example, DevOps Guru works
+	// with a key named devops-guru-rds and a key named DevOps-Guru-RDS. Possible
+	// key/value pairs in your application might be Devops-Guru-production-application/RDS
+	// or Devops-Guru-production-application/containers.
+	//
+	// AppBoundaryKey is a required field
+	AppBoundaryKey *string `min:"1" type:"string" required:"true"`
+
+	// The values in an Amazon Web Services tag collection.
+	//
+	// The tag's value is an optional field used to associate a string with the
+	// tag key (for example, 111122223333, Production, or a team name). The key
+	// and value are the tag's key pair. Omitting the tag value is the same as using
+	// an empty string. Like tag keys, tag values are case-sensitive. You can specify
+	// a maximum of 256 characters for a tag value.
+	//
+	// TagValues is a required field
+	TagValues []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTagCollectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateTagCollectionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTagCollectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTagCollectionFilter"}
+	if s.AppBoundaryKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppBoundaryKey"))
+	}
+	if s.AppBoundaryKey != nil && len(*s.AppBoundaryKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AppBoundaryKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppBoundaryKey sets the AppBoundaryKey field's value.
+func (s *UpdateTagCollectionFilter) SetAppBoundaryKey(v string) *UpdateTagCollectionFilter {
+	s.AppBoundaryKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *UpdateTagCollectionFilter) SetTagValues(v []*string) *UpdateTagCollectionFilter {
+	s.TagValues = v
+	return s
 }
 
 // Contains information about data passed in to a field during a request that
@@ -10397,6 +11874,22 @@ func AnomalyStatus_Values() []string {
 	return []string{
 		AnomalyStatusOngoing,
 		AnomalyStatusClosed,
+	}
+}
+
+const (
+	// AnomalyTypeCausal is a AnomalyType enum value
+	AnomalyTypeCausal = "CAUSAL"
+
+	// AnomalyTypeContextual is a AnomalyType enum value
+	AnomalyTypeContextual = "CONTEXTUAL"
+)
+
+// AnomalyType_Values returns all elements of the AnomalyType enum
+func AnomalyType_Values() []string {
+	return []string{
+		AnomalyTypeCausal,
+		AnomalyTypeContextual,
 	}
 }
 
@@ -10712,6 +12205,9 @@ const (
 
 	// ResourceCollectionTypeAwsService is a ResourceCollectionType enum value
 	ResourceCollectionTypeAwsService = "AWS_SERVICE"
+
+	// ResourceCollectionTypeAwsTags is a ResourceCollectionType enum value
+	ResourceCollectionTypeAwsTags = "AWS_TAGS"
 )
 
 // ResourceCollectionType_Values returns all elements of the ResourceCollectionType enum
@@ -10719,6 +12215,7 @@ func ResourceCollectionType_Values() []string {
 	return []string{
 		ResourceCollectionTypeAwsCloudFormation,
 		ResourceCollectionTypeAwsService,
+		ResourceCollectionTypeAwsTags,
 	}
 }
 
@@ -10858,6 +12355,12 @@ const (
 
 	// ValidationExceptionReasonOther is a ValidationExceptionReason enum value
 	ValidationExceptionReasonOther = "OTHER"
+
+	// ValidationExceptionReasonInvalidParameterCombination is a ValidationExceptionReason enum value
+	ValidationExceptionReasonInvalidParameterCombination = "INVALID_PARAMETER_COMBINATION"
+
+	// ValidationExceptionReasonParameterInconsistentWithServiceState is a ValidationExceptionReason enum value
+	ValidationExceptionReasonParameterInconsistentWithServiceState = "PARAMETER_INCONSISTENT_WITH_SERVICE_STATE"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
@@ -10867,5 +12370,7 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonCannotParse,
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonOther,
+		ValidationExceptionReasonInvalidParameterCombination,
+		ValidationExceptionReasonParameterInconsistentWithServiceState,
 	}
 }

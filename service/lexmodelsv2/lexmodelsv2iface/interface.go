@@ -168,6 +168,10 @@ type LexModelsV2API interface {
 	DescribeBotLocaleWithContext(aws.Context, *lexmodelsv2.DescribeBotLocaleInput, ...request.Option) (*lexmodelsv2.DescribeBotLocaleOutput, error)
 	DescribeBotLocaleRequest(*lexmodelsv2.DescribeBotLocaleInput) (*request.Request, *lexmodelsv2.DescribeBotLocaleOutput)
 
+	DescribeBotRecommendation(*lexmodelsv2.DescribeBotRecommendationInput) (*lexmodelsv2.DescribeBotRecommendationOutput, error)
+	DescribeBotRecommendationWithContext(aws.Context, *lexmodelsv2.DescribeBotRecommendationInput, ...request.Option) (*lexmodelsv2.DescribeBotRecommendationOutput, error)
+	DescribeBotRecommendationRequest(*lexmodelsv2.DescribeBotRecommendationInput) (*request.Request, *lexmodelsv2.DescribeBotRecommendationOutput)
+
 	DescribeBotVersion(*lexmodelsv2.DescribeBotVersionInput) (*lexmodelsv2.DescribeBotVersionOutput, error)
 	DescribeBotVersionWithContext(aws.Context, *lexmodelsv2.DescribeBotVersionInput, ...request.Option) (*lexmodelsv2.DescribeBotVersionOutput, error)
 	DescribeBotVersionRequest(*lexmodelsv2.DescribeBotVersionInput) (*request.Request, *lexmodelsv2.DescribeBotVersionOutput)
@@ -216,6 +220,13 @@ type LexModelsV2API interface {
 
 	ListBotLocalesPages(*lexmodelsv2.ListBotLocalesInput, func(*lexmodelsv2.ListBotLocalesOutput, bool) bool) error
 	ListBotLocalesPagesWithContext(aws.Context, *lexmodelsv2.ListBotLocalesInput, func(*lexmodelsv2.ListBotLocalesOutput, bool) bool, ...request.Option) error
+
+	ListBotRecommendations(*lexmodelsv2.ListBotRecommendationsInput) (*lexmodelsv2.ListBotRecommendationsOutput, error)
+	ListBotRecommendationsWithContext(aws.Context, *lexmodelsv2.ListBotRecommendationsInput, ...request.Option) (*lexmodelsv2.ListBotRecommendationsOutput, error)
+	ListBotRecommendationsRequest(*lexmodelsv2.ListBotRecommendationsInput) (*request.Request, *lexmodelsv2.ListBotRecommendationsOutput)
+
+	ListBotRecommendationsPages(*lexmodelsv2.ListBotRecommendationsInput, func(*lexmodelsv2.ListBotRecommendationsOutput, bool) bool) error
+	ListBotRecommendationsPagesWithContext(aws.Context, *lexmodelsv2.ListBotRecommendationsInput, func(*lexmodelsv2.ListBotRecommendationsOutput, bool) bool, ...request.Option) error
 
 	ListBotVersions(*lexmodelsv2.ListBotVersionsInput) (*lexmodelsv2.ListBotVersionsOutput, error)
 	ListBotVersionsWithContext(aws.Context, *lexmodelsv2.ListBotVersionsInput, ...request.Option) (*lexmodelsv2.ListBotVersionsOutput, error)
@@ -266,6 +277,13 @@ type LexModelsV2API interface {
 	ListIntentsPages(*lexmodelsv2.ListIntentsInput, func(*lexmodelsv2.ListIntentsOutput, bool) bool) error
 	ListIntentsPagesWithContext(aws.Context, *lexmodelsv2.ListIntentsInput, func(*lexmodelsv2.ListIntentsOutput, bool) bool, ...request.Option) error
 
+	ListRecommendedIntents(*lexmodelsv2.ListRecommendedIntentsInput) (*lexmodelsv2.ListRecommendedIntentsOutput, error)
+	ListRecommendedIntentsWithContext(aws.Context, *lexmodelsv2.ListRecommendedIntentsInput, ...request.Option) (*lexmodelsv2.ListRecommendedIntentsOutput, error)
+	ListRecommendedIntentsRequest(*lexmodelsv2.ListRecommendedIntentsInput) (*request.Request, *lexmodelsv2.ListRecommendedIntentsOutput)
+
+	ListRecommendedIntentsPages(*lexmodelsv2.ListRecommendedIntentsInput, func(*lexmodelsv2.ListRecommendedIntentsOutput, bool) bool) error
+	ListRecommendedIntentsPagesWithContext(aws.Context, *lexmodelsv2.ListRecommendedIntentsInput, func(*lexmodelsv2.ListRecommendedIntentsOutput, bool) bool, ...request.Option) error
+
 	ListSlotTypes(*lexmodelsv2.ListSlotTypesInput) (*lexmodelsv2.ListSlotTypesOutput, error)
 	ListSlotTypesWithContext(aws.Context, *lexmodelsv2.ListSlotTypesInput, ...request.Option) (*lexmodelsv2.ListSlotTypesOutput, error)
 	ListSlotTypesRequest(*lexmodelsv2.ListSlotTypesInput) (*request.Request, *lexmodelsv2.ListSlotTypesOutput)
@@ -283,6 +301,14 @@ type LexModelsV2API interface {
 	ListTagsForResource(*lexmodelsv2.ListTagsForResourceInput) (*lexmodelsv2.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *lexmodelsv2.ListTagsForResourceInput, ...request.Option) (*lexmodelsv2.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*lexmodelsv2.ListTagsForResourceInput) (*request.Request, *lexmodelsv2.ListTagsForResourceOutput)
+
+	SearchAssociatedTranscripts(*lexmodelsv2.SearchAssociatedTranscriptsInput) (*lexmodelsv2.SearchAssociatedTranscriptsOutput, error)
+	SearchAssociatedTranscriptsWithContext(aws.Context, *lexmodelsv2.SearchAssociatedTranscriptsInput, ...request.Option) (*lexmodelsv2.SearchAssociatedTranscriptsOutput, error)
+	SearchAssociatedTranscriptsRequest(*lexmodelsv2.SearchAssociatedTranscriptsInput) (*request.Request, *lexmodelsv2.SearchAssociatedTranscriptsOutput)
+
+	StartBotRecommendation(*lexmodelsv2.StartBotRecommendationInput) (*lexmodelsv2.StartBotRecommendationOutput, error)
+	StartBotRecommendationWithContext(aws.Context, *lexmodelsv2.StartBotRecommendationInput, ...request.Option) (*lexmodelsv2.StartBotRecommendationOutput, error)
+	StartBotRecommendationRequest(*lexmodelsv2.StartBotRecommendationInput) (*request.Request, *lexmodelsv2.StartBotRecommendationOutput)
 
 	StartImport(*lexmodelsv2.StartImportInput) (*lexmodelsv2.StartImportOutput, error)
 	StartImportWithContext(aws.Context, *lexmodelsv2.StartImportInput, ...request.Option) (*lexmodelsv2.StartImportOutput, error)
@@ -307,6 +333,10 @@ type LexModelsV2API interface {
 	UpdateBotLocale(*lexmodelsv2.UpdateBotLocaleInput) (*lexmodelsv2.UpdateBotLocaleOutput, error)
 	UpdateBotLocaleWithContext(aws.Context, *lexmodelsv2.UpdateBotLocaleInput, ...request.Option) (*lexmodelsv2.UpdateBotLocaleOutput, error)
 	UpdateBotLocaleRequest(*lexmodelsv2.UpdateBotLocaleInput) (*request.Request, *lexmodelsv2.UpdateBotLocaleOutput)
+
+	UpdateBotRecommendation(*lexmodelsv2.UpdateBotRecommendationInput) (*lexmodelsv2.UpdateBotRecommendationOutput, error)
+	UpdateBotRecommendationWithContext(aws.Context, *lexmodelsv2.UpdateBotRecommendationInput, ...request.Option) (*lexmodelsv2.UpdateBotRecommendationOutput, error)
+	UpdateBotRecommendationRequest(*lexmodelsv2.UpdateBotRecommendationInput) (*request.Request, *lexmodelsv2.UpdateBotRecommendationOutput)
 
 	UpdateExport(*lexmodelsv2.UpdateExportInput) (*lexmodelsv2.UpdateExportOutput, error)
 	UpdateExportWithContext(aws.Context, *lexmodelsv2.UpdateExportInput, ...request.Option) (*lexmodelsv2.UpdateExportOutput, error)

@@ -10125,6 +10125,10 @@ type CreateReplicationGroupMemberAction struct {
 	//
 	// RegionName is a required field
 	RegionName *string `type:"string" required:"true"`
+
+	// Replica-specific table class. If not specified, uses the source table's table
+	// class.
+	TableClassOverride *string `type:"string" enum:"TableClass"`
 }
 
 // String returns the string representation.
@@ -10197,6 +10201,12 @@ func (s *CreateReplicationGroupMemberAction) SetProvisionedThroughputOverride(v 
 // SetRegionName sets the RegionName field's value.
 func (s *CreateReplicationGroupMemberAction) SetRegionName(v string) *CreateReplicationGroupMemberAction {
 	s.RegionName = &v
+	return s
+}
+
+// SetTableClassOverride sets the TableClassOverride field's value.
+func (s *CreateReplicationGroupMemberAction) SetTableClassOverride(v string) *CreateReplicationGroupMemberAction {
+	s.TableClassOverride = &v
 	return s
 }
 
@@ -10335,6 +10345,9 @@ type CreateTableInput struct {
 	//    NEW_AND_OLD_IMAGES - Both the new and the old item images of the item
 	//    are written to the stream.
 	StreamSpecification *StreamSpecification `type:"structure"`
+
+	// The table class of the new table. Valid values are STANDARD and STANDARD_INFREQUENT_ACCESS.
+	TableClass *string `type:"string" enum:"TableClass"`
 
 	// The name of the table to create.
 	//
@@ -10494,6 +10507,12 @@ func (s *CreateTableInput) SetSSESpecification(v *SSESpecification) *CreateTable
 // SetStreamSpecification sets the StreamSpecification field's value.
 func (s *CreateTableInput) SetStreamSpecification(v *StreamSpecification) *CreateTableInput {
 	s.StreamSpecification = v
+	return s
+}
+
+// SetTableClass sets the TableClass field's value.
+func (s *CreateTableInput) SetTableClass(v string) *CreateTableInput {
+	s.TableClass = &v
 	return s
 }
 
@@ -18635,6 +18654,9 @@ type ReplicaDescription struct {
 	// Specifies the progress of a Create, Update, or Delete action on the replica
 	// as a percentage.
 	ReplicaStatusPercentProgress *string `type:"string"`
+
+	// Contains details of the table class.
+	ReplicaTableClassSummary *TableClassSummary `type:"structure"`
 }
 
 // String returns the string representation.
@@ -18700,6 +18722,12 @@ func (s *ReplicaDescription) SetReplicaStatusDescription(v string) *ReplicaDescr
 // SetReplicaStatusPercentProgress sets the ReplicaStatusPercentProgress field's value.
 func (s *ReplicaDescription) SetReplicaStatusPercentProgress(v string) *ReplicaDescription {
 	s.ReplicaStatusPercentProgress = &v
+	return s
+}
+
+// SetReplicaTableClassSummary sets the ReplicaTableClassSummary field's value.
+func (s *ReplicaDescription) SetReplicaTableClassSummary(v *TableClassSummary) *ReplicaDescription {
+	s.ReplicaTableClassSummary = v
 	return s
 }
 
@@ -19219,6 +19247,9 @@ type ReplicaSettingsDescription struct {
 	//
 	//    * ACTIVE - The Region is ready for use.
 	ReplicaStatus *string `type:"string" enum:"ReplicaStatus"`
+
+	// Contains details of the table class.
+	ReplicaTableClassSummary *TableClassSummary `type:"structure"`
 }
 
 // String returns the string representation.
@@ -19287,6 +19318,12 @@ func (s *ReplicaSettingsDescription) SetReplicaStatus(v string) *ReplicaSettings
 	return s
 }
 
+// SetReplicaTableClassSummary sets the ReplicaTableClassSummary field's value.
+func (s *ReplicaSettingsDescription) SetReplicaTableClassSummary(v *TableClassSummary) *ReplicaSettingsDescription {
+	s.ReplicaTableClassSummary = v
+	return s
+}
+
 // Represents the settings for a global table in a Region that will be modified.
 type ReplicaSettingsUpdate struct {
 	_ struct{} `type:"structure"`
@@ -19309,6 +19346,10 @@ type ReplicaSettingsUpdate struct {
 	// Read and Write Requirements (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#ProvisionedThroughput)
 	// in the Amazon DynamoDB Developer Guide.
 	ReplicaProvisionedReadCapacityUnits *int64 `min:"1" type:"long"`
+
+	// Replica-specific table class. If not specified, uses the source table's table
+	// class.
+	ReplicaTableClass *string `type:"string" enum:"TableClass"`
 }
 
 // String returns the string representation.
@@ -19384,6 +19425,12 @@ func (s *ReplicaSettingsUpdate) SetReplicaProvisionedReadCapacityAutoScalingSett
 // SetReplicaProvisionedReadCapacityUnits sets the ReplicaProvisionedReadCapacityUnits field's value.
 func (s *ReplicaSettingsUpdate) SetReplicaProvisionedReadCapacityUnits(v int64) *ReplicaSettingsUpdate {
 	s.ReplicaProvisionedReadCapacityUnits = &v
+	return s
+}
+
+// SetReplicaTableClass sets the ReplicaTableClass field's value.
+func (s *ReplicaSettingsUpdate) SetReplicaTableClass(v string) *ReplicaSettingsUpdate {
+	s.ReplicaTableClass = &v
 	return s
 }
 
@@ -21175,6 +21222,47 @@ func (s *TableAutoScalingDescription) SetTableStatus(v string) *TableAutoScaling
 	return s
 }
 
+// Contains details of the table class.
+type TableClassSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time at which the table class was last updated.
+	LastUpdateDateTime *time.Time `type:"timestamp"`
+
+	// The table class of the specified table. Valid values are STANDARD and STANDARD_INFREQUENT_ACCESS.
+	TableClass *string `type:"string" enum:"TableClass"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableClassSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TableClassSummary) GoString() string {
+	return s.String()
+}
+
+// SetLastUpdateDateTime sets the LastUpdateDateTime field's value.
+func (s *TableClassSummary) SetLastUpdateDateTime(v time.Time) *TableClassSummary {
+	s.LastUpdateDateTime = &v
+	return s
+}
+
+// SetTableClass sets the TableClass field's value.
+func (s *TableClassSummary) SetTableClass(v string) *TableClassSummary {
+	s.TableClass = &v
+	return s
+}
+
 // Represents the properties of a table.
 type TableDescription struct {
 	_ struct{} `type:"structure"`
@@ -21353,6 +21441,9 @@ type TableDescription struct {
 	// The Amazon Resource Name (ARN) that uniquely identifies the table.
 	TableArn *string `type:"string"`
 
+	// Contains details of the table class.
+	TableClassSummary *TableClassSummary `type:"structure"`
+
 	// Unique identifier for the table for which the backup was created.
 	TableId *string `type:"string"`
 
@@ -21504,6 +21595,12 @@ func (s *TableDescription) SetStreamSpecification(v *StreamSpecification) *Table
 // SetTableArn sets the TableArn field's value.
 func (s *TableDescription) SetTableArn(v string) *TableDescription {
 	s.TableArn = &v
+	return s
+}
+
+// SetTableClassSummary sets the TableClassSummary field's value.
+func (s *TableDescription) SetTableClassSummary(v *TableClassSummary) *TableDescription {
+	s.TableClassSummary = v
 	return s
 }
 
@@ -23863,6 +23960,10 @@ type UpdateReplicationGroupMemberAction struct {
 	//
 	// RegionName is a required field
 	RegionName *string `type:"string" required:"true"`
+
+	// Replica-specific table class. If not specified, uses the source table's table
+	// class.
+	TableClassOverride *string `type:"string" enum:"TableClass"`
 }
 
 // String returns the string representation.
@@ -23938,6 +24039,12 @@ func (s *UpdateReplicationGroupMemberAction) SetRegionName(v string) *UpdateRepl
 	return s
 }
 
+// SetTableClassOverride sets the TableClassOverride field's value.
+func (s *UpdateReplicationGroupMemberAction) SetTableClassOverride(v string) *UpdateReplicationGroupMemberAction {
+	s.TableClassOverride = &v
+	return s
+}
+
 // Represents the input of an UpdateTable operation.
 type UpdateTableInput struct {
 	_ struct{} `type:"structure"`
@@ -23995,6 +24102,10 @@ type UpdateTableInput struct {
 	// that already has a stream, or if you try to disable a stream on a table that
 	// doesn't have a stream.
 	StreamSpecification *StreamSpecification `type:"structure"`
+
+	// The table class of the table to be updated. Valid values are STANDARD and
+	// STANDARD_INFREQUENT_ACCESS.
+	TableClass *string `type:"string" enum:"TableClass"`
 
 	// The name of the table to be updated.
 	//
@@ -24118,6 +24229,12 @@ func (s *UpdateTableInput) SetSSESpecification(v *SSESpecification) *UpdateTable
 // SetStreamSpecification sets the StreamSpecification field's value.
 func (s *UpdateTableInput) SetStreamSpecification(v *StreamSpecification) *UpdateTableInput {
 	s.StreamSpecification = v
+	return s
+}
+
+// SetTableClass sets the TableClass field's value.
+func (s *UpdateTableInput) SetTableClass(v string) *UpdateTableInput {
+	s.TableClass = &v
 	return s
 }
 
@@ -25151,6 +25268,22 @@ func StreamViewType_Values() []string {
 		StreamViewTypeOldImage,
 		StreamViewTypeNewAndOldImages,
 		StreamViewTypeKeysOnly,
+	}
+}
+
+const (
+	// TableClassStandard is a TableClass enum value
+	TableClassStandard = "STANDARD"
+
+	// TableClassStandardInfrequentAccess is a TableClass enum value
+	TableClassStandardInfrequentAccess = "STANDARD_INFREQUENT_ACCESS"
+)
+
+// TableClass_Values returns all elements of the TableClass enum
+func TableClass_Values() []string {
+	return []string{
+		TableClassStandard,
+		TableClassStandardInfrequentAccess,
 	}
 }
 

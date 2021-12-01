@@ -12340,6 +12340,13 @@
           }
         }
       },
+      "workspaces-web" : {
+        "endpoints" : {
+          "eu-west-1" : { },
+          "us-east-1" : { },
+          "us-west-2" : { }
+        }
+      },
       "xray" : {
         "endpoints" : {
           "af-south-1" : { },

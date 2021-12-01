@@ -65,9 +65,9 @@ func (c *SageMakerRuntime) InvokeEndpointRequest(input *InvokeEndpointInput) (re
 // Amazon SageMaker might add additional headers. You should not rely on the
 // behavior of headers outside those enumerated in the request syntax.
 //
-// Calls to InvokeEndpoint are authenticated by using AWS Signature Version
-// 4. For information, see Authenticating Requests (AWS Signature Version 4)
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
+// Calls to InvokeEndpoint are authenticated by using Amazon Web Services Signature
+// Version 4. For information, see Authenticating Requests (Amazon Web Services
+// Signature Version 4) (https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
 // in the Amazon S3 API Reference.
 //
 // A customer's model containers must respond to requests within 60 seconds.
@@ -99,6 +99,15 @@ func (c *SageMakerRuntime) InvokeEndpointRequest(input *InvokeEndpointInput) (re
 //   * ModelError
 //   Model (owned by the customer in the container) returned 4xx or 5xx error
 //   code.
+//
+//   * InternalDependencyException
+//   Your request caused an exception with an internal dependency. Contact customer
+//   support.
+//
+//   * ModelNotReadyException
+//   Either a serverless endpoint variant's resources are still being provisioned,
+//   or a multi-model endpoint is still downloading or loading the target model.
+//   Wait and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpoint
 func (c *SageMakerRuntime) InvokeEndpoint(input *InvokeEndpointInput) (*InvokeEndpointOutput, error) {
@@ -180,9 +189,9 @@ func (c *SageMakerRuntime) InvokeEndpointAsyncRequest(input *InvokeEndpointAsync
 // Amazon SageMaker might add additional headers. You should not rely on the
 // behavior of headers outside those enumerated in the request syntax.
 //
-// Calls to InvokeEndpointAsync are authenticated by using AWS Signature Version
-// 4. For information, see Authenticating Requests (AWS Signature Version 4)
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
+// Calls to InvokeEndpointAsync are authenticated by using Amazon Web Services
+// Signature Version 4. For information, see Authenticating Requests (Amazon
+// Web Services Signature Version 4) (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
 // in the Amazon S3 API Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -222,6 +231,71 @@ func (c *SageMakerRuntime) InvokeEndpointAsyncWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Your request caused an exception with an internal dependency. Contact customer
+// support.
+type InternalDependencyException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalDependencyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InternalDependencyException) GoString() string {
+	return s.String()
+}
+
+func newErrorInternalDependencyException(v protocol.ResponseMetadata) error {
+	return &InternalDependencyException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InternalDependencyException) Code() string {
+	return "InternalDependencyException"
+}
+
+// Message returns the exception's message.
+func (s *InternalDependencyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InternalDependencyException) OrigErr() error {
+	return nil
+}
+
+func (s *InternalDependencyException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InternalDependencyException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InternalDependencyException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // An internal failure occurred.
@@ -312,8 +386,8 @@ type InvokeEndpointAsyncInput struct {
 	// the trace ID, your model can prepend the custom attribute with Trace ID:
 	// in your post-processing function.
 	//
-	// This feature is currently supported in the AWS SDKs but not in the Amazon
-	// SageMaker Python SDK.
+	// This feature is currently supported in the Amazon Web Services SDKs but not
+	// in the Amazon SageMaker Python SDK.
 	//
 	// CustomAttributes is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeEndpointAsyncInput's
@@ -508,8 +582,8 @@ type InvokeEndpointInput struct {
 	// the trace ID, your model can prepend the custom attribute with Trace ID:
 	// in your post-processing function.
 	//
-	// This feature is currently supported in the AWS SDKs but not in the Amazon
-	// SageMaker Python SDK.
+	// This feature is currently supported in the Amazon Web Services SDKs but not
+	// in the Amazon SageMaker Python SDK.
 	//
 	// CustomAttributes is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeEndpointInput's
@@ -677,8 +751,8 @@ type InvokeEndpointOutput struct {
 	// the trace ID, your model can prepend the custom attribute with Trace ID:
 	// in your post-processing function.
 	//
-	// This feature is currently supported in the AWS SDKs but not in the Amazon
-	// SageMaker Python SDK.
+	// This feature is currently supported in the Amazon Web Services SDKs but not
+	// in the Amazon SageMaker Python SDK.
 	//
 	// CustomAttributes is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by InvokeEndpointOutput's
@@ -802,6 +876,72 @@ func (s *ModelError) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ModelError) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Either a serverless endpoint variant's resources are still being provisioned,
+// or a multi-model endpoint is still downloading or loading the target model.
+// Wait and try your request again.
+type ModelNotReadyException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelNotReadyException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelNotReadyException) GoString() string {
+	return s.String()
+}
+
+func newErrorModelNotReadyException(v protocol.ResponseMetadata) error {
+	return &ModelNotReadyException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ModelNotReadyException) Code() string {
+	return "ModelNotReadyException"
+}
+
+// Message returns the exception's message.
+func (s *ModelNotReadyException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ModelNotReadyException) OrigErr() error {
+	return nil
+}
+
+func (s *ModelNotReadyException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ModelNotReadyException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ModelNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 

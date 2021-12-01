@@ -10,6 +10,20 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListEntityPersonas": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListExperienceEntities": {
+      "input_token": "NextToken",
+      "output_token": "NextToken"
+    },
+    "ListExperiences": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListIndices": {
       "input_token": "NextToken",
       "output_token": "NextToken",

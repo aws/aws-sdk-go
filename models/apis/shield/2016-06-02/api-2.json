@@ -62,7 +62,8 @@
         {"shape":"LimitsExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"OptimisticLockException"}
+        {"shape":"OptimisticLockException"},
+        {"shape":"InvalidResourceException"}
       ]
     },
     "AssociateProactiveEngagementDetails":{
@@ -264,6 +265,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DisableApplicationLayerAutomaticResponse":{
+      "name":"DisableApplicationLayerAutomaticResponse",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableApplicationLayerAutomaticResponseRequest"},
+      "output":{"shape":"DisableApplicationLayerAutomaticResponseResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OptimisticLockException"},
+        {"shape":"InvalidOperationException"}
+      ]
+    },
     "DisableProactiveEngagement":{
       "name":"DisableProactiveEngagement",
       "http":{
@@ -324,7 +341,25 @@
         {"shape":"InternalErrorException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"OptimisticLockException"}
+        {"shape":"OptimisticLockException"},
+        {"shape":"InvalidResourceException"}
+      ]
+    },
+    "EnableApplicationLayerAutomaticResponse":{
+      "name":"EnableApplicationLayerAutomaticResponse",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableApplicationLayerAutomaticResponseRequest"},
+      "output":{"shape":"EnableApplicationLayerAutomaticResponseResponse"},
+      "errors":[
+        {"shape":"LimitsExceededException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OptimisticLockException"},
+        {"shape":"InvalidOperationException"}
       ]
     },
     "EnableProactiveEngagement":{
@@ -455,6 +490,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateApplicationLayerAutomaticResponse":{
+      "name":"UpdateApplicationLayerAutomaticResponse",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateApplicationLayerAutomaticResponseRequest"},
+      "output":{"shape":"UpdateApplicationLayerAutomaticResponseResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"OptimisticLockException"},
+        {"shape":"InvalidOperationException"}
+      ]
+    },
     "UpdateEmergencyContactSettings":{
       "name":"UpdateEmergencyContactSettings",
       "http":{
@@ -516,6 +567,24 @@
         "message":{"shape":"errorMessage"}
       },
       "exception":true
+    },
+    "ApplicationLayerAutomaticResponseConfiguration":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "Action"
+      ],
+      "members":{
+        "Status":{"shape":"ApplicationLayerAutomaticResponseStatus"},
+        "Action":{"shape":"ResponseAction"}
+      }
+    },
+    "ApplicationLayerAutomaticResponseStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "AssociateDRTLogBucketRequest":{
       "type":"structure",
@@ -682,6 +751,11 @@
         "DISABLED"
       ]
     },
+    "BlockAction":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ContactNotes":{
       "type":"string",
       "max":1024,
@@ -693,6 +767,11 @@
       "members":{
         "Name":{"shape":"String"},
         "Value":{"shape":"Long"}
+      }
+    },
+    "CountAction":{
+      "type":"structure",
+      "members":{
       }
     },
     "CreateProtectionGroupRequest":{
@@ -870,6 +949,18 @@
         "Subscription":{"shape":"Subscription"}
       }
     },
+    "DisableApplicationLayerAutomaticResponseRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"}
+      }
+    },
+    "DisableApplicationLayerAutomaticResponseResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisableProactiveEngagementRequest":{
       "type":"structure",
       "members":{
@@ -943,6 +1034,22 @@
       "member":{"shape":"EmergencyContact"},
       "max":10,
       "min":0
+    },
+    "EnableApplicationLayerAutomaticResponseRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Action"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "Action":{"shape":"ResponseAction"}
+      }
+    },
+    "EnableApplicationLayerAutomaticResponseResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "EnableProactiveEngagementRequest":{
       "type":"structure",
@@ -1196,7 +1303,8 @@
         "Name":{"shape":"ProtectionName"},
         "ResourceArn":{"shape":"ResourceArn"},
         "HealthCheckIds":{"shape":"HealthCheckIds"},
-        "ProtectionArn":{"shape":"ResourceArn"}
+        "ProtectionArn":{"shape":"ResourceArn"},
+        "ApplicationLayerAutomaticResponseConfiguration":{"shape":"ApplicationLayerAutomaticResponseConfiguration"}
       }
     },
     "ProtectionGroup":{
@@ -1276,7 +1384,7 @@
     "ProtectionId":{
       "type":"string",
       "max":36,
-      "min":1,
+      "min":36,
       "pattern":"[a-zA-Z0-9\\\\-]*"
     },
     "ProtectionLimits":{
@@ -1325,6 +1433,13 @@
         "resourceType":{"shape":"String"}
       },
       "exception":true
+    },
+    "ResponseAction":{
+      "type":"structure",
+      "members":{
+        "Block":{"shape":"BlockAction"},
+        "Count":{"shape":"CountAction"}
+      }
     },
     "RoleArn":{
       "type":"string",
@@ -1460,8 +1575,8 @@
     "TimeRange":{
       "type":"structure",
       "members":{
-        "FromInclusive":{"shape":"AttackTimestamp"},
-        "ToExclusive":{"shape":"AttackTimestamp"}
+        "FromInclusive":{"shape":"Timestamp"},
+        "ToExclusive":{"shape":"Timestamp"}
       }
     },
     "Timestamp":{"type":"timestamp"},
@@ -1496,6 +1611,22 @@
       }
     },
     "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateApplicationLayerAutomaticResponseRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Action"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"ResourceArn"},
+        "Action":{"shape":"ResponseAction"}
+      }
+    },
+    "UpdateApplicationLayerAutomaticResponseResponse":{
       "type":"structure",
       "members":{
       }

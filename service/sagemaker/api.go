@@ -2375,6 +2375,90 @@ func (c *SageMaker) CreateImageVersionWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateInferenceRecommendationsJob = "CreateInferenceRecommendationsJob"
+
+// CreateInferenceRecommendationsJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateInferenceRecommendationsJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateInferenceRecommendationsJob for more information on using the CreateInferenceRecommendationsJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateInferenceRecommendationsJobRequest method.
+//    req, resp := client.CreateInferenceRecommendationsJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateInferenceRecommendationsJob
+func (c *SageMaker) CreateInferenceRecommendationsJobRequest(input *CreateInferenceRecommendationsJobInput) (req *request.Request, output *CreateInferenceRecommendationsJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateInferenceRecommendationsJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateInferenceRecommendationsJobInput{}
+	}
+
+	output = &CreateInferenceRecommendationsJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateInferenceRecommendationsJob API operation for Amazon SageMaker Service.
+//
+// Starts a recommendation job. You can create either an instance recommendation
+// or load test job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateInferenceRecommendationsJob for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateInferenceRecommendationsJob
+func (c *SageMaker) CreateInferenceRecommendationsJob(input *CreateInferenceRecommendationsJobInput) (*CreateInferenceRecommendationsJobOutput, error) {
+	req, out := c.CreateInferenceRecommendationsJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateInferenceRecommendationsJobWithContext is the same as CreateInferenceRecommendationsJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateInferenceRecommendationsJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateInferenceRecommendationsJobWithContext(ctx aws.Context, input *CreateInferenceRecommendationsJobInput, opts ...request.Option) (*CreateInferenceRecommendationsJobOutput, error) {
+	req, out := c.CreateInferenceRecommendationsJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLabelingJob = "CreateLabelingJob"
 
 // CreateLabelingJobRequest generates a "aws/request.Request" representing the
@@ -9517,6 +9601,86 @@ func (c *SageMaker) DescribeImageVersionWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
+const opDescribeInferenceRecommendationsJob = "DescribeInferenceRecommendationsJob"
+
+// DescribeInferenceRecommendationsJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInferenceRecommendationsJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInferenceRecommendationsJob for more information on using the DescribeInferenceRecommendationsJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeInferenceRecommendationsJobRequest method.
+//    req, resp := client.DescribeInferenceRecommendationsJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeInferenceRecommendationsJob
+func (c *SageMaker) DescribeInferenceRecommendationsJobRequest(input *DescribeInferenceRecommendationsJobInput) (req *request.Request, output *DescribeInferenceRecommendationsJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInferenceRecommendationsJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeInferenceRecommendationsJobInput{}
+	}
+
+	output = &DescribeInferenceRecommendationsJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInferenceRecommendationsJob API operation for Amazon SageMaker Service.
+//
+// Provides the results of the Inference Recommender job. One or more recommendation
+// jobs are returned.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeInferenceRecommendationsJob for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeInferenceRecommendationsJob
+func (c *SageMaker) DescribeInferenceRecommendationsJob(input *DescribeInferenceRecommendationsJobInput) (*DescribeInferenceRecommendationsJobOutput, error) {
+	req, out := c.DescribeInferenceRecommendationsJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInferenceRecommendationsJobWithContext is the same as DescribeInferenceRecommendationsJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInferenceRecommendationsJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeInferenceRecommendationsJobWithContext(ctx aws.Context, input *DescribeInferenceRecommendationsJobInput, opts ...request.Option) (*DescribeInferenceRecommendationsJobOutput, error) {
+	req, out := c.DescribeInferenceRecommendationsJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeLabelingJob = "DescribeLabelingJob"
 
 // DescribeLabelingJobRequest generates a "aws/request.Request" representing the
@@ -9591,6 +9755,87 @@ func (c *SageMaker) DescribeLabelingJob(input *DescribeLabelingJobInput) (*Descr
 // for more information on using Contexts.
 func (c *SageMaker) DescribeLabelingJobWithContext(ctx aws.Context, input *DescribeLabelingJobInput, opts ...request.Option) (*DescribeLabelingJobOutput, error) {
 	req, out := c.DescribeLabelingJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeLineageGroup = "DescribeLineageGroup"
+
+// DescribeLineageGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeLineageGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeLineageGroup for more information on using the DescribeLineageGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeLineageGroupRequest method.
+//    req, resp := client.DescribeLineageGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeLineageGroup
+func (c *SageMaker) DescribeLineageGroupRequest(input *DescribeLineageGroupInput) (req *request.Request, output *DescribeLineageGroupOutput) {
+	op := &request.Operation{
+		Name:       opDescribeLineageGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeLineageGroupInput{}
+	}
+
+	output = &DescribeLineageGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeLineageGroup API operation for Amazon SageMaker Service.
+//
+// Provides a list of properties for the requested lineage group. For more information,
+// see Cross-Account Lineage Tracking (https://docs.aws.amazon.com/sagemaker/latest/dg/xaccount-lineage-tracking.html)
+// in the Amazon SageMaker Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeLineageGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeLineageGroup
+func (c *SageMaker) DescribeLineageGroup(input *DescribeLineageGroupInput) (*DescribeLineageGroupOutput, error) {
+	req, out := c.DescribeLineageGroupRequest(input)
+	return out, req.Send()
+}
+
+// DescribeLineageGroupWithContext is the same as DescribeLineageGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeLineageGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeLineageGroupWithContext(ctx aws.Context, input *DescribeLineageGroupInput, opts ...request.Option) (*DescribeLineageGroupOutput, error) {
+	req, out := c.DescribeLineageGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11696,6 +11941,85 @@ func (c *SageMaker) GetDeviceFleetReport(input *GetDeviceFleetReportInput) (*Get
 // for more information on using Contexts.
 func (c *SageMaker) GetDeviceFleetReportWithContext(ctx aws.Context, input *GetDeviceFleetReportInput, opts ...request.Option) (*GetDeviceFleetReportOutput, error) {
 	req, out := c.GetDeviceFleetReportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetLineageGroupPolicy = "GetLineageGroupPolicy"
+
+// GetLineageGroupPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetLineageGroupPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLineageGroupPolicy for more information on using the GetLineageGroupPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetLineageGroupPolicyRequest method.
+//    req, resp := client.GetLineageGroupPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetLineageGroupPolicy
+func (c *SageMaker) GetLineageGroupPolicyRequest(input *GetLineageGroupPolicyInput) (req *request.Request, output *GetLineageGroupPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetLineageGroupPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLineageGroupPolicyInput{}
+	}
+
+	output = &GetLineageGroupPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLineageGroupPolicy API operation for Amazon SageMaker Service.
+//
+// The resource policy for the lineage group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation GetLineageGroupPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/GetLineageGroupPolicy
+func (c *SageMaker) GetLineageGroupPolicy(input *GetLineageGroupPolicyInput) (*GetLineageGroupPolicyOutput, error) {
+	req, out := c.GetLineageGroupPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetLineageGroupPolicyWithContext is the same as GetLineageGroupPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLineageGroupPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) GetLineageGroupPolicyWithContext(ctx aws.Context, input *GetLineageGroupPolicyInput, opts ...request.Option) (*GetLineageGroupPolicyOutput, error) {
+	req, out := c.GetLineageGroupPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -15271,6 +15595,138 @@ func (c *SageMaker) ListImagesPagesWithContext(ctx aws.Context, input *ListImage
 	return p.Err()
 }
 
+const opListInferenceRecommendationsJobs = "ListInferenceRecommendationsJobs"
+
+// ListInferenceRecommendationsJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListInferenceRecommendationsJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListInferenceRecommendationsJobs for more information on using the ListInferenceRecommendationsJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListInferenceRecommendationsJobsRequest method.
+//    req, resp := client.ListInferenceRecommendationsJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListInferenceRecommendationsJobs
+func (c *SageMaker) ListInferenceRecommendationsJobsRequest(input *ListInferenceRecommendationsJobsInput) (req *request.Request, output *ListInferenceRecommendationsJobsOutput) {
+	op := &request.Operation{
+		Name:       opListInferenceRecommendationsJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListInferenceRecommendationsJobsInput{}
+	}
+
+	output = &ListInferenceRecommendationsJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListInferenceRecommendationsJobs API operation for Amazon SageMaker Service.
+//
+// Lists recommendation jobs that satisfy various filters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListInferenceRecommendationsJobs for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListInferenceRecommendationsJobs
+func (c *SageMaker) ListInferenceRecommendationsJobs(input *ListInferenceRecommendationsJobsInput) (*ListInferenceRecommendationsJobsOutput, error) {
+	req, out := c.ListInferenceRecommendationsJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListInferenceRecommendationsJobsWithContext is the same as ListInferenceRecommendationsJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListInferenceRecommendationsJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListInferenceRecommendationsJobsWithContext(ctx aws.Context, input *ListInferenceRecommendationsJobsInput, opts ...request.Option) (*ListInferenceRecommendationsJobsOutput, error) {
+	req, out := c.ListInferenceRecommendationsJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListInferenceRecommendationsJobsPages iterates over the pages of a ListInferenceRecommendationsJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInferenceRecommendationsJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInferenceRecommendationsJobs operation.
+//    pageNum := 0
+//    err := client.ListInferenceRecommendationsJobsPages(params,
+//        func(page *sagemaker.ListInferenceRecommendationsJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListInferenceRecommendationsJobsPages(input *ListInferenceRecommendationsJobsInput, fn func(*ListInferenceRecommendationsJobsOutput, bool) bool) error {
+	return c.ListInferenceRecommendationsJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInferenceRecommendationsJobsPagesWithContext same as ListInferenceRecommendationsJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListInferenceRecommendationsJobsPagesWithContext(ctx aws.Context, input *ListInferenceRecommendationsJobsInput, fn func(*ListInferenceRecommendationsJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInferenceRecommendationsJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInferenceRecommendationsJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInferenceRecommendationsJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListLabelingJobs = "ListLabelingJobs"
 
 // ListLabelingJobsRequest generates a "aws/request.Request" representing the
@@ -15540,6 +15996,140 @@ func (c *SageMaker) ListLabelingJobsForWorkteamPagesWithContext(ctx aws.Context,
 	return p.Err()
 }
 
+const opListLineageGroups = "ListLineageGroups"
+
+// ListLineageGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLineageGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLineageGroups for more information on using the ListLineageGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListLineageGroupsRequest method.
+//    req, resp := client.ListLineageGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListLineageGroups
+func (c *SageMaker) ListLineageGroupsRequest(input *ListLineageGroupsInput) (req *request.Request, output *ListLineageGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListLineageGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListLineageGroupsInput{}
+	}
+
+	output = &ListLineageGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLineageGroups API operation for Amazon SageMaker Service.
+//
+// A list of lineage groups shared with your Amazon Web Services account. For
+// more information, see Cross-Account Lineage Tracking (https://docs.aws.amazon.com/sagemaker/latest/dg/xaccount-lineage-tracking.html)
+// in the Amazon SageMaker Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListLineageGroups for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListLineageGroups
+func (c *SageMaker) ListLineageGroups(input *ListLineageGroupsInput) (*ListLineageGroupsOutput, error) {
+	req, out := c.ListLineageGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListLineageGroupsWithContext is the same as ListLineageGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLineageGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListLineageGroupsWithContext(ctx aws.Context, input *ListLineageGroupsInput, opts ...request.Option) (*ListLineageGroupsOutput, error) {
+	req, out := c.ListLineageGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListLineageGroupsPages iterates over the pages of a ListLineageGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListLineageGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListLineageGroups operation.
+//    pageNum := 0
+//    err := client.ListLineageGroupsPages(params,
+//        func(page *sagemaker.ListLineageGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListLineageGroupsPages(input *ListLineageGroupsInput, fn func(*ListLineageGroupsOutput, bool) bool) error {
+	return c.ListLineageGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListLineageGroupsPagesWithContext same as ListLineageGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListLineageGroupsPagesWithContext(ctx aws.Context, input *ListLineageGroupsInput, fn func(*ListLineageGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListLineageGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListLineageGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListLineageGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListModelBiasJobDefinitions = "ListModelBiasJobDefinitions"
 
 // ListModelBiasJobDefinitionsRequest generates a "aws/request.Request" representing the
@@ -15797,6 +16387,139 @@ func (c *SageMaker) ListModelExplainabilityJobDefinitionsPagesWithContext(ctx aw
 
 	for p.Next() {
 		if !fn(p.Page().(*ListModelExplainabilityJobDefinitionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListModelMetadata = "ListModelMetadata"
+
+// ListModelMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the ListModelMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListModelMetadata for more information on using the ListModelMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListModelMetadataRequest method.
+//    req, resp := client.ListModelMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelMetadata
+func (c *SageMaker) ListModelMetadataRequest(input *ListModelMetadataInput) (req *request.Request, output *ListModelMetadataOutput) {
+	op := &request.Operation{
+		Name:       opListModelMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListModelMetadataInput{}
+	}
+
+	output = &ListModelMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListModelMetadata API operation for Amazon SageMaker Service.
+//
+// Lists the domain, framework, task, and model name of standard machine learning
+// models found in common model zoos.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListModelMetadata for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListModelMetadata
+func (c *SageMaker) ListModelMetadata(input *ListModelMetadataInput) (*ListModelMetadataOutput, error) {
+	req, out := c.ListModelMetadataRequest(input)
+	return out, req.Send()
+}
+
+// ListModelMetadataWithContext is the same as ListModelMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListModelMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListModelMetadataWithContext(ctx aws.Context, input *ListModelMetadataInput, opts ...request.Option) (*ListModelMetadataOutput, error) {
+	req, out := c.ListModelMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListModelMetadataPages iterates over the pages of a ListModelMetadata operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListModelMetadata method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListModelMetadata operation.
+//    pageNum := 0
+//    err := client.ListModelMetadataPages(params,
+//        func(page *sagemaker.ListModelMetadataOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListModelMetadataPages(input *ListModelMetadataInput, fn func(*ListModelMetadataOutput, bool) bool) error {
+	return c.ListModelMetadataPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListModelMetadataPagesWithContext same as ListModelMetadataPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListModelMetadataPagesWithContext(ctx aws.Context, input *ListModelMetadataInput, fn func(*ListModelMetadataOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListModelMetadataInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListModelMetadataRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListModelMetadataOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -19256,6 +19979,145 @@ func (c *SageMaker) PutModelPackageGroupPolicyWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opQueryLineage = "QueryLineage"
+
+// QueryLineageRequest generates a "aws/request.Request" representing the
+// client's request for the QueryLineage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See QueryLineage for more information on using the QueryLineage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the QueryLineageRequest method.
+//    req, resp := client.QueryLineageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/QueryLineage
+func (c *SageMaker) QueryLineageRequest(input *QueryLineageInput) (req *request.Request, output *QueryLineageOutput) {
+	op := &request.Operation{
+		Name:       opQueryLineage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &QueryLineageInput{}
+	}
+
+	output = &QueryLineageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// QueryLineage API operation for Amazon SageMaker Service.
+//
+// Use this action to inspect your lineage and discover relationships between
+// entities. For more information, see Querying Lineage Entities (https://docs.aws.amazon.com/sagemaker/latest/dg/querying-lineage-entities.html)
+// in the Amazon SageMaker Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation QueryLineage for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/QueryLineage
+func (c *SageMaker) QueryLineage(input *QueryLineageInput) (*QueryLineageOutput, error) {
+	req, out := c.QueryLineageRequest(input)
+	return out, req.Send()
+}
+
+// QueryLineageWithContext is the same as QueryLineage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See QueryLineage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) QueryLineageWithContext(ctx aws.Context, input *QueryLineageInput, opts ...request.Option) (*QueryLineageOutput, error) {
+	req, out := c.QueryLineageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// QueryLineagePages iterates over the pages of a QueryLineage operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See QueryLineage method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a QueryLineage operation.
+//    pageNum := 0
+//    err := client.QueryLineagePages(params,
+//        func(page *sagemaker.QueryLineageOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) QueryLineagePages(input *QueryLineageInput, fn func(*QueryLineageOutput, bool) bool) error {
+	return c.QueryLineagePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// QueryLineagePagesWithContext same as QueryLineagePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) QueryLineagePagesWithContext(ctx aws.Context, input *QueryLineageInput, fn func(*QueryLineageOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *QueryLineageInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.QueryLineageRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*QueryLineageOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opRegisterDevices = "RegisterDevices"
 
 // RegisterDevicesRequest generates a "aws/request.Request" representing the
@@ -20389,6 +21251,86 @@ func (c *SageMaker) StopHyperParameterTuningJob(input *StopHyperParameterTuningJ
 // for more information on using Contexts.
 func (c *SageMaker) StopHyperParameterTuningJobWithContext(ctx aws.Context, input *StopHyperParameterTuningJobInput, opts ...request.Option) (*StopHyperParameterTuningJobOutput, error) {
 	req, out := c.StopHyperParameterTuningJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopInferenceRecommendationsJob = "StopInferenceRecommendationsJob"
+
+// StopInferenceRecommendationsJobRequest generates a "aws/request.Request" representing the
+// client's request for the StopInferenceRecommendationsJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopInferenceRecommendationsJob for more information on using the StopInferenceRecommendationsJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopInferenceRecommendationsJobRequest method.
+//    req, resp := client.StopInferenceRecommendationsJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopInferenceRecommendationsJob
+func (c *SageMaker) StopInferenceRecommendationsJobRequest(input *StopInferenceRecommendationsJobInput) (req *request.Request, output *StopInferenceRecommendationsJobOutput) {
+	op := &request.Operation{
+		Name:       opStopInferenceRecommendationsJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopInferenceRecommendationsJobInput{}
+	}
+
+	output = &StopInferenceRecommendationsJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopInferenceRecommendationsJob API operation for Amazon SageMaker Service.
+//
+// Stops an Inference Recommender job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation StopInferenceRecommendationsJob for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/StopInferenceRecommendationsJob
+func (c *SageMaker) StopInferenceRecommendationsJob(input *StopInferenceRecommendationsJobInput) (*StopInferenceRecommendationsJobOutput, error) {
+	req, out := c.StopInferenceRecommendationsJobRequest(input)
+	return out, req.Send()
+}
+
+// StopInferenceRecommendationsJobWithContext is the same as StopInferenceRecommendationsJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopInferenceRecommendationsJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) StopInferenceRecommendationsJobWithContext(ctx aws.Context, input *StopInferenceRecommendationsJobInput, opts ...request.Option) (*StopInferenceRecommendationsJobOutput, error) {
+	req, out := c.StopInferenceRecommendationsJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -23430,6 +24372,137 @@ func (s *AddTagsOutput) SetTags(v []*Tag) *AddTagsOutput {
 	return s
 }
 
+// A structure of additional Inference Specification. Additional Inference Specification
+// specifies details about inference jobs that can be run with models based
+// on this model package
+type AdditionalInferenceSpecificationDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon ECR registry path of the Docker image that contains the inference
+	// code.
+	//
+	// Containers is a required field
+	Containers []*ModelPackageContainerDefinition `min:"1" type:"list" required:"true"`
+
+	// A description of the additional Inference specification
+	Description *string `type:"string"`
+
+	// A unique name to identify the additional inference specification. The name
+	// must be unique within the list of your additional inference specifications
+	// for a particular model package.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The supported MIME types for the input data.
+	SupportedContentTypes []*string `type:"list"`
+
+	// A list of the instance types that are used to generate inferences in real-time.
+	SupportedRealtimeInferenceInstanceTypes []*string `type:"list"`
+
+	// The supported MIME types for the output data.
+	SupportedResponseMIMETypes []*string `type:"list"`
+
+	// A list of the instance types on which a transformation job can be run or
+	// on which an endpoint can be deployed.
+	SupportedTransformInstanceTypes []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdditionalInferenceSpecificationDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AdditionalInferenceSpecificationDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdditionalInferenceSpecificationDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdditionalInferenceSpecificationDefinition"}
+	if s.Containers == nil {
+		invalidParams.Add(request.NewErrParamRequired("Containers"))
+	}
+	if s.Containers != nil && len(s.Containers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Containers", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SupportedTransformInstanceTypes != nil && len(s.SupportedTransformInstanceTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SupportedTransformInstanceTypes", 1))
+	}
+	if s.Containers != nil {
+		for i, v := range s.Containers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Containers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainers sets the Containers field's value.
+func (s *AdditionalInferenceSpecificationDefinition) SetContainers(v []*ModelPackageContainerDefinition) *AdditionalInferenceSpecificationDefinition {
+	s.Containers = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AdditionalInferenceSpecificationDefinition) SetDescription(v string) *AdditionalInferenceSpecificationDefinition {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AdditionalInferenceSpecificationDefinition) SetName(v string) *AdditionalInferenceSpecificationDefinition {
+	s.Name = &v
+	return s
+}
+
+// SetSupportedContentTypes sets the SupportedContentTypes field's value.
+func (s *AdditionalInferenceSpecificationDefinition) SetSupportedContentTypes(v []*string) *AdditionalInferenceSpecificationDefinition {
+	s.SupportedContentTypes = v
+	return s
+}
+
+// SetSupportedRealtimeInferenceInstanceTypes sets the SupportedRealtimeInferenceInstanceTypes field's value.
+func (s *AdditionalInferenceSpecificationDefinition) SetSupportedRealtimeInferenceInstanceTypes(v []*string) *AdditionalInferenceSpecificationDefinition {
+	s.SupportedRealtimeInferenceInstanceTypes = v
+	return s
+}
+
+// SetSupportedResponseMIMETypes sets the SupportedResponseMIMETypes field's value.
+func (s *AdditionalInferenceSpecificationDefinition) SetSupportedResponseMIMETypes(v []*string) *AdditionalInferenceSpecificationDefinition {
+	s.SupportedResponseMIMETypes = v
+	return s
+}
+
+// SetSupportedTransformInstanceTypes sets the SupportedTransformInstanceTypes field's value.
+func (s *AdditionalInferenceSpecificationDefinition) SetSupportedTransformInstanceTypes(v []*string) *AdditionalInferenceSpecificationDefinition {
+	s.SupportedTransformInstanceTypes = v
+	return s
+}
+
 // Edge Manager agent version.
 type AgentVersion struct {
 	_ struct{} `type:"structure"`
@@ -25234,7 +26307,7 @@ type AssociationSummary struct {
 	AssociationType *string `type:"string" enum:"AssociationEdgeType"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the association was created.
@@ -27006,6 +28079,10 @@ func (s *BatchDescribeModelPackageSummary) SetModelPackageVersion(v int64) *Batc
 type Bias struct {
 	_ struct{} `type:"structure"`
 
+	PostTrainingReport *MetricsSource `type:"structure"`
+
+	PreTrainingReport *MetricsSource `type:"structure"`
+
 	// The bias report for a model
 	Report *MetricsSource `type:"structure"`
 }
@@ -27031,6 +28108,16 @@ func (s Bias) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Bias) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Bias"}
+	if s.PostTrainingReport != nil {
+		if err := s.PostTrainingReport.Validate(); err != nil {
+			invalidParams.AddNested("PostTrainingReport", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PreTrainingReport != nil {
+		if err := s.PreTrainingReport.Validate(); err != nil {
+			invalidParams.AddNested("PreTrainingReport", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Report != nil {
 		if err := s.Report.Validate(); err != nil {
 			invalidParams.AddNested("Report", err.(request.ErrInvalidParams))
@@ -27041,6 +28128,18 @@ func (s *Bias) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetPostTrainingReport sets the PostTrainingReport field's value.
+func (s *Bias) SetPostTrainingReport(v *MetricsSource) *Bias {
+	s.PostTrainingReport = v
+	return s
+}
+
+// SetPreTrainingReport sets the PreTrainingReport field's value.
+func (s *Bias) SetPreTrainingReport(v *MetricsSource) *Bias {
+	s.PreTrainingReport = v
+	return s
 }
 
 // SetReport sets the Report field's value.
@@ -27455,6 +28554,70 @@ func (s *CaptureOption) Validate() error {
 // SetCaptureMode sets the CaptureMode field's value.
 func (s *CaptureOption) SetCaptureMode(v string) *CaptureOption {
 	s.CaptureMode = &v
+	return s
+}
+
+// Environment parameters you want to benchmark your load test against.
+type CategoricalParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The Name of the environment variable.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The list of values you can pass.
+	//
+	// Value is a required field
+	Value []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CategoricalParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CategoricalParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CategoricalParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CategoricalParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CategoricalParameter) SetName(v string) *CategoricalParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CategoricalParameter) SetValue(v []*string) *CategoricalParameter {
+	s.Value = v
 	return s
 }
 
@@ -27893,6 +29056,110 @@ func (s *CheckpointConfig) SetLocalPath(v string) *CheckpointConfig {
 // SetS3Uri sets the S3Uri field's value.
 func (s *CheckpointConfig) SetS3Uri(v string) *CheckpointConfig {
 	s.S3Uri = &v
+	return s
+}
+
+// The container for the metadata for the ClarifyCheck step. For more information,
+// see the topic on ClarifyCheck step (https://docs.aws.amazon.com/sagemaker/latest/dg/build-and-manage-steps.html#step-type-clarify-check)
+// in the Amazon SageMaker Developer Guide.
+type ClarifyCheckStepMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 URI of baseline constraints file to be used for the drift check.
+	BaselineUsedForDriftCheckConstraints *string `type:"string"`
+
+	// The Amazon S3 URI of the newly calculated baseline constraints file.
+	CalculatedBaselineConstraints *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the check processing job that was run by
+	// this step's execution.
+	CheckJobArn *string `type:"string"`
+
+	// The type of the Clarify Check step
+	CheckType *string `type:"string"`
+
+	// The model package group name.
+	ModelPackageGroupName *string `type:"string"`
+
+	// This flag indicates if a newly calculated baseline can be accessed through
+	// step properties BaselineUsedForDriftCheckConstraints and BaselineUsedForDriftCheckStatistics.
+	// If it is set to False, the previous baseline of the configured check type
+	// must also be available. These can be accessed through the BaselineUsedForDriftCheckConstraints
+	// property.
+	RegisterNewBaseline *bool `type:"boolean"`
+
+	// This flag indicates if the drift check against the previous baseline will
+	// be skipped or not. If it is set to False, the previous baseline of the configured
+	// check type must be available.
+	SkipCheck *bool `type:"boolean"`
+
+	// The Amazon S3 URI of the violation report if violations are detected.
+	ViolationReport *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyCheckStepMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ClarifyCheckStepMetadata) GoString() string {
+	return s.String()
+}
+
+// SetBaselineUsedForDriftCheckConstraints sets the BaselineUsedForDriftCheckConstraints field's value.
+func (s *ClarifyCheckStepMetadata) SetBaselineUsedForDriftCheckConstraints(v string) *ClarifyCheckStepMetadata {
+	s.BaselineUsedForDriftCheckConstraints = &v
+	return s
+}
+
+// SetCalculatedBaselineConstraints sets the CalculatedBaselineConstraints field's value.
+func (s *ClarifyCheckStepMetadata) SetCalculatedBaselineConstraints(v string) *ClarifyCheckStepMetadata {
+	s.CalculatedBaselineConstraints = &v
+	return s
+}
+
+// SetCheckJobArn sets the CheckJobArn field's value.
+func (s *ClarifyCheckStepMetadata) SetCheckJobArn(v string) *ClarifyCheckStepMetadata {
+	s.CheckJobArn = &v
+	return s
+}
+
+// SetCheckType sets the CheckType field's value.
+func (s *ClarifyCheckStepMetadata) SetCheckType(v string) *ClarifyCheckStepMetadata {
+	s.CheckType = &v
+	return s
+}
+
+// SetModelPackageGroupName sets the ModelPackageGroupName field's value.
+func (s *ClarifyCheckStepMetadata) SetModelPackageGroupName(v string) *ClarifyCheckStepMetadata {
+	s.ModelPackageGroupName = &v
+	return s
+}
+
+// SetRegisterNewBaseline sets the RegisterNewBaseline field's value.
+func (s *ClarifyCheckStepMetadata) SetRegisterNewBaseline(v bool) *ClarifyCheckStepMetadata {
+	s.RegisterNewBaseline = &v
+	return s
+}
+
+// SetSkipCheck sets the SkipCheck field's value.
+func (s *ClarifyCheckStepMetadata) SetSkipCheck(v bool) *ClarifyCheckStepMetadata {
+	s.SkipCheck = &v
+	return s
+}
+
+// SetViolationReport sets the ViolationReport field's value.
+func (s *ClarifyCheckStepMetadata) SetViolationReport(v string) *ClarifyCheckStepMetadata {
+	s.ViolationReport = &v
 	return s
 }
 
@@ -28459,6 +29726,9 @@ type ContainerDefinition struct {
 	// Docker Registry for Real-Time Inference Containers (https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-containers-inference-private.html)
 	ImageConfig *ImageConfig `type:"structure"`
 
+	// The inference specification name in the model package version.
+	InferenceSpecificationName *string `min:"1" type:"string"`
+
 	// Whether the container hosts a single model or multiple models.
 	Mode *string `type:"string" enum:"ContainerMode"`
 
@@ -28513,6 +29783,9 @@ func (s ContainerDefinition) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ContainerDefinition) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ContainerDefinition"}
+	if s.InferenceSpecificationName != nil && len(*s.InferenceSpecificationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InferenceSpecificationName", 1))
+	}
 	if s.ModelPackageName != nil && len(*s.ModelPackageName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelPackageName", 1))
 	}
@@ -28549,6 +29822,12 @@ func (s *ContainerDefinition) SetImage(v string) *ContainerDefinition {
 // SetImageConfig sets the ImageConfig field's value.
 func (s *ContainerDefinition) SetImageConfig(v *ImageConfig) *ContainerDefinition {
 	s.ImageConfig = v
+	return s
+}
+
+// SetInferenceSpecificationName sets the InferenceSpecificationName field's value.
+func (s *ContainerDefinition) SetInferenceSpecificationName(v string) *ContainerDefinition {
+	s.InferenceSpecificationName = &v
 	return s
 }
 
@@ -30038,9 +31317,13 @@ type CreateCompilationJobInput struct {
 	// Provides information about the location of input model artifacts, the name
 	// and shape of the expected data inputs, and the framework in which the model
 	// was trained.
-	//
-	// InputConfig is a required field
-	InputConfig *InputConfig `type:"structure" required:"true"`
+	InputConfig *InputConfig `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of a versioned model package. Provide either
+	// a ModelPackageVersionArn or an InputConfig object in the request syntax.
+	// The presence of both objects in the CreateCompilationJob request will return
+	// an exception.
+	ModelPackageVersionArn *string `min:"1" type:"string"`
 
 	// Provides information about the output location for the compiled model and
 	// the target device the model runs on.
@@ -30115,8 +31398,8 @@ func (s *CreateCompilationJobInput) Validate() error {
 	if s.CompilationJobName != nil && len(*s.CompilationJobName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CompilationJobName", 1))
 	}
-	if s.InputConfig == nil {
-		invalidParams.Add(request.NewErrParamRequired("InputConfig"))
+	if s.ModelPackageVersionArn != nil && len(*s.ModelPackageVersionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelPackageVersionArn", 1))
 	}
 	if s.OutputConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
@@ -30176,6 +31459,12 @@ func (s *CreateCompilationJobInput) SetCompilationJobName(v string) *CreateCompi
 // SetInputConfig sets the InputConfig field's value.
 func (s *CreateCompilationJobInput) SetInputConfig(v *InputConfig) *CreateCompilationJobInput {
 	s.InputConfig = v
+	return s
+}
+
+// SetModelPackageVersionArn sets the ModelPackageVersionArn field's value.
+func (s *CreateCompilationJobInput) SetModelPackageVersionArn(v string) *CreateCompilationJobInput {
+	s.ModelPackageVersionArn = &v
 	return s
 }
 
@@ -32705,6 +33994,191 @@ func (s *CreateImageVersionOutput) SetImageVersionArn(v string) *CreateImageVers
 	return s
 }
 
+type CreateInferenceRecommendationsJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about the versioned model package Amazon Resource Name
+	// (ARN), the traffic pattern, and endpoint configurations.
+	//
+	// InputConfig is a required field
+	InputConfig *RecommendationJobInputConfig `type:"structure" required:"true"`
+
+	// Description of the recommendation job.
+	JobDescription *string `type:"string"`
+
+	// A name for the recommendation job. The name must be unique within the Amazon
+	// Web Services Region and within your Amazon Web Services account.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+
+	// Defines the type of recommendation job. Specify Default to initiate an instance
+	// recommendation and Advanced to initiate a load test. If left unspecified,
+	// Amazon SageMaker Inference Recommender will run an instance recommendation
+	// (DEFAULT) job.
+	//
+	// JobType is a required field
+	JobType *string `type:"string" required:"true" enum:"RecommendationJobType"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker
+	// to perform tasks on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A set of conditions for stopping a recommendation job. If any of the conditions
+	// are met, the job is automatically stopped.
+	StoppingConditions *RecommendationJobStoppingConditions `type:"structure"`
+
+	// The metadata that you apply to Amazon Web Services resources to help you
+	// categorize and organize them. Each tag consists of a key and a value, both
+	// of which you define. For more information, see Tagging Amazon Web Services
+	// Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateInferenceRecommendationsJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateInferenceRecommendationsJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateInferenceRecommendationsJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateInferenceRecommendationsJobInput"}
+	if s.InputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputConfig"))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.JobType == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobType"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.InputConfig != nil {
+		if err := s.InputConfig.Validate(); err != nil {
+			invalidParams.AddNested("InputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StoppingConditions != nil {
+		if err := s.StoppingConditions.Validate(); err != nil {
+			invalidParams.AddNested("StoppingConditions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputConfig sets the InputConfig field's value.
+func (s *CreateInferenceRecommendationsJobInput) SetInputConfig(v *RecommendationJobInputConfig) *CreateInferenceRecommendationsJobInput {
+	s.InputConfig = v
+	return s
+}
+
+// SetJobDescription sets the JobDescription field's value.
+func (s *CreateInferenceRecommendationsJobInput) SetJobDescription(v string) *CreateInferenceRecommendationsJobInput {
+	s.JobDescription = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateInferenceRecommendationsJobInput) SetJobName(v string) *CreateInferenceRecommendationsJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobType sets the JobType field's value.
+func (s *CreateInferenceRecommendationsJobInput) SetJobType(v string) *CreateInferenceRecommendationsJobInput {
+	s.JobType = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateInferenceRecommendationsJobInput) SetRoleArn(v string) *CreateInferenceRecommendationsJobInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStoppingConditions sets the StoppingConditions field's value.
+func (s *CreateInferenceRecommendationsJobInput) SetStoppingConditions(v *RecommendationJobStoppingConditions) *CreateInferenceRecommendationsJobInput {
+	s.StoppingConditions = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateInferenceRecommendationsJobInput) SetTags(v []*Tag) *CreateInferenceRecommendationsJobInput {
+	s.Tags = v
+	return s
+}
+
+type CreateInferenceRecommendationsJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the recommendation job.
+	//
+	// JobArn is a required field
+	JobArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateInferenceRecommendationsJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateInferenceRecommendationsJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *CreateInferenceRecommendationsJobOutput) SetJobArn(v string) *CreateInferenceRecommendationsJobOutput {
+	s.JobArn = &v
+	return s
+}
+
 type CreateLabelingJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -33829,6 +35303,12 @@ func (s *CreateModelPackageGroupOutput) SetModelPackageGroupArn(v string) *Creat
 type CreateModelPackageInput struct {
 	_ struct{} `type:"structure"`
 
+	// An array of additional Inference Specification objects. Each additional Inference
+	// Specification specifies artifacts based on this model package that can be
+	// used on inference endpoints. Generally used with SageMaker Neo to store the
+	// compiled artifacts.
+	AdditionalInferenceSpecifications []*AdditionalInferenceSpecificationDefinition `min:"1" type:"list"`
+
 	// Whether to certify the model package for listing on Amazon Web Services Marketplace.
 	//
 	// This parameter is optional for unversioned models, and does not apply to
@@ -33840,6 +35320,16 @@ type CreateModelPackageInput struct {
 
 	// The metadata properties associated with the model package versions.
 	CustomerMetadataProperties map[string]*string `min:"1" type:"map"`
+
+	// The machine learning domain of your model package and its components. Common
+	// machine learning domains include computer vision and natural language processing.
+	Domain *string `type:"string"`
+
+	// Represents the drift check baselines that can be used when the model monitor
+	// is set using the model package. For more information, see the topic on Drift
+	// Detection against Previous Baselines in SageMaker Pipelines (https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-quality-clarify-baseline-lifecycle.html#pipelines-quality-clarify-baseline-drift-detection)
+	// in the Amazon SageMaker Developer Guide.
+	DriftCheckBaselines *DriftCheckBaselines `type:"structure"`
 
 	// Specifies details about inference jobs that can be run with models based
 	// on this model package, including the following:
@@ -33886,6 +35376,11 @@ type CreateModelPackageInput struct {
 	// versioned models.
 	ModelPackageName *string `min:"1" type:"string"`
 
+	// The Amazon Simple Storage Service (Amazon S3) path where the sample payload
+	// are stored. This path must point to a single gzip compressed tar archive
+	// (.tar.gz suffix).
+	SamplePayloadUrl *string `type:"string"`
+
 	// Details about the algorithm that was used to create the model package.
 	SourceAlgorithmSpecification *SourceAlgorithmSpecification `type:"structure"`
 
@@ -33893,6 +35388,10 @@ type CreateModelPackageInput struct {
 	// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
+
+	// The machine learning task your model package accomplishes. Common machine
+	// learning tasks include object detection and image classification.
+	Task *string `type:"string"`
 
 	// Specifies configurations for one or more transform jobs that Amazon SageMaker
 	// runs to test the model package.
@@ -33920,6 +35419,9 @@ func (s CreateModelPackageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateModelPackageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateModelPackageInput"}
+	if s.AdditionalInferenceSpecifications != nil && len(s.AdditionalInferenceSpecifications) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdditionalInferenceSpecifications", 1))
+	}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
@@ -33931,6 +35433,21 @@ func (s *CreateModelPackageInput) Validate() error {
 	}
 	if s.ModelPackageName != nil && len(*s.ModelPackageName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelPackageName", 1))
+	}
+	if s.AdditionalInferenceSpecifications != nil {
+		for i, v := range s.AdditionalInferenceSpecifications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdditionalInferenceSpecifications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DriftCheckBaselines != nil {
+		if err := s.DriftCheckBaselines.Validate(); err != nil {
+			invalidParams.AddNested("DriftCheckBaselines", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.InferenceSpecification != nil {
 		if err := s.InferenceSpecification.Validate(); err != nil {
@@ -33969,6 +35486,12 @@ func (s *CreateModelPackageInput) Validate() error {
 	return nil
 }
 
+// SetAdditionalInferenceSpecifications sets the AdditionalInferenceSpecifications field's value.
+func (s *CreateModelPackageInput) SetAdditionalInferenceSpecifications(v []*AdditionalInferenceSpecificationDefinition) *CreateModelPackageInput {
+	s.AdditionalInferenceSpecifications = v
+	return s
+}
+
 // SetCertifyForMarketplace sets the CertifyForMarketplace field's value.
 func (s *CreateModelPackageInput) SetCertifyForMarketplace(v bool) *CreateModelPackageInput {
 	s.CertifyForMarketplace = &v
@@ -33984,6 +35507,18 @@ func (s *CreateModelPackageInput) SetClientToken(v string) *CreateModelPackageIn
 // SetCustomerMetadataProperties sets the CustomerMetadataProperties field's value.
 func (s *CreateModelPackageInput) SetCustomerMetadataProperties(v map[string]*string) *CreateModelPackageInput {
 	s.CustomerMetadataProperties = v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *CreateModelPackageInput) SetDomain(v string) *CreateModelPackageInput {
+	s.Domain = &v
+	return s
+}
+
+// SetDriftCheckBaselines sets the DriftCheckBaselines field's value.
+func (s *CreateModelPackageInput) SetDriftCheckBaselines(v *DriftCheckBaselines) *CreateModelPackageInput {
+	s.DriftCheckBaselines = v
 	return s
 }
 
@@ -34029,6 +35564,12 @@ func (s *CreateModelPackageInput) SetModelPackageName(v string) *CreateModelPack
 	return s
 }
 
+// SetSamplePayloadUrl sets the SamplePayloadUrl field's value.
+func (s *CreateModelPackageInput) SetSamplePayloadUrl(v string) *CreateModelPackageInput {
+	s.SamplePayloadUrl = &v
+	return s
+}
+
 // SetSourceAlgorithmSpecification sets the SourceAlgorithmSpecification field's value.
 func (s *CreateModelPackageInput) SetSourceAlgorithmSpecification(v *SourceAlgorithmSpecification) *CreateModelPackageInput {
 	s.SourceAlgorithmSpecification = v
@@ -34038,6 +35579,12 @@ func (s *CreateModelPackageInput) SetSourceAlgorithmSpecification(v *SourceAlgor
 // SetTags sets the Tags field's value.
 func (s *CreateModelPackageInput) SetTags(v []*Tag) *CreateModelPackageInput {
 	s.Tags = v
+	return s
+}
+
+// SetTask sets the Task field's value.
+func (s *CreateModelPackageInput) SetTask(v string) *CreateModelPackageInput {
+	s.Task = &v
 	return s
 }
 
@@ -41611,7 +43158,7 @@ type DescribeActionOutput struct {
 	ActionType *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the action was created.
@@ -41621,11 +43168,14 @@ type DescribeActionOutput struct {
 	Description *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the action was last modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the lineage group.
+	LineageGroupArn *string `type:"string"`
 
 	// Metadata properties of the tracking entity, trial, or trial component.
 	MetadataProperties *MetadataProperties `type:"structure"`
@@ -41703,6 +43253,12 @@ func (s *DescribeActionOutput) SetLastModifiedBy(v *UserContext) *DescribeAction
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DescribeActionOutput) SetLastModifiedTime(v time.Time) *DescribeActionOutput {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLineageGroupArn sets the LineageGroupArn field's value.
+func (s *DescribeActionOutput) SetLineageGroupArn(v string) *DescribeActionOutput {
+	s.LineageGroupArn = &v
 	return s
 }
 
@@ -42297,18 +43853,21 @@ type DescribeArtifactOutput struct {
 	ArtifactType *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the artifact was created.
 	CreationTime *time.Time `type:"timestamp"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the artifact was last modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the lineage group.
+	LineageGroupArn *string `type:"string"`
 
 	// Metadata properties of the tracking entity, trial, or trial component.
 	MetadataProperties *MetadataProperties `type:"structure"`
@@ -42377,6 +43936,12 @@ func (s *DescribeArtifactOutput) SetLastModifiedBy(v *UserContext) *DescribeArti
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DescribeArtifactOutput) SetLastModifiedTime(v time.Time) *DescribeArtifactOutput {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLineageGroupArn sets the LineageGroupArn field's value.
+func (s *DescribeArtifactOutput) SetLineageGroupArn(v string) *DescribeArtifactOutput {
+	s.LineageGroupArn = &v
 	return s
 }
 
@@ -42927,6 +44492,10 @@ type DescribeCompilationJobOutput struct {
 	// in Amazon S3.
 	ModelDigests *ModelDigests `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the versioned model package that was provided
+	// to SageMaker Neo when you initiated a compilation job.
+	ModelPackageVersionArn *string `min:"1" type:"string"`
+
 	// Information about the output location for the compiled model and the target
 	// device that the model runs on.
 	//
@@ -43043,6 +44612,12 @@ func (s *DescribeCompilationJobOutput) SetModelDigests(v *ModelDigests) *Describ
 	return s
 }
 
+// SetModelPackageVersionArn sets the ModelPackageVersionArn field's value.
+func (s *DescribeCompilationJobOutput) SetModelPackageVersionArn(v string) *DescribeCompilationJobOutput {
+	s.ModelPackageVersionArn = &v
+	return s
+}
+
 // SetOutputConfig sets the OutputConfig field's value.
 func (s *DescribeCompilationJobOutput) SetOutputConfig(v *OutputConfig) *DescribeCompilationJobOutput {
 	s.OutputConfig = v
@@ -43129,7 +44704,7 @@ type DescribeContextOutput struct {
 	ContextType *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the context was created.
@@ -43139,11 +44714,14 @@ type DescribeContextOutput struct {
 	Description *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the context was last modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the lineage group.
+	LineageGroupArn *string `type:"string"`
 
 	// A list of the context's properties.
 	Properties map[string]*string `type:"map"`
@@ -43215,6 +44793,12 @@ func (s *DescribeContextOutput) SetLastModifiedBy(v *UserContext) *DescribeConte
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DescribeContextOutput) SetLastModifiedTime(v time.Time) *DescribeContextOutput {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLineageGroupArn sets the LineageGroupArn field's value.
+func (s *DescribeContextOutput) SetLineageGroupArn(v string) *DescribeContextOutput {
+	s.LineageGroupArn = &v
 	return s
 }
 
@@ -45855,6 +47439,215 @@ func (s *DescribeImageVersionOutput) SetVersion(v int64) *DescribeImageVersionOu
 	return s
 }
 
+type DescribeInferenceRecommendationsJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the job. The name must be unique within an Amazon Web Services
+	// Region in the Amazon Web Services account.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInferenceRecommendationsJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInferenceRecommendationsJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInferenceRecommendationsJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInferenceRecommendationsJobInput"}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DescribeInferenceRecommendationsJobInput) SetJobName(v string) *DescribeInferenceRecommendationsJobInput {
+	s.JobName = &v
+	return s
+}
+
+type DescribeInferenceRecommendationsJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp that shows when the job completed.
+	CompletionTime *time.Time `type:"timestamp"`
+
+	// A timestamp that shows when the job was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// If the job fails, provides information why the job failed.
+	FailureReason *string `type:"string"`
+
+	// The recommendations made by Inference Recommender.
+	InferenceRecommendations []*InferenceRecommendation `min:"1" type:"list"`
+
+	// Returns information about the versioned model package Amazon Resource Name
+	// (ARN), the traffic pattern, and endpoint configurations you provided when
+	// you initiated the job.
+	//
+	// InputConfig is a required field
+	InputConfig *RecommendationJobInputConfig `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the job.
+	//
+	// JobArn is a required field
+	JobArn *string `type:"string" required:"true"`
+
+	// The job description that you provided when you initiated the job.
+	JobDescription *string `type:"string"`
+
+	// The name of the job. The name must be unique within an Amazon Web Services
+	// Region in the Amazon Web Services account.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+
+	// The job type that you provided when you initiated the job.
+	//
+	// JobType is a required field
+	JobType *string `type:"string" required:"true" enum:"RecommendationJobType"`
+
+	// A timestamp that shows when the job was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access
+	// Management (IAM) role you provided when you initiated the job.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// The status of the job.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"RecommendationJobStatus"`
+
+	// The stopping conditions that you provided when you initiated the job.
+	StoppingConditions *RecommendationJobStoppingConditions `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInferenceRecommendationsJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInferenceRecommendationsJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCompletionTime sets the CompletionTime field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetCompletionTime(v time.Time) *DescribeInferenceRecommendationsJobOutput {
+	s.CompletionTime = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetCreationTime(v time.Time) *DescribeInferenceRecommendationsJobOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetFailureReason(v string) *DescribeInferenceRecommendationsJobOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetInferenceRecommendations sets the InferenceRecommendations field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetInferenceRecommendations(v []*InferenceRecommendation) *DescribeInferenceRecommendationsJobOutput {
+	s.InferenceRecommendations = v
+	return s
+}
+
+// SetInputConfig sets the InputConfig field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetInputConfig(v *RecommendationJobInputConfig) *DescribeInferenceRecommendationsJobOutput {
+	s.InputConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetJobArn(v string) *DescribeInferenceRecommendationsJobOutput {
+	s.JobArn = &v
+	return s
+}
+
+// SetJobDescription sets the JobDescription field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetJobDescription(v string) *DescribeInferenceRecommendationsJobOutput {
+	s.JobDescription = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetJobName(v string) *DescribeInferenceRecommendationsJobOutput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobType sets the JobType field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetJobType(v string) *DescribeInferenceRecommendationsJobOutput {
+	s.JobType = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetLastModifiedTime(v time.Time) *DescribeInferenceRecommendationsJobOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetRoleArn(v string) *DescribeInferenceRecommendationsJobOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetStatus(v string) *DescribeInferenceRecommendationsJobOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStoppingConditions sets the StoppingConditions field's value.
+func (s *DescribeInferenceRecommendationsJobOutput) SetStoppingConditions(v *RecommendationJobStoppingConditions) *DescribeInferenceRecommendationsJobOutput {
+	s.StoppingConditions = v
+	return s
+}
+
 type DescribeLabelingJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -46155,6 +47948,151 @@ func (s *DescribeLabelingJobOutput) SetStoppingConditions(v *LabelingJobStopping
 // SetTags sets the Tags field's value.
 func (s *DescribeLabelingJobOutput) SetTags(v []*Tag) *DescribeLabelingJobOutput {
 	s.Tags = v
+	return s
+}
+
+type DescribeLineageGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the lineage group.
+	//
+	// LineageGroupName is a required field
+	LineageGroupName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLineageGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLineageGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeLineageGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeLineageGroupInput"}
+	if s.LineageGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LineageGroupName"))
+	}
+	if s.LineageGroupName != nil && len(*s.LineageGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LineageGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLineageGroupName sets the LineageGroupName field's value.
+func (s *DescribeLineageGroupInput) SetLineageGroupName(v string) *DescribeLineageGroupInput {
+	s.LineageGroupName = &v
+	return s
+}
+
+type DescribeLineageGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the user who created or modified an experiment, trial,
+	// trial component, lineage group, or project.
+	CreatedBy *UserContext `type:"structure"`
+
+	// The creation time of lineage group.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The description of the lineage group.
+	Description *string `type:"string"`
+
+	// The display name of the lineage group.
+	DisplayName *string `min:"1" type:"string"`
+
+	// Information about the user who created or modified an experiment, trial,
+	// trial component, lineage group, or project.
+	LastModifiedBy *UserContext `type:"structure"`
+
+	// The last modified time of the lineage group.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the lineage group.
+	LineageGroupArn *string `type:"string"`
+
+	// The name of the lineage group.
+	LineageGroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLineageGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeLineageGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *DescribeLineageGroupOutput) SetCreatedBy(v *UserContext) *DescribeLineageGroupOutput {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeLineageGroupOutput) SetCreationTime(v time.Time) *DescribeLineageGroupOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeLineageGroupOutput) SetDescription(v string) *DescribeLineageGroupOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *DescribeLineageGroupOutput) SetDisplayName(v string) *DescribeLineageGroupOutput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *DescribeLineageGroupOutput) SetLastModifiedBy(v *UserContext) *DescribeLineageGroupOutput {
+	s.LastModifiedBy = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeLineageGroupOutput) SetLastModifiedTime(v time.Time) *DescribeLineageGroupOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLineageGroupArn sets the LineageGroupArn field's value.
+func (s *DescribeLineageGroupOutput) SetLineageGroupArn(v string) *DescribeLineageGroupOutput {
+	s.LineageGroupArn = &v
+	return s
+}
+
+// SetLineageGroupName sets the LineageGroupName field's value.
+func (s *DescribeLineageGroupOutput) SetLineageGroupName(v string) *DescribeLineageGroupOutput {
+	s.LineageGroupName = &v
 	return s
 }
 
@@ -46754,7 +48692,7 @@ type DescribeModelPackageGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	//
 	// CreatedBy is a required field
 	CreatedBy *UserContext `type:"structure" required:"true"`
@@ -46892,6 +48830,12 @@ func (s *DescribeModelPackageInput) SetModelPackageName(v string) *DescribeModel
 type DescribeModelPackageOutput struct {
 	_ struct{} `type:"structure"`
 
+	// An array of additional Inference Specification objects. Each additional Inference
+	// Specification specifies artifacts based on this model package that can be
+	// used on inference endpoints. Generally used with SageMaker Neo to store the
+	// compiled artifacts.
+	AdditionalInferenceSpecifications []*AdditionalInferenceSpecificationDefinition `min:"1" type:"list"`
+
 	// A description provided for the model approval.
 	ApprovalDescription *string `type:"string"`
 
@@ -46900,7 +48844,7 @@ type DescribeModelPackageOutput struct {
 	CertifyForMarketplace *bool `type:"boolean"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// A timestamp specifying when the model package was created.
@@ -46911,12 +48855,22 @@ type DescribeModelPackageOutput struct {
 	// The metadata properties associated with the model package versions.
 	CustomerMetadataProperties map[string]*string `min:"1" type:"map"`
 
+	// The machine learning domain of the model package you specified. Common machine
+	// learning domains include computer vision and natural language processing.
+	Domain *string `type:"string"`
+
+	// Represents the drift check baselines that can be used when the model monitor
+	// is set using the model package. For more information, see the topic on Drift
+	// Detection against Previous Baselines in SageMaker Pipelines (https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines-quality-clarify-baseline-lifecycle.html#pipelines-quality-clarify-baseline-drift-detection)
+	// in the Amazon SageMaker Developer Guide.
+	DriftCheckBaselines *DriftCheckBaselines `type:"structure"`
+
 	// Details about inference jobs that can be run with models based on this model
 	// package.
 	InferenceSpecification *InferenceSpecification `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The last time the model package was modified.
@@ -46961,8 +48915,17 @@ type DescribeModelPackageOutput struct {
 	// The version of the model package.
 	ModelPackageVersion *int64 `min:"1" type:"integer"`
 
+	// The Amazon Simple Storage Service (Amazon S3) path where the sample payload
+	// are stored. This path points to a single gzip compressed tar archive (.tar.gz
+	// suffix).
+	SamplePayloadUrl *string `type:"string"`
+
 	// Details about the algorithm that was used to create the model package.
 	SourceAlgorithmSpecification *SourceAlgorithmSpecification `type:"structure"`
+
+	// The machine learning task you specified that your model package accomplishes.
+	// Common machine learning tasks include object detection and image classification.
+	Task *string `type:"string"`
 
 	// Configurations for one or more transform jobs that SageMaker runs to test
 	// the model package.
@@ -46985,6 +48948,12 @@ func (s DescribeModelPackageOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DescribeModelPackageOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalInferenceSpecifications sets the AdditionalInferenceSpecifications field's value.
+func (s *DescribeModelPackageOutput) SetAdditionalInferenceSpecifications(v []*AdditionalInferenceSpecificationDefinition) *DescribeModelPackageOutput {
+	s.AdditionalInferenceSpecifications = v
+	return s
 }
 
 // SetApprovalDescription sets the ApprovalDescription field's value.
@@ -47014,6 +48983,18 @@ func (s *DescribeModelPackageOutput) SetCreationTime(v time.Time) *DescribeModel
 // SetCustomerMetadataProperties sets the CustomerMetadataProperties field's value.
 func (s *DescribeModelPackageOutput) SetCustomerMetadataProperties(v map[string]*string) *DescribeModelPackageOutput {
 	s.CustomerMetadataProperties = v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *DescribeModelPackageOutput) SetDomain(v string) *DescribeModelPackageOutput {
+	s.Domain = &v
+	return s
+}
+
+// SetDriftCheckBaselines sets the DriftCheckBaselines field's value.
+func (s *DescribeModelPackageOutput) SetDriftCheckBaselines(v *DriftCheckBaselines) *DescribeModelPackageOutput {
+	s.DriftCheckBaselines = v
 	return s
 }
 
@@ -47095,9 +49076,21 @@ func (s *DescribeModelPackageOutput) SetModelPackageVersion(v int64) *DescribeMo
 	return s
 }
 
+// SetSamplePayloadUrl sets the SamplePayloadUrl field's value.
+func (s *DescribeModelPackageOutput) SetSamplePayloadUrl(v string) *DescribeModelPackageOutput {
+	s.SamplePayloadUrl = &v
+	return s
+}
+
 // SetSourceAlgorithmSpecification sets the SourceAlgorithmSpecification field's value.
 func (s *DescribeModelPackageOutput) SetSourceAlgorithmSpecification(v *SourceAlgorithmSpecification) *DescribeModelPackageOutput {
 	s.SourceAlgorithmSpecification = v
+	return s
+}
+
+// SetTask sets the Task field's value.
+func (s *DescribeModelPackageOutput) SetTask(v string) *DescribeModelPackageOutput {
+	s.Task = &v
 	return s
 }
 
@@ -48032,7 +50025,7 @@ type DescribePipelineExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time when the pipeline execution was created.
@@ -48042,7 +50035,7 @@ type DescribePipelineExecutionOutput struct {
 	FailureReason *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The time when the pipeline execution was modified last.
@@ -48204,14 +50197,14 @@ type DescribePipelineOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time when the pipeline was created.
 	CreationTime *time.Time `type:"timestamp"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The time when the pipeline was last modified.
@@ -48665,7 +50658,7 @@ type DescribeProjectOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time when the project was created.
@@ -48674,7 +50667,7 @@ type DescribeProjectOutput struct {
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The timestamp when project was last modified.
@@ -49947,6 +51940,9 @@ type DescribeTrialComponentOutput struct {
 	// When the component was last modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
+	// The Amazon Resource Name (ARN) of the lineage group.
+	LineageGroupArn *string `type:"string"`
+
 	// Metadata properties of the tracking entity, trial, or trial component.
 	MetadataProperties *MetadataProperties `type:"structure"`
 
@@ -50038,6 +52034,12 @@ func (s *DescribeTrialComponentOutput) SetLastModifiedBy(v *UserContext) *Descri
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *DescribeTrialComponentOutput) SetLastModifiedTime(v time.Time) *DescribeTrialComponentOutput {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLineageGroupArn sets the LineageGroupArn field's value.
+func (s *DescribeTrialComponentOutput) SetLineageGroupArn(v string) *DescribeTrialComponentOutput {
+	s.LineageGroupArn = &v
 	return s
 }
 
@@ -51304,6 +53306,408 @@ func (s *DomainSettingsForUpdate) SetRStudioServerProDomainSettingsForUpdate(v *
 	return s
 }
 
+// Represents the drift check baselines that can be used when the model monitor
+// is set using the model package.
+type DriftCheckBaselines struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the drift check bias baselines that can be used when the model
+	// monitor is set using the model package.
+	Bias *DriftCheckBias `type:"structure"`
+
+	// Represents the drift check explainability baselines that can be used when
+	// the model monitor is set using the model package.
+	Explainability *DriftCheckExplainability `type:"structure"`
+
+	// Represents the drift check model data quality baselines that can be used
+	// when the model monitor is set using the model package.
+	ModelDataQuality *DriftCheckModelDataQuality `type:"structure"`
+
+	// Represents the drift check model quality baselines that can be used when
+	// the model monitor is set using the model package.
+	ModelQuality *DriftCheckModelQuality `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckBaselines) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckBaselines) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DriftCheckBaselines) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DriftCheckBaselines"}
+	if s.Bias != nil {
+		if err := s.Bias.Validate(); err != nil {
+			invalidParams.AddNested("Bias", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Explainability != nil {
+		if err := s.Explainability.Validate(); err != nil {
+			invalidParams.AddNested("Explainability", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelDataQuality != nil {
+		if err := s.ModelDataQuality.Validate(); err != nil {
+			invalidParams.AddNested("ModelDataQuality", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ModelQuality != nil {
+		if err := s.ModelQuality.Validate(); err != nil {
+			invalidParams.AddNested("ModelQuality", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBias sets the Bias field's value.
+func (s *DriftCheckBaselines) SetBias(v *DriftCheckBias) *DriftCheckBaselines {
+	s.Bias = v
+	return s
+}
+
+// SetExplainability sets the Explainability field's value.
+func (s *DriftCheckBaselines) SetExplainability(v *DriftCheckExplainability) *DriftCheckBaselines {
+	s.Explainability = v
+	return s
+}
+
+// SetModelDataQuality sets the ModelDataQuality field's value.
+func (s *DriftCheckBaselines) SetModelDataQuality(v *DriftCheckModelDataQuality) *DriftCheckBaselines {
+	s.ModelDataQuality = v
+	return s
+}
+
+// SetModelQuality sets the ModelQuality field's value.
+func (s *DriftCheckBaselines) SetModelQuality(v *DriftCheckModelQuality) *DriftCheckBaselines {
+	s.ModelQuality = v
+	return s
+}
+
+// Represents the drift check bias baselines that can be used when the model
+// monitor is set using the model package.
+type DriftCheckBias struct {
+	_ struct{} `type:"structure"`
+
+	// The bias config file for a model.
+	ConfigFile *FileSource `type:"structure"`
+
+	PostTrainingConstraints *MetricsSource `type:"structure"`
+
+	PreTrainingConstraints *MetricsSource `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckBias) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckBias) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DriftCheckBias) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DriftCheckBias"}
+	if s.ConfigFile != nil {
+		if err := s.ConfigFile.Validate(); err != nil {
+			invalidParams.AddNested("ConfigFile", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PostTrainingConstraints != nil {
+		if err := s.PostTrainingConstraints.Validate(); err != nil {
+			invalidParams.AddNested("PostTrainingConstraints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PreTrainingConstraints != nil {
+		if err := s.PreTrainingConstraints.Validate(); err != nil {
+			invalidParams.AddNested("PreTrainingConstraints", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigFile sets the ConfigFile field's value.
+func (s *DriftCheckBias) SetConfigFile(v *FileSource) *DriftCheckBias {
+	s.ConfigFile = v
+	return s
+}
+
+// SetPostTrainingConstraints sets the PostTrainingConstraints field's value.
+func (s *DriftCheckBias) SetPostTrainingConstraints(v *MetricsSource) *DriftCheckBias {
+	s.PostTrainingConstraints = v
+	return s
+}
+
+// SetPreTrainingConstraints sets the PreTrainingConstraints field's value.
+func (s *DriftCheckBias) SetPreTrainingConstraints(v *MetricsSource) *DriftCheckBias {
+	s.PreTrainingConstraints = v
+	return s
+}
+
+// Represents the drift check explainability baselines that can be used when
+// the model monitor is set using the model package.
+type DriftCheckExplainability struct {
+	_ struct{} `type:"structure"`
+
+	// The explainability config file for the model.
+	ConfigFile *FileSource `type:"structure"`
+
+	Constraints *MetricsSource `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckExplainability) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckExplainability) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DriftCheckExplainability) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DriftCheckExplainability"}
+	if s.ConfigFile != nil {
+		if err := s.ConfigFile.Validate(); err != nil {
+			invalidParams.AddNested("ConfigFile", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Constraints != nil {
+		if err := s.Constraints.Validate(); err != nil {
+			invalidParams.AddNested("Constraints", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigFile sets the ConfigFile field's value.
+func (s *DriftCheckExplainability) SetConfigFile(v *FileSource) *DriftCheckExplainability {
+	s.ConfigFile = v
+	return s
+}
+
+// SetConstraints sets the Constraints field's value.
+func (s *DriftCheckExplainability) SetConstraints(v *MetricsSource) *DriftCheckExplainability {
+	s.Constraints = v
+	return s
+}
+
+// Represents the drift check data quality baselines that can be used when the
+// model monitor is set using the model package.
+type DriftCheckModelDataQuality struct {
+	_ struct{} `type:"structure"`
+
+	Constraints *MetricsSource `type:"structure"`
+
+	Statistics *MetricsSource `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckModelDataQuality) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckModelDataQuality) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DriftCheckModelDataQuality) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DriftCheckModelDataQuality"}
+	if s.Constraints != nil {
+		if err := s.Constraints.Validate(); err != nil {
+			invalidParams.AddNested("Constraints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Statistics != nil {
+		if err := s.Statistics.Validate(); err != nil {
+			invalidParams.AddNested("Statistics", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConstraints sets the Constraints field's value.
+func (s *DriftCheckModelDataQuality) SetConstraints(v *MetricsSource) *DriftCheckModelDataQuality {
+	s.Constraints = v
+	return s
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *DriftCheckModelDataQuality) SetStatistics(v *MetricsSource) *DriftCheckModelDataQuality {
+	s.Statistics = v
+	return s
+}
+
+// Represents the drift check model quality baselines that can be used when
+// the model monitor is set using the model package.
+type DriftCheckModelQuality struct {
+	_ struct{} `type:"structure"`
+
+	Constraints *MetricsSource `type:"structure"`
+
+	Statistics *MetricsSource `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckModelQuality) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DriftCheckModelQuality) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DriftCheckModelQuality) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DriftCheckModelQuality"}
+	if s.Constraints != nil {
+		if err := s.Constraints.Validate(); err != nil {
+			invalidParams.AddNested("Constraints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Statistics != nil {
+		if err := s.Statistics.Validate(); err != nil {
+			invalidParams.AddNested("Statistics", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConstraints sets the Constraints field's value.
+func (s *DriftCheckModelQuality) SetConstraints(v *MetricsSource) *DriftCheckModelQuality {
+	s.Constraints = v
+	return s
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *DriftCheckModelQuality) SetStatistics(v *MetricsSource) *DriftCheckModelQuality {
+	s.Statistics = v
+	return s
+}
+
+// A directed edge connecting two lineage entities.
+type Edge struct {
+	_ struct{} `type:"structure"`
+
+	// The type of the Association(Edge) between the source and destination. For
+	// example ContributedTo, Produced, or DerivedFrom.
+	AssociationType *string `type:"string" enum:"AssociationEdgeType"`
+
+	// The Amazon Resource Name (ARN) of the destination lineage entity of the directed
+	// edge.
+	DestinationArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the source lineage entity of the directed
+	// edge.
+	SourceArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Edge) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Edge) GoString() string {
+	return s.String()
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *Edge) SetAssociationType(v string) *Edge {
+	s.AssociationType = &v
+	return s
+}
+
+// SetDestinationArn sets the DestinationArn field's value.
+func (s *Edge) SetDestinationArn(v string) *Edge {
+	s.DestinationArn = &v
+	return s
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *Edge) SetSourceArn(v string) *Edge {
+	s.SourceArn = &v
+	return s
+}
+
 // The model on the edge device.
 type EdgeModel struct {
 	_ struct{} `type:"structure"`
@@ -52148,6 +54552,148 @@ func (s *EndpointInput) SetStartTimeOffset(v string) *EndpointInput {
 	return s
 }
 
+// The endpoint configuration for the load test.
+type EndpointInputConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The parameter you want to benchmark against.
+	EnvironmentParameterRanges *EnvironmentParameterRanges `type:"structure"`
+
+	// The inference specification name in the model package version.
+	InferenceSpecificationName *string `min:"1" type:"string"`
+
+	// The instance types to use for the load test.
+	//
+	// InstanceType is a required field
+	InstanceType *string `type:"string" required:"true" enum:"ProductionVariantInstanceType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointInputConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointInputConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EndpointInputConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EndpointInputConfiguration"}
+	if s.InferenceSpecificationName != nil && len(*s.InferenceSpecificationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InferenceSpecificationName", 1))
+	}
+	if s.InstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
+	}
+	if s.EnvironmentParameterRanges != nil {
+		if err := s.EnvironmentParameterRanges.Validate(); err != nil {
+			invalidParams.AddNested("EnvironmentParameterRanges", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnvironmentParameterRanges sets the EnvironmentParameterRanges field's value.
+func (s *EndpointInputConfiguration) SetEnvironmentParameterRanges(v *EnvironmentParameterRanges) *EndpointInputConfiguration {
+	s.EnvironmentParameterRanges = v
+	return s
+}
+
+// SetInferenceSpecificationName sets the InferenceSpecificationName field's value.
+func (s *EndpointInputConfiguration) SetInferenceSpecificationName(v string) *EndpointInputConfiguration {
+	s.InferenceSpecificationName = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *EndpointInputConfiguration) SetInstanceType(v string) *EndpointInputConfiguration {
+	s.InstanceType = &v
+	return s
+}
+
+// The endpoint configuration made by Inference Recommender during a recommendation
+// job.
+type EndpointOutputConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the endpoint made during a recommendation job.
+	//
+	// EndpointName is a required field
+	EndpointName *string `type:"string" required:"true"`
+
+	// The number of instances recommended to launch initially.
+	//
+	// InitialInstanceCount is a required field
+	InitialInstanceCount *int64 `type:"integer" required:"true"`
+
+	// The instance type recommended by Amazon SageMaker Inference Recommender.
+	//
+	// InstanceType is a required field
+	InstanceType *string `type:"string" required:"true" enum:"ProductionVariantInstanceType"`
+
+	// The name of the production variant (deployed model) made during a recommendation
+	// job.
+	//
+	// VariantName is a required field
+	VariantName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointOutputConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EndpointOutputConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *EndpointOutputConfiguration) SetEndpointName(v string) *EndpointOutputConfiguration {
+	s.EndpointName = &v
+	return s
+}
+
+// SetInitialInstanceCount sets the InitialInstanceCount field's value.
+func (s *EndpointOutputConfiguration) SetInitialInstanceCount(v int64) *EndpointOutputConfiguration {
+	s.InitialInstanceCount = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *EndpointOutputConfiguration) SetInstanceType(v string) *EndpointOutputConfiguration {
+	s.InstanceType = &v
+	return s
+}
+
+// SetVariantName sets the VariantName field's value.
+func (s *EndpointOutputConfiguration) SetVariantName(v string) *EndpointOutputConfiguration {
+	s.VariantName = &v
+	return s
+}
+
 // Provides summary information for an endpoint.
 type EndpointSummary struct {
 	_ struct{} `type:"structure"`
@@ -52256,6 +54802,118 @@ func (s *EndpointSummary) SetLastModifiedTime(v time.Time) *EndpointSummary {
 	return s
 }
 
+// A list of environment parameters suggested by the Amazon SageMaker Inference
+// Recommender.
+type EnvironmentParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The environment key suggested by the Amazon SageMaker Inference Recommender.
+	//
+	// Key is a required field
+	Key *string `type:"string" required:"true"`
+
+	// The value suggested by the Amazon SageMaker Inference Recommender.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+
+	// The value type suggested by the Amazon SageMaker Inference Recommender.
+	//
+	// ValueType is a required field
+	ValueType *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnvironmentParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnvironmentParameter) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *EnvironmentParameter) SetKey(v string) *EnvironmentParameter {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *EnvironmentParameter) SetValue(v string) *EnvironmentParameter {
+	s.Value = &v
+	return s
+}
+
+// SetValueType sets the ValueType field's value.
+func (s *EnvironmentParameter) SetValueType(v string) *EnvironmentParameter {
+	s.ValueType = &v
+	return s
+}
+
+// Specifies the range of environment parameters
+type EnvironmentParameterRanges struct {
+	_ struct{} `type:"structure"`
+
+	// Specified a list of parameters for each category.
+	CategoricalParameterRanges []*CategoricalParameter `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnvironmentParameterRanges) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EnvironmentParameterRanges) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EnvironmentParameterRanges) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EnvironmentParameterRanges"}
+	if s.CategoricalParameterRanges != nil && len(s.CategoricalParameterRanges) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CategoricalParameterRanges", 1))
+	}
+	if s.CategoricalParameterRanges != nil {
+		for i, v := range s.CategoricalParameterRanges {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CategoricalParameterRanges", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategoricalParameterRanges sets the CategoricalParameterRanges field's value.
+func (s *EnvironmentParameterRanges) SetCategoricalParameterRanges(v []*CategoricalParameter) *EnvironmentParameterRanges {
+	s.CategoricalParameterRanges = v
+	return s
+}
+
 // The properties of an experiment as returned by the Search API.
 type Experiment struct {
 	_ struct{} `type:"structure"`
@@ -52280,7 +54938,7 @@ type Experiment struct {
 	ExperimentName *string `min:"1" type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the experiment was last modified.
@@ -52924,6 +55582,71 @@ func (s *FeatureGroupSummary) SetFeatureGroupStatus(v string) *FeatureGroupSumma
 // SetOfflineStoreStatus sets the OfflineStoreStatus field's value.
 func (s *FeatureGroupSummary) SetOfflineStoreStatus(v *OfflineStoreStatus) *FeatureGroupSummary {
 	s.OfflineStoreStatus = v
+	return s
+}
+
+// Contains details regarding the file source.
+type FileSource struct {
+	_ struct{} `type:"structure"`
+
+	// The digest of the file source.
+	ContentDigest *string `type:"string"`
+
+	// The type of content stored in the file source.
+	ContentType *string `type:"string"`
+
+	// The Amazon S3 URI for the file source.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FileSource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FileSource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FileSource"}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentDigest sets the ContentDigest field's value.
+func (s *FileSource) SetContentDigest(v string) *FileSource {
+	s.ContentDigest = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *FileSource) SetContentType(v string) *FileSource {
+	s.ContentType = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *FileSource) SetS3Uri(v string) *FileSource {
+	s.S3Uri = &v
 	return s
 }
 
@@ -53660,6 +56383,95 @@ func (s *GetDeviceFleetReportOutput) SetOutputConfig(v *EdgeOutputConfig) *GetDe
 // SetReportGenerated sets the ReportGenerated field's value.
 func (s *GetDeviceFleetReportOutput) SetReportGenerated(v time.Time) *GetDeviceFleetReportOutput {
 	s.ReportGenerated = &v
+	return s
+}
+
+type GetLineageGroupPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name or Amazon Resource Name (ARN) of the lineage group.
+	//
+	// LineageGroupName is a required field
+	LineageGroupName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLineageGroupPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLineageGroupPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLineageGroupPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLineageGroupPolicyInput"}
+	if s.LineageGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LineageGroupName"))
+	}
+	if s.LineageGroupName != nil && len(*s.LineageGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LineageGroupName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLineageGroupName sets the LineageGroupName field's value.
+func (s *GetLineageGroupPolicyInput) SetLineageGroupName(v string) *GetLineageGroupPolicyInput {
+	s.LineageGroupName = &v
+	return s
+}
+
+type GetLineageGroupPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the lineage group.
+	LineageGroupArn *string `type:"string"`
+
+	// The resource policy that gives access to the lineage group in another account.
+	ResourcePolicy *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLineageGroupPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLineageGroupPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetLineageGroupArn sets the LineageGroupArn field's value.
+func (s *GetLineageGroupPolicyOutput) SetLineageGroupArn(v string) *GetLineageGroupPolicyOutput {
+	s.LineageGroupArn = &v
+	return s
+}
+
+// SetResourcePolicy sets the ResourcePolicy field's value.
+func (s *GetLineageGroupPolicyOutput) SetResourcePolicy(v string) *GetLineageGroupPolicyOutput {
+	s.ResourcePolicy = &v
 	return s
 }
 
@@ -55220,8 +58032,7 @@ type HumanTaskConfig struct {
 	//
 	//    * If you choose a private or vendor workforce, the default value is 30
 	//    days (2592,000 seconds) for non-AL mode. For most users, the maximum is
-	//    also 30 days. If you want to change this limit, contact Amazon Web Services
-	//    Support.
+	//    also 30 days.
 	TaskAvailabilityLifetimeInSeconds *int64 `min:"60" type:"integer"`
 
 	// A description of the task for your human workers.
@@ -55248,8 +58059,7 @@ type HumanTaskConfig struct {
 	//    * For 3D point cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud.html)
 	//    and video frame (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-video.html)
 	//    labeling jobs, the maximum is 30 days (2952,000 seconds) for non-AL mode.
-	//    For most users, the maximum is also 30 days. If you want to change these
-	//    limits, contact Amazon Web Services Support.
+	//    For most users, the maximum is also 30 days.
 	//
 	// TaskTimeLimitInSeconds is a required field
 	TaskTimeLimitInSeconds *int64 `min:"30" type:"integer" required:"true"`
@@ -56967,6 +59777,192 @@ func (s *InferenceExecutionConfig) Validate() error {
 // SetMode sets the Mode field's value.
 func (s *InferenceExecutionConfig) SetMode(v string) *InferenceExecutionConfig {
 	s.Mode = &v
+	return s
+}
+
+// A list of recommendations made by Amazon SageMaker Inference Recommender.
+type InferenceRecommendation struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the endpoint configuration parameters.
+	//
+	// EndpointConfiguration is a required field
+	EndpointConfiguration *EndpointOutputConfiguration `type:"structure" required:"true"`
+
+	// The metrics used to decide what recommendation to make.
+	//
+	// Metrics is a required field
+	Metrics *RecommendationMetrics `type:"structure" required:"true"`
+
+	// Defines the model configuration.
+	//
+	// ModelConfiguration is a required field
+	ModelConfiguration *ModelConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceRecommendation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceRecommendation) GoString() string {
+	return s.String()
+}
+
+// SetEndpointConfiguration sets the EndpointConfiguration field's value.
+func (s *InferenceRecommendation) SetEndpointConfiguration(v *EndpointOutputConfiguration) *InferenceRecommendation {
+	s.EndpointConfiguration = v
+	return s
+}
+
+// SetMetrics sets the Metrics field's value.
+func (s *InferenceRecommendation) SetMetrics(v *RecommendationMetrics) *InferenceRecommendation {
+	s.Metrics = v
+	return s
+}
+
+// SetModelConfiguration sets the ModelConfiguration field's value.
+func (s *InferenceRecommendation) SetModelConfiguration(v *ModelConfiguration) *InferenceRecommendation {
+	s.ModelConfiguration = v
+	return s
+}
+
+// A structure that contains a list of recommendation jobs.
+type InferenceRecommendationsJob struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp that shows when the job completed.
+	CompletionTime *time.Time `type:"timestamp"`
+
+	// A timestamp that shows when the job was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// If the job fails, provides information why the job failed.
+	FailureReason *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the recommendation job.
+	//
+	// JobArn is a required field
+	JobArn *string `type:"string" required:"true"`
+
+	// The job description.
+	//
+	// JobDescription is a required field
+	JobDescription *string `type:"string" required:"true"`
+
+	// The name of the job.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+
+	// The recommendation job type.
+	//
+	// JobType is a required field
+	JobType *string `type:"string" required:"true" enum:"RecommendationJobType"`
+
+	// A timestamp that shows when the job was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker
+	// to perform tasks on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// The status of the job.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"RecommendationJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceRecommendationsJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InferenceRecommendationsJob) GoString() string {
+	return s.String()
+}
+
+// SetCompletionTime sets the CompletionTime field's value.
+func (s *InferenceRecommendationsJob) SetCompletionTime(v time.Time) *InferenceRecommendationsJob {
+	s.CompletionTime = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *InferenceRecommendationsJob) SetCreationTime(v time.Time) *InferenceRecommendationsJob {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *InferenceRecommendationsJob) SetFailureReason(v string) *InferenceRecommendationsJob {
+	s.FailureReason = &v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *InferenceRecommendationsJob) SetJobArn(v string) *InferenceRecommendationsJob {
+	s.JobArn = &v
+	return s
+}
+
+// SetJobDescription sets the JobDescription field's value.
+func (s *InferenceRecommendationsJob) SetJobDescription(v string) *InferenceRecommendationsJob {
+	s.JobDescription = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *InferenceRecommendationsJob) SetJobName(v string) *InferenceRecommendationsJob {
+	s.JobName = &v
+	return s
+}
+
+// SetJobType sets the JobType field's value.
+func (s *InferenceRecommendationsJob) SetJobType(v string) *InferenceRecommendationsJob {
+	s.JobType = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *InferenceRecommendationsJob) SetLastModifiedTime(v time.Time) *InferenceRecommendationsJob {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *InferenceRecommendationsJob) SetRoleArn(v string) *InferenceRecommendationsJob {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *InferenceRecommendationsJob) SetStatus(v string) *InferenceRecommendationsJob {
+	s.Status = &v
 	return s
 }
 
@@ -58694,6 +61690,75 @@ func (s *LambdaStepMetadata) SetArn(v string) *LambdaStepMetadata {
 // SetOutputParameters sets the OutputParameters field's value.
 func (s *LambdaStepMetadata) SetOutputParameters(v []*OutputParameter) *LambdaStepMetadata {
 	s.OutputParameters = v
+	return s
+}
+
+// Lists a summary of the properties of a lineage group. A lineage group provides
+// a group of shareable lineage entity resources.
+type LineageGroupSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The creation time of the lineage group summary.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The display name of the lineage group summary.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The last modified time of the lineage group summary.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the lineage group resource.
+	LineageGroupArn *string `type:"string"`
+
+	// The name or Amazon Resource Name (ARN) of the lineage group.
+	LineageGroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineageGroupSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LineageGroupSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *LineageGroupSummary) SetCreationTime(v time.Time) *LineageGroupSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *LineageGroupSummary) SetDisplayName(v string) *LineageGroupSummary {
+	s.DisplayName = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *LineageGroupSummary) SetLastModifiedTime(v time.Time) *LineageGroupSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLineageGroupArn sets the LineageGroupArn field's value.
+func (s *LineageGroupSummary) SetLineageGroupArn(v string) *LineageGroupSummary {
+	s.LineageGroupArn = &v
+	return s
+}
+
+// SetLineageGroupName sets the LineageGroupName field's value.
+func (s *LineageGroupSummary) SetLineageGroupName(v string) *LineageGroupSummary {
+	s.LineageGroupName = &v
 	return s
 }
 
@@ -62507,6 +65572,180 @@ func (s *ListImagesOutput) SetNextToken(v string) *ListImagesOutput {
 	return s
 }
 
+type ListInferenceRecommendationsJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that returns only jobs created after the specified time (timestamp).
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only jobs created before the specified time (timestamp).
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// A filter that returns only jobs that were last modified after the specified
+	// time (timestamp).
+	LastModifiedTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only jobs that were last modified before the specified
+	// time (timestamp).
+	LastModifiedTimeBefore *time.Time `type:"timestamp"`
+
+	// The maximum number of recommendations to return in the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A string in the job name. This filter returns only recommendations whose
+	// name contains the specified string.
+	NameContains *string `type:"string"`
+
+	// If the response to a previous ListInferenceRecommendationsJobsRequest request
+	// was truncated, the response includes a NextToken. To retrieve the next set
+	// of recommendations, use the token in the next request.
+	NextToken *string `type:"string"`
+
+	// The parameter by which to sort the results.
+	SortBy *string `type:"string" enum:"ListInferenceRecommendationsJobsSortBy"`
+
+	// The sort order for the results.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+
+	// A filter that retrieves only inference recommendations jobs with a specific
+	// status.
+	StatusEquals *string `type:"string" enum:"RecommendationJobStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListInferenceRecommendationsJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListInferenceRecommendationsJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetCreationTimeAfter(v time.Time) *ListInferenceRecommendationsJobsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetCreationTimeBefore(v time.Time) *ListInferenceRecommendationsJobsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetLastModifiedTimeAfter sets the LastModifiedTimeAfter field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetLastModifiedTimeAfter(v time.Time) *ListInferenceRecommendationsJobsInput {
+	s.LastModifiedTimeAfter = &v
+	return s
+}
+
+// SetLastModifiedTimeBefore sets the LastModifiedTimeBefore field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetLastModifiedTimeBefore(v time.Time) *ListInferenceRecommendationsJobsInput {
+	s.LastModifiedTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetMaxResults(v int64) *ListInferenceRecommendationsJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetNameContains(v string) *ListInferenceRecommendationsJobsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetNextToken(v string) *ListInferenceRecommendationsJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetSortBy(v string) *ListInferenceRecommendationsJobsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetSortOrder(v string) *ListInferenceRecommendationsJobsInput {
+	s.SortOrder = &v
+	return s
+}
+
+// SetStatusEquals sets the StatusEquals field's value.
+func (s *ListInferenceRecommendationsJobsInput) SetStatusEquals(v string) *ListInferenceRecommendationsJobsInput {
+	s.StatusEquals = &v
+	return s
+}
+
+type ListInferenceRecommendationsJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The recommendations created from the Amazon SageMaker Inference Recommender
+	// job.
+	//
+	// InferenceRecommendationsJobs is a required field
+	InferenceRecommendationsJobs []*InferenceRecommendationsJob `type:"list" required:"true"`
+
+	// A token for getting the next set of recommendations, if there are any.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListInferenceRecommendationsJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInferenceRecommendationsJobs sets the InferenceRecommendationsJobs field's value.
+func (s *ListInferenceRecommendationsJobsOutput) SetInferenceRecommendationsJobs(v []*InferenceRecommendationsJob) *ListInferenceRecommendationsJobsOutput {
+	s.InferenceRecommendationsJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInferenceRecommendationsJobsOutput) SetNextToken(v string) *ListInferenceRecommendationsJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListLabelingJobsForWorkteamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -62844,6 +66083,140 @@ func (s *ListLabelingJobsOutput) SetNextToken(v string) *ListLabelingJobsOutput 
 	return s
 }
 
+type ListLineageGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp to filter against lineage groups created after a certain point
+	// in time.
+	CreatedAfter *time.Time `type:"timestamp"`
+
+	// A timestamp to filter against lineage groups created before a certain point
+	// in time.
+	CreatedBefore *time.Time `type:"timestamp"`
+
+	// The maximum number of endpoints to return in the response. This value defaults
+	// to 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of algorithms, use it in the subsequent request.
+	NextToken *string `type:"string"`
+
+	// The parameter by which to sort the results. The default is CreationTime.
+	SortBy *string `type:"string" enum:"SortLineageGroupsBy"`
+
+	// The sort order for the results. The default is Ascending.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLineageGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLineageGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLineageGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLineageGroupsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *ListLineageGroupsInput) SetCreatedAfter(v time.Time) *ListLineageGroupsInput {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *ListLineageGroupsInput) SetCreatedBefore(v time.Time) *ListLineageGroupsInput {
+	s.CreatedBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLineageGroupsInput) SetMaxResults(v int64) *ListLineageGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLineageGroupsInput) SetNextToken(v string) *ListLineageGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListLineageGroupsInput) SetSortBy(v string) *ListLineageGroupsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListLineageGroupsInput) SetSortOrder(v string) *ListLineageGroupsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListLineageGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of lineage groups and their properties.
+	LineageGroupSummaries []*LineageGroupSummary `type:"list"`
+
+	// If the response is truncated, SageMaker returns this token. To retrieve the
+	// next set of algorithms, use it in the subsequent request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLineageGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLineageGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLineageGroupSummaries sets the LineageGroupSummaries field's value.
+func (s *ListLineageGroupsOutput) SetLineageGroupSummaries(v []*LineageGroupSummary) *ListLineageGroupsOutput {
+	s.LineageGroupSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLineageGroupsOutput) SetNextToken(v string) *ListLineageGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListModelBiasJobDefinitionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -63151,6 +66524,120 @@ func (s *ListModelExplainabilityJobDefinitionsOutput) SetJobDefinitionSummaries(
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListModelExplainabilityJobDefinitionsOutput) SetNextToken(v string) *ListModelExplainabilityJobDefinitionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListModelMetadataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of models to return in the response.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the response to a previous ListModelMetadataResponse request was truncated,
+	// the response includes a NextToken. To retrieve the next set of model metadata,
+	// use the token in the next request.
+	NextToken *string `type:"string"`
+
+	// One or more filters that searches for the specified resource or resources
+	// in a search. All resource objects that satisfy the expression's condition
+	// are included in the search results. Specify the Framework, FrameworkVersion,
+	// Domain or Task to filter supported. Filter names and values are case-sensitive.
+	SearchExpression *ModelMetadataSearchExpression `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelMetadataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListModelMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListModelMetadataInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.SearchExpression != nil {
+		if err := s.SearchExpression.Validate(); err != nil {
+			invalidParams.AddNested("SearchExpression", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListModelMetadataInput) SetMaxResults(v int64) *ListModelMetadataInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelMetadataInput) SetNextToken(v string) *ListModelMetadataInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSearchExpression sets the SearchExpression field's value.
+func (s *ListModelMetadataInput) SetSearchExpression(v *ModelMetadataSearchExpression) *ListModelMetadataInput {
+	s.SearchExpression = v
+	return s
+}
+
+type ListModelMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that holds model metadata.
+	//
+	// ModelMetadataSummaries is a required field
+	ModelMetadataSummaries []*ModelMetadataSummary `type:"list" required:"true"`
+
+	// A token for getting the next set of recommendations, if there are any.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListModelMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetModelMetadataSummaries sets the ModelMetadataSummaries field's value.
+func (s *ListModelMetadataOutput) SetModelMetadataSummaries(v []*ModelMetadataSummary) *ListModelMetadataOutput {
+	s.ModelMetadataSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListModelMetadataOutput) SetNextToken(v string) *ListModelMetadataOutput {
 	s.NextToken = &v
 	return s
 }
@@ -67697,6 +71184,48 @@ func (s *ModelClientConfig) SetInvocationsTimeoutInSeconds(v int64) *ModelClient
 	return s
 }
 
+// Defines the model configuration. Includes the specification name and environment
+// parameters.
+type ModelConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the environment parameters that includes key, value types, and values.
+	EnvironmentParameters []*EnvironmentParameter `min:"1" type:"list"`
+
+	// The inference specification name in the model package version.
+	InferenceSpecificationName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEnvironmentParameters sets the EnvironmentParameters field's value.
+func (s *ModelConfiguration) SetEnvironmentParameters(v []*EnvironmentParameter) *ModelConfiguration {
+	s.EnvironmentParameters = v
+	return s
+}
+
+// SetInferenceSpecificationName sets the InferenceSpecificationName field's value.
+func (s *ModelConfiguration) SetInferenceSpecificationName(v string) *ModelConfiguration {
+	s.InferenceSpecificationName = &v
+	return s
+}
+
 // Data quality constraints and statistics for a model.
 type ModelDataQuality struct {
 	_ struct{} `type:"structure"`
@@ -68053,6 +71582,294 @@ func (s *ModelExplainabilityJobInput) SetEndpointInput(v *EndpointInput) *ModelE
 	return s
 }
 
+// Input object for the model.
+type ModelInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The input configuration object for the model.
+	//
+	// DataInputConfig is a required field
+	DataInputConfig *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelInput_"}
+	if s.DataInputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataInputConfig"))
+	}
+	if s.DataInputConfig != nil && len(*s.DataInputConfig) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataInputConfig", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataInputConfig sets the DataInputConfig field's value.
+func (s *ModelInput_) SetDataInputConfig(v string) *ModelInput_ {
+	s.DataInputConfig = &v
+	return s
+}
+
+// The model latency threshold.
+type ModelLatencyThreshold struct {
+	_ struct{} `type:"structure"`
+
+	// The model latency percentile threshold.
+	Percentile *string `type:"string"`
+
+	// The model latency percentile value in milliseconds.
+	ValueInMilliseconds *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelLatencyThreshold) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelLatencyThreshold) GoString() string {
+	return s.String()
+}
+
+// SetPercentile sets the Percentile field's value.
+func (s *ModelLatencyThreshold) SetPercentile(v string) *ModelLatencyThreshold {
+	s.Percentile = &v
+	return s
+}
+
+// SetValueInMilliseconds sets the ValueInMilliseconds field's value.
+func (s *ModelLatencyThreshold) SetValueInMilliseconds(v int64) *ModelLatencyThreshold {
+	s.ValueInMilliseconds = &v
+	return s
+}
+
+// Part of the search expression. You can specify the name and value (domain,
+// task, framework, framework version, task, and model).
+type ModelMetadataFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the of the model to filter by.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true" enum:"ModelMetadataFilterType"`
+
+	// The value to filter the model metadata.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelMetadataFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelMetadataFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelMetadataFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelMetadataFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ModelMetadataFilter) SetName(v string) *ModelMetadataFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ModelMetadataFilter) SetValue(v string) *ModelMetadataFilter {
+	s.Value = &v
+	return s
+}
+
+// One or more filters that searches for the specified resource or resources
+// in a search. All resource objects that satisfy the expression's condition
+// are included in the search results
+type ModelMetadataSearchExpression struct {
+	_ struct{} `type:"structure"`
+
+	// A list of filter objects.
+	Filters []*ModelMetadataFilter `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelMetadataSearchExpression) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelMetadataSearchExpression) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModelMetadataSearchExpression) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModelMetadataSearchExpression"}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ModelMetadataSearchExpression) SetFilters(v []*ModelMetadataFilter) *ModelMetadataSearchExpression {
+	s.Filters = v
+	return s
+}
+
+// A summary of the model metadata.
+type ModelMetadataSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The machine learning domain of the model.
+	//
+	// Domain is a required field
+	Domain *string `type:"string" required:"true"`
+
+	// The machine learning framework of the model.
+	//
+	// Framework is a required field
+	Framework *string `type:"string" required:"true"`
+
+	// The framework version of the model.
+	//
+	// FrameworkVersion is a required field
+	FrameworkVersion *string `type:"string" required:"true"`
+
+	// The name of the model.
+	//
+	// Model is a required field
+	Model *string `type:"string" required:"true"`
+
+	// The machine learning task of the model.
+	//
+	// Task is a required field
+	Task *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelMetadataSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ModelMetadataSummary) GoString() string {
+	return s.String()
+}
+
+// SetDomain sets the Domain field's value.
+func (s *ModelMetadataSummary) SetDomain(v string) *ModelMetadataSummary {
+	s.Domain = &v
+	return s
+}
+
+// SetFramework sets the Framework field's value.
+func (s *ModelMetadataSummary) SetFramework(v string) *ModelMetadataSummary {
+	s.Framework = &v
+	return s
+}
+
+// SetFrameworkVersion sets the FrameworkVersion field's value.
+func (s *ModelMetadataSummary) SetFrameworkVersion(v string) *ModelMetadataSummary {
+	s.FrameworkVersion = &v
+	return s
+}
+
+// SetModel sets the Model field's value.
+func (s *ModelMetadataSummary) SetModel(v string) *ModelMetadataSummary {
+	s.Model = &v
+	return s
+}
+
+// SetTask sets the Task field's value.
+func (s *ModelMetadataSummary) SetTask(v string) *ModelMetadataSummary {
+	s.Task = &v
+	return s
+}
+
 // Contains metrics captured from a model.
 type ModelMetrics struct {
 	_ struct{} `type:"structure"`
@@ -68146,6 +71963,9 @@ func (s *ModelMetrics) SetModelQuality(v *ModelQuality) *ModelMetrics {
 type ModelPackage struct {
 	_ struct{} `type:"structure"`
 
+	// An array of additional Inference Specification objects.
+	AdditionalInferenceSpecifications []*AdditionalInferenceSpecificationDefinition `min:"1" type:"list"`
+
 	// A description provided when the model approval is set.
 	ApprovalDescription *string `type:"string"`
 
@@ -68156,7 +71976,7 @@ type ModelPackage struct {
 	CertifyForMarketplace *bool `type:"boolean"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time that the model package was created.
@@ -68165,11 +71985,19 @@ type ModelPackage struct {
 	// The metadata properties for the model package.
 	CustomerMetadataProperties map[string]*string `min:"1" type:"map"`
 
+	// The machine learning domain of your model package and its components. Common
+	// machine learning domains include computer vision and natural language processing.
+	Domain *string `type:"string"`
+
+	// Represents the drift check baselines that can be used when the model monitor
+	// is set using the model package.
+	DriftCheckBaselines *DriftCheckBaselines `type:"structure"`
+
 	// Defines how to perform inference generation after a training job is run.
 	InferenceSpecification *InferenceSpecification `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The last time the model package was modified.
@@ -68221,6 +72049,10 @@ type ModelPackage struct {
 	// The version number of a versioned model.
 	ModelPackageVersion *int64 `min:"1" type:"integer"`
 
+	// The Amazon Simple Storage Service path where the sample payload are stored.
+	// This path must point to a single gzip compressed tar archive (.tar.gz suffix).
+	SamplePayloadUrl *string `type:"string"`
+
 	// A list of algorithms that were used to create a model package.
 	SourceAlgorithmSpecification *SourceAlgorithmSpecification `type:"structure"`
 
@@ -68228,6 +72060,10 @@ type ModelPackage struct {
 	// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
 	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
+
+	// The machine learning task your model package accomplishes. Common machine
+	// learning tasks include object detection and image classification.
+	Task *string `type:"string"`
 
 	// Specifies batch transform jobs that Amazon SageMaker runs to validate your
 	// model package.
@@ -68250,6 +72086,12 @@ func (s ModelPackage) String() string {
 // value will be replaced with "sensitive".
 func (s ModelPackage) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalInferenceSpecifications sets the AdditionalInferenceSpecifications field's value.
+func (s *ModelPackage) SetAdditionalInferenceSpecifications(v []*AdditionalInferenceSpecificationDefinition) *ModelPackage {
+	s.AdditionalInferenceSpecifications = v
+	return s
 }
 
 // SetApprovalDescription sets the ApprovalDescription field's value.
@@ -68279,6 +72121,18 @@ func (s *ModelPackage) SetCreationTime(v time.Time) *ModelPackage {
 // SetCustomerMetadataProperties sets the CustomerMetadataProperties field's value.
 func (s *ModelPackage) SetCustomerMetadataProperties(v map[string]*string) *ModelPackage {
 	s.CustomerMetadataProperties = v
+	return s
+}
+
+// SetDomain sets the Domain field's value.
+func (s *ModelPackage) SetDomain(v string) *ModelPackage {
+	s.Domain = &v
+	return s
+}
+
+// SetDriftCheckBaselines sets the DriftCheckBaselines field's value.
+func (s *ModelPackage) SetDriftCheckBaselines(v *DriftCheckBaselines) *ModelPackage {
+	s.DriftCheckBaselines = v
 	return s
 }
 
@@ -68360,6 +72214,12 @@ func (s *ModelPackage) SetModelPackageVersion(v int64) *ModelPackage {
 	return s
 }
 
+// SetSamplePayloadUrl sets the SamplePayloadUrl field's value.
+func (s *ModelPackage) SetSamplePayloadUrl(v string) *ModelPackage {
+	s.SamplePayloadUrl = &v
+	return s
+}
+
 // SetSourceAlgorithmSpecification sets the SourceAlgorithmSpecification field's value.
 func (s *ModelPackage) SetSourceAlgorithmSpecification(v *SourceAlgorithmSpecification) *ModelPackage {
 	s.SourceAlgorithmSpecification = v
@@ -68369,6 +72229,12 @@ func (s *ModelPackage) SetSourceAlgorithmSpecification(v *SourceAlgorithmSpecifi
 // SetTags sets the Tags field's value.
 func (s *ModelPackage) SetTags(v []*Tag) *ModelPackage {
 	s.Tags = v
+	return s
+}
+
+// SetTask sets the Task field's value.
+func (s *ModelPackage) SetTask(v string) *ModelPackage {
+	s.Task = &v
 	return s
 }
 
@@ -68389,6 +72255,12 @@ type ModelPackageContainerDefinition struct {
 	// in the Environment string to string map can have length of up to 1024. We
 	// support up to 16 entries in the map.
 	Environment map[string]*string `type:"map"`
+
+	// The machine learning framework of the model package container image.
+	Framework *string `type:"string"`
+
+	// The framework version of the Model Package Container Image.
+	FrameworkVersion *string `min:"3" type:"string"`
 
 	// The Amazon EC2 Container Registry (Amazon ECR) path where inference code
 	// is stored.
@@ -68413,6 +72285,14 @@ type ModelPackageContainerDefinition struct {
 	// The model artifacts must be in an S3 bucket that is in the same region as
 	// the model package.
 	ModelDataUrl *string `type:"string"`
+
+	// A structure with Model Input details.
+	ModelInput *ModelInput_ `type:"structure"`
+
+	// The name of a pre-trained machine learning benchmarked by Amazon SageMaker
+	// Inference Recommender model that matches your model. You can find a list
+	// of benchmarked models by calling ListModelMetadata.
+	NearestModelName *string `type:"string"`
 
 	// The Amazon Web Services Marketplace product ID of the model package.
 	ProductId *string `type:"string"`
@@ -68439,8 +72319,16 @@ func (s ModelPackageContainerDefinition) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ModelPackageContainerDefinition) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ModelPackageContainerDefinition"}
+	if s.FrameworkVersion != nil && len(*s.FrameworkVersion) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("FrameworkVersion", 3))
+	}
 	if s.Image == nil {
 		invalidParams.Add(request.NewErrParamRequired("Image"))
+	}
+	if s.ModelInput != nil {
+		if err := s.ModelInput.Validate(); err != nil {
+			invalidParams.AddNested("ModelInput", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -68458,6 +72346,18 @@ func (s *ModelPackageContainerDefinition) SetContainerHostname(v string) *ModelP
 // SetEnvironment sets the Environment field's value.
 func (s *ModelPackageContainerDefinition) SetEnvironment(v map[string]*string) *ModelPackageContainerDefinition {
 	s.Environment = v
+	return s
+}
+
+// SetFramework sets the Framework field's value.
+func (s *ModelPackageContainerDefinition) SetFramework(v string) *ModelPackageContainerDefinition {
+	s.Framework = &v
+	return s
+}
+
+// SetFrameworkVersion sets the FrameworkVersion field's value.
+func (s *ModelPackageContainerDefinition) SetFrameworkVersion(v string) *ModelPackageContainerDefinition {
+	s.FrameworkVersion = &v
 	return s
 }
 
@@ -68479,6 +72379,18 @@ func (s *ModelPackageContainerDefinition) SetModelDataUrl(v string) *ModelPackag
 	return s
 }
 
+// SetModelInput sets the ModelInput field's value.
+func (s *ModelPackageContainerDefinition) SetModelInput(v *ModelInput_) *ModelPackageContainerDefinition {
+	s.ModelInput = v
+	return s
+}
+
+// SetNearestModelName sets the NearestModelName field's value.
+func (s *ModelPackageContainerDefinition) SetNearestModelName(v string) *ModelPackageContainerDefinition {
+	s.NearestModelName = &v
+	return s
+}
+
 // SetProductId sets the ProductId field's value.
 func (s *ModelPackageContainerDefinition) SetProductId(v string) *ModelPackageContainerDefinition {
 	s.ProductId = &v
@@ -68490,7 +72402,7 @@ type ModelPackageGroup struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time that the model group was created.
@@ -72783,6 +76695,12 @@ type PendingProductionVariantSummary struct {
 	// The number of instances associated with the variant.
 	CurrentInstanceCount *int64 `type:"integer"`
 
+	// The serverless configuration for the endpoint.
+	//
+	// Serverless Inference is in preview release for Amazon SageMaker and is subject
+	// to change. We do not recommend using this feature in production environments.
+	CurrentServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
+
 	// The weight associated with the variant.
 	CurrentWeight *float64 `type:"float"`
 
@@ -72794,6 +76712,13 @@ type PendingProductionVariantSummary struct {
 	// endpoint configuration for the endpoint. The value is taken from the request
 	// to the CreateEndpointConfig operation.
 	DesiredInstanceCount *int64 `type:"integer"`
+
+	// The serverless configuration requested for this deployment, as specified
+	// in the endpoint configuration for the endpoint.
+	//
+	// Serverless Inference is in preview release for Amazon SageMaker and is subject
+	// to change. We do not recommend using this feature in production environments.
+	DesiredServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
 
 	// The requested weight for the variant in this deployment, as specified in
 	// the endpoint configuration for the endpoint. The value is taken from the
@@ -72843,6 +76768,12 @@ func (s *PendingProductionVariantSummary) SetCurrentInstanceCount(v int64) *Pend
 	return s
 }
 
+// SetCurrentServerlessConfig sets the CurrentServerlessConfig field's value.
+func (s *PendingProductionVariantSummary) SetCurrentServerlessConfig(v *ProductionVariantServerlessConfig) *PendingProductionVariantSummary {
+	s.CurrentServerlessConfig = v
+	return s
+}
+
 // SetCurrentWeight sets the CurrentWeight field's value.
 func (s *PendingProductionVariantSummary) SetCurrentWeight(v float64) *PendingProductionVariantSummary {
 	s.CurrentWeight = &v
@@ -72858,6 +76789,12 @@ func (s *PendingProductionVariantSummary) SetDeployedImages(v []*DeployedImage) 
 // SetDesiredInstanceCount sets the DesiredInstanceCount field's value.
 func (s *PendingProductionVariantSummary) SetDesiredInstanceCount(v int64) *PendingProductionVariantSummary {
 	s.DesiredInstanceCount = &v
+	return s
+}
+
+// SetDesiredServerlessConfig sets the DesiredServerlessConfig field's value.
+func (s *PendingProductionVariantSummary) SetDesiredServerlessConfig(v *ProductionVariantServerlessConfig) *PendingProductionVariantSummary {
+	s.DesiredServerlessConfig = v
 	return s
 }
 
@@ -72885,19 +76822,85 @@ func (s *PendingProductionVariantSummary) SetVariantStatus(v []*ProductionVarian
 	return s
 }
 
+// Defines the traffic pattern.
+type Phase struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies how long traffic phase should be.
+	DurationInSeconds *int64 `min:"1" type:"integer"`
+
+	// Specifies how many concurrent users to start with.
+	InitialNumberOfUsers *int64 `min:"1" type:"integer"`
+
+	// Specified how many new users to spawn in a minute.
+	SpawnRate *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Phase) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Phase) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Phase) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Phase"}
+	if s.DurationInSeconds != nil && *s.DurationInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DurationInSeconds", 1))
+	}
+	if s.InitialNumberOfUsers != nil && *s.InitialNumberOfUsers < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("InitialNumberOfUsers", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDurationInSeconds sets the DurationInSeconds field's value.
+func (s *Phase) SetDurationInSeconds(v int64) *Phase {
+	s.DurationInSeconds = &v
+	return s
+}
+
+// SetInitialNumberOfUsers sets the InitialNumberOfUsers field's value.
+func (s *Phase) SetInitialNumberOfUsers(v int64) *Phase {
+	s.InitialNumberOfUsers = &v
+	return s
+}
+
+// SetSpawnRate sets the SpawnRate field's value.
+func (s *Phase) SetSpawnRate(v int64) *Phase {
+	s.SpawnRate = &v
+	return s
+}
+
 // A SageMaker Model Building Pipeline instance.
 type Pipeline struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The creation time of the pipeline.
 	CreationTime *time.Time `type:"timestamp"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The time that the pipeline was last modified.
@@ -73023,7 +77026,7 @@ type PipelineExecution struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The creation time of the pipeline execution.
@@ -73033,7 +77036,7 @@ type PipelineExecution struct {
 	FailureReason *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The time that the pipeline execution was last modified.
@@ -73246,6 +77249,28 @@ type PipelineExecutionStepMetadata struct {
 	// generated token, and a list of output parameters.
 	Callback *CallbackStepMetadata `type:"structure"`
 
+	// Container for the metadata for a Clarify check step. The configurations and
+	// outcomes of the check step execution. This includes:
+	//
+	//    * The type of the check conducted,
+	//
+	//    * The Amazon S3 URIs of baseline constraints and statistics files to be
+	//    used for the drift check.
+	//
+	//    * The Amazon S3 URIs of newly calculated baseline constraints and statistics.
+	//
+	//    * The model package group name provided.
+	//
+	//    * The Amazon S3 URI of the violation report if violations detected.
+	//
+	//    * The Amazon Resource Name (ARN) of check processing job initiated by
+	//    the step execution.
+	//
+	//    * The boolean flags indicating if the drift check is skipped.
+	//
+	//    * If step property BaselineUsedForDriftCheck is set the same as CalculatedBaseline.
+	ClarifyCheck *ClarifyCheckStepMetadata `type:"structure"`
+
 	// The outcome of the condition evaluation that was run by this step execution.
 	Condition *ConditionStepMetadata `type:"structure"`
 
@@ -73260,6 +77285,27 @@ type PipelineExecutionStepMetadata struct {
 	// The Amazon Resource Name (ARN) of the processing job that was run by this
 	// step execution.
 	ProcessingJob *ProcessingJobStepMetadata `type:"structure"`
+
+	// The configurations and outcomes of the check step execution. This includes:
+	//
+	//    * The type of the check conducted,
+	//
+	//    * The Amazon S3 URIs of baseline constraints and statistics files to be
+	//    used for the drift check.
+	//
+	//    * The Amazon S3 URIs of newly calculated baseline constraints and statistics.
+	//
+	//    * The model package group name provided.
+	//
+	//    * The Amazon S3 URI of the violation report if violations detected.
+	//
+	//    * The Amazon Resource Name (ARN) of check processing job initiated by
+	//    the step execution.
+	//
+	//    * The boolean flags indicating if the drift check is skipped.
+	//
+	//    * If step property BaselineUsedForDriftCheck is set the same as CalculatedBaseline.
+	QualityCheck *QualityCheckStepMetadata `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the model package the model was registered
 	// to by this step execution.
@@ -73302,6 +77348,12 @@ func (s *PipelineExecutionStepMetadata) SetCallback(v *CallbackStepMetadata) *Pi
 	return s
 }
 
+// SetClarifyCheck sets the ClarifyCheck field's value.
+func (s *PipelineExecutionStepMetadata) SetClarifyCheck(v *ClarifyCheckStepMetadata) *PipelineExecutionStepMetadata {
+	s.ClarifyCheck = v
+	return s
+}
+
 // SetCondition sets the Condition field's value.
 func (s *PipelineExecutionStepMetadata) SetCondition(v *ConditionStepMetadata) *PipelineExecutionStepMetadata {
 	s.Condition = v
@@ -73323,6 +77375,12 @@ func (s *PipelineExecutionStepMetadata) SetModel(v *ModelStepMetadata) *Pipeline
 // SetProcessingJob sets the ProcessingJob field's value.
 func (s *PipelineExecutionStepMetadata) SetProcessingJob(v *ProcessingJobStepMetadata) *PipelineExecutionStepMetadata {
 	s.ProcessingJob = v
+	return s
+}
+
+// SetQualityCheck sets the QualityCheck field's value.
+func (s *PipelineExecutionStepMetadata) SetQualityCheck(v *QualityCheckStepMetadata) *PipelineExecutionStepMetadata {
+	s.QualityCheck = v
 	return s
 }
 
@@ -74664,9 +78722,7 @@ type ProductionVariant struct {
 	CoreDumpConfig *ProductionVariantCoreDumpConfig `type:"structure"`
 
 	// Number of instances to launch initially.
-	//
-	// InitialInstanceCount is a required field
-	InitialInstanceCount *int64 `min:"1" type:"integer" required:"true"`
+	InitialInstanceCount *int64 `min:"1" type:"integer"`
 
 	// Determines initial traffic distribution among all of the models that you
 	// specify in the endpoint configuration. The traffic to a production variant
@@ -74675,15 +78731,20 @@ type ProductionVariant struct {
 	InitialVariantWeight *float64 `type:"float"`
 
 	// The ML compute instance type.
-	//
-	// InstanceType is a required field
-	InstanceType *string `type:"string" required:"true" enum:"ProductionVariantInstanceType"`
+	InstanceType *string `type:"string" enum:"ProductionVariantInstanceType"`
 
 	// The name of the model that you want to host. This is the name that you specified
 	// when creating the model.
 	//
 	// ModelName is a required field
 	ModelName *string `type:"string" required:"true"`
+
+	// The serverless configuration for an endpoint. Specifies a serverless endpoint
+	// configuration instead of an instance-based endpoint configuration.
+	//
+	// Serverless Inference is in preview release for Amazon SageMaker and is subject
+	// to change. We do not recommend using this feature in production environments.
+	ServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
 
 	// The name of the production variant.
 	//
@@ -74712,14 +78773,8 @@ func (s ProductionVariant) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ProductionVariant) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ProductionVariant"}
-	if s.InitialInstanceCount == nil {
-		invalidParams.Add(request.NewErrParamRequired("InitialInstanceCount"))
-	}
 	if s.InitialInstanceCount != nil && *s.InitialInstanceCount < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("InitialInstanceCount", 1))
-	}
-	if s.InstanceType == nil {
-		invalidParams.Add(request.NewErrParamRequired("InstanceType"))
 	}
 	if s.ModelName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ModelName"))
@@ -74730,6 +78785,11 @@ func (s *ProductionVariant) Validate() error {
 	if s.CoreDumpConfig != nil {
 		if err := s.CoreDumpConfig.Validate(); err != nil {
 			invalidParams.AddNested("CoreDumpConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ServerlessConfig != nil {
+		if err := s.ServerlessConfig.Validate(); err != nil {
+			invalidParams.AddNested("ServerlessConfig", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -74772,6 +78832,12 @@ func (s *ProductionVariant) SetInstanceType(v string) *ProductionVariant {
 // SetModelName sets the ModelName field's value.
 func (s *ProductionVariant) SetModelName(v string) *ProductionVariant {
 	s.ModelName = &v
+	return s
+}
+
+// SetServerlessConfig sets the ServerlessConfig field's value.
+func (s *ProductionVariant) SetServerlessConfig(v *ProductionVariantServerlessConfig) *ProductionVariant {
+	s.ServerlessConfig = v
 	return s
 }
 
@@ -74864,6 +78930,79 @@ func (s *ProductionVariantCoreDumpConfig) SetKmsKeyId(v string) *ProductionVaria
 	return s
 }
 
+//
+// Serverless Inference is in preview release for Amazon SageMaker and is subject
+// to change. We do not recommend using this feature in production environments.
+//
+// Specifies the serverless configuration for an endpoint variant.
+type ProductionVariantServerlessConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of concurrent invocations your serverless endpoint can
+	// process.
+	//
+	// MaxConcurrency is a required field
+	MaxConcurrency *int64 `min:"1" type:"integer" required:"true"`
+
+	// The memory size of your serverless endpoint. Valid values are in 1 GB increments:
+	// 1024 MB, 2048 MB, 3072 MB, 4096 MB, 5120 MB, or 6144 MB.
+	//
+	// MemorySizeInMB is a required field
+	MemorySizeInMB *int64 `min:"1024" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProductionVariantServerlessConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ProductionVariantServerlessConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProductionVariantServerlessConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProductionVariantServerlessConfig"}
+	if s.MaxConcurrency == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxConcurrency"))
+	}
+	if s.MaxConcurrency != nil && *s.MaxConcurrency < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxConcurrency", 1))
+	}
+	if s.MemorySizeInMB == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemorySizeInMB"))
+	}
+	if s.MemorySizeInMB != nil && *s.MemorySizeInMB < 1024 {
+		invalidParams.Add(request.NewErrParamMinValue("MemorySizeInMB", 1024))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxConcurrency sets the MaxConcurrency field's value.
+func (s *ProductionVariantServerlessConfig) SetMaxConcurrency(v int64) *ProductionVariantServerlessConfig {
+	s.MaxConcurrency = &v
+	return s
+}
+
+// SetMemorySizeInMB sets the MemorySizeInMB field's value.
+func (s *ProductionVariantServerlessConfig) SetMemorySizeInMB(v int64) *ProductionVariantServerlessConfig {
+	s.MemorySizeInMB = &v
+	return s
+}
+
 // Describes the status of the production variant.
 type ProductionVariantStatus struct {
 	_ struct{} `type:"structure"`
@@ -74938,6 +79077,12 @@ type ProductionVariantSummary struct {
 	// The number of instances associated with the variant.
 	CurrentInstanceCount *int64 `type:"integer"`
 
+	// The serverless configuration for the endpoint.
+	//
+	// Serverless Inference is in preview release for Amazon SageMaker and is subject
+	// to change. We do not recommend using this feature in production environments.
+	CurrentServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
+
 	// The weight associated with the variant.
 	CurrentWeight *float64 `type:"float"`
 
@@ -74948,6 +79093,12 @@ type ProductionVariantSummary struct {
 	// The number of instances requested in the UpdateEndpointWeightsAndCapacities
 	// request.
 	DesiredInstanceCount *int64 `type:"integer"`
+
+	// The serverless configuration requested for the endpoint update.
+	//
+	// Serverless Inference is in preview release for Amazon SageMaker and is subject
+	// to change. We do not recommend using this feature in production environments.
+	DesiredServerlessConfig *ProductionVariantServerlessConfig `type:"structure"`
 
 	// The requested weight, as specified in the UpdateEndpointWeightsAndCapacities
 	// request.
@@ -74987,6 +79138,12 @@ func (s *ProductionVariantSummary) SetCurrentInstanceCount(v int64) *ProductionV
 	return s
 }
 
+// SetCurrentServerlessConfig sets the CurrentServerlessConfig field's value.
+func (s *ProductionVariantSummary) SetCurrentServerlessConfig(v *ProductionVariantServerlessConfig) *ProductionVariantSummary {
+	s.CurrentServerlessConfig = v
+	return s
+}
+
 // SetCurrentWeight sets the CurrentWeight field's value.
 func (s *ProductionVariantSummary) SetCurrentWeight(v float64) *ProductionVariantSummary {
 	s.CurrentWeight = &v
@@ -75002,6 +79159,12 @@ func (s *ProductionVariantSummary) SetDeployedImages(v []*DeployedImage) *Produc
 // SetDesiredInstanceCount sets the DesiredInstanceCount field's value.
 func (s *ProductionVariantSummary) SetDesiredInstanceCount(v int64) *ProductionVariantSummary {
 	s.DesiredInstanceCount = &v
+	return s
+}
+
+// SetDesiredServerlessConfig sets the DesiredServerlessConfig field's value.
+func (s *ProductionVariantSummary) SetDesiredServerlessConfig(v *ProductionVariantServerlessConfig) *ProductionVariantSummary {
+	s.DesiredServerlessConfig = v
 	return s
 }
 
@@ -75353,7 +79516,7 @@ type Project struct {
 	CreationTime *time.Time `type:"timestamp"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// A timestamp container for when the project was last modified.
@@ -76039,6 +80202,396 @@ func (s *PutModelPackageGroupPolicyOutput) SetModelPackageGroupArn(v string) *Pu
 	return s
 }
 
+// Container for the metadata for a Quality check step. For more information,
+// see the topic on QualityCheck step (https://docs.aws.amazon.com/sagemaker/latest/dg/build-and-manage-steps.html#step-type-quality-check)
+// in the Amazon SageMaker Developer Guide.
+type QualityCheckStepMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon S3 URI of the baseline constraints file used for the drift check.
+	BaselineUsedForDriftCheckConstraints *string `type:"string"`
+
+	// The Amazon S3 URI of the baseline statistics file used for the drift check.
+	BaselineUsedForDriftCheckStatistics *string `type:"string"`
+
+	// The Amazon S3 URI of the newly calculated baseline constraints file.
+	CalculatedBaselineConstraints *string `type:"string"`
+
+	// The Amazon S3 URI of the newly calculated baseline statistics file.
+	CalculatedBaselineStatistics *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the Quality check processing job that was
+	// run by this step execution.
+	CheckJobArn *string `type:"string"`
+
+	// The type of the Quality check step.
+	CheckType *string `type:"string"`
+
+	// The model package group name.
+	ModelPackageGroupName *string `type:"string"`
+
+	// This flag indicates if a newly calculated baseline can be accessed through
+	// step properties BaselineUsedForDriftCheckConstraints and BaselineUsedForDriftCheckStatistics.
+	// If it is set to False, the previous baseline of the configured check type
+	// must also be available. These can be accessed through the BaselineUsedForDriftCheckConstraints
+	// and BaselineUsedForDriftCheckStatistics properties.
+	RegisterNewBaseline *bool `type:"boolean"`
+
+	// This flag indicates if the drift check against the previous baseline will
+	// be skipped or not. If it is set to False, the previous baseline of the configured
+	// check type must be available.
+	SkipCheck *bool `type:"boolean"`
+
+	// The Amazon S3 URI of violation report if violations are detected.
+	ViolationReport *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QualityCheckStepMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QualityCheckStepMetadata) GoString() string {
+	return s.String()
+}
+
+// SetBaselineUsedForDriftCheckConstraints sets the BaselineUsedForDriftCheckConstraints field's value.
+func (s *QualityCheckStepMetadata) SetBaselineUsedForDriftCheckConstraints(v string) *QualityCheckStepMetadata {
+	s.BaselineUsedForDriftCheckConstraints = &v
+	return s
+}
+
+// SetBaselineUsedForDriftCheckStatistics sets the BaselineUsedForDriftCheckStatistics field's value.
+func (s *QualityCheckStepMetadata) SetBaselineUsedForDriftCheckStatistics(v string) *QualityCheckStepMetadata {
+	s.BaselineUsedForDriftCheckStatistics = &v
+	return s
+}
+
+// SetCalculatedBaselineConstraints sets the CalculatedBaselineConstraints field's value.
+func (s *QualityCheckStepMetadata) SetCalculatedBaselineConstraints(v string) *QualityCheckStepMetadata {
+	s.CalculatedBaselineConstraints = &v
+	return s
+}
+
+// SetCalculatedBaselineStatistics sets the CalculatedBaselineStatistics field's value.
+func (s *QualityCheckStepMetadata) SetCalculatedBaselineStatistics(v string) *QualityCheckStepMetadata {
+	s.CalculatedBaselineStatistics = &v
+	return s
+}
+
+// SetCheckJobArn sets the CheckJobArn field's value.
+func (s *QualityCheckStepMetadata) SetCheckJobArn(v string) *QualityCheckStepMetadata {
+	s.CheckJobArn = &v
+	return s
+}
+
+// SetCheckType sets the CheckType field's value.
+func (s *QualityCheckStepMetadata) SetCheckType(v string) *QualityCheckStepMetadata {
+	s.CheckType = &v
+	return s
+}
+
+// SetModelPackageGroupName sets the ModelPackageGroupName field's value.
+func (s *QualityCheckStepMetadata) SetModelPackageGroupName(v string) *QualityCheckStepMetadata {
+	s.ModelPackageGroupName = &v
+	return s
+}
+
+// SetRegisterNewBaseline sets the RegisterNewBaseline field's value.
+func (s *QualityCheckStepMetadata) SetRegisterNewBaseline(v bool) *QualityCheckStepMetadata {
+	s.RegisterNewBaseline = &v
+	return s
+}
+
+// SetSkipCheck sets the SkipCheck field's value.
+func (s *QualityCheckStepMetadata) SetSkipCheck(v bool) *QualityCheckStepMetadata {
+	s.SkipCheck = &v
+	return s
+}
+
+// SetViolationReport sets the ViolationReport field's value.
+func (s *QualityCheckStepMetadata) SetViolationReport(v string) *QualityCheckStepMetadata {
+	s.ViolationReport = &v
+	return s
+}
+
+// A set of filters to narrow the set of lineage entities connected to the StartArn(s)
+// returned by the QueryLineage API action.
+type QueryFilters struct {
+	_ struct{} `type:"structure"`
+
+	// Filter the lineage entities connected to the StartArn(s) after the create
+	// date.
+	CreatedAfter *time.Time `type:"timestamp"`
+
+	// Filter the lineage entities connected to the StartArn(s) by created date.
+	CreatedBefore *time.Time `type:"timestamp"`
+
+	// Filter the lineage entities connected to the StartArn(s) by the type of the
+	// lineage entity.
+	LineageTypes []*string `type:"list"`
+
+	// Filter the lineage entities connected to the StartArn(s) after the last modified
+	// date.
+	ModifiedAfter *time.Time `type:"timestamp"`
+
+	// Filter the lineage entities connected to the StartArn(s) before the last
+	// modified date.
+	ModifiedBefore *time.Time `type:"timestamp"`
+
+	// Filter the lineage entities connected to the StartArn(s) by a set if property
+	// key value pairs. If multiple pairs are provided, an entity will be included
+	// in the results if it matches any of the provided pairs.
+	Properties map[string]*string `type:"map"`
+
+	// Filter the lineage entities connected to the StartArn by type. For example:
+	// DataSet, Model, Endpoint, or ModelDeployment.
+	Types []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryFilters) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAfter sets the CreatedAfter field's value.
+func (s *QueryFilters) SetCreatedAfter(v time.Time) *QueryFilters {
+	s.CreatedAfter = &v
+	return s
+}
+
+// SetCreatedBefore sets the CreatedBefore field's value.
+func (s *QueryFilters) SetCreatedBefore(v time.Time) *QueryFilters {
+	s.CreatedBefore = &v
+	return s
+}
+
+// SetLineageTypes sets the LineageTypes field's value.
+func (s *QueryFilters) SetLineageTypes(v []*string) *QueryFilters {
+	s.LineageTypes = v
+	return s
+}
+
+// SetModifiedAfter sets the ModifiedAfter field's value.
+func (s *QueryFilters) SetModifiedAfter(v time.Time) *QueryFilters {
+	s.ModifiedAfter = &v
+	return s
+}
+
+// SetModifiedBefore sets the ModifiedBefore field's value.
+func (s *QueryFilters) SetModifiedBefore(v time.Time) *QueryFilters {
+	s.ModifiedBefore = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *QueryFilters) SetProperties(v map[string]*string) *QueryFilters {
+	s.Properties = v
+	return s
+}
+
+// SetTypes sets the Types field's value.
+func (s *QueryFilters) SetTypes(v []*string) *QueryFilters {
+	s.Types = v
+	return s
+}
+
+type QueryLineageInput struct {
+	_ struct{} `type:"structure"`
+
+	// Associations between lineage entities are directed. This parameter determines
+	// the direction from the StartArn(s) the query will look.
+	Direction *string `type:"string" enum:"Direction"`
+
+	// A set of filtering parameters that allow you to specify which entities should
+	// be returned.
+	//
+	//    * Properties - Key-value pairs to match on the lineage entities' properties.
+	//
+	//    * LineageTypes - A set of lineage entity types to match on. For example:
+	//    TrialComponent, Artifact, or Context.
+	//
+	//    * CreatedBefore - Filter entities created before this date.
+	//
+	//    * ModifiedBefore - Filter entities modified before this date.
+	//
+	//    * ModifiedAfter - Filter entities modified after this date.
+	Filters *QueryFilters `type:"structure"`
+
+	// Setting this value to True will retrieve not only the entities of interest
+	// but also the Associations (https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking-entities.html)
+	// and lineage entities on the path. Set to False to only return lineage entities
+	// that match your query.
+	IncludeEdges *bool `type:"boolean"`
+
+	// The maximum depth in lineage relationships from the StartArns that will be
+	// traversed. Depth is a measure of the number of Associations from the StartArn
+	// entity to the matched results.
+	MaxDepth *int64 `type:"integer"`
+
+	// Limits the number of vertices in the results. Use the NextToken in a response
+	// to to retrieve the next page of results.
+	MaxResults *int64 `type:"integer"`
+
+	// Limits the number of vertices in the request. Use the NextToken in a response
+	// to to retrieve the next page of results.
+	NextToken *string `type:"string"`
+
+	// A list of resource Amazon Resource Name (ARN) that represent the starting
+	// point for your lineage query.
+	//
+	// StartArns is a required field
+	StartArns []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryLineageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryLineageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *QueryLineageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "QueryLineageInput"}
+	if s.StartArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartArns"))
+	}
+	if s.StartArns != nil && len(s.StartArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StartArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirection sets the Direction field's value.
+func (s *QueryLineageInput) SetDirection(v string) *QueryLineageInput {
+	s.Direction = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *QueryLineageInput) SetFilters(v *QueryFilters) *QueryLineageInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludeEdges sets the IncludeEdges field's value.
+func (s *QueryLineageInput) SetIncludeEdges(v bool) *QueryLineageInput {
+	s.IncludeEdges = &v
+	return s
+}
+
+// SetMaxDepth sets the MaxDepth field's value.
+func (s *QueryLineageInput) SetMaxDepth(v int64) *QueryLineageInput {
+	s.MaxDepth = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *QueryLineageInput) SetMaxResults(v int64) *QueryLineageInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *QueryLineageInput) SetNextToken(v string) *QueryLineageInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartArns sets the StartArns field's value.
+func (s *QueryLineageInput) SetStartArns(v []*string) *QueryLineageInput {
+	s.StartArns = v
+	return s
+}
+
+type QueryLineageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of edges that connect vertices in the response.
+	Edges []*Edge `type:"list"`
+
+	// Limits the number of vertices in the response. Use the NextToken in a response
+	// to to retrieve the next page of results.
+	NextToken *string `type:"string"`
+
+	// A list of vertices connected to the start entity(ies) in the lineage graph.
+	Vertices []*Vertex `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryLineageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s QueryLineageOutput) GoString() string {
+	return s.String()
+}
+
+// SetEdges sets the Edges field's value.
+func (s *QueryLineageOutput) SetEdges(v []*Edge) *QueryLineageOutput {
+	s.Edges = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *QueryLineageOutput) SetNextToken(v string) *QueryLineageOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVertices sets the Vertices field's value.
+func (s *QueryLineageOutput) SetVertices(v []*Vertex) *QueryLineageOutput {
+	s.Vertices = v
+	return s
+}
+
 // A collection of settings that apply to an RSessionGateway app.
 type RSessionAppSettings struct {
 	_ struct{} `type:"structure"`
@@ -76244,6 +80797,301 @@ func (s *RStudioServerProDomainSettingsForUpdate) SetDefaultResourceSpec(v *Reso
 // SetDomainExecutionRoleArn sets the DomainExecutionRoleArn field's value.
 func (s *RStudioServerProDomainSettingsForUpdate) SetDomainExecutionRoleArn(v string) *RStudioServerProDomainSettingsForUpdate {
 	s.DomainExecutionRoleArn = &v
+	return s
+}
+
+// The input configuration of the recommendation job.
+type RecommendationJobInputConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the endpoint configuration to use for a job.
+	EndpointConfigurations []*EndpointInputConfiguration `min:"1" type:"list"`
+
+	// Specifies the maximum duration of the job, in seconds.>
+	JobDurationInSeconds *int64 `min:"1" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of a versioned model package.
+	//
+	// ModelPackageVersionArn is a required field
+	ModelPackageVersionArn *string `min:"1" type:"string" required:"true"`
+
+	// Defines the resource limit of the job.
+	ResourceLimit *RecommendationJobResourceLimit `type:"structure"`
+
+	// Specifies the traffic pattern of the job.
+	TrafficPattern *TrafficPattern `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobInputConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobInputConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecommendationJobInputConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecommendationJobInputConfig"}
+	if s.EndpointConfigurations != nil && len(s.EndpointConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointConfigurations", 1))
+	}
+	if s.JobDurationInSeconds != nil && *s.JobDurationInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("JobDurationInSeconds", 1))
+	}
+	if s.ModelPackageVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelPackageVersionArn"))
+	}
+	if s.ModelPackageVersionArn != nil && len(*s.ModelPackageVersionArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelPackageVersionArn", 1))
+	}
+	if s.EndpointConfigurations != nil {
+		for i, v := range s.EndpointConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EndpointConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ResourceLimit != nil {
+		if err := s.ResourceLimit.Validate(); err != nil {
+			invalidParams.AddNested("ResourceLimit", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TrafficPattern != nil {
+		if err := s.TrafficPattern.Validate(); err != nil {
+			invalidParams.AddNested("TrafficPattern", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointConfigurations sets the EndpointConfigurations field's value.
+func (s *RecommendationJobInputConfig) SetEndpointConfigurations(v []*EndpointInputConfiguration) *RecommendationJobInputConfig {
+	s.EndpointConfigurations = v
+	return s
+}
+
+// SetJobDurationInSeconds sets the JobDurationInSeconds field's value.
+func (s *RecommendationJobInputConfig) SetJobDurationInSeconds(v int64) *RecommendationJobInputConfig {
+	s.JobDurationInSeconds = &v
+	return s
+}
+
+// SetModelPackageVersionArn sets the ModelPackageVersionArn field's value.
+func (s *RecommendationJobInputConfig) SetModelPackageVersionArn(v string) *RecommendationJobInputConfig {
+	s.ModelPackageVersionArn = &v
+	return s
+}
+
+// SetResourceLimit sets the ResourceLimit field's value.
+func (s *RecommendationJobInputConfig) SetResourceLimit(v *RecommendationJobResourceLimit) *RecommendationJobInputConfig {
+	s.ResourceLimit = v
+	return s
+}
+
+// SetTrafficPattern sets the TrafficPattern field's value.
+func (s *RecommendationJobInputConfig) SetTrafficPattern(v *TrafficPattern) *RecommendationJobInputConfig {
+	s.TrafficPattern = v
+	return s
+}
+
+// Specifies the maximum number of jobs that can run in parallel and the maximum
+// number of jobs that can run.
+type RecommendationJobResourceLimit struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the maximum number of load tests.
+	MaxNumberOfTests *int64 `min:"1" type:"integer"`
+
+	// Defines the maximum number of parallel load tests.
+	MaxParallelOfTests *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobResourceLimit) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobResourceLimit) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecommendationJobResourceLimit) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecommendationJobResourceLimit"}
+	if s.MaxNumberOfTests != nil && *s.MaxNumberOfTests < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxNumberOfTests", 1))
+	}
+	if s.MaxParallelOfTests != nil && *s.MaxParallelOfTests < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxParallelOfTests", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxNumberOfTests sets the MaxNumberOfTests field's value.
+func (s *RecommendationJobResourceLimit) SetMaxNumberOfTests(v int64) *RecommendationJobResourceLimit {
+	s.MaxNumberOfTests = &v
+	return s
+}
+
+// SetMaxParallelOfTests sets the MaxParallelOfTests field's value.
+func (s *RecommendationJobResourceLimit) SetMaxParallelOfTests(v int64) *RecommendationJobResourceLimit {
+	s.MaxParallelOfTests = &v
+	return s
+}
+
+// Specifies conditions for stopping a job. When a job reaches a stopping condition
+// limit, SageMaker ends the job.
+type RecommendationJobStoppingConditions struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of requests per minute expected for the endpoint.
+	MaxInvocations *int64 `type:"integer"`
+
+	// The interval of time taken by a model to respond as viewed from SageMaker.
+	// The interval includes the local communication time taken to send the request
+	// and to fetch the response from the container of a model and the time taken
+	// to complete the inference in the container.
+	ModelLatencyThresholds []*ModelLatencyThreshold `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobStoppingConditions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationJobStoppingConditions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RecommendationJobStoppingConditions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RecommendationJobStoppingConditions"}
+	if s.ModelLatencyThresholds != nil && len(s.ModelLatencyThresholds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelLatencyThresholds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxInvocations sets the MaxInvocations field's value.
+func (s *RecommendationJobStoppingConditions) SetMaxInvocations(v int64) *RecommendationJobStoppingConditions {
+	s.MaxInvocations = &v
+	return s
+}
+
+// SetModelLatencyThresholds sets the ModelLatencyThresholds field's value.
+func (s *RecommendationJobStoppingConditions) SetModelLatencyThresholds(v []*ModelLatencyThreshold) *RecommendationJobStoppingConditions {
+	s.ModelLatencyThresholds = v
+	return s
+}
+
+// The metrics of recommendations.
+type RecommendationMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the cost per hour for the instance.
+	//
+	// CostPerHour is a required field
+	CostPerHour *float64 `type:"float" required:"true"`
+
+	// Defines the cost per inference for the instance .
+	//
+	// CostPerInference is a required field
+	CostPerInference *float64 `type:"float" required:"true"`
+
+	// The expected maximum number of requests per minute for the instance.
+	//
+	// MaxInvocations is a required field
+	MaxInvocations *int64 `type:"integer" required:"true"`
+
+	// The expected model latency at maximum invocation per minute for the instance.
+	//
+	// ModelLatency is a required field
+	ModelLatency *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RecommendationMetrics) GoString() string {
+	return s.String()
+}
+
+// SetCostPerHour sets the CostPerHour field's value.
+func (s *RecommendationMetrics) SetCostPerHour(v float64) *RecommendationMetrics {
+	s.CostPerHour = &v
+	return s
+}
+
+// SetCostPerInference sets the CostPerInference field's value.
+func (s *RecommendationMetrics) SetCostPerInference(v float64) *RecommendationMetrics {
+	s.CostPerInference = &v
+	return s
+}
+
+// SetMaxInvocations sets the MaxInvocations field's value.
+func (s *RecommendationMetrics) SetMaxInvocations(v int64) *RecommendationMetrics {
+	s.MaxInvocations = &v
+	return s
+}
+
+// SetModelLatency sets the ModelLatency field's value.
+func (s *RecommendationMetrics) SetModelLatency(v int64) *RecommendationMetrics {
+	s.ModelLatency = &v
 	return s
 }
 
@@ -79669,6 +84517,77 @@ func (s StopHyperParameterTuningJobOutput) GoString() string {
 	return s.String()
 }
 
+type StopInferenceRecommendationsJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the job you want to stop.
+	//
+	// JobName is a required field
+	JobName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopInferenceRecommendationsJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopInferenceRecommendationsJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopInferenceRecommendationsJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopInferenceRecommendationsJobInput"}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *StopInferenceRecommendationsJobInput) SetJobName(v string) *StopInferenceRecommendationsJobInput {
+	s.JobName = &v
+	return s
+}
+
+type StopInferenceRecommendationsJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopInferenceRecommendationsJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StopInferenceRecommendationsJobOutput) GoString() string {
+	return s.String()
+}
+
 type StopLabelingJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -80722,6 +85641,70 @@ func (s *TensorBoardOutputConfig) SetLocalPath(v string) *TensorBoardOutputConfi
 // SetS3OutputPath sets the S3OutputPath field's value.
 func (s *TensorBoardOutputConfig) SetS3OutputPath(v string) *TensorBoardOutputConfig {
 	s.S3OutputPath = &v
+	return s
+}
+
+// Defines the traffic pattern of the load test.
+type TrafficPattern struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the phases traffic specification.
+	Phases []*Phase `min:"1" type:"list"`
+
+	// Defines the traffic patterns.
+	TrafficType *string `type:"string" enum:"TrafficType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrafficPattern) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TrafficPattern) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TrafficPattern) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TrafficPattern"}
+	if s.Phases != nil && len(s.Phases) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Phases", 1))
+	}
+	if s.Phases != nil {
+		for i, v := range s.Phases {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Phases", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPhases sets the Phases field's value.
+func (s *TrafficPattern) SetPhases(v []*Phase) *TrafficPattern {
+	s.Phases = v
+	return s
+}
+
+// SetTrafficType sets the TrafficType field's value.
+func (s *TrafficPattern) SetTrafficType(v string) *TrafficPattern {
+	s.TrafficType = &v
 	return s
 }
 
@@ -82851,7 +87834,7 @@ type Trial struct {
 	ExperimentName *string `min:"1" type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// Who last modified the trial.
@@ -82989,11 +87972,14 @@ type TrialComponent struct {
 	InputArtifacts map[string]*TrialComponentArtifact `type:"map"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the component was last modified.
 	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the lineage group resource.
+	LineageGroupArn *string `type:"string"`
 
 	// Metadata properties of the tracking entity, trial, or trial component.
 	MetadataProperties *MetadataProperties `type:"structure"`
@@ -83092,6 +88078,12 @@ func (s *TrialComponent) SetLastModifiedBy(v *UserContext) *TrialComponent {
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *TrialComponent) SetLastModifiedTime(v time.Time) *TrialComponent {
 	s.LastModifiedTime = &v
+	return s
+}
+
+// SetLineageGroupArn sets the LineageGroupArn field's value.
+func (s *TrialComponent) SetLineageGroupArn(v string) *TrialComponent {
+	s.LineageGroupArn = &v
 	return s
 }
 
@@ -83387,7 +88379,7 @@ type TrialComponentSimpleSummary struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// trial component, or project.
+	// trial component, lineage group, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the component was created.
@@ -85506,6 +90498,13 @@ func (s *UpdateImageOutput) SetImageArn(v string) *UpdateImageOutput {
 type UpdateModelPackageInput struct {
 	_ struct{} `type:"structure"`
 
+	// An array of additional Inference Specification objects to be added to the
+	// existing array additional Inference Specification. Total number of additional
+	// Inference Specifications can not exceed 15. Each additional Inference Specification
+	// specifies artifacts based on this model package that can be used on inference
+	// endpoints. Generally used with SageMaker Neo to store the compiled artifacts.
+	AdditionalInferenceSpecificationsToAdd []*AdditionalInferenceSpecificationDefinition `min:"1" type:"list"`
+
 	// A description for the approval status of the model.
 	ApprovalDescription *string `type:"string"`
 
@@ -85545,6 +90544,9 @@ func (s UpdateModelPackageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateModelPackageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateModelPackageInput"}
+	if s.AdditionalInferenceSpecificationsToAdd != nil && len(s.AdditionalInferenceSpecificationsToAdd) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AdditionalInferenceSpecificationsToAdd", 1))
+	}
 	if s.CustomerMetadataProperties != nil && len(s.CustomerMetadataProperties) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CustomerMetadataProperties", 1))
 	}
@@ -85554,11 +90556,27 @@ func (s *UpdateModelPackageInput) Validate() error {
 	if s.ModelPackageArn != nil && len(*s.ModelPackageArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelPackageArn", 1))
 	}
+	if s.AdditionalInferenceSpecificationsToAdd != nil {
+		for i, v := range s.AdditionalInferenceSpecificationsToAdd {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AdditionalInferenceSpecificationsToAdd", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalInferenceSpecificationsToAdd sets the AdditionalInferenceSpecificationsToAdd field's value.
+func (s *UpdateModelPackageInput) SetAdditionalInferenceSpecificationsToAdd(v []*AdditionalInferenceSpecificationDefinition) *UpdateModelPackageInput {
+	s.AdditionalInferenceSpecificationsToAdd = v
+	return s
 }
 
 // SetApprovalDescription sets the ApprovalDescription field's value.
@@ -87188,7 +92206,7 @@ func (s *UpdateWorkteamOutput) SetWorkteam(v *Workteam) *UpdateWorkteamOutput {
 }
 
 // Information about the user who created or modified an experiment, trial,
-// trial component, or project.
+// trial component, lineage group, or project.
 type UserContext struct {
 	_ struct{} `type:"structure"`
 
@@ -87491,6 +92509,57 @@ func (s *VariantProperty) Validate() error {
 // SetVariantPropertyType sets the VariantPropertyType field's value.
 func (s *VariantProperty) SetVariantPropertyType(v string) *VariantProperty {
 	s.VariantPropertyType = &v
+	return s
+}
+
+// A lineage entity connected to the starting entity(ies).
+type Vertex struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the lineage entity resource.
+	Arn *string `type:"string"`
+
+	// The type of resource of the lineage entity.
+	LineageType *string `type:"string" enum:"LineageType"`
+
+	// The type of the lineage entity resource. For example: DataSet, Model, Endpoint,
+	// etc...
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Vertex) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Vertex) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Vertex) SetArn(v string) *Vertex {
+	s.Arn = &v
+	return s
+}
+
+// SetLineageType sets the LineageType field's value.
+func (s *Vertex) SetLineageType(v string) *Vertex {
+	s.LineageType = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Vertex) SetType(v string) *Vertex {
+	s.Type = &v
 	return s
 }
 
@@ -88904,6 +93973,26 @@ func DirectInternetAccess_Values() []string {
 }
 
 const (
+	// DirectionBoth is a Direction enum value
+	DirectionBoth = "Both"
+
+	// DirectionAscendants is a Direction enum value
+	DirectionAscendants = "Ascendants"
+
+	// DirectionDescendants is a Direction enum value
+	DirectionDescendants = "Descendants"
+)
+
+// Direction_Values returns all elements of the Direction enum
+func Direction_Values() []string {
+	return []string{
+		DirectionBoth,
+		DirectionAscendants,
+		DirectionDescendants,
+	}
+}
+
+const (
 	// DomainStatusDeleting is a DomainStatus enum value
 	DomainStatusDeleting = "Deleting"
 
@@ -89906,6 +94995,30 @@ func LabelingJobStatus_Values() []string {
 }
 
 const (
+	// LineageTypeTrialComponent is a LineageType enum value
+	LineageTypeTrialComponent = "TrialComponent"
+
+	// LineageTypeArtifact is a LineageType enum value
+	LineageTypeArtifact = "Artifact"
+
+	// LineageTypeContext is a LineageType enum value
+	LineageTypeContext = "Context"
+
+	// LineageTypeAction is a LineageType enum value
+	LineageTypeAction = "Action"
+)
+
+// LineageType_Values returns all elements of the LineageType enum
+func LineageType_Values() []string {
+	return []string{
+		LineageTypeTrialComponent,
+		LineageTypeArtifact,
+		LineageTypeContext,
+		LineageTypeAction,
+	}
+}
+
+const (
 	// ListCompilationJobsSortByName is a ListCompilationJobsSortBy enum value
 	ListCompilationJobsSortByName = "Name"
 
@@ -89970,6 +95083,26 @@ func ListEdgePackagingJobsSortBy_Values() []string {
 		ListEdgePackagingJobsSortByCreationTime,
 		ListEdgePackagingJobsSortByLastModifiedTime,
 		ListEdgePackagingJobsSortByStatus,
+	}
+}
+
+const (
+	// ListInferenceRecommendationsJobsSortByName is a ListInferenceRecommendationsJobsSortBy enum value
+	ListInferenceRecommendationsJobsSortByName = "Name"
+
+	// ListInferenceRecommendationsJobsSortByCreationTime is a ListInferenceRecommendationsJobsSortBy enum value
+	ListInferenceRecommendationsJobsSortByCreationTime = "CreationTime"
+
+	// ListInferenceRecommendationsJobsSortByStatus is a ListInferenceRecommendationsJobsSortBy enum value
+	ListInferenceRecommendationsJobsSortByStatus = "Status"
+)
+
+// ListInferenceRecommendationsJobsSortBy_Values returns all elements of the ListInferenceRecommendationsJobsSortBy enum
+func ListInferenceRecommendationsJobsSortBy_Values() []string {
+	return []string{
+		ListInferenceRecommendationsJobsSortByName,
+		ListInferenceRecommendationsJobsSortByCreationTime,
+		ListInferenceRecommendationsJobsSortByStatus,
 	}
 }
 
@@ -90070,6 +95203,30 @@ func ModelCacheSetting_Values() []string {
 	return []string{
 		ModelCacheSettingEnabled,
 		ModelCacheSettingDisabled,
+	}
+}
+
+const (
+	// ModelMetadataFilterTypeDomain is a ModelMetadataFilterType enum value
+	ModelMetadataFilterTypeDomain = "Domain"
+
+	// ModelMetadataFilterTypeFramework is a ModelMetadataFilterType enum value
+	ModelMetadataFilterTypeFramework = "Framework"
+
+	// ModelMetadataFilterTypeTask is a ModelMetadataFilterType enum value
+	ModelMetadataFilterTypeTask = "Task"
+
+	// ModelMetadataFilterTypeFrameworkVersion is a ModelMetadataFilterType enum value
+	ModelMetadataFilterTypeFrameworkVersion = "FrameworkVersion"
+)
+
+// ModelMetadataFilterType_Values returns all elements of the ModelMetadataFilterType enum
+func ModelMetadataFilterType_Values() []string {
+	return []string{
+		ModelMetadataFilterTypeDomain,
+		ModelMetadataFilterTypeFramework,
+		ModelMetadataFilterTypeTask,
+		ModelMetadataFilterTypeFrameworkVersion,
 	}
 }
 
@@ -91370,6 +96527,54 @@ func RStudioServerProUserGroup_Values() []string {
 }
 
 const (
+	// RecommendationJobStatusPending is a RecommendationJobStatus enum value
+	RecommendationJobStatusPending = "PENDING"
+
+	// RecommendationJobStatusInProgress is a RecommendationJobStatus enum value
+	RecommendationJobStatusInProgress = "IN_PROGRESS"
+
+	// RecommendationJobStatusCompleted is a RecommendationJobStatus enum value
+	RecommendationJobStatusCompleted = "COMPLETED"
+
+	// RecommendationJobStatusFailed is a RecommendationJobStatus enum value
+	RecommendationJobStatusFailed = "FAILED"
+
+	// RecommendationJobStatusStopping is a RecommendationJobStatus enum value
+	RecommendationJobStatusStopping = "STOPPING"
+
+	// RecommendationJobStatusStopped is a RecommendationJobStatus enum value
+	RecommendationJobStatusStopped = "STOPPED"
+)
+
+// RecommendationJobStatus_Values returns all elements of the RecommendationJobStatus enum
+func RecommendationJobStatus_Values() []string {
+	return []string{
+		RecommendationJobStatusPending,
+		RecommendationJobStatusInProgress,
+		RecommendationJobStatusCompleted,
+		RecommendationJobStatusFailed,
+		RecommendationJobStatusStopping,
+		RecommendationJobStatusStopped,
+	}
+}
+
+const (
+	// RecommendationJobTypeDefault is a RecommendationJobType enum value
+	RecommendationJobTypeDefault = "Default"
+
+	// RecommendationJobTypeAdvanced is a RecommendationJobType enum value
+	RecommendationJobTypeAdvanced = "Advanced"
+)
+
+// RecommendationJobType_Values returns all elements of the RecommendationJobType enum
+func RecommendationJobType_Values() []string {
+	return []string{
+		RecommendationJobTypeDefault,
+		RecommendationJobTypeAdvanced,
+	}
+}
+
+const (
 	// RecordWrapperNone is a RecordWrapper enum value
 	RecordWrapperNone = "None"
 
@@ -91836,6 +97041,22 @@ func SortExperimentsBy_Values() []string {
 }
 
 const (
+	// SortLineageGroupsByName is a SortLineageGroupsBy enum value
+	SortLineageGroupsByName = "Name"
+
+	// SortLineageGroupsByCreationTime is a SortLineageGroupsBy enum value
+	SortLineageGroupsByCreationTime = "CreationTime"
+)
+
+// SortLineageGroupsBy_Values returns all elements of the SortLineageGroupsBy enum
+func SortLineageGroupsBy_Values() []string {
+	return []string{
+		SortLineageGroupsByName,
+		SortLineageGroupsByCreationTime,
+	}
+}
+
+const (
 	// SortOrderAscending is a SortOrder enum value
 	SortOrderAscending = "Ascending"
 
@@ -92220,6 +97441,18 @@ func TrafficRoutingConfigType_Values() []string {
 		TrafficRoutingConfigTypeAllAtOnce,
 		TrafficRoutingConfigTypeCanary,
 		TrafficRoutingConfigTypeLinear,
+	}
+}
+
+const (
+	// TrafficTypePhases is a TrafficType enum value
+	TrafficTypePhases = "PHASES"
+)
+
+// TrafficType_Values returns all elements of the TrafficType enum
+func TrafficType_Values() []string {
+	return []string{
+		TrafficTypePhases,
 	}
 }
 

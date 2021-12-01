@@ -913,6 +913,14 @@
       "refs": {
       }
     },
+    "EnableSiteLink": {
+      "base": null,
+      "refs": {
+        "NewPrivateVirtualInterface$enableSiteLink": "<p>Indicates whether to enable or disable SiteLink.</p>",
+        "NewTransitVirtualInterface$enableSiteLink": "<p>Indicates whether to enable or disable SiteLink.</p>",
+        "UpdateVirtualInterfaceAttributesRequest$enableSiteLink": "<p>Indicates whether to enable or disable SiteLink.</p>"
+      }
+    },
     "EncryptionMode": {
       "base": null,
       "refs": {
@@ -1419,6 +1427,12 @@
         "MacSecKey$secretARN": "<p>The Amazon Resource Name (ARN) of the MAC Security (MACsec) secret key.</p>"
       }
     },
+    "SiteLinkEnabled": {
+      "base": null,
+      "refs": {
+        "VirtualInterface$siteLinkEnabled": "<p>Indicates whether SiteLink is enabled.</p>"
+      }
+    },
     "Software": {
       "base": null,
       "refs": {
@@ -1704,13 +1718,14 @@
     "VirtualInterfaceName": {
       "base": null,
       "refs": {
-        "DescribeRouterConfigurationResponse$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network.</p>",
+        "DescribeRouterConfigurationResponse$virtualInterfaceName": "<p>Provides the details about a virtual interface's router.</p>",
         "NewPrivateVirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
         "NewPrivateVirtualInterfaceAllocation$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
         "NewPublicVirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
         "NewPublicVirtualInterfaceAllocation$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
         "NewTransitVirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
         "NewTransitVirtualInterfaceAllocation$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>",
+        "UpdateVirtualInterfaceAttributesRequest$virtualInterfaceName": "<p>The name of the virtual private interface.</p>",
         "VirtualInterface$virtualInterfaceName": "<p>The name of the virtual interface assigned by the customer network. The name has a maximum of 100 characters. The following are valid characters: a-z, 0-9 and a hyphen (-).</p>"
       }
     },

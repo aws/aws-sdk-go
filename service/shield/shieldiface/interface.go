@@ -128,6 +128,10 @@ type ShieldAPI interface {
 	DescribeSubscriptionWithContext(aws.Context, *shield.DescribeSubscriptionInput, ...request.Option) (*shield.DescribeSubscriptionOutput, error)
 	DescribeSubscriptionRequest(*shield.DescribeSubscriptionInput) (*request.Request, *shield.DescribeSubscriptionOutput)
 
+	DisableApplicationLayerAutomaticResponse(*shield.DisableApplicationLayerAutomaticResponseInput) (*shield.DisableApplicationLayerAutomaticResponseOutput, error)
+	DisableApplicationLayerAutomaticResponseWithContext(aws.Context, *shield.DisableApplicationLayerAutomaticResponseInput, ...request.Option) (*shield.DisableApplicationLayerAutomaticResponseOutput, error)
+	DisableApplicationLayerAutomaticResponseRequest(*shield.DisableApplicationLayerAutomaticResponseInput) (*request.Request, *shield.DisableApplicationLayerAutomaticResponseOutput)
+
 	DisableProactiveEngagement(*shield.DisableProactiveEngagementInput) (*shield.DisableProactiveEngagementOutput, error)
 	DisableProactiveEngagementWithContext(aws.Context, *shield.DisableProactiveEngagementInput, ...request.Option) (*shield.DisableProactiveEngagementOutput, error)
 	DisableProactiveEngagementRequest(*shield.DisableProactiveEngagementInput) (*request.Request, *shield.DisableProactiveEngagementOutput)
@@ -143,6 +147,10 @@ type ShieldAPI interface {
 	DisassociateHealthCheck(*shield.DisassociateHealthCheckInput) (*shield.DisassociateHealthCheckOutput, error)
 	DisassociateHealthCheckWithContext(aws.Context, *shield.DisassociateHealthCheckInput, ...request.Option) (*shield.DisassociateHealthCheckOutput, error)
 	DisassociateHealthCheckRequest(*shield.DisassociateHealthCheckInput) (*request.Request, *shield.DisassociateHealthCheckOutput)
+
+	EnableApplicationLayerAutomaticResponse(*shield.EnableApplicationLayerAutomaticResponseInput) (*shield.EnableApplicationLayerAutomaticResponseOutput, error)
+	EnableApplicationLayerAutomaticResponseWithContext(aws.Context, *shield.EnableApplicationLayerAutomaticResponseInput, ...request.Option) (*shield.EnableApplicationLayerAutomaticResponseOutput, error)
+	EnableApplicationLayerAutomaticResponseRequest(*shield.EnableApplicationLayerAutomaticResponseInput) (*request.Request, *shield.EnableApplicationLayerAutomaticResponseOutput)
 
 	EnableProactiveEngagement(*shield.EnableProactiveEngagementInput) (*shield.EnableProactiveEngagementOutput, error)
 	EnableProactiveEngagementWithContext(aws.Context, *shield.EnableProactiveEngagementInput, ...request.Option) (*shield.EnableProactiveEngagementOutput, error)
@@ -191,6 +199,10 @@ type ShieldAPI interface {
 	UntagResource(*shield.UntagResourceInput) (*shield.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *shield.UntagResourceInput, ...request.Option) (*shield.UntagResourceOutput, error)
 	UntagResourceRequest(*shield.UntagResourceInput) (*request.Request, *shield.UntagResourceOutput)
+
+	UpdateApplicationLayerAutomaticResponse(*shield.UpdateApplicationLayerAutomaticResponseInput) (*shield.UpdateApplicationLayerAutomaticResponseOutput, error)
+	UpdateApplicationLayerAutomaticResponseWithContext(aws.Context, *shield.UpdateApplicationLayerAutomaticResponseInput, ...request.Option) (*shield.UpdateApplicationLayerAutomaticResponseOutput, error)
+	UpdateApplicationLayerAutomaticResponseRequest(*shield.UpdateApplicationLayerAutomaticResponseInput) (*request.Request, *shield.UpdateApplicationLayerAutomaticResponseOutput)
 
 	UpdateEmergencyContactSettings(*shield.UpdateEmergencyContactSettingsInput) (*shield.UpdateEmergencyContactSettingsOutput, error)
 	UpdateEmergencyContactSettingsWithContext(aws.Context, *shield.UpdateEmergencyContactSettingsInput, ...request.Option) (*shield.UpdateEmergencyContactSettingsOutput, error)
